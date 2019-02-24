@@ -67,9 +67,9 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
+                        <button type="button" class="btn btn-link" data-dismiss="modal">{{__('Close')}}</button>
                         <button type="button" data-action="fields--utm#generate" data-dismiss="modal"
-                                class="btn btn-primary">{{__('Generate URL')}}</button>
+                                class="btn btn-default">{{__('Generate URL')}}</button>
                     </div>
                 </div>
             </div>

@@ -33,8 +33,15 @@
                         @csrf
                     </div>
                     <div class="modal-footer">
+
+                        <button type="button" class="btn btn-link" data-dismiss="modal">
+                            {{ __('Close') }}
+                        </button>
+
                         <button type="submit" id="submit-modal-{{$key}}"
-                                class="btn btn-primary">{{__('Apply')}}</button>
+                                class="btn btn-default">
+                            {{__('Apply')}}
+                        </button>
                     </div>
                 </form>
             </div>

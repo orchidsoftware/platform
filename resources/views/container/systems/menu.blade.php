@@ -177,27 +177,27 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">
                         {{ __('Close') }}
                     </button>
 
                     <button type="button" data-action="components--menu#remove"
-                            class="btn btn-danger" id="menu.remove">
+                            class="btn btn-link" id="menu.remove">
                         {{ __('Remove') }}
                     </button>
 
                     <button type="button" data-action="components--menu#clear"
-                            class="btn btn-default" id="menu.reset">
+                            class="btn btn-link" id="menu.reset">
                         {{ __('Reset') }}
                     </button>
 
                     <button type="button" data-action="components--menu#add"
-                            class="btn btn-primary" id="menu.create">
+                            class="btn btn-default" id="menu.create">
                         {{ __('Create') }}
                     </button>
 
                     <button type="button" data-action="components--menu#save"
-                            class="btn btn-primary" id="menu.save">
+                            class="btn btn-default" id="menu.save">
                         {{ __('Save') }}
                     </button>
                 </div>

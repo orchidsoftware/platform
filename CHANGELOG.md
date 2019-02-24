@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 3.10.4 - 2019-02-25
+
+### Changed
+- ItemMenu allow array or string with `setActive` method
+- Colors for pagination
+- Unification of button colors
+
+### Fixed
+- Padding for numeric filter
+- Drop test when displaying prohibited characters
+
 ## 3.10.3 - 2019-02-22
 
 ### Changed

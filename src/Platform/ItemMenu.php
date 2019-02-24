@@ -57,7 +57,7 @@ class ItemMenu
     public $show = true;
 
     /**
-     * @var string
+     * @var string|array
      */
     public $active;
 
@@ -79,11 +79,11 @@ class ItemMenu
     }
 
     /**
-     * @param string $active
+     * @param string|array $active
      *
      * @return \Orchid\Platform\ItemMenu
      */
-    public function setActive(string $active): self
+    public function setActive($active): self
     {
         $this->active = $active;
 

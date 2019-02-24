@@ -44,19 +44,16 @@
                         <div class="modal-footer">
 
                             <button type="button"
+                                    class="btn btn-link"
+                                    data-dismiss="modal">
+                                {{ __('Close') }}
+                            </button>
+
+                            <button type="button"
                                     class="btn btn-default"
                                     data-action="fields--picture#crop">
                                 {{ __('Crop') }}
                             </button>
-
-
-                            <div class="bg-white">
-                                <button type="button"
-                                        class="btn btn-outline-danger"
-                                        data-dismiss="modal">
-                                    {{ __('Close') }}
-                                </button>
-                            </div>
 
                         </div>
                     </div>

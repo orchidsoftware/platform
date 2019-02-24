@@ -32,8 +32,8 @@ class UserTest extends TestFeatureCase
             ->get(route('platform.systems.users'));
 
         $response->assertOk()
-            ->assertSee($this->user->name)
-            ->assertSee($this->user->email);
+            ->assertSeeText($this->user->name)
+            ->assertSeeText($this->user->email);
     }
 
     public function test_route_SystemsUsersEdit()
@@ -43,8 +43,8 @@ class UserTest extends TestFeatureCase
             ->get(route('platform.systems.users.edit', $this->user->id));
 
         $response->assertOk()
-            ->assertSee($this->user->name)
-            ->assertSee($this->user->email);
+            ->assertSeeText(e($this->user->name))
+            ->assertSeeText(e($this->user->email));
     }
 
     public function test_route_SystemsUsersEdit_remove()
