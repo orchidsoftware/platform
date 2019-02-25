@@ -33,7 +33,7 @@ class RadioButtonsField extends Field
      * @var array
      */
     public $attributes = [
-        'type' => 'radio'
+        'type' => 'radio',
     ];
 
     /**
@@ -51,7 +51,7 @@ class RadioButtonsField extends Field
         'required',
         'size',
         'tabindex',
-        'type'
+        'type',
     ];
 
     /**
