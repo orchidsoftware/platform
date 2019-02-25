@@ -5,7 +5,7 @@
             @foreach($options as $key => $option)
 
                 @php
-                    $active = $key === $value;
+                    $active = $key === ($value ?? null);
                 @endphp
 
                 <label class="btn btn-default @if($active) active @endif">
