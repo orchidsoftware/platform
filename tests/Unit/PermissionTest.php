@@ -84,14 +84,10 @@ class PermissionTest extends TestUnitCase
     {
         $dashboard = new Dashboard();
 
-        $dashboard->registerPermissions([
-            'Test' => [
-                [
-                    'slug'        => 'test',
-                    'description' => 'Test Description',
-                ],
-            ],
-        ]);
+        $permissions = ItemPermission::setGroup('Test')
+            ->addPermission('test', 'Test Description');
+
+        $dashboard->registerPermissions($permissions);
 
         $this->assertEquals($dashboard->getPermission()->count(), 1);
     }
