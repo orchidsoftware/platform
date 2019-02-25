@@ -59,7 +59,7 @@ class MainMenuComposer
                 ItemMenu::setLabel('Example 5 menu')
                     ->setSlug('example-menu')
                     ->setIcon('icon-heart')
-                    ->setChilds(true)
+                    ->setChilds()
             )
             ->add('example-menu',
                 ItemMenu::setLabel('Example sub 1')

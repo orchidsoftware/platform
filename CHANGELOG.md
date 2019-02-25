@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 3.10.6 - 2019-02-25
+
+### Changed
+- Display permission for hidden entity
+- Auto set active for menu
+- Set default Icon for menu
+- Default `true` params for childs menu
+
 ## 3.10.5 - 2019-02-25
 
 ### Changed

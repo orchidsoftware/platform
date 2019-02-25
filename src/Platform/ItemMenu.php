@@ -14,7 +14,7 @@ class ItemMenu
     /**
      * @var string
      */
-    public $icon;
+    public $icon = 'icon-folder';
 
     /**
      * @var string
@@ -34,12 +34,12 @@ class ItemMenu
     /**
      * @var bool
      */
-    public $divider;
+    public $divider = false;
 
     /**
      * @var bool
      */
-    public $childs;
+    public $childs = false;
 
     /**
      * @var int
@@ -163,6 +163,8 @@ class ItemMenu
             $this->route = $name;
         }
 
+        $this->setActive([$this->route,$this->route.'/*']);
+
         return $this;
     }
 
@@ -174,6 +176,8 @@ class ItemMenu
     public function setUrl(string $url) : self
     {
         $this->route = $url;
+
+        $this->setActive($url);
 
         return $this;
     }
@@ -207,7 +211,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setChilds(bool $childs): self
+    public function setChilds(bool $childs = true): self
     {
         $this->childs = $childs;
 

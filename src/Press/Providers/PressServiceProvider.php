@@ -149,7 +149,6 @@ class PressServiceProvider extends ServiceProvider
 
         $posts = $this->dashboard
             ->getEntities()
-            ->where('display', true)
             ->each(function ($post) use ($permissions) {
                 $permissions->addPermission('platform.entities.type.'.$post->slug, $post->name);
             });

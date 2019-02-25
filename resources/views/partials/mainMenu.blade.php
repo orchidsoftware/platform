@@ -19,13 +19,13 @@
             <i class="{{$icon}} m-r-xs"></i>
             {{ __($label) }}
         </a>
-        @if (!empty($childs))
-            <div class="collapse sub-menu {{active($active ?? '','show')}}" id="menu-{{$slug}}" data-parent="#headerMenuCollapse">
+        @if($childs)
+            <div class="collapse sub-menu {{active($active,'show')}}" id="menu-{{$slug}}" data-parent="#headerMenuCollapse">
                 {!! Dashboard::menu()->render($slug,'platform::partials.dropdownMenu') !!}
             </div>
         @endif
     </li>
-@isset($divider)
+@if($divider)
     <li class="divider b-t b-dark"></li>
-@endisset
+@endif
 {{-- @endif --}}

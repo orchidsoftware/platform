@@ -55,7 +55,6 @@ class PressMenuComposer
                         ->setGroupName($page->groupname)
                         ->setRoute($route, $params)
                         ->setPermission('platform.entities.type.'.$page->slug)
-                        ->setActive(route($route, $params).'*')
                         ->setSort($page->sort)
                         ->setShow($page->display)
                 );
