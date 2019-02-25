@@ -10,17 +10,17 @@ use Illuminate\Support\Facades\Auth;
 class Menu
 {
     /**
-     * Slug for main menu
+     * Slug for main menu.
      */
     const MAIN = 'Main';
 
     /**
-     * Slug for system page
+     * Slug for system page.
      */
     const SYSTEMS = 'Systems';
 
     /**
-     * Slug for dropdown profile
+     * Slug for dropdown profile.
      */
     const PROFILE = 'Profile';
 

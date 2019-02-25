@@ -6,9 +6,8 @@ namespace Orchid\Press\Http\Filters;
 
 use Orchid\Screen\Field;
 use Orchid\Platform\Filters\Filter;
-use Orchid\Screen\Fields\RadioButtonsField;
-use Orchid\Screen\Fields\SelectField;
 use Illuminate\Database\Eloquent\Builder;
+use Orchid\Screen\Fields\RadioButtonsField;
 
 class StatusFilter extends Filter
 {
