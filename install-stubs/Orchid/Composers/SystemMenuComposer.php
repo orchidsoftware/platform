@@ -6,6 +6,7 @@ namespace App\Orchid\Composers;
 
 use Orchid\Platform\ItemMenu;
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\Menu;
 
 class SystemMenuComposer
 {
@@ -30,7 +31,7 @@ class SystemMenuComposer
     public function compose()
     {
         $this->dashboard->menu
-            ->add('Systems',
+            ->add(Menu::SYSTEMS,
                 ItemMenu::setLabel(__('Access rights'))
                     ->setIcon('icon-lock')
                     ->setSlug('Auth')

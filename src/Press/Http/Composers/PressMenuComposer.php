@@ -6,6 +6,7 @@ namespace Orchid\Press\Http\Composers;
 
 use Orchid\Platform\ItemMenu;
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\Menu;
 use Orchid\Press\Entities\Single;
 
 class PressMenuComposer
@@ -48,7 +49,7 @@ class PressMenuComposer
                 $route = is_a($page, Single::class) ? 'platform.entities.type.page' : 'platform.entities.type';
                 $params = is_a($page, Single::class) ? [$page->slug, $page->slug] : [$page->slug];
 
-                $kernel->menu->add('Main',
+                $kernel->menu->add(Menu::MAIN,
                     ItemMenu::setLabel($page->name)
                         ->setSlug($page->slug)
                         ->setIcon($page->icon)

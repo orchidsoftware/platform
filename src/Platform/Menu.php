@@ -10,6 +10,21 @@ use Illuminate\Support\Facades\Auth;
 class Menu
 {
     /**
+     * Slug for main menu
+     */
+    const MAIN = 'Main';
+
+    /**
+     * Slug for system page
+     */
+    const SYSTEMS = 'Systems';
+
+    /**
+     * Slug for dropdown profile
+     */
+    const PROFILE = 'Profile';
+
+    /**
      * The contents of the menu.
      *
      * @var
@@ -158,7 +173,7 @@ class Menu
                 $item['children'] = $childrens;
 
                 $childrens->each(function ($children) use (&$item) {
-                    $item['active'] += $children['active'];
+                    $item['active'] = array_merge($item['active'], $children['active']);
                 });
 
                 return $item;

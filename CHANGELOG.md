@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 3.11.0 - 2019-02-25
+
+### Added
+- New field RadioButtonsField
+
+### Fixed
+- Multiple heritage activity in the menu
+
 ## 3.10.6 - 2019-02-25
 
 ### Changed

@@ -6,6 +6,7 @@ namespace App\Orchid\Composers;
 
 use Orchid\Platform\ItemMenu;
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\Menu;
 
 class MainMenuComposer
 {
@@ -31,31 +32,31 @@ class MainMenuComposer
     {
         // Profile
         $this->dashboard->menu
-            ->add('Profile',
+            ->add(Menu::PROFILE,
                 ItemMenu::setLabel('Example 1')
                     ->setIcon('icon-compass')
             )
-            ->add('Profile',
+            ->add(Menu::PROFILE,
                 ItemMenu::setLabel('Example 2')
                     ->setIcon('icon-heart')
                     ->setBadge(function () {
                         return 6;
                     })
             )
-            ->add('Profile',
+            ->add(Menu::PROFILE,
                 ItemMenu::setLabel('Example 3')
                     ->setIcon('icon-microphone')
             );
 
         // Main
         $this->dashboard->menu
-            ->add('Main',
+            ->add(Menu::MAIN,
                 ItemMenu::setLabel('Example 4')
                     ->setIcon('icon-folder')
                     ->setRoute('platform.example')
                     ->setGroupName('Example boilerplate')
             )
-            ->add('Main',
+            ->add(Menu::MAIN,
                 ItemMenu::setLabel('Example 5 menu')
                     ->setSlug('example-menu')
                     ->setIcon('icon-heart')
@@ -72,17 +73,17 @@ class MainMenuComposer
                     ->setRoute('platform.example')
                     ->setGroupName('Separate')
             )
-            ->add('Main',
+            ->add(Menu::MAIN,
                 ItemMenu::setLabel('Example 6')
                     ->setIcon('icon-code')
                     ->setRoute('platform.example')
             )
-            ->add('Main',
+            ->add(Menu::MAIN,
                 ItemMenu::setLabel('Example 7')
                     ->setIcon('icon-bag')
                     ->setRoute(route('platform.example'))
             )
-            ->add('Main',
+            ->add(Menu::MAIN,
                 ItemMenu::setLabel('Example 8')
                     ->setIcon('icon-folder')
                     ->setRoute('platform.example')

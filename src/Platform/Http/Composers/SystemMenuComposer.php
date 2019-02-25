@@ -6,6 +6,7 @@ namespace Orchid\Platform\Http\Composers;
 
 use Orchid\Platform\ItemMenu;
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\Menu;
 
 class SystemMenuComposer
 {
@@ -30,7 +31,7 @@ class SystemMenuComposer
     public function compose()
     {
         $this->dashboard->menu
-            ->add('Systems', ItemMenu::setLabel(__('Cache configuration'))
+            ->add(Menu::SYSTEMS, ItemMenu::setLabel(__('Cache configuration'))
                 ->setSlug('Cache')
                 ->setIcon('icon-refresh')
                 ->setPermission('platform.systems.cache')
@@ -56,7 +57,7 @@ class SystemMenuComposer
                     ->setRoute('platform.systems.cache', ['action' => 'view'])
                     ->setGroupName(__('Clear all compiled view files'))
             )
-            ->add('Systems',
+            ->add(Menu::SYSTEMS,
                 ItemMenu::setLabel(__('Tools'))
                     ->setSlug('Tools')
                     ->setIcon('icon-umbrella')

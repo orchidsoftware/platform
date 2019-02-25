@@ -31,6 +31,11 @@ class FieldTest extends TestUnitCase
                     'name'    => 'example',
                     'options' => [],
                 ], ],
+            [\Orchid\Screen\Fields\RadioButtonsField::class,
+             [
+                 'name'    => 'example',
+                 'options' => [],
+             ], ],
             [\Orchid\Screen\Fields\RelationshipField::class,
                 [
                     'name'    => 'example',

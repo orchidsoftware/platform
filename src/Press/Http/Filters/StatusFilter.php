@@ -6,6 +6,7 @@ namespace Orchid\Press\Http\Filters;
 
 use Orchid\Screen\Field;
 use Orchid\Platform\Filters\Filter;
+use Orchid\Screen\Fields\RadioButtonsField;
 use Orchid\Screen\Fields\SelectField;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -33,7 +34,7 @@ class StatusFilter extends Filter
      */
     public function display(): Field
     {
-        return SelectField::make('status')
+        return RadioButtonsField::make('status')
             ->value($this->request->get('status'))
             ->options([
                 'publish' => __('Published'),
