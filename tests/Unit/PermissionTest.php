@@ -77,22 +77,6 @@ class PermissionTest extends TestUnitCase
     }
 
     /**
-     * @deprecated removed 4.0
-     * Dashboard registered permission.
-     */
-    public function testIsRegisteredForArrayPermission()
-    {
-        $dashboard = new Dashboard();
-
-        $permissions = ItemPermission::setGroup('Test')
-            ->addPermission('test', 'Test Description');
-
-        $dashboard->registerPermissions($permissions);
-
-        $this->assertEquals($dashboard->getPermission()->count(), 1);
-    }
-
-    /**
      * Dashboard registered permission.
      */
     public function testIsRegisteredPermission()
