@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Composers;
 
+use Orchid\Platform\Menu;
 use Orchid\Platform\ItemMenu;
 use Orchid\Platform\Dashboard;
-use Orchid\Platform\Menu;
 use Orchid\Press\Entities\Single;
 
 class PressMenuComposer
