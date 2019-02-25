@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Platform\Http\Controllers\Controller;
+use Illuminate\Support\Arr;
 
 /**
  * Class Screen.
@@ -195,7 +196,7 @@ abstract class Screen extends Controller
 
         $class = $parameter->getClass()->name;
 
-        $object = array_first($this->arguments, function ($value) use ($class) {
+        $object = Arr::first($this->arguments, function ($value) use ($class) {
             return is_subclass_of($value, $class) || is_a($value, $class);
         });
 
@@ -219,7 +220,7 @@ abstract class Screen extends Controller
             return true;
         }
 
-        $permissions = array_wrap($this->permission);
+        $permissions = Arr::wrap($this->permission);
 
         foreach ($permissions as $item) {
             if (Auth::user()->hasAccess($item)) {

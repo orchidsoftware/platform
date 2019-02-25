@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Setting;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 
@@ -77,7 +78,7 @@ class Setting extends Model
      */
     private function cacheForget($key)
     {
-        foreach (array_wrap($key) as $value) {
+        foreach (Arr::wrap($key) as $value) {
             Cache::forget($value);
         }
     }
@@ -129,7 +130,7 @@ class Setting extends Model
      */
     public function forget($key)
     {
-        $key = array_wrap($key);
+        $key = Arr::wrap($key);
         $result = $this->whereIn('key', $key)->delete();
         $this->cacheForget($key);
 

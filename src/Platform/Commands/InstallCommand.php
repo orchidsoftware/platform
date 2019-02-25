@@ -88,7 +88,7 @@ class InstallCommand extends Command
         $this->info(' Completed!');
 
         $this
-            ->askEnv('What domain to use the panel?', 'DASHBOARD_DOMAIN', 'localhost')
+            ->askEnv('What domain to use the panel?', 'DASHBOARD_DOMAIN', null)
             ->askEnv('What prefix to use the panel?', 'DASHBOARD_PREFIX', 'dashboard')
             ->setValueEnv('SCOUT_DRIVER', 'null')
             ->comment("To create a user, run 'artisan orchid:admin'");

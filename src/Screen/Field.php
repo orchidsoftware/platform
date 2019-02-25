@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Support\Str;
 use Orchid\Screen\Traits\CanSee;
 use Orchid\Screen\Contracts\FieldContract;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
@@ -279,7 +280,7 @@ class Field implements FieldContract
         $lang = $this->get('lang');
         $slug = $this->get('name');
 
-        return str_slug("field-$lang-$slug");
+        return Str::slug("field-$lang-$slug");
     }
 
     /**
@@ -302,7 +303,7 @@ class Field implements FieldContract
      */
     public function getSlug(): string
     {
-        return str_slug($this->get('name'));
+        return Str::slug($this->get('name'));
     }
 
     /**

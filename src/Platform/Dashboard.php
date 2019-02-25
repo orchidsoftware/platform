@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Platform;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class Dashboard
 {
@@ -91,7 +93,7 @@ class Dashboard
     {
         $prefix = config('platform.prefix');
 
-        return str_start($prefix.$path, '/');
+        return Str::start($prefix.$path, '/');
     }
 
     /**
@@ -116,7 +118,7 @@ class Dashboard
      */
     public static function option(string $key, $default = null)
     {
-        return array_get(static::$options, $key, $default);
+        return Arr::get(static::$options, $key, $default);
     }
 
     /**
@@ -142,7 +144,7 @@ class Dashboard
      */
     public static function model(string $key, string $default = null)
     {
-        return array_get(static::$options, 'models.'.$key, $default ?? $key);
+        return Arr::get(static::$options, 'models.'.$key, $default ?? $key);
     }
 
     /**
@@ -171,19 +173,6 @@ class Dashboard
      */
     public function registerPermissions($permission): self
     {
-        /*
-         * Deprecated
-         * Removed for 4.0
-         */
-        if (is_array($permission)) {
-            foreach ($permission as $key => $item) {
-                $old = $this->permission->get('all')->get($key, []);
-                $this->permission->get('all')->put($key, array_merge_recursive($old, $item));
-            }
-
-            return $this;
-        }
-
         $old = $this->permission->get('all')
             ->get($permission->group, []);
 
@@ -227,7 +216,7 @@ class Dashboard
     {
         $item = $this->resources->get($key, []);
 
-        $this->resources[$key] = array_merge($item, array_wrap($value));
+        $this->resources[$key] = array_merge($item, Arr::wrap($value));
 
         return $this;
     }

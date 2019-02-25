@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+
 class ItemMenu
 {
     /**
@@ -85,7 +88,7 @@ class ItemMenu
      */
     public function setActive($active): self
     {
-        $this->active = array_wrap($active);
+        $this->active = Arr::wrap($active);
 
         return $this;
     }
@@ -100,7 +103,7 @@ class ItemMenu
         $item = new self();
 
         $item->label = $label;
-        $item->slug = str_slug($label);
+        $item->slug = Str::slug($label);
 
         return $item;
     }
@@ -144,10 +147,6 @@ class ItemMenu
     /**
      * Generate the URL to a named route.
      *
-     * @deprecated params to ->setRoute(route('platform.*'))
-     * This method will be saved, but will explicitly respond to its name.
-     * If you want to create links otherwise use ->setUrl()
-     *
      * @param  array|string  $name
      * @param  mixed  $parameters
      * @param  bool  $absolute
@@ -156,12 +155,7 @@ class ItemMenu
      */
     public function setRoute(string $name, array $parameters = [], bool $absolute = true): self
     {
-        // Remove try/catch for major realise 4.0
-        try {
-            $this->route = route($name, $parameters, $absolute);
-        } catch (\Exception $exception) {
-            $this->route = $name;
-        }
+        $this->route = route($name, $parameters, $absolute);
 
         $this->setActive([$this->route, $this->route.'/*']);
 

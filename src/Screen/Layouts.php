@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Support\Arr;
 use Orchid\Screen\Layouts\Rows;
 
 /**
@@ -113,7 +114,7 @@ class Layouts
         $build = [];
 
         foreach ($this->layouts as $key => $layouts) {
-            $layouts = array_wrap($layouts);
+            $layouts = Arr::wrap($layouts);
 
             $build += $this->buildChild($layouts, $key, $repository);
         }

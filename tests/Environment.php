@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
+use Illuminate\Support\Str;
 use Watson\Active\Active;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
@@ -104,7 +105,7 @@ trait Environment
             'table'           => 'sessions',
             'store'           => null,
             'lottery'         => [2, 100],
-            'cookie'          => str_slug(env('APP_NAME', 'laravel'), '_').'_session',
+            'cookie'          => Str::slug(env('APP_NAME', 'laravel'), '_').'_session',
             'path'            => '/',
             'domain'          => null,
             'secure'          => false,

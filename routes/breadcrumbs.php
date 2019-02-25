@@ -33,18 +33,6 @@ Breadcrumbs::for('platform.systems.menu.show', function ($trail, $menu) {
     $trail->push(__('Editing'), route('platform.systems.menu.show', $menu));
 });
 
-// Platform > System > Media
-Breadcrumbs::for('platform.systems.media.index', function ($trail, $params = '') {
-    $breadcrumbs = \Orchid\Press\Http\Controllers\MediaController::getBreadcrumb($params);
-
-    $trail->parent('platform.systems.index');
-    $trail->push(__('Media'), route('platform.systems.media.index'));
-
-    foreach ($breadcrumbs as $breadcrumb) {
-        $trail->push($breadcrumb['name'], route('platform.systems.media.index', [$breadcrumb['path']]));
-    }
-});
-
 // Platform > System > Announcement
 Breadcrumbs::for('platform.systems.announcement', function ($trail) {
     $trail->parent('platform.systems.index');

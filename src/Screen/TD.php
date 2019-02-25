@@ -6,6 +6,7 @@ namespace Orchid\Screen;
 
 use Closure;
 use Illuminate\Support\Traits\Macroable;
+use Illuminate\Support\Arr;
 
 class TD
 {
@@ -200,7 +201,7 @@ class TD
     {
         $this->setRender(function ($datum) use ($route, $options, $text) {
             $attributes = [];
-            $options = array_wrap($options);
+            $options = Arr::wrap($options);
 
             foreach ($options as $option) {
                 if (method_exists($datum, 'getContent')) {
@@ -250,7 +251,7 @@ class TD
     {
         $this->setRender(function ($datum) use ($modal, $method, $options, $text) {
             $attributes = [];
-            $options = array_wrap($options);
+            $options = Arr::wrap($options);
 
             foreach ($options as $option) {
                 if (method_exists($datum, 'getContent')) {

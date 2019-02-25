@@ -62,23 +62,6 @@ if (! function_exists('generate_form')) {
     }
 }
 
-if (! function_exists('dashboard_domain')) {
-
-    /**
-     * @param string $default
-     *
-     * @return string
-     */
-    function dashboard_domain($default = 'localhost')
-    {
-        try {
-            return parse_url(config('app.url'))['host'] ?? $default;
-        } catch (\TypeError $exception) {
-            return 'localhost';
-        }
-    }
-}
-
 if (! function_exists('is_sort')) {
 
     /**

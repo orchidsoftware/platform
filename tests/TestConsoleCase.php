@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
+use Illuminate\Support\Str;
 use Orchestra\Testbench\TestCase;
 
 /**
@@ -18,6 +19,6 @@ abstract class TestConsoleCase extends TestCase
      */
     public function generateNameFromMethod(): string
     {
-        return studly_case(debug_backtrace()[1]['function'].str_random());
+        return studly_case(debug_backtrace()[1]['function'].Str::random());
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
+use Illuminate\Support\Arr;
 use Orchid\Attachment\File;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -32,7 +33,7 @@ class AttachmentController extends Controller
     {
         $attachment = [];
         foreach ($request->allFiles() as $files) {
-            $files = array_wrap($files);
+            $files = Arr::wrap($files);
 
             foreach ($files as $file) {
                 $attachment[] = $this->createModel($file, $request);

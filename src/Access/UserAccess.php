@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Events\AddRoleEvent;
 use Orchid\Platform\Events\RemoveRoleEvent;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Arr;
 
 trait UserAccess
 {
@@ -41,7 +42,7 @@ trait UserAccess
      */
     public function inRole($role): bool
     {
-        $role = array_first($this->roles, function ($instance) use ($role) {
+        $role = Arr::first($this->roles, function ($instance) use ($role) {
             if ($role instanceof RoleInterface) {
                 return $instance->getRoleId() === $role->getRoleId();
             }

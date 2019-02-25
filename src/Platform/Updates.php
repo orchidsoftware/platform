@@ -6,6 +6,7 @@ namespace Orchid\Platform;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 
 class Updates
 {
@@ -43,7 +44,7 @@ class Updates
      */
     public function check()
     {
-        $status = Cache::remember('platform-update-widget', $this->cache, function () {
+        $status = Cache::remember('platform-update-widget', now()->addMinutes($this->cache), function () {
             $this->updateInstall();
 
             return $this->getStatus();
@@ -96,7 +97,7 @@ class Updates
     public function getStatus(): bool
     {
         foreach ($this->requestVersion() as $key => $version) {
-            if (! str_contains($key, 'dev')) {
+            if (! Str::contains($key, 'dev')) {
                 continue;
             }
 

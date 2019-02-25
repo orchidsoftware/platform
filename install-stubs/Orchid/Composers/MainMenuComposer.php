@@ -81,7 +81,7 @@ class MainMenuComposer
             ->add(Menu::MAIN,
                 ItemMenu::setLabel('Example 7')
                     ->setIcon('icon-bag')
-                    ->setRoute(route('platform.example'))
+                    ->setRoute('platform.example')
             )
             ->add(Menu::MAIN,
                 ItemMenu::setLabel('Example 8')

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
+use Illuminate\Support\Str;
 use Orchid\Setting\Setting;
 use Orchid\Tests\TestUnitCase;
 
@@ -20,8 +21,8 @@ class SettingsTest extends TestUnitCase
     public function test_for_one_value()
     {
         //Запишем значение
-        $key = 'test-'.str_random(40);
-        $value = 'value-'.str_random(40);
+        $key = 'test-'.Str::random(40);
+        $value = 'value-'.Str::random(40);
 
         $this->setting->set($key, $value);
 
@@ -42,9 +43,9 @@ class SettingsTest extends TestUnitCase
     public function test_for_many_value()
     {
         $valueArray = [
-            'test-1' => 'value-'.str_random(40),
-            'test-2' => 'value-'.str_random(40),
-            'test-3' => 'value-'.str_random(40),
+            'test-1' => 'value-'.Str::random(40),
+            'test-2' => 'value-'.Str::random(40),
+            'test-3' => 'value-'.Str::random(40),
         ];
 
         //Добавим несколько значений

@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Arr;
 
 /**
  * Class Post.
@@ -232,7 +233,7 @@ class Post extends Model
     {
         $locale = $this->getOption('locale', []);
 
-        if (array_key_exists($key, array_wrap($locale))) {
+        if (array_key_exists($key, Arr::wrap($locale))) {
             return filter_var($locale[$key], FILTER_VALIDATE_BOOLEAN);
         }
 
