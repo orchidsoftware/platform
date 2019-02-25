@@ -163,7 +163,7 @@ class ItemMenu
             $this->route = $name;
         }
 
-        $this->setActive([$this->route,$this->route.'/*']);
+        $this->setActive([$this->route, $this->route.'/*']);
 
         return $this;
     }
