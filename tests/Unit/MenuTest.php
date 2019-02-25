@@ -19,7 +19,6 @@ class MenuTest extends TestUnitCase
 
         $menu->add('Main', ItemMenu::setLabel('Main Test')
             ->setSlug('Test')
-            ->setRoute('#')
             ->setIcon('icon-layers')
             ->setChilds(true)
             ->setSort(1000)
@@ -30,7 +29,6 @@ class MenuTest extends TestUnitCase
 
         $menu->add('Test', ItemMenu::setLabel('Users')
             ->setSlug('users')
-            ->setRoute('#')
             ->setIcon('icon-user')
             ->setChilds(false)
             ->setDivider(false)
@@ -46,17 +44,15 @@ class MenuTest extends TestUnitCase
 
         $menu->add('CountPlace', ItemMenu::setLabel('Main Test')
             ->setSlug('CountPlace 1')
-            ->setRoute('#')
             ->setIcon('icon-layers')
-            ->setChilds(true)
+            ->setChilds()
             ->setSort(1000)
         );
 
         $menu->add('CountPlace', ItemMenu::setLabel('Main Test')
             ->setSlug('CountPlace 2')
-            ->setRoute('#')
             ->setIcon('icon-layers')
-            ->setChilds(true)
+            ->setChilds()
             ->setSort(1000)
         );
 
@@ -70,8 +66,7 @@ class MenuTest extends TestUnitCase
         $menu = (new Dashboard())->menu;
 
         $menu->add('Main', ItemMenu::setLabel('No Display')
-            ->setRoute('#')
-            ->setChilds(true)
+            ->setChilds()
             ->setSort(1000)
             ->setShow(false)
         );

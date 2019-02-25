@@ -50,12 +50,4 @@ class SystemTest extends TestFeatureCase
         $response->assertOk();
         $this->assertContains('data-controller="components--menu"', $response->getContent());
     }
-
-    public function test_route_PlatformSystemsMediaIndex()
-    {
-        $response = $this->actingAs($this->user)
-            ->get(route('platform.systems.media.index'));
-        $response->assertOk();
-        $this->assertContains('id="filemanager"', $response->getContent());
-    }
 }
