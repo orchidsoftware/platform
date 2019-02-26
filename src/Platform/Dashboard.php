@@ -167,12 +167,16 @@ class Dashboard
     }
 
     /**
-     * @param array|ItemPermission $permission
+     * @param ItemPermission $permission
      *
      * @return $this
      */
-    public function registerPermissions($permission): self
+    public function registerPermissions(ItemPermission $permission): self
     {
+        if(empty($permission->group)){
+            return $this;
+        }
+
         $old = $this->permission->get('all')
             ->get($permission->group, []);
 

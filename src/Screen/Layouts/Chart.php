@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Support\Str;
 use Orchid\Screen\Repository;
 
 /**
@@ -65,7 +66,7 @@ abstract class Chart extends Base
     {
         return view($this->template, [
             'title'  => $this->title,
-            'slug'   => str_slug($this->title),
+            'slug'   => Str::slug($this->title),
             'type'   => $this->type,
             'height' => $this->height,
             'labels' => json_encode(collect($this->labels)),

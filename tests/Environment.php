@@ -28,8 +28,6 @@ trait Environment
     {
         parent::setUp();
 
-        Schema::defaultStringLength(191);
-
         $this->artisan('vendor:publish', [
             '--provider' => 'Orchid\Platform\Providers\FoundationServiceProvider',
         ]);
@@ -81,7 +79,6 @@ trait Environment
         ]);
         $app['config']->set('scout.driver', null);
         $app['config']->set('database.default', 'orchid');
-        $app['config']->set('activitylog.enabled', false);
 
         $app['config']->set('sluggable', [
             'source'             => null,

@@ -7,9 +7,9 @@
              aria-labelledby="screen-modal-{{$key}}"
              data-controller="screen--modal"
              data-screen--modal-slug="{{$templateSlug}}"
-             data-screen--modal-async="{{$templateAsync}}"
+             data-screen--modal-async="{{$templateAsync || true}}"
              data-screen--modal-method ="{{$templateAsyncMethod}}"
-             data-screen--modal-url="{{$templateAsyncRoute?route($templateAsyncRoute):url()->current()}}"
+             data-screen--modal-url="{{ url()->current() }}"
         >
             <div class="modal-dialog {{$compose['class'] ?? ''}}" role="document" id="screen-modal-type-{{$key}}">
                 <form class="modal-content"

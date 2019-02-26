@@ -79,7 +79,7 @@ abstract class Screen extends Controller
      * @return \Illuminate\Contracts\View\View
      * @throws \Throwable
      */
-    public function build(): View
+    public function build()
     {
         $layout = Layouts::blank([
             $this->layout(),
@@ -95,7 +95,7 @@ abstract class Screen extends Controller
      * @return \Illuminate\Contracts\View\View
      * @throws \Throwable
      */
-    public function asyncBuild($method, $slugLayouts)
+    protected function asyncBuild($method, $slugLayouts)
     {
         $this->arguments = $this->request->json()->all();
 
@@ -104,7 +104,10 @@ abstract class Screen extends Controller
         $post = new Repository($query);
 
         foreach ($this->layout() as $layout) {
-            if (property_exists($layout, 'slug') && $layout->slug === $slugLayouts) {
+            $layout = is_object($layout) ? $layout : new $layout();
+
+            if ($layout->getSlug() === $slugLayouts) {
+                $layout->async = true;
                 return $layout->build($post, true);
             }
         }
@@ -159,7 +162,7 @@ abstract class Screen extends Controller
      *
      * @throws \ReflectionException
      */
-    public function reflectionParams(string $method)
+    private function reflectionParams(string $method)
     {
         $class = new ReflectionClass($this);
 
