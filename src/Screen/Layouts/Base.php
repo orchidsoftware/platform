@@ -14,7 +14,7 @@ abstract class Base
 {
     /**
      * Main template to display the layer
-     * Represents the view() argument
+     * Represents the view() argument.
      *
      * @var string
      */
@@ -22,7 +22,7 @@ abstract class Base
 
     /**
      * Nested layers that should be
-     * displayed along with it
+     * displayed along with it.
      *
      * @var array
      */
@@ -30,7 +30,7 @@ abstract class Base
 
     /**
      * What screen method should be called
-     * as a source for an asynchronous request
+     * as a source for an asynchronous request.
      *
      * @var string
      */
@@ -45,7 +45,7 @@ abstract class Base
     public $async = false;
 
     /**
-     * The following request must be asynchronous
+     * The following request must be asynchronous.
      *
      * @var bool
      */
@@ -67,7 +67,6 @@ abstract class Base
      * @return mixed
      */
     abstract public function build(Repository $repository);
-
 
     /**
      * @param string $method
@@ -102,9 +101,9 @@ abstract class Base
     {
         $build = [];
 
-        if (!$this->checkPermission($this, $repository)) {
-            return null;
-        };
+        if (! $this->checkPermission($this, $repository)) {
+            return;
+        }
 
         foreach ($this->layouts as $key => $layouts) {
             $layouts = Arr::wrap($layouts);
@@ -144,11 +143,11 @@ abstract class Base
         $build = [];
 
         foreach ($layouts as $layout) {
-            $layout = !is_object($layout) ? new $layout : $layout;
+            $layout = ! is_object($layout) ? new $layout : $layout;
 
-            if (!$this->checkPermission($layout, $repository)) {
+            if (! $this->checkPermission($layout, $repository)) {
                 continue;
-            };
+            }
 
             $build[$key][] = $layout->build($repository);
         }

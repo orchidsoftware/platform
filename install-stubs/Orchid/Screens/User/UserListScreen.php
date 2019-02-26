@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
-use Illuminate\Http\Request;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
+use Illuminate\Http\Request;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
 use App\Orchid\Filters\RoleFilter;

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Closure;
-use Illuminate\Support\Traits\Macroable;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Traits\Macroable;
 
 class TD
 {

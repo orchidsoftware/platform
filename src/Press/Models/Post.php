@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Press\Models;
 
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
 use Laravel\Scout\Searchable;
 use Orchid\Platform\Models\User;
 use Illuminate\Support\Collection;
@@ -22,7 +23,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Arr;
 
 /**
  * Class Post.

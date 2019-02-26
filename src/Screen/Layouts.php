@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Orchid\Screen\Layouts\Blank;
-use Orchid\Screen\Layouts\Columns;
-use Orchid\Screen\Layouts\Modals;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Layouts\View;
+use Orchid\Screen\Layouts\Blank;
+use Orchid\Screen\Layouts\Modals;
+use Orchid\Screen\Layouts\Columns;
 
 /**
  * Class Layouts.
@@ -28,8 +28,7 @@ class Layouts
      */
     public static function view(string $view): View
     {
-        return new class($view) extends View
-        {
+        return new class($view) extends View {
         };
     }
 
@@ -40,8 +39,7 @@ class Layouts
      */
     public static function rows(array $fields): Rows
     {
-        return new class($fields) extends Rows
-        {
+        return new class($fields) extends Rows {
             /**
              * @var array
              */
@@ -74,8 +72,7 @@ class Layouts
      */
     public static function columns(array $layouts): Columns
     {
-        return new class($layouts) extends Columns
-        {
+        return new class($layouts) extends Columns {
         };
     }
 
@@ -86,8 +83,7 @@ class Layouts
      */
     public static function tabs(array $layouts): Tabs
     {
-        return new class($layouts) extends Tabs
-        {
+        return new class($layouts) extends Tabs {
         };
     }
 
@@ -98,8 +94,7 @@ class Layouts
      */
     public static function modals(array $layouts): Modals
     {
-        return new class($layouts) extends Modals
-        {
+        return new class($layouts) extends Modals {
         };
     }
 
@@ -110,8 +105,7 @@ class Layouts
      */
     public static function blank(array $layouts): Blank
     {
-        return new class($layouts) extends Blank
-        {
+        return new class($layouts) extends Blank {
         };
     }
 
@@ -125,7 +119,6 @@ class Layouts
         $build = '';
 
         foreach ($this->layouts as $layout) {
-
             $layout = is_object($layout) ? $layout : new $layout();
 
             $build .= $layout->build($repository);

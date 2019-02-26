@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
-use Illuminate\Support\Arr;
 use Orchid\Screen\Repository;
-use Orchid\Screen\Traits\DeepLayout;
 
 /**
  * Class Columns.
@@ -27,5 +25,4 @@ abstract class Columns extends Base
     {
         return $this->buildAsDeep($repository);
     }
-
 }

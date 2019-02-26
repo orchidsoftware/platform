@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
-use Illuminate\Support\Str;
 use Watson\Active\Active;
+use Illuminate\Support\Str;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
-use Illuminate\Support\Facades\Schema;
 use Orchid\Press\Providers\PressServiceProvider;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Orchid\Platform\Providers\FoundationServiceProvider;

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Str;
 
 class Updates
 {

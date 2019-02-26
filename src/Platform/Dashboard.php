@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform;
 
-use Illuminate\Support\Collection;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
 
 class Dashboard
 {
@@ -173,7 +173,7 @@ class Dashboard
      */
     public function registerPermissions(ItemPermission $permission): self
     {
-        if(empty($permission->group)){
+        if (empty($permission->group)) {
             return $this;
         }
 

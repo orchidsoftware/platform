@@ -6,11 +6,11 @@ namespace Orchid\Screen;
 
 use ReflectionClass;
 use ReflectionParameter;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Platform\Http\Controllers\Controller;
-use Illuminate\Support\Arr;
 
 /**
  * Class Screen.
@@ -108,6 +108,7 @@ abstract class Screen extends Controller
 
             if ($layout->getSlug() === $slugLayouts) {
                 $layout->async = true;
+
                 return $layout->build($post, true);
             }
         }
