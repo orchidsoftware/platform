@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
+use Illuminate\Http\Request;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
 use App\Orchid\Filters\RoleFilter;
-use Illuminate\Support\Facades\Hash;
 use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserListLayout;
 
@@ -87,20 +87,14 @@ class UserListScreen extends Screen
     /**
      * @param User $user
      *
+     * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function saveUser(User $user)
+    public function saveUser(User $user, Request $request)
     {
-        $attributes = $this->request->get('user');
-
-        if (array_key_exists('password', $attributes) && empty($attributes['password'])) {
-            unset($attributes['password']);
-        } else {
-            $user->password = Hash::make($attributes['password']);
-            unset($attributes['password']);
-        }
-
-        $user->fill($attributes)->save();
+        $user->fill($request->get('user'))
+            ->save();
 
         Alert::info(__('User was saved.'));
 
