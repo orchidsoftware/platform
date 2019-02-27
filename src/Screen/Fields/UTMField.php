@@ -41,7 +41,7 @@ use Orchid\Screen\Field;
  * @method $this mask($value = true)
  * @method $this popover(string $value = null)
  */
-class UTM extends Field
+class UTMField extends Field
 {
     /**
      * @var string

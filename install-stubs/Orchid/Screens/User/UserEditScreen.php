@@ -11,8 +11,8 @@ use Illuminate\Http\Request;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
-use Illuminate\Support\Facades\Auth;
 use Orchid\Screen\Fields\Password;
+use Illuminate\Support\Facades\Auth;
 use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserRoleLayout;
 

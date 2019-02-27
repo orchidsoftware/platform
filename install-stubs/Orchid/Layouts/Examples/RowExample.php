@@ -3,18 +3,18 @@
 namespace App\Orchid\Layouts\Examples;
 
 use Orchid\Screen\Field;
-use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Fields\Map;
 use Orchid\Screen\Fields\UTM;
 use Orchid\Screen\Fields\Code;
 use Orchid\Screen\Fields\Tags;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Quill;
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Fields\Select;
-use Orchid\Screen\Fields\Switcher;
 use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\TinyMCE;
 use Orchid\Screen\Fields\CheckBox;
+use Orchid\Screen\Fields\Switcher;
 use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Fields\DateTimer;
 use Orchid\Screen\Fields\SimpleMDE;

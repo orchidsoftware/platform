@@ -40,7 +40,7 @@ use Orchid\Screen\Field;
  * @method $this help(string $value = null)
  * @method $this height($value = '300px')
  */
-class Quill extends Field
+class QuillField extends Field
 {
     /**
      * @var string

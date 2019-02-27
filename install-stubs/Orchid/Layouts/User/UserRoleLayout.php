@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Orchid\Layouts\User;
 
 use Orchid\Screen\Field;
-use Orchid\Screen\Layouts\Rows;
-use Illuminate\Support\Collection;
 use Orchid\Screen\Fields\Label;
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Fields\Select;
+use Illuminate\Support\Collection;
 use Orchid\Screen\Fields\CheckBox;
 
 class UserRoleLayout extends Rows
