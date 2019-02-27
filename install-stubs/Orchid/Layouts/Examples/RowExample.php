@@ -4,20 +4,20 @@ namespace App\Orchid\Layouts\Examples;
 
 use Orchid\Screen\Field;
 use Orchid\Screen\Layouts\Rows;
-use Orchid\Screen\Fields\MapField;
-use Orchid\Screen\Fields\UTMField;
-use Orchid\Screen\Fields\CodeField;
-use Orchid\Screen\Fields\TagsField;
-use Orchid\Screen\Fields\InputField;
-use Orchid\Screen\Fields\QuillField;
-use Orchid\Screen\Fields\SelectField;
-use Orchid\Screen\Fields\SwitchField;
-use Orchid\Screen\Fields\PictureField;
-use Orchid\Screen\Fields\TinyMCEField;
-use Orchid\Screen\Fields\CheckBoxField;
-use Orchid\Screen\Fields\TextAreaField;
-use Orchid\Screen\Fields\DateTimerField;
-use Orchid\Screen\Fields\SimpleMDEField;
+use Orchid\Screen\Fields\Map;
+use Orchid\Screen\Fields\UTM;
+use Orchid\Screen\Fields\Code;
+use Orchid\Screen\Fields\Tags;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Quill;
+use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Fields\Switcher;
+use Orchid\Screen\Fields\Picture;
+use Orchid\Screen\Fields\TinyMCE;
+use Orchid\Screen\Fields\CheckBox;
+use Orchid\Screen\Fields\TextArea;
+use Orchid\Screen\Fields\DateTimer;
+use Orchid\Screen\Fields\SimpleMDE;
 
 class RowExample extends Rows
 {
@@ -31,7 +31,7 @@ class RowExample extends Rows
 
             Field::group([
 
-                InputField::make('name')
+                Input::make('name')
                     ->type('text')
                     ->max(255)
                     ->required()
@@ -39,7 +39,7 @@ class RowExample extends Rows
                     ->help('Article title')
                     ->popover('Tooltip - hint that user opens himself.'),
 
-                InputField::make('title')
+                Input::make('title')
                     ->type('text')
                     ->max(255)
                     ->required()
@@ -51,55 +51,55 @@ class RowExample extends Rows
 
             Field::group([
 
-                DateTimerField::make('open')
+                DateTimer::make('open')
                     ->title('Opening date')
                     ->help('The opening event will take place'),
 
-                InputField::make('phone')
+                Input::make('phone')
                     ->type('text')
                     ->mask('(999) 999-9999')
                     ->title('Phone')
                     ->help('Number Phone'),
 
-                CheckBoxField::make('free-checkbox')
+                CheckBox::make('free-checkbox')
                     ->sendTrueOrFalse()
                     ->title('Free checkbox')
                     ->placeholder('Event for free')
                     ->help('Event for free'),
 
-                SwitchField::make('free-switch')
+                Switcher::make('free-switch')
                     ->sendTrueOrFalse()
                     ->title('Free switch')
                     ->placeholder('Event for free')
                     ->help('Event for free'),
             ]),
 
-            TextAreaField::make('description')
+            TextArea::make('description')
                 ->max(255)
                 ->rows(5)
                 ->required()
                 ->title('Short description'),
 
-            TinyMCEField::make('body')
+            TinyMCE::make('body')
                 ->required()
                 ->title('Name Articles')
                 ->help('Article title'),
 
-            MapField::make('place')
+            Map::make('place')
                 ->required()
                 ->title('Object on the map')
                 ->help('Enter the coordinates, or use the search'),
 
-            PictureField::make('picture')
+            Picture::make('picture')
                 ->name('picture')
                 ->width(500)
                 ->height(300),
 
-            UTMField::make('link')
+            UTM::make('link')
                 ->title('UTM link')
                 ->help('Generated link'),
 
-            SelectField::make('robot.')
+            Select::make('robot.')
                 ->options([
                     'index' => 'Index',
                     'noindex' => 'No index',
@@ -108,19 +108,19 @@ class RowExample extends Rows
                 ->title('Indexing')
                 ->help('Allow search bots to index'),
 
-            TagsField::make('keywords')
+            Tags::make('keywords')
                 ->title('Keywords')
                 ->help('SEO keywords'),
 
-            SimpleMDEField::make('body2')
+            SimpleMDE::make('body2')
                 ->title('Name Articles')
                 ->help('Article title'),
 
-            CodeField::make('code')
+            Code::make('code')
                 ->title('Name Articles')
                 ->help('Article title'),
 
-            QuillField::make('body3')
+            Quill::make('body3')
                 ->title('Name Articles')
                 ->help('Article title'),
 

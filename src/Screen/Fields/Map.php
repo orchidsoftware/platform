@@ -7,7 +7,7 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
- * Class CheckBoxField.
+ * Class Map.
  *
  * @method $this accept($value = true)
  * @method $this accesskey($value = true)
@@ -35,17 +35,19 @@ use Orchid\Screen\Field;
  * @method $this src($value = true)
  * @method $this step($value = true)
  * @method $this tabindex($value = true)
- * @method $this value($value = true)
  * @method $this type($value = true)
+ * @method $this value($value = true)
  * @method $this help(string $value = null)
- * @method $this sendTrueOrFalse($value = true)
+ * @method $this popover(string $value = null)
+ * @method $this zoom($value = true)
+ * @method $this height($value = '300px')
  */
-class CheckBoxField extends Field
+class Map extends Field
 {
     /**
      * @var string
      */
-    public $view = 'platform::fields.checkbox';
+    public $view = 'platform::fields.map';
 
     /**
      * Default attributes value.
@@ -53,11 +55,8 @@ class CheckBoxField extends Field
      * @var array
      */
     public $attributes = [
-        'type'     => 'checkbox',
-        'class'    => 'custom-control-input',
-        'value'    => false,
-        'novalue'  => 0,
-        'yesvalue' => 1,
+        'zoom'   => 14,
+        'height' => '300px',
     ];
 
     /**
@@ -92,15 +91,15 @@ class CheckBoxField extends Field
         'src',
         'step',
         'tabindex',
-        'value',
         'type',
-        'novalue',
-        'yesvalue',
+        'value',
+        'height',
     ];
 
     /**
      * @param string|null $name
-     * @return self
+     *
+     * @return Map
      */
     public static function make(string $name = null): self
     {

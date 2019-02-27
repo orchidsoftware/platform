@@ -7,37 +7,25 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
- * Class RelationshipField.
+ * Class Select.
  *
  * @method $this accesskey($value = true)
  * @method $this autofocus($value = true)
  * @method $this disabled($value = true)
  * @method $this form($value = true)
- * @method $this multiple($value = true)
  * @method $this name(string $value)
  * @method $this required($value = true)
  * @method $this size($value = true)
  * @method $this tabindex($value = true)
  * @method $this help(string $value = null)
  * @method $this popover(string $value = null)
- * @method $this handler($value = true)
  */
-class RelationshipField extends Field
+class Select extends Field
 {
     /**
      * @var string
      */
-    public $view = 'platform::fields.relationship';
-
-    /**
-     * Required Attributes.
-     *
-     * @var array
-     */
-    public $required = [
-        'name',
-        'handler',
-    ];
+    public $view = 'platform::fields.select';
 
     /**
      * Default attributes value.
@@ -46,7 +34,6 @@ class RelationshipField extends Field
      */
     public $attributes = [
         'class' => 'form-control',
-        'value' => null,
     ];
 
     /**
@@ -67,8 +54,18 @@ class RelationshipField extends Field
     ];
 
     /**
+     * @return self
+     */
+    public function multiple(): self
+    {
+        $this->attributes['multiple'] = 'multiple';
+
+        return $this;
+    }
+
+    /**
      * @param string|null $name
-     * @return RelationshipField
+     * @return Select
      */
     public static function make(string $name = null): self
     {

@@ -7,7 +7,7 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
- * Class TextAreaField.
+ * Class TextArea.
  *
  * @method $this accesskey($value = true)
  * @method $this autofocus($value = true)
@@ -26,7 +26,7 @@ use Orchid\Screen\Field;
  * @method $this max(int $value)
  * @method $this popover(string $value = null)
  */
-class TextAreaField extends Field
+class TextArea extends Field
 {
     /**
      * @var string
@@ -66,7 +66,7 @@ class TextAreaField extends Field
 
     /**
      * @param string|null $name
-     * @return TextAreaField
+     * @return TextArea
      */
     public static function make(string $name = null): self
     {

@@ -7,7 +7,7 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
- * Class InputField.
+ * Class Input.
  *
  * @method $this name(string $value)
  * @method $this value($value = true)
@@ -17,7 +17,7 @@ use Orchid\Screen\Field;
  * @method $this lineNumbers($value = true)
  * @method $this height($value = '300px')
  */
-class CodeField extends Field
+class Code extends Field
 {
     /**
      * @var string
@@ -78,7 +78,7 @@ class CodeField extends Field
 
     /**
      * @param string $name
-     * @return CodeField
+     * @return Code
      */
     public static function make(string $name = null): self
     {

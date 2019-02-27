@@ -61,7 +61,7 @@ class MySuperWidget extends Widget {
 или добавить в метод fields в шаблоне страницы
 ```php
 return [
-	RelationshipField::make()
+	Relationship::make()
 		->name('my_title')
 		->required()
 		->title('My title')

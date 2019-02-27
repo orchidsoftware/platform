@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Orchid\Layouts\Role;
 
 use Orchid\Screen\Layouts\Rows;
-use Orchid\Screen\Fields\InputField;
+use Orchid\Screen\Fields\Input;
 
 class RoleEditLayout extends Rows
 {
@@ -18,7 +18,7 @@ class RoleEditLayout extends Rows
     public function fields(): array
     {
         return [
-            InputField::make('role.name')
+            Input::make('role.name')
                 ->type('text')
                 ->max(255)
                 ->required()
@@ -26,7 +26,7 @@ class RoleEditLayout extends Rows
                 ->placeholder(__('Name'))
                 ->help(__('User role display name')),
 
-            InputField::make('role.slug')
+            Input::make('role.slug')
                 ->type('text')
                 ->max(255)
                 ->required()

@@ -12,7 +12,7 @@ use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
-use Orchid\Screen\Fields\PasswordField;
+use Orchid\Screen\Fields\Password;
 use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserRoleLayout;
 
@@ -92,7 +92,7 @@ class UserEditScreen extends Screen
 
             Layouts::modals([
                 'password' => Layouts::rows([
-                    PasswordField::make('user.password')
+                    Password::make('user.password')
                         ->title(__('Password'))
                         ->placeholder('********'),
                 ]),

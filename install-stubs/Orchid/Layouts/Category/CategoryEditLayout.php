@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Orchid\Layouts\Category;
 
 use Orchid\Screen\Layouts\Rows;
-use Orchid\Screen\Fields\InputField;
-use Orchid\Screen\Fields\SelectField;
-use Orchid\Screen\Fields\TinyMCEField;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Fields\TinyMCE;
 
 class CategoryEditLayout extends Rows
 {
@@ -22,7 +22,7 @@ class CategoryEditLayout extends Rows
         $categoryContent = 'category.term.content.'.app()->getLocale();
 
         return [
-            InputField::make($categoryContent.'.name')
+            Input::make($categoryContent.'.name')
                 ->type('text')
                 ->max(255)
                 ->required()
@@ -30,13 +30,13 @@ class CategoryEditLayout extends Rows
                 ->placeholder(__('Category name'))
                 ->help(__('Category title')),
 
-            InputField::make('category.term.slug')
+            Input::make('category.term.slug')
                 ->type('text')
                 ->max(255)
                 ->required()
                 ->title(__('Slug')),
 
-            SelectField::make('category.parent_id')
+            Select::make('category.parent_id')
                 ->options(function () {
                     $options = $this->query->getContent('catselect');
 
@@ -44,7 +44,7 @@ class CategoryEditLayout extends Rows
                 })
                 ->title(__('Parent Category')),
 
-            TinyMCEField::make($categoryContent.'.body')
+            TinyMCE::make($categoryContent.'.body')
                 ->title(__('Description')),
 
         ];

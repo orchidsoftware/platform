@@ -7,7 +7,7 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
- * Class SimpleMDEField.
+ * Class Picture.
  *
  * @method $this accept($value = true)
  * @method $this accesskey($value = true)
@@ -38,14 +38,16 @@ use Orchid\Screen\Field;
  * @method $this type($value = true)
  * @method $this value($value = true)
  * @method $this help(string $value = null)
+ * @method $this width($value = true)
+ * @method $this height($value = true)
  * @method $this popover(string $value = null)
  */
-class SimpleMDEField extends Field
+class Picture extends Field
 {
     /**
      * @var string
      */
-    public $view = 'platform::fields.simplemde';
+    public $view = 'platform::fields.picture';
 
     /**
      * Attributes available for a particular tag.
@@ -85,7 +87,7 @@ class SimpleMDEField extends Field
 
     /**
      * @param string|null $name
-     * @return SimpleMDEField
+     * @return Picture
      */
     public static function make(string $name = null): self
     {

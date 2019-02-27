@@ -7,7 +7,7 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
- * Class TinyMCEField.
+ * Class Input.
  *
  * @method $this accept($value = true)
  * @method $this accesskey($value = true)
@@ -39,23 +39,22 @@ use Orchid\Screen\Field;
  * @method $this value($value = true)
  * @method $this help(string $value = null)
  * @method $this popover(string $value = null)
- * @method $this height($value = '300px')
+ * @method $this mask($value = true)
  */
-class TinyMCEField extends Field
+class Input extends Field
 {
     /**
      * @var string
      */
-    public $view = 'platform::fields.tinymce';
+    public $view = 'platform::fields.input';
 
     /**
-     * All attributes that are available to the field.
+     * Default attributes value.
      *
      * @var array
      */
     public $attributes = [
-        'value'  => null,
-        'height' => '300px',
+        'class' => 'form-control',
     ];
 
     /**
@@ -92,15 +91,30 @@ class TinyMCEField extends Field
         'tabindex',
         'type',
         'value',
-        'height',
+        'mask',
     ];
 
     /**
      * @param string|null $name
-     * @return TinyMCEField
+     *
+     * @return Input
      */
     public static function make(string $name = null): self
     {
         return (new static)->name($name);
+    }
+
+    /**
+     * @param string|array $mask
+     *
+     * @return Input
+     */
+    public function modifyMask($mask): self
+    {
+        if (is_array($mask)) {
+            $this->attributes['mask'] = json_encode($mask);
+        }
+
+        return $this;
     }
 }

@@ -7,7 +7,7 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
- * Class TagsField.
+ * Class Switcher.
  *
  * @method $this accept($value = true)
  * @method $this accesskey($value = true)
@@ -35,17 +35,17 @@ use Orchid\Screen\Field;
  * @method $this src($value = true)
  * @method $this step($value = true)
  * @method $this tabindex($value = true)
- * @method $this type($value = true)
  * @method $this value($value = true)
+ * @method $this type($value = true)
  * @method $this help(string $value = null)
- * @method $this popover(string $value = null)
+ * @method $this sendTrueOrFalse($value = true)
  */
-class TagsField extends Field
+class Switcher extends Field
 {
     /**
      * @var string
      */
-    public $view = 'platform::fields.tags';
+    public $view = 'platform::fields.switch';
 
     /**
      * Default attributes value.
@@ -53,8 +53,11 @@ class TagsField extends Field
      * @var array
      */
     public $attributes = [
-        'class'    => 'form-control',
-        'multiple' => 'multiple',
+        'type'     => 'checkbox',
+        'class'    => 'custom-control-input',
+        'value'    => false,
+        'novalue'  => 0,
+        'yesvalue' => 1,
     ];
 
     /**
@@ -89,52 +92,19 @@ class TagsField extends Field
         'src',
         'step',
         'tabindex',
-        'type',
         'value',
+        'type',
+        'novalue',
+        'yesvalue',
     ];
 
     /**
      * @param string|null $name
-     * @return TagsField
+     *
+     * @return Switch
      */
     public static function make(string $name = null): self
     {
         return (new static)->name($name);
-    }
-
-    /**
-     * @param string|\Closure $name
-     *
-     * @return \Orchid\Screen\Field|void
-     */
-    public function modifyName($name)
-    {
-        if (substr($name, -1) !== '.') {
-            $this->attributes['name'] = $name.'[]';
-        }
-
-        parent::modifyName($this->attributes['name']);
-    }
-
-    /**
-     * @param mixed $value
-     *
-     * @return mixed
-     */
-    public function modifyValue($value)
-    {
-        if (is_string($value)) {
-            $this->attributes['value'] = explode(',', $value);
-        }
-
-        if ($value instanceof \Closure) {
-            $this->attributes['value'] = $value($this->attributes);
-        }
-
-        if (is_null($value)) {
-            $this->attributes['value'] = [];
-        }
-
-        return $this;
     }
 }

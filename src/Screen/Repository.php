@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Support\Arr;
 use Iterator;
 use Countable;
 
@@ -25,7 +26,7 @@ class Repository extends \Illuminate\Config\Repository implements Iterator, Coun
      */
     public function getContent(string $key, $default = null)
     {
-        return array_get($this->items, $key, $default);
+        return Arr::get($this->items, $key, $default);
     }
 
     /**

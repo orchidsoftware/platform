@@ -7,7 +7,7 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
- * Class SwitchField.
+ * Class DateTimer.
  *
  * @method $this accept($value = true)
  * @method $this accesskey($value = true)
@@ -36,16 +36,15 @@ use Orchid\Screen\Field;
  * @method $this step($value = true)
  * @method $this tabindex($value = true)
  * @method $this value($value = true)
- * @method $this type($value = true)
  * @method $this help(string $value = null)
- * @method $this sendTrueOrFalse($value = true)
+ * @method $this popover(string $value = null)
  */
-class SwitchField extends Field
+class DateTimer extends Field
 {
     /**
      * @var string
      */
-    public $view = 'platform::fields.switch';
+    public $view = 'platform::fields.datetime';
 
     /**
      * Default attributes value.
@@ -53,11 +52,12 @@ class SwitchField extends Field
      * @var array
      */
     public $attributes = [
-        'type'     => 'checkbox',
-        'class'    => 'custom-control-input',
-        'value'    => false,
-        'novalue'  => 0,
-        'yesvalue' => 1,
+        'type'                              => 'text',
+        'class'                             => 'form-control',
+        'data-controller'                   => 'fields--datetime',
+        'data-fields--datetime-enable-time' => 'true',
+        'data-fields--datetime-time_24hr'   => 'true',
+        'data-fields--datetime-allow-input' => 'true',
     ];
 
     /**
@@ -93,15 +93,15 @@ class SwitchField extends Field
         'step',
         'tabindex',
         'value',
-        'type',
-        'novalue',
-        'yesvalue',
+        'data-controller',
+        'data-fields--datetime-enable-time',
+        'data-fields--datetime-time_24hr',
+        'data-fields--datetime-allow-input',
     ];
 
     /**
      * @param string|null $name
-     *
-     * @return SwitchField
+     * @return DateTimer
      */
     public static function make(string $name = null): self
     {

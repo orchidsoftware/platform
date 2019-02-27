@@ -7,7 +7,7 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
- * Class DateRangeField.
+ * Class DateRange.
  *
  * @method $this accept($value = true)
  * @method $this accesskey($value = true)
@@ -39,7 +39,7 @@ use Orchid\Screen\Field;
  * @method $this help(string $value = null)
  * @method $this popover(string $value = null)
  */
-class DateRangeField extends Field
+class DateRange extends Field
 {
     /**
      * @var string
@@ -94,7 +94,7 @@ class DateRangeField extends Field
     /**
      * @param string|null $name
      *
-     * @return DateRangeField
+     * @return DateRange
      */
     public static function make(string $name = null): self
     {

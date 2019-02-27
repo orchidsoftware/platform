@@ -7,7 +7,7 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
- * Class MapField.
+ * Class Password.
  *
  * @method $this accept($value = true)
  * @method $this accesskey($value = true)
@@ -35,19 +35,15 @@ use Orchid\Screen\Field;
  * @method $this src($value = true)
  * @method $this step($value = true)
  * @method $this tabindex($value = true)
- * @method $this type($value = true)
- * @method $this value($value = true)
  * @method $this help(string $value = null)
  * @method $this popover(string $value = null)
- * @method $this zoom($value = true)
- * @method $this height($value = '300px')
  */
-class MapField extends Field
+class Password extends Field
 {
     /**
      * @var string
      */
-    public $view = 'platform::fields.map';
+    public $view = 'platform::fields.password';
 
     /**
      * Default attributes value.
@@ -55,8 +51,8 @@ class MapField extends Field
      * @var array
      */
     public $attributes = [
-        'zoom'   => 14,
-        'height' => '300px',
+        'type'  => 'password',
+        'class' => 'form-control',
     ];
 
     /**
@@ -92,14 +88,11 @@ class MapField extends Field
         'step',
         'tabindex',
         'type',
-        'value',
-        'height',
     ];
 
     /**
      * @param string|null $name
-     *
-     * @return MapField
+     * @return Password
      */
     public static function make(string $name = null): self
     {

@@ -21,7 +21,7 @@ Input - является одним из разносторонних элеме
  
 Пример записи:
 ```php
-InputField::make()
+Input::make()
     ->type('text')
     ->name('place')
     ->max(255)
@@ -46,7 +46,7 @@ InputField::make()
  
 Пример записи:
 ```php
-TinyMCEField::make()
+TinyMCE::make()
     ->name('body')
     ->required()
     ->title('Name Articles')
@@ -66,7 +66,7 @@ TinyMCEField::make()
  
 Пример записи:
 ```php
-SimpleMDEField::make()
+SimpleMDE::make()
     ->name('body')
     ->title('О чём вы хотите рассказать?')
 ```  
@@ -78,7 +78,7 @@ SimpleMDEField::make()
 
 Пример записи:
 ```php
-PictureField::make()
+Picture::make()
     ->name('picture')
     ->width(500)
     ->height(300);
@@ -94,7 +94,7 @@ PictureField::make()
 
 Пример записи:
 ```php
-DateTimerField::make()
+DateTimer::make()
     ->type('text')
     ->name('open')
     ->title('Opening date')
@@ -108,7 +108,7 @@ DateTimerField::make()
 
 Пример записи:
 ```php
-CheckBoxField::make()
+CheckBox::make()
     ->name('free')
     ->value(1)
     ->title('Free')
@@ -125,7 +125,7 @@ CheckBoxField::make()
 
 Пример записи:
 ```php
-CodeField::make()
+Code::make()
     ->name('block')
     ->title('Code Block')
     ->help('Simple web editor');
@@ -140,7 +140,7 @@ CodeField::make()
 
 Пример записи:
 ```php
-TextAreaField::make()
+TextArea::make()
     ->name('description')
     ->max(255)
     ->rows(5)
@@ -155,7 +155,7 @@ TextAreaField::make()
 
 Пример записи:
 ```php
-TagsField::make()
+Tags::make()
     ->name('keywords')
     ->title('Keywords')
     ->help('SEO keywords');
@@ -167,7 +167,7 @@ TagsField::make()
 Простой выбор из списка массива:
 
 ```php
-SelectField::make()
+Select::make()
     ->options([
         'index'   => 'Index',
         'noindex' => 'No index',
@@ -185,7 +185,7 @@ SelectField::make()
 
 Пример записи:
 ```php
-InputField::make()
+Input::make()
     ->type('text')
     ->name('phone')
     ->mask('(999) 999-9999')
@@ -197,7 +197,7 @@ InputField::make()
 
 
 ```php
-InputField::make()
+Input::make()
     ->type('text')
     ->name('price')
     ->mask([
@@ -208,7 +208,7 @@ InputField::make()
 ```   
 
 ```php
-InputField::make()
+Input::make()
     ->type('text')
     ->name('price')
     ->mask([
@@ -228,7 +228,7 @@ InputField::make()
 Поля отношения могут подгружать динамические данные, это хорошее решение, если вам нужны связи.
 
 ```php
-RelationshipField::make()
+Relationship::make()
     ->name('my_title')
     ->required()
     ->title('My title')
@@ -302,7 +302,7 @@ class AjaxWidget extends Widget
 атрибут который необходимо переопределить:
 
 ```php
-InputField::make()
+Input::make()
     ->type('text')
     ->name('name')
     ->modifyValue(function ($value) {

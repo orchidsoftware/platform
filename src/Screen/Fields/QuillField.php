@@ -7,7 +7,7 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
- * Class QuillField.
+ * Class Quill.
  *
  * @method $this accept($value = true)
  * @method $this accesskey($value = true)
@@ -40,7 +40,7 @@ use Orchid\Screen\Field;
  * @method $this help(string $value = null)
  * @method $this height($value = '300px')
  */
-class QuillField extends Field
+class Quill extends Field
 {
     /**
      * @var string
@@ -97,7 +97,7 @@ class QuillField extends Field
     /**
      * @param string|null $name
      *
-     * @return QuillField
+     * @return Quill
      */
     public static function make(string $name = null): self
     {

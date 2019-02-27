@@ -7,7 +7,7 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
- * Class RadioButtonsField.
+ * Class RadioButtons.
  *
  * @method $this accesskey($value = true)
  * @method $this autofocus($value = true)
@@ -20,7 +20,7 @@ use Orchid\Screen\Field;
  * @method $this help(string $value = null)
  * @method $this popover(string $value = null)
  */
-class RadioButtonsField extends Field
+class RadioButtons extends Field
 {
     /**
      * @var string
@@ -56,7 +56,7 @@ class RadioButtonsField extends Field
 
     /**
      * @param string|null $name
-     * @return SelectField
+     * @return Select
      */
     public static function make(string $name = null): self
     {

@@ -7,9 +7,9 @@ namespace App\Orchid\Layouts\User;
 use Orchid\Screen\Field;
 use Orchid\Screen\Layouts\Rows;
 use Illuminate\Support\Collection;
-use Orchid\Screen\Fields\LabelField;
-use Orchid\Screen\Fields\SelectField;
-use Orchid\Screen\Fields\CheckBoxField;
+use Orchid\Screen\Fields\Label;
+use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Fields\CheckBox;
 
 class UserRoleLayout extends Rows
 {
@@ -21,7 +21,7 @@ class UserRoleLayout extends Rows
      */
     public function fields(): array
     {
-        $fields[] = SelectField::make('roles.')
+        $fields[] = Select::make('roles.')
             ->options($this->query
                 ->getContent('roles')
                 ->pluck('name', 'slug')
@@ -51,7 +51,7 @@ class UserRoleLayout extends Rows
     public function generatedPermissionFields(Collection $permissionsRaw) : array
     {
         foreach ($permissionsRaw as $group => $items) {
-            $fields[] = LabelField::make($group)
+            $fields[] = Label::make($group)
                 ->title($group)
                 ->horizontal()
                 ->hr(false);
@@ -59,7 +59,7 @@ class UserRoleLayout extends Rows
             foreach (collect($items)->chunk(4) as $chunks) {
                 $fields[] = Field::group(function () use ($chunks) {
                     foreach ($chunks as $permission) {
-                        $permissions[] = CheckBoxField::make('permissions.'.base64_encode($permission['slug']))
+                        $permissions[] = CheckBox::make('permissions.'.base64_encode($permission['slug']))
                             ->placeholder($permission['description'])
                             ->value($permission['active'])
                             ->sendTrueOrFalse()

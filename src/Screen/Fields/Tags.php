@@ -7,7 +7,7 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
- * Class PasswordField.
+ * Class Tags.
  *
  * @method $this accept($value = true)
  * @method $this accesskey($value = true)
@@ -35,15 +35,17 @@ use Orchid\Screen\Field;
  * @method $this src($value = true)
  * @method $this step($value = true)
  * @method $this tabindex($value = true)
+ * @method $this type($value = true)
+ * @method $this value($value = true)
  * @method $this help(string $value = null)
  * @method $this popover(string $value = null)
  */
-class PasswordField extends Field
+class Tags extends Field
 {
     /**
      * @var string
      */
-    public $view = 'platform::fields.password';
+    public $view = 'platform::fields.tags';
 
     /**
      * Default attributes value.
@@ -51,8 +53,8 @@ class PasswordField extends Field
      * @var array
      */
     public $attributes = [
-        'type'  => 'password',
-        'class' => 'form-control',
+        'class'    => 'form-control',
+        'multiple' => 'multiple',
     ];
 
     /**
@@ -88,14 +90,51 @@ class PasswordField extends Field
         'step',
         'tabindex',
         'type',
+        'value',
     ];
 
     /**
      * @param string|null $name
-     * @return PasswordField
+     * @return Tags
      */
     public static function make(string $name = null): self
     {
         return (new static)->name($name);
+    }
+
+    /**
+     * @param string|\Closure $name
+     *
+     * @return \Orchid\Screen\Field|void
+     */
+    public function modifyName($name)
+    {
+        if (substr($name, -1) !== '.') {
+            $this->attributes['name'] = $name.'[]';
+        }
+
+        parent::modifyName($this->attributes['name']);
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @return mixed
+     */
+    public function modifyValue($value)
+    {
+        if (is_string($value)) {
+            $this->attributes['value'] = explode(',', $value);
+        }
+
+        if ($value instanceof \Closure) {
+            $this->attributes['value'] = $value($this->attributes);
+        }
+
+        if (is_null($value)) {
+            $this->attributes['value'] = [];
+        }
+
+        return $this;
     }
 }

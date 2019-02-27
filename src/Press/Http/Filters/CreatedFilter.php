@@ -6,7 +6,7 @@ namespace Orchid\Press\Http\Filters;
 
 use Orchid\Screen\Field;
 use Orchid\Platform\Filters\Filter;
-use Orchid\Screen\Fields\DateRangeField;
+use Orchid\Screen\Fields\DateRange;
 use Illuminate\Database\Eloquent\Builder;
 
 class CreatedFilter extends Filter
@@ -35,7 +35,7 @@ class CreatedFilter extends Filter
      */
     public function display() : Field
     {
-        return DateRangeField::make('created_at')
+        return DateRange::make('created_at')
             ->title(__('Date of creation'))
             ->value([
                 'start' => $this->request->get('start_created_at'),

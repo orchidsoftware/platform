@@ -23,7 +23,7 @@ Input is mainly intended to create text fields.
  
 An example:
 ```php
-InputField::make()
+Input::make()
     ->type('text')
     ->name('place')
     ->max(255)
@@ -47,7 +47,7 @@ The redactor allows to add images, tables, define text styles and embed videos.
  
 An example:
 ```php
-TinyMCEField::make()
+TinyMCE::make()
     ->name('body')
     ->required()
     ->title('Name Articles')
@@ -68,7 +68,7 @@ Light markup language redactor
  
 an example:
 ```php
-SimpleMDEField::make()
+SimpleMDE::make()
     ->name('body')
     ->title('What would you tell us?');
 ```  
@@ -80,7 +80,7 @@ Allows to upload pictures and cut them to a required format
 
 An example:
 ```php
-PictureField::make()
+Picture::make()
     ->name('picture')
     ->width(500)
     ->height(300);
@@ -97,7 +97,7 @@ Allows to set date and time
 
 An example:
 ```php
-DateTimerField::make()
+DateTimer::make()
     ->type('text')
     ->name('open')
     ->title('Opening date')
@@ -111,7 +111,7 @@ User graphical interface element that allows a user to control the parameter wit
 
 An example:
 ```php
-CheckBoxField::make()
+CheckBox::make()
     ->name('free')
     ->value(1)
     ->title('Free')
@@ -128,7 +128,7 @@ A field for a program code with a highligt
 
 An example:
 ```php
-CodeField::make()
+Code::make()
     ->name('block')
     ->title('Code Block')
     ->help('Simple web editor');
@@ -143,7 +143,7 @@ As opposed to `input` tag, it's possible to do a line break there, it will be sa
 
 An example:
 ```php
-TextAreaField::make()
+TextArea::make()
     ->name('description')
     ->max(255)
     ->rows(5)
@@ -158,7 +158,7 @@ A notation of several values delimited by comma
 
 An example:
 ```php
-TagsField::make()
+Tags::make()
     ->name('keywords')
     ->title('Keywords')
     ->help('SEO keywords');
@@ -170,7 +170,7 @@ TagsField::make()
 Simple selection from array list:
 
 ```php
-SelectField::make()
+Select::make()
     ->options([
         'index'   => 'Index',
         'noindex' => 'No index',
@@ -188,7 +188,7 @@ It's great to use it when a value must be inserted in some standard way, for exa
 
 An example:
 ```php
-InputField::make()
+Input::make()
     ->type('text')
     ->name('phone')
     ->mask('(999) 999-9999')
@@ -200,7 +200,7 @@ A json with parameters may be passed to mask, eg:
 
 
 ```php
-InputField::make()
+Input::make()
     ->type('text')
     ->name('price')
     ->mask([
@@ -211,7 +211,7 @@ InputField::make()
 ```   
 
 ```php
-InputField::make()
+Input::make()
     ->type('text')
     ->name('price')
     ->mask([
@@ -231,7 +231,7 @@ All available *Inputmask* may be found [here](https://github.com/RobinHerbots/In
 Behavior fields may upload a dynamic data which is great if you need connections.
 
 ```php
-RelationshipField::make()
+Relationship::make()
     ->name('my_title')
     ->required()
     ->title('My title')

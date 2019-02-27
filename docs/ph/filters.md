@@ -60,7 +60,7 @@ class QueryFilter extends Filter
      */
     public function display(): Field
     {
-        return InputField::make('query')
+        return Input::make('query')
             ->type('text')
             ->value($this->request->get('query'))
             ->placeholder(__('Search...'))

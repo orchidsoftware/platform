@@ -36,6 +36,12 @@
     @include box-shadow(none);
     @include placeholder($text-muted);
   }
+
+  .select2-results__option--highlighted[aria-selected]{
+    background-color : $brand-grey-light;
+    color: inherit;
+  }
+
 }
 
 .mce-content-body:focus {

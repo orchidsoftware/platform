@@ -6,9 +6,9 @@ namespace Orchid\Press\Entities;
 
 use Orchid\Press\Models\Post;
 use Illuminate\Support\Collection;
-use Orchid\Screen\Fields\InputField;
-use Orchid\Screen\Fields\SelectField;
-use Orchid\Screen\Fields\DateTimerField;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Fields\DateTimer;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Contracts\Pagination\Paginator;
 
@@ -83,17 +83,17 @@ abstract class Many implements EntityContract, UrlRoutable
     public function main(): array
     {
         return [
-            InputField::make('slug')
+            Input::make('slug')
                 ->type('text')
                 ->name('slug')
                 ->max(255)
                 ->title(__('Semantic URL'))
                 ->placeholder(__('Unique name')),
 
-            DateTimerField::make('publish_at')
+            DateTimer::make('publish_at')
                 ->title(__('Time of publication')),
 
-            SelectField::make('status')
+            Select::make('status')
                 ->options($this->status())
                 ->title(__('Status')),
         ];

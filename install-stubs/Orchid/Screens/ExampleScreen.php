@@ -8,7 +8,7 @@ use Orchid\Screen\Layouts;
 use Orchid\Screen\Repository;
 use Orchid\Support\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
-use Orchid\Screen\Fields\InputField;
+use Orchid\Screen\Fields\Input;
 use App\Orchid\Layouts\Examples\RowExample;
 use App\Orchid\Layouts\Examples\TableExample;
 use App\Orchid\Layouts\Examples\MetricsExample;
@@ -152,7 +152,7 @@ class ExampleScreen extends Screen
 
             Layouts::modals([
                 'exampleModal' => Layouts::rows([
-                    InputField::make('user.password')
+                    Input::make('user.password')
                         ->type('test')
                         ->title(__('Example'))
                         ->placeholder(__('Example')),

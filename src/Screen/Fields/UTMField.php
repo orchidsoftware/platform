@@ -7,7 +7,7 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
- * Class InputField.
+ * Class Input.
  *
  * @method $this accept($value = true)
  * @method $this accesskey($value = true)
@@ -41,7 +41,7 @@ use Orchid\Screen\Field;
  * @method $this mask($value = true)
  * @method $this popover(string $value = null)
  */
-class UTMField extends Field
+class UTM extends Field
 {
     /**
      * @var string
@@ -95,7 +95,7 @@ class UTMField extends Field
 
     /**
      * @param string|null $name
-     * @return UTMField
+     * @return UTM
      */
     public static function make(string $name = null): self
     {

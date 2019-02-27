@@ -7,12 +7,12 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
- * Class LabelField.
+ * Class Label.
  *
  * @method $this name(string $value)
  * @method $this popover(string $value = null)
  */
-class LabelField extends Field
+class Label extends Field
 {
     /**
      * @var string
@@ -21,7 +21,7 @@ class LabelField extends Field
 
     /**
      * @param string|null $name
-     * @return LabelField
+     * @return Label
      */
     public static function make(string $name = null): self
     {

@@ -7,7 +7,7 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
- * Class UploadField.
+ * Class Upload.
  *
  * @method $this accept($value = true)
  * @method $this accesskey($value = true)
@@ -49,7 +49,7 @@ use Orchid\Screen\Field;
  * @method $this popover(string $value = null)
  * @method $this groups($value = true)
  */
-class UploadField extends Field
+class Upload extends Field
 {
     /**
      * @var string
@@ -113,7 +113,7 @@ class UploadField extends Field
 
     /**
      * @param string|null $name
-     * @return UploadField
+     * @return Upload
      */
     public static function make(string $name = null): self
     {

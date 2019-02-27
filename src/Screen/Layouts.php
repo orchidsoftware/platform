@@ -108,22 +108,4 @@ class Layouts
         return new class($layouts) extends Blank {
         };
     }
-
-    /**
-     * @param \Orchid\Screen\Repository $repository
-     *
-     * @return string|mixed
-     */
-    public function build(Repository $repository)
-    {
-        $build = '';
-
-        foreach ($this->layouts as $layout) {
-            $layout = is_object($layout) ? $layout : new $layout();
-
-            $build .= $layout->build($repository);
-        }
-
-        return $build;
-    }
 }
