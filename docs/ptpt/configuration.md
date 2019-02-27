@@ -7,7 +7,7 @@ Todos os parâmetros podem ser encontrados no diretório `config`, e o arquivo `
 ## Endereço da plataforma
 
 ```php
-'domain' => env('DASHBOARD_DOMAIN', dashboard_domain()),
+'domain' => env('DASHBOARD_DOMAIN', null),
 ```
 
 O endereço do painel desempenha um papel importante para muitos projetos.

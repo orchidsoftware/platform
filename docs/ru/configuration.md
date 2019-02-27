@@ -8,7 +8,7 @@ ORCHID использует стандартную систему настрое
 ## Адрес платформы
 
 ```php
-'domain' => env('DASHBOARD_DOMAIN', dashboard_domain()),
+'domain' => env('DASHBOARD_DOMAIN', null),
 ```
 
 Для многих проектов адрес расположения панели администрирования играет важную роль.

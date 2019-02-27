@@ -7,7 +7,7 @@ All parameters can be found in `config` directory, and the `platform.php` file i
 ## Platform address
 
 ```php
-'domain' => env('DASHBOARD_DOMAIN', dashboard_domain()),
+'domain' => env('DASHBOARD_DOMAIN', null),
 ```
 
 Dashboard address plays an important role for many projects .
