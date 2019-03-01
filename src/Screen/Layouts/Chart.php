@@ -47,6 +47,8 @@ abstract class Chart extends Base
     public $data = '';
 
     /**
+     * Colors used
+     *
      * @var array
      */
     public $colors = [
@@ -56,6 +58,13 @@ abstract class Chart extends Base
         '#D90368',
         '#00CC66',
     ];
+
+    /**
+     * Determines whether to display the export button.
+     *
+     * @var bool
+     */
+    public $export = true;
 
     /**
      * @param \Orchid\Screen\Repository $query

@@ -22,4 +22,12 @@ export default class extends Controller {
         //@see https://github.com/frappe/charts/issues/212
         this.chart.unbindWindowEvents();
     }
+
+    /**
+     *
+     */
+    export() {
+        this.chart.export();
+    }
+
 }
