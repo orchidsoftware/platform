@@ -12,13 +12,10 @@ class TagsTest extends TestFeatureCase
 {
     private $user;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
-        if ($this->user) {
-            return $this->user;
-        }
         $this->user = factory(User::class)->create();
     }
 
@@ -34,6 +31,6 @@ class TagsTest extends TestFeatureCase
             ->get(route('platform.systems.tag.search', 'super'));
 
         $response->assertOk();
-        $this->assertContains('Super', $response->getContent());
+        $this->assertStringContainsString('Super', $response->getContent());
     }
 }

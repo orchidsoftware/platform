@@ -32,10 +32,10 @@
   "require": {
     "ext-curl": "*",
     "ext-json": "*",
-    "cviebrock/eloquent-sluggable": "^4.6",
-    "davejamesmiller/laravel-breadcrumbs": "^5.1",
-    "laravel/framework": "5.7.*",
-    "laravel/scout": "^7.0",
+    "cviebrock/eloquent-sluggable": "^4.8",
+    "davejamesmiller/laravel-breadcrumbs": "^5.2",
+    "laravel/framework": "5.8.*",
+    "laravel/scout": "^7.1",
     "orchid/widget": "^1.2",
     "ralouphie/mimey": "^2.0",
     "spomky-labs/base64url": "^2.0",
@@ -44,9 +44,9 @@
   "require-dev": {
     "fzaninotto/faker": "^1.4",
     "mockery/mockery": "~1.0",
-    "orchestra/testbench": "~3.7.0",
-    "phpunit/php-code-coverage": "^6.0",
-    "phpunit/phpunit": "~7.0"
+    "orchestra/testbench": "~3.8.0",
+    "phpunit/php-code-coverage": "^7.0",
+    "phpunit/phpunit": "~8.0"
   },
   "autoload": {
     "psr-4": {

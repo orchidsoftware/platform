@@ -100,13 +100,13 @@ class DashboardTest extends TestUnitCase
         ]);
     }
 
-    protected function setUp()
+    protected function setUp() : void
     {
         parent::setUp();
         Dashboard::configure([]);
     }
 
-    protected function tearDown()
+    protected function tearDown() : void
     {
         parent::tearDown();
         Dashboard::configure([]);

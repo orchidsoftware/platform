@@ -37,7 +37,7 @@ class AttachmentTest extends TestUnitCase
             'name' => $upload->original_name,
         ]);
 
-        $this->assertContains($upload->name.'.xml', $upload->url());
+        $this->assertStringContainsString($upload->name.'.xml', $upload->url());
     }
 
     /**
@@ -159,7 +159,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertEquals($upload->extension, 'bin');
     }
 
-    protected function setUp()
+    protected function setUp() : void
     {
         parent::setUp();
         $this->disk = 'public';

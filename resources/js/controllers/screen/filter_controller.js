@@ -18,6 +18,11 @@ export default class extends Controller {
         const params = {};
 
         document.querySelectorAll('[form="filters"]').forEach((element) => {
+
+            if(element.type === 'radio' && element.checked === false){
+                return;
+            }
+
             const name = element.name.trim();
             const value = element.value.trim();
 

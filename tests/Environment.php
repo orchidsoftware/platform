@@ -23,22 +23,9 @@ trait Environment
      * Run test: php vendor/bin/phpunit --coverage-html ./logs/coverage ./tests
      * Run 1 test:  php vendor/bin/phpunit  --filter= UserTest tests\\Unit\\Platform\\UserTest --debug.
      */
-    protected function setUp()
+    protected function setUp() : void
     {
         parent::setUp();
-
-        $this->artisan('vendor:publish', [
-            '--provider' => 'Orchid\Platform\Providers\FoundationServiceProvider',
-        ]);
-
-        $this->artisan('vendor:publish', [
-            '--provider' => 'Orchid\Press\Providers\PressServiceProvider',
-        ]);
-
-        $this->artisan('vendor:publish', [
-            '--all' => true,
-            '--tag' => 'config,migrations',
-        ]);
 
         $this->loadLaravelMigrations();
         $this->loadMigrationsFrom(realpath('./database/migrations'));

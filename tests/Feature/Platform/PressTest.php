@@ -27,13 +27,11 @@ class PressTest extends TestFeatureCase
      */
     private $post;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
-        if ($this->user) {
-            return $this->user;
-        }
+
         $this->user = factory(User::class)->create();
         $this->page = factory(Page::class)->create();
         $this->post = factory(Post::class)->create();
@@ -59,7 +57,7 @@ class PressTest extends TestFeatureCase
             ->post(route('platform.entities.type.page', ['example-page', 'example-page', 'save']));
 
         $response->assertStatus(302);
-        $this->assertContains('success', $response->baseResponse->getRequest()->getSession()->get('flash_notification')['level']);
+        $this->assertStringContainsString('success', $response->baseResponse->getRequest()->getSession()->get('flash_notification')['level']);
     }
 
     public function test_route_PostsType()
@@ -68,8 +66,8 @@ class PressTest extends TestFeatureCase
             ->get(route('platform.entities.type', 'example-post'));
 
         $response->assertOk();
-        $this->assertContains($this->post->getContent('name'), $response->getContent());
-        $this->assertNotContains($this->post->getContent('description'), $response->getContent());
+        $this->assertStringContainsString($this->post->getContent('name'), $response->getContent());
+        $this->assertStringNotContainsString($this->post->getContent('description'), $response->getContent());
     }
 
     public function test_route_PostsTypeCreate()
@@ -87,8 +85,8 @@ class PressTest extends TestFeatureCase
             ->get(route('platform.entities.type.edit', ['example-post', $this->post->slug]));
 
         $response->assertOk();
-        $this->assertContains($this->post->getContent('title'), $response->getContent());
-        $this->assertNotContains($this->post->getContent('description'), $response->getContent());
+        $this->assertStringContainsString($this->post->getContent('title'), $response->getContent());
+        $this->assertStringNotContainsString($this->post->getContent('description'), $response->getContent());
     }
 
     public function test_route_PostsTypeUpdate()
@@ -100,7 +98,7 @@ class PressTest extends TestFeatureCase
             );
 
         $response->assertStatus(302);
-        $this->assertContains('success', $response->baseResponse->getRequest()->getSession()->get('flash_notification')['level']);
+        $this->assertStringContainsString('success', $response->baseResponse->getRequest()->getSession()->get('flash_notification')['level']);
     }
 
     public function test_route_PostsTypeDelete()
@@ -113,7 +111,7 @@ class PressTest extends TestFeatureCase
             );
 
         $response->assertStatus(302);
-        $this->assertContains('success', $response->baseResponse->getRequest()->getSession()->get('flash_notification')['level']);
+        $this->assertStringContainsString('success', $response->baseResponse->getRequest()->getSession()->get('flash_notification')['level']);
 
         $response = $this->actingAs($this->user)
             ->post(

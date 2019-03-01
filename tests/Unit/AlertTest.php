@@ -16,7 +16,7 @@ class AlertTest extends TestUnitCase
     protected $store;
     protected $alert;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->store = $this->createMock(SessionStoreInterface::class);
         $this->alert = new Alert($this->store);

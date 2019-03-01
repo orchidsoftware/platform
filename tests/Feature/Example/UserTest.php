@@ -15,13 +15,11 @@ class UserTest extends TestFeatureCase
      */
     private $user;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
         //$this->withoutMiddleware();
-        if ($this->user) {
-            return $this->user;
-        }
+
         $this->user = factory(User::class)->create();
     }
 

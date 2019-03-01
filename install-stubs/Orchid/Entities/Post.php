@@ -105,8 +105,8 @@ class Post extends Many
     public function filters(): array
     {
         return [
-            SearchFilter::class,
             StatusFilter::class,
+            SearchFilter::class,
             CreatedFilter::class,
         ];
     }

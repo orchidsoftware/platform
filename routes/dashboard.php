@@ -16,9 +16,9 @@ use Orchid\Platform\Http\Controllers\Systems\SearchController;
 */
 
 // Index and default...
-$this->get('/', [IndexController::class, 'index'])->name('index');
-$this->fallback([IndexController::class, 'fallback']);
+$this->router->get('/', [IndexController::class, 'index'])->name('index');
+$this->router->fallback([IndexController::class, 'fallback']);
 
-$this->post('/search/{query}', [SearchController::class, 'index'])->name('search');
+$this->router->post('/search/{query}', [SearchController::class, 'index'])->name('search');
 
-$this->screen('/announcement', AnnouncementScreen::class)->name('systems.announcement');
+$this->router->screen('/announcement', AnnouncementScreen::class)->name('systems.announcement');
