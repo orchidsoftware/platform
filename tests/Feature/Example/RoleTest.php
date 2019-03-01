@@ -22,7 +22,6 @@ class RoleTest extends TestFeatureCase
     {
         parent::setUp();
 
-
         $this->user = factory(User::class)->create();
         $this->role = factory(Role::class)->create();
     }

@@ -19,7 +19,6 @@ class ExampleScreenTest extends TestFeatureCase
     {
         parent::setUp();
 
-
         $this->user = factory(User::class)->create();
     }
 
