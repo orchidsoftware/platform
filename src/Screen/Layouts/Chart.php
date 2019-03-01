@@ -47,7 +47,7 @@ abstract class Chart extends Base
     public $data = '';
 
     /**
-     * Colors used
+     * Colors used.
      *
      * @var array
      */
