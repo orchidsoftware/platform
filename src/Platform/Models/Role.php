@@ -63,7 +63,7 @@ class Role extends Model implements RoleInterface
     public function setPermissionsAttribute(array $permissions = [])
     {
         foreach ($permissions as $key => $value) {
-            $permissions[$key] = boolval($value);
+            $permissions[$key] = (bool) $value;
         }
         $this->attributes['permissions'] = json_encode($permissions ?? []);
     }

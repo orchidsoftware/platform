@@ -209,7 +209,7 @@ class PostTest extends TestUnitCase
     {
         $post = $this->createPostWithTaxonomiesAndTerms();
 
-        $this->assertInternalType('array', $post->getTermsAttribute());
+        $this->assertIsArray($post->getTermsAttribute());
         $this->assertTrue(isset($post->getTermsAttribute()['foo']));
         $this->assertFalse(isset($post->getTermsAttribute()['fee']));
         $this->assertTrue(isset($post->getTermsAttribute()['foo']['test']));
@@ -236,7 +236,7 @@ class PostTest extends TestUnitCase
     {
         $post = $this->createPostWithTaxonomiesAndTerms();
 
-        $this->assertInternalType('array', $post->getOptions()->first());
+        $this->assertIsArray($post->getOptions()->first());
         $this->assertTrue(isset($post->getOptions()['locale']));
     }
 
@@ -247,7 +247,7 @@ class PostTest extends TestUnitCase
     {
         $post = $this->createPostWithTaxonomiesAndTerms();
 
-        $this->assertInternalType('array', $post->getOption('locale'));
+        $this->assertIsArray($post->getOption('locale'));
         $this->assertEquals('true', $post->getOption('locale')['en']);
         $this->assertEquals('test', $post->getOption('default', 'test'));
 

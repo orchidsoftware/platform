@@ -109,6 +109,6 @@ class FieldTest extends TestUnitCase
         $test = $field->render();
 
         $this->assertInstanceOf(View::class, $test);
-        $this->assertContains('example', $test->withErrors([])->render());
+        $this->assertStringContainsString('example', $test->withErrors([])->render());
     }
 }

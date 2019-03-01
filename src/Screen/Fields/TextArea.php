@@ -9,22 +9,22 @@ use Orchid\Screen\Field;
 /**
  * Class TextArea.
  *
- * @method $this accesskey($value = true)
- * @method $this autofocus($value = true)
- * @method $this cols($value = true)
- * @method $this disabled($value = true)
- * @method $this form($value = true)
- * @method $this maxlength($value = true)
- * @method $this name(string $value)
- * @method $this placeholder(string $value = null)
- * @method $this readonly($value = true)
- * @method $this required($value = true)
- * @method $this rows(int $value)
- * @method $this tabindex($value = true)
- * @method $this wrap($value = true)
- * @method $this help(string $value = null)
- * @method $this max(int $value)
- * @method $this popover(string $value = null)
+ * @method self accesskey($value = true)
+ * @method self autofocus($value = true)
+ * @method self cols($value = true)
+ * @method self disabled($value = true)
+ * @method self form($value = true)
+ * @method self maxlength(int $value)
+ * @method self name(string $value)
+ * @method self placeholder(string $value = null)
+ * @method self readonly($value = true)
+ * @method self required(bool $value = true)
+ * @method self rows(int $value)
+ * @method self tabindex($value = true)
+ * @method self wrap($value = true)
+ * @method self help(string $value = null)
+ * @method self max(int $value)
+ * @method self popover(string $value = null)
  */
 class TextArea extends Field
 {
@@ -66,7 +66,8 @@ class TextArea extends Field
 
     /**
      * @param string|null $name
-     * @return TextArea
+     *
+     * @return self
      */
     public static function make(string $name = null): self
     {

@@ -9,8 +9,8 @@ use Orchid\Screen\Field;
 /**
  * Class Label.
  *
- * @method $this name(string $value)
- * @method $this popover(string $value = null)
+ * @method self name(string $value)
+ * @method self popover(string $value = null)
  */
 class Label extends Field
 {

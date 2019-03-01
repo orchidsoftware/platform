@@ -47,7 +47,7 @@ trait TaggableTrait
     {
         static::$delimiter = $delimiter;
 
-        return get_called_class();
+        return static::class;
     }
 
     /**
@@ -220,7 +220,7 @@ trait TaggableTrait
      */
     public function addTag(string $name)
     {
-        $tag = $this->createTagsModel()->firstOrNew([
+        $tag = self::createTagsModel()->firstOrNew([
             'slug'      => $this->generateTagSlug($name),
             'namespace' => $this->getEntityClassName(),
         ]);
@@ -249,8 +249,8 @@ trait TaggableTrait
 
         $namespace = $this->getEntityClassName();
 
-        $tag = $this
-            ->createTagsModel()
+        $tag = self
+            ::createTagsModel()
             ->whereNamespace($namespace)
             ->where(function ($query) use ($name, $slug) {
                 $query
@@ -280,7 +280,7 @@ trait TaggableTrait
         }
 
         if (is_string($tags)) {
-            $delimiter = preg_quote($this->getTagsDelimiter(), '#');
+            $delimiter = preg_quote(self::getTagsDelimiter(), '#');
 
             $tags = array_map('trim',
                 preg_split("#[{$delimiter}]#", $tags)

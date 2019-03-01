@@ -9,13 +9,13 @@ use Orchid\Screen\Field;
 /**
  * Class Input.
  *
- * @method $this name(string $value)
- * @method $this value($value = true)
- * @method $this help(string $value = null)
- * @method $this popover(string $value = null)
- * @method $this language($value = true)
- * @method $this lineNumbers($value = true)
- * @method $this height($value = '300px')
+ * @method self name(string $value)
+ * @method self value($value = true)
+ * @method self help(string $value = null)
+ * @method self popover(string $value = null)
+ * @method self language($value = true)
+ * @method self lineNumbers($value = true)
+ * @method self height($value = '300px')
  */
 class Code extends Field
 {
@@ -78,7 +78,8 @@ class Code extends Field
 
     /**
      * @param string $name
-     * @return Code
+     *
+     * @return self
      */
     public static function make(string $name = null): self
     {
@@ -88,9 +89,9 @@ class Code extends Field
     /**
      * @param mixed $value
      *
-     * @return \Orchid\Screen\Field
+     * @return self
      */
-    public function modifyValue($value)
+    public function modifyValue($value) : Field
     {
         $value = parent::modifyValue($value);
 

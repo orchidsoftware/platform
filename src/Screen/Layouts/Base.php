@@ -93,7 +93,6 @@ abstract class Base
 
     /**
      * @param Repository $repository
-     * @param bool $async
      *
      * @return mixed
      */
@@ -115,7 +114,6 @@ abstract class Base
             'manyForms'           => $build ?? [],
             'templateSlug'        => $this->getSlug(),
             'templateAsync'       => $this->asyncNext,
-            'templateAsync'       => $this->async,
             'templateAsyncMethod' => $this->asyncMethod,
         ]);
     }

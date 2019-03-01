@@ -28,7 +28,7 @@ class CommentTest extends TestUnitCase
     public function its_id_is_an_integer()
     {
         $comment = factory(Comment::class)->create();
-        $this->assertInternalType('integer', $comment->id);
+        $this->assertIsInt($comment->id);
     }
 
     /**
@@ -39,7 +39,7 @@ class CommentTest extends TestUnitCase
         $comment = factory(Comment::class)->create([
             'approved' => true,
         ]);
-        $this->assertInternalType('boolean', $comment->isApproved());
+        $this->assertIsBool($comment->isApproved());
         $this->assertTrue($comment->isApproved());
     }
 
@@ -93,7 +93,8 @@ class CommentTest extends TestUnitCase
         $comment = $this->createCommentWithReplies();
         $this->assertCount(3, $comment->replies);
         $this->assertInstanceOf(Comment::class, $comment->replies->first());
-        $this->assertInternalType('boolean', $comment->replies->first()->isReply());
+
+        $this->assertIsBool($comment->replies->first()->isReply());
         $this->assertTrue($comment->replies->first()->isReply());
     }
 
@@ -119,7 +120,7 @@ class CommentTest extends TestUnitCase
     {
         $comment = $this->createCommentWithReplies();
         $this->assertTrue($comment->hasReplies());
-        $this->assertInternalType('boolean', $comment->hasReplies());
+        $this->assertIsBool($comment->hasReplies());
     }
 
     /**

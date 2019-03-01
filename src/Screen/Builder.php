@@ -145,7 +145,7 @@ class Builder
      */
     private function buildPrefix(Field $field)
     {
-        $prefix = $field->get('prefix', null);
+        $prefix = $field->get('prefix');
 
         if (! is_null($prefix)) {
             foreach (array_filter(explode(' ', $prefix)) as $name) {

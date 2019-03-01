@@ -12,17 +12,17 @@ class Menu
     /**
      * Slug for main menu.
      */
-    const MAIN = 'Main';
+    public const MAIN = 'Main';
 
     /**
      * Slug for system page.
      */
-    const SYSTEMS = 'Systems';
+    public const SYSTEMS = 'Systems';
 
     /**
      * Slug for dropdown profile.
      */
-    const PROFILE = 'Profile';
+    public const PROFILE = 'Profile';
 
     /**
      * The contents of the menu.
@@ -71,23 +71,18 @@ class Menu
     /**
      * Adding a new element to the container.
      *
-     * @param string $place
-     * @param ItemMenu $arg
+     * @param string   $place
+     * @param ItemMenu $itemMenu
      *
      * @return $this
      */
-    public function add(string $place, ItemMenu $arg)
+    public function add(string $place, ItemMenu $itemMenu)
     {
-        $arg = get_object_vars($arg);
+        $arg = get_object_vars($itemMenu);
 
         if (array_key_exists('show', $arg) && ! $arg['show']) {
             return $this;
         }
-
-        $arg = array_merge([
-            'icon' => 'icon-folder',
-            'sort' => 0,
-        ], $arg);
 
         $this->location = $place;
         $this->arg = $arg;

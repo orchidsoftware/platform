@@ -12,21 +12,21 @@ use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
 /**
  * Class Field.
  *
- * @method $this accesskey($value = true)
- * @method $this type($value = true)
- * @method $this class($value = true)
- * @method $this contenteditable($value = true)
- * @method $this contextmenu($value = true)
- * @method $this dir($value = true)
- * @method $this hidden($value = true)
- * @method $this id($value = true)
- * @method $this lang($value = true)
- * @method $this spellcheck($value = true)
- * @method $this style($value = true)
- * @method $this tabindex($value = true)
- * @method $this title(string $value = null)
- * @method $this options($value = true)
- * @method $this autocomplete($value = true)
+ * @method self accesskey($value = true)
+ * @method self type($value = true)
+ * @method self class($value = true)
+ * @method self contenteditable($value = true)
+ * @method self contextmenu($value = true)
+ * @method self dir($value = true)
+ * @method self hidden($value = true)
+ * @method self id($value = true)
+ * @method self lang($value = true)
+ * @method self spellcheck($value = true)
+ * @method self style($value = true)
+ * @method self tabindex($value = true)
+ * @method self title(string $value = null)
+ * @method self options($value = true)
+ * @method self autocomplete($value = true)
  */
 class Field implements FieldContract
 {
@@ -367,9 +367,9 @@ class Field implements FieldContract
     /**
      * @param mixed $value
      *
-     * @return Field
+     * @return self
      */
-    public function modifyValue($value)
+    public function modifyValue($value) : self
     {
         $this->attributes['value'] = $this->getOldValue() ?: $value;
 
@@ -388,7 +388,7 @@ class Field implements FieldContract
     public static function group($group)
     {
         if (! is_array($group)) {
-            return call_user_func($group);
+            return $group();
         }
 
         return $group;

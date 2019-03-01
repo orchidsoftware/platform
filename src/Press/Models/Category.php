@@ -38,7 +38,7 @@ class Category extends Taxonomy
      */
     public function getAllCategories()
     {
-        $categories = ($this->exists) ? self::whereNotIn('id', [$this->id])->get() : self::get();
+        $categories = $this->exists ? self::whereNotIn('id', [$this->id])->get() : self::get();
 
         return $categories->mapWithKeys(function ($item) {
             return [$item->id => $item->term->GetContent('name')];

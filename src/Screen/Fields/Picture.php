@@ -9,38 +9,38 @@ use Orchid\Screen\Field;
 /**
  * Class Picture.
  *
- * @method $this accept($value = true)
- * @method $this accesskey($value = true)
- * @method $this autocomplete($value = true)
- * @method $this autofocus($value = true)
- * @method $this checked($value = true)
- * @method $this disabled($value = true)
- * @method $this form($value = true)
- * @method $this formaction($value = true)
- * @method $this formenctype($value = true)
- * @method $this formmethod($value = true)
- * @method $this formnovalidate($value = true)
- * @method $this formtarget($value = true)
- * @method $this list($value = true)
- * @method $this max(int $value)
- * @method $this maxlength($value = true)
- * @method $this min(int $value)
- * @method $this multiple($value = true)
- * @method $this name(string $value)
- * @method $this pattern($value = true)
- * @method $this placeholder(string $value = null)
- * @method $this readonly($value = true)
- * @method $this required($value = true)
- * @method $this size($value = true)
- * @method $this src($value = true)
- * @method $this step($value = true)
- * @method $this tabindex($value = true)
- * @method $this type($value = true)
- * @method $this value($value = true)
- * @method $this help(string $value = null)
- * @method $this width($value = true)
- * @method $this height($value = true)
- * @method $this popover(string $value = null)
+ * @method self accept($value = true)
+ * @method self accesskey($value = true)
+ * @method self autocomplete($value = true)
+ * @method self autofocus($value = true)
+ * @method self checked($value = true)
+ * @method self disabled($value = true)
+ * @method self form($value = true)
+ * @method self formaction($value = true)
+ * @method self formenctype($value = true)
+ * @method self formmethod($value = true)
+ * @method self formnovalidate($value = true)
+ * @method self formtarget($value = true)
+ * @method self list($value = true)
+ * @method self max(int $value)
+ * @method self maxlength(int $value)
+ * @method self min(int $value)
+ * @method self multiple($value = true)
+ * @method self name(string $value)
+ * @method self pattern($value = true)
+ * @method self placeholder(string $value = null)
+ * @method self readonly($value = true)
+ * @method self required(bool $value = true)
+ * @method self size($value = true)
+ * @method self src($value = true)
+ * @method self step($value = true)
+ * @method self tabindex($value = true)
+ * @method self type($value = true)
+ * @method self value($value = true)
+ * @method self help(string $value = null)
+ * @method self width($value = true)
+ * @method self height($value = true)
+ * @method self popover(string $value = null)
  */
 class Picture extends Field
 {
@@ -87,7 +87,8 @@ class Picture extends Field
 
     /**
      * @param string|null $name
-     * @return Picture
+     *
+     * @return self
      */
     public static function make(string $name = null): self
     {

@@ -9,16 +9,16 @@ use Orchid\Screen\Field;
 /**
  * Class Select.
  *
- * @method $this accesskey($value = true)
- * @method $this autofocus($value = true)
- * @method $this disabled($value = true)
- * @method $this form($value = true)
- * @method $this name(string $value)
- * @method $this required($value = true)
- * @method $this size($value = true)
- * @method $this tabindex($value = true)
- * @method $this help(string $value = null)
- * @method $this popover(string $value = null)
+ * @method self accesskey($value = true)
+ * @method self autofocus($value = true)
+ * @method self disabled($value = true)
+ * @method self form($value = true)
+ * @method self name(string $value)
+ * @method self required(bool $value = true)
+ * @method self size($value = true)
+ * @method self tabindex($value = true)
+ * @method self help(string $value = null)
+ * @method self popover(string $value = null)
  */
 class Select extends Field
 {
@@ -65,7 +65,8 @@ class Select extends Field
 
     /**
      * @param string|null $name
-     * @return Select
+     *
+     * @return self
      */
     public static function make(string $name = null): self
     {
