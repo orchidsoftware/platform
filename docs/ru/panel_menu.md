@@ -38,7 +38,8 @@ class AppServiceProvider extends ServiceProvider
         $dashboard->menu->add('Main',
             ItemMenu::setLabel('Idea')
                 ->setIcon('icon-bubbles')
-                ->setRoute('#')
+                ->setUrl('#')
+                //->setRoute('platform.systems.idea')
                 //->setPermission('platform.systems.idea')
                 ->setSort(1000)
                 ->setGroupName('idea')

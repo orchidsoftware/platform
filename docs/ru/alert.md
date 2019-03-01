@@ -60,10 +60,10 @@ alert('Message');
 $user = User::find(1);
 
 $user->notify(new \Orchid\Platform\Notifications\DashboardNotification([
-    'title' => 'Hello Word',
+    'title'   => 'Hello Word',
     'message' => 'New post!',
-    'action' => 'https://google.com',
-    'type' => DashboardNotification::INFO,
+    'action'  => 'http://orchid.software/',
+    'type'    =>  DashboardNotification::INFO,
 ]));
 ```
 
