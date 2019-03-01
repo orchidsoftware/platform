@@ -31,7 +31,6 @@ class PressTest extends TestFeatureCase
     {
         parent::setUp();
 
-
         $this->user = factory(User::class)->create();
         $this->page = factory(Page::class)->create();
         $this->post = factory(Post::class)->create();
