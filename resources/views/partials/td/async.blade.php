@@ -1,6 +1,6 @@
 <a href="#"
    data-action="screen--base#targetModal"
-   data-modal-title="Асинхронная модалочка"
+   data-modal-title=""
    data-modal-async="true"
    data-modal-key="{{$modal ?? ''}}"
    data-modal-params="@json($attributes)"

@@ -16,7 +16,7 @@ export default class extends Controller {
         ).open({
             title: event.target.dataset.modalTitle,
             submit: event.target.dataset.modalAction,
-            params: event.target.dataset.modalParams,
+            params: event.target.dataset.modalParams || '[]',
         });
 
         return event.preventDefault();

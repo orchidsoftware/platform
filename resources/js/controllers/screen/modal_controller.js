@@ -15,10 +15,10 @@ export default class extends Controller {
      * @param options
      */
     open(options) {
-        /* TODO: Added titile */
-        //this.titleTarget.textContent = options.title;
+        this.titleTarget.textContent = options.title || null;
         this.element.querySelector('form').action = options.submit;
 
+        console.log(options);
         if (this.data.get('async')) {
             this.asyncLoadData(JSON.parse(options.params));
         }
