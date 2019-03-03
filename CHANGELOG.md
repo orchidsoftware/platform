@@ -6,6 +6,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 4.0.0 - 2019-03-03
+
+### Added
+- Export metrics button
+- Support laravel 5.8
+- Support phpunit 8.0
+- Added tips for phpdoc
+
+### Changed
+- By default, the panel is available from any domain.
+- Remove postfix `Field` for all
+- The context of the routes has been changed to `$this->router`. 
+Due to changes in the framework, you can also use the structure through the facade `Route::get`.
+- Reworked layer display engine
+
+### Removed
+- `dashboard_domain` helper
+- Media [780](https://github.com/orchidsoftware/platform/issues/780)
+- Deprecated params to `->setRoute(route('platform.*'))` for menu
+- `Dashboard::registerPermissions` accept array argument
+
 ## 3.11.0 - 2019-02-25
 
 ### Added
