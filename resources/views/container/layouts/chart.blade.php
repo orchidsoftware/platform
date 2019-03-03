@@ -14,7 +14,7 @@
                 <div class="top-right pt-1 pr-4"  style="z-index: 1">
                     <button class="btn btn-sm btn-link"
                             data-action="screen--chart#export">
-                        Export
+                        {{ __('Export') }}
                     </button>
                 </div>
 

@@ -9,7 +9,7 @@ The platform and the framework use the Composer to provide and control your depe
 Install the framework with the `composer create-project` command in your terminal:
 
 ```php
-$ composer create-project laravel/laravel orchid-project "5.7.*" --prefer-dist
+$ composer create-project laravel/laravel orchid-project "5.8.*" --prefer-dist
 ```
 
 This will create a new folder `orchid`, download some dependencies into it and even generate main folders and files required to start your work. In other words it will install your new framework project.
