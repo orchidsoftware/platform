@@ -94,8 +94,6 @@ class ArtisanTest extends TestConsoleCase
     {
         $this->artisan('orchid:install')
             ->expectsQuestion('The platform has already been installed, do you really want to repeat?', 'yes')
-            ->expectsQuestion('What domain to use the panel?', 'localhost')
-            ->expectsQuestion('What prefix to use the panel?', 'dashboard')
             ->expectsOutput("To start the embedded server, run 'artisan serve'");
     }
 

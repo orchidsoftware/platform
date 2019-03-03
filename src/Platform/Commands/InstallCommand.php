@@ -38,7 +38,7 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        $this->progressBar = $this->output->createProgressBar(8);
+        $this->progressBar = $this->output->createProgressBar(6);
 
         $this->info("
         ________________________________________________________________
@@ -88,8 +88,6 @@ class InstallCommand extends Command
         $this->info(' Completed!');
 
         $this
-            ->askEnv('What domain to use the panel?', 'DASHBOARD_DOMAIN')
-            ->askEnv('What prefix to use the panel?', 'DASHBOARD_PREFIX', 'dashboard')
             ->setValueEnv('SCOUT_DRIVER', 'null')
             ->comment("To create a user, run 'artisan orchid:admin'");
 
@@ -138,20 +136,6 @@ class InstallCommand extends Command
 
         $user = file_get_contents(PLATFORM_PATH.'/install-stubs/User.stub');
         file_put_contents(app_path('User.php'), $user);
-    }
-
-    /**
-     * @param string $question
-     * @param string $constant
-     * @param string|null $default
-     *
-     * @return $this
-     */
-    private function askEnv(string $question, $constant, $default = null): self
-    {
-        $value = $this->ask($question, $default);
-
-        return $this->setValueEnv($constant, $value);
     }
 
     /**
