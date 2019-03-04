@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Platform;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
 
 class Dashboard
 {
