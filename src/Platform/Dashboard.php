@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Orchid\Platform;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class Dashboard
 {
     /**
      * ORCHID Version.
      */
-    public const VERSION = '4.0.0';
+    public const VERSION = '4.0.1';
 
     /**
      * The Dashboard configuration options.

@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
-use Watson\Active\Active;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
+use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Str;
 use Orchid\Platform\Models\User;
+use Orchid\Platform\Providers\FoundationServiceProvider;
+use Orchid\Press\Providers\PressServiceProvider;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
-use Orchid\Press\Providers\PressServiceProvider;
-use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
-use Orchid\Platform\Providers\FoundationServiceProvider;
+use Watson\Active\Active;
 
 /**
  * Trait Environment.
@@ -54,6 +55,8 @@ trait Environment
      */
     protected function getEnvironmentSetUp($app)
     {
+        $app->make(Factory::class)->load(realpath(PLATFORM_PATH . '/database/factories'));
+
         $app['config']->set('app.debug', true);
         $app['config']->set('auth.providers.users.model', User::class);
 

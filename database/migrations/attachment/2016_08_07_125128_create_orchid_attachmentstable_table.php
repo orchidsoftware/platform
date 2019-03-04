@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateOrchidAttachmentstableTable extends Migration
 {
@@ -24,7 +24,7 @@ class CreateOrchidAttachmentstableTable extends Migration
             $table->text('alt')->nullable();
             $table->text('hash')->nullable();
             $table->string('disk')->default('public');
-            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('group')->nullable();
             $table->timestamps();
         });
