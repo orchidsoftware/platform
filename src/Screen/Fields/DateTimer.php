@@ -55,9 +55,10 @@ class DateTimer extends Field
         'type'                              => 'text',
         'class'                             => 'form-control',
         'data-controller'                   => 'fields--datetime',
-        'data-fields--datetime-enable-time' => 'true',
-        'data-fields--datetime-time_24hr'   => 'true',
-        'data-fields--datetime-allow-input' => 'true',
+        'data-fields--datetime-enable-time' => 'false',
+        'data-fields--datetime-time_24hr'   => 'false',
+        'data-fields--datetime-allow-input' => 'false',
+        'data-fields--datetime-date-format' => 'Y-m-d H:i:S',
     ];
 
     /**
@@ -97,6 +98,7 @@ class DateTimer extends Field
         'data-fields--datetime-enable-time',
         'data-fields--datetime-time_24hr',
         'data-fields--datetime-allow-input',
+        'data-fields--datetime-date-format'
     ];
 
     /**
@@ -107,5 +109,53 @@ class DateTimer extends Field
     public static function make(string $name = null): self
     {
         return (new static)->name($name);
+    }
+
+    /**
+     * @param bool $time
+     *
+     * @return self
+     */
+    public function enableTime(bool $time = true) : self
+    {
+        $this->set('data-fields--datetime-enable-time', (string) $time);
+
+        return $this;
+    }
+
+    /**
+     * @param bool $time
+     *
+     * @return self
+     */
+    public function format24hr(bool $time = true) : self
+    {
+        $this->set('data-fields--datetime-time_24hr', (string) $time);
+
+        return $this;
+    }
+
+    /**
+     * @param bool $time
+     *
+     * @return self
+     */
+    public function allowInput(bool $time = true) : self
+    {
+        $this->set('data-fields--datetime-allow-input', (string) $time);
+
+        return $this;
+    }
+
+    /**
+     * @param string $format
+     *
+     * @return DateTimer
+     */
+    public function format(string  $format) : self
+    {
+        $this->set('data-fields--datetime-date-format', $format);
+
+        return $this;
     }
 }
