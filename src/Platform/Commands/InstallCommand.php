@@ -39,6 +39,9 @@ class InstallCommand extends Command
      */
     public function handle()
     {
+        $updates = new Updates();
+        $updates->updateInstall();
+
         $this->progressBar = $this->output->createProgressBar(6);
 
         $this->info("
@@ -51,11 +54,11 @@ class InstallCommand extends Command
               \____/  |_|  \_\  \_____| |_|  |_| |_____| |_____/
                              
                              Installation started. Please wait...
+                             Version: $updates->currentVersion
         ________________________________________________________________
         ");
 
-        $updates = new Updates();
-        $updates->updateInstall();
+
         sleep(1);
 
         $this
