@@ -51,8 +51,6 @@ class EntityListScreen extends Screen
      */
     protected $entity;
 
-    public const POST_PERMISSION_PREFIX = 'platform.entities.type.';
-
     /**
      * Query data.
      *
@@ -66,7 +64,7 @@ class EntityListScreen extends Screen
         $this->description = $type->description;
         $this->entity = $type;
 
-        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
+        $this->checkPermission(Post::POST_PERMISSION_PREFIX.$type->slug);
 
         $this->grid = $type->grid();
         $this->filters = $type->filters();

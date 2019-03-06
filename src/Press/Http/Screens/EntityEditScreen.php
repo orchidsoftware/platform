@@ -45,8 +45,6 @@ class EntityEditScreen extends Screen
      */
     protected $exist = false;
 
-    public const POST_PERMISSION_PREFIX = 'platform.entities.type.';
-
     /**
      * Query data.
      *
@@ -63,7 +61,7 @@ class EntityEditScreen extends Screen
         $this->entity = $type;
         $this->exist = $post->exists;
 
-        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
+        $this->checkPermission(Post::POST_PERMISSION_PREFIX.$type->slug);
 
         return [
             'locales' => collect($type->locale()),
@@ -119,7 +117,7 @@ class EntityEditScreen extends Screen
      */
     public function save(Request $request, EntityContract $type, Post $post): RedirectResponse
     {
-        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
+        $this->checkPermission(Post::POST_PERMISSION_PREFIX.$type->slug);
         $type->isValid();
 
         $post->fill($request->all())->fill([
@@ -155,7 +153,7 @@ class EntityEditScreen extends Screen
      */
     public function destroy(EntityContract $type, Post $post): RedirectResponse
     {
-        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
+        $this->checkPermission(Post::POST_PERMISSION_PREFIX.$type->slug);
 
         $type->delete($post);
 
