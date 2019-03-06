@@ -6,7 +6,6 @@ use Orchid\Screen\Layouts\Chart;
 
 class DummyClass extends Chart
 {
-
     /**
      * @var string
      */
@@ -35,4 +34,11 @@ class DummyClass extends Chart
      * @var string
      */
     public $data = 'charts';
+
+    /**
+     * Determines whether to display the export button.
+     *
+     * @var bool
+     */
+    public $export = true;
 }

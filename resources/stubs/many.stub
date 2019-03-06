@@ -6,7 +6,6 @@ use Orchid\Press\Entities\Many;
 
 class DummyClass extends Many
 {
-
     /**
      * @var string
      */

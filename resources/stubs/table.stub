@@ -6,7 +6,6 @@ use Orchid\Screen\Layouts\Table;
 
 class DummyClass extends Table
 {
-
     /**
      * @var string
      */
