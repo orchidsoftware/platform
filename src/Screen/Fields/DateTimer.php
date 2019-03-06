@@ -98,7 +98,7 @@ class DateTimer extends Field
         'data-fields--datetime-enable-time',
         'data-fields--datetime-time_24hr',
         'data-fields--datetime-allow-input',
-        'data-fields--datetime-date-format'
+        'data-fields--datetime-date-format',
     ];
 
     /**
