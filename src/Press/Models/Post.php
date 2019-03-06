@@ -37,9 +37,8 @@ class Post extends Model
         AttachTrait,
         FilterTrait;
 
-
     /**
-     * Prefix for permission
+     * Prefix for permission.
      */
     public const POST_PERMISSION_PREFIX = 'platform.entities.type.';
 
