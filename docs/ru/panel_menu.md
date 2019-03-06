@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Dashboard $dashboard)
     {
-        $dashboard->menu->add('Main',
+        $dashboard->menu->add(Menu::MAIN,
             ItemMenu::setLabel('Idea')
                 ->setIcon('icon-bubbles')
                 ->setUrl('#')
@@ -61,14 +61,3 @@ class AppServiceProvider extends ServiceProvider
 }
 ```
 	
-	
-## Собственные меню
-
-Принцип работы меню можно свести к группировкам схожих элементов и вывода рекурсии каждой группы по запросу (Примеры добавления указаны выше).
-
-Вызвать рендеринг меню в шаблоне можно с помощью фасада `Dashbord` и передать два аргумента
-название группы которую нужно отобразить и название шаблона который будет строить визуальное отображение.
-
-```php
-{!! Dashboard::menu()->render('Main','platform::partials.leftMainMenu') !!}
-```
