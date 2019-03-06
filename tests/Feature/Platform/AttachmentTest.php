@@ -16,7 +16,6 @@ class AttachmentTest extends TestFeatureCase
     private $user;
 
     /**
-     * @test
      */
     public function testAttachmentHttpUpload()
     {
@@ -46,7 +45,6 @@ class AttachmentTest extends TestFeatureCase
     }
 
     /**
-     * @test
      */
     public function testAttachmentHttpMultiUpload()
     {
@@ -72,7 +70,6 @@ class AttachmentTest extends TestFeatureCase
     }
 
     /**
-     * @test
      */
     public function testAttachmentHttpDestroy()
     {
@@ -94,7 +91,6 @@ class AttachmentTest extends TestFeatureCase
     }
 
     /**
-     * @test
      */
     public function testAttachmentHttpGetFile()
     {
@@ -124,7 +120,6 @@ class AttachmentTest extends TestFeatureCase
     }
 
     /**
-     * @test
      */
     public function testAttachmentHttpUpdate()
     {

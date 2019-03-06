@@ -13,6 +13,7 @@ use Orchid\Press\Providers\PressServiceProvider;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
 use Watson\Active\Active;
+use Orchid\Database\Seeds\OrchidDatabaseSeeder;
 
 /**
  * Trait Environment.
@@ -35,7 +36,7 @@ trait Environment
         $this->withFactories(realpath(PLATFORM_PATH.'/database/factories'));
 
         $this->artisan('db:seed', [
-            '--class' => 'Orchid\Database\Seeds\OrchidDatabaseSeeder',
+            '--class' => OrchidDatabaseSeeder::class,
         ]);
 
         $this->artisan('orchid:admin', [

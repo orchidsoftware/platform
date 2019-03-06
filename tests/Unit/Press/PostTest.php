@@ -20,7 +20,7 @@ class PostTest extends TestUnitCase
     {
         $post = factory(Post::class)->create();
         $this->assertInstanceOf(Post::class, $post);
-        $this->assertTrue(is_int($post->id));
+        $this->assertIsInt($post->id);
         $this->assertGreaterThan(0, $post->id);
     }
 
@@ -140,7 +140,7 @@ class PostTest extends TestUnitCase
     public function they_can_be_ordered_ascending()
     {
         factory(Post::class, 2)->create();
-        $posts = Post::query()->orderBy('publish_at', 'asc')->get();
+        $posts = Post::query()->orderBy('publish_at')->get();
         $first = $posts->first();
         $last = $posts->last();
         $this->assertTrue($first->publish_at->lessThanOrEqualTo($last->publish_at));

@@ -20,7 +20,7 @@ class MenuTest extends TestUnitCase
         $menu->add('Main', ItemMenu::setLabel('Main Test')
             ->setSlug('Test')
             ->setIcon('icon-layers')
-            ->setChilds(true)
+            ->setChilds()
             ->setSort(1000)
         );
 

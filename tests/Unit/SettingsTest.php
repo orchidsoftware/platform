@@ -17,7 +17,7 @@ class SettingsTest extends TestUnitCase
      */
     public $setting;
 
-    /** @test */
+    /** */
     public function test_for_one_value()
     {
         //Запишем значение
@@ -26,7 +26,7 @@ class SettingsTest extends TestUnitCase
 
         $this->setting->set($key, $value);
 
-        $result = $this->setting->get($key, null);
+        $result = $this->setting->get($key);
 
         $this->assertEquals($value, $result);
 
@@ -39,7 +39,7 @@ class SettingsTest extends TestUnitCase
         $this->assertEquals(null, $result);
     }
 
-    /** @test */
+    /** */
     public function test_for_many_value()
     {
         $valueArray = [
@@ -59,7 +59,7 @@ class SettingsTest extends TestUnitCase
             'test-3',
         ]);
 
-        $this->assertEquals(3, count($result));
+        $this->assertCount(3, $result);
 
         //Удалим все значениея
         $result = $this->setting->forget([

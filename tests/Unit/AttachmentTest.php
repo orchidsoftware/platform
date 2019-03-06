@@ -21,7 +21,6 @@ class AttachmentTest extends TestUnitCase
     public $disk;
 
     /**
-     * @test
      */
     public function testAttachmentFile()
     {
@@ -41,7 +40,6 @@ class AttachmentTest extends TestUnitCase
     }
 
     /**
-     * @test
      */
     public function testAttachmentImage()
     {
@@ -54,7 +52,6 @@ class AttachmentTest extends TestUnitCase
     }
 
     /**
-     * @test
      */
     public function testAttachmentUser()
     {
@@ -70,7 +67,6 @@ class AttachmentTest extends TestUnitCase
     }
 
     /**
-     * @test
      */
     public function testAttachmentUrlLink()
     {
@@ -83,7 +79,6 @@ class AttachmentTest extends TestUnitCase
     }
 
     /**
-     * @test
      */
     public function testAttachmentUrlLinkNotFound()
     {
@@ -94,7 +89,6 @@ class AttachmentTest extends TestUnitCase
     }
 
     /**
-     * @test
      */
     public function testAttachmentMimeType()
     {
@@ -106,7 +100,6 @@ class AttachmentTest extends TestUnitCase
     }
 
     /**
-     * @test
      */
     public function testAttachmentDelete()
     {
@@ -120,7 +113,6 @@ class AttachmentTest extends TestUnitCase
     }
 
     /**
-     * @test
      */
     public function testDuplicateAttachmentUpload()
     {
@@ -138,7 +130,6 @@ class AttachmentTest extends TestUnitCase
     }
 
     /**
-     * @test
      */
     public function testUnknownMimeTypeAttachmentUpload()
     {
@@ -149,7 +140,6 @@ class AttachmentTest extends TestUnitCase
     }
 
     /**
-     * @test
      */
     public function testUnknownExtensionAttachmentUpload()
     {

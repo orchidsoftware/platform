@@ -118,11 +118,11 @@ class TaggableTraitTest extends TestUnitCase
         $post1->tag('foo, bar, baz');
         $post2->tag('foo, bat');
 
-        $this->assertcount(1, Post::whereTag('foo, bar')->get());
+        $this->assertCount(1, Post::whereTag('foo, bar')->get());
 
-        $this->assertcount(2, Post::withTag('foo')->get());
+        $this->assertCount(2, Post::withTag('foo')->get());
 
-        $this->assertcount(1, Post::withTag('bat')->get());
+        $this->assertCount(1, Post::withTag('bat')->get());
     }
 
     /** @test */
@@ -134,11 +134,11 @@ class TaggableTraitTest extends TestUnitCase
         $post1->tag('foo, bar, baz');
         $post2->tag('foo, bat');
 
-        $this->assertcount(0, Post::withoutTag('foo')->get());
+        $this->assertCount(0, Post::withoutTag('foo')->get());
 
-        $this->assertcount(1, Post::withoutTag('bar')->get());
+        $this->assertCount(1, Post::withoutTag('bar')->get());
 
-        $this->assertcount(1, Post::withoutTag('bat')->get());
+        $this->assertCount(1, Post::withoutTag('bat')->get());
     }
 
     /** @test */
