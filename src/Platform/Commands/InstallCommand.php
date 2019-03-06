@@ -58,7 +58,6 @@ class InstallCommand extends Command
         ________________________________________________________________
         ");
 
-
         sleep(1);
 
         $this
