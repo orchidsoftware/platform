@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Event for install orchid [795](https://github.com/orchidsoftware/platform/issues/795)
+
 ## 4.0.1 - 2019-03-04
 
 ### Fixed

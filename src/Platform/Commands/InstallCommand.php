@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
+use Orchid\Platform\Events\InstallEvent;
 use Orchid\Platform\Updates;
 use Illuminate\Console\Command;
 use Orchid\Press\Providers\PressServiceProvider;
@@ -92,6 +93,8 @@ class InstallCommand extends Command
             ->comment("To create a user, run 'artisan orchid:admin'");
 
         $this->line("To start the embedded server, run 'artisan serve'");
+
+        event(new InstallEvent($this));
     }
 
     /**
