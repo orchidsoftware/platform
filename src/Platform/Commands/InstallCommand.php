@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
-use Orchid\Platform\Events\InstallEvent;
 use Orchid\Platform\Updates;
 use Illuminate\Console\Command;
+use Orchid\Platform\Events\InstallEvent;
 use Orchid\Press\Providers\PressServiceProvider;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Orchid\Platform\Providers\FoundationServiceProvider;
