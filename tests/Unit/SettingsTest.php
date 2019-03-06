@@ -17,7 +17,6 @@ class SettingsTest extends TestUnitCase
      */
     public $setting;
 
-    /** */
     public function test_for_one_value()
     {
         //Запишем значение
@@ -39,7 +38,6 @@ class SettingsTest extends TestUnitCase
         $this->assertEquals(null, $result);
     }
 
-    /** */
     public function test_for_many_value()
     {
         $valueArray = [

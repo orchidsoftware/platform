@@ -15,8 +15,6 @@ class AttachmentTest extends TestFeatureCase
      */
     private $user;
 
-    /**
-     */
     public function testAttachmentHttpUpload()
     {
         $response = $this
@@ -44,8 +42,6 @@ class AttachmentTest extends TestFeatureCase
         return $this->user;
     }
 
-    /**
-     */
     public function testAttachmentHttpMultiUpload()
     {
         $response = $this
@@ -69,8 +65,6 @@ class AttachmentTest extends TestFeatureCase
             ]);
     }
 
-    /**
-     */
     public function testAttachmentHttpDestroy()
     {
         /** @var $response \Illuminate\Foundation\Testing\TestResponse */
@@ -90,8 +84,6 @@ class AttachmentTest extends TestFeatureCase
         $response->assertOk();
     }
 
-    /**
-     */
     public function testAttachmentHttpGetFile()
     {
         /** @var $response \Illuminate\Foundation\Testing\TestResponse */
@@ -119,8 +111,6 @@ class AttachmentTest extends TestFeatureCase
         */
     }
 
-    /**
-     */
     public function testAttachmentHttpUpdate()
     {
         /** @var $response \Illuminate\Foundation\Testing\TestResponse */
