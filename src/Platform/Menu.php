@@ -27,14 +27,14 @@ class Menu
     /**
      * The contents of the menu.
      *
-     * @var
+     * @var Collection
      */
     public $container;
 
     /**
-     *  Position menu.
+     * Position menu.
      *
-     * @var
+     * @var string
      */
     private $location;
 
@@ -42,21 +42,21 @@ class Menu
      * Arguments menu form
      * For the transfer of Views.
      *
-     * @var
+     * @var array|null
      */
     private $arg;
 
     /**
      * Sort menu item.
      *
-     * @var
+     * @var int
      */
     private $sort;
 
     /**
      * Synthesis element.
      *
-     * @var
+     * @var array
      */
     private $item;
 

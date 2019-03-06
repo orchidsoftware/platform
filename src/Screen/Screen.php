@@ -104,6 +104,8 @@ abstract class Screen extends Controller
         $post = new Repository($query);
 
         foreach ($this->layout() as $layout) {
+
+            /** @var \Orchid\Screen\Layouts\Base $layout */
             $layout = is_object($layout) ? $layout : new $layout();
 
             if ($layout->getSlug() === $slugLayouts) {

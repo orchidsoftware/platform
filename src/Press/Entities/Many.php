@@ -52,6 +52,7 @@ abstract class Many implements EntityContract, UrlRoutable
     {
         return Post::type($this->slug)
             ->filtersApplyDashboard($this->slug)
+            ->defaultSort('updated_at')
             ->filters()
             ->with($this->with)
             ->orderBy('id', 'Desc')

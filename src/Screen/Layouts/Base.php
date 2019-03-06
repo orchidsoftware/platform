@@ -124,7 +124,7 @@ abstract class Base
      *
      * @return bool
      */
-    protected function checkPermission($layout, Repository $repository)
+    protected function checkPermission(Base $layout, Repository $repository) : bool
     {
         return method_exists($layout, 'canSee') && $layout->canSee($repository);
     }

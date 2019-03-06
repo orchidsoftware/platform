@@ -147,8 +147,8 @@ class ItemMenu
     /**
      * Generate the URL to a named route.
      *
-     * @param  array|string  $name
-     * @param  mixed  $parameters
+     * @param  string  $name
+     * @param  array  $parameters
      * @param  bool  $absolute
      *
      * @return ItemMenu

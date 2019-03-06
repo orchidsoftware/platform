@@ -90,9 +90,9 @@ class User extends Authenticatable implements UserInterface
     /**
      * Display name.
      *
-     * @return mixed
+     * @return string
      */
-    public function getNameTitle()
+    public function getNameTitle() : string
     {
         return $this->name;
     }
@@ -102,7 +102,7 @@ class User extends Authenticatable implements UserInterface
      *
      * @return string
      */
-    public function getSubTitle()
+    public function getSubTitle() : string
     {
         return 'Administrator';
     }
