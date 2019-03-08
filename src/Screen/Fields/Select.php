@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\Field;
 
 /**
@@ -54,6 +56,16 @@ class Select extends Field
     ];
 
     /**
+     * @param string|null $name
+     *
+     * @return self
+     */
+    public static function make(string $name = null): self
+    {
+        return (new static)->name($name);
+    }
+
+    /**
      * @return self
      */
     public function multiple(): self
@@ -64,12 +76,48 @@ class Select extends Field
     }
 
     /**
-     * @param string|null $name
+     * @param string|Model $model
+     * @param string $name
+     * @param string|null $key
      *
      * @return self
      */
-    public static function make(string $name = null): self
+    public function fromModel($model, string $name, string $key = null): self
     {
-        return (new static)->name($name);
+        /* @var $model Model */
+        $model = is_object($model) ? $model : new $model;
+        $key   = $key ?? $model->getModel()->getKeyName();
+
+        return $this->setFromEloquent($model, $name, $key);
+    }
+
+    /**
+     * @param Builder|Model $model
+     * @param string $name
+     * @param string $key
+     *
+     * @return self
+     */
+    private function setFromEloquent($model, string $name, string $key)
+    {
+        $options = $model->pluck($name, $key);
+
+        $this->set('options', $options);
+
+        return $this;
+    }
+
+    /**
+     * @param Builder $builder
+     * @param string $name
+     * @param string|null $key
+     *
+     * @return self
+     */
+    public function fromQuery(Builder $builder, string $name, string $key = null): self
+    {
+        $key = $key ?? $builder->getModel()->getKeyName();
+
+        return $this->setFromEloquent($builder, $name, $key);
     }
 }
