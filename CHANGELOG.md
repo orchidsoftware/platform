@@ -6,8 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 4.1.0 - 2019-03-09
+
 ### Added
 - Event for install orchid [795](https://github.com/orchidsoftware/platform/issues/795)
+- Source for select [798](https://github.com/orchidsoftware/platform/issues/798)
+- Method for control date time [794](https://github.com/orchidsoftware/platform/issues/794)
 
 ## 4.0.1 - 2019-03-04
 
