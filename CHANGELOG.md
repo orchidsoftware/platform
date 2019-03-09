@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Source for select [798](https://github.com/orchidsoftware/platform/issues/798)
 - Method for control date time [794](https://github.com/orchidsoftware/platform/issues/794)
 
+### Fixed
+- Return exception message for create admin command [796](https://github.com/orchidsoftware/platform/issues/796)
+
 ## 4.0.1 - 2019-03-04
 
 ### Fixed
