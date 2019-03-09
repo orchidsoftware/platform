@@ -381,6 +381,8 @@ class Field implements FieldContract
     }
 
     /**
+     * Create a group of the fields.
+     *
      * @param \Closure|array $group
      *
      * @return mixed
@@ -395,7 +397,9 @@ class Field implements FieldContract
     }
 
     /**
-     * @return self
+     * Use vertical layout for the field.
+     *
+     * @return $this
      */
     public function vertical(): self
     {
@@ -405,7 +409,9 @@ class Field implements FieldContract
     }
 
     /**
-     * @return self
+     * Use horizontal layout for the field.
+     *
+     * @return $this
      */
     public function horizontal(): self
     {
@@ -415,7 +421,9 @@ class Field implements FieldContract
     }
 
     /**
-     * @return self
+     * Create separate line after the field.
+     *
+     * @return $this
      */
     public function hr(): self
     {

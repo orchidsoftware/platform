@@ -11,6 +11,8 @@
          ])}}"
 
     >
-        <select id="{{$id}}" @include('platform::partials.fields.attributes', ['attributes' => $attributes])></select>
+        <select id="{{$id}}" @include('platform::partials.fields.attributes', ['attributes' => $attributes])>
+            <option></option>
+        </select>
     </div>
 @endcomponent
