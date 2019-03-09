@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus';
+import {Controller} from 'stimulus';
 
 export default class extends Controller {
     /**
@@ -15,6 +15,7 @@ export default class extends Controller {
 
         $(select).select2({
             theme: 'bootstrap',
+            allowClear: !select.hasAttribute('required'),
             ajax: {
                 type: 'POST',
                 cache: true,
@@ -22,8 +23,14 @@ export default class extends Controller {
                 url: () => this.data.get('url'),
                 dataType: 'json',
             },
-            selectOnClose: true,
-            placeholder: this.data.get('placeholder'),
+            placeholder: select.getAttribute('placeholder') || '',
+        }).on('select2:unselecting', function () {
+            $(this).data('state', 'unselected');
+        }).on('select2:opening', function (e) {
+            if ($(this).data('state') === 'unselected') {
+                e.preventDefault();
+                $(this).removeData('state');
+            }
         });
 
         if (!this.data.get('value')) {
@@ -38,6 +45,6 @@ export default class extends Controller {
 
         document.addEventListener('turbolinks:before-cache', () => {
             $(select).select2('destroy');
-        }, { once: true });
+        }, {once: true});
     }
 }
