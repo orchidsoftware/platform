@@ -226,20 +226,19 @@ Input::make()
 All available *Inputmask* may be found [here](https://github.com/RobinHerbots/Inputmask#options)
 
 
-## Entities
+## Relations
 
-Behavior fields may upload a dynamic data which is great if you need connections.
+`Relationship` fields may used to set the relation for your record. It loads data with ajax request and may used with huge number of data.
 
 ```php
 Relationship::make()
-    ->name('my_title')
+    ->name('related_article')
     ->required()
-    ->title('My title')
+    ->title('My related article')
     ->handler(AjaxWidget::class);
 ```
 
-
-AjaxWidget will receive a search value inside the `$query` property and the `$key` will  receive a value.
+AjaxWidget `$query` property will contain search string and `$key` property will contain a value if it already set for the field.
 
 
 ```php
@@ -297,3 +296,18 @@ class AjaxWidget extends Widget
 }
 
 ```
+
+## Modification
+
+You also can modify value and other params with magic method `modify` with the name of attribute which you want modify:
+
+```php
+Input::make()
+    ->type('text')
+    ->name('name')
+    ->modifyValue(function ($value) {
+        return strtoupper($value);
+    })
+```
+
+It allow to create «calculated fields».
