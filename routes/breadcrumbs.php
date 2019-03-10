@@ -21,12 +21,6 @@ Breadcrumbs::for('platform.systems.menu.index', function ($trail) {
     $trail->push(__('Menu'), route('platform.systems.menu.index'));
 });
 
-// Platform > System > Menu > Create
-Breadcrumbs::for('platform.systems.menu.create ', function ($trail) {
-    $trail->parent('platform.systems.menu.index');
-    $trail->push(__('Create'), route('platform.systems.menu.create '));
-});
-
 // Platform > System > Menu > Editing
 Breadcrumbs::for('platform.systems.menu.show', function ($trail, $menu) {
     $trail->parent('platform.systems.menu.index');

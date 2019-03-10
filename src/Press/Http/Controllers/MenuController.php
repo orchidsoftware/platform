@@ -77,13 +77,11 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function create(Request $request)
+    public function store(Request $request)
     {
-        $data = json_decode($request->get('data'), true);
-
-        $menu = Dashboard::model(Menu::class)::create(array_merge($data, [
-            'lang'   => $request->get('lang'),
-            'type'   => $request->get('menu'),
+        $menu = Dashboard::model(Menu::class)::create(array_merge($request->input('params.data'), [
+            'lang'   => $request->input('params.lang'),
+            'type'   => $request->input('params.menu'),
             'parent' => 0,
         ]));
 
