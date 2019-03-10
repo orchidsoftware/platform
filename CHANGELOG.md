@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 4.1.1 - 2019-03-10
+
+### Fixed
+- Relationship nullable [797](https://github.com/orchidsoftware/platform/issues/797)
+- DateRange not send value
+
 ## 4.1.0 - 2019-03-09
 
 ### Added
