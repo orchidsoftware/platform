@@ -25,7 +25,6 @@ use Orchid\Screen\Field;
  * @method self max(int $value)
  * @method self maxlength(int $value)
  * @method self min(int $value)
- * @method self multiple($value = true)
  * @method self name(string $value)
  * @method self pattern($value = true)
  * @method self placeholder(string $value = null)
@@ -80,7 +79,6 @@ class TinyMCE extends Field
         'max',
         'maxlength',
         'min',
-        'multiple',
         'name',
         'pattern',
         'placeholder',

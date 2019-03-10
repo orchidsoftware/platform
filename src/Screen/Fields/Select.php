@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Orchid\Screen\Field;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Orchid\Screen\Field;
 
 /**
  * Class Select.
@@ -103,6 +103,16 @@ class Select extends Field
         $options = $model->pluck($name, $key);
 
         $this->set('options', $options);
+
+        $this->addBeforeRender(function () use ($name, $key) {
+            $value = [];
+
+            collect($this->get('value'))->each(function ($item) use (&$value) {
+                $value[$item->id] = $item->name;
+            });
+
+            $this->set('value', $value);
+        });
 
         return $this;
     }

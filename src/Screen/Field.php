@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Illuminate\Support\Str;
-use Orchid\Screen\Traits\CanSee;
 use Orchid\Screen\Contracts\FieldContract;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
+use Orchid\Screen\Traits\CanSee;
 
 /**
  * Class Field.
@@ -31,6 +31,14 @@ use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
 class Field implements FieldContract
 {
     use CanSee;
+
+    /**
+     * A set of closure functions
+     * that must be executed before data is displayed.
+     *
+     * @var \Closure[]
+     */
+    private $beforeRender = [];
 
     /**
      * View template show.
@@ -197,6 +205,7 @@ class Field implements FieldContract
             return;
         }
 
+        $this->runBeforeRender();
         $this->checkRequired();
         $this->translate();
 
@@ -430,5 +439,26 @@ class Field implements FieldContract
         $this->set('hr');
 
         return $this;
+    }
+
+    /**
+     * @param \Closure $closure
+     *
+     * @return Field
+     */
+    public function addBeforeRender(\Closure $closure): self
+    {
+        $this->beforeRender[] = $closure;
+
+        return $this;
+    }
+
+    /**
+     * Alternately performs all tasks
+     */
+    public function runBeforeRender(){
+        foreach ($this->beforeRender as $before){
+            $before->call($this);
+        }
     }
 }
