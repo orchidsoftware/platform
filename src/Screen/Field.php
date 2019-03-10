@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Illuminate\Support\Str;
+use Orchid\Screen\Traits\CanSee;
 use Orchid\Screen\Contracts\FieldContract;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
-use Orchid\Screen\Traits\CanSee;
 
 /**
  * Class Field.
@@ -454,10 +454,11 @@ class Field implements FieldContract
     }
 
     /**
-     * Alternately performs all tasks
+     * Alternately performs all tasks.
      */
-    public function runBeforeRender(){
-        foreach ($this->beforeRender as $before){
+    public function runBeforeRender()
+    {
+        foreach ($this->beforeRender as $before) {
             $before->call($this);
         }
     }
