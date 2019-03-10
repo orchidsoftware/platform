@@ -4,10 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## 4.2.0 - 2019-03-10
 
 ### Added
 - Source modify value for select [798](https://github.com/orchidsoftware/platform/issues/798#issuecomment-471326038)
+- Options for show/hidden password [801](https://github.com/orchidsoftware/platform/issues/801)
+
+### Fixed
+- Change password for default screen 
 
 ### Deprecated
 - Method `getStatusRoles()` for User model
