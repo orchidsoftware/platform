@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
-use App\Orchid\Layouts\User\UserEditLayout;
-use App\Orchid\Layouts\User\UserRoleLayout;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Orchid\Platform\Models\User;
-use Orchid\Screen\Fields\Password;
-use Orchid\Screen\Layouts;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Layouts;
+use Illuminate\Http\Request;
+use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
+use Orchid\Screen\Fields\Password;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Orchid\Layouts\User\UserEditLayout;
+use App\Orchid\Layouts\User\UserRoleLayout;
 
 class UserEditScreen extends Screen
 {
@@ -183,12 +183,11 @@ class UserEditScreen extends Screen
      */
     public function changePassword(User $user, Request $request)
     {
-        $user->password =  Hash::make($request->get('password'));
+        $user->password = Hash::make($request->get('password'));
         $user->save();
 
         Alert::info(__('User was saved'));
 
         return back();
     }
-
 }
