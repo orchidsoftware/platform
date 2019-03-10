@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\User;
 
-use Orchid\Platform\Models\Role;
 use Orchid\Screen\Field;
 use Orchid\Screen\Fields\Label;
 use Orchid\Screen\Layouts\Rows;
+use Orchid\Platform\Models\Role;
 use Orchid\Screen\Fields\Select;
 use Illuminate\Support\Collection;
 use Orchid\Screen\Fields\CheckBox;
@@ -23,7 +23,7 @@ class UserRoleLayout extends Rows
     public function fields(): array
     {
         $fields[] = Select::make('user.roles.')
-            ->fromModel(Role::class,'name')
+            ->fromModel(Role::class, 'name')
             ->multiple()
             ->horizontal()
             ->title(__('Name role'));
