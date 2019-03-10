@@ -176,6 +176,8 @@ class User extends Authenticatable implements UserInterface
     }
 
     /**
+     * @deprecated
+     *
      * @return \Illuminate\Support\Collection
      */
     public function getStatusRoles()

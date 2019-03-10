@@ -31,7 +31,6 @@ class UserEditLayout extends Rows
                 ->type('email')
                 ->required()
                 ->horizontal()
-                ->hr(false)
                 ->title(__('Email'))
                 ->placeholder(__('Email')),
         ];

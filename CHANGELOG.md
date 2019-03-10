@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Source modify value for select [798](https://github.com/orchidsoftware/platform/issues/798#issuecomment-471326038)
+
+### Deprecated
+- Method `getStatusRoles()` for User model
+
 ## 4.1.1 - 2019-03-10
 
 ### Fixed

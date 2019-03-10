@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\User;
 
+use Orchid\Platform\Models\Role;
 use Orchid\Screen\Field;
 use Orchid\Screen\Fields\Label;
 use Orchid\Screen\Layouts\Rows;
@@ -21,18 +22,8 @@ class UserRoleLayout extends Rows
      */
     public function fields(): array
     {
-        $fields[] = Select::make('roles.')
-            ->options($this->query
-                ->getContent('roles')
-                ->pluck('name', 'slug')
-                ->toArray())
-            ->value(function () {
-                return $this->query
-                    ->getContent('roles')
-                    ->where('active', true)
-                    ->pluck('name', 'slug')
-                    ->toArray();
-            })
+        $fields[] = Select::make('user.roles.')
+            ->fromModel(Role::class,'name')
             ->multiple()
             ->horizontal()
             ->title(__('Name role'));
@@ -53,8 +44,7 @@ class UserRoleLayout extends Rows
         foreach ($permissionsRaw as $group => $items) {
             $fields[] = Label::make($group)
                 ->title($group)
-                ->horizontal()
-                ->hr(false);
+                ->horizontal();
 
             foreach (collect($items)->chunk(4) as $chunks) {
                 $fields[] = Field::group(function () use ($chunks) {
@@ -62,8 +52,7 @@ class UserRoleLayout extends Rows
                         $permissions[] = CheckBox::make('permissions.'.base64_encode($permission['slug']))
                             ->placeholder($permission['description'])
                             ->value($permission['active'])
-                            ->sendTrueOrFalse()
-                            ->hr(false);
+                            ->sendTrueOrFalse();
                     }
 
                     return $permissions ?? [];
