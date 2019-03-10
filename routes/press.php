@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Orchid\Press\Http\Controllers\MenuController;
 use Orchid\Press\Http\Screens\EntityEditScreen;
 use Orchid\Press\Http\Screens\EntityListScreen;
+use Orchid\Press\Http\Controllers\MenuController;
 
 /*
 |--------------------------------------------------------------------------
