@@ -7,7 +7,7 @@ use Orchid\Screen\Layouts\Rows;
 class DummyClass extends Rows
 {
     /**
-     * Views
+     * Views.
      *
      * @return array
      */

@@ -34,7 +34,7 @@ class DummyClass extends Many
     }
 
     /**
-     * HTTP data filters
+     * HTTP data filters.
      *
      * @return array
      */
