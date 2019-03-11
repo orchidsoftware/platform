@@ -15,8 +15,9 @@ abstract class Single implements EntityContract, UrlRoutable
     /**
      * Registered fields for main.
      *
-     * @return array
      * @throws \Throwable
+     *
+     * @return array
      */
     public function main(): array
     {

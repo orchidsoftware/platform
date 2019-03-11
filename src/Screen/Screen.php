@@ -76,8 +76,9 @@ abstract class Screen extends Controller
     abstract public function layout(): array;
 
     /**
-     * @return \Illuminate\Contracts\View\View
      * @throws \Throwable
+     *
+     * @return \Illuminate\Contracts\View\View
      */
     public function build()
     {
@@ -92,8 +93,9 @@ abstract class Screen extends Controller
      * @param mixed $method
      * @param mixed $slugLayouts
      *
-     * @return \Illuminate\Contracts\View\View
      * @throws \Throwable
+     *
+     * @return \Illuminate\Contracts\View\View
      */
     protected function asyncBuild($method, $slugLayouts)
     {
@@ -117,8 +119,9 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Throwable
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function view()
     {
@@ -134,9 +137,10 @@ abstract class Screen extends Controller
     /**
      * @param mixed ...$parameters
      *
-     * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View|mixed
      * @throws \ReflectionException
      * @throws \Throwable
+     *
+     * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View|mixed
      */
     public function handle(...$parameters)
     {
@@ -189,7 +193,7 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param int|string $key
+     * @param int|string               $key
      * @param ReflectionParameter|null $parameter
      *
      * @return mixed

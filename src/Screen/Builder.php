@@ -47,7 +47,7 @@ class Builder
      * Builder constructor.
      *
      * @param FieldContract[] $fields
-     * @param Repository $data
+     * @param Repository      $data
      */
     public function __construct(array $fields, $data)
     {
@@ -123,8 +123,9 @@ class Builder
      *
      * @param Field $field
      *
-     * @return mixed
      * @throws \Throwable
+     *
+     * @return mixed
      */
     private function render(Field $field)
     {
@@ -198,7 +199,7 @@ class Builder
     /**
      * Gets value of Repository.
      *
-     * @param string $key
+     * @param string     $key
      * @param mixed|null $value
      *
      * @return mixed

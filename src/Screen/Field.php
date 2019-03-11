@@ -117,7 +117,7 @@ class Field implements FieldContract
 
     /**
      * @param string $name
-     * @param array $arguments
+     * @param array  $arguments
      *
      * @return self
      */
@@ -138,6 +138,7 @@ class Field implements FieldContract
 
     /**
      * @param mixed $value
+     *
      * @return self
      */
     public function value($value): self
@@ -149,7 +150,7 @@ class Field implements FieldContract
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return self
      */
@@ -181,8 +182,9 @@ class Field implements FieldContract
     }
 
     /**
-     * @return Field
      * @throws \Throwable
+     *
+     * @return Field
      */
     public function checkRequired()
     {
@@ -195,9 +197,9 @@ class Field implements FieldContract
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
-     *
      * @throws \Throwable
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
     public function render()
     {
@@ -293,8 +295,8 @@ class Field implements FieldContract
     }
 
     /**
-     * @param      string $key
-     * @param null $value
+     * @param string $key
+     * @param null   $value
      *
      * @return $this|mixed|null
      */

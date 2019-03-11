@@ -10,8 +10,9 @@ use Orchid\Screen\Fields\SimpleMDE;
 class AnnouncementLayout extends Rows
 {
     /**
-     * @return array
      * @throws \Throwable
+     *
+     * @return array
      */
     public function fields(): array
     {

@@ -192,7 +192,7 @@ class TD
 
     /**
      * @param string $route
-     * @param mixed $options
+     * @param mixed  $options
      * @param string $text
      *
      * @return TD
@@ -240,9 +240,9 @@ class TD
     }
 
     /**
-     * @param string $modal
-     * @param             string $method
-     * @param             string $options
+     * @param string      $modal
+     * @param string      $method
+     * @param string      $options
      * @param string|null $text
      *
      * @return \Orchid\Screen\TD

@@ -89,7 +89,7 @@ class AnnouncementScreen extends Screen
 
     /**
      * @param \Orchid\Platform\Models\Announcement $announcement
-     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request             $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */

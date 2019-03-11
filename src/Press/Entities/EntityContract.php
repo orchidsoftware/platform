@@ -19,8 +19,9 @@ interface EntityContract
     /**
      * Request Validation.
      *
-     * @return array
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @return array
      */
     public function isValid(): array;
 

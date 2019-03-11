@@ -49,8 +49,7 @@ class EntityEditScreen extends Screen
      * Query data.
      *
      * @param EntityContract $type
-     *
-     * @param Post $post
+     * @param Post           $post
      *
      * @return array
      */
@@ -108,12 +107,13 @@ class EntityEditScreen extends Screen
     }
 
     /**
-     * @param Request $request
+     * @param Request        $request
      * @param EntityContract $type
-     * @param Post $post
+     * @param Post           $post
+     *
+     * @throws \Illuminate\Validation\ValidationException
      *
      * @return RedirectResponse
-     * @throws \Illuminate\Validation\ValidationException
      */
     public function save(Request $request, EntityContract $type, Post $post): RedirectResponse
     {
@@ -142,7 +142,7 @@ class EntityEditScreen extends Screen
 
     /**
      * @param EntityContract $type
-     * @param Post $post
+     * @param Post           $post
      *
      * @throws \Exception
      *

@@ -95,7 +95,7 @@ trait TaggableTrait
      */
     public static function allTags()
     {
-        $instance = new static;
+        $instance = new static();
 
         return $instance->createTagsModel()->whereNamespace(
             $instance->getEntityClassName()
@@ -104,14 +104,14 @@ trait TaggableTrait
 
     /**
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $tags
-     * @param string $type
+     * @param mixed                                 $tags
+     * @param string                                $type
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public static function scopeWhereTag(Builder $query, $tags, $type = 'slug')
     {
-        $tags = (new static)->prepareTags($tags);
+        $tags = (new static())->prepareTags($tags);
 
         foreach ($tags as $tag) {
             $query->whereHas('tags', function ($query) use ($type, $tag) {
@@ -124,14 +124,14 @@ trait TaggableTrait
 
     /**
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $tags
-     * @param string $type
+     * @param mixed                                 $tags
+     * @param string                                $type
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public static function scopeWithTag(Builder $query, $tags, $type = 'slug')
     {
-        $tags = (new static)->prepareTags($tags);
+        $tags = (new static())->prepareTags($tags);
 
         return $query->whereHas('tags', function ($query) use ($type, $tags) {
             $query->whereIn($type, $tags);
@@ -140,14 +140,14 @@ trait TaggableTrait
 
     /**
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $tags
-     * @param string $type
+     * @param mixed                                 $tags
+     * @param string                                $type
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public static function scopeWithoutTag(Builder $query, $tags, $type = 'slug')
     {
-        $tags = (new static)->prepareTags($tags);
+        $tags = (new static())->prepareTags($tags);
 
         return $query->whereDoesntHave('tags', function ($query) use ($type, $tags) {
             $query->whereIn($type, $tags);
@@ -185,7 +185,7 @@ trait TaggableTrait
     }
 
     /**
-     * @param  mixed $tags
+     * @param mixed  $tags
      * @param string $type
      *
      * @return bool
@@ -295,13 +295,14 @@ trait TaggableTrait
      */
     public static function createTagsModel()
     {
-        return new static::$tagsModel;
+        return new static::$tagsModel();
     }
 
     /**
      * Generate the tag slug using the given name.
      *
-     * @param  string $name
+     * @param string $name
+     *
      * @return string
      */
     protected function generateTagSlug(string $name) : string

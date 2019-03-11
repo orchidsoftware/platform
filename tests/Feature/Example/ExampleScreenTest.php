@@ -11,6 +11,7 @@ class ExampleScreenTest extends TestFeatureCase
 {
     /**
      * debug: php vendor/bin/phpunit  --filter= UserTest tests\\Feature\\Example\\UserTest --debug.
+     *
      * @var
      */
     private $user;

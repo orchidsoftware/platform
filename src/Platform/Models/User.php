@@ -52,7 +52,7 @@ class User extends Authenticatable implements UserInterface
      * @var array
      */
     protected $casts = [
-        'permissions' => 'array',
+        'permissions'       => 'array',
         'email_verified_at' => 'datetime',
     ];
 
@@ -144,8 +144,9 @@ class User extends Authenticatable implements UserInterface
     }
 
     /**
-     * @return string
      * @throws \Exception
+     *
+     * @return string
      */
     public function getAvatar()
     {

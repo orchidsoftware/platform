@@ -147,9 +147,9 @@ class ItemMenu
     /**
      * Generate the URL to a named route.
      *
-     * @param  string  $name
-     * @param  array  $parameters
-     * @param  bool  $absolute
+     * @param string $name
+     * @param array  $parameters
+     * @param bool   $absolute
      *
      * @return ItemMenu
      */
@@ -226,7 +226,7 @@ class ItemMenu
 
     /**
      * @param \Closure $badge
-     * @param string $class
+     * @param string   $class
      *
      * @return \Orchid\Platform\ItemMenu
      */

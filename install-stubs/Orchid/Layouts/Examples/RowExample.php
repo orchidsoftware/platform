@@ -22,8 +22,9 @@ use Orchid\Screen\Fields\SimpleMDE;
 class RowExample extends Rows
 {
     /**
-     * @return array
      * @throws \Throwable
+     *
+     * @return array
      */
     public function fields(): array
     {
@@ -101,7 +102,7 @@ class RowExample extends Rows
 
             Select::make('robot.')
                 ->options([
-                    'index' => 'Index',
+                    'index'   => 'Index',
                     'noindex' => 'No index',
                 ])
                 ->multiple()

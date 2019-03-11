@@ -62,7 +62,7 @@ class Select extends Field
      */
     public static function make(string $name = null): self
     {
-        return (new static)->name($name);
+        return (new static())->name($name);
     }
 
     /**
@@ -77,15 +77,15 @@ class Select extends Field
 
     /**
      * @param string|Model $model
-     * @param string $name
-     * @param string|null $key
+     * @param string       $name
+     * @param string|null  $key
      *
      * @return self
      */
     public function fromModel($model, string $name, string $key = null): self
     {
         /* @var $model Model */
-        $model = is_object($model) ? $model : new $model;
+        $model = is_object($model) ? $model : new $model();
         $key = $key ?? $model->getModel()->getKeyName();
 
         return $this->setFromEloquent($model, $name, $key);
@@ -93,8 +93,8 @@ class Select extends Field
 
     /**
      * @param Builder|Model $model
-     * @param string $name
-     * @param string $key
+     * @param string        $name
+     * @param string        $key
      *
      * @return self
      */
@@ -118,8 +118,8 @@ class Select extends Field
     }
 
     /**
-     * @param Builder $builder
-     * @param string $name
+     * @param Builder     $builder
+     * @param string      $name
      * @param string|null $key
      *
      * @return self

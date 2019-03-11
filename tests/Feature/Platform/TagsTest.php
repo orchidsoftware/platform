@@ -22,8 +22,8 @@ class TagsTest extends TestFeatureCase
     public function test_route_SystemsTagSearch()
     {
         Tag::create([
-            'name' => 'Super Tag',
-            'slug' => 'super-tag',
+            'name'      => 'Super Tag',
+            'slug'      => 'super-tag',
             'namespace' => 'super-tag',
         ]);
 

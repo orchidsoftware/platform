@@ -10,6 +10,7 @@ class ArtisanTest extends TestConsoleCase
 {
     /**
      * debug: php vendor/bin/phpunit  --filter= ArtisanTest tests\\Feature\\ArtisanTest --debug.
+     *
      * @var
      */
     public function test_artisan_orchid_entity_many()

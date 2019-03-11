@@ -12,7 +12,7 @@ class SearchController
 {
     /**
      * @param \Orchid\Platform\Dashboard $dashboard
-     * @param string|null $query
+     * @param string|null                $query
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

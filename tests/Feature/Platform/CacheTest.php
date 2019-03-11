@@ -39,6 +39,7 @@ class CacheTest extends TestFeatureCase
      * @param string $route
      *
      * @dataProvider routeCache
+     *
      * @throws \Throwable
      */
     public function test_cache_reset_route(string $route)

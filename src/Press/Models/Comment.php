@@ -51,7 +51,7 @@ class Comment extends Model
      */
     public static function findByPostId(int $postId)
     {
-        $instance = new static;
+        $instance = new static();
 
         return $instance->where('post_id', $postId)->get();
     }
@@ -130,6 +130,7 @@ class Comment extends Model
      * Where clause for only approved comments.
      *
      * @param Builder $query
+     *
      * @return Builder
      */
     public function scopeApproved(Builder $query): Builder

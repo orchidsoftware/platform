@@ -13,6 +13,7 @@ class CategoryTest extends TestFeatureCase
 {
     /**
      * debug: php vendor/bin/phpunit  --filter= CategoryTest tests\\Feature\\Example\\CategoryTest --debug.
+     *
      * @var
      */
     private $user;

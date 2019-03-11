@@ -33,6 +33,7 @@ class RoleEditScreen extends Screen
      * Query data.
      *
      * @param Role $role
+     *
      * @return array
      */
     public function query(Role $role): array

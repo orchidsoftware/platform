@@ -51,7 +51,7 @@ class Setting extends Model
     ];
 
     /**
-     * @param string $key
+     * @param string       $key
      * @param string|array $value
      *
      * Fast record
@@ -85,7 +85,7 @@ class Setting extends Model
 
     /**
      * @param string|array $key
-     * @param string|null $default
+     * @param string|null  $default
      *                              Get values
      *
      * @return mixed
@@ -102,7 +102,7 @@ class Setting extends Model
     }
 
     /**
-     * @param string|array $key
+     * @param string|array      $key
      * @param string|array|null $default
      *
      * @return string|array|null

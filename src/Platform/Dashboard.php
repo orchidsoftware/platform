@@ -61,7 +61,7 @@ class Dashboard
      */
     public function __construct()
     {
-        $this->menu = new Menu;
+        $this->menu = new Menu();
         $this->permission = collect([
             'all'     => collect(),
             'removed' => collect(),
@@ -99,7 +99,7 @@ class Dashboard
     /**
      * Configure the Dashboard application.
      *
-     * @param  array $options
+     * @param array $options
      *
      * @return void
      */
@@ -111,8 +111,8 @@ class Dashboard
     /**
      * Get a Dashboard configuration option.
      *
-     * @param  string $key
-     * @param  mixed|null $default
+     * @param string     $key
+     * @param mixed|null $default
      *
      * @return mixed
      */
@@ -122,7 +122,7 @@ class Dashboard
     }
 
     /**
-     * @param string $key
+     * @param string      $key
      * @param string|null $default
      *
      * @return mixed
@@ -131,14 +131,14 @@ class Dashboard
     {
         $model = static::model($key, $default);
 
-        return class_exists($model) ? new $model : $model;
+        return class_exists($model) ? new $model() : $model;
     }
 
     /**
      * Get the class name for a given Dashboard model.
      *
-     * @param  string $key
-     * @param  null|string $default
+     * @param string      $key
+     * @param null|string $default
      *
      * @return string
      */
@@ -211,7 +211,7 @@ class Dashboard
     }
 
     /**
-     * @param string $key
+     * @param string       $key
      * @param string|array $value
      *
      * @return Dashboard
@@ -247,7 +247,7 @@ class Dashboard
     public function getEntities(): Collection
     {
         return $this->entities->transform(function ($value) {
-            return is_object($value) ? $value : new $value;
+            return is_object($value) ? $value : new $value();
         });
     }
 
@@ -257,7 +257,7 @@ class Dashboard
     public function getGlobalSearch(): Collection
     {
         return $this->globalSearch->transform(function ($value) {
-            return is_object($value) ? $value : new $value;
+            return is_object($value) ? $value : new $value();
         });
     }
 

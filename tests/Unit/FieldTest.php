@@ -95,6 +95,7 @@ class FieldTest extends TestUnitCase
      * @param mixed  $options
      *
      * @dataProvider exampleFields
+     *
      * @throws \Throwable
      */
     public function testFields(string $field, $options)

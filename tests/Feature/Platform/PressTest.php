@@ -13,6 +13,7 @@ class PressTest extends TestFeatureCase
 {
     /**
      * debug: php vendor/bin/phpunit  --filter= PressTest tests\\Feature\\Platform\\PressTest --debug.
+     *
      * @var
      */
     private $user;

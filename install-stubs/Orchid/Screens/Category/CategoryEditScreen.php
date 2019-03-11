@@ -79,6 +79,7 @@ class CategoryEditScreen extends Screen
     /**
      * @param Category $category
      * @param Request  $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function save(Category $category, Request $request)
@@ -101,8 +102,10 @@ class CategoryEditScreen extends Screen
 
     /**
      * @param Category $category
-     * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Exception
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function remove(Category $category)
     {

@@ -12,6 +12,7 @@ class RoleTest extends TestFeatureCase
 {
     /**
      * debug: php vendor/bin/phpunit  --filter= RoleTest tests\\Feature\\Example\\RoleTest --debug.
+     *
      * @var
      */
     private $user;

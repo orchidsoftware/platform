@@ -37,8 +37,9 @@ class Tag extends Model
     protected static $taggedModel = Tagged::class;
 
     /**
-     * @return bool|null
      * @throws \Exception
+     *
+     * @return bool|null
      */
     public function delete()
     {
@@ -72,8 +73,9 @@ class Tag extends Model
     /**
      * Finds a tag by its name.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $query
-     * @param  string $name
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string                                $name
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeName(Builder $query, $name)
@@ -84,8 +86,9 @@ class Tag extends Model
     /**
      * Finds a tag by its slug.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $query
-     * @param  string $slug
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string                                $slug
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeSlug(Builder $query, $slug)
@@ -106,7 +109,8 @@ class Tag extends Model
     /**
      * Sets the tagged entities model.
      *
-     * @param  string $taggedModel
+     * @param string $taggedModel
+     *
      * @return void
      */
     public static function setTaggedModel($taggedModel)

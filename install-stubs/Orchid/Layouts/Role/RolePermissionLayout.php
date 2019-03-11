@@ -15,8 +15,9 @@ class RolePermissionLayout extends Rows
     /**
      * Views.
      *
-     * @return array
      * @throws \Throwable
+     *
+     * @return array
      */
     public function fields(): array
     {
@@ -26,8 +27,9 @@ class RolePermissionLayout extends Rows
     /**
      * @param Collection $permissionsRaw
      *
-     * @return array
      * @throws \Throwable
+     *
+     * @return array
      */
     public function generatedPermissionFields(Collection $permissionsRaw): array
     {

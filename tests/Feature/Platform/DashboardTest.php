@@ -11,6 +11,7 @@ class DashboardTest extends TestFeatureCase
 {
     /**
      * debug: php vendor/bin/phpunit  --filter= DashboardTest tests\\Feature\\Platform\\DashboardTest --debug.
+     *
      * @var
      */
     private $user;

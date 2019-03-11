@@ -108,7 +108,7 @@ class DateTimer extends Field
      */
     public static function make(string $name = null): self
     {
-        return (new static)->name($name);
+        return (new static())->name($name);
     }
 
     /**

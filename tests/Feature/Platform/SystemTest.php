@@ -11,6 +11,7 @@ class SystemTest extends TestFeatureCase
 {
     /**
      * debug: php vendor/bin/phpunit  --filter= SystemTest tests\\Feature\\Platform\\SystemTest --debug.
+     *
      * @var
      */
     private $user;

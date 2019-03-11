@@ -102,7 +102,7 @@ class EntityListScreen extends Screen
 
     /**
      * @param EntityContract $type
-     * @param int $id
+     * @param int            $id
      *
      * @return RedirectResponse
      */

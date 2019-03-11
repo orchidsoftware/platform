@@ -95,8 +95,9 @@ class CommentEditScreen extends Screen
     /**
      * @param Comment $comment
      *
-     * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function remove(Comment $comment)
     {

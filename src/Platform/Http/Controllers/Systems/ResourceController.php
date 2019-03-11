@@ -22,9 +22,8 @@ class ResourceController
     /**
      * Serve the requested resource.
      *
-     * @param string $package
-     * @param string $path
-     *
+     * @param string    $package
+     * @param string    $path
      * @param Dashboard $dashboard
      *
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
@@ -37,7 +36,7 @@ class ResourceController
 
         abort_if(is_null($dir), 404);
 
-        $resources = (new Finder)
+        $resources = (new Finder())
             ->ignoreUnreadableDirs()
             ->followLinks()
             ->in($dir)

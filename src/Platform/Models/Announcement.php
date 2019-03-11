@@ -59,13 +59,14 @@ class Announcement extends Model
      */
     public function getParsedContentAttribute()
     {
-        return (new Parsedown)->text(htmlspecialchars($this->attributes['content']));
+        return (new Parsedown())->text(htmlspecialchars($this->attributes['content']));
     }
 
     /**
      * Scope a query to only include active announcements.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeActive($query)

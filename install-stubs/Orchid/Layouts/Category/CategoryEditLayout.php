@@ -14,8 +14,9 @@ class CategoryEditLayout extends Rows
     /**
      * Views.
      *
-     * @return array
      * @throws \Throwable
+     *
+     * @return array
      */
     public function fields(): array
     {

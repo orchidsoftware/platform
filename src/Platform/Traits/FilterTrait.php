@@ -12,7 +12,7 @@ trait FilterTrait
 {
     /**
      * @param Builder $query
-     * @param array $filters
+     * @param array   $filters
      *
      * @return Builder
      */
@@ -36,7 +36,7 @@ trait FilterTrait
      */
     public function scopeFilters(Builder $builder)
     {
-        $filter = new HttpFilter;
+        $filter = new HttpFilter();
         $filter->build($builder);
 
         return $builder;
@@ -44,8 +44,8 @@ trait FilterTrait
 
     /**
      * @param Builder $builder
-     * @param string $column
-     * @param string $direction
+     * @param string  $column
+     * @param string  $direction
      *
      * @return Builder
      */

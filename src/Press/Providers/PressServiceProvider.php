@@ -124,7 +124,7 @@ class PressServiceProvider extends ServiceProvider
             return [];
         }
 
-        foreach ((new Finder)->in($directory)->files() as $resource) {
+        foreach ((new Finder())->in($directory)->files() as $resource) {
             $resource = $namespace.str_replace(
                     ['/', '.php'],
                     ['\\', ''],

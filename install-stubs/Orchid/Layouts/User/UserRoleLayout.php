@@ -17,8 +17,9 @@ class UserRoleLayout extends Rows
     /**
      * Views.
      *
-     * @return array
      * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
+     *
+     * @return array
      */
     public function fields(): array
     {
@@ -36,8 +37,9 @@ class UserRoleLayout extends Rows
     /**
      * @param Collection $permissionsRaw
      *
-     * @return array
      * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
+     *
+     * @return array
      */
     public function generatedPermissionFields(Collection $permissionsRaw) : array
     {

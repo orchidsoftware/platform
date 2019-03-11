@@ -30,7 +30,7 @@ class LaravelSessionStore implements SessionStoreInterface
      * Flash some data into the session.
      *
      * @param string $name
-     * @param mixed $data
+     * @param mixed  $data
      */
     public function flash(string $name, $data)
     {

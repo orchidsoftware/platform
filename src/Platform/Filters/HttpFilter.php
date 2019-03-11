@@ -114,7 +114,7 @@ class HttpFilter
     /**
      * @param Builder $query
      * @param         $value
-     * @param string $property
+     * @param string  $property
      *
      * @return Builder
      */

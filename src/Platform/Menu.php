@@ -102,7 +102,7 @@ class Menu
     /**
      * Generate on the menu display.
      *
-     * @param string $location
+     * @param string      $location
      * @param string|null $template
      *
      * @return string

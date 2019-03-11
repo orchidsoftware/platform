@@ -83,8 +83,9 @@ class UserEditScreen extends Screen
     }
 
     /**
-     * @return array
      * @throws \Throwable
+     *
+     * @return array
      */
     public function layout(): array
     {
@@ -176,7 +177,7 @@ class UserEditScreen extends Screen
     }
 
     /**
-     * @param User $user
+     * @param User    $user
      * @param Request $request
      *
      * @return \Illuminate\Http\RedirectResponse

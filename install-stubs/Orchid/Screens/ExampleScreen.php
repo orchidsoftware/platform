@@ -130,8 +130,9 @@ class ExampleScreen extends Screen
     /**
      * Views.
      *
-     * @return array
      * @throws \Throwable
+     *
+     * @return array
      */
     public function layout(): array
     {

@@ -45,7 +45,7 @@ class MenuController extends Controller
     }
 
     /**
-     * @param string $name
+     * @param string  $name
      * @param Request $request
      *
      * @return View
@@ -92,7 +92,7 @@ class MenuController extends Controller
     }
 
     /**
-     * @param string $menu
+     * @param string  $menu
      * @param Request $request
      *
      * @return \Illuminate\Http\JsonResponse
@@ -111,7 +111,7 @@ class MenuController extends Controller
 
     /**
      * @param array $items
-     * @param int $parent
+     * @param int   $parent
      */
     private function createMenuElement(array $items, $parent = 0)
     {

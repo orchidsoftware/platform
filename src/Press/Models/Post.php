@@ -151,9 +151,9 @@ class Post extends Model
     /**
      * Get the indexable data array for the model.
      *
-     * @return array
-     *
      * @throws \Throwable| EntityTypeException
+     *
+     * @return array
      */
     public function toSearchableArray(): array
     {
@@ -171,9 +171,9 @@ class Post extends Model
      *
      * @param string|null $slug
      *
-     * @return \Orchid\Press\Entities\Many|\Orchid\Press\Entities\Single|null
-     *
      * @throws \Throwable|EntityTypeException
+     *
+     * @return \Orchid\Press\Entities\Many|\Orchid\Press\Entities\Single|null
      */
     public function getEntityObject($slug = null)
     {
@@ -187,9 +187,9 @@ class Post extends Model
     /**
      * @param string $slug
      *
-     * @return $this
-     *
      * @throws \Throwable|EntityTypeException
+     *
+     * @return $this
      */
     public function getEntity(string $slug): self
     {
@@ -209,7 +209,7 @@ class Post extends Model
     }
 
     /**
-     * @param string $key
+     * @param string     $key
      * @param mixed|null $default
      *
      * @return null
@@ -317,8 +317,8 @@ class Post extends Model
 
     /**
      * @param Builder $query
-     * @param string $taxonomy
-     * @param mixed $term
+     * @param string  $taxonomy
+     * @param mixed   $term
      *
      * @return Builder
      */
@@ -347,7 +347,7 @@ class Post extends Model
      * Get only posts with a custom status.
      *
      * @param Builder $query
-     * @param string $postStatus
+     * @param string  $postStatus
      *
      * @return Builder
      */
@@ -360,7 +360,7 @@ class Post extends Model
      * Get only posts from a custom post type.
      *
      * @param Builder $query
-     * @param string $type
+     * @param string  $type
      *
      * @return Builder
      */
@@ -373,7 +373,7 @@ class Post extends Model
      * Get only posts from an array of custom post types.
      *
      * @param Builder $query
-     * @param array $type
+     * @param array   $type
      *
      * @return Builder
      */
@@ -384,10 +384,11 @@ class Post extends Model
 
     /**
      * @param Builder $query
-     * @param null $entity
+     * @param null    $entity
+     *
+     * @throws \Throwable
      *
      * @return Builder
-     * @throws \Throwable
      */
     public function scopeFiltersApply(Builder $query, $entity = null): Builder
     {
@@ -419,10 +420,11 @@ class Post extends Model
 
     /**
      * @param Builder $query
-     * @param null $entity
+     * @param null    $entity
+     *
+     * @throws \Throwable | EntityTypeException
      *
      * @return Builder
-     * @throws \Throwable | EntityTypeException
      */
     public function scopeFiltersApplyDashboard(Builder $query, $entity = null): Builder
     {

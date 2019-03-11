@@ -13,7 +13,7 @@ interface SessionStoreInterface
      * Flash a message to the session.
      *
      * @param string $name
-     * @param mixed $data
+     * @param mixed  $data
      */
     public function flash(string $name, $data);
 }

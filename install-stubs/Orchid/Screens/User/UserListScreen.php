@@ -85,8 +85,7 @@ class UserListScreen extends Screen
     }
 
     /**
-     * @param User $user
-     *
+     * @param User    $user
      * @param Request $request
      *
      * @return \Illuminate\Http\RedirectResponse

@@ -78,8 +78,9 @@ abstract class Many implements EntityContract, UrlRoutable
     /**
      * Registered fields for main.
      *
-     * @return array
      * @throws \Throwable|\Orchid\Press\Exceptions\EntityTypeException
+     *
+     * @return array
      */
     public function main(): array
     {

@@ -105,7 +105,7 @@ class TaggableTraitTest extends TestUnitCase
 
     private function getPostAlternativeClass()
     {
-        return new class extends Post {
+        return new class() extends Post {
         };
     }
 

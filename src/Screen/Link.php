@@ -62,18 +62,18 @@ class Link
     public $view;
 
     /**
-     * @param string $name
+     * @param string     $name
      * @param mixed|null $arguments
      *
      * @return mixed
      */
     public static function __callStatic(string $name, $arguments)
     {
-        return (new static)->rewriteProperty($name, $arguments[0]);
+        return (new static())->rewriteProperty($name, $arguments[0]);
     }
 
     /**
-     * @param string $name
+     * @param string     $name
      * @param mixed|null $arguments
      *
      * @return self
@@ -85,7 +85,7 @@ class Link
 
     /**
      * @param Repository $query
-     * @param null $arguments
+     * @param null       $arguments
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
@@ -113,7 +113,7 @@ class Link
     }
 
     /**
-     * @param string $name
+     * @param string     $name
      * @param mixed|null $property
      *
      * @return self
@@ -144,7 +144,7 @@ class Link
      */
     public static function view(string $view): self
     {
-        $link = new static;
+        $link = new static();
         $link->view = $view;
 
         return $link;

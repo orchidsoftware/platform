@@ -158,8 +158,9 @@ trait UserAccess
     }
 
     /**
-     * @return bool
      * @throws \Exception
+     *
+     * @return bool
      */
     public function delete(): bool
     {

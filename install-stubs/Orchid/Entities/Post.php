@@ -112,8 +112,9 @@ class Post extends Many
     }
 
     /**
-     * @return array
      * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
+     *
+     * @return array
      */
     public function fields(): array
     {
@@ -190,9 +191,10 @@ class Post extends Many
     }
 
     /**
-     * @return array
      * @throws \Orchid\Screen\Exceptions\TypeException
      * @throws \Throwable
+     *
+     * @return array
      */
     public function main(): array
     {
@@ -217,8 +219,9 @@ class Post extends Many
     }
 
     /**
-     * @return array
      * @throws \Throwable
+     *
+     * @return array
      */
     public function options(): array
     {

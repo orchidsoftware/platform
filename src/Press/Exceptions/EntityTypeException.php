@@ -12,8 +12,8 @@ class EntityTypeException extends \Exception
     /**
      * EntityTypeException constructor.
      *
-     * @param string $type
-     * @param int $code
+     * @param string          $type
+     * @param int             $code
      * @param \Throwable|null $previous
      */
     public function __construct(string $type = '', int $code = 0, \Throwable $previous = null)

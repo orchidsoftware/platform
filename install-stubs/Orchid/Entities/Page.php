@@ -66,8 +66,9 @@ class Page extends Single
     }
 
     /**
-     * @return array
      * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
+     *
+     * @return array
      */
     public function fields(): array
     {
@@ -137,7 +138,7 @@ class Page extends Single
 
             Select::make('robot.')
                 ->options([
-                    'index' => 'Index',
+                    'index'   => 'Index',
                     'noindex' => 'No index',
                 ])
                 ->multiple()
@@ -163,8 +164,9 @@ class Page extends Single
     }
 
     /**
-     * @return array
      * @throws \Throwable
+     *
+     * @return array
      */
     public function options(): array
     {
