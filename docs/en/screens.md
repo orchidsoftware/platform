@@ -6,7 +6,7 @@ Screens are the main components of user interface that are discribed by a compos
 the layout structure and element properties you may create completeley new layouts almost in a few minutes.
 
 A screen doesn't know where the data is from, it may be from database, API or other external sources. A screen has standard functionality of modern user interface. You may configure the screen layout and also add or delete commands. 
-    Screen's apparel is defined by the `Layouts`, so everything you need to do iss to define what data is to be displayed in particular layout.
+    Screen's apparel is defined by the `Layouts`, so everything you need to do is to define what data is to be displayed in particular layout.
 
 ![Screens](https://orchid.software/img/scheme/screens.jpg)
 
