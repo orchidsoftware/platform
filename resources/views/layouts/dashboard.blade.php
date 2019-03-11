@@ -9,42 +9,42 @@
 
             <div class="d-md-flex align-items-start flex-column d-sm-block h-full">
 
-            <div class="d-sm-flex d-md-block wrapper mt-md-4 w-full v-center">
+                <div class="d-sm-flex d-md-block wrapper mt-md-4 w-full v-center">
+                    <a href="#" class="header-toggler d-lg-none mr-auto order-first"
+                       data-toggle="collapse"
+                       data-target="#headerMenuCollapse">
+                        <span class="header-toggler-icon icon-menu"></span>
+                    </a>
 
-                <a class="header-brand" href="{{route('platform.index')}}">
-                    @includeIf(config('platform.template.header','platform::layouts.header'))
-                </a>
-
-                <a href="#" class="header-toggler d-lg-none ml-auto" data-toggle="collapse"
-                   data-target="#headerMenuCollapse">
-                    <span class="header-toggler-icon icon-menu"></span>
-                </a>
-            </div>
-
-            <nav class="collapse d-lg-block w-full" id="headerMenuCollapse">
-
-                @include('platform::partials.search')
-
-                @includeWhen(Auth::check(), 'platform::partials.profile')
-
-                <ul class="nav flex-column m-b">
-                    {!! Dashboard::menu()->render('Main') !!}
-                </ul>
-
-            </nav>
-
-            <div class="h-100 w-100 position-relative to-top cursor b-b mt-md-5"
-                 data-action="click->layouts--html-load#goToTop"
-                 title="{{ __('Go to top') }}"
-                 style="border-bottom: 1px solid rgba(233, 236, 239, 0.05);">
-                <div class="bottom-left w-100 mb-2">
-                    <small><i class="icon-arrow-up m-r-xs"></i> {{ __('Go to top') }}</small>
+                    <a class="header-brand order-last" href="{{route('platform.index')}}">
+                        @includeIf(config('platform.template.header','platform::layouts.header'))
+                    </a>
                 </div>
-            </div>
 
-            <div class="wrapper m-b m-t d-none d-lg-block">
-                @includeIf(config('platform.template.footer','platform::layouts.footer'))
-            </div>
+                <nav class="collapse d-lg-block w-full" id="headerMenuCollapse">
+
+                    @include('platform::partials.search')
+
+                    @includeWhen(Auth::check(), 'platform::partials.profile')
+
+                    <ul class="nav flex-column m-b">
+                        {!! Dashboard::menu()->render('Main') !!}
+                    </ul>
+
+                </nav>
+
+                <div class="h-100 w-100 position-relative to-top cursor b-b mt-md-5"
+                     data-action="click->layouts--html-load#goToTop"
+                     title="{{ __('Go to top') }}"
+                     style="border-bottom: 1px solid rgba(233, 236, 239, 0.05);">
+                    <div class="bottom-left w-100 mb-2">
+                        <small><i class="icon-arrow-up m-r-xs"></i> {{ __('Go to top') }}</small>
+                    </div>
+                </div>
+
+                <div class="wrapper m-b m-t d-none d-lg-block">
+                    @includeIf(config('platform.template.footer','platform::layouts.footer'))
+                </div>
 
             </div>
 
@@ -52,7 +52,7 @@
         <div class="col-md-9 col-xl-8 col-xxl-6 bg-white b-r box-shadow-lg no-padder">
 
             <div class="wrapper mt-4">
-                <div class="v-center">
+                <div class="v-md-center">
                     <div class="col-xs-12 col-md-4 no-padder">
                         <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
                         <small class="text-muted text-ellipsis">@yield('description')</small>
