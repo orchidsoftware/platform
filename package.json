@@ -8,20 +8,20 @@
     "eslint": "./node_modules/.bin/eslint resources/js/ --fix"
   },
   "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.3.3",
-    "@babel/plugin-transform-block-scoping": "^7.2.0",
-    "@babel/preset-env": "^7.3.1",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-transform-block-scoping": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
     "axios": "^0.18",
     "babel-preset-env": "^1.7.0",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.7.3",
     "codeflask": "^1.4.0",
-    "cropperjs": "^1.4.3",
+    "cropperjs": "^1.5.1",
     "cross-env": "^5.2.0",
     "dropzone": "^5.5.1",
     "exports-loader": "^0.7.0",
     "file-loader": "^1.1.11",
-    "flatpickr": "^4.5.2",
+    "flatpickr": "^4.5.7",
     "frappe-charts": "^1.1.0",
     "imports-loader": "^0.8.0",
     "inputmask": "^3.3",
@@ -45,11 +45,11 @@
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {
-    "eslint": "^5.14.1",
+    "eslint": "^5.15.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
     "resolve-url-loader": "^2.3.2",
     "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.6.6"
+    "vue-template-compiler": "^2.6.8"
   }
 }

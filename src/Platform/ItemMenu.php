@@ -17,7 +17,7 @@ class ItemMenu
     /**
      * @var string
      */
-    public $icon = 'icon-folder';
+    public $icon = '';
 
     /**
      * @var string
