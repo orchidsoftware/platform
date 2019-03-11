@@ -3,7 +3,7 @@
 @section('description',__($screen->description))
 @section('controller','screen--base')
 @section('navbar')
-    <ul class="nav justify-content-end v-center">
+    <ul class="nav justify-content-sm-end justify-content-start v-center">
         @foreach($screen->buildCommandBar() as $command)
             <li>
                 {!! $command !!}

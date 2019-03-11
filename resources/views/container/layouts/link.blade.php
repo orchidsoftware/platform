@@ -15,14 +15,14 @@
             data-action="screen--base#targetModal"
             data-modal-title="{{ $title ?? '' }}"
             data-modal-key="{{ $modal ?? '' }}"
-            data-modal-action="{{ route(Route::currentRouteName(),$arguments) }}/{{ $method }}"
+            data-modal-action="{{ url()->current() }}/{{ $method }}"
     >
         <i class="{{ $icon ?? '' }} m-r-xs"></i>{{ $name ?? '' }}
     </button>
 @elseif(!is_null($method))
 
         <button type="submit"
-                formaction="{{ route(Route::currentRouteName(),$arguments )}}/{{ $method }}"
+                formaction="{{ url()->current() }}/{{ $method }}"
                 form="post-form"
                 class="btn btn-link dropdown-item">
             @isset($icon)<i class="{{ $icon }} m-r-xs"></i>@endisset

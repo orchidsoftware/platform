@@ -11,7 +11,7 @@
 
 @section('navbar')
     <div class="text-right">
-        <ul class="nav justify-content-end v-center">
+        <ul class="nav justify-content-sm-end justify-content-start v-center">
             @if(count($locales) > 1)
                 <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button"
