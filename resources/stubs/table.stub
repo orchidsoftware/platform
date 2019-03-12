@@ -2,13 +2,13 @@
 
 namespace DummyNamespace;
 
-use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
+use Orchid\Screen\Layouts\Table;
 
 class DummyClass extends Table
 {
     /**
-     * Data source
+     * Data source.
      *
      * @var string
      */

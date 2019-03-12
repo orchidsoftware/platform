@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Orchid\Screen\Layouts\Collapse;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Layouts\View;
 use Orchid\Screen\Layouts\Blank;
 use Orchid\Screen\Layouts\Modals;
 use Orchid\Screen\Layouts\Columns;
+use Orchid\Screen\Layouts\Collapse;
 
 /**
  * Class Layouts.

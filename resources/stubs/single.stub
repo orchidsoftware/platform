@@ -2,8 +2,8 @@
 
 namespace DummyNamespace;
 
-use Orchid\Press\Entities\Single;
 use Orchid\Screen\Field;
+use Orchid\Press\Entities\Single;
 
 class DummyClass extends Single
 {
