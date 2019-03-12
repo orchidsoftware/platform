@@ -6,8 +6,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 4.2.1 - 2019-03-12
+
+### Changed
+- Entity no longer has a default icon
+- Improved interaction experience on mobile devices 
+- Modals not require route name
+
 ### Fixed
 - Send post request for create menu element
+- Icon for `Password` field
+- Entities show activity
 
 ## 4.2.0 - 2019-03-10
 

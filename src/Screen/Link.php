@@ -85,11 +85,10 @@ class Link
 
     /**
      * @param Repository $query
-     * @param null       $arguments
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function build(Repository $query, $arguments = null)
+    public function build(Repository $query)
     {
         if (! $this->display) {
             return;
@@ -107,7 +106,6 @@ class Link
             'title'     => $this->title,
             'link'      => $this->link,
             'group'     => $this->group,
-            'arguments' => $arguments,
             'query'     => $query,
         ]);
     }

@@ -247,7 +247,7 @@ abstract class Screen extends Controller
     public function buildCommandBar() : array
     {
         foreach ($this->commandBar() as $command) {
-            $commands[] = $command->build($this->post, $this->arguments);
+            $commands[] = $command->build($this->post);
         }
 
         return $commands ?? [];

@@ -5,7 +5,7 @@
     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow bg-white" x-placement="bottom-end">
         @foreach($group as $item)
 
-            {!!  $item->build($query, $arguments) !!}
+            {!!  $item->build($query) !!}
 
         @endforeach
     </div>
