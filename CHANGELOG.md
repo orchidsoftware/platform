@@ -18,6 +18,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Icon for `Password` field
 - Entities show activity
 
+### Removed
+- Remove dependency `spomky-labs/base64url`
+
 ## 4.2.0 - 2019-03-10
 
 ### Added
