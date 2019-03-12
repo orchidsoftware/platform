@@ -37,7 +37,7 @@
                      data-action="click->layouts--html-load#goToTop"
                      title="{{ __('Go to top') }}"
                      style="border-bottom: 1px solid rgba(233, 236, 239, 0.05);">
-                    <div class="bottom-left w-100 mb-2">
+                    <div class="bottom-left w-100 mb-2 pl-3">
                         <small><i class="icon-arrow-up m-r-xs"></i> {{ __('Go to top') }}</small>
                     </div>
                 </div>
