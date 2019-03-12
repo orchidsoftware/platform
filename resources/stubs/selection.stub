@@ -2,12 +2,13 @@
 
 namespace DummyNamespace;
 
+use Orchid\Platform\Filters\Filter;
 use Orchid\Screen\Layouts\Selection;
 
 class DummyClass extends Selection
 {
     /**
-     * @return array
+     * @return Filter[]
      */
     public function filters(): array
     {

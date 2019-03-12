@@ -3,9 +3,9 @@
 namespace DummyNamespace;
 
 use Orchid\Screen\Field;
-use Orchid\Screen\Layouts\Rows;
+use Orchid\Screen\Layouts\Collapse;
 
-class DummyClass extends Rows
+class DummyClass extends Collapse
 {
     /**
      * Views.

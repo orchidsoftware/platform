@@ -3,16 +3,19 @@
 namespace DummyNamespace;
 
 use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\TD;
 
 class DummyClass extends Table
 {
     /**
+     * Data source
+     *
      * @var string
      */
     public $data = '';
 
     /**
-     * @return array
+     * @return TD[]
      */
     public function fields(): array
     {

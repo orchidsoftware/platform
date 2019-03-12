@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Orchid\Screen\Layouts\Collapse;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Layouts\View;
@@ -106,6 +107,39 @@ class Layouts
     public static function blank(array $layouts): Blank
     {
         return new class($layouts) extends Blank {
+        };
+    }
+
+    /**
+     * @param array $fields
+     *
+     * @return Collapse
+     */
+    public static function collapse(array $fields): Collapse
+    {
+        return new class($fields) extends Collapse {
+            /**
+             * @var array
+             */
+            private $fields;
+
+            /**
+             *  constructor.
+             *
+             * @param array $fields
+             */
+            public function __construct(array $fields)
+            {
+                $this->fields = $fields;
+            }
+
+            /**
+             * @return array
+             */
+            public function fields(): array
+            {
+                return $this->fields;
+            }
         };
     }
 }
