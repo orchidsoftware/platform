@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Base64Url\Base64Url;
+use Illuminate\Support\Facades\Crypt;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\Role;
 use Illuminate\Support\Facades\Log;
@@ -48,7 +48,7 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::bind('widget', function ($value) {
             try {
-                $widget = app()->make(Base64Url::decode($value));
+                $widget = app()->make(Crypt::decryptString($value));
 
                 abort_if(! is_a($widget, WidgetContractInterface::class), 403);
 

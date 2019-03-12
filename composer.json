@@ -38,7 +38,6 @@
     "laravel/scout": "^7.1",
     "orchid/widget": "^1.2",
     "ralouphie/mimey": "^2.0",
-    "spomky-labs/base64url": "^2.0",
     "watson/active": "^3.0"
   },
   "require-dev": {

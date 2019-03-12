@@ -4,9 +4,9 @@
          data-fields--relationship-placeholder="{{$attributes['placeholder'] ?? ''}}"
          data-fields--relationship-value="{{$value}}"
          data-fields--relationship-handler="{{$handler}}"
-         data-fields--relationship-url="{{route('platform.systems.widget',Base64Url\Base64Url::encode($handler))}}"
+         data-fields--relationship-url="{{route('platform.systems.widget', Crypt::encryptString($handler))}}"
          data-fields--relationship-url-value="{{route('platform.systems.widget',[
-                'widget' => Base64Url\Base64Url::encode($handler),
+                'widget' => Crypt::encryptString($handler),
                 'key'    => $value
          ])}}"
 
