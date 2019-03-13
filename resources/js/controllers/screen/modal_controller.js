@@ -18,7 +18,6 @@ export default class extends Controller {
         this.titleTarget.textContent = options.title || null;
         this.element.querySelector('form').action = options.submit;
 
-        console.log(options);
         if (this.data.get('async')) {
             this.asyncLoadData(JSON.parse(options.params));
         }

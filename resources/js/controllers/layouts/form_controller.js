@@ -21,9 +21,11 @@ export default class extends Controller {
     submit(event) {
 
         if (!this.validateForm()) {
+            event.preventDefault();
             return false;
         }
 
+        this.animateButton();
         event.preventDefault();
 
         setTimeout(() => {
@@ -53,6 +55,20 @@ export default class extends Controller {
         return false;
     }
 
+    /**
+     *
+     */
+    animateButton(){
+        const button = this.data.get('button-animate');
+        const text = this.data.get('button-text');
+
+        if(button) {
+            const buttonElement = document.querySelector(button);
+            buttonElement.disabled = true;
+            buttonElement.innerHTML = `<span class="spinner-border spinner-border-sm mb-1" role="status" aria-hidden="true"></span>` +
+                `<span class="pl-1">${text || ''}</span>`;
+        }
+    }
 
     /**
      *
@@ -60,13 +76,15 @@ export default class extends Controller {
      */
     validateForm() {
 
-        if (document.getElementById('post-form') === null) {
+        const formId = this.data.get('id') || this.element.id || document.getElementById('post-form');
+
+        if (formId === null) {
             return true
         }
 
         let textValidation = this.element.getAttribute('data-text-validation');
 
-        return window.platform.validateForm('post-form', textValidation);
+        return window.platform.validateForm(formId, textValidation);
     }
 
 }

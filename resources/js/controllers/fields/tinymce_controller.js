@@ -65,7 +65,6 @@ export default class extends Controller {
         //    /.*/
         // );
 
-
         tinymce.baseURL = platform.prefix('/resources/orchid/js/tinymce');
 
         const selector = this.element.querySelector('.tinymce').id;
@@ -80,6 +79,9 @@ export default class extends Controller {
             toolbar1 = 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat | ltr rtl';
             inline = false;
         }
+
+        // for remove cache
+        tinymce.remove(`#${selector}`);
 
         tinymce.init({
             branding: false,
@@ -114,10 +116,6 @@ export default class extends Controller {
             },
             images_upload_handler: this.upload,
         });
-
-        document.addEventListener('turbolinks:before-cache', () => {
-            tinymce.remove(`#${selector}`);
-        }, { once: true });
     }
 
     /**

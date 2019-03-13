@@ -177,10 +177,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-link" data-dismiss="modal">
-                        {{ __('Close') }}
-                    </button>
-
                     <button type="button" data-action="components--menu#remove"
                             class="btn btn-link" id="menu.remove">
                         {{ __('Remove') }}
@@ -188,7 +184,7 @@
 
                     <button type="button" data-action="components--menu#clear"
                             class="btn btn-link" id="menu.reset">
-                        {{ __('Reset') }}
+                        {{ __('Close') }}
                     </button>
 
                     <button type="button" data-action="components--menu#add"
