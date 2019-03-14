@@ -28,7 +28,7 @@
             @isset($icon)<i class="{{ $icon }} m-r-xs"></i>@endisset
             {{ $name ?? '' }}
         </button>
-@elseя
+@else
 
     <a href="{{ $link ?? '' }}" class="btn btn-link dropdown-item">
         <i class="{{ $icon ?? '' }} m-r-xs"></i>{{ $name ?? '' }}
