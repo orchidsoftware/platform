@@ -28,7 +28,7 @@ trait AttachTrait
         );
 
         if (! is_null($group)) {
-            $query->where('group', $group);
+            $query->where('attachmentable_group', $group);
         }
 
         return $query
