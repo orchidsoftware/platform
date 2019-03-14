@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 4.3.2 - 2019-03-14
+
+### Fixed
+- Fix for command's bar link [806](https://github.com/orchidsoftware/platform/pull/806)
+
 ## 4.3.1 - 2019-03-13
 
 ### Added
