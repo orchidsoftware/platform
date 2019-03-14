@@ -149,6 +149,28 @@ class Appointment extends Rows
 }
 ```
 
+Строки поддерживают короткую запись без создания отдельного класса,
+например, когда требуется показать одно - два поля
+
+```php
+/**
+ * Views.
+ *
+ * @return array
+ * @throws \Throwable
+ */
+public function layout(): array
+{
+    return [
+        Layouts::rows([
+           Input::make('example')
+                ->type('text')
+                ->title('Example')
+        ]),
+    ];
+}
+```
+
 
 ## Графики
 
@@ -186,6 +208,10 @@ public function query($patient = null) : array
 }
 ```
 
+Для создания исполните команду:
+```php
+php artisan orchid:selection ChartsLayout
+```
 
 Пример макета:
 ```php
@@ -235,3 +261,134 @@ class ChartsLayout extends Chart
     public $data = 'charts';
 }
 ```
+
+
+## Набор фильтров
+
+Для группировки фильтров, их спроса и применения, существует отдельный слой `Selection`,
+в котором они указываются. 
+
+Для создания исполните команду:
+```php
+php artisan orchid:selection MySelection
+```
+
+Пример класса:
+```php
+namespace App\Orchid\Layouts;
+
+use Orchid\Platform\Filters\Filter;
+use Orchid\Press\Http\Filters\CreatedFilter;
+use Orchid\Press\Http\Filters\SearchFilter;
+use Orchid\Screen\Layouts\Selection;
+
+class MySelection extends Selection
+{
+    /**
+     * @return Filter[]
+     */
+    public function filters(): array
+    {
+        return [
+          SearchFilter::class,
+          CreatedFilter::class
+        ];
+    }
+}
+```
+
+
+## Табы
+
+Табы поддерживают короткий синтаксис через вызов статического метода, 
+что не требует создания отдельного класса:
+
+```php
+/**
+ * Views.
+ *
+ * @return array
+ * @throws \Throwable
+ */
+public function layout(): array
+{
+    return [
+        Layouts::tabs([
+            'Example Tab Table' => TableExample::class,
+            'Example Tab Rows'  => RowExample::class,
+        ]),
+    ];
+}
+```
+
+Название вкладок будет соответствовать ключам массива
+
+
+## Столбцы
+
+Аналогично табам:
+
+```php
+/**
+ * Views.
+ *
+ * @return array
+ * @throws \Throwable
+ */
+public function layout(): array
+{
+    return [
+        Layouts::columns([
+           TableExample::class,
+           RowExample::class,
+        ]),
+    ];
+}
+```
+
+
+## Раскрывающийся список
+
+
+```php
+/**
+ * Views.
+ *
+ * @return array
+ * @throws \Throwable
+ */
+public function layout(): array
+{
+    return [
+        Layouts::collapse([
+            Input::make('name')
+                ->type('text')
+                ->title('Name Articles')
+        ])->setLabel('More'),
+    ];
+}
+```
+
+
+## Пользовательский шаблон
+
+
+В полне ожидаемая ситуация, когда необходимо отобразить собственный шаблон, 
+для этого:
+
+```php
+/**
+ * Views.
+ *
+ * @return array
+ * @throws \Throwable
+ */
+public function layout(): array
+{
+    return [
+        Layouts::view('myTemplate'),
+    ];
+}
+```
+
+Все данные из метода `query` будут переданы в ваш шаблон.
