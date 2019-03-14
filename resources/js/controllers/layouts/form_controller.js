@@ -1,4 +1,4 @@
-import {Controller} from 'stimulus';
+import { Controller } from 'stimulus';
 
 export default class extends Controller {
 
@@ -28,11 +28,11 @@ export default class extends Controller {
         this.animateButton();
         event.preventDefault();
 
-        setTimeout(() => {
-            let formAction = this.element.getAttribute("action");
-            let activeElementAction = document.activeElement.getAttribute("formaction");
-            let action = activeElementAction || formAction;
+        let formAction = this.element.getAttribute("action"),
+            activeElementAction = document.activeElement.getAttribute("formaction"),
+            action = activeElementAction || formAction;
 
+        setTimeout(() => {
             let form = new FormData(event.target);
 
             axios.post(action, form, {
@@ -44,11 +44,15 @@ export default class extends Controller {
                 .then((response) => {
                     let url = response.request.responseURL;
                     window.Turbolinks.controller.cache.put(url, Turbolinks.Snapshot.wrap(response.data));
-                    window.Turbolinks.visit(url, {action: 'restore'});
+                    window.Turbolinks.visit(url, { action: 'restore' });
                 })
                 .catch((error) => {
-                    window.history.pushState({"html": error.response.data}, "", error.request.responseURL);
-                    document.documentElement.innerHTML = error.response.data;
+                    if (error.response) {
+                        window.history.pushState({ "html": error.response.data }, "", error.request.responseURL);
+                        document.documentElement.innerHTML = error.response.data;
+                    } else {
+                        console.error(`Malformed error ${error}`);
+                    }
                 });
         });
 
@@ -58,11 +62,11 @@ export default class extends Controller {
     /**
      *
      */
-    animateButton(){
+    animateButton() {
         const button = this.data.get('button-animate');
         const text = this.data.get('button-text');
 
-        if(button) {
+        if (button) {
             const buttonElement = document.querySelector(button);
             buttonElement.disabled = true;
             buttonElement.innerHTML = `<span class="spinner-border spinner-border-sm mb-1" role="status" aria-hidden="true"></span>` +
