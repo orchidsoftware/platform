@@ -6,19 +6,29 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 4.3.1 - 2019-03-13
+
+### Added
+- Missing translation
+
+## 4.3.0 - 2019-03-13
 
 ### Added
 - Collapse layouts
+- Animation for submit button
 
 ### Changed
 - Entity no longer has a default icon
 - Improved interaction experience on mobile devices 
 - Modals not require route name
+- Remove "close" button for menu
+- Rename "reset" button menu as "close"
 
 ### Fixed
 - Send post request for create menu element
 - Icon for `Password` field
 - Entities show activity
+- Dublicate cache for TinyMCE field
 
 ### Removed
 - Remove dependency `spomky-labs/base64url`

@@ -13,10 +13,13 @@
         >
             <div class="modal-dialog {{$compose['class'] ?? ''}}" role="document" id="screen-modal-type-{{$key}}">
                 <form class="modal-content"
+                      id="screen-modal-form-{{$key}}"
                       method="post"
                       enctype="multipart/form-data"
                       data-controller="layouts--form"
                       data-action="layouts--form#submit"
+                      data-layouts--form-button-animate="#submit-modal-{{$key}}"
+                      data-layouts--form-button-text="{{ __('Loading...') }}"
                 >
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
