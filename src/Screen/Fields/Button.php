@@ -7,7 +7,7 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
- * Class Button
+ * Class Button.
  *
  * @method self modal(string $modalName = null)
  * @method self icon(string $icon = null)
@@ -34,10 +34,10 @@ class Button extends Field
      * @var array
      */
     public $attributes = [
-        'class' => 'btn btn-primary',
-        'modal' => null,
+        'class'  => 'btn btn-primary',
+        'modal'  => null,
         'method' => null,
-        'icon' => null,
+        'icon'   => null,
     ];
 
     /**
@@ -53,7 +53,7 @@ class Button extends Field
     ];
 
     /**
-     * Create instance of the button
+     * Create instance of the button.
      *
      * @return self
      */
@@ -66,6 +66,7 @@ class Button extends Field
      * Set the link.
      *
      * @param string $link
+     *
      * @return \Orchid\Screen\Field
      */
     public function link(string $link)
