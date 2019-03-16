@@ -165,7 +165,7 @@ class PressServiceProvider extends ServiceProvider
      */
     protected function registerPermissions(): ItemPermission
     {
-        return ItemPermission::setGroup(__('Systems'))
+        return ItemPermission::group(__('Systems'))
             ->addPermission('platform.systems.menu', __('Menu'));
     }
 

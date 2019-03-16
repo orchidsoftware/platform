@@ -33,60 +33,60 @@ class MainMenuComposer
         // Profile
         $this->dashboard->menu
             ->add(Menu::PROFILE,
-                ItemMenu::setLabel('Example 1')
-                    ->setIcon('icon-compass')
+                ItemMenu::label('Example 1')
+                    ->icon('icon-compass')
             )
             ->add(Menu::PROFILE,
-                ItemMenu::setLabel('Example 2')
-                    ->setIcon('icon-heart')
-                    ->setBadge(function () {
+                ItemMenu::label('Example 2')
+                    ->icon('icon-heart')
+                    ->badge(function () {
                         return 6;
                     })
             )
             ->add(Menu::PROFILE,
-                ItemMenu::setLabel('Example 3')
-                    ->setIcon('icon-microphone')
+                ItemMenu::label('Example 3')
+                    ->icon('icon-microphone')
             );
 
         // Main
         $this->dashboard->menu
             ->add(Menu::MAIN,
-                ItemMenu::setLabel('Example 4')
-                    ->setIcon('icon-folder')
-                    ->setRoute('platform.example')
-                    ->setGroupName('Example boilerplate')
+                ItemMenu::label('Example 4')
+                    ->icon('icon-folder')
+                    ->route('platform.example')
+                    ->groupName('Example boilerplate')
             )
             ->add(Menu::MAIN,
-                ItemMenu::setLabel('Example 5 menu')
-                    ->setSlug('example-menu')
-                    ->setIcon('icon-heart')
-                    ->setChilds()
+                ItemMenu::label('Example 5 menu')
+                    ->slug('example-menu')
+                    ->icon('icon-heart')
+                    ->childs()
             )
             ->add('example-menu',
-                ItemMenu::setLabel('Example sub 1')
-                    ->setIcon('icon-bag')
-                    ->setRoute('platform.example')
+                ItemMenu::label('Example sub 1')
+                    ->icon('icon-bag')
+                    ->route('platform.example')
             )
             ->add('example-menu',
-                ItemMenu::setLabel('Example sub 2')
-                    ->setIcon('icon-heart')
-                    ->setRoute('platform.example')
-                    ->setGroupName('Separate')
+                ItemMenu::label('Example sub 2')
+                    ->icon('icon-heart')
+                    ->route('platform.example')
+                    ->groupName('Separate')
             )
             ->add(Menu::MAIN,
-                ItemMenu::setLabel('Example 6')
-                    ->setIcon('icon-code')
-                    ->setRoute('platform.example')
+                ItemMenu::label('Example 6')
+                    ->icon('icon-code')
+                    ->route('platform.example')
             )
             ->add(Menu::MAIN,
-                ItemMenu::setLabel('Example 7')
-                    ->setIcon('icon-bag')
-                    ->setRoute('platform.example')
+                ItemMenu::label('Example 7')
+                    ->icon('icon-bag')
+                    ->route('platform.example')
             )
             ->add(Menu::MAIN,
-                ItemMenu::setLabel('Example 8')
-                    ->setIcon('icon-folder')
-                    ->setRoute('platform.example')
+                ItemMenu::label('Example 8')
+                    ->icon('icon-folder')
+                    ->route('platform.example')
             );
     }
 }

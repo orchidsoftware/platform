@@ -74,7 +74,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setPermission(string $permission): self
+    public function permission(string $permission): self
     {
         $this->permission = $permission;
 
@@ -82,11 +82,23 @@ class ItemMenu
     }
 
     /**
+     * @deprecated
+     *
+     * @param string $permission
+     *
+     * @return ItemMenu
+     */
+    public function setPermission(string $permission): self
+    {
+       return $this->permission($permission);
+    }
+
+    /**
      * @param string|array $active
      *
      * @return \Orchid\Platform\ItemMenu
      */
-    public function setActive($active): self
+    public function active($active): self
     {
         $this->active = Arr::wrap($active);
 
@@ -94,11 +106,23 @@ class ItemMenu
     }
 
     /**
+     * @deprecated
+     *
+     * @param string|array $active
+     *
+     * @return \Orchid\Platform\ItemMenu
+     */
+    public function setActive($active): self
+    {
+        return $this->active($active);
+    }
+
+    /**
      * @param string $label
      *
      * @return \Orchid\Platform\ItemMenu
      */
-    public static function setLabel(string $label): self
+    public static function label(string $label): self
     {
         $item = new self();
 
@@ -109,11 +133,23 @@ class ItemMenu
     }
 
     /**
+     * @deprecated
+     *
+     * @param string $label
+     *
+     * @return \Orchid\Platform\ItemMenu
+     */
+    public static function setLabel(string $label): self
+    {
+        return self::label($label);
+    }
+
+    /**
      * @param string $icon
      *
      * @return ItemMenu
      */
-    public function setIcon(string $icon): self
+    public function icon(string $icon): self
     {
         $this->icon = $icon;
 
@@ -121,11 +157,23 @@ class ItemMenu
     }
 
     /**
+     * @deprecated
+     *
+     * @param string $icon
+     *
+     * @return ItemMenu
+     */
+    public function setIcon(string $icon): self
+    {
+        return $this->icon($icon);
+    }
+
+    /**
      * @param bool $show
      *
      * @return ItemMenu
      */
-    public function setShow(bool $show): self
+    public function show(bool $show): self
     {
         $this->show = $show;
 
@@ -133,15 +181,55 @@ class ItemMenu
     }
 
     /**
+     * @deprecated
+     *
+     * @param bool $show
+     *
+     * @return ItemMenu
+     */
+    public function setShow(bool $show): self
+    {
+        return $this->show($show);
+    }
+
+    /**
+     * @param string $slug
+     *
+     * @return ItemMenu
+     */
+    public function slug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @deprecated
+     *
      * @param string $slug
      *
      * @return ItemMenu
      */
     public function setSlug(string $slug): self
     {
-        $this->slug = $slug;
+        return $this->slug($slug);
+    }
 
-        return $this;
+    /**
+     * @deprecated
+     *
+     * Generate the URL to a named route.
+     *
+     * @param string $name
+     * @param array  $parameters
+     * @param bool   $absolute
+     *
+     * @return ItemMenu
+     */
+    public function setRoute(string $name, array $parameters = [], bool $absolute = true): self
+    {
+        return $this->route($name, $parameters, $absolute);
     }
 
     /**
@@ -153,11 +241,11 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setRoute(string $name, array $parameters = [], bool $absolute = true): self
+    public function route(string $name, array $parameters = [], bool $absolute = true): self
     {
         $this->route = route($name, $parameters, $absolute);
 
-        $this->setActive([$this->route, $this->route.'/*']);
+        $this->active([$this->route, $this->route.'/*']);
 
         return $this;
     }
@@ -167,13 +255,25 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setUrl(string $url) : self
+    public function url(string $url) : self
     {
         $this->route = $url;
 
-        $this->setActive($url);
+        $this->active($url);
 
         return $this;
+    }
+
+    /**
+     * @deprecated
+     *
+     * @param string $url
+     *
+     * @return ItemMenu
+     */
+    public function setUrl(string $url) : self
+    {
+        return $this->url($url);
     }
 
     /**
@@ -181,11 +281,35 @@ class ItemMenu
      *
      * @return ItemMenu
      */
+    public function groupName(string $groupname = null): self
+    {
+            $this->groupname = $groupname;
+
+            return $this;
+    }
+
+    /**
+     * @deprecated
+     *
+     * @param string $groupname
+     *
+     * @return ItemMenu
+     */
     public function setGroupName(string $groupname = null): self
     {
-        $this->groupname = $groupname;
+        return $this->groupName($groupname);
+    }
 
-        return $this;
+    /**
+     * @deprecated
+     *
+     * @param bool $divider
+     *
+     * @return ItemMenu
+     */
+    public function setDivider(bool $divider): self
+    {
+        return $this->divider($divider);
     }
 
     /**
@@ -193,7 +317,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setDivider(bool $divider): self
+    public function divider(bool $divider): self
     {
         $this->divider = $divider;
 
@@ -205,7 +329,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setChilds(bool $childs = true): self
+    public function childs(bool $childs = true): self
     {
         $this->childs = $childs;
 
@@ -213,15 +337,52 @@ class ItemMenu
     }
 
     /**
+     * @deprecated
+     *
+     * @param bool $childs
+     *
+     * @return ItemMenu
+     */
+    public function setChilds(bool $childs = true): self
+    {
+        return $this->childs($childs);
+    }
+
+    /**
+     * @param int $sort
+     *
+     * @return ItemMenu
+     */
+    public function sort(int $sort): self
+    {
+        $this->sort = $sort;
+
+        return $this;
+    }
+
+    /**
+     * @deprecated
+     *
      * @param int $sort
      *
      * @return ItemMenu
      */
     public function setSort(int $sort): self
     {
-        $this->sort = $sort;
+        return $this->sort($sort);
+    }
 
-        return $this;
+    /**
+     * @deprecated
+     *
+     * @param \Closure $badge
+     * @param string   $class
+     *
+     * @return \Orchid\Platform\ItemMenu
+     */
+    public function setBadge(\Closure $badge, string $class = 'bg-primary'): self
+    {
+        return $this->badge($badge, $class);
     }
 
     /**
@@ -230,7 +391,7 @@ class ItemMenu
      *
      * @return \Orchid\Platform\ItemMenu
      */
-    public function setBadge(\Closure $badge, string $class = 'bg-primary'): self
+    public function badge(\Closure $badge, string $class = 'bg-primary'): self
     {
         $this->badge = [
             'class' => $class,

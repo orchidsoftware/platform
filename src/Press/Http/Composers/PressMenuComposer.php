@@ -50,14 +50,14 @@ class PressMenuComposer
                 $params = is_a($page, Single::class) ? [$page->slug, $page->slug] : [$page->slug];
 
                 $kernel->menu->add(Menu::MAIN,
-                    ItemMenu::setLabel($page->name)
-                        ->setSlug($page->slug)
-                        ->setIcon($page->icon)
-                        ->setGroupName($page->groupname)
-                        ->setRoute($route, $params)
-                        ->setPermission('platform.entities.type.'.$page->slug)
-                        ->setSort($page->sort)
-                        ->setShow($page->display)
+                    ItemMenu::label($page->name)
+                        ->slug($page->slug)
+                        ->icon($page->icon)
+                        ->groupName($page->groupname)
+                        ->route($route, $params)
+                        ->permission('platform.entities.type.'.$page->slug)
+                        ->sort($page->sort)
+                        ->show($page->display)
                 );
             });
 
