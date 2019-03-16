@@ -90,7 +90,7 @@ class ItemMenu
      */
     public function setPermission(string $permission): self
     {
-       return $this->permission($permission);
+        return $this->permission($permission);
     }
 
     /**
@@ -283,9 +283,9 @@ class ItemMenu
      */
     public function groupName(string $groupname = null): self
     {
-            $this->groupname = $groupname;
+        $this->groupname = $groupname;
 
-            return $this;
+        return $this;
     }
 
     /**
