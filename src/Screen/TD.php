@@ -252,10 +252,10 @@ class TD
     }
 
     /**
-     * @param string            $modal
-     * @param string            $method
-     * @param string|array      $options
-     * @param string|null       $text
+     * @param string       $modal
+     * @param string       $method
+     * @param string|array $options
+     * @param string|null  $text
      *
      * @return \Orchid\Screen\TD
      */
