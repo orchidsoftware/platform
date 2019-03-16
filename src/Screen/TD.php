@@ -239,7 +239,6 @@ class TD
         return $this->render($closure);
     }
 
-
     /**
      * @param \Closure $closure
      *
