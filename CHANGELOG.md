@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Button field [807](https://github.com/orchidsoftware/platform/issues/807)
+
+### Deprecated
+- `set` prefix for ItemMenu, ItemPermission, TD [809](https://github.com/orchidsoftware/platform/issues/809)
 
 ## 4.3.3 - 2019-03-15
 

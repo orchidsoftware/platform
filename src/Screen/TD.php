@@ -199,7 +199,7 @@ class TD
      */
     public function link(string $route, $options, string $text = null): self
     {
-        $this->setRender(function ($datum) use ($route, $options, $text) {
+        $this->render(function ($datum) use ($route, $options, $text) {
             $attributes = [];
             $options = Arr::wrap($options);
 
@@ -228,11 +228,24 @@ class TD
     }
 
     /**
+     * @deprecated
+     *
      * @param \Closure $closure
      *
      * @return $this
      */
     public function setRender(Closure $closure): self
+    {
+        return $this->render($closure);
+    }
+
+
+    /**
+     * @param \Closure $closure
+     *
+     * @return $this
+     */
+    public function render(Closure $closure): self
     {
         $this->render = $closure;
 
@@ -249,7 +262,7 @@ class TD
      */
     public function loadModalAsync(string $modal, $method, $options, string $text = null): self
     {
-        $this->setRender(function ($datum) use ($modal, $method, $options, $text) {
+        $this->render(function ($datum) use ($modal, $method, $options, $text) {
             $attributes = [];
             $options = Arr::wrap($options);
 
