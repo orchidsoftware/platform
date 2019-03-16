@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Illuminate\Support\Str;
 use Orchid\Screen\Field;
+use Illuminate\Support\Str;
 
 /**
  * Class Button.
@@ -18,18 +18,18 @@ use Orchid\Screen\Field;
 class Button extends Field
 {
     /**
-     * Visual style
+     * Visual style.
      */
-    const DEFAULT   = 'btn-default';
-    const SUCCESS   = 'btn-success';
-    const WARNING   = 'btn-warning';
-    const DANGER    = 'btn-danger';
-    const INFO      = 'btn-info';
-    const PRIMARY   = 'btn-primary';
+    const DEFAULT = 'btn-default';
+    const SUCCESS = 'btn-success';
+    const WARNING = 'btn-warning';
+    const DANGER = 'btn-danger';
+    const INFO = 'btn-info';
+    const PRIMARY = 'btn-primary';
     const SECONDARY = 'btn-secondary';
-    const LIGHT     = 'btn-light';
-    const DARK      = 'btn-dark';
-    const LINK      = 'btn-link';
+    const LIGHT = 'btn-light';
+    const DARK = 'btn-dark';
+    const LINK = 'btn-link';
 
     /**
      * @var string
@@ -84,7 +84,7 @@ class Button extends Field
      *
      * @return $this
      */
-    public function link(string $link): Button
+    public function link(string $link): self
     {
         $this->set('href', $link);
 
@@ -96,9 +96,9 @@ class Button extends Field
      *
      * @return $this
      */
-    public function right(): Button
+    public function right(): self
     {
-        $class = $this->get('class') . ' pull-right';
+        $class = $this->get('class').' pull-right';
 
         $this->set('class', $class);
 
@@ -110,7 +110,7 @@ class Button extends Field
      *
      * @return $this
      */
-    public function type(string $visual): Button
+    public function type(string $visual): self
     {
         $class = str_replace([
             self::DEFAULT,
@@ -125,7 +125,7 @@ class Button extends Field
             self::LINK,
         ], '', $this->get('class'));
 
-        $this->set('class', $class . $visual);
+        $this->set('class', $class.$visual);
 
         return $this;
     }
@@ -135,9 +135,9 @@ class Button extends Field
      *
      * @return $this
      */
-    public function block(): Button
+    public function block(): self
     {
-        $class = $this->get('class') . ' pull-block';
+        $class = $this->get('class').' pull-block';
 
         $this->set('class', $class);
 
