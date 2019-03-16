@@ -240,10 +240,10 @@ class TD
     }
 
     /**
-     * @param string      $modal
-     * @param string      $method
-     * @param string      $options
-     * @param string|null $text
+     * @param string            $modal
+     * @param string            $method
+     * @param string|array      $options
+     * @param string|null       $text
      *
      * @return \Orchid\Screen\TD
      */
@@ -262,13 +262,14 @@ class TD
                 $attributes[] = $datum->getAttribute($option);
             }
 
-            $text = is_null($text) ? $text : $datum->getContent($text);
+            $text = $datum->getContent($text) ?: $text;
 
             return view('platform::partials.td.async', [
                 'modal'      => $modal,
                 'attributes' => $attributes,
                 'text'       => $text,
                 'method'     => $method,
+                'title'      => $this->title,
                 'route'      => $this->asyncRoute,
             ]);
         });

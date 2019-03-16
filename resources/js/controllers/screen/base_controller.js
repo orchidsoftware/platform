@@ -1,4 +1,4 @@
-import {Controller} from 'stimulus';
+import { Controller } from 'stimulus';
 
 export default class extends Controller {
 
@@ -8,15 +8,17 @@ export default class extends Controller {
      * @returns {*}
      */
     targetModal(event) {
-        const key = event.target.dataset.modalKey;
+        const target = event.target,
+            parentTarget = event.target.parentElement,
+            key = target.dataset.modalKey || parentTarget.dataset.modalKey;
 
         this.application.getControllerForElementAndIdentifier(
             document.getElementById(`screen-modal-${key}`),
             'screen--modal',
         ).open({
-            title: event.target.dataset.modalTitle,
-            submit: event.target.dataset.modalAction,
-            params: event.target.dataset.modalParams || '[]',
+            title: target.dataset.modalTitle || parentTarget.dataset.modalTitle,
+            submit: target.dataset.modalAction || parentTarget.dataset.modalAction,
+            params: target.dataset.modalParams || parentTarget.dataset.modalParams || '[]',
         });
 
         return event.preventDefault();
