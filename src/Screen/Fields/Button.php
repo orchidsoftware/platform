@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Illuminate\Support\Str;
 use Orchid\Screen\Field;
 
 /**
@@ -16,6 +17,20 @@ use Orchid\Screen\Field;
  */
 class Button extends Field
 {
+    /**
+     * Visual style
+     */
+    const DEFAULT   = 'btn-default';
+    const SUCCESS   = 'btn-success';
+    const WARNING   = 'btn-warning';
+    const DANGER    = 'btn-danger';
+    const INFO      = 'btn-info';
+    const PRIMARY   = 'btn-primary';
+    const SECONDARY = 'btn-secondary';
+    const LIGHT     = 'btn-light';
+    const DARK      = 'btn-dark';
+    const LINK      = 'btn-link';
+
     /**
      * @var string
      */
@@ -34,7 +49,7 @@ class Button extends Field
      * @var array
      */
     public $attributes = [
-        'class'  => 'btn btn-primary',
+        'class'  => 'btn btn-default',
         'modal'  => null,
         'method' => null,
         'icon'   => null,
@@ -59,7 +74,7 @@ class Button extends Field
      */
     public static function make(): self
     {
-        return (new static())->name('button');
+        return (new static())->name(Str::random());
     }
 
     /**
@@ -67,11 +82,13 @@ class Button extends Field
      *
      * @param string $link
      *
-     * @return \Orchid\Screen\Field
+     * @return $this
      */
-    public function link(string $link)
+    public function link(string $link): Button
     {
-        return $this->set('href', $link);
+        $this->set('href', $link);
+
+        return $this;
     }
 
     /**
@@ -79,9 +96,36 @@ class Button extends Field
      *
      * @return $this
      */
-    public function right()
+    public function right(): Button
     {
-        $this->attributes['class'] .= ' pull-right';
+        $class = $this->get('class') . ' pull-right';
+
+        $this->set('class', $class);
+
+        return $this;
+    }
+
+    /**
+     * @param string $visual
+     *
+     * @return $this
+     */
+    public function type(string $visual): Button
+    {
+        $class = str_replace([
+            self::DEFAULT,
+            self::SUCCESS,
+            self::WARNING,
+            self::DANGER,
+            self::INFO,
+            self::PRIMARY,
+            self::SECONDARY,
+            self::LIGHT,
+            self::DARK,
+            self::LINK,
+        ], '', $this->get('class'));
+
+        $this->set('class', $class . $visual);
 
         return $this;
     }
@@ -91,9 +135,11 @@ class Button extends Field
      *
      * @return $this
      */
-    public function block()
+    public function block(): Button
     {
-        $this->attributes['class'] .= ' btn-block';
+        $class = $this->get('class') . ' pull-block';
+
+        $this->set('class', $class);
 
         return $this;
     }
