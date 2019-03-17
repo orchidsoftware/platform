@@ -23,9 +23,9 @@ abstract class Collapse extends Base
     public $query;
 
     /**
-     * @var
+     * @var string
      */
-    protected $label = 'Options';
+    private $label = 'Options';
 
     /**
      * @param \Orchid\Screen\Repository $query
@@ -51,7 +51,7 @@ abstract class Collapse extends Base
      *
      * @return Collapse
      */
-    public function setLabel(string $label)
+    public function label(string $label)
     {
         $this->label = $label;
 
