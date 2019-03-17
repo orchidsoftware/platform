@@ -6,8 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 4.3.4 - 2019-03-17
+
 ### Added
 - Button field [807](https://github.com/orchidsoftware/platform/issues/807)
+
+### Changed
+- Rename `setLabel` to `label` for Collapse
 
 ### Fixed
 - Show text for `Label` field
