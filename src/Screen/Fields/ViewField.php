@@ -7,6 +7,8 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
+ * @deprecated
+ *
  * Class ViewField.
  *
  * @method self name(string $value)
