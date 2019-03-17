@@ -36,14 +36,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot(Dashboard $dashboard)
     {
         $dashboard->menu->add(Menu::MAIN,
-            ItemMenu::setLabel('Idea')
-                ->setIcon('icon-bubbles')
-                ->setUrl('#')
-                //->setRoute('platform.systems.idea')
-                //->setPermission('platform.systems.idea')
-                ->setSort(1000)
-                ->setGroupName('idea')
-                ->setBadge(function () {
+            ItemMenu::label('Idea')
+                ->icon('icon-bubbles')
+                ->url('#')
+                //->route('platform.systems.idea')
+                //->permission('platform.systems.idea')
+                ->sort(1000)
+                ->groupName('idea')
+                ->badge(function () {
                     return 10;
                 })
         );

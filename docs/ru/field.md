@@ -307,8 +307,7 @@ class AjaxWidget extends Widget
 
 ```php
 Button::make()
-    ->title(__('Add Payment'))
-    ->class('btn btn-success')
+    ->title('Add Payment')
     ->modal('addNewPayment')
     ->icon('icon-wallet')
     ->right()
@@ -318,25 +317,24 @@ Button::make()
 
 ```php
 Button::make()
-    ->title(__('Google It!'))
-    ->class('btn btn-link')
-    ->link('http://google.com')
+    ->title('Google It!')
+    ->type(Button::LINK)
+    ->link('http://google.com');
 ```
 
 Пример использования с методом:
 
 ```php
 Button::make()
-    ->title(__('Google It!'))
-    ->class('btn btn-link')
-    ->link('http://google.com')
+    ->title('Google It!')
+    ->method('goToGoogle');
 ```
 
 Доступные модификаторы:
 
 * `modal('modalName')` - создает кнопку вызывающую модальное окно с именем `modalName` в рамках текущего экрана
-* `right()` - добавляет класс `pull-right` для позиционирования элемента по правому краю экрана
-* `block()` - добавляет класс `btn-block` к списку классов элемента
+* `right()` - Позиционирования элемента по правому краю экрана
+* `block()` - Позиционирование элемента по всей ширине экрана
 * `class('class-names')` - переписывает стандартные классы для кнопки
 * `link('url')` - добавляет ссылку для кнопки. Игнорируется при заданном modal
 * `method('methodName')` - при клике форма будет отправлена на заданный метод в рамках текущего экрана

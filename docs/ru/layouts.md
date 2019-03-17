@@ -50,7 +50,7 @@ class PatientListLayout extends Table
             TD::set('last_name','Last name')
                 ->align('center')
                 ->width('100px')
-                ->setRender(function ($patient) {
+                ->render(function ($patient) {
                     return '<a href="' . route('platform.clinic.patient.edit',
                             $patient->id) . '">' . $patient->last_name . '</a>';
                 }),
@@ -87,7 +87,7 @@ class PatientListLayout extends Table
 
 - Метод `set($key, $name)` основной метод устанавливает имя ключа из массива и отображаемое название. Заменяет методы `name()` и `title()`.
 
-- Метод `setRender(function ($item) { return $item->id})` возможность генерации ячейки согласно функции. В $item передаются данные текущей строки.
+- Метод `render(function ($item) { return $item->id})` возможность генерации ячейки согласно функции. В $item передаются данные текущей строки.
 
 - Метод `sort()` добавляет в заголовок возможность сортировки по данному столбцу.
 
@@ -364,7 +364,7 @@ public function layout(): array
             Input::make('name')
                 ->type('text')
                 ->title('Name Articles')
-        ])->setLabel('More'),
+        ])->label('More'),
     ];
 }
 ```

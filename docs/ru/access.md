@@ -78,7 +78,7 @@ class PermissionServiceProvider extends ServiceProvider
      */
     public function boot(Dashboard $dashboard)
     {
-        $permissions = ItemPermission::setGroup('modules')
+        $permissions = ItemPermission::group('modules')
             ->addPermission('analytics', 'Access to data analytics')
             ->addPermission('monitor', 'Access to the system monitor');
 

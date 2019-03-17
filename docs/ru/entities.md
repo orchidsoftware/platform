@@ -113,7 +113,7 @@ class DummyClass extends Many
          TD::set('name','Name'),
          TD::set('publish_at','Date of publication'),
          TD::set('created_at','Date of creation'),
-         TD::name('full_name','Full name')->setRender(function($post){
+         TD::name('full_name','Full name')->render(function($post){
              return  "{$post->getContent('fist_name')} {$post->getContent('last_name')}";
          })
      ];
