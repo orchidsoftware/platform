@@ -20,12 +20,12 @@ class Label extends Field
     public $view = 'platform::fields.label';
 
     public $attributes = [
-        'id' => null,
+        'id'    => null,
         'value' => null,
     ];
 
     public $inlineAttributes = [
-        'class'
+        'class',
     ];
 
     /**
