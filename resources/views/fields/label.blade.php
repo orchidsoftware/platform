@@ -1,5 +1,5 @@
 @component($typeForm,get_defined_vars())
-    @isset($fieldNames)
-        <p id="{{$id}}">{{$fieldNames ?? ''}}</p>
-    @endisset
+    <p @include('platform::partials.fields.attributes', ['attributes' => $attributes])>
+        {{ $value }}
+    </p>
 @endcomponent
