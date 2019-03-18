@@ -177,6 +177,25 @@ Select::make()
     ->help('Allow search bots to index');
 ```
 
+Работа с источником:
+
+```php
+Select::make('user')
+    ->fromModel(User::class, 'email')
+```
+
+Источник с условием:
+```php
+Select::make('user')
+    ->fromQuery(User::where('balance', '!=', '0'),'email'),
+```
+
+Изменение ключа:
+```php
+Select::make('user')
+    ->fromModel(User::class, 'email', 'uuid')
+```
+
 
 ## Mask
  
