@@ -187,7 +187,7 @@ Select::make('user')
 Источник с условием:
 ```php
 Select::make('user')
-    ->fromQuery(User::where('balance', '!=', '0'),'email'),
+    ->fromQuery(User::where('balance', '!=', '0'), 'email'),
 ```
 
 Изменение ключа:
