@@ -148,7 +148,6 @@ class FoundationServiceProvider extends ServiceProvider
     {
         return [
             ScoutServiceProvider::class,
-            AttachmentServiceProvider::class,
             ActiveServiceProvider::class,
             RouteServiceProvider::class,
             AlertServiceProvider::class,

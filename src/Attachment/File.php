@@ -71,7 +71,7 @@ class File
      * @param string       $disk
      * @param string       $group
      */
-    public function __construct(UploadedFile $file, string $disk, string $group = null)
+    public function __construct(UploadedFile $file, string $disk = 'public', string $group = null)
     {
         $this->time = time();
         $this->date = date('Y/m/d', $this->time);

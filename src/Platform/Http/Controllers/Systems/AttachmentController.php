@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
-use Illuminate\Support\Arr;
-use Orchid\Attachment\File;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Arr;
+use Orchid\Attachment\File;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Http\Controllers\Controller;
 
@@ -40,11 +40,9 @@ class AttachmentController extends Controller
             }
         }
 
-        if (count($attachment) > 1) {
-            return response()->json($attachment);
-        }
+        $attachment = count($attachment) > 1 ? $attachment : reset($attachment);
 
-        return response()->json(reset($attachment));
+        return response()->json($attachment);
     }
 
     /**
@@ -88,10 +86,9 @@ class AttachmentController extends Controller
      */
     public function update(int $id, Request $request)
     {
-        $attachment = Attachment::findOrFail($id)
-            ->fill($request->all());
-
-        $attachment->save();
+        $attachment = tap(Attachment::findOrFail($id)
+          ->fill($request->all()))
+          ->save();
 
         return response()->json($attachment);
     }
@@ -104,14 +101,8 @@ class AttachmentController extends Controller
      */
     private function createModel(UploadedFile $file, Request $request)
     {
-        $model = app()->make(File::class, [
-            'file'  => $file,
-            'disk'  => $request->get('storage', 'public'),
-            'group' => $request->get('group'),
-        ])->load();
+        $file = new File($file, $request->get('storage'), $request->get('group'));
 
-        $model->url = $model->url();
-
-        return $model;
+        return $file->load();
     }
 }
