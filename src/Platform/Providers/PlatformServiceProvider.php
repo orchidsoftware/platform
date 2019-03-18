@@ -58,7 +58,6 @@ class PlatformServiceProvider extends ServiceProvider
     {
         return ItemPermission::group(__('Systems'))
             ->addPermission('platform.systems.attachment', __('Attachment'))
-            ->addPermission('platform.systems.cache', __('Cache'))
             ->addPermission('platform.systems.announcement', __('Announcement'));
     }
 

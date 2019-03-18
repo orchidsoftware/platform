@@ -21,9 +21,6 @@ use Orchid\Platform\Http\Controllers\Systems\NotificationController;
 $this->router->get('/', [SystemController::class, 'index'])
     ->name('systems.index');
 
-$this->router->get('cache', [CacheController::class, 'store'])
-    ->name('systems.cache');
-
 $this->router->post('notification/read', [NotificationController::class, 'markAllAsRead'])
     ->name('notification.read');
 
