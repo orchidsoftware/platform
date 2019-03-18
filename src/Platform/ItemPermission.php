@@ -17,18 +17,6 @@ class ItemPermission
     public $items = [];
 
     /**
-     * @deprecated
-     *
-     * @param string $group
-     *
-     * @return ItemPermission
-     */
-    public static function setGroup(string $group): self
-    {
-        return self::group($group);
-    }
-
-    /**
      * @param string $group
      *
      * @return ItemPermission

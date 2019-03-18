@@ -86,9 +86,10 @@ class AttachmentController extends Controller
      */
     public function update(int $id, Request $request)
     {
-        $attachment = tap(Attachment::findOrFail($id)
-          ->fill($request->all()))
-          ->save();
+        $attachment = Attachment::findOrFail($id)
+            ->fill($request->all());
+
+        $attachment->save();
 
         return response()->json($attachment);
     }
@@ -101,8 +102,14 @@ class AttachmentController extends Controller
      */
     private function createModel(UploadedFile $file, Request $request)
     {
-        $file = new File($file, $request->get('storage'), $request->get('group'));
+        $model = app()->make(File::class, [
+            'file'  => $file,
+            'disk'  => $request->get('storage', 'public'),
+            'group' => $request->get('group'),
+        ])->load();
 
-        return $file->load();
+        $model->url = $model->url();
+
+        return $model;
     }
 }

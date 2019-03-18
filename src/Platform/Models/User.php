@@ -175,19 +175,4 @@ class User extends Authenticatable implements UserInterface
                 return $group;
             });
     }
-
-    /**
-     * @deprecated
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    public function getStatusRoles()
-    {
-        return collect($this->roles)->keyBy('id')
-            ->transform(function ($role) {
-                $role->active = true;
-
-                return $role;
-            })->union(Role::all()->keyBy('id'));
-    }
 }

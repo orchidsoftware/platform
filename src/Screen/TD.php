@@ -228,18 +228,6 @@ class TD
     }
 
     /**
-     * @deprecated
-     *
-     * @param \Closure $closure
-     *
-     * @return $this
-     */
-    public function setRender(Closure $closure): self
-    {
-        return $this->render($closure);
-    }
-
-    /**
      * @param \Closure $closure
      *
      * @return $this

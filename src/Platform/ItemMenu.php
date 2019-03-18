@@ -82,18 +82,6 @@ class ItemMenu
     }
 
     /**
-     * @deprecated
-     *
-     * @param string $permission
-     *
-     * @return ItemMenu
-     */
-    public function setPermission(string $permission): self
-    {
-        return $this->permission($permission);
-    }
-
-    /**
      * @param string|array $active
      *
      * @return \Orchid\Platform\ItemMenu
@@ -103,18 +91,6 @@ class ItemMenu
         $this->active = Arr::wrap($active);
 
         return $this;
-    }
-
-    /**
-     * @deprecated
-     *
-     * @param string|array $active
-     *
-     * @return \Orchid\Platform\ItemMenu
-     */
-    public function setActive($active): self
-    {
-        return $this->active($active);
     }
 
     /**
@@ -133,18 +109,6 @@ class ItemMenu
     }
 
     /**
-     * @deprecated
-     *
-     * @param string $label
-     *
-     * @return \Orchid\Platform\ItemMenu
-     */
-    public static function setLabel(string $label): self
-    {
-        return self::label($label);
-    }
-
-    /**
      * @param string $icon
      *
      * @return ItemMenu
@@ -154,18 +118,6 @@ class ItemMenu
         $this->icon = $icon;
 
         return $this;
-    }
-
-    /**
-     * @deprecated
-     *
-     * @param string $icon
-     *
-     * @return ItemMenu
-     */
-    public function setIcon(string $icon): self
-    {
-        return $this->icon($icon);
     }
 
     /**
@@ -181,18 +133,6 @@ class ItemMenu
     }
 
     /**
-     * @deprecated
-     *
-     * @param bool $show
-     *
-     * @return ItemMenu
-     */
-    public function setShow(bool $show): self
-    {
-        return $this->show($show);
-    }
-
-    /**
      * @param string $slug
      *
      * @return ItemMenu
@@ -202,34 +142,6 @@ class ItemMenu
         $this->slug = $slug;
 
         return $this;
-    }
-
-    /**
-     * @deprecated
-     *
-     * @param string $slug
-     *
-     * @return ItemMenu
-     */
-    public function setSlug(string $slug): self
-    {
-        return $this->slug($slug);
-    }
-
-    /**
-     * @deprecated
-     *
-     * Generate the URL to a named route.
-     *
-     * @param string $name
-     * @param array  $parameters
-     * @param bool   $absolute
-     *
-     * @return ItemMenu
-     */
-    public function setRoute(string $name, array $parameters = [], bool $absolute = true): self
-    {
-        return $this->route($name, $parameters, $absolute);
     }
 
     /**
@@ -265,18 +177,6 @@ class ItemMenu
     }
 
     /**
-     * @deprecated
-     *
-     * @param string $url
-     *
-     * @return ItemMenu
-     */
-    public function setUrl(string $url) : self
-    {
-        return $this->url($url);
-    }
-
-    /**
      * @param string $groupname
      *
      * @return ItemMenu
@@ -286,30 +186,6 @@ class ItemMenu
         $this->groupname = $groupname;
 
         return $this;
-    }
-
-    /**
-     * @deprecated
-     *
-     * @param string $groupname
-     *
-     * @return ItemMenu
-     */
-    public function setGroupName(string $groupname = null): self
-    {
-        return $this->groupName($groupname);
-    }
-
-    /**
-     * @deprecated
-     *
-     * @param bool $divider
-     *
-     * @return ItemMenu
-     */
-    public function setDivider(bool $divider): self
-    {
-        return $this->divider($divider);
     }
 
     /**
@@ -337,18 +213,6 @@ class ItemMenu
     }
 
     /**
-     * @deprecated
-     *
-     * @param bool $childs
-     *
-     * @return ItemMenu
-     */
-    public function setChilds(bool $childs = true): self
-    {
-        return $this->childs($childs);
-    }
-
-    /**
      * @param int $sort
      *
      * @return ItemMenu
@@ -358,31 +222,6 @@ class ItemMenu
         $this->sort = $sort;
 
         return $this;
-    }
-
-    /**
-     * @deprecated
-     *
-     * @param int $sort
-     *
-     * @return ItemMenu
-     */
-    public function setSort(int $sort): self
-    {
-        return $this->sort($sort);
-    }
-
-    /**
-     * @deprecated
-     *
-     * @param \Closure $badge
-     * @param string   $class
-     *
-     * @return \Orchid\Platform\ItemMenu
-     */
-    public function setBadge(\Closure $badge, string $class = 'bg-primary'): self
-    {
-        return $this->badge($badge, $class);
     }
 
     /**
