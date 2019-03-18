@@ -20,7 +20,6 @@ use Orchid\Platform\Commands\ScreenCommand;
 use Orchid\Platform\Commands\InstallCommand;
 use Orchid\Platform\Commands\MetricsCommand;
 use Orchid\Platform\Commands\SelectionCommand;
-use Orchid\Attachment\Providers\AttachmentServiceProvider;
 
 /**
  * Class FoundationServiceProvider.
