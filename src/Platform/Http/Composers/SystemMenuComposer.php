@@ -35,7 +35,6 @@ class SystemMenuComposer
                 ItemMenu::label(__('Tools'))
                     ->slug('Tools')
                     ->icon('icon-umbrella')
-                    ->route('platform.systems.cache', ['action' => 'opcache'])
                     ->sort(9000)
             )
             ->add('Tools',

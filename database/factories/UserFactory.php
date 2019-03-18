@@ -30,7 +30,6 @@ $factory->define(User::class, function (Faker $faker) {
             'platform.systems.comment'            => 1,
             'platform.systems.attachment'         => 1,
             'platform.systems.media'              => 1,
-            'platform.systems.cache'              => 1,
             'platform.pages'                      => 1,
             'platform.posts'                      => 1,
             'platform.entities.type.example-post' => 1,

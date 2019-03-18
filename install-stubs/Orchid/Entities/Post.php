@@ -272,7 +272,7 @@ class Post extends Many
                 ->filter('date')
                 ->sort()
                 ->align(TD::ALIGN_RIGHT)
-                ->setRender(function ($item) {
+                ->render(function ($item) {
                     return optional($item->publish_at)->toDateString();
                 }),
 
@@ -280,7 +280,7 @@ class Post extends Many
                 ->filter('date')
                 ->align(TD::ALIGN_RIGHT)
                 ->sort()
-                ->setRender(function ($item) {
+                ->render(function ($item) {
                     return $item->created_at->toDateString();
                 }),
         ];

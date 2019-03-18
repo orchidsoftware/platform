@@ -83,7 +83,7 @@ class PermissionTest extends TestUnitCase
     {
         $dashboard = new Dashboard();
 
-        $permission = ItemPermission::setGroup('Test')
+        $permission = ItemPermission::group('Test')
             ->addPermission('test', 'Test Description');
 
         $dashboard->registerPermissions($permission);

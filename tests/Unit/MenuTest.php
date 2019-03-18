@@ -17,22 +17,22 @@ class MenuTest extends TestUnitCase
     {
         $menu = (new Dashboard())->menu;
 
-        $menu->add('Main', ItemMenu::setLabel('Main Test')
-            ->setSlug('Test')
-            ->setIcon('icon-layers')
-            ->setChilds()
-            ->setSort(1000)
+        $menu->add('Main', ItemMenu::label('Main Test')
+            ->slug('Test')
+            ->icon('icon-layers')
+            ->childs()
+            ->sort(1000)
         );
 
         $this->assertEquals(! is_null($menu->render('Main')), true);
         $this->assertEquals($menu->container->count(), 1);
 
-        $menu->add('Test', ItemMenu::setLabel('Users')
-            ->setSlug('users')
-            ->setIcon('icon-user')
-            ->setChilds(false)
-            ->setDivider(false)
-            ->setSort(503)
+        $menu->add('Test', ItemMenu::label('Users')
+            ->slug('users')
+            ->icon('icon-user')
+            ->childs(false)
+            ->divider(false)
+            ->sort(503)
         );
 
         $this->assertEquals(! is_null($menu->render('Test')), true);
@@ -42,18 +42,18 @@ class MenuTest extends TestUnitCase
     {
         $menu = (new Dashboard())->menu;
 
-        $menu->add('CountPlace', ItemMenu::setLabel('Main Test')
-            ->setSlug('CountPlace 1')
-            ->setIcon('icon-layers')
-            ->setChilds()
-            ->setSort(1000)
+        $menu->add('CountPlace', ItemMenu::label('Main Test')
+            ->slug('CountPlace 1')
+            ->icon('icon-layers')
+            ->childs()
+            ->sort(1000)
         );
 
-        $menu->add('CountPlace', ItemMenu::setLabel('Main Test')
-            ->setSlug('CountPlace 2')
-            ->setIcon('icon-layers')
-            ->setChilds()
-            ->setSort(1000)
+        $menu->add('CountPlace', ItemMenu::label('Main Test')
+            ->slug('CountPlace 2')
+            ->icon('icon-layers')
+            ->childs()
+            ->sort(1000)
         );
 
         $count = $menu->showCountElement('CountPlace');
@@ -65,10 +65,10 @@ class MenuTest extends TestUnitCase
     {
         $menu = (new Dashboard())->menu;
 
-        $menu->add('Main', ItemMenu::setLabel('No Display')
-            ->setChilds()
-            ->setSort(1000)
-            ->setShow(false)
+        $menu->add('Main', ItemMenu::label('No Display')
+            ->childs()
+            ->sort(1000)
+            ->show(false)
         );
 
         $count = $menu->showCountElement('Main');
