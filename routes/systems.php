@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Orchid\Platform\Http\Controllers\Systems\TagsController;
-use Orchid\Platform\Http\Controllers\Systems\CacheController;
 use Orchid\Platform\Http\Controllers\Systems\SystemController;
 use Orchid\Platform\Http\Controllers\Systems\WidgetController;
 use Orchid\Platform\Http\Controllers\Systems\AttachmentController;
