@@ -16,11 +16,6 @@ class DummyClass extends Filter
     /**
      * @var bool
      */
-    public $display = true;
-
-    /**
-     * @var bool
-     */
     public $dashboard = false;
 
     /**
@@ -30,7 +25,7 @@ class DummyClass extends Filter
      */
     public function run(Builder $builder): Builder
     {
-        //
+        return $builder;
     }
 
     /**
