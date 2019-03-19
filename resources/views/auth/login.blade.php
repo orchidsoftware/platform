@@ -3,7 +3,14 @@
 
 @section('content')
     <p class="m-t-lg text-black">{{__('Sign in to your account')}}</p>
-    <form class="m-t-md" role="form" method="POST" action="{{ route('platform.login.auth') }}">
+    <form class="m-t-md"
+          role="form"
+          method="POST"
+          data-controller="layouts--form"
+          data-action="layouts--form#submit"
+          data-layouts--form-button-animate="#button-login"
+          data-layouts--form-button-text="{{ __('Loading...') }}"
+          action="{{ route('platform.login.auth') }}">
         @csrf
     <div class="form-group">
         <label class="form-label">{{__('Email address')}}</label>
@@ -39,7 +46,7 @@
             </label>
         </div>
         <div class="form-group col-md-6 col-xs-12">
-            <button type="submit" class="btn btn-default btn-block">
+            <button id="button-login" type="submit" class="btn btn-default btn-block">
                 <i class="icon-login text-xs m-r-xs"></i> {{__('Login')}}
             </button>
         </div>

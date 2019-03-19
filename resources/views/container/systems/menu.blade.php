@@ -11,7 +11,7 @@
 
 @section('navbar')
     <div class="text-right">
-        <ul class="nav justify-content-end v-center">
+        <ul class="nav justify-content-sm-end justify-content-start v-center">
             @if(count($locales) > 1)
                 <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button"
@@ -177,27 +177,23 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                        {{ __('Close') }}
-                    </button>
-
                     <button type="button" data-action="components--menu#remove"
-                            class="btn btn-danger" id="menu.remove">
+                            class="btn btn-link" id="menu.remove">
                         {{ __('Remove') }}
                     </button>
 
                     <button type="button" data-action="components--menu#clear"
-                            class="btn btn-default" id="menu.reset">
-                        {{ __('Reset') }}
+                            class="btn btn-link" id="menu.reset">
+                        {{ __('Close') }}
                     </button>
 
                     <button type="button" data-action="components--menu#add"
-                            class="btn btn-primary" id="menu.create">
+                            class="btn btn-default" id="menu.create">
                         {{ __('Create') }}
                     </button>
 
                     <button type="button" data-action="components--menu#save"
-                            class="btn btn-primary" id="menu.save">
+                            class="btn btn-default" id="menu.save">
                         {{ __('Save') }}
                     </button>
                 </div>

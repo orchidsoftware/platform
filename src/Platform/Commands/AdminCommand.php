@@ -7,6 +7,7 @@ namespace Orchid\Platform\Commands;
 use Orchid\Platform\Dashboard;
 use Illuminate\Console\Command;
 use Orchid\Platform\Models\User;
+use Illuminate\Support\Collection;
 use Illuminate\Database\QueryException;
 
 class AdminCommand extends Command
@@ -33,7 +34,7 @@ class AdminCommand extends Command
     /**
      * Permissions.
      *
-     * @var
+     * @var Collection
      */
     protected $permissions;
 
@@ -61,12 +62,12 @@ class AdminCommand extends Command
                 ->createAdmin(
                     $this->argument('name') ?? $this->ask('What is your name?', 'admin'),
                     $this->argument('email') ?? $this->ask('What is your email?', 'admin@admin.com'),
-                    $this->argument('password') ?? $this->secret('What is the password?', 'password')
+                    $this->argument('password') ?? $this->secret('What is the password?')
                 );
 
             $this->info('User created successfully.');
         } catch (\Exception | QueryException $e) {
-            $this->error('User already exists or an error occurred!');
+            $this->error($e->getMessage());
         }
     }
 }

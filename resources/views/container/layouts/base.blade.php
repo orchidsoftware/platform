@@ -3,21 +3,25 @@
 @section('description',__($screen->description))
 @section('controller','screen--base')
 @section('navbar')
-    <ul class="nav justify-content-end v-center">
-        @foreach($screen->commandBar() as $command)
+    <ul class="nav justify-content-sm-end justify-content-start v-center">
+        @foreach($screen->buildCommandBar() as $command)
             <li>
-                {!! $command->build($arguments) !!}
+                {!! $command !!}
             </li>
         @endforeach
     </ul>
 @stop
 @section('content')
-    <section>
-        <form id="post-form" method="post" enctype="multipart/form-data">
+        <form id="post-form"
+              method="post"
+              enctype="multipart/form-data"
+              data-controller="layouts--form"
+              data-action="layouts--form#submit"
+              data-text-validation="{{__('Please check the entered data, it may be necessary to specify in other languages.')}}"
+        >
             {!! $screen->build() !!}
             @csrf
         </form>
-    </section>
     <div id="modals-container">
         @stack('modals-container')
     </div>

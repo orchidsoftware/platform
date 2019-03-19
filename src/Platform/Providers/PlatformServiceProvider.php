@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\ItemPermission;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Http\Composers\SystemMenuComposer;
@@ -32,63 +33,32 @@ class PlatformServiceProvider extends ServiceProvider
         View::composer('platform::partials.announcement', AnnouncementsComposer::class);
 
         $this->dashboard
-            ->registerResource(config('platform.resource', []))
+            ->registerResource('stylesheets', config('platform.resource.stylesheets', null))
+            ->registerResource('scripts', config('platform.resource.scripts', null))
             ->registerPermissions($this->registerPermissionsMain())
-            ->registerPermissions($this->registerPermissionsSystems());
+            ->registerPermissions($this->registerPermissionsSystems())
+            ->addPublicDirectory('orchid', PLATFORM_PATH.'/public/');
     }
 
     /**
-     * @return array
+     * @return ItemPermission
      */
-    protected function registerPermissionsMain(): array
+    protected function registerPermissionsMain(): ItemPermission
     {
-        return [
-            __('Main') => [
-                [
-                    'slug'        => 'platform.index',
-                    'description' => __('Main'),
-                ],
-                [
-                    'slug'        => 'platform.systems',
-                    'description' => __('Systems'),
-                ],
-                [
-                    'slug'        => 'platform.systems.index',
-                    'description' => __('Settings'),
-                ],
-            ],
-        ];
+        return ItemPermission::group(__('Main'))
+            ->addPermission('platform.index', __('Main'))
+            ->addPermission('platform.systems', __('Systems'))
+            ->addPermission('platform.systems.index', __('Settings'));
     }
 
     /**
-     * @return array
+     * @return ItemPermission
      */
-    protected function registerPermissionsSystems(): array
+    protected function registerPermissionsSystems(): ItemPermission
     {
-        return [
-            __('Systems') => [
-                [
-                    'slug'        => 'platform.systems.attachment',
-                    'description' => __('Attachment'),
-                ],
-                [
-                    'slug'        => 'platform.systems.cache',
-                    'description' => __('Cache'),
-                ],
-                [
-                    'slug'        => 'platform.systems.backups',
-                    'description' => __('Backups'),
-                ],
-                [
-                    'slug'        => 'platform.systems.announcement',
-                    'description' => __('Announcement'),
-                ],
-                [
-                    'slug'        => 'platform.systems.history',
-                    'description' => __('Change history'),
-                ],
-            ],
-        ];
+        return ItemPermission::group(__('Systems'))
+            ->addPermission('platform.systems.attachment', __('Attachment'))
+            ->addPermission('platform.systems.announcement', __('Announcement'));
     }
 
     /**

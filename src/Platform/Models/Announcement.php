@@ -35,6 +35,15 @@ class Announcement extends Model
      */
     protected $appends = ['parsed_content'];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        self::saving(function () {
+            self::disableAll();
+        });
+    }
+
     /**
      * Get the user that created the announcement.
      */
@@ -50,13 +59,14 @@ class Announcement extends Model
      */
     public function getParsedContentAttribute()
     {
-        return (new Parsedown)->text(htmlspecialchars($this->attributes['content']));
+        return (new Parsedown())->text(htmlspecialchars($this->attributes['content']));
     }
 
     /**
      * Scope a query to only include active announcements.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeActive($query)
@@ -71,7 +81,7 @@ class Announcement extends Model
      */
     public static function disableAll()
     {
-        return DB::table('announcements')->update(['active' => 0]);
+        return DB::table((new self())->getTable())->update(['active' => 0]);
     }
 
     /**

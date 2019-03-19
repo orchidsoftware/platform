@@ -6,14 +6,16 @@ use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
 use Orchid\Screen\Repository;
+use Orchid\Screen\Fields\Input;
 use Orchid\Support\Facades\Alert;
-use Orchid\Screen\Fields\InputField;
+use Illuminate\Support\Facades\Auth;
 use App\Orchid\Layouts\Examples\RowExample;
 use App\Orchid\Layouts\Examples\TableExample;
 use App\Orchid\Layouts\Examples\MetricsExample;
 use App\Orchid\Layouts\Examples\ChartBarExample;
 use App\Orchid\Layouts\Examples\ChartPieExample;
 use App\Orchid\Layouts\Examples\ChartLineExample;
+use Orchid\Platform\Notifications\DashboardNotification;
 
 class ExampleScreen extends Screen
 {
@@ -128,8 +130,9 @@ class ExampleScreen extends Screen
     /**
      * Views.
      *
-     * @return array
      * @throws \Throwable
+     *
+     * @return array
      */
     public function layout(): array
     {
@@ -150,7 +153,7 @@ class ExampleScreen extends Screen
 
             Layouts::modals([
                 'exampleModal' => Layouts::rows([
-                    InputField::make('user.password')
+                    Input::make('user.password')
                         ->type('test')
                         ->title(__('Example'))
                         ->placeholder(__('Example')),
@@ -166,6 +169,13 @@ class ExampleScreen extends Screen
     public function example()
     {
         Alert::warning('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel vulputate mi.');
+
+        Auth::user()->notify(new DashboardNotification([
+            'title'   => 'Hello Word',
+            'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            'action'  => 'http://orchid.software',
+            'type'    => DashboardNotification::INFO,
+        ]));
 
         return back();
     }

@@ -5,34 +5,26 @@ declare(strict_types=1);
 namespace App\Orchid\Layouts\User;
 
 use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Label;
 use Orchid\Screen\Layouts\Rows;
+use Orchid\Platform\Models\Role;
+use Orchid\Screen\Fields\Select;
 use Illuminate\Support\Collection;
-use Orchid\Screen\Fields\LabelField;
-use Orchid\Screen\Fields\SelectField;
-use Orchid\Screen\Fields\CheckBoxField;
+use Orchid\Screen\Fields\CheckBox;
 
 class UserRoleLayout extends Rows
 {
     /**
      * Views.
      *
-     * @return array
      * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
+     *
+     * @return array
      */
     public function fields(): array
     {
-        $fields[] = SelectField::make('roles.')
-            ->options($this->query
-                ->getContent('roles')
-                ->pluck('name', 'slug')
-                ->toArray())
-            ->value(function () {
-                return $this->query
-                    ->getContent('roles')
-                    ->where('active', true)
-                    ->pluck('name', 'slug')
-                    ->toArray();
-            })
+        $fields[] = Select::make('user.roles.')
+            ->fromModel(Role::class, 'name')
             ->multiple()
             ->horizontal()
             ->title(__('Name role'));
@@ -45,25 +37,24 @@ class UserRoleLayout extends Rows
     /**
      * @param Collection $permissionsRaw
      *
-     * @return array
      * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
+     *
+     * @return array
      */
     public function generatedPermissionFields(Collection $permissionsRaw) : array
     {
         foreach ($permissionsRaw as $group => $items) {
-            $fields[] = LabelField::make($group)
+            $fields[] = Label::make($group)
                 ->title($group)
-                ->horizontal()
-                ->hr(false);
+                ->horizontal();
 
             foreach (collect($items)->chunk(4) as $chunks) {
                 $fields[] = Field::group(function () use ($chunks) {
                     foreach ($chunks as $permission) {
-                        $permissions[] = CheckBoxField::make('permissions.'.base64_encode($permission['slug']))
+                        $permissions[] = CheckBox::make('permissions.'.base64_encode($permission['slug']))
                             ->placeholder($permission['description'])
                             ->value($permission['active'])
-                            ->sendTrueOrFalse()
-                            ->hr(false);
+                            ->sendTrueOrFalse();
                     }
 
                     return $permissions ?? [];

@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Entities;
 
-use Illuminate\View\View;
 use Orchid\Press\Models\Post;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Select;
 use Illuminate\Support\Collection;
-use Orchid\Screen\Fields\InputField;
-use Orchid\Screen\Fields\SelectField;
-use Orchid\Screen\Fields\DateTimerField;
+use Orchid\Screen\Fields\DateTimer;
+use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Contracts\Pagination\Paginator;
 
-abstract class Many implements EntityContract
+abstract class Many implements EntityContract, UrlRoutable
 {
     use Structure, Actions;
 
@@ -52,40 +52,11 @@ abstract class Many implements EntityContract
     {
         return Post::type($this->slug)
             ->filtersApplyDashboard($this->slug)
+            ->defaultSort('updated_at')
             ->filters()
             ->with($this->with)
             ->orderBy('id', 'Desc')
             ->paginate();
-    }
-
-    /**
-     * Raw data and fields to display.
-     *
-     * @return array
-     */
-    public function generateGrid(): array
-    {
-        return [
-            'data'   => $this->get(),
-            'fields' => $this->grid(),
-            'type'   => $this,
-        ];
-    }
-
-    /**
-     * Display form for filtering.
-     *
-     * @return View
-     */
-    public function showFilterDashboard(): View
-    {
-        $dashboardFilter = $this->getFilters();
-        $chunk = ceil($dashboardFilter->count() / 4);
-
-        return view('platform::container.posts.filter', [
-            'filters' => $dashboardFilter,
-            'chunk'   => $chunk,
-        ]);
     }
 
     /**
@@ -107,23 +78,24 @@ abstract class Many implements EntityContract
     /**
      * Registered fields for main.
      *
+     * @throws \Throwable|\Orchid\Press\Exceptions\EntityTypeException
+     *
      * @return array
-     * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
      */
     public function main(): array
     {
         return [
-            InputField::make('slug')
+            Input::make('slug')
                 ->type('text')
                 ->name('slug')
                 ->max(255)
                 ->title(__('Semantic URL'))
                 ->placeholder(__('Unique name')),
 
-            DateTimerField::make('publish_at')
+            DateTimer::make('publish_at')
                 ->title(__('Time of publication')),
 
-            SelectField::make('status')
+            Select::make('status')
                 ->options($this->status())
                 ->title(__('Status')),
         ];

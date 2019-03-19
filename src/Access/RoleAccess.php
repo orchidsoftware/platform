@@ -45,10 +45,11 @@ trait RoleAccess
     }
 
     /**
-     * @return bool
      * @throws \Exception
+     *
+     * @return bool|null
      */
-    public function delete(): bool
+    public function delete(): ?bool
     {
         $isSoftDeleted = array_key_exists('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this));
         if ($this->exists && ! $isSoftDeleted) {

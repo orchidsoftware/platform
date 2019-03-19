@@ -14,18 +14,18 @@
             @endif
         >
             @isset($badge)
-                <b class="badge {{$badge['class']}} pull-right">{{$badge['data']()}}</b>
+                <b class="badge {{$badge['class']}} pull-right mr-3">{{$badge['data']()}}</b>
             @endisset
             <i class="{{$icon}} m-r-xs"></i>
             {{ __($label) }}
         </a>
-        @if (!empty($childs))
-            <div class="collapse sub-menu {{active($active ?? '','show')}}" id="menu-{{$slug}}" data-parent="#headerMenuCollapse">
+        @if($childs)
+            <div class="collapse sub-menu {{active($active,'show')}}" id="menu-{{$slug}}" data-parent="#headerMenuCollapse">
                 {!! Dashboard::menu()->render($slug,'platform::partials.dropdownMenu') !!}
             </div>
         @endif
     </li>
-@isset($divider)
+@if($divider)
     <li class="divider b-t b-dark"></li>
-@endisset
+@endif
 {{-- @endif --}}

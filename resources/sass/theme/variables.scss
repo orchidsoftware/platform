@@ -2,11 +2,10 @@
 
 */
 
-$assets-url: '../../assets';
-$base-img-url: '/orchid/img/';
-$icon-font-path: '/orchid/fonts/';
-$fa-font-path: '/orchid/fonts/';
-$orchid-font-path: '/orchid/fonts/';
+$assets-url: '../assets';
+$base-img-url: '../img/';
+$icon-font-path: '../fonts/';
+$orchid-font-path: '../fonts';
 
 $grid-breakpoints: (
         xs: 0,
@@ -51,7 +50,7 @@ $brand-success : $oc-green-8;
 $brand-warning : $oc-yellow-5;
 $brand-danger : $oc-red-8;
 $brand-light : $oc-gray-2;
-$brand-dark : #3c4146;
+$brand-dark : $oc-gray-9;
 $brand-grey : $oc-gray-7;
 $brand-white : #ffffff;
 $brand-black : #1c2b36;

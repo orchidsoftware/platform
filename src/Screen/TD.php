@@ -5,9 +5,13 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Closure;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Traits\Macroable;
 
 class TD
 {
+    use Macroable;
+
     /**
      * Align the cell to the left.
      */
@@ -39,12 +43,12 @@ class TD
     public $width;
 
     /**
-     * @var
+     * @var string
      */
     public $filter;
 
     /**
-     * @var
+     * @var bool
      */
     public $sort;
 
@@ -64,7 +68,7 @@ class TD
     public $asyncRoute;
 
     /**
-     * @var
+     * @var string
      */
     public $align = 'left';
 
@@ -167,7 +171,7 @@ class TD
     }
 
     /**
-     * @param $data
+     * @param mixed $data
      *
      * @return mixed
      */
@@ -183,21 +187,21 @@ class TD
      */
     public function linkPost(string $text = null): self
     {
-        return $this->link('platform.posts.type.edit', ['type', 'slug'], $text);
+        return $this->link('platform.entities.type.edit', ['type', 'slug'], $text);
     }
 
     /**
      * @param string $route
-     * @param        $options
+     * @param mixed  $options
      * @param string $text
      *
      * @return TD
      */
     public function link(string $route, $options, string $text = null): self
     {
-        $this->setRender(function ($datum) use ($route, $options, $text) {
+        $this->render(function ($datum) use ($route, $options, $text) {
             $attributes = [];
-            $options = array_wrap($options);
+            $options = Arr::wrap($options);
 
             foreach ($options as $option) {
                 if (method_exists($datum, 'getContent')) {
@@ -210,6 +214,7 @@ class TD
 
             if (! is_null($text)) {
                 $text = $datum->getContent($text);
+                $text = $text ?? '—';
             }
 
             return view('platform::partials.td.link', [
@@ -227,7 +232,7 @@ class TD
      *
      * @return $this
      */
-    public function setRender(Closure $closure): self
+    public function render(Closure $closure): self
     {
         $this->render = $closure;
 
@@ -235,18 +240,18 @@ class TD
     }
 
     /**
-     * @param string $modal
-     * @param             string $method
-     * @param             string $options
-     * @param string|null $text
+     * @param string       $modal
+     * @param string       $method
+     * @param string|array $options
+     * @param string|null  $text
      *
      * @return \Orchid\Screen\TD
      */
     public function loadModalAsync(string $modal, $method, $options, string $text = null): self
     {
-        $this->setRender(function ($datum) use ($modal, $method, $options, $text) {
+        $this->render(function ($datum) use ($modal, $method, $options, $text) {
             $attributes = [];
-            $options = array_wrap($options);
+            $options = Arr::wrap($options);
 
             foreach ($options as $option) {
                 if (method_exists($datum, 'getContent')) {
@@ -257,13 +262,14 @@ class TD
                 $attributes[] = $datum->getAttribute($option);
             }
 
-            $text = is_null($text) ? $text : $datum->getContent($text);
+            $text = $datum->getContent($text) ?: $text;
 
             return view('platform::partials.td.async', [
                 'modal'      => $modal,
                 'attributes' => $attributes,
                 'text'       => $text,
                 'method'     => $method,
+                'title'      => $this->title,
                 'route'      => $this->asyncRoute,
             ]);
         });

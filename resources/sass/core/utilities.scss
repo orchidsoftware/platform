@@ -1098,6 +1098,14 @@
   align-items: center;
 }
 
+@include media-breakpoint-up(md) {
+  .v-md-center {
+    display: flex;
+    align-items: center;
+  }
+}
+
+
 .no-resize {
   resize: none;
 }

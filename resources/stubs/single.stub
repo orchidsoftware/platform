@@ -2,6 +2,7 @@
 
 namespace DummyNamespace;
 
+use Orchid\Screen\Field;
 use Orchid\Press\Entities\Single;
 
 class DummyClass extends Single
@@ -39,7 +40,7 @@ class DummyClass extends Single
     }
 
     /**
-     * @return array
+     * @return Field[]
      */
     public function fields(): array
     {
@@ -47,7 +48,7 @@ class DummyClass extends Single
     }
 
     /**
-     * @return array
+     * @return Field[]
      */
     public function options(): array
     {

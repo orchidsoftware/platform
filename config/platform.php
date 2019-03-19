@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'domain' => env('DASHBOARD_DOMAIN', dashboard_domain()),
+    'domain' => env('DASHBOARD_DOMAIN', null),
 
     /*
     |--------------------------------------------------------------------------

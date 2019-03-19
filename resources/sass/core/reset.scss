@@ -164,6 +164,8 @@ blockquote {
 .alert {
   font-size: $font-size-sm;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-radius: 0;
+  border: 0;
   p,ul{
     margin-bottom: 0;
   }
@@ -418,11 +420,13 @@ blockquote {
 .pagination {
   > li, .page-item {
     > a, .page-link {
-      border-color: $border-color;
+      border: none;
       &:hover,
       &:focus {
-        border-color: $border-color;
-        background-color: $brand-light;
+        border-color: initial;
+        background-color: initial;
+        text-decoration: underline;
+        box-shadow: none;
       }
 	}  
 	&.active{
@@ -431,11 +435,11 @@ blockquote {
 			&:hover,
 			&:focus {
 				z-index: 3;
-				color: $brand-white!important;
-				background-color: $brand-primary;
-				border-color: $brand-primary;
+				background-color: inherit;
+				border-color: inherit;
 				cursor: default;
-			}
+                @extend .text-muted;
+            }
 		
 		
 		}
@@ -744,6 +748,9 @@ blockquote {
 
 .sub-menu {
   transition: all .4s ease-in-out 0s;
+  .dropdown-item{
+    padding: .5rem 2.5rem;
+  }
   .dropdown-item:hover, .dropdown-item:focus {
     background-color: inherit;
   }

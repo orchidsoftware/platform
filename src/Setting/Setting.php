@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Setting;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 
@@ -50,7 +51,7 @@ class Setting extends Model
     ];
 
     /**
-     * @param string $key
+     * @param string       $key
      * @param string|array $value
      *
      * Fast record
@@ -71,20 +72,20 @@ class Setting extends Model
     }
 
     /**
-     * @param $key
+     * @param string|array $key
      *
      * @return null
      */
     private function cacheForget($key)
     {
-        foreach (array_wrap($key) as $value) {
+        foreach (Arr::wrap($key) as $value) {
             Cache::forget($value);
         }
     }
 
     /**
      * @param string|array $key
-     * @param string|null $default
+     * @param string|null  $default
      *                              Get values
      *
      * @return mixed
@@ -101,10 +102,10 @@ class Setting extends Model
     }
 
     /**
-     * @param             $key
-     * @param string|null $default
+     * @param string|array      $key
+     * @param string|array|null $default
      *
-     * @return null
+     * @return string|array|null
      */
     public function getNoCache($key, $default = null)
     {
@@ -123,13 +124,13 @@ class Setting extends Model
     }
 
     /**
-     * @param $key
+     * @param string|array $key
      *
      * @return mixed
      */
     public function forget($key)
     {
-        $key = array_wrap($key);
+        $key = Arr::wrap($key);
         $result = $this->whereIn('key', $key)->delete();
         $this->cacheForget($key);
 

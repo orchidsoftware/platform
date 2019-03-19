@@ -37,7 +37,7 @@ class Role extends Model implements RoleInterface
     ];
 
     /**
-     * @var
+     * @var array
      */
     protected $allowedFilters = [
         'id',
@@ -47,7 +47,7 @@ class Role extends Model implements RoleInterface
     ];
 
     /**
-     * @var
+     * @var array
      */
     protected $allowedSorts = [
         'id',
@@ -58,12 +58,12 @@ class Role extends Model implements RoleInterface
     /**
      * Set permission as boolean.
      *
-     * @param $permissions
+     * @param array $permissions
      */
-    public function setPermissionsAttribute($permissions)
+    public function setPermissionsAttribute(array $permissions = [])
     {
         foreach ($permissions as $key => $value) {
-            $permissions[$key] = boolval($value);
+            $permissions[$key] = (bool) $value;
         }
         $this->attributes['permissions'] = json_encode($permissions ?? []);
     }

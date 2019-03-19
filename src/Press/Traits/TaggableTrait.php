@@ -39,15 +39,15 @@ trait TaggableTrait
     }
 
     /**
-     * @param $delimiter
+     * @param string $delimiter
      *
      * @return string
      */
-    public static function setTagsDelimiter($delimiter)
+    public static function setTagsDelimiter(string $delimiter)
     {
         static::$delimiter = $delimiter;
 
-        return get_called_class();
+        return static::class;
     }
 
     /**
@@ -59,9 +59,9 @@ trait TaggableTrait
     }
 
     /**
-     * @param $model
+     * @param string $model
      */
-    public static function setTagsModel($model)
+    public static function setTagsModel(string $model)
     {
         static::$tagsModel = $model;
     }
@@ -69,15 +69,15 @@ trait TaggableTrait
     /**
      * @return string
      */
-    public static function getSlugGenerator()
+    public static function getSlugGenerator() : string
     {
         return static::$slugGenerator;
     }
 
     /**
-     * @param $slugGenerator
+     * @param string $slugGenerator
      */
-    public static function setSlugGenerator($slugGenerator)
+    public static function setSlugGenerator(string $slugGenerator)
     {
         static::$slugGenerator = $slugGenerator;
     }
@@ -95,7 +95,7 @@ trait TaggableTrait
      */
     public static function allTags()
     {
-        $instance = new static;
+        $instance = new static();
 
         return $instance->createTagsModel()->whereNamespace(
             $instance->getEntityClassName()
@@ -104,14 +104,14 @@ trait TaggableTrait
 
     /**
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param                                       $tags
-     * @param string $type
+     * @param mixed                                 $tags
+     * @param string                                $type
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public static function scopeWhereTag(Builder $query, $tags, $type = 'slug')
     {
-        $tags = (new static)->prepareTags($tags);
+        $tags = (new static())->prepareTags($tags);
 
         foreach ($tags as $tag) {
             $query->whereHas('tags', function ($query) use ($type, $tag) {
@@ -124,14 +124,14 @@ trait TaggableTrait
 
     /**
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param                                       $tags
-     * @param string $type
+     * @param mixed                                 $tags
+     * @param string                                $type
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public static function scopeWithTag(Builder $query, $tags, $type = 'slug')
     {
-        $tags = (new static)->prepareTags($tags);
+        $tags = (new static())->prepareTags($tags);
 
         return $query->whereHas('tags', function ($query) use ($type, $tags) {
             $query->whereIn($type, $tags);
@@ -140,14 +140,14 @@ trait TaggableTrait
 
     /**
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param                                       $tags
-     * @param string $type
+     * @param mixed                                 $tags
+     * @param string                                $type
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public static function scopeWithoutTag(Builder $query, $tags, $type = 'slug')
     {
-        $tags = (new static)->prepareTags($tags);
+        $tags = (new static())->prepareTags($tags);
 
         return $query->whereDoesntHave('tags', function ($query) use ($type, $tags) {
             $query->whereIn($type, $tags);
@@ -155,7 +155,7 @@ trait TaggableTrait
     }
 
     /**
-     * @param $tags
+     * @param mixed $tags
      *
      * @return bool
      */
@@ -169,7 +169,7 @@ trait TaggableTrait
     }
 
     /**
-     * @param null $tags
+     * @param mixed|null $tags
      *
      * @return bool
      */
@@ -185,7 +185,7 @@ trait TaggableTrait
     }
 
     /**
-     * @param        $tags
+     * @param mixed  $tags
      * @param string $type
      *
      * @return bool
@@ -216,11 +216,11 @@ trait TaggableTrait
     }
 
     /**
-     * @param $name
+     * @param string $name
      */
-    public function addTag($name)
+    public function addTag(string $name)
     {
-        $tag = $this->createTagsModel()->firstOrNew([
+        $tag = self::createTagsModel()->firstOrNew([
             'slug'      => $this->generateTagSlug($name),
             'namespace' => $this->getEntityClassName(),
         ]);
@@ -241,16 +241,16 @@ trait TaggableTrait
     }
 
     /**
-     * @param $name
+     * @param string $name
      */
-    public function removeTag($name)
+    public function removeTag(string $name)
     {
         $slug = $this->generateTagSlug($name);
 
         $namespace = $this->getEntityClassName();
 
-        $tag = $this
-            ->createTagsModel()
+        $tag = self
+            ::createTagsModel()
             ->whereNamespace($namespace)
             ->where(function ($query) use ($name, $slug) {
                 $query
@@ -269,18 +269,18 @@ trait TaggableTrait
     }
 
     /**
-     * @param $tags
+     * @param mixed $tags
      *
      * @return array
      */
-    public function prepareTags($tags)
+    public function prepareTags($tags) : array
     {
         if (is_null($tags)) {
             return [];
         }
 
         if (is_string($tags)) {
-            $delimiter = preg_quote($this->getTagsDelimiter(), '#');
+            $delimiter = preg_quote(self::getTagsDelimiter(), '#');
 
             $tags = array_map('trim',
                 preg_split("#[{$delimiter}]#", $tags)
@@ -295,16 +295,17 @@ trait TaggableTrait
      */
     public static function createTagsModel()
     {
-        return new static::$tagsModel;
+        return new static::$tagsModel();
     }
 
     /**
      * Generate the tag slug using the given name.
      *
-     * @param  string $name
+     * @param string $name
+     *
      * @return string
      */
-    protected function generateTagSlug($name)
+    protected function generateTagSlug(string $name) : string
     {
         return call_user_func(static::$slugGenerator, $name);
     }
@@ -314,12 +315,8 @@ trait TaggableTrait
      *
      * @return string
      */
-    protected function getEntityClassName()
+    protected function getEntityClassName() : string
     {
-        if (isset(static::$entityNamespace)) {
-            return static::$entityNamespace;
-        }
-
         return $this->tags()->getMorphClass();
     }
 }

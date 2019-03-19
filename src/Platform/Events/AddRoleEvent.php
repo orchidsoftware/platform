@@ -32,8 +32,8 @@ class AddRoleEvent
     /**
      * Create a new event instance.
      *
-     * @param $user
-     * @param $role
+     * @param mixed $user
+     * @param mixed $role
      */
     public function __construct($user, $role)
     {

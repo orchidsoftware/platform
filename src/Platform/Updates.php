@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform;
 
-use Composer\Semver\Comparator;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 
@@ -44,7 +44,7 @@ class Updates
      */
     public function check()
     {
-        $status = Cache::remember('platform-update-widget', $this->cache, function () {
+        $status = Cache::remember('platform-update-widget', now()->addMinutes($this->cache), function () {
             $this->updateInstall();
 
             return $this->getStatus();
@@ -60,7 +60,7 @@ class Updates
 
             $packages = [];
 
-            for ($i = 0; $i < rand(10, 20); $i++) {
+            for ($i = 0, $iMax = random_int(10, 20); $i < $iMax; $i++) {
                 $packages[] = ['name' => 'orchid/platform', 'version' => $this->currentVersion.'.0'];
             }
 
@@ -97,8 +97,11 @@ class Updates
     public function getStatus(): bool
     {
         foreach ($this->requestVersion() as $key => $version) {
-            if ($key !== 'dev-master' && Comparator::greaterThan($version['version'],
-                    $this->currentVersion)) {
+            if (! Str::contains($key, 'dev')) {
+                continue;
+            }
+
+            if (version_compare($version['version'], $this->currentVersion, '>')) {
                 return true;
             }
         }
@@ -114,7 +117,9 @@ class Updates
     public function requestVersion(): array
     {
         try {
-            return json_decode(file_get_contents($this->apiURL), true)['packages']['orchid/platform'];
+            $versions = json_decode(file_get_contents($this->apiURL), true)['packages']['orchid/platform'];
+
+            return array_reverse($versions);
         } catch (\Exception $exception) {
             Log::alert($exception->getMessage());
 

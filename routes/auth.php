@@ -15,16 +15,16 @@ use Orchid\Platform\Http\Controllers\Auth\ForgotPasswordController;
 |
 */
 
-if (config('platform.auth', true)) {
+if (config('auth', true)) {
     // Authentication Routes...
-    $this->get('login', [LoginController::class, 'showLoginForm'])->name('platform.login');
-    $this->post('login', [LoginController::class, 'login'])->name('platform.login.auth');
+    $this->router->get('login', [LoginController::class, 'showLoginForm'])->name('login');
+    $this->router->post('login', [LoginController::class, 'login'])->name('login.auth');
 
     // Password Reset Routes...
-    $this->get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('platform.password.request');
-    $this->post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('platform.password.email');
-    $this->get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('platform.password.reset');
-    $this->post('password/reset', [ResetPasswordController::class, 'reset']);
+    $this->router->get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+    $this->router->post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    $this->router->get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+    $this->router->post('password/reset', [ResetPasswordController::class, 'reset']);
 }
 
-$this->post('logout', [LoginController::class, 'logout'])->name('platform.logout');
+$this->router->post('logout', [LoginController::class, 'logout'])->name('logout');

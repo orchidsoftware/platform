@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Support\Str;
 use Orchid\Screen\Repository;
 
 /**
@@ -46,6 +47,8 @@ abstract class Chart extends Base
     public $data = '';
 
     /**
+     * Colors used.
+     *
      * @var array
      */
     public $colors = [
@@ -57,6 +60,13 @@ abstract class Chart extends Base
     ];
 
     /**
+     * Determines whether to display the export button.
+     *
+     * @var bool
+     */
+    public $export = true;
+
+    /**
      * @param \Orchid\Screen\Repository $query
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -65,7 +75,7 @@ abstract class Chart extends Base
     {
         return view($this->template, [
             'title'  => $this->title,
-            'slug'   => str_slug($this->title),
+            'slug'   => Str::slug($this->title),
             'type'   => $this->type,
             'height' => $this->height,
             'labels' => json_encode(collect($this->labels)),

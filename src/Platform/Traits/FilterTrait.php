@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Traits;
 
+use Illuminate\Support\Collection;
 use Orchid\Platform\Filters\HttpFilter;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -11,7 +12,7 @@ trait FilterTrait
 {
     /**
      * @param Builder $query
-     * @param array $filters
+     * @param array   $filters
      *
      * @return Builder
      */
@@ -35,7 +36,7 @@ trait FilterTrait
      */
     public function scopeFilters(Builder $builder)
     {
-        $filter = new HttpFilter;
+        $filter = new HttpFilter();
         $filter->build($builder);
 
         return $builder;
@@ -43,12 +44,12 @@ trait FilterTrait
 
     /**
      * @param Builder $builder
-     * @param         $column
-     * @param string $direction
+     * @param string  $column
+     * @param string  $direction
      *
      * @return Builder
      */
-    public function scopeDefaultSort(Builder $builder, $column, $direction = 'asc')
+    public function scopeDefaultSort(Builder $builder, string $column, string $direction = 'asc')
     {
         if (is_null($builder->getQuery()->orders)) {
             $builder->orderBy($column, $direction);
@@ -60,7 +61,7 @@ trait FilterTrait
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function getOptionsFilter()
+    public function getOptionsFilter(): Collection
     {
         return collect([
             'allowedFilters' => collect($this->allowedFilters ?? []),

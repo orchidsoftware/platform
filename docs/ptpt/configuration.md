@@ -7,7 +7,7 @@ Todos os parâmetros podem ser encontrados no diretório `config`, e o arquivo `
 ## Endereço da plataforma
 
 ```php
-'domain' => env('DASHBOARD_DOMAIN', dashboard_domain()),
+'domain' => env('DASHBOARD_DOMAIN', null),
 ```
 
 O endereço do painel desempenha um papel importante para muitos projetos.
@@ -96,24 +96,24 @@ As entradas genéricas criadas com o sistema de `comportamento` podem ser locali
 
 ```php
 'fields' => [
-    'textarea'     => Orchid\Screen\Fields\TextAreaField::class,
-    'input'        => Orchid\Screen\Fields\InputField::class,
+    'textarea'     => Orchid\Screen\Fields\TextArea::class,
+    'input'        => Orchid\Screen\Fields\Input::class,
     'list'         => Orchid\Screen\Fields\ListField::class,
-    'tags'         => Orchid\Screen\Fields\TagsField::class,
+    'tags'         => Orchid\Screen\Fields\Tags::class,
     'robot'        => Orchid\Screen\Fields\RobotField::class,
-    'relationship' => Orchid\Screen\Fields\RelationshipField::class,
+    'relationship' => Orchid\Screen\Fields\Relationship::class,
     'place'        => Orchid\Screen\Fields\PlaceField::class,
-    'picture'      => Orchid\Screen\Fields\PictureField::class,
-    'datetime'     => Orchid\Screen\Fields\DateTimerField::class,
-    'checkbox'     => Orchid\Screen\Fields\CheckBoxField::class,
-    'code'         => Orchid\Screen\Fields\CodeField::class,
-    'wysiwyg'      => Orchid\Screen\Fields\TinyMCEField::class,
-    'password'     => Orchid\Screen\Fields\PasswordField::class,
-    'markdown'     => Orchid\Screen\Fields\SimpleMDEField::class,
+    'picture'      => Orchid\Screen\Fields\Picture::class,
+    'datetime'     => Orchid\Screen\Fields\DateTimer::class,
+    'checkbox'     => Orchid\Screen\Fields\CheckBox::class,
+    'code'         => Orchid\Screen\Fields\Code::class,
+    'wysiwyg'      => Orchid\Screen\Fields\TinyMCE::class,
+    'password'     => Orchid\Screen\Fields\Password::class,
+    'markdown'     => Orchid\Screen\Fields\SimpleMDE::class,
 ],
 ```
 
-Nos aliases de campo de configuração de campo são usados para abstrair de elementos usados, por exemplo, `wysiwyg` é um alias para o redactor TinyMCEField. Se chegaste a decidir que a funcionalidade do redactor que tu usas não é suficiente, só precisarás mudar o seu alias para os outros, em vez de mudares o teu nome completo em todos os arquivos do teu projeto.
+Nos aliases de campo de configuração de campo são usados para abstrair de elementos usados, por exemplo, `wysiwyg` é um alias para o redactor TinyMCE. Se chegaste a decidir que a funcionalidade do redactor que tu usas não é suficiente, só precisarás mudar o seu alias para os outros, em vez de mudares o teu nome completo em todos os arquivos do teu projeto.
 
 [Mais sobre Campos](/en/docs/field/)
 

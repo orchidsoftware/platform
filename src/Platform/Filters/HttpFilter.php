@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Filters;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
 
 class HttpFilter
@@ -15,19 +16,19 @@ class HttpFilter
     protected $request;
 
     /**
-     * @var
+     * @var Collection
      */
     protected $filters;
 
     /**
-     * @var
+     * @var Collection
      */
     protected $sorts;
 
     /**
      * Model options and allowed params.
      *
-     * @var
+     * @var Collection
      */
     protected $options;
 
@@ -83,7 +84,7 @@ class HttpFilter
     {
         $this->sorts
             ->each(function (string $sort) use ($builder) {
-                $descending = $sort[0] === '-';
+                $descending = strpos($sort, '-') === 0;
                 $key = ltrim($sort, '-');
                 $key = str_replace('.', '->', $key);
                 $builder->orderBy($key, $descending ? 'desc' : 'asc');
@@ -113,7 +114,7 @@ class HttpFilter
     /**
      * @param Builder $query
      * @param         $value
-     * @param string $property
+     * @param string  $property
      *
      * @return Builder
      */
@@ -169,7 +170,7 @@ class HttpFilter
     /**
      * @param $property
      *
-     * @return bool|string
+     * @return string
      */
     public function getSort($property)
     {

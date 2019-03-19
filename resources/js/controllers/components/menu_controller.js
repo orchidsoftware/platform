@@ -115,7 +115,7 @@ export default class extends Controller {
             };
 
         axios
-            .get(this.getUri('create/'), {params: data})
+            .post(this.getUri(''), {params: data})
             .then((response) => {
                 $menu.add2Dom(response.data.id)
             });

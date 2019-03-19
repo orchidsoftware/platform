@@ -6,23 +6,23 @@ namespace App\Orchid\Entities;
 
 use Orchid\Screen\TD;
 use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Map;
+use Orchid\Screen\Fields\UTM;
+use Orchid\Screen\Fields\Code;
+use Orchid\Screen\Fields\Tags;
 use Orchid\Press\Entities\Many;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Quill;
+use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Fields\Upload;
 use Orchid\Press\Models\Category;
-use Orchid\Screen\Fields\MapField;
-use Orchid\Screen\Fields\UTMField;
-use Orchid\Screen\Fields\CodeField;
-use Orchid\Screen\Fields\TagsField;
-use Orchid\Screen\Fields\InputField;
-use Orchid\Screen\Fields\QuillField;
-use Orchid\Screen\Fields\SelectField;
-use Orchid\Screen\Fields\UploadField;
-use Orchid\Screen\Fields\PictureField;
-use Orchid\Screen\Fields\TinyMCEField;
+use Orchid\Screen\Fields\Picture;
+use Orchid\Screen\Fields\TinyMCE;
+use Orchid\Screen\Fields\CheckBox;
+use Orchid\Screen\Fields\TextArea;
+use Orchid\Screen\Fields\DateTimer;
+use Orchid\Screen\Fields\SimpleMDE;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Screen\Fields\CheckBoxField;
-use Orchid\Screen\Fields\TextAreaField;
-use Orchid\Screen\Fields\DateTimerField;
-use Orchid\Screen\Fields\SimpleMDEField;
 use Orchid\Press\Http\Filters\SearchFilter;
 use Orchid\Press\Http\Filters\StatusFilter;
 use Orchid\Press\Http\Filters\CreatedFilter;
@@ -105,15 +105,16 @@ class Post extends Many
     public function filters(): array
     {
         return [
-            SearchFilter::class,
             StatusFilter::class,
+            SearchFilter::class,
             CreatedFilter::class,
         ];
     }
 
     /**
-     * @return array
      * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
+     *
+     * @return array
      */
     public function fields(): array
     {
@@ -121,14 +122,14 @@ class Post extends Many
 
             Field::group([
 
-                InputField::make('name')
+                Input::make('name')
                     ->type('text')
                     ->max(255)
                     ->required()
                     ->title('Name Articles')
                     ->help('Article title'),
 
-                InputField::make('title')
+                Input::make('title')
                     ->type('text')
                     ->max(255)
                     ->required()
@@ -139,65 +140,66 @@ class Post extends Many
 
             Field::group([
 
-                DateTimerField::make('open')
+                DateTimer::make('open')
                     ->title('Opening date')
                     ->help('The opening event will take place'),
 
-                InputField::make('phone')
+                Input::make('phone')
                     ->type('text')
                     ->mask('(999) 999-9999')
                     ->title('Phone')
                     ->help('Number Phone'),
 
-                CheckBoxField::make('free')
+                CheckBox::make('free')
                     ->sendTrueOrFalse()
                     ->title('Free')
                     ->placeholder('Event for free')
                     ->help('Event for free'),
             ]),
 
-            TinyMCEField::make('body')
+            TinyMCE::make('body')
                 ->required()
                 ->title('Name Articles')
                 ->help('Article title'),
 
-            MapField::make('place')
+            Map::make('place')
                 ->required()
                 ->title('Object on the map')
                 ->help('Enter the coordinates, or use the search'),
 
-            PictureField::make('picture')
+            Picture::make('picture')
                 ->name('picture')
                 ->width(500)
                 ->height(300),
 
-            UTMField::make('link')
+            UTM::make('link')
                 ->title('UTM link')
                 ->help('Generated link'),
 
-            SimpleMDEField::make('body2')
+            SimpleMDE::make('body2')
                 ->title('Name Articles')
                 ->help('Article title'),
 
-            QuillField::make('body3')
+            Quill::make('body3')
                 ->title('Name Articles')
                 ->help('Article title'),
 
-            CodeField::make('code')
+            Code::make('code')
                 ->title('Name Articles')
                 ->help('Article title'),
         ];
     }
 
     /**
-     * @return array
      * @throws \Orchid\Screen\Exceptions\TypeException
      * @throws \Throwable
+     *
+     * @return array
      */
     public function main(): array
     {
         return array_merge(parent::main(), [
-            SelectField::make('category.')
+            Select::make('category.')
                 ->options(function () {
                     $options = (new Category())->getAllCategories();
 
@@ -207,29 +209,30 @@ class Post extends Many
                 ->title('Category')
                 ->help('Select category'),
 
-            TagsField::make('tags')
+            Tags::make('tags')
                 ->title('Tags')
                 ->help('Keywords'),
 
-            UploadField::make('attachment')
+            Upload::make('attachment')
                 ->title('Upload DropBox'),
         ]);
     }
 
     /**
-     * @return array
      * @throws \Throwable
+     *
+     * @return array
      */
     public function options(): array
     {
         return [
-            TextAreaField::make('description')
+            TextArea::make('description')
                 ->max(255)
                 ->rows(5)
                 ->required()
                 ->title('Short description'),
 
-            DateTimerField::make('open')
+            DateTimer::make('open')
                 ->title('Opening date')
                 ->help('The opening event will take place'),
         ];
@@ -269,7 +272,7 @@ class Post extends Many
                 ->filter('date')
                 ->sort()
                 ->align(TD::ALIGN_RIGHT)
-                ->setRender(function ($item) {
+                ->render(function ($item) {
                     return optional($item->publish_at)->toDateString();
                 }),
 
@@ -277,7 +280,7 @@ class Post extends Many
                 ->filter('date')
                 ->align(TD::ALIGN_RIGHT)
                 ->sort()
-                ->setRender(function ($item) {
+                ->render(function ($item) {
                     return $item->created_at->toDateString();
                 }),
         ];

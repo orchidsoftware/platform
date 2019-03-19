@@ -15,7 +15,7 @@ class CreateOrchidAnnouncementsTable extends Migration
     {
         Schema::create('announcements', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->text('content');
             $table->boolean('active')->default(1);
             $table->timestamps();

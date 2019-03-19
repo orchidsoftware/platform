@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace Orchid\Tests;
 
 use Watson\Active\Active;
+use Illuminate\Support\Str;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Eloquent\Factory;
+use Orchid\Database\Seeds\OrchidDatabaseSeeder;
 use Orchid\Press\Providers\PressServiceProvider;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
-use Orchid\Bulldozer\Providers\BulldozerServiceProvider;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 
 /**
@@ -24,34 +25,18 @@ trait Environment
      * Run test: php vendor/bin/phpunit --coverage-html ./logs/coverage ./tests
      * Run 1 test:  php vendor/bin/phpunit  --filter= UserTest tests\\Unit\\Platform\\UserTest --debug.
      */
-    protected function setUp()
+    protected function setUp() : void
     {
         parent::setUp();
-
-        Schema::defaultStringLength(191);
-
-        $this->artisan('vendor:publish', [
-            '--provider' => 'Orchid\Platform\Providers\FoundationServiceProvider',
-        ]);
-
-        $this->artisan('vendor:publish', [
-            '--provider' => 'Orchid\Press\Providers\PressServiceProvider',
-        ]);
-
-        $this->artisan('vendor:publish', [
-            '--all' => true,
-            '--tag' => 'config,migrations',
-        ]);
 
         $this->loadLaravelMigrations();
         $this->loadMigrationsFrom(realpath('./database/migrations'));
         $this->artisan('migrate', ['--database' => 'orchid']);
-        $this->artisan('orchid:link');
 
         $this->withFactories(realpath(PLATFORM_PATH.'/database/factories'));
 
         $this->artisan('db:seed', [
-            '--class' => 'Orchid\Database\Seeds\OrchidDatabaseSeeder',
+            '--class' => OrchidDatabaseSeeder::class,
         ]);
 
         $this->artisan('orchid:admin', [
@@ -71,6 +56,8 @@ trait Environment
      */
     protected function getEnvironmentSetUp($app)
     {
+        $app->make(Factory::class)->load(realpath(PLATFORM_PATH.'/database/factories'));
+
         $app['config']->set('app.debug', true);
         $app['config']->set('auth.providers.users.model', User::class);
 
@@ -82,7 +69,6 @@ trait Environment
         ]);
         $app['config']->set('scout.driver', null);
         $app['config']->set('database.default', 'orchid');
-        $app['config']->set('activitylog.enabled', false);
 
         $app['config']->set('sluggable', [
             'source'             => null,
@@ -106,7 +92,7 @@ trait Environment
             'table'           => 'sessions',
             'store'           => null,
             'lottery'         => [2, 100],
-            'cookie'          => str_slug(env('APP_NAME', 'laravel'), '_').'_session',
+            'cookie'          => Str::slug(env('APP_NAME', 'laravel'), '_').'_session',
             'path'            => '/',
             'domain'          => null,
             'secure'          => false,
@@ -135,7 +121,6 @@ trait Environment
         return [
             FoundationServiceProvider::class,
             PressServiceProvider::class,
-            BulldozerServiceProvider::class,
         ];
     }
 

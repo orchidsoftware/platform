@@ -45,17 +45,68 @@ class DashboardTest extends TestUnitCase
         ]);
 
         $class = Dashboard::model(User::class);
+        $option = Dashboard::option('models.'.User::class);
 
         $this->assertEquals($class, 'MyCustomClass');
+        $this->assertEquals($option, 'MyCustomClass');
+        $this->assertEquals(Dashboard::option('random'), null);
     }
 
-    protected function setUp()
+    public function testIsRegisterResource()
+    {
+        $dashboard = new Dashboard();
+
+        $script = $dashboard
+            ->registerResource('scripts', 'app.js')
+            ->getResource('scripts');
+
+        $this->assertEquals($script, [
+            'app.js',
+        ]);
+
+        $stylesheets = $dashboard
+            ->registerResource('stylesheets', 'style.css')
+            ->getResource('stylesheets');
+
+        $this->assertEquals($stylesheets, [
+            'style.css',
+        ]);
+
+        $this->assertEquals($dashboard->getResource(), collect([
+            'scripts'     => [
+                'app.js',
+            ],
+            'stylesheets' => [
+                'style.css',
+            ],
+        ]));
+
+        $rewriteScript = $dashboard
+            ->registerResource('scripts', 'custom-app.js')
+            ->getResource('scripts');
+
+        $this->assertEquals($rewriteScript, [
+            'app.js',
+            'custom-app.js',
+        ]);
+
+        $rewriteStyle = $dashboard
+            ->registerResource('stylesheets', 'custom-style.css')
+            ->getResource('stylesheets');
+
+        $this->assertEquals($rewriteStyle, [
+            'style.css',
+            'custom-style.css',
+        ]);
+    }
+
+    protected function setUp() : void
     {
         parent::setUp();
         Dashboard::configure([]);
     }
 
-    protected function tearDown()
+    protected function tearDown() : void
     {
         parent::tearDown();
         Dashboard::configure([]);

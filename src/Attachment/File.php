@@ -8,9 +8,11 @@ use Mimey\MimeTypes;
 use Orchid\Platform\Dashboard;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Events\UploadFileEvent;
+use Illuminate\Contracts\Filesystem\Filesystem;
 
 /**
  * Class File.
@@ -38,7 +40,7 @@ class File
     public $file;
 
     /**
-     * @var Storage
+     * @var Filesystem
      */
     public $storage;
 
@@ -48,7 +50,7 @@ class File
     public $fullPath;
 
     /**
-     * @var
+     * @var string
      */
     private $hash;
 
@@ -58,7 +60,7 @@ class File
     public $disk;
 
     /**
-     * @var
+     * @var string|null
      */
     public $group;
 
@@ -66,10 +68,10 @@ class File
      * File constructor.
      *
      * @param UploadedFile $file
-     * @param string $disk
-     * @param string $group
+     * @param string       $disk
+     * @param string       $group
      */
-    public function __construct(UploadedFile $file, string $disk, string $group = null)
+    public function __construct(UploadedFile $file, string $disk = 'public', string $group = null)
     {
         $this->time = time();
         $this->date = date('Y/m/d', $this->time);
@@ -95,15 +97,15 @@ class File
     /**
      * @return string
      */
-    public function getHashFile()
+    public function getHashFile() : string
     {
         return sha1_file($this->file->getRealPath());
     }
 
     /**
-     * @return mixed
+     * @return Model|Attachment
      */
-    public function load()
+    public function load(): Model
     {
         $file = $this->getMatchesHash();
 
@@ -135,9 +137,9 @@ class File
     }
 
     /**
-     * @return Attachment
+     * @return Model|Attachment
      */
-    private function save(): Attachment
+    private function save(): Model
     {
         $hashName = sha1($this->time.$this->file->getClientOriginalName());
         $name = $hashName.'.'.$this->getClientOriginalExtension();
@@ -170,6 +172,7 @@ class File
     private function getClientOriginalExtension()
     {
         $extension = $this->file->getClientOriginalExtension();
+
         if (empty($extension)) {
             $extension = $this->mimes->getExtension($this->file->getClientMimeType());
         }

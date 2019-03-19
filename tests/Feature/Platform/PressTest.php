@@ -13,6 +13,7 @@ class PressTest extends TestFeatureCase
 {
     /**
      * debug: php vendor/bin/phpunit  --filter= PressTest tests\\Feature\\Platform\\PressTest --debug.
+     *
      * @var
      */
     private $user;
@@ -27,13 +28,10 @@ class PressTest extends TestFeatureCase
      */
     private $post;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
-        if ($this->user) {
-            return $this->user;
-        }
         $this->user = factory(User::class)->create();
         $this->page = factory(Page::class)->create();
         $this->post = factory(Post::class)->create();
@@ -43,7 +41,9 @@ class PressTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->user)
-            ->get(route('platform.pages.show', 'example-page'));
+            ->get(route('platform.entities.type.page', [
+                'example-page', 'example-page',
+            ]));
 
         $response
             ->assertOk()
@@ -54,41 +54,70 @@ class PressTest extends TestFeatureCase
     public function test_route_PagesUpdate()
     {
         $response = $this->actingAs($this->user)
-            ->put(route('platform.pages.update', 'example-page'));
+            ->post(route('platform.entities.type.page', ['example-page', 'example-page', 'save']));
 
         $response->assertStatus(302);
-        $this->assertContains('success', $response->baseResponse->getRequest()->getSession()->get('flash_notification')['level']);
+        $this->assertStringContainsString('success', $response->baseResponse->getRequest()->getSession()->get('flash_notification')['level']);
     }
 
     public function test_route_PostsType()
     {
         $response = $this->actingAs($this->user)
-            ->get(route('platform.posts.type', 'example-post'));
+            ->get(route('platform.entities.type', 'example-post'));
 
         $response->assertOk();
-        $this->assertContains($this->post->getContent('name'), $response->getContent());
-        $this->assertNotContains($this->post->getContent('description'), $response->getContent());
+        $this->assertStringContainsString($this->post->getContent('name'), $response->getContent());
+        $this->assertStringNotContainsString($this->post->getContent('description'), $response->getContent());
+    }
+
+    public function test_route_PostsTypeCreate()
+    {
+        $response = $this->actingAs($this->user)
+            ->get(route('platform.entities.type.create', ['example-post']));
+
+        $response->assertOk();
     }
 
     public function test_route_PostsTypeEdit()
     {
-        $response = $this->actingAs($this->user)
-            ->get(route('platform.posts.type.edit', ['example-post', $this->post->slug]));
+        $response = $this
+            ->actingAs($this->user)
+            ->get(route('platform.entities.type.edit', ['example-post', $this->post->slug]));
 
         $response->assertOk();
-        $this->assertContains($this->post->getContent('title'), $response->getContent());
-        $this->assertNotContains($this->post->getContent('description'), $response->getContent());
+        $this->assertStringContainsString($this->post->getContent('title'), $response->getContent());
+        $this->assertStringNotContainsString($this->post->getContent('description'), $response->getContent());
     }
 
     public function test_route_PostsTypeUpdate()
     {
         $response = $this->actingAs($this->user)
-            ->put(
-                route('platform.posts.type.update', ['example-post', $this->post->slug]),
+            ->post(
+                route('platform.entities.type.edit', ['example-post', $this->post->slug, 'save']),
                 [$this->post->toArray()]
             );
 
         $response->assertStatus(302);
-        $this->assertContains('success', $response->baseResponse->getRequest()->getSession()->get('flash_notification')['level']);
+        $this->assertStringContainsString('success', $response->baseResponse->getRequest()->getSession()->get('flash_notification')['level']);
+    }
+
+    public function test_route_PostsTypeDelete()
+    {
+        $post = factory(Post::class)->create();
+
+        $response = $this->actingAs($this->user)
+            ->post(
+                route('platform.entities.type.edit', ['example-post', $post->slug, 'destroy'])
+            );
+
+        $response->assertStatus(302);
+        $this->assertStringContainsString('success', $response->baseResponse->getRequest()->getSession()->get('flash_notification')['level']);
+
+        $response = $this->actingAs($this->user)
+            ->post(
+                route('platform.entities.type.edit', ['example-post', $post->slug, 'destroy'])
+            );
+
+        $response->assertStatus(404);
     }
 }

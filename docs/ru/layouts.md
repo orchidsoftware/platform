@@ -42,19 +42,6 @@ class PatientListLayout extends Table
     public $data = 'patients';
 
     /**
-     * HTTP data filters
-     *
-     * @return array
-     */
-    public function filters() : array
-    {
-        return [
-            LastNamePatient::class,
-            SearchFilter::class,
-        ];
-    }
-
-    /**
      * @return array
      */
     public function fields() : array
@@ -63,7 +50,7 @@ class PatientListLayout extends Table
             TD::set('last_name','Last name')
                 ->align('center')
                 ->width('100px')
-                ->setRender(function ($patient) {
+                ->render(function ($patient) {
                     return '<a href="' . route('platform.clinic.patient.edit',
                             $patient->id) . '">' . $patient->last_name . '</a>';
                 }),
@@ -86,51 +73,27 @@ class PatientListLayout extends Table
 ```
 ### Доступные методы
 
+- Метод `align()` горизонтальное выравнивание текста, принимает значения: 'left', 'center', 'right'
 
-#### align()
+- Метод `link($route,$key)` добавляет в ячейку ссылку, например на редактирование данной записи.
 
-Метод `align()` горизонтальное выравнивание текста, принимает значения: 'left', 'center', 'right'
+- Метод `linkPost($text)` добавляет в ячейку ссылку на текущий пост (используется в списке постов).
 
-#### link()
+- Метод `locale()` отображение данных столбца согласно текущему языку локали.
 
-Метод `link($route,$key)` добавляет в ячейку ссылку, например на редактирование данной записи.
+- Метод `loadModalAsync($modal, $method, $options, $text)` добавляет модальное окно к каждой ячейке столбца. Где атрибуты $modal - название модального окна, $method - метод (функция) который отправляет данные через POST запрос, $options дополнителиные атрибуты, например id или slug, $text - отображаемое значение ячейки.
 
-#### linkPost()
+- Метод `name($key)` устанавливает имя ключа из массива значения которого отображать в таблице.
 
-Метод `linkPost($text)` добавляет в ячейку ссылку на текущий пост (используется в списке постов).
+- Метод `set($key, $name)` основной метод устанавливает имя ключа из массива и отображаемое название. Заменяет методы `name()` и `title()`.
 
-#### locale()
+- Метод `render(function ($item) { return $item->id})` возможность генерации ячейки согласно функции. В $item передаются данные текущей строки.
 
-Метод `locale()` отображение данных столбца согласно текущему языку локали.
+- Метод `sort()` добавляет в заголовок возможность сортировки по данному столбцу.
 
-#### loadModalAsync()
+- Метод `title($name)` устанавливает заголовок столбца.
 
-Метод `loadModalAsync($modal, $method, $options, $text)` добавляет модальное окно к каждой ячейке столбца. Где атрибуты $modal - название модального окна, $method - метод (функция) который отправляет данные через POST запрос, $options дополнителиные атрибуты, например id или slug, $text - отображаемое значение ячейки.
-
-#### name()
-
-Метод `name($key)` устанавливает имя ключа из массива значения которого отображать в таблице.
-
-#### set()
-
-Метод `set($key, $name)` основной метод устанавливает имя ключа из массива и отображаемое название. Заменяет методы `name()` и `title()`.
-
-#### setRender()
-
-Метод `setRender(function ($item) { return $item->id})` возможность генерации ячейки согласно функции. В $item передаются данные текущей строки.
-
-#### sort()
-
-Метод `sort()` добавляет в заголовок возможность сортировки по данному столбцу.
-
-#### title()
-
-Метод `title($name)` устанавливает заголовок столбца.
-
-#### width()
-
-Метод `width()` явно задает ширину столбца `width('100px')`
-
+- Метод `width()` явно задает ширину столбца `width('100px')`
 
 
 ## Строки
@@ -157,24 +120,24 @@ class Appointment extends Rows
     /**
      * @return array
      *
-     * @throws \Orchid\Press\TypeException
+     * @throws \Orchid\Press\EntityTypeException
      */
     public function fields(): array
     {
         return [
 
-            DateTimerField::make()
+            DateTimer::make()
                 ->name('appointment_time')
                 ->required()
                 ->title('Time'),
 
-            RelationshipField::make()
+            Relationship::make()
                 ->name('appointment_type')
                 ->required()
                 ->title('Appointment type')
                 ->handler(AppointmentTypes::class),
 
-            TextAreaField::make()
+            TextArea::make()
                 ->name('doctor_notes')
                 ->rows(10)
                 ->required()
@@ -183,6 +146,28 @@ class Appointment extends Rows
 
         ];
     }
+}
+```
+
+Строки поддерживают короткую запись без создания отдельного класса,
+например, когда требуется показать одно - два поля
+
+```php
+/**
+ * Views.
+ *
+ * @return array
+ * @throws \Throwable
+ */
+public function layout(): array
+{
+    return [
+        Layouts::rows([
+           Input::make('example')
+                ->type('text')
+                ->title('Example')
+        ]),
+    ];
 }
 ```
 
@@ -223,6 +208,10 @@ public function query($patient = null) : array
 }
 ```
 
+Для создания исполните команду:
+```php
+php artisan orchid:selection ChartsLayout
+```
 
 Пример макета:
 ```php
@@ -272,3 +261,134 @@ class ChartsLayout extends Chart
     public $data = 'charts';
 }
 ```
+
+
+## Набор фильтров
+
+Для группировки фильтров, их спроса и применения, существует отдельный слой `Selection`,
+в котором они указываются. 
+
+Для создания исполните команду:
+```php
+php artisan orchid:selection MySelection
+```
+
+Пример класса:
+```php
+namespace App\Orchid\Layouts;
+
+use Orchid\Platform\Filters\Filter;
+use Orchid\Press\Http\Filters\CreatedFilter;
+use Orchid\Press\Http\Filters\SearchFilter;
+use Orchid\Screen\Layouts\Selection;
+
+class MySelection extends Selection
+{
+    /**
+     * @return Filter[]
+     */
+    public function filters(): array
+    {
+        return [
+          SearchFilter::class,
+          CreatedFilter::class
+        ];
+    }
+}
+```
+
+
+## Табы
+
+Табы поддерживают короткий синтаксис через вызов статического метода, 
+что не требует создания отдельного класса:
+
+```php
+/**
+ * Views.
+ *
+ * @return array
+ * @throws \Throwable
+ */
+public function layout(): array
+{
+    return [
+        Layouts::tabs([
+            'Example Tab Table' => TableExample::class,
+            'Example Tab Rows'  => RowExample::class,
+        ]),
+    ];
+}
+```
+
+Название вкладок будет соответствовать ключам массива
+
+
+## Столбцы
+
+Аналогично табам:
+
+```php
+/**
+ * Views.
+ *
+ * @return array
+ * @throws \Throwable
+ */
+public function layout(): array
+{
+    return [
+        Layouts::columns([
+           TableExample::class,
+           RowExample::class,
+        ]),
+    ];
+}
+```
+
+
+## Раскрывающийся список
+
+
+```php
+/**
+ * Views.
+ *
+ * @return array
+ * @throws \Throwable
+ */
+public function layout(): array
+{
+    return [
+        Layouts::collapse([
+            Input::make('name')
+                ->type('text')
+                ->title('Name Articles')
+        ])->label('More'),
+    ];
+}
+```
+
+
+## Пользовательский шаблон
+
+
+В полне ожидаемая ситуация, когда необходимо отобразить собственный шаблон, 
+для этого:
+
+```php
+/**
+ * Views.
+ *
+ * @return array
+ * @throws \Throwable
+ */
+public function layout(): array
+{
+    return [
+        Layouts::view('myTemplate'),
+    ];
+}
+```
+
+Все данные из метода `query` будут переданы в ваш шаблон.

@@ -13,7 +13,7 @@ class WidgetController
 {
     /**
      * @param WidgetContractInterface $widget
-     * @param null $key
+     * @param null                    $key
      *
      * @return \Illuminate\Http\JsonResponse
      */

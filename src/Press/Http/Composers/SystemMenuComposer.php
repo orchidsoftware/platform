@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Composers;
 
+use Orchid\Platform\Menu;
 use Orchid\Platform\ItemMenu;
 use Orchid\Platform\Dashboard;
 
@@ -30,27 +31,20 @@ class SystemMenuComposer
     public function compose()
     {
         $this->dashboard->menu
-            ->add('Systems',
-                ItemMenu::setLabel(__('Content management'))
-                    ->setSlug('CMS')
-                    ->setIcon('icon-layers')
-                    ->setPermission('platform.systems')
-                    ->setSort(1000)
+            ->add(Menu::SYSTEMS,
+                ItemMenu::label(__('Content management'))
+                    ->slug('CMS')
+                    ->icon('icon-layers')
+                    ->permission('platform.systems')
+                    ->sort(1000)
             )
             ->add('CMS',
-                ItemMenu::setLabel(__('Menu'))
-                    ->setIcon('icon-menu')
-                    ->setRoute(route('platform.systems.menu.index'))
-                    ->setPermission('platform.systems.menu')
-                    ->setShow(count(config('press.menu', [])) > 0)
-                    ->setGroupName(__('Editing of a custom menu (navigation) using drag & drop and localization support.'))
-            )
-            ->add('CMS',
-                ItemMenu::setLabel(__('Media'))
-                    ->setIcon('icon-folder-alt')
-                    ->setRoute(route('platform.systems.media.index'))
-                    ->setPermission('platform.systems.media')
-                    ->setGroupName(__('File Manager allows you to perform the most frequent operations on files - create, open, move, rename, delete'))
+                ItemMenu::label(__('Menu'))
+                    ->icon('icon-menu')
+                    ->route('platform.systems.menu.index')
+                    ->permission('platform.systems.menu')
+                    ->show(count(config('press.menu', [])) > 0)
+                    ->groupName(__('Editing of a custom menu (navigation) using drag & drop and localization support.'))
             );
     }
 }

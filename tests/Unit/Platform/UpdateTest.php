@@ -14,6 +14,6 @@ class UpdateTest extends TestUnitCase
         $update = new Updates();
         $isLastVersion = $update->check();
 
-        $this->assertInternalType('bool', $isLastVersion);
+        $this->assertIsBool($isLastVersion);
     }
 }

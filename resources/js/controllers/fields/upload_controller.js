@@ -1,5 +1,6 @@
-import {Controller} from "stimulus"
-import Dropzone     from 'dropzone';
+import {Controller} from "stimulus";
+import Dropzone from 'dropzone';
+import Sortable from 'sortablejs';
 
 export default class extends Controller {
 
@@ -42,6 +43,7 @@ export default class extends Controller {
             'name': this[this.getAttachmentTargetKey('name')].value,
             'alt': this[this.getAttachmentTargetKey('alt')].value,
             'description': this[this.getAttachmentTargetKey('description')].value,
+            'original_name': this[this.getAttachmentTargetKey('original')].value,
         };
     }
 
@@ -56,6 +58,7 @@ export default class extends Controller {
         this[this.getAttachmentTargetKey('original')].value = data.original_name;
         this[this.getAttachmentTargetKey('alt')].value = data.alt;
         this[this.getAttachmentTargetKey('description')].value = data.description;
+
 
         //this[this.getAttachmentTargetKey('url')].value = data.url;
         this.data.set('url', data.url);
@@ -91,6 +94,7 @@ export default class extends Controller {
             this.attachments[name].name = attach.name;
             this.attachments[name].alt = attach.alt;
             this.attachments[name].description = attach.description;
+            this.attachments[name].original_name = attach.original_name;
         }
 
         axios
@@ -123,7 +127,32 @@ export default class extends Controller {
     /**
      *
      */
+    resortElement() {
+        const items = {};
+        $('.file-sort').each((index, value) => {
+            const id = $(value).attr('data-file-id');
+            items[id] = index;
+        });
+
+        axios
+            .post(platform.prefix('/systems/files/sort'), {
+                files: items,
+            })
+            .then();
+    }
+
+    /**
+     *
+     */
     initSortable() {
+
+
+        new Sortable(document.querySelector(this.dropname + ' .sortable-dropzone'), {
+            animation: 150,
+            onChange: this.resortElement,
+        });
+
+/*
         $(this.dropname + ' .sortable-dropzone').sortable({
             scroll: false,
             containment: "parent",
@@ -142,12 +171,31 @@ export default class extends Controller {
 
             },
         });
+        */
+    }
+
+    /**
+     *
+     * @param dropname
+     * @param name
+     * @param file
+     */
+    addSortDataAtributes(dropname, name, file) {
+        $(`${dropname} .dz-preview:last-child`)
+            .attr('data-file-id', file.id)
+            .addClass('file-sort');
+        $(
+            `<input type='hidden' class='files-${file.id}' name='${name}[]' value='${file.id}'  />`
+        ).appendTo(dropname);
+
+        this.resortElement();
     }
 
     /**
      *
      */
     initDropZone() {
+        const self = this;
         const data = this.data.get('data') && JSON.parse(this.data.get('data'));
         const storage = this.data.get('storage');
         const name = this.data.get('name');
@@ -192,10 +240,15 @@ export default class extends Controller {
 
                     e.previewElement.appendChild(removeButton);
                     e.previewElement.appendChild(editButton);
+
+
+                    if(e.data !== undefined) {
+                        self.addSortDataAtributes(dropname, name, e.data);
+                    }
                 });
 
                 this.on('completemultiple', () => {
-                    $(`${dropname}.sortable-dropzone`).sortable('enable');
+                    //$(`${dropname}.sortable-dropzone`).sortable('enable');
                 });
 
                 const images = data;
@@ -215,12 +268,8 @@ export default class extends Controller {
                         this.emit('addedfile', mockFile);
                         this.emit('thumbnail', mockFile, mockFile.url);
                         this.files.push(mockFile);
-                        $(`${dropname}.dz-preview:last-child`)
-                            .attr('data-file-id', item.id)
-                            .addClass('file-sort');
-                        $(
-                            `<input type='hidden' class='files-${item.id}' name='${name}[]' value='${item.id}'  />`
-                        ).appendTo(dropname);
+
+                        self.addSortDataAtributes(dropname, name, item);
                     });
                 }
 
@@ -242,6 +291,7 @@ export default class extends Controller {
                 });
             },
             error(file, response) {
+
                 if ($.type(response) === 'string') {
                     return response; //dropzone sends it's own error messages in string
                 }
@@ -261,12 +311,7 @@ export default class extends Controller {
                     }
                 });
 
-                $(`${dropname} .dz-preview:last-child`)
-                    .attr('data-file-id', file.data.id)
-                    .addClass('file-sort');
-                $(
-                    `<input type='hidden' class='files-${file.data.id}' name='${name}[]' value='${file.data.id}'  />`
-                ).appendTo(dropname);
+                self.addSortDataAtributes(dropname, name, file.data);
             },
         });
     }

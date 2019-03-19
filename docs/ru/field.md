@@ -21,7 +21,7 @@ Input - является одним из разносторонних элеме
  
 Пример записи:
 ```php
-InputField::make()
+Input::make()
     ->type('text')
     ->name('place')
     ->max(255)
@@ -46,7 +46,7 @@ InputField::make()
  
 Пример записи:
 ```php
-TinyMCEField::make()
+TinyMCE::make()
     ->name('body')
     ->required()
     ->title('Name Articles')
@@ -66,7 +66,7 @@ TinyMCEField::make()
  
 Пример записи:
 ```php
-SimpleMDEField::make()
+SimpleMDE::make()
     ->name('body')
     ->title('О чём вы хотите рассказать?')
 ```  
@@ -78,7 +78,7 @@ SimpleMDEField::make()
 
 Пример записи:
 ```php
-PictureField::make()
+Picture::make()
     ->name('picture')
     ->width(500)
     ->height(300);
@@ -94,7 +94,7 @@ PictureField::make()
 
 Пример записи:
 ```php
-DateTimerField::make()
+DateTimer::make()
     ->type('text')
     ->name('open')
     ->title('Opening date')
@@ -108,7 +108,7 @@ DateTimerField::make()
 
 Пример записи:
 ```php
-CheckBoxField::make()
+CheckBox::make()
     ->name('free')
     ->value(1)
     ->title('Free')
@@ -125,7 +125,7 @@ CheckBoxField::make()
 
 Пример записи:
 ```php
-CodeField::make()
+Code::make()
     ->name('block')
     ->title('Code Block')
     ->help('Simple web editor');
@@ -140,7 +140,7 @@ CodeField::make()
 
 Пример записи:
 ```php
-TextAreaField::make()
+TextArea::make()
     ->name('description')
     ->max(255)
     ->rows(5)
@@ -155,7 +155,7 @@ TextAreaField::make()
 
 Пример записи:
 ```php
-TagsField::make()
+Tags::make()
     ->name('keywords')
     ->title('Keywords')
     ->help('SEO keywords');
@@ -167,7 +167,7 @@ TagsField::make()
 Простой выбор из списка массива:
 
 ```php
-SelectField::make()
+Select::make()
     ->options([
         'index'   => 'Index',
         'noindex' => 'No index',
@@ -175,6 +175,25 @@ SelectField::make()
     ->name('select')
     ->title('Select tags')
     ->help('Allow search bots to index');
+```
+
+Работа с источником:
+
+```php
+Select::make('user')
+    ->fromModel(User::class, 'email')
+```
+
+Источник с условием:
+```php
+Select::make('user')
+    ->fromQuery(User::where('balance', '!=', '0'), 'email'),
+```
+
+Изменение ключа:
+```php
+Select::make('user')
+    ->fromModel(User::class, 'email', 'uuid')
 ```
 
 
@@ -185,7 +204,7 @@ SelectField::make()
 
 Пример записи:
 ```php
-InputField::make()
+Input::make()
     ->type('text')
     ->name('phone')
     ->mask('(999) 999-9999')
@@ -197,7 +216,7 @@ InputField::make()
 
 
 ```php
-InputField::make()
+Input::make()
     ->type('text')
     ->name('price')
     ->mask([
@@ -208,7 +227,7 @@ InputField::make()
 ```   
 
 ```php
-InputField::make()
+Input::make()
     ->type('text')
     ->name('price')
     ->mask([
@@ -228,7 +247,7 @@ InputField::make()
 Поля отношения могут подгружать динамические данные, это хорошее решение, если вам нужны связи.
 
 ```php
-RelationshipField::make()
+Relationship::make()
     ->name('my_title')
     ->required()
     ->title('My title')
@@ -295,6 +314,53 @@ class AjaxWidget extends Widget
 
 ```
 
+## Кнопка/Ссылка
+
+В определенных случаях необходимо добавить кнопку для вызова модального окна, простую ссылку или добавить кнопку 
+отправки формы в конце экрана. 
+Для таких случаев существует поле `Button`. Поле `Button` не может иметь какого либо 
+значения и не передается при сохранении. Оно может быть использовано для вызова модального окна определенного на экране
+и для добавления простой ссылки в форме.
+
+Пример использования с модальным окном `addNewPayment` добавленного ранее на экран: 
+
+```php
+Button::make()
+    ->title('Add Payment')
+    ->modal('addNewPayment')
+    ->icon('icon-wallet')
+    ->right()
+```
+
+Пример использования с ссылкой:
+
+```php
+Button::make()
+    ->title('Google It!')
+    ->type(Button::LINK)
+    ->link('http://google.com');
+```
+
+Пример использования с методом:
+
+```php
+Button::make()
+    ->title('Google It!')
+    ->method('goToGoogle');
+```
+
+Доступные модификаторы:
+
+* `modal('modalName')` - создает кнопку вызывающую модальное окно с именем `modalName` в рамках текущего экрана
+* `right()` - Позиционирования элемента по правому краю экрана
+* `block()` - Позиционирование элемента по всей ширине экрана
+* `class('class-names')` - переписывает стандартные классы для кнопки
+* `link('url')` - добавляет ссылку для кнопки. Игнорируется при заданном modal
+* `method('methodName')` - при клике форма будет отправлена на заданный метод в рамках текущего экрана
+* `title('Click Me!')` - задает название текущей кнопки
+* `icon('icon-wallet)` - задает иконку для кнопки
+ 
+
 
 ## Модификация
 
@@ -302,7 +368,7 @@ class AjaxWidget extends Widget
 атрибут который необходимо переопределить:
 
 ```php
-InputField::make()
+Input::make()
     ->type('text')
     ->name('name')
     ->modifyValue(function ($value) {

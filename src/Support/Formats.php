@@ -24,7 +24,7 @@ class Formats
      * @param int $size
      * @param int $precision
      *
-     * @return int|string
+     * @return string
      */
     public static function formatBytes(int $size, int $precision = 2): string
     {

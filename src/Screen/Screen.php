@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use ReflectionClass;
+use ReflectionParameter;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Http\Controllers\Controller;
 
 /**
@@ -30,14 +32,14 @@ abstract class Screen extends Controller
     public $description;
 
     /**
-     * @var array|Request|string
+     * @var Request
      */
     public $request;
 
     /**
      * Permission.
      *
-     * @var string
+     * @var string|array
      */
     public $permission;
 
@@ -69,15 +71,16 @@ abstract class Screen extends Controller
     /**
      * Views.
      *
-     * @return array
+     * @return Layouts[]
      */
     abstract public function layout(): array;
 
     /**
-     * @return \Illuminate\Contracts\View\View
      * @throws \Throwable
+     *
+     * @return \Illuminate\Contracts\View\View
      */
-    public function build(): View
+    public function build()
     {
         $layout = Layouts::blank([
             $this->layout(),
@@ -87,13 +90,14 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param $method
-     * @param $slugLayouts
+     * @param mixed $method
+     * @param mixed $slugLayouts
+     *
+     * @throws \Throwable
      *
      * @return \Illuminate\Contracts\View\View
-     * @throws \Throwable
      */
-    public function asyncBuild($method, $slugLayouts)
+    protected function asyncBuild($method, $slugLayouts)
     {
         $this->arguments = $this->request->json()->all();
 
@@ -102,15 +106,22 @@ abstract class Screen extends Controller
         $post = new Repository($query);
 
         foreach ($this->layout() as $layout) {
-            if (property_exists($layout, 'slug') && $layout->slug === $slugLayouts) {
+
+            /** @var \Orchid\Screen\Layouts\Base $layout */
+            $layout = is_object($layout) ? $layout : new $layout();
+
+            if ($layout->getSlug() === $slugLayouts) {
+                $layout->async = true;
+
                 return $layout->build($post, true);
             }
         }
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Throwable
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function view()
     {
@@ -119,17 +130,17 @@ abstract class Screen extends Controller
         $this->post = new Repository($query);
 
         return view('platform::container.layouts.base', [
-            'arguments' => $this->arguments,
             'screen'    => $this,
         ]);
     }
 
     /**
-     * @param array $parameters
+     * @param mixed ...$parameters
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      * @throws \ReflectionException
      * @throws \Throwable
+     *
+     * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View|mixed
      */
     public function handle(...$parameters)
     {
@@ -154,48 +165,60 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param $method
+     * @param string $method
      *
      * @throws \ReflectionException
      */
-    public function reflectionParams($method)
+    private function reflectionParams(string $method)
     {
-        $class = new \ReflectionClass($this);
+        $class = new ReflectionClass($this);
 
         if (! is_string($method)) {
             return;
-        } elseif (! $class->hasMethod($method)) {
+        }
+
+        if (! $class->hasMethod($method)) {
             return;
         }
 
         $parameters = $class->getMethod($method)->getParameters();
 
+        $arguments = [];
+
         foreach ($parameters as $key => $parameter) {
-            if ($this->checkClassInArray($key) || is_null($parameter->getClass())) {
-                continue;
-            }
-
-            $object = app()->make($parameter->getClass()->name);
-
-            $this->arguments[$key] = is_subclass_of($object, Model::class)
-            && isset($this->arguments[$key]) ? $object->find($this->arguments[$key]) : $object;
+            $arguments[] = $this->bind($key, $parameter);
         }
+
+        $this->arguments = $arguments;
     }
 
     /**
-     * @param int $class
+     * @param int|string               $key
+     * @param ReflectionParameter|null $parameter
      *
-     * @return bool
+     * @return mixed
      */
-    private function checkClassInArray($class): bool
+    private function bind($key, $parameter)
     {
-        foreach ($this->arguments as $value) {
-            if (is_object($value) && get_class($value) == $class) {
-                return true;
+        if (is_null($parameter->getClass())) {
+            return $this->arguments[$key] ?? null;
+        }
+
+        $class = $parameter->getClass()->name;
+
+        $object = Arr::first($this->arguments, function ($value) use ($class) {
+            return is_subclass_of($value, $class) || is_a($value, $class);
+        });
+
+        if (is_null($object)) {
+            $object = app()->make($class);
+
+            if (method_exists($object, 'resolveRouteBinding') && isset($this->arguments[$key])) {
+                $object = $object->resolveRouteBinding($this->arguments[$key]);
             }
         }
 
-        return false;
+        return $object;
     }
 
     /**
@@ -203,20 +226,30 @@ abstract class Screen extends Controller
      */
     private function checkAccess(): bool
     {
-        if (is_null($this->permission)) {
+        if (empty($this->permission)) {
             return true;
         }
 
-        if (is_string($this->permission)) {
-            $this->permission = [$this->permission];
-        }
+        $permissions = Arr::wrap($this->permission);
 
-        foreach ($this->permission as $item) {
+        foreach ($permissions as $item) {
             if (Auth::user()->hasAccess($item)) {
                 return true;
             }
         }
 
         return false;
+    }
+
+    /**
+     * @return array
+     */
+    public function buildCommandBar() : array
+    {
+        foreach ($this->commandBar() as $command) {
+            $commands[] = $command->build($this->post);
+        }
+
+        return $commands ?? [];
     }
 }

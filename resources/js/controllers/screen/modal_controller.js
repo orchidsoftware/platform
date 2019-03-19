@@ -15,8 +15,7 @@ export default class extends Controller {
      * @param options
      */
     open(options) {
-        /* TODO: Added titile */
-        //this.titleTarget.textContent = options.title;
+        this.titleTarget.textContent = options.title || null;
         this.element.querySelector('form').action = options.submit;
 
         if (this.data.get('async')) {

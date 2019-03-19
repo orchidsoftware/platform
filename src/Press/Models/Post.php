@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Press\Models;
 
 use Carbon\Carbon;
-use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 use Laravel\Scout\Searchable;
 use Orchid\Platform\Models\User;
 use Illuminate\Support\Collection;
@@ -16,16 +16,16 @@ use Orchid\Platform\Traits\AttachTrait;
 use Orchid\Platform\Traits\FilterTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Cviebrock\EloquentSluggable\Sluggable;
-use Orchid\Screen\Exceptions\TypeException;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Orchid\Platform\Traits\MultiLanguageTrait;
+use Orchid\Press\Exceptions\EntityTypeException;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * @property mixed options
+ * Class Post.
  */
 class Post extends Model
 {
@@ -36,6 +36,11 @@ class Post extends Model
         Searchable,
         AttachTrait,
         FilterTrait;
+
+    /**
+     * Prefix for permission.
+     */
+    public const POST_PERMISSION_PREFIX = 'platform.entities.type.';
 
     /**
      * @var string
@@ -87,7 +92,7 @@ class Post extends Model
     ];
 
     /**
-     * @var
+     * @var array
      */
     protected $allowedFilters = [
         'id',
@@ -103,7 +108,7 @@ class Post extends Model
     ];
 
     /**
-     * @var
+     * @var array
      */
     protected $allowedSorts = [
         'id',
@@ -146,9 +151,9 @@ class Post extends Model
     /**
      * Get the indexable data array for the model.
      *
-     * @return array
+     * @throws \Throwable| EntityTypeException
      *
-     * @throws \Throwable| TypeException
+     * @return array
      */
     public function toSearchableArray(): array
     {
@@ -164,11 +169,11 @@ class Post extends Model
     /**
      * Get Behavior Class.
      *
-     * @param null $slug
+     * @param string|null $slug
+     *
+     * @throws \Throwable|EntityTypeException
      *
      * @return \Orchid\Press\Entities\Many|\Orchid\Press\Entities\Single|null
-     *
-     * @throws \Throwable|TypeException
      */
     public function getEntityObject($slug = null)
     {
@@ -176,20 +181,21 @@ class Post extends Model
             return $this->entity;
         }
 
-        return $this->getEntity($slug ?: $this->getAttribute('type'))->entity;
+        return $this->getEntity($slug ?? $this->getAttribute('type'))->entity;
     }
 
     /**
-     * @param $slug
-     * @return $this
+     * @param string $slug
      *
-     * @throws \Throwable|TypeException
+     * @throws \Throwable|EntityTypeException
+     *
+     * @return $this
      */
-    public function getEntity($slug): self
+    public function getEntity(string $slug): self
     {
         $this->entity = Dashboard::getEntities()->where('slug', $slug)->first();
 
-        throw_if(is_null($this->entity), TypeException::class, "{$slug} Type is not found");
+        throw_if(is_null($this->entity), EntityTypeException::class, "{$slug} Type is not found");
 
         return $this;
     }
@@ -203,8 +209,8 @@ class Post extends Model
     }
 
     /**
-     * @param      string $key
-     * @param null $default
+     * @param string     $key
+     * @param mixed|null $default
      *
      * @return null
      */
@@ -224,15 +230,15 @@ class Post extends Model
     }
 
     /**
-     * @param $key
+     * @param string $key
      *
      * @return bool
      */
-    public function checkLanguage($key): bool
+    public function checkLanguage(string $key): bool
     {
         $locale = $this->getOption('locale', []);
 
-        if (array_key_exists($key, $locale)) {
+        if (array_key_exists($key, Arr::wrap($locale))) {
             return filter_var($locale[$key], FILTER_VALIDATE_BOOLEAN);
         }
 
@@ -247,16 +253,6 @@ class Post extends Model
     public function getUser()
     {
         return $this->belongsTo(Dashboard::model(User::class), 'user_id')->first();
-    }
-
-    /**
-     * Get tags for post as string.
-     *
-     * @return mixed
-     */
-    public function getStringTags()
-    {
-        return $this->tags->implode('name', static::getTagsDelimiter());
     }
 
     /**
@@ -321,8 +317,8 @@ class Post extends Model
 
     /**
      * @param Builder $query
-     * @param string $taxonomy
-     * @param mixed $term
+     * @param string  $taxonomy
+     * @param mixed   $term
      *
      * @return Builder
      */
@@ -333,19 +329,6 @@ class Post extends Model
                 $query->where('slug', $term);
             });
         });
-    }
-
-    /**
-     * @param $title
-     *
-     * @return string
-     */
-    public function makeSlug($title): string
-    {
-        $slug = Str::slug($title);
-        $count = static::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")->count();
-
-        return $count ? "{$slug}-{$count}" : $slug;
     }
 
     /**
@@ -364,7 +347,7 @@ class Post extends Model
      * Get only posts with a custom status.
      *
      * @param Builder $query
-     * @param string $postStatus
+     * @param string  $postStatus
      *
      * @return Builder
      */
@@ -377,7 +360,7 @@ class Post extends Model
      * Get only posts from a custom post type.
      *
      * @param Builder $query
-     * @param string $type
+     * @param string  $type
      *
      * @return Builder
      */
@@ -390,7 +373,7 @@ class Post extends Model
      * Get only posts from an array of custom post types.
      *
      * @param Builder $query
-     * @param array $type
+     * @param array   $type
      *
      * @return Builder
      */
@@ -401,17 +384,18 @@ class Post extends Model
 
     /**
      * @param Builder $query
-     * @param null $entity
+     * @param null    $entity
+     *
+     * @throws \Throwable
      *
      * @return Builder
-     * @throws \Throwable
      */
     public function scopeFiltersApply(Builder $query, $entity = null): Builder
     {
         if (! is_null($entity)) {
             try {
                 $this->getEntity($entity);
-            } catch (TypeException $e) {
+            } catch (EntityTypeException $e) {
             }
         }
 
@@ -436,10 +420,11 @@ class Post extends Model
 
     /**
      * @param Builder $query
-     * @param null $entity
+     * @param null    $entity
+     *
+     * @throws \Throwable | EntityTypeException
      *
      * @return Builder
-     * @throws \Throwable | TypeException
      */
     public function scopeFiltersApplyDashboard(Builder $query, $entity = null): Builder
     {
@@ -453,7 +438,7 @@ class Post extends Model
     /**
      * @param string|null $slug
      *
-     * @throws \Orchid\Screen\Exceptions\TypeException
+     * @throws \Orchid\Press\Exceptions\EntityTypeException
      * @throws \Throwable
      */
     public function createSlug($slug = null)
@@ -472,6 +457,19 @@ class Post extends Model
             }
         }
 
-        $this->setAttribute('slug', SlugService::createSlug($this, 'slug', $slug));
+        $this->setAttribute('slug', SlugService::createSlug(
+            Dashboard::modelClass(self::class),
+            'slug',
+            $slug, [
+            'includeTrashed' => true,
+        ]));
+    }
+
+    /**
+     * @return string
+     */
+    public function getRouteKeyName() : string
+    {
+        return 'slug';
     }
 }

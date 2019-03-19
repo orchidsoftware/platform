@@ -1,21 +1,9 @@
 # Права доступа
 ----------
 
-Ролевое управление доступом - разработка политики выборочного контроля доступа,
-в то время как объекты систем разрешений группируются в зависимости от их конкретного применения, формируется роль.
-
-Формирование ролей предназначено для определения понятных для пользователей правил контроля доступа. 
-Ролевое управление доступом позволяет гибко, динамически изменятся во время работы систем контроля доступа.
-
-Разрешение - это наименьшая единица прав, которую можете иметь пользователь.
-Вы можете проверить, имеет ли пользователь разрешение с указанным именем.
-
-
-## Пользователь
-
 Обычно пользователям не назначаются разрешения в приложении ORCHID (Хотя такая возможность имеется), а скорее роли.  Роль, связанная с набором разрешений, а не с отдельным пользователем. 
 
-Эта концепция очень проста. Как правило, вы управляете несколькими дюжинами разрешений в типичном бизнесе
+Как правило, вы управляете несколькими дюжинами разрешений в типичном бизнесе
 процессе. 
 Вы также можете иметь, скажем, от 10 до 100 пользователей.
 Хотя эти пользователи не полностью отличные друг от друга,
@@ -80,6 +68,7 @@ php artisan orchid:admin nickname email@email.com secretpassword
 
 ```php
 use Illuminate\Support\ServiceProvider;
+use Orchid\Platform\ItemPermission;
 use Orchid\Platform\Dashboard;
 
 class PermissionServiceProvider extends ServiceProvider
@@ -89,15 +78,11 @@ class PermissionServiceProvider extends ServiceProvider
      */
     public function boot(Dashboard $dashboard)
     {
-        $dashboard->registerPermissions(
-            [
-                'modules' => [
-                    [
-                        'slug'        => 'Analytics',
-                        'description' => 'Description',
-                    ],
-                ],
-            ]);
+        $permissions = ItemPermission::group('modules')
+            ->addPermission('analytics', 'Access to data analytics')
+            ->addPermission('monitor', 'Access to the system monitor');
+
+        $dashboard->registerPermissions($permissions);
     }
 }
 ```

@@ -20,7 +20,7 @@ class PostTest extends TestUnitCase
     {
         $post = factory(Post::class)->create();
         $this->assertInstanceOf(Post::class, $post);
-        $this->assertTrue(is_int($post->id));
+        $this->assertIsInt($post->id);
         $this->assertGreaterThan(0, $post->id);
     }
 
@@ -140,7 +140,7 @@ class PostTest extends TestUnitCase
     public function they_can_be_ordered_ascending()
     {
         factory(Post::class, 2)->create();
-        $posts = Post::query()->orderBy('publish_at', 'asc')->get();
+        $posts = Post::query()->orderBy('publish_at')->get();
         $first = $posts->first();
         $last = $posts->last();
         $this->assertTrue($first->publish_at->lessThanOrEqualTo($last->publish_at));
@@ -209,7 +209,7 @@ class PostTest extends TestUnitCase
     {
         $post = $this->createPostWithTaxonomiesAndTerms();
 
-        $this->assertInternalType('array', $post->getTermsAttribute());
+        $this->assertIsArray($post->getTermsAttribute());
         $this->assertTrue(isset($post->getTermsAttribute()['foo']));
         $this->assertFalse(isset($post->getTermsAttribute()['fee']));
         $this->assertTrue(isset($post->getTermsAttribute()['foo']['test']));
@@ -236,7 +236,7 @@ class PostTest extends TestUnitCase
     {
         $post = $this->createPostWithTaxonomiesAndTerms();
 
-        $this->assertInternalType('array', $post->getOptions()->first());
+        $this->assertIsArray($post->getOptions()->first());
         $this->assertTrue(isset($post->getOptions()['locale']));
     }
 
@@ -247,7 +247,7 @@ class PostTest extends TestUnitCase
     {
         $post = $this->createPostWithTaxonomiesAndTerms();
 
-        $this->assertInternalType('array', $post->getOption('locale'));
+        $this->assertIsArray($post->getOption('locale'));
         $this->assertEquals('true', $post->getOption('locale')['en']);
         $this->assertEquals('test', $post->getOption('default', 'test'));
 

@@ -8,11 +8,11 @@ use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
 use Illuminate\Http\Request;
-use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
+use Orchid\Screen\Fields\Password;
 use Illuminate\Support\Facades\Auth;
-use Orchid\Screen\Fields\PasswordField;
+use Illuminate\Support\Facades\Hash;
 use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserRoleLayout;
 
@@ -41,10 +41,11 @@ class UserEditScreen extends Screen
      */
     public function query(User $user): array
     {
+        $user->load(['roles']);
+
         return [
             'user'       => $user,
             'permission' => $user->getStatusPermission(),
-            'roles'      => $user->getStatusRoles(),
         ];
     }
 
@@ -67,6 +68,7 @@ class UserEditScreen extends Screen
                     Link::name(__('Change Password'))
                         ->icon('icon-lock-open')
                         ->title(__('Change Password'))
+                        ->method('changePassword')
                         ->modal('password'),
                 ]),
 
@@ -81,8 +83,9 @@ class UserEditScreen extends Screen
     }
 
     /**
-     * @return array
      * @throws \Throwable
+     *
+     * @return array
      */
     public function layout(): array
     {
@@ -92,9 +95,10 @@ class UserEditScreen extends Screen
 
             Layouts::modals([
                 'password' => Layouts::rows([
-                    PasswordField::make('user.password')
+                    Password::make('password')
                         ->title(__('Password'))
-                        ->placeholder('********'),
+                        ->required()
+                        ->placeholder(__('Enter your password')),
                 ]),
             ]),
         ];
@@ -109,7 +113,7 @@ class UserEditScreen extends Screen
     public function save(User $user, Request $request)
     {
         $permissions = $request->get('permissions', []);
-        $roles = Role::whereIn('slug', $request->get('roles', []))->get();
+        $roles = $request->input('user.roles', []);
 
         foreach ($permissions as $key => $value) {
             unset($permissions[$key]);
@@ -117,12 +121,13 @@ class UserEditScreen extends Screen
         }
 
         $user
-            ->fill($request->all())
+            ->fill($request->get('user'))
             ->fill([
                 'permissions' => $permissions,
             ])
-            ->replaceRoles($roles)
             ->save();
+
+        $user->roles()->syncWithoutDetaching($roles);
 
         Alert::info(__('User was saved'));
 
@@ -167,6 +172,22 @@ class UserEditScreen extends Screen
     {
         $id = session()->pull('original_user');
         Auth::loginUsingId($id);
+
+        return back();
+    }
+
+    /**
+     * @param User    $user
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function changePassword(User $user, Request $request)
+    {
+        $user->password = Hash::make($request->get('password'));
+        $user->save();
+
+        Alert::info(__('User was saved'));
 
         return back();
     }

@@ -4,33 +4,46 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Support\Str;
+use Orchid\Screen\Traits\CanSee;
 use Orchid\Screen\Contracts\FieldContract;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
 
 /**
  * Class Field.
  *
- * @method $this accesskey($value = true)
- * @method $this type($value = true)
- * @method $this class($value = true)
- * @method $this contenteditable($value = true)
- * @method $this contextmenu($value = true)
- * @method $this dir($value = true)
- * @method $this hidden($value = true)
- * @method $this id($value = true)
- * @method $this lang($value = true)
- * @method $this spellcheck($value = true)
- * @method $this style($value = true)
- * @method $this tabindex($value = true)
- * @method $this title(string $value = null)
- * @method $this options($value = true)
+ * @method self accesskey($value = true)
+ * @method self type($value = true)
+ * @method self class($value = true)
+ * @method self contenteditable($value = true)
+ * @method self contextmenu($value = true)
+ * @method self dir($value = true)
+ * @method self hidden($value = true)
+ * @method self id($value = true)
+ * @method self lang($value = true)
+ * @method self spellcheck($value = true)
+ * @method self style($value = true)
+ * @method self tabindex($value = true)
+ * @method self title(string $value = null)
+ * @method self options($value = true)
+ * @method self autocomplete($value = true)
  */
 class Field implements FieldContract
 {
+    use CanSee;
+
+    /**
+     * A set of closure functions
+     * that must be executed before data is displayed.
+     *
+     * @var \Closure[]
+     */
+    private $beforeRender = [];
+
     /**
      * View template show.
      *
-     * @var
+     * @var string
      */
     public $view;
 
@@ -53,35 +66,10 @@ class Field implements FieldContract
     ];
 
     /**
-     * @var
-     */
-    public $id;
-
-    /**
-     * @var
-     */
-    public $name;
-
-    /**
-     * @var
-     */
-    public $old;
-
-    /**
-     * @var
-     */
-    public $error;
-
-    /**
-     * @var
-     */
-    public $slug;
-
-    /**
      * Vertical or Horizontal
      * bootstrap forms.
      *
-     * @var string
+     * @var string|null
      */
     public $typeForm;
 
@@ -117,6 +105,7 @@ class Field implements FieldContract
         'tabindex',
         'title',
         'xml:lang',
+        'autocomplete',
     ];
 
     /**
@@ -127,12 +116,12 @@ class Field implements FieldContract
     public $inlineAttributes = [];
 
     /**
-     * @param $name
-     * @param $arguments
+     * @param string $name
+     * @param array  $arguments
      *
-     * @return Field
+     * @return self
      */
-    public function __call($name, $arguments)
+    public function __call(string  $name, array $arguments): self
     {
         foreach ($arguments as $key => $argument) {
             if ($argument instanceof \Closure) {
@@ -148,8 +137,9 @@ class Field implements FieldContract
     }
 
     /**
-     * @param $value
-     * @return $this
+     * @param mixed $value
+     *
+     * @return self
      */
     public function value($value): self
     {
@@ -159,12 +149,12 @@ class Field implements FieldContract
     }
 
     /**
-     * @param $key
-     * @param $value
+     * @param string $key
+     * @param mixed  $value
      *
-     * @return $this
+     * @return self
      */
-    public function set($key, $value = true)
+    public function set(string $key, $value = true) : self
     {
         $this->attributes[$key] = $value;
 
@@ -192,8 +182,9 @@ class Field implements FieldContract
     }
 
     /**
-     * @return Field
      * @throws \Throwable
+     *
+     * @return Field
      */
     public function checkRequired()
     {
@@ -206,12 +197,17 @@ class Field implements FieldContract
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
-     *
      * @throws \Throwable
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
     public function render()
     {
+        if (! $this->display) {
+            return;
+        }
+
+        $this->runBeforeRender();
         $this->checkRequired();
         $this->translate();
 
@@ -273,8 +269,9 @@ class Field implements FieldContract
     {
         $modifiers = get_class_methods($this);
 
-        collect($this->getAttributes())->only(array_merge($this->universalAttributes,
-            $this->inlineAttributes))->map(function ($item, $key) use ($modifiers) {
+        collect($this->getAttributes())
+            ->only(array_merge($this->universalAttributes, $this->inlineAttributes))
+            ->map(function ($item, $key) use ($modifiers) {
                 $key = title_case($key);
                 $signature = 'modify'.$key;
                 if (in_array($signature, $modifiers, true)) {
@@ -292,14 +289,14 @@ class Field implements FieldContract
     public function getId(): string
     {
         $lang = $this->get('lang');
-        $slug = $this->getSlug();
+        $slug = $this->get('name');
 
-        return "field-$lang-$slug";
+        return Str::slug("field-$lang-$slug");
     }
 
     /**
-     * @param      string $key
-     * @param null $value
+     * @param string $key
+     * @param null   $value
      *
      * @return $this|mixed|null
      */
@@ -317,7 +314,7 @@ class Field implements FieldContract
      */
     public function getSlug(): string
     {
-        return str_slug($this->get('name'));
+        return Str::slug($this->get('name'));
     }
 
     /**
@@ -348,17 +345,9 @@ class Field implements FieldContract
     }
 
     /**
-     * @return array
-     */
-    public function getOriginalAttributes()
-    {
-        return array_except($this->getAttributes(), array_merge($this->universalAttributes, $this->inlineAttributes));
-    }
-
-    /**
-     * @param $name
+     * @param mixed $name
      *
-     * @return Field
+     * @return self
      */
     public function modifyName($name)
     {
@@ -387,11 +376,11 @@ class Field implements FieldContract
     }
 
     /**
-     * @param $value
+     * @param mixed $value
      *
-     * @return Field
+     * @return self
      */
-    public function modifyValue($value)
+    public function modifyValue($value) : self
     {
         $this->attributes['value'] = $this->getOldValue() ?: $value;
 
@@ -403,6 +392,8 @@ class Field implements FieldContract
     }
 
     /**
+     * Create a group of the fields.
+     *
      * @param \Closure|array $group
      *
      * @return mixed
@@ -410,13 +401,15 @@ class Field implements FieldContract
     public static function group($group)
     {
         if (! is_array($group)) {
-            return call_user_func($group);
+            return $group();
         }
 
         return $group;
     }
 
     /**
+     * Use vertical layout for the field.
+     *
      * @return $this
      */
     public function vertical(): self
@@ -427,6 +420,8 @@ class Field implements FieldContract
     }
 
     /**
+     * Use horizontal layout for the field.
+     *
      * @return $this
      */
     public function horizontal(): self
@@ -437,12 +432,36 @@ class Field implements FieldContract
     }
 
     /**
-     * @return \Orchid\Screen\Field
+     * Create separate line after the field.
+     *
+     * @return $this
      */
     public function hr(): self
     {
         $this->set('hr');
 
         return $this;
+    }
+
+    /**
+     * @param \Closure $closure
+     *
+     * @return Field
+     */
+    public function addBeforeRender(\Closure $closure): self
+    {
+        $this->beforeRender[] = $closure;
+
+        return $this;
+    }
+
+    /**
+     * Alternately performs all tasks.
+     */
+    public function runBeforeRender()
+    {
+        foreach ($this->beforeRender as $before) {
+            $before->call($this);
+        }
     }
 }

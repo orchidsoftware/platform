@@ -1,14 +1,9 @@
-dist: trusty
 language: php
-sudo: required
 
 php:
   - 7.1
   - 7.2
   - 7.3
-
-addons:
-   chrome: stable
 
 cache:
   directories:
@@ -18,10 +13,6 @@ before_script:
    - travis_retry composer self-update
    - travis_retry composer install --no-interaction --prefer-dist --no-suggest
    - chmod -R o+w vendor/orchestra
-   - sudo apt-get -y install xfonts-cyrillic xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable
-   - sudo apt-get -y install imagemagick x11-apps
-   - export DISPLAY=:0.0
-   - Xvfb :0 -screen 0 1920x1080x24 &
    
 script:
    - vendor/bin/phpunit --coverage-clover=coverage.xml

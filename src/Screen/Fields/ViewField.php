@@ -7,9 +7,12 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
+ * @deprecated
+ *
  * Class ViewField.
  *
- * @method $this help(string $value = null)
+ * @method self name(string $value)
+ * @method self help(string $value = null)
  */
 class ViewField extends Field
 {
@@ -53,7 +56,6 @@ class ViewField extends Field
         'max',
         'maxlength',
         'min',
-        'multiple',
         'name',
         'pattern',
         'placeholder',
@@ -70,7 +72,7 @@ class ViewField extends Field
     /**
      * @param string $view
      *
-     * @return $this
+     * @return self
      */
     public function view(string $view)
     {
@@ -80,11 +82,12 @@ class ViewField extends Field
     }
 
     /**
-     * @param null $name
+     * @param string|null $name
+     *
      * @return ViewField
      */
-    public static function make($name = null): self
+    public static function make(string  $name = null): self
     {
-        return (new static)->name($name);
+        return (new static())->name($name);
     }
 }

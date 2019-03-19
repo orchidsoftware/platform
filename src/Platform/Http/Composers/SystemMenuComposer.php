@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Composers;
 
+use Orchid\Platform\Menu;
 use Orchid\Platform\ItemMenu;
 use Orchid\Platform\Dashboard;
 
@@ -30,59 +31,18 @@ class SystemMenuComposer
     public function compose()
     {
         $this->dashboard->menu
-            ->add('Systems', ItemMenu::setLabel(__('Cache configuration'))
-                ->setSlug('Cache')
-                ->setIcon('icon-refresh')
-                ->setPermission('platform.systems.cache')
-                ->setSort(2000))
-            ->add('Cache', ItemMenu::setLabel(__('Clear cache'))
-                ->setIcon('icon-refresh')
-                ->setRoute(route('platform.systems.cache', ['action' => 'cache']))
-                ->setGroupName(__('Clear application cache'))
-            )
-            ->add('Cache', ItemMenu::setLabel(__('Clear configuration settings'))
-                ->setIcon('icon-wrench')
-                ->setRoute(route('platform.systems.cache', ['action' => 'config']))
-                ->setGroupName(__('Create a cache file for faster configuration downloads'))
-            )
-            ->add('Cache', ItemMenu::setLabel(__('Clear Routes'))
-                ->setIcon('icon-directions')
-                ->setRoute(route('platform.systems.cache', ['action' => 'route']))
-                ->setGroupName(__('Create a route cache file for faster route registration'))
-            )
-            ->add('Cache',
-                ItemMenu::setLabel(__('Clear displayed files'))
-                    ->setIcon('icon-monitor')
-                    ->setRoute(route('platform.systems.cache', ['action' => 'view']))
-                    ->setGroupName(__('Clear all compiled view files'))
-            )
-            ->add('Cache',
-                ItemMenu::setLabel(__('Clear opcache'))
-                    ->setIcon('icon-settings')
-                    ->setRoute(route('platform.systems.cache', ['action' => 'opcache']))
-                    ->setGroupName(__('Clears the contents of the operation transaction cache'))
-                    ->setShow(function_exists('opcache_reset'))
-            )
-            ->add('Systems',
-                ItemMenu::setLabel(__('Tools'))
-                    ->setSlug('Tools')
-                    ->setIcon('icon-umbrella')
-                    ->setRoute(route('platform.systems.cache', ['action' => 'opcache']))
-                    ->setSort(9000)
+            ->add(Menu::SYSTEMS,
+                ItemMenu::label(__('Tools'))
+                    ->slug('Tools')
+                    ->icon('icon-umbrella')
+                    ->sort(9000)
             )
             ->add('Tools',
-                ItemMenu::setLabel(__('Backups'))
-                    ->setIcon('icon-clock')
-                    ->setGroupName('Necessary for the ability to quickly recover information in case of loss of a working copy.')
-                    ->setRoute(route('platform.systems.backups'))
-                    ->setPermission('platform.systems.backups')
-            )
-            ->add('Tools',
-                ItemMenu::setLabel(__('Public alert'))
-                    ->setIcon('icon-bulb')
-                    ->setGroupName(__('Allows you to pre-inform active users about an event.'))
-                    ->setRoute(route('platform.systems.announcement'))
-                    ->setPermission('platform.systems.announcement')
+                ItemMenu::label(__('Public alert'))
+                    ->icon('icon-bulb')
+                    ->groupName(__('Allows you to pre-inform active users about an event.'))
+                    ->route('platform.systems.announcement')
+                    ->permission('platform.systems.announcement')
             );
     }
 }

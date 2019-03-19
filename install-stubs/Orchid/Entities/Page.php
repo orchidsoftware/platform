@@ -5,20 +5,20 @@ declare(strict_types=1);
 namespace App\Orchid\Entities;
 
 use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Map;
+use Orchid\Screen\Fields\UTM;
+use Orchid\Screen\Fields\Code;
+use Orchid\Screen\Fields\Tags;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Quill;
+use Orchid\Screen\Fields\Select;
 use Orchid\Press\Entities\Single;
-use Orchid\Screen\Fields\MapField;
-use Orchid\Screen\Fields\UTMField;
-use Orchid\Screen\Fields\CodeField;
-use Orchid\Screen\Fields\TagsField;
-use Orchid\Screen\Fields\InputField;
-use Orchid\Screen\Fields\QuillField;
-use Orchid\Screen\Fields\SelectField;
-use Orchid\Screen\Fields\PictureField;
-use Orchid\Screen\Fields\TinyMCEField;
-use Orchid\Screen\Fields\CheckBoxField;
-use Orchid\Screen\Fields\TextAreaField;
-use Orchid\Screen\Fields\DateTimerField;
-use Orchid\Screen\Fields\SimpleMDEField;
+use Orchid\Screen\Fields\Picture;
+use Orchid\Screen\Fields\TinyMCE;
+use Orchid\Screen\Fields\CheckBox;
+use Orchid\Screen\Fields\TextArea;
+use Orchid\Screen\Fields\DateTimer;
+use Orchid\Screen\Fields\SimpleMDE;
 
 class Page extends Single
 {
@@ -66,8 +66,9 @@ class Page extends Single
     }
 
     /**
-     * @return array
      * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
+     *
+     * @return array
      */
     public function fields(): array
     {
@@ -75,14 +76,14 @@ class Page extends Single
 
             Field::group([
 
-                InputField::make('name')
+                Input::make('name')
                     ->type('text')
                     ->max(255)
                     ->required()
                     ->title('Name Articles')
                     ->help('Article title'),
 
-                InputField::make('title')
+                Input::make('title')
                     ->type('text')
                     ->max(255)
                     ->required()
@@ -93,78 +94,79 @@ class Page extends Single
 
             Field::group([
 
-                DateTimerField::make('open')
+                DateTimer::make('open')
                     ->title('Opening date')
                     ->help('The opening event will take place'),
 
-                InputField::make('phone')
+                Input::make('phone')
                     ->type('text')
                     ->mask('(999) 999-9999')
                     ->title('Phone')
                     ->help('Number Phone'),
 
-                CheckBoxField::make('free')
+                CheckBox::make('free')
                     ->sendTrueOrFalse()
                     ->title('Free')
                     ->placeholder('Event for free')
                     ->help('Event for free'),
             ]),
 
-            TextAreaField::make('description')
+            TextArea::make('description')
                 ->max(255)
                 ->rows(5)
                 ->required()
                 ->title('Short description'),
 
-            TinyMCEField::make('body')
+            TinyMCE::make('body')
                 ->required()
                 ->title('Name Articles')
                 ->help('Article title'),
 
-            MapField::make('place')
+            Map::make('place')
                 ->required()
                 ->title('Object on the map')
                 ->help('Enter the coordinates, or use the search'),
 
-            PictureField::make('picture')
+            Picture::make('picture')
                 ->name('picture')
                 ->width(500)
                 ->height(300),
 
-            UTMField::make('link')
+            UTM::make('link')
                 ->title('UTM link')
                 ->help('Generated link'),
 
-            SelectField::make('robot.')
+            Select::make('robot.')
                 ->options([
-                    'index' => 'Index',
+                    'index'   => 'Index',
                     'noindex' => 'No index',
                 ])
                 ->multiple()
                 ->title('Indexing')
                 ->help('Allow search bots to index'),
 
-            TagsField::make('keywords')
+            Tags::make('keywords')
                 ->title('Keywords')
                 ->help('SEO keywords'),
 
-            SimpleMDEField::make('body2')
+            SimpleMDE::make('body2')
                 ->title('Name Articles')
                 ->help('Article title'),
 
-            QuillField::make('body3')
+            Quill::make('body3')
                 ->title('Name Articles')
                 ->help('Article title'),
 
-            CodeField::make('code')
+            Code::make('code')
                 ->title('Name Articles')
                 ->help('Article title'),
         ];
     }
 
     /**
-     * @return array
      * @throws \Throwable
+     *
+     * @return array
      */
     public function options(): array
     {

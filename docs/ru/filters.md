@@ -59,7 +59,7 @@ class QueryFilter extends Filter
      */
     public function display(): Field
     {
-        return InputField::make('query')
+        return Input::make('query')
             ->type('text')
             ->value($this->request->get('query'))
             ->placeholder(__('Search...'))
@@ -115,3 +115,77 @@ MyModel::filtersApply([
 ])->simplePaginate();
 
 ```
+
+## Автоматическая HTTP фильтрация и сортировка
+
+Для реагирования на HTTP параметры, модель должна включать в себя `FilterTrait`, а так же определение доступных
+атрибутов:
+
+```php
+use FilterTrait;
+
+
+/**
+ * @var
+ */
+protected $allowedFilters = [
+    'id',
+    'user_id',
+    'type',
+    'status',
+    'content',
+    'options',
+    'slug',
+    'publish_at',
+    'created_at',
+    'deleted_at',
+];
+
+/**
+ * @var
+ */
+protected $allowedSorts = [
+    'id',
+    'user_id',
+    'type',
+    'status',
+    'slug',
+    'publish_at',
+    'created_at',
+    'deleted_at',
+];
+
+```
+
+### Использование
+
+```php
+Post::filters()->defaultSort('id')->paginate();
+```
+
+Как будет реагировать фильтрация:
+
+```php
+http://example.com/demo?filter[id]=1
+$model->where('id','=',1)
+
+
+http://example.com/demo?filter[id]=1,2,3,4,5
+$model->whereIn('id',[1,2,3,4,5]);
+
+
+http://example.com/demo?filter[content.ru.name]=dwqdwq
+$model->where('content->ru->name','=','dwqdwq');
+
+```
+
+Как будет реагировать сортировка:
+
+```php
+http://example.com/demo?sort=content.ru.name
+$model->orderBy('content.ru.name','asc');
+
+http://example.com/demo?sort=-content.ru.name
+$model->orderBy('content.ru.name','desc');
+```
+

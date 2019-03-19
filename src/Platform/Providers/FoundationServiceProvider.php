@@ -4,14 +4,22 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
+use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\Route;
 use Orchid\Alert\AlertServiceProvider;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
 use Watson\Active\ActiveServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
-use Laracasts\Generators\GeneratorsServiceProvider;
-use Orchid\Attachment\Providers\AttachmentServiceProvider;
+use Orchid\Platform\Commands\LinkCommand;
+use Orchid\Platform\Commands\RowsCommand;
+use Orchid\Platform\Commands\AdminCommand;
+use Orchid\Platform\Commands\ChartCommand;
+use Orchid\Platform\Commands\TableCommand;
+use Orchid\Platform\Commands\FilterCommand;
+use Orchid\Platform\Commands\ScreenCommand;
+use Orchid\Platform\Commands\InstallCommand;
+use Orchid\Platform\Commands\MetricsCommand;
+use Orchid\Platform\Commands\SelectionCommand;
 
 /**
  * Class FoundationServiceProvider.
@@ -20,29 +28,35 @@ use Orchid\Attachment\Providers\AttachmentServiceProvider;
 class FoundationServiceProvider extends ServiceProvider
 {
     /**
+     * The available command shortname.
+     *
+     * @var array
+     */
+    protected $commands = [
+        InstallCommand::class,
+        LinkCommand::class,
+        AdminCommand::class,
+        FilterCommand::class,
+        RowsCommand::class,
+        ScreenCommand::class,
+        TableCommand::class,
+        ChartCommand::class,
+        MetricsCommand::class,
+        SelectionCommand::class,
+    ];
+
+    /**
      * Boot the application events.
      */
     public function boot(): void
     {
-        $this->registerEloquentFactoriesFrom()
+        $this
             ->registerOrchid()
             ->registerDatabase()
             ->registerConfig()
             ->registerTranslations()
             ->registerViews()
             ->registerProviders();
-    }
-
-    /**
-     * Register factories.
-     *
-     * @return $this
-     */
-    protected function registerEloquentFactoriesFrom(): self
-    {
-        $this->app->make(Factory::class)->load(realpath(PLATFORM_PATH.'/database/factories'));
-
-        return $this;
     }
 
     /**
@@ -132,14 +146,10 @@ class FoundationServiceProvider extends ServiceProvider
     public function provides(): array
     {
         return [
-            DashboardServiceProvider::class,
             ScoutServiceProvider::class,
-            AttachmentServiceProvider::class,
-            GeneratorsServiceProvider::class,
             ActiveServiceProvider::class,
             RouteServiceProvider::class,
             AlertServiceProvider::class,
-            ConsoleServiceProvider::class,
             EventServiceProvider::class,
             PlatformServiceProvider::class,
         ];
@@ -150,9 +160,16 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->commands($this->commands);
+
+        $this->app->singleton(Dashboard::class, function () {
+            return new Dashboard();
+        });
+
         if (! Route::hasMacro('screen')) {
             Route::macro('screen', function ($url, $screen, $name = null) {
-                return Route::any($url.'/{method?}/{argument?}', [$screen, 'handle'])
+                /* @var \Illuminate\Routing\Router $this */
+                return $this->any($url.'/{method?}/{argument?}', [$screen, 'handle'])
                     ->name($name);
             });
         }

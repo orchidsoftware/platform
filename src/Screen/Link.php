@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Orchid\Screen\Traits\CanSee;
+
 /**
  * Class Link.
  *
@@ -13,50 +15,41 @@ namespace Orchid\Screen;
  * @method static Link method(string $name)
  * @method static Link icon(string $name)
  * @method static Link link(string $name)
- * @method static Link show(bool $name)
  * @method static Link group(array $name)
  */
 class Link
 {
-    /**
-     * @var
-     */
-    public $slug;
+    use CanSee;
 
     /**
-     * @var
+     * @var string|null
      */
     public $name;
 
     /**
-     * @var
+     * @var string
      */
     public $method;
 
     /**
-     * @var
+     * @var string|null
      */
     public $icon;
 
     /**
-     * @var
+     * @var string|null
      */
     public $modal;
 
     /**
-     * @var
+     * @var string|null
      */
     public $title;
 
     /**
-     * @var
+     * @var string|null
      */
     public $link;
-
-    /**
-     * @var
-     */
-    public $show = true;
 
     /**
      * @var array
@@ -64,40 +57,48 @@ class Link
     public $group = [];
 
     /**
-     * @param $name
-     * @param $arguments
+     * @var string|null
+     */
+    public $view;
+
+    /**
+     * @param string     $name
+     * @param mixed|null $arguments
      *
      * @return mixed
      */
-    public static function __callStatic($name, $arguments)
+    public static function __callStatic(string $name, $arguments)
     {
-        return (new static)->rewriteProperty($name, $arguments[0]);
+        return (new static())->rewriteProperty($name, $arguments[0]);
     }
 
     /**
-     * @param $name
-     * @param $arguments
+     * @param string     $name
+     * @param mixed|null $arguments
      *
-     * @return mixed
+     * @return self
      */
-    public function __call($name, $arguments)
+    public function __call(string $name, $arguments) : self
     {
-        return call_user_func([$this, 'rewriteProperty'], $name, $arguments[0]);
+        return $this->rewriteProperty($name, $arguments[0]);
     }
 
     /**
-     * @param null $arguments
+     * @param Repository $query
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|string
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function build($arguments = null)
+    public function build(Repository $query)
     {
-        if (! $this->show) {
-            return '';
+        if (! $this->display) {
+            return;
+        }
+
+        if (! is_null($this->view)) {
+            return view($this->view, $query->all());
         }
 
         return view('platform::container.layouts.link', [
-            'slug'      => $this->slug,
             'name'      => $this->name,
             'method'    => $this->method,
             'icon'      => $this->icon,
@@ -105,17 +106,17 @@ class Link
             'title'     => $this->title,
             'link'      => $this->link,
             'group'     => $this->group,
-            'arguments' => $arguments,
+            'query'     => $query,
         ]);
     }
 
     /**
-     * @param $name
-     * @param $property
+     * @param string     $name
+     * @param mixed|null $property
      *
-     * @return $this
+     * @return self
      */
-    protected function rewriteProperty($name, $property)
+    protected function rewriteProperty(string $name, $property) : self
     {
         $this->$name = $property;
 
@@ -123,14 +124,27 @@ class Link
     }
 
     /**
-     * @param array $links
+     * @param Link[] $links
      *
-     * @return $this
+     * @return self
      */
-    public function dropdown(array $links)
+    public function dropdown(array $links) : self
     {
         $this->group = $links;
 
         return $this;
+    }
+
+    /**
+     * @param string $view
+     *
+     * @return self
+     */
+    public static function view(string $view): self
+    {
+        $link = new static();
+        $link->view = $view;
+
+        return $link;
     }
 }

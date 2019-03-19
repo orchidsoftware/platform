@@ -17,7 +17,7 @@ trait AttachTrait
      *
      * @return MorphToMany
      */
-    public function attachment($group = null): MorphToMany
+    public function attachment(string $group = null): MorphToMany
     {
         $query = $this->morphToMany(
             Attachment::class,
@@ -28,9 +28,10 @@ trait AttachTrait
         );
 
         if (! is_null($group)) {
-            $query->where('attachmentable_group', $group);
+            $query->where('group', $group);
         }
 
-        return $query;
+        return $query
+            ->orderBy('sort', 'asc');
     }
 }

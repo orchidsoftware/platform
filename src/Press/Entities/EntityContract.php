@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Press\Entities;
 
 /**
@@ -17,8 +19,9 @@ interface EntityContract
     /**
      * Request Validation.
      *
-     * @return array
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @return array
      */
     public function isValid(): array;
 
@@ -32,21 +35,28 @@ interface EntityContract
     /**
      * Registered fields for main.
      *
-     * @return mixed
+     * @return array
      */
     public function main(): array;
 
     /**
      * Registered fields for filling.
      *
-     * @return mixed
+     * @return array
      */
     public function fields(): array;
 
     /**
      * Registered fields for options.
      *
-     * @return mixed
+     * @return array
      */
     public function options(): array;
+
+    /**
+     * Language support for recording.
+     *
+     * @return array
+     */
+    public function locale(): array;
 }

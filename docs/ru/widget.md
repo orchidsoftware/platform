@@ -61,7 +61,7 @@ class MySuperWidget extends Widget {
 или добавить в метод fields в шаблоне страницы
 ```php
 return [
-	RelationshipField::make()
+	Relationship::make()
 		->name('my_title')
 		->required()
 		->title('My title')
@@ -89,7 +89,8 @@ public function handler($arguments = null){
 
 Виджеты могут быть использованы для загрузки и подгруздки информации в полях для связи.
 Метод `handler` должен возвращать массив содержащий массивы с ключами `id` и `text`. На пример:
-```
+
+```php
 [[ "id" => 1, "text" => "some text"]]
 ```
 

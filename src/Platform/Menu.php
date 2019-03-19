@@ -10,16 +10,31 @@ use Illuminate\Support\Facades\Auth;
 class Menu
 {
     /**
+     * Slug for main menu.
+     */
+    public const MAIN = 'Main';
+
+    /**
+     * Slug for system page.
+     */
+    public const SYSTEMS = 'Systems';
+
+    /**
+     * Slug for dropdown profile.
+     */
+    public const PROFILE = 'Profile';
+
+    /**
      * The contents of the menu.
      *
-     * @var
+     * @var Collection
      */
     public $container;
 
     /**
-     *  Position menu.
+     * Position menu.
      *
-     * @var
+     * @var string
      */
     private $location;
 
@@ -27,28 +42,23 @@ class Menu
      * Arguments menu form
      * For the transfer of Views.
      *
-     * @var
+     * @var array|null
      */
     private $arg;
 
     /**
      * Sort menu item.
      *
-     * @var
+     * @var int
      */
     private $sort;
 
     /**
      * Synthesis element.
      *
-     * @var
+     * @var array
      */
     private $item;
-
-    /**
-     * @var
-     */
-    private $template;
 
     /**
      * DashboardMenu constructor.
@@ -59,77 +69,20 @@ class Menu
     }
 
     /**
-     * Setting the menu position.
-     *
-     * @param $location
-     *
-     * @return Menu
-     */
-    public function place(string $location): self
-    {
-        $this->location = $location;
-
-        return $this;
-    }
-
-    /**
-     * @param $template
-     *
-     * @return Menu
-     */
-    public function template(string $template): self
-    {
-        $this->template = $template;
-
-        return $this;
-    }
-
-    /**
-     * @param $arg
-     *
-     * @return $this
-     */
-    public function with($arg)
-    {
-        $this->arg = $arg;
-
-        return $this;
-    }
-
-    /**
-     * @param $sort
-     *
-     * @return Menu
-     */
-    public function sortBy(int $sort): self
-    {
-        $this->sort = $sort;
-
-        return $this;
-    }
-
-    /**
      * Adding a new element to the container.
      *
-     * @param string $place
-     * @param array|ItemMenu $arg
+     * @param string   $place
+     * @param ItemMenu $itemMenu
      *
      * @return $this
      */
-    public function add(string $place, $arg)
+    public function add(string $place, ItemMenu $itemMenu)
     {
-        if ($arg instanceof ItemMenu) {
-            $arg = get_object_vars($arg);
-        }
+        $arg = get_object_vars($itemMenu);
 
         if (array_key_exists('show', $arg) && ! $arg['show']) {
             return $this;
         }
-
-        $arg = array_merge([
-            'icon' => 'icon-folder',
-            'sort' => 0,
-        ], $arg);
 
         $this->location = $place;
         $this->arg = $arg;
@@ -149,31 +102,21 @@ class Menu
     /**
      * Generate on the menu display.
      *
-     * @param string $location
+     * @param string      $location
      * @param string|null $template
      *
      * @return string
      */
-    public function render(string $location, string $template = null): string
+    public function render(string $location, string $template = 'platform::partials.mainMenu'): string
     {
-        $html = '';
+        $this->checkAccess();
 
-        $this->checkAccess()
-            ->where('location', $location)
+        return $this->findAllChildren($location)
             ->sortBy('sort')
-            ->each(function ($value) use ($template, &$html) {
-                if (! array_key_exists('template', $value)) {
-                    $value['template'] = 'platform::partials.mainMenu';
-                }
-
-                if (! is_null($template)) {
-                    $value['template'] = $template;
-                }
-
-                $html .= view($value['template'], collect($value['arg']));
-            });
-
-        return $html;
+            ->map(function ($value) use ($template, &$html) {
+                return view($template, $value)->render();
+            })
+            ->implode(' ');
     }
 
     /**
@@ -193,12 +136,16 @@ class Menu
      */
     private function checkAccess()
     {
-        $this->user = Auth::user();
-        $user = $this->user;
+        $user = Auth::user();
 
-        $this->container = $this->container->filter(function ($item) use ($user) {
-            return isset($item['arg']['permission']) ? optional($user)->hasAccess($item['arg']['permission']) : true;
-        });
+        $this->container = $this->container
+            ->filter(function ($item) use ($user) {
+                if (! isset($item['arg']['permission'])) {
+                    return true;
+                }
+
+                return optional($user)->hasAccess($item['arg']['permission']);
+            });
 
         return $this->container;
     }
@@ -215,7 +162,14 @@ class Menu
             ->sortBy('sort')
             ->map(function ($item, $key) {
                 $item = $item['arg'];
-                $item['children'] = $this->findAllChildren($key);
+
+                $childrens = $this->findAllChildren($key);
+
+                $item['children'] = $childrens;
+
+                $childrens->each(function ($children) use (&$item) {
+                    $item['active'] = array_merge($item['active'], $children['active']);
+                });
 
                 return $item;
             });

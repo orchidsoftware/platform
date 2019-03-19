@@ -31,7 +31,7 @@ abstract class Selection extends Base
         }
 
         foreach ($filters as $key => $filter) {
-            $filters[$key] = new $filter;
+            $filters[$key] = new $filter();
         }
 
         return view($this->template, [

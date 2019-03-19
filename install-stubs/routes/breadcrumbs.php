@@ -1,5 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
+
 //Screens
 
 // Platform > System > Users

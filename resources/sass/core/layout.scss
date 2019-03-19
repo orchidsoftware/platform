@@ -19,15 +19,13 @@ body {
     top: 0;
     bottom: 0;
     z-index: -1;
-    //background-color: $body-bg;
-    background: rgba(60, 65, 70, 1);
-    background: -moz-linear-gradient(left, rgba(60, 65, 70, 1) 0%, rgba(60, 65, 70, 1) 50%, $body-bg 51%, $body-bg 71%, $body-bg 100%);
-    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(60, 65, 70, 1)), color-stop(50%, rgba(60, 65, 70, 1)), color-stop(51%, $body-bg), color-stop(71%, $body-bg), color-stop(100%, $body-bg));
-    background: -webkit-linear-gradient(left, rgba(60, 65, 70, 1) 0%, rgba(60, 65, 70, 1) 50%, $body-bg 51%, $body-bg 71%, $body-bg 100%);
-    background: -o-linear-gradient(left, rgba(60, 65, 70, 1) 0%, rgba(60, 65, 70, 1) 50%, $body-bg 51%, $body-bg 71%, $body-bg 100%);
-    background: -ms-linear-gradient(left, rgba(60, 65, 70, 1) 0%, rgba(60, 65, 70, 1) 50%, $body-bg 51%, $body-bg 71%, $body-bg 100%);
-    background: linear-gradient(to right, rgba(60, 65, 70, 1) 0%, rgba(60, 65, 70, 1) 50%, $body-bg 51%, $body-bg 71%, $body-bg 100%);
-    filter:     progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c4146', endColorstr='#ffffff', GradientType=1);
+    background: $brand-dark;
+    background: -moz-linear-gradient(left, $brand-dark 0%, $brand-dark 50%, $body-bg 51%, $body-bg 71%, $body-bg 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, $brand-dark), color-stop(50%, $brand-dark), color-stop(51%, $body-bg), color-stop(71%, $body-bg), color-stop(100%, $body-bg));
+    background: -webkit-linear-gradient(left, $brand-dark 0%, $brand-dark 50%, $body-bg 51%, $body-bg 71%, $body-bg 100%);
+    background: -o-linear-gradient(left, $brand-dark 0%, $brand-dark 50%, $body-bg 51%, $body-bg 71%, $body-bg 100%);
+    background: -ms-linear-gradient(left, $brand-dark 0%, $brand-dark 50%, $body-bg 51%, $body-bg 71%, $body-bg 100%);
+    background: linear-gradient(to right, $brand-dark 0%, $brand-dark 50%, $body-bg 51%, $body-bg 71%, $body-bg 100%);
     border: inherit;
     display: block;
   }

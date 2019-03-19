@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Composers;
 
+use Orchid\Platform\Menu;
 use Orchid\Platform\ItemMenu;
 use Orchid\Platform\Dashboard;
 use Orchid\Press\Entities\Single;
@@ -45,18 +46,18 @@ class PressMenuComposer
             ->where('display', true)
             ->sortBy('sort')
             ->each(function ($page) use ($kernel) {
-                $route = is_a($page, Single::class) ? 'platform.pages.show' : 'platform.posts.type';
+                $route = is_a($page, Single::class) ? 'platform.entities.type.page' : 'platform.entities.type';
+                $params = is_a($page, Single::class) ? [$page->slug, $page->slug] : [$page->slug];
 
-                $kernel->menu->add('Main',
-                    ItemMenu::setLabel($page->name)
-                        ->setSlug($page->slug)
-                        ->setIcon($page->icon)
-                        ->setGroupName($page->groupname)
-                        ->setRoute(route($route, [$page->slug]))
-                        ->setPermission('platform.posts.type.'.$page->slug)
-                        ->setActive(route($route, [$page->slug]).'*')
-                        ->setSort($page->sort)
-                        ->setShow($page->display)
+                $kernel->menu->add(Menu::MAIN,
+                    ItemMenu::label($page->name)
+                        ->slug($page->slug)
+                        ->icon($page->icon)
+                        ->groupName($page->groupname)
+                        ->route($route, $params)
+                        ->permission('platform.entities.type.'.$page->slug)
+                        ->sort($page->sort)
+                        ->show($page->display)
                 );
             });
 

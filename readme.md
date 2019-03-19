@@ -46,7 +46,7 @@ Once these commands have completed, you are ready to enjoy platform!
 
 ###### Simple screenshot:
 
-![screenshot](https://user-images.githubusercontent.com/5102591/48972240-8f216c80-f037-11e8-98a6-51f788349f10.png)
+![screenshot](https://user-images.githubusercontent.com/5102591/52168128-014cb680-2737-11e9-9ed3-28637780cf64.png)
 
 ## Change log
 
@@ -60,6 +60,8 @@ php vendor/bin/phpunit --coverage-html ./logs/coverage ./tests
 ```
 
 ## Donate & Support
+
+Since the existence of a healthy open source ecosystem creates real value for the software industry, believe it is fair for maintainers and authors of such software to be compensated for their work with real money.
 
 If you would like to support development by making a donation you can do so [here](https://www.paypal.me/tabuna/10usd). &#x1F60A;
 

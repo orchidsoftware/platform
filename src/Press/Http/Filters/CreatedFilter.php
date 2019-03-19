@@ -6,7 +6,7 @@ namespace Orchid\Press\Http\Filters;
 
 use Orchid\Screen\Field;
 use Orchid\Platform\Filters\Filter;
-use Orchid\Screen\Fields\DateRangeField;
+use Orchid\Screen\Fields\DateRange;
 use Illuminate\Database\Eloquent\Builder;
 
 class CreatedFilter extends Filter
@@ -15,8 +15,7 @@ class CreatedFilter extends Filter
      * @var array
      */
     public $parameters = [
-        'start_created_at',
-        'end_created_at',
+        'created_at',
     ];
 
     /**
@@ -26,8 +25,8 @@ class CreatedFilter extends Filter
      */
     public function run(Builder $builder): Builder
     {
-        return $builder->where('created_at', '>', $this->request->get('start_created_at'))
-            ->where('created_at', '<', $this->request->get('end_created_at'));
+        return $builder->where('created_at', '>', $this->request->input('created_at.start'))
+            ->where('created_at', '<', $this->request->input('created_at.end'));
     }
 
     /**
@@ -35,11 +34,11 @@ class CreatedFilter extends Filter
      */
     public function display() : Field
     {
-        return DateRangeField::make('created_at')
+        return DateRange::make('created_at')
             ->title(__('Date of creation'))
             ->value([
-                'start' => $this->request->get('start_created_at'),
-                'end'   => $this->request->get('end_created_at'),
+                'start' => $this->request->input('created_at.start'),
+                'end'   => $this->request->input('created_at.end'),
             ]);
     }
 }

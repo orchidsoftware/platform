@@ -2,14 +2,15 @@
 
 namespace DummyNamespace;
 
+use Orchid\Screen\Field;
 use Orchid\Screen\Layouts\Rows;
 
 class DummyClass extends Rows
 {
     /**
-     * Views
+     * Views.
      *
-     * @return array
+     * @return Field[]
      */
     public function fields(): array
     {

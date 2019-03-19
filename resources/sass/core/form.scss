@@ -81,7 +81,6 @@ Icon input
   align-items: center;
   justify-content: center;
   min-width: 2.5rem;
-  pointer-events: none;
 
   &:last-child {
     left: auto;
@@ -94,5 +93,11 @@ Icon input
   @extend .v-center;
   .custom-control-label{
     padding-top: 0.1em;
+  }
+}
+
+.bg-dark {
+  .form-control, .form-control:focus {
+    border: 1px solid rgba(233, 236, 239, 0.05);
   }
 }

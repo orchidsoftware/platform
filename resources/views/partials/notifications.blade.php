@@ -1,4 +1,4 @@
-<div class="dropdown">
+<div class="dropdown pull-right text-center">
     <a class="nav-link icon no-padder" data-toggle="dropdown">
         <i class="icon-bell"></i>
         @if(count($notifications) > 0)
@@ -10,7 +10,7 @@
     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow bg-white">
 
         @if(count($notifications) > 0)
-            <div class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+            <div class="hidden-folded padder m-t-xs m-b-sm text-muted text-xs">
                 {{ __('Notifications') }}
             </div>
         @endif
@@ -40,7 +40,10 @@
         @if(count($notifications) > 0)
             <div class="dropdown-divider"></div>
 
+
             <form action="{{route('platform.notification.read')}}"
+                  data-controller="layouts--form"
+                  data-action="layouts--form#submit"
                   method="post"
                   id="clear-notications-form">
                 <button type="submit" class="btn btn-sm btn-link inline dropdown-item text-center text-muted-dark">

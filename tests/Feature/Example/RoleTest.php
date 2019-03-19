@@ -12,19 +12,17 @@ class RoleTest extends TestFeatureCase
 {
     /**
      * debug: php vendor/bin/phpunit  --filter= RoleTest tests\\Feature\\Example\\RoleTest --debug.
+     *
      * @var
      */
     private $user;
 
     private $role;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
-        if ($this->user) {
-            return $this->user;
-        }
         $this->user = factory(User::class)->create();
         $this->role = factory(Role::class)->create();
     }
@@ -48,7 +46,7 @@ class RoleTest extends TestFeatureCase
 
         $response
             ->assertOk()
-            ->assertSee('field--roleslug');
+            ->assertSee('field-roles');
     }
 
     public function test_route_SystemsRolesEdit()
@@ -58,7 +56,7 @@ class RoleTest extends TestFeatureCase
             ->get(route('platform.systems.roles.edit', $this->role->slug));
 
         $response->assertOk()
-        ->assertSee('field--roleslug')
+        ->assertSee('field-roles')
         ->assertSee($this->role->name)
         ->assertSee($this->role->slug);
     }

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+
 class ItemMenu
 {
     /**
@@ -14,12 +17,12 @@ class ItemMenu
     /**
      * @var string
      */
-    public $icon;
+    public $icon = '';
 
     /**
      * @var string
      */
-    public $route;
+    public $route = '#';
 
     /**
      * @var string
@@ -34,12 +37,12 @@ class ItemMenu
     /**
      * @var bool
      */
-    public $divider;
+    public $divider = false;
 
     /**
      * @var bool
      */
-    public $childs;
+    public $childs = false;
 
     /**
      * @var int
@@ -57,9 +60,9 @@ class ItemMenu
     public $show = true;
 
     /**
-     * @var string
+     * @var array
      */
-    public $active;
+    public $active = [];
 
     /**
      * @var string
@@ -71,7 +74,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setPermission(string $permission): self
+    public function permission(string $permission): self
     {
         $this->permission = $permission;
 
@@ -79,28 +82,28 @@ class ItemMenu
     }
 
     /**
-     * @param string $active
+     * @param string|array $active
      *
      * @return \Orchid\Platform\ItemMenu
      */
-    public function setActive(string $active): self
+    public function active($active): self
     {
-        $this->active = $active;
+        $this->active = Arr::wrap($active);
 
         return $this;
     }
 
     /**
-     * @param $label
+     * @param string $label
      *
      * @return \Orchid\Platform\ItemMenu
      */
-    public static function setLabel(string $label): self
+    public static function label(string $label): self
     {
         $item = new self();
 
         $item->label = $label;
-        $item->slug = str_slug($label);
+        $item->slug = Str::slug($label);
 
         return $item;
     }
@@ -110,7 +113,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setIcon(string $icon): self
+    public function icon(string $icon): self
     {
         $this->icon = $icon;
 
@@ -122,7 +125,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setShow(bool $show): self
+    public function show(bool $show): self
     {
         $this->show = $show;
 
@@ -134,7 +137,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setSlug(string $slug): self
+    public function slug(string $slug): self
     {
         $this->slug = $slug;
 
@@ -142,13 +145,33 @@ class ItemMenu
     }
 
     /**
-     * @param string $route
+     * Generate the URL to a named route.
+     *
+     * @param string $name
+     * @param array  $parameters
+     * @param bool   $absolute
      *
      * @return ItemMenu
      */
-    public function setRoute(string $route): self
+    public function route(string $name, array $parameters = [], bool $absolute = true): self
     {
-        $this->route = $route;
+        $this->route = route($name, $parameters, $absolute);
+
+        $this->active([$this->route, $this->route.'/*']);
+
+        return $this;
+    }
+
+    /**
+     * @param string $url
+     *
+     * @return ItemMenu
+     */
+    public function url(string $url) : self
+    {
+        $this->route = $url;
+
+        $this->active($url);
 
         return $this;
     }
@@ -158,7 +181,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setGroupName(string $groupname = null): self
+    public function groupName(string $groupname = null): self
     {
         $this->groupname = $groupname;
 
@@ -170,7 +193,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setDivider(bool $divider): self
+    public function divider(bool $divider): self
     {
         $this->divider = $divider;
 
@@ -182,7 +205,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setChilds(bool $childs): self
+    public function childs(bool $childs = true): self
     {
         $this->childs = $childs;
 
@@ -194,7 +217,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setSort(int $sort): self
+    public function sort(int $sort): self
     {
         $this->sort = $sort;
 
@@ -203,11 +226,11 @@ class ItemMenu
 
     /**
      * @param \Closure $badge
-     * @param string $class
+     * @param string   $class
      *
      * @return \Orchid\Platform\ItemMenu
      */
-    public function setBadge(\Closure $badge, string $class = 'bg-primary'): self
+    public function badge(\Closure $badge, string $class = 'bg-primary'): self
     {
         $this->badge = [
             'class' => $class,

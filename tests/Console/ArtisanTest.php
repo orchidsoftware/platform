@@ -10,6 +10,7 @@ class ArtisanTest extends TestConsoleCase
 {
     /**
      * debug: php vendor/bin/phpunit  --filter= ArtisanTest tests\\Feature\\ArtisanTest --debug.
+     *
      * @var
      */
     public function test_artisan_orchid_entity_many()
@@ -87,6 +88,24 @@ class ArtisanTest extends TestConsoleCase
             ->expectsQuestion('What is your name?', 'testConsoleCreateUser')
             ->expectsQuestion('What is your email?', 'testConsoleCreateUser@console.loc')
             ->expectsQuestion('What is the password?', 'testConsoleCreateUser')
-            ->expectsOutput('User already exists or an error occurred!');
+            ->expectsOutput('User exist');
+    }
+
+    public function test_artisan_orchid_install()
+    {
+        $this->artisan('orchid:install')
+            ->expectsQuestion('The platform has already been installed, do you really want to repeat?', 'yes')
+            ->expectsOutput("To start the embedded server, run 'artisan serve'");
+    }
+
+    public function test_artisan_orchid_link()
+    {
+        $resources = public_path('resources');
+
+        $this->artisan('orchid:link')
+            ->expectsOutput("The [$resources] directory has been linked.");
+
+        $this->artisan('orchid:link')
+            ->expectsOutput("The [$resources] directory already exists.");
     }
 }

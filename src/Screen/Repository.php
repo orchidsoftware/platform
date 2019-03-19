@@ -6,12 +6,12 @@ namespace Orchid\Screen;
 
 use Iterator;
 use Countable;
-use ArrayAccess;
+use Illuminate\Support\Arr;
 
 /**
  * Class Repository.
  */
-class Repository extends \Illuminate\Config\Repository implements ArrayAccess, Iterator, Countable
+class Repository extends \Illuminate\Config\Repository implements Iterator, Countable
 {
     /**
      * @var int
@@ -19,14 +19,14 @@ class Repository extends \Illuminate\Config\Repository implements ArrayAccess, I
     protected $position = 0;
 
     /**
-     * @param      $key
-     * @param null $default
+     * @param string     $key
+     * @param mixed|null $default
      *
      * @return mixed
      */
-    public function getContent($key, $default = null)
+    public function getContent(string $key, $default = null)
     {
-        return array_get($this->items, $key, $default);
+        return Arr::get($this->items, $key, $default);
     }
 
     /**

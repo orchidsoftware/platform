@@ -8,6 +8,7 @@ use Orchid\Platform\Dashboard;
 use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
+use Orchid\Platform\ItemPermission;
 
 /**
  * Class PermissionTest.
@@ -82,14 +83,10 @@ class PermissionTest extends TestUnitCase
     {
         $dashboard = new Dashboard();
 
-        $dashboard->registerPermissions([
-            'Test' => [
-                [
-                    'slug'        => 'test',
-                    'description' => 'Test Description',
-                ],
-            ],
-        ]);
+        $permission = ItemPermission::group('Test')
+            ->addPermission('test', 'Test Description');
+
+        $dashboard->registerPermissions($permission);
 
         $this->assertEquals($dashboard->getPermission()->count(), 1);
     }

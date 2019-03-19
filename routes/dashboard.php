@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Orchid\Platform\Http\Screens\BackupScreen;
 use Orchid\Platform\Http\Screens\AnnouncementScreen;
+use Orchid\Platform\Http\Controllers\Systems\IndexController;
 use Orchid\Platform\Http\Controllers\Systems\SearchController;
 
 /*
@@ -16,15 +16,9 @@ use Orchid\Platform\Http\Controllers\Systems\SearchController;
 */
 
 // Index and default...
-$this->get('/', function () {
-    return redirect()->route(config('platform.index'));
-})->name('platform.index');
+$this->router->get('/', [IndexController::class, 'index'])->name('index');
+$this->router->fallback([IndexController::class, 'fallback']);
 
-$this->fallback(function () {
-    return view('platform::errors.404');
-});
+$this->router->post('/search/{query}', [SearchController::class, 'index'])->name('search');
 
-$this->post('/search/{query}', [SearchController::class, 'index'])->name('platform.search');
-
-$this->screen('/backups', BackupScreen::class)->name('platform.systems.backups');
-$this->screen('/announcement', AnnouncementScreen::class)->name('platform.systems.announcement');
+$this->router->screen('/announcement', AnnouncementScreen::class)->name('systems.announcement');

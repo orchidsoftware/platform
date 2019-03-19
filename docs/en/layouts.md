@@ -110,24 +110,24 @@ class Appointment extends Rows
     /**
      * @return array
      *
-     * @throws \Orchid\Press\TypeException
+     * @throws \Orchid\Press\EntityTypeException
      */
     public function fields(): array
     {
         return [
 
-            DateTimerField::make()
+            DateTimer::make()
                 ->name('appointment_time')
                 ->required()
                 ->title('Time'),
 
-            RelationshipField::make()
+            Relationship::make()
                 ->name('appointment_type')
                 ->required()
                 ->title('Appointment type')
                 ->handler(AppointmentTypes::class),
 
-            TextAreaField::make()
+            TextArea::make()
                 ->name('doctor_notes')
                 ->rows(10)
                 ->required()

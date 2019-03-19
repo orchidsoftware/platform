@@ -13,12 +13,12 @@ use Orchid\Platform\Http\Controllers\Controller;
 class MenuController extends Controller
 {
     /**
-     * @var
+     * @var string
      */
     public $lang;
 
     /**
-     * @var
+     * @var string
      */
     public $menu;
 
@@ -41,16 +41,16 @@ class MenuController extends Controller
             return redirect()->route('platform.systems.menu.show', $availableMenus->keys()->first());
         }
 
-        return abort(404);
+        abort(404);
     }
 
     /**
-     * @param         $name
+     * @param string  $name
      * @param Request $request
      *
      * @return View
      */
-    public function show($name, Request $request)
+    public function show(string $name, Request $request)
     {
         $availableMenus = config('press.menu');
         $currentLocale = $request->get('lang', app()->getLocale());
@@ -77,13 +77,11 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function create(Request $request)
+    public function store(Request $request)
     {
-        $data = json_decode($request->get('data'), true);
-
-        $menu = Dashboard::model(Menu::class)::create(array_merge($data, [
-            'lang'   => $request->get('lang'),
-            'type'   => $request->get('menu'),
+        $menu = Dashboard::model(Menu::class)::create(array_merge($request->input('params.data'), [
+            'lang'   => $request->input('params.lang'),
+            'type'   => $request->input('params.menu'),
             'parent' => 0,
         ]));
 
@@ -94,7 +92,7 @@ class MenuController extends Controller
     }
 
     /**
-     * @param string $menu
+     * @param string  $menu
      * @param Request $request
      *
      * @return \Illuminate\Http\JsonResponse
@@ -113,7 +111,7 @@ class MenuController extends Controller
 
     /**
      * @param array $items
-     * @param int $parent
+     * @param int   $parent
      */
     private function createMenuElement(array $items, $parent = 0)
     {

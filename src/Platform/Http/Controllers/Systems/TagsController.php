@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
-use Orchid\Press\Models\Post;
-use Orchid\Platform\Dashboard;
+use Orchid\Press\Models\Tag;
 use Orchid\Platform\Http\Controllers\Controller;
 
 /**
@@ -14,27 +13,23 @@ use Orchid\Platform\Http\Controllers\Controller;
 class TagsController extends Controller
 {
     /**
-     * @param null $tag
+     * @param string $tag
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show($tag = null)
+    public function show(string $tag)
     {
-        $tags = Dashboard::model(Post::class)::allTags()
-            ->latest('count')
-            ->limit(10);
-
-        if (! is_null($tag)) {
-            $tags = $tags->where('name', 'like', '%'.$tag.'%');
-        }
-
-        $tags = $tags->get()->transform(function ($item) {
-            return [
-                'id'    => $item['name'],
-                'text'  => $item['name'],
-                'count' => $item['count'],
-            ];
-        });
+        $tags = Tag::latest('count')
+            ->where('name', 'like', '%'.$tag.'%')
+            ->limit(10)
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'id'    => $item['name'],
+                    'text'  => $item['name'],
+                    'count' => $item['count'],
+                ];
+            });
 
         return response()->json($tags);
     }

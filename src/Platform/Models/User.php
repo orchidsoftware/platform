@@ -52,11 +52,12 @@ class User extends Authenticatable implements UserInterface
      * @var array
      */
     protected $casts = [
-        'permissions' => 'array',
+        'permissions'       => 'array',
+        'email_verified_at' => 'datetime',
     ];
 
     /**
-     * @var
+     * @var array
      */
     protected $allowedFilters = [
         'id',
@@ -66,7 +67,7 @@ class User extends Authenticatable implements UserInterface
     ];
 
     /**
-     * @var
+     * @var array
      */
     protected $allowedSorts = [
         'id',
@@ -89,9 +90,9 @@ class User extends Authenticatable implements UserInterface
     /**
      * Display name.
      *
-     * @return mixed
+     * @return string
      */
-    public function getNameTitle()
+    public function getNameTitle() : string
     {
         return $this->name;
     }
@@ -101,19 +102,19 @@ class User extends Authenticatable implements UserInterface
      *
      * @return string
      */
-    public function getSubTitle()
+    public function getSubTitle() : string
     {
         return 'Administrator';
     }
 
     /**
-     * @param $name
-     * @param $email
-     * @param $password
+     * @param string $name
+     * @param string $email
+     * @param string $password
      *
      * @throws \Exception
      */
-    public static function createAdmin($name, $email, $password)
+    public static function createAdmin(string $name, string $email, string $password)
     {
         if (static::where('email', $email)->exists()) {
             throw new Exception('User exist');
@@ -143,8 +144,9 @@ class User extends Authenticatable implements UserInterface
     }
 
     /**
-     * @return string
      * @throws \Exception
+     *
+     * @return string
      */
     public function getAvatar()
     {
@@ -172,18 +174,5 @@ class User extends Authenticatable implements UserInterface
 
                 return $group;
             });
-    }
-
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    public function getStatusRoles()
-    {
-        return collect($this->roles)->keyBy('id')
-            ->transform(function ($role) {
-                $role->active = true;
-
-                return $role;
-            })->union(Role::all()->keyBy('id'));
     }
 }

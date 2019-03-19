@@ -13,7 +13,7 @@ trait Structure
     /**
      * Visible name of entity.
      *
-     * @var
+     * @var string
      */
     public $name = '';
 
@@ -81,7 +81,6 @@ trait Structure
      * Request Validation.
      *
      * @return array
-     * @throws \Illuminate\Validation\ValidationException
      */
     public function isValid(): array
     {
@@ -101,21 +100,21 @@ trait Structure
     /**
      * Registered fields for main.
      *
-     * @return mixed
+     * @return array
      */
     abstract public function main(): array;
 
     /**
      * Registered fields for filling.
      *
-     * @return mixed
+     * @return array
      */
     abstract public function fields(): array;
 
     /**
      * Registered fields for options.
      *
-     * @return mixed
+     * @return array
      */
     abstract public function options(): array;
 
@@ -126,6 +125,14 @@ trait Structure
      */
     public function locale(): array
     {
-        return config('press.locales');
+        return config('press.locales', []);
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->slug;
     }
 }

@@ -125,7 +125,7 @@ Puede cambiar la información que desea mostrar en red al pasar el arreglo con e
          TD::name('publish_at')->title('Date of publication'),
          TD::name('created_at')->title('Date of creation'),
          TD::name('full_name')->title('Full name')
-         ->setRender(function($post){
+         ->render(function($post){
              return  "{$post->getContent('fist_name')} {$post->getContent('last_name')}";
          })
      ];

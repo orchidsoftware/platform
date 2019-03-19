@@ -11,6 +11,7 @@ class DashboardTest extends TestFeatureCase
 {
     /**
      * debug: php vendor/bin/phpunit  --filter= DashboardTest tests\\Feature\\Platform\\DashboardTest --debug.
+     *
      * @var
      */
     private $user;
@@ -43,23 +44,5 @@ class DashboardTest extends TestFeatureCase
         $response
             ->assertStatus(302)
             ->assertRedirect('/dashboard/login');
-    }
-
-    public function test_route_SaviorBackups()
-    {
-        $response = $this
-            ->actingAs($this->getUser())
-            ->get(route('platform.systems.backups'));
-
-        $response->assertOk();
-    }
-
-    public function test_route_SaviorBackups_method_runBackup()
-    {
-        $response = $this
-            ->actingAs($this->getUser())
-            ->post(route('platform.systems.backups', 'runBackup'));
-
-        $response->assertStatus(302);
     }
 }

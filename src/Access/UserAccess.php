@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Access;
 
+use Illuminate\Support\Arr;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\Role;
 use Illuminate\Database\Eloquent\Model;
@@ -41,7 +42,7 @@ trait UserAccess
      */
     public function inRole($role): bool
     {
-        $role = array_first($this->roles, function ($instance) use ($role) {
+        $role = Arr::first($this->roles, function ($instance) use ($role) {
             if ($role instanceof RoleInterface) {
                 return $instance->getRoleId() === $role->getRoleId();
             }
@@ -157,8 +158,9 @@ trait UserAccess
     }
 
     /**
-     * @return bool
      * @throws \Exception
+     *
+     * @return bool
      */
     public function delete(): bool
     {

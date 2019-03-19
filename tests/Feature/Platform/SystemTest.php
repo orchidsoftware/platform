@@ -11,17 +11,15 @@ class SystemTest extends TestFeatureCase
 {
     /**
      * debug: php vendor/bin/phpunit  --filter= SystemTest tests\\Feature\\Platform\\SystemTest --debug.
+     *
      * @var
      */
     private $user;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
-        if ($this->user) {
-            return $this->user;
-        }
         $this->user = factory(User::class)->create();
     }
 
@@ -31,7 +29,7 @@ class SystemTest extends TestFeatureCase
             ->get(route('platform.systems.index'));
 
         $response->assertOk();
-        $this->assertContains('System', $response->getContent());
+        $this->assertStringContainsString('System', $response->getContent());
     }
 
     public function test_route_PlatformSystemsMenuIndex()
@@ -48,14 +46,6 @@ class SystemTest extends TestFeatureCase
         $response = $this->actingAs($this->user)
             ->get(route('platform.systems.menu.show', 'header'));
         $response->assertOk();
-        $this->assertContains('data-controller="components--menu"', $response->getContent());
-    }
-
-    public function test_route_PlatformSystemsMediaIndex()
-    {
-        $response = $this->actingAs($this->user)
-            ->get(route('platform.systems.media.index'));
-        $response->assertOk();
-        $this->assertContains('id="filemanager"', $response->getContent());
+        $this->assertStringContainsString('data-controller="components--menu"', $response->getContent());
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Composers;
 
+use Orchid\Platform\Menu;
 use Orchid\Platform\ItemMenu;
 use Orchid\Platform\Dashboard;
 
@@ -31,62 +32,61 @@ class MainMenuComposer
     {
         // Profile
         $this->dashboard->menu
-            ->add('Profile',
-                ItemMenu::setLabel('Example 1')
-                    ->setIcon('icon-compass')
+            ->add(Menu::PROFILE,
+                ItemMenu::label('Example 1')
+                    ->icon('icon-compass')
             )
-            ->add('Profile',
-                ItemMenu::setLabel('Example 2')
-                    ->setIcon('icon-heart')
-                    ->setBadge(function () {
+            ->add(Menu::PROFILE,
+                ItemMenu::label('Example 2')
+                    ->icon('icon-heart')
+                    ->badge(function () {
                         return 6;
                     })
             )
-            ->add('Profile',
-                ItemMenu::setLabel('Example 3')
-                    ->setIcon('icon-microphone')
+            ->add(Menu::PROFILE,
+                ItemMenu::label('Example 3')
+                    ->icon('icon-microphone')
             );
 
         // Main
         $this->dashboard->menu
-            ->add('Main',
-                ItemMenu::setLabel('Example 4')
-                    ->setIcon('icon-folder')
-                    ->setRoute(route('platform.example'))
-                    ->setGroupName('Example boilerplate')
+            ->add(Menu::MAIN,
+                ItemMenu::label('Example 4')
+                    ->icon('icon-folder')
+                    ->route('platform.example')
+                    ->groupName('Example boilerplate')
             )
-            ->add('Main',
-                ItemMenu::setLabel('Example 5 menu')
-                    ->setSlug('example-menu')
-                    ->setIcon('icon-heart')
-                    ->setRoute('#')
-                    ->setChilds(true)
-            )
-            ->add('example-menu',
-                ItemMenu::setLabel('Example sub 1')
-                    ->setIcon('icon-bag')
-                    ->setRoute(route('platform.example'))
+            ->add(Menu::MAIN,
+                ItemMenu::label('Example 5 menu')
+                    ->slug('example-menu')
+                    ->icon('icon-heart')
+                    ->childs()
             )
             ->add('example-menu',
-                ItemMenu::setLabel('Example sub 2')
-                    ->setIcon('icon-heart')
-                    ->setRoute(route('platform.example'))
-                    ->setGroupName('Separate')
+                ItemMenu::label('Example sub 1')
+                    ->icon('icon-bag')
+                    ->route('platform.example')
             )
-            ->add('Main',
-                ItemMenu::setLabel('Example 6')
-                    ->setIcon('icon-code')
-                    ->setRoute(route('platform.example'))
+            ->add('example-menu',
+                ItemMenu::label('Example sub 2')
+                    ->icon('icon-heart')
+                    ->route('platform.example')
+                    ->groupName('Separate')
             )
-            ->add('Main',
-                ItemMenu::setLabel('Example 7')
-                    ->setIcon('icon-bag')
-                    ->setRoute(route('platform.example'))
+            ->add(Menu::MAIN,
+                ItemMenu::label('Example 6')
+                    ->icon('icon-code')
+                    ->route('platform.example')
             )
-            ->add('Main',
-                ItemMenu::setLabel('Example 8')
-                    ->setIcon('icon-folder')
-                    ->setRoute(route('platform.example'))
+            ->add(Menu::MAIN,
+                ItemMenu::label('Example 7')
+                    ->icon('icon-bag')
+                    ->route('platform.example')
+            )
+            ->add(Menu::MAIN,
+                ItemMenu::label('Example 8')
+                    ->icon('icon-folder')
+                    ->route('platform.example')
             );
     }
 }

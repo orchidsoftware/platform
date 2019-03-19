@@ -68,37 +68,21 @@ Example of adding the custom permissions with the use of provider:
 
 ```php
 use Illuminate\Support\ServiceProvider;
+use Orchid\Platform\ItemPermission;
 use Orchid\Platform\Dashboard;
 
 class PermissionServiceProvider extends ServiceProvider
 {
     /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
-
-    /**
      * @param Dashboard $dashboard
      */
     public function boot(Dashboard $dashboard)
     {
-        $permission = $this->registerPermissions();
-        $dashboard->permission->registerPermissions($permission);
-    }
+        $permissions = ItemPermission::setGroup('modules')
+            ->addPermission('analytics', 'Access to data analytics')
+            ->addPermission('monitor', 'Access to the system monitor');
 
-    protected function registerPermissions()
-    {
-        return [
-            'Modules' => [
-                [
-                    'slug'        => 'Analytics',
-                    'description' => 'Description',
-                ],
-            ],
-
-        ];
+        $dashboard->registerPermissions($permissions);
     }
 }
 ```

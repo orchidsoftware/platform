@@ -25,8 +25,9 @@ abstract class Rows extends Base
     /**
      * @param \Orchid\Screen\Repository $query
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Throwable
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function build(Repository $query)
     {

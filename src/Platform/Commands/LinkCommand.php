@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
+use Orchid\Platform\Dashboard;
 use Illuminate\Console\Command;
 
 class LinkCommand extends Command
@@ -20,23 +21,33 @@ class LinkCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Create a symbolic link from "vendor/orchid" to "public/orchid"';
+    protected $description = 'Create a symbolic link from resource orchid';
 
     /**
      * Execute the console command.
      *
+     * @param \Orchid\Platform\Dashboard $dashboard
+     *
      * @return void
      */
-    public function handle()
+    public function handle(Dashboard $dashboard)
     {
-        if (file_exists(public_path('orchid'))) {
-            $this->error('The "public/orchid" directory already exists.');
+        $prefix = public_path('/resources');
+
+        if (file_exists($prefix)) {
+            $this->error("The [$prefix] directory already exists.");
 
             return;
         }
 
-        $this->laravel->make('files')->link(realpath(PLATFORM_PATH.'/public/'), public_path('orchid'));
+        $dashboard->getPublicDirectory()->each(function ($path, $package) use ($prefix) {
+            $package = $prefix.'/'.$package;
+            $path = rtrim($path, '/');
 
-        $this->info('The [public/orchid] directory has been linked.');
+            $this->getLaravel()->make('files')->makeDirectory($prefix, 0755, true);
+            $this->getLaravel()->make('files')->link($path, $package);
+        });
+
+        $this->info("The [$prefix] directory has been linked.");
     }
 }

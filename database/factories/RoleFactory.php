@@ -29,9 +29,7 @@ $factory->define(Role::class, function (Faker $faker) {
             'platform.systems.attachment'   => 1,
             'platform.systems.media'        => 1,
             'platform.pages'                => 1,
-            'platform.pages.type.demo-page' => 1,
             'platform.posts'                => 1,
-            'platform.posts.type.demo'      => 1,
         ],
         $role[1] => [
             'platform.index'              => 1,
@@ -49,9 +47,7 @@ $factory->define(Role::class, function (Faker $faker) {
             'platform.systems.attachment'   => 1,
             'platform.systems.media'        => 1,
             'platform.pages'                => 1,
-            'platform.pages.type.demo-page' => 1,
             'platform.posts'                => 1,
-            'platform.posts.type.demo'      => 1,
         ],
     ];
     $selRole = $faker->randomElement($role);

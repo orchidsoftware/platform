@@ -1,9 +1,9 @@
 @push('head')
-    <link rel="apple-touch-icon" sizes="180x180" href="/orchid/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/orchid/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/orchid/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/orchid/favicon/manifest.json">
-    <link rel="mask-icon" href="/orchid/favicon/safari-pinned-tab.svg" color="#1a2021">
+    <link rel="manifest" href="{{ route('platform.resource', ['orchid', 'favicon/manifest.json']) }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ route('platform.resource', ['orchid', 'favicon/apple-touch-icon.png']) }}">
+    <link rel="shortcut icon" type="image/png" sizes="32x32" href="{{ route('platform.resource', ['orchid', 'favicon/favicon-32x32.png']) }}">
+    <link rel="shortcut icon" type="image/png" sizes="16x16" href="{{ route('platform.resource', ['orchid', 'favicon/favicon-16x16.png']) }}">
+    <link rel="mask-icon" href="{{ route('platform.resource', ['orchid', 'favicon/safari-pinned-tab.svg']) }}" color="#1a2021">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="ORCHID">

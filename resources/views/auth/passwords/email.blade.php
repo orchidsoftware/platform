@@ -8,7 +8,13 @@
             {{ session('status') }}
         </div>
     @endif
-    <form class="m-t-md" role="form" method="POST"
+    <form class="m-t-md"
+          role="form"
+          method="POST"
+          data-controller="layouts--form"
+          data-action="layouts--form#submit"
+          data-layouts--form-button-animate="#button-email"
+          data-layouts--form-button-text="{{ __('Loading...') }}"
           action="{{ route('platform.password.email') }}">
         @csrf
         <div class="form-group {{ $errors->has('email') ? ' is-invalid' : '' }}">
@@ -24,12 +30,10 @@
                 @endif
             </div>
         </div>
-        <div class="row">
-            <div class="form-group col-md-6 col-xs-12 offset-md-6">
-                <button class="btn btn-default btn-block" type="submit">
-                    <i class="icon-envelope text-xs m-r-xs"></i>  {{ __('Send Password Reset Link') }}
-                </button>
-            </div>
+        <div class="form-group">
+            <button class="btn btn-default btn-block" id="button-email" type="submit">
+                <i class="icon-envelope text-xs m-r-xs"></i>  {{ __('Send Password Reset Link') }}
+            </button>
         </div>
     </form>
 @endsection

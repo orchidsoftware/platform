@@ -1,8 +1,7 @@
 # Installation
 ----------
 
-This beginner guide will help you to start using ORCHID. We've listed up the main steps you should perform to launch the project. The platform is based on the [Laravel Framework](http://laravel.com), 
-therefore first thing you shall do is install [`Laravel`](http://laravel.com) and check if your computer meets the system [requirements](/en/docs/requirements/).
+This beginner guide will help you to start using ORCHID. We've listed up the main steps you should perform to launch the project.
 
 ## Create project
 
@@ -10,7 +9,7 @@ The platform and the framework use the Composer to provide and control your depe
 Install the framework with the `composer create-project` command in your terminal:
 
 ```php
-$ composer create-project laravel/laravel orchid-project "5.7.*" --prefer-dist
+$ composer create-project laravel/laravel orchid-project "5.8.*" --prefer-dist
 ```
 
 This will create a new folder `orchid`, download some dependencies into it and even generate main folders and files required to start your work. In other words it will install your new framework project.
@@ -42,10 +41,6 @@ Run process
 ```php
 php artisan orchid:install
 ```
-
-
-> **Notice.** Some platforms (vagrant) can not create symbolic links with this commands. And it may become necessary to manually perform the following commands 
-`cp -rf vendor/orchid/platform/public public/orchid` and `mkdir -p public/storage/public`
 
 ## Create user
 

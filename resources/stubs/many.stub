@@ -2,11 +2,12 @@
 
 namespace DummyNamespace;
 
+use Orchid\Screen\Field;
 use Orchid\Press\Entities\Many;
+use Orchid\Platform\Filters\Filter;
 
 class DummyClass extends Many
 {
-
     /**
      * @var string
      */
@@ -35,9 +36,9 @@ class DummyClass extends Many
     }
 
     /**
-     * HTTP data filters
+     * HTTP data filters.
      *
-     * @return array
+     * @return Filter[]
      */
     public function filters(): array
     {
@@ -45,7 +46,7 @@ class DummyClass extends Many
     }
 
     /**
-     * @return array
+     * @return Field[]
      */
     public function fields(): array
     {
@@ -61,7 +62,7 @@ class DummyClass extends Many
     }
 
     /**
-     * @return array
+     * @return Field[]
      */
     public function options(): array
     {

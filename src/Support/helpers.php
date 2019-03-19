@@ -7,7 +7,7 @@ if (! function_exists('alert')) {
      * Helper function to send an alert.
      *
      * @param string|null $message
-     * @param string $level
+     * @param string      $level
      *
      * @return \Orchid\Alert\Alert
      */
@@ -25,10 +25,10 @@ if (! function_exists('alert')) {
 
 if (! function_exists('setting')) {
     /**
-     * @param      $key
-     * @param null $default
+     * @param string|array $key
+     * @param null         $default
      *
-     * @return Orchid\Support\Facades\Setting
+     * @return \Orchid\Support\Facades\Setting
      */
     function setting($key, $default = null)
     {
@@ -40,10 +40,10 @@ if (! function_exists('generate_form')) {
     /**
      * Generate a ready-made html form for display to the user.
      *
-     * @param array $fields
+     * @param array                                $fields
      * @param array|\Orchid\Screen\Repository|null $data
-     * @param string|null $language
-     * @param string|null $prefix
+     * @param string|null                          $language
+     * @param string|null                          $prefix
      *
      * @throws \Throwable
      *
@@ -62,23 +62,6 @@ if (! function_exists('generate_form')) {
     }
 }
 
-if (! function_exists('dashboard_domain')) {
-
-    /**
-     * @param string $default
-     *
-     * @return string
-     */
-    function dashboard_domain($default = 'localhost')
-    {
-        try {
-            return parse_url(config('app.url'))['host'] ?? $default;
-        } catch (\TypeError $exception) {
-            return 'localhost';
-        }
-    }
-}
-
 if (! function_exists('is_sort')) {
 
     /**
@@ -88,7 +71,7 @@ if (! function_exists('is_sort')) {
      */
     function is_sort($property = null)
     {
-        $filter = new \Orchid\Platform\Filters\HttpFilter;
+        $filter = new \Orchid\Platform\Filters\HttpFilter();
 
         return $filter->isSort($property);
     }
@@ -103,7 +86,7 @@ if (! function_exists('get_sort')) {
      */
     function get_sort($property)
     {
-        $filter = new \Orchid\Platform\Filters\HttpFilter;
+        $filter = new \Orchid\Platform\Filters\HttpFilter();
 
         return $filter->getSort($property);
     }
@@ -118,7 +101,7 @@ if (! function_exists('get_filter')) {
      */
     function get_filter($property)
     {
-        $filter = new \Orchid\Platform\Filters\HttpFilter;
+        $filter = new \Orchid\Platform\Filters\HttpFilter();
 
         return $filter->getFilter($property);
     }
@@ -152,8 +135,55 @@ if (! function_exists('revert_sort')) {
      */
     function revert_sort($property)
     {
-        $filter = new \Orchid\Platform\Filters\HttpFilter;
+        $filter = new \Orchid\Platform\Filters\HttpFilter();
 
         return $filter->revertSort($property);
+    }
+}
+
+if (! function_exists('orchid_mix')) {
+    /**
+     * @param string $file
+     * @param string $package
+     * @param string $dir
+     *
+     * @throws Exception
+     *
+     * @return string
+     */
+    function orchid_mix(string $file, string $package, string $dir = '') : string
+    {
+        $manifest = null;
+
+        $in = \Orchid\Support\Facades\Dashboard::getPublicDirectory()
+            ->get($package);
+
+        $resources = (new \Symfony\Component\Finder\Finder())
+            ->ignoreUnreadableDirs()
+            ->in($in)
+            ->files()
+            ->path($dir.'mix-manifest.json');
+
+        foreach ($resources as $resource) {
+            $manifest = $resource;
+        }
+
+        if (is_null($manifest)) {
+            throw new Exception('mix-manifest.json file not found');
+        }
+
+        $manifest = json_decode($manifest->getContents(), true);
+
+        $mixPath = $manifest[$file];
+
+        if (\Illuminate\Support\Str::startsWith($mixPath, '/')) {
+            $mixPath = ltrim($mixPath, '/');
+        }
+
+        if (file_exists(public_path('/resources'))) {
+            return url("/resources/$package/$mixPath");
+        }
+
+        return route('platform.resource', [$package, $mixPath]);
     }
 }

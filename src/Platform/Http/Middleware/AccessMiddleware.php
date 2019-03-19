@@ -55,6 +55,6 @@ class AccessMiddleware
             return $next($request);
         }
 
-        abort(404);
+        abort(403);
     }
 }

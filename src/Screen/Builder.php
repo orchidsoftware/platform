@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Orchid\Screen\Contracts\FieldContract;
+
 class Builder
 {
     /**
      * Fields to be reflected, in the form Field.
      *
-     * @var \Orchid\Screen\Contracts\FieldContract[]
+     * @var FieldContract[]|mixed
      */
     public $fields;
 
@@ -23,29 +25,29 @@ class Builder
     /**
      * The form language.
      *
-     * @var string
+     * @var string|null
      */
     public $language;
 
     /**
      * The form prefix.
      *
-     * @var string
+     * @var string|null
      */
     public $prefix;
 
     /**
      * HTML form string.
      *
-     * @var
+     * @var string
      */
     private $form = '';
 
     /**
      * Builder constructor.
      *
-     * @param \Orchid\Screen\Contracts\FieldContract[] $fields
-     * @param Repository $data
+     * @param FieldContract[] $fields
+     * @param Repository      $data
      */
     public function __construct(array $fields, $data)
     {
@@ -99,29 +101,33 @@ class Builder
     }
 
     /**
-     * @param $groupField
+     * @param Field[] $groupField
      *
      * @throws \Throwable
      */
     private function renderGroup($groupField)
     {
+        $group = [];
+
         foreach ($groupField as $field) {
             $group[] = $this->render($field);
         }
 
         $this->form .= view('platform::partials.fields.groups', [
-            'cols' => $group ?? [],
+            'cols' => array_filter($group),
         ])->render();
     }
 
     /**
      * Render field for forms.
      *
-     * @param $field
+     * @param Field $field
+     *
+     * @throws \Throwable
      *
      * @return mixed
      */
-    private function render($field)
+    private function render(Field $field)
     {
         $field->set('lang', $this->language);
         $field->set('prefix', $this->buildPrefix($field));
@@ -134,13 +140,13 @@ class Builder
     }
 
     /**
-     * @param $field
+     * @param Field $field
      *
      * @return string|null
      */
-    private function buildPrefix($field)
+    private function buildPrefix(Field $field)
     {
-        $prefix = $field->get('prefix', null);
+        $prefix = $field->get('prefix');
 
         if (! is_null($prefix)) {
             foreach (array_filter(explode(' ', $prefix)) as $name) {
@@ -154,11 +160,11 @@ class Builder
     }
 
     /**
-     * @param $attributes
+     * @param array $attributes
      *
      * @return mixed
      */
-    private function fill($attributes)
+    private function fill(array $attributes)
     {
         $name = array_filter(explode(' ', $attributes['name']));
         $name = array_shift($name);
@@ -171,9 +177,6 @@ class Builder
         $attributes['value'] = $this->getValue($bindValueName, $attributes['value'] ?? null);
 
         $binding = explode('.', $name);
-        if (! is_array($binding)) {
-            return $attributes;
-        }
 
         $attributes['name'] = '';
         foreach ($binding as $key => $bind) {
@@ -196,8 +199,8 @@ class Builder
     /**
      * Gets value of Repository.
      *
-     * @param $key
-     * @param $value
+     * @param string     $key
+     * @param mixed|null $value
      *
      * @return mixed
      */

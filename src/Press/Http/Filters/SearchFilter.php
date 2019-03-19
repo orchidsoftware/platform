@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Press\Http\Filters;
 
 use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Input;
 use Orchid\Platform\Filters\Filter;
-use Orchid\Screen\Fields\InputField;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\PostgresConnection;
 
@@ -38,7 +38,7 @@ class SearchFilter extends Filter
      */
     public function display(): Field
     {
-        return InputField::make('search')
+        return Input::make('search')
             ->type('text')
             ->value($this->request->get('search'))
             ->placeholder(__('Search...'))

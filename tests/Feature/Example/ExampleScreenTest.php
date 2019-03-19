@@ -11,17 +11,15 @@ class ExampleScreenTest extends TestFeatureCase
 {
     /**
      * debug: php vendor/bin/phpunit  --filter= UserTest tests\\Feature\\Example\\UserTest --debug.
+     *
      * @var
      */
     private $user;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
-        if ($this->user) {
-            return $this->user;
-        }
         $this->user = factory(User::class)->create();
     }
 

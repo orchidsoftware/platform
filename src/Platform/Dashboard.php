@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 
 class Dashboard
@@ -11,7 +13,7 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    public const VERSION = '3.4.1';
+    public const VERSION = '4.3.4';
 
     /**
      * The Dashboard configuration options.
@@ -24,11 +26,6 @@ class Dashboard
      * @var Menu
      */
     public $menu;
-
-    /**
-     * @var Collection
-     */
-    public $fields;
 
     /**
      * JS and CSS resources for implementation in the panel.
@@ -55,19 +52,24 @@ class Dashboard
     private $globalSearch;
 
     /**
+     * @var Collection
+     */
+    private $publicDirectories;
+
+    /**
      * Dashboard constructor.
      */
     public function __construct()
     {
-        $this->menu = new Menu;
+        $this->menu = new Menu();
         $this->permission = collect([
             'all'     => collect(),
             'removed' => collect(),
         ]);
         $this->resources = collect();
         $this->entities = collect();
-        $this->fields = collect();
         $this->globalSearch = collect();
+        $this->publicDirectories = collect();
     }
 
     /**
@@ -83,21 +85,21 @@ class Dashboard
     /**
      * Get the route with the dashboard prefix.
      *
-     * @param $path
+     * @param string $path
      *
      * @return string
      */
-    public static function prefix($path = ''): string
+    public static function prefix(string $path = ''): string
     {
         $prefix = config('platform.prefix');
 
-        return str_start($prefix.$path, '/');
+        return Str::start($prefix.$path, '/');
     }
 
     /**
      * Configure the Dashboard application.
      *
-     * @param  array $options
+     * @param array $options
      *
      * @return void
      */
@@ -109,18 +111,18 @@ class Dashboard
     /**
      * Get a Dashboard configuration option.
      *
-     * @param  string $key
-     * @param  mixed $default
+     * @param string     $key
+     * @param mixed|null $default
      *
      * @return mixed
      */
-    public static function option(string $key, $default)
+    public static function option(string $key, $default = null)
     {
-        return array_get(static::$options, $key, $default);
+        return Arr::get(static::$options, $key, $default);
     }
 
     /**
-     * @param string $key
+     * @param string      $key
      * @param string|null $default
      *
      * @return mixed
@@ -129,27 +131,27 @@ class Dashboard
     {
         $model = static::model($key, $default);
 
-        return class_exists($model) ? new $model : $model;
+        return class_exists($model) ? new $model() : $model;
     }
 
     /**
      * Get the class name for a given Dashboard model.
      *
-     * @param  string $key
-     * @param  null|string $default
+     * @param string      $key
+     * @param null|string $default
      *
      * @return string
      */
     public static function model(string $key, string $default = null)
     {
-        return array_get(static::$options, 'models.'.$key, $default ?? $key);
+        return Arr::get(static::$options, 'models.'.$key, $default ?? $key);
     }
 
     /**
-     * @param $key
-     * @param $custom
+     * @param string $key
+     * @param string $custom
      */
-    public static function useModel($key, $custom)
+    public static function useModel(string $key, string $custom)
     {
         static::$options['models'][$key] = $custom;
     }
@@ -165,16 +167,21 @@ class Dashboard
     }
 
     /**
-     * @param array $permission
+     * @param ItemPermission $permission
      *
      * @return $this
      */
-    public function registerPermissions(array $permission): self
+    public function registerPermissions(ItemPermission $permission): self
     {
-        foreach ($permission as $key => $item) {
-            $old = $this->permission->get('all')->get($key, []);
-            $this->permission->get('all')->put($key, array_merge_recursive($old, $item));
+        if (empty($permission->group)) {
+            return $this;
         }
+
+        $old = $this->permission->get('all')
+            ->get($permission->group, []);
+
+        $this->permission->get('all')
+            ->put($permission->group, array_merge_recursive($old, $permission->items));
 
         return $this;
     }
@@ -204,33 +211,16 @@ class Dashboard
     }
 
     /**
-     * @param array $value
+     * @param string       $key
+     * @param string|array $value
      *
-     * @return $this
+     * @return Dashboard
      */
-    public function registerFields(array $value): self
+    public function registerResource(string $key, $value): self
     {
-        $this->fields = $this->fields->merge($value);
+        $item = $this->resources->get($key, []);
 
-        return $this;
-    }
-
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    public function getFields(): Collection
-    {
-        return $this->fields;
-    }
-
-    /**
-     * @param array $value
-     *
-     * @return $this
-     */
-    public function registerResource(array $value): self
-    {
-        $this->resources = $this->resources->merge($value);
+        $this->resources[$key] = array_merge($item, Arr::wrap($value));
 
         return $this;
     }
@@ -257,7 +247,7 @@ class Dashboard
     public function getEntities(): Collection
     {
         return $this->entities->transform(function ($value) {
-            return is_object($value) ? $value : new $value;
+            return is_object($value) ? $value : new $value();
         });
     }
 
@@ -267,12 +257,12 @@ class Dashboard
     public function getGlobalSearch(): Collection
     {
         return $this->globalSearch->transform(function ($value) {
-            return is_object($value) ? $value : new $value;
+            return is_object($value) ? $value : new $value();
         });
     }
 
     /**
-     * @return null|Menu
+     * @return Menu
      */
     public function menu(): Menu
     {
@@ -307,10 +297,31 @@ class Dashboard
      *
      * @return $this
      */
-    public function removePermission(string $key)
+    public function removePermission(string $key) : self
     {
         $this->permission->get('removed')->push($key);
 
         return $this;
+    }
+
+    /**
+     * @param string $package
+     * @param string $path
+     *
+     * @return Dashboard
+     */
+    public function addPublicDirectory(string $package, string $path) : self
+    {
+        $this->publicDirectories->put($package, $path);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getPublicDirectory() : Collection
+    {
+        return $this->publicDirectories;
     }
 }

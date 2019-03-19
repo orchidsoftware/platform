@@ -6,13 +6,15 @@ namespace Orchid\Platform\Commands;
 
 use Orchid\Platform\Updates;
 use Illuminate\Console\Command;
+use Orchid\Platform\Events\InstallEvent;
 use Orchid\Press\Providers\PressServiceProvider;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 
 class InstallCommand extends Command
 {
     /**
-     * @var
+     * @var ProgressBar
      */
     protected $progressBar;
 
@@ -37,7 +39,10 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        $this->progressBar = $this->output->createProgressBar(10);
+        $updates = new Updates();
+        $updates->updateInstall();
+
+        $this->progressBar = $this->output->createProgressBar(6);
 
         $this->info("
         ________________________________________________________________
@@ -49,11 +54,10 @@ class InstallCommand extends Command
               \____/  |_|  \_\  \_____| |_|  |_| |_____| |_____/
                              
                              Installation started. Please wait...
+                             Version: $updates->currentVersion
         ________________________________________________________________
         ");
 
-        $updates = new Updates();
-        $updates->updateInstall();
         sleep(1);
 
         $this
@@ -80,21 +84,19 @@ class InstallCommand extends Command
                     'migrations',
                 ], ])
             ->executeCommand('migrate')
-            ->executeCommand('storage:link')
-            ->executeCommand('orchid:link');
+            ->executeCommand('storage:link');
 
-        $this->addLinkGitIgnore();
         $this->changeUserModel();
         $this->progressBar->finish();
         $this->info(' Completed!');
 
         $this
-            ->askEnv('What domain to use the panel?', 'DASHBOARD_DOMAIN', 'localhost')
-            ->askEnv('What prefix to use the panel?', 'DASHBOARD_PREFIX', 'dashboard')
             ->setValueEnv('SCOUT_DRIVER', 'null')
-            ->info("To create a user, run 'artisan orchid:admin'");
+            ->comment("To create a user, run 'artisan orchid:admin'");
 
         $this->line("To start the embedded server, run 'artisan serve'");
+
+        event(new InstallEvent($this));
     }
 
     /**
@@ -107,7 +109,6 @@ class InstallCommand extends Command
     {
         if (! $this->progressBar->getProgress()) {
             $this->progressBar->start();
-            echo ' ';
         }
 
         $result = $this->call($command, $parameters);
@@ -118,7 +119,6 @@ class InstallCommand extends Command
         }
 
         $this->progressBar->advance();
-        echo ' ';
 
         // Visually slow down the installation process so that the user can read what's happening
         usleep(350000);
@@ -139,57 +139,19 @@ class InstallCommand extends Command
             return;
         }
 
-        $str = file_get_contents(app_path('User.php'));
-
-        if ($str !== false) {
-            $str = str_replace('Illuminate\Foundation\Auth\User', 'Orchid\Platform\Models\User', $str);
-            file_put_contents(app_path('User.php'), $str);
-        }
-    }
-
-    private function addLinkGitIgnore(): void
-    {
-        $this->progressBar->advance();
-
-        $this->info(' Add semantic links to public files to ignore VCS');
-
-        if (! file_exists(app_path('../.gitignore'))) {
-            $this->warn('Unable to locate ".gitignore".  Did you move this file?');
-            $this->warn('A semantic link to public files was not added to the ignore list');
-
-            return;
-        }
-
-        $str = file_get_contents(app_path('../.gitignore'));
-
-        if ($str !== false && strpos($str, '/public/orchid') === false) {
-            file_put_contents(app_path('../.gitignore'), $str.PHP_EOL.'/public/orchid'.PHP_EOL);
-        }
+        $user = file_get_contents(PLATFORM_PATH.'/install-stubs/User.stub');
+        file_put_contents(app_path('User.php'), $user);
     }
 
     /**
-     * @param string        $question
-     * @param        string $constant
-     * @param string        $default
-     *
-     * @return $this
-     */
-    private function askEnv(string $question, $constant, $default = null): self
-    {
-        $value = $this->ask($question, $default);
-
-        return $this->setValueEnv($constant, $value);
-    }
-
-    /**
-     * @param      string $constant
-     * @param null $value
+     * @param string $constant
+     * @param null   $value
      *
      * @return \Orchid\Platform\Commands\InstallCommand
      */
     private function setValueEnv($constant, $value = null): self
     {
-        $str = file_get_contents(app_path('../.env'));
+        $str = $this->fileGetContent(app_path('../.env'));
 
         if ($str !== false && strpos($str, $constant) === false) {
             file_put_contents(app_path('../.env'), $str.PHP_EOL.$constant.'='.$value.PHP_EOL);
@@ -214,5 +176,19 @@ class InstallCommand extends Command
         }
 
         return $this;
+    }
+
+    /**
+     * @param string $file
+     *
+     * @return false|string
+     */
+    private function fileGetContent(string $file)
+    {
+        if (! is_file($file)) {
+            return '';
+        }
+
+        return file_get_contents($file);
     }
 }

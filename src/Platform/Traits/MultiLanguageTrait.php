@@ -14,12 +14,12 @@ trait MultiLanguageTrait
     public $jsonColumnName = 'content';
 
     /**
-     * @param      $field
-     * @param null $locale
+     * @param string $field
+     * @param null   $locale
      *
      * @return mixed|null
      */
-    public function getContent($field, $locale = null)
+    public function getContent(string $field, $locale = null)
     {
         $attributes = array_keys($this->toArray());
 

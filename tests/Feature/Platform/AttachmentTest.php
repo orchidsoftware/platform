@@ -15,9 +15,6 @@ class AttachmentTest extends TestFeatureCase
      */
     private $user;
 
-    /**
-     * @test
-     */
     public function testAttachmentHttpUpload()
     {
         $response = $this
@@ -45,9 +42,6 @@ class AttachmentTest extends TestFeatureCase
         return $this->user;
     }
 
-    /**
-     * @test
-     */
     public function testAttachmentHttpMultiUpload()
     {
         $response = $this
@@ -71,9 +65,6 @@ class AttachmentTest extends TestFeatureCase
             ]);
     }
 
-    /**
-     * @test
-     */
     public function testAttachmentHttpDestroy()
     {
         /** @var $response \Illuminate\Foundation\Testing\TestResponse */
@@ -93,9 +84,6 @@ class AttachmentTest extends TestFeatureCase
         $response->assertOk();
     }
 
-    /**
-     * @test
-     */
     public function testAttachmentHttpGetFile()
     {
         /** @var $response \Illuminate\Foundation\Testing\TestResponse */
@@ -121,5 +109,34 @@ class AttachmentTest extends TestFeatureCase
                 'id' => $upload->id,
             ]);
         */
+    }
+
+    public function testAttachmentHttpUpdate()
+    {
+        /** @var $response \Illuminate\Foundation\Testing\TestResponse */
+        $response = $this
+            ->actingAs($this->getUser())
+            ->post(route('platform.systems.files.upload'), [
+                'files' => UploadedFile::fake()->image('avatar.jpg'),
+            ]);
+
+        /** @var $upload \Orchid\Attachment\Models\Attachment */
+        $upload = $response->original;
+
+        $response = $this
+            ->actingAs($this->getUser())
+            ->put(route('platform.systems.files.update', $upload->id), [
+                'name'        => 'New name',
+                'description' => 'New description',
+                'alt'         => 'New alt',
+            ]);
+
+        $response
+            ->assertOk()
+            ->assertJson([
+                'name'        => 'New name',
+                'description' => 'New description',
+                'alt'         => 'New alt',
+            ]);
     }
 }

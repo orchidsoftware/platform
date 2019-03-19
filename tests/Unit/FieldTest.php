@@ -18,63 +18,72 @@ class FieldTest extends TestUnitCase
     public function exampleFields()
     {
         return [
-            [\Orchid\Screen\Fields\TextAreaField::class,
+            [\Orchid\Screen\Fields\TextArea::class,
                 [
                     'name' => 'example',
                 ], ],
-            [\Orchid\Screen\Fields\InputField::class,
+            [\Orchid\Screen\Fields\Input::class,
                 [
                     'name' => 'example',
                 ], ],
-            [\Orchid\Screen\Fields\SelectField::class,
+            [\Orchid\Screen\Fields\Select::class,
                 [
                     'name'    => 'example',
                     'options' => [],
                 ], ],
-            [\Orchid\Screen\Fields\RelationshipField::class,
+            [\Orchid\Screen\Fields\RadioButtons::class,
+             [
+                 'name'    => 'example',
+                 'options' => ['value' => 'example'],
+             ], ],
+            [\Orchid\Screen\Fields\Relationship::class,
                 [
                     'name'    => 'example',
                     'handler' => 'handler',
                 ], ],
-            [\Orchid\Screen\Fields\MapField::class,
+            [\Orchid\Screen\Fields\Map::class,
                 [
                     'name' => 'example',
                 ], ],
-            [\Orchid\Screen\Fields\PictureField::class,
+            [\Orchid\Screen\Fields\Picture::class,
                 [
                     'name'   => 'example',
                     'width'  => '100',
                     'height' => '100',
                 ], ],
-            [\Orchid\Screen\Fields\DateTimerField::class,
+            [\Orchid\Screen\Fields\DateTimer::class,
                 [
                     'name' => 'example',
                 ], ],
-            [\Orchid\Screen\Fields\CheckBoxField::class,
+            [\Orchid\Screen\Fields\CheckBox::class,
                 [
                     'name' => 'example',
                 ], ],
-            [\Orchid\Screen\Fields\TinyMCEField::class,
+            [\Orchid\Screen\Fields\TinyMCE::class,
                 [
                     'name' => 'example',
                 ], ],
-            [\Orchid\Screen\Fields\PasswordField::class,
+            [\Orchid\Screen\Fields\Password::class,
                 [
                     'name' => 'example',
                 ], ],
-            [\Orchid\Screen\Fields\SimpleMDEField::class,
+            [\Orchid\Screen\Fields\SimpleMDE::class,
                 [
                     'name' => 'example',
                 ], ],
-            [\Orchid\Screen\Fields\UploadField::class,
+            [\Orchid\Screen\Fields\Upload::class,
                 [
                     'name' => 'example',
                 ], ],
-            [\Orchid\Screen\Fields\UTMField::class,
+            [\Orchid\Screen\Fields\UTM::class,
                 [
                     'name' => 'example',
                 ], ],
-            [\Orchid\Screen\Fields\DateRangeField::class,
+            [\Orchid\Screen\Fields\DateRange::class,
+             [
+                 'name' => 'example',
+             ], ],
+            [\Orchid\Screen\Fields\Switcher::class,
              [
                  'name' => 'example',
              ], ],
@@ -86,6 +95,7 @@ class FieldTest extends TestUnitCase
      * @param mixed  $options
      *
      * @dataProvider exampleFields
+     *
      * @throws \Throwable
      */
     public function testFields(string $field, $options)
@@ -100,6 +110,6 @@ class FieldTest extends TestUnitCase
         $test = $field->render();
 
         $this->assertInstanceOf(View::class, $test);
-        $this->assertContains('example', $test->withErrors([])->render());
+        $this->assertStringContainsString('example', $test->withErrors([])->render());
     }
 }

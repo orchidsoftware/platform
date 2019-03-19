@@ -36,6 +36,12 @@
     @include box-shadow(none);
     @include placeholder($text-muted);
   }
+
+  .select2-results__option--highlighted[aria-selected]{
+    background-color : $brand-grey-light;
+    color: inherit;
+  }
+
 }
 
 .mce-content-body:focus {
@@ -228,4 +234,21 @@ div.mce-fullscreen {
   bottom: 0;
   width: 100%;
   padding: 15px;
+  .ql-video {
+    width: 100%;
+  }
+}
+
+
+// frappe-chart chart
+.graph-svg-tip {
+  @extend .bg-dark;
+}
+
+
+// leaflet-touch
+
+.leaflet-touch .leaflet-control-zoom-in,
+.leaflet-touch .leaflet-control-zoom-out {
+  font-size: $font-size-base;
 }
