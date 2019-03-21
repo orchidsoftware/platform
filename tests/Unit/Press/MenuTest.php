@@ -12,7 +12,7 @@ class MenuTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_has_the_correct_instance()
+    public function testHasCorrectInstance()
     {
         $menu = factory(Menu::class)->create(['type' => 'header']);
 
@@ -24,7 +24,7 @@ class MenuTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_query_menu_children()
+    public function testCanQueryMenuChildren()
     {
         $this->createMenuWithChildren();
         $menu = Menu::where('parent', 0)->get()->first();
@@ -57,7 +57,7 @@ class MenuTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_query_menu_parent()
+    public function testCanQueryMenuParent()
     {
         $this->createMenuWithChildren();
         $menu = Menu::where('parent', 0)->get()->first();

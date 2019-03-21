@@ -13,7 +13,7 @@ class TermTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_has_the_correct_instance()
+    public function testHasTheCorrectInstance()
     {
         $term = $this->createTermWithTaxonomy();
         $taxonomy = Taxonomy::where('term_id', $term->id)->first();
@@ -37,7 +37,7 @@ class TermTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_is_correct_routekeyname()
+    public function testIsCorrectRouteKeyName()
     {
         $term = $this->createTermWithTaxonomy();
         $this->assertEquals('slug', $term->getRouteKeyName());

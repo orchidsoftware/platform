@@ -91,7 +91,7 @@ class PermissionTest extends TestUnitCase
         $this->assertEquals($dashboard->getPermission()->count(), 1);
     }
 
-    public function test_it_replase_permission()
+    public function testReplasePermission()
     {
         $user = $this->createUser();
 
@@ -103,7 +103,7 @@ class PermissionTest extends TestUnitCase
     /**
      * @throws \Exception
      */
-    public function test_it_delete_user()
+    public function testDeleteUser()
     {
         $user = $this->createUser();
         $role = $this->createRole();
@@ -121,7 +121,7 @@ class PermissionTest extends TestUnitCase
         $this->assertTrue($user->delete());
     }
 
-    public function test_it_delete_role()
+    public function testDeleteRole()
     {
         $user = $this->createUser();
         $role = $this->createRole();

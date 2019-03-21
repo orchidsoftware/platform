@@ -9,14 +9,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class AuthTest extends TestFeatureCase
 {
-    /**
-     * debug: php vendor/bin/phpunit  --filter= AuthTest tests\\Feature\\Platform\\AuthTest --debug.
-     *
-     * @var
-     */
-    private $user;
-
-    public function test_route_DashboardLogin()
+    public function testRouteDashboardLogin()
     {
         $response = $this->get(route('platform.login'));
 
@@ -26,10 +19,10 @@ class AuthTest extends TestFeatureCase
             ->assertSee('type="password"');
     }
 
-    public function test_route_DashboardLogin_auth()
+    public function testRouteDashboardLoginAuth()
     {
         $response = $this
-            ->actingAs($this->getUser())
+            ->actingAs($this->createAdminUser())
             ->get(route('platform.login'));
 
         $response
@@ -37,12 +30,10 @@ class AuthTest extends TestFeatureCase
             ->assertRedirect('/home');
     }
 
-    public function test_route_DashboardLogin_auth_success()
+    public function testRouteDashboardLoginAuthSuccess()
     {
-        $user = $this->getUser();
-
         $response = $this->post(route('platform.login.auth'), [
-            'email'    => $user->email,
+            'email'    => $this->createAdminUser()->email,
             'password' => 'secret',
         ]);
 
@@ -51,12 +42,10 @@ class AuthTest extends TestFeatureCase
             ->assertRedirect(config('platform.prefix'));
     }
 
-    public function test_route_DashboardLogin_auth_fail()
+    public function testRouteDashboardLoginAuthFail()
     {
-        $user = $this->getUser();
-
         $response = $this->post(route('platform.login.auth'), [
-            'email'    => $user->email,
+            'email'    => $this->createAdminUser()->email,
             'password' => 'Incorrect password',
         ]);
 
@@ -65,17 +54,7 @@ class AuthTest extends TestFeatureCase
             ->assertRedirect('/');
     }
 
-    private function getUser()
-    {
-        if ($this->user) {
-            return $this->user;
-        }
-        $this->user = factory(User::class)->create();
-
-        return $this->user;
-    }
-
-    public function test_route_DashboardPasswordRequest()
+    public function testRouteDashboardPasswordRequest()
     {
         $response = $this->get(route('platform.password.request'));
 
@@ -84,7 +63,7 @@ class AuthTest extends TestFeatureCase
             ->assertDontSee('type="password"');
     }
 
-    public function test_route_DashboardPasswordReset()
+    public function testRouteDashboardPasswordReset()
     {
         $response = $this->get(route('platform.password.reset', '11111'));
 
@@ -94,9 +73,9 @@ class AuthTest extends TestFeatureCase
             ->assertSee('"password_confirmation"');
     }
 
-    public function test_route_DashboardPasswordReset_auth()
+    public function testRouteDashboardPasswordResetAuth()
     {
-        $response = $this->actingAs($this->getUser())
+        $response = $this->actingAs($this->createAdminUser())
             ->get(route('platform.password.reset', '11111'));
 
         $response

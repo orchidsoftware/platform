@@ -11,25 +11,12 @@ use Orchid\Tests\TestFeatureCase;
 
 class CommentTest extends TestFeatureCase
 {
-    /**
-     * debug: php vendor/bin/phpunit  --filter= CommentTest tests\\Feature\\Example\\CommentTest --debug.
-     *
-     * @var
-     */
-    private $user;
 
-    public function setUp() : void
+    public function testRouteSystemsComments()
     {
-        parent::setUp();
-        //$this->withoutMiddleware();
-        $this->user = factory(User::class)->create();
-    }
+        $this->createPostWithComments();
 
-    public function test_route_SystemsComments()
-    {
-        $post = $this->createPostWithComments();
-
-        $response = $this->actingAs($this->user)
+        $response = $this->actingAs($this->createAdminUser())
             ->get(route('platform.systems.comments'));
 
         $response
@@ -50,19 +37,20 @@ class CommentTest extends TestFeatureCase
             factory(Comment::class)->make(['approved' => false]),
             factory(Comment::class)->make(['approved' => false]),
         ]);
-        $comments = Comment::findByPostId($post->id)->each(function ($c) {
-            $c->author()->associate($this->user)->save();
+
+        Comment::findByPostId($post->id)->each(function ($c) {
+            $c->author()->associate($this->createAdminUser())->save();
         });
 
         return $post;
     }
 
-    public function test_route_SystemsCommentsEdit()
+    public function testRouteSystemsCommentsEdit()
     {
         $post = $this->createPostWithComments();
         $comments = Comment::findByPostId($post->id);
 
-        $response = $this->actingAs($this->user)
+        $response = $this->actingAs($this->createAdminUser())
             ->get(route('platform.systems.comments.edit', $comments->first()->id));
 
         $response

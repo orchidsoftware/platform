@@ -14,7 +14,7 @@ class CommentTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_has_the_correct_instance()
+    public function testHasCorrectInstance()
     {
         $comment = factory(Comment::class)->create();
 
@@ -25,7 +25,7 @@ class CommentTest extends TestUnitCase
     /**
      * @test
      */
-    public function its_id_is_an_integer()
+    public function testIdIsAnInteger()
     {
         $comment = factory(Comment::class)->create();
         $this->assertIsInt($comment->id);
@@ -34,7 +34,7 @@ class CommentTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_is_approved()
+    public function testApproved()
     {
         $comment = factory(Comment::class)->create([
             'approved' => true,
@@ -46,7 +46,7 @@ class CommentTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_query_post_by_id()
+    public function testCanQueryPostById()
     {
         $post = $this->createPostWithComments();
         $comments = Comment::findByPostId($post->id);
@@ -75,9 +75,9 @@ class CommentTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_is_all_approved()
+    public function testAllApproved()
     {
-        $post = $this->createPostWithComments();
+        $this->createPostWithComments();
         $comments = Comment::Approved()->get();
         $post_comments = Post::get()->first()->comments()->Approved()->get();
 
@@ -88,7 +88,7 @@ class CommentTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_be_a_reply()
+    public function testCanBeReply()
     {
         $comment = $this->createCommentWithReplies();
         $this->assertCount(3, $comment->replies);
@@ -116,7 +116,7 @@ class CommentTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_has_replies()
+    public function testHasReplies()
     {
         $comment = $this->createCommentWithReplies();
         $this->assertTrue($comment->hasReplies());
@@ -126,7 +126,7 @@ class CommentTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_has_original()
+    public function testHasOriginal()
     {
         $comment = $this->createCommentWithReplies();
         $child_comment = $comment->replies->first();
@@ -140,7 +140,7 @@ class CommentTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_has_author()
+    public function testHasAuthor()
     {
         $user = User::get()->first();
         $comment = factory(Comment::class)->create();

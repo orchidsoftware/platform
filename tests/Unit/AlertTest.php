@@ -13,17 +13,24 @@ use Orchid\Alert\SessionStoreInterface;
  */
 class AlertTest extends TestUnitCase
 {
+    /**
+     * @var SessionStoreInterface
+     */
     protected $store;
+
+    /**
+     * @var Alert
+     */
     protected $alert;
 
-    public function setUp() : void
+    protected function setUp(): void
     {
         $this->store = $this->createMock(SessionStoreInterface::class);
         $this->alert = new Alert($this->store);
     }
 
     /** @test */
-    public function it_should_flash_an_info_alert_to_the_session()
+    public function testShouldFlashAnInfoAlert()
     {
         $this->store->expects($this->exactly(2))->method('flash')->withConsecutive([
             $this->equalTo('flash_notification.message'),
@@ -34,7 +41,7 @@ class AlertTest extends TestUnitCase
     }
 
     /** @test */
-    public function it_should_flash_a_success_alert_to_the_session()
+    public function testShouldFlashSuccessAlert()
     {
         $this->store->expects($this->exactly(2))->method('flash')->withConsecutive([
             $this->equalTo('flash_notification.message'),
@@ -45,7 +52,7 @@ class AlertTest extends TestUnitCase
     }
 
     /** @test */
-    public function it_should_flash_a_error_alert_to_the_session()
+    public function testShouldFlashErrorAlert()
     {
         $this->store->expects($this->exactly(2))->method('flash')->withConsecutive([
             $this->equalTo('flash_notification.message'),
@@ -56,7 +63,7 @@ class AlertTest extends TestUnitCase
     }
 
     /** @test */
-    public function it_should_flash_a_warning_alert_to_the_session()
+    public function testShouldFlashWarningAlert()
     {
         $this->store->expects($this->exactly(2))->method('flash')->withConsecutive([
             $this->equalTo('flash_notification.message'),

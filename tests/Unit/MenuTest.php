@@ -38,7 +38,7 @@ class MenuTest extends TestUnitCase
         $this->assertEquals(! is_null($menu->render('Test')), true);
     }
 
-    public function test_count_location()
+    public function testCountLocation()
     {
         $menu = (new Dashboard())->menu;
 
@@ -61,7 +61,7 @@ class MenuTest extends TestUnitCase
         $this->assertEquals(2, $count);
     }
 
-    public function test_show()
+    public function testShow()
     {
         $menu = (new Dashboard())->menu;
 

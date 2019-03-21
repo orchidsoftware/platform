@@ -17,7 +17,7 @@ class SettingsTest extends TestUnitCase
      */
     public $setting;
 
-    public function test_for_one_value()
+    public function testForOneValue()
     {
         //Запишем значение
         $key = 'test-'.Str::random(40);
@@ -38,7 +38,7 @@ class SettingsTest extends TestUnitCase
         $this->assertEquals(null, $result);
     }
 
-    public function test_for_many_value()
+    public function testForManyValue()
     {
         $valueArray = [
             'test-1' => 'value-'.Str::random(40),
@@ -69,7 +69,7 @@ class SettingsTest extends TestUnitCase
         $this->assertEquals(3, $result);
     }
 
-    public function test_use_helper()
+    public function testUseHelper()
     {
         $this->setting->set('helper', 'run');
 

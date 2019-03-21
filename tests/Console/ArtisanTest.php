@@ -13,70 +13,70 @@ class ArtisanTest extends TestConsoleCase
      *
      * @var
      */
-    public function test_artisan_orchid_entity_many()
+    public function testArtisanOrchidEntityMany()
     {
         $this->artisan('orchid:entity-many', ['name' => $this->generateNameFromMethod()])
             ->expectsOutput('Behavior created successfully.')
             ->assertExitCode(0);
     }
 
-    public function test_artisan_orchid_entity_single()
+    public function testArtisanOrchidEntitySingle()
     {
         $this->artisan('orchid:entity-single', ['name' => $this->generateNameFromMethod()])
             ->expectsOutput('Behavior created successfully.')
             ->assertExitCode(0);
     }
 
-    public function test_artisan_orchid_chart()
+    public function testArtisanOrchidChart()
     {
         $this->artisan('orchid:chart', ['name' => $this->generateNameFromMethod()])
             ->expectsOutput('Chart created successfully.')
             ->assertExitCode(0);
     }
 
-    public function test_artisan_orchid_table()
+    public function testArtisanOrchidTable()
     {
         $this->artisan('orchid:table', ['name' => $this->generateNameFromMethod()])
             ->expectsOutput('Table created successfully.')
             ->assertExitCode(0);
     }
 
-    public function test_artisan_orchid_screen()
+    public function testArtisanOrchidScreen()
     {
         $this->artisan('orchid:screen', ['name' => $this->generateNameFromMethod()])
             ->expectsOutput('Screen created successfully.')
             ->assertExitCode(0);
     }
 
-    public function test_artisan_orchid_rows()
+    public function testArtisanOrchidRows()
     {
         $this->artisan('orchid:rows', ['name' => $this->generateNameFromMethod()])
             ->expectsOutput('Rows created successfully.')
             ->assertExitCode(0);
     }
 
-    public function test_artisan_orchid_filter()
+    public function testArtisanOrchidFilter()
     {
         $this->artisan('orchid:filter', ['name' => $this->generateNameFromMethod()])
             ->expectsOutput('Filter created successfully.')
             ->assertExitCode(0);
     }
 
-    public function test_artisan_orchid_selection()
+    public function testArtisanOrchidSelection()
     {
         $this->artisan('orchid:selection', ['name' => $this->generateNameFromMethod()])
             ->expectsOutput('Selection created successfully.')
             ->assertExitCode(0);
     }
 
-    public function test_artisan_orchid_metrics()
+    public function testArtisanOrchidMetrics()
     {
         $this->artisan('orchid:metrics', ['name' => $this->generateNameFromMethod()])
             ->expectsOutput('Metric created successfully.')
             ->assertExitCode(0);
     }
 
-    public function test_artisan_orchid_admin()
+    public function testArtisanOrchidAdmin()
     {
         $this->artisan('orchid:admin')
             ->expectsQuestion('What is your name?', 'testConsoleCreateUser')
@@ -91,14 +91,14 @@ class ArtisanTest extends TestConsoleCase
             ->expectsOutput('User exist');
     }
 
-    public function test_artisan_orchid_install()
+    public function testArtisanOrchidInstall()
     {
         $this->artisan('orchid:install')
             ->expectsQuestion('The platform has already been installed, do you really want to repeat?', 'yes')
             ->expectsOutput("To start the embedded server, run 'artisan serve'");
     }
 
-    public function test_artisan_orchid_link()
+    public function testArtisanOrchidLink()
     {
         $resources = public_path('resources');
 

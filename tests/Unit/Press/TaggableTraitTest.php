@@ -11,7 +11,7 @@ use Orchid\Tests\TestUnitCase;
 class TaggableTraitTest extends TestUnitCase
 {
     /** @test */
-    public function it_can_add_a_single_tag()
+    public function testCanAddSingleTag()
     {
         $post1 = factory(Post::class)->create();
         $post2 = factory(Post::class)->create();
@@ -24,7 +24,7 @@ class TaggableTraitTest extends TestUnitCase
     }
 
     /** @test */
-    public function it_can_add_multiple_tags()
+    public function testCanAddMultipleTags()
     {
         $post1 = factory(Post::class)->create();
         $post2 = factory(Post::class)->create();
@@ -40,7 +40,7 @@ class TaggableTraitTest extends TestUnitCase
     }
 
     /** @test */
-    public function it_can_untag()
+    public function testCanUntag()
     {
         $post = factory(Post::class)->create();
 
@@ -55,7 +55,7 @@ class TaggableTraitTest extends TestUnitCase
     }
 
     /** @test */
-    public function it_can_remove_all_tags()
+    public function testCanRemoveAllTags()
     {
         $post = factory(Post::class)->create();
 
@@ -69,7 +69,7 @@ class TaggableTraitTest extends TestUnitCase
     }
 
     /** @test */
-    public function it_can_set_tags()
+    public function testCanSetTags()
     {
         $post = factory(Post::class)->create();
 
@@ -81,7 +81,7 @@ class TaggableTraitTest extends TestUnitCase
     }
 
     /** @test */
-    public function it_can_retrieve_tags()
+    public function testCanRetrieveTags()
     {
         $post = factory(Post::class)->create();
 
@@ -91,7 +91,7 @@ class TaggableTraitTest extends TestUnitCase
     }
 
     /** @test */
-    public function it_can_retrieve_all_tags()
+    public function testCanRetrieveAllTags()
     {
         $post1 = factory(Post::class)->create();
         $post2 = factory(Post::class)->create();
@@ -110,7 +110,7 @@ class TaggableTraitTest extends TestUnitCase
     }
 
     /** @test */
-    public function it_can_retrieve_by_the_given_tags()
+    public function testCanRetrieveByGivenTags()
     {
         $post1 = factory(Post::class)->create();
         $post2 = factory(Post::class)->create();
@@ -126,7 +126,7 @@ class TaggableTraitTest extends TestUnitCase
     }
 
     /** @test */
-    public function it_can_retrieve_without_the_given_tags()
+    public function testCanRetrieveWithoutTheGivenTags()
     {
         $post1 = factory(Post::class)->create();
         $post2 = factory(Post::class)->create();
@@ -142,7 +142,7 @@ class TaggableTraitTest extends TestUnitCase
     }
 
     /** @test */
-    public function it_can_get_and_set_the_tags_delimiter()
+    public function testCanGetAndSetTagsDelimiter()
     {
         $post = factory(Post::class)->create();
 
@@ -152,7 +152,7 @@ class TaggableTraitTest extends TestUnitCase
     }
 
     /** @test */
-    public function it_can_get_and_set_the_tags_model()
+    public function testCanGetAndSetTagsModel()
     {
         $post = factory(Post::class)->create();
 
@@ -162,7 +162,7 @@ class TaggableTraitTest extends TestUnitCase
     }
 
     /** @test */
-    public function it_can_get_and_set_the_slug_generator()
+    public function testCanGetAndSetSlugGenerator()
     {
         $post = factory(Post::class)->create();
 

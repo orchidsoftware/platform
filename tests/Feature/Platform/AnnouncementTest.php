@@ -9,28 +9,16 @@ use Orchid\Tests\TestFeatureCase;
 
 class AnnouncementTest extends TestFeatureCase
 {
-    /**
-     * @var User
-     */
-    private $user;
-
-    public function setUp() : void
-    {
-        parent::setUp();
-
-        $this->user = factory(User::class)->create();
-    }
-
-    public function test_open_screen()
+    public function testOpenScreen()
     {
         $response = $this
-            ->actingAs($this->user)
+            ->actingAs($this->createAdminUser())
             ->get(route('platform.systems.announcement'));
 
         $response->assertOk();
     }
 
-    public function test_rewrite_announcement()
+    public function testRewriteAnnouncement()
     {
         $this->createAnnouncement();
         $this->createAnnouncement('Global Announcement Test Rewrite');
@@ -39,7 +27,7 @@ class AnnouncementTest extends TestFeatureCase
     private function createAnnouncement($text = 'Global Announcement Test')
     {
         $response = $this
-            ->actingAs($this->user)
+            ->actingAs($this->createAdminUser())
             ->post(route('platform.systems.announcement', ['saveOrUpdate']), [
                 'announcement' => [
                     'content' => $text,
@@ -49,22 +37,22 @@ class AnnouncementTest extends TestFeatureCase
         $response->assertStatus(302);
 
         $response = $this
-            ->actingAs($this->user)
+            ->actingAs($this->createAdminUser())
             ->get(route('platform.main'));
 
         $response->assertSee($text);
     }
 
-    public function test_delete_announcement($text = 'Delete Announcement')
+    public function testDeleteAnnouncement($text = 'Delete Announcement')
     {
         $this->createAnnouncement($text);
 
         $this
-            ->actingAs($this->user)
+            ->actingAs($this->createAdminUser())
             ->post(route('platform.systems.announcement', ['disabled']));
 
         $response = $this
-            ->actingAs($this->user)
+            ->actingAs($this->createAdminUser())
             ->get(route('platform.main'));
 
         $response->assertDontSee($text);

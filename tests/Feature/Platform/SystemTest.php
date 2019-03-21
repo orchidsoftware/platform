@@ -9,42 +9,30 @@ use Orchid\Tests\TestFeatureCase;
 
 class SystemTest extends TestFeatureCase
 {
-    /**
-     * debug: php vendor/bin/phpunit  --filter= SystemTest tests\\Feature\\Platform\\SystemTest --debug.
-     *
-     * @var
-     */
-    private $user;
 
-    public function setUp() : void
+    public function testRoutePlatformSystemsIndex()
     {
-        parent::setUp();
-
-        $this->user = factory(User::class)->create();
-    }
-
-    public function test_route_PlatformSystemsIndex()
-    {
-        $response = $this->actingAs($this->user)
+        $response = $this->actingAs($this->createAdminUser())
             ->get(route('platform.systems.index'));
 
         $response->assertOk();
         $this->assertStringContainsString('System', $response->getContent());
     }
 
-    public function test_route_PlatformSystemsMenuIndex()
+    public function testRoutePlatformSystemsMenuIndex()
     {
-        $response = $this->actingAs($this->user)
+        $response = $this->actingAs($this->createAdminUser())
             ->get(route('platform.systems.menu.index'));
 
-        $response->assertStatus(302);
-        $response->assertRedirect('/dashboard/press/menu/header');
+        $response->assertStatus(302)
+            ->assertRedirect('/dashboard/press/menu/header');
     }
 
-    public function test_route_PlatformSystemsMenuShow()
+    public function testRoutePlatformSystemsMenuShow()
     {
-        $response = $this->actingAs($this->user)
+        $response = $this->actingAs($this->createAdminUser())
             ->get(route('platform.systems.menu.show', 'header'));
+
         $response->assertOk();
         $this->assertStringContainsString('data-controller="components--menu"', $response->getContent());
     }
