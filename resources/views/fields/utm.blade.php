@@ -27,14 +27,14 @@
                                     <label>{{__('Campaign Source')}} - <span class="font-bold">utm_source</span></label>
                                     <input type="text" data-target="fields--utm.source" placeholder="google"
                                            class="form-control">
-                                    <small class="help-block w-b-k">{{__('Original referrer: (e.g. google, newsletter)')}}</small>
+                                    <small class="form-text text-muted w-b-k">{{__('Original referrer: (e.g. google, newsletter)')}}</small>
                                 </div>
 
                                 <div class="form-group">
                                     <label>{{__('Campaign medium')}} - <span class="font-bold">utm_medium</span></label>
                                     <input type="text" data-target="fields--utm.medium" placeholder="cpc"
                                            class="form-control">
-                                    <small class="help-block w-b-k">{{__('Marketing medium: (e.g. cpc, ppc, banner, email)')}}</small>
+                                    <small class="form-text text-muted w-b-k">{{__('Marketing medium: (e.g. cpc, ppc, banner, email)')}}</small>
                                 </div>
 
                                 <div class="form-group">
@@ -42,7 +42,7 @@
                                     <input type="text" data-target="fields--utm.campaign" pattern="[a-zA-Z0-9]+"
                                            placeholder="sleeping_beds"
                                            class="form-control">
-                                    <small class="help-block w-b-k">{{__('Product, promo code, or slogan (e.g. spring_sale)')}}</small>
+                                    <small class="form-text text-muted w-b-k">{{__('Product, promo code, or slogan (e.g. spring_sale)')}}</small>
                                 </div>
                             </div>
 
@@ -51,7 +51,7 @@
                                     <label>{{__('Campaign term')}} - <span class="font-bold">utm_term</span></label>
                                     <input type="text" data-target="fields--utm.term" placeholder="Golf ball"
                                            class="form-control">
-                                    <small class="help-block w-b-k">{{__('Paid keywords: (e.g. running+shoes)')}}</small>
+                                    <small class="form-text text-muted w-b-k">{{__('Paid keywords: (e.g. running+shoes)')}}</small>
                                 </div>
 
                                 <div class="form-group">
@@ -59,7 +59,7 @@
                                                 class="font-bold">utm_content</span></label>
                                     <input type="text" data-target="fields--utm.content" placeholder="cpc"
                                            class="form-control">
-                                    <small class="help-block w-b-k">{{__('Ad-specific content used to differentiate ads')}}
+                                    <small class="form-text text-muted w-b-k">{{__('Ad-specific content used to differentiate ads')}}
                                     </small>
                                 </div>
                             </div>

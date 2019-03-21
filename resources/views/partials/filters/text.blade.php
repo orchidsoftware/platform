@@ -3,7 +3,7 @@
             aria-expanded="false">
         <i class="icon-filter"></i>
     </button>
-    <div class="dropdown-menu">
+    <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow" x-placement="bottom-end">
         <div class="wrapper-sm">
             <div class="form-group m-b">
                 <input type="text"

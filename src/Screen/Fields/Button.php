@@ -125,7 +125,7 @@ class Button extends Field
             self::LINK,
         ], '', $this->get('class'));
 
-        $this->set('class', $class.$visual);
+        $this->set('class', $class.' '.$visual);
 
         return $this;
     }

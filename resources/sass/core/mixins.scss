@@ -1,37 +1,5 @@
-@mixin color-variant($bg-color: #555, $lt-percent: 10%, $lter-percent: 15%, $dk-percent: 10%, $dker-percent: 15%){
-  background-color: $bg-color!important;
-  &.lt,
-  .lt {
-    @include color-schema-de($bg-color, $lt-percent, 2.5%);
-  }
-  &.lter,
-  .lter {
-    @include color-schema-de($bg-color, $lter-percent, 5%);
-  }
-  &.dk,
-  .dk {
-    @include color-schema($bg-color, $dk-percent, 2.5%);
-  }
-  &.dker,
-  .dker {
-    @include color-schema($bg-color, $dker-percent, 5%);
-  }
-  &.bg,
-  .bg {
-    background-color: $bg-color;
-  }
-}
-
 @mixin color-schema($bg-color: #555, $percent: 15%, $sat-percent:null){
   background-color: saturate(darken($bg-color, $percent), $sat-percent);
-}
-
-@mixin color-schema-de($bg-color: #555, $percent: 15%, $sat-percent:null){
-  background-color: desaturate(lighten($bg-color, $percent), $sat-percent);
-}
-
-@mixin color-schema-important($bg-color: #555, $percent: 15%, $sat-percent:null){
-  background-color: saturate(darken($bg-color, $percent), $sat-percent) !important;
 }
 
 @mixin font-variant($bg-color){

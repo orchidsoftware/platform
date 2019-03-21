@@ -18,7 +18,7 @@ $grid-breakpoints: (
 
 
 // Colors
-$orchid-color: #ac5ca0;
+$orchid-color: #007bff;//#ac5ca0;
 
 $white : #ffffff;
 $black : #000000;
@@ -43,7 +43,7 @@ $green : #28a745 !default;
 $teal : #20c997 !default;
 $cyan : #17a2b8 !default;
 
-$brand-primary : #ac5ca0;
+$brand-primary : $orchid-color;
 $brand-complete : $oc-indigo-8;
 $brand-info : $oc-blue-7;
 $brand-success : $oc-green-8;
@@ -62,51 +62,7 @@ $info:          $cyan !default;
 $warning:       $yellow !default;
 $danger:        $red !default;
 $light:         $gray-100 !default;
-$dark:          #3C4146 !default;
-
-//Mixing Color varriable for creating both light and dark colors
-$mix-percentage-dark : 81%;
-$mix-percentage-darker : 60%;
-$mix-percentage-light : 80%;
-$mix-percentage-lighter : 20%;
-
-//Lighter colors
-$brand-success-light : mix($brand-success, $brand-white, $mix-percentage-light);
-$brand-success-lighter : mix($brand-success, $brand-white, $mix-percentage-lighter);
-
-$brand-complete-light : mix($brand-complete, $brand-white, $mix-percentage-light);
-$brand-complete-lighter : mix($brand-complete, $brand-white, $mix-percentage-lighter);
-
-$brand-primary-light : mix($brand-primary, $brand-white, $mix-percentage-light);
-$brand-primary-lighter : mix($brand-primary, $brand-white, $mix-percentage-lighter);
-
-$brand-warning-light : mix($brand-warning, $brand-white, $mix-percentage-light);
-$brand-warning-lighter : mix($brand-warning, $brand-white, $mix-percentage-lighter);
-
-$brand-danger-light : mix($brand-danger, $brand-white, $mix-percentage-light);
-$brand-danger-lighter : mix($brand-danger, $brand-white, $mix-percentage-lighter);
-
-$brand-info-light : mix($brand-info, $brand-white, $mix-percentage-light);
-$brand-info-lighter : mix($brand-info, $brand-white, $mix-percentage-lighter);
-
-//Darker colors
-$brand-success-dark : mix($brand-success, $brand-black, $mix-percentage-dark);
-$brand-success-darker : mix($brand-success, $brand-black, $mix-percentage-darker);
-
-$brand-complete-dark : mix($brand-complete, $brand-black, $mix-percentage-dark);
-$brand-complete-darker : mix($brand-complete, $brand-black, $mix-percentage-darker);
-
-$brand-primary-dark : mix($brand-primary, $brand-black, $mix-percentage-dark);
-$brand-primary-darker : mix($brand-primary, $brand-black, $mix-percentage-darker);
-
-$brand-warning-dark : mix($brand-warning, $brand-black, $mix-percentage-dark);
-$brand-warning-darker : mix($brand-warning, $brand-black, $mix-percentage-darker);
-
-$brand-danger-dark : mix($brand-danger, $brand-black, $mix-percentage-dark);
-$brand-danger-darker : mix($brand-danger, $brand-black, $mix-percentage-darker);
-
-$brand-info-dark : mix($brand-info, $brand-black, $mix-percentage-dark);
-$brand-info-darker : mix($brand-info, $brand-black, $mix-percentage-darker);
+$dark:          #212529 !default;
 
 $brand-grey-light : mix($brand-grey, #ffffff, 10%);
 
@@ -115,10 +71,10 @@ $text-color : #58666e;
 $text-muted : lighten($text-color, 25%);
 
 $font-size-base : 1rem;
-$font-size-lg : 1.23*$font-size-base; //ceil($font-size-base * 1.23); // ~20px
-$font-size-md : 1.142857*$font-size-base; //ceil($font-size-base * 1); // ~16px
-$font-size-sm : 0.92857*$font-size-base; //ceil($font-size-base * 0.81); // ~13px
-$font-size-xs : 0.85714*$font-size-base; //ceil($font-size-base * 0.75); // ~12px
+$font-size-lg : 1.23 * $font-size-base;
+$font-size-md : 1.142857 * $font-size-base;
+$font-size-sm : 0.92857 * $font-size-base;
+$font-size-xs : 0.85714 * $font-size-base;
 
 $link-color : darken($text-color, 15%);
 $link-hover-color : darken($text-color, 30%);

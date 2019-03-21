@@ -13,6 +13,7 @@
 @stop
 @section('content')
         <form id="post-form"
+              class="wrapper"
               method="post"
               enctype="multipart/form-data"
               data-controller="layouts--form"
