@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Tests\Feature\Example;
 
 use Orchid\Platform\Models\Role;
-use Orchid\Platform\Models\User;
 use Orchid\Tests\TestFeatureCase;
 
 class RoleTest extends TestFeatureCase
 {
-
     /**
      * @var Role
      */

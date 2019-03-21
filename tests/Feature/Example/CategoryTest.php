@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Tests\Feature\Example;
 
 use Orchid\Press\Models\Term;
-use Orchid\Platform\Models\User;
 use Orchid\Press\Models\Taxonomy;
 use Orchid\Tests\TestFeatureCase;
 

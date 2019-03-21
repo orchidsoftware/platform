@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Tests\Feature\Platform;
 
 use Orchid\Press\Models\Tag;
-use Orchid\Platform\Models\User;
 use Orchid\Tests\TestFeatureCase;
 
 class TagsTest extends TestFeatureCase

@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
-use Orchid\Platform\Models\User;
 use Illuminate\Http\UploadedFile;
 use Orchid\Tests\TestFeatureCase;
 
 class AttachmentTest extends TestFeatureCase
 {
-
     public function testAttachmentHttpUpload()
     {
         $response = $this
