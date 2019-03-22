@@ -6,6 +6,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 4.4.0 - 2019-03-22
+
+### Changed
+- Color scheme, no more brand color
+- Padding for layouts
+
+### Fixed
+- Entity sorting default
+
+### Removed
+- All dependency
+- `Cache` block [810](https://github.com/orchidsoftware/platform/issues/810)
+
 ## 4.3.4 - 2019-03-17
 
 ### Added
