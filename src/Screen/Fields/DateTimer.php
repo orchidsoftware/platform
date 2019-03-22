@@ -56,7 +56,7 @@ class DateTimer extends Field
         'class'                             => 'form-control',
         'data-controller'                   => 'fields--datetime',
         'data-fields--datetime-enable-time' => 'false',
-        'data-fields--datetime-time_24hr'   => 'false',
+        'data-fields--datetime-time-24hr'   => 'false',
         'data-fields--datetime-allow-input' => 'false',
         'data-fields--datetime-date-format' => 'Y-m-d H:i:S',
     ];
@@ -96,7 +96,7 @@ class DateTimer extends Field
         'value',
         'data-controller',
         'data-fields--datetime-enable-time',
-        'data-fields--datetime-time_24hr',
+        'data-fields--datetime-time-24hr',
         'data-fields--datetime-allow-input',
         'data-fields--datetime-date-format',
     ];
@@ -130,7 +130,7 @@ class DateTimer extends Field
      */
     public function format24hr(bool $time = true) : self
     {
-        $this->set('data-fields--datetime-time_24hr', var_export($time, true));
+        $this->set('data-fields--datetime-time-24hr', var_export($time, true));
 
         return $this;
     }
