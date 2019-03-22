@@ -98,7 +98,7 @@ class FieldTest extends TestUnitCase
      *
      * @throws \Throwable
      */
-    public function testFields(string $field, $options)
+    public function testHasCorrectInstance(string $field, $options)
     {
         /** @var \Orchid\Screen\Field $field */
         $field = new $field();
@@ -107,9 +107,9 @@ class FieldTest extends TestUnitCase
             $field->set($key, $option);
         }
 
-        $test = $field->render();
+        $view = $field->render();
 
-        $this->assertInstanceOf(View::class, $test);
-        $this->assertStringContainsString('example', $test->withErrors([])->render());
+        $this->assertInstanceOf(View::class, $view);
+        $this->assertStringContainsString('example', $view->withErrors([])->render());
     }
 }
