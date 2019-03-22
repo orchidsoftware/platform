@@ -4,30 +4,17 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
-use Orchid\Platform\Models\User;
 use Orchid\Tests\TestFeatureCase;
 use Orchid\Platform\Notifications\DashboardNotification;
 
 class NotificationTest extends TestFeatureCase
 {
-    /**
-     * @var User
-     */
-    private $user;
-
-    public function setUp() : void
-    {
-        parent::setUp();
-
-        $this->user = factory(User::class)->create();
-    }
-
-    public function test_view_notification()
+    public function testViewNotification()
     {
         $this->createNotification('Hello Test');
 
         $response = $this
-            ->actingAs($this->user)
+            ->actingAs($this->createAdminUser())
             ->get(route('platform.main'));
 
         $response
@@ -35,23 +22,23 @@ class NotificationTest extends TestFeatureCase
             ->assertSee('Hello Test');
     }
 
-    public function test_mask_all_as_read()
+    public function testMaskAllAsRead()
     {
         $this->createNotification('Mask all as read');
 
         $response = $this
-            ->actingAs($this->user)
+            ->actingAs($this->createAdminUser())
             ->post(route('platform.notification.read'));
 
         $response->assertDontSee('Mask all as read');
     }
 
-    public function test_remove()
+    public function testRemove()
     {
         $this->createNotification('Test remove notification');
 
         $response = $this
-            ->actingAs($this->user)
+            ->actingAs($this->createAdminUser())
             ->post(route('platform.notification.remove'));
 
         $response->assertDontSee('Test remove notification');
@@ -62,7 +49,7 @@ class NotificationTest extends TestFeatureCase
      */
     private function createNotification($title = 'test')
     {
-        $this->user->notify(new DashboardNotification([
+        $this->createAdminUser()->notify(new DashboardNotification([
             'title'   => $title,
             'message' => 'New Test!',
             'action'  => 'https://orchid.software',

@@ -12,7 +12,7 @@ class UserTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_has_the_correct_instance()
+    public function testHasCorrectInstance()
     {
         $user = factory(User::class)->create();
 
@@ -23,7 +23,7 @@ class UserTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_get_name_title()
+    public function testCanGetNameTitle()
     {
         $user = $this->createUser();
 
@@ -41,7 +41,7 @@ class UserTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_get_sub_title()
+    public function testCanGetSubTitle()
     {
         $user = $this->createUser();
 

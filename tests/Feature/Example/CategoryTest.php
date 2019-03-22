@@ -5,26 +5,11 @@ declare(strict_types=1);
 namespace Orchid\Tests\Feature\Example;
 
 use Orchid\Press\Models\Term;
-use Orchid\Platform\Models\User;
 use Orchid\Press\Models\Taxonomy;
 use Orchid\Tests\TestFeatureCase;
 
 class CategoryTest extends TestFeatureCase
 {
-    /**
-     * debug: php vendor/bin/phpunit  --filter= CategoryTest tests\\Feature\\Example\\CategoryTest --debug.
-     *
-     * @var
-     */
-    private $user;
-
-    public function setUp() : void
-    {
-        parent::setUp();
-        //$this->withoutMiddleware();
-        $this->user = factory(User::class)->create();
-    }
-
     /**
      * @return array
      */
@@ -52,10 +37,10 @@ class CategoryTest extends TestFeatureCase
         return $taxonomys;
     }
 
-    public function test_route_SystemsCategory()
+    public function testRouteSystemsCategory()
     {
         $this->createTaxonomyWithChildren();
-        $response = $this->actingAs($this->user)
+        $response = $this->actingAs($this->createAdminUser())
             ->get(route('platform.systems.category'));
         $taxonomy = Taxonomy::where('parent_id', null)->get()->first();
 
@@ -64,12 +49,12 @@ class CategoryTest extends TestFeatureCase
             ->assertSee($taxonomy->term->getContent('name'));
     }
 
-    public function test_route_SystemsCategoryEdit()
+    public function testRouteSystemsCategoryEdit()
     {
-        $post = $this->createTaxonomyWithChildren();
+        $this->createTaxonomyWithChildren();
         $taxonomy = Taxonomy::where('parent_id', null)->get()->first();
 
-        $response = $this->actingAs($this->user)
+        $response = $this->actingAs($this->createAdminUser())
             ->get(route('platform.systems.category.edit', $taxonomy->id));
 
         $response

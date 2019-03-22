@@ -5,32 +5,25 @@ declare(strict_types=1);
 namespace Orchid\Tests\Feature\Example;
 
 use Orchid\Platform\Models\Role;
-use Orchid\Platform\Models\User;
 use Orchid\Tests\TestFeatureCase;
 
 class RoleTest extends TestFeatureCase
 {
     /**
-     * debug: php vendor/bin/phpunit  --filter= RoleTest tests\\Feature\\Example\\RoleTest --debug.
-     *
-     * @var
+     * @var Role
      */
-    private $user;
-
     private $role;
 
-    public function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
-
-        $this->user = factory(User::class)->create();
         $this->role = factory(Role::class)->create();
     }
 
-    public function test_route_SystemsRoles()
+    public function testRouteSystemsRoles()
     {
         $response = $this
-            ->actingAs($this->user)
+            ->actingAs($this->createAdminUser())
             ->get(route('platform.systems.roles'));
 
         $response
@@ -39,9 +32,9 @@ class RoleTest extends TestFeatureCase
             ->assertSee($this->role->slug);
     }
 
-    public function test_route_SystemsRolesCreate()
+    public function testRouteSystemsRolesCreate()
     {
-        $response = $this->actingAs($this->user)
+        $response = $this->actingAs($this->createAdminUser())
             ->get(route('platform.systems.roles.create'));
 
         $response
@@ -49,10 +42,10 @@ class RoleTest extends TestFeatureCase
             ->assertSee('field-roles');
     }
 
-    public function test_route_SystemsRolesEdit()
+    public function testRouteSystemsRolesEdit()
     {
         $response = $this
-            ->actingAs($this->user)
+            ->actingAs($this->createAdminUser())
             ->get(route('platform.systems.roles.edit', $this->role->slug));
 
         $response->assertOk()

@@ -1,4 +1,4 @@
-<div class="admin-wrapper b-t">
+<div class="row admin-wrapper b-t">
     <div class="wrapper-lg">
         <div class="row m-b-xl text-center">
             <div class="wrapper w-full">

@@ -1,9 +1,9 @@
-<div data-post-id="{{$post->id}}">
+<div data-post-id="{{$post->id}}" class="row">
     <!-- hbox layout -->
     <div class="hbox hbox-auto-xs no-gutters">
     @if(count($type->fields()) > 0)
         <!-- column -->
-            <div class="hbox-col lter">
+            <div class="hbox-col">
                 <div class="vbox">
                     <div class="wrapper">
                         <div class="tab-content">
@@ -20,7 +20,7 @@
             <!-- /column -->
     @endif
         <!-- column -->
-        <div class="hbox-col wi-col lter">
+        <div class="hbox-col wi-col">
             <div class="vbox">
                 <div class="row-row">
                     <div class="wrapper">

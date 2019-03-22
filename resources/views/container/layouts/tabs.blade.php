@@ -3,7 +3,7 @@
         data-screen--tabs-slug="{{$templateSlug}}"
 >
     <div class="nav-tabs-alt">
-        <ul class="nav nav-tabs padder" role="tablist">
+        <ul class="nav nav-tabs" role="tablist">
             @foreach($manyForms as $name => $tab)
                 <li class="nav-item">
                     <a class="nav-link @if ($loop->first) active @endif"
@@ -27,9 +27,11 @@
                     <div role="tabpanel" class="tab-pane @if ($loop->first) active @endif"
                          id="tab-{{str_slug($name)}}">
 
-                        @foreach($forms as $form)
-                            {!! $form !!}
-                        @endforeach
+                        <div class="padder-v">
+                            @foreach($forms as $form)
+                                {!! $form !!}
+                            @endforeach
+                        </div>
 
                     </div>
                 @endforeach

@@ -16,7 +16,7 @@ class PostTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_has_the_correct_create_post()
+    public function testHasCorrectCreatePost()
     {
         $post = factory(Post::class)->create();
         $this->assertInstanceOf(Post::class, $post);
@@ -27,7 +27,7 @@ class PostTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_has_status_scope()
+    public function testHasStatusScope()
     {
         factory(Post::class)->create(['status' => 'foo']);
         $posts = Post::status('foo')->get();
@@ -38,7 +38,7 @@ class PostTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_has_published_scope()
+    public function testHasPublishedScope()
     {
         factory(Post::class)->create(['status' => 'publish']);
         $posts = Post::published()->get();
@@ -49,7 +49,7 @@ class PostTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_has_type_scope()
+    public function testHasTypeScope()
     {
         factory(Post::class)->create(['type' => 'foo']);
         $posts = Post::type('foo')->get();
@@ -60,7 +60,7 @@ class PostTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_has_type_in_scope()
+    public function testHasTypeInScope()
     {
         factory(Post::class)->create(['type' => 'blue']);
         factory(Post::class)->create(['type' => 'red']);
@@ -73,17 +73,12 @@ class PostTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_has_taxonomy_scope()
+    public function testHasTaxonomyScope()
     {
         $this->createPostWithTaxonomiesAndTerms();
         $posts = Post::taxonomy('foo', 'test')->get();
         $this->assertNotNull($posts);
         $this->assertGreaterThan(0, $posts->count());
-        /*
-        $posts = Post::taxonomy('foo', ['bar'])->get();
-        $this->assertNotNull($posts);
-        $this->assertGreaterThan(0, $posts->count());
-        */
     }
 
     /**
@@ -109,7 +104,7 @@ class PostTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_have_different_post_type()
+    public function testCanHaveDifferentPostType()
     {
         $page = factory(Post::class)->create(['type' => 'example-page']);
         $this->assertEquals($page->type, 'example-page');
@@ -118,7 +113,7 @@ class PostTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_accept_unicode_chars()
+    public function testCanAcceptUnicodeChars()
     {
         $post = factory(Post::class)->create([
             'content' => [
@@ -137,7 +132,7 @@ class PostTest extends TestUnitCase
     /**
      * @test
      */
-    public function they_can_be_ordered_ascending()
+    public function testCanOrderedAscending()
     {
         factory(Post::class, 2)->create();
         $posts = Post::query()->orderBy('publish_at')->get();
@@ -150,7 +145,7 @@ class PostTest extends TestUnitCase
     /**
      * @test
      */
-    public function they_can_be_ordered_descending()
+    public function testCanOrderedDescending()
     {
         factory(Post::class, 2)->create();
         $posts = Post::orderBy('publish_at', 'desc')->get();
@@ -163,7 +158,7 @@ class PostTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_be_paginated()
+    public function testCanBePaginated()
     {
         $post = factory(Post::class)->create();
         factory(Post::class)->create();
@@ -182,7 +177,7 @@ class PostTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_have_taxonomy()
+    public function testCanHaveTaxonomy()
     {
         $post = $this->createPostWithTaxonomiesAndTerms();
         $this->assertCount(1, $post->taxonomies);
@@ -192,7 +187,7 @@ class PostTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_have_taxonomy_and_terms()
+    public function testCanHaveTaxonomyAndTerms()
     {
         $createdPost = $this->createPostWithTaxonomiesAndTerms();
         $post = Post::orderBy('id', 'desc')
@@ -205,7 +200,7 @@ class PostTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_have_getTermsAttribute()
+    public function testCanHaveGetTermsAttribute()
     {
         $post = $this->createPostWithTaxonomiesAndTerms();
 
@@ -219,7 +214,7 @@ class PostTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_have_term()
+    public function testCanHaveTerm()
     {
         $post = $this->createPostWithTaxonomiesAndTerms();
 
@@ -232,7 +227,7 @@ class PostTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_have_options()
+    public function testCanHaveOptions()
     {
         $post = $this->createPostWithTaxonomiesAndTerms();
 
@@ -243,7 +238,7 @@ class PostTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_have_option()
+    public function testCanHaveOption()
     {
         $post = $this->createPostWithTaxonomiesAndTerms();
 
@@ -259,7 +254,7 @@ class PostTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_have_checkLanguage()
+    public function testCanHaveCheckLanguage()
     {
         $post = $this->createPostWithTaxonomiesAndTerms();
 
@@ -270,7 +265,7 @@ class PostTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_have_author_relation()
+    public function testCanHaveAuthorRelation()
     {
         $post = $this->createPostWithAuthor();
         $user = User::get()->first();
@@ -293,7 +288,7 @@ class PostTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_have_author_getUser()
+    public function testCanHaveAuthorGetUser()
     {
         $post = $this->createPostWithAuthor();
         $user = User::get()->first();

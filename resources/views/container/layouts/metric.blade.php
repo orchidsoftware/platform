@@ -1,4 +1,4 @@
-<div class="wrapper b-b">
+<div class="padder-v b-b">
     @isset($title)
         <h4 class="font-thin text-black">{{ __($title) }}</h4>
     @endisset

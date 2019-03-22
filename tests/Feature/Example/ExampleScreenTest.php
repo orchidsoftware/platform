@@ -4,29 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Example;
 
-use Orchid\Platform\Models\User;
 use Orchid\Tests\TestFeatureCase;
 
 class ExampleScreenTest extends TestFeatureCase
 {
-    /**
-     * debug: php vendor/bin/phpunit  --filter= UserTest tests\\Feature\\Example\\UserTest --debug.
-     *
-     * @var
-     */
-    private $user;
-
-    public function setUp() : void
-    {
-        parent::setUp();
-
-        $this->user = factory(User::class)->create();
-    }
-
-    public function test_route_platform_example()
+    public function testRoutePlatformExample()
     {
         $response = $this
-            ->actingAs($this->user)
+            ->actingAs($this->createAdminUser())
             ->get(route('platform.example'));
 
         $response->assertOk()

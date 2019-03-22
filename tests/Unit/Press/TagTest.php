@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 class TagTest extends TestUnitCase
 {
     /** @test */
-    public function it_can_delete_a_tag_and_its_tagged_relations()
+    public function testCanDeleteTagAndTaggedRelations()
     {
         $post = factory(Post::class)->create();
 
@@ -32,7 +32,7 @@ class TagTest extends TestUnitCase
     }
 
     /** @test */
-    public function it_has_a_taggable_relationship()
+    public function testHasTaggableRelationship()
     {
         $tag = new Tag();
 
@@ -40,7 +40,7 @@ class TagTest extends TestUnitCase
     }
 
     /** @test */
-    public function it_has_a_tag_relationship()
+    public function testHasTagRelationship()
     {
         $tag = new Tag();
 
@@ -48,7 +48,7 @@ class TagTest extends TestUnitCase
     }
 
     /** @test */
-    public function it_has_a_name_scope()
+    public function testHasNameScope()
     {
         Tag::create(['name' => 'Foo', 'slug' => 'foo', 'namespace' => 'foo']);
 
@@ -56,7 +56,7 @@ class TagTest extends TestUnitCase
     }
 
     /** @test */
-    public function it_has_a_slug_scope()
+    public function testHasSlugScope()
     {
         Tag::create(['name' => 'Foo', 'slug' => 'foo', 'namespace' => 'foo']);
 
@@ -64,7 +64,7 @@ class TagTest extends TestUnitCase
     }
 
     /** @test */
-    public function it_can_get_and_set_the_tagged_model()
+    public function testCanGetAndSetTaggedModel()
     {
         $tag = new Tag();
 

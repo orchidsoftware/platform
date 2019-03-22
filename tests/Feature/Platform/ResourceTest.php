@@ -8,7 +8,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class ResourceTest extends TestFeatureCase
 {
-    public function test_route_Resource()
+    public function testRouteResource()
     {
         $response = $this
             ->get(route('platform.resource', ['orchid', 'mix-manifest.json']));

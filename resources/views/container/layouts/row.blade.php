@@ -1,3 +1,3 @@
-<div class="wrapper-md" data-async>
+<div data-async>
     {!! $form ?? '' !!}
 </div>

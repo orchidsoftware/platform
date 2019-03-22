@@ -5,21 +5,11 @@ declare(strict_types=1);
 namespace Orchid\Tests\Feature\Platform;
 
 use Orchid\Press\Models\Tag;
-use Orchid\Platform\Models\User;
 use Orchid\Tests\TestFeatureCase;
 
 class TagsTest extends TestFeatureCase
 {
-    private $user;
-
-    public function setUp() : void
-    {
-        parent::setUp();
-
-        $this->user = factory(User::class)->create();
-    }
-
-    public function test_route_SystemsTagSearch()
+    public function testRouteSystemsTagSearch()
     {
         Tag::create([
             'name'      => 'Super Tag',
@@ -27,7 +17,7 @@ class TagsTest extends TestFeatureCase
             'namespace' => 'super-tag',
         ]);
 
-        $response = $this->actingAs($this->user)
+        $response = $this->actingAs($this->createAdminUser())
             ->get(route('platform.systems.tag.search', 'super'));
 
         $response->assertOk();

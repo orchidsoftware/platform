@@ -4,53 +4,37 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Example;
 
-use Orchid\Platform\Models\User;
 use Orchid\Tests\TestFeatureCase;
 
 class UserTest extends TestFeatureCase
 {
-    /**
-     * debug: php vendor/bin/phpunit  --filter= UserTest tests\\Feature\\Example\\UserTest --debug.
-     *
-     * @var
-     */
-    private $user;
-
-    public function setUp() : void
-    {
-        parent::setUp();
-        //$this->withoutMiddleware();
-
-        $this->user = factory(User::class)->create();
-    }
-
-    public function test_route_SystemsUsers()
+    public function testRouteSystemsUsers()
     {
         $response = $this
-            ->actingAs($this->user)
+            ->actingAs($this->createAdminUser())
             ->get(route('platform.systems.users'));
 
         $response->assertOk()
-            ->assertSee($this->user->name)
-            ->assertSee($this->user->email);
+            ->assertSee($this->createAdminUser()->name)
+            ->assertSee($this->createAdminUser()->email);
     }
 
-    public function test_route_SystemsUsersEdit()
+    public function testRouteSystemsUsersEdit()
     {
         $response = $this
-            ->actingAs($this->user)
-            ->get(route('platform.systems.users.edit', $this->user->id));
+            ->actingAs($this->createAdminUser())
+            ->get(route('platform.systems.users.edit', $this->createAdminUser()->id));
 
         $response->assertOk()
-            ->assertSee($this->user->name)
-            ->assertSee($this->user->email);
+            ->assertSee($this->createAdminUser()->name)
+            ->assertSee($this->createAdminUser()->email);
     }
 
-    public function test_route_SystemsUsersEdit_remove()
+    public function testRouteSystemsUsersEditRemove()
     {
         $response = $this
-            ->actingAs($this->user)
-            ->post(route('platform.systems.users.edit', [$this->user->id, 'remove']));
+            ->actingAs($this->createAdminUser())
+            ->post(route('platform.systems.users.edit', [$this->createAdminUser()->id, 'remove']));
 
         $response
             ->assertStatus(302)
