@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Entity sorting default
+- `DataTime` method enableTime [816](https://github.com/orchidsoftware/platform/issues/816)
 
 ### Removed
 - All dependency
