@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 4.4.1 - 2019-03-23
+
+### Fixed
+- Error in select field [821](https://github.com/orchidsoftware/platform/pull/821)
+- `DataTime` method enableTime [820](https://github.com/orchidsoftware/platform/pull/820)
+
 ## 4.4.0 - 2019-03-22
 
 ### Changed
