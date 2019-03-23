@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 4.4.2 - 2019-03-24
+
+### Fixed
+- Revert [821](https://github.com/orchidsoftware/platform/pull/821)
+
 ## 4.4.1 - 2019-03-23
 
 ### Fixed

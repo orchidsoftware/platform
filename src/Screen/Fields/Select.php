@@ -108,7 +108,7 @@ class Select extends Field
             $value = [];
 
             collect($this->get('value'))->each(function ($item) use (&$value) {
-                $value[] = $item;
+                $value[$item->id] = $item->name;
             });
 
             $this->set('value', $value);

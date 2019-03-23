@@ -122,12 +122,11 @@ class UserEditScreen extends Screen
 
         $user
             ->fill($request->get('user'))
+            ->replaceRoles($roles)
             ->fill([
                 'permissions' => $permissions,
             ])
             ->save();
-
-        $user->roles()->syncWithoutDetaching($roles);
 
         Alert::info(__('User was saved'));
 
