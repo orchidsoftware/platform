@@ -2,7 +2,7 @@
 @section('title',__('Reset Password'))
 
 @section('content')
-    <p class="m-t-lg text-black">{{ __('Reset Password') }}</p>
+    <h1 class="h5 text-black">{{ __('Reset Password') }}</h1>
     @if (session('status'))
         <div class="alert alert-success">
             {{ session('status') }}

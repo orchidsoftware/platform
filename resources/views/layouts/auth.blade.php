@@ -1,38 +1,24 @@
 @extends('platform::layouts.app')
 
-@section('body')
+@section('body-left')
+    <div class="hidden-xs v-center h-100 w-100 justify-content-center">
+        <div class="text-center">
+            <a href="{{Dashboard::prefix()}}">
+                @includeIf(config('platform.template.header','platform::layouts.header'))
+            </a>
+        </div>
+    </div>
 
-    <div class="" style="
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -ms-flex-pack: center;
-    justify-content: center;
-    min-height: 100%;
-">
-        <div class="page-single">
-            <div class="container">
-                <div class="row">
-                    <div class="col col-login mx-auto" style="
-    max-width: 30rem;
-">
+@endsection
 
-                        <div class="card">
-                            <div class="card-body p-5">
 
-                                <div class="card-title">
-                                    <div class="text-center mb-4">
-                                        <a href="{{Dashboard::prefix()}}">
-                                            @includeIf(config('platform.template.header','platform::layouts.header'))
-                                        </a>
-                                    </div>
-                                </div>
+@section('body-right')
 
-                                @yield('content')
-                            </div>
-                        </div>
-                    </div>
+    <div class="v-center h-100 w-100 justify-content-center">
+        <div class="container">
+            <div class="row">
+                <div class="col mx-auto p-5" style="max-width: 30rem;">
+                    @yield('content')
                 </div>
             </div>
         </div>
