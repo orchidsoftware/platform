@@ -7,6 +7,8 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
+ * @deprecated
+ *
  * Class Relationship.
  *
  * @method self accesskey($value = true)

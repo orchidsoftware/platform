@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Orchid\Platform\Http\Controllers\Systems\RelationController;
 use Orchid\Platform\Http\Controllers\Systems\TagsController;
 use Orchid\Platform\Http\Controllers\Systems\SystemController;
 use Orchid\Platform\Http\Controllers\Systems\WidgetController;
@@ -46,3 +47,6 @@ $this->router->get('tags/{tags?}', [TagsController::class, 'show'])
 
 $this->router->post('widget/{widget}/{key?}', [WidgetController::class, 'index'])
     ->name('systems.widget');
+
+$this->router->post('relation', [RelationController::class, 'view'])
+    ->name('systems.relation');
