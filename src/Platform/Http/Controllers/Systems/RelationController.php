@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Platform\Http\Requests\RelationRequest;
 
@@ -20,7 +19,7 @@ class RelationController extends Controller
      */
     public function view(RelationRequest $request)
     {
-        $params = collect($request->except(['search']))->map(function ($item){
+        $params = collect($request->except(['search']))->map(function ($item) {
             return Crypt::decryptString($item);
         });
 
@@ -28,12 +27,12 @@ class RelationController extends Controller
         $model = new $params['model'];
         $name = $params['name'];
         $key = $params['key'];
-        $search = $request->get('search','');
+        $search = $request->get('search', '');
 
         //dd($model,$name,$search,$key);
 
         $items = $model
-            ->where($name, 'like', '%' . $search . '%')
+            ->where($name, 'like', '%'.$search.'%')
             ->limit(10)
             ->pluck($name, $key);
 

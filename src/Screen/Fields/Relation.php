@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Crypt;
 use Orchid\Screen\Field;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Relation.
@@ -87,8 +87,8 @@ class Relation extends Field
 
     /**
      * @param string|Model $model
-     * @param string $name
-     * @param string|null $key
+     * @param string       $name
+     * @param string|null  $key
      *
      * @return self
      */
@@ -96,7 +96,7 @@ class Relation extends Field
     {
         /* @var $model Model */
         $model = is_object($model) ? $model : new $model();
-        $key   = $key ?? $model->getModel()->getKeyName();
+        $key = $key ?? $model->getModel()->getKeyName();
         $model = get_class($model);
 
         $this->set('relationModel', Crypt::encryptString($model));
