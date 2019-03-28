@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Orchid\Screen\Repository;
+use Orchid\Platform\Filters\Filter;
 
 /**
  * Class Selection.
@@ -41,7 +42,7 @@ abstract class Selection extends Base
     }
 
     /**
-     * @return array
+     * @return Filter[]
      */
     abstract public function filters(): array;
 }

@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 4.4.4 - 2019-03-26
+
+### Added
+- User filter for foles [823](https://github.com/orchidsoftware/platform/pull/823)
+
+## 4.4.3 - 2019-03-25
+
+### Fixed
+- Error in select field [822](https://github.com/orchidsoftware/platform/pull/822)
+- Padding for columns
+
 ## 4.4.2 - 2019-03-24
 
 ### Fixed
