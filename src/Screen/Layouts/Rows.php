@@ -50,7 +50,7 @@ abstract class Rows extends Base
      *
      * @return $this
      */
-    public function with(int $with = 100) : Rows
+    public function with(int $with = 100) : self
     {
         $this->with = $with;
 
