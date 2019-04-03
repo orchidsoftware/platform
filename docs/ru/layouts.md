@@ -210,7 +210,7 @@ public function query($patient = null) : array
 
 Для создания исполните команду:
 ```php
-php artisan orchid:selection ChartsLayout
+php artisan orchid:chart ChartsLayout
 ```
 
 Пример макета:
