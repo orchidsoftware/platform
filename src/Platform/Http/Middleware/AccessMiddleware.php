@@ -7,6 +7,7 @@ namespace Orchid\Platform\Http\Middleware;
 use Closure;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\Request;
 
 /**
  * Class AccessMiddleware.
@@ -19,11 +20,6 @@ class AccessMiddleware
     protected $auth;
 
     /**
-     * @var
-     */
-    protected $routeActive;
-
-    /**
      * AccessMiddleware constructor.
      *
      * @param \Illuminate\Contracts\Auth\Guard $auth
@@ -34,12 +30,12 @@ class AccessMiddleware
     }
 
     /**
-     * @param          $request
-     * @param \Closure $next
+     * @param Request $request
+     * @param Closure $next
      *
-     * @return mixed
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         Carbon::setLocale(config('app.locale'));
 

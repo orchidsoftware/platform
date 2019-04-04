@@ -107,13 +107,13 @@ abstract class Screen extends Controller
 
         foreach ($this->layout() as $layout) {
 
-            /** @var \Orchid\Screen\Layouts\Base $layout */
+            /** @var \Orchid\Screen\Layouts\Base|string $layout */
             $layout = is_object($layout) ? $layout : new $layout();
 
             if ($layout->getSlug() === $slugLayouts) {
                 $layout->async = true;
 
-                return $layout->build($post, true);
+                return $layout->build($post);
             }
         }
     }

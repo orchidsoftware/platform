@@ -16,7 +16,7 @@ abstract class Filter
     public $request;
 
     /**
-     * @var
+     * @var array
      */
     public $parameters;
 
@@ -28,7 +28,7 @@ abstract class Filter
     /**
      * Current app language.
      *
-     * @var
+     * @var string
      */
     public $lang;
 

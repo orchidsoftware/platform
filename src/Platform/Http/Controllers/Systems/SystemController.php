@@ -17,7 +17,7 @@ class SystemController extends Controller
     }
 
     /**
-     * @return string
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {

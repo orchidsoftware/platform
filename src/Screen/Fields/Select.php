@@ -104,7 +104,7 @@ class Select extends Field
 
         $this->set('options', $options);
 
-        $this->addBeforeRender(function () use ($name, $key) {
+        $this->addBeforeRender(function () {
             $value = [];
 
             collect($this->get('value'))->each(function ($item) use (&$value) {

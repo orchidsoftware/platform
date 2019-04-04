@@ -48,9 +48,9 @@ class HttpFilter
     }
 
     /**
-     * @param $query
+     * @param string $query
      *
-     * @return array
+     * @return string|array
      */
     protected function parseHttpValue($query)
     {

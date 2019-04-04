@@ -13,7 +13,7 @@ use Orchid\Platform\Http\Requests\RelationRequest;
 class RelationController extends Controller
 {
     /**
-     * @param Request $request
+     * @param RelationRequest $request
      *
      * @return \Illuminate\Http\JsonResponse
      */

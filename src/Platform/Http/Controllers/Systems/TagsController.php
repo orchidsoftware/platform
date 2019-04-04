@@ -29,7 +29,8 @@ class TagsController extends Controller
                     'text'  => $item['name'],
                     'count' => $item['count'],
                 ];
-            });
+            })
+            ->toArray();
 
         return response()->json($tags);
     }

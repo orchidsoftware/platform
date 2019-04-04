@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 /**
  * Class Button.
  *
+ * @method self name(string $name = null)
  * @method self modal(string $modalName = null)
  * @method self icon(string $icon = null)
  * @method self class(string $classes = null)

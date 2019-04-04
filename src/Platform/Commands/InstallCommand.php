@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
-use Orchid\Platform\Updates;
 use Illuminate\Console\Command;
 use Orchid\Platform\Events\InstallEvent;
+use Orchid\Platform\Providers\FoundationServiceProvider;
+use Orchid\Platform\Updates;
 use Orchid\Press\Providers\PressServiceProvider;
 use Symfony\Component\Console\Helper\ProgressBar;
-use Orchid\Platform\Providers\FoundationServiceProvider;
 
 class InstallCommand extends Command
 {
@@ -91,7 +91,7 @@ class InstallCommand extends Command
         $this->info(' Completed!');
 
         $this
-            ->setValueEnv('SCOUT_DRIVER', 'null')
+            ->setValueEnv('SCOUT_DRIVER')
             ->comment("To create a user, run 'artisan orchid:admin'");
 
         $this->line("To start the embedded server, run 'artisan serve'");
@@ -145,11 +145,11 @@ class InstallCommand extends Command
 
     /**
      * @param string $constant
-     * @param null   $value
+     * @param string $value
      *
      * @return \Orchid\Platform\Commands\InstallCommand
      */
-    private function setValueEnv($constant, $value = null): self
+    private function setValueEnv($constant, $value = 'null'): self
     {
         $str = $this->fileGetContent(app_path('../.env'));
 

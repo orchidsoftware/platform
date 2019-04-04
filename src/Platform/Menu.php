@@ -102,8 +102,8 @@ class Menu
     /**
      * Generate on the menu display.
      *
-     * @param string      $location
-     * @param string|null $template
+     * @param string $location
+     * @param string $template
      *
      * @return string
      */
@@ -113,7 +113,7 @@ class Menu
 
         return $this->findAllChildren($location)
             ->sortBy('sort')
-            ->map(function ($value) use ($template, &$html) {
+            ->map(function ($value) use ($template) {
                 return view($template, $value)->render();
             })
             ->implode(' ');
