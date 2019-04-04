@@ -111,7 +111,7 @@ abstract class Base
         }
 
         return view($this->async ? 'platform::container.layouts.blank' : $this->template, [
-            'manyForms'           => $build ?? [],
+            'manyForms'           => $build,
             'templateSlug'        => $this->getSlug(),
             'templateAsync'       => $this->asyncNext,
             'templateAsyncMethod' => $this->asyncMethod,

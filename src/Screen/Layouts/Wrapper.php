@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Support\Arr;
 use Orchid\Screen\Repository;
 
 /**
@@ -25,7 +26,7 @@ abstract class Wrapper extends Base
     public function __construct(string $template, array $layouts = [])
     {
         $this->template = $template;
-        $this->layouts = $layouts;
+        $this->layouts  = $layouts;
     }
 
     /**
@@ -35,6 +36,25 @@ abstract class Wrapper extends Base
      */
     public function build(Repository $repository)
     {
-        return $this->buildAsDeep($repository);
+        $build = [];
+
+        if (!$this->checkPermission($this, $repository)) {
+            return;
+        }
+
+        foreach ($this->layouts as $key => $layouts) {
+
+            $item = $this->buildChild(Arr::wrap($layouts), $key, $repository);
+
+            if (!is_array($layouts)) {
+                $item = reset($item)[0];
+            }
+
+            $build[$key] = $item;
+        }
+
+        $data = array_merge($repository->all(), $build);
+
+        return view($this->template, $data);
     }
 }
