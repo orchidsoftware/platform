@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
-use Orchid\Screen\Builder;
 use Orchid\Screen\Repository;
 
 /**
@@ -23,8 +22,7 @@ abstract class Wrapper extends Base
      * @param string $template
      * @param Base[] $layouts
      */
-
-    public function __construct(string $template , array $layouts = [])
+    public function __construct(string $template, array $layouts = [])
     {
         $this->template = $template;
         $this->layouts = $layouts;

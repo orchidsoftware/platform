@@ -145,13 +145,13 @@ class Layouts
 
     /**
      * @param string $template
-     * @param array $layouts
+     * @param array  $layouts
      *
      * @return Wrapper
      */
     public static function wrapper(string $template, array $layouts): Wrapper
     {
-        return new class($template,$layouts) extends Wrapper {
+        return new class($template, $layouts) extends Wrapper {
         };
     }
 }
