@@ -10,8 +10,8 @@ use Orchid\Screen\Layouts\View;
 use Orchid\Screen\Layouts\Blank;
 use Orchid\Screen\Layouts\Modals;
 use Orchid\Screen\Layouts\Columns;
-use Orchid\Screen\Layouts\Collapse;
 use Orchid\Screen\Layouts\Wrapper;
+use Orchid\Screen\Layouts\Collapse;
 
 /**
  * Class Layouts.

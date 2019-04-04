@@ -26,7 +26,7 @@ abstract class Wrapper extends Base
     public function __construct(string $template, array $layouts = [])
     {
         $this->template = $template;
-        $this->layouts  = $layouts;
+        $this->layouts = $layouts;
     }
 
     /**
@@ -38,15 +38,14 @@ abstract class Wrapper extends Base
     {
         $build = [];
 
-        if (!$this->checkPermission($this, $repository)) {
+        if (! $this->checkPermission($this, $repository)) {
             return;
         }
 
         foreach ($this->layouts as $key => $layouts) {
-
             $item = $this->buildChild(Arr::wrap($layouts), $key, $repository);
 
-            if (!is_array($layouts)) {
+            if (! is_array($layouts)) {
                 $item = reset($item)[0];
             }
 
