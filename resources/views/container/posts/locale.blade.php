@@ -8,7 +8,7 @@
                                class="custom-control-input"
                                id="options-locale-{{$key}}"
                                name="options[locale][{{$key}}]"
-                                {{$post->checkLanguage($key) ? 'checked' : ''}}
+                               value="true" {{$post->checkLanguage($key) ? 'checked' : ''}}
                         >
                         <label class="custom-control-label" for="options-locale-{{$key}}">
                             {{$locale['native']}}
