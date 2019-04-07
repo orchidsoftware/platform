@@ -10,6 +10,7 @@ use Orchid\Screen\Layouts\View;
 use Orchid\Screen\Layouts\Blank;
 use Orchid\Screen\Layouts\Modals;
 use Orchid\Screen\Layouts\Columns;
+use Orchid\Screen\Layouts\Wrapper;
 use Orchid\Screen\Layouts\Collapse;
 
 /**
@@ -140,6 +141,18 @@ class Layouts
             {
                 return $this->fields;
             }
+        };
+    }
+
+    /**
+     * @param string $template
+     * @param array  $layouts
+     *
+     * @return Wrapper
+     */
+    public static function wrapper(string $template, array $layouts): Wrapper
+    {
+        return new class($template, $layouts) extends Wrapper {
         };
     }
 }
