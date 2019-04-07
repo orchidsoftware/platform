@@ -9,12 +9,12 @@ export default class extends Controller {
      */
     initialize() {
         Turbolinks.start();
-        Turbolinks.setProgressBarDelay(50);
         window.platform = platform();
 
         document.addEventListener("turbolinks:load", () => {
             this.csrf();
         });
+        Turbolinks.setProgressBarDelay(50);
     }
 
     /**
