@@ -47,6 +47,8 @@ abstract class Wrapper extends Base
 
             if (! is_array($layouts)) {
                 $item = reset($item)[0];
+            }  else {
+                $item = reset($item);
             }
 
             $build[$key] = $item;
