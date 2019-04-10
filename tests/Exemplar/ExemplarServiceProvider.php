@@ -13,7 +13,6 @@ class ExemplarServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->loadViewsFrom(PLATFORM_PATH . '/tests/Exemplar/views', 'exemplar');
+        $this->loadViewsFrom(PLATFORM_PATH.'/tests/Exemplar/views', 'exemplar');
     }
-
 }
