@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Traits;
 
+use Orchid\Platform\Dashboard;
 use Orchid\Attachment\Models\Attachment;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Orchid\Platform\Dashboard;
 
 /**
  * Trait Attachment.
