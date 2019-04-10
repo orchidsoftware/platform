@@ -44,7 +44,7 @@ php artisan orchid:admin admin admin@admin.com password
 Once these commands have completed, you are ready to enjoy platform!
 
 
-###### Simple screenshot:
+###### Screenshot
 
 ![screenshot](https://user-images.githubusercontent.com/5102591/52168128-014cb680-2737-11e9-9ed3-28637780cf64.png)
 
