@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Tests\Unit\Screen;
+namespace Orchid\Tests\Unit\Screen\Macro;
 
 use Orchid\Screen\TD;
 use Orchid\Tests\TestUnitCase;

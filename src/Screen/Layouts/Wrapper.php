@@ -32,7 +32,7 @@ abstract class Wrapper extends Base
     /**
      * @param Repository $repository
      *
-     * @return mixed
+     * @return \Illuminate\Contracts\View\View
      */
     public function build(Repository $repository)
     {
@@ -43,13 +43,8 @@ abstract class Wrapper extends Base
         }
 
         foreach ($this->layouts as $key => $layouts) {
-            $item = $this->buildChild(Arr::wrap($layouts), $key, $repository);
-
-            if (! is_array($layouts)) {
-                $item = reset($item)[0];
-            } else {
-                $item = reset($item);
-            }
+            $items = $this->buildChild(Arr::wrap($layouts), $key, $repository);
+            $item  = !is_array($layouts) ? reset($items)[0] : reset($items);
 
             $build[$key] = $item;
         }

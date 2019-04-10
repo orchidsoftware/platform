@@ -12,12 +12,15 @@ use Orchid\Screen\Layouts\Modals;
 use Orchid\Screen\Layouts\Columns;
 use Orchid\Screen\Layouts\Wrapper;
 use Orchid\Screen\Layouts\Collapse;
+use Illuminate\Support\Traits\Macroable;
 
 /**
  * Class Layouts.
  */
 class Layouts
 {
+    use Macroable;
+
     /**
      * @var array
      */
