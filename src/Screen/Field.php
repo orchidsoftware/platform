@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Illuminate\Support\Str;
-use Orchid\Screen\Traits\CanSee;
+use Illuminate\Support\ViewErrorBag;
 use Orchid\Screen\Contracts\FieldContract;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
+use Orchid\Screen\Traits\CanSee;
 
 /**
  * Class Field.
@@ -229,7 +230,8 @@ class Field implements FieldContract
             'slug'       => $this->getSlug(),
             'oldName'    => $this->getOldName(),
             'typeForm'   => $this->typeForm ?? $this->vertical()->typeForm,
-        ]));
+        ]))
+            ->withErrors(session()->get('errors', app(ViewErrorBag::class)));
     }
 
     /**

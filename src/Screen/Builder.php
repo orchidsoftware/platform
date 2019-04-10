@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Support\ViewErrorBag;
 use Orchid\Screen\Contracts\FieldContract;
 
 class Builder
@@ -52,7 +53,7 @@ class Builder
     public function __construct(array $fields, $data)
     {
         $this->fields = $fields;
-        $this->data = $data;
+        $this->data   = $data;
     }
 
     /**
@@ -115,7 +116,11 @@ class Builder
 
         $this->form .= view('platform::partials.fields.groups', [
             'cols' => array_filter($group),
-        ])->render();
+        ])
+            ->withErrors(session()->get('errors', app(ViewErrorBag::class)))
+            ->render();
+
+
     }
 
     /**
