@@ -53,7 +53,7 @@ class Builder
     public function __construct(array $fields, $data)
     {
         $this->fields = $fields;
-        $this->data   = $data;
+        $this->data = $data;
     }
 
     /**
@@ -119,8 +119,6 @@ class Builder
         ])
             ->withErrors(session()->get('errors', app(ViewErrorBag::class)))
             ->render();
-
-
     }
 
     /**
