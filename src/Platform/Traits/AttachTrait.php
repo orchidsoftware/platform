@@ -6,6 +6,7 @@ namespace Orchid\Platform\Traits;
 
 use Orchid\Attachment\Models\Attachment;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Orchid\Platform\Dashboard;
 
 /**
  * Trait Attachment.
@@ -20,7 +21,7 @@ trait AttachTrait
     public function attachment(string $group = null): MorphToMany
     {
         $query = $this->morphToMany(
-            Attachment::class,
+          Dashboard::model(Attachment::class),
             'attachmentable',
             'attachmentable',
             'attachmentable_id',
