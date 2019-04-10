@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
-use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
-use Illuminate\Database\Eloquent\Factory;
+use Watson\Active\Active;
 use Illuminate\Support\Str;
-use Orchid\Database\Seeds\OrchidDatabaseSeeder;
 use Orchid\Platform\Models\User;
-use Orchid\Platform\Providers\FoundationServiceProvider;
-use Orchid\Press\Providers\PressServiceProvider;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
+use Illuminate\Database\Eloquent\Factory;
+use Orchid\Database\Seeds\OrchidDatabaseSeeder;
+use Orchid\Press\Providers\PressServiceProvider;
 use Orchid\Tests\Exemplar\ExemplarServiceProvider;
-use Watson\Active\Active;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
+use Orchid\Platform\Providers\FoundationServiceProvider;
 
 /**
  * Trait Environment.
@@ -34,7 +34,7 @@ trait Environment
         $this->loadMigrationsFrom(realpath('./database/migrations'));
         $this->artisan('migrate', ['--database' => 'orchid']);
 
-        $this->withFactories(realpath(PLATFORM_PATH . '/database/factories'));
+        $this->withFactories(realpath(PLATFORM_PATH.'/database/factories'));
 
         $this->artisan('db:seed', [
             '--class' => OrchidDatabaseSeeder::class,
@@ -57,7 +57,7 @@ trait Environment
      */
     protected function getEnvironmentSetUp($app)
     {
-        $app->make(Factory::class)->load(realpath(PLATFORM_PATH . '/database/factories'));
+        $app->make(Factory::class)->load(realpath(PLATFORM_PATH.'/database/factories'));
 
         $app['config']->set('app.debug', true);
         $app['config']->set('auth.providers.users.model', User::class);
@@ -93,7 +93,7 @@ trait Environment
             'table'           => 'sessions',
             'store'           => null,
             'lottery'         => [2, 100],
-            'cookie'          => Str::slug(env('APP_NAME', 'laravel'), '_') . '_session',
+            'cookie'          => Str::slug(env('APP_NAME', 'laravel'), '_').'_session',
             'path'            => '/',
             'domain'          => null,
             'secure'          => false,

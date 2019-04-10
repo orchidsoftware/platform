@@ -44,7 +44,7 @@ abstract class Wrapper extends Base
 
         foreach ($this->layouts as $key => $layouts) {
             $items = $this->buildChild(Arr::wrap($layouts), $key, $repository);
-            $item  = !is_array($layouts) ? reset($items)[0] : reset($items);
+            $item = ! is_array($layouts) ? reset($items)[0] : reset($items);
 
             $build[$key] = $item;
         }

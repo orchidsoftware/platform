@@ -4,16 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
-use Illuminate\Contracts\View\View;
 use Orchid\Screen\Layouts;
 use Orchid\Screen\Repository;
 use Orchid\Tests\TestUnitCase;
+use Illuminate\Contracts\View\View;
 
 class WrapperTest extends TestUnitCase
 {
-    /**
-     *
-     */
     public function testQueryVariables()
     {
         $repository = new Repository([
@@ -28,14 +25,10 @@ class WrapperTest extends TestUnitCase
         $data = $view->getData();
         $html = $view->render();
 
-
         $this->assertTrue($data['variable']);
         $this->assertStringContainsString('<p>Hello Alexandr Chernyaev</p>', $html);
     }
 
-    /**
-     *
-     */
     public function testDataVariables()
     {
         $repository = new Repository();
@@ -52,18 +45,15 @@ class WrapperTest extends TestUnitCase
         $view = $layout->build($repository);
         $data = $view->getData();
 
-
         $this->assertIsArray($data);
         $this->assertIsArray($data['variable1']);
         $this->assertEquals(3, count($data['variable1']));
-
 
         /** @var View[] $variable1 */
         $variable1 = $data['variable1'];
 
         /** @var View $variable1 */
         $variable2 = $data['variable2'];
-
 
         $this->assertIsArray($variable1);
 
