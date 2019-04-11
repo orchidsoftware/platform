@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 4.5.0 - 2019-04-12
+
 ### Added
 - `Layout::wrapper` [827](https://github.com/orchidsoftware/platform/pull/827)
 
