@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
-use Orchid\Screen\Layouts;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Tests\TestUnitCase;
 use Illuminate\Contracts\View\View;
@@ -18,7 +18,7 @@ class WrapperTest extends TestUnitCase
             'name'     => 'Alexandr Chernyaev',
         ]);
 
-        $layout = Layouts::wrapper('exemplar::layouts.wrapper', []);
+        $layout = Layout::wrapper('exemplar::layouts.wrapper', []);
 
         $view = $layout->build($repository);
 
@@ -33,13 +33,13 @@ class WrapperTest extends TestUnitCase
     {
         $repository = new Repository();
 
-        $layout = Layouts::wrapper('exemplar::layouts.wrapper', [
+        $layout = Layout::wrapper('exemplar::layouts.wrapper', [
             'variable1' => [
-                Layouts::rows([]),
-                Layouts::rows([]),
-                Layouts::rows([]),
+                Layout::rows([]),
+                Layout::rows([]),
+                Layout::rows([]),
             ],
-            'variable2' => Layouts::rows([]),
+            'variable2' => Layout::rows([]),
         ]);
 
         $view = $layout->build($repository);
@@ -58,7 +58,7 @@ class WrapperTest extends TestUnitCase
         $this->assertIsArray($variable1);
 
         $this->assertInstanceOf(View::class, $variable2);
-        $this->assertEquals(Layouts::rows([])->template, $variable2->name());
+        $this->assertEquals(Layout::rows([])->template, $variable2->name());
 
         $this->assertInstanceOf(View::class, reset($variable1));
     }

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens;
 
+use Orchid\Platform\Dashboard;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts;
-use Orchid\Platform\Dashboard;
 
 class PlatformScreen extends Screen
 {
@@ -47,12 +47,12 @@ class PlatformScreen extends Screen
     {
         return [
             Link::name('Website')
-            ->link('http://orchid.software')
-            ->icon('icon-globe-alt'),
+                ->link('http://orchid.software')
+                ->icon('icon-globe-alt'),
 
             Link::name('GitHub')
-            ->link('https://github.com/orchidsoftware/platform')
-            ->icon('icon-social-github'),
+                ->link('https://github.com/orchidsoftware/platform')
+                ->icon('icon-social-github'),
         ];
     }
 
@@ -64,8 +64,8 @@ class PlatformScreen extends Screen
     public function layout(): array
     {
         return [
-            Layouts::view('platform::partials.update'),
-            Layouts::view('platform::partials.welcome'),
+            Layout::view('platform::partials.update'),
+            Layout::view('platform::partials.welcome'),
         ];
     }
 }

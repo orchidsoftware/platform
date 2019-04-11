@@ -4,7 +4,7 @@ namespace App\Orchid\Screens;
 
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Fields\Input;
 use Orchid\Support\Facades\Alert;
@@ -141,18 +141,18 @@ class ExampleScreen extends Screen
             MetricsExample::class,
             ChartLineExample::class,
 
-            Layouts::columns([
+            Layout::columns([
                 ChartPieExample::class,
                 ChartBarExample::class,
             ]),
 
-            Layouts::tabs([
+            Layout::tabs([
                 'Example Tab Table' => TableExample::class,
                 'Example Tab Rows'  => RowExample::class,
             ]),
 
-            Layouts::modals([
-                'exampleModal' => Layouts::rows([
+            Layout::modals([
+                'exampleModal' => Layout::rows([
                     Input::make('user.password')
                         ->type('test')
                         ->title(__('Example'))

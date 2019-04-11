@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
-use Orchid\Screen\Layouts;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Tests\TestUnitCase;
 use Orchid\Screen\Fields\Input;
@@ -17,7 +17,7 @@ class RowTest extends TestUnitCase
             'name' => 'Alexandr Chernyaev',
         ]);
 
-        $layout = Layouts::rows([
+        $layout = Layout::rows([
             Input::make('name'),
         ]);
 
@@ -31,7 +31,7 @@ class RowTest extends TestUnitCase
      */
     public function testWith()
     {
-        $layout = Layouts::rows([
+        $layout = Layout::rows([
             Input::make('name'),
         ])->with(10);
 

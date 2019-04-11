@@ -6,7 +6,7 @@ namespace App\Orchid\Screens\Comment;
 
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts;
+use Orchid\Screen\Layout;
 use Illuminate\Http\Request;
 use Orchid\Press\Models\Comment;
 use Orchid\Support\Facades\Alert;
@@ -67,7 +67,7 @@ class CommentEditScreen extends Screen
     public function layout(): array
     {
         return [
-            Layouts::columns([
+            Layout::columns([
                 'CommentEdit' => [
                     CommentEditLayout::class,
                 ],

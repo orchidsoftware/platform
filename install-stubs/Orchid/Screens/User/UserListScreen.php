@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Orchid\Screens\User;
 
 use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts;
+use Orchid\Screen\Layout;
 use Illuminate\Http\Request;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
@@ -66,7 +66,7 @@ class UserListScreen extends Screen
             UserFiltersLayout::class,
             UserListLayout::class,
 
-            Layouts::modals([
+            Layout::modals([
                 'oneAsyncModal' => [
                     UserEditLayout::class,
                 ],

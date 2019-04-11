@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Macro;
 
-use Orchid\Screen\Layouts;
+use Orchid\Screen\Layout;
 use Orchid\Tests\TestUnitCase;
 
 class LayoutsMarcoTest extends TestUnitCase
@@ -14,10 +14,10 @@ class LayoutsMarcoTest extends TestUnitCase
      */
     public function testMacroTD($name = 'customMarcoName')
     {
-        Layouts::macro('returnNameMacroFunction', function (string $test) {
+        Layout::macro('returnNameMacroFunction', function (string $test) {
             return $test;
         });
 
-        $this->assertEquals(Layouts::returnNameMacroFunction($name), $name);
+        $this->assertEquals(Layout::returnNameMacroFunction($name), $name);
     }
 }
