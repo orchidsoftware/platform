@@ -9,5 +9,6 @@ namespace Orchid\Screen;
  *
  * Class Layouts.
  */
-class Layouts extends Layout {
+class Layouts extends Layout
+{
 }

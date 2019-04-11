@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
-use Orchid\Screen\Screen;
 use Orchid\Screen\Layout;
+use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
