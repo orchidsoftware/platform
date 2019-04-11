@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Illuminate\Support\Str;
+use Orchid\Screen\Traits\CanSee;
 use Illuminate\Support\ViewErrorBag;
 use Orchid\Screen\Contracts\FieldContract;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
-use Orchid\Screen\Traits\CanSee;
 
 /**
  * Class Field.

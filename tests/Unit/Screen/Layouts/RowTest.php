@@ -4,16 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
-use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts;
 use Orchid\Screen\Repository;
 use Orchid\Tests\TestUnitCase;
+use Orchid\Screen\Fields\Input;
 
 class RowTest extends TestUnitCase
 {
-    /**
-     *
-     */
     public function testQueryVariables()
     {
         $repository = new Repository([
