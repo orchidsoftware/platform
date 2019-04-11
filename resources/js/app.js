@@ -1,5 +1,6 @@
 import { Application, Controller } from 'stimulus';
 import { definitionsFromContext } from 'stimulus/webpack-helpers';
+import platform from "./platform";
 
 global.$ = global.jQuery = require('jquery');
 
@@ -8,7 +9,7 @@ require('bootstrap');
 require('select2');
 require('nestable');
 
-
+window.platform = platform();
 window.application = Application.start();
 window.Controller = Controller;
 
