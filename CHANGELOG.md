@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `Layout::wrapper` [827](https://github.com/orchidsoftware/platform/pull/827)
+
+### Changed
+- `Layouts` class rename to `Layout` [833](https://github.com/orchidsoftware/platform/issues/833) 
+- Login/Registration page
+- The color scheme has become more neutral [815](https://github.com/orchidsoftware/platform/issues/815)
+
 ## 4.4.4 - 2019-03-26
 
 ### Added
