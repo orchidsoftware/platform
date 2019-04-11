@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Orchid\Screens\Comment;
 
 use Orchid\Screen\Link;
-use Orchid\Screen\Screen;
 use Orchid\Screen\Layout;
+use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
 use Orchid\Press\Models\Comment;
 use Orchid\Support\Facades\Alert;

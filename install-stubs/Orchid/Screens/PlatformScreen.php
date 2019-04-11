@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens;
 
-use Orchid\Platform\Dashboard;
-use Orchid\Screen\Layout;
 use Orchid\Screen\Link;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
+use Orchid\Platform\Dashboard;
 
 class PlatformScreen extends Screen
 {

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Press\Http\Screens;
 
 use Orchid\Screen\Link;
-use Orchid\Screen\Screen;
 use Orchid\Screen\Layout;
+use Orchid\Screen\Screen;
 use Orchid\Press\Models\Post;
 use Orchid\Press\Entities\Many;
 use Orchid\Support\Facades\Alert;
