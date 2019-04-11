@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Login/Registration page
 - The color scheme has become more neutral [815](https://github.com/orchidsoftware/platform/issues/815)
 
+### Fixed
+- Uncaught ReferenceError: `platform` is not defined
+
 ## 4.4.4 - 2019-03-26
 
 ### Added
