@@ -1,5 +1,5 @@
 (function () {
-var lists = (function () {
+var lists = (function (domGlobals) {
     'use strict';
 
     var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
@@ -230,13 +230,13 @@ var lists = (function () {
       var eq = function (o) {
         return o.isNone();
       };
-      var call$$1 = function (thunk) {
+      var call = function (thunk) {
         return thunk();
       };
       var id = function (n) {
         return n;
       };
-      var noop$$1 = function () {
+      var noop = function () {
       };
       var nul = function () {
         return null;
@@ -252,17 +252,17 @@ var lists = (function () {
         isSome: never$1,
         isNone: always$1,
         getOr: id,
-        getOrThunk: call$$1,
+        getOrThunk: call,
         getOrDie: function (msg) {
           throw new Error(msg || 'error: getOrDie called on none.');
         },
         getOrNull: nul,
         getOrUndefined: undef,
         or: id,
-        orThunk: call$$1,
+        orThunk: call,
         map: none,
         ap: none,
-        each: noop$$1,
+        each: noop,
         bind: none,
         flatten: none,
         exists: never$1,
@@ -463,7 +463,7 @@ var lists = (function () {
       return slice.call(x);
     };
 
-    var Global = typeof window !== 'undefined' ? window : Function('return this;')();
+    var Global = typeof domGlobals.window !== 'undefined' ? domGlobals.window : Function('return this;')();
 
     var path = function (parts, scope) {
       var o = scope !== undefined && scope !== null ? scope : Global;
@@ -576,22 +576,22 @@ var lists = (function () {
     };
 
     var fromHtml = function (html, scope) {
-      var doc = scope || document;
+      var doc = scope || domGlobals.document;
       var div = doc.createElement('div');
       div.innerHTML = html;
       if (!div.hasChildNodes() || div.childNodes.length > 1) {
-        console.error('HTML does not have a single root node', html);
+        domGlobals.console.error('HTML does not have a single root node', html);
         throw new Error('HTML must have a single root node');
       }
       return fromDom(div.childNodes[0]);
     };
     var fromTag = function (tag, scope) {
-      var doc = scope || document;
+      var doc = scope || domGlobals.document;
       var node = doc.createElement(tag);
       return fromDom(node);
     };
     var fromText = function (text, scope) {
-      var doc = scope || document;
+      var doc = scope || domGlobals.document;
       var node = doc.createTextNode(text);
       return fromDom(node);
     };
@@ -605,7 +605,7 @@ var lists = (function () {
       var doc = docElm.dom();
       return Option.from(doc.elementFromPoint(x, y)).map(fromDom);
     };
-    var Element$$1 = {
+    var Element = {
       fromHtml: fromHtml,
       fromTag: fromTag,
       fromText: fromText,
@@ -627,12 +627,12 @@ var lists = (function () {
     };
 
     var fromElements = function (elements, scope) {
-      var doc = scope || document;
+      var doc = scope || domGlobals.document;
       var fragment = doc.createDocumentFragment();
       each(elements, function (element) {
         fragment.appendChild(element.dom());
       });
-      return Element$$1.fromDom(fragment);
+      return Element.fromDom(fragment);
     };
 
     var Immutable = function () {
@@ -679,7 +679,7 @@ var lists = (function () {
     var documentPositionContainedBy = function (a, b) {
       return compareDocumentPosition(a, b, node().DOCUMENT_POSITION_CONTAINED_BY);
     };
-    var Node$1 = {
+    var Node = {
       documentPositionPreceding: documentPositionPreceding,
       documentPositionContainedBy: documentPositionContainedBy
     };
@@ -708,7 +708,7 @@ var lists = (function () {
       }
       return undefined;
     };
-    var find$2 = function (regexes, agent) {
+    var find$1 = function (regexes, agent) {
       var r = firstMatch(regexes, agent);
       if (!r)
         return {
@@ -724,7 +724,7 @@ var lists = (function () {
       var cleanedAgent = String(agent).toLowerCase();
       if (versionRegexes.length === 0)
         return unknown();
-      return find$2(versionRegexes, cleanedAgent);
+      return find$1(versionRegexes, cleanedAgent);
     };
     var unknown = function () {
       return nu(0, 0);
@@ -878,14 +878,14 @@ var lists = (function () {
       detectOs: detectOs
     };
 
-    var contains$1 = function (str, substr) {
+    var contains = function (str, substr) {
       return str.indexOf(substr) !== -1;
     };
 
     var normalVersionRegex = /.*?version\/\ ?([0-9]+)\.([0-9]+).*/;
     var checkContains = function (target) {
       return function (uastring) {
-        return contains$1(uastring, target);
+        return contains(uastring, target);
       };
     };
     var browsers = [
@@ -893,7 +893,7 @@ var lists = (function () {
         name: 'Edge',
         versionRegexes: [/.*?edge\/ ?([0-9]+)\.([0-9]+)$/],
         search: function (uastring) {
-          var monstrosity = contains$1(uastring, 'edge/') && contains$1(uastring, 'chrome') && contains$1(uastring, 'safari') && contains$1(uastring, 'applewebkit');
+          var monstrosity = contains(uastring, 'edge/') && contains(uastring, 'chrome') && contains(uastring, 'safari') && contains(uastring, 'applewebkit');
           return monstrosity;
         }
       },
@@ -904,7 +904,7 @@ var lists = (function () {
           normalVersionRegex
         ],
         search: function (uastring) {
-          return contains$1(uastring, 'chrome') && !contains$1(uastring, 'chromeframe');
+          return contains(uastring, 'chrome') && !contains(uastring, 'chromeframe');
         }
       },
       {
@@ -914,7 +914,7 @@ var lists = (function () {
           /.*?rv:([0-9]+)\.([0-9]+).*/
         ],
         search: function (uastring) {
-          return contains$1(uastring, 'msie') || contains$1(uastring, 'trident');
+          return contains(uastring, 'msie') || contains(uastring, 'trident');
         }
       },
       {
@@ -937,7 +937,7 @@ var lists = (function () {
           /.*?cpu os ([0-9]+)_([0-9]+).*/
         ],
         search: function (uastring) {
-          return (contains$1(uastring, 'safari') || contains$1(uastring, 'mobile/')) && contains$1(uastring, 'applewebkit');
+          return (contains(uastring, 'safari') || contains(uastring, 'mobile/')) && contains(uastring, 'applewebkit');
         }
       }
     ];
@@ -950,7 +950,7 @@ var lists = (function () {
       {
         name: 'iOS',
         search: function (uastring) {
-          return contains$1(uastring, 'iphone') || contains$1(uastring, 'ipad');
+          return contains(uastring, 'iphone') || contains(uastring, 'ipad');
         },
         versionRegexes: [
           /.*?version\/\ ?([0-9]+)\.([0-9]+).*/,
@@ -1004,23 +1004,23 @@ var lists = (function () {
     var PlatformDetection = { detect: detect$2 };
 
     var detect$3 = cached(function () {
-      var userAgent = navigator.userAgent;
+      var userAgent = domGlobals.navigator.userAgent;
       return PlatformDetection.detect(userAgent);
     });
     var PlatformDetection$1 = { detect: detect$3 };
 
-    var ATTRIBUTE = Node.ATTRIBUTE_NODE;
-    var CDATA_SECTION = Node.CDATA_SECTION_NODE;
-    var COMMENT = Node.COMMENT_NODE;
-    var DOCUMENT = Node.DOCUMENT_NODE;
-    var DOCUMENT_TYPE = Node.DOCUMENT_TYPE_NODE;
-    var DOCUMENT_FRAGMENT = Node.DOCUMENT_FRAGMENT_NODE;
-    var ELEMENT = Node.ELEMENT_NODE;
-    var TEXT = Node.TEXT_NODE;
-    var PROCESSING_INSTRUCTION = Node.PROCESSING_INSTRUCTION_NODE;
-    var ENTITY_REFERENCE = Node.ENTITY_REFERENCE_NODE;
-    var ENTITY = Node.ENTITY_NODE;
-    var NOTATION = Node.NOTATION_NODE;
+    var ATTRIBUTE = domGlobals.Node.ATTRIBUTE_NODE;
+    var CDATA_SECTION = domGlobals.Node.CDATA_SECTION_NODE;
+    var COMMENT = domGlobals.Node.COMMENT_NODE;
+    var DOCUMENT = domGlobals.Node.DOCUMENT_NODE;
+    var DOCUMENT_TYPE = domGlobals.Node.DOCUMENT_TYPE_NODE;
+    var DOCUMENT_FRAGMENT = domGlobals.Node.DOCUMENT_FRAGMENT_NODE;
+    var ELEMENT = domGlobals.Node.ELEMENT_NODE;
+    var TEXT = domGlobals.Node.TEXT_NODE;
+    var PROCESSING_INSTRUCTION = domGlobals.Node.PROCESSING_INSTRUCTION_NODE;
+    var ENTITY_REFERENCE = domGlobals.Node.ENTITY_REFERENCE_NODE;
+    var ENTITY = domGlobals.Node.ENTITY_NODE;
+    var NOTATION = domGlobals.Node.NOTATION_NODE;
 
     var ELEMENT$1 = ELEMENT;
     var is = function (element, selector) {
@@ -1049,23 +1049,23 @@ var lists = (function () {
       return d1 === d2 ? false : d1.contains(d2);
     };
     var ieContains = function (e1, e2) {
-      return Node$1.documentPositionContainedBy(e1.dom(), e2.dom());
+      return Node.documentPositionContainedBy(e1.dom(), e2.dom());
     };
     var browser = PlatformDetection$1.detect().browser;
-    var contains$2 = browser.isIE() ? ieContains : regularContains;
+    var contains$1 = browser.isIE() ? ieContains : regularContains;
     var is$1 = is;
 
     var parent = function (element) {
       var dom = element.dom();
-      return Option.from(dom.parentNode).map(Element$$1.fromDom);
+      return Option.from(dom.parentNode).map(Element.fromDom);
     };
     var children = function (element) {
       var dom = element.dom();
-      return map(dom.childNodes, Element$$1.fromDom);
+      return map(dom.childNodes, Element.fromDom);
     };
     var child = function (element, index) {
       var cs = element.dom().childNodes;
-      return Option.from(cs[index]).map(Element$$1.fromDom);
+      return Option.from(cs[index]).map(Element.fromDom);
     };
     var firstChild = function (element) {
       return child(element, 0);
@@ -1076,13 +1076,13 @@ var lists = (function () {
     var spot = Immutable('element', 'offset');
 
     var before = function (marker, element) {
-      var parent$$1 = parent(marker);
-      parent$$1.each(function (v) {
+      var parent$1 = parent(marker);
+      parent$1.each(function (v) {
         v.dom().insertBefore(element.dom(), marker.dom());
       });
     };
-    var append = function (parent$$1, element) {
-      parent$$1.dom().appendChild(element.dom());
+    var append = function (parent, element) {
+      parent.dom().appendChild(element.dom());
     };
 
     var before$1 = function (marker, elements) {
@@ -1108,11 +1108,11 @@ var lists = (function () {
       return r.toLowerCase();
     };
 
-    var rawSet = function (dom, key, value$$1) {
-      if (isString(value$$1) || isBoolean(value$$1) || isNumber(value$$1)) {
-        dom.setAttribute(key, value$$1 + '');
+    var rawSet = function (dom, key, value) {
+      if (isString(value) || isBoolean(value) || isNumber(value)) {
+        dom.setAttribute(key, value + '');
       } else {
-        console.error('Invalid call to Attr.set. Key ', key, ':: Value ', value$$1, ':: Element ', dom);
+        domGlobals.console.error('Invalid call to Attr.set. Key ', key, ':: Value ', value, ':: Element ', dom);
         throw new Error('Attribute value was not simple');
       }
     };
@@ -1133,28 +1133,28 @@ var lists = (function () {
       return dom.style !== undefined;
     };
 
-    var internalSet = function (dom, property, value$$1) {
-      if (!isString(value$$1)) {
-        console.error('Invalid call to CSS.set. Property ', property, ':: Value ', value$$1, ':: Element ', dom);
-        throw new Error('CSS value must be a string: ' + value$$1);
+    var internalSet = function (dom, property, value) {
+      if (!isString(value)) {
+        domGlobals.console.error('Invalid call to CSS.set. Property ', property, ':: Value ', value, ':: Element ', dom);
+        throw new Error('CSS value must be a string: ' + value);
       }
       if (isSupported(dom)) {
-        dom.style.setProperty(property, value$$1);
+        dom.style.setProperty(property, value);
       }
     };
-    var set$1 = function (element, property, value$$1) {
+    var set = function (element, property, value) {
       var dom = element.dom();
-      internalSet(dom, property, value$$1);
+      internalSet(dom, property, value);
     };
 
     var clone$1 = function (original, isDeep) {
-      return Element$$1.fromDom(original.dom().cloneNode(isDeep));
+      return Element.fromDom(original.dom().cloneNode(isDeep));
     };
     var deep = function (original) {
       return clone$1(original, true);
     };
     var shallowAs = function (original, tag) {
-      var nu = Element$$1.fromTag(tag);
+      var nu = Element.fromTag(tag);
       var attributes = clone(original);
       setAll(nu, attributes);
       return nu;
@@ -1162,8 +1162,8 @@ var lists = (function () {
     var mutate = function (original, tag) {
       var nu = shallowAs(original, tag);
       before(original, nu);
-      var children$$1 = children(original);
-      append$1(nu, children$$1);
+      var children$1 = children(original);
+      append$1(nu, children$1);
       remove(original);
       return nu;
     };
@@ -1176,16 +1176,16 @@ var lists = (function () {
         joinSegment(segments[i - 1], segments[i]);
       }
     };
-    var appendSegments = function (head$$1, tail) {
+    var appendSegments = function (head$1, tail) {
       liftN([
-        last(head$$1),
+        last(head$1),
         head(tail)
       ], joinSegment);
     };
     var createSegment = function (scope, listType) {
       var segment = {
-        list: Element$$1.fromTag(listType, scope),
-        item: Element$$1.fromTag('li', scope)
+        list: Element.fromTag(listType, scope),
+        item: Element.fromTag('li', scope)
       };
       append(segment.list, segment.item);
       return segment;
@@ -1199,7 +1199,7 @@ var lists = (function () {
     };
     var populateSegments = function (segments, entry) {
       for (var i = 0; i < segments.length - 1; i++) {
-        set$1(segments[i].item, 'list-style-type', 'none');
+        set(segments[i].item, 'list-style-type', 'none');
       }
       last(segments).each(function (segment) {
         setAll(segment.list, entry.listAttributes);
@@ -1214,7 +1214,7 @@ var lists = (function () {
       setAll(segment.list, entry.listAttributes);
     };
     var createItem = function (scope, attr, content) {
-      var item = Element$$1.fromTag('li', scope);
+      var item = Element.fromTag('li', scope);
       setAll(item, attr);
       append$1(item, content);
       return item;
@@ -1265,8 +1265,8 @@ var lists = (function () {
       return entry.isSelected;
     };
     var cloneItemContent = function (li) {
-      var children$$1 = children(li);
-      var content = hasLastChildList(li) ? children$$1.slice(0, -1) : children$$1;
+      var children$1 = children(li);
+      var content = hasLastChildList(li) ? children$1.slice(0, -1) : children$1;
       return map(content, deep);
     };
     var createEntry = function (li, depth, isSelected) {
@@ -1295,8 +1295,8 @@ var lists = (function () {
       }
     };
 
-    var hasOwnProperty$1 = Object.prototype.hasOwnProperty;
-    var shallow$1 = function (old, nu) {
+    var hasOwnProperty = Object.prototype.hasOwnProperty;
+    var shallow = function (old, nu) {
       return nu;
     };
     var baseMerge = function (merger) {
@@ -1310,14 +1310,14 @@ var lists = (function () {
         for (var j = 0; j < objects.length; j++) {
           var curObject = objects[j];
           for (var key in curObject)
-            if (hasOwnProperty$1.call(curObject, key)) {
+            if (hasOwnProperty.call(curObject, key)) {
               ret[key] = merger(ret[key], curObject[key]);
             }
         }
         return ret;
       };
     };
-    var merge = baseMerge(shallow$1);
+    var merge = baseMerge(shallow);
 
     var cloneListProperties = function (target, source) {
       target.listType = source.listType;
@@ -1454,7 +1454,7 @@ var lists = (function () {
     var outdentedComposer = function (editor, entries) {
       return map(entries, function (entry) {
         var content = fromElements(entry.content);
-        return Element$$1.fromDom(createTextBlock(editor, content.dom()));
+        return Element.fromDom(createTextBlock(editor, content.dom()));
       });
     };
     var indentedComposer = function (editor, entries) {
@@ -1473,7 +1473,7 @@ var lists = (function () {
       });
     };
     var getItemSelection = function (editor) {
-      var selectedListItems = map(Selection.getSelectedListItems(editor), Element$$1.fromDom);
+      var selectedListItems = map(Selection.getSelectedListItems(editor), Element.fromDom);
       return liftN([
         find(selectedListItems, not(hasFirstChildList)),
         find(reverse(selectedListItems), not(hasFirstChildList))
@@ -1553,8 +1553,8 @@ var lists = (function () {
     };
 
     var selectionIndentation = function (editor, indentation) {
-      var lists = map(Selection.getSelectedListRoots(editor), Element$$1.fromDom);
-      var dlItems = map(Selection.getSelectedDlItems(editor), Element$$1.fromDom);
+      var lists = map(Selection.getSelectedListRoots(editor), Element.fromDom);
+      var dlItems = map(Selection.getSelectedDlItems(editor), Element.fromDom);
       var isHandled = false;
       if (lists.length || dlItems.length) {
         var bookmark = editor.selection.getBookmark();
@@ -1907,8 +1907,8 @@ var lists = (function () {
       if (listNode) {
         toElm.appendChild(listNode);
       }
-      var contains$$1 = contains$2(Element$$1.fromDom(toElm), Element$$1.fromDom(fromElm));
-      var nestedLists = contains$$1 ? dom.getParents(fromElm, NodeType.isListNode, toElm) : [];
+      var contains = contains$1(Element.fromDom(toElm), Element.fromDom(fromElm));
+      var nestedLists = contains ? dom.getParents(fromElm, NodeType.isListNode, toElm) : [];
       dom.remove(fromElm);
       each(nestedLists, function (list) {
         if (NodeType.isEmpty(dom, list) && list !== dom.getRoot()) {
@@ -2030,14 +2030,14 @@ var lists = (function () {
       backspaceDelete: backspaceDelete
     };
 
-    var get$3 = function (editor) {
+    var get = function (editor) {
       return {
         backspaceDelete: function (isForward) {
           Delete.backspaceDelete(editor, isForward);
         }
       };
     };
-    var Api = { get: get$3 };
+    var Api = { get: get };
 
     var queryListCommandState = function (editor, listName) {
       return function () {
@@ -2097,7 +2097,7 @@ var lists = (function () {
     };
     var Keyboard = { setup: setup$1 };
 
-    var findIndex$2 = function (list, predicate) {
+    var findIndex = function (list, predicate) {
       for (var index = 0; index < list.length; index++) {
         var element = list[index];
         if (predicate(element)) {
@@ -2110,7 +2110,7 @@ var lists = (function () {
       return function (e) {
         var ctrl = e.control;
         editor.on('NodeChange', function (e) {
-          var tableCellIndex = findIndex$2(e.parents, NodeType.isTableCellNode);
+          var tableCellIndex = findIndex(e.parents, NodeType.isTableCellNode);
           var parents = tableCellIndex !== -1 ? e.parents.slice(0, tableCellIndex) : e.parents;
           var lists = global$5.grep(parents, NodeType.isListNode);
           ctrl.active(lists.length > 0 && lists[0].nodeName === listName);
@@ -2155,5 +2155,5 @@ var lists = (function () {
 
     return Plugin;
 
-}());
+}(window));
 })();

@@ -1,5 +1,5 @@
 (function () {
-var textpattern = (function () {
+var textpattern = (function (domGlobals) {
     'use strict';
 
     var Cell = function (initial) {
@@ -39,13 +39,13 @@ var textpattern = (function () {
       var eq = function (o) {
         return o.isNone();
       };
-      var call$$1 = function (thunk) {
+      var call = function (thunk) {
         return thunk();
       };
       var id = function (n) {
         return n;
       };
-      var noop$$1 = function () {
+      var noop = function () {
       };
       var nul = function () {
         return null;
@@ -61,17 +61,17 @@ var textpattern = (function () {
         isSome: never$1,
         isNone: always$1,
         getOr: id,
-        getOrThunk: call$$1,
+        getOrThunk: call,
         getOrDie: function (msg) {
           throw new Error(msg || 'error: getOrDie called on none.');
         },
         getOrNull: nul,
         getOrUndefined: undef,
         or: id,
-        orThunk: call$$1,
+        orThunk: call,
         map: none,
         ap: none,
-        each: noop$$1,
+        each: noop,
         bind: none,
         flatten: none,
         exists: never$1,
@@ -198,7 +198,7 @@ var textpattern = (function () {
 
     var hasOwnProperty = Object.hasOwnProperty;
     var get = function (obj, key) {
-      return has(obj, key) ? Option.some(obj[key]) : Option.none();
+      return has(obj, key) ? Option.from(obj[key]) : Option.none();
     };
     var has = function (obj, key) {
       return hasOwnProperty.call(obj, key);
@@ -360,7 +360,7 @@ var textpattern = (function () {
       if (startOffset === -1) {
         return;
       }
-      var patternRng = document.createRange();
+      var patternRng = domGlobals.document.createRange();
       patternRng.setStart(container, startOffset);
       patternRng.setEnd(container, endOffset + endPattern.end.length);
       var startPattern = findPattern(patterns, patternRng.toString());
@@ -612,5 +612,5 @@ var textpattern = (function () {
 
     return Plugin;
 
-}());
+}(window));
 })();
