@@ -160,7 +160,6 @@ class Layout
         };
     }
 
-
     /**
      * @param array $layouts
      *
