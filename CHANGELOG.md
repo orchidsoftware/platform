@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+
+## 4.5.1 - 2019-04-13
+
+### Fixed
+- Custom auth
+
 ## 4.5.0 - 2019-04-12
 
 ### Added
