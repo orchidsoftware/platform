@@ -15,7 +15,7 @@ use Orchid\Platform\Http\Controllers\Auth\ForgotPasswordController;
 |
 */
 
-if (config('auth', true)) {
+if (config('platform.auth', true)) {
     // Authentication Routes...
     $this->router->get('login', [LoginController::class, 'showLoginForm'])->name('login');
     $this->router->post('login', [LoginController::class, 'login'])->name('login.auth');
