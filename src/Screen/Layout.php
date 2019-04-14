@@ -12,6 +12,7 @@ use Orchid\Screen\Layouts\Modals;
 use Orchid\Screen\Layouts\Columns;
 use Orchid\Screen\Layouts\Wrapper;
 use Orchid\Screen\Layouts\Collapse;
+use Orchid\Screen\Layouts\Accordion;
 use Illuminate\Support\Traits\Macroable;
 
 /**
@@ -156,6 +157,17 @@ class Layout
     public static function wrapper(string $template, array $layouts): Wrapper
     {
         return new class($template, $layouts) extends Wrapper {
+        };
+    }
+
+    /**
+     * @param array $layouts
+     *
+     * @return Accordion
+     */
+    public static function accordion(array $layouts): Accordion
+    {
+        return new class($layouts) extends Accordion {
         };
     }
 }

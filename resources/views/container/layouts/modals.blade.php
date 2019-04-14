@@ -1,6 +1,5 @@
 @push('modals-container')
     @foreach($manyForms as $key => $modal)
-
         <div class="modal fade in"
              id="screen-modal-{{$key}}"
              role="dialog"
