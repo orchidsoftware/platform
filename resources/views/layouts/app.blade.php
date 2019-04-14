@@ -15,9 +15,6 @@
     <meta name="turbolinks-root" content="{{  Dashboard::prefix() }}">
     <meta name="dashboard-prefix" content="{{  Dashboard::prefix() }}">
 
-    <meta http-equiv="X-DNS-Prefetch-Control" content="on"/>
-    <link rel="dns-prefetch" href="{{ config('app.url') }}"/>
-
     <script src="{{ orchid_mix('/js/manifest.js','orchid') }}" type="text/javascript"></script>
     <script src="{{ orchid_mix('/js/vendor.js','orchid') }}" type="text/javascript"></script>
     <script src="{{ orchid_mix('/js/orchid.js','orchid') }}" type="text/javascript"></script>
@@ -31,7 +28,6 @@
     @foreach(Dashboard::getResource('scripts') as $scripts)
         <script src="{{  $scripts }}" type="text/javascript"></script>
     @endforeach
-
 </head>
 
 <body>

@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Reload template for profile for back history
+
+### Fixed
+- Double defined time controller
+
+
 ## 4.6.0 - 2019-04-15
 
 ### Added

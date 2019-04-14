@@ -1,4 +1,4 @@
-<div class="wrapper v-center">
+<div class="wrapper v-center" data-turbolinks-permanent>
     <div class="dropdown col no-padder">
         <a href="#" class="nav-link p-0 v-center" data-toggle="dropdown">
                     <span class="thumb-xs avatar m-r-xs">
