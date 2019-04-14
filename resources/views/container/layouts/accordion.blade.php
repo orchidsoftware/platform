@@ -1,13 +1,3 @@
-<style>
-    .accardion-heading .btn:hover{
-        text-decoration: none;
-    }
-
-    .collapsed .icon-arrow-down:before {
-        content: "\E914";
-    }
-</style>
-
 <div id="accardion-{{$templateSlug}}" class="accardion">
     @foreach($manyForms as $name => $forms)
         <div class="accardion-heading b-b @if ($loop->index) collapsed @endif"
@@ -17,7 +7,7 @@
              aria-expanded="true"
              aria-controls="collapse-{{str_slug($name)}}">
             <h6 class="btn btn-link btn-group-justified pt-2 pb-2 mb-0 pr-0 pl-0 v-center">
-                <span class="accardion-icon icon-arrow-down text-xs m-r-xs"></span> {!! $name !!}
+                <span class="icon-accardion text-xs m-r-xs"></span> {!! $name !!}
             </h6>
         </div>
 
