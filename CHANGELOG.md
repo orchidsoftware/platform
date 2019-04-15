@@ -6,12 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 4.6.1 - 2019-04-16
+
 ### Changed
 - Reload template for profile for back history
 
 ### Fixed
+- Icon for accordion
 - Double defined time controller
-
+- Injected SQL for Spatie builder
 
 ## 4.6.0 - 2019-04-15
 

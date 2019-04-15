@@ -4,27 +4,31 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Filters;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Collection;
 
 class HttpFilter
 {
     /**
+     * Column names are alphanumeric strings that can contain
+     * underscores (`_`) but can't start with a number.
+     */
+    private const VALID_COLUMN_NAME_REGEX = '/^(?![0-9])[A-Za-z0-9_>-]*$/';
+
+    /**
      * @var Request
      */
     protected $request;
-
     /**
      * @var Collection
      */
     protected $filters;
-
     /**
      * @var Collection
      */
     protected $sorts;
-
     /**
      * Model options and allowed params.
      *
@@ -44,7 +48,7 @@ class HttpFilter
         $this->filters = collect($this->request->get('filter', []))->map(function ($item) {
             return $this->parseHttpValue($item);
         });
-        $this->sorts = collect($this->request->get('sort', []));
+        $this->sorts   = collect($this->request->get('sort', []));
     }
 
     /**
@@ -64,6 +68,20 @@ class HttpFilter
     }
 
     /**
+     * @param string $column
+     *
+     * @return string
+     */
+    public static function sanitize(string $column): string
+    {
+        if (!preg_match(self::VALID_COLUMN_NAME_REGEX, $column)) {
+            abort(Response::HTTP_BAD_REQUEST);
+        }
+
+        return $column;
+    }
+
+    /**
      * @param Builder $builder
      *
      * @return Builder
@@ -75,20 +93,6 @@ class HttpFilter
         $this->addSortsToQuery($builder);
 
         return $builder;
-    }
-
-    /**
-     * @param Builder $builder
-     */
-    protected function addSortsToQuery(Builder $builder)
-    {
-        $this->sorts
-            ->each(function (string $sort) use ($builder) {
-                $descending = strpos($sort, '-') === 0;
-                $key = ltrim($sort, '-');
-                $key = str_replace('.', '->', $key);
-                $builder->orderBy($key, $descending ? 'desc' : 'asc');
-            });
     }
 
     /**
@@ -114,12 +118,14 @@ class HttpFilter
     /**
      * @param Builder $query
      * @param         $value
-     * @param string  $property
+     * @param string $property
      *
      * @return Builder
      */
     protected function filtersExact(Builder $query, $value, string $property)
     {
+        $property = $this->sanitize($property);
+
         if (is_array($value)) {
             return $query->whereIn($property, $value);
         }
@@ -129,6 +135,21 @@ class HttpFilter
         }
 
         return $query->where($property, 'like', "%$value%");
+    }
+
+    /**
+     * @param Builder $builder
+     */
+    protected function addSortsToQuery(Builder $builder)
+    {
+        $this->sorts
+            ->each(function (string $sort) use ($builder) {
+                $descending = strpos($sort, '-') === 0;
+                $key        = ltrim($sort, '-');
+                $key        = str_replace('.', '->', $key);
+                $key        = $this->sanitize($key);
+                $builder->orderBy($key, $descending ? 'desc' : 'asc');
+            });
     }
 
     /**
@@ -146,7 +167,7 @@ class HttpFilter
             return true;
         }
 
-        if ($this->sorts->search('-'.$property, true) !== false) {
+        if ($this->sorts->search('-' . $property, true) !== false) {
             return true;
         }
 
@@ -161,7 +182,7 @@ class HttpFilter
     public function revertSort($property)
     {
         if ($this->getSort($property) === 'asc') {
-            return '-'.$property;
+            return '-' . $property;
         }
 
         return $property;

@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Illuminate\Http\Request;
-use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Filters\HttpFilter;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Orchid\Tests\TestUnitCase;
 
 /**
  * Class HttpFilterTest.
@@ -16,8 +17,8 @@ class HttpFilterTest extends TestUnitCase
     public function testHttpIsSort()
     {
         $request = new Request([
-      'sort' => 'foobar',
-    ]);
+            'sort' => 'foobar',
+        ]);
 
         $filter = new HttpFilter($request);
 
@@ -27,11 +28,11 @@ class HttpFilterTest extends TestUnitCase
     public function testHttpFilter()
     {
         $request = new Request([
-      'filter' => [
-        'foo' => 'bar',
-        'baz' => 'qux',
-      ],
-    ]);
+            'filter' => [
+                'foo' => 'bar',
+                'baz' => 'qux',
+            ],
+        ]);
 
         $filter = new HttpFilter($request);
 
@@ -42,27 +43,34 @@ class HttpFilterTest extends TestUnitCase
     public function testHttpFilterArray()
     {
         $request = new Request([
-      'filter' => [
-        'foo' => 'bar,qux',
-      ],
-    ]);
+            'filter' => [
+                'foo' => 'bar,qux',
+            ],
+        ]);
 
         $filter = new HttpFilter($request);
 
         $this->assertEquals($filter->getFilter('foo'), [
-      'bar',
-      'qux',
-    ]);
+            'bar',
+            'qux',
+        ]);
     }
 
     public function testHttpSortDESC()
     {
         $request = new Request([
-      'sort' => 'foobar',
-    ]);
+            'sort' => 'foobar',
+        ]);
 
         $filter = new HttpFilter($request);
 
         $this->assertEquals($filter->getSort('foo'), 'desc');
+    }
+
+    public function testHttpInjectedSQL()
+    {
+        $this->expectException(HttpException::class);
+
+        HttpFilter::sanitize('email->"%27))%23injectedSQL');
     }
 }
