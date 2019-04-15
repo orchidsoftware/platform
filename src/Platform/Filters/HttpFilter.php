@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Builder;
 
 class HttpFilter
 {
@@ -48,7 +48,7 @@ class HttpFilter
         $this->filters = collect($this->request->get('filter', []))->map(function ($item) {
             return $this->parseHttpValue($item);
         });
-        $this->sorts   = collect($this->request->get('sort', []));
+        $this->sorts = collect($this->request->get('sort', []));
     }
 
     /**
@@ -74,7 +74,7 @@ class HttpFilter
      */
     public static function sanitize(string $column): string
     {
-        if (!preg_match(self::VALID_COLUMN_NAME_REGEX, $column)) {
+        if (! preg_match(self::VALID_COLUMN_NAME_REGEX, $column)) {
             abort(Response::HTTP_BAD_REQUEST);
         }
 
@@ -118,7 +118,7 @@ class HttpFilter
     /**
      * @param Builder $query
      * @param         $value
-     * @param string $property
+     * @param string  $property
      *
      * @return Builder
      */
@@ -145,9 +145,9 @@ class HttpFilter
         $this->sorts
             ->each(function (string $sort) use ($builder) {
                 $descending = strpos($sort, '-') === 0;
-                $key        = ltrim($sort, '-');
-                $key        = str_replace('.', '->', $key);
-                $key        = $this->sanitize($key);
+                $key = ltrim($sort, '-');
+                $key = str_replace('.', '->', $key);
+                $key = $this->sanitize($key);
                 $builder->orderBy($key, $descending ? 'desc' : 'asc');
             });
     }
@@ -167,7 +167,7 @@ class HttpFilter
             return true;
         }
 
-        if ($this->sorts->search('-' . $property, true) !== false) {
+        if ($this->sorts->search('-'.$property, true) !== false) {
             return true;
         }
 
@@ -182,7 +182,7 @@ class HttpFilter
     public function revertSort($property)
     {
         if ($this->getSort($property) === 'asc') {
-            return '-' . $property;
+            return '-'.$property;
         }
 
         return $property;

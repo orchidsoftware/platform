@@ -4,24 +4,24 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
-use Illuminate\Contracts\View\View;
-use Orchid\Screen\Fields\CheckBox;
-use Orchid\Screen\Fields\DateRange;
-use Orchid\Screen\Fields\DateTimer;
-use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Map;
-use Orchid\Screen\Fields\Password;
-use Orchid\Screen\Fields\Picture;
-use Orchid\Screen\Fields\RadioButtons;
-use Orchid\Screen\Fields\Relationship;
-use Orchid\Screen\Fields\Select;
-use Orchid\Screen\Fields\SimpleMDE;
-use Orchid\Screen\Fields\Switcher;
-use Orchid\Screen\Fields\TextArea;
-use Orchid\Screen\Fields\TinyMCE;
-use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Fields\UTM;
 use Orchid\Tests\TestUnitCase;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Fields\Upload;
+use Orchid\Screen\Fields\Picture;
+use Orchid\Screen\Fields\TinyMCE;
+use Orchid\Screen\Fields\CheckBox;
+use Orchid\Screen\Fields\Password;
+use Orchid\Screen\Fields\Switcher;
+use Orchid\Screen\Fields\TextArea;
+use Illuminate\Contracts\View\View;
+use Orchid\Screen\Fields\DateRange;
+use Orchid\Screen\Fields\DateTimer;
+use Orchid\Screen\Fields\SimpleMDE;
+use Orchid\Screen\Fields\RadioButtons;
+use Orchid\Screen\Fields\Relationship;
 
 /**
  * Class FieldTest.
@@ -37,78 +37,78 @@ class FieldTest extends TestUnitCase
             [TextArea::class,
              [
                  'name' => 'example',
-             ],],
+             ], ],
             [Input::class,
              [
                  'name' => 'example',
-             ],],
+             ], ],
             [Select::class,
              [
                  'name'    => 'example',
                  'options' => [],
-             ],],
+             ], ],
             [RadioButtons::class,
              [
                  'name'    => 'example',
                  'options' => ['value' => 'example'],
-             ],],
+             ], ],
             [Relationship::class,
              [
                  'name'    => 'example',
                  'handler' => 'handler',
-             ],],
+             ], ],
             [Map::class,
              [
                  'name' => 'example',
-             ],],
+             ], ],
             [Picture::class,
              [
                  'name'   => 'example',
                  'width'  => '100',
                  'height' => '100',
-             ],],
+             ], ],
             [DateTimer::class,
              [
                  'name' => 'example',
-             ],],
+             ], ],
             [CheckBox::class,
              [
                  'name' => 'example',
-             ],],
+             ], ],
             [TinyMCE::class,
              [
                  'name' => 'example',
-             ],],
+             ], ],
             [Password::class,
              [
                  'name' => 'example',
-             ],],
+             ], ],
             [SimpleMDE::class,
              [
                  'name' => 'example',
-             ],],
+             ], ],
             [Upload::class,
              [
                  'name' => 'example',
-             ],],
+             ], ],
             [UTM::class,
              [
                  'name' => 'example',
-             ],],
+             ], ],
             [DateRange::class,
              [
                  'name' => 'example',
-             ],],
+             ], ],
             [Switcher::class,
              [
                  'name' => 'example',
-             ],],
+             ], ],
         ];
     }
 
     /**
      * @param string $field
-     * @param mixed $options
+     * @param mixed  $options
      *
      * @dataProvider exampleFields
      *

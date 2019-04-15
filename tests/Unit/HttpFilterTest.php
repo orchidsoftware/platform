@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Illuminate\Http\Request;
+use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Filters\HttpFilter;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Orchid\Tests\TestUnitCase;
 
 /**
  * Class HttpFilterTest.
