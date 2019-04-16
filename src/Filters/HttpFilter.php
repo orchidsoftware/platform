@@ -130,7 +130,7 @@ class HttpFilter
             return $query->whereIn($property, $value);
         }
 
-        if (is_int($value)) {
+        if (is_numeric($value)) {
             return $query->where($property, $value);
         }
 

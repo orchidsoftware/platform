@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\HttpFilter;
@@ -26,13 +27,29 @@ class HttpFilterTest extends TestUnitCase
 
         $this->assertTrue($filter->isSort('foobar'));
 
-        $model = $this->getHttpModel();
-        $sql = $model->filters($filter)->toSql();
+        $sql = $this->getModelBuilder($filter)->toSql();
 
         $this->assertStringContainsString('order by "foobar" asc', $sql);
     }
 
-    public function testHttpFilter()
+    public function testHttpFilterInteger()
+    {
+        $request = new Request([
+            'filter' => [
+                'foo' => '123',
+            ],
+        ]);
+
+        $filter = new HttpFilter($request);
+
+        $this->assertEquals($filter->getFilter('foo'), 123);
+
+        $sql = $this->getModelBuilder($filter)->toSql();
+
+        $this->assertStringContainsString('"foo" = ?', $sql);
+    }
+
+    public function testHttpFilterLike()
     {
         $request = new Request([
             'filter' => [
@@ -46,8 +63,7 @@ class HttpFilterTest extends TestUnitCase
         $this->assertEquals($filter->getFilter('foo'), 'bar');
         $this->assertEquals($filter->getFilter('baz'), 'qux');
 
-        $model = $this->getHttpModel();
-        $sql = $model->filters($filter)->toSql();
+        $sql = $this->getModelBuilder($filter)->toSql();
 
         $this->assertStringContainsString('"foo" like ?', $sql);
         $this->assertStringContainsString('"baz" like ?', $sql);
@@ -68,8 +84,7 @@ class HttpFilterTest extends TestUnitCase
             'qux',
         ]);
 
-        $model = $this->getHttpModel();
-        $sql = $model->filters($filter)->toSql();
+        $sql = $this->getModelBuilder($filter)->toSql();
 
         $this->assertStringContainsString('"foo" in (?, ?)', $sql);
     }
@@ -84,8 +99,8 @@ class HttpFilterTest extends TestUnitCase
         ]);
 
         $filter = new HttpFilter($request);
-        $model = $this->getHttpModel();
-        $sql = $model->filters($filter)->toSql();
+
+        $sql = $this->getModelBuilder($filter)->toSql();
 
         $this->assertStringNotContainsStringIgnoringCase('order by "unknown"', $sql);
         $this->assertStringNotContainsStringIgnoringCase('"unknown" like ?', $sql);
@@ -116,11 +131,13 @@ class HttpFilterTest extends TestUnitCase
     }
 
     /**
-     * @return Model
+     * @param HttpFilter $filter
+     *
+     * @return Builder
      */
-    private function getHttpModel()
+    private function getModelBuilder(HttpFilter $filter)
     {
-        return new class extends Model {
+        $model =  new class extends Model {
             use Filterable;
 
             /**
@@ -145,5 +162,7 @@ class HttpFilterTest extends TestUnitCase
                 'foobar',
             ];
         };
+
+        return $model->filters($filter);
     }
 }
