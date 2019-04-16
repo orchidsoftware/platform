@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Repeated run test to create resource links
+- Http sorting for allow property
 
 ### Deprecated
 - `Orchid\Platform\Filters\*` use `Orchid\Filters\Filter\*`

@@ -142,13 +142,18 @@ class HttpFilter
      */
     protected function addSortsToQuery(Builder $builder)
     {
+        $allowedSorts = $this->options->get('allowedSorts')->toArray();
+
         $this->sorts
-            ->each(function (string $sort) use ($builder) {
+            ->each(function (string $sort) use ($builder, $allowedSorts) {
                 $descending = strpos($sort, '-') === 0;
                 $key = ltrim($sort, '-');
                 $key = str_replace('.', '->', $key);
-                $key = $this->sanitize($key);
-                $builder->orderBy($key, $descending ? 'desc' : 'asc');
+
+                if (in_array($key, $allowedSorts, true)) {
+                    $key = $this->sanitize($key);
+                    $builder->orderBy($key, $descending ? 'desc' : 'asc');
+                }
             });
     }
 

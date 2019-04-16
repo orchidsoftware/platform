@@ -30,12 +30,13 @@ trait Filterable
 
     /**
      * @param Builder $builder
+     * @param HttpFilter|null $httpFilter
      *
      * @return Builder
      */
-    public function scopeFilters(Builder $builder)
+    public function scopeFilters(Builder $builder, HttpFilter $httpFilter = null)
     {
-        $filter = new HttpFilter();
+        $filter = $httpFilter ?? new HttpFilter();
         $filter->build($builder);
 
         return $builder;
