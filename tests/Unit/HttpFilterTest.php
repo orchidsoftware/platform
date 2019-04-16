@@ -6,10 +6,10 @@ namespace Orchid\Tests\Unit;
 
 use Illuminate\Http\Request;
 use Orchid\Filters\Filterable;
-use Orchid\Tests\TestUnitCase;
 use Orchid\Filters\HttpFilter;
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use Orchid\Tests\TestUnitCase;
 use Illuminate\Database\Eloquent\Model;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * Class HttpFilterTest.
@@ -74,10 +74,10 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringContainsString('"foo" in (?, ?)', $sql);
     }
 
-    public function testHttpUnknownAttributes(){
-
+    public function testHttpUnknownAttributes()
+    {
         $request = new Request([
-            'sort' => 'unknown',
+            'sort'   => 'unknown',
             'filter' => [
                 'unknown' => 'not allow',
             ],
@@ -118,8 +118,9 @@ class HttpFilterTest extends TestUnitCase
     /**
      * @return Model
      */
-    private function getHttpModel(){
-        return new class extends Model{
+    private function getHttpModel()
+    {
+        return new class extends Model {
             use Filterable;
 
             /**
@@ -130,7 +131,7 @@ class HttpFilterTest extends TestUnitCase
                 'status',
                 'foo',
                 'baz',
-                'foobar'
+                'foobar',
             ];
 
             /**
@@ -141,7 +142,7 @@ class HttpFilterTest extends TestUnitCase
                 'status',
                 'foo',
                 'baz',
-                'foobar'
+                'foobar',
             ];
         };
     }

@@ -29,7 +29,7 @@ trait Filterable
     }
 
     /**
-     * @param Builder $builder
+     * @param Builder         $builder
      * @param HttpFilter|null $httpFilter
      *
      * @return Builder
