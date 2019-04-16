@@ -12,5 +12,4 @@ use Orchid\Filters\Filter as BaseFilter;
  */
 abstract class Filter extends BaseFilter
 {
-
 }

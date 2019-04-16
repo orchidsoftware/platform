@@ -12,5 +12,4 @@ interface UserInterface
      * @return \IteratorAggregate
      */
     public function getRoles();
-
 }

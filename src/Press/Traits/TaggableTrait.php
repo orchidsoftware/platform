@@ -10,5 +10,5 @@ namespace Orchid\Press\Traits;
  */
 trait TaggableTrait
 {
-  use Taggable;
+    use Taggable;
 }
