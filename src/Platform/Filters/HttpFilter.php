@@ -12,5 +12,4 @@ use Orchid\Filters\HttpFilter as BaseHttpFilter;
  */
 class HttpFilter extends BaseHttpFilter
 {
-
 }

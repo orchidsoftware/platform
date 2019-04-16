@@ -6,10 +6,10 @@ namespace Orchid\Platform\Models;
 
 use Exception;
 use Orchid\Access\UserAccess;
+use Orchid\Filters\Filterable;
 use Orchid\Access\UserInterface;
 use Illuminate\Support\Facades\Hash;
 use Orchid\Support\Facades\Dashboard;
-use Orchid\Filters\Filterable;
 use Illuminate\Notifications\Notifiable;
 use Orchid\Platform\Traits\MultiLanguageTrait;
 use Orchid\Platform\Notifications\ResetPassword;

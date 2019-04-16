@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Platform\Models;
 
 use Orchid\Access\RoleAccess;
+use Orchid\Filters\Filterable;
 use Orchid\Access\RoleInterface;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Filters\Filterable;
 use Orchid\Platform\Traits\MultiLanguageTrait;
 
 class Role extends Model implements RoleInterface

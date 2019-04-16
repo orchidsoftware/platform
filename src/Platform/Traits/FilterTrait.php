@@ -12,5 +12,5 @@ use Orchid\Filters\Filterable;
  */
 trait FilterTrait
 {
-   use Filterable;
+    use Filterable;
 }
