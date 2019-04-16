@@ -6,7 +6,7 @@ namespace Orchid\Press\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 
-class MakeManyBehavior extends GeneratorCommand
+class MakeEntityMany extends GeneratorCommand
 {
     /**
      * The console command name.

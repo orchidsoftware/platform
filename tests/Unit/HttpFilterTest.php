@@ -6,7 +6,7 @@ namespace Orchid\Tests\Unit;
 
 use Illuminate\Http\Request;
 use Orchid\Tests\TestUnitCase;
-use Orchid\Platform\Filters\HttpFilter;
+use Orchid\Filters\HttpFilter;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**

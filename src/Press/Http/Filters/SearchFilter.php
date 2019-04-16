@@ -6,7 +6,7 @@ namespace Orchid\Press\Http\Filters;
 
 use Orchid\Screen\Field;
 use Orchid\Screen\Fields\Input;
-use Orchid\Platform\Filters\Filter;
+use Orchid\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\PostgresConnection;
 

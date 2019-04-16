@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
+use Exception;
 use Orchid\Platform\Dashboard;
 use Illuminate\Console\Command;
 use Orchid\Platform\Models\User;
@@ -66,7 +67,7 @@ class AdminCommand extends Command
                 );
 
             $this->info('User created successfully.');
-        } catch (\Exception | QueryException $e) {
+        } catch (Exception | QueryException $e) {
             $this->error($e->getMessage());
         }
     }

@@ -86,7 +86,7 @@ abstract class Base
      *
      * @return bool
      */
-    public function canSee(Repository $query): bool
+    public function canSee(/** @noinspection PhpUnusedParameterInspection */ Repository $query): bool
     {
         return true;
     }
@@ -119,7 +119,7 @@ abstract class Base
     }
 
     /**
-     * @param Base       $layout
+     * @param self $layout
      * @param Repository $repository
      *
      * @return bool

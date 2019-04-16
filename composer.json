@@ -53,6 +53,7 @@
       "Orchid\\Access\\": "src/Access/",
       "Orchid\\Alert\\": "src/Alert/",
       "Orchid\\Attachment\\": "src/Attachment/",
+      "Orchid\\Filters\\": "src/Filters/",
       "Orchid\\Platform\\": "src/Platform/",
       "Orchid\\Press\\": "src/Press/",
       "Orchid\\Screen\\": "src/Screen/",

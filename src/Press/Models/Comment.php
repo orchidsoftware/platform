@@ -7,14 +7,14 @@ namespace Orchid\Press\Models;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Traits\AttachTrait;
+use Orchid\Attachment\Attachable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Comment extends Model
 {
-    use AttachTrait;
+    use Attachable;
 
     /**
      * @var string
