@@ -11,7 +11,6 @@
 
     @stack('head')
 
-    <meta name="turbolinks-cache-control" content="no-cache">
     <meta name="turbolinks-root" content="{{  Dashboard::prefix() }}">
     <meta name="dashboard-prefix" content="{{  Dashboard::prefix() }}">
 
