@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Http sorting for allow property
 - Http request problem, to remove '/' [from last path of the url](https://stackoverflow.com/a/47478891).
 - Input mask is null or empty, cant not type japanese character.
+- When the resource has the same name with another extension.
 
 ### Deprecated
 - `Orchid\Platform\Filters\*` use `Orchid\Filters\Filter\*`
