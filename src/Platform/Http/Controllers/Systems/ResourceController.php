@@ -41,7 +41,8 @@ class ResourceController
             ->followLinks()
             ->in($dir)
             ->files()
-            ->path($path);
+            ->path(dirname($path))
+            ->name(basename($path));
 
         $iterator = tap($resources->getIterator())
             ->rewind();
