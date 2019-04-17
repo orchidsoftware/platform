@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Repeated run test to create resource links
 - Http sorting for allow property
+- Http request problem, to remove '/' [from last path of the url](https://stackoverflow.com/a/47478891).
 
 ### Deprecated
 - `Orchid\Platform\Filters\*` use `Orchid\Filters\Filter\*`
