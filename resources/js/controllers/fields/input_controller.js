@@ -11,10 +11,9 @@ export default class extends Controller {
 
         try {
             mask = JSON.parse(mask);
+            Inputmask(mask).mask(element);
         } catch (e) {
             // default
         }
-
-        Inputmask(mask).mask(element);
     }
 }
