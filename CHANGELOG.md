@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 4.6.2 - 2019-04-19
+
 ### Changed
 - Chart min heating auto
 - Cache browser views
