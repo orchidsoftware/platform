@@ -22,8 +22,8 @@ class ResourceController
     /**
      * Serve the requested resource.
      *
-     * @param string $package
-     * @param string $path
+     * @param string    $package
+     * @param string    $path
      * @param Dashboard $dashboard
      *
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
