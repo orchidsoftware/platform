@@ -12,4 +12,9 @@ interface RoleInterface
      * @return \IteratorAggregate
      */
     public function getUsers();
+
+    /**
+     * @return int
+     */
+    public function getRoleId(): int;
 }

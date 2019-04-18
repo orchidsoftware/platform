@@ -22,11 +22,11 @@ class ResourceController
     /**
      * Serve the requested resource.
      *
-     * @param string    $package
-     * @param string    $path
+     * @param string $package
+     * @param string $path
      * @param Dashboard $dashboard
      *
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
     public function show(string $package, string $path, Dashboard $dashboard)
     {

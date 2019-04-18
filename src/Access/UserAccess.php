@@ -36,7 +36,7 @@ trait UserAccess
     }
 
     /**
-     * @param $role
+     * @param Role|int|string $role
      *
      * @return bool
      */
