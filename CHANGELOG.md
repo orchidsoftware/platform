@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `Empty` method Allowing  value to the sample for the default operation (usually empty) [839](https://github.com/orchidsoftware/platform/pull/839)
+
+### Changed
+- Documentation move [repository website](https://github.com/orchidsoftware/orchid.software)
+
 ## 4.6.2 - 2019-04-19
 
 ### Changed
