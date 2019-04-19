@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Orchid\Screen\Field;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Orchid\Screen\Field;
 
 /**
  * Class Select.
@@ -35,7 +35,8 @@ class Select extends Field
      * @var array
      */
     public $attributes = [
-        'class' => 'form-control',
+        'class'   => 'form-control',
+        'options' => [],
     ];
 
     /**
@@ -133,5 +134,24 @@ class Select extends Field
         $key = $key ?? $builder->getModel()->getKeyName();
 
         return $this->setFromEloquent($builder, $name, $key);
+    }
+
+    /**
+     * @param string|null $name
+     *
+     * @return \Orchid\Screen\Fields\Select
+     */
+    public function empty(string $name = ''): self
+    {
+        $this->addBeforeRender(function () use ($name) {
+            $value = array_merge(
+                ['' => $name],
+                $this->get('options', [])
+            );
+
+            $this->set('options', $value);
+        });
+
+        return $this;
     }
 }

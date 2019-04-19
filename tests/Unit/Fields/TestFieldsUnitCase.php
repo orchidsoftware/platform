@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Fields;
 
+use Illuminate\Support\Facades\Validator;
 use Orchid\Screen\Field;
 use Orchid\Tests\TestUnitCase;
-use Illuminate\Support\Facades\Validator;
 
 /**
  * Class TestFieldsUnitCase.
@@ -29,5 +29,31 @@ class TestFieldsUnitCase extends TestUnitCase
         $validator = Validator::make($data, $rules, $messages, $customAttributes);
 
         return $field->render()->withErrors($validator)->render();
+    }
+
+    /**
+     * @param string $view
+     *
+     * @return string|string[]|null
+     */
+    public static function minifyOutput(string $view)
+    {
+        $search = [
+            '/\>[^\S ]+/s',     // strip whitespaces after tags, except space
+            '/[^\S ]+\</s',     // strip whitespaces before tags, except space
+            '/(\s)+/s',         // shorten multiple whitespace sequences
+            '/<!--(.|\s)*?-->/', // Remove HTML comments
+            '/" >/',
+        ];
+
+        $replace = [
+            '>',
+            '<',
+            '\\1',
+            '',
+            '">',
+        ];
+
+        return preg_replace($search, $replace, $view);
     }
 }

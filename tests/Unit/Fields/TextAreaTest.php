@@ -17,9 +17,9 @@ class TextAreaTest extends TestFieldsUnitCase
     public function testInstanse()
     {
         $textArea = TextArea::make('about')
-      ->title('Title About')
-      ->help('Think about what you want to tell')
-      ->value('About Me');
+            ->title('Title About')
+            ->help('Think about what you want to tell')
+            ->value('About Me');
 
         $view = self::renderField($textArea);
 
@@ -35,7 +35,7 @@ class TextAreaTest extends TestFieldsUnitCase
     public function testNeedRequire()
     {
         $textArea = TextArea::make('about')
-      ->required();
+            ->required();
 
         $view = self::renderField($textArea);
 
@@ -48,7 +48,7 @@ class TextAreaTest extends TestFieldsUnitCase
     public function testSetRows()
     {
         $textArea = TextArea::make('about')
-      ->rows(10);
+            ->rows(10);
 
         $view = self::renderField($textArea);
 
@@ -61,7 +61,7 @@ class TextAreaTest extends TestFieldsUnitCase
     public function testPlaceHolder()
     {
         $textArea = TextArea::make('about')
-      ->placeholder('Tell us about yourself');
+            ->placeholder('Tell us about yourself');
 
         $view = self::renderField($textArea);
 
@@ -71,7 +71,7 @@ class TextAreaTest extends TestFieldsUnitCase
     public function testAutoFocus()
     {
         $textArea = TextArea::make('about')
-      ->autofocus();
+            ->autofocus();
 
         $view = self::renderField($textArea);
 
@@ -81,7 +81,7 @@ class TextAreaTest extends TestFieldsUnitCase
     public function testAutoComplite()
     {
         $textArea = TextArea::make('about')
-      ->autocomplete();
+            ->autocomplete();
 
         $view = self::renderField($textArea);
 
