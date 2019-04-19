@@ -97,11 +97,11 @@ class SelectTest extends TestFieldsUnitCase
                 'second' => 'Second Value',
                 'third'  => 'Third Value',
             ])
-            ->empty('empty');
+            ->empty('empty','0');
 
         $view = self::renderField($textArea);
         $view = self::minifyOutput($view);
 
-        $this->assertStringContainsString('<option value="">empty</option>', $view);
+        $this->assertStringContainsString('<option value="0">empty</option>', $view);
     }
 }

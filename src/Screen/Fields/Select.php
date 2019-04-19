@@ -139,13 +139,15 @@ class Select extends Field
     /**
      * @param string|null $name
      *
+     * @param string      $key
+     *
      * @return \Orchid\Screen\Fields\Select
      */
-    public function empty(string $name = ''): self
+    public function empty(string $name = '', string $key = ''): self
     {
-        $this->addBeforeRender(function () use ($name) {
+        $this->addBeforeRender(function () use ($name, $key) {
             $value = array_merge(
-                ['' => $name],
+                [$key => $name],
                 $this->get('options', [])
             );
 
