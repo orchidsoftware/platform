@@ -156,10 +156,10 @@ class AttachmentTest extends TestFeatureCase
 
         $response->isOk();
 
-        $attachments = Attachment::whereIn('id', $originalFiles)->get();
+        $attachments = Attachment::whereIn('id', $originalFiles)
+            ->pluck('sort', 'id')
+            ->toArray();
 
-        foreach ($attachments as $attachment) {
-            $this->assertEquals($sort[$attachment->id], $attachment->sort);
-        }
+        $this->assertEquals($sort, $attachments);
     }
 }
