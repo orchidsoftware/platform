@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\Field;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class Select.
@@ -138,7 +138,6 @@ class Select extends Field
 
     /**
      * @param string|null $name
-     *
      * @param string      $key
      *
      * @return \Orchid\Screen\Fields\Select

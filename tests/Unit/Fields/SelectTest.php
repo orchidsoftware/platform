@@ -97,7 +97,7 @@ class SelectTest extends TestFieldsUnitCase
                 'second' => 'Second Value',
                 'third'  => 'Third Value',
             ])
-            ->empty('empty','0');
+            ->empty('empty', '0');
 
         $view = self::renderField($textArea);
         $view = self::minifyOutput($view);
