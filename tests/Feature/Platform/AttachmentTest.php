@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Tests\Feature\Platform;
 
 use Illuminate\Http\UploadedFile;
-use Orchid\Attachment\Models\Attachment;
 use Orchid\Tests\TestFeatureCase;
+use Orchid\Attachment\Models\Attachment;
 
 class AttachmentTest extends TestFeatureCase
 {
@@ -139,7 +139,7 @@ class AttachmentTest extends TestFeatureCase
         $attachments = $response->decodeResponseJson();
 
         $originalFiles = [];
-        $files         = [];
+        $files = [];
 
         foreach ($attachments as $attachment) {
             $files[] = $originalFiles[] = $attachment['id'];
