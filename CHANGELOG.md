@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Method `filtersApplySelection` for all filter in selection
+
 ## 4.6.3 - 2019-04-21
 
 ### Added
