@@ -44,7 +44,7 @@ trait Structure
     public $prefix = 'content';
 
     /**
-     * Menu title name
+     * Menu title name.
      *
      * @var null
      */
