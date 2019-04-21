@@ -32,7 +32,7 @@ class ItemMenu
     /**
      * @var string
      */
-    public $groupname;
+    public $title;
 
     /**
      * @var bool
@@ -177,13 +177,27 @@ class ItemMenu
     }
 
     /**
-     * @param string $groupname
+     * @param string $title
      *
      * @return ItemMenu
      */
-    public function groupName(string $groupname = null): self
+    public function title(string $title = null): self
     {
-        $this->groupname = $groupname;
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * @deprecated use method title
+     *
+     * @param string|null $title
+     *
+     * @return ItemMenu
+     */
+    public function groupName(string $title = null): self
+    {
+        $this->title = $title;
 
         return $this;
     }

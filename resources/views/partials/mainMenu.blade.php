@@ -1,8 +1,8 @@
 {{-- @if(!empty($childs) && Dashboard::menu()->showCountElement($slug)) --}}
 
-@isset($groupname)
+@isset($title)
     <li class="nav-item m-t">
-        <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs m-l">{{ __($groupname) }}</div>
+        <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs m-l">{{ __($title) }}</div>
     </li>
 @endisset
     <li class="nav-item @isset($active) {{active($active)}} @endisset">

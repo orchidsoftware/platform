@@ -6,7 +6,7 @@
         <span class="text-muted"><i class="{{$icon}} pull-right m-t-sm text-lg"></i></span>
         <div class="clear">
             <div>{{ __($label) }}</div>
-            <small class="text-muted">{{ __($groupname ?? '') }}</small>
+            <small class="text-muted">{{ __($title ?? '') }}</small>
         </div>
     </a>
 </li>

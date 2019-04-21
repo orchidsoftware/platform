@@ -40,7 +40,7 @@ class SystemMenuComposer
             ->add('Tools',
                 ItemMenu::label(__('Public alert'))
                     ->icon('icon-bulb')
-                    ->groupName(__('Allows you to pre-inform active users about an event.'))
+                    ->title(__('Allows you to pre-inform active users about an event.'))
                     ->route('platform.systems.announcement')
                     ->permission('platform.systems.announcement')
             );

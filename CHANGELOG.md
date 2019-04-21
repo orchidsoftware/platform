@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Documentation move [repository website](https://github.com/orchidsoftware/orchid.software)
 
+### Deprecated
+- `Orchid\Dashboard\ItemMenu::groupName()` use `title` method [842](https://github.com/orchidsoftware/platform/issues/842)
+
 ## 4.6.2 - 2019-04-19
 
 ### Changed

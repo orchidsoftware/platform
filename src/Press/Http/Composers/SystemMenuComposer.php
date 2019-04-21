@@ -44,7 +44,7 @@ class SystemMenuComposer
                     ->route('platform.systems.menu.index')
                     ->permission('platform.systems.menu')
                     ->show(count(config('press.menu', [])) > 0)
-                    ->groupName(__('Editing of a custom menu (navigation) using drag & drop and localization support.'))
+                    ->title(__('Editing of a custom menu (navigation) using drag & drop and localization support.'))
             );
     }
 }
