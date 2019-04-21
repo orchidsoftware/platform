@@ -52,11 +52,11 @@ class Post extends Many
     public $slugFields = 'name';
 
     /**
-     * Menu group name.
+     * Menu tile name.
      *
      * @var null
      */
-    public $groupname = 'Common Posts';
+    public $title = 'Common Posts';
 
     /**
      * @param \Illuminate\Database\Eloquent\Model $model

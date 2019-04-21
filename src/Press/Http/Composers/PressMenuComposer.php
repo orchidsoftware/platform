@@ -53,7 +53,7 @@ class PressMenuComposer
                     ItemMenu::label($page->name)
                         ->slug($page->slug)
                         ->icon($page->icon)
-                        ->title($page->groupname)
+                        ->title(/* property groupname id @deprecated */ $page->groupname ??  $page->title)
                         ->route($route, $params)
                         ->permission('platform.entities.type.'.$page->slug)
                         ->sort($page->sort)

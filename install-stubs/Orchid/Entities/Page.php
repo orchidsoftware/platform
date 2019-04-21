@@ -45,11 +45,11 @@ class Page extends Single
     public $slugFields = 'name';
 
     /**
-     * Menu group name.
+     * Menu title name.
      *
      * @var null
      */
-    public $groupname = 'Static Pages';
+    public $title = 'Static Pages';
 
     /**
      * Rules Validation.
