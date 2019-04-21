@@ -14,7 +14,7 @@ class TaxonomyTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_belongs_to_a_term()
+    public function itBelongsToATerm()
     {
         $taxonomy = factory(Taxonomy::class)->create([
             'term_id' => 0,
@@ -30,7 +30,7 @@ class TaxonomyTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_filter_taxonomy_by_term()
+    public function itCanFilterTaxonomyByTerm()
     {
         $taxonomy = $this->createTaxonomyWithTerms();
         $term = $taxonomy->term;
@@ -66,7 +66,7 @@ class TaxonomyTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_be_queried_by_term_slug()
+    public function itCanBeQueriedByTermSlug()
     {
         $taxonomy = $this->createTaxonomyWithTerms();
         $foo = Taxonomy::get()->first();
@@ -81,7 +81,7 @@ class TaxonomyTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_be_queries_by_term_as_an_aliases_to_slug()
+    public function itCanBeQueriesByTermAsAnAliasesToSlug()
     {
         $this->createTaxonomyWithTerms();
         $foo = Taxonomy::get()->first()->term;
@@ -92,7 +92,7 @@ class TaxonomyTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_query_taxonomy_posts()
+    public function itCanQueryTaxonomyPosts()
     {
         $taxonomy = $this->createTaxonomyWithTerms();
         $post = factory(Post::class)->create();
@@ -106,7 +106,7 @@ class TaxonomyTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_query_taxonomy_children()
+    public function itCanQueryTaxonomyChildren()
     {
         $this->createTaxonomyWithChildren();
         $taxonomy = Taxonomy::where('parent_id', null)->get()->first();
@@ -146,7 +146,7 @@ class TaxonomyTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_query_taxonomy_parent()
+    public function itCanQueryTaxonomyParent()
     {
         $this->createTaxonomyWithChildren();
         $taxonomy = Taxonomy::where('parent_id', null)->get()->first();
