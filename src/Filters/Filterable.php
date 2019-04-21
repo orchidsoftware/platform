@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Filters;
 
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
+use Orchid\Screen\Layouts\Selection;
 
 trait Filterable
 {
     /**
      * @param Builder $query
-     * @param array   $filters
+     * @param array $filters
      *
      * @return Builder
      */
@@ -26,6 +27,23 @@ trait Filterable
         }
 
         return $query;
+    }
+
+    /**
+     * @param Builder $query
+     * @param string|Selection $selection
+     *
+     * @return Builder
+     */
+    public function scopeFiltersApplySelection(Builder $query, $selection)
+    {
+        if (!is_object($selection)) {
+            $selection = app()->make($selection);
+        }
+
+        $filters = $selection->filters();
+
+        return $this->scopeFiltersApply($query, $filters);
     }
 
     /**
