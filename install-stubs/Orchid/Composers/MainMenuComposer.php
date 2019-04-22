@@ -54,7 +54,7 @@ class MainMenuComposer
                 ItemMenu::label('Example 4')
                     ->icon('icon-folder')
                     ->route('platform.example')
-                    ->groupName('Example boilerplate')
+                    ->title('Example boilerplate')
             )
             ->add(Menu::MAIN,
                 ItemMenu::label('Example 5 menu')
@@ -71,7 +71,7 @@ class MainMenuComposer
                 ItemMenu::label('Example sub 2')
                     ->icon('icon-heart')
                     ->route('platform.example')
-                    ->groupName('Separate')
+                    ->title('Separate')
             )
             ->add(Menu::MAIN,
                 ItemMenu::label('Example 6')

@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Orchid\Platform\Models;
 
 use Orchid\Access\RoleAccess;
+use Orchid\Filters\Filterable;
 use Orchid\Access\RoleInterface;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Traits\FilterTrait;
 use Orchid\Platform\Traits\MultiLanguageTrait;
 
 class Role extends Model implements RoleInterface
 {
-    use RoleAccess, FilterTrait, MultiLanguageTrait;
+    use RoleAccess, Filterable, MultiLanguageTrait;
 
     /**
      * @var string

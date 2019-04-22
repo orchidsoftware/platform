@@ -12,6 +12,7 @@ use Orchid\Support\Facades\Dashboard;
 use Illuminate\Database\Eloquent\Factory;
 use Orchid\Database\Seeds\OrchidDatabaseSeeder;
 use Orchid\Press\Providers\PressServiceProvider;
+use Orchid\Tests\Exemplar\ExemplarServiceProvider;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 
@@ -25,7 +26,7 @@ trait Environment
      * Run test: php vendor/bin/phpunit --coverage-html ./logs/coverage ./tests
      * Run 1 test:  php vendor/bin/phpunit  --filter= UserTest tests\\Unit\\Platform\\UserTest --debug.
      */
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -121,6 +122,7 @@ trait Environment
         return [
             FoundationServiceProvider::class,
             PressServiceProvider::class,
+            ExemplarServiceProvider::class,
         ];
     }
 

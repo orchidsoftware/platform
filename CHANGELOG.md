@@ -6,6 +6,74 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 4.7.0 - 2019-04-22
+
+### Added
+- Method `filtersApplySelection` for all filter in selection
+
+## 4.6.3 - 2019-04-21
+
+### Added
+- `Empty` method Allowing  value to the sample for the default operation (usually empty) [839](https://github.com/orchidsoftware/platform/pull/839)
+
+### Changed
+- Documentation move [repository website](https://github.com/orchidsoftware/orchid.software)
+
+### Deprecated
+- `Orchid\Dashboard\ItemMenu::groupName()` use `title` method [842](https://github.com/orchidsoftware/platform/issues/842)
+- `Entity` property `groupname` use `title` [842](https://github.com/orchidsoftware/platform/issues/842)
+
+## 4.6.2 - 2019-04-19
+
+### Changed
+- Chart min heating auto
+- Cache browser views
+
+### Fixed
+- Repeated run test to create resource links
+- Http sorting for allow property
+- Http request problem, to remove '/' [from last path of the url](https://stackoverflow.com/a/47478891).
+- Input mask is null or empty, cant not type japanese character.
+- When the resource has the same name with another extension.
+
+### Deprecated
+- `Orchid\Platform\Filters\*` use `Orchid\Filters\Filter\*`
+- `AttachTrait` use `Orchid\Attachment\Attachable`
+- `FilterTrait` use `Orchid\Filters\Filterable`
+
+## 4.6.1 - 2019-04-16
+
+### Changed
+- Reload template for profile for back history
+
+### Fixed
+- Icon for accordion
+- Double defined time controller
+- Injected SQL for Spatie builder
+
+## 4.6.0 - 2019-04-15
+
+### Added
+- `Layout::accordion` [834](https://github.com/orchidsoftware/platform/pull/834)
+
+## 4.5.1 - 2019-04-13
+
+### Fixed
+- Custom auth
+
+## 4.5.0 - 2019-04-12
+
+### Added
+- `Layout::wrapper` [827](https://github.com/orchidsoftware/platform/pull/827)
+
+### Changed
+- `Layouts` class rename to `Layout` [833](https://github.com/orchidsoftware/platform/issues/833) 
+- Login/Registration page
+- The color scheme has become more neutral [815](https://github.com/orchidsoftware/platform/issues/815)
+
+### Fixed
+- Uncaught ReferenceError: `platform` is not defined
+
 ## 4.4.4 - 2019-03-26
 
 ### Added

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Press\Http\Screens;
 
 use Orchid\Screen\Link;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts;
 use Illuminate\Http\Request;
 use Orchid\Press\Models\Post;
 use Orchid\Press\Entities\Many;
@@ -102,7 +102,7 @@ class EntityEditScreen extends Screen
     public function layout(): array
     {
         return [
-            Layouts::view('platform::container.posts.edit'),
+            Layout::view('platform::container.posts.edit'),
         ];
     }
 

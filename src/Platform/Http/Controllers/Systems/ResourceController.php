@@ -26,7 +26,7 @@ class ResourceController
      * @param string    $path
      * @param Dashboard $dashboard
      *
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
     public function show(string $package, string $path, Dashboard $dashboard)
     {
@@ -41,7 +41,8 @@ class ResourceController
             ->followLinks()
             ->in($dir)
             ->files()
-            ->path($path);
+            ->path(dirname($path))
+            ->name(basename($path));
 
         $iterator = tap($resources->getIterator())
             ->rewind();

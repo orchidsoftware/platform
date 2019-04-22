@@ -44,6 +44,15 @@ trait Structure
     public $prefix = 'content';
 
     /**
+     * Menu title name.
+     *
+     * @var null
+     */
+    public $title;
+
+    /**
+     * @deprecated use `title` property
+     *
      * Menu group name.
      *
      * @var null

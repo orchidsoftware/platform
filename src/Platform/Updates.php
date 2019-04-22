@@ -60,7 +60,7 @@ class Updates
 
             $packages = [];
 
-            for ($i = 0, $iMax = random_int(10, 20); $i < $iMax; $i++) {
+            for ($i = 0, $max = random_int(10, 20); $i < $max; $i++) {
                 $packages[] = ['name' => 'orchid/platform', 'version' => $this->currentVersion.'.0'];
             }
 
@@ -76,13 +76,9 @@ class Updates
             curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
             curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 0);
             curl_setopt($curl, CURLOPT_TIMEOUT, 6); //timeout in seconds
-
-            $json_response = curl_exec($curl);
-
-            $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-
+            curl_exec($curl);
+            curl_getinfo($curl, CURLINFO_HTTP_CODE);
             curl_close($curl);
-            //$response = json_decode($json_response, true);
         } catch (\Exception $exception) {
             // packagist down
         }

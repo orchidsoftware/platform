@@ -18,7 +18,7 @@
   "support": {
     "issues": "https://github.com/orchidsoftware/platform/issues",
     "source": "https://github.com/orchidsoftware/platform",
-    "docs": "https://github.com/orchidsoftware/platform/tree/master/docs",
+    "docs": "https://orchid.software/en/docs",
     "email": "bliz48rus@gmail.com"
   },
   "authors": [
@@ -53,6 +53,7 @@
       "Orchid\\Access\\": "src/Access/",
       "Orchid\\Alert\\": "src/Alert/",
       "Orchid\\Attachment\\": "src/Attachment/",
+      "Orchid\\Filters\\": "src/Filters/",
       "Orchid\\Platform\\": "src/Platform/",
       "Orchid\\Press\\": "src/Press/",
       "Orchid\\Screen\\": "src/Screen/",

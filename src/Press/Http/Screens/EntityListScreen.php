@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Press\Http\Screens;
 
 use Orchid\Screen\Link;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts;
 use Orchid\Press\Models\Post;
 use Orchid\Press\Entities\Many;
 use Orchid\Support\Facades\Alert;
@@ -94,7 +94,7 @@ class EntityListScreen extends Screen
     public function layout(): array
     {
         return [
-            Layouts::view('platform::container.posts.restore'),
+            Layout::view('platform::container.posts.restore'),
             new EntitiesSelection($this->filters),
             new EntitiesLayout($this->grid),
         ];

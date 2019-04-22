@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Orchid\Screens\User;
 
 use Orchid\Screen\Link;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts;
 use Illuminate\Http\Request;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
@@ -93,8 +93,8 @@ class UserEditScreen extends Screen
             UserEditLayout::class,
             UserRoleLayout::class,
 
-            Layouts::modals([
-                'password' => Layouts::rows([
+            Layout::modals([
+                'password' => Layout::rows([
                     Password::make('password')
                         ->title(__('Password'))
                         ->required()

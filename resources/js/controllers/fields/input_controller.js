@@ -14,7 +14,8 @@ export default class extends Controller {
         } catch (e) {
             // default
         }
-
-        Inputmask(mask).mask(element);
+        if (mask != '') {
+          Inputmask(mask).mask(element);
+        }
     }
 }

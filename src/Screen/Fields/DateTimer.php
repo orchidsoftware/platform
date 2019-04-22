@@ -54,7 +54,6 @@ class DateTimer extends Field
     public $attributes = [
         'type'                              => 'text',
         'class'                             => 'form-control',
-        'data-controller'                   => 'fields--datetime',
         'data-fields--datetime-enable-time' => 'false',
         'data-fields--datetime-time-24hr'   => 'false',
         'data-fields--datetime-allow-input' => 'false',
@@ -94,7 +93,6 @@ class DateTimer extends Field
         'step',
         'tabindex',
         'value',
-        'data-controller',
         'data-fields--datetime-enable-time',
         'data-fields--datetime-time-24hr',
         'data-fields--datetime-allow-input',

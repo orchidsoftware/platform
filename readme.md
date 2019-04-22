@@ -1,7 +1,7 @@
 
 <h1 align="center">
   <br>
-  <a href="https://orchid.software/"><img src="https://orchid.software/img/orchid.svg" alt="ORCHID" width="250"></a>
+  <a href="https://orchid.software/"><img src="https://orchid.software/assets/img/orchid.svg" alt="ORCHID" width="250"></a>
   <br>
   <br>
 </h1>
@@ -44,7 +44,7 @@ php artisan orchid:admin admin admin@admin.com password
 Once these commands have completed, you are ready to enjoy platform!
 
 
-###### Simple screenshot:
+###### Screenshot
 
 ![screenshot](https://user-images.githubusercontent.com/5102591/52168128-014cb680-2737-11e9-9ed3-28637780cf64.png)
 

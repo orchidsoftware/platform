@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
+use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts;
 use Illuminate\Http\Request;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
-use App\Orchid\Filters\RoleFilter;
 use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserListLayout;
 use App\Orchid\Layouts\User\UserFiltersLayout;
@@ -39,7 +38,7 @@ class UserListScreen extends Screen
     {
         return  [
             'users'  => User::with('roles')
-                ->filtersApply([RoleFilter::class])
+                ->filtersApplySelection(UserFiltersLayout::class)
                 ->defaultSort('id', 'desc')
                 ->paginate(),
         ];
@@ -66,7 +65,7 @@ class UserListScreen extends Screen
             UserFiltersLayout::class,
             UserListLayout::class,
 
-            Layouts::modals([
+            Layout::modals([
                 'oneAsyncModal' => [
                     UserEditLayout::class,
                 ],

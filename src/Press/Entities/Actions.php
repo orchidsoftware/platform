@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Entities;
 
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Pagination\Paginator;
 
@@ -38,7 +39,7 @@ trait Actions
     /**
      * @param \Illuminate\Database\Eloquent\Model $model
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function delete(Model $model)
     {

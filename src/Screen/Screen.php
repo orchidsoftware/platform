@@ -82,7 +82,7 @@ abstract class Screen extends Controller
      */
     public function build()
     {
-        $layout = Layouts::blank([
+        $layout = Layout::blank([
             $this->layout(),
         ]);
 

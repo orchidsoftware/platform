@@ -43,6 +43,13 @@ class Attachment extends Model
     ];
 
     /**
+     * @var array
+     */
+    protected $casts = [
+        'sort' => 'integer',
+    ];
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user(): BelongsTo

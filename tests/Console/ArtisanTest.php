@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\Console;
 
 use Orchid\Tests\TestConsoleCase;
+use Illuminate\Support\Facades\File;
 
 class ArtisanTest extends TestConsoleCase
 {
@@ -101,6 +102,8 @@ class ArtisanTest extends TestConsoleCase
     public function testArtisanOrchidLink()
     {
         $resources = public_path('resources');
+
+        File::deleteDirectory($resources);
 
         $this->artisan('orchid:link')
             ->expectsOutput("The [$resources] directory has been linked.");

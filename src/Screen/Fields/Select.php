@@ -35,7 +35,8 @@ class Select extends Field
      * @var array
      */
     public $attributes = [
-        'class' => 'form-control',
+        'class'   => 'form-control',
+        'options' => [],
     ];
 
     /**
@@ -133,5 +134,25 @@ class Select extends Field
         $key = $key ?? $builder->getModel()->getKeyName();
 
         return $this->setFromEloquent($builder, $name, $key);
+    }
+
+    /**
+     * @param string|null $name
+     * @param string      $key
+     *
+     * @return \Orchid\Screen\Fields\Select
+     */
+    public function empty(string $name = '', string $key = ''): self
+    {
+        $this->addBeforeRender(function () use ($name, $key) {
+            $value = array_merge(
+                [$key => $name],
+                $this->get('options', [])
+            );
+
+            $this->set('options', $value);
+        });
+
+        return $this;
     }
 }

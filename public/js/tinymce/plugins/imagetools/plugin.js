@@ -1,5 +1,5 @@
 (function () {
-var imagetools = (function () {
+var imagetools = (function (domGlobals) {
     'use strict';
 
     var Cell = function (initial) {
@@ -25,7 +25,7 @@ var imagetools = (function () {
     var global$1 = tinymce.util.Tools.resolve('tinymce.util.Tools');
 
     function create(width, height) {
-      return resize(document.createElement('canvas'), width, height);
+      return resize(domGlobals.document.createElement('canvas'), width, height);
     }
     function clone(canvas) {
       var tCanvas, ctx;
@@ -84,7 +84,7 @@ var imagetools = (function () {
         doResolve(fn, bind(resolve, this), bind(reject, this));
       };
       var asap = Promise.immediateFn || typeof window.setImmediate === 'function' && window.setImmediate || function (fn) {
-        setTimeout(fn, 1);
+        domGlobals.setTimeout(fn, 1);
       };
       function bind(fn, thisArg) {
         return function () {
@@ -266,13 +266,13 @@ var imagetools = (function () {
       var eq = function (o) {
         return o.isNone();
       };
-      var call$$1 = function (thunk) {
+      var call = function (thunk) {
         return thunk();
       };
       var id = function (n) {
         return n;
       };
-      var noop$$1 = function () {
+      var noop = function () {
       };
       var nul = function () {
         return null;
@@ -288,17 +288,17 @@ var imagetools = (function () {
         isSome: never$1,
         isNone: always$1,
         getOr: id,
-        getOrThunk: call$$1,
+        getOrThunk: call,
         getOrDie: function (msg) {
           throw new Error(msg || 'error: getOrDie called on none.');
         },
         getOrNull: nul,
         getOrUndefined: undef,
         or: id,
-        orThunk: call$$1,
+        orThunk: call,
         map: none,
         ap: none,
-        each: noop$$1,
+        each: noop,
         bind: none,
         flatten: none,
         exists: never$1,
@@ -386,7 +386,7 @@ var imagetools = (function () {
       from: from
     };
 
-    var Global = typeof window !== 'undefined' ? window : Function('return this;')();
+    var Global = typeof domGlobals.window !== 'undefined' ? domGlobals.window : Function('return this;')();
 
     var path = function (parts, scope) {
       var o = scope !== undefined && scope !== null ? scope : Global;
@@ -447,8 +447,8 @@ var imagetools = (function () {
     }
     function blobToImage(blob) {
       return new Promise(function (resolve, reject) {
-        var blobUrl = URL.createObjectURL(blob);
-        var image = new Image();
+        var blobUrl = domGlobals.URL.createObjectURL(blob);
+        var image = new domGlobals.Image();
         var removeListeners = function () {
           image.removeEventListener('load', loaded);
           image.removeEventListener('error', error);
@@ -471,7 +471,7 @@ var imagetools = (function () {
     }
     function anyUriToBlob(url) {
       return new Promise(function (resolve, reject) {
-        var xhr = new XMLHttpRequest();
+        var xhr = new domGlobals.XMLHttpRequest();
         xhr.open('GET', url, true);
         xhr.responseType = 'blob';
         xhr.onload = function () {
@@ -536,7 +536,7 @@ var imagetools = (function () {
     }
     function canvasToBlob(canvas, type, quality) {
       type = type || 'image/png';
-      if (HTMLCanvasElement.prototype.toBlob) {
+      if (domGlobals.HTMLCanvasElement.prototype.toBlob) {
         return new Promise(function (resolve) {
           canvas.toBlob(function (blob) {
             resolve(blob);
@@ -586,7 +586,7 @@ var imagetools = (function () {
       });
     }
     function revokeImageUrl(image) {
-      URL.revokeObjectURL(image.src);
+      domGlobals.URL.revokeObjectURL(image.src);
     }
     var Conversions = {
       blobToImage: blobToImage,
@@ -703,7 +703,7 @@ var imagetools = (function () {
       }
       return value;
     }
-    function identity$1() {
+    function identity() {
       return [
         1,
         0,
@@ -1099,7 +1099,7 @@ var imagetools = (function () {
       ], value));
     }
     var ColorMatrix = {
-      identity: identity$1,
+      identity: identity,
       adjust: adjust,
       multiply: multiply,
       adjustContrast: adjustContrast,
@@ -1976,7 +1976,7 @@ var imagetools = (function () {
     var revokeObjectURL = function (u) {
       url().revokeObjectURL(u);
     };
-    var URL$1 = {
+    var URL = {
       createObjectURL: createObjectURL,
       revokeObjectURL: revokeObjectURL
     };
@@ -2053,7 +2053,7 @@ var imagetools = (function () {
 
     var global$7 = tinymce.util.Tools.resolve('tinymce.geom.Rect');
 
-    var loadImage$1 = function (image) {
+    var loadImage = function (image) {
       return new global$3(function (resolve) {
         var loaded = function () {
           image.removeEventListener('load', loaded);
@@ -2066,7 +2066,7 @@ var imagetools = (function () {
         }
       });
     };
-    var LoadImage = { loadImage: loadImage$1 };
+    var LoadImage = { loadImage: loadImage };
 
     var global$8 = tinymce.util.Tools.resolve('tinymce.dom.DomQuery');
 
@@ -2362,19 +2362,19 @@ var imagetools = (function () {
           this.state.set('cropEnabled', state);
         },
         imageSrc: function (url) {
-          var self$$1 = this, img = new Image();
+          var self = this, img = new domGlobals.Image();
           img.src = url;
           LoadImage.loadImage(img).then(function () {
             var rect, $img;
-            var lastRect = self$$1.state.get('viewRect');
-            $img = self$$1.$el.find('img');
+            var lastRect = self.state.get('viewRect');
+            $img = self.$el.find('img');
             if ($img[0]) {
               $img.replaceWith(img);
             } else {
-              var bg = document.createElement('div');
+              var bg = domGlobals.document.createElement('div');
               bg.className = 'mce-imagepanel-bg';
-              self$$1.getEl().appendChild(bg);
-              self$$1.getEl().appendChild(img);
+              self.getEl().appendChild(bg);
+              self.getEl().appendChild(img);
             }
             rect = {
               x: 0,
@@ -2382,13 +2382,13 @@ var imagetools = (function () {
               w: img.naturalWidth,
               h: img.naturalHeight
             };
-            self$$1.state.set('viewRect', rect);
-            self$$1.state.set('rect', global$7.inflate(rect, -20, -20));
+            self.state.set('viewRect', rect);
+            self.state.set('rect', global$7.inflate(rect, -20, -20));
             if (!lastRect || lastRect.w !== rect.w || lastRect.h !== rect.h) {
-              self$$1.zoomFit();
+              self.zoomFit();
             }
-            self$$1.repaintImage();
-            self$$1.fire('load');
+            self.repaintImage();
+            self.fire('load');
           });
         },
         zoom: function (value) {
@@ -2403,19 +2403,19 @@ var imagetools = (function () {
           return this._super();
         },
         zoomFit: function () {
-          var self$$1 = this;
+          var self = this;
           var $img, pw, ph, w, h, zoom, padding;
           padding = 10;
-          $img = self$$1.$el.find('img');
-          pw = self$$1.getEl().clientWidth;
-          ph = self$$1.getEl().clientHeight;
+          $img = self.$el.find('img');
+          pw = self.getEl().clientWidth;
+          ph = self.getEl().clientHeight;
           w = $img[0].naturalWidth;
           h = $img[0].naturalHeight;
           zoom = Math.min((pw - padding) / w, (ph - padding) / h);
           if (zoom >= 1) {
             zoom = 1;
           }
-          self$$1.zoom(zoom);
+          self.zoom(zoom);
         },
         repaintImage: function () {
           var x, y, w, h, pw, ph, $img, $bg, zoom, rect, elm;
@@ -2464,37 +2464,37 @@ var imagetools = (function () {
           }
         },
         bindStates: function () {
-          var self$$1 = this;
+          var self = this;
           function setupCropRect(rect) {
-            self$$1.cropRect = CropRect(rect, self$$1.state.get('viewRect'), self$$1.state.get('viewRect'), self$$1.getEl(), function () {
-              self$$1.fire('crop');
+            self.cropRect = CropRect(rect, self.state.get('viewRect'), self.state.get('viewRect'), self.getEl(), function () {
+              self.fire('crop');
             });
-            self$$1.cropRect.on('updateRect', function (e) {
+            self.cropRect.on('updateRect', function (e) {
               var rect = e.rect;
-              var zoom = self$$1.zoom();
+              var zoom = self.zoom();
               rect = {
                 x: Math.round(rect.x / zoom),
                 y: Math.round(rect.y / zoom),
                 w: Math.round(rect.w / zoom),
                 h: Math.round(rect.h / zoom)
               };
-              self$$1.state.set('rect', rect);
+              self.state.set('rect', rect);
             });
-            self$$1.on('remove', self$$1.cropRect.destroy);
+            self.on('remove', self.cropRect.destroy);
           }
-          self$$1.state.on('change:cropEnabled', function (e) {
-            self$$1.cropRect.toggleVisibility(e.value);
-            self$$1.repaintImage();
+          self.state.on('change:cropEnabled', function (e) {
+            self.cropRect.toggleVisibility(e.value);
+            self.repaintImage();
           });
-          self$$1.state.on('change:zoom', function () {
-            self$$1.repaintImage();
+          self.state.on('change:zoom', function () {
+            self.repaintImage();
           });
-          self$$1.state.on('change:rect', function (e) {
+          self.state.on('change:rect', function (e) {
             var rect = e.value;
-            if (!self$$1.cropRect) {
+            if (!self.cropRect) {
               setupCropRect(rect);
             }
-            self$$1.cropRect.setRect(rect);
+            self.cropRect.setRect(rect);
           });
         }
       });
@@ -2505,12 +2505,12 @@ var imagetools = (function () {
     function createState(blob) {
       return {
         blob: blob,
-        url: URL$1.createObjectURL(blob)
+        url: URL.createObjectURL(blob)
       };
     }
     function destroyState(state) {
       if (state) {
-        URL$1.revokeObjectURL(state.url);
+        URL.revokeObjectURL(state.url);
       }
     }
     function destroyStates(states) {
@@ -3237,7 +3237,7 @@ var imagetools = (function () {
       return slice.call(x);
     };
 
-    function XMLHttpRequest$1 () {
+    function XMLHttpRequest () {
       var f = Global$1.getOrDie('XMLHttpRequest');
       return new f();
     }
@@ -3255,7 +3255,7 @@ var imagetools = (function () {
     var requestUrlAsBlob = function (url, headers, withCredentials) {
       return new global$3(function (resolve) {
         var xhr;
-        xhr = XMLHttpRequest$1();
+        xhr = XMLHttpRequest();
         xhr.onreadystatechange = function () {
           if (xhr.readyState === 4) {
             resolve({
@@ -3550,7 +3550,7 @@ var imagetools = (function () {
                   ImageSize$1.setImageSize(img, newSize);
                 }
               }
-              URL$1.revokeObjectURL(newImage.src);
+              URL.revokeObjectURL(newImage.src);
               resolve(blob);
             });
           });
@@ -3649,5 +3649,5 @@ var imagetools = (function () {
 
     return Plugin;
 
-}());
+}(window));
 })();

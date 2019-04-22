@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\View;
 use Symfony\Component\Finder\Finder;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Press\Commands\MakeManyBehavior;
-use Orchid\Press\Commands\MakeSingleBehavior;
+use Orchid\Press\Commands\MakeEntityMany;
+use Orchid\Press\Commands\MakeEntitySingle;
 use Orchid\Press\Http\Composers\PressMenuComposer;
 use Orchid\Press\Http\Composers\SystemMenuComposer;
 
@@ -34,8 +34,8 @@ class PressServiceProvider extends ServiceProvider
      * @var array
      */
     protected $commands = [
-        MakeManyBehavior::class,
-        MakeSingleBehavior::class,
+        MakeEntityMany::class,
+        MakeEntitySingle::class,
     ];
 
     /**

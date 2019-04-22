@@ -4,8 +4,24 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
+use Orchid\Screen\Fields\Map;
+use Orchid\Screen\Fields\UTM;
 use Orchid\Tests\TestUnitCase;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Fields\Upload;
+use Orchid\Screen\Fields\Picture;
+use Orchid\Screen\Fields\TinyMCE;
+use Orchid\Screen\Fields\CheckBox;
+use Orchid\Screen\Fields\Password;
+use Orchid\Screen\Fields\Switcher;
+use Orchid\Screen\Fields\TextArea;
 use Illuminate\Contracts\View\View;
+use Orchid\Screen\Fields\DateRange;
+use Orchid\Screen\Fields\DateTimer;
+use Orchid\Screen\Fields\SimpleMDE;
+use Orchid\Screen\Fields\RadioButtons;
+use Orchid\Screen\Fields\Relationship;
 
 /**
  * Class FieldTest.
@@ -18,72 +34,72 @@ class FieldTest extends TestUnitCase
     public function exampleFields()
     {
         return [
-            [\Orchid\Screen\Fields\TextArea::class,
-                [
-                    'name' => 'example',
-                ], ],
-            [\Orchid\Screen\Fields\Input::class,
-                [
-                    'name' => 'example',
-                ], ],
-            [\Orchid\Screen\Fields\Select::class,
-                [
-                    'name'    => 'example',
-                    'options' => [],
-                ], ],
-            [\Orchid\Screen\Fields\RadioButtons::class,
+            [TextArea::class,
+             [
+                 'name' => 'example',
+             ], ],
+            [Input::class,
+             [
+                 'name' => 'example',
+             ], ],
+            [Select::class,
+             [
+                 'name'    => 'example',
+                 'options' => [],
+             ], ],
+            [RadioButtons::class,
              [
                  'name'    => 'example',
                  'options' => ['value' => 'example'],
              ], ],
-            [\Orchid\Screen\Fields\Relationship::class,
-                [
-                    'name'    => 'example',
-                    'handler' => 'handler',
-                ], ],
-            [\Orchid\Screen\Fields\Map::class,
-                [
-                    'name' => 'example',
-                ], ],
-            [\Orchid\Screen\Fields\Picture::class,
-                [
-                    'name'   => 'example',
-                    'width'  => '100',
-                    'height' => '100',
-                ], ],
-            [\Orchid\Screen\Fields\DateTimer::class,
-                [
-                    'name' => 'example',
-                ], ],
-            [\Orchid\Screen\Fields\CheckBox::class,
-                [
-                    'name' => 'example',
-                ], ],
-            [\Orchid\Screen\Fields\TinyMCE::class,
-                [
-                    'name' => 'example',
-                ], ],
-            [\Orchid\Screen\Fields\Password::class,
-                [
-                    'name' => 'example',
-                ], ],
-            [\Orchid\Screen\Fields\SimpleMDE::class,
-                [
-                    'name' => 'example',
-                ], ],
-            [\Orchid\Screen\Fields\Upload::class,
-                [
-                    'name' => 'example',
-                ], ],
-            [\Orchid\Screen\Fields\UTM::class,
-                [
-                    'name' => 'example',
-                ], ],
-            [\Orchid\Screen\Fields\DateRange::class,
+            [Relationship::class,
+             [
+                 'name'    => 'example',
+                 'handler' => 'handler',
+             ], ],
+            [Map::class,
              [
                  'name' => 'example',
              ], ],
-            [\Orchid\Screen\Fields\Switcher::class,
+            [Picture::class,
+             [
+                 'name'   => 'example',
+                 'width'  => '100',
+                 'height' => '100',
+             ], ],
+            [DateTimer::class,
+             [
+                 'name' => 'example',
+             ], ],
+            [CheckBox::class,
+             [
+                 'name' => 'example',
+             ], ],
+            [TinyMCE::class,
+             [
+                 'name' => 'example',
+             ], ],
+            [Password::class,
+             [
+                 'name' => 'example',
+             ], ],
+            [SimpleMDE::class,
+             [
+                 'name' => 'example',
+             ], ],
+            [Upload::class,
+             [
+                 'name' => 'example',
+             ], ],
+            [UTM::class,
+             [
+                 'name' => 'example',
+             ], ],
+            [DateRange::class,
+             [
+                 'name' => 'example',
+             ], ],
+            [Switcher::class,
              [
                  'name' => 'example',
              ], ],

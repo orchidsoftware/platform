@@ -1,0 +1,17 @@
+.accardion-heading {
+  .btn:hover {
+    text-decoration: none;
+  }
+
+  .icon-accardion {
+    @extend .icon-arrow-right;
+  }
+
+  &.collapsed {
+    .icon-accardion {
+      @extend .icon-arrow-down;
+    }
+
+  }
+}
+

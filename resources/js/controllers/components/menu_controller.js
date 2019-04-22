@@ -278,7 +278,8 @@ export default class extends Controller {
      * @returns {*}
      */
     getUri(path = '') {
-        return platform.prefix(`/press/menu/${path}`);
+        path = path === '' ? `/press/menu` : `/press/menu/${path}`;
+        return platform.prefix(path);
     }
 
     /**

@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
-use Orchid\Platform\Traits\AttachTrait;
-use Orchid\Platform\Traits\FilterTrait;
+use Orchid\Filters\Filterable;
+use Orchid\Attachment\Attachable;
 use Orchid\Platform\Traits\MultiLanguageTrait;
 
 class Category extends Taxonomy
 {
-    use AttachTrait,
+    use Attachable,
         MultiLanguageTrait,
-        FilterTrait;
+        Filterable;
 
     /**
      * Used to set the post's type.

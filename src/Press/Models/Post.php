@@ -7,13 +7,13 @@ namespace Orchid\Press\Models;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Laravel\Scout\Searchable;
+use Orchid\Filters\Filterable;
 use Orchid\Platform\Models\User;
+use Orchid\Attachment\Attachable;
+use Orchid\Press\Traits\Taggable;
 use Illuminate\Support\Collection;
 use Orchid\Support\Facades\Dashboard;
-use Orchid\Press\Traits\TaggableTrait;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Traits\AttachTrait;
-use Orchid\Platform\Traits\FilterTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -29,13 +29,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 class Post extends Model
 {
-    use TaggableTrait,
+    use Taggable,
         SoftDeletes,
         Sluggable,
         MultiLanguageTrait,
         Searchable,
-        AttachTrait,
-        FilterTrait;
+        Attachable,
+        Filterable;
 
     /**
      * Prefix for permission.

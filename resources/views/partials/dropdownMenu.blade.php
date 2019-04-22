@@ -1,5 +1,5 @@
-@isset($groupname)
-        <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs m-l">{{ __($groupname) }}</div>
+@isset($title)
+        <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs m-l">{{ __($title) }}</div>
 @endisset
 <a href="{{$route ?? '#'}}" class="dropdown-item">
     @isset($badge)
