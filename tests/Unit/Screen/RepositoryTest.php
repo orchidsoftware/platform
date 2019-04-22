@@ -25,10 +25,10 @@ class RepositoryTest extends TestUnitCase
     protected function setUp(): void
     {
         $this->repository = new Repository($this->config = [
-            'foo' => 'bar',
-            'bar' => 'baz',
-            'baz' => 'bat',
-            'null' => null,
+            'foo'       => 'bar',
+            'bar'       => 'baz',
+            'baz'       => 'bat',
+            'null'      => null,
             'associate' => [
                 'x' => 'xxx',
                 'y' => 'yyy',
@@ -68,8 +68,8 @@ class RepositoryTest extends TestUnitCase
     public function testGetWithArrayOfKeys()
     {
         $this->assertSame([
-            'foo' => 'bar',
-            'bar' => 'baz',
+            'foo'  => 'bar',
+            'bar'  => 'baz',
             'none' => null,
         ], $this->repository->get([
             'foo',
@@ -93,8 +93,8 @@ class RepositoryTest extends TestUnitCase
     public function testGetMany()
     {
         $this->assertSame([
-            'foo' => 'bar',
-            'bar' => 'baz',
+            'foo'  => 'bar',
+            'bar'  => 'baz',
             'none' => null,
         ], $this->repository->getMany([
             'foo',
