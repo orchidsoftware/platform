@@ -4,28 +4,23 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen;
 
-use Illuminate\Database\Eloquent\Model;
-use Orchid\Screen\Traits\AsSource;
 use Orchid\Tests\TestUnitCase;
+use Orchid\Screen\Traits\AsSource;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class SourceTest
+ * Class SourceTest.
  */
 class SourceTest extends TestUnitCase
 {
-
     /**
      * @var Model
      */
     protected $model;
 
-    /**
-     *
-     */
     protected function setUp(): void
     {
-        $model = new class extends Model
-        {
+        $model = new class extends Model {
             use AsSource;
 
             protected $fillable = [
@@ -61,13 +56,9 @@ class SourceTest extends TestUnitCase
         $model->color = 'red';
         $model->setRelations(['many' => ['one', 'two', 'three' => 84]]);
 
-
         $this->model = $model;
     }
 
-    /**
-     *
-     */
     public function testGetSimpleAttribute()
     {
         $this->assertEquals(8, $this->model->getContent('id'));
@@ -75,22 +66,15 @@ class SourceTest extends TestUnitCase
         $this->assertEquals('red', $this->model->getContent('color'));
     }
 
-    /**
-     *
-     */
     public function testGetArrayAttribute()
     {
         $this->assertIsArray($this->model->getContent('options.country'));
         $this->assertContains('Russia', $this->model->getContent('options.country'));
 
-
         $this->assertIsBool($this->model->getContent('options.skills.php'));
         $this->assertTrue($this->model->getContent('options.skills.php'));
     }
 
-    /**
-     *
-     */
     public function testGetRelation()
     {
         $this->assertIsInt($this->model->getContent('many.three'));
@@ -100,5 +84,4 @@ class SourceTest extends TestUnitCase
         $this->assertContains('two', $this->model->getContent('many'));
         $this->assertEquals('one', $this->model->getContent('many')[0]);
     }
-
 }
