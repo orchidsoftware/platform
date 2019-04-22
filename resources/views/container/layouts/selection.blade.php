@@ -16,7 +16,7 @@
     </div>
     <div class="row">
         @foreach($filters->chunk($chunk) as $value)
-            <div class="col">
+            <div class="col-md">
                 @foreach($value as $filter)
                     {!! optional($filter->display())->form('filters')->render() !!}
                 @endforeach
