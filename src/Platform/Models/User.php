@@ -9,16 +9,16 @@ use Orchid\Access\UserAccess;
 use Orchid\Filters\Filterable;
 use Orchid\Access\UserInterface;
 use Illuminate\Support\Facades\Hash;
+use Orchid\Screen\Traits\AsSource;
 use Orchid\Support\Facades\Dashboard;
 use Illuminate\Notifications\Notifiable;
-use Orchid\Platform\Traits\MultiLanguageTrait;
 use Orchid\Platform\Notifications\ResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Orchid\Platform\Notifications\DashboardNotification;
 
 class User extends Authenticatable implements UserInterface
 {
-    use Notifiable, UserAccess, MultiLanguageTrait, Filterable;
+    use Notifiable, UserAccess, AsSource, Filterable;
 
     /**
      * The database table used by the model.

@@ -1,0 +1,104 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Orchid\Tests\Unit\Screen;
+
+use Illuminate\Database\Eloquent\Model;
+use Orchid\Screen\Traits\AsSource;
+use Orchid\Tests\TestUnitCase;
+
+/**
+ * Class SourceTest
+ */
+class SourceTest extends TestUnitCase
+{
+
+    /**
+     * @var Model
+     */
+    protected $model;
+
+    /**
+     *
+     */
+    protected function setUp(): void
+    {
+        $model = new class extends Model
+        {
+            use AsSource;
+
+            protected $fillable = [
+                'id',
+                'name',
+                'options',
+            ];
+
+            protected $casts = [
+                'options' => 'array',
+            ];
+        };
+
+        $model->fill([
+            'id'      => 8,
+            'name'    => 'Alexandr Chernyaev',
+            'options' => [
+                'skills'  => [
+                    'php'  => true,
+                ],
+                'country' => [
+                    'Russia',
+                    'Ukraine',
+                    'Spain',
+                    'Egypt',
+                    'Belorussia',
+                    'Romania',
+                    'Estonia',
+                ],
+            ],
+        ]);
+
+        $model->color = 'red';
+        $model->setRelations(['many' => ['one', 'two', 'three' => 84]]);
+
+
+        $this->model = $model;
+    }
+
+    /**
+     *
+     */
+    public function testGetSimpleAttribute()
+    {
+        $this->assertEquals(8, $this->model->getContent('id'));
+        $this->assertEquals('Alexandr Chernyaev', $this->model->getContent('name'));
+        $this->assertEquals('red', $this->model->getContent('color'));
+    }
+
+    /**
+     *
+     */
+    public function testGetArrayAttribute()
+    {
+        $this->assertIsArray($this->model->getContent('options.country'));
+        $this->assertContains('Russia', $this->model->getContent('options.country'));
+
+
+        $this->assertIsBool($this->model->getContent('options.skills.php'));
+        $this->assertTrue($this->model->getContent('options.skills.php'));
+    }
+
+    /**
+     *
+     */
+    public function testGetRelation()
+    {
+        $this->assertIsInt($this->model->getContent('many.three'));
+        $this->assertEquals(84, $this->model->getContent('many.three'));
+
+        $this->assertContains('one', $this->model->getContent('many'));
+        $this->assertContains('two', $this->model->getContent('many'));
+        $this->assertEquals('one', $this->model->getContent('many')[0]);
+    }
+
+}
