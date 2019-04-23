@@ -1,4 +1,4 @@
-<div class="dropdown pull-right text-center">
+<div class="dropdown pull-right text-center" data-turbolinks-permanent>
     <a class="nav-link icon no-padder" data-toggle="dropdown">
         <i class="icon-bell"></i>
         @if(count($notifications) > 0)
