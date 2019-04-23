@@ -24,18 +24,25 @@ export default class extends Controller {
                 dataType: 'json',
                 processResults: (data) => {
 
+                    let selectValues = $(select).val();
+                    selectValues = Array.isArray(selectValues) ? selectValues : [selectValues];
+
                     let dataFormat = [];
 
-                    data.forEach(function(value,key) {
+                    Object.values(data).forEach((value, key) => {
+
+                        let isSelect = selectValues.find(element => parseInt(element) === key);
+
+                        if (selectValues.length !== 0 && isSelect === undefined) {
+                            return;
+                        }
+
                         dataFormat.push({
-                            'key' : key,
+                            'id': key,
                             'text': value
                         });
                     });
 
-                    console.log(dataFormat);
-
-                    // Tranforms the top-level key of the response object from 'items' to 'results'
                     return {
                         results: dataFormat
                     };

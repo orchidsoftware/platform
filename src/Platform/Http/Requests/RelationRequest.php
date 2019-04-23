@@ -26,7 +26,7 @@ class RelationRequest extends FormRequest
     public function rules()
     {
         return [
-            'search' => 'string',
+            'search' => '',
             'model'  => 'required',
             'key'    => 'required',
             'name'   => 'required',
