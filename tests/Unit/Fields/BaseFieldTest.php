@@ -4,27 +4,22 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Fields;
 
-use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
 use Orchid\Screen\Field;
+use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
 
 /**
  * Class BaseFieldTest.
  */
 class BaseFieldTest extends TestFieldsUnitCase
 {
-
     /**
      * @var \Orchid\Screen\Field
      */
     public $field;
 
-    /**
-     *
-     */
     public function setUp(): void
     {
-        $field = new class extends Field
-        {
+        $field = new class extends Field {
             /**
              * @var string
              */
@@ -61,9 +56,6 @@ class BaseFieldTest extends TestFieldsUnitCase
         $this->field = $field;
     }
 
-    /**
-     *
-     */
     public function testRequredAttributeNameField()
     {
         $this->expectException(FieldRequiredAttributeException::class);
@@ -72,9 +64,6 @@ class BaseFieldTest extends TestFieldsUnitCase
         $this->field->render();
     }
 
-    /**
-     *
-     */
     public function testRequredAttributeHeightField()
     {
         $this->expectException(FieldRequiredAttributeException::class);

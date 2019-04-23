@@ -22,9 +22,6 @@ class RepositoryTest extends TestUnitCase
      */
     protected $config;
 
-    /**
-     *
-     */
     public function setUp(): void
     {
         $this->repository = new Repository($this->config = [
@@ -48,26 +45,17 @@ class RepositoryTest extends TestUnitCase
         parent::setUp();
     }
 
-    /**
-     *
-     */
     public function testRepositoryCount()
     {
         $this->assertEquals(7, $this->repository->count());
     }
 
-    /**
-     *
-     */
     public function testRepositoryToArray()
     {
         $this->assertInstanceOf(Repository::class, $this->repository);
         $this->assertIsArray($this->repository->toArray());
     }
 
-    /**
-     *
-     */
     public function testRepositoryContent()
     {
         $this->assertEquals('yyy', $this->repository->getContent('associate.y'));
