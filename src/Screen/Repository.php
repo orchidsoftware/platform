@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Iterator;
 use Countable;
 use Illuminate\Support\Arr;
 
