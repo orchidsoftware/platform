@@ -11,7 +11,7 @@ use Illuminate\Support\Arr;
 /**
  * Class Repository.
  */
-class Repository extends \Illuminate\Config\Repository implements Iterator, Countable
+class Repository extends \Illuminate\Config\Repository implements Countable
 {
     /**
      * @var int
@@ -43,39 +43,5 @@ class Repository extends \Illuminate\Config\Repository implements Iterator, Coun
     public function count(): int
     {
         return count($this->items);
-    }
-
-    public function rewind()
-    {
-        $this->position = 0;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function current()
-    {
-        return $this->items[$this->position];
-    }
-
-    /**
-     * @return int|mixed
-     */
-    public function key()
-    {
-        return $this->position;
-    }
-
-    public function next()
-    {
-        $this->position++;
-    }
-
-    /**
-     * @return bool
-     */
-    public function valid()
-    {
-        return isset($this->items[$this->position]);
     }
 }
