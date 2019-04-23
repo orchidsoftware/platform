@@ -20,7 +20,7 @@ trait MultiLanguageTrait
 
     /**
      * @param string $field
-     * @param null $locale
+     * @param null   $locale
      *
      * @return mixed|null
      */
@@ -31,19 +31,19 @@ trait MultiLanguageTrait
 
     /**
      * @param string $field
-     * @param null $locale
+     * @param null   $locale
      *
      * @return mixed
      */
     private function getContentMultiLang(string $field, $locale = null)
     {
-        $jsonContent = (array)$this->getAttribute($this->jsonColumnName);
-        $fullName    = ($locale ?? app()->getLocale()) . '.' . $field;
+        $jsonContent = (array) $this->getAttribute($this->jsonColumnName);
+        $fullName = ($locale ?? app()->getLocale()).'.'.$field;
 
         if (array_has($jsonContent, $fullName)) {
             return array_get($jsonContent, $fullName);
         }
 
-        return array_get($jsonContent, config('app.fallback_locale') . '.' . $field);
+        return array_get($jsonContent, config('app.fallback_locale').'.'.$field);
     }
 }
