@@ -33,13 +33,17 @@
 
 
 <div class="app row m-n" id="app" data-controller="@yield('controller')" @yield('controller-data')>
-    <div class="aside col-xs-12 col-md-3 col-xl-2 col-xxl-2 offset-xl-1 offset-xxl-2 no-padder bg-dark">
-        <div class="d-md-flex align-items-start flex-column d-sm-block h-full">
-            @yield('body-left')
+    <div class="container">
+        <div class="row">
+            <div class="aside col-xs-12 col-md-2 offset-lg-1 offset-xxl-0 col-xl-2 col-xxl-3 no-padder bg-dark">
+                <div class="d-md-flex align-items-start flex-column d-sm-block h-full">
+                    @yield('body-left')
+                </div>
+            </div>
+            <div class="col-md-8 col-xl-8 col-xxl-9 bg-white b-r box-shadow-lg no-padder min-vh-100">
+                @yield('body-right')
+            </div>
         </div>
-    </div>
-    <div class="col-md-9 col-xl-8 col-xxl-6 bg-white b-r box-shadow-lg no-padder min-vh-100">
-        @yield('body-right')
     </div>
 </div>
 

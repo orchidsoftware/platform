@@ -17,6 +17,14 @@ $grid-breakpoints: (
 );
 
 
+$container-max-widths: (
+        sm: 100%,
+        md: 100%,
+        lg: 960px,
+        xl: 1200px,
+);
+
+
 // Colors
 $orchid-color: #007bff;//#ac5ca0;
 
@@ -116,6 +124,7 @@ $list-group-active-color : $brand-info;
 $table-border-color : lighten($border-color, 4%);
 $table-striped-color : lighten($brand-light, 4.5%);
 
+$app-aside-min-width : 17em;
 $app-aside-width : 250px;
 $aside-wrap-main-width: 0px;
 $app-aside-nav-height : 40px; //2,857rem;

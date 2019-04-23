@@ -113,6 +113,14 @@ body {
   }
 }
 
+.aside {
+  min-width: $app-aside-min-width;
+
+  .dropdown-menu.show {
+    max-width: 16em;
+  }
+}
+
 @media (min-width: 1900px) {
   .aside {
     max-width: $app-aside-width;
