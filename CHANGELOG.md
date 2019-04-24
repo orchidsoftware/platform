@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Trait `AsSource.php` for Eloquent model 
+- Only time for `DateTimer` field
 
 ### Fixed
 - Avatar jumping when refreshing page
