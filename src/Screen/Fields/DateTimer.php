@@ -58,6 +58,7 @@ class DateTimer extends Field
         'data-fields--datetime-time-24hr'   => 'false',
         'data-fields--datetime-allow-input' => 'false',
         'data-fields--datetime-date-format' => 'Y-m-d H:i:S',
+        'data-fields--datetime-no-calendar' => 'false',
     ];
 
     /**
@@ -97,6 +98,7 @@ class DateTimer extends Field
         'data-fields--datetime-time-24hr',
         'data-fields--datetime-allow-input',
         'data-fields--datetime-date-format',
+        'data-fields--datetime-no-calendar',
     ];
 
     /**
@@ -153,6 +155,21 @@ class DateTimer extends Field
     public function format(string  $format) : self
     {
         $this->set('data-fields--datetime-date-format', $format);
+
+        return $this;
+    }
+
+    /**
+     * Disable calendar for the field and show only time.
+     *
+     * @param bool $noCalendar
+     *
+     * @return $this
+     */
+    public function noCalendar(bool $noCalendar = true) : self
+    {
+        $this->enableTime();
+        $this->set('data-fields--datetime-no-calendar', var_export($noCalendar, true));
 
         return $this;
     }
