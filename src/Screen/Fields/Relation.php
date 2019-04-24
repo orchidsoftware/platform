@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Illuminate\Support\Arr;
 use Orchid\Screen\Field;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\Model;
@@ -103,26 +102,25 @@ class Relation extends Field
         $key = $key ?? $model->getModel()->getKeyName();
         $model = get_class($model);
 
-
         $this->set('relationModel', Crypt::encryptString($model));
         $this->set('relationName', Crypt::encryptString($name));
         $this->set('relationKey', Crypt::encryptString($key));
 
         $this->addBeforeRender(function () use ($name, $key) {
-          $values = $this->get('value');
+            $values = $this->get('value');
 
-          if(!is_countable($values)){
-            $values = [$values];
-          }
+            if (! is_countable($values)) {
+                $values = [$values];
+            }
 
-          foreach($values as $i => $value){
-            $values[$i] = [
-              'id' => $value->$key,
+            foreach ($values as $i => $value) {
+                $values[$i] = [
+              'id'   => $value->$key,
               'text' => $value->$name,
             ];
-          }
+            }
 
-          $this->set('value', json_encode($values));
+            $this->set('value', json_encode($values));
         });
 
         return $this;
