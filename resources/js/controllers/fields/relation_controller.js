@@ -6,6 +6,10 @@ export default class extends Controller {
      */
     connect() {
         const select = this.element.querySelector('select');
+        const model = this.data.get('model');
+        const name = this.data.get('name');
+        const key = this.data.get('key');
+
 
         $.ajaxSetup({
             headers: {
@@ -31,15 +35,13 @@ export default class extends Controller {
 
                     Object.values(data).forEach((value, key) => {
 
-                        let isSelect = selectValues.find(element => parseInt(element) === key);
-
-                        if (selectValues.length !== 0 && isSelect === undefined) {
+                        if(selectValues.map(Number).includes(key)){
                             return;
                         }
 
                         dataFormat.push({
                             'id': key,
-                            'text': value
+                            'text': value,
                         });
                     });
 
@@ -50,29 +52,24 @@ export default class extends Controller {
                 data: (params) => {
                     return {
                         search: params.term,
-                        model: this.data.get('model'),
-                        name: this.data.get('name'),
-                        key: this.data.get('key'),
+                        model: model,
+                        name: name,
+                        key: key,
                     };
                 }
             },
             placeholder: select.getAttribute('placeholder') || '',
-        }).on('select2:unselecting', function () {
-            $(this).data('state', 'unselected');
-        }).on('select2:opening', function (e) {
-            if ($(this).data('state') === 'unselected') {
-                e.preventDefault();
-                $(this).removeData('state');
-            }
         });
 
-        //if (!this.data.get('value')) {
-            //return;
-        //}
+        if (!this.data.get('value')) {
+            return;
+        }
 
-        axios.post(this.data.get('route')).then((response) => {
+        let values = JSON.parse(this.data.get('value'));
+
+        values.forEach((model) => {
             $(select)
-                .append(new Option(response.data.text, response.data.id, true, true))
+                .append(new Option(model.text, model.id, true, true))
                 .trigger('change');
         });
 

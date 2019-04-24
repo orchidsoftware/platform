@@ -2,7 +2,7 @@
     <div data-controller="fields--relation"
          data-fields--relation-id="{{$id}}"
          data-fields--relation-placeholder="{{$attributes['placeholder'] ?? ''}}"
-         data-fields--relation-value="{{ $value }}"
+         data-fields--relation-value="{{  $value }}"
          data-fields--relation-model="{{ $relationModel }}"
          data-fields--relation-name="{{ $relationName }}"
          data-fields--relation-key="{{ $relationKey }}"
