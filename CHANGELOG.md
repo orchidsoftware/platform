@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 4.7.1 - 2019-04-24
+
 ### Added
 - Trait `AsSource.php` for Eloquent model 
 - Only time for `DateTimer` field
