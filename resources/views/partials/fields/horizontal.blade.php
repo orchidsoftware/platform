@@ -25,7 +25,7 @@
         </div>
     @elseif(isset($help))
         <div class="col-sm-5">
-            <small class="form-text text-muted mt-0">{{$help}}</small>
+            <small class="form-text text-muted">{!!$help!!}</small>
         </div>
     @endif
 </div>

@@ -1,11 +1,37 @@
-import {Controller} from 'stimulus';
+import { Controller } from 'stimulus';
 
 export default class extends Controller {
     /**
      *
      */
     connect() {
-        const select = this.element.querySelector('select');
+        const select = this.element.querySelector('select'),
+            allowHtml = select.getAttribute('allowhtml') === 'true',
+            options = {
+                theme: 'bootstrap',
+                allowClear: !select.hasAttribute('required'),
+                ajax: {
+                    type: 'POST',
+                    cache: true,
+                    delay: 250,
+                    url: () => this.data.get('url'),
+                    dataType: 'json',
+                },
+                placeholder: select.getAttribute('placeholder') || '',
+            };
+
+        if (allowHtml) {
+            options.escapeMarkup = function (m) {
+                return m;
+            };
+            options.templateResult = function(state) {
+                if(state.html) {
+                    return state.html;
+                }
+
+                return state.text;
+            };
+        }
 
         $.ajaxSetup({
             headers: {
@@ -13,18 +39,7 @@ export default class extends Controller {
             },
         });
 
-        $(select).select2({
-            theme: 'bootstrap',
-            allowClear: !select.hasAttribute('required'),
-            ajax: {
-                type: 'POST',
-                cache: true,
-                delay: 250,
-                url: () => this.data.get('url'),
-                dataType: 'json',
-            },
-            placeholder: select.getAttribute('placeholder') || '',
-        }).on('select2:unselecting', function () {
+        $(select).select2(options).on('select2:unselecting', function () {
             $(this).data('state', 'unselected');
         }).on('select2:opening', function (e) {
             if ($(this).data('state') === 'unselected') {
@@ -45,6 +60,6 @@ export default class extends Controller {
 
         document.addEventListener('turbolinks:before-cache', () => {
             $(select).select2('destroy');
-        }, {once: true});
+        }, { once: true });
     }
 }
