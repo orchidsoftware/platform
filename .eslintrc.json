@@ -19,5 +19,9 @@
             "single"
         ]
     },
-    "extends": "airbnb-base"
+    "extends": "airbnb-base",
+    "globals": {
+        "axios": true,
+        "Turbolinks": true
+    }
 }
