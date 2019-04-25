@@ -45,8 +45,8 @@ class Relationship extends Field
      * @var array
      */
     public $attributes = [
-        'class' => 'form-control',
-        'value' => null,
+        'class'     => 'form-control',
+        'value'     => null,
         'allowhtml' => 'false',
     ];
 
@@ -66,7 +66,7 @@ class Relationship extends Field
         'size',
         'tabindex',
         'placeholder',
-        'allowhtml'
+        'allowhtml',
     ];
 
     /**
