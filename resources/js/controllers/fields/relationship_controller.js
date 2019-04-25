@@ -23,6 +23,16 @@ export default class extends Controller {
                 url: () => this.data.get('url'),
                 dataType: 'json',
             },
+            templateResult: function (option) {
+                if (option.html) {
+                    return option.html;
+                }
+
+                return option.text;
+            },
+            escapeMarkup: function (m) {
+                return m;
+            },
             placeholder: select.getAttribute('placeholder') || '',
         }).on('select2:unselecting', function () {
             $(this).data('state', 'unselected');
