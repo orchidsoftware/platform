@@ -4,22 +4,22 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Providers;
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Orchid\Platform\Dashboard;
-use Orchid\Platform\ItemPermission;
-use Orchid\Press\Commands\MakeEntityMany;
-use Orchid\Press\Commands\MakeEntitySingle;
-use Orchid\Press\Entities\Many;
-use Orchid\Press\Entities\Single;
-use Orchid\Press\Http\Composers\PressMenuComposer;
-use Orchid\Press\Http\Composers\SystemMenuComposer;
-use Orchid\Press\Models\Category;
 use Orchid\Press\Models\Page;
 use Orchid\Press\Models\Post;
+use Orchid\Platform\Dashboard;
+use Orchid\Press\Entities\Many;
+use Orchid\Press\Entities\Single;
+use Orchid\Press\Models\Category;
+use Orchid\Platform\ItemPermission;
+use Illuminate\Support\Facades\View;
 use Symfony\Component\Finder\Finder;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
+use Orchid\Press\Commands\MakeEntityMany;
+use Orchid\Press\Commands\MakeEntitySingle;
+use Orchid\Press\Http\Composers\PressMenuComposer;
+use Orchid\Press\Http\Composers\SystemMenuComposer;
 
 class PressServiceProvider extends ServiceProvider
 {
@@ -179,7 +179,7 @@ class PressServiceProvider extends ServiceProvider
         Route::bind('category', function ($value) {
             $category = Dashboard::modelClass(Category::class);
 
-            return $category->where('slug',$value)
+            return $category->where('slug', $value)
                 ->orWhere('id', $value)
                 ->firstOrFail();
         });
@@ -208,7 +208,7 @@ class PressServiceProvider extends ServiceProvider
         Route::bind('post', function ($value) {
             $post = Dashboard::modelClass(Post::class);
 
-            return $post->where('id',$value)
+            return $post->where('id', $value)
                 ->orWhere('slug', $value)
                 ->firstOrFail();
         });
