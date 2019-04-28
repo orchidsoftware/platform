@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Filters;
 
-use Orchid\Screen\Field;
-use Orchid\Filters\Filter;
-use Orchid\Screen\Fields\Input;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\PostgresConnection;
+use Orchid\Filters\Filter;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Input;
 
 class SearchFilter extends Filter
 {
@@ -20,6 +20,14 @@ class SearchFilter extends Filter
     ];
 
     /**
+     * @return string
+     */
+    public function name(): string
+    {
+        return __('Search');
+    }
+
+    /**
      * @param Builder $builder
      *
      * @return Builder
@@ -27,23 +35,25 @@ class SearchFilter extends Filter
     public function run(Builder $builder): Builder
     {
         if ($builder->getQuery()->getConnection() instanceof PostgresConnection) {
-            return $builder->whereRaw('content::TEXT ILIKE ?', '%'.$this->request->get('search').'%');
+            return $builder->whereRaw('content::TEXT ILIKE ?', '%' . $this->request->get('search') . '%');
         }
 
-        return $builder->where('content', 'LIKE', '%'.$this->request->get('search').'%');
+        return $builder->where('content', 'LIKE', '%' . $this->request->get('search') . '%');
     }
 
     /**
-     * @return Field
+     * @return Field[]
      */
-    public function display(): Field
+    public function display(): array
     {
-        return Input::make('search')
-            ->type('text')
-            ->value($this->request->get('search'))
-            ->placeholder(__('Search...'))
-            ->title(__('Search'))
-            ->maxlength(200)
-            ->autocomplete('off');
+        return [
+            Input::make('search')
+                ->type('text')
+                ->value($this->request->get('search'))
+                ->placeholder(__('Search...'))
+                ->title($this->name())
+                ->maxlength(200)
+                ->autocomplete('off'),
+        ];
     }
 }

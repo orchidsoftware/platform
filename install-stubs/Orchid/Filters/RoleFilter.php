@@ -25,6 +25,14 @@ class RoleFilter extends Filter
     public $dashboard = true;
 
     /**
+     * @return string
+     */
+    public function name(): string
+    {
+        return __('Roles');
+    }
+
+    /**
      * @param Builder $builder
      *
      * @return Builder
@@ -37,21 +45,15 @@ class RoleFilter extends Filter
     }
 
     /**
-     * @return Field|null
+     * @return Field[]
      */
-    public function display() : ?Field
+    public function display() : array
     {
-        return Select::make('role')
-            ->options($this->getRoles())
+        return [
+            Select::make('role')
+            ->fromModel(Role::class,'slug','name')
             ->value($this->request->get('role'))
-            ->title(__('Roles'));
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRoles()
-    {
-        return Role::select('slug', 'name')->pluck('name', 'slug');
+            ->title(__('Roles'))
+        ];
     }
 }

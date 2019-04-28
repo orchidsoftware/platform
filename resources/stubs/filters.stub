@@ -19,6 +19,14 @@ class DummyClass extends Filter
     public $dashboard = false;
 
     /**
+     * @return string
+     */
+    public function name(): string
+    {
+        return '';
+    }
+
+    /**
      * @param Builder $builder
      *
      * @return Builder
@@ -29,9 +37,9 @@ class DummyClass extends Filter
     }
 
     /**
-     * @return Field
+     * @return Field[]
      */
-    public function display(): ?Field
+    public function display(): array
     {
         //
     }
