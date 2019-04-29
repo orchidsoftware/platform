@@ -6,19 +6,6 @@ namespace Orchid\Screen\Contracts;
 
 interface FieldContract
 {
-    /**
-     * Get the name of the template.
-     *
-     * @return string
-     */
-    public function getView(): string;
-
-    /**
-     * Get the name of the template.
-     *
-     * @return array
-     */
-    public function getRequired(): array;
 
     /**
      * The process of creating.

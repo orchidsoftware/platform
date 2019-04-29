@@ -17,7 +17,7 @@ class SelectTest extends TestFieldsUnitCase
      */
     public function testInstanse()
     {
-        $textArea = Select::make('choice')
+        $select = Select::make('choice')
             ->title('Title About')
             ->help('Think about what you want to tell')
             ->options([
@@ -26,7 +26,7 @@ class SelectTest extends TestFieldsUnitCase
                 'third'  => 'Third Value',
             ]);
 
-        $view = self::renderField($textArea);
+        $view = self::renderField($select);
 
         $this->assertStringContainsString('First Value', $view);
         $this->assertStringContainsString('Second Value', $view);
@@ -45,11 +45,11 @@ class SelectTest extends TestFieldsUnitCase
      */
     public function testNeedRequire()
     {
-        $textArea = Select::make('choice')
+        $select = Select::make('choice')
             ->options([])
             ->required();
 
-        $view = self::renderField($textArea);
+        $view = self::renderField($select);
 
         $this->assertStringContainsString('required', $view);
     }
@@ -59,7 +59,7 @@ class SelectTest extends TestFieldsUnitCase
      */
     public function testSetValue()
     {
-        $textArea = Select::make('choice')
+        $select = Select::make('choice')
             ->value('second')
             ->options([
                 'first'  => 'First Value',
@@ -67,7 +67,7 @@ class SelectTest extends TestFieldsUnitCase
                 'third'  => 'Third Value',
             ]);
 
-        $view = self::renderField($textArea);
+        $view = self::renderField($select);
         $view = self::minifyOutput($view);
 
         $this->assertStringContainsString('value="second" selected', $view);
@@ -78,10 +78,10 @@ class SelectTest extends TestFieldsUnitCase
      */
     public function testAutoFocus()
     {
-        $textArea = TextArea::make('about')
+        $select = TextArea::make('about')
             ->autofocus();
 
-        $view = self::renderField($textArea);
+        $view = self::renderField($select);
 
         $this->assertStringContainsString('autofocus', $view);
     }
@@ -91,7 +91,7 @@ class SelectTest extends TestFieldsUnitCase
      */
     public function testEmptyForArray()
     {
-        $textArea = Select::make('choice')
+        $select = Select::make('choice')
             ->options([
                 'first'  => 'First Value',
                 'second' => 'Second Value',
@@ -99,7 +99,7 @@ class SelectTest extends TestFieldsUnitCase
             ])
             ->empty('empty', '0');
 
-        $view = self::renderField($textArea);
+        $view = self::renderField($select);
         $view = self::minifyOutput($view);
 
         $this->assertStringContainsString('<option value="0">empty</option>', $view);
