@@ -8,7 +8,6 @@ use Orchid\Screen\Fields\Input;
 
 class InputTest extends TestFieldsUnitCase
 {
-
     /**
      * @throws \Throwable
      */
@@ -23,6 +22,4 @@ class InputTest extends TestFieldsUnitCase
 
         $this->assertStringContainsString($hr, self::renderField($input));
     }
-
-
 }

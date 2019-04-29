@@ -6,7 +6,6 @@ namespace Orchid\Screen\Contracts;
 
 interface FieldContract
 {
-
     /**
      * The process of creating.
      *
