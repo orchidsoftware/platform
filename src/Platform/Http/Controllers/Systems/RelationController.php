@@ -28,18 +28,11 @@ class RelationController extends Controller
         $key = $params['key'];
         $search = $request->get('search', '');
 
-        //dd($model,$name,$search,$key);
-
         $items = $model
             ->where($name, 'like', '%'.$search.'%')
             ->limit(10)
             ->pluck($name, $key);
 
         return response()->json($items);
-        /*
-        $items = $builder->pluck($title,$key);
-
-        return response()->json($items);
-        */
     }
 }

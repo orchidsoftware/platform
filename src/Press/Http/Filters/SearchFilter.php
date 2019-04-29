@@ -20,6 +20,14 @@ class SearchFilter extends Filter
     ];
 
     /**
+     * @return string
+     */
+    public function name(): string
+    {
+        return __('Search');
+    }
+
+    /**
      * @param Builder $builder
      *
      * @return Builder
@@ -34,16 +42,18 @@ class SearchFilter extends Filter
     }
 
     /**
-     * @return Field
+     * @return Field[]
      */
-    public function display(): Field
+    public function display(): array
     {
-        return Input::make('search')
-            ->type('text')
-            ->value($this->request->get('search'))
-            ->placeholder(__('Search...'))
-            ->title(__('Search'))
-            ->maxlength(200)
-            ->autocomplete('off');
+        return [
+            Input::make('search')
+                ->type('text')
+                ->value($this->request->get('search'))
+                ->placeholder(__('Search...'))
+                ->title($this->name())
+                ->maxlength(200)
+                ->autocomplete('off'),
+        ];
     }
 }

@@ -38,6 +38,7 @@ class Relation extends Field
      */
     public $attributes = [
         'class' => 'form-control',
+        'value' => [],
     ];
 
     /**
@@ -104,6 +105,23 @@ class Relation extends Field
         $this->set('relationModel', Crypt::encryptString($model));
         $this->set('relationName', Crypt::encryptString($name));
         $this->set('relationKey', Crypt::encryptString($key));
+
+        $this->addBeforeRender(function () use ($name, $key) {
+            $values = $this->get('value');
+
+            if (! is_countable($values)) {
+                $values = [$values];
+            }
+
+            foreach ($values as $i => $value) {
+                $values[$i] = [
+              'id'   => $value->$key,
+              'text' => $value->$name,
+            ];
+            }
+
+            $this->set('value', json_encode($values));
+        });
 
         return $this;
     }

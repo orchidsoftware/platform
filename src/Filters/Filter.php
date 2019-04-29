@@ -63,10 +63,62 @@ abstract class Filter
     abstract public function run(Builder $builder): Builder;
 
     /**
-     * @return Field|null
+     * @return Field[]
      */
-    public function display() : ?Field
+    public function display() : array
     {
         //
+    }
+
+    /**
+     * @return string
+     */
+    abstract public function name(): string;
+
+    public function render()
+    {
+        $html = '';
+        collect($this->display())->each(function ($field) use (&$html) {
+            $html .= $field->form('filters')->render();
+        });
+
+        return $html;
+    }
+
+    /**
+     * @return int
+     */
+    public function count() : int
+    {
+        return count($this->display());
+    }
+
+    /**
+     * @return bool
+     */
+    public function isApply() :bool
+    {
+        return count($this->request->only($this->parameters, [])) > 0;
+    }
+
+    /**
+     * @return string
+     */
+    public function value(): string
+    {
+        $params = $this->request->only($this->parameters, []);
+        $values = collect($params)->flatten()->implode(',');
+
+        return $this->name().': '.$values;
+    }
+
+    /**
+     * @return string
+     */
+    public function resetLink(): string
+    {
+        $params = $this->request->except($this->parameters);
+
+        return url($this->request->url(), $params);
     }
 }

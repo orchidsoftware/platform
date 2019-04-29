@@ -45,8 +45,9 @@ class Relationship extends Field
      * @var array
      */
     public $attributes = [
-        'class' => 'form-control',
-        'value' => null,
+        'class'     => 'form-control',
+        'value'     => null,
+        'allowhtml' => 'false',
     ];
 
     /**
@@ -65,7 +66,20 @@ class Relationship extends Field
         'size',
         'tabindex',
         'placeholder',
+        'allowhtml',
     ];
+
+    /**
+     * Do not sanitize option response from the widget.
+     *
+     * @return \Orchid\Screen\Fields\Relationship
+     */
+    public function allowHtml(): self
+    {
+        $this->set('allowhtml', 'true');
+
+        return $this;
+    }
 
     /**
      * @param string|null $name

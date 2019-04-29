@@ -179,9 +179,9 @@ class PressServiceProvider extends ServiceProvider
         Route::bind('category', function ($value) {
             $category = Dashboard::modelClass(Category::class);
 
-            return is_numeric($value)
-                ? $category->where('id', $value)->firstOrFail()
-                : $category->firstOrFail($value);
+            return $category->where('slug', $value)
+                ->orWhere('id', $value)
+                ->firstOrFail();
         });
 
         Route::bind('type', function ($value) {
@@ -193,9 +193,9 @@ class PressServiceProvider extends ServiceProvider
         Route::bind('page', function ($value) {
             $model = Dashboard::modelClass(Page::class);
 
-            $page = is_numeric($value)
-                ? $model->where('id', $value)->first()
-                : $model->where('slug', $value)->first();
+            $page = $model->where('id', $value)
+                ->orWhere('slug', $value)
+                ->first();
 
             if (is_null($page)) {
                 $model->slug = $value;
@@ -208,9 +208,9 @@ class PressServiceProvider extends ServiceProvider
         Route::bind('post', function ($value) {
             $post = Dashboard::modelClass(Post::class);
 
-            return is_numeric($value)
-                ? $post->where('id', $value)->firstOrFail()
-                : $post->where('slug', $value)->firstOrFail();
+            return $post->where('id', $value)
+                ->orWhere('slug', $value)
+                ->firstOrFail();
         });
 
         return $this;
