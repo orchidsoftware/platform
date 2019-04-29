@@ -16,6 +16,7 @@ use Orchid\Screen\Traits\CanSee;
  * @method static Link icon(string $name)
  * @method static Link link(string $name)
  * @method static Link group(array $name)
+ * @method static Link confirm(string $message)
  */
 class Link
 {
@@ -62,6 +63,13 @@ class Link
     public $view;
 
     /**
+     * Confirmation message.
+     *
+     * @var string|null
+     */
+    public $confirm;
+
+    /**
      * @param string     $name
      * @param mixed|null $arguments
      *
@@ -106,6 +114,7 @@ class Link
             'title'     => $this->title,
             'link'      => $this->link,
             'group'     => $this->group,
+            'confirm'   => $this->confirm,
             'query'     => $query,
         ]);
     }
