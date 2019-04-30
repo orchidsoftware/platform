@@ -34,6 +34,6 @@ trait CanSee
      */
     public function isSee() :bool
     {
-      return $this->display;
+        return $this->display;
     }
 }
