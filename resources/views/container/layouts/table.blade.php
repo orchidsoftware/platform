@@ -2,7 +2,7 @@
     <table class="table">
         <thead>
         <tr>
-            @foreach($fields as $th)
+            @foreach($columns as $th)
                 <th width="{{$th->width}}" class="text-{{$th->align}}">
                     <div>
                         @if($th->sort)
@@ -47,7 +47,7 @@
 
         @foreach($data as $key => $datum)
             <tr>
-                @foreach($fields as $td)
+                @foreach($columns as $td)
                     <td class="text-{{$td->align}}">
 
                         @isset($td->render)

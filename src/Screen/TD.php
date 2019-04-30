@@ -7,10 +7,11 @@ namespace Orchid\Screen;
 use Closure;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Traits\Macroable;
+use Orchid\Screen\Traits\CanSee;
 
 class TD
 {
-    use Macroable;
+    use Macroable, CanSee;
 
     /**
      * Align the cell to the left.
