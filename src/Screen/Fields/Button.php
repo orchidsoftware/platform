@@ -21,16 +21,16 @@ class Button extends Field
     /**
      * Visual style.
      */
-    const DEFAULT = 'btn-default';
-    const SUCCESS = 'btn-success';
-    const WARNING = 'btn-warning';
-    const DANGER = 'btn-danger';
-    const INFO = 'btn-info';
-    const PRIMARY = 'btn-primary';
-    const SECONDARY = 'btn-secondary';
-    const LIGHT = 'btn-light';
-    const DARK = 'btn-dark';
-    const LINK = 'btn-link';
+    public const DEFAULT = 'btn-default';
+    public const SUCCESS = 'btn-success';
+    public const WARNING = 'btn-warning';
+    public const DANGER = 'btn-danger';
+    public const INFO = 'btn-info';
+    public const PRIMARY = 'btn-primary';
+    public const SECONDARY = 'btn-secondary';
+    public const LIGHT = 'btn-light';
+    public const DARK = 'btn-dark';
+    public const LINK = 'btn-link';
 
     /**
      * @var string
