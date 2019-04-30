@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
-use Orchid\Screen\Repository;
 use Orchid\Screen\TD;
+use Orchid\Screen\Repository;
 
 /**
  * Class Table.
@@ -29,9 +29,9 @@ abstract class Table extends Base
      */
     public function build(Repository $query)
     {
-      $columns = collect($this->fields())->filter(function (TD $item){
-        return $item->isSee();
-      });
+        $columns = collect($this->fields())->filter(function (TD $item) {
+            return $item->isSee();
+        });
 
         return view($this->template, [
             'data'     => $query->getContent($this->data),
