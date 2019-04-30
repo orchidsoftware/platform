@@ -117,8 +117,8 @@ abstract class Filter
      */
     public function resetLink(): string
     {
-        $params = $this->request->except($this->parameters);
+        $params = http_build_query($this->request->except($this->parameters));
 
-        return url($this->request->url(), $params);
+        return url($this->request->url().'?'.$params);
     }
 }
