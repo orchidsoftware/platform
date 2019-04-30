@@ -33,6 +33,13 @@ abstract class Filter
     public $lang;
 
     /**
+     * The value delimiter.
+     *
+     * @var string
+     */
+    protected static $delimiter = ',';
+
+    /**
      * Filter constructor.
      */
     public function __construct()
@@ -107,7 +114,7 @@ abstract class Filter
     public function value(): string
     {
         $params = $this->request->only($this->parameters, []);
-        $values = collect($params)->flatten()->implode(',');
+        $values = collect($params)->flatten()->implode(static::$delimiter);
 
         return $this->name().': '.$values;
     }

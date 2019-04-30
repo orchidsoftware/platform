@@ -12,6 +12,13 @@ use Illuminate\Database\Eloquent\Builder;
 class CreatedFilter extends Filter
 {
     /**
+     * The value delimiter.
+     *
+     * @var string
+     */
+    protected static $delimiter = ':';
+
+    /**
      * @var array
      */
     public $parameters = [
