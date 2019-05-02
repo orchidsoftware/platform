@@ -45,7 +45,7 @@ abstract class Modals extends Base
     }
 
     /**
-     * Set text button for apply action
+     * Set text button for apply action.
      *
      * @param string $text
      *
@@ -59,7 +59,7 @@ abstract class Modals extends Base
     }
 
     /**
-     * Set text button for cancel action
+     * Set text button for cancel action.
      *
      * @param string $text
      *
@@ -73,7 +73,7 @@ abstract class Modals extends Base
     }
 
     /**
-     * Set CSS class for size modal
+     * Set CSS class for size modal.
      *
      * @param string $class
      *

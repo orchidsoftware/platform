@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Support\Str;
 use ReflectionClass;
 use ReflectionParameter;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;

@@ -2,14 +2,14 @@
 
 namespace Orchid\Tests\Exemplar\App\Screens;
 
-use Orchid\Screen\Layout;
-use Orchid\Screen\Layouts\Modals;
 use Orchid\Screen\Link;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Layouts\Modals;
 
 class ModalScreen extends Screen
 {
-    public const TITLE_MODAL  = 'Title Modal';
+    public const TITLE_MODAL = 'Title Modal';
     public const APPLY_BUTTON = 'Test Apply Button';
     public const CLOSE_BUTTON = 'Test Close Button';
 
@@ -54,9 +54,9 @@ class ModalScreen extends Screen
     /**
      * Views.
      *
-     * @return array
      * @throws \Throwable
      *
+     * @return array
      */
     public function layout(): array
     {
