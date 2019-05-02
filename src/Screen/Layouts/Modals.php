@@ -11,8 +11,10 @@ use Orchid\Screen\Repository;
  */
 abstract class Modals extends Base
 {
-    public const SIZE_LG = 'modal-lg';
-    public const SIZE_SM = 'modal-sm';
+    public const SIZE_LG     = 'modal-lg';
+    public const SIZE_SM     = 'modal-sm';
+    public const SLIDE_RIGHT = 'slide-right';
+
     /**
      * @var string
      */
