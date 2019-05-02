@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Orchid\Screen\Field;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Crypt;
+use Orchid\Screen\Field;
 
 /**
  * @deprecated Plz not using this
@@ -90,37 +91,36 @@ class Relation extends Field
 
     /**
      * @param string|Model $model
-     * @param string       $name
-     * @param string|null  $key
+     * @param string $name
+     * @param string|null $key
      *
      * @return self
      */
-    public function fromModel($model, string $name, string $key = null): self
+    public function fromModel(string $model, string $name, string $key = null): self
     {
-        /* @var $model Model */
-        $model = is_object($model) ? $model : new $model();
-        $key = $key ?? $model->getModel()->getKeyName();
-        $model = get_class($model);
+        $key = $key ?? (new $model())->getModel()->getKeyName();
 
         $this->set('relationModel', Crypt::encryptString($model));
         $this->set('relationName', Crypt::encryptString($name));
         $this->set('relationKey', Crypt::encryptString($key));
 
         $this->addBeforeRender(function () use ($name, $key) {
-            $values = $this->get('value');
 
-            if (! is_countable($values)) {
-                $values = [$values];
+            $value = $this->get('value');
+
+            if (!is_countable($value)) {
+                $value = Arr::wrap($value);
             }
 
-            foreach ($values as $i => $value) {
-                $values[$i] = [
-              'id'   => $value->$key,
-              'text' => $value->$name,
-            ];
-            }
+            $value = collect($value)
+                ->map(function ($item) use ($name, $key) {
+                    return [
+                        'id'   => $item->$key,
+                        'text' => $item->$name,
+                    ];
+                })->toJson();
 
-            $this->set('value', json_encode($values));
+            $this->set('value', $value);
         });
 
         return $this;
