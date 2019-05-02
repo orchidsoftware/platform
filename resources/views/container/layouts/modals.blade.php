@@ -10,7 +10,7 @@
              data-screen--modal-method="{{$templateAsyncMethod}}"
              data-screen--modal-url="{{ url()->current() }}"
         >
-            <div class="modal-dialog {{$compose['class'] ?? ''}}" role="document" id="screen-modal-type-{{$key}}">
+            <div class="modal-dialog {{$class ?? ''}}" role="document" id="screen-modal-type-{{$key}}">
                 <form class="modal-content"
                       id="screen-modal-form-{{$key}}"
                       method="post"
@@ -37,12 +37,12 @@
                     <div class="modal-footer">
 
                         <button type="button" class="btn btn-link" data-dismiss="modal">
-                            {{ __('Close') }}
+                            {{ $close }}
                         </button>
 
                         <button type="submit" id="submit-modal-{{$key}}"
                                 class="btn btn-default">
-                            {{__('Apply')}}
+                            {{ $apply }}
                         </button>
                     </div>
                 </form>

@@ -52,6 +52,11 @@ abstract class Base
     public $asyncNext = false;
 
     /**
+     * @var array
+     */
+    protected $variables = [];
+
+    /**
      * Base constructor.
      *
      * @param Base[] $layouts
@@ -110,12 +115,14 @@ abstract class Base
             $build += $this->buildChild($layouts, $key, $repository);
         }
 
-        return view($this->async ? 'platform::container.layouts.blank' : $this->template, [
+        $variables = array_merge($this->variables, [
             'manyForms'           => $build,
             'templateSlug'        => $this->getSlug(),
             'templateAsync'       => $this->asyncNext,
             'templateAsyncMethod' => $this->asyncMethod,
         ]);
+
+        return view($this->async ? 'platform::container.layouts.blank' : $this->template, $variables);
     }
 
     /**

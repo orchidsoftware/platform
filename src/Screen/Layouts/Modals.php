@@ -11,10 +11,28 @@ use Orchid\Screen\Repository;
  */
 abstract class Modals extends Base
 {
+    public const SIZE_LG = 'modal-lg';
+    public const SIZE_SM = 'modal-sm';
     /**
      * @var string
      */
     public $template = 'platform::container.layouts.modals';
+
+    /**
+     * Modals constructor.
+     *
+     * @param array $layouts
+     */
+    public function __construct(array $layouts = [])
+    {
+        $this->variables = [
+            'apply' => __('Apply'),
+            'close' => __('Close'),
+            'class' => '',
+        ];
+
+        parent::__construct($layouts);
+    }
 
     /**
      * @param Repository $repository
@@ -24,5 +42,47 @@ abstract class Modals extends Base
     public function build(Repository $repository)
     {
         return $this->buildAsDeep($repository);
+    }
+
+    /**
+     * Set text button for apply action
+     *
+     * @param string $text
+     *
+     * @return Modals
+     */
+    public function applyButton(string $text): self
+    {
+        $this->variables['apply'] = $text;
+
+        return $this;
+    }
+
+    /**
+     * Set text button for cancel action
+     *
+     * @param string $text
+     *
+     * @return Modals
+     */
+    public function closeButton(string $text): self
+    {
+        $this->variables['close'] = $text;
+
+        return $this;
+    }
+
+    /**
+     * Set CSS class for size modal
+     *
+     * @param string $class
+     *
+     * @return Modals
+     */
+    public function size(string $class): self
+    {
+        $this->variables['class'] = $class;
+
+        return $this;
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Support\Str;
 use ReflectionClass;
 use ReflectionParameter;
 use Illuminate\Support\Arr;
@@ -55,10 +56,12 @@ abstract class Screen extends Controller
 
     /**
      * Screen constructor.
+     *
+     * @param Request|null $request
      */
-    public function __construct()
+    public function __construct(Request $request = null)
     {
-        $this->request = request();
+        $this->request = $request ?? request();
     }
 
     /**
@@ -155,7 +158,7 @@ abstract class Screen extends Controller
         $method = array_pop($parameters);
         $this->arguments = $parameters;
 
-        if (starts_with($method, 'async')) {
+        if (Str::startsWith($method, 'async')) {
             return $this->asyncBuild($method, array_pop($this->arguments));
         }
 
