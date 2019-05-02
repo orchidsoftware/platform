@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
 use Orchid\Screen\Field;
+use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 
 abstract class Filter
 {
@@ -31,6 +31,13 @@ abstract class Filter
      * @var string
      */
     public $lang;
+
+    /**
+     * The value delimiter.
+     *
+     * @var string
+     */
+    protected static $delimiter = ',';
 
     /**
      * Filter constructor.
@@ -73,15 +80,12 @@ abstract class Filter
     /**
      * @return string
      */
-    abstract public function name(): string ;
+    abstract public function name(): string;
 
-    /**
-     *
-     */
     public function render()
     {
         $html = '';
-         collect($this->display())->each(function ($field) use (&$html){
+        collect($this->display())->each(function ($field) use (&$html) {
             $html .= $field->form('filters')->render();
         });
 
@@ -110,9 +114,9 @@ abstract class Filter
     public function value(): string
     {
         $params = $this->request->only($this->parameters, []);
-        $values = collect($params)->flatten()->implode(',');
+        $values = collect($params)->flatten()->implode(static::$delimiter);
 
-        return $this->name() . ': ' . $values;
+        return $this->name().': '.$values;
     }
 
     /**
@@ -120,8 +124,8 @@ abstract class Filter
      */
     public function resetLink(): string
     {
-        $params = $this->request->except($this->parameters);
+        $params = http_build_query($this->request->except($this->parameters));
 
-        return url($this->request->url(), $params);
+        return url($this->request->url().'?'.$params);
     }
 }

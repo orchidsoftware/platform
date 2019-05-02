@@ -4,13 +4,20 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
-use Orchid\Filters\Filter;
 use Orchid\Screen\Field;
+use Orchid\Filters\Filter;
 use Orchid\Screen\Fields\DateRange;
+use Illuminate\Database\Eloquent\Builder;
 
 class CreatedFilter extends Filter
 {
+    /**
+     * The value delimiter.
+     *
+     * @var string
+     */
+    protected static $delimiter = ':';
+
     /**
      * @var array
      */

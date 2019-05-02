@@ -72,4 +72,9 @@ class BaseFieldTest extends TestFieldsUnitCase
         $this->field->set('name', 'First name');
         $this->field->render();
     }
+
+    public function testNoDisplay()
+    {
+        $this->assertNull($this->field->canSee(false)->render());
+    }
 }

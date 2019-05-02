@@ -124,7 +124,7 @@ class HttpFilter
      */
     protected function filtersExact(Builder $query, $value, string $property)
     {
-        $property = $this->sanitize($property);
+        $property = self::sanitize($property);
 
         if (is_array($value)) {
             return $query->whereIn($property, $value);

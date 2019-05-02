@@ -163,26 +163,6 @@ class Field implements FieldContract
     }
 
     /**
-     * Obtain the list of required fields.
-     *
-     * @return array
-     */
-    public function getRequired(): array
-    {
-        return $this->required;
-    }
-
-    /**
-     * Get the name of the template.
-     *
-     * @return string
-     */
-    public function getView(): string
-    {
-        return $this->view;
-    }
-
-    /**
      * @throws \Throwable
      *
      * @return Field

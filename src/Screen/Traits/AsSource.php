@@ -12,20 +12,12 @@ use Illuminate\Support\Arr;
 trait AsSource
 {
     /**
-     * @var array|null
-     */
-    protected $contentCache;
-
-    /**
      * @param string $field
      *
      * @return mixed|null
      */
     public function getContent(string $field)
     {
-        /** @var self \Illuminate\Database\Eloquent\Model */
-        $model = $this->contentCache ?? $this->toArray();
-
-        return Arr::get($model, $field) ?? Arr::get($this->getRelations(), $field);
+        return Arr::get($this->toArray(), $field) ?? Arr::get($this->getRelations(), $field);
     }
 }

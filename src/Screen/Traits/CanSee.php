@@ -28,4 +28,12 @@ trait CanSee
 
         return $this;
     }
+
+    /**
+     * @return bool
+     */
+    public function isSee() :bool
+    {
+        return $this->display;
+    }
 }
