@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen;
 
-use Illuminate\Support\Facades\Validator;
-use Orchid\Screen\Layouts\Modals;
-use Orchid\Tests\Exemplar\App\Screens\ModalScreen;
 use Orchid\Tests\TestUnitCase;
+use Orchid\Screen\Layouts\Modals;
+use Illuminate\Support\Facades\Validator;
+use Orchid\Tests\Exemplar\App\Screens\ModalScreen;
 
 /**
  * Class ModalTest.
@@ -31,6 +31,4 @@ class ModalTest extends TestUnitCase
 
         $this->assertStringContainsString(Modals::SIZE_LG, $html);
     }
-
-
 }
