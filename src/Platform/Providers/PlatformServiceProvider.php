@@ -32,12 +32,14 @@ class PlatformServiceProvider extends ServiceProvider
         View::composer('platform::partials.notifications', NotificationsComposer::class);
         View::composer('platform::partials.announcement', AnnouncementsComposer::class);
 
-        $this->dashboard
-            ->registerResource('stylesheets', config('platform.resource.stylesheets', null))
-            ->registerResource('scripts', config('platform.resource.scripts', null))
-            ->registerPermissions($this->registerPermissionsMain())
-            ->registerPermissions($this->registerPermissionsSystems())
-            ->addPublicDirectory('orchid', PLATFORM_PATH.'/public/');
+        $this->app->booted(function () {
+            $this->dashboard
+                ->registerResource('stylesheets', config('platform.resource.stylesheets', null))
+                ->registerResource('scripts', config('platform.resource.scripts', null))
+                ->registerPermissions($this->registerPermissionsMain())
+                ->registerPermissions($this->registerPermissionsSystems())
+                ->addPublicDirectory('orchid', PLATFORM_PATH.'/public/');
+        });
     }
 
     /**

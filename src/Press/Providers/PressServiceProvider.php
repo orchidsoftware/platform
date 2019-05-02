@@ -50,16 +50,15 @@ class PressServiceProvider extends ServiceProvider
         $this->app->booted(function () {
             $this->registerRoutes();
             $this->registerBinding();
+            $this->dashboard
+                ->registerEntities($this->findEntities())
+                ->registerPermissions($this->registerPermissionsEntities())
+                ->registerPermissions($this->registerPermissions());
         });
 
         $this->registerDatabase()
             ->registerConfig()
             ->registerCommands();
-
-        $this->dashboard
-            ->registerEntities($this->findEntities())
-            ->registerPermissions($this->registerPermissionsEntities())
-            ->registerPermissions($this->registerPermissions());
 
         View::composer('platform::layouts.dashboard', PressMenuComposer::class);
         View::composer('platform::container.systems.index', SystemMenuComposer::class);
