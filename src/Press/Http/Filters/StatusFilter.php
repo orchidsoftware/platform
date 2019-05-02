@@ -6,8 +6,8 @@ namespace Orchid\Press\Http\Filters;
 
 use Orchid\Screen\Field;
 use Orchid\Filters\Filter;
-use Orchid\Screen\Fields\RadioButtons;
 use Illuminate\Database\Eloquent\Builder;
+use Orchid\Screen\Fields\Select;
 
 class StatusFilter extends Filter
 {
@@ -42,7 +42,7 @@ class StatusFilter extends Filter
     public function display(): array
     {
         return [
-            RadioButtons::make('status')
+            Select::make('status')
                 ->value($this->request->get('status'))
                 ->options([
                     'publish' => __('Published'),

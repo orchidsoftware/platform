@@ -82,6 +82,9 @@ abstract class Filter
      */
     abstract public function name(): string;
 
+    /**
+     * @return string
+     */
     public function render()
     {
         $html = '';

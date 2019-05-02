@@ -27,7 +27,7 @@
 <div class="row" data-controller="screen--filter">
     <div class="col-md-12">
         <div class="btn-group" role="group">
-            <button class="btn btn-link p-0 dropdown-toggle"
+            <button class="btn btn-link dropdown-toggle"
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false">

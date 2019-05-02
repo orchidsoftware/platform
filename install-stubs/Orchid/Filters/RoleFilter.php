@@ -20,11 +20,6 @@ class RoleFilter extends Filter
     ];
 
     /**
-     * @var bool
-     */
-    public $dashboard = true;
-
-    /**
      * @return string
      */
     public function name(): string
@@ -39,7 +34,7 @@ class RoleFilter extends Filter
      */
     public function run(Builder $builder) : Builder
     {
-        return $builder->whereHas('roles', function ($query) {
+        return $builder->whereHas('roles', function (Builder $query) {
             $query->where('slug', $this->request->get('role'));
         });
     }
