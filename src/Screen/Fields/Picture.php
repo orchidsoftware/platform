@@ -121,7 +121,7 @@ class Picture extends Field
         $this->set('target', 'id');
 
         $this->addBeforeRender(function () {
-            $value = $this->get('value');
+            $value = (string) $this->get('value');
 
             if (! ctype_digit($value)) {
                 return;
