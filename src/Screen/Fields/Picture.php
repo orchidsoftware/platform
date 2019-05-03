@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Orchid\Screen\Field;
-use Orchid\Platform\Dashboard;
 use Orchid\Attachment\Models\Attachment;
+use Orchid\Platform\Dashboard;
+use Orchid\Screen\Field;
 
 /**
  * Class Picture.
@@ -59,6 +59,7 @@ class Picture extends Field
     public $attributes = [
         'value'  => null,
         'target' => 'url',
+        'url'    => null,
     ];
 
     /**
@@ -96,6 +97,7 @@ class Picture extends Field
         'type',
         'value',
         'target',
+        'url',
     ];
 
     /**
@@ -130,7 +132,7 @@ class Picture extends Field
 
             $url = optional($attach::find($value))->url();
 
-            $this->set('value', $url ?? $value);
+            $this->set('url', $url);
         });
 
         return $this;

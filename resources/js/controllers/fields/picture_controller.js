@@ -16,7 +16,7 @@ export default class extends Controller {
      *
      */
     connect() {
-        let image = this.data.get('image');
+        let image = this.data.get('url') ? this.data.get('url') : this.data.get(`value`);
 
         if (image) {
             this.element.querySelector('.picture-preview').src = image;
