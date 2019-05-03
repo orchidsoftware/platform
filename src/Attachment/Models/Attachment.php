@@ -40,7 +40,7 @@ class Attachment extends Model
      */
     protected $appends = [
         'url',
-        'relativeUrl'
+        'relativeUrl',
     ];
 
     /**

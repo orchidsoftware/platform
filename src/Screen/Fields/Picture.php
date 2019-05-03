@@ -151,7 +151,7 @@ class Picture extends Field
 
     /**
      * The saved value will be in the form
-     * of a relative address before the file
+     * of a relative address before the file.
      *
      * @return self
      */
