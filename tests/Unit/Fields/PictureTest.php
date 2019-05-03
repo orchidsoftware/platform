@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Fields;
 
 use Orchid\Attachment\File;
-use Orchid\Screen\Fields\Picture;
 use Illuminate\Http\UploadedFile;
+use Orchid\Screen\Fields\Picture;
 
 /**
  * Class PictureTest.
@@ -42,7 +42,6 @@ class PictureTest extends TestFieldsUnitCase
             ->width(1920)
             ->height(1020)
             ->targetId();
-
 
         $view = self::renderField($picture);
 
