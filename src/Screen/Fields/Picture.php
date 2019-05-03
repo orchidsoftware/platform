@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Orchid\Attachment\Models\Attachment;
+use Orchid\Platform\Dashboard;
 use Orchid\Screen\Field;
 
 /**
@@ -50,6 +52,16 @@ class Picture extends Field
     public $view = 'platform::fields.picture';
 
     /**
+     * Default attributes value.
+     *
+     * @var array
+     */
+    public $attributes = [
+        'value'  => null,
+        'target' => 'url',
+    ];
+
+    /**
      * Attributes available for a particular tag.
      *
      * @var array
@@ -83,6 +95,7 @@ class Picture extends Field
         'tabindex',
         'type',
         'value',
+        'target'
     ];
 
     /**
@@ -93,5 +106,46 @@ class Picture extends Field
     public static function make(string $name = null): self
     {
         return (new static())->name($name);
+    }
+
+    /**
+     * The stored value will be in the form
+     * of id attachment
+     *
+     * @return self
+     */
+    public function targetId(): self
+    {
+        $this->set('target', 'id');
+
+        $this->addBeforeRender(function (){
+            $value = $this->get('value');
+
+            if(!ctype_digit($value)){
+                return;
+            }
+
+            /** @var Attachment $attach */
+            $attach = Dashboard::model(Attachment::class);
+
+            $url = optional($attach::find($value))->url();
+
+            $this->set('value', $url ?? $value);
+        });
+
+        return $this;
+    }
+
+    /**
+     * The saved value will be in the form
+     * of a full address before the file
+     *
+     * @return self
+     */
+    public function targetUrl(): self
+    {
+        $this->set('target', 'url');
+
+        return $this;
     }
 }

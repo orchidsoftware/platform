@@ -62,7 +62,7 @@ class Attachment extends Model
      *
      * @param string $default
      *
-     * @return string
+     * @return string|null
      */
     public function url($default = null): ?string
     {
@@ -76,11 +76,23 @@ class Attachment extends Model
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getUrlAttribute()
+    public function getUrlAttribute(): ?string
     {
         return $this->url();
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTitleAttribute(): ?string
+    {
+        if ($this->original_name !== 'blob') {
+            return $this->original_name;
+        }
+
+        return $this->name.'.'.$this->extension;
     }
 
     /**

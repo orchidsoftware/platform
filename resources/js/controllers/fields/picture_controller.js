@@ -90,11 +90,12 @@ export default class extends Controller {
             axios.post(platform.prefix('/systems/files'), formData)
                 .then((response) => {
                     let image = response.data.url;
+                    let targetValue = this.data.get('target');
 
                     element.querySelector('.picture-preview').src = image;
                     element.querySelector('.picture-preview').classList.remove('none');
                     element.querySelector('.picture-remove').classList.remove('none');
-                    element.querySelector('.picture-path').value = image;
+                    element.querySelector('.picture-path').value = response.data[targetValue];
                     $(element.querySelector('.modal')).modal('hide');
                 });
         });

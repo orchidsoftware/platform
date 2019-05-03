@@ -1,9 +1,11 @@
 @component($typeForm,get_defined_vars())
     <div data-controller="fields--picture"
-         data-fields--picture-image="{{$attributes['value']}}"
-         data-fields--picture-storage="{{$storage ?? 'public'}}"
-         data-fields--picture-width="{{$width}}"
-         data-fields--picture-height="{{$height}}">
+         data-fields--picture-image="{{ $attributes['value'] }}"
+         data-fields--picture-storage="{{ $storage ?? 'public' }}"
+         data-fields--picture-width="{{ $width }}"
+         data-fields--picture-height="{{ $height }}"
+         data-fields--picture-target="{{ $target }}"
+    >
         <div class="b text-right wrapper picture-actions">
 
             <div class="fields--picture-container">
