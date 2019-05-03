@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Illuminate\Support\Arr;
-use Orchid\Attachment\Models\Attachment;
-use Orchid\Platform\Dashboard;
 use Orchid\Screen\Field;
+use Illuminate\Support\Arr;
+use Orchid\Platform\Dashboard;
+use Orchid\Attachment\Models\Attachment;
 
 /**
  * Class Upload.
@@ -129,17 +129,17 @@ class Upload extends Field
      */
     public function __construct()
     {
-        $this->addBeforeRender(function (){
+        $this->addBeforeRender(function () {
             $value = Arr::wrap($this->get('value'));
 
-            if(!$this->isIntArray($value)){
+            if (! $this->isIntArray($value)) {
                 return;
             }
 
             /** @var Attachment $attach */
             $attach = Dashboard::model(Attachment::class);
 
-            $value = $attach::whereIn('id',$value)->get()->toArray();
+            $value = $attach::whereIn('id', $value)->get()->toArray();
 
             $this->set('value', $value);
         });
@@ -153,7 +153,7 @@ class Upload extends Field
     private function isIntArray(array $array) : bool
     {
         foreach ($array as $item) {
-            if (!filter_var($item, FILTER_VALIDATE_INT)) {
+            if (! filter_var($item, FILTER_VALIDATE_INT)) {
                 return false;
             }
         }
