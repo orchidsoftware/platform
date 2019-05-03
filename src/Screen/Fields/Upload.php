@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Illuminate\Support\Arr;
+use Orchid\Attachment\Models\Attachment;
+use Orchid\Platform\Dashboard;
 use Orchid\Screen\Field;
 
 /**
@@ -119,5 +122,42 @@ class Upload extends Field
     public static function make(string $name = null): self
     {
         return (new static())->name($name);
+    }
+
+    /**
+     * Upload constructor.
+     */
+    public function __construct()
+    {
+        $this->addBeforeRender(function (){
+            $value = Arr::wrap($this->get('value'));
+
+            if(!$this->isIntArray($value)){
+                return;
+            }
+
+            /** @var Attachment $attach */
+            $attach = Dashboard::model(Attachment::class);
+
+            $value = $attach::whereIn('id',$value)->get()->toArray();
+
+            $this->set('value', $value);
+        });
+    }
+
+    /**
+     * @param array $array
+     *
+     * @return bool
+     */
+    private function isIntArray(array $array) : bool
+    {
+        foreach ($array as $item) {
+            if (!filter_var($item, FILTER_VALIDATE_INT)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
