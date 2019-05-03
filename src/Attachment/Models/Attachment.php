@@ -89,7 +89,13 @@ class Attachment extends Model
      */
     public function getRelativeUrlAttribute(): ?string
     {
-        return parse_url($this->url(), PHP_URL_PATH);
+        $url = $this->url();
+
+        if (filter_var($url, FILTER_VALIDATE_URL) === false) {
+           return null;
+        }
+
+        return parse_url($url, PHP_URL_PATH);
     }
 
     /**
