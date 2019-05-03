@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Illuminate\Database\Eloquent\Model;
+use Orchid\Screen\Field;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Crypt;
-use Orchid\Screen\Field;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * @deprecated Plz not using this
@@ -91,8 +91,8 @@ class Relation extends Field
 
     /**
      * @param string|Model $model
-     * @param string $name
-     * @param string|null $key
+     * @param string       $name
+     * @param string|null  $key
      *
      * @return self
      */
@@ -105,10 +105,9 @@ class Relation extends Field
         $this->set('relationKey', Crypt::encryptString($key));
 
         $this->addBeforeRender(function () use ($name, $key) {
-
             $value = $this->get('value');
 
-            if (!is_countable($value)) {
+            if (! is_countable($value)) {
                 $value = Arr::wrap($value);
             }
 
