@@ -40,6 +40,7 @@ class Attachment extends Model
      */
     protected $appends = [
         'url',
+        'relativeUrl'
     ];
 
     /**
@@ -81,6 +82,14 @@ class Attachment extends Model
     public function getUrlAttribute(): ?string
     {
         return $this->url();
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getRelativeUrlAttribute(): ?string
+    {
+        return parse_url($this->url(), PHP_URL_PATH);
     }
 
     /**
