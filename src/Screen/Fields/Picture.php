@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Orchid\Attachment\Models\Attachment;
-use Orchid\Platform\Dashboard;
 use Orchid\Screen\Field;
+use Orchid\Platform\Dashboard;
+use Orchid\Attachment\Models\Attachment;
 
 /**
  * Class Picture.
@@ -95,7 +95,7 @@ class Picture extends Field
         'tabindex',
         'type',
         'value',
-        'target'
+        'target',
     ];
 
     /**
@@ -110,7 +110,7 @@ class Picture extends Field
 
     /**
      * The stored value will be in the form
-     * of id attachment
+     * of id attachment.
      *
      * @return self
      */
@@ -118,10 +118,10 @@ class Picture extends Field
     {
         $this->set('target', 'id');
 
-        $this->addBeforeRender(function (){
+        $this->addBeforeRender(function () {
             $value = $this->get('value');
 
-            if(!ctype_digit($value)){
+            if (! ctype_digit($value)) {
                 return;
             }
 
@@ -138,7 +138,7 @@ class Picture extends Field
 
     /**
      * The saved value will be in the form
-     * of a full address before the file
+     * of a full address before the file.
      *
      * @return self
      */

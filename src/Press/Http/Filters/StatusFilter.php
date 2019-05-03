@@ -6,8 +6,8 @@ namespace Orchid\Press\Http\Filters;
 
 use Orchid\Screen\Field;
 use Orchid\Filters\Filter;
-use Illuminate\Database\Eloquent\Builder;
 use Orchid\Screen\Fields\Select;
+use Illuminate\Database\Eloquent\Builder;
 
 class StatusFilter extends Filter
 {
