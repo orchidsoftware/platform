@@ -32,19 +32,19 @@
                     aria-haspopup="true"
                     aria-expanded="false">
                 <i class="icon-filter"></i>
-                Add condition
+                {{__('Add condition')}}
             </button>
 
             <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow"
                  aria-labelledby="navbarDropdownMenuLink"
                  data-turbolinks-permanent
             >
-                @foreach($filters as $filter)
+                @foreach($filters as $idx => $filter)
                     @if($filter->display)
-                        <a class="dropdown-item dropdown-toggle" href="#">
+                        <a class="dropdown-item dropdown-toggle" href="#" data-filter-index="{{$idx}}" data-action="screen--filter#onFilterClick">
                             {{ $filter->name() }}
                         </a>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu" data-target="screen--filter.filterItem">
                             <div class="px-3 py-2 w-md">
                                 {!! $filter->render() !!}
                                 <div class="dropdown-divider"></div>
