@@ -17,7 +17,9 @@
         "quotes": [
             "error",
             "single"
-        ]
+        ],
+        "class-methods-use-this": 0,
+        "radix": ["error", "as-needed"]
     },
     "extends": "airbnb-base",
     "globals": {
