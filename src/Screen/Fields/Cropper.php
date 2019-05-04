@@ -9,7 +9,7 @@ use Orchid\Platform\Dashboard;
 use Orchid\Attachment\Models\Attachment;
 
 /**
- * Class Picture.
+ * Class Cropper.
  *
  * @method self accept($value = true)
  * @method self accesskey($value = true)
@@ -44,12 +44,12 @@ use Orchid\Attachment\Models\Attachment;
  * @method self height($value = true)
  * @method self popover(string $value = null)
  */
-class Picture extends Field
+class Cropper extends Field
 {
     /**
      * @var string
      */
-    public $view = 'platform::fields.picture';
+    public $view = 'platform::fields.cropper';
 
     /**
      * Default attributes value.

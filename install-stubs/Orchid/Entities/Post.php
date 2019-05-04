@@ -16,7 +16,7 @@ use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Press\Models\Category;
-use Orchid\Screen\Fields\Picture;
+use Orchid\Screen\Fields\Cropper;
 use Orchid\Screen\Fields\TinyMCE;
 use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\TextArea;
@@ -167,8 +167,7 @@ class Post extends Many
                 ->title('Object on the map')
                 ->help('Enter the coordinates, or use the search'),
 
-            Picture::make('picture')
-                ->name('picture')
+            Cropper::make('picture')
                 ->width(500)
                 ->height(300),
 

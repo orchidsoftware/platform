@@ -48,6 +48,7 @@ class StatusFilter extends Filter
                     'publish' => __('Published'),
                     'draft'   => __('Draft'),
                 ])
+                ->empty()
                 ->title($this->name())
                 ->autocomplete('off'),
         ];

@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @method self tabindex($value = true)
  * @method self help(string $value = null)
  * @method self popover(string $value = null)
+ * @method self options($value = null)
  */
 class Select extends Field
 {
@@ -140,7 +141,7 @@ class Select extends Field
      * @param string|null $name
      * @param string      $key
      *
-     * @return \Orchid\Screen\Fields\Select
+     * @return self
      */
     public function empty(string $name = '', string $key = ''): self
     {

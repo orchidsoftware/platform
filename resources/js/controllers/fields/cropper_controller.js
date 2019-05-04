@@ -19,10 +19,10 @@ export default class extends Controller {
         let image = this.data.get('url') ? this.data.get('url') : this.data.get(`value`);
 
         if (image) {
-            this.element.querySelector('.picture-preview').src = image;
+            this.element.querySelector('.cropper-preview').src = image;
         } else {
-            this.element.querySelector('.picture-preview').classList.add('none');
-            this.element.querySelector('.picture-remove').classList.add('none');
+            this.element.querySelector('.cropper-preview').classList.add('none');
+            this.element.querySelector('.cropper-remove').classList.add('none');
         }
 
         let cropPanel = this.element.querySelector('.upload-panel');
@@ -41,13 +41,10 @@ export default class extends Controller {
      * @param event
      */
     upload(event) {
-
-
         if (!event.target.files[0]) {
             $(this.element.querySelector('.modal')).modal('show');
             return;
         }
-
 
         let reader = new FileReader();
         reader.readAsDataURL(event.target.files[0]);
@@ -92,10 +89,10 @@ export default class extends Controller {
                     let image = response.data.url;
                     let targetValue = this.data.get('target');
 
-                    element.querySelector('.picture-preview').src = image;
-                    element.querySelector('.picture-preview').classList.remove('none');
-                    element.querySelector('.picture-remove').classList.remove('none');
-                    element.querySelector('.picture-path').value = response.data[targetValue];
+                    element.querySelector('.cropper-preview').src = image;
+                    element.querySelector('.cropper-preview').classList.remove('none');
+                    element.querySelector('.cropper-remove').classList.remove('none');
+                    element.querySelector('.cropper-path').value = response.data[targetValue];
                     $(element.querySelector('.modal')).modal('hide');
                 });
         });
@@ -106,10 +103,10 @@ export default class extends Controller {
      *
      */
     clear() {
-        this.element.querySelector('.picture-path').value = '';
-        this.element.querySelector('.picture-preview').src = '';
-        this.element.querySelector('.picture-preview').classList.add('none');
-        this.element.querySelector('.picture-remove').classList.add('none');
+        this.element.querySelector('.cropper-path').value = '';
+        this.element.querySelector('.cropper-preview').src = '';
+        this.element.querySelector('.cropper-preview').classList.add('none');
+        this.element.querySelector('.cropper-remove').classList.add('none');
     }
 
     /**
@@ -148,12 +145,12 @@ export default class extends Controller {
     }
 
     scalex() {
-        var dataScaleX = this.element.querySelector('.picture-dataScaleX');
+        var dataScaleX = this.element.querySelector('.cropper-dataScaleX');
         this.cropper.scaleX(-dataScaleX.value);
     }
 
     scaley() {
-        var dataScaleY = this.element.querySelector('.picture-dataScaleY');
+        var dataScaleY = this.element.querySelector('.cropper-dataScaleY');
         this.cropper.scaleY(-dataScaleY.value)
     }
 

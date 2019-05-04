@@ -11,7 +11,7 @@ use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Fields\Select;
-use Orchid\Screen\Fields\Picture;
+use Orchid\Screen\Fields\Cropper;
 use Orchid\Screen\Fields\TinyMCE;
 use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Switcher;
@@ -91,8 +91,7 @@ class RowExample extends Rows
                 ->title('Object on the map')
                 ->help('Enter the coordinates, or use the search'),
 
-            Picture::make('picture')
-                ->name('picture')
+            Cropper::make('picture')
                 ->width(500)
                 ->height(300),
 
