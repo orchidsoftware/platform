@@ -6,19 +6,19 @@ namespace Orchid\Tests\Unit\Fields;
 
 use Orchid\Attachment\File;
 use Illuminate\Http\UploadedFile;
-use Orchid\Screen\Fields\Picture;
+use Orchid\Screen\Fields\Cropper;
 
 /**
- * Class PictureTest.
+ * Class CropperTest.
  */
-class PictureTest extends TestFieldsUnitCase
+class CropperTest extends TestFieldsUnitCase
 {
     /**
      * @test
      */
     public function testInstanse()
     {
-        $picture = Picture::make('picture')
+        $picture = Cropper::make('picture')
                 ->width(1920)
                 ->height(1020)
                 ->value('https://example.com/img.jpg');
@@ -37,7 +37,7 @@ class PictureTest extends TestFieldsUnitCase
         $attachment = new File($file);
         $upload = $attachment->load();
 
-        $picture = Picture::make('picture')
+        $picture = Cropper::make('picture')
             ->value($upload->id)
             ->width(1920)
             ->height(1020)

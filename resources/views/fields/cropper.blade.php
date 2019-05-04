@@ -1,5 +1,5 @@
 @component($typeForm,get_defined_vars())
-    <div data-controller="fields-cropper"
+    <div data-controller="fields--cropper"
          data-fields--cropper-value="{{ $attributes['value'] }}"
          data-fields--cropper-storage="{{ $storage ?? 'public' }}"
          data-fields--cropper-width="{{ $width }}"
@@ -19,20 +19,20 @@
                 <i class="icon-cloud-upload"></i> {{ __('Browse') }}
                 <input type="file"
                        accept="image/*"
-                       data-target="fields-cropper.upload"
-                       data-action="change->fields-cropper#upload click->fields-cropper#openModal"
+                       data-target="fields--cropper.upload"
+                       data-action="change->fields--cropper#upload click->fields--cropper#openModal"
                        class="d-none">
             </label>
 
             <button type="button" class="btn btn-outline-danger cropper-remove"
-                    data-action="fields-cropper#clear">{{ __('Remove') }}</button>
+                    data-action="fields--cropper#clear">{{ __('Remove') }}</button>
 
             <input type="file" class="d-none">
         </div>
 
         <input class="cropper-path"
                type="hidden"
-               data-target="fields-cropper.source"
+               data-target="fields--cropper.source"
                 @include('platform::partials.fields.attributes', ['attributes' => $attributes])
         >
 
@@ -54,7 +54,7 @@
 
                             <button type="button"
                                     class="btn btn-default"
-                                    data-action="fields-cropper#crop">
+                                    data-action="fields--cropper#crop">
                                 {{ __('Crop') }}
                             </button>
 
