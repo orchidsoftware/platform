@@ -1,6 +1,10 @@
 import { Controller } from 'stimulus';
 
 export default class extends Controller {
+    static get targets() {
+        return ['filterItem'];
+    }
+
     /**
      *
      * @param event
@@ -11,6 +15,32 @@ export default class extends Controller {
         event.preventDefault();
     }
 
+    onFilterClick(event) {
+        const currentIndex = this.filterItemTargets.findIndex(target => target.classList.contains('show'));
+        const elem = event.currentTarget;
+        const index = parseInt(elem.dataset.filterIndex);
+        const filterItem = this.filterItemTargets[index];
+
+        if (currentIndex !== -1) {
+            // hidden current filter item
+            this.filterItemTargets[currentIndex].classList.remove('show');
+
+            if (currentIndex === index) {
+                return false;
+            }
+        }
+
+        // show and position
+        filterItem.classList.add('show');
+        filterItem.style.top = `${elem.offsetTop}px`;
+        filterItem.style.left = `${elem.offsetParent.offsetWidth - 4}px`;
+        return false;
+    }
+
+    onMenuClick(event) {
+        event.stopPropagation();
+    }
+
     /**
      *
      */
@@ -18,8 +48,7 @@ export default class extends Controller {
         const params = {};
 
         document.querySelectorAll('[form="filters"]').forEach((element) => {
-
-            if(element.type === 'radio' && element.checked === false){
+            if (element.type === 'radio' && element.checked === false) {
                 return;
             }
 
@@ -66,7 +95,7 @@ export default class extends Controller {
      * @param event
      */
     clearFilter(event) {
-        const filter = event.target.dataset.filter;
+        const { filter } = event.target.dataset;
         document.querySelector(`input[name='filter[${filter}]']`).value = '';
 
         this.element.remove();
