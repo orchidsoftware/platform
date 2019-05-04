@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `Cropper` method `targetUrl`, `targetRelativeUrl`, `targetId`
+- `Upload` field takes array of numeric values
+- Property `name` for `Filter`
+- `TD` method `canSee`
+
+### Changed
+- Rename `Picture` field to `Cropper`
+
 ## 4.7.1 - 2019-04-24
 
 ### Added
