@@ -7,8 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
-- `Cropper` method `targetUrl`, `targetRelativeUrl`, `targetId`
-- `Upload` field takes array of numeric values
+- `Cropper` method `targetUrl`, `targetRelativeUrl`, `targetId` [850](https://github.com/orchidsoftware/platform/issues/850)
+- `Upload` field takes array of numeric values [851](https://github.com/orchidsoftware/platform/issues/851)
 - Property `name` for `Filter`
 - `TD` method `canSee`
 
