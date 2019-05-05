@@ -30,6 +30,9 @@ $this->router->post('notification/remove', [NotificationController::class, 'remo
 $this->router->post('files', [AttachmentController::class, 'upload'])
     ->name('systems.files.upload');
 
+$this->router->post('media', [AttachmentController::class, 'media'])
+    ->name('systems.files.media');
+
 $this->router->post('files/sort', [AttachmentController::class, 'sort'])
     ->name('systems.files.sort');
 

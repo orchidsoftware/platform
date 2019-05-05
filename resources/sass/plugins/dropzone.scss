@@ -11,11 +11,13 @@
 
   .dz-preview {
     margin: 0.5rem;
+    float: left;
 
     .dz-image {
       width: 8em;
       height: 8em;
-      @extend .img-rounded;
+      @extend .r-2x;
+      @extend .bg-light;
 
       img {
         object-fit: cover;
@@ -95,6 +97,10 @@
       @extend .text-2x;
     }
 
+  }
+
+  .dz-message{
+    margin: 0.5rem;
   }
 
 }

@@ -9,6 +9,11 @@
   }
 }
 
+.media-results *{
+  animation: smooth-appearance 240ms ease-in;
+}
+
+
 @keyframes smooth-appearance {
   0% {
     opacity: 0.1;

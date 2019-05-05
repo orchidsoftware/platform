@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
-use Illuminate\Support\Arr;
-use Orchid\Attachment\File;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Arr;
+use Orchid\Attachment\File;
 use Orchid\Attachment\Models\Attachment;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Platform\Http\Requests\MediaRequest;
 
 /**
  * Class AttachmentController.
@@ -17,11 +19,17 @@ use Orchid\Platform\Http\Controllers\Controller;
 class AttachmentController extends Controller
 {
     /**
+     * @var Attachment
+     */
+    protected $attachment;
+
+    /**
      * AttachmentController constructor.
      */
     public function __construct()
     {
         $this->checkPermission('platform.systems.attachment');
+        $this->attachment = Dashboard::modelClass(Attachment::class);
     }
 
     /**
@@ -54,7 +62,7 @@ class AttachmentController extends Controller
     {
         collect($request->get('files'))
             ->each(function ($sort, $id) {
-                $attachment = Attachment::find($id);
+                $attachment = $this->attachment->find($id);
                 $attachment->sort = $sort;
                 $attachment->save();
             });
@@ -73,7 +81,7 @@ class AttachmentController extends Controller
     public function destroy(int $id, Request $request)
     {
         $storage = $request->get('storage', 'public');
-        Attachment::find($id)->delete($storage);
+        $this->attachment->findOrFail($id)->delete($storage);
 
         return response(200);
     }
@@ -86,7 +94,8 @@ class AttachmentController extends Controller
      */
     public function update(int $id, Request $request)
     {
-        $attachment = Attachment::findOrFail($id)
+        $attachment = $this->attachment
+            ->findOrFail($id)
             ->fill($request->all());
 
         $attachment->save();
@@ -96,9 +105,10 @@ class AttachmentController extends Controller
 
     /**
      * @param UploadedFile $file
-     * @param Request      $request
+     * @param Request $request
      *
      * @return mixed
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     private function createModel(UploadedFile $file, Request $request)
     {
@@ -112,4 +122,15 @@ class AttachmentController extends Controller
 
         return $model;
     }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function media()
+    {
+        $attachments = $this->attachment->filters()->limit(30)->get();
+
+        return response()->json($attachments);
+    }
+
 }

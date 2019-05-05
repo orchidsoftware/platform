@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Orchid\Screen\Field;
 use Illuminate\Support\Arr;
-use Orchid\Platform\Dashboard;
 use Orchid\Attachment\Models\Attachment;
+use Orchid\Platform\Dashboard;
+use Orchid\Screen\Field;
 
 /**
  * Class Upload.
@@ -51,6 +51,7 @@ use Orchid\Attachment\Models\Attachment;
  * @method self resizeHeight($value = true)
  * @method self popover(string $value = null)
  * @method self groups($value = true)
+ * @method self media($value = true)
  */
 class Upload extends Field
 {
@@ -74,6 +75,7 @@ class Upload extends Field
         'resizeQuality'   => 0.8,
         'resizeWidth'     => null,
         'resizeHeight'    => null,
+        'media'           => false,
     ];
 
     /**
@@ -112,6 +114,7 @@ class Upload extends Field
         'value',
         'groups',
         'storage',
+        'media',
     ];
 
     /**

@@ -21,17 +21,47 @@
       <input type="file" value="" multiple/>
     </div>
     <div class="visual-dropzone sortable-dropzone dropzone-previews">
-    </div>
-    <div class="dz-message">
-      <hr>
-      <p class="m-t-md">
-        <span class="text-2x icon-cloud-upload"></span>
-      </p>
-      <p class="font-bold">{{__('Drag files here or click to download.')}}</p>
-      <small class="w-b-k">{{__('(Files are processed automatically, you just need to specify their order)')}}</small>
-    </div>
+        <div class="dz-message dz-preview dz-processing dz-image-preview">
+            <div class="bg-light d-flex justify-content-center align-items-center b r-2x" style="min-height: 112px;">
+                <div class="pr-1 pl-1 pt-3 pb-3">
+                    <span class="text-2x icon-cloud-upload"></span>
+                    <small class="text-muted w-b-k text-xs block">{{__('Загрузить файл')}}</small>
+                </div>
+            </div>
+        </div>
 
-     <div class="modal fade disable-scroll" tabindex="-1" role="dialog" aria-hidden="false">
+        @if($media)
+            <div class="dz-message dz-preview dz-processing dz-image-preview" data-action="click->fields--upload#openMedia">
+                <div class="bg-light d-flex justify-content-center align-items-center b r-2x" style="min-height: 112px;">
+                    <div class="pr-1 pl-1 pt-3 pb-3">
+                        <span class="text-2x icon-open"></span>
+                        <small class="text-muted w-b-k text-xs block">{{__('Медиа каталог')}}</small>
+                    </div>
+                </div>
+            </div>
+        @endif
+    </div>
+     {{--
+    <div class="dz-message">
+        <div class="dz-preview bg-light d-flex justify-content-center align-items-center b r-2x">
+            <div class="pt-3 pb-3">
+                <span class="text-2x icon-cloud-upload"></span>
+                <small class="text-muted w-b-k text-xs block">{{__('Drag files here or click to download.')}}</small>
+            </div>
+        </div>
+
+
+       <hr>
+
+     <p class="m-t-md">
+       <span class="text-2x icon-cloud-upload"></span>
+     </p>
+     <p class="font-bold">{{__('Drag files here or click to download.')}}</p>
+     <small class="w-b-k">{{__('(Files are processed automatically, you just need to specify their order)')}}</small>
+
+    </div>
+--}}
+     <div class="attachment modal fade disable-scroll" tabindex="-1" role="dialog" aria-hidden="false">
          <div class="modal-dialog slide-up">
              <div class="modal-content-wrapper">
                  <div class="modal-content">
@@ -79,6 +109,46 @@
                          <button type="button" data-action="click->fields--upload#save" class="btn btn-default">
                              {{__('Apply')}}
                          </button>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+     <div class="media modal fade disable-scroll" tabindex="-1" role="dialog" aria-hidden="false">
+         <div class="modal-dialog  modal-lg slide-up">
+             <div class="modal-content-wrapper">
+                 <div class="modal-content">
+                     <div class="modal-header clearfix">
+                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                             <span aria-hidden="true">&times;</span>
+                         </button>
+                         <h5>{{__('Медиа библиотека')}}</h5>
+                         <p class="m-b-md">{{__('Файлы загруженные ранее')}}</p>
+                     </div>
+                     <div class="modal-body">
+                         <div class="row justify-content-center">
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Поиск файла</label>
+                                    <input type="search"
+                                           data-target="fields--upload.search"
+                                           data-action="keydown->fields--upload#loadMedia"
+                                           class="form-control form-control-sm"
+                                           placeholder="{{ __('Search...') }}"
+                                    >
+                                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                </div>
+
+                                <div class="media-loader spinner-border" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+
+
+                                <div class="row media-results"></div>
+                            </div>
+                         </div>
                      </div>
                  </div>
              </div>

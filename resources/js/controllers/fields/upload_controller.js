@@ -9,6 +9,7 @@ export default class extends Controller {
      * @type {string[]}
      */
     static targets = [
+        "search",
         "name",
         "original",
         "alt",
@@ -22,7 +23,8 @@ export default class extends Controller {
      */
     constructor(props) {
         super(props);
-        this.attachments = {}
+        this.attachments = {};
+        this.mediaList = {};
     }
 
     /**
@@ -59,8 +61,6 @@ export default class extends Controller {
         this[this.getAttachmentTargetKey('alt')].value = data.alt;
         this[this.getAttachmentTargetKey('description')].value = data.description;
 
-
-        //this[this.getAttachmentTargetKey('url')].value = data.url;
         this.data.set('url', data.url);
 
     }
@@ -145,33 +145,10 @@ export default class extends Controller {
      *
      */
     initSortable() {
-
-
         new Sortable(document.querySelector(this.dropname + ' .sortable-dropzone'), {
             animation: 150,
             onChange: this.resortElement,
         });
-
-/*
-        $(this.dropname + ' .sortable-dropzone').sortable({
-            scroll: false,
-            containment: "parent",
-            update: function () {
-                const items = {};
-                $('.file-sort').each((index, value) => {
-                    const id = $(value).attr('data-file-id');
-                    items[id] = index;
-                });
-
-                axios
-                    .post(platform.prefix('/systems/files/sort'), {
-                        files: items,
-                    })
-                    .then();
-
-            },
-        });
-        */
     }
 
     /**
@@ -181,7 +158,7 @@ export default class extends Controller {
      * @param file
      */
     addSortDataAtributes(dropname, name, file) {
-        $(`${dropname} .dz-preview:last-child`)
+        $(`${dropname} .dz-complete:last-child`)
             .attr('data-file-id', file.id)
             .addClass('file-sort');
         $(
@@ -203,7 +180,7 @@ export default class extends Controller {
         const dropname = this.dropname;
         const groups = this.data.get('groups');
 
-        new Dropzone(dropname, {
+        this.dropZone = new Dropzone(dropname, {
             url: platform.prefix('/systems/files'),
             method: 'post',
             uploadMultiple: this.data.get('multiple'),
@@ -235,7 +212,7 @@ export default class extends Controller {
 
                     editButton.addEventListener('click', () => {
                         loadInfo(e.data);
-                        $(`${dropname} .modal`).modal('show');
+                        $(`${dropname} .attachment.modal`).modal('show');
                     });
 
                     e.previewElement.appendChild(removeButton);
@@ -255,7 +232,8 @@ export default class extends Controller {
 
                 if (images) {
                     Object.values(images).forEach((item) => {
-                        const mockFile = {
+
+                        const file = {
                             id: item.id,
                             name: item.original_name,
                             size: item.size,
@@ -265,9 +243,11 @@ export default class extends Controller {
                             data: item,
                         };
 
-                        this.emit('addedfile', mockFile);
-                        this.emit('thumbnail', mockFile, mockFile.url);
-                        this.files.push(mockFile);
+                        this.emit('addedfile', file);
+                        this.emit('thumbnail', file, file.url);
+                        this.emit("complete", file);
+                        this.files.push(file);
+
 
                         self.addSortDataAtributes(dropname, name, item);
                     });
@@ -314,5 +294,91 @@ export default class extends Controller {
                 self.addSortDataAtributes(dropname, name, file.data);
             },
         });
+    }
+
+    /**
+     *
+     */
+    openMedia(){
+        $(`${this.dropname} .media-loader`).show();
+        $(`${this.dropname} .media-results`).hide();
+
+        this.loadMedia();
+    }
+
+    /**
+     *
+     */
+    loadMedia(){
+        axios
+            .post(platform.prefix(`/systems/media`), {
+                filter: {
+                    disk: this.data.get('storage'),
+                    original_name: this.searchTarget.value,
+                },
+            })
+            .then((response)=>{
+                this.mediaList = response.data;
+                $(`${this.dropname} .media.modal`).modal('show');
+                this.renderMedia();
+            });
+    }
+
+    /**
+     *
+     */
+    renderMedia()
+    {
+        let html = '';
+
+        /** todo: */
+        this.mediaList.forEach((element,key) => {
+            html += '<div class="col-4 col-sm-3 col-md-2 mb-4">\n' +
+                '    <div data-action="click->fields--upload#addFile" data-key="'+key+'">\n' +
+                '        <img src="'+element.url+'"\n' +
+                '             alt="sample"\n' +
+                '             class="rounded mw-100"\n' +
+                '             style="height: 50px;width: 100%;object-fit: cover;">\n' +
+                '        <p class="text-ellipsis small text-muted mt-1 mb-0" title="'+element.original_name+'">'+element.original_name+'</p>\n' +
+                '    </div>\n' +
+                '</div>';
+        });
+
+        $(`${this.dropname} .media-results`).html(html);
+        $(`${this.dropname} .media-loader`).hide();
+        $(`${this.dropname} .media-results`).show();
+    }
+
+    /**
+     *
+     */
+    addFile(event){
+        let key = event.currentTarget.dataset.key;
+        let file = this.mediaList[key];
+
+        this.addedExistFile(file);
+    }
+
+    /**
+     *
+     * @param attachment
+     */
+    addedExistFile(attachment){
+
+        /** todo: Дублируется дважды */
+        const file = {
+            id: attachment.id,
+            name: attachment.original_name,
+            size: attachment.size,
+            type: attachment.mime,
+            status: Dropzone.ADDED,
+            url: `${attachment.url}`,
+            data: attachment,
+        };
+
+        this.dropZone.emit('addedfile', file);
+        this.dropZone.emit('thumbnail', file, file.url);
+        this.dropZone.emit("complete", file);
+        this.dropZone.files.push(file);
     }
 }

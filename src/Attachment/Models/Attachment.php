@@ -10,12 +10,15 @@ use Orchid\Platform\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Orchid\Filters\Filterable;
 
 /**
  * Class Attachment.
  */
 class Attachment extends Model
 {
+    use Filterable;
+
     /**
      * @var array
      */
@@ -48,6 +51,28 @@ class Attachment extends Model
      */
     protected $casts = [
         'sort' => 'integer',
+    ];
+
+    /**
+     * @var array
+     */
+    protected $allowedFilters = [
+        'name',
+        'original_name',
+        'mime',
+        'extension',
+        'disk'
+    ];
+
+    /**
+     * @var array
+     */
+    protected $allowedSorts = [
+        'name',
+        'original_name',
+        'mime',
+        'extension',
+        'disk'
     ];
 
     /**
