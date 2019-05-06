@@ -11,15 +11,9 @@ use Orchid\Screen\Repository;
  */
 abstract class Modals extends Base
 {
-    /**
-     *
-     */
     public const SIZE_LG = 'modal-lg';
     public const SIZE_SM = 'modal-sm';
 
-    /**
-     *
-     */
     public const TYPE_CENTER = '';
     public const TYPE_RIGHT = 'slide-right';
 
@@ -38,8 +32,8 @@ abstract class Modals extends Base
         $this->variables = [
             'apply' => __('Apply'),
             'close' => __('Close'),
-            'size' => '',
-            'type' => self::TYPE_CENTER,
+            'size'  => '',
+            'type'  => self::TYPE_CENTER,
         ];
 
         parent::__construct($layouts);
