@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Builder;
 
 class HttpFilter
 {

@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 use Orchid\Attachment\File;
-use Orchid\Attachment\Models\Attachment;
+use Illuminate\Http\Request;
 use Orchid\Platform\Dashboard;
+use Illuminate\Http\UploadedFile;
+use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Http\Controllers\Controller;
-use Orchid\Platform\Http\Requests\MediaRequest;
 
 /**
  * Class AttachmentController.
@@ -105,10 +104,11 @@ class AttachmentController extends Controller
 
     /**
      * @param UploadedFile $file
-     * @param Request $request
+     * @param Request      $request
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      *
      * @return mixed
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     private function createModel(UploadedFile $file, Request $request)
     {
@@ -132,5 +132,4 @@ class AttachmentController extends Controller
 
         return response()->json($attachments);
     }
-
 }

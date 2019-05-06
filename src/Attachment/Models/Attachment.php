@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Orchid\Attachment\Models;
 
 use Mimey\MimeTypes;
+use Orchid\Filters\Filterable;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Orchid\Filters\Filterable;
 
 /**
  * Class Attachment.
@@ -61,7 +61,7 @@ class Attachment extends Model
         'original_name',
         'mime',
         'extension',
-        'disk'
+        'disk',
     ];
 
     /**
@@ -72,7 +72,7 @@ class Attachment extends Model
         'original_name',
         'mime',
         'extension',
-        'disk'
+        'disk',
     ];
 
     /**
