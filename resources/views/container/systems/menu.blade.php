@@ -83,9 +83,7 @@
                     <h5 class="modal-title">{{ __('Element settings') }}</h5>
                 </div>
                 <div class="modal-body">
-                    <div class="wrapper-md">
-
-                        <div class="form">
+                    <div class="form">
                             <div class="form-group">
                                 <label>{{ __('Name') }} <span
                                             class="text-danger">*</span></label>
@@ -174,7 +172,6 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-action="components--menu#remove"

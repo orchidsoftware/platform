@@ -1,5 +1,4 @@
 {
-  "(Files are processed automatically, you just need to specify their order)": "(Файлы обрабатываются автоматически, вам просто нужно указать их порядок)",
   "\/about": "\/о нас",
   "A Role defines a set of tasks a user assigned the role is allowed to perform. ": "Роль определяет набор задач пользователя с назначенной ролью разрешено выполнять.",
   "A new stable version of ORCHID is available. Please update to the latest version.": "Новая стабильная версия уже доступна. Получить последнее обновление.",
@@ -58,7 +57,6 @@
   "Don't Use": "Не использовать",
   "Draft": "Черновик",
   "Drag": "Перетащите",
-  "Drag files here or click to download.": "Перетащите файлы сюда или нажмите, чтобы скачать.",
   "E-Mail Address": "Адрес электронной почты",
   "Edit": "Редактировать",
   "Editable version of the current document": "Редактируемая версия текущего документа",
@@ -194,5 +192,7 @@
   "Relations": "Отношения",
   "Export": "Экспорт",
   "Loading...": "Загрузка...",
-  "Add condition": "Добавить условие"
+  "Add condition": "Добавить условие",
+  "Upload file": "Загрузить файл",
+  "Media catalog": "Медиа каталог"
 }

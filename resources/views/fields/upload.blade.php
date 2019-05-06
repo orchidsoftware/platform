@@ -25,7 +25,7 @@
             <div class="bg-light d-flex justify-content-center align-items-center b r-2x" style="min-height: 112px;">
                 <div class="pr-1 pl-1 pt-3 pb-3">
                     <span class="text-2x icon-cloud-upload"></span>
-                    <small class="text-muted w-b-k text-xs block">{{__('Загрузить файл')}}</small>
+                    <small class="text-muted w-b-k text-xs block">{{__('Upload file')}}</small>
                 </div>
             </div>
         </div>
@@ -35,32 +35,13 @@
                 <div class="bg-light d-flex justify-content-center align-items-center b r-2x" style="min-height: 112px;">
                     <div class="pr-1 pl-1 pt-3 pb-3">
                         <span class="text-2x icon-open"></span>
-                        <small class="text-muted w-b-k text-xs block">{{__('Медиа каталог')}}</small>
+                        <small class="text-muted w-b-k text-xs block">{{__('Media catalog')}}</small>
                     </div>
                 </div>
             </div>
         @endif
     </div>
-     {{--
-    <div class="dz-message">
-        <div class="dz-preview bg-light d-flex justify-content-center align-items-center b r-2x">
-            <div class="pt-3 pb-3">
-                <span class="text-2x icon-cloud-upload"></span>
-                <small class="text-muted w-b-k text-xs block">{{__('Drag files here or click to download.')}}</small>
-            </div>
-        </div>
 
-
-       <hr>
-
-     <p class="m-t-md">
-       <span class="text-2x icon-cloud-upload"></span>
-     </p>
-     <p class="font-bold">{{__('Drag files here or click to download.')}}</p>
-     <small class="w-b-k">{{__('(Files are processed automatically, you just need to specify their order)')}}</small>
-
-    </div>
---}}
      <div class="attachment modal fade disable-scroll" tabindex="-1" role="dialog" aria-hidden="false">
          <div class="modal-dialog slide-up">
              <div class="modal-content-wrapper">
@@ -73,32 +54,25 @@
                          <p class="m-b-md">{{__('Information to display')}}</p>
                      </div>
                      <div class="modal-body">
-                         <div class="row justify-content-center">
-                             <div class="col-sm-10">
-                                 <div class="wrapper">
-
-                                     <div class="form-group">
-                                         <label>{{__('System name')}}</label>
-                                         <input type="text" class="form-control" data-target="fields--upload.name" readonly maxlength="255">
-                                     </div>
-                                     <div class="form-group">
-                                         <label>{{ __('Display name') }}</label>
-                                         <input type="text" class="form-control" data-target="fields--upload.original" maxlength="255" placeholder="{{ __('Display Name') }}">
-                                     </div>
-                                     <div class="form-group">
-                                         <label>{{ __('Alternative text') }}</label>
-                                         <input type="text" class="form-control" data-target="fields--upload.alt" maxlength="255" placeholder="{{  __('Alternative Text')  }}">
-                                     </div>
-                                     <div class="form-group">
-                                         <label>{{ __('Description') }}</label>
-                                         <textarea class="form-control no-resize"
-                                                   data-target="fields--upload.description"
-                                                   placeholder="{{ __('Description') }}"
-                                                   maxlength="255"
-                                                   rows="3"></textarea>
-                                     </div>
-                                 </div>
-                             </div>
+                         <div class="form-group">
+                             <label>{{__('System name')}}</label>
+                             <input type="text" class="form-control" data-target="fields--upload.name" readonly maxlength="255">
+                         </div>
+                         <div class="form-group">
+                             <label>{{ __('Display name') }}</label>
+                             <input type="text" class="form-control" data-target="fields--upload.original" maxlength="255" placeholder="{{ __('Display Name') }}">
+                         </div>
+                         <div class="form-group">
+                             <label>{{ __('Alternative text') }}</label>
+                             <input type="text" class="form-control" data-target="fields--upload.alt" maxlength="255" placeholder="{{  __('Alternative Text')  }}">
+                         </div>
+                         <div class="form-group">
+                             <label>{{ __('Description') }}</label>
+                             <textarea class="form-control no-resize"
+                                       data-target="fields--upload.description"
+                                       placeholder="{{ __('Description') }}"
+                                       maxlength="255"
+                                       rows="3"></textarea>
                          </div>
                      </div>
                      <div class="modal-footer">

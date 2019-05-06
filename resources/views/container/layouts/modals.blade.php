@@ -1,6 +1,6 @@
 @push('modals-container')
     @foreach($manyForms as $key => $modal)
-        <div class="modal fade in"
+        <div class="modal fade in {{$type}}"
              id="screen-modal-{{$key}}"
              role="dialog"
              aria-labelledby="screen-modal-{{$key}}"
@@ -10,7 +10,7 @@
              data-screen--modal-method="{{$templateAsyncMethod}}"
              data-screen--modal-url="{{ url()->current() }}"
         >
-            <div class="modal-dialog {{$class ?? ''}}" role="document" id="screen-modal-type-{{$key}}">
+            <div class="modal-dialog {{$size}}" role="document" id="screen-modal-type-{{$key}}">
                 <form class="modal-content"
                       id="screen-modal-form-{{$key}}"
                       method="post"

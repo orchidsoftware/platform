@@ -10,7 +10,6 @@
     box-shadow: none;
   }
   .modal-header {
-    text-align: center;
     border-bottom: 0;
     padding: 25px 25px 0 25px;
 	display: block;
@@ -141,7 +140,7 @@
     &.slide-right {
       .close {
         position: absolute;
-        top: 0;
+        top: 1.5em;
         right: 0;
         margin-right: 10px;
         z-index: 10;
