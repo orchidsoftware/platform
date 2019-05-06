@@ -11,9 +11,17 @@ use Orchid\Screen\Repository;
  */
 abstract class Modals extends Base
 {
+    /**
+     *
+     */
     public const SIZE_LG = 'modal-lg';
     public const SIZE_SM = 'modal-sm';
-    public const SLIDE_RIGHT = 'slide-right';
+
+    /**
+     *
+     */
+    public const TYPE_CENTER = '';
+    public const TYPE_RIGHT = 'slide-right';
 
     /**
      * @var string
@@ -30,7 +38,8 @@ abstract class Modals extends Base
         $this->variables = [
             'apply' => __('Apply'),
             'close' => __('Close'),
-            'class' => '',
+            'size' => '',
+            'type' => self::TYPE_CENTER,
         ];
 
         parent::__construct($layouts);
@@ -83,7 +92,21 @@ abstract class Modals extends Base
      */
     public function size(string $class): self
     {
-        $this->variables['class'] = $class;
+        $this->variables['size'] = $class;
+
+        return $this;
+    }
+
+    /**
+     * Set CSS class for type modal.
+     *
+     * @param string $class
+     *
+     * @return Modals
+     */
+    public function type(string $class): self
+    {
+        $this->variables['type'] = $class;
 
         return $this;
     }
