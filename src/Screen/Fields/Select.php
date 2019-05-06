@@ -146,9 +146,16 @@ class Select extends Field
     public function empty(string $name = '', string $key = ''): self
     {
         $this->addBeforeRender(function () use ($name, $key) {
+
+            $options = $this->get('options', []);
+
+            if(!is_array($options)){
+                $options = $options->toArray();
+            }
+
             $value = array_merge(
                 [$key => $name],
-                $this->get('options', [])
+                $options
             );
 
             $this->set('options', $value);
