@@ -254,7 +254,7 @@ class Field implements FieldContract
         collect($this->getAttributes())
             ->only(array_merge($this->universalAttributes, $this->inlineAttributes))
             ->map(function ($item, $key) use ($modifiers) {
-                $key = title_case($key);
+                $key = Str::title($key);
                 $signature = 'modify'.$key;
                 if (in_array($signature, $modifiers, true)) {
                     $this->attributes[$key] = $this->$signature($item);

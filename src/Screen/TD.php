@@ -6,6 +6,7 @@ namespace Orchid\Screen;
 
 use Closure;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Orchid\Screen\Traits\CanSee;
 use Illuminate\Support\Traits\Macroable;
 
@@ -99,7 +100,7 @@ class TD
     {
         $td = new static($name);
         $td->column = $name;
-        $td->title = is_null($title) ? title_case($name) : $title;
+        $td->title = is_null($title) ? Str::title($name) : $title;
 
         return $td;
     }

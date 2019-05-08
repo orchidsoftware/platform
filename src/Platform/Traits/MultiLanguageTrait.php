@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Traits;
 
+use Illuminate\Support\Arr;
 use Orchid\Screen\Traits\AsSource;
 
 trait MultiLanguageTrait
@@ -40,10 +41,10 @@ trait MultiLanguageTrait
         $jsonContent = (array) $this->getAttribute($this->jsonColumnName);
         $fullName = ($locale ?? app()->getLocale()).'.'.$field;
 
-        if (array_has($jsonContent, $fullName)) {
-            return array_get($jsonContent, $fullName);
+        if (Arr::has($jsonContent, $fullName)) {
+            return Arr::get($jsonContent, $fullName);
         }
 
-        return array_get($jsonContent, config('app.fallback_locale').'.'.$field);
+        return Arr::get($jsonContent, config('app.fallback_locale').'.'.$field);
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Filters;
 
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
@@ -218,6 +219,6 @@ class HttpFilter
      */
     public function getFilter($property)
     {
-        return array_get($this->filters, $property);
+        return Arr::get($this->filters, $property);
     }
 }
