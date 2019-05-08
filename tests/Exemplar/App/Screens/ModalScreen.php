@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Tests\Exemplar\App\Screens;
 
 use Orchid\Screen\Link;
