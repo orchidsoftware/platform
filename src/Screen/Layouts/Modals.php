@@ -56,7 +56,7 @@ abstract class Modals extends Base
      *
      * @return Modals
      */
-    public function applyButton(string $text): self
+    public function applyButton($text): self
     {
         $this->variables['apply'] = $text;
 

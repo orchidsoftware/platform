@@ -35,15 +35,15 @@
                         @csrf
                     </div>
                     <div class="modal-footer">
-
                         <button type="button" class="btn btn-link" data-dismiss="modal">
                             {{ $close }}
                         </button>
-
-                        <button type="submit" id="submit-modal-{{$key}}"
-                                class="btn btn-default">
-                            {{ $apply }}
-                        </button>
+                        @if (!is_null($apply))
+                            <button type="submit" id="submit-modal-{{$key}}"
+                                    class="btn btn-default">
+                                {{ $apply }}
+                            </button>
+                        @endif
                     </div>
                 </form>
             </div>
