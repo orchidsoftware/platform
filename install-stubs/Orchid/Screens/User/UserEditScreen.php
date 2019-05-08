@@ -52,7 +52,7 @@ class UserEditScreen extends Screen
     /**
      * Button commands.
      *
-     * @return array
+     * @return Link[]
      */
     public function commandBar(): array
     {

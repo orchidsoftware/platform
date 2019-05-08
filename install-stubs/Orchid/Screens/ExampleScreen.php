@@ -84,7 +84,7 @@ class ExampleScreen extends Screen
     /**
      * Button commands.
      *
-     * @return array
+     * @return Link[]
      */
     public function commandBar(): array
     {

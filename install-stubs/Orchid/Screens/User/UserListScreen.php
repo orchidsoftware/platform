@@ -47,7 +47,7 @@ class UserListScreen extends Screen
     /**
      * Button commands.
      *
-     * @return array
+     * @return Link[]
      */
     public function commandBar() : array
     {
@@ -57,7 +57,7 @@ class UserListScreen extends Screen
     /**
      * Views.
      *
-     * @return array
+     * @return Layout[]
      */
     public function layout() : array
     {

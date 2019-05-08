@@ -78,7 +78,7 @@ class AnnouncementScreen extends Screen
     /**
      * Views.
      *
-     * @return array
+     * @return Layout[]
      */
     public function layout(): array
     {

@@ -60,7 +60,7 @@ class RoleEditScreen extends Screen
     /**
      * Button commands.
      *
-     * @return array
+     * @return Link[]
      */
     public function commandBar(): array
     {
@@ -78,7 +78,7 @@ class RoleEditScreen extends Screen
     /**
      * Views.
      *
-     * @return array
+     * @return Layout[]
      */
     public function layout(): array
     {

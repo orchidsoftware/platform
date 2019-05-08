@@ -40,7 +40,7 @@ class ModalScreen extends Screen
     /**
      * Button commands.
      *
-     * @return array
+     * @return Link[]
      */
     public function commandBar(): array
     {
