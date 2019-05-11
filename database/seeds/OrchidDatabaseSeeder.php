@@ -23,10 +23,6 @@ class OrchidDatabaseSeeder extends Seeder
             //UsersTableSeeder::class,
             //RolesTableSeeder::class,
             //SettingsTableSeeder::class,
-            //TermsTableSeeder::class,
-            //MenusTableSeeder::class,
-            //PagesTableSeeder::class,
-            //PostsTableSeeder::class,
         ]);
     }
 }

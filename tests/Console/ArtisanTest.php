@@ -14,19 +14,6 @@ class ArtisanTest extends TestConsoleCase
      *
      * @var
      */
-    public function testArtisanOrchidEntityMany()
-    {
-        $this->artisan('orchid:entity-many', ['name' => $this->generateNameFromMethod()])
-            ->expectsOutput('Behavior created successfully.')
-            ->assertExitCode(0);
-    }
-
-    public function testArtisanOrchidEntitySingle()
-    {
-        $this->artisan('orchid:entity-single', ['name' => $this->generateNameFromMethod()])
-            ->expectsOutput('Behavior created successfully.')
-            ->assertExitCode(0);
-    }
 
     public function testArtisanOrchidChart()
     {
