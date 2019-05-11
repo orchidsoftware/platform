@@ -8,6 +8,7 @@ use Orchid\Screen\Field;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Support\Assert;
 
 /**
  * @deprecated Plz not using this
@@ -104,11 +105,15 @@ class Relation extends Field
         $this->set('relationName', Crypt::encryptString($name));
         $this->set('relationKey', Crypt::encryptString($key));
 
-        $this->addBeforeRender(function () use ($name, $key) {
+        $this->addBeforeRender(function () use ($model, $name, $key) {
             $value = $this->get('value');
 
             if (! is_countable($value)) {
                 $value = Arr::wrap($value);
+            }
+
+            if (Assert::isIntArray($value)) {
+                $value = $model::whereIn($key, $value)->get();
             }
 
             $value = collect($value)
