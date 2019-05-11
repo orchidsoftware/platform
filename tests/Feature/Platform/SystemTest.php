@@ -16,22 +16,4 @@ class SystemTest extends TestFeatureCase
         $response->assertOk();
         $this->assertStringContainsString('System', $response->getContent());
     }
-
-    public function testRoutePlatformSystemsMenuIndex()
-    {
-        $response = $this->actingAs($this->createAdminUser())
-            ->get(route('platform.systems.menu.index'));
-
-        $response->assertStatus(302)
-            ->assertRedirect('/dashboard/press/menu/header');
-    }
-
-    public function testRoutePlatformSystemsMenuShow()
-    {
-        $response = $this->actingAs($this->createAdminUser())
-            ->get(route('platform.systems.menu.show', 'header'));
-
-        $response->assertOk();
-        $this->assertStringContainsString('data-controller="components--menu"', $response->getContent());
-    }
 }
