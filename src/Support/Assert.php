@@ -11,7 +11,7 @@ class Assert
      *
      * @return bool
      */
-    static public function isIntArray(array $array) : bool
+    public static function isIntArray(array $array) : bool
     {
         return count($array) === count(array_filter($array, 'ctype_digit'));
     }
