@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Screen\Fields;
 
 use Orchid\Screen\Field;
+use Orchid\Support\Assert;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Support\Assert;
 
 /**
  * @deprecated Plz not using this
