@@ -14,7 +14,6 @@ class ArtisanTest extends TestConsoleCase
      *
      * @var
      */
-
     public function testArtisanOrchidChart()
     {
         $this->artisan('orchid:chart', ['name' => $this->generateNameFromMethod()])
