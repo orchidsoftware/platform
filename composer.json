@@ -55,7 +55,6 @@
       "Orchid\\Attachment\\": "src/Attachment/",
       "Orchid\\Filters\\": "src/Filters/",
       "Orchid\\Platform\\": "src/Platform/",
-      "Orchid\\Press\\": "src/Press/",
       "Orchid\\Screen\\": "src/Screen/",
       "Orchid\\Setting\\": "src/Setting/",
       "Orchid\\Support\\": "src/Support/"
@@ -77,8 +76,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Orchid\\Platform\\Providers\\FoundationServiceProvider",
-        "Orchid\\Press\\Providers\\PressServiceProvider"
+        "Orchid\\Platform\\Providers\\FoundationServiceProvider"
       ],
       "aliases": {
         "Alert": "Orchid\\Support\\Facades\\Alert",
