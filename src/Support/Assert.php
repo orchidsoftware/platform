@@ -13,12 +13,6 @@ class Assert
      */
     static public function isIntArray(array $array) : bool
     {
-        foreach ($array as $item) {
-            if (! filter_var($item, FILTER_VALIDATE_INT)) {
-                return false;
-            }
-        }
-
-        return true;
+        return count($array) === count(array_filter($array, 'ctype_digit'));
     }
 }
