@@ -30,6 +30,11 @@ class RoleEditScreen extends Screen
     public $description = 'Access rights';
 
     /**
+     * @var bool
+     */
+    private $exist = false;
+
+    /**
      * Query data.
      *
      * @param Role $role
@@ -38,6 +43,8 @@ class RoleEditScreen extends Screen
      */
     public function query(Role $role): array
     {
+        $this->exist = $role->exists;
+
         $rolePermission = $role->permissions ?? [];
         $permission = Dashboard::getPermission()
             ->sort()
@@ -71,7 +78,8 @@ class RoleEditScreen extends Screen
 
             Link::name(__('Remove'))
                 ->icon('icon-trash')
-                ->method('remove'),
+                ->method('remove')
+                ->canSee($this->exist),
         ];
     }
 
