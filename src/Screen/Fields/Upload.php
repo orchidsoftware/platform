@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Fields;
 
 use Orchid\Screen\Field;
+use Orchid\Support\Assert;
 use Illuminate\Support\Arr;
 use Orchid\Platform\Dashboard;
 use Orchid\Attachment\Models\Attachment;
@@ -135,7 +136,7 @@ class Upload extends Field
         $this->addBeforeRender(function () {
             $value = Arr::wrap($this->get('value'));
 
-            if (! $this->isIntArray($value)) {
+            if (! Assert::isIntArray($value)) {
                 return;
             }
 
@@ -146,21 +147,5 @@ class Upload extends Field
 
             $this->set('value', $value);
         });
-    }
-
-    /**
-     * @param array $array
-     *
-     * @return bool
-     */
-    private function isIntArray(array $array) : bool
-    {
-        foreach ($array as $item) {
-            if (! filter_var($item, FILTER_VALIDATE_INT)) {
-                return false;
-            }
-        }
-
-        return true;
     }
 }
