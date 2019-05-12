@@ -15,6 +15,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Rename `Picture` field to `Cropper`
 
+### Removed
+-  Move package for `Press` in a separate repository [815](https://github.com/orchidsoftware/platform/issues/815)
+- `Orchid\Dashboard\ItemMenu::groupName()` use `title` method [842](https://github.com/orchidsoftware/platform/issues/842)
+- `Entity` property `groupname` use `title` [842](https://github.com/orchidsoftware/platform/issues/842)
+- `Orchid\Platform\Filters\*` use `Orchid\Filters\Filter\*`
+- `AttachTrait` use `Orchid\Attachment\Attachable`
+- `FilterTrait` use `Orchid\Filters\Filterable`
+
 ## 4.7.1 - 2019-04-24
 
 ### Added
