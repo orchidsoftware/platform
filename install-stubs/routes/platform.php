@@ -36,16 +36,6 @@ $this->router->screen('roles/{roles}/edit', RoleEditScreen::class)->name('platfo
 $this->router->screen('roles/create', RoleEditScreen::class)->name('platform.systems.roles.create');
 $this->router->screen('roles', RoleListScreen::class)->name('platform.systems.roles');
 
-// Comments...
-$this->router->screen('comments/{comments}/edit', CommentEditScreen::class)->name('platform.systems.comments.edit');
-$this->router->screen('comments/create', CommentEditScreen::class)->name('platform.systems.comments.create');
-$this->router->screen('comments', CommentListScreen::class)->name('platform.systems.comments');
-
-// Categories...
-$this->router->screen('category/{category}/edit', CategoryEditScreen::class)->name('platform.systems.category.edit');
-$this->router->screen('category/create', CategoryEditScreen::class)->name('platform.systems.category.create');
-$this->router->screen('category', CategoryListScreen::class)->name('platform.systems.category');
-
 // Example...
 $this->router->screen('example', ExampleScreen::class)->name('platform.example');
 //Route::screen('/dashboard/screen/idea', 'Idea::class','platform.screens.idea');

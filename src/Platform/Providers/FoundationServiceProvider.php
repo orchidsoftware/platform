@@ -66,7 +66,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     protected function registerDatabase(): self
     {
-        $this->loadMigrationsFrom(realpath(PLATFORM_PATH.'/database/migrations/platform'));
+        $this->loadMigrationsFrom(realpath(PLATFORM_PATH.'/database/migrations'));
 
         return $this;
     }
