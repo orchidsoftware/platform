@@ -70,18 +70,6 @@ trait Environment
         $app['config']->set('scout.driver', null);
         $app['config']->set('database.default', 'orchid');
 
-        $app['config']->set('sluggable', [
-            'source'             => null,
-            'maxLength'          => null,
-            'maxLengthKeepWords' => true,
-            'method'             => null,
-            'separator'          => '-',
-            'unique'             => true,
-            'uniqueSuffix'       => null,
-            'includeTrashed'     => false,
-            'reserved'           => null,
-            'onUpdate'           => false,
-        ]);
         $app['config']->set('session', [
             'driver'          => 'file',
             'lifetime'        => 10,

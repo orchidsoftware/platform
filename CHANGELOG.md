@@ -22,6 +22,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Orchid\Platform\Filters\*` use `Orchid\Filters\Filter\*`
 - `AttachTrait` use `Orchid\Attachment\Attachable`
 - `FilterTrait` use `Orchid\Filters\Filterable`
+- Sluggable package
+- Widget package
 
 ## 4.7.1 - 2019-04-24
 

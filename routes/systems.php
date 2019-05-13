@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-use Orchid\Platform\Http\Controllers\Systems\TagsController;
 use Orchid\Platform\Http\Controllers\Systems\SystemController;
-use Orchid\Platform\Http\Controllers\Systems\WidgetController;
 use Orchid\Platform\Http\Controllers\Systems\RelationController;
 use Orchid\Platform\Http\Controllers\Systems\AttachmentController;
 use Orchid\Platform\Http\Controllers\Systems\NotificationController;
@@ -44,12 +42,6 @@ $this->router->post('files/get', [AttachmentController::class, 'getFilesByIds'])
 
 $this->router->put('files/post/{id}', [AttachmentController::class, 'update'])
     ->name('systems.files.update');
-
-$this->router->get('tags/{tags?}', [TagsController::class, 'show'])
-    ->name('systems.tag.search');
-
-$this->router->post('widget/{widget}/{key?}', [WidgetController::class, 'index'])
-    ->name('systems.widget');
 
 $this->router->post('relation', [RelationController::class, 'view'])
     ->name('systems.relation');
