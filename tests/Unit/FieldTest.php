@@ -21,7 +21,6 @@ use Orchid\Screen\Fields\DateRange;
 use Orchid\Screen\Fields\DateTimer;
 use Orchid\Screen\Fields\SimpleMDE;
 use Orchid\Screen\Fields\RadioButtons;
-use Orchid\Screen\Fields\Relationship;
 
 /**
  * Class FieldTest.
@@ -51,11 +50,6 @@ class FieldTest extends TestUnitCase
              [
                  'name'    => 'example',
                  'options' => ['value' => 'example'],
-             ], ],
-            [Relationship::class,
-             [
-                 'name'    => 'example',
-                 'handler' => 'handler',
              ], ],
             [Map::class,
              [

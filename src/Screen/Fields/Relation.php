@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @deprecated Plz not using this
- *
  * Class Relation.
  *
  * @method self accesskey($value = true)
