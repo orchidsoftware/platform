@@ -34,14 +34,14 @@ mix
     .extract([
         'stimulus', 'turbolinks', 'stimulus/webpack-helpers',
         'jquery', 'popper.js', 'bootstrap',
-        'dropzone', 'nestable', 'select2', 'cropperjs', 'frappe-charts', 'inputmask',
+        'dropzone', 'select2', 'cropperjs', 'frappe-charts', 'inputmask',
         'simplemde', 'tinymce', 'axios', 'leaflet', 'codeflask', 'stimulus-flatpickr',
         'flatpickr', 'quill', 'codemirror', 'typo-js', 'sortablejs'
     ])
     .autoload({
         jquery: [
             '$', 'window.jQuery', 'jQuery', 'jquery',
-            'bootstrap', 'nestable', 'select2'
+            'bootstrap', 'select2'
         ],
     })
     .setPublicPath('public')

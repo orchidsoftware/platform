@@ -1,4 +1,4 @@
-@extends('platform::layouts.app')
+@extends('platform::app')
 
 @section('body-left')
 
@@ -11,7 +11,7 @@
         </a>
 
         <a class="header-brand order-last" href="{{route('platform.index')}}">
-            @includeIf(config('platform.template.header','platform::layouts.header'))
+            @includeIf(config('platform.template.header','platform::header'))
         </a>
     </div>
 
@@ -37,7 +37,7 @@
     </div>
 
     <div class="wrapper m-b m-t d-none d-lg-block">
-        @includeIf(config('platform.template.footer','platform::layouts.footer'))
+        @includeIf(config('platform.template.footer','platform::footer'))
     </div>
 @endsection
 

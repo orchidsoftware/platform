@@ -15,7 +15,7 @@ abstract class Rows extends Base
     /**
      * @var string
      */
-    public $template = 'platform::container.layouts.row';
+    public $template = 'platform::layouts.row';
 
     /**
      * @var Repository

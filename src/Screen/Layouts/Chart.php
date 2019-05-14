@@ -15,7 +15,7 @@ abstract class Chart extends Base
     /**
      * @var string
      */
-    public $template = 'platform::container.layouts.chart';
+    public $template = 'platform::layouts.chart';
 
     /**
      * @var string

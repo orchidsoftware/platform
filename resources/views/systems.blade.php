@@ -1,4 +1,4 @@
-@extends('platform::layouts.dashboard')
+@extends('platform::dashboard')
 
 @section('title',__('System settings'))
 @section('description', __('Global system settings'))

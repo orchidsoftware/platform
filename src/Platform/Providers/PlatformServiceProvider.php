@@ -28,7 +28,7 @@ class PlatformServiceProvider extends ServiceProvider
     {
         $this->dashboard = $dashboard;
 
-        View::composer('platform::container.systems.index', SystemMenuComposer::class);
+        View::composer('platform::systems', SystemMenuComposer::class);
         View::composer('platform::partials.notifications', NotificationsComposer::class);
         View::composer('platform::partials.announcement', AnnouncementsComposer::class);
 

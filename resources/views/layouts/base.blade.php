@@ -1,4 +1,4 @@
-@extends('platform::layouts.dashboard')
+@extends('platform::dashboard')
 @section('title',__($screen->name))
 @section('description',__($screen->description))
 @section('controller','screen--base')

@@ -15,7 +15,7 @@ abstract class Table extends Base
     /**
      * @var string
      */
-    public $template = 'platform::container.layouts.table';
+    public $template = 'platform::layouts.table';
 
     /**
      * @var string

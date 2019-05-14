@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Screen\Traits;
+namespace Orchid\Screen;
 
 use Illuminate\Support\Arr;
 

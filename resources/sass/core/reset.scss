@@ -289,36 +289,6 @@ blockquote {
   > .badge {
     margin-right: 0;
   }
-  > .fa-chevron-right {
-    float: right;
-    margin-top: 4px;
-    margin-right: -5px;
-    & + .badge {
-      margin-right: 5px;
-    }
-  }
-}
-
-.nav-pills {
-  &.no-radius {
-    > li {
-      > a {
-        border-radius: 0;
-      }
-    }
-  }
-  > li {
-    &.active {
-      > a {
-        color: #fff !important;
-        background-color: $brand-info;
-        &:hover,
-        &:active {
-          background-color: darken($brand-info, 5%);
-        }
-      }
-    }
-  }
 }
 
 .nav {

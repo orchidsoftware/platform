@@ -14,7 +14,7 @@ abstract class Tabs extends Base
     /**
      * @var string
      */
-    public $template = 'platform::container.layouts.tabs';
+    public $template = 'platform::layouts.tabs';
 
     /**
      * @param Repository $repository

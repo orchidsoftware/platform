@@ -74,7 +74,7 @@ abstract class Screen extends Controller
     /**
      * Views.
      *
-     * @return Layouts[]
+     * @return Layout[]
      */
     abstract public function layout(): array;
 
@@ -132,7 +132,7 @@ abstract class Screen extends Controller
         $query = call_user_func_array([$this, 'query'], $this->arguments);
         $this->post = new Repository($query);
 
-        return view('platform::container.layouts.base', [
+        return view('platform::layouts.base', [
             'screen'    => $this,
         ]);
     }

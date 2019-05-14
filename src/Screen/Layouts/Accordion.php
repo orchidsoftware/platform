@@ -14,7 +14,7 @@ abstract class Accordion extends Base
     /**
      * @var string
      */
-    public $template = 'platform::container.layouts.accordion';
+    public $template = 'platform::layouts.accordion';
 
     /**
      * @param Repository $repository

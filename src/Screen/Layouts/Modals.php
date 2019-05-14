@@ -20,7 +20,7 @@ abstract class Modals extends Base
     /**
      * @var string
      */
-    public $template = 'platform::container.layouts.modals';
+    public $template = 'platform::layouts.modals';
 
     /**
      * Modals constructor.

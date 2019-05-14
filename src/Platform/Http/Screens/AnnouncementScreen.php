@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens;
 
+use Orchid\Screen\Layout;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
@@ -88,8 +89,8 @@ class AnnouncementScreen extends Screen
     }
 
     /**
-     * @param \Orchid\Platform\Models\Announcement $announcement
-     * @param \Illuminate\Http\Request             $request
+     * @param Announcement $announcement
+     * @param Request      $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */

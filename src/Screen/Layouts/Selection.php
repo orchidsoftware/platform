@@ -15,7 +15,7 @@ abstract class Selection extends Base
     /**
      * @var string
      */
-    public $template = 'platform::container.layouts.selection';
+    public $template = 'platform::layouts.selection';
 
     /**
      * @param Repository $query

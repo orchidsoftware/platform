@@ -14,7 +14,7 @@ abstract class Blank extends Base
     /**
      * @var string
      */
-    public $template = 'platform::container.layouts.blank';
+    public $template = 'platform::layouts.blank';
 
     /**
      * @param Repository $repository

@@ -21,6 +21,6 @@ class SystemController extends Controller
      */
     public function index()
     {
-        return view('platform::container.systems.index');
+        return view('platform::systems');
     }
 }

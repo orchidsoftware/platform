@@ -7,7 +7,7 @@ namespace Orchid\Platform\Models;
 use Orchid\Access\RoleAccess;
 use Orchid\Filters\Filterable;
 use Orchid\Access\RoleInterface;
-use Orchid\Screen\Traits\AsSource;
+use Orchid\Screen\AsSource;
 use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model implements RoleInterface

@@ -7,7 +7,6 @@ global.$ = global.jQuery = require('jquery');
 require('popper.js');
 require('bootstrap');
 require('select2');
-require('nestable');
 
 window.platform = platform();
 window.application = Application.start();

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Traits;
 
-use Laravel\Scout\Searchable;
+use Laravel\Scout\Searchable as ScoutSearchable;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-trait GlobalSearchTrait
+trait Searchable
 {
-    use Searchable;
+    use ScoutSearchable;
 
     /**
      * @return string

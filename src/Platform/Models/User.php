@@ -8,7 +8,7 @@ use Exception;
 use Orchid\Access\UserAccess;
 use Orchid\Filters\Filterable;
 use Orchid\Access\UserInterface;
-use Orchid\Screen\Traits\AsSource;
+use Orchid\Screen\AsSource;
 use Illuminate\Support\Facades\Hash;
 use Orchid\Support\Facades\Dashboard;
 use Illuminate\Notifications\Notifiable;
