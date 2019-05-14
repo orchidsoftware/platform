@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Illuminate\Support\Str;
-use Orchid\Screen\CanSee;
 use Illuminate\Support\ViewErrorBag;
 use Orchid\Screen\Contracts\FieldContract;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;

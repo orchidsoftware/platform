@@ -7,7 +7,6 @@ namespace Orchid\Screen;
 use Closure;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Orchid\Screen\CanSee;
 use Illuminate\Support\Traits\Macroable;
 
 class TD
