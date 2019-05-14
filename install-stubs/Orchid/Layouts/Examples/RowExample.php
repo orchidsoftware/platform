@@ -108,10 +108,6 @@ class RowExample extends Rows
                 ->title('Indexing')
                 ->help('Allow search bots to index'),
 
-            Tags::make('keywords')
-                ->title('Keywords')
-                ->help('SEO keywords'),
-
             SimpleMDE::make('body2')
                 ->title('Name Articles')
                 ->help('Article title'),
