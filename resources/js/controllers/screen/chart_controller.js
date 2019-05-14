@@ -1,5 +1,5 @@
-import {Controller} from 'stimulus';
-import {Chart}      from 'frappe-charts/dist/frappe-charts.min.esm';
+import { Controller } from 'stimulus';
+import { Chart } from 'frappe-charts/dist/frappe-charts.min.esm';
 
 export default class extends Controller {
 
@@ -21,6 +21,10 @@ export default class extends Controller {
 
         //@see https://github.com/frappe/charts/issues/212
         this.chart.unbindWindowEvents();
+
+        $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', () => {
+            this.chart.draw();
+        });
     }
 
     /**
