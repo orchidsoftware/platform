@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Platform\Models;
 
 use Exception;
+use Orchid\Screen\AsSource;
 use Orchid\Access\UserAccess;
 use Orchid\Filters\Filterable;
 use Orchid\Access\UserInterface;
-use Orchid\Screen\AsSource;
 use Illuminate\Support\Facades\Hash;
 use Orchid\Support\Facades\Dashboard;
 use Illuminate\Notifications\Notifiable;
