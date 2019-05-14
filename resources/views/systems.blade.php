@@ -24,6 +24,7 @@
             <div class="row">
 
                 @php
+                    /** @var \Illuminate\Support\Collection $menu */
                     $menu = Dashboard::menu()->build('Systems');
                     $chunk = ceil($menu->count() / 2);
                     $menu = $menu->chunk($chunk);
