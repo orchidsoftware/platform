@@ -8,7 +8,7 @@
                 <small class="text-muted block mb-1">{{ __($key) }}</small>
                 <p class="h4 mb-1 text-black font-thin">{{ $metric['keyValue'] }}</p>
 
-                @if(isset($metric['keyDiff']))
+                @isset($metric['keyDiff'])
                     @if((float)$metric['keyDiff'] < 0)
                         <small class="text-danger">{{ $metric['keyDiff'] }} % <i class="icon-arrow-down"></i></small>
                     @elseif((float)$metric['keyDiff'] == 0)
@@ -16,7 +16,7 @@
                     @else
                         <small class="text-success">{{ $metric['keyDiff'] }} % <i class="icon-arrow-up"></i></small>
                     @endif
-                @endif
+                @endisset
             </div>
         @endforeach
     </div>
