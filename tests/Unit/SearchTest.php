@@ -4,25 +4,19 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Searchable;
 use Orchid\Tests\TestUnitCase;
+use Orchid\Platform\Searchable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class SearchTest extends TestUnitCase
 {
-    /**
-     *
-     */
     private const LABEL = 'Users';
     private const TITLE = 'Alexandr Chernyaev';
     private const SUB_TITLE = 'Developer';
     private const URL = 'http://example.com/user/45';
     private const AVATAR = 'http://example.com/img/user/45.jpg';
 
-    /**
-     *
-     */
     public function testDefaultSearchable(): void
     {
         $model = new class extends Model {
@@ -33,7 +27,7 @@ class SearchTest extends TestUnitCase
                 'title',
                 'subTitle',
                 'url',
-                'avatar'
+                'avatar',
             ];
         };
 
@@ -52,9 +46,6 @@ class SearchTest extends TestUnitCase
         $this->assertEquals($model->searchAvatar(), self::AVATAR);
     }
 
-    /**
-     *
-     */
     public function testCustomSearchable(): void
     {
         $model = new class extends Model {
@@ -65,7 +56,7 @@ class SearchTest extends TestUnitCase
                 'title',
                 'subTitle',
                 'url',
-                'avatar'
+                'avatar',
             ];
 
             /**
@@ -75,7 +66,6 @@ class SearchTest extends TestUnitCase
             {
                 return 'Roles';
             }
-
         };
 
         $model->fill([
