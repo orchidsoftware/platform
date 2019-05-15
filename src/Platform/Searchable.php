@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Traits;
+namespace Orchid\Platform;
 
 use Laravel\Scout\Searchable as ScoutSearchable;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -25,7 +25,7 @@ trait Searchable
     public function searchTitle(): ?string
     {
         return $this->getAttribute('title')
-            ?? 'See documentation method search* in Orchid\Platform\Traits\GlobalSearchTrait';
+            ?? 'See documentation method search* in Orchid\Platform\Searchable';
     }
 
     /**
