@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens;
 
-use Illuminate\Http\RedirectResponse;
 use Orchid\Screen\Link;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
 use Orchid\Support\Facades\Alert;
+use Illuminate\Http\RedirectResponse;
 use Orchid\Platform\Models\Announcement;
 use Orchid\Platform\Http\Layouts\AnnouncementLayout;
 

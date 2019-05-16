@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Layouts;
 
+use Throwable;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Fields\SimpleMDE;
-use Throwable;
 
 class AnnouncementLayout extends Rows
 {

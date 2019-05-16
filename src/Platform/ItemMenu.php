@@ -227,7 +227,7 @@ class ItemMenu
 
     /**
      * @param Closure $badge
-     * @param string   $class
+     * @param string  $class
      *
      * @return ItemMenu
      */

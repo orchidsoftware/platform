@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Contracts\View\Factory;
-use Orchid\Screen\Layouts\Base;
+use Throwable;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionParameter;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Orchid\Screen\Layouts\Base;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\View\Factory;
 use Orchid\Platform\Http\Controllers\Controller;
-use Throwable;
 
 /**
  * Class Screen.
@@ -83,9 +83,9 @@ abstract class Screen extends Controller
     abstract public function layout(): array;
 
     /**
-     * @return View
      *@throws Throwable
      *
+     * @return View
      */
     public function build()
     {
@@ -100,9 +100,9 @@ abstract class Screen extends Controller
      * @param mixed $method
      * @param mixed $slugLayouts
      *
-     * @return View
      *@throws Throwable
      *
+     * @return View
      */
     protected function asyncBuild($method, $slugLayouts)
     {
@@ -203,8 +203,9 @@ abstract class Screen extends Controller
      * @param int|string               $key
      * @param ReflectionParameter|null $parameter
      *
-     * @return mixed
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
+     * @return mixed
      */
     private function bind($key, $parameter)
     {

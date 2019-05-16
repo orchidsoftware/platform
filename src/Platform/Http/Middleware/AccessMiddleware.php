@@ -6,11 +6,11 @@ namespace Orchid\Platform\Http\Middleware;
 
 use Closure;
 use Carbon\Carbon;
-use Illuminate\Contracts\Routing\ResponseFactory;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Response;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\Routing\ResponseFactory;
 
 /**
  * Class AccessMiddleware.

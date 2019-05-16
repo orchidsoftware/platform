@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Closure;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\ViewErrorBag;
-use Orchid\Screen\Contracts\FieldContract;
 use Throwable;
+use Illuminate\Support\ViewErrorBag;
+use Illuminate\Database\Eloquent\Model;
+use Orchid\Screen\Contracts\FieldContract;
 
 class Builder
 {

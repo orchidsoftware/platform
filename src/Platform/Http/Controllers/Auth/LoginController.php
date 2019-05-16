@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Auth;
 
+use Illuminate\View\View;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Validation\ValidationException;
-use Illuminate\View\View;
 use Orchid\Platform\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 

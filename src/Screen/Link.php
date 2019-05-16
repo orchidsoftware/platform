@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
+use Illuminate\Contracts\View\Factory;
 
 /**
  * Class Link.

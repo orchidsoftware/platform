@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
-use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Collection;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class SearchController
