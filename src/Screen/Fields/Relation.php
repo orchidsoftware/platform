@@ -37,9 +37,9 @@ class Relation extends Field
      * @var array
      */
     public $attributes = [
-        'class' => 'form-control',
-        'value' => [],
-        'relationScope' => ''
+        'class'         => 'form-control',
+        'value'         => [],
+        'relationScope' => '',
     ];
 
     /**
@@ -50,7 +50,7 @@ class Relation extends Field
         'relationModel',
         'relationName',
         'relationKey',
-        'relationScope'
+        'relationScope',
     ];
 
     /**
