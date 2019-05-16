@@ -38,7 +38,7 @@ export default class extends Controller {
             zoom: default_zoom
         });
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        this.leafLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
             maxZoom: max_zoom
         }).addTo(this.leafletMap);
@@ -58,6 +58,13 @@ export default class extends Controller {
             this.leafletMarker.setLatLng(e.latlng);
             this.updateCoords();
             this.leafletMap.panTo(e.latlng);
+        });
+
+        /**
+         * @see https://stackoverflow.com/questions/36246815/data-toggle-tab-does-not-download-leaflet-map/36257493#36257493
+         */
+        $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', () => {
+            this.leafletMap.invalidateSize();
         });
     }
 
