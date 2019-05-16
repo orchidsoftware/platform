@@ -87,8 +87,8 @@ abstract class Filter
      */
     public function render() : string
     {
-        return collect($this->display())->reduce(function ($html, $field){
-            return (string) $html. $field->form('filters')->render();
+        return collect($this->display())->reduce(function ($html, $field) {
+            return (string) $html.$field->form('filters')->render();
         });
     }
 

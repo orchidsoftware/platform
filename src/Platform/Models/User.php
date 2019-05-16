@@ -144,9 +144,9 @@ class User extends Authenticatable implements UserInterface
     }
 
     /**
-     * @return string
      *@throws Exception
      *
+     * @return string
      */
     public function getAvatar()
     {

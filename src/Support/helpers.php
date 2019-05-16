@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Str;
 use Orchid\Alert\Alert;
-use Orchid\Filters\HttpFilter;
 use Orchid\Screen\Builder;
+use Illuminate\Support\Str;
 use Orchid\Screen\Repository;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Filters\HttpFilter;
 use Orchid\Support\Facades\Setting;
 use Symfony\Component\Finder\Finder;
+use Orchid\Support\Facades\Dashboard;
 
 if (! function_exists('alert')) {
     /**
@@ -54,9 +54,9 @@ if (! function_exists('generate_form')) {
      * @param string|null           $language
      * @param string|null           $prefix
      *
-     * @return string
      *@throws \Throwable
      *
+     * @return string
      */
     function generate_form(array $fields, $data = [], string $language = null, string $prefix = null)
     {

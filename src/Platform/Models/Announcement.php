@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Parsedown;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Announcement extends Model
 {

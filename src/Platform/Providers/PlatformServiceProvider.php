@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use App\Orchid\PlatformProvider;
 use Orchid\Platform\Dashboard;
+use App\Orchid\PlatformProvider;
 use Orchid\Platform\ItemPermission;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;

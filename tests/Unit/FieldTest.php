@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Orchid\Screen\Fields\Map;
-use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\UTM;
 use Orchid\Tests\TestUnitCase;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Fields\Cropper;
+use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\TinyMCE;
 use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Password;
