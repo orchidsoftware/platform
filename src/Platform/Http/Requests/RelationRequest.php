@@ -30,6 +30,7 @@ class RelationRequest extends FormRequest
             'model'  => 'required',
             'key'    => 'required',
             'name'   => 'required',
+            'scope'  => '',
         ];
     }
 }

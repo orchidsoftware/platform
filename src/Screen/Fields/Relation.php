@@ -39,6 +39,7 @@ class Relation extends Field
     public $attributes = [
         'class' => 'form-control',
         'value' => [],
+        'relationScope' => ''
     ];
 
     /**
@@ -49,6 +50,7 @@ class Relation extends Field
         'relationModel',
         'relationName',
         'relationKey',
+        'relationScope'
     ];
 
     /**
@@ -124,6 +126,20 @@ class Relation extends Field
 
             $this->set('value', $value);
         });
+
+        return $this;
+    }
+
+    /**
+     * @param string $scope
+     *
+     * @return $this
+     */
+    public function applyScope(string $scope)
+    {
+        $scope = lcfirst($scope);
+
+        $this->set('relationScope', Crypt::encryptString($scope));
 
         return $this;
     }
