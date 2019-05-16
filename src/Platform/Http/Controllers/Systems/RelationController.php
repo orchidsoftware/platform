@@ -19,7 +19,7 @@ class RelationController extends Controller
      */
     public function view(RelationRequest $request)
     {
-        list('model' => $model, 'name' => $name, 'key' => $key, 'scope' => $scope) = collect($request->except(['search']))->map(function ($item) {
+        ['model' => $model, 'name' => $name, 'key' => $key, 'scope' => $scope] = collect($request->except(['search']))->map(function ($item) {
             return is_null($item) ? null : Crypt::decryptString($item);
         });
 
@@ -27,7 +27,7 @@ class RelationController extends Controller
         $model = new $model;
         $search = $request->get('search', '');
 
-        if(!is_null($scope)){
+        if (! is_null($scope)) {
             $model = $model->{$scope}();
         }
 
