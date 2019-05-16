@@ -108,7 +108,7 @@ class Relation extends Field
         $this->addBeforeRender(function () use ($model, $name, $key) {
             $value = $this->get('value');
 
-            if (! is_countable($value)) {
+            if (! is_iterable($value)) {
                 $value = Arr::wrap($value);
             }
 
