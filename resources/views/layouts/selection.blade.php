@@ -35,7 +35,6 @@
                 @endforeach
             </div>
         </div>
-
         @foreach($filters as $filter)
             @if($filter->display && $filter->isApply())
                 <a href="{{ $filter->resetLink() }}" class="badge badge-light">

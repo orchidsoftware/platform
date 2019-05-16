@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -  Move package for `Press` in a separate repository [815](https://github.com/orchidsoftware/platform/issues/815)
 - `Orchid\Dashboard\ItemMenu::groupName()` use `title` method [842](https://github.com/orchidsoftware/platform/issues/842)
 - `Entity` property `groupname` use `title` [842](https://github.com/orchidsoftware/platform/issues/842)
-- `Orchid\Platform\Filters\*` use `Orchid\Filters\Filter\*`
+- `Orchid\Platform\Filters\*` use `Orchid\Filters\*`
 - `AttachTrait` use `Orchid\Attachment\Attachable`
 - `FilterTrait` use `Orchid\Filters\Filterable`
 - Sluggable package
