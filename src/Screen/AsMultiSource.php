@@ -1,7 +1,11 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Orchid\Screen;
+
 use Illuminate\Support\Arr;
+
 trait AsMultiSource
 {
     use AsSource {
@@ -13,6 +17,7 @@ trait AsMultiSource
      * @var string
      */
     public $jsonColumnName = 'content';
+
     /**
      * @param string $field
      * @param null   $locale
@@ -23,6 +28,7 @@ trait AsMultiSource
     {
         return $this->getBaseContent($field) ?? $this->getContentMultiLang($field, $locale);
     }
+
     /**
      * @param string $field
      * @param null   $locale
@@ -36,6 +42,7 @@ trait AsMultiSource
         if (Arr::has($jsonContent, $fullName)) {
             return Arr::get($jsonContent, $fullName);
         }
+
         return Arr::get($jsonContent, config('app.fallback_locale').'.'.$field);
     }
 }
