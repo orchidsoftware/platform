@@ -6,11 +6,12 @@ namespace Orchid\Platform\Http\Layouts;
 
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Fields\SimpleMDE;
+use Throwable;
 
 class AnnouncementLayout extends Rows
 {
     /**
-     * @throws \Throwable
+     * @throws Throwable
      *
      * @return array
      */

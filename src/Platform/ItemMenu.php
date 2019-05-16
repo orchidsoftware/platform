@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform;
 
+use Closure;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -84,7 +85,7 @@ class ItemMenu
     /**
      * @param string|array $active
      *
-     * @return \Orchid\Platform\ItemMenu
+     * @return ItemMenu
      */
     public function active($active): self
     {
@@ -96,7 +97,7 @@ class ItemMenu
     /**
      * @param string $label
      *
-     * @return \Orchid\Platform\ItemMenu
+     * @return ItemMenu
      */
     public static function label(string $label): self
     {
@@ -225,12 +226,12 @@ class ItemMenu
     }
 
     /**
-     * @param \Closure $badge
+     * @param Closure $badge
      * @param string   $class
      *
-     * @return \Orchid\Platform\ItemMenu
+     * @return ItemMenu
      */
-    public function badge(\Closure $badge, string $class = 'bg-primary'): self
+    public function badge(Closure $badge, string $class = 'bg-primary'): self
     {
         $this->badge = [
             'class' => $class,

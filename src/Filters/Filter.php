@@ -85,14 +85,11 @@ abstract class Filter
     /**
      * @return string
      */
-    public function render()
+    public function render() : string
     {
-        $html = '';
-        collect($this->display())->each(function ($field) use (&$html) {
-            $html .= $field->form('filters')->render();
+        return collect($this->display())->reduce(function ($html, $field){
+            return (string) $html. $field->form('filters')->render();
         });
-
-        return $html;
     }
 
     /**
@@ -108,7 +105,7 @@ abstract class Filter
      */
     public function isApply() :bool
     {
-        return count($this->request->only($this->parameters, '')) > 0;
+        return count($this->request->only($this->parameters, [])) > 0;
     }
 
     /**
@@ -116,7 +113,7 @@ abstract class Filter
      */
     public function value(): string
     {
-        $params = $this->request->only($this->parameters, '');
+        $params = $this->request->only($this->parameters, []);
         $values = collect($params)->flatten()->implode(static::$delimiter);
 
         return $this->name().': '.$values;

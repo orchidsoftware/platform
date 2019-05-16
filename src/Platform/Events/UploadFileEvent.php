@@ -15,7 +15,7 @@ class UploadFileEvent
     use SerializesModels;
 
     /**
-     * @var \Orchid\Attachment\Models\Attachment
+     * @var Attachment
      */
     public $attachment;
 
@@ -27,8 +27,8 @@ class UploadFileEvent
     /**
      * ImageAttachment constructor.
      *
-     * @param \Orchid\Attachment\Models\Attachment $attachment
-     * @param int                                  $time
+     * @param Attachment $attachment
+     * @param int        $time
      */
     public function __construct(Attachment $attachment, int $time)
     {

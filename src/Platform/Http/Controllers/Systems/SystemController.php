@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 use Orchid\Platform\Http\Controllers\Controller;
 
 class SystemController extends Controller
@@ -17,7 +19,7 @@ class SystemController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function index()
     {

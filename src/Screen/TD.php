@@ -54,7 +54,7 @@ class TD
     public $sort;
 
     /**
-     * @var \Closure
+     * @var Closure
      */
     public $render;
 
@@ -162,7 +162,7 @@ class TD
     /**
      * @param bool $sort
      *
-     * @return \Orchid\Screen\TD
+     * @return TD
      */
     public function sort(bool $sort = true): self
     {
@@ -179,16 +179,6 @@ class TD
     public function handler($data)
     {
         return ($this->render)($data);
-    }
-
-    /**
-     * @param string|null $text
-     *
-     * @return TD
-     */
-    public function linkPost(string $text = null): self
-    {
-        return $this->link('platform.entities.type.edit', ['type', 'slug'], $text);
     }
 
     /**
@@ -229,7 +219,7 @@ class TD
     }
 
     /**
-     * @param \Closure $closure
+     * @param Closure $closure
      *
      * @return $this
      */
@@ -246,7 +236,7 @@ class TD
      * @param string|array $options
      * @param string|null  $text
      *
-     * @return \Orchid\Screen\TD
+     * @return TD
      */
     public function loadModalAsync(string $modal, $method, $options, string $text = null): self
     {

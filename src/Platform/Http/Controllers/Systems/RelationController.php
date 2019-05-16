@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Http\Controllers\Controller;
@@ -14,7 +15,7 @@ class RelationController extends Controller
     /**
      * @param RelationRequest $request
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function view(RelationRequest $request)
     {

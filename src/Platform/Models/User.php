@@ -112,7 +112,7 @@ class User extends Authenticatable implements UserInterface
      * @param string $email
      * @param string $password
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public static function createAdmin(string $name, string $email, string $password)
     {
@@ -144,9 +144,9 @@ class User extends Authenticatable implements UserInterface
     }
 
     /**
-     * @throws \Exception
-     *
      * @return string
+     *@throws Exception
+     *
      */
     public function getAvatar()
     {

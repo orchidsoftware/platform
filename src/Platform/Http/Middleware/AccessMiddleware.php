@@ -6,8 +6,11 @@ namespace Orchid\Platform\Http\Middleware;
 
 use Closure;
 use Carbon\Carbon;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\Response;
 
 /**
  * Class AccessMiddleware.
@@ -22,7 +25,7 @@ class AccessMiddleware
     /**
      * AccessMiddleware constructor.
      *
-     * @param \Illuminate\Contracts\Auth\Guard $auth
+     * @param Guard $auth
      */
     public function __construct(Guard $auth)
     {
@@ -33,7 +36,7 @@ class AccessMiddleware
      * @param Request $request
      * @param Closure $next
      *
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|mixed
+     * @return ResponseFactory|RedirectResponse|Response|mixed
      */
     public function handle(Request $request, Closure $next)
     {

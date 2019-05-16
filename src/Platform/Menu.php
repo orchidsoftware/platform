@@ -132,7 +132,7 @@ class Menu
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     private function checkAccess()
     {
@@ -163,11 +163,11 @@ class Menu
             ->map(function ($item, $key) {
                 $item = $item['arg'];
 
-                $childrens = $this->findAllChildren($key);
+                $children = $this->findAllChildren($key);
 
-                $item['children'] = $childrens;
+                $item['children'] = $children;
 
-                $childrens->each(function ($children) use (&$item) {
+                $children->each(function ($children) use (&$item) {
                     $item['active'] = array_merge($item['active'], $children['active']);
                 });
 

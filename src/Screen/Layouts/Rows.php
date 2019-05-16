@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Contracts\View\Factory;
 use Orchid\Screen\Builder;
 use Orchid\Screen\Repository;
+use Throwable;
 
 /**
  * Class Rows.
@@ -28,11 +30,11 @@ abstract class Rows extends Base
     protected $with = 100;
 
     /**
-     * @param \Orchid\Screen\Repository $query
+     * @param Repository $query
      *
-     * @throws \Throwable
+     * @throws Throwable
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|\Illuminate\View\View
      */
     public function build(Repository $query)
     {

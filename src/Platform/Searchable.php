@@ -55,7 +55,7 @@ trait Searchable
     /**
      * @param string $query
      *
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @return LengthAwarePaginator
      */
     public function searchQuery(string $query = null): LengthAwarePaginator
     {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
+use App\Orchid\PlatformProvider;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemPermission;
 use Illuminate\Support\Facades\View;
@@ -68,8 +69,8 @@ class PlatformServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (class_exists(\App\Orchid\PlatformProvider::class)) {
-            $this->app->register(\App\Orchid\PlatformProvider::class);
+        if (class_exists(PlatformProvider::class)) {
+            $this->app->register(PlatformProvider::class);
         }
     }
 }

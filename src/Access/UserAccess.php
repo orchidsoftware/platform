@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Access;
 
+use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Arr;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\Role;
@@ -20,7 +22,7 @@ trait UserAccess
     private $cachePermissions;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return Collection
      */
     public function getRoles()
     {
@@ -158,7 +160,7 @@ trait UserAccess
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      *
      * @return bool
      */

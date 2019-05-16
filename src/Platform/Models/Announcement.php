@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Parsedown;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\DB;
@@ -65,9 +66,9 @@ class Announcement extends Model
     /**
      * Scope a query to only include active announcements.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param Builder $query
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function scopeActive($query)
     {

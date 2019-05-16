@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Orchid\Screen\Fields\Map;
+use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\UTM;
 use Orchid\Tests\TestUnitCase;
 use Orchid\Screen\Fields\Input;
@@ -94,6 +95,10 @@ class FieldTest extends TestUnitCase
                  'name' => 'example',
              ], ],
             [Switcher::class,
+             [
+                 'name' => 'example',
+             ], ],
+            [Picture::class,
              [
                  'name' => 'example',
              ], ],

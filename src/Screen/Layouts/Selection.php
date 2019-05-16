@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Contracts\View\Factory;
 use Orchid\Filters\Filter;
 use Orchid\Screen\Repository;
 
@@ -20,7 +21,7 @@ abstract class Selection extends Base
     /**
      * @param Repository $query
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @return Factory|\Illuminate\View\View|mixed
      */
     public function build(Repository $query)
     {

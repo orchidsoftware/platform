@@ -8,6 +8,7 @@ use Mimey\MimeTypes;
 use Orchid\Platform\Dashboard;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
  * Class ResourceController.
@@ -26,7 +27,7 @@ class ResourceController
      * @param string    $path
      * @param Dashboard $dashboard
      *
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @return BinaryFileResponse
      */
     public function show(string $package, string $path, Dashboard $dashboard)
     {

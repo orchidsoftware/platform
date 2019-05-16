@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
+
 /**
  * Class Link.
  *
@@ -92,7 +95,7 @@ class Link
     /**
      * @param Repository $query
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed|void
+     * @return Factory|View|mixed|void
      */
     public function build(Repository $query)
     {

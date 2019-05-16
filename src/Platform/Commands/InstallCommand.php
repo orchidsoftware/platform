@@ -139,7 +139,7 @@ class InstallCommand extends Command
      * @param string $constant
      * @param string $value
      *
-     * @return \Orchid\Platform\Commands\InstallCommand
+     * @return InstallCommand
      */
     private function setValueEnv($constant, $value = 'null'): self
     {
@@ -153,7 +153,7 @@ class InstallCommand extends Command
     }
 
     /**
-     * @return \Orchid\Platform\Commands\InstallCommand
+     * @return InstallCommand
      */
     private function checkInstall(): self
     {

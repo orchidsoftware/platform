@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
@@ -199,7 +200,7 @@ class Dashboard
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Model[] $value
+     * @param Model[] $value
      *
      * @return $this
      */
@@ -230,7 +231,7 @@ class Dashboard
      *
      * @param null $key
      *
-     * @return array|\Illuminate\Support\Collection|mixed
+     * @return array|Collection|mixed
      */
     public function getResource($key = null)
     {
@@ -270,7 +271,7 @@ class Dashboard
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     public function getPermission(): Collection
     {

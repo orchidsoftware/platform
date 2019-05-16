@@ -145,12 +145,12 @@ export default class extends Controller {
     }
 
     scalex() {
-        var dataScaleX = this.element.querySelector('.cropper-dataScaleX');
+        const dataScaleX = this.element.querySelector('.cropper-dataScaleX');
         this.cropper.scaleX(-dataScaleX.value);
     }
 
     scaley() {
-        var dataScaleY = this.element.querySelector('.cropper-dataScaleY');
+        const dataScaleY = this.element.querySelector('.cropper-dataScaleY');
         this.cropper.scaleY(-dataScaleY.value)
     }
 
