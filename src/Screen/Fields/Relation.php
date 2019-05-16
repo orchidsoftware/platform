@@ -124,6 +124,7 @@ class Relation extends Field
                     ];
                 })->toJson();
 
+
             $this->set('value', $value);
         });
 
