@@ -8,8 +8,7 @@
          data-fields--relation-key="{{ $relationKey }}"
          data-fields--relation-route="{{ route('platform.systems.relation') }}"
     >
-        <select id="{{$id}}" @include('platform::partials.fields.attributes', ['attributes' => $attributes])>
-            <option></option>
+        <select id="{{$id}}" data-target="fields--relation.select" @include('platform::partials.fields.attributes', ['attributes' => $attributes])>
         </select>
     </div>
 @endcomponent

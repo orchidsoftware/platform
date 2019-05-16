@@ -1,11 +1,12 @@
-import {Controller} from 'stimulus';
+import { Controller } from 'stimulus';
 
 export default class extends Controller {
-    /**
-     *
-     */
+    static get targets() {
+        return ['select'];
+    }
+
     connect() {
-        const select = this.element.querySelector('select');
+        const select = this.selectTarget;
         const model = this.data.get('model');
         const name = this.data.get('name');
         const key = this.data.get('key');
@@ -27,36 +28,28 @@ export default class extends Controller {
                 url: () => this.data.get('route'),
                 dataType: 'json',
                 processResults: (data) => {
-
                     let selectValues = $(select).val();
                     selectValues = Array.isArray(selectValues) ? selectValues : [selectValues];
 
-                    let dataFormat = [];
-
-                    Object.values(data).forEach((value, key) => {
-
-                        if(selectValues.map(Number).includes(key)){
-                            return;
-                        }
-
-                        dataFormat.push({
-                            'id': key,
-                            'text': value,
-                        });
-                    });
-
                     return {
-                        results: dataFormat
+                        results: Object.keys(data).reduce((res, id) => {
+                            if (selectValues.includes(id.toString())) {
+                                return res;
+                            }
+
+                            return [...res, {
+                                id,
+                                text: data[id],
+                            }];
+                        }, []),
                     };
                 },
-                data: (params) => {
-                    return {
-                        search: params.term,
-                        model: model,
-                        name: name,
-                        key: key,
-                    };
-                }
+                data: params => ({
+                    search: params.term,
+                    model,
+                    name,
+                    key,
+                }),
             },
             placeholder: select.getAttribute('placeholder') || '',
         });
@@ -65,16 +58,16 @@ export default class extends Controller {
             return;
         }
 
-        let values = JSON.parse(this.data.get('value'));
+        const values = JSON.parse(this.data.get('value'));
 
-        values.forEach((model) => {
+        values.forEach((value) => {
             $(select)
-                .append(new Option(model.text, model.id, true, true))
+                .append(new Option(value.text, value.id, true, true))
                 .trigger('change');
         });
 
         document.addEventListener('turbolinks:before-cache', () => {
             $(select).select2('destroy');
-        }, {once: true});
+        }, { once: true });
     }
 }
