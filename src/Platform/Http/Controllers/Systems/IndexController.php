@@ -4,13 +4,17 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\Factory;
+
 /**
  * Class IndexController.
  */
 class IndexController
 {
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function index()
     {
@@ -18,7 +22,7 @@ class IndexController
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function fallback()
     {

@@ -6,10 +6,7 @@ namespace Orchid\Platform\Providers;
 
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\Role;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
-use Orchid\Widget\WidgetContractInterface;
 use Orchid\Platform\Http\Middleware\AccessMiddleware;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -44,20 +41,6 @@ class RouteServiceProvider extends ServiceProvider
             return is_numeric($value)
                 ? $role->where('id', $value)->firstOrFail()
                 : $role->where('slug', $value)->firstOrFail();
-        });
-
-        Route::bind('widget', function ($value) {
-            try {
-                $widget = app()->make(Crypt::decryptString($value));
-
-                abort_if(! is_a($widget, WidgetContractInterface::class), 403);
-
-                return $widget;
-            } catch (\Exception $exception) {
-                Log::alert($exception->getMessage());
-
-                abort(404, $exception->getMessage());
-            }
         });
     }
 

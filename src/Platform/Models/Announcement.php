@@ -8,6 +8,7 @@ use Parsedown;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Announcement extends Model
 {
@@ -65,9 +66,9 @@ class Announcement extends Model
     /**
      * Scope a query to only include active announcements.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param Builder $query
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function scopeActive($query)
     {

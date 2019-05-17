@@ -6,10 +6,16 @@ export default class extends Controller {
     }
 
     connect() {
+
+        if (document.documentElement.hasAttribute('data-turbolinks-preview')) {
+            return;
+        }
+
         const select = this.selectTarget;
         const model = this.data.get('model');
         const name = this.data.get('name');
         const key = this.data.get('key');
+        const scope = this.data.get('scope');
 
 
         $.ajaxSetup({
@@ -49,6 +55,7 @@ export default class extends Controller {
                     model,
                     name,
                     key,
+                    scope,
                 }),
             },
             placeholder: select.getAttribute('placeholder') || '',

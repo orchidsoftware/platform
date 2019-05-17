@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Throwable;
 use Orchid\Screen\Builder;
 use Orchid\Screen\Repository;
+use Illuminate\Contracts\View\Factory;
 
 /**
  * Class Collapse.
@@ -15,7 +17,7 @@ abstract class Collapse extends Base
     /**
      * @var string
      */
-    public $template = 'platform::container.layouts.collapse';
+    public $template = 'platform::layouts.collapse';
 
     /**
      * @var Repository
@@ -28,11 +30,11 @@ abstract class Collapse extends Base
     private $label = 'Options';
 
     /**
-     * @param \Orchid\Screen\Repository $query
+     * @param Repository $query
      *
-     * @throws \Throwable
+     * @throws Throwable
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|\Illuminate\View\View
      */
     public function build(Repository $query)
     {

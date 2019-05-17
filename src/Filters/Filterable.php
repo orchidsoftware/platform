@@ -14,6 +14,8 @@ trait Filterable
      * @param Builder $query
      * @param array   $filters
      *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
      * @return Builder
      */
     public function scopeFiltersApply(Builder $query, array $filters = []): Builder
@@ -32,6 +34,8 @@ trait Filterable
     /**
      * @param Builder          $query
      * @param string|Selection $selection
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      *
      * @return Builder
      */
@@ -77,7 +81,7 @@ trait Filterable
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     public function getOptionsFilter(): Collection
     {

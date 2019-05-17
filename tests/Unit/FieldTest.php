@@ -11,6 +11,7 @@ use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Fields\Cropper;
+use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\TinyMCE;
 use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Password;
@@ -21,7 +22,6 @@ use Orchid\Screen\Fields\DateRange;
 use Orchid\Screen\Fields\DateTimer;
 use Orchid\Screen\Fields\SimpleMDE;
 use Orchid\Screen\Fields\RadioButtons;
-use Orchid\Screen\Fields\Relationship;
 
 /**
  * Class FieldTest.
@@ -51,11 +51,6 @@ class FieldTest extends TestUnitCase
              [
                  'name'    => 'example',
                  'options' => ['value' => 'example'],
-             ], ],
-            [Relationship::class,
-             [
-                 'name'    => 'example',
-                 'handler' => 'handler',
              ], ],
             [Map::class,
              [
@@ -100,6 +95,10 @@ class FieldTest extends TestUnitCase
                  'name' => 'example',
              ], ],
             [Switcher::class,
+             [
+                 'name' => 'example',
+             ], ],
+            [Picture::class,
              [
                  'name' => 'example',
              ], ],

@@ -6,6 +6,7 @@ namespace Orchid\Screen\Layouts;
 
 use Illuminate\Support\Str;
 use Orchid\Screen\Repository;
+use Illuminate\Contracts\View\Factory;
 
 /**
  * Class Chart.
@@ -15,7 +16,7 @@ abstract class Chart extends Base
     /**
      * @var string
      */
-    public $template = 'platform::container.layouts.chart';
+    public $template = 'platform::layouts.chart';
 
     /**
      * @var string
@@ -67,9 +68,9 @@ abstract class Chart extends Base
     public $export = true;
 
     /**
-     * @param \Orchid\Screen\Repository $query
+     * @param Repository $query
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|\Illuminate\View\View
      */
     public function build(Repository $query)
     {

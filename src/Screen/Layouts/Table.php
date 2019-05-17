@@ -6,6 +6,7 @@ namespace Orchid\Screen\Layouts;
 
 use Orchid\Screen\TD;
 use Orchid\Screen\Repository;
+use Illuminate\Contracts\View\Factory;
 
 /**
  * Class Table.
@@ -15,7 +16,7 @@ abstract class Table extends Base
     /**
      * @var string
      */
-    public $template = 'platform::container.layouts.table';
+    public $template = 'platform::layouts.table';
 
     /**
      * @var string
@@ -23,9 +24,9 @@ abstract class Table extends Base
     public $data;
 
     /**
-     * @param \Orchid\Screen\Repository $query
+     * @param Repository $query
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|\Illuminate\View\View
      */
     public function build(Repository $query)
     {

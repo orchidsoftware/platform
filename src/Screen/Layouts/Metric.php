@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Orchid\Screen\Repository;
+use Illuminate\Contracts\View\Factory;
 
 /**
  * Class Metric.
@@ -14,7 +15,7 @@ abstract class Metric extends Base
     /**
      * @var string
      */
-    public $template = 'platform::container.layouts.metric';
+    public $template = 'platform::layouts.metric';
 
     /**
      * @var string
@@ -42,9 +43,9 @@ abstract class Metric extends Base
     protected $keyDiff = 'diff';
 
     /**
-     * @param \Orchid\Screen\Repository $query
+     * @param Repository $query
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|\Illuminate\View\View
      */
     public function build(Repository $query)
     {

@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Closure;
+use Throwable;
+use Illuminate\View\View;
 use Illuminate\Support\Str;
-use Orchid\Screen\Traits\CanSee;
+use Illuminate\Support\Collection;
 use Illuminate\Support\ViewErrorBag;
+use Illuminate\Contracts\View\Factory;
 use Orchid\Screen\Contracts\FieldContract;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
 
@@ -37,7 +41,7 @@ class Field implements FieldContract
      * A set of closure functions
      * that must be executed before data is displayed.
      *
-     * @var \Closure[]
+     * @var Closure[]
      */
     private $beforeRender = [];
 
@@ -125,7 +129,7 @@ class Field implements FieldContract
     public function __call(string  $name, array $arguments): self
     {
         foreach ($arguments as $key => $argument) {
-            if ($argument instanceof \Closure) {
+            if ($argument instanceof Closure) {
                 $arguments[$key] = $argument();
             }
         }
@@ -163,7 +167,7 @@ class Field implements FieldContract
     }
 
     /**
-     * @throws \Throwable
+     * @throws Throwable
      *
      * @return Field
      */
@@ -178,9 +182,9 @@ class Field implements FieldContract
     }
 
     /**
-     * @throws \Throwable
+     *@throws Throwable
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @return Factory|View|mixed
      */
     public function render()
     {
@@ -245,7 +249,7 @@ class Field implements FieldContract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     public function getModifyAttributes()
     {
@@ -350,7 +354,7 @@ class Field implements FieldContract
             $this->attributes['name'] = $prefix.'['.$lang.']'.$name;
         }
 
-        if ($name instanceof \Closure) {
+        if ($name instanceof Closure) {
             $this->attributes['name'] = $name($this->attributes);
         }
 
@@ -366,7 +370,7 @@ class Field implements FieldContract
     {
         $this->attributes['value'] = $this->getOldValue() ?: $value;
 
-        if ($value instanceof \Closure) {
+        if ($value instanceof Closure) {
             $this->attributes['value'] = $value($this->attributes);
         }
 
@@ -376,7 +380,7 @@ class Field implements FieldContract
     /**
      * Create a group of the fields.
      *
-     * @param \Closure|array $group
+     * @param Closure|array $group
      *
      * @return mixed
      */
@@ -426,11 +430,11 @@ class Field implements FieldContract
     }
 
     /**
-     * @param \Closure $closure
+     * @param Closure $closure
      *
      * @return Field
      */
-    public function addBeforeRender(\Closure $closure): self
+    public function addBeforeRender(Closure $closure): self
     {
         $this->beforeRender[] = $closure;
 

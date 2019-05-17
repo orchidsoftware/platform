@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Auth;
 
+use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Config\Repository;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Orchid\Platform\Http\Controllers\Controller;
 
@@ -36,10 +40,10 @@ class ResetPasswordController extends Controller
      *
      * If no token is present, display the link request form.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param string|null              $token
+     * @param Request     $request
+     * @param string|null $token
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @return Factory|Response|View
      */
     public function showResetForm(Request $request, $token = null)
     {
@@ -49,7 +53,7 @@ class ResetPasswordController extends Controller
     /**
      * Where to redirect users after login / registration.
      *
-     * @return \Illuminate\Config\Repository|mixed
+     * @return Repository|mixed
      */
     public function redirectTo()
     {

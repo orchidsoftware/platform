@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Screens;
 
 use Orchid\Screen\Link;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
 use Orchid\Support\Facades\Alert;
+use Illuminate\Http\RedirectResponse;
 use Orchid\Platform\Models\Announcement;
 use Orchid\Platform\Http\Layouts\AnnouncementLayout;
 
@@ -88,10 +90,10 @@ class AnnouncementScreen extends Screen
     }
 
     /**
-     * @param \Orchid\Platform\Models\Announcement $announcement
-     * @param \Illuminate\Http\Request             $request
+     * @param Announcement $announcement
+     * @param Request      $request
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function saveOrUpdate(Announcement $announcement, Request $request)
     {
@@ -108,7 +110,7 @@ class AnnouncementScreen extends Screen
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function disabled()
     {

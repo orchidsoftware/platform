@@ -11,7 +11,6 @@ use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
 use Illuminate\Database\Eloquent\Factory;
 use Orchid\Database\Seeds\OrchidDatabaseSeeder;
-use Orchid\Press\Providers\PressServiceProvider;
 use Orchid\Tests\Exemplar\ExemplarServiceProvider;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Orchid\Platform\Providers\FoundationServiceProvider;
@@ -71,18 +70,6 @@ trait Environment
         $app['config']->set('scout.driver', null);
         $app['config']->set('database.default', 'orchid');
 
-        $app['config']->set('sluggable', [
-            'source'             => null,
-            'maxLength'          => null,
-            'maxLengthKeepWords' => true,
-            'method'             => null,
-            'separator'          => '-',
-            'unique'             => true,
-            'uniqueSuffix'       => null,
-            'includeTrashed'     => false,
-            'reserved'           => null,
-            'onUpdate'           => false,
-        ]);
         $app['config']->set('session', [
             'driver'          => 'file',
             'lifetime'        => 10,
@@ -121,7 +108,6 @@ trait Environment
     {
         return [
             FoundationServiceProvider::class,
-            PressServiceProvider::class,
             ExemplarServiceProvider::class,
         ];
     }

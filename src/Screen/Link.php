@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Orchid\Screen\Traits\CanSee;
+use Illuminate\View\View;
+use Illuminate\Contracts\View\Factory;
 
 /**
  * Class Link.
@@ -94,7 +95,7 @@ class Link
     /**
      * @param Repository $query
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @return Factory|View|mixed|void
      */
     public function build(Repository $query)
     {
@@ -106,7 +107,7 @@ class Link
             return view($this->view, $query->all());
         }
 
-        return view('platform::container.layouts.link', [
+        return view('platform::layouts.link', [
             'name'      => $this->name,
             'method'    => $this->method,
             'icon'      => $this->icon,

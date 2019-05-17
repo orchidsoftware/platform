@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform;
 
+use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
@@ -79,7 +80,7 @@ class Updates
             curl_exec($curl);
             curl_getinfo($curl, CURLINFO_HTTP_CODE);
             curl_close($curl);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             // packagist down
         }
     }
@@ -116,7 +117,7 @@ class Updates
             $versions = json_decode(file_get_contents($this->apiURL), true)['packages']['orchid/platform'];
 
             return array_reverse($versions);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             Log::alert($exception->getMessage());
 
             return [['version' => '0.0.0']];

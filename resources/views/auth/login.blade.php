@@ -1,4 +1,4 @@
-@extends('platform::layouts.auth')
+@extends('platform::auth')
 @section('title',__('Sign in to your account'))
 
 @section('content')

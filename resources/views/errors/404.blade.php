@@ -1,4 +1,4 @@
-@extends('platform::layouts.dashboard')
+@extends('platform::dashboard')
 
 @section('content')
 

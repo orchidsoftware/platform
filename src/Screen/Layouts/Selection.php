@@ -6,6 +6,7 @@ namespace Orchid\Screen\Layouts;
 
 use Orchid\Filters\Filter;
 use Orchid\Screen\Repository;
+use Illuminate\Contracts\View\Factory;
 
 /**
  * Class Selection.
@@ -15,12 +16,12 @@ abstract class Selection extends Base
     /**
      * @var string
      */
-    public $template = 'platform::container.layouts.selection';
+    public $template = 'platform::layouts.selection';
 
     /**
      * @param Repository $query
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @return Factory|\Illuminate\View\View|mixed
      */
     public function build(Repository $query)
     {

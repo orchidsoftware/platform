@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Platform\Models;
 
 use Exception;
+use Orchid\Screen\AsSource;
 use Orchid\Access\UserAccess;
 use Orchid\Filters\Filterable;
 use Orchid\Access\UserInterface;
-use Orchid\Screen\Traits\AsSource;
 use Illuminate\Support\Facades\Hash;
 use Orchid\Support\Facades\Dashboard;
 use Illuminate\Notifications\Notifiable;
@@ -112,7 +112,7 @@ class User extends Authenticatable implements UserInterface
      * @param string $email
      * @param string $password
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public static function createAdmin(string $name, string $email, string $password)
     {
@@ -144,7 +144,7 @@ class User extends Authenticatable implements UserInterface
     }
 
     /**
-     * @throws \Exception
+     *@throws Exception
      *
      * @return string
      */

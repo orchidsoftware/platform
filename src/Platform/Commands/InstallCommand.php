@@ -7,7 +7,6 @@ namespace Orchid\Platform\Commands;
 use Orchid\Platform\Updates;
 use Illuminate\Console\Command;
 use Orchid\Platform\Events\InstallEvent;
-use Orchid\Press\Providers\PressServiceProvider;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 
@@ -76,13 +75,6 @@ class InstallCommand extends Command
                     'migrations',
                     'orchid-stubs',
                 ], ])
-            ->executeCommand('vendor:publish', [
-                '--provider' => PressServiceProvider::class,
-                '--force'    => true,
-                '--tag'      => [
-                    'config',
-                    'migrations',
-                ], ])
             ->executeCommand('migrate')
             ->executeCommand('storage:link');
 
@@ -147,7 +139,7 @@ class InstallCommand extends Command
      * @param string $constant
      * @param string $value
      *
-     * @return \Orchid\Platform\Commands\InstallCommand
+     * @return InstallCommand
      */
     private function setValueEnv($constant, $value = 'null'): self
     {
@@ -161,7 +153,7 @@ class InstallCommand extends Command
     }
 
     /**
-     * @return \Orchid\Platform\Commands\InstallCommand
+     * @return InstallCommand
      */
     private function checkInstall(): self
     {
@@ -169,9 +161,9 @@ class InstallCommand extends Command
             return $this;
         }
 
-        $confim = $this->confirm('The platform has already been installed, do you really want to repeat?');
+        $confirm = $this->confirm('The platform has already been installed, do you really want to repeat?');
 
-        if (! $confim) {
+        if (! $confirm) {
             die();
         }
 

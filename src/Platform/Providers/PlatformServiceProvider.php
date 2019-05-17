@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Orchid\Platform\Dashboard;
+use App\Orchid\PlatformProvider;
 use Orchid\Platform\ItemPermission;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -28,7 +29,7 @@ class PlatformServiceProvider extends ServiceProvider
     {
         $this->dashboard = $dashboard;
 
-        View::composer('platform::container.systems.index', SystemMenuComposer::class);
+        View::composer('platform::systems', SystemMenuComposer::class);
         View::composer('platform::partials.notifications', NotificationsComposer::class);
         View::composer('platform::partials.announcement', AnnouncementsComposer::class);
 
@@ -68,8 +69,8 @@ class PlatformServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (class_exists(\App\Orchid\PlatformProvider::class)) {
-            $this->app->register(\App\Orchid\PlatformProvider::class);
+        if (class_exists(PlatformProvider::class)) {
+            $this->app->register(PlatformProvider::class);
         }
     }
 }

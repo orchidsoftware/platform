@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Auth;
 
+use Illuminate\View\View;
+use Illuminate\Config\Repository;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Validation\ValidationException;
 use Orchid\Platform\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -32,7 +35,7 @@ class LoginController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function showLoginForm()
     {
@@ -42,7 +45,7 @@ class LoginController extends Controller
     /**
      * Where to redirect users after login / registration.
      *
-     * @return \Illuminate\Config\Repository|mixed
+     * @return Repository|mixed
      */
     public function redirectTo()
     {

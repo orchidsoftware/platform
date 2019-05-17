@@ -26,7 +26,7 @@ class LinkCommand extends Command
     /**
      * Execute the console command.
      *
-     * @param \Orchid\Platform\Dashboard $dashboard
+     * @param Dashboard $dashboard
      *
      * @return void
      */

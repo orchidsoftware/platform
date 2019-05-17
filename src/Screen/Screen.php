@@ -4,13 +4,17 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Throwable;
 use ReflectionClass;
+use ReflectionException;
 use ReflectionParameter;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Orchid\Screen\Layouts\Base;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\View\Factory;
 use Orchid\Platform\Http\Controllers\Controller;
 
 /**
@@ -74,14 +78,14 @@ abstract class Screen extends Controller
     /**
      * Views.
      *
-     * @return Layouts[]
+     * @return Layout[]
      */
     abstract public function layout(): array;
 
     /**
-     * @throws \Throwable
+     *@throws Throwable
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return View
      */
     public function build()
     {
@@ -96,9 +100,9 @@ abstract class Screen extends Controller
      * @param mixed $method
      * @param mixed $slugLayouts
      *
-     * @throws \Throwable
+     *@throws Throwable
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return View
      */
     protected function asyncBuild($method, $slugLayouts)
     {
@@ -110,7 +114,7 @@ abstract class Screen extends Controller
 
         foreach ($this->layout() as $layout) {
 
-            /** @var \Orchid\Screen\Layouts\Base|string $layout */
+            /** @var Base|string $layout */
             $layout = is_object($layout) ? $layout : new $layout();
 
             if ($layout->getSlug() === $slugLayouts) {
@@ -122,9 +126,9 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @throws \Throwable
+     * @throws Throwable
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|\Illuminate\View\View
      */
     public function view()
     {
@@ -132,7 +136,7 @@ abstract class Screen extends Controller
         $query = call_user_func_array([$this, 'query'], $this->arguments);
         $this->post = new Repository($query);
 
-        return view('platform::container.layouts.base', [
+        return view('platform::layouts.base', [
             'screen'    => $this,
         ]);
     }
@@ -140,10 +144,10 @@ abstract class Screen extends Controller
     /**
      * @param mixed ...$parameters
      *
-     * @throws \ReflectionException
-     * @throws \Throwable
+     * @throws ReflectionException
+     * @throws Throwable
      *
-     * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View|mixed
+     * @return Factory|View|\Illuminate\View\View|mixed
      */
     public function handle(...$parameters)
     {
@@ -170,7 +174,7 @@ abstract class Screen extends Controller
     /**
      * @param string $method
      *
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     private function reflectionParams(string $method)
     {
@@ -198,6 +202,8 @@ abstract class Screen extends Controller
     /**
      * @param int|string               $key
      * @param ReflectionParameter|null $parameter
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      *
      * @return mixed
      */

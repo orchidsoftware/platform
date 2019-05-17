@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @deprecated Plz not using this
- *
  * Class Relation.
  *
  * @method self accesskey($value = true)
@@ -39,8 +37,9 @@ class Relation extends Field
      * @var array
      */
     public $attributes = [
-        'class' => 'form-control',
-        'value' => [],
+        'class'         => 'form-control',
+        'value'         => [],
+        'relationScope' => '',
     ];
 
     /**
@@ -51,6 +50,7 @@ class Relation extends Field
         'relationModel',
         'relationName',
         'relationKey',
+        'relationScope',
     ];
 
     /**
@@ -108,7 +108,7 @@ class Relation extends Field
         $this->addBeforeRender(function () use ($model, $name, $key) {
             $value = $this->get('value');
 
-            if (! is_countable($value)) {
+            if (! is_iterable($value)) {
                 $value = Arr::wrap($value);
             }
 
@@ -126,6 +126,20 @@ class Relation extends Field
 
             $this->set('value', $value);
         });
+
+        return $this;
+    }
+
+    /**
+     * @param string $scope
+     *
+     * @return $this
+     */
+    public function applyScope(string $scope)
+    {
+        $scope = lcfirst($scope);
+
+        $this->set('relationScope', Crypt::encryptString($scope));
 
         return $this;
     }

@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
+use Illuminate\View\View;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Collection;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class SearchController
 {
     /**
-     * @param \Orchid\Platform\Dashboard $dashboard
-     * @param string|null                $query
+     * @param Dashboard   $dashboard
+     * @param string|null $query
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function index(Dashboard $dashboard, string $query = null)
     {
@@ -37,7 +39,7 @@ class SearchController
     }
 
     /**
-     * @param \Illuminate\Contracts\Pagination\LengthAwarePaginator $paginator
+     * @param LengthAwarePaginator $paginator
      *
      * @return Collection
      */

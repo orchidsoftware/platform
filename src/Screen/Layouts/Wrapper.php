@@ -32,7 +32,7 @@ abstract class Wrapper extends Base
     /**
      * @param Repository $repository
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return \Illuminate\Contracts\View\View|void
      */
     public function build(Repository $repository)
     {

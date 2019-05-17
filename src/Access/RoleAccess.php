@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Access;
 
+use Exception;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait RoleAccess
@@ -27,7 +29,7 @@ trait RoleAccess
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return Collection
      */
     public function getUsers()
     {
@@ -37,7 +39,7 @@ trait RoleAccess
     /**
      * The Users relationship.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function users(): BelongsToMany
     {
@@ -45,7 +47,7 @@ trait RoleAccess
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      *
      * @return bool|null
      */

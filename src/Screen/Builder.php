@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Closure;
+use Throwable;
 use Illuminate\Support\ViewErrorBag;
+use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\Contracts\FieldContract;
 
 class Builder
@@ -19,7 +22,7 @@ class Builder
     /**
      * Transmitted values for display in a form.
      *
-     * @var \Illuminate\Database\Eloquent\Model|Repository
+     * @var Model|Repository
      */
     public $data;
 
@@ -83,7 +86,7 @@ class Builder
     /**
      * Generate a ready-made html form for display to the user.
      *
-     * @throws \Throwable
+     * @throws Throwable
      *
      * @return string
      */
@@ -104,7 +107,7 @@ class Builder
     /**
      * @param Field[] $groupField
      *
-     * @throws \Throwable
+     * @throws Throwable
      */
     private function renderGroup($groupField)
     {
@@ -126,7 +129,7 @@ class Builder
      *
      * @param Field $field
      *
-     * @throws \Throwable
+     * @throws Throwable
      *
      * @return mixed
      */
@@ -151,15 +154,15 @@ class Builder
     {
         $prefix = $field->get('prefix');
 
-        if (! is_null($prefix)) {
-            foreach (array_filter(explode(' ', $prefix)) as $name) {
-                $prefix .= '['.$name.']';
-            }
-
-            return $prefix;
+        if (is_null($prefix)) {
+            return $this->prefix;
         }
 
-        return $this->prefix;
+        foreach (array_filter(explode(' ', $prefix)) as $name) {
+            $prefix .= '['.$name.']';
+        }
+
+        return $prefix;
     }
 
     /**
@@ -224,7 +227,7 @@ class Builder
             return $value;
         }
 
-        if ($value instanceof \Closure) {
+        if ($value instanceof Closure) {
             return $value($data, $this->data);
         }
 

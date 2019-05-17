@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
+use Orchid\Screen\AsSource;
 use Orchid\Access\RoleAccess;
 use Orchid\Filters\Filterable;
 use Orchid\Access\RoleInterface;
-use Orchid\Screen\Traits\AsSource;
 use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model implements RoleInterface

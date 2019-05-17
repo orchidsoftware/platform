@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Attachment\Models;
 
+use Exception;
 use Mimey\MimeTypes;
 use Orchid\Filters\Filterable;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -76,7 +78,7 @@ class Attachment extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function user(): BelongsTo
     {
@@ -144,7 +146,7 @@ class Attachment extends Model
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      *
      * @return bool|null
      */
@@ -162,7 +164,7 @@ class Attachment extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function relationships()
     {

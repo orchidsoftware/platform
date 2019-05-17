@@ -85,14 +85,11 @@ abstract class Filter
     /**
      * @return string
      */
-    public function render()
+    public function render() : string
     {
-        $html = '';
-        collect($this->display())->each(function ($field) use (&$html) {
-            $html .= $field->form('filters')->render();
+        return collect($this->display())->reduce(function ($html, $field) {
+            return (string) $html.$field->form('filters')->render();
         });
-
-        return $html;
     }
 
     /**

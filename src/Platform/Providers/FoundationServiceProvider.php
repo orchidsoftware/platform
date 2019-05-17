@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
+use Illuminate\Routing\Router;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\Route;
 use Orchid\Alert\AlertServiceProvider;
@@ -66,7 +67,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     protected function registerDatabase(): self
     {
-        $this->loadMigrationsFrom(realpath(PLATFORM_PATH.'/database/migrations/platform'));
+        $this->loadMigrationsFrom(realpath(PLATFORM_PATH.'/database/migrations'));
 
         return $this;
     }
@@ -168,7 +169,7 @@ class FoundationServiceProvider extends ServiceProvider
 
         if (! Route::hasMacro('screen')) {
             Route::macro('screen', function ($url, $screen, $name = null) {
-                /* @var \Illuminate\Routing\Router $this */
+                /* @var Router $this */
                 return $this->any($url.'/{method?}/{argument?}', [$screen, 'handle'])
                     ->name($name);
             });

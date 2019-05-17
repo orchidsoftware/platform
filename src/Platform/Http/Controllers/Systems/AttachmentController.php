@@ -8,9 +8,13 @@ use Illuminate\Support\Arr;
 use Orchid\Attachment\File;
 use Illuminate\Http\Request;
 use Orchid\Platform\Dashboard;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\UploadedFile;
 use Orchid\Attachment\Models\Attachment;
+use Symfony\Component\HttpFoundation\Response;
 use Orchid\Platform\Http\Controllers\Controller;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Contracts\Container\BindingResolutionException;
 
 /**
  * Class AttachmentController.
@@ -34,7 +38,9 @@ class AttachmentController extends Controller
     /**
      * @param Request $request
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @throws BindingResolutionException
+     *
+     * @return JsonResponse
      */
     public function upload(Request $request)
     {
@@ -55,7 +61,7 @@ class AttachmentController extends Controller
     /**
      * @param Request $request
      *
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @return ResponseFactory|\Illuminate\Http\Response
      */
     public function sort(Request $request)
     {
@@ -75,7 +81,7 @@ class AttachmentController extends Controller
      * @param int     $id
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function destroy(int $id, Request $request)
     {
@@ -89,7 +95,7 @@ class AttachmentController extends Controller
      * @param int     $id
      * @param Request $request
      *
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     * @return ResponseFactory|Response
      */
     public function update(int $id, Request $request)
     {
@@ -106,7 +112,7 @@ class AttachmentController extends Controller
      * @param UploadedFile $file
      * @param Request      $request
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      *
      * @return mixed
      */
@@ -124,7 +130,7 @@ class AttachmentController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function media()
     {

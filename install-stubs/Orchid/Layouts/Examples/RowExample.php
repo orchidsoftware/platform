@@ -6,7 +6,6 @@ use Orchid\Screen\Field;
 use Orchid\Screen\Fields\Map;
 use Orchid\Screen\Fields\UTM;
 use Orchid\Screen\Fields\Code;
-use Orchid\Screen\Fields\Tags;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Layouts\Rows;
@@ -107,10 +106,6 @@ class RowExample extends Rows
                 ->multiple()
                 ->title('Indexing')
                 ->help('Allow search bots to index'),
-
-            Tags::make('keywords')
-                ->title('Keywords')
-                ->help('SEO keywords'),
 
             SimpleMDE::make('body2')
                 ->title('Name Articles')
