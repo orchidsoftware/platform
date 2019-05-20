@@ -43,20 +43,20 @@ class ExampleScreen extends Screen
         return [
             'charts'  => [
                 [
-                    'name'   => 'Some Data',
-                    'data'   => [25, 40, 30, 35, 8, 52, 17],
+                    'label'   => 'Some Data',
+                    'data' => [25, 40, 30, 35, 8, 52, 17],
                 ],
                 [
-                    'name'   => 'Another Set',
-                    'data'   => [25, 50, -10, 15, 18, 32, 27],
+                    'label'   => 'Another Set',
+                    'data' => [25, 50, -10, 15, 18, 32, 27],
                 ],
                 [
-                    'name'   => 'Yet Another',
-                    'data'   => [15, 20, -3, -15, 58, 12, -17],
+                    'label'   => 'Yet Another',
+                    'data' => [15, 20, -3, -15, 58, 12, -17],
                 ],
                 [
-                    'name'   => 'And Last',
-                    'data'   => [10, 33, -8, -3, 70, 20, -34],
+                    'label'   => 'And Last',
+                    'data' => [10, 33, -8, -3, 70, 20, -34],
                 ],
             ],
             'table'   => [
