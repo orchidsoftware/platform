@@ -6,18 +6,13 @@
      data-screen--chart-datasets="{{$data}}"
      data-screen--chart-type="{{$type}}"
      data-screen--chart-height="{{$height}}"
+     data-screen--chart-options="{{$options}}"
+     data-screen--chart-setcolors="{{$setcolors}}"
      data-screen--chart-colors="{{$colors}}"
 >
     <div class="row padder-v">
         <div class="pos-rlt w-full">
-            <div class="top-right pt-1 pr-4"  style="z-index: 1">
-                <button class="btn btn-sm btn-link"
-                        data-action="screen--chart#export">
-                    {{ __('Export') }}
-                </button>
-            </div>
-
-            <div id="{{$slug}}" class="w-full h-full"></div>
+            <canvas data-target="screen--chart.canvas" id="{{$slug}}" class="w-full h-full"></canvas>
         </div>
     </div>
 </div>
