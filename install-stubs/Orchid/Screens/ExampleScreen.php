@@ -44,19 +44,19 @@ class ExampleScreen extends Screen
             'charts'  => [
                 [
                     'label'   => 'Some Data',
-                    'data' => [25, 40, 30, 35, 8, 52, 17],
+                    'data'    => [25, 40, 30, 35, 8, 52, 17],
                 ],
                 [
                     'label'   => 'Another Set',
-                    'data' => [25, 50, -10, 15, 18, 32, 27],
+                    'data'    => [25, 50, -10, 15, 18, 32, 27],
                 ],
                 [
                     'label'   => 'Yet Another',
-                    'data' => [15, 20, -3, -15, 58, 12, -17],
+                    'data'    => [15, 20, -3, -15, 58, 12, -17],
                 ],
                 [
                     'label'   => 'And Last',
-                    'data' => [10, 33, -8, -3, 70, 20, -34],
+                    'data'    => [10, 33, -8, -3, 70, 20, -34],
                 ],
             ],
             'table'   => [
