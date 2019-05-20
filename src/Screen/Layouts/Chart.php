@@ -47,11 +47,10 @@ abstract class Chart extends Base
      */
     public $data = '';
 
-
     /**
      * Set default colors or not.
      *
-     * @var boolean
+     * @var bool
      */
     public $setColors = true;
 
@@ -63,16 +62,16 @@ abstract class Chart extends Base
 
     //public $colors = ['#2274A5', '#F75C03', '#F1C40F', '#D90368', '#00CC66' ];
     //public $colors = ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5'];
-    public $colors = ['#3366CC','#DC3912','#FF9900','#109618','#990099','#3B3EAC','#0099C6','#DD4477','#66AA00','#B82E2E','#316395','#994499','#22AA99','#AAAA11','#6633CC','#E67300','#8B0707','#329262','#5574A6','#3B3EAC'];
+    public $colors = ['#3366CC', '#DC3912', '#FF9900', '#109618', '#990099', '#3B3EAC', '#0099C6', '#DD4477', '#66AA00', '#B82E2E', '#316395', '#994499', '#22AA99', '#AAAA11', '#6633CC', '#E67300', '#8B0707', '#329262', '#5574A6', '#3B3EAC'];
 
     public $options = [
         'title' => [
             'display' => true,
-            'text' => 'Chart',
+            'text'    => 'Chart',
         ],
         'spanGaps' => true,
         'tooltips' => [
-            'mode' => 'index',
+            'mode'      => 'index',
             'intersect' => false,
         ],
         'scales' => [
@@ -100,15 +99,15 @@ abstract class Chart extends Base
     public function build(Repository $query)
     {
         return view($this->template, [
-            'title'  => $this->title,
-            'slug'   => Str::slug($this->title),
-            'type'   => $this->type,
-            'height' => $this->height,
-            'labels' => json_encode(collect($this->labels)),
-            'data'   => json_encode($query->getContent($this->data)),
-            'options' => json_encode($this->options),
+            'title'     => $this->title,
+            'slug'      => Str::slug($this->title),
+            'type'      => $this->type,
+            'height'    => $this->height,
+            'labels'    => json_encode(collect($this->labels)),
+            'data'      => json_encode($query->getContent($this->data)),
+            'options'   => json_encode($this->options),
             'setcolors' => $this->setColors,
-            'colors' => json_encode($this->colors),
+            'colors'    => json_encode($this->colors),
         ]);
     }
 }
