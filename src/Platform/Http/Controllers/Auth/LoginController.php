@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Auth;
 
+use Illuminate\Cookie\CookieJar;
 use Illuminate\View\View;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\View\Factory;
@@ -62,5 +63,17 @@ class LoginController extends Controller
         throw ValidationException::withMessages([
             $this->username() => [__('The details you entered did not match our records. Please double-check and try again.')],
         ]);
+    }
+
+    /**
+     * @param \Illuminate\Cookie\CookieJar $cookieJar
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function resetCookieLockMe(CookieJar $cookieJar)
+    {
+        $lockUser = $cookieJar->forget('lockUser');
+
+        return back()->withCookie($lockUser);
     }
 }

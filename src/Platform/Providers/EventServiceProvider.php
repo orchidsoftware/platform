@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Illuminate\Auth\Events\Login;
+use Orchid\Platform\Listeners\LockUserForLogin;
 use Orchid\Platform\Listeners\LogSuccessfulLogin;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -18,6 +19,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Login::class => [
             LogSuccessfulLogin::class,
+            LockUserForLogin::class,
         ],
     ];
 
