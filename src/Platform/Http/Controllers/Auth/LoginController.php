@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Auth;
 
-use Illuminate\Cookie\CookieJar;
 use Illuminate\View\View;
+use Illuminate\Cookie\CookieJar;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Validation\ValidationException;
