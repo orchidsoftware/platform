@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Composers;
 
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Contracts\Auth\Guard;
 
 class LockMeComposer
 {
@@ -32,7 +32,6 @@ class LockMeComposer
         $this->guard = $guard;
     }
 
-
     /**
      * @param \Illuminate\View\View $view
      */
@@ -45,9 +44,8 @@ class LockMeComposer
 
         $view->with('isLockUser', optional($model)->exists ?? false);
 
-        \Illuminate\Support\Facades\View::composer('platform::auth.lockme', function($view) use ($model)
-        {
-            $view->with('lockUser',$model);
+        \Illuminate\Support\Facades\View::composer('platform::auth.lockme', function ($view) use ($model) {
+            $view->with('lockUser', $model);
         });
     }
 }
