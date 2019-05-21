@@ -31,8 +31,8 @@
 </div>
 
 <div class="row">
-    <div class="form-group col-md-6 col-xs-12" data-controller="layouts--lockme">
-        <a href="#" data-action="layouts--lockme#reset" class="small">
+    <div class="form-group col-md-6 col-xs-12">
+        <a href="{{ route('platform.login.lock') }}" class="small">
             {{__('Sign in with another user')}}
         </a>
     </div>

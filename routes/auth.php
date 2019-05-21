@@ -19,7 +19,7 @@ if (config('platform.auth', true)) {
     // Authentication Routes...
     $this->router->get('login', [LoginController::class, 'showLoginForm'])->name('login');
     $this->router->post('login', [LoginController::class, 'login'])->name('login.auth');
-    $this->router->post('lock', [LoginController::class, 'resetCookieLockMe'])->name('login.lock');
+    $this->router->get('lock', [LoginController::class, 'resetCookieLockMe'])->name('login.lock');
 
     // Password Reset Routes...
     $this->router->get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');

@@ -74,6 +74,6 @@ class LoginController extends Controller
     {
         $lockUser = $cookieJar->forget('lockUser');
 
-        return back()->withCookie($lockUser);
+        return redirect()->route('platform.login')->withCookie($lockUser);
     }
 }
