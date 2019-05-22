@@ -38,7 +38,8 @@ class AuthTest extends TestFeatureCase
 
         $response
             ->assertStatus(302)
-            ->assertRedirect(config('platform.prefix'));
+            ->assertRedirect(config('platform.prefix'))
+            ->assertCookieNotExpired('lockUser');
     }
 
     public function testRouteDashboardLoginAuthFail()
@@ -80,5 +81,16 @@ class AuthTest extends TestFeatureCase
         $response
             ->assertStatus(302)
             ->assertRedirect('/home');
+    }
+
+    public function testRouteDashboardGuestLockAuth()
+    {
+        $response = $this->call('GET', route('platform.login.lock'), $parameters = [], $cookies = [
+            'lockUser' => 1,
+        ]);
+
+        $response
+            ->assertRedirect(route('platform.login'))
+            ->assertCookieExpired('lockUser');
     }
 }
