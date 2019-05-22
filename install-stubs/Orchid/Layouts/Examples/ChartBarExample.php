@@ -51,14 +51,14 @@ class ChartBarExample extends Chart
         'layout' => [
             'padding' => [
                 'right' => 10,
-            ]
+            ],
         ],
         'legend' => [
             'display'  => true,
             'position' => 'right',
             'labels'   => [
-                'fontSize' =>8,
-            ]
+                'fontSize' => 8,
+            ],
         ],
     ];
 }

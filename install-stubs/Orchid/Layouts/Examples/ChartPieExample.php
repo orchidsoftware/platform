@@ -51,14 +51,14 @@ class ChartPieExample extends Chart
         'layout' => [
             'padding' => [
                 'left' => 10,
-            ]
+            ],
         ],
         'legend' => [
             'display'  => true,
             'position' => 'left',
             'labels'   => [
-                'fontSize' =>8,
-            ]
+                'fontSize' => 8,
+            ],
         ],
     ];
 }
