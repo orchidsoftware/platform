@@ -42,4 +42,23 @@ class ChartBarExample extends Chart
      * @var string
      */
     public $data = 'charts';
+
+    public $options = [
+        'title' => [
+            'display' => true,
+            'text'    => 'Bar Chart',
+        ],
+        'layout' => [
+            'padding' => [
+                'right' => 10,
+            ]
+        ],
+        'legend' => [
+            'display'  => true,
+            'position' => 'right',
+            'labels'   => [
+                'fontSize' =>8,
+            ]
+        ],
+    ];
 }

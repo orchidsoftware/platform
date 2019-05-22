@@ -34,7 +34,7 @@ mix
     .extract([
         'stimulus', 'turbolinks', 'stimulus/webpack-helpers',
         'jquery', 'popper.js', 'bootstrap',
-        'dropzone', 'select2', 'cropperjs', 'chart.js', 'inputmask',
+        'dropzone', 'select2', 'cropperjs', 'chart.js', 'moment', 'inputmask',
         'simplemde', 'tinymce', 'axios', 'leaflet', 'codeflask', 'stimulus-flatpickr',
         'flatpickr', 'quill', 'codemirror', 'typo-js', 'sortablejs'
     ])

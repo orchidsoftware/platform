@@ -42,4 +42,23 @@ class ChartPieExample extends Chart
      * @var string
      */
     public $data = 'charts';
+
+    public $options = [
+        'title' => [
+            'display' => true,
+            'text'    => 'Pie Chart',
+        ],
+        'layout' => [
+            'padding' => [
+                'left' => 10,
+            ]
+        ],
+        'legend' => [
+            'display'  => true,
+            'position' => 'left',
+            'labels'   => [
+                'fontSize' =>8,
+            ]
+        ],
+    ];
 }
