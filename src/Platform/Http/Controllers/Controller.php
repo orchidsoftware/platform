@@ -26,7 +26,7 @@ class Controller extends BaseController
             if (Auth::user()->hasAccess($permission)) {
                 return $next($request);
             }
-            abort(404);
+            abort(403);
         });
 
         abort_if(! is_null(Auth::user()) && ! Auth::user()->hasAccess($permission), 403);
