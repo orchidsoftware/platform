@@ -13,7 +13,7 @@ use Orchid\Screen\Field;
  * @method self autofocus($value = true)
  * @method self disabled($value = true)
  * @method self form($value = true)
- * @method self name(string $value)
+ * @method self name(string $value = null)
  * @method self required(bool $value = true)
  * @method self size($value = true)
  * @method self tabindex($value = true)

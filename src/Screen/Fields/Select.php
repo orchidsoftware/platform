@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Orchid\Screen\Field;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Orchid\Screen\Field;
 
 /**
  * Class Select.
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @method self autofocus($value = true)
  * @method self disabled($value = true)
  * @method self form($value = true)
- * @method self name(string $value)
+ * @method self name(string $value = null)
  * @method self required(bool $value = true)
  * @method self size($value = true)
  * @method self tabindex($value = true)
@@ -138,8 +138,8 @@ class Select extends Field
     }
 
     /**
-     * @param string|null $name
-     * @param string      $key
+     * @param string $name
+     * @param string $key
      *
      * @return self
      */

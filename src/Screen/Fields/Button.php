@@ -124,7 +124,7 @@ class Button extends Field
             self::LIGHT,
             self::DARK,
             self::LINK,
-        ], '', $this->get('class'));
+        ], '', (string) $this->get('class'));
 
         $this->set('class', $class.' '.$visual);
 

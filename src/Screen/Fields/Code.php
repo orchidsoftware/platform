@@ -9,7 +9,7 @@ use Orchid\Screen\Field;
 /**
  * Class Input.
  *
- * @method self name(string $value)
+ * @method self name(string $value = null)
  * @method self value($value = true)
  * @method self help(string $value = null)
  * @method self popover(string $value = null)
@@ -77,7 +77,7 @@ class Code extends Field
     ];
 
     /**
-     * @param string $name
+     * @param string|null $name
      *
      * @return self
      */

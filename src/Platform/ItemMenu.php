@@ -178,7 +178,7 @@ class ItemMenu
     }
 
     /**
-     * @param string $title
+     * @param string|null $title
      *
      * @return ItemMenu
      */

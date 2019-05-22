@@ -129,25 +129,6 @@ class TD
     }
 
     /**
-     * @param string|null $column
-     *
-     * @return TD
-     */
-    public function column(string $column = null): self
-    {
-        if (! is_null($column)) {
-            $this->column = $column;
-        }
-
-        if ($this->locale && ! is_null($column)) {
-            $locale = '.'.app()->getLocale().'.';
-            $this->column = preg_replace('/'.preg_quote('.', '/').'/', $locale, $column);
-        }
-
-        return $this;
-    }
-
-    /**
      * @param string $filter
      *
      * @return TD

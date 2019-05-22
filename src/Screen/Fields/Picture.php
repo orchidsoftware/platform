@@ -11,6 +11,7 @@ use Orchid\Attachment\Models\Attachment;
 /**
  * Class Picture.
  *
+ * @method self name(string $value = null)
  * @method self required(bool $value = true)
  * @method self size($value = true)
  * @method self src($value = true)

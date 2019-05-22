@@ -11,7 +11,7 @@ use Orchid\Screen\Field;
  *
  * Class ViewField.
  *
- * @method self name(string $value)
+ * @method self name(string $value = null)
  * @method self help(string $value = null)
  */
 class ViewField extends Field

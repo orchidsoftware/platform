@@ -59,12 +59,12 @@ trait UserAccess
     }
 
     /**
-     * @param      $checkPermissions
-     * @param bool $cache
+     * @param string $checkPermissions
+     * @param bool   $cache
      *
      * @return bool
      */
-    public function hasAccess($checkPermissions, $cache = true): bool
+    public function hasAccess(string $checkPermissions, $cache = true): bool
     {
         if (! $cache || is_null($this->cachePermissions)) {
             $this->cachePermissions = $this->roles()
@@ -100,11 +100,11 @@ trait UserAccess
     /**
      * Remove Role Slug.
      *
-     * @param $slug
+     * @param string $slug
      *
      * @return int
      */
-    public function removeRoleBySlug($slug): int
+    public function removeRoleBySlug(string $slug): int
     {
         $role = $this->roles()->where('slug', $slug)->first();
 

@@ -26,7 +26,7 @@ use Orchid\Screen\Field;
  * @method self maxlength(int $value)
  * @method self min(int $value)
  * @method self multiple($value = true)
- * @method self name(string $value)
+ * @method self name(string $value = null)
  * @method self pattern($value = true)
  * @method self placeholder(string $value = null)
  * @method self readonly($value = true)
