@@ -40,6 +40,10 @@ class LockUserForLogin
      */
     public function handle(Login $event)
     {
+        if(!$event->remember){
+            return;
+        }
+
         $user = $this->cookie->forever('lockUser', $event->user->id);
 
         $this->cookie->queue($user);
