@@ -3,9 +3,7 @@
     tr {
       th {
         font-weight: 600;
-        font-size: 13px;
-        padding-top: 14px;
-        padding-bottom: 14px;
+        font-size: 0.9em;
         vertical-align: top;
         border-bottom: 1px solid fade-out($brand-light, .3);
 		border-top: 0;
@@ -30,7 +28,7 @@
         border-bottom: 1px solid fade-out($brand-light, .3);
         border-top: 0;
         padding: 20px;
-        font-size: 13.5px;
+        font-size: $font-size-sm;
         vertical-align: middle;
         word-break: break-all;
         .btn-tag {

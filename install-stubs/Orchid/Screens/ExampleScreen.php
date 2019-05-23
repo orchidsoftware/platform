@@ -19,6 +19,15 @@ use Orchid\Platform\Notifications\DashboardNotification;
 
 class ExampleScreen extends Screen
 {
+
+    /**
+     * Fish text for the table
+     */
+    const TEXT_EXAMPLE = 'Lorem ipsum at sed ad fusce faucibus primis, potenti inceptos ad taciti nisi tristique 
+    urna etiam, primis ut lacus habitasse malesuada ut. Lectus aptent malesuada mattis ut etiam fusce nec sed viverra,
+    semper mattis viverra malesuada quam metus vulputate torquent magna, lobortis nec nostra nibh sollicitudin 
+    erat in luctus.';
+
     /**
      * Display header name.
      *
@@ -60,11 +69,11 @@ class ExampleScreen extends Screen
                 ],
             ],
             'table'   => [
-                new Repository(['product_id' => 'prod-100', 'name' => 'Desk', 'price' => 10.24, 'created_at' => '01.01.2020']),
-                new Repository(['product_id' => 'prod-200', 'name' => 'Chair', 'price' => 65.9, 'created_at' => '01.01.2020']),
-                new Repository(['product_id' => 'prod-300', 'name' => 'Computer', 'price' => 754.2, 'created_at' => '01.01.2020']),
-                new Repository(['product_id' => 'prod-400', 'name' => 'Pen', 'price' => 0.1, 'created_at' => '01.01.2020']),
-                new Repository(['product_id' => 'prod-400', 'name' => 'Brush', 'price' => 0.15, 'created_at' => '01.01.2020']),
+                new Repository(['id' => 100, 'name' => self::TEXT_EXAMPLE, 'price' => 10.24, 'created_at' => '01.01.2020']),
+                new Repository(['id' => 200, 'name' => self::TEXT_EXAMPLE, 'price' => 65.9, 'created_at' => '01.01.2020']),
+                new Repository(['id' => 300, 'name' => self::TEXT_EXAMPLE, 'price' => 754.2, 'created_at' => '01.01.2020']),
+                new Repository(['id' => 400, 'name' => self::TEXT_EXAMPLE, 'price' => 0.1, 'created_at' => '01.01.2020']),
+                new Repository(['id' => 500, 'name' => self::TEXT_EXAMPLE, 'price' => 0.15, 'created_at' => '01.01.2020']),
 
             ],
             'metrics' => [
