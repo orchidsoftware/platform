@@ -41,6 +41,7 @@ deploy:
   verbose: true
   on:
     branch: master
+    condition: $(phpenv version-name) = "7.3"
 
 notifications:
   email:
