@@ -40,7 +40,7 @@ class LockUserForLogin
      */
     public function handle(Login $event)
     {
-        if(!$event->remember){
+        if (! $event->remember) {
             return;
         }
 
