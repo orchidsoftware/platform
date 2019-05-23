@@ -19,9 +19,8 @@ use Orchid\Platform\Notifications\DashboardNotification;
 
 class ExampleScreen extends Screen
 {
-
     /**
-     * Fish text for the table
+     * Fish text for the table.
      */
     const TEXT_EXAMPLE = 'Lorem ipsum at sed ad fusce faucibus primis, potenti inceptos ad taciti nisi tristique 
     urna etiam, primis ut lacus habitasse malesuada ut. Lectus aptent malesuada mattis ut etiam fusce nec sed viverra,
