@@ -55,7 +55,7 @@ abstract class Filter
      */
     public function filter(Builder $builder): Builder
     {
-        if (is_null($this->parameters) || $this->request->filled($this->parameters)) {
+        if (is_null($this->parameters) || $this->request->hasAny($this->parameters)) {
             return $this->run($builder);
         }
 
