@@ -5,9 +5,14 @@ php:
   - 7.2
   - 7.3
 
+node_js:
+  - 10
+
 cache:
   directories:
     - $HOME/.composer/cache
+    - node_modules
+    - vendor
 
 before_script:
    - travis_retry composer self-update
@@ -19,6 +24,21 @@ script:
   
 after_success:
     - bash <(curl -s https://codecov.io/bash)
+
+before_deploy:
+  - rm -R public/css
+  - rm -R public/js
+  - npm install
+  - npm run production
+
+deploy:
+  target_branch: test_branch_deploy
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  on:
+    branch: master
 
 notifications:
   email:
