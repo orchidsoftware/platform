@@ -1,5 +1,7 @@
 .idea
 .phpstorm.meta.php
+.phpunit.result.cache
+clover.xml
 _ide_helper.php
 composer.lock
 build
