@@ -11,9 +11,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Upload` field takes array of numeric values [851](https://github.com/orchidsoftware/platform/issues/851)
 - Property `name` for `Filter`
 - `TD` method `canSee`
+- Auto substitution from previous session [824](https://github.com/orchidsoftware/platform/issues/824)
+- Select lazyload multiple [772](https://github.com/orchidsoftware/platform/issues/772)
 
 ### Changed
 - Rename `Picture` field to `Cropper`
+- Redesigned structure blade templates
+
+### Fixed
+- Filter trigger by many parameter
 
 ### Removed
 -  Move package for `Press` in a separate repository [815](https://github.com/orchidsoftware/platform/issues/815)
