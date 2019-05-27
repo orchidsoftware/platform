@@ -1,6 +1,24 @@
 import { Controller } from 'stimulus';
 
 export default class extends Controller {
+
+
+    /**
+     * Connect Form
+     */
+    connect() {
+
+        /**
+         * Added focus button for Mac OS firefox/safari
+         */
+        document.querySelectorAll('button[type=submit]').forEach((button) => {
+            button.addEventListener('click', (event) => {
+                event.target.focus();
+            });
+        });
+    }
+
+
     /**
      *
      */
