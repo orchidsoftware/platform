@@ -22,9 +22,17 @@ export default class extends Controller {
         //@see https://github.com/frappe/charts/issues/212
         this.chart.unbindWindowEvents();
 
-        $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', () => {
+        $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', this.drawEvent());
+    }
+
+    /**
+     *
+     * @returns {Function}
+     */
+    drawEvent() {
+        return () => {
             this.chart.draw();
-        });
+        };
     }
 
     /**
@@ -34,4 +42,10 @@ export default class extends Controller {
         this.chart.export();
     }
 
+    /**
+     *
+     */
+    disconnect() {
+        $(document).off('shown.bs.tab', 'a[data-toggle="tab"]', this.drawEvent());
+    }
 }
