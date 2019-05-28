@@ -5,17 +5,15 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Screen;
 
 use Orchid\Screen\Builder;
-use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Repository;
 use Orchid\Tests\TestUnitCase;
-
+use Orchid\Screen\Fields\Input;
 
 /**
  * Class BuilderTest.
  */
 class BuilderTest extends TestUnitCase
 {
-
     /**
      * @throws \Throwable
      */
@@ -55,7 +53,6 @@ class BuilderTest extends TestUnitCase
             ->setPrefix('profile')
             ->generateForm();
 
-
         $this->assertStringContainsString('name="profile[en][name]', $form);
         $this->assertStringContainsString('lang="en"', $form);
         $this->assertStringContainsString('value="Alexandr"', $form);
@@ -66,7 +63,6 @@ class BuilderTest extends TestUnitCase
      */
     public function testPrefixForFields()
     {
-
         $fields = [
             Input::make('name')->prefix('one'),
             Input::make('name')->prefix('two'),
@@ -76,7 +72,6 @@ class BuilderTest extends TestUnitCase
         $data = new Repository(['name' => 'Alexandr']);
 
         $builder = new Builder($fields, $data);
-
 
         $form = $builder->generateForm();
 
@@ -91,7 +86,6 @@ class BuilderTest extends TestUnitCase
      */
     public function testPrefixAndLanguageForFields()
     {
-
         $fields = [
             Input::make('name')->prefix('one'),
             Input::make('name')->prefix('two'),
@@ -113,7 +107,6 @@ class BuilderTest extends TestUnitCase
         $this->assertStringContainsString('value="Alexandr"', $form);
     }
 
-
     /**
      * @param array $value
      *
@@ -126,5 +119,4 @@ class BuilderTest extends TestUnitCase
 
         return new Builder($fields, $data);
     }
-
 }
