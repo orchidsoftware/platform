@@ -24,6 +24,6 @@ class Setting extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return Dashboard::modelClass(SettingModel::class);
+        return SettingModel::class;
     }
 }
