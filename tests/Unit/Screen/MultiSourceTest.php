@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen;
 
-use Orchid\Screen\AsMultiSource;
 use Orchid\Tests\TestUnitCase;
+use Orchid\Screen\AsMultiSource;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -65,5 +65,4 @@ class MultiSourceTest extends TestUnitCase
         $this->assertContains('Russia', $this->model->getContent('country', 'en'));
         $this->assertContains('Россия', $this->model->getContent('country', 'ru'));
     }
-
 }
