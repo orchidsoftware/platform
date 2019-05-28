@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 class HttpFilter
 {
@@ -109,13 +110,21 @@ class HttpFilter
 
         $this->filters->each(function ($value, $property) use ($builder, $allowedFilters) {
             $allowProperty = $property;
+            $model = null;
+            $attribute = null;
             if (strpos($property, '.') !== false) {
+                $model = Str::before($property,'.');
+                $attribute = Str::after($property,'.');
                 $allowProperty = strstr($property, '.', true);
             }
 
             if (in_array($allowProperty, $allowedFilters, true)) {
-                $property = str_replace('.', '->', $property);
-                $this->filtersExact($builder, $value, $property);
+                if (is_null($model) and is_null($attribute)){
+                    $this->filtersExact($builder, $value, $property);
+                }else{
+                    $property = str_replace('.', '->', $property);
+                    $this->filtersExact($builder, $value, $property,$model, $attribute);
+                }
             }
         });
     }
@@ -123,13 +132,15 @@ class HttpFilter
     /**
      * @param Builder $query
      * @param         $value
-     * @param string  $property
+     * @param string $property
      *
+     * @param null $model
+     * @param $attribute
      * @return Builder
      */
-    protected function filtersExact(Builder $query, $value, string $property)
+    protected function filtersExact(Builder $query, $value, string $property,$model = null,$attribute = null)
     {
-        $property = self::sanitize($property);
+        $property = $this->sanitize($property);
 
         if (is_array($value)) {
             return $query->whereIn($property, $value);
@@ -139,7 +150,13 @@ class HttpFilter
             return $query->where($property, $value);
         }
 
+        if (strpos($property, '->') !== false) {
+            return $query->whereHas($model , function ($q) use ($value, $attribute) {
+                $q->where($attribute,'like', "%$value%");
+            });
+        }
         return $query->where($property, 'like', "%$value%");
+
     }
 
     /**
