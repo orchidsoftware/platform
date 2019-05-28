@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 class HttpFilter
 {
@@ -153,9 +154,10 @@ class HttpFilter
             ->each(function (string $sort) use ($builder, $allowedSorts) {
                 $descending = strpos($sort, '-') === 0;
                 $key = ltrim($sort, '-');
+                $property = Str::before($key, '.');
                 $key = str_replace('.', '->', $key);
 
-                if (in_array($key, $allowedSorts, true)) {
+                if (in_array($property, $allowedSorts, true)) {
                     $key = $this->sanitize($key);
                     $builder->orderBy($key, $descending ? 'desc' : 'asc');
                 }
