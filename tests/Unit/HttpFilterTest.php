@@ -117,6 +117,47 @@ class HttpFilterTest extends TestUnitCase
         $this->assertEquals($filter->getSort('foo'), 'desc');
     }
 
+    public function testHttpJSONFilter()
+    {
+        $request = new Request([
+            'filter' => [
+                'content.ru.name' => 'not allow',
+            ],
+        ]);
+
+        $filter = new HttpFilter($request);
+
+        $sql = $this->getModelBuilder($filter)->toSql();
+
+        $this->assertStringContainsString("json_extract(\"content\", '$.\"ru\".\"name\"') like ?", $sql);
+    }
+
+    public function testHttpJSONSort()
+    {
+        $request = new Request([
+            'sort' => 'content.ru.name',
+        ]);
+
+        $filter = new HttpFilter($request);
+
+        $sql = $this->getModelBuilder($filter)->toSql();
+
+        $this->assertStringContainsString("order by json_extract(\"content\", '$.\"ru\".\"name\"') asc", $sql);
+    }
+
+    public function testHttpJSONSortDesc()
+    {
+        $request = new Request([
+            'sort' => '-content.ru.name',
+        ]);
+
+        $filter = new HttpFilter($request);
+
+        $sql = $this->getModelBuilder($filter)->toSql();
+
+        $this->assertStringContainsString("order by json_extract(\"content\", '$.\"ru\".\"name\"') desc", $sql);
+    }
+
     public function testHttpSanitize()
     {
         $this->assertEquals(HttpFilter::sanitize('content->name'), 'content->name');
@@ -141,7 +182,14 @@ class HttpFilterTest extends TestUnitCase
             use Filterable;
 
             /**
-             * @var
+             * @var array
+             */
+            protected $cast = [
+                'content' => 'array',
+            ];
+
+            /**
+             * @var array
              */
             protected $allowedFilters = [
                 'id',
@@ -149,10 +197,11 @@ class HttpFilterTest extends TestUnitCase
                 'foo',
                 'baz',
                 'foobar',
+                'content',
             ];
 
             /**
-             * @var
+             * @var array
              */
             protected $allowedSorts = [
                 'id',
@@ -160,6 +209,7 @@ class HttpFilterTest extends TestUnitCase
                 'foo',
                 'baz',
                 'foobar',
+                'content',
             ];
         };
 
