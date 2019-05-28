@@ -158,10 +158,6 @@ class Builder
             return $this->prefix;
         }
 
-        foreach (array_filter(explode(' ', $prefix)) as $name) {
-            $prefix .= '['.$name.']';
-        }
-
         return $prefix;
     }
 
