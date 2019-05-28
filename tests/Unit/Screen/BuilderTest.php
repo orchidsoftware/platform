@@ -24,8 +24,8 @@ class BuilderTest extends TestUnitCase
         $form = $this->getBuilder(['name' => 'Alexandr'])
             ->generateForm();
 
-        $this->assertContains('name="name"', $form);
-        $this->assertContains('value=="Alexandr"', $form);
+        $this->assertStringContainsString('name="name"', $form);
+        $this->assertStringContainsString('value="Alexandr"', $form);
     }
 
     /**
@@ -37,8 +37,8 @@ class BuilderTest extends TestUnitCase
             ->setPrefix('profile')
             ->generateForm();
 
-        $this->assertContains('name="profile[name]"', $form);
-        $this->assertContains('value="Alexandr"', $form);
+        $this->assertStringContainsString('name="profile[name]"', $form);
+        $this->assertStringContainsString('value="Alexandr"', $form);
     }
 
     /**
@@ -56,9 +56,9 @@ class BuilderTest extends TestUnitCase
             ->generateForm();
 
 
-        $this->assertContains('name="profile[ru][name]', $form);
-        $this->assertContains('lang="en"', $form);
-        $this->assertContains('value="Alexandr"', $form);
+        $this->assertStringContainsString('name="profile[en][name]', $form);
+        $this->assertStringContainsString('lang="en"', $form);
+        $this->assertStringContainsString('value="Alexandr"', $form);
     }
 
     /**
@@ -80,10 +80,10 @@ class BuilderTest extends TestUnitCase
 
         $form = $builder->generateForm();
 
-        $this->assertContains('name="one[name]"', $form);
-        $this->assertContains('name="two[name]"', $form);
-        $this->assertContains('name="three[name]"', $form);
-        $this->assertContains('value="Alexandr"', $form);
+        $this->assertStringContainsString('name="one[name]"', $form);
+        $this->assertStringContainsString('name="two[name]"', $form);
+        $this->assertStringContainsString('name="three[name]"', $form);
+        $this->assertStringContainsString('value="Alexandr"', $form);
     }
 
     /**
@@ -106,11 +106,11 @@ class BuilderTest extends TestUnitCase
             ->setLanguage('en')
             ->generateForm();
 
-        $this->assertContains('name="one[en][name]"', $form);
-        $this->assertContains('name="two[en][name]"', $form);
-        $this->assertContains('name="three[en][name]"', $form);
-        $this->assertContains('lang="en"', $form);
-        $this->assertContains('value="Alexandr"', $form);
+        $this->assertStringContainsString('name="one[en][name]"', $form);
+        $this->assertStringContainsString('name="two[en][name]"', $form);
+        $this->assertStringContainsString('name="three[en][name]"', $form);
+        $this->assertStringContainsString('lang="en"', $form);
+        $this->assertStringContainsString('value="Alexandr"', $form);
     }
 
 
