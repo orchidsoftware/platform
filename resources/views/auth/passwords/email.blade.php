@@ -17,17 +17,20 @@
           data-layouts--form-button-text="{{ __('Loading...') }}"
           action="{{ route('platform.password.email') }}">
         @csrf
-        <div class="form-group {{ $errors->has('email') ? ' is-invalid' : '' }}">
+        <div class="form-group">
             <label>{{ __('E-Mail Address') }}</label>
             <div class="controls">
-                <input type="email" name="email" placeholder="{{ __('Enter your email') }}"
-                       class="form-control" required
+                <input type="email"
+                       name="email"
+                       placeholder="{{ __('Enter your email') }}"
+                       class="form-control @error('password') is-invalid @enderror"
+                       required
                        value="{{ old('email') }}">
-                @if ($errors->has('email'))
+                @error('email')
                     <span class="invalid-feedback text-danger">
                         <strong>{{ $errors->first('email') }}</strong>
                     </span>
-                @endif
+                @enderror
             </div>
         </div>
         <div class="form-group">
