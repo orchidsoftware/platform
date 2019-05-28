@@ -33,7 +33,7 @@ before_deploy:
   - npm run production
 
 deploy:
-  target_branch: master
+  target_branch: test_branch_deploy
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
