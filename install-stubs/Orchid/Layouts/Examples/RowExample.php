@@ -2,8 +2,13 @@
 
 namespace App\Orchid\Layouts\Examples;
 
+use Orchid\Platform\Models\Role;
 use Orchid\Screen\Field;
+use Orchid\Screen\Fields\DateRange;
 use Orchid\Screen\Fields\Map;
+use Orchid\Screen\Fields\RadioButtons;
+use Orchid\Screen\Fields\Relation;
+use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Fields\UTM;
 use Orchid\Screen\Fields\Code;
 use Orchid\Screen\Fields\Input;
@@ -80,6 +85,43 @@ class RowExample extends Rows
                 ->required()
                 ->title('Short description'),
 
+            Field::group([
+
+                DateTimer::make('allowInput')
+                    ->title('DateTimer allowInput')
+                    ->allowInput(),
+
+                DateTimer::make('enabledTime')
+                    ->title('DateTimer enabledTime')
+                    ->enableTime(),
+
+                DateTimer::make('format24hr')
+                    ->title('DateTimer format24hr')
+                    ->format24hr(),
+
+                DateTimer::make('custom')
+                    ->title('DateTimer Custom')
+                    ->noCalendar()
+                    ->format('h:i K'),
+
+            ]),
+
+            Input::make('color')
+                ->type('color')
+                ->title('Select color'),
+
+            DateRange::make('rangeDate')
+                ->title('Range date'),
+
+            RadioButtons::make('radioButtons')
+                ->title('Status for radio buttons')
+                ->options([
+                    1 => 'Enabled',
+                    0 => 'Disabled',
+                    3 => 'Pause',
+                    4 => 'Work',
+                ]),
+
             TinyMCE::make('body')
                 ->required()
                 ->title('Name Articles')
@@ -118,6 +160,13 @@ class RowExample extends Rows
             Quill::make('body3')
                 ->title('Name Articles')
                 ->help('Article title'),
+
+            Upload::make('files')
+                ->title('Upload files'),
+
+            Relation::make('role')
+                ->fromModel(Role::class, 'name')
+                ->title('Select one role'),
 
         ];
     }
