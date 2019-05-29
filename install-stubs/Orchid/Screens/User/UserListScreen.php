@@ -38,6 +38,7 @@ class UserListScreen extends Screen
     {
         return  [
             'users'  => User::with('roles')
+                ->filters()
                 ->filtersApplySelection(UserFiltersLayout::class)
                 ->defaultSort('id', 'desc')
                 ->paginate(),

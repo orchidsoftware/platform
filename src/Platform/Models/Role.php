@@ -53,6 +53,8 @@ class Role extends Model implements RoleInterface
         'id',
         'name',
         'slug',
+        'updated_at',
+        'created_at'
     ];
 
     /**

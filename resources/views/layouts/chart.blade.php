@@ -17,7 +17,7 @@
                 </button>
             </div>
 
-            <div id="{{$slug}}" class="w-full h-full"></div>
+            <figure id="{{$slug}}" class="w-full h-full"></figure>
         </div>
     </div>
 </div>

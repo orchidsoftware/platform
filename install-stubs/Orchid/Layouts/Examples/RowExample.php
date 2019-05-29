@@ -97,6 +97,7 @@ class RowExample extends Rows
 
                 DateTimer::make('format24hr')
                     ->title('DateTimer format24hr')
+                    ->enableTime()
                     ->format24hr(),
 
                 DateTimer::make('custom')
