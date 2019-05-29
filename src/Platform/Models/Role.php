@@ -54,7 +54,7 @@ class Role extends Model implements RoleInterface
         'name',
         'slug',
         'updated_at',
-        'created_at'
+        'created_at',
     ];
 
     /**

@@ -75,7 +75,7 @@ class User extends Authenticatable implements UserInterface
         'email',
         'last_login',
         'updated_at',
-        'created_at'
+        'created_at',
     ];
 
     /**
