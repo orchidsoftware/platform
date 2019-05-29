@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\User;
 
+use Orchid\Screen\TD;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Layouts\Table;
-use Orchid\Screen\TD;
 
 class UserListLayout extends Table
 {
