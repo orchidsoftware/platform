@@ -276,8 +276,9 @@ class Field implements FieldContract
     {
         $lang = $this->get('lang');
         $slug = $this->get('name');
+        $hash = spl_object_hash($this);
 
-        return Str::slug("field-$lang-$slug");
+        return Str::slug("field-$lang-$slug-$hash");
     }
 
     /**

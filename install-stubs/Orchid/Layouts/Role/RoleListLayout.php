@@ -33,7 +33,7 @@ class RoleListLayout extends Table
             TD::set('slug', __('Slug'))
                 ->sort(),
 
-            TD::set('updated_at', __('Last edit'))
+            TD::set('created_at', __('Created'))
                 ->sort(),
         ];
     }
