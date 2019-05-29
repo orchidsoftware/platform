@@ -12,7 +12,7 @@
     @else
         <div class="custom-control custom-checkbox">
             <input @include('platform::partials.fields.attributes', ['attributes' => $attributes])
-                   @if(isset($attributes['value']) && $attributes['value']) checked @endif
+                   @if(isset($attributes['value']) && $attributes['value'] && (!isset($attributes['checked']) || $attributes['checked'] !== false)) checked @endif
             id="{{$id}}"
             >
             <label class="custom-control-label" for="{{$id}}">{{$placeholder ?? ''}}</label>

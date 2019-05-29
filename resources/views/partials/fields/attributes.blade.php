@@ -1,4 +1,10 @@
 @foreach ($attributes as $name => $value)
+
+    @if(is_bool($value) && $value === false)
+        @continue
+    @endif
+
+
     @if(is_bool($value))
         {{$name}}
     @elseif(is_array($value))
