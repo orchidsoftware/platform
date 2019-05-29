@@ -64,6 +64,7 @@ class Relation extends Field
         'disabled',
         'form',
         'multiple',
+        'placeholder',
         'name',
         'required',
         'size',
