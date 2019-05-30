@@ -147,11 +147,11 @@ class ExampleScreen extends Screen
         return [
 
             MetricsExample::class,
-            ChartLineExample::class,
+            ChartBarExample::class,
 
             Layout::columns([
                 ChartPieExample::class,
-                ChartBarExample::class,
+                ChartLineExample::class,
             ]),
 
             Layout::tabs([

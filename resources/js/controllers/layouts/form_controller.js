@@ -99,10 +99,10 @@ export default class extends Controller {
      */
     validateForm(event) {
 
-        let message = this.data.get('validation');
+        const message = this.data.get('validation');
 
         if (!event.target.checkValidity()) {
-            window.platform.alert(message, 'warning');
+            window.platform.alert(message);
 
             return false;
         }

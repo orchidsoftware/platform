@@ -22,7 +22,12 @@ export default function platform() {
          * @param type
          * @param target
          */
-        alert(message, type = 'danger', target = '#dashboard-alerts') {
+        alert(message, type = 'warning', target = '#dashboard-alerts') {
+
+            if ($(`.alert-${type}`).length !== 0) {
+                return;
+            }
+
             $(target).append(
                 $('<div/>', {
                     class: `alert alert-${type}`,
@@ -38,7 +43,6 @@ export default function platform() {
                         html: '&times;',
                     })),
                 ),
-                $('<div/>', { class: 'clearfix' }),
             );
         },
     };
