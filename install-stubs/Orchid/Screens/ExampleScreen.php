@@ -105,6 +105,7 @@ class ExampleScreen extends Screen
             Link::name('Example Modals')
                 ->modal('exampleModal')
                 ->title('Example Modals')
+                ->method('example')
                 ->icon('icon-full-screen'),
 
             Link::name('Example Group Button')
