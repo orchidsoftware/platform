@@ -36,6 +36,7 @@ use Orchid\Screen\Field;
  * @method self tabindex($value = true)
  * @method self type($value = true)
  * @method self value($value = true)
+ * @method self theme(string $theme = null)
  * @method self help(string $value = null)
  * @method self popover(string $value = null)
  * @method self height($value = '300px')

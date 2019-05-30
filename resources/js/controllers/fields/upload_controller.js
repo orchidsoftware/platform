@@ -42,10 +42,10 @@ export default class extends Controller {
     get activeAttachment() {
         return {
             'id': this.activeAchivmentId,
-            'name': this[this.getAttachmentTargetKey('name')].value,
-            'alt': this[this.getAttachmentTargetKey('alt')].value,
-            'description': this[this.getAttachmentTargetKey('description')].value,
-            'original_name': this[this.getAttachmentTargetKey('original')].value,
+            'name': this[this.getAttachmentTargetKey('name')].value || '',
+            'alt': this[this.getAttachmentTargetKey('alt')].value || '',
+            'description': this[this.getAttachmentTargetKey('description')].value || '',
+            'original_name': this[this.getAttachmentTargetKey('original')].value || '',
         };
     }
 
@@ -56,10 +56,10 @@ export default class extends Controller {
     set activeAttachment(data) {
         this.activeAchivmentId = data.id;
 
-        this[this.getAttachmentTargetKey('name')].value = data.name;
-        this[this.getAttachmentTargetKey('original')].value = data.original_name;
-        this[this.getAttachmentTargetKey('alt')].value = data.alt;
-        this[this.getAttachmentTargetKey('description')].value = data.description;
+        this[this.getAttachmentTargetKey('name')].value = data.name || '';
+        this[this.getAttachmentTargetKey('original')].value = data.original_name || '';
+        this[this.getAttachmentTargetKey('alt')].value = data.alt || '';
+        this[this.getAttachmentTargetKey('description')].value = data.description || '';
 
         this.data.set('url', data.url);
 
@@ -201,8 +201,8 @@ export default class extends Controller {
             init() {
                 this.on('addedfile', (e) => {
 
-                    let removeButton = Dropzone.createElement('<a href="javascript:;" class="btn-remove">&times;</a>');
-                    let editButton = Dropzone.createElement('<a href="javascript:;" class="btn-edit"><i class="icon-note" aria-hidden="true"></i></a>');
+                    const removeButton = Dropzone.createElement('<a href="javascript:;" class="btn-remove">&times;</a>');
+                    const editButton = Dropzone.createElement('<a href="javascript:;" class="btn-edit"><i class="icon-note" aria-hidden="true"></i></a>');
 
                     removeButton.addEventListener('click', (event) => {
                         event.preventDefault();
@@ -225,7 +225,7 @@ export default class extends Controller {
                 });
 
                 this.on('completemultiple', () => {
-                    //$(`${dropname}.sortable-dropzone`).sortable('enable');
+                    //  $(`${dropname}.sortable-dropzone`).sortable('enable');
                 });
 
                 const images = data;
@@ -245,7 +245,7 @@ export default class extends Controller {
 
                         this.emit('addedfile', file);
                         this.emit('thumbnail', file, file.url);
-                        this.emit("complete", file);
+                        this.emit('complete', file);
                         this.files.push(file);
 
 
@@ -256,7 +256,7 @@ export default class extends Controller {
                 $(`${dropname} .dz-progress`).remove();
 
                 this.on('sending', (file, xhr, formData) => {
-                    formData.append('_token', $("meta[name='csrf_token']").attr('content'));
+                    formData.append('_token', $('meta[name=\'csrf_token\']').attr('content'));
                     formData.append('storage', storage);
                     formData.append('group', groups);
                 });
@@ -273,14 +273,14 @@ export default class extends Controller {
             error(file, response) {
 
                 if ($.type(response) === 'string') {
-                    return response; //dropzone sends it's own error messages in string
+                    return response; // dropzone sends it's own error messages in string
                 }
                 return response.message;
             },
 
-            success(file,response) {
+            success(file, response) {
 
-                if(!Array.isArray(response)){
+                if(!Array.isArray(response)) {
                     response = [response];
                 }
 
@@ -299,7 +299,7 @@ export default class extends Controller {
     /**
      *
      */
-    openMedia(){
+    openMedia() {
         $(`${this.dropname} .media-loader`).show();
         $(`${this.dropname} .media-results`).hide();
 
@@ -309,9 +309,9 @@ export default class extends Controller {
     /**
      *
      */
-    loadMedia(){
+    loadMedia() {
         axios
-            .post(platform.prefix(`/systems/media`), {
+            .post(platform.prefix('/systems/media'), {
                 filter: {
                     disk: this.data.get('storage'),
                     original_name: this.searchTarget.value,
@@ -327,8 +327,7 @@ export default class extends Controller {
     /**
      *
      */
-    renderMedia()
-    {
+    renderMedia() {
         let html = '';
 
         /** todo: */
@@ -353,8 +352,8 @@ export default class extends Controller {
      *
      */
     addFile(event){
-        let key = event.currentTarget.dataset.key;
-        let file = this.mediaList[key];
+        const key = event.currentTarget.dataset.key;
+        const file = this.mediaList[key];
 
         this.addedExistFile(file);
     }
@@ -378,7 +377,7 @@ export default class extends Controller {
 
         this.dropZone.emit('addedfile', file);
         this.dropZone.emit('thumbnail', file, file.url);
-        this.dropZone.emit("complete", file);
+        this.dropZone.emit('complete', file);
         this.dropZone.files.push(file);
     }
 }
