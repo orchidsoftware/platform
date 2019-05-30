@@ -18,7 +18,8 @@
               enctype="multipart/form-data"
               data-controller="layouts--form"
               data-action="layouts--form#submit"
-              data-text-validation="{{__('Please check the entered data, it may be necessary to specify in other languages.')}}"
+              data-layouts--form-validation="{{__('Please check the entered data, it may be necessary to specify in other languages.')}}"
+              novalidate
         >
             {!! $screen->build() !!}
             @csrf

@@ -41,19 +41,5 @@ export default function platform() {
                 $('<div/>', { class: 'clearfix' }),
             );
         },
-
-        /**
-         *
-         * @param idForm
-         * @param message
-         * @returns {boolean}
-         */
-        validateForm(idForm, message) {
-            if (!document.getElementById(idForm).checkValidity()) {
-                window.platform.alert(message, 'warning');
-                return false;
-            }
-            return true;
-        },
     };
 }

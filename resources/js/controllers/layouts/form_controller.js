@@ -35,7 +35,7 @@ export default class extends Controller {
      *
      */
     submit(event) {
-        if (!this.validateForm()) {
+        if (!this.validateForm(event)) {
             event.preventDefault();
             return false;
         }
@@ -97,15 +97,16 @@ export default class extends Controller {
      *
      * @returns {*}
      */
-    validateForm() {
-        const formId = this.data.get('id') || this.element.id || document.getElementById('post-form');
+    validateForm(event) {
 
-        if (formId === null) {
-            return true;
+        let message = this.data.get('validation');
+
+        if (!event.target.checkValidity()) {
+            window.platform.alert(message, 'warning');
+
+            return false;
         }
 
-        const textValidation = this.element.getAttribute('data-text-validation');
-
-        return window.platform.validateForm(formId, textValidation);
+        return true;
     }
 }
