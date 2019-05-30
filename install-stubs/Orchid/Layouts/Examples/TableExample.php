@@ -23,7 +23,7 @@ class TableExample extends Table
             TD::set('id', 'ID')
                 ->width(150)
                 ->render(function (Repository $model) {
-                    // Please use view('path')->render()
+                    // Please use view('path')
                     return "<img src='https://picsum.photos/450/200?random={$model->get('id')}'
                               alt='sample'
                               class='mw-100 d-block img-fluid'>

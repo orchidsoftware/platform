@@ -30,7 +30,7 @@ class UserListLayout extends Table
             TD::set('name', __('Name'))
                 ->sort()
                 ->render(function (User $user) {
-                    // Please use the template view()->render()
+                    // Please use view('path')
                     return "<div class='d-sm-flex flex-row flex-wrap text-center text-sm-left align-items-center'>
                                 <span class='thumb-xs avatar m-r-xs d-none d-md-inline-block'>
                                   <img src='{$user->getAvatar()}' class='bg-light'>
