@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method self size($value = true)
  * @method self tabindex($value = true)
  * @method self help(string $value = null)
+ * @method self placeholder(string $placeholder = null)
  * @method self popover(string $value = null)
  */
 class Relation extends Field
