@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Orchid\Screen\Field;
 use Illuminate\Support\Str;
+use Orchid\Screen\Field;
 
 /**
  * Class Button.
@@ -50,10 +50,12 @@ class Button extends Field
      * @var array
      */
     public $attributes = [
-        'class'  => 'btn btn-default',
-        'modal'  => null,
+        'class' => 'btn btn-default',
+        'modal' => null,
         'method' => null,
-        'icon'   => null,
+        'async' => false,
+        'async_params' => [],
+        'icon' => null,
     ];
 
     /**
@@ -99,7 +101,7 @@ class Button extends Field
      */
     public function right(): self
     {
-        $class = $this->get('class').' pull-right';
+        $class = $this->get('class') . ' pull-right';
 
         $this->set('class', $class);
 
@@ -124,9 +126,20 @@ class Button extends Field
             self::LIGHT,
             self::DARK,
             self::LINK,
-        ], '', (string) $this->get('class'));
+        ], '', (string)$this->get('class'));
 
-        $this->set('class', $class.' '.$visual);
+        $this->set('class', $class . ' ' . $visual);
+
+        return $this;
+    }
+
+
+    public function loadModalAsync(string $modal, $method, $options, string $text = null): self
+    {
+        $this->set('async', true);
+        $this->set('modal', $modal);
+        $this->set('method', $method);
+        $this->set('async_params', $options);
 
         return $this;
     }
@@ -138,7 +151,7 @@ class Button extends Field
      */
     public function block(): self
     {
-        $class = $this->get('class').' pull-block';
+        $class = $this->get('class') . ' pull-block';
 
         $this->set('class', $class);
 

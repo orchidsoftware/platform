@@ -3,6 +3,8 @@
         <button type="button"
                 class="{{ $class }}"
                 data-action="screen--base#targetModal"
+                data-async="{{ ($async ? 'true' : 'false') }}"
+                @if($async)data-modal-params="@json($async_params)"@endif
                 data-modal-title="{{ $title ?? '' }}"
                 data-modal-key="{{ $modal ?? '' }}"
                 data-modal-action="{{ url()->current() }}/{{ $method }}"
