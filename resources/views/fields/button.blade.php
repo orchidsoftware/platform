@@ -3,7 +3,9 @@
         <button type="button"
                 class="{{ $class }}"
                 data-action="screen--base#targetModal"
-                data-modal-title="{{ $title ?? '' }}"
+                data-async="{{ var_export($async) }}"
+                @if($async)data-modal-params="@json($asyncParams)"@endif
+                data-modal-title="{{ $modalTitle ?? $title }}"
                 data-modal-key="{{ $modal ?? '' }}"
                 data-modal-action="{{ url()->current() }}/{{ $method }}"
                 @include('platform::partials.fields.attributes', ['attributes' => $attributes])

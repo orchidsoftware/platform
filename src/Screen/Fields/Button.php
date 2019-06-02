@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Fields;
 
 use Orchid\Screen\Field;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 /**
@@ -50,10 +51,13 @@ class Button extends Field
      * @var array
      */
     public $attributes = [
-        'class'  => 'btn btn-default',
-        'modal'  => null,
-        'method' => null,
-        'icon'   => null,
+        'class'       => 'btn btn-default',
+        'modal'       => null,
+        'method'      => null,
+        'async'       => false,
+        'asyncParams' => [],
+        'modalTitle'  => null,
+        'icon'        => null,
     ];
 
     /**
@@ -127,6 +131,28 @@ class Button extends Field
         ], '', (string) $this->get('class'));
 
         $this->set('class', $class.' '.$visual);
+
+        return $this;
+    }
+
+    /**
+     * Call the modal with async method.
+     * Options should contain values which handle by method.
+     *
+     * @param string $modal
+     * @param $method
+     * @param string|array $options
+     * @param string|null  $modalTitle
+     *
+     * @return Button
+     */
+    public function loadModalAsync(string $modal, string $method, $options = [], string $modalTitle = null): self
+    {
+        $this->set('async', true);
+        $this->set('modal', $modal);
+        $this->set('method', $method);
+        $this->set('asyncParams', Arr::wrap($options));
+        $this->set('modalTitle', $modalTitle);
 
         return $this;
     }
