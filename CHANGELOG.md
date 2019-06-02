@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Redesigned structure blade templates
 
 ### Fixed
+- Use checkbox in table [874](https://github.com/orchidsoftware/platform/issues/874)
 - Filter trigger by many parameter
 - Safari not send form [864](https://github.com/orchidsoftware/platform/issues/864)
 
