@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## 5.0.0 - 2019-06-02
 
 ### Added
 - `Cropper` method `targetUrl`, `targetRelativeUrl`, `targetId` [850](https://github.com/orchidsoftware/platform/issues/850)
@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Filter trigger by many parameter
+- Safari not send form [864](https://github.com/orchidsoftware/platform/issues/864)
 
 ### Removed
 -  Move package for `Press` in a separate repository [815](https://github.com/orchidsoftware/platform/issues/815)
