@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Orchid\Screen\Field;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Orchid\Screen\Field;
 
 /**
  * Class Button.
@@ -50,10 +51,13 @@ class Button extends Field
      * @var array
      */
     public $attributes = [
-        'class'  => 'btn btn-default',
-        'modal'  => null,
+        'class' => 'btn btn-default',
+        'modal' => null,
         'method' => null,
-        'icon'   => null,
+        'async' => false,
+        'asyncParams' => [],
+        'modalTitle' => null,
+        'icon' => null,
     ];
 
     /**
@@ -99,7 +103,7 @@ class Button extends Field
      */
     public function right(): self
     {
-        $class = $this->get('class').' pull-right';
+        $class = $this->get('class') . ' pull-right';
 
         $this->set('class', $class);
 
@@ -124,9 +128,30 @@ class Button extends Field
             self::LIGHT,
             self::DARK,
             self::LINK,
-        ], '', (string) $this->get('class'));
+        ], '', (string)$this->get('class'));
 
-        $this->set('class', $class.' '.$visual);
+        $this->set('class', $class . ' ' . $visual);
+
+        return $this;
+    }
+
+    /**
+     * Call the modal with async method.
+     * Options should contain values which handle by method.
+     *
+     * @param string $modal
+     * @param $method
+     * @param string|array $options
+     * @param string|null $modalTitle
+     * @return Button
+     */
+    public function loadModalAsync(string $modal, string $method, $options = [], string $modalTitle = null): self
+    {
+        $this->set('async', true);
+        $this->set('modal', $modal);
+        $this->set('method', $method);
+        $this->set('asyncParams', Arr::wrap($options));
+        $this->set('modalTitle', $modalTitle);
 
         return $this;
     }
@@ -138,7 +163,7 @@ class Button extends Field
      */
     public function block(): self
     {
-        $class = $this->get('class').' pull-block';
+        $class = $this->get('class') . ' pull-block';
 
         $this->set('class', $class);
 
