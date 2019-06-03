@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Listeners;
 
-use Illuminate\Http\Request;
 use Illuminate\Cookie\CookieJar;
 use Illuminate\Auth\Events\Login;
 
