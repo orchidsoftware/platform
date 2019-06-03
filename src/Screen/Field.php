@@ -251,7 +251,7 @@ class Field implements FieldContract
     /**
      * @return Collection
      */
-    public function getModifyAttributes()
+    public function getModifyAttributes(): Collection
     {
         $modifiers = get_class_methods($this);
 
@@ -336,7 +336,7 @@ class Field implements FieldContract
      *
      * @return self
      */
-    public function modifyName($name)
+    public function modifyName($name): self
     {
         $prefix = $this->get('prefix');
         $lang = $this->get('lang');

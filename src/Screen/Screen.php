@@ -174,7 +174,8 @@ abstract class Screen extends Controller
     /**
      * @param string $method
      *
-     * @throws ReflectionException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \ReflectionException
      */
     private function reflectionParams(string $method)
     {
@@ -219,12 +220,14 @@ abstract class Screen extends Controller
             return is_subclass_of($value, $class) || is_a($value, $class);
         });
 
-        if (is_null($object)) {
-            $object = app()->make($class);
+        if (! is_null($object)) {
+            return $object;
+        }
 
-            if (method_exists($object, 'resolveRouteBinding') && isset($this->arguments[$key])) {
-                $object = $object->resolveRouteBinding($this->arguments[$key]);
-            }
+        $object = app()->make($class);
+
+        if (method_exists($object, 'resolveRouteBinding') && isset($this->arguments[$key])) {
+            $object = $object->resolveRouteBinding($this->arguments[$key]);
         }
 
         return $object;

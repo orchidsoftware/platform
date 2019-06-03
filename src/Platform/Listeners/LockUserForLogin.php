@@ -11,11 +11,6 @@ use Illuminate\Auth\Events\Login;
 class LockUserForLogin
 {
     /**
-     * @var \Illuminate\Http\Request
-     */
-    private $request;
-
-    /**
      * @var \Illuminate\Cookie\CookieJar
      */
     private $cookie;
@@ -23,11 +18,10 @@ class LockUserForLogin
     /**
      * LogSuccessfulLogin constructor.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Cookie\CookieJar $cookieJar
      */
-    public function __construct(Request $request, CookieJar $cookieJar)
+    public function __construct(CookieJar $cookieJar)
     {
-        $this->request = $request;
         $this->cookie = $cookieJar;
     }
 
