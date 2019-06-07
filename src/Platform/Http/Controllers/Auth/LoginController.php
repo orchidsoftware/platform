@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Controllers\Auth;
 
 use Illuminate\View\View;
+use Orchid\Access\UserSwitch;
 use Illuminate\Cookie\CookieJar;
-use Illuminate\Config\Repository;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Validation\ValidationException;
-use Orchid\Access\UserSwitch;
 use Orchid\Platform\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -92,5 +91,4 @@ class LoginController extends Controller
 
         return redirect()->route(config('platform.index'));
     }
-
 }
