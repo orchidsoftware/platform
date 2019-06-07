@@ -30,6 +30,11 @@ class UserListScreen extends Screen
     public $description = 'All registered users';
 
     /**
+     * @var string
+     */
+    public $permission = 'platform.systems.users';
+
+    /**
      * Query data.
      *
      * @return array
