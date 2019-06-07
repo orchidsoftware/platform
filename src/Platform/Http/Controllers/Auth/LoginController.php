@@ -9,6 +9,7 @@ use Illuminate\Cookie\CookieJar;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Validation\ValidationException;
+use Orchid\Access\UserSwitch;
 use Orchid\Platform\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -32,7 +33,12 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->middleware('guest', [
+                'except' => [
+                    'logout',
+                    'switchLogout',
+                ],
+            ]);
     }
 
     /**
@@ -46,11 +52,11 @@ class LoginController extends Controller
     /**
      * Where to redirect users after login / registration.
      *
-     * @return Repository|mixed
+     * @return string
      */
     public function redirectTo()
     {
-        return config('platform.prefix');
+        return route(config('platform.index'));
     }
 
     /**
@@ -76,4 +82,15 @@ class LoginController extends Controller
 
         return redirect()->route('platform.login')->withCookie($lockUser);
     }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function switchLogout()
+    {
+        UserSwitch::logout();
+
+        return redirect()->route(config('platform.index'));
+    }
+
 }

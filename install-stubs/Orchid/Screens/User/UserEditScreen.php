@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
+use Orchid\Access\UserSwitch;
 use Orchid\Screen\Link;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
@@ -68,7 +69,7 @@ class UserEditScreen extends Screen
                 ->group([
                     Link::name(__('Login as user'))
                         ->icon('icon-login')
-                        ->method('switchUserStart'),
+                        ->method('loginAs'),
 
                     Link::name(__('Change Password'))
                         ->icon('icon-lock-open')
@@ -139,14 +140,13 @@ class UserEditScreen extends Screen
     }
 
     /**
-     * @param $id
+     * @param User $user
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function remove($id)
+    public function remove(User $user)
     {
-        $user = User::findOrNew($id);
-
         $user->delete();
 
         Alert::info(__('User was removed'));
@@ -155,29 +155,15 @@ class UserEditScreen extends Screen
     }
 
     /**
-     * @param \Orchid\Platform\Models\User $user
+     * @param User $user
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function switchUserStart(User $user, Request $request)
+    public function loginAs(User $user)
     {
-        if (! session()->has('original_user')) {
-            session()->put('original_user', $request->user()->id);
-        }
-        Auth::login($user);
+        UserSwitch::loginAs($user);
 
-        return back();
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function switchUserStop()
-    {
-        $id = session()->pull('original_user');
-        Auth::loginUsingId($id);
-
-        return back();
+        return redirect()->route(config('platform.index'));
     }
 
     /**
