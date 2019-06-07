@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Orchid\Access;
 
 use Illuminate\Foundation\Auth\User;
@@ -10,14 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class UserSwitch
 {
-
-    /**
-     *
-     */
     public const SESSION_NAME = 'original_user';
 
     /**
-     * Changes the current authorization to the required
+     * Changes the current authorization to the required.
      *
      * @param User $user
      */

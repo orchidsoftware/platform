@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
-use Orchid\Access\UserSwitch;
 use Orchid\Screen\Link;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
+use Orchid\Access\UserSwitch;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
 use Orchid\Screen\Fields\Password;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserRoleLayout;
@@ -142,8 +141,9 @@ class UserEditScreen extends Screen
     /**
      * @param User $user
      *
-     * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function remove(User $user)
     {
