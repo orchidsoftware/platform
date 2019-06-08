@@ -16,9 +16,34 @@ use Orchid\Screen\Field;
  * @method self language($value = true)
  * @method self lineNumbers($value = true)
  * @method self height($value = '300px')
+ * @method self readonly($value = true)
  */
 class Code extends Field
 {
+    /**
+     * Supported language
+     *
+     * markup, html, xml, svg, mathml
+     */
+    public const MARKUP = 'markup';
+
+    /**
+     * Supported language
+     */
+    public const CSS = 'css';
+
+    /**
+     * Supported language
+     */
+    public const CLIKE = 'clike';
+
+    /**
+     * Supported language
+     *
+     * javascript, js
+     */
+    public const JS = 'js';
+
     /**
      * @var string
      */
