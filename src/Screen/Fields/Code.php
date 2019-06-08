@@ -21,24 +21,24 @@ use Orchid\Screen\Field;
 class Code extends Field
 {
     /**
-     * Supported language
+     * Supported language.
      *
      * markup, html, xml, svg, mathml
      */
     public const MARKUP = 'markup';
 
     /**
-     * Supported language
+     * Supported language.
      */
     public const CSS = 'css';
 
     /**
-     * Supported language
+     * Supported language.
      */
     public const CLIKE = 'clike';
 
     /**
-     * Supported language
+     * Supported language.
      *
      * javascript, js
      */
