@@ -37,7 +37,7 @@ class UserListLayout extends Table
                                 </span>
                                 <div class='ml-sm-3 ml-md-0 ml-xl-3 mt-2 mt-sm-0 mt-md-2 mt-xl-0'>
                                   <p class='mb-0'>{$user->getNameTitle()}</p>
-                                  <small class='text-muted'>{$user->getSubTitle()}</small>
+                                  <small class='text-xs text-muted'>{$user->getSubTitle()}</small>
                                 </div>
                             </div>";
                 }),
