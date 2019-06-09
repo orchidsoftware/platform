@@ -67,7 +67,13 @@ class FoundationServiceProvider extends ServiceProvider
      */
     protected function registerDatabase(): self
     {
-        $this->loadMigrationsFrom(realpath(PLATFORM_PATH.'/database/migrations'));
+        $path = realpath(PLATFORM_PATH.'/database/migrations');
+
+        $this->loadMigrationsFrom($path);
+
+        $this->publishes([
+            $path => database_path('migrations'),
+        ],'migrations');
 
         return $this;
     }
@@ -120,10 +126,12 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerViews(): self
     {
-        $this->loadViewsFrom(PLATFORM_PATH.'/resources/views', 'platform');
+        $path = realpath(PLATFORM_PATH.'/resources/resources');
+
+        $this->loadViewsFrom($path, 'platform');
 
         $this->publishes([
-            PLATFORM_PATH.'/resources/views' => resource_path('views/vendor/platform'),
+            $path => resource_path('views/vendor/platform'),
         ], 'views');
 
         return $this;
