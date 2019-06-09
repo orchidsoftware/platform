@@ -126,7 +126,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerViews(): self
     {
-        $path = realpath(PLATFORM_PATH.'/resources/resources');
+        $path = realpath(PLATFORM_PATH.'/resources/views');
 
         $this->loadViewsFrom($path, 'platform');
 
