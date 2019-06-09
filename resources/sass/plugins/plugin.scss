@@ -239,6 +239,10 @@ div.mce-fullscreen {
   }
 }
 
+.ql-toolbar.ql-snow,.ql-container.ql-snow{
+  border: 1px solid $form-control-border-color;
+}
+
 
 // frappe-chart chart
 .graph-svg-tip {

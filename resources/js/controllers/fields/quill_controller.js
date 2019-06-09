@@ -10,6 +10,8 @@ export default class extends Controller {
         const input = this.element.querySelector('input');
 
         this.editor = new Quill(`#${selector}`, {
+            placeholder: input.placeholder,
+            readOnly: input.readOnly,
             theme: 'snow',
             modules: {
                 toolbar: [
