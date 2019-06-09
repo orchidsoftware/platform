@@ -73,7 +73,7 @@ class FoundationServiceProvider extends ServiceProvider
 
         $this->publishes([
             $path => database_path('migrations'),
-        ],'migrations');
+        ], 'migrations');
 
         return $this;
     }
