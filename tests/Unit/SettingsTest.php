@@ -69,7 +69,8 @@ class SettingsTest extends TestUnitCase
         $this->assertEquals(3, $result);
     }
 
-    public function testForRewriteCache(){
+    public function testForRewriteCache()
+    {
         $this->setting->set('cache-key', 'old');
         $this->setting->get('cache-key');
 
