@@ -14,6 +14,11 @@ use Illuminate\Database\Eloquent\Model;
 class Setting extends Model
 {
     /**
+     *
+     */
+    public const CACHE_PREFIX = 'settings-';
+
+    /**
      * @var bool
      */
     public $timestamps = false;
@@ -79,7 +84,7 @@ class Setting extends Model
     private function cacheForget($key)
     {
         foreach (Arr::wrap($key) as $value) {
-            Cache::forget($value);
+            Cache::forget(self::CACHE_PREFIX . $value);
         }
     }
 
@@ -92,11 +97,13 @@ class Setting extends Model
      */
     public function get($key, $default = null)
     {
-        if (! $this->cache) {
+        if (!$this->cache) {
             return $this->getNoCache($key, $default);
         }
 
-        return Cache::rememberForever('settings-'.implode(',', (array) $key), function () use ($key, $default) {
+        $cacheKey = self::CACHE_PREFIX . implode(',', (array)$key);
+
+        return Cache::rememberForever($cacheKey, function () use ($key, $default) {
             return $this->getNoCache($key, $default);
         });
     }
@@ -110,10 +117,7 @@ class Setting extends Model
     public function getNoCache($key, $default = null)
     {
         if (is_array($key)) {
-            $result = $this->select('key', 'value')
-                ->whereIn('key', $key)
-                ->pluck('value', 'key')
-                ->toArray();
+            $result = $this->select('key', 'value')->whereIn('key', $key)->pluck('value', 'key')->toArray();
 
             return empty($result) ? $default : $result;
         }
