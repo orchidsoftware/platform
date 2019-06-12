@@ -152,9 +152,9 @@ class Relation extends Field
 
         $this->addBeforeRender(function () use ($class, $name, $key) {
             $value = $this->get('value');
-            if (!empty($value)) {
+            if (! empty($value)) {
                 $class = (new $class());
-                if (!is_null($this->scope)) {
+                if (! is_null($this->scope)) {
                     $class = $class->{$this->scope}();
                 }
 
@@ -169,19 +169,20 @@ class Relation extends Field
                         if (is_array($item)) {
                             $item = collect($item);
                         }
+
                         return [
                             'id'   => $item->get($key),
                             'text' => $item->get($name),
                         ];
                     })->toJson();
             } else {
-                $value=json_encode($value);
+                $value = json_encode($value);
             }
             $this->set('value', $value);
         });
+
         return $this;
     }
-
 
     /**
      * @param string $scope
