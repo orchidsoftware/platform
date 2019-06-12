@@ -23,8 +23,6 @@ class RelationController extends Controller
             return is_null($item) ? null : Crypt::decryptString($item);
         });
 
-        //dd(is_subclass_of($model, 'Illuminate\Database\Eloquent\Model'));
-
         /** @var Model $builder */
         $model = new $model;
         $search = $request->get('search', '');
