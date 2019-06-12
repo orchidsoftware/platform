@@ -23,6 +23,8 @@ class RelationController extends Controller
             return is_null($item) ? null : Crypt::decryptString($item);
         });
 
+        //dd(is_subclass_of($model, 'Illuminate\Database\Eloquent\Model'));
+
         /** @var Model $builder */
         $model = new $model;
         $search = $request->get('search', '');
@@ -31,10 +33,21 @@ class RelationController extends Controller
             $model = $model->{$scope}();
         }
 
-        $items = $model
-            ->where($name, 'like', '%'.$search.'%')
-            ->limit(10)
-            ->pluck($name, $key);
+        if (is_subclass_of($model, 'Illuminate\Database\Eloquent\Model')) {
+            $items = $model
+                ->where($name, 'like', '%'.$search.'%')
+                ->limit(10)
+                ->pluck($name, $key);
+        } else {
+            $items = collect($model);
+            if ($search!='') {
+                $items = $items->filter(function ($item) use ($name, $search) {
+                    return stripos($item[$name], $search) !== false;
+                });
+            }
+            $items = $items->take(10)
+                ->pluck($name, $key);
+        }
 
         return response()->json($items);
     }

@@ -13,6 +13,6 @@ class Assert
      */
     public static function isIntArray(array $array) : bool
     {
-        return count($array) === count(array_filter($array, 'is_int'));
+        return count($array) === count(array_filter($array, 'is_numeric'));
     }
 }
