@@ -37,6 +37,8 @@ class RelationController extends Controller
                 ->limit(10)
                 ->pluck($name, $key);
         } else {
+            if (is_null($scope)) $model = $model->handler();
+
             $items = collect($model);
             if ($search != '') {
                 $items = $items->filter(function ($item) use ($name, $search) {
