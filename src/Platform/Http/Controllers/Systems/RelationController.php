@@ -37,7 +37,9 @@ class RelationController extends Controller
                 ->limit(10)
                 ->pluck($name, $key);
         } else {
-            if (is_null($scope)) $model = $model->handler();
+            if (is_null($scope)) {
+                $model = $model->handler();
+            }
 
             $items = collect($model);
             if ($search != '') {
