@@ -62,7 +62,7 @@ class TimeZoneTest extends TestFieldsUnitCase
             ->multiple()
             ->value([
                 'Africa/Accra',
-                'Africa/Bamako'
+                'Africa/Bamako',
             ]);
 
         $view = self::renderField($select);
