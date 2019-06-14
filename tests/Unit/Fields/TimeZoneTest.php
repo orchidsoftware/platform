@@ -56,6 +56,25 @@ class TimeZoneTest extends TestFieldsUnitCase
     /**
      * @test
      */
+    public function testSetMultipleValue()
+    {
+        $select = TimeZone::make('time')
+            ->multiple()
+            ->value([
+                'Africa/Accra',
+                'Africa/Bamako'
+            ]);
+
+        $view = self::renderField($select);
+        $view = self::minifyOutput($view);
+
+        $this->assertStringContainsString('value="Africa/Accra" selected', $view);
+        $this->assertStringContainsString('value="Africa/Bamako" selected', $view);
+    }
+
+    /**
+     * @test
+     */
     public function testListIdentifiers()
     {
         $select = TimeZone::make('time')
