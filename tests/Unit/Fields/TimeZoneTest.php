@@ -84,7 +84,7 @@ class TimeZoneTest extends TestFieldsUnitCase
         $view = self::renderField($select);
         $view = self::minifyOutput($view);
 
-        foreach (DateTimeZone::listIdentifiers(DateTimeZone::EUROPE) as $time){
+        foreach (DateTimeZone::listIdentifiers(DateTimeZone::EUROPE) as $time) {
             $this->assertStringContainsString($time, $view);
         }
 
