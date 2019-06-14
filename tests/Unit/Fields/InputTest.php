@@ -23,15 +23,12 @@ class InputTest extends TestFieldsUnitCase
         $this->assertStringContainsString($hr, self::renderField($input));
     }
 
-    /**
-     *
-     */
     public function testArrayMask()
     {
         $input = Input::make('price')
             ->mask([
-                'alias' => 'currency',
-                'prefix' => ' ',
+                'alias'          => 'currency',
+                'prefix'         => ' ',
                 'groupSeparator' => ' ',
                 'digitsOptional' => true,
             ]);
@@ -42,9 +39,6 @@ class InputTest extends TestFieldsUnitCase
         $this->assertStringContainsString('currency', $view);
     }
 
-    /**
-     *
-     */
     public function testStringMask()
     {
         $input = Input::make('phone')
