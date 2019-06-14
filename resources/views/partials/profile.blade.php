@@ -24,8 +24,8 @@
                 </a>
             @endif
 
-            @if(session()->has('original_user'))
-                <a href="{{route('platform.systems.users')}}"
+            @if(\Orchid\Access\UserSwitch::isSwitch())
+                <a href="#"
                    class="dropdown-item"
                    data-controller="layouts--form"
                    data-action="layouts--form#submitByForm"
@@ -38,7 +38,7 @@
                       class="hidden"
                       data-controller="layouts--form"
                       data-action="layouts--form#submit"
-                      action="{{ route('platform.systems.users.edit',[Auth::user(),'switchUserStop']) }}"
+                      action="{{ route('platform.switch.logout') }}"
                       method="POST">
                     @csrf
                 </form>

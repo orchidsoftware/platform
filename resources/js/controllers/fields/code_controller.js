@@ -12,6 +12,7 @@ export default class extends Controller {
             language: this.data.get('language'),
             lineNumbers: this.data.get('lineNumbers'),
             defaultTheme: this.data.get('defaultTheme'),
+            readonly: input.readOnly,
         });
 
         flask.updateCode(input.value);

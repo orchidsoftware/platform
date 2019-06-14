@@ -39,7 +39,7 @@ class AuthTest extends TestFeatureCase
 
         $response
             ->assertStatus(302)
-            ->assertRedirect(config('platform.prefix'))
+            ->assertRedirect(route(config('platform.index')))
             ->assertCookieNotExpired('lockUser');
     }
 

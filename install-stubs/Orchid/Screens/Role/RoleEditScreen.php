@@ -30,6 +30,11 @@ class RoleEditScreen extends Screen
     public $description = 'Access rights';
 
     /**
+     * @var string
+     */
+    public $permission = 'platform.systems.roles';
+
+    /**
      * @var bool
      */
     private $exist = false;

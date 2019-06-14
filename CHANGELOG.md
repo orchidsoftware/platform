@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 5.0.4 - 2019-06-11
+
+### Fixed
+- Setting rewrite cache keys
+
+## 5.0.3 - 2019-06-09
+
+### Added
+- Read only for `Qill` field
+- Placeholder for `Qill` field
+- Ability to publish migration files
+
+## 5.0.2 - 2019-06-08
+
+### Added
+- Read only for `Code` field
+- Language supported constants for `Code` field
+
+## 5.0.1 - 2019-06-08
+
+### Fixed
+- Remove permission registration for comments and category [880](https://github.com/orchidsoftware/platform/issues/880)
+- Needed permissions to roles and users screens [884](https://github.com/orchidsoftware/platform/issues/884)
+- Redirect after authorization has been changed to the main page
+
 ## 5.0.0 - 2019-06-02
 
 ### Added
