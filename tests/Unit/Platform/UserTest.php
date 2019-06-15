@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Platform;
 
-use Illuminate\Support\Facades\Auth;
 use Orchid\Access\UserSwitch;
 use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserTest extends TestUnitCase
 {
@@ -50,9 +50,6 @@ class UserTest extends TestUnitCase
         $this->assertEquals('Administrator', $user->getSubTitle());
     }
 
-    /**
-     *
-     */
     public function testLoginAs()
     {
         $user = $this->createUser();
