@@ -129,6 +129,21 @@ class AttachmentTest extends TestUnitCase
         $this->assertEquals($upload->extension, 'bin');
     }
 
+    public function testAttachmentTitleAttribute()
+    {
+        $attachment = new Attachment([
+            'original_name' => 'photo.jpg',
+            'name'          => 'random',
+            'extension'     => 'jpg',
+        ]);
+
+        $this->assertEquals($attachment->original_name, $attachment->getTitleAttribute());
+
+        $attachment->original_name = 'blob';
+
+        $this->assertEquals($attachment->name.'.'.$attachment->extension, $attachment->getTitleAttribute());
+    }
+
     protected function setUp() : void
     {
         parent::setUp();
