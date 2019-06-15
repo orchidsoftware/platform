@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Facade;
  *
  * @method static Alert info(string $name)
  * @method static Alert success(string $name)
- * @method static Alert danger(string $name)
+ * @method static Alert error(string $name)
  * @method static Alert warning(string $name)
  */
 class Alert extends Facade
