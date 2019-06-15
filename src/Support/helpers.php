@@ -89,7 +89,7 @@ if (! function_exists('is_sort')) {
 if (! function_exists('get_sort')) {
 
     /**
-     * @param null $property
+     * @param null|string $property
      *
      * @return string
      */
@@ -104,7 +104,7 @@ if (! function_exists('get_sort')) {
 if (! function_exists('get_filter')) {
 
     /**
-     * @param null $property
+     * @param null|string $property
      *
      * @return string|array
      */
@@ -119,7 +119,7 @@ if (! function_exists('get_filter')) {
 if (! function_exists('get_filter_string')) {
 
     /**
-     * @param null $property
+     * @param null|string $property
      *
      * @return string
      */
@@ -138,7 +138,7 @@ if (! function_exists('get_filter_string')) {
 if (! function_exists('revert_sort')) {
 
     /**
-     * @param null $property
+     * @param null|string $property
      *
      * @return string
      */

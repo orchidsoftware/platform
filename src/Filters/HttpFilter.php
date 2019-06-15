@@ -54,9 +54,9 @@ class HttpFilter
     }
 
     /**
-     * @param string $query
+     * @param null|string $query
      *
-     * @return string|array
+     * @return string|array|null
      */
     protected function parseHttpValue($query)
     {
@@ -123,7 +123,7 @@ class HttpFilter
 
     /**
      * @param Builder $query
-     * @param         $value
+     * @param mixed   $value
      * @param string  $property
      *
      * @return Builder
@@ -165,7 +165,7 @@ class HttpFilter
     }
 
     /**
-     * @param null $property
+     * @param null|string $property
      *
      * @return bool
      */
@@ -187,7 +187,7 @@ class HttpFilter
     }
 
     /**
-     * @param $property
+     * @param string $property
      *
      * @return mixed
      */
@@ -201,7 +201,7 @@ class HttpFilter
     }
 
     /**
-     * @param $property
+     * @param string $property
      *
      * @return string
      */
@@ -215,7 +215,7 @@ class HttpFilter
     }
 
     /**
-     * @param $property
+     * @param string $property
      *
      * @return mixed
      */

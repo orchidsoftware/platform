@@ -60,19 +60,15 @@ class AttachmentController extends Controller
 
     /**
      * @param Request $request
-     *
-     * @return ResponseFactory|\Illuminate\Http\Response
      */
     public function sort(Request $request)
     {
-        collect($request->get('files'))
+        collect($request->get('files', []))
             ->each(function ($sort, $id) {
                 $attachment = $this->attachment->find($id);
                 $attachment->sort = $sort;
                 $attachment->save();
             });
-
-        return response(200);
     }
 
     /**
@@ -80,15 +76,11 @@ class AttachmentController extends Controller
      *
      * @param int     $id
      * @param Request $request
-     *
-     * @return Response
      */
     public function destroy(int $id, Request $request)
     {
         $storage = $request->get('storage', 'public');
         $this->attachment->findOrFail($id)->delete($storage);
-
-        return response(200);
     }
 
     /**

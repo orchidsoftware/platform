@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Access;
 
 use Exception;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
 use Illuminate\Database\Eloquent\Collection;
@@ -25,7 +26,7 @@ trait RoleAccess
      */
     public function getRoleSlug(): string
     {
-        return $this->slug;
+        return $this->getAttribute('slug');
     }
 
     /**
@@ -53,7 +54,7 @@ trait RoleAccess
      */
     public function delete(): ?bool
     {
-        $isSoftDeleted = array_key_exists('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this));
+        $isSoftDeleted = array_key_exists(SoftDeletes::class, class_uses($this));
         if ($this->exists && ! $isSoftDeleted) {
             $this->users()->detach();
         }

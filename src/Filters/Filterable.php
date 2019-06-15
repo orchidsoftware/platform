@@ -73,7 +73,7 @@ trait Filterable
      */
     public function scopeDefaultSort(Builder $builder, string $column, string $direction = 'asc')
     {
-        if (is_null($builder->getQuery()->orders)) {
+        if (empty($builder->getQuery()->orders)) {
             $builder->orderBy($column, $direction);
         }
 

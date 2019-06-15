@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 trait UserAccess
 {
     /**
-     * @var null
+     * @var null|\Illuminate\Support\Collection
      */
     private $cachePermissions;
 
@@ -144,7 +144,7 @@ trait UserAccess
     }
 
     /**
-     * @param $roles
+     * @param RoleInterface|RoleInterface[] $roles
      */
     public function eventAddRole($roles)
     {
@@ -152,7 +152,7 @@ trait UserAccess
     }
 
     /**
-     * @param $roles
+     * @param RoleInterface|RoleInterface[] $roles
      */
     public function eventRemoveRole($roles)
     {
