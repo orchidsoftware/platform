@@ -58,10 +58,14 @@ class UserTest extends TestUnitCase
         $user = $this->createUser();
         $userSwitch = $this->createUser();
 
+        $this->assertFalse(UserSwitch::isSwitch());
+
         $this->actingAs($user);
         $this->assertEquals($user->id, Auth::id());
 
         UserSwitch::loginAs($userSwitch);
+
+        $this->assertTrue(UserSwitch::isSwitch());
         $this->assertEquals($userSwitch->id, Auth::id());
 
         UserSwitch::logout();
