@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
-use Orchid\Support\Facades\Alert;
 use Orchid\Tests\TestUnitCase;
+use Orchid\Support\Facades\Alert;
 
 /**
  * Class AlertTest.
  */
 class AlertTest extends TestUnitCase
 {
-
     /** @test */
     public function testHelperAlert()
     {
@@ -24,6 +23,7 @@ class AlertTest extends TestUnitCase
 
     /**
      * @dataProvider getLevels
+     *
      * @param $level
      * @param $css
      */
@@ -36,7 +36,7 @@ class AlertTest extends TestUnitCase
     }
 
     /**
-     * Array of keys and css classes
+     * Array of keys and css classes.
      *
      * @return array
      */
@@ -61,5 +61,4 @@ class AlertTest extends TestUnitCase
             ],
         ];
     }
-
 }
