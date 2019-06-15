@@ -4,72 +4,62 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
-use Orchid\Alert\Alert;
+use Orchid\Support\Facades\Alert;
 use Orchid\Tests\TestUnitCase;
-use Orchid\Alert\SessionStoreInterface;
 
 /**
  * Class AlertTest.
  */
 class AlertTest extends TestUnitCase
 {
+
+    /** @test */
+    public function testHelperAlert()
+    {
+        alert('test');
+
+        self::assertEquals('test', session('flash_notification.message'));
+        self::assertEquals('info', session('flash_notification.level'));
+    }
+
     /**
-     * @var SessionStoreInterface
+     * @dataProvider getLevels
+     * @param $level
+     * @param $css
      */
-    protected $store;
+    public function testShouldFlashLevelsAlert(string $level, string $css)
+    {
+        Alert::$level('test');
+
+        self::assertEquals('test', session('flash_notification.message'));
+        self::assertEquals($css, session('flash_notification.level'));
+    }
 
     /**
-     * @var Alert
+     * Array of keys and css classes
+     *
+     * @return array
      */
-    protected $alert;
-
-    protected function setUp(): void
+    public function getLevels() :array
     {
-        $this->store = $this->createMock(SessionStoreInterface::class);
-        $this->alert = new Alert($this->store);
+        return [
+            [
+                'info',
+                'info',
+            ],
+            [
+                'success',
+                'success',
+            ],
+            [
+                'error',
+                'danger',
+            ],
+            [
+                'warning',
+                'warning',
+            ],
+        ];
     }
 
-    /** @test */
-    public function testShouldFlashAnInfoAlert()
-    {
-        $this->store->expects($this->exactly(2))->method('flash')->withConsecutive([
-            $this->equalTo('flash_notification.message'),
-            $this->equalTo('test'),
-        ], [$this->equalTo('flash_notification.level'), $this->equalTo('info')]);
-
-        $this->alert->info('test');
-    }
-
-    /** @test */
-    public function testShouldFlashSuccessAlert()
-    {
-        $this->store->expects($this->exactly(2))->method('flash')->withConsecutive([
-            $this->equalTo('flash_notification.message'),
-            $this->equalTo('test'),
-        ], [$this->equalTo('flash_notification.level'), $this->equalTo('success')]);
-
-        $this->alert->success('test');
-    }
-
-    /** @test */
-    public function testShouldFlashErrorAlert()
-    {
-        $this->store->expects($this->exactly(2))->method('flash')->withConsecutive([
-            $this->equalTo('flash_notification.message'),
-            $this->equalTo('test'),
-        ], [$this->equalTo('flash_notification.level'), $this->equalTo('danger')]);
-
-        $this->alert->error('test');
-    }
-
-    /** @test */
-    public function testShouldFlashWarningAlert()
-    {
-        $this->store->expects($this->exactly(2))->method('flash')->withConsecutive([
-            $this->equalTo('flash_notification.message'),
-            $this->equalTo('test'),
-        ], [$this->equalTo('flash_notification.level'), $this->equalTo('warning')]);
-
-        $this->alert->warning('test');
-    }
 }

@@ -22,7 +22,7 @@ if (! function_exists('alert')) {
      */
     function alert($message = null, $level = 'info')
     {
-        $notifier = app('alert');
+        $notifier = app(Alert::class);
 
         if (! is_null($message)) {
             return $notifier->message($message, $level);

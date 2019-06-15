@@ -4,22 +4,24 @@ declare(strict_types=1);
 
 namespace Orchid\Alert;
 
+use Illuminate\Session\Store;
+
 /**
  * Class Alert.
  */
 class Alert
 {
     /**
-     * @var SessionStoreInterface
+     * @var Store
      */
     private $session;
 
     /**
      * Create a new flash notifier instance.
      *
-     * @param SessionStoreInterface $session
+     * @param Store $session
      */
-    public function __construct(SessionStoreInterface $session)
+    public function __construct(Store $session)
     {
         $this->session = $session;
     }

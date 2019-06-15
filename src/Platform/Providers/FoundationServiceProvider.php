@@ -7,7 +7,6 @@ namespace Orchid\Platform\Providers;
 use Illuminate\Routing\Router;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\Route;
-use Orchid\Alert\AlertServiceProvider;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
 use Watson\Active\ActiveServiceProvider;
@@ -158,7 +157,6 @@ class FoundationServiceProvider extends ServiceProvider
             ScoutServiceProvider::class,
             ActiveServiceProvider::class,
             RouteServiceProvider::class,
-            AlertServiceProvider::class,
             EventServiceProvider::class,
             PlatformServiceProvider::class,
         ];
