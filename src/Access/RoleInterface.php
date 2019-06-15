@@ -24,5 +24,4 @@ interface RoleInterface
      * @return string
      */
     public function getRoleSlug(): string;
-
 }
