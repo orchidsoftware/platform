@@ -35,6 +35,17 @@ class AlertTest extends TestUnitCase
         self::assertEquals($css, session('flash_notification.level'));
     }
 
+
+    public function testShouldFlashViewAlert()
+    {
+        Alert::view('exemplar::alert', 'info', [
+            'name' => 'Alexandr'
+        ]);
+
+        self::assertEquals('Hello Alexandr!', session('flash_notification.message'));
+        self::assertEquals('info', session('flash_notification.level'));
+    }
+
     /**
      * Array of keys and css classes.
      *

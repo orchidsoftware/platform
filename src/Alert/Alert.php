@@ -97,4 +97,23 @@ class Alert
 
         return $this;
     }
+
+    /**
+     * Flash a view message.
+     *
+     * @param string $template
+     * @param string $level
+     * @param array  $data
+     *
+     * @return Alert
+     * @throws \Throwable
+     */
+    public function view(string $template, string $level = 'info', array $data = []): self
+    {
+        $message = view($template, $data)->render();
+
+        $this->message($message, $level);
+
+        return $this;
+    }
 }

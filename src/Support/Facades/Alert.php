@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static Alert success(string $name)
  * @method static Alert error(string $name)
  * @method static Alert warning(string $name)
+ * @method static Alert view(string $template, string $level, array $data)
  */
 class Alert extends Facade
 {
