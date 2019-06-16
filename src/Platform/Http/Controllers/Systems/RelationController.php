@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Platform\Http\Requests\RelationRequest;
 
@@ -51,10 +51,10 @@ class RelationController extends Controller
      *
      * @return Collection|array
      */
-    private function getItems($model ,string $name ,string $key ,string $search, string $scope = null) : iterable
+    private function getItems($model, string $name, string $key, string $search, string $scope = null) : iterable
     {
         if (is_subclass_of($model, Model::class)) {
-            return $model->where($name, 'like', '%' . $search . '%')->limit(10)->pluck($name, $key);
+            return $model->where($name, 'like', '%'.$search.'%')->limit(10)->pluck($name, $key);
         }
 
         /* Execution branch for source class */

@@ -148,8 +148,7 @@ class Relation extends Field
         $this->addBeforeRender(function () use ($class, $name, $key) {
             $value = $this->get('value');
             if (! empty($value)) {
-
-                $scope = $this->get('scope','handler');
+                $scope = $this->get('scope', 'handler');
                 $class = (new $class())->{$scope}();
 
                 $item = collect($class)

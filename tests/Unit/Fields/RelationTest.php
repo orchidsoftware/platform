@@ -4,27 +4,21 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Fields;
 
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Arr;
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Fields\Relation;
-use Orchid\Screen\Fields\TextArea;
 use Orchid\Tests\Exemplar\App\AjaxRecord;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class RelationTest.
  */
 class RelationTest extends TestFieldsUnitCase
 {
-
     /**
      * @var Collection
      */
     protected $roles;
 
-    /**
-     *
-     */
     public function setUp(): void
     {
         parent::setUp();
@@ -89,7 +83,6 @@ class RelationTest extends TestFieldsUnitCase
         $this->assertStringContainsString($current[1]->name, $view);
         $this->assertStringContainsString('Select Role', $view);
     }
-
 
     /**
      * @test

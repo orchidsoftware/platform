@@ -36,10 +36,8 @@ class AjaxRecord
             ],
         ];
 
-
-        if (!is_null($this->key)) {
+        if (! is_null($this->key)) {
             foreach ($data as $key => $result) {
-
                 if ($result['id'] === intval($this->key)) {
                     return $data[$key];
                 }
@@ -47,6 +45,5 @@ class AjaxRecord
         }
 
         return $data;
-
     }
 }
