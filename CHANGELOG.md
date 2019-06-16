@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 5.0.5 - 2019-06-16
 
 ### Added
-- Relation field method `fromClass`
+- Relation field method `fromClass` [888](https://github.com/orchidsoftware/platform/pull/888)
 - TimeZone field [890](https://github.com/orchidsoftware/platform/issues/890)
 
 ### Fixed
