@@ -33,6 +33,11 @@ class Relation extends Field
     public $view = 'platform::fields.relation';
 
     /**
+     * @var string
+     */
+    public $scope = null;
+
+    /**
      * Default attributes value.
      *
      * @var array
@@ -133,12 +138,60 @@ class Relation extends Field
     }
 
     /**
+     * @param string|class $class
+     * @param string       $name
+     * @param string|null  $key
+     *
+     * @return self
+     */
+    public function fromClass(string $class, string $name, string $key = 'id'): self
+    {
+        $this->set('relationModel', Crypt::encryptString($class));
+        $this->set('relationName', Crypt::encryptString($name));
+        $this->set('relationKey', Crypt::encryptString($key));
+
+        $this->addBeforeRender(function () use ($class, $name, $key) {
+            $value = $this->get('value');
+            if (! empty($value)) {
+                $class = (new $class());
+                if (! is_null($this->scope)) {
+                    $class = $class->{$this->scope}();
+                }
+
+                $item = collect($class)
+                    ->whereIn($key, $value)
+                    ->all();
+                if (is_array($item)) {
+                    $item = collect(array_values($item));
+                }
+                $value = collect($item)
+                    ->map(function ($item) use ($name, $key) {
+                        if (is_array($item)) {
+                            $item = collect($item);
+                        }
+
+                        return [
+                            'id'   => $item->get($key),
+                            'text' => $item->get($name),
+                        ];
+                    })->toJson();
+            } else {
+                $value = json_encode($value);
+            }
+            $this->set('value', $value);
+        });
+
+        return $this;
+    }
+
+    /**
      * @param string $scope
      *
      * @return $this
      */
     public function applyScope(string $scope)
     {
+        $this->scope = $scope;
         $scope = lcfirst($scope);
 
         $this->set('relationScope', Crypt::encryptString($scope));
