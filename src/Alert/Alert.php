@@ -105,8 +105,9 @@ class Alert
      * @param string $level
      * @param array  $data
      *
-     * @return Alert
      * @throws \Throwable
+     *
+     * @return Alert
      */
     public function view(string $template, string $level = 'info', array $data = []): self
     {
