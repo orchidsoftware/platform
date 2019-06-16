@@ -33,11 +33,6 @@ class Relation extends Field
     public $view = 'platform::fields.relation';
 
     /**
-     * @var string
-     */
-    public $scope = null;
-
-    /**
      * Default attributes value.
      *
      * @var array
@@ -138,9 +133,9 @@ class Relation extends Field
     }
 
     /**
-     * @param string|class $class
-     * @param string       $name
-     * @param string|null  $key
+     * @param string $class
+     * @param string $name
+     * @param string $key
      *
      * @return self
      */
@@ -153,17 +148,18 @@ class Relation extends Field
         $this->addBeforeRender(function () use ($class, $name, $key) {
             $value = $this->get('value');
             if (! empty($value)) {
-                $class = (new $class());
-                if (! is_null($this->scope)) {
-                    $class = $class->{$this->scope}();
-                }
+
+                $scope = $this->get('scope','handler');
+                $class = (new $class())->{$scope}();
 
                 $item = collect($class)
                     ->whereIn($key, $value)
                     ->all();
+
                 if (is_array($item)) {
                     $item = collect(array_values($item));
                 }
+
                 $value = collect($item)
                     ->map(function ($item) use ($name, $key) {
                         if (is_array($item)) {
@@ -178,6 +174,7 @@ class Relation extends Field
             } else {
                 $value = json_encode($value);
             }
+
             $this->set('value', $value);
         });
 
@@ -189,9 +186,8 @@ class Relation extends Field
      *
      * @return $this
      */
-    public function applyScope(string $scope)
+    public function applyScope(string $scope): self
     {
-        $this->scope = $scope;
         $scope = lcfirst($scope);
 
         $this->set('relationScope', Crypt::encryptString($scope));

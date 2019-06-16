@@ -20,15 +20,17 @@ class TestFieldsUnitCase extends TestUnitCase
      * @param array                $messages
      * @param array                $customAttributes
      *
-     * @throws \Throwable
-     *
      * @return string
      */
     public static function renderField(Field $field, array $data = [], array $rules = [], array $messages = [], array $customAttributes = []): string
     {
-        $validator = Validator::make($data, $rules, $messages, $customAttributes);
+        try {
+            $validator = Validator::make($data, $rules, $messages, $customAttributes);
 
-        return $field->render()->withErrors($validator)->render();
+            return $field->render()->withErrors($validator)->render();
+        } catch (\Throwable $throwable) {
+            die($throwable->getMessage());
+        }
     }
 
     /**

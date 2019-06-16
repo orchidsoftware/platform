@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\Model;
@@ -19,7 +20,12 @@ class RelationController extends Controller
      */
     public function view(RelationRequest $request)
     {
-        ['model' => $model, 'name' => $name, 'key' => $key, 'scope' => $scope] = collect($request->except(['search']))->map(function ($item) {
+        [
+            'model' => $model,
+            'name'  => $name,
+            'key'   => $key,
+            'scope' => $scope,
+        ] = collect($request->except(['search']))->map(function ($item) {
             return is_null($item) ? null : Crypt::decryptString($item);
         });
 
@@ -31,26 +37,39 @@ class RelationController extends Controller
             $model = $model->{$scope}();
         }
 
-        if (is_subclass_of($model, 'Illuminate\Database\Eloquent\Model')) {
-            $items = $model
-                ->where($name, 'like', '%'.$search.'%')
-                ->limit(10)
-                ->pluck($name, $key);
-        } else {
-            if (is_null($scope)) {
-                $model = $model->handler();
-            }
-
-            $items = collect($model);
-            if ($search != '') {
-                $items = $items->filter(function ($item) use ($name, $search) {
-                    return stripos($item[$name], $search) !== false;
-                });
-            }
-            $items = $items->take(10)
-                ->pluck($name, $key);
-        }
+        $items = $this->getItems($model, $name, $key, $search, $scope);
 
         return response()->json($items);
+    }
+
+    /**
+     * @param object|Model $model
+     * @param string       $name
+     * @param string       $key
+     * @param string       $search
+     * @param string|null  $scope
+     *
+     * @return Collection|array
+     */
+    private function getItems($model ,string $name ,string $key ,string $search, string $scope = null) : iterable
+    {
+        if (is_subclass_of($model, Model::class)) {
+            return $model->where($name, 'like', '%' . $search . '%')->limit(10)->pluck($name, $key);
+        }
+
+        /* Execution branch for source class */
+        if (is_null($scope)) {
+            $model = $model->handler();
+        }
+
+        $items = collect($model);
+
+        if ($search != '') {
+            $items = $items->filter(function ($item) use ($name, $search) {
+                return stripos($item[$name], $search) !== false;
+            });
+        }
+
+        return $items = $items->take(10)->pluck($name, $key);
     }
 }
