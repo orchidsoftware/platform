@@ -13,7 +13,7 @@ class Assert
      */
     public static function isIntArray($array) : bool
     {
-        if (!is_array($array)) {
+        if (! is_array($array)) {
             return false;
         }
 
