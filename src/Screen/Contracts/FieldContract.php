@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Contracts;
 
-interface FieldContract
+use Illuminate\Contracts\Support\Renderable;
+
+interface FieldContract extends Renderable
 {
     /**
      * The process of creating.
