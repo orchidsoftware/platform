@@ -11,7 +11,6 @@ use Illuminate\Session\Store;
  */
 class Alert
 {
-
     /**
      * Status.
      */
