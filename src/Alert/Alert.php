@@ -11,6 +11,27 @@ use Illuminate\Session\Store;
  */
 class Alert
 {
+
+    /**
+     * Status.
+     */
+    public const INFO = 'info';
+
+    /**
+     * Status.
+     */
+    public const SUCCESS = 'success';
+
+    /**
+     * Status.
+     */
+    public const ERROR = 'danger';
+
+    /**
+     * Status.
+     */
+    public const WARNING = 'warning';
+
     /**
      * @var Store
      */
@@ -48,7 +69,7 @@ class Alert
      *
      * @return Alert
      */
-    public function message($message, $level = 'info'): self
+    public function message($message, $level = self::INFO): self
     {
         $this->session->flash('flash_notification.message', $message);
         $this->session->flash('flash_notification.level', $level);
@@ -65,7 +86,7 @@ class Alert
      */
     public function success($message): self
     {
-        $this->message($message, 'success');
+        $this->message($message, self::SUCCESS);
 
         return $this;
     }
@@ -79,7 +100,7 @@ class Alert
      */
     public function error($message): self
     {
-        $this->message($message, 'danger');
+        $this->message($message, self::ERROR);
 
         return $this;
     }
@@ -93,7 +114,7 @@ class Alert
      */
     public function warning($message): self
     {
-        $this->message($message, 'warning');
+        $this->message($message, self::WARNING);
 
         return $this;
     }
