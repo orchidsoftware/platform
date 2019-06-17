@@ -100,6 +100,18 @@ class DashboardTest extends TestUnitCase
         ]);
     }
 
+    /**
+     * @param string $name
+     */
+    public function testIsMacro($name = 'customMarcoName')
+    {
+        Dashboard::macro('returnNameMacroFunction', function (string $test) {
+            return $test;
+        });
+
+        $this->assertEquals(Dashboard::returnNameMacroFunction($name), $name);
+    }
+
     protected function setUp() : void
     {
         parent::setUp();

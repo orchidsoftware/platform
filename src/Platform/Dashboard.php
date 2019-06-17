@@ -8,9 +8,12 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Traits\Macroable;
 
 class Dashboard
 {
+    use Macroable;
+
     /**
      * ORCHID Version.
      */
@@ -43,6 +46,8 @@ class Dashboard
     private $permission;
 
     /**
+     * @deprecated use $resources['entities']
+     *
      * @var Collection
      */
     private $entities;
@@ -188,6 +193,8 @@ class Dashboard
     }
 
     /**
+     * @deprecated use Dashboard::macro()
+     *
      * @param array $value
      *
      * @return $this
@@ -243,6 +250,8 @@ class Dashboard
     }
 
     /**
+     * @deprecated use Dashboard::macro()
+     *
      * @return Collection
      */
     public function getEntities(): Collection
