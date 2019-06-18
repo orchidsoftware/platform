@@ -139,7 +139,7 @@ class Alert
     }
 
     /**
-     * Checks if a message has been set before
+     * Checks if a message has been set before.
      *
      * @return bool
      */
