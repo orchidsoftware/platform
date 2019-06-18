@@ -389,6 +389,7 @@ blockquote {
 }
 
 .pagination {
+  margin: 0;
   > li, .page-item {
     > a, .page-link {
       border: none;
@@ -411,8 +412,6 @@ blockquote {
 				cursor: default;
                 @extend .text-muted;
             }
-		
-		
 		}
 	}
 		
