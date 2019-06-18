@@ -51,6 +51,18 @@ class AlertTest extends TestUnitCase
     }
 
     /**
+     * @test
+     */
+    public function testShouldCheckAlert()
+    {
+        self::assertFalse(Alert::check());
+
+        Alert::info('check alert');
+
+        self::assertTrue(Alert::check());
+    }
+
+    /**
      * Array of keys and css classes.
      *
      * @return array

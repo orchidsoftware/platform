@@ -129,12 +129,22 @@ class Alert
      *
      * @return Alert
      */
-    public function view(string $template, string $level = 'info', array $data = []): self
+    public function view(string $template, string $level = self::INFO, array $data = []): self
     {
         $message = view($template, $data)->render();
 
         $this->message($message, $level);
 
         return $this;
+    }
+
+    /**
+     * Checks if a message has been set before
+     *
+     * @return bool
+     */
+    public function check() : bool
+    {
+        return $this->session->has('flash_notification.message');
     }
 }
