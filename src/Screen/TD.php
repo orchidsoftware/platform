@@ -28,9 +28,6 @@ class TD
      */
     public const ALIGN_RIGHT = 'right';
 
-    /**
-     *
-     */
     public const FILTER_TEXT = 'text';
     public const FILTER_NUMERIC = 'numeric';
     public const FILTER_DATE = 'date';
