@@ -20,28 +20,10 @@
 
 ## Introduction
 
-Platform gives you a simpler and faster way to create professional-quality business applications usage Laravel framework.  
+Platform is rapid development tool for creating administrative-style applications. It abstracts common business application templates so that developers can easily implement beautiful and elegant interfaces.
+
+ 
 Documentation can be found at [ORCHID website](http://orchid.software).
-
-## Installation
-
-Download using Composer:
-```php
-$ composer require orchid/platform
-```
-
-Install package
-
-```php
-php artisan orchid:install
-```
-
-Create your admin user
-```php
-php artisan orchid:admin admin admin@admin.com password
-```
-
-Once these commands have completed, you are ready to enjoy platform!
 
 
 ###### Screenshot
