@@ -29,6 +29,7 @@ class UserListLayout extends Table
 
             TD::set('name', __('Name'))
                 ->sort()
+                ->filter(TD::FILTER_TEXT)
                 ->render(function (User $user) {
                     // Please use view('path')
                     return "<div class='d-sm-flex flex-row flex-wrap text-center text-sm-left align-items-center'>
@@ -44,6 +45,7 @@ class UserListLayout extends Table
 
             TD::set('email', __('Email'))
                 ->loadModalAsync('oneAsyncModal', 'saveUser', 'id', 'email')
+                ->filter(TD::FILTER_TEXT)
                 ->sort(),
 
             TD::set('updated_at', __('Last edit'))

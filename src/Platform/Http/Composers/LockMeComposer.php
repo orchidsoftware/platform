@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Composers;
 
-use Illuminate\View\View;
-use Illuminate\Http\Request;
+use Illuminate\Auth\EloquentUserProvider;
 use Illuminate\Auth\SessionGuard;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Auth\EloquentUserProvider;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class LockMeComposer
 {
@@ -25,8 +25,8 @@ class LockMeComposer
     /**
      * LockMeComposer constructor.
      *
-     * @param Request      $request
-     * @param SessionGuard $guard
+     * @param Request $request
+     * @param Guard   $guard
      */
     public function __construct(Request $request, Guard $guard)
     {

@@ -11,22 +11,15 @@
                                 {{$th->title}}
 
                                 @if(is_sort($th->column))
-                                    @if(get_sort($th->column) == 'asc')
-                                        <i class="icon-sort-amount-asc"></i>
-                                    @else
-                                        <i class="icon-sort-amount-desc"></i>
-                                    @endif
+                                    <i class="icon-sort-amount-{{get_sort($th->column)}}"></i>
                                 @endif
                             </a>
                         @else
                             {{$th->title}}
                         @endif
 
-                        @isset($th->filter)
-                            @includeIf("platform::partials.filters.{$th->filter}",[
-                                'th' => $th
-                            ])
-                        @endisset
+
+                        @includeWhen(!is_null($th->filter), "platform::partials.filters.{$th->filter}", ['th' => $th])
                     </div>
 
                     @if($filter = get_filter_string($th->column))
@@ -77,12 +70,12 @@
 
     @endif
 
-    @if(is_object($data) && ($data instanceof \Illuminate\Contracts\Pagination\Paginator))
+    @if($data instanceof \Illuminate\Contracts\Pagination\Paginator)
         <footer class="wrapper w-full">
             <div class="row">
                 <div class="col-sm-5">
                     <small class="text-muted inline m-t-sm m-b-sm">
-                        {{ __("Displayed records: :from-:to of :total",[
+                        {{ __('Displayed records: :from-:to of :total',[
                             'from' => ($data->currentPage()-1)*$data->perPage()+1,
                             'to' => ($data->currentPage()-1)*$data->perPage()+count($data->items()),
                             'total' => $data->total(),

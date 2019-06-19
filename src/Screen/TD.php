@@ -29,6 +29,13 @@ class TD
     public const ALIGN_RIGHT = 'right';
 
     /**
+     *
+     */
+    public const FILTER_TEXT = 'text';
+    public const FILTER_NUMERIC = 'numeric';
+    public const FILTER_DATE = 'date';
+
+    /**
      * @var string
      */
     public $name;
@@ -99,7 +106,7 @@ class TD
     {
         $td = new static($name);
         $td->column = $name;
-        $td->title = is_null($title) ? Str::title($name) : $title;
+        $td->title = $title ?? Str::title($name);
 
         return $td;
     }

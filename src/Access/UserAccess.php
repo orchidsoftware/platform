@@ -144,7 +144,7 @@ trait UserAccess
     }
 
     /**
-     * @param RoleInterface|RoleInterface[] $roles
+     * @param Model|RoleInterface|RoleInterface[] $roles
      */
     public function eventAddRole($roles)
     {
@@ -152,7 +152,7 @@ trait UserAccess
     }
 
     /**
-     * @param RoleInterface|RoleInterface[] $roles
+     * @param Model|RoleInterface|RoleInterface[] $roles
      */
     public function eventRemoveRole($roles)
     {

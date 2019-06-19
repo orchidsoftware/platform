@@ -140,7 +140,7 @@ class Button extends Field
      * Options should contain values which handle by method.
      *
      * @param string $modal
-     * @param $method
+     * @param string $method
      * @param string|array $options
      * @param string|null  $modalTitle
      *
@@ -148,7 +148,7 @@ class Button extends Field
      */
     public function loadModalAsync(string $modal, string $method, $options = [], string $modalTitle = null): self
     {
-        $this->set('async', true);
+        $this->set('async');
         $this->set('modal', $modal);
         $this->set('method', $method);
         $this->set('asyncParams', Arr::wrap($options));

@@ -64,12 +64,12 @@ class RelationController extends Controller
 
         $items = collect($model);
 
-        if ($search != '') {
+        if ($search !== '') {
             $items = $items->filter(function ($item) use ($name, $search) {
                 return stripos($item[$name], $search) !== false;
             });
         }
 
-        return $items = $items->take(10)->pluck($name, $key);
+        return $items->take(10)->pluck($name, $key);
     }
 }

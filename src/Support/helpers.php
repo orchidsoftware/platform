@@ -178,7 +178,7 @@ if (! function_exists('orchid_mix')) {
         }
 
         if (is_null($manifest)) {
-            throw new Exception('mix-manifest.json file not found');
+            throw new \Exception('mix-manifest.json file not found');
         }
 
         $manifest = json_decode($manifest->getContents(), true);
