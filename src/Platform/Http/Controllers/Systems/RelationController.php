@@ -55,7 +55,7 @@ class RelationController extends Controller
     {
         if (is_subclass_of($model, Model::class)) {
             return $model->where($name, 'like', '%'.$search.'%')->limit(10)->pluck($name, $key);
-        }elseif(property_exists($model, 'query')) {
+        } elseif (property_exists($model, 'query')) {
             $model->search = $search;
         }
 
@@ -66,7 +66,7 @@ class RelationController extends Controller
 
         $items = collect($model);
 
-        if (!is_null($search) && $search !== '') {
+        if (! is_null($search) && $search !== '') {
             $items = $items->filter(function ($item) use ($name, $search) {
                 return stripos($item[$name], $search) !== false;
             });
