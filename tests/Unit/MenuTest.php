@@ -61,6 +61,21 @@ class MenuTest extends TestUnitCase
         $this->assertEquals(2, $count);
     }
 
+    public function testCanSee()
+    {
+        $menu = (new Dashboard())->menu;
+
+        $menu->add('Main', ItemMenu::label('No Display')
+            ->childs()
+            ->sort(1000)
+            ->canSee(false)
+        );
+
+        $count = $menu->showCountElement('Main');
+
+        $this->assertEquals(0, $count);
+    }
+
     public function testShow()
     {
         $menu = (new Dashboard())->menu;

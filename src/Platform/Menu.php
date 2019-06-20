@@ -80,7 +80,7 @@ class Menu
     {
         $arg = get_object_vars($itemMenu);
 
-        if (array_key_exists('show', $arg) && ! $arg['show']) {
+        if (array_key_exists('display', $arg) && ! $arg['display']) {
             return $this;
         }
 

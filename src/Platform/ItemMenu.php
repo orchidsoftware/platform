@@ -58,7 +58,7 @@ class ItemMenu
     /**
      * @var bool
      */
-    public $show = true;
+    public $display = true;
 
     /**
      * @var array
@@ -122,13 +122,25 @@ class ItemMenu
     }
 
     /**
+     * @deprecated use method canSee
+     *
      * @param bool $show
      *
      * @return ItemMenu
      */
     public function show(bool $show): self
     {
-        $this->show = $show;
+        return $this->canSee($show);
+    }
+
+    /**
+     * @param bool $value
+     *
+     * @return ItemMenu
+     */
+    public function canSee(bool $value): self
+    {
+        $this->display = $value;
 
         return $this;
     }
