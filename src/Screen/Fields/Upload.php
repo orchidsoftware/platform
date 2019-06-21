@@ -53,6 +53,7 @@ use Orchid\Attachment\Models\Attachment;
  * @method self popover(string $value = null)
  * @method self groups($value = true)
  * @method self media($value = true)
+ * @method self closeOnAdd($value = true)
  */
 class Upload extends Field
 {
@@ -77,6 +78,7 @@ class Upload extends Field
         'resizeWidth'     => null,
         'resizeHeight'    => null,
         'media'           => false,
+        'closeOnAdd'      => false
     ];
 
     /**
@@ -116,6 +118,7 @@ class Upload extends Field
         'groups',
         'storage',
         'media',
+        'closeOnAdd'
     ];
 
     /**

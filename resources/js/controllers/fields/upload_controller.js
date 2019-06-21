@@ -179,6 +179,7 @@ export default class extends Controller {
         const loadInfo = this.loadInfo.bind(this);
         const dropname = this.dropname;
         const groups = this.data.get('groups');
+        const isMediaLibrary = this.data.get('is-media-library');
 
         this.dropZone = new Dropzone(dropname, {
             url: platform.prefix('/systems/files'),
@@ -263,11 +264,13 @@ export default class extends Controller {
 
                 this.on('removedfile', file => {
                     $(`${dropname} .files-${file.data.id}`).remove();
-                    axios
-                        .delete(platform.prefix(`/systems/files/${file.data.id}`), {
-                            storage: $('#post-attachment-dropzone').data('storage'),
-                        })
-                        .then();
+                    if (!isMediaLibrary) {
+                        axios
+                            .delete(platform.prefix(`/systems/files/${file.data.id}`), {
+                                storage: $('#post-attachment-dropzone').data('storage'),
+                            })
+                            .then();
+                    }
                 });
             },
             error(file, response) {
@@ -310,6 +313,7 @@ export default class extends Controller {
      *
      */
     loadMedia() {
+        $(`${this.dropname} .media.modal`).modal('show');
         axios
             .post(platform.prefix('/systems/media'), {
                 filter: {
@@ -319,7 +323,6 @@ export default class extends Controller {
             })
             .then((response)=>{
                 this.mediaList = response.data;
-                $(`${this.dropname} .media.modal`).modal('show');
                 this.renderMedia();
             });
     }
@@ -331,11 +334,10 @@ export default class extends Controller {
         let html = '';
 
         /** todo: */
-        this.mediaList.forEach((element,key) => {
-            html += '<div class="col-4 col-sm-3 col-md-2 mb-4">\n' +
+        this.mediaList.forEach((element, key) => {
+            html += '<div class="col-4 col-sm-3 col-md-2 mb-4 media-item">\n' +
                 '    <div data-action="click->fields--upload#addFile" data-key="'+key+'">\n' +
                 '        <img src="'+element.url+'"\n' +
-                '             alt="sample"\n' +
                 '             class="rounded mw-100"\n' +
                 '             style="height: 50px;width: 100%;object-fit: cover;">\n' +
                 '        <p class="text-ellipsis small text-muted mt-1 mb-0" title="'+element.original_name+'">'+element.original_name+'</p>\n' +
@@ -356,6 +358,10 @@ export default class extends Controller {
         const file = this.mediaList[key];
 
         this.addedExistFile(file);
+
+        if (this.data.get('close-on-add')) {
+            $(`${this.dropname} .media.modal`).modal('hide');
+        }
     }
 
     /**
