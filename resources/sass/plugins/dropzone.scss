@@ -99,8 +99,18 @@
 
   }
 
-  .dz-message{
+  .dz-message {
     margin: 0.5rem;
+  }
+
+  .media {
+    &-item {
+      cursor: pointer;
+
+      * {
+        cursor: pointer;
+      }
+    }
   }
 
 }
