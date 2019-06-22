@@ -10,7 +10,7 @@
                        class="form-control"
                        data-controller="fields--datetime"
                        data-fields--datetime-allow-input="true"
-                       data-fields--datetime-range="#end_{{ $attributes['name'] }}">
+                       data-fields--datetime-range="#end_{{ str_slug($attributes['name']) }}">
             </div>
         </div>
 
@@ -19,7 +19,7 @@
                 <input type="text"
                        @isset($attributes['form']) form="{{ $attributes['form'] ?? null }}" @endisset
                        name="{{ $attributes['name'] }}[end]"
-                       id='end_{{ $attributes['name'] }}'
+                       id='end_{{ str_slug($attributes['name']) }}'
                        value="{{ $attributes['value']['end'] ?? null }}"
                        class="form-control">
             </div>
