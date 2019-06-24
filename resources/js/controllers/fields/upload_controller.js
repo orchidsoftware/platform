@@ -1,6 +1,7 @@
 import {Controller} from "stimulus";
 import Dropzone from 'dropzone';
 import Sortable from 'sortablejs';
+import {debounce} from "lodash";
 
 export default class extends Controller {
 
@@ -9,12 +10,12 @@ export default class extends Controller {
      * @type {string[]}
      */
     static targets = [
-        "search",
-        "name",
-        "original",
-        "alt",
-        "description",
-        "url",
+        'search',
+        'name',
+        'original',
+        'alt',
+        'description',
+        'url',
     ];
 
     /**
@@ -25,6 +26,10 @@ export default class extends Controller {
         super(props);
         this.attachments = {};
         this.mediaList = {};
+    }
+
+    initialize() {
+        this.loadMedia = debounce(this.loadMedia, 500);
     }
 
     /**
@@ -41,11 +46,11 @@ export default class extends Controller {
      */
     get activeAttachment() {
         return {
-            'id': this.activeAchivmentId,
-            'name': this[this.getAttachmentTargetKey('name')].value || '',
-            'alt': this[this.getAttachmentTargetKey('alt')].value || '',
-            'description': this[this.getAttachmentTargetKey('description')].value || '',
-            'original_name': this[this.getAttachmentTargetKey('original')].value || '',
+            id: this.activeAchivmentId,
+            name: this[this.getAttachmentTargetKey('name')].value || '',
+            alt: this[this.getAttachmentTargetKey('alt')].value || '',
+            description: this[this.getAttachmentTargetKey('description')].value || '',
+            original_name: this[this.getAttachmentTargetKey('original')].value || '',
         };
     }
 
@@ -62,7 +67,6 @@ export default class extends Controller {
         this[this.getAttachmentTargetKey('description')].value = data.description || '';
 
         this.data.set('url', data.url);
-
     }
 
     /**
@@ -108,7 +112,7 @@ export default class extends Controller {
      * @returns {string}
      */
     getAttachmentTargetKey(dataKey) {
-        return `${dataKey}Target`
+        return `${dataKey}Target`;
     }
 
     /**
@@ -121,7 +125,7 @@ export default class extends Controller {
         if (!this.attachments.hasOwnProperty(name)) {
             this.attachments[name] = data;
         }
-        this.activeAttachment = data
+        this.activeAttachment = data;
     }
 
     /**
@@ -129,6 +133,7 @@ export default class extends Controller {
      */
     resortElement() {
         const items = {};
+
         $('.file-sort').each((index, value) => {
             const id = $(value).attr('data-file-id');
             items[id] = index;
@@ -164,8 +169,6 @@ export default class extends Controller {
         $(
             `<input type='hidden' class='files-${file.id}' name='${name}[]' value='${file.id}'  />`
         ).appendTo(dropname);
-
-        this.resortElement();
     }
 
     /**
@@ -201,7 +204,6 @@ export default class extends Controller {
 
             init() {
                 this.on('addedfile', (e) => {
-
                     const removeButton = Dropzone.createElement('<a href="javascript:;" class="btn-remove">&times;</a>');
                     const editButton = Dropzone.createElement('<a href="javascript:;" class="btn-edit"><i class="icon-note" aria-hidden="true"></i></a>');
 
@@ -220,8 +222,8 @@ export default class extends Controller {
                     e.previewElement.appendChild(editButton);
 
 
-                    if(e.data !== undefined) {
-                        self.addSortDataAtributes(dropname, name, e.data);
+                    if (e.data !== undefined) {
+                        // self.addSortDataAtributes(dropname, name, e.data);
                     }
                 });
 
@@ -248,8 +250,6 @@ export default class extends Controller {
                         this.emit('thumbnail', file, file.url);
                         this.emit('complete', file);
                         this.files.push(file);
-
-
                         self.addSortDataAtributes(dropname, name, item);
                     });
                 }
@@ -283,12 +283,12 @@ export default class extends Controller {
 
             success(file, response) {
 
-                if(!Array.isArray(response)) {
+                if (!Array.isArray(response)) {
                     response = [response];
                 }
 
                 response.forEach((item) => {
-                    if(file.name === item.original_name){
+                    if (file.name === item.original_name) {
                         file.data = item;
                         return false;
                     }
@@ -313,15 +313,26 @@ export default class extends Controller {
      *
      */
     loadMedia() {
+        const self = this;
+        const CancelToken = axios.CancelToken;
+
+        if (typeof this.cancelRequest === 'function') {
+            this.cancelRequest();
+        }
         $(`${this.dropname} .media.modal`).modal('show');
+
         axios
             .post(platform.prefix('/systems/media'), {
                 filter: {
                     disk: this.data.get('storage'),
                     original_name: this.searchTarget.value,
                 },
+            }, {
+                cancelToken: new CancelToken(function executor(c) {
+                    self.cancelRequest = c;
+                }),
             })
-            .then((response)=>{
+            .then((response) => {
                 this.mediaList = response.data;
                 this.renderMedia();
             });
@@ -336,11 +347,11 @@ export default class extends Controller {
         /** todo: */
         this.mediaList.forEach((element, key) => {
             html += '<div class="col-4 col-sm-3 col-md-2 mb-4 media-item">\n' +
-                '    <div data-action="click->fields--upload#addFile" data-key="'+key+'">\n' +
-                '        <img src="'+element.url+'"\n' +
+                '    <div data-action="click->fields--upload#addFile" data-key="' + key + '">\n' +
+                '        <img src="' + element.url + '"\n' +
                 '             class="rounded mw-100"\n' +
                 '             style="height: 50px;width: 100%;object-fit: cover;">\n' +
-                '        <p class="text-ellipsis small text-muted mt-1 mb-0" title="'+element.original_name+'">'+element.original_name+'</p>\n' +
+                '        <p class="text-ellipsis small text-muted mt-1 mb-0" title="' + element.original_name + '">' + element.original_name + '</p>\n' +
                 '    </div>\n' +
                 '</div>';
         });
@@ -353,7 +364,7 @@ export default class extends Controller {
     /**
      *
      */
-    addFile(event){
+    addFile(event) {
         const key = event.currentTarget.dataset.key;
         const file = this.mediaList[key];
 
@@ -368,7 +379,7 @@ export default class extends Controller {
      *
      * @param attachment
      */
-    addedExistFile(attachment){
+    addedExistFile(attachment) {
 
         /** todo: Дублируется дважды */
         const file = {

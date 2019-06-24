@@ -146,7 +146,7 @@ class Upload extends Field
             /** @var Attachment $attach */
             $attach = Dashboard::model(Attachment::class);
 
-            $value = $attach::whereIn('id', $value)->get()->toArray();
+            $value = $attach::whereIn('id', $value)->orderBy('sort')->get()->toArray();
 
             $this->set('value', $value);
         });
