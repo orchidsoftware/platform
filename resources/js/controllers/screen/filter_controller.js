@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus';
+import {Controller} from 'stimulus';
 
 export default class extends Controller {
     static get targets() {
@@ -53,8 +53,13 @@ export default class extends Controller {
             }
 
             const name = element.name.trim();
-            const value = element.value.trim();
-
+            let value = element.value.trim();
+            if (element.type === 'select-multiple' && element.selectedOptions.length > 1) {
+                value = [].reduce.call(element.options, (result, option) => {
+                    if (option.selected) result.push(option.value);
+                    return result;
+                }, []);
+            }
             if (name !== ''
                 && value !== null
                 && value !== ''
@@ -86,7 +91,7 @@ export default class extends Controller {
      * @param event
      */
     clear(event) {
-        window.Turbolinks.visit(window.location.origin + window.location.pathname, { action: 'replace' });
+        window.Turbolinks.visit(window.location.origin + window.location.pathname, {action: 'replace'});
         event.preventDefault();
     }
 
@@ -95,7 +100,7 @@ export default class extends Controller {
      * @param event
      */
     clearFilter(event) {
-        const { filter } = event.target.dataset;
+        const {filter} = event.target.dataset;
         document.querySelector(`input[name='filter[${filter}]']`).value = '';
 
         this.element.remove();
