@@ -26958,7 +26958,7 @@ function (_Controller) {
       var _this = this;
 
       return Object.keys(obj).filter(function (k) {
-        return obj[k] !== null && obj[k] !== undefined;
+        return obj[k] !== null && obj[k] !== undefined && obj[k] !== '';
       }).reduce(function (newObj, k) {
         return _typeof(obj[k]) === 'object' ? Object.assign(newObj, _defineProperty({}, k, _this.removeEmpty(obj[k]))) : Object.assign(newObj, _defineProperty({}, k, obj[k]));
       }, {});

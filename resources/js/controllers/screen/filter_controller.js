@@ -62,7 +62,7 @@ export default class extends Controller {
      */
     removeEmpty(obj) {
         return Object.keys(obj)
-            .filter(k => obj[k] !== null && obj[k] !== undefined)
+            .filter(k => obj[k] !== null && obj[k] !== undefined && obj[k] !== '')
             .reduce((newObj, k) =>
                     typeof obj[k] === 'object' ?
                         Object.assign(newObj, {[k]: this.removeEmpty(obj[k])}) :
