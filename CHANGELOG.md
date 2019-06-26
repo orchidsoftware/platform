@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Existing elements: multiple elements adding on init action [898](https://github.com/orchidsoftware/platform/pull/898)
 - Sorting. Upload reordering the sorted elements [898](https://github.com/orchidsoftware/platform/pull/898)
 - Error if name field array [896](https://github.com/orchidsoftware/platform/pull/896)
+- Multiple fields for filters
 
 ## 5.1.1 - 2019-06-20
 
