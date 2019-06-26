@@ -282,8 +282,8 @@ class Field implements FieldContract
     }
 
     /**
-     * @param string $key
-     * @param mixed|null   $value
+     * @param string     $key
+     * @param mixed|null $value
      *
      * @return $this|mixed|null
      */

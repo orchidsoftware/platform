@@ -4,10 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## Not release
+## 5.1.2 - 2019-06-26
+
+### Added
+- Debounce to prevent a lot of requests on keyUp action [898](https://github.com/orchidsoftware/platform/pull/898)
+
+### Fixed
+- Existing elements: multiple elements adding on init action [898](https://github.com/orchidsoftware/platform/pull/898)
+- Sorting. Upload reordering the sorted elements [898](https://github.com/orchidsoftware/platform/pull/898)
+- Error if name field array [896](https://github.com/orchidsoftware/platform/pull/896)
+
+## 5.1.1 - 2019-06-20
 
 ### Added
 - Check method for Alert
+
+### Deprecated
+- ItemMenu method `show` use `canSee`
+
+### Fixed
+- Relation field null search string [894](https://github.com/orchidsoftware/platform/pull/894)
 
 ## 5.1.0 - 2019-06-17
 

@@ -139,8 +139,8 @@ class Button extends Field
      * Call the modal with async method.
      * Options should contain values which handle by method.
      *
-     * @param string $modal
-     * @param string $method
+     * @param string       $modal
+     * @param string       $method
      * @param string|array $options
      * @param string|null  $modalTitle
      *

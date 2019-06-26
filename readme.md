@@ -14,34 +14,15 @@
 <a href="https://codecov.io/gh/orchidsoftware/platform"><img src="https://codecov.io/gh/orchidsoftware/platform/branch/master/graph/badge.svg" /></a>
 <a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/v/stable"/></a>
 <a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/downloads"/></a>
-<a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/license"/></a>
 <a href="https://t.me/orchid_community"><img src="https://img.shields.io/badge/chat-telegram-blue.svg"/></a>
 </p>
 
 ## Introduction
 
-Platform gives you a simpler and faster way to create professional-quality business applications usage Laravel framework.  
+Platform is rapid development tool for creating administrative-style applications. It abstracts common business application templates so that developers can easily implement beautiful and elegant interfaces.
+
+ 
 Documentation can be found at [ORCHID website](http://orchid.software).
-
-## Installation
-
-Download using Composer:
-```php
-$ composer require orchid/platform
-```
-
-Install package
-
-```php
-php artisan orchid:install
-```
-
-Create your admin user
-```php
-php artisan orchid:admin admin admin@admin.com password
-```
-
-Once these commands have completed, you are ready to enjoy platform!
 
 
 ###### Screenshot

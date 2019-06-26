@@ -1,6 +1,6 @@
 {
   "name": "orchid/platform",
-  "description": "Powerful platform for building a business application using the Laravel framework.",
+  "description": "Basis for back-office applications , admin panel or CMS.",
   "keywords": [
     "framework",
     "laravel",

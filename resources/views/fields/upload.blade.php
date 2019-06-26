@@ -4,7 +4,7 @@
             data-fields--upload-storage="{{$storage ?? 'public'}}"
             data-fields--upload-name="{{$name}}"
             data-fields--upload-id="dropzone-{{$id}}"
-            data-fields--upload-data="{!!htmlspecialchars(json_encode($value), ENT_QUOTES, 'UTF-8')!!}"
+            data-fields--upload-data='@json($value)'
             data-fields--upload-groups="{{$attributes['groups'] ?? ''}}"
             data-fields--upload-multiple="{{$attributes['multiple']}}"
             data-fields--upload-parallel-uploads="{{$parallelUploads }}"
@@ -13,8 +13,9 @@
             data-fields--upload-accepted-files="{{$acceptedFiles }}"
             data-fields--upload-resize-quality="{{$resizeQuality }}"
             data-fields--upload-resize-width="{{$resizeWidth }}"
+            data-fields--upload-is-media-library="{{ $media }}"
+            data-fields--upload-close-on-add="{{ $closeOnAdd }}"
             data-fields--upload-resize-height="{{$resizeHeight }}"
-
     >
         <div id="dropzone-{{$id}}" class="dropzone-wrapper">
             <div class="fallback">
@@ -97,7 +98,7 @@
             </div>
 
             <div class="media modal fade disable-scroll" tabindex="-1" role="dialog" aria-hidden="false">
-                <div class="modal-dialog  modal-lg slide-up">
+                <div class="modal-dialog modal-xl slide-up">
                     <div class="modal-content-wrapper">
                         <div class="modal-content">
                             <div class="modal-header clearfix">
