@@ -45,40 +45,15 @@ export default class extends Controller {
      *
      */
     setAllFilter() {
-        const params = {};
+        const formElement = document.getElementById('filters');
 
-        document.querySelectorAll('[form="filters"]').forEach((element) => {
-            if (element.type === 'radio' && element.checked === false) {
-                return;
-            }
+        const filters = window.platform.formToObject(formElement);
 
-            const name = element.name.trim();
-            const value = element.value.trim();
+        const params = $.param(filters);
 
-            if (name !== ''
-                && value !== null
-                && value !== ''
-                && value !== undefined) {
-                params[name] = value;
-            }
-        });
+        const url = `${window.location.origin + window.location.pathname}?${params}`;
 
-        const url = this.buildGetUrlParams(params);
-
-        window.Turbolinks.visit(url, { action: 'replace' });
-    }
-
-    /**
-     *
-     * @param paramsObj
-     * @returns {string}
-     */
-    buildGetUrlParams(paramsObj) {
-        let builtUrl = `${window.location.origin + window.location.pathname}?`;
-        Object.keys(paramsObj).forEach((key) => {
-            builtUrl += `${key}=${paramsObj[key]}&`;
-        });
-        return builtUrl.substr(0, builtUrl.length - 1);
+        window.Turbolinks.visit(url, {action: 'replace'});
     }
 
     /**

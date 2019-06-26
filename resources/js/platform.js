@@ -45,5 +45,33 @@ export default function platform() {
                 ),
             );
         },
+
+        /**
+         *
+         * @param elem
+         */
+        formToObject(elem) {
+            let output = {};
+
+            new FormData(elem).forEach((value, key) => {
+
+                    if(!Object.prototype.hasOwnProperty.call(output, key)){
+                        output[key] = value;
+                        return;
+                    }
+
+                    let current = output[key];
+
+                    if (!Array.isArray(current)) {
+                        current = output[key] = [current];
+                    }
+
+                    current.push(value);
+                }
+            );
+
+            return output;
+        },
+
     };
 }
