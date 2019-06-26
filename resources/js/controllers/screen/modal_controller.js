@@ -15,7 +15,10 @@ export default class extends Controller {
      * @param options
      */
     open(options) {
-        this.titleTarget.textContent = options.title || null;
+        if (typeof options.title !== "undefined") {
+            this.titleTarget.textContent = options.title;
+        }
+
         this.element.querySelector('form').action = options.submit;
 
         if (this.data.get('async')) {
