@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen;
 
-use Orchid\Screen\Layouts\Modal;
 use Orchid\Tests\TestUnitCase;
+use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Layouts\Modals;
 use Illuminate\Support\Facades\Validator;
 use Orchid\Tests\Exemplar\App\Screens\ModalScreen;
@@ -16,7 +16,6 @@ use Orchid\Tests\Exemplar\App\Screens\ModalsScreen;
  */
 class ModalTest extends TestUnitCase
 {
-
     /**
      * @throws \Throwable
      */

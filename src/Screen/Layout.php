@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Support\Traits\Macroable;
-use Orchid\Screen\Layouts\Accordion;
-use Orchid\Screen\Layouts\Blank;
-use Orchid\Screen\Layouts\Collapse;
-use Orchid\Screen\Layouts\Columns;
-use Orchid\Screen\Layouts\Modal;
-use Orchid\Screen\Layouts\Modals;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Layouts\View;
+use Orchid\Screen\Layouts\Blank;
+use Orchid\Screen\Layouts\Modal;
+use Orchid\Screen\Layouts\Modals;
+use Orchid\Screen\Layouts\Columns;
 use Orchid\Screen\Layouts\Wrapper;
+use Orchid\Screen\Layouts\Collapse;
+use Orchid\Screen\Layouts\Accordion;
+use Illuminate\Support\Traits\Macroable;
 
 /**
  * Class Layout.
@@ -115,7 +115,7 @@ class Layout
      */
     public static function modal(string $key, array $layouts): Modal
     {
-        return new class($key,$layouts) extends Modal {
+        return new class($key, $layouts) extends Modal {
         };
     }
 

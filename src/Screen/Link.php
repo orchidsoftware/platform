@@ -29,7 +29,7 @@ class Link
     public $name;
 
     /**
-     * Name of the method to be executed on click
+     * Name of the method to be executed on click.
      *
      * @var string
      */
@@ -41,14 +41,14 @@ class Link
     public $icon;
 
     /**
-     * The unique name of the modal window
+     * The unique name of the modal window.
      *
      * @var string|null
      */
     public $modal;
 
     /**
-     * Header for modal window
+     * Header for modal window.
      *
      * @var string|null
      */

@@ -28,7 +28,7 @@ class Modal extends Base
      * @param string $key
      * @param array  $layouts
      */
-    public function __construct(string $key , array $layouts = [])
+    public function __construct(string $key, array $layouts = [])
     {
         $this->variables = [
             'apply' => __('Apply'),
