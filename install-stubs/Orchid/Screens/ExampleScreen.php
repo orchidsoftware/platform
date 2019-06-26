@@ -104,7 +104,6 @@ class ExampleScreen extends Screen
 
             Link::name('Example Modals')
                 ->modal('exampleModal')
-                ->title('Example Modals')
                 ->method('example')
                 ->icon('icon-full-screen'),
 
@@ -160,15 +159,14 @@ class ExampleScreen extends Screen
                 'Example Tab Rows'  => RowExample::class,
             ]),
 
-            Layout::modals([
-                'exampleModal' => Layout::rows([
+            Layout::modal('exampleModal', [
+                Layout::rows([
                     Input::make('user.password')
                         ->type('test')
                         ->title(__('Example'))
                         ->placeholder(__('Example')),
                 ]),
-            ]),
-
+            ])->title('Example Modals'),
         ];
     }
 
