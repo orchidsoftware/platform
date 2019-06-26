@@ -98,7 +98,7 @@ class UserEditScreen extends Screen
             UserEditLayout::class,
             UserRoleLayout::class,
 
-            Layout::modal('password',[
+            Layout::modal('password', [
                 Layout::rows([
                     Password::make('password')
                         ->title(__('Password'))
