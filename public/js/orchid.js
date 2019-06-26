@@ -26858,6 +26858,8 @@ function (_Controller) {
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function($) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
 /* harmony import */ var stimulus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! stimulus */ "./node_modules/stimulus/index.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26939,11 +26941,27 @@ function (_Controller) {
     value: function setAllFilter() {
       var formElement = document.getElementById('filters');
       var filters = window.platform.formToObject(formElement);
-      var params = $.param(filters);
+      var params = $.param(this.removeEmpty(filters));
       var url = "".concat(window.location.origin + window.location.pathname, "?").concat(params);
       window.Turbolinks.visit(url, {
         action: 'replace'
       });
+    }
+    /**
+     *
+     * @param obj
+     */
+
+  }, {
+    key: "removeEmpty",
+    value: function removeEmpty(obj) {
+      var _this = this;
+
+      return Object.keys(obj).filter(function (k) {
+        return obj[k] !== null && obj[k] !== undefined;
+      }).reduce(function (newObj, k) {
+        return _typeof(obj[k]) === 'object' ? Object.assign(newObj, _defineProperty({}, k, _this.removeEmpty(obj[k]))) : Object.assign(newObj, _defineProperty({}, k, obj[k]));
+      }, {});
     }
     /**
      *

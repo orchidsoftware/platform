@@ -49,11 +49,25 @@ export default class extends Controller {
 
         const filters = window.platform.formToObject(formElement);
 
-        const params = $.param(filters);
+        const params = $.param(this.removeEmpty(filters));
 
         const url = `${window.location.origin + window.location.pathname}?${params}`;
 
         window.Turbolinks.visit(url, {action: 'replace'});
+    }
+
+    /**
+     *
+     * @param obj
+     */
+    removeEmpty(obj) {
+        return Object.keys(obj)
+            .filter(k => obj[k] !== null && obj[k] !== undefined)
+            .reduce((newObj, k) =>
+                    typeof obj[k] === 'object' ?
+                        Object.assign(newObj, {[k]: this.removeEmpty(obj[k])}) :
+                        Object.assign(newObj, {[k]: obj[k]}),
+                {});
     }
 
     /**
