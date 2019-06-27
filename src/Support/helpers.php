@@ -47,6 +47,8 @@ if (! function_exists('setting')) {
 
 if (! function_exists('generate_form')) {
     /**
+     * @deprecated
+     *
      * Generate a ready-made html form for display to the user.
      *
      * @param array                 $fields
