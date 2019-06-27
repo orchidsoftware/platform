@@ -32,7 +32,7 @@ class PlatformServiceProvider extends ServiceProvider
 
         View::composer('platform::systems', SystemMenuComposer::class);
         View::composer('platform::auth.login', LockMeComposer::class);
-        View::composer('platform::partials.notifications', NotificationsComposer::class);
+        View::composer('platform::partials.profile', NotificationsComposer::class);
         View::composer('platform::partials.announcement', AnnouncementsComposer::class);
 
         $this->app->booted(function () {

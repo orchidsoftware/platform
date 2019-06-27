@@ -19,12 +19,6 @@ use Orchid\Platform\Http\Controllers\Systems\NotificationController;
 $this->router->get('/', [SystemController::class, 'index'])
     ->name('systems.index');
 
-$this->router->post('notification/read', [NotificationController::class, 'markAllAsRead'])
-    ->name('notification.read');
-
-$this->router->post('notification/remove', [NotificationController::class, 'remove'])
-    ->name('notification.remove');
-
 $this->router->post('files', [AttachmentController::class, 'upload'])
     ->name('systems.files.upload');
 

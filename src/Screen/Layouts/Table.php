@@ -35,9 +35,27 @@ abstract class Table extends Base
         });
 
         return view($this->template, [
-            'data'     => $query->getContent($this->data),
-            'columns'  => $columns,
+            'data'         => $query->getContent($this->data),
+            'columns'      => $columns,
+            'iconNotFound' => $this->iconNotFound(),
+            'textNotFound' => $this->textNotFound(),
         ]);
+    }
+
+    /**
+     * @return string
+     */
+    public function iconNotFound(): string
+    {
+        return 'icon-table';
+    }
+
+    /**
+     * @return string
+     */
+    public function textNotFound(): string
+    {
+        return __('Records not found');
     }
 
     /**
