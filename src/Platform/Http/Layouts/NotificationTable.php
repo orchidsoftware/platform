@@ -1,0 +1,56 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Orchid\Platform\Http\Layouts;
+
+use Orchid\Screen\TD;
+use Orchid\Screen\Layouts\Table;
+
+class NotificationTable extends Table
+{
+    /**
+     * Data source.
+     *
+     * @var string
+     */
+    public $data = 'notifications';
+
+    /**
+     * @return TD[]
+     */
+    public function fields(): array
+    {
+        return [
+            TD::set('Message')
+                ->render(function ($notification) {
+                return view('platform::partials.notification',[
+                    'notification' => $notification
+                ]);
+            }),
+
+            TD::set('','Date of creation')
+                ->width('150px')
+                ->align(TD::ALIGN_RIGHT)
+                ->render(function ($notification) {
+                return $notification->created_at->diffForHumans();
+            }),
+        ];
+    }
+
+    /**
+     * @return string
+     */
+    public function textNotFound(): string
+    {
+        return __('No notifications');
+    }
+
+    /**
+     * @return string
+     */
+    public function iconNotFound(): string
+    {
+        return 'icon-bell';
+    }
+}

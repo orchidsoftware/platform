@@ -1165,3 +1165,6 @@
   word-break: keep-all;
 }
 
+.opacity {
+  @include opacity(0.5);
+}

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Orchid\Platform\Http\Screens\AnnouncementScreen;
+use Orchid\Platform\Http\Screens\NotificationScreen;
 use Orchid\Platform\Http\Controllers\Systems\IndexController;
 use Orchid\Platform\Http\Controllers\Systems\SearchController;
 
@@ -22,3 +23,5 @@ $this->router->fallback([IndexController::class, 'fallback']);
 $this->router->post('/search/{query}', [SearchController::class, 'index'])->name('search');
 
 $this->router->screen('/announcement', AnnouncementScreen::class)->name('systems.announcement');
+
+$this->router->screen('notifications', NotificationScreen::class)->name('notifications');

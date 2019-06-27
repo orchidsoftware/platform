@@ -18,8 +18,10 @@ class NotificationsComposer
     public function compose(View $view)
     {
         $notifications = Auth::user()
-            ->unreadNotifications
-            ->where('type', DashboardNotification::class);
+            ->unreadNotifications()
+            ->where('type', DashboardNotification::class)
+            ->limit(15)
+            ->get();
 
         $view->with('notifications', $notifications);
     }

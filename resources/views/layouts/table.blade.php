@@ -63,8 +63,8 @@
 
         <div class="text-center bg-white pt-5 pb-5 w-full">
             <h3 class="font-thin">
-                <i class="icon-table block m-b"></i>
-                {{__('Records not found')}}
+                <i class="{{ $iconNotFound }} block m-b"></i>
+                {{ $textNotFound }}
             </h3>
         </div>
 
