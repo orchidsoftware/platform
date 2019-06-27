@@ -38,7 +38,7 @@
         </thead>
         <tbody>
 
-        @foreach($data as $key => $datum)
+        @foreach($rows as $key => $datum)
             <tr>
                 @foreach($columns as $td)
                     <td class="text-{{$td->align}}">
@@ -56,9 +56,9 @@
     </table>
 
     @if(
-    (method_exists($data,'total') && optional($data)->total() === 0) ||
-    (method_exists($data,'count') && optional($data)->count() === 0) ||
-    (is_array($data) && count($data) === 0)
+    (method_exists($rows,'total') && optional($rows)->total() === 0) ||
+    (method_exists($rows,'count') && optional($rows)->count() === 0) ||
+    (is_array($rows) && count($rows) === 0)
     )
 
         <div class="text-center bg-white pt-5 pb-5 w-full">
@@ -72,20 +72,20 @@
 
     @endif
 
-    @if($data instanceof \Illuminate\Contracts\Pagination\Paginator && $data->total() > 0)
+    @if($rows instanceof \Illuminate\Contracts\Pagination\Paginator && $rows->total() > 0)
         <footer class="wrapper w-full">
             <div class="row">
                 <div class="col-sm-5">
                     <small class="text-muted inline m-t-sm m-b-sm">
                         {{ __('Displayed records: :from-:to of :total',[
-                            'from' => ($data->currentPage()-1)*$data->perPage()+1,
-                            'to' => ($data->currentPage()-1)*$data->perPage()+count($data->items()),
-                            'total' => $data->total(),
+                            'from' => ($rows->currentPage()-1)*$rows->perPage()+1,
+                            'to' => ($rows->currentPage()-1)*$rows->perPage()+count($rows->items()),
+                            'total' => $rows->total(),
                         ]) }}
                     </small>
                 </div>
                 <div class="col-sm-7 text-right text-center-xs">
-                    {!! $data->appends(request()->except(['page','_token']))->links('platform::partials.pagination') !!}
+                    {!! $rows->appends(request()->except(['page','_token']))->links('platform::partials.pagination') !!}
                 </div>
             </div>
         </footer>
