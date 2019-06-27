@@ -35,7 +35,7 @@ abstract class Table extends Base
         });
 
         return view($this->template, [
-            'data'         => $query->getContent($this->data),
+            'rows'         => $query->getContent($this->data),
             'columns'      => $columns,
             'iconNotFound' => $this->iconNotFound(),
             'textNotFound' => $this->textNotFound(),
