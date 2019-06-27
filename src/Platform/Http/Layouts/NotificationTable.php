@@ -53,4 +53,12 @@ class NotificationTable extends Table
     {
         return 'icon-bell';
     }
+
+    /**
+     * @return string
+     */
+    public function subNotFound(): string
+    {
+        return 'You currently have no notifications, but maybe they will appear later.';
+    }
 }
