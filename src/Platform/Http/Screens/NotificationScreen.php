@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens;
 
-use Orchid\Platform\Http\Layouts\NotificationTable;
-use Illuminate\Http\Request;
-use Orchid\Platform\Notifications\DashboardNotification;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
+use Illuminate\Http\Request;
 use Orchid\Support\Facades\Alert;
+use Orchid\Platform\Http\Layouts\NotificationTable;
+use Orchid\Platform\Notifications\DashboardNotification;
 
 class NotificationScreen extends Screen
 {
@@ -43,7 +43,7 @@ class NotificationScreen extends Screen
             'notifications' => $request->user()
                 ->notifications()
                 ->where('type', DashboardNotification::class)
-                ->paginate(10)
+                ->paginate(10),
         ];
     }
 
@@ -61,7 +61,7 @@ class NotificationScreen extends Screen
 
             Link::name('Mark all as read')
                 ->icon('icon-eye')
-                ->method('markAllAsRead')
+                ->method('markAllAsRead'),
         ];
     }
 
@@ -73,7 +73,7 @@ class NotificationScreen extends Screen
     public function layout(): array
     {
         return [
-            NotificationTable::class
+            NotificationTable::class,
         ];
     }
 

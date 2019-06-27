@@ -24,17 +24,17 @@ class NotificationTable extends Table
         return [
             TD::set('Message')
                 ->render(function ($notification) {
-                return view('platform::partials.notification',[
-                    'notification' => $notification
+                    return view('platform::partials.notification', [
+                    'notification' => $notification,
                 ]);
-            }),
+                }),
 
-            TD::set('','Date of creation')
+            TD::set('', 'Date of creation')
                 ->width('150px')
                 ->align(TD::ALIGN_RIGHT)
                 ->render(function ($notification) {
-                return $notification->created_at->diffForHumans();
-            }),
+                    return $notification->created_at->diffForHumans();
+                }),
         ];
     }
 
