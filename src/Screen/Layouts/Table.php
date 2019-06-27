@@ -39,6 +39,7 @@ abstract class Table extends Base
             'columns'      => $columns,
             'iconNotFound' => $this->iconNotFound(),
             'textNotFound' => $this->textNotFound(),
+            'subNotFound'  => $this->subNotFound(),
         ]);
     }
 
@@ -56,6 +57,14 @@ abstract class Table extends Base
     public function textNotFound(): string
     {
         return __('Records not found');
+    }
+
+    /**
+     * @return string
+     */
+    public function subNotFound(): string
+    {
+        return '';
     }
 
     /**

@@ -64,13 +64,15 @@
         <div class="text-center bg-white pt-5 pb-5 w-full">
             <h3 class="font-thin">
                 <i class="{{ $iconNotFound }} block m-b"></i>
-                {{ $textNotFound }}
+                {!!  $textNotFound !!}
             </h3>
+
+            {!! $subNotFound !!}
         </div>
 
     @endif
 
-    @if($data instanceof \Illuminate\Contracts\Pagination\Paginator)
+    @if($data instanceof \Illuminate\Contracts\Pagination\Paginator && $data->total() > 0)
         <footer class="wrapper w-full">
             <div class="row">
                 <div class="col-sm-5">
