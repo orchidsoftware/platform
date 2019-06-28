@@ -133,6 +133,12 @@ export default class extends Controller {
      */
     resortElement() {
         const items = {};
+        const self = this;
+        const CancelToken = axios.CancelToken;
+
+        if (typeof this.cancelRequest === 'function') {
+            this.cancelRequest();
+        }
 
         $('.file-sort').each((index, value) => {
             const id = $(value).attr('data-file-id');
@@ -142,6 +148,10 @@ export default class extends Controller {
         axios
             .post(platform.prefix('/systems/files/sort'), {
                 files: items,
+            }, {
+                cancelToken: new CancelToken(function executor(c) {
+                    self.cancelRequest = c;
+                }),
             })
             .then();
     }
@@ -152,7 +162,7 @@ export default class extends Controller {
     initSortable() {
         new Sortable(document.querySelector(this.dropname + ' .sortable-dropzone'), {
             animation: 150,
-            onChange: this.resortElement,
+            onEnd: this.resortElement,
         });
     }
 
@@ -221,9 +231,8 @@ export default class extends Controller {
                     e.previewElement.appendChild(removeButton);
                     e.previewElement.appendChild(editButton);
 
-
                     if (e.data !== undefined) {
-                        // self.addSortDataAtributes(dropname, name, e.data);
+                        self.addSortDataAtributes(dropname, name, e.data);
                     }
                 });
 
@@ -295,6 +304,7 @@ export default class extends Controller {
                 });
 
                 self.addSortDataAtributes(dropname, name, file.data);
+                self.resortElement();
             },
         });
     }
@@ -396,5 +406,6 @@ export default class extends Controller {
         this.dropZone.emit('thumbnail', file, file.url);
         this.dropZone.emit('complete', file);
         this.dropZone.files.push(file);
+        this.resortElement();
     }
 }
