@@ -89,8 +89,7 @@ class NotificationScreen extends Screen
             ->notifications()
             ->where('type', DashboardNotification::class)
             ->where('id', $id)
-            ->firstOrFail()
-        ;
+            ->firstOrFail();
 
         $notification->markAsRead();
 
