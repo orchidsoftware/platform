@@ -78,6 +78,26 @@ class NotificationScreen extends Screen
     }
 
     /**
+     * @param string  $id
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function maskNotification(string $id, Request $request)
+    {
+        $notification = $request->user()
+            ->notifications()
+            ->where('type', DashboardNotification::class)
+            ->where('id', $id)
+            ->firstOrFail()
+        ;
+
+        $notification->markAsRead();
+
+        return redirect($notification->data['action']);
+    }
+
+    /**
      * @param Request $request
      *
      * @return \Illuminate\Http\RedirectResponse

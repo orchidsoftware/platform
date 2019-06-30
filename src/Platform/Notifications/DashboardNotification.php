@@ -20,22 +20,22 @@ class DashboardNotification extends Notification
     /**
      * Status.
      */
-    public const INFO = 'text-info';
+    public const INFO = 'info';
 
     /**
      * Status.
      */
-    public const SUCCESS = 'text-success';
+    public const SUCCESS = 'success';
 
     /**
      * Status.
      */
-    public const ERROR = 'text-danger';
+    public const ERROR = 'danger';
 
     /**
      * Status.
      */
-    public const WARNING = 'text-warning';
+    public const WARNING = 'warning';
 
     /**
      * DashboardNotification constructor.

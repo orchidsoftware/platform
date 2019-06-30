@@ -24,4 +24,4 @@ $this->router->post('/search/{query}', [SearchController::class, 'index'])->name
 
 $this->router->screen('/announcement', AnnouncementScreen::class)->name('systems.announcement');
 
-$this->router->screen('notifications', NotificationScreen::class)->name('notifications');
+$this->router->screen('notifications/{id?}', NotificationScreen::class)->name('notifications');
