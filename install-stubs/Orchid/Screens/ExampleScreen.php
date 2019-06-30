@@ -180,7 +180,7 @@ class ExampleScreen extends Screen
         Auth::user()->notify(new DashboardNotification([
             'title'   => 'Hello Word',
             'message' => self::TEXT_EXAMPLE,
-            'action'  => 'http://orchid.software',
+            'action'  => route('platform.main'),
             'type'    => DashboardNotification::INFO,
         ]));
 
