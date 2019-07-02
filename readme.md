@@ -25,6 +25,7 @@ Platform is rapid development tool for creating administrative-style application
 
 - **Form builder** - no need to describe HTML fields of the same type each time.
 - **Screen** - a good balance between CRUD generation and handwriting.
+- **Fields** - more than 40 types.
 - **Permissions** - offers convenient management in development and support.
 - Menus, graphics, settings, notifications, etc. now.
  
