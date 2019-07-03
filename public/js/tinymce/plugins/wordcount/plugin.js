@@ -136,9 +136,9 @@ var wordcount = (function () {
       if (x === null)
         return 'null';
       var t = typeof x;
-      if (t === 'object' && Array.prototype.isPrototypeOf(x))
+      if (t === 'object' && (Array.prototype.isPrototypeOf(x) || x.constructor && x.constructor.name === 'Array'))
         return 'array';
-      if (t === 'object' && String.prototype.isPrototypeOf(x))
+      if (t === 'object' && (String.prototype.isPrototypeOf(x) || x.constructor && x.constructor.name === 'String'))
         return 'string';
       return t;
     };
@@ -149,6 +149,7 @@ var wordcount = (function () {
     };
     var isFunction = isType('function');
 
+    var slice = Array.prototype.slice;
     var map = function (xs, f) {
       var len = xs.length;
       var r = new Array(len);
@@ -158,7 +159,6 @@ var wordcount = (function () {
       }
       return r;
     };
-    var slice = Array.prototype.slice;
     var from = isFunction(Array.from) ? Array.from : function (x) {
       return slice.call(x);
     };
