@@ -19,7 +19,7 @@
 
 ## Introduction
 
-Platform is rapid development tool for creating administrative-style applications. It abstracts common business application templates so that developers can easily implement beautiful and elegant interfaces.
+This is a package for creating administration-style applications on the [Laravel](https://laravel.com) framework. Allows you to abstract the common patterns of business applications, so that developers can easily implement beautiful and elegant interfaces without much effort. The main places of application are: backoffice applications, admin panels, content management systems, etc.
 
 ###### Some features:
 
@@ -29,8 +29,6 @@ Platform is rapid development tool for creating administrative-style application
 - **Permissions** - offers convenient management in development and support.
 - Menus, graphics, settings, notifications, etc. now.
  
-Delivered as a [Laravel](https://laravel.com) package and interacts with other components. It can act as a basis for backoffice-based applications, administration panels, or as a content management system.
-
 ###### Screenshot
 
 ![screenshot](https://user-images.githubusercontent.com/5102591/52168128-014cb680-2737-11e9-9ed3-28637780cf64.png)
