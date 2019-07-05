@@ -6,7 +6,7 @@
   <br>
 </h1>
 
-<h4 align="center">Building a rapid business application using the  <a href="https://laravel.com" target="_blank">Laravel</a> framework.</h4>
+<h4 align="center">For full documentation, visit <a href="http://orchid.software">orchid.software</a>.</h4>
 
 <p align="center">
 <a href="https://travis-ci.org/orchidsoftware/platform/"><img src="https://travis-ci.org/orchidsoftware/platform.svg?branch=master"></a>
@@ -29,7 +29,7 @@ Platform is rapid development tool for creating administrative-style application
 - **Permissions** - offers convenient management in development and support.
 - Menus, graphics, settings, notifications, etc. now.
  
-Documentation can be found at [ORCHID website](http://orchid.software).
+Delivered as a [Laravel](https://laravel.com) package and interacts with other components. It can act as a basis for backoffice-based applications, administration panels, or as a content management system.
 
 ###### Screenshot
 
