@@ -93,7 +93,7 @@ class NotificationScreen extends Screen
 
         $notification->markAsRead();
 
-        if (!empty($notification->data['action'])) {
+        if (! empty($notification->data['action'])) {
             return redirect($notification->data['action']);
         } else {
             return back();
