@@ -152,10 +152,7 @@ class Select extends Field
                 $options = $options->toArray();
             }
 
-            $value = array_merge(
-                [$key => $name],
-                $options
-            );
+            $value = [$key => $name] + $options;
 
             $this->set('options', $value);
         });
