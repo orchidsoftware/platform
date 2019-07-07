@@ -93,7 +93,9 @@ class NotificationScreen extends Screen
 
         $notification->markAsRead();
 
-        return redirect($notification->data['action']);
+        $url = $notification->data['action'] ?? url()->previous();
+
+        return redirect($url);
     }
 
     /**
