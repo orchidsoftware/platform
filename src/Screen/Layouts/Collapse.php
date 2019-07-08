@@ -30,16 +30,20 @@ abstract class Collapse extends Base
     private $label = 'Options';
 
     /**
-     * @param Repository $query
+     * @param Repository $repository
      *
      * @throws Throwable
      *
      * @return Factory|\Illuminate\View\View
      */
-    public function build(Repository $query)
+    public function build(Repository $repository)
     {
-        $this->query = $query;
-        $form = new Builder($this->fields(), $query);
+        if (! $this->checkPermission($this, $repository)) {
+            return;
+        }
+
+        $this->query = $repository;
+        $form = new Builder($this->fields(), $repository);
 
         return view($this->template, [
             'form'  => $form->generateForm(),

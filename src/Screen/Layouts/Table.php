@@ -24,18 +24,22 @@ abstract class Table extends Base
     public $data;
 
     /**
-     * @param Repository $query
+     * @param Repository $repository
      *
      * @return Factory|\Illuminate\View\View
      */
-    public function build(Repository $query)
+    public function build(Repository $repository)
     {
+        if (! $this->checkPermission($this, $repository)) {
+            return;
+        }
+
         $columns = collect($this->fields())->filter(function (TD $item) {
             return $item->isSee();
         });
 
         return view($this->template, [
-            'rows'         => $query->getContent($this->data),
+            'rows'         => $repository->getContent($this->data),
             'columns'      => $columns,
             'iconNotFound' => $this->iconNotFound(),
             'textNotFound' => $this->textNotFound(),

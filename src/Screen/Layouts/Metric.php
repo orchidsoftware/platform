@@ -43,13 +43,17 @@ abstract class Metric extends Base
     protected $keyDiff = 'diff';
 
     /**
-     * @param Repository $query
+     * @param Repository $repository
      *
      * @return Factory|\Illuminate\View\View
      */
-    public function build(Repository $query)
+    public function build(Repository $repository)
     {
-        $data = $query->getContent($this->data, []);
+        if (! $this->checkPermission($this, $repository)) {
+            return;
+        }
+
+        $data = $repository->getContent($this->data, []);
         $metrics = array_combine($this->labels, $data);
 
         return view($this->template, [

@@ -19,12 +19,16 @@ abstract class Selection extends Base
     public $template = 'platform::layouts.selection';
 
     /**
-     * @param Repository $query
+     * @param Repository $repository
      *
      * @return Factory|\Illuminate\View\View|mixed
      */
-    public function build(Repository $query)
+    public function build(Repository $repository)
     {
+        if (! $this->checkPermission($this, $repository)) {
+            return;
+        }
+
         $filters = collect($this->filters());
         $count = $filters->count();
 

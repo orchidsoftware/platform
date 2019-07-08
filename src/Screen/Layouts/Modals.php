@@ -7,6 +7,8 @@ namespace Orchid\Screen\Layouts;
 use Orchid\Screen\Repository;
 
 /**
+ * @deprecated
+ *
  * Class Modals.
  */
 abstract class Modals extends Base

@@ -188,7 +188,7 @@ class Field implements FieldContract
      */
     public function render()
     {
-        if (! $this->display) {
+        if (! $this->isSee()) {
             return;
         }
 

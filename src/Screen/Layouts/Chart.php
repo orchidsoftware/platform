@@ -68,19 +68,23 @@ abstract class Chart extends Base
     public $export = true;
 
     /**
-     * @param Repository $query
+     * @param Repository $repository
      *
      * @return Factory|\Illuminate\View\View
      */
-    public function build(Repository $query)
+    public function build(Repository $repository)
     {
+        if (! $this->checkPermission($this, $repository)) {
+            return;
+        }
+
         return view($this->template, [
             'title'  => $this->title,
             'slug'   => Str::slug($this->title),
             'type'   => $this->type,
             'height' => $this->height,
             'labels' => json_encode(collect($this->labels)),
-            'data'   => json_encode($query->getContent($this->data)),
+            'data'   => json_encode($repository->getContent($this->data)),
             'colors' => json_encode($this->colors),
         ]);
     }
