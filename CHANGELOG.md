@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 5.2.0 - 2019-07-08
+
+### Added
+- Page for notifications
+- Defer for the scripts [902](https://github.com/orchidsoftware/platform/pull/902)
+- Added methods `textNotFound`, `subNotFound` and `iconNotFound` for `Table`. To control the appearance of an empty table
+
+### Fixed
+- The "empty" method changed keys [905](https://github.com/orchidsoftware/platform/pull/905)
+
 ## 5.1.2 - 2019-06-26
 
 ### Added
