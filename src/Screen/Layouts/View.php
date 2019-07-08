@@ -33,6 +33,10 @@ abstract class View extends Base
      */
     public function build(Repository $repository)
     {
+        if (! $this->checkPermission($this, $repository)) {
+            return;
+        }
+
         return view($this->template, $repository->toArray());
     }
 }

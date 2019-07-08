@@ -105,7 +105,7 @@ class Link
      */
     public function build(Repository $query)
     {
-        if (! $this->display) {
+        if (! $this->isSee()) {
             return;
         }
 
