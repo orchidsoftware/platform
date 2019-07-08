@@ -89,7 +89,7 @@ class SelectTest extends TestFieldsUnitCase
     /**
      * @test
      */
-    public function testEmptyForArray()
+    public function testEmptyForAssociativeArray()
     {
         $select = Select::make('choice')
             ->options([
@@ -103,5 +103,24 @@ class SelectTest extends TestFieldsUnitCase
         $view = self::minifyOutput($view);
 
         $this->assertStringContainsString('<option value="0">empty</option>', $view);
+    }
+
+    /**
+     * @test
+     */
+    public function testEmptyForNumericArray()
+    {
+        $select = Select::make('choice')
+            ->options([
+                1 => 'First Value',
+                2 => 'Second Value',
+                3 => 'Third Value',
+            ])
+            ->empty('empty');
+
+        $view = self::renderField($select);
+        $view = self::minifyOutput($view);
+
+        $this->assertStringContainsString('<option value="">empty</option>', $view);
     }
 }
