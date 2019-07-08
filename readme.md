@@ -6,20 +6,20 @@
   <br>
 </h1>
 
-<h4 align="center">Building a rapid business application using the  <a href="https://laravel.com" target="_blank">Laravel</a> framework.</h4>
+<h4 align="center">For full documentation, visit <a href="http://orchid.software">orchid.software</a>.</h4>
 
 <p align="center">
 <a href="https://travis-ci.org/orchidsoftware/platform/"><img src="https://travis-ci.org/orchidsoftware/platform.svg?branch=master"></a>
 <a href="https://styleci.io/repos/73781385"><img src="https://styleci.io/repos/73781385/shield?branch=master"/></a>
 <a href="https://codecov.io/gh/orchidsoftware/platform"><img src="https://codecov.io/gh/orchidsoftware/platform/branch/master/graph/badge.svg" /></a>
-<a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/v/stable"/></a>
-<a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/downloads"/></a>
+<a href="https://packagist.org/packages/orchid/platform"><img alt="Packagist" src="https://img.shields.io/packagist/dt/orchid/platform.svg"></a>
+<a href="https://packagist.org/packages/orchid/platform"><img alt="Packagist Version" src="https://img.shields.io/packagist/v/orchid/platform.svg"></a>
 <a href="https://t.me/orchid_community"><img src="https://img.shields.io/badge/chat-telegram-blue.svg"/></a>
 </p>
 
 ## Introduction
 
-Platform is rapid development tool for creating administrative-style applications. It abstracts common business application templates so that developers can easily implement beautiful and elegant interfaces.
+This is a package for creating administration-style applications on the [Laravel](https://laravel.com) framework. Allows you to abstract the common patterns of business applications, so that developers can easily implement beautiful and elegant interfaces without much effort. The main places of application are: backoffice applications, admin panels, content management systems, etc.
 
 ###### Some features:
 
@@ -29,8 +29,6 @@ Platform is rapid development tool for creating administrative-style application
 - **Permissions** - offers convenient management in development and support.
 - Menus, graphics, settings, notifications, etc. now.
  
-Documentation can be found at [ORCHID website](http://orchid.software).
-
 ###### Screenshot
 
 ![screenshot](https://user-images.githubusercontent.com/5102591/52168128-014cb680-2737-11e9-9ed3-28637780cf64.png)
