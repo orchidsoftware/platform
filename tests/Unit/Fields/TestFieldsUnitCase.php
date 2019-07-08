@@ -70,7 +70,7 @@ class TestFieldsUnitCase extends TestUnitCase
      */
     public static function minifyRenderField(Field $field, array $data = [], array $rules = [], array $messages = [], array $customAttributes = []): string
     {
-        $view = self::renderField($field,$data,$rules,$messages,$customAttributes);
+        $view = self::renderField($field, $data, $rules, $messages, $customAttributes);
 
         return self::minifyOutput($view);
     }

@@ -18,9 +18,6 @@ class SelectTest extends TestFieldsUnitCase
      */
     protected $roles;
 
-    /**
-     *
-     */
     public function setUp(): void
     {
         parent::setUp();
@@ -112,13 +109,11 @@ class SelectTest extends TestFieldsUnitCase
             'third'  => 'Third Value',
         ];
 
-
         $select = Select::make('choice')
             ->options($options)
             ->empty('empty', '0');
 
         $view = self::minifyRenderField($select);
-
 
         foreach ($options as $key => $option) {
             $option = $this->stringOption($option, $key);
