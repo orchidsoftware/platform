@@ -47,8 +47,7 @@ class TimeZoneTest extends TestFieldsUnitCase
         $select = TimeZone::make('time')
             ->value('Africa/Accra');
 
-        $view = self::renderField($select);
-        $view = self::minifyOutput($view);
+        $view = self::minifyRenderField($select);
 
         $this->assertStringContainsString('value="Africa/Accra" selected', $view);
     }
@@ -65,8 +64,7 @@ class TimeZoneTest extends TestFieldsUnitCase
                 'Africa/Bamako',
             ]);
 
-        $view = self::renderField($select);
-        $view = self::minifyOutput($view);
+        $view = self::minifyRenderField($select);
 
         $this->assertStringContainsString('value="Africa/Accra" selected', $view);
         $this->assertStringContainsString('value="Africa/Bamako" selected', $view);
@@ -81,8 +79,7 @@ class TimeZoneTest extends TestFieldsUnitCase
             ->listIdentifiers(DateTimeZone::EUROPE)
             ->value('Africa/Accra');
 
-        $view = self::renderField($select);
-        $view = self::minifyOutput($view);
+        $view = self::minifyRenderField($select);
 
         foreach (DateTimeZone::listIdentifiers(DateTimeZone::EUROPE) as $time) {
             $this->assertStringContainsString($time, $view);

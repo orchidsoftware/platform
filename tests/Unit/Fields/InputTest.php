@@ -33,8 +33,7 @@ class InputTest extends TestFieldsUnitCase
                 'digitsOptional' => true,
             ]);
 
-        $view = self::renderField($input);
-        $view = self::minifyOutput($view);
+        $view = self::minifyRenderField($input);
 
         $this->assertStringContainsString('currency', $view);
     }
@@ -44,8 +43,7 @@ class InputTest extends TestFieldsUnitCase
         $input = Input::make('phone')
             ->mask('(999) 999-9999');
 
-        $view = self::renderField($input);
-        $view = self::minifyOutput($view);
+        $view = self::minifyRenderField($input);
 
         $this->assertStringContainsString('(999) 999-9999', $view);
     }

@@ -107,7 +107,7 @@ class Relation extends Field
         $this->set('relationName', Crypt::encryptString($name));
         $this->set('relationKey', Crypt::encryptString($key));
 
-        $this->addBeforeRender(function () use ($model, $name, $key) {
+        return $this->addBeforeRender(function () use ($model, $name, $key) {
             $value = $this->get('value');
 
             if (! is_iterable($value)) {
@@ -128,8 +128,6 @@ class Relation extends Field
 
             $this->set('value', $value);
         });
-
-        return $this;
     }
 
     /**
@@ -145,7 +143,7 @@ class Relation extends Field
         $this->set('relationName', Crypt::encryptString($name));
         $this->set('relationKey', Crypt::encryptString($key));
 
-        $this->addBeforeRender(function () use ($class, $name, $key) {
+        return $this->addBeforeRender(function () use ($class, $name, $key) {
             $value = $this->get('value');
             if (! empty($value)) {
                 $scope = $this->get('scope', 'handler');
@@ -176,8 +174,6 @@ class Relation extends Field
 
             $this->set('value', $value);
         });
-
-        return $this;
     }
 
     /**

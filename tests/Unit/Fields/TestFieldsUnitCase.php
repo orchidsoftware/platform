@@ -58,4 +58,20 @@ class TestFieldsUnitCase extends TestUnitCase
 
         return preg_replace($search, $replace, $view);
     }
+
+    /**
+     * @param \Orchid\Screen\Field $field
+     * @param array                $data
+     * @param array                $rules
+     * @param array                $messages
+     * @param array                $customAttributes
+     *
+     * @return string
+     */
+    public static function minifyRenderField(Field $field, array $data = [], array $rules = [], array $messages = [], array $customAttributes = []): string
+    {
+        $view = self::renderField($field,$data,$rules,$messages,$customAttributes);
+
+        return self::minifyOutput($view);
+    }
 }

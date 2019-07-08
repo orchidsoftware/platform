@@ -100,13 +100,13 @@ class Select extends Field
      *
      * @return self
      */
-    private function setFromEloquent($model, string $name, string $key)
+    private function setFromEloquent($model, string $name, string $key) : self
     {
         $options = $model->pluck($name, $key);
 
         $this->set('options', $options);
 
-        $this->addBeforeRender(function () {
+        return $this->addBeforeRender(function () {
             $value = [];
 
             collect($this->get('value'))->each(function ($item) use (&$value) {
@@ -119,8 +119,6 @@ class Select extends Field
 
             $this->set('value', $value);
         });
-
-        return $this;
     }
 
     /**
@@ -145,7 +143,7 @@ class Select extends Field
      */
     public function empty(string $name = '', string $key = ''): self
     {
-        $this->addBeforeRender(function () use ($name, $key) {
+        return $this->addBeforeRender(function () use ($name, $key) {
             $options = $this->get('options', []);
 
             if (! is_array($options)) {
@@ -156,7 +154,5 @@ class Select extends Field
 
             $this->set('options', $value);
         });
-
-        return $this;
     }
 }
