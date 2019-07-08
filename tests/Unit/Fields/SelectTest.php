@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Fields;
 
+use Orchid\Platform\Models\Role;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\TextArea;
 
@@ -12,6 +13,21 @@ use Orchid\Screen\Fields\TextArea;
  */
 class SelectTest extends TestFieldsUnitCase
 {
+    /**
+     * @var \Illuminate\Support\Collection
+     */
+    protected $roles;
+
+    /**
+     *
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->roles = factory(Role::class)->times(10)->create();
+    }
+
     /**
      * @test
      */
@@ -67,8 +83,7 @@ class SelectTest extends TestFieldsUnitCase
                 'third'  => 'Third Value',
             ]);
 
-        $view = self::renderField($select);
-        $view = self::minifyOutput($view);
+        $view = self::minifyRenderField($select);
 
         $this->assertStringContainsString('value="second" selected', $view);
     }
@@ -91,18 +106,27 @@ class SelectTest extends TestFieldsUnitCase
      */
     public function testEmptyForAssociativeArray()
     {
+        $options = [
+            'first'  => 'First Value',
+            'second' => 'Second Value',
+            'third'  => 'Third Value',
+        ];
+
+
         $select = Select::make('choice')
-            ->options([
-                'first'  => 'First Value',
-                'second' => 'Second Value',
-                'third'  => 'Third Value',
-            ])
+            ->options($options)
             ->empty('empty', '0');
 
-        $view = self::renderField($select);
-        $view = self::minifyOutput($view);
+        $view = self::minifyRenderField($select);
 
-        $this->assertStringContainsString('<option value="0">empty</option>', $view);
+
+        foreach ($options as $key => $option) {
+            $option = $this->stringOption($option, $key);
+            $this->assertStringContainsString($option, $view);
+        }
+
+        $option = $this->stringOption('empty', '0');
+        $this->assertStringContainsString($option, $view);
     }
 
     /**
@@ -110,17 +134,57 @@ class SelectTest extends TestFieldsUnitCase
      */
     public function testEmptyForNumericArray()
     {
+        $options = [
+            1 => 'First Value',
+            2 => 'Second Value',
+            3 => 'Third Value',
+        ];
+
         $select = Select::make('choice')
-            ->options([
-                1 => 'First Value',
-                2 => 'Second Value',
-                3 => 'Third Value',
-            ])
+            ->options($options)
             ->empty('empty');
 
-        $view = self::renderField($select);
-        $view = self::minifyOutput($view);
+        $view = self::minifyRenderField($select);
 
-        $this->assertStringContainsString('<option value="">empty</option>', $view);
+        foreach ($options as $key => $option) {
+            $option = $this->stringOption($option, $key);
+            $this->assertStringContainsString($option, $view);
+        }
+
+        $option = $this->stringOption('empty');
+        $this->assertStringContainsString($option, $view);
+    }
+
+    /**
+     * @test
+     */
+    public function testEmptyFromModel()
+    {
+        $select = Select::make('choice')
+            ->empty('empty')
+            ->fromModel(Role::class, 'name');
+
+        $view = self::minifyRenderField($select);
+
+        foreach ($this->roles as $role) {
+            $option = $this->stringOption($role->name, $role->id);
+            $this->assertStringContainsString($option, $view);
+        }
+
+        $option = $this->stringOption('empty');
+        $this->assertStringContainsString($option, $view);
+    }
+
+    /**
+     * @param        $name
+     * @param string $value
+     *
+     * @return string
+     */
+    private function stringOption($name, $value = ''): string
+    {
+        $option = '<option value="%s">%s</option>';
+
+        return sprintf($option, $value, $name);
     }
 }

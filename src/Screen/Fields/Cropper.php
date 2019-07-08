@@ -120,7 +120,7 @@ class Cropper extends Field
     {
         $this->set('target', 'id');
 
-        $this->addBeforeRender(function () {
+        return $this->addBeforeRender(function () {
             $value = (string) $this->get('value');
 
             if (! ctype_digit($value)) {
@@ -134,8 +134,6 @@ class Cropper extends Field
 
             $this->set('url', $url);
         });
-
-        return $this;
     }
 
     /**
