@@ -55,7 +55,7 @@ class RelationController extends Controller
     {
         if (is_subclass_of($model, Model::class)) {
             return $model->where($name, 'like', '%'.$search.'%')->limit(10)->pluck($name, $key);
-        } elseif (property_exists($model, 'query')) {
+        } elseif (property_exists($model, 'search')) {
             $model->search = $search;
         }
 
