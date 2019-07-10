@@ -17,6 +17,17 @@ if (!mix.inProduction()) {
             devtool: 'source-map',
         })
         .sourceMaps();
+}else{
+    mix.options({
+        clearConsole: true,
+        terser: {
+            terserOptions: {
+                compress: {
+                    drop_console: true,
+                },
+            },
+        },
+    });
 }
 
 mix
