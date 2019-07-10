@@ -38,7 +38,7 @@ abstract class Modals extends Base
             'type'  => self::TYPE_CENTER,
         ];
 
-        parent::__construct($layouts);
+        $this->layouts = $layouts;
     }
 
     /**

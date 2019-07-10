@@ -39,7 +39,7 @@ class Modal extends Base
             'title' => $key,
         ];
 
-        parent::__construct($layouts);
+        $this->layouts = $layouts;
     }
 
     /**

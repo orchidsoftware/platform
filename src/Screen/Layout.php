@@ -47,27 +47,13 @@ class Layout
     public static function rows(array $fields): Rows
     {
         return new class($fields) extends Rows {
-            /**
-             * @var array
-             */
-            private $fields;
-
-            /**
-             *  constructor.
-             *
-             * @param array $fields
-             */
-            public function __construct(array $fields)
-            {
-                $this->fields = $fields;
-            }
 
             /**
              * @return array
              */
             public function fields(): array
             {
-                return $this->fields;
+                return $this->layouts;
             }
         };
     }
@@ -138,27 +124,13 @@ class Layout
     public static function collapse(array $fields): Collapse
     {
         return new class($fields) extends Collapse {
-            /**
-             * @var array
-             */
-            private $fields;
-
-            /**
-             *  constructor.
-             *
-             * @param array $fields
-             */
-            public function __construct(array $fields)
-            {
-                $this->fields = $fields;
-            }
 
             /**
              * @return array
              */
             public function fields(): array
             {
-                return $this->fields;
+                return $this->layouts;
             }
         };
     }

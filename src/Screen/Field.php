@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Closure;
-use Throwable;
-use Illuminate\View\View;
-use Illuminate\Support\Str;
-use Illuminate\Support\Collection;
-use Illuminate\Support\ViewErrorBag;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+use Illuminate\Support\ViewErrorBag;
+use Illuminate\View\View;
 use Orchid\Screen\Contracts\FieldContract;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
+use Throwable;
 
 /**
  * Class Field.
@@ -258,10 +258,10 @@ class Field implements FieldContract
         collect($this->getAttributes())
             ->only(array_merge($this->universalAttributes, $this->inlineAttributes))
             ->map(function ($item, $key) use ($modifiers) {
-                $key = Str::title($key);
-                $signature = 'modify'.$key;
+                $signature = 'modify'.Str::title($key);
+
                 if (in_array($signature, $modifiers, true)) {
-                    $this->attributes[$key] = $this->$signature($item);
+                  $this->set($key,$this->$signature($item));
                 }
             });
 
@@ -334,9 +334,9 @@ class Field implements FieldContract
     /**
      * @param mixed $name
      *
-     * @return self
+     * @return mixed
      */
-    public function modifyName($name): self
+    public function modifyName($name)
     {
         $prefix = $this->get('prefix');
         $lang = $this->get('lang');
@@ -359,15 +359,15 @@ class Field implements FieldContract
             $this->attributes['name'] = $name($this->attributes);
         }
 
-        return $this;
+        return $this->attributes['name'];
     }
 
     /**
      * @param mixed $value
      *
-     * @return self
+     * @return mixed
      */
-    public function modifyValue($value) : self
+    public function modifyValue($value)
     {
         $this->attributes['value'] = $this->getOldValue() ?: $value;
 
@@ -375,7 +375,7 @@ class Field implements FieldContract
             $this->attributes['value'] = $value($this->attributes);
         }
 
-        return $this;
+        return $this->attributes['value'];
     }
 
     /**
