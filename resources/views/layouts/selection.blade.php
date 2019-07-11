@@ -14,8 +14,8 @@
                  data-turbolinks-permanent
                  data-action="click->screen--filter#onMenuClick"
             >
-                @foreach($filters as $idx => $filter)
-                    @if($filter->display)
+                @if($filters->where('display', true)->count() >= 2)
+                    @foreach($filters->where('display', true) as $idx => $filter)
                         <a class="dropdown-item dropdown-toggle" href="#" data-filter-index="{{$idx}}" data-action="screen--filter#onFilterClick">
                             {{ $filter->name() }}
                         </a>
@@ -31,8 +31,23 @@
                                 </button>
                             </div>
                         </div>
-                    @endif
-                @endforeach
+                    @endforeach
+                @else
+                    <div class="dropdown-toggle" data-action="click->screen--filter#onMenuClick" data-target="screen--filter.filterItem">
+                        <div class="px-3 py-2 w-md">
+                            {!! $filters->where('display', true)->first()->render() !!}
+                            <div class="dropdown-divider"></div>
+                            <button type="submit"
+                                    id="button-filter"
+                                    form="filters"
+                                    class="btn btn-sm btn-default">
+                                {{ __('Apply') }}
+                            </button>
+                        </div>
+                    </div>
+                @endif
+
+
             </div>
         </div>
         @foreach($filters as $filter)
