@@ -110,7 +110,7 @@ class NotificationScreen extends Screen
             ->where('type', DashboardNotification::class)
             ->markAsRead();
 
-        Alert::warning('Success');
+        Alert::success(__('Success'));
 
         return back();
     }
@@ -127,7 +127,7 @@ class NotificationScreen extends Screen
             ->where('type', DashboardNotification::class)
             ->delete();
 
-        Alert::warning('Success');
+        Alert::success(__('Success'));
 
         return back();
     }
