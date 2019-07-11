@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 5.2.1 - 2019-11-08
 
+### Changed
+- Display one `Filter` in layouts
+
 ### Fixed
 - Permission for layouts
 - Translation notification screen [909](https://github.com/orchidsoftware/platform/pull/909)
