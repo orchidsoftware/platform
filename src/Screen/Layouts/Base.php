@@ -12,7 +12,6 @@ use Orchid\Screen\Repository;
  */
 abstract class Base
 {
-
     /**
      * Main template to display the layer
      * Represents the view() argument.
@@ -151,7 +150,6 @@ abstract class Base
         return $build;
     }
 
-
     /**
      * Returns the system layer name.
      * Required to define an asynchronous layer.
@@ -160,6 +158,6 @@ abstract class Base
      */
     public function getSlug(): string
     {
-      return sha1(json_encode($this));
+        return sha1(json_encode($this));
     }
 }
