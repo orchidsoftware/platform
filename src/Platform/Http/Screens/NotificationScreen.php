@@ -55,7 +55,7 @@ class NotificationScreen extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name(ــ('Remove all'))
+            Link::name(__('Remove all'))
                 ->icon('icon-trash')
                 ->method('removeAll'),
 
@@ -110,7 +110,7 @@ class NotificationScreen extends Screen
             ->where('type', DashboardNotification::class)
             ->markAsRead();
 
-        Alert::success(__('Success'));
+        Alert::info(__('All messages have been read.'));
 
         return back();
     }
@@ -127,7 +127,7 @@ class NotificationScreen extends Screen
             ->where('type', DashboardNotification::class)
             ->delete();
 
-        Alert::success(__('Success'));
+        Alert::info(__('All messages have been deleted.'));
 
         return back();
     }
