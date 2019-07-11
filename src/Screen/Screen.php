@@ -100,7 +100,7 @@ abstract class Screen extends Controller
      * @param mixed $method
      * @param mixed $slugLayouts
      *
-     *@throws Throwable
+     * @throws Throwable
      *
      * @return View
      */

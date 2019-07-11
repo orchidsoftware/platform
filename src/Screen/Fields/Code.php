@@ -114,9 +114,9 @@ class Code extends Field
     /**
      * @param mixed $value
      *
-     * @return self
+     * @return mixed
      */
-    public function modifyValue($value) : Field
+    public function modifyValue($value)
     {
         $value = parent::modifyValue($value);
 

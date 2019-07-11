@@ -30,6 +30,16 @@ abstract class Rows extends Base
     protected $with = 100;
 
     /**
+     * Base constructor.
+     *
+     * @param Base[] $layouts
+     */
+    public function __construct(array $layouts = [])
+    {
+      $this->layouts = $layouts;
+    }
+
+    /**
      * @param Repository $repository
      *
      * @throws Throwable

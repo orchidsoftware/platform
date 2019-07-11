@@ -30,6 +30,16 @@ abstract class Collapse extends Base
     private $label = 'Options';
 
     /**
+     * Base constructor.
+     *
+     * @param Base[] $layouts
+     */
+    public function __construct(array $layouts = [])
+    {
+      $this->layouts = $layouts;
+    }
+
+    /**
      * @param Repository $repository
      *
      * @throws Throwable

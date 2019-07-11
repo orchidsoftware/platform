@@ -107,14 +107,14 @@ class Input extends Field
     /**
      * @param string|array $mask
      *
-     * @return Input
+     * @return mixed
      */
-    public function modifyMask($mask): self
+    public function modifyMask($mask)
     {
         if (is_array($mask)) {
             $this->attributes['mask'] = json_encode($mask);
         }
 
-        return $this;
+        return $this->attributes['mask'];
     }
 }

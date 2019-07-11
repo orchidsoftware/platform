@@ -17,6 +17,16 @@ abstract class Blank extends Base
     public $template = 'platform::layouts.blank';
 
     /**
+     * Base constructor.
+     *
+     * @param Base[] $layouts
+     */
+    public function __construct(array $layouts = [])
+    {
+      $this->layouts = $layouts;
+    }
+
+    /**
      * @param Repository $repository
      *
      * @return mixed
