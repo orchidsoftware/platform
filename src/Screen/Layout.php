@@ -47,7 +47,6 @@ class Layout
     public static function rows(array $fields): Rows
     {
         return new class($fields) extends Rows {
-
             /**
              * @return array
              */
@@ -124,7 +123,6 @@ class Layout
     public static function collapse(array $fields): Collapse
     {
         return new class($fields) extends Collapse {
-
             /**
              * @return array
              */

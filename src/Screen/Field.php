@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Closure;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
-use Illuminate\Support\ViewErrorBag;
+use Throwable;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
+use Illuminate\Support\ViewErrorBag;
+use Illuminate\Contracts\View\Factory;
 use Orchid\Screen\Contracts\FieldContract;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
-use Throwable;
 
 /**
  * Class Field.
@@ -261,7 +261,7 @@ class Field implements FieldContract
                 $signature = 'modify'.Str::title($key);
 
                 if (in_array($signature, $modifiers, true)) {
-                  $this->set($key,$this->$signature($item));
+                    $this->set($key, $this->$signature($item));
                 }
             });
 
