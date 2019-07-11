@@ -59,6 +59,6 @@ class NotificationTable extends Table
      */
     public function subNotFound(): string
     {
-        return 'You currently have no notifications, but maybe they will appear later.';
+        return __('You currently have no notifications, but maybe they will appear later.');
     }
 }
