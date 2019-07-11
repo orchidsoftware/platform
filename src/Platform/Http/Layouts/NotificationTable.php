@@ -22,14 +22,14 @@ class NotificationTable extends Table
     public function fields(): array
     {
         return [
-            TD::set('Message')
+            TD::set('Message', __('Message'))
                 ->render(function ($notification) {
                     return view('platform::partials.notification', [
                     'notification' => $notification,
                 ]);
                 }),
 
-            TD::set('', 'Date of creation')
+            TD::set('', __('Date of creation'))
                 ->width('150px')
                 ->align(TD::ALIGN_RIGHT)
                 ->render(function ($notification) {
