@@ -55,11 +55,11 @@ class NotificationScreen extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name('Remove all')
+            Link::name(ــ('Remove all'))
                 ->icon('icon-trash')
                 ->method('removeAll'),
 
-            Link::name('Mark all as read')
+            Link::name(__('Mark all as read'))
                 ->icon('icon-eye')
                 ->method('markAllAsRead'),
         ];
