@@ -23,7 +23,7 @@ abstract class Columns extends Base
      */
     public function __construct(array $layouts = [])
     {
-      $this->layouts = $layouts;
+        $this->layouts = $layouts;
     }
 
     /**
