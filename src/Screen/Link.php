@@ -78,7 +78,7 @@ class Link
     public $confirm;
 
     /**
-     * URL-encoded query string
+     * URL-encoded query string.
      *
      * If query_data is an array, it may be a simple
      * one-dimensional structure, or an array
