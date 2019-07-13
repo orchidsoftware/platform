@@ -366,6 +366,7 @@ blockquote {
         background: transparent !important;
 		&.active {
 			border-bottom-color: $brand-primary !important;
+            cursor: default;
 		}
       }
       &.active {
