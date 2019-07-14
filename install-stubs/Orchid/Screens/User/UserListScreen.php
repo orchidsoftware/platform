@@ -71,7 +71,7 @@ class UserListScreen extends Screen
             UserFiltersLayout::class,
             UserListLayout::class,
 
-            Layout::modal('oneAsyncModal',[
+            Layout::modal('oneAsyncModal', [
                 UserEditLayout::class,
             ])->async('asyncGetUser'),
         ];
