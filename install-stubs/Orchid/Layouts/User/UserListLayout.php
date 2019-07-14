@@ -37,16 +37,19 @@ class UserListLayout extends Table
                     $avatar = e($user->getAvatar());
                     $name = e($user->getNameTitle());
                     $sub = e($user->getSubTitle());
+                    $route = route('platform.systems.users.edit', $user->id);
 
-                    return "<div class='d-sm-flex flex-row flex-wrap text-center text-sm-left align-items-center'>
-                                <span class='thumb-xs avatar m-r-xs d-none d-md-inline-block'>
-                                  <img src='{$avatar}' class='bg-light'>
-                                </span>
-                                <div class='ml-sm-3 ml-md-0 ml-xl-3 mt-2 mt-sm-0 mt-md-2 mt-xl-0'>
-                                  <p class='mb-0'>{$name}</p>
-                                  <small class='text-xs text-muted'>{$sub}</small>
+                    return "<a href='{$route}}'>
+                                <div class='d-sm-flex flex-row flex-wrap text-center text-sm-left align-items-center'>
+                                    <span class='thumb-xs avatar m-r-xs d-none d-md-inline-block'>
+                                      <img src='{$avatar}' class='bg-light'>
+                                    </span>
+                                    <div class='ml-sm-3 ml-md-0 ml-xl-3 mt-2 mt-sm-0 mt-md-2 mt-xl-0'>
+                                      <p class='mb-0'>{$name}</p>
+                                      <small class='text-xs text-muted'>{$sub}</small>
+                                    </div>
                                 </div>
-                            </div>";
+                            </a>";
                 }),
 
             TD::set('email', __('Email'))
