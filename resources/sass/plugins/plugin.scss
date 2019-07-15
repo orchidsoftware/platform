@@ -123,6 +123,19 @@ div.mce-fullscreen {
   }
 }
 
+.simplemde-wrapper{
+  .editor-toolbar{
+    border-top: 1px solid $form-control-border-color;
+    border-left: 1px solid $form-control-border-color;
+    border-right: 1px solid $form-control-border-color;
+  }
+
+  .CodeMirror{
+    border: 1px solid $form-control-border-color;
+  }
+}
+
+
 // Datetimepicker
 .bootstrap-datetimepicker-widget {
   &.dropdown-menu {
@@ -219,7 +232,7 @@ div.mce-fullscreen {
     text-align:  left;
   }
   &.codeflask--has-line-numbers:before {
-    background: #f8f9fa;
+    border-right: 1px solid $form-control-border-color;
   }
 }
 
