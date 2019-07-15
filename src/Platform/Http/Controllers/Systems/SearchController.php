@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\View;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Collection;
@@ -21,7 +22,7 @@ class SearchController
     public function index(Dashboard $dashboard, string $query = null)
     {
         $results = $dashboard->getGlobalSearch()
-            ->map(function ($model) use ($query) {
+            ->map(function (Model $model) use ($query) {
                 $result = $model->searchQuery($query);
                 $label = $model->searchLabel();
 
