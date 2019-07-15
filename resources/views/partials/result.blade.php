@@ -5,7 +5,7 @@
     @endempty
 
     @foreach($group['result'] as $item)
-        <a href="{{$item->url}}" class="block wrapper-sm dropdown-item">
+        <a href="{{$item->url}}" class="block wrapper-sm dropdown-item" style="font-size: 0.82857rem;">
 
             @empty(!$item->avatar)
                 <span class="pull-left thumb-xs avatar m-r-sm">
