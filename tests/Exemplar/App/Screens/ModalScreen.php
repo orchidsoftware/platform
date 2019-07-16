@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Exemplar\App\Screens;
 
+use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Link;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts\Modals;
 
 class ModalScreen extends Screen
 {
@@ -66,7 +66,7 @@ class ModalScreen extends Screen
                 Layout::rows([]),
             ])
                 ->title(self::TITLE_MODAL)
-                ->size(Modals::SIZE_LG)
+                ->size(Modal::SIZE_LG)
                 ->applyButton(self::APPLY_BUTTON)
                 ->closeButton(self::CLOSE_BUTTON),
         ];
