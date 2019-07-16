@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Exemplar\App\Screens;
 
-use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Link;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Layouts\Modal;
 
 class ModalScreen extends Screen
 {
