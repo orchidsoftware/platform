@@ -133,7 +133,7 @@ class UserEditScreen extends Screen
             ])
             ->save();
 
-        Alert::info(__('User was saved'));
+        Alert::info(__('User was saved.'));
 
         return redirect()->route('platform.systems.users');
     }
@@ -177,7 +177,7 @@ class UserEditScreen extends Screen
         $user->password = Hash::make($request->get('password'));
         $user->save();
 
-        Alert::info(__('User was saved'));
+        Alert::info(__('User was saved.'));
 
         return back();
     }
