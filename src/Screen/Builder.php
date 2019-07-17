@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Closure;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\ViewErrorBag;
-use Orchid\Screen\Contracts\FieldContract;
 use Throwable;
+use Illuminate\Support\ViewErrorBag;
+use Illuminate\Database\Eloquent\Model;
+use Orchid\Screen\Contracts\FieldContract;
 
 class Builder
 {
@@ -104,12 +104,13 @@ class Builder
     /**
      * @param Field[] $groupField
      *
-     * @return array|string
      * @throws \Throwable
+     *
+     * @return array|string
      */
     private function renderGroup($groupField)
     {
-        $cols = collect($groupField)->map(function ($field){
+        $cols = collect($groupField)->map(function ($field) {
             return $this->render($field);
         })->filter();
 

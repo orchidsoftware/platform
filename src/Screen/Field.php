@@ -128,7 +128,7 @@ class Field implements FieldContract
      */
     public function __call(string  $name, array $arguments): self
     {
-        $arguments = collect($arguments)->map(function ($argument){
+        $arguments = collect($arguments)->map(function ($argument) {
             return $argument instanceof Closure ? $argument() : $argument;
         });
 
