@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Closure;
-use Throwable;
-use Illuminate\Support\ViewErrorBag;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\ViewErrorBag;
 use Orchid\Screen\Contracts\FieldContract;
+use Throwable;
 
 class Builder
 {
@@ -92,14 +92,11 @@ class Builder
      */
     public function generateForm(): string
     {
-        foreach ($this->fields as $field) {
-            if (is_array($field)) {
-                $this->renderGroup($field);
-                continue;
-            }
-
-            $this->form .= $this->render($field);
-        }
+        collect($this->fields)->each(function ($field) {
+            $this->form .= is_array($field)
+                ? $this->renderGroup($field)
+                : $this->render($field);
+        });
 
         return $this->form;
     }
@@ -107,18 +104,17 @@ class Builder
     /**
      * @param Field[] $groupField
      *
-     * @throws Throwable
+     * @return array|string
+     * @throws \Throwable
      */
     private function renderGroup($groupField)
     {
-        $group = [];
+        $cols = collect($groupField)->map(function ($field){
+            return $this->render($field);
+        })->filter();
 
-        foreach ($groupField as $field) {
-            $group[] = $this->render($field);
-        }
-
-        $this->form .= view('platform::partials.fields.groups', [
-            'cols' => array_filter($group),
+        return view('platform::partials.fields.groups', [
+            'cols' => $cols,
         ])
             ->withErrors(session()->get('errors', app(ViewErrorBag::class)))
             ->render();

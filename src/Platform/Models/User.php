@@ -5,16 +5,17 @@ declare(strict_types=1);
 namespace Orchid\Platform\Models;
 
 use Exception;
-use Orchid\Screen\AsSource;
-use Orchid\Access\UserAccess;
-use Orchid\Filters\Filterable;
-use Orchid\Access\UserInterface;
-use Illuminate\Support\Facades\Hash;
-use Orchid\Support\Facades\Dashboard;
-use Illuminate\Notifications\Notifiable;
-use Orchid\Platform\Notifications\ResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Hash;
+use Orchid\Access\UserAccess;
+use Orchid\Access\UserInterface;
+use Orchid\Filters\Filterable;
 use Orchid\Platform\Notifications\DashboardNotification;
+use Orchid\Platform\Notifications\ResetPassword;
+use Orchid\Screen\AsSource;
+use Orchid\Support\Facades\Dashboard;
 
 class User extends Authenticatable implements UserInterface
 {
@@ -159,23 +160,21 @@ class User extends Authenticatable implements UserInterface
     }
 
     /**
-     * @return mixed
+     * @return Collection
      */
-    public function getStatusPermission()
+    public function getStatusPermission() : Collection
     {
         $permissions = $this->permissions ?? [];
 
         return Dashboard::getPermission()
             ->sort()
             ->transform(function ($group) use ($permissions) {
-                $group = collect($group)->sortBy('description')->toArray();
-
-                foreach ($group as $key => $value) {
-                    $slug = $value['slug'];
-                    $group[$key]['active'] = array_key_exists($slug, $permissions) && (bool) $permissions[$slug];
-                }
-
-                return $group;
+                return collect($group)->sortBy('description')
+                    ->map(function ($value) use ($permissions) {
+                        $slug = $value['slug'];
+                        $value['active'] = array_key_exists($slug, $permissions) && (bool) $permissions[$slug];
+                        return $value;
+                    });
             });
     }
 }

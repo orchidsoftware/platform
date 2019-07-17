@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Throwable;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Screen\Layouts\Base;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionParameter;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Orchid\Screen\Layouts\Base;
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Contracts\View\Factory;
-use Orchid\Platform\Http\Controllers\Controller;
+use Throwable;
 
 /**
  * Class Screen.
@@ -191,13 +191,10 @@ abstract class Screen extends Controller
 
         $parameters = $class->getMethod($method)->getParameters();
 
-        $arguments = [];
-
-        foreach ($parameters as $key => $parameter) {
-            $arguments[] = $this->bind($key, $parameter);
-        }
-
-        $this->arguments = $arguments;
+        $this->arguments = collect($parameters)
+            ->map(function ($parameter, $key) {
+                return $this->bind($key, $parameter);
+            })->all();
     }
 
     /**
@@ -240,15 +237,10 @@ abstract class Screen extends Controller
             return true;
         }
 
-        $permissions = Arr::wrap($this->permission);
-
-        foreach ($permissions as $item) {
-            if (Auth::user()->hasAccess($item)) {
-                return true;
-            }
-        }
-
-        return false;
+        return collect($this->permission)
+            ->map(function ($item) {
+                return Auth::user()->hasAccess($item);
+            })->contains(true);
     }
 
     /**
@@ -256,10 +248,9 @@ abstract class Screen extends Controller
      */
     public function buildCommandBar() : array
     {
-        foreach ($this->commandBar() as $command) {
-            $commands[] = $command->build($this->post);
-        }
-
-        return $commands ?? [];
+        return collect($this->commandBar())
+            ->map(function ($command) {
+                return $command->build($this->post);
+            })->all();
     }
 }

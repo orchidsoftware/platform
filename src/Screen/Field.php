@@ -128,17 +128,15 @@ class Field implements FieldContract
      */
     public function __call(string  $name, array $arguments): self
     {
-        foreach ($arguments as $key => $argument) {
-            if ($argument instanceof Closure) {
-                $arguments[$key] = $argument();
-            }
-        }
+        $arguments = collect($arguments)->map(function ($argument){
+            return $argument instanceof Closure ? $argument() : $argument;
+        });
 
         if (method_exists($this, $name)) {
             $this->$name($arguments);
         }
 
-        return $this->set($name, array_shift($arguments) ?? true);
+        return $this->set($name, $arguments->first() ?? true);
     }
 
     /**
