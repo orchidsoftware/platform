@@ -7,7 +7,7 @@
                 @if($async)data-modal-params="@json($asyncParams)"@endif
                 data-modal-title="{{ $modalTitle ?? $title }}"
                 data-modal-key="{{ $modal ?? '' }}"
-                data-modal-action="{{ url()->current() }}/{{ $method }}"
+                data-modal-action="{{ $action }}"
                 @include('platform::partials.fields.attributes', ['attributes' => $attributes])
         >
             @isset($icon)<i class="{{ $icon }} m-r-xs"></i>@endisset
@@ -15,7 +15,7 @@
         </button>
     @elseif(!is_null($method))
         <button type="submit"
-                formaction="{{ url()->current() }}/{{ $method }}"
+                formaction="{{ $action }}"
                 form="post-form"
                 class="{{ $class }}"
                 @include('platform::partials.fields.attributes', ['attributes' => $attributes])>
