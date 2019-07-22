@@ -16,6 +16,7 @@ use Illuminate\Support\Str;
  * @method self icon(string $icon = null)
  * @method self class(string $classes = null)
  * @method self method(string $methodName = null)
+ * @method self parameters(array|object $name)
  */
 class Button extends Field
 {
@@ -58,6 +59,8 @@ class Button extends Field
         'asyncParams' => [],
         'modalTitle'  => null,
         'icon'        => null,
+        'action'      => null,
+        'parameters'  => [],
     ];
 
     /**
@@ -79,7 +82,15 @@ class Button extends Field
      */
     public static function make(): self
     {
-        return (new static())->name(Str::random());
+        return (new static())->name(Str::random())
+            ->addBeforeRender(function () {
+
+                $url = url()->current();
+                $query = http_build_query($this->get('parameters'));
+
+                $action =  "{$url}/{$this->get('method')}?{$query}";
+                $this->set('action', $action);
+        });
     }
 
     /**
