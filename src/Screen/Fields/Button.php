@@ -84,13 +84,12 @@ class Button extends Field
     {
         return (new static())->name(Str::random())
             ->addBeforeRender(function () {
-
                 $url = url()->current();
                 $query = http_build_query($this->get('parameters'));
 
-                $action =  "{$url}/{$this->get('method')}?{$query}";
+                $action = "{$url}/{$this->get('method')}?{$query}";
                 $this->set('action', $action);
-        });
+            });
     }
 
     /**
