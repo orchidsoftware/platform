@@ -9,14 +9,13 @@ use Orchid\Platform\Dashboard;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Orchid\Platform\Http\Controllers\Controller;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class SearchController extends Controller
 {
-
     /**
-     * Count of items found
+     * Count of items found.
      *
      * @var int
      */
@@ -93,7 +92,6 @@ class SearchController extends Controller
             })
             ->filter();
     }
-
 
     /**
      * @param LengthAwarePaginator $paginator
