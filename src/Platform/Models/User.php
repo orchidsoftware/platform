@@ -55,6 +55,7 @@ class User extends Authenticatable implements UserInterface
     protected $casts = [
         'permissions'       => 'array',
         'email_verified_at' => 'datetime',
+        'last_login'        => 'datetime',
     ];
 
     /**
