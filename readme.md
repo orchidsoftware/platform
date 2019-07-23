@@ -31,7 +31,7 @@ This is a package for creating administration-style applications on the [Laravel
  
 ###### Screenshot
 
-![screenshot](https://user-images.githubusercontent.com/5102591/52168128-014cb680-2737-11e9-9ed3-28637780cf64.png)
+![screenshot](https://user-images.githubusercontent.com/5102591/61695228-cc133f80-ad3b-11e9-94b7-11661be67b45.png)
 
 ## Change log
 
