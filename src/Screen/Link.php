@@ -18,6 +18,7 @@ use Illuminate\Contracts\View\Factory;
  * @method static Link link(string $name)
  * @method static Link group(array $name)
  * @method static Link confirm(string $message)
+ * @method static Link parameters(array|object $name)
  */
 class Link
 {
@@ -77,6 +78,20 @@ class Link
     public $confirm;
 
     /**
+     * URL-encoded query string.
+     *
+     * If query_data is an array, it may be a simple
+     * one-dimensional structure, or an array
+     * of arrays (which in turn may contain other arrays).
+     *
+     * If query_data is an object, then only public
+     * properties will be incorporated into the result.
+     *
+     * @var object|array
+     */
+    public $parameters = [];
+
+    /**
      * @param string     $name
      * @param mixed|null $arguments
      *
@@ -122,6 +137,7 @@ class Link
             'link'      => $this->link,
             'group'     => $this->group,
             'confirm'   => $this->confirm,
+            'action'    => $this->action(),
             'query'     => $query,
         ]);
     }
@@ -162,5 +178,18 @@ class Link
         $link->view = $view;
 
         return $link;
+    }
+
+    /**
+     * Returns URL to which the form should be sent.
+     *
+     * @return string
+     */
+    public function action() : string
+    {
+        $url = url()->current();
+        $query = http_build_query($this->parameters);
+
+        return "{$url}/{$this->method}?{$query}";
     }
 }

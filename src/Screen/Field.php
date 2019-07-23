@@ -128,17 +128,15 @@ class Field implements FieldContract
      */
     public function __call(string  $name, array $arguments): self
     {
-        foreach ($arguments as $key => $argument) {
-            if ($argument instanceof Closure) {
-                $arguments[$key] = $argument();
-            }
-        }
+        $arguments = collect($arguments)->map(function ($argument) {
+            return $argument instanceof Closure ? $argument() : $argument;
+        });
 
         if (method_exists($this, $name)) {
             $this->$name($arguments);
         }
 
-        return $this->set($name, array_shift($arguments) ?? true);
+        return $this->set($name, $arguments->first() ?? true);
     }
 
     /**
@@ -258,10 +256,10 @@ class Field implements FieldContract
         collect($this->getAttributes())
             ->only(array_merge($this->universalAttributes, $this->inlineAttributes))
             ->map(function ($item, $key) use ($modifiers) {
-                $key = Str::title($key);
-                $signature = 'modify'.$key;
+                $signature = 'modify'.Str::title($key);
+
                 if (in_array($signature, $modifiers, true)) {
-                    $this->attributes[$key] = $this->$signature($item);
+                    $this->set($key, $this->$signature($item));
                 }
             });
 
@@ -334,9 +332,9 @@ class Field implements FieldContract
     /**
      * @param mixed $name
      *
-     * @return self
+     * @return mixed
      */
-    public function modifyName($name): self
+    public function modifyName($name)
     {
         $prefix = $this->get('prefix');
         $lang = $this->get('lang');
@@ -359,15 +357,15 @@ class Field implements FieldContract
             $this->attributes['name'] = $name($this->attributes);
         }
 
-        return $this;
+        return $this->attributes['name'];
     }
 
     /**
      * @param mixed $value
      *
-     * @return self
+     * @return mixed
      */
-    public function modifyValue($value) : self
+    public function modifyValue($value)
     {
         $this->attributes['value'] = $this->getOldValue() ?: $value;
 
@@ -375,7 +373,7 @@ class Field implements FieldContract
             $this->attributes['value'] = $value($this->attributes);
         }
 
-        return $this;
+        return $this->attributes['value'];
     }
 
     /**

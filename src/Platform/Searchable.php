@@ -16,7 +16,7 @@ trait Searchable
      */
     public function searchLabel(): ?string
     {
-        return $this->getAttribute('label');
+        return $this->getAttribute('label') ?? static::class;
     }
 
     /**

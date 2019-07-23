@@ -4,6 +4,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 5.3.0 - 2019-07-22
+
+### Added
+- `arguments` for Link/Button submit [911](https://github.com/orchidsoftware/platform/issues/911)
+
+### Changed
+- Style for tabs
+- Increased aside width
+
+### Fixed
+- Translation for Russian language
+
+## 5.2.1 - 2019-07-11
+
+### Changed
+- Display one `Filter` in layouts
+
+### Fixed
+- Permission for layouts
+- Translation notification screen [909](https://github.com/orchidsoftware/platform/pull/909)
+- Duplicate `modify` for Field
+- Fix issue with the relation query -> search [906](https://github.com/orchidsoftware/platform/pull/906)
+
+### Deprecated
+- `modify` for Field
+
 ## 5.2.0 - 2019-07-08
 
 ### Added

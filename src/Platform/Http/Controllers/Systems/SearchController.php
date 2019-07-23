@@ -8,6 +8,7 @@ use Illuminate\View\View;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class SearchController
@@ -21,7 +22,7 @@ class SearchController
     public function index(Dashboard $dashboard, string $query = null)
     {
         $results = $dashboard->getGlobalSearch()
-            ->map(function ($model) use ($query) {
+            ->map(function (Model $model) use ($query) {
                 $result = $model->searchQuery($query);
                 $label = $model->searchLabel();
 

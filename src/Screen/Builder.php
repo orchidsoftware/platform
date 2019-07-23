@@ -92,14 +92,11 @@ class Builder
      */
     public function generateForm(): string
     {
-        foreach ($this->fields as $field) {
-            if (is_array($field)) {
-                $this->renderGroup($field);
-                continue;
-            }
-
-            $this->form .= $this->render($field);
-        }
+        collect($this->fields)->each(function ($field) {
+            $this->form .= is_array($field)
+                ? $this->renderGroup($field)
+                : $this->render($field);
+        });
 
         return $this->form;
     }
@@ -107,18 +104,18 @@ class Builder
     /**
      * @param Field[] $groupField
      *
-     * @throws Throwable
+     * @throws \Throwable
+     *
+     * @return array|string
      */
     private function renderGroup($groupField)
     {
-        $group = [];
+        $cols = collect($groupField)->map(function ($field) {
+            return $this->render($field);
+        })->filter();
 
-        foreach ($groupField as $field) {
-            $group[] = $this->render($field);
-        }
-
-        $this->form .= view('platform::partials.fields.groups', [
-            'cols' => array_filter($group),
+        return view('platform::partials.fields.groups', [
+            'cols' => $cols,
         ])
             ->withErrors(session()->get('errors', app(ViewErrorBag::class)))
             ->render();

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
-use Illuminate\Support\Arr;
 use Orchid\Attachment\File;
 use Illuminate\Http\Request;
 use Orchid\Platform\Dashboard;
@@ -44,18 +43,15 @@ class AttachmentController extends Controller
      */
     public function upload(Request $request)
     {
-        $attachment = [];
-        foreach ($request->allFiles() as $files) {
-            $files = Arr::wrap($files);
+        $attachment = collect($request->allFiles())
+            ->flatten()
+            ->map(function ($file) use ($request) {
+                return $this->createModel($file, $request);
+            });
 
-            foreach ($files as $file) {
-                $attachment[] = $this->createModel($file, $request);
-            }
-        }
+        $response = $attachment->count() > 1 ? $attachment : $attachment->first();
 
-        $attachment = count($attachment) > 1 ? $attachment : reset($attachment);
-
-        return response()->json($attachment);
+        return response()->json($response);
     }
 
     /**

@@ -124,7 +124,6 @@
   "User comment": "Комментарий пользователя",
   "User role display name": "Роль имя пользователя дисплей",
   "User was removed": "Пользователь был удален",
-  "User was saved": "Пользователя был сохранен",
   "User was saved.": "Пользователя был сохранен.",
   "Users": "Пользователи",
   "Visible to everyone": "Виден всем",
@@ -150,5 +149,12 @@
   "Loading...": "Загрузка...",
   "Add condition": "Добавить условие",
   "Upload file": "Загрузить файл",
-  "Media catalog": "Медиа каталог"
+  "Media catalog": "Медиа каталог",
+  "Important events you follow": "Важные события, за которыми вы следите",
+  "Message": "Сообщение",
+  "Remove all": "Удалить все",
+  "All messages have been read.": "Все сообщения были прочитаны.",
+  "All messages have been deleted.": "Все сообщения были удалены.",
+  "You currently have no notifications, but maybe they will appear later.": "В настоящее время у вас нет уведомлений, но, возможно, они появятся позже.",
+  "Sign in with another user.": "Сменить пользователя."
 }

@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <div class="wrapper m-b m-t d-none d-lg-block">
+    <div class="wrapper m-b m-t d-none d-lg-block w-full">
         @includeIf(config('platform.template.footer','platform::footer'))
     </div>
 @endsection

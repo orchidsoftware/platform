@@ -15,12 +15,12 @@
             data-action="screen--base#targetModal"
             data-modal-title="{{ $title ?? '' }}"
             data-modal-key="{{ $modal ?? '' }}"
-            data-modal-action="{{ url()->current() }}/{{ $method }}">
+            data-modal-action="{{ $action }}">
         <i class="{{ $icon ?? '' }} m-r-xs"></i>{{ $name ?? '' }}
     </button>
 @elseif(!is_null($method))
     <button type="submit"
-            formaction="{{ url()->current() }}/{{ $method }}"
+            formaction="{{ $action }}"
             form="post-form"
             @if(!is_null($confirm))onclick="return confirm('{{$confirm}}');" @endif
             class="btn btn-link dropdown-item">

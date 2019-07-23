@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Tests;
 
 use Watson\Active\Active;
-use Illuminate\Support\Str;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
-use Illuminate\Database\Eloquent\Factory;
 use Orchid\Database\Seeds\OrchidDatabaseSeeder;
 use Orchid\Tests\Exemplar\ExemplarServiceProvider;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
@@ -44,11 +42,6 @@ trait Environment
             'email'    => 'admin@admin.com',
             'password' => 'password',
         ]);
-
-        $this->artisan('config:clear');
-        $this->artisan('cache:clear');
-        $this->artisan('view:clear');
-        $this->artisan('route:clear');
     }
 
     /**
@@ -56,39 +49,21 @@ trait Environment
      */
     protected function getEnvironmentSetUp($app)
     {
-        $app->make(Factory::class)->load(realpath(PLATFORM_PATH.'/database/factories'));
-
-        $app['config']->set('app.debug', true);
-        $app['config']->set('auth.providers.users.model', User::class);
+        $config = config();
+        $config->set('app.debug', true);
+        $config->set('auth.providers.users.model', User::class);
 
         // set up database configuration
-        $app['config']->set('database.connections.orchid', [
+        $config->set('database.connections.orchid', [
             'driver'   => 'sqlite',
             'database' => ':memory:',
             'prefix'   => '',
         ]);
-        $app['config']->set('scout.driver', null);
-        $app['config']->set('database.default', 'orchid');
+        $config->set('scout.driver', null);
+        $config->set('database.default', 'orchid');
+        $config->set('session.driver', 'array');
 
-        $app['config']->set('session', [
-            'driver'          => 'file',
-            'lifetime'        => 10,
-            'expire_on_close' => false,
-            'encrypt'         => false,
-            'files'           => storage_path('framework/sessions'),
-            'connection'      => null,
-            'table'           => 'sessions',
-            'store'           => null,
-            'lottery'         => [2, 100],
-            'cookie'          => Str::slug(env('APP_NAME', 'laravel'), '_').'_session',
-            'path'            => '/',
-            'domain'          => null,
-            'secure'          => false,
-            'http_only'       => true,
-            'same_site'       => null,
-        ]);
-
-        $app['config']->set('breadcrumbs', [
+        $config->set('breadcrumbs', [
             'view'                                     => 'breadcrumbs::bootstrap4',
             'files'                                    => base_path('routes/breadcrumbs.php'),
             'unnamed-route-exception'                  => false,

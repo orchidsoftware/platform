@@ -36,21 +36,18 @@ abstract class Wrapper extends Base
      */
     public function build(Repository $repository)
     {
-        $build = [];
-
         if (! $this->checkPermission($this, $repository)) {
             return;
         }
 
-        foreach ($this->layouts as $key => $layouts) {
-            $items = $this->buildChild(Arr::wrap($layouts), $key, $repository);
-            $item = ! is_array($layouts) ? reset($items)[0] : reset($items);
+        $build = collect($this->layouts)
+            ->map(function ($layout, $key) use ($repository) {
+                $items = $this->buildChild(Arr::wrap($layout), $key, $repository);
 
-            $build[$key] = $item;
-        }
+                return ! is_array($layout) ? reset($items)[0] : reset($items);
+            })
+            ->merge($repository->all());
 
-        $data = array_merge($repository->all(), $build);
-
-        return view($this->template, $data);
+        return view($this->template, $build);
     }
 }

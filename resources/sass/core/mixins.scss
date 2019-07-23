@@ -155,6 +155,7 @@
   &:not([disabled]):not(.disabled):active,
   &:not([disabled]):not(.disabled).active,
   .show > &.dropdown-toggle {
+    cursor: default;
 	color: $color !important;
     background-color: darken($background, 5%);
     border-color: darken($border, 8%);
