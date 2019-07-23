@@ -1,12 +1,4 @@
-@extends('platform::dashboard')
-
-@section('title',__('System settings'))
-@section('description', __('Global system settings'))
-
-@section('content')
-
-
-    @forelse($results as $group)
+@forelse($results as $group)
 
     @empty(!$group['label'])
         <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs">{{$group['label']}}</div>
@@ -37,6 +29,16 @@
             {{ __('There are no records in this view.') }}
         </p>
 
-    @endforelse
+@endforelse
 
-@stop
+
+@if($total >= 5)
+
+    <a href="#" class="block wrapper-sm dropdown-item b-t pb-1">
+        <span class="small pl-1">
+            {{ __('See more results.') }}
+            <span class="text-muted">({{ $total }})</span>
+        </span>
+    </a>
+
+@endif
