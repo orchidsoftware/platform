@@ -72,24 +72,12 @@
 
     @endif
 
-    @if($rows instanceof \Illuminate\Contracts\Pagination\Paginator && $rows->total() > 0)
-        <footer class="wrapper w-full">
-            <div class="row">
-                <div class="col-sm-5">
-                    <small class="text-muted inline m-t-sm m-b-sm">
-                        {{ __('Displayed records: :from-:to of :total',[
-                            'from' => ($rows->currentPage()-1)*$rows->perPage()+1,
-                            'to' => ($rows->currentPage()-1)*$rows->perPage()+count($rows->items()),
-                            'total' => $rows->total(),
-                        ]) }}
-                    </small>
-                </div>
-                <div class="col-sm-7 text-right text-center-xs">
-                    {!! $rows->appends(request()->except(['page','_token']))->links('platform::partials.pagination') !!}
-                </div>
-            </div>
-        </footer>
-    @endif
+
+    @includeWhen($rows instanceof \Illuminate\Contracts\Pagination\Paginator && $rows->total() > 0,
+        'platform::layouts.pagination',
+        ['paginator' => $rows]
+      )
+
 </div>
 
 

@@ -17,13 +17,20 @@ abstract class View extends Base
     public $template;
 
     /**
+     * @var array
+     */
+    private $data;
+
+    /**
      * View constructor.
      *
-     * @param string $template
+     * @param string                                        $template
+     * @param \Illuminate\Contracts\Support\Arrayable|array $data
      */
-    public function __construct(string $template)
+    public function __construct(string $template, $data = [])
     {
         $this->template = $template;
+        $this->data = $data;
     }
 
     /**
@@ -37,6 +44,8 @@ abstract class View extends Base
             return;
         }
 
-        return view($this->template, $repository->toArray());
+        $data = array_merge($this->data, $repository->toArray());
+
+        return view($this->template, $data);
     }
 }

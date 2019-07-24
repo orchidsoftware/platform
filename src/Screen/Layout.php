@@ -29,13 +29,14 @@ class Layout
     public $layouts = [];
 
     /**
-     * @param string $view
+     * @param string                                        $view
+     * @param \Illuminate\Contracts\Support\Arrayable|array $data
      *
      * @return View
      */
-    public static function view(string $view): View
+    public static function view(string $view, $data = []): View
     {
-        return new class($view) extends View {
+        return new class($view, $data) extends View {
         };
     }
 

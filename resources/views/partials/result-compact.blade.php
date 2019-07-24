@@ -5,19 +5,19 @@
     @endempty
 
     @foreach($group['result'] as $item)
-        <a href="{{$item->url}}" class="block wrapper-sm dropdown-item" style="font-size: 0.82857rem;">
+        <a href="{{$item->searchUrl()}}" class="block wrapper-sm dropdown-item" style="font-size: 0.82857rem;">
 
-            @empty(!$item->avatar)
+            @empty(!$item->searchAvatar())
                 <span class="pull-left thumb-xs avatar m-r-sm">
-                  <img src="{{$item->avatar}}" alt="{{$item->title}}">
+                  <img src="{{$item->searchAvatar()}}" alt="{{$item->searchTitle()}}">
                   {{-- <i class="on b-white bottom"></i> --}}
                 </span>
             @endempty
 
             <span class="clear">
-                <span class="text-ellipsis">{{$item->title}}</span>
+                <span class="text-ellipsis">{{$item->searchTitle()}}</span>
                 <small class="text-muted clear text-ellipsis">
-                    {{$item->subTitle}}
+                    {{$item->searchSubTitle()}}
                 </small>
             </span>
         </a>
@@ -34,7 +34,7 @@
 
 @if($total >= 5)
 
-    <a href="#" class="block wrapper-sm dropdown-item b-t pb-1">
+    <a href="{{ route('platform.search', $query) }}" class="block wrapper-sm dropdown-item b-t pb-1">
         <span class="small pl-1">
             {{ __('See more results.') }}
             <span class="text-muted">({{ $total }})</span>
