@@ -1,35 +1,22 @@
-@extends('platform::dashboard')
+<div class="row b-t">
+    @forelse($result as $item)
 
-@section('title',__('System settings'))
-@section('description', __('Global system settings'))
+        <a href="{{$item->searchUrl()}}" class="block wrapper-sm dropdown-item" style="font-size: 0.82857rem;">
 
-@section('content')
-
-
-    @forelse($results as $group)
-
-    @empty(!$group['label'])
-        <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs">{{$group['label']}}</div>
-    @endempty
-
-    @foreach($group['result'] as $item)
-        <a href="{{$item->url}}" class="block wrapper-sm dropdown-item" style="font-size: 0.82857rem;">
-
-            @empty(!$item->avatar)
+            @empty(!$item->searchAvatar())
                 <span class="pull-left thumb-xs avatar m-r-sm">
-                  <img src="{{$item->avatar}}" alt="{{$item->title}}">
+                  <img src="{{$item->searchAvatar()}}" alt="{{$item->searchTitle()}}">
                   {{-- <i class="on b-white bottom"></i> --}}
                 </span>
             @endempty
 
             <span class="clear">
-                <span class="text-ellipsis">{{$item->title}}</span>
+                <span class="text-ellipsis">{{$item->searchTitle()}}</span>
                 <small class="text-muted clear text-ellipsis">
-                    {{$item->subTitle}}
+                    {{$item->searchSubTitle()}}
                 </small>
             </span>
         </a>
-    @endforeach
 
     @empty
 
@@ -39,4 +26,9 @@
 
     @endforelse
 
-@stop
+    @includeWhen($result instanceof \Illuminate\Contracts\Pagination\Paginator && $result->total() > 0,
+        'platform::layouts.pagination',
+        ['paginator' => $result]
+      )
+
+</div>

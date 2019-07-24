@@ -26578,7 +26578,7 @@ function (_Controller) {
           return;
         }
 
-        axios.post(platform.prefix("/search/".concat(event.target.value))).then(function (response) {
+        axios.post(platform.prefix("/search/".concat(event.target.value, "/compact"))).then(function (response) {
           element.classList.add('show');
           element.innerHTML = response.data;
         });

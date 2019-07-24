@@ -32,7 +32,7 @@ export default class extends Controller {
             }
 
             axios
-              .post(platform.prefix(`/search/${event.target.value}`))
+              .post(platform.prefix(`/search/${event.target.value}/compact`))
               .then((response) => {
                   element.classList.add('show');
                   element.innerHTML = response.data;
