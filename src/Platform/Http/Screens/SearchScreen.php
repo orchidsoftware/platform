@@ -4,20 +4,16 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens;
 
-use Illuminate\View\View;
-use Orchid\Platform\Http\Layouts\SearchResultTable;
 use Orchid\Screen\Field;
-use Orchid\Screen\Fields\CheckBox;
-use Orchid\Screen\Fields\RadioButtons;
-use Orchid\Screen\Repository;
-use Orchid\Support\Facades\Dashboard;
+use Illuminate\View\View;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Screen;
 use Illuminate\Support\Collection;
+use Orchid\Screen\Fields\CheckBox;
+use Orchid\Support\Facades\Dashboard;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Orchid\Screen\Layout;
-use Orchid\Screen\Screen;
-use Orchid\Platform\Http\Layouts\AnnouncementLayout;
 
 class SearchScreen extends Screen
 {
@@ -36,7 +32,7 @@ class SearchScreen extends Screen
     public $description = 'On request: ';
 
     /**
-     * Count of items found
+     * Count of items found.
      *
      * @var int
      */
@@ -84,16 +80,13 @@ class SearchScreen extends Screen
     {
         $layouts = [];
 
-        $this->results->each(function ($item) use (&$layouts){
+        $this->results->each(function ($item) use (&$layouts) {
             $key = $item['label'];
 
             $layouts[$key] = Layout::view('platform::partials.result', $item);
         });
 
-
-
         return [
-
 
             Layout::rows([
                 Field::group([
@@ -159,5 +152,4 @@ class SearchScreen extends Screen
             })
             ->filter();
     }
-
 }
