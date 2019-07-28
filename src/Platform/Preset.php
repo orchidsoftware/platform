@@ -50,7 +50,7 @@ class Preset extends ConsolePreset
         $config = trim(self::config());
         $orchidConfig = trim(self::orchidConfig());
 
-        $config .= PHP_EOL . PHP_EOL . $orchidConfig;
+        $config .= PHP_EOL.PHP_EOL.$orchidConfig;
         file_put_contents(
             base_path('webpack.mix.js'),
             $config
@@ -74,7 +74,7 @@ class Preset extends ConsolePreset
      */
     protected static function orchidConfig(): string
     {
-        $orchidConfig = file_get_contents(PLATFORM_PATH . '/webpack.mix.js');
+        $orchidConfig = file_get_contents(PLATFORM_PATH.'/webpack.mix.js');
         preg_match(self::ORCHID_MIX_CONFIG_PATTERN, $orchidConfig, $matches);
 
         $transformedConfig = count($matches) === 2 ? $matches[1] : '';

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
+use Orchid\Platform\Preset;
 use Illuminate\Routing\Router;
 use Orchid\Platform\Dashboard;
-use Orchid\Platform\Preset;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
