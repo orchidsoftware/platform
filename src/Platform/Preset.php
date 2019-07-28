@@ -101,7 +101,9 @@ class Preset extends ConsolePreset
      */
     protected static function config()
     {
-        $config = file_get_contents(base_path('webpack.mix.js')) ?? '';
+        $webpack = base_path('webpack.mix.js');
+        $config = file_exists($webpack) ? file_get_contents($webpack) : '';
+
         $config = preg_replace(self::ORCHID_MIX_CONFIG_PATTERN, '', $config);
 
         return $config;
