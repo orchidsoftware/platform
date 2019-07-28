@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Radio field
 - Page for result global search [907](https://github.com/orchidsoftware/platform/issues/907)
 
+### Changed
+- `searchQuery` must now return `Laravel\Scout\Builder`
+
 ### Fixed
 - Fixed a typo [919](https://github.com/orchidsoftware/platform/pull/919)
 
