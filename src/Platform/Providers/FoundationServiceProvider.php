@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
+use Orchid\Platform\Preset;
 use Illuminate\Routing\Router;
 use Orchid\Platform\Dashboard;
-use Orchid\Platform\OrchidPreset;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
@@ -216,7 +216,7 @@ class FoundationServiceProvider extends ServiceProvider
          * Adds Orchid preset to Laravel's default preset command.
          */
         PresetCommand::macro('orchid', function (PresetCommand $command) {
-            OrchidPreset::install();
+            Preset::install();
             $command->info('Orchid scaffolding installed successfully.');
         });
     }
