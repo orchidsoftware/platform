@@ -1,12 +1,10 @@
 <?php
 
-
 namespace Orchid\Platform\Commands;
 
-
 use Illuminate\Console\Command;
-use Orchid\Platform\Providers\FoundationServiceProvider;
 use Symfony\Component\Console\Helper\ProgressBar;
+use Orchid\Platform\Providers\FoundationServiceProvider;
 
 class AssetsCommand extends Command
 {
@@ -29,7 +27,6 @@ class AssetsCommand extends Command
      */
     protected $description = 'Publish assets for ORCHID';
 
-
     /**
      * Execute the console command.
      *
@@ -38,24 +35,23 @@ class AssetsCommand extends Command
     public function handle()
     {
         $this->progressBar = $this->output->createProgressBar(2);
-        $this->info("Publishing assets..");
+        $this->info('Publishing assets..');
         $this
-            ->executeCommand("vendor:publish", [
-                "--provider" => FoundationServiceProvider::class,
-                "--tag"      => 'orchid-assets',
-                "--force"    => true
+            ->executeCommand('vendor:publish', [
+                '--provider' => FoundationServiceProvider::class,
+                '--tag'      => 'orchid-assets',
+                '--force'    => true,
             ])
-            ->executeCommand("preset", [
-                'type'    => 'orchid'
+            ->executeCommand('preset', [
+                'type'    => 'orchid',
             ]);
         $this->warn('Please run "npm install && npm run dev" to compile your fresh scaffolding.');
-        $this->info("Assets published successfully");
-
+        $this->info('Assets published successfully');
     }
 
     /**
      * @param string $command
-     * @param array $parameters
+     * @param array  $parameters
      *
      * @return $this
      */
@@ -81,5 +77,4 @@ class AssetsCommand extends Command
 
         return $this;
     }
-
 }

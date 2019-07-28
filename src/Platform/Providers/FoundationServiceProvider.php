@@ -4,25 +4,25 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Illuminate\Foundation\Console\PresetCommand;
 use Illuminate\Routing\Router;
-use Orchid\Platform\Commands\AssetsCommand;
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\OrchidPreset;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
-use Orchid\Platform\OrchidPreset;
 use Watson\Active\ActiveServiceProvider;
 use Orchid\Platform\Commands\LinkCommand;
 use Orchid\Platform\Commands\RowsCommand;
 use Orchid\Platform\Commands\AdminCommand;
 use Orchid\Platform\Commands\ChartCommand;
 use Orchid\Platform\Commands\TableCommand;
+use Orchid\Platform\Commands\AssetsCommand;
 use Orchid\Platform\Commands\FilterCommand;
 use Orchid\Platform\Commands\ScreenCommand;
 use Orchid\Platform\Commands\InstallCommand;
 use Orchid\Platform\Commands\MetricsCommand;
 use Orchid\Platform\Commands\SelectionCommand;
+use Illuminate\Foundation\Console\PresetCommand;
 
 /**
  * Class FoundationServiceProvider.
@@ -121,7 +121,6 @@ class FoundationServiceProvider extends ServiceProvider
         ], 'orchid-stubs');
 
         return $this;
-
     }
 
     /**
