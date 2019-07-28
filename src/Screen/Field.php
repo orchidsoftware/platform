@@ -316,11 +316,11 @@ class Field implements FieldContract
     }
 
     /**
-     * Checking for errors and filling css class
+     * Checking for errors and filling css class.
      */
     private function checkError()
     {
-        if (!$this->hasError()) {
+        if (! $this->hasError()) {
             return;
         }
 
@@ -328,10 +328,11 @@ class Field implements FieldContract
 
         if (is_null($class)) {
             $this->set('class', ' is-invalid');
+
             return;
         }
 
-        $this->set('class', $class . ' is-invalid');
+        $this->set('class', $class.' is-invalid');
     }
 
     /**

@@ -4,23 +4,20 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens;
 
-use Illuminate\Http\Request;
-use Orchid\Platform\Http\Layouts\SearchLayout;
+use Orchid\Screen\Link;
 use Illuminate\View\View;
 use Orchid\Screen\Layout;
-use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Orchid\Support\Facades\Dashboard;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Platform\Http\Layouts\SearchLayout;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class SearchScreen extends Screen
 {
-    /**
-     *
-     */
     const SESSION_NAME = 'orchid_search_type';
 
     /**
@@ -59,10 +56,10 @@ class SearchScreen extends Screen
     public function query(string $query): array
     {
         $this->description = __('On request: :query', [
-            'query' => $query
+            'query' => $query,
         ]);
 
-        $this->results = collect()->forPage(10,10);
+        $this->results = collect()->forPage(10, 10);
 
         $searchModels = Dashboard::getGlobalSearch();
 
@@ -86,7 +83,7 @@ class SearchScreen extends Screen
     {
         return [
             Link::name(__('Apply'))
-                ->method('changeSearchType')
+                ->method('changeSearchType'),
         ];
     }
 
@@ -118,7 +115,7 @@ class SearchScreen extends Screen
         return back();
     }
 
-        /**
+    /**
      * @param string|null $query
      *
      * @return Factory|View
@@ -160,15 +157,13 @@ class SearchScreen extends Screen
         $type = $this->request->session()->get(self::SESSION_NAME, $class);
 
         $model = $searchModels->map(function ($model) use ($type) {
-                if ($model instanceof $type) {
-                    return $model;
-                }
-            })->filter()->first();
-
+            if ($model instanceof $type) {
+                return $model;
+            }
+        })->filter()->first();
 
         abort_if(is_null($model), 404, 'Required search type not found');
 
         return $model;
     }
-
 }

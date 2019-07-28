@@ -6,7 +6,6 @@ namespace Orchid\Platform;
 
 use Laravel\Scout\Builder;
 use Laravel\Scout\Searchable as ScoutSearchable;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 trait Searchable
 {
