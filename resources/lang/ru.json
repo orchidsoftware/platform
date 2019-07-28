@@ -156,5 +156,10 @@
   "All messages have been read.": "Все сообщения были прочитаны.",
   "All messages have been deleted.": "Все сообщения были удалены.",
   "You currently have no notifications, but maybe they will appear later.": "В настоящее время у вас нет уведомлений, но, возможно, они появятся позже.",
-  "Sign in with another user.": "Сменить пользователя."
+  "Sign in with another user.": "Сменить пользователя.",
+  "Searching results": "Результаты поиска",
+  "On request: :query": "По запросу: :query",
+  "Choose record type:": "Выберите тип записи:",
+  "Nothing found.": "Ничего не найдено.",
+  "Try changing the query or type.": "Попробуйте изменить запрос или тип."
 }

@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 5.4.0 - 2019-07-28
+
+### Added
+- Radio field
+- Page for result global search [907](https://github.com/orchidsoftware/platform/issues/907)
+
+### Changed
+- `searchQuery` must now return `Laravel\Scout\Builder`
+
+### Fixed
+- Fixed a typo [919](https://github.com/orchidsoftware/platform/pull/919)
+
 ## 5.3.0 - 2019-07-22
 
 ### Added

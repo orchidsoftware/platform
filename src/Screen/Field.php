@@ -193,17 +193,11 @@ class Field implements FieldContract
         $this->runBeforeRender();
         $this->checkRequired();
         $this->translate();
+        $this->checkError();
+
+        $this->set('id', $this->getId());
 
         $attributes = $this->getModifyAttributes();
-        $this->attributes['id'] = $this->getId();
-
-        if ($this->hasError()) {
-            if (! isset($attributes['class']) || is_null($attributes['class'])) {
-                $attributes['class'] = ' is-invalid';
-            } else {
-                $attributes['class'] .= ' is-invalid';
-            }
-        }
 
         return view($this->view, array_merge($this->getAttributes(), [
             'attributes' => $attributes,
@@ -255,7 +249,7 @@ class Field implements FieldContract
 
         collect($this->getAttributes())
             ->only(array_merge($this->universalAttributes, $this->inlineAttributes))
-            ->map(function ($item, $key) use ($modifiers) {
+            ->each(function ($item, $key) use ($modifiers) {
                 $signature = 'modify'.Str::title($key);
 
                 if (in_array($signature, $modifiers, true)) {
@@ -319,6 +313,26 @@ class Field implements FieldContract
         $name = str_ireplace([']'], '', $name);
 
         return $name;
+    }
+
+    /**
+     * Checking for errors and filling css class.
+     */
+    private function checkError()
+    {
+        if (! $this->hasError()) {
+            return;
+        }
+
+        $class = $this->get('class');
+
+        if (is_null($class)) {
+            $this->set('class', ' is-invalid');
+
+            return;
+        }
+
+        $this->set('class', $class.' is-invalid');
     }
 
     /**
