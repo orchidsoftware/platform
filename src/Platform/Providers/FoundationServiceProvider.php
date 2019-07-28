@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
+use Illuminate\Foundation\Console\PresetCommand;
 use Illuminate\Routing\Router;
+use Orchid\Platform\Commands\AssetsCommand;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
+use Orchid\Platform\OrchidPreset;
 use Watson\Active\ActiveServiceProvider;
 use Orchid\Platform\Commands\LinkCommand;
 use Orchid\Platform\Commands\RowsCommand;
@@ -34,6 +37,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     protected $commands = [
         InstallCommand::class,
+        AssetsCommand::class,
         LinkCommand::class,
         AdminCommand::class,
         FilterCommand::class,
@@ -52,6 +56,7 @@ class FoundationServiceProvider extends ServiceProvider
     {
         $this
             ->registerOrchid()
+            ->registerAssets()
             ->registerDatabase()
             ->registerConfig()
             ->registerTranslations()
@@ -114,6 +119,22 @@ class FoundationServiceProvider extends ServiceProvider
             realpath(PLATFORM_PATH.'/install-stubs/routes/') => base_path('routes'),
             realpath(PLATFORM_PATH.'/install-stubs/Orchid/') => app_path('Orchid'),
         ], 'orchid-stubs');
+
+        return $this;
+
+    }
+
+    /**
+     * Register assets.
+     *
+     * @return $this
+     */
+    protected function registerAssets(): self
+    {
+        $this->publishes([
+            realpath(PLATFORM_PATH.'/resources/js')   => resource_path('js/orchid'),
+            realpath(PLATFORM_PATH.'/resources/sass') => resource_path('sass/orchid'),
+        ], 'orchid-assets');
 
         return $this;
     }
@@ -191,5 +212,13 @@ class FoundationServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             realpath(PLATFORM_PATH.'/config/platform.php'), 'platform'
         );
+
+        /*
+         * Adds Orchid preset to Laravel's default preset command.
+         */
+        PresetCommand::macro('orchid', function (PresetCommand $command) {
+            OrchidPreset::install();
+            $command->info('Orchid scaffolding installed successfully.');
+        });
     }
 }

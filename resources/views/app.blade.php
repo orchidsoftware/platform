@@ -7,16 +7,26 @@
     <title>@yield('title','ORCHID') - @yield('description','Admin')</title>
     <meta name="csrf_token" content="{{  csrf_token() }}" id="csrf_token" data-turbolinks-permanent>
     <meta name="auth" content="{{  Auth::check() }}"  id="auth" data-turbolinks-permanent>
-    <link rel="stylesheet" type="text/css" href="{{  orchid_mix('/css/orchid.css','orchid') }}">
+    @if(file_exists(public_path('/css/orchid/orchid.css')))
+        <link rel="stylesheet" type="text/css" href="{{  mix('/css/orchid/orchid.css') }}">
+    @else
+        <link rel="stylesheet" type="text/css" href="{{  orchid_mix('/css/orchid.css','orchid') }}">
+    @endif
 
     @stack('head')
 
     <meta name="turbolinks-root" content="{{  Dashboard::prefix() }}">
     <meta name="dashboard-prefix" content="{{  Dashboard::prefix() }}">
 
-    <script src="{{ orchid_mix('/js/manifest.js','orchid') }}" type="text/javascript"></script>
-    <script src="{{ orchid_mix('/js/vendor.js','orchid') }}" type="text/javascript"></script>
-    <script src="{{ orchid_mix('/js/orchid.js','orchid') }}" type="text/javascript"></script>
+    @if(file_exists(public_path('/js/orchid/manifest.js')))
+        <script src="{{ mix('/js/orchid/manifest.js') }}" type="text/javascript"></script>
+        <script src="{{ mix('/js/orchid/vendor.js') }}" type="text/javascript"></script>
+        <script src="{{ mix('/js/orchid/orchid.js') }}" type="text/javascript"></script>
+    @else
+        <script src="{{ orchid_mix('/js/manifest.js','orchid') }}" type="text/javascript"></script>
+        <script src="{{ orchid_mix('/js/vendor.js','orchid') }}" type="text/javascript"></script>
+        <script src="{{ orchid_mix('/js/orchid.js','orchid') }}" type="text/javascript"></script>
+    @endif
 
     @foreach(Dashboard::getResource('stylesheets') as $stylesheet)
         <link rel="stylesheet" href="{{  $stylesheet }}">
