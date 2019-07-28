@@ -83,6 +83,7 @@ class SearchScreen extends Screen
     {
         return [
             Link::name(__('Apply'))
+                ->icon('icon-filter')
                 ->method('changeSearchType'),
         ];
     }
