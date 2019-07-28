@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform;
 
+use Laravel\Scout\Builder;
 use Laravel\Scout\Searchable as ScoutSearchable;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
@@ -55,10 +56,10 @@ trait Searchable
     /**
      * @param string $query
      *
-     * @return LengthAwarePaginator
+     * @return Builder
      */
-    public function searchQuery(string $query = null): LengthAwarePaginator
+    public function searchQuery(string $query = null): Builder
     {
-        return $this->search($query)->paginate(5);
+        return $this->search($query);
     }
 }

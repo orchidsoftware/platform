@@ -21120,7 +21120,7 @@ select.form-control, select.chosen-choices, select.chosen-single, select.bootstr
   height: 35px;
 }
 
-.custom-checkbox .custom-control-label {
+.custom-control-label {
   padding-top: 0.1em;
 }
 

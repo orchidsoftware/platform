@@ -26563,8 +26563,6 @@ function (_Controller) {
      * @param event
      */
     value: function query(event) {
-      var _this = this;
-
       var element = this.getResultElement;
       var startQuery = this.queryTarget.value;
 
@@ -26573,16 +26571,11 @@ function (_Controller) {
         return;
       }
 
-      setTimeout(function () {
-        if (startQuery !== _this.queryTarget.value) {
-          return;
-        }
+      if (event.keyCode === 13) {
+        Turbolinks.visit(platform.prefix("/search/".concat(this.queryTarget.value)));
+      }
 
-        axios.post(platform.prefix("/search/".concat(event.target.value, "/compact"))).then(function (response) {
-          element.classList.add('show');
-          element.innerHTML = response.data;
-        });
-      }, 200);
+      this.showResultQuery(startQuery);
     }
     /**
      * Event for blur
@@ -26609,10 +26602,29 @@ function (_Controller) {
         return;
       }
 
+      this.showResultQuery(event.target.value);
+    }
+    /**
+     *
+     * @param query
+     */
+
+  }, {
+    key: "showResultQuery",
+    value: function showResultQuery(query) {
+      var _this = this;
+
       var element = this.getResultElement;
       setTimeout(function () {
-        element.classList.add('show');
-      }, 240);
+        if (query !== _this.queryTarget.value) {
+          return;
+        }
+
+        axios.post(platform.prefix("/search/".concat(query, "/compact"))).then(function (response) {
+          element.classList.add('show');
+          element.innerHTML = response.data;
+        });
+      }, 200);
     }
   }, {
     key: "getResultElement",

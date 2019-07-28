@@ -6,6 +6,7 @@
                        data-action="keyup->layouts--search#query blur->layouts--search#blur focus->layouts--search#focus"
                        data-target="layouts--search.query"
                        type="text"
+                       value="@yield('search')"
                        class="form-control input-sm padder bg-dark text-white"
                        placeholder="{{ __('What to search...') }}"
                 >
