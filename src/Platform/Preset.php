@@ -1,11 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Platform;
 
-use Illuminate\Foundation\Console\Presets\Preset;
+use Illuminate\Foundation\Console\Presets\Preset as ConsolePreset;
 
-class OrchidPreset extends Preset
+class Preset extends ConsolePreset
 {
+    /**
+     * This pattern should be in the file, part of which should be exported.
+     */
     const ORCHID_MIX_CONFIG_PATTERN = "/(\/\* Orchid mix config start \*\/.*\/\* Orchid mix config end \*\/)/s";
 
     /**
@@ -42,10 +47,10 @@ class OrchidPreset extends Preset
      */
     protected static function updateWebpackConfiguration()
     {
-        $config = self::config();
-        $orchidConfig = self::orchidConfig();
+        $config = trim(self::config());
+        $orchidConfig = trim(self::orchidConfig());
 
-        $config .= PHP_EOL.$orchidConfig;
+        $config .= PHP_EOL . PHP_EOL . $orchidConfig;
         file_put_contents(
             base_path('webpack.mix.js'),
             $config
@@ -69,14 +74,22 @@ class OrchidPreset extends Preset
      */
     protected static function orchidConfig(): string
     {
-        $orchidConfig = file_get_contents(PLATFORM_PATH.'/webpack.mix.js');
+        $orchidConfig = file_get_contents(PLATFORM_PATH . '/webpack.mix.js');
         preg_match(self::ORCHID_MIX_CONFIG_PATTERN, $orchidConfig, $matches);
 
         $transformedConfig = count($matches) === 2 ? $matches[1] : '';
-        $transformedConfig = str_replace('resources/js', 'resources/js/orchid', $transformedConfig);
-        $transformedConfig = str_replace('resources/sass', 'resources/sass/orchid', $transformedConfig);
-        $transformedConfig = str_replace('css/orchid.css', 'css/orchid/orchid.css', $transformedConfig);
-        $transformedConfig = str_replace('js/orchid.js', 'js/orchid/orchid.js', $transformedConfig);
+
+        $transformedConfig = str_replace([
+            'resources/js',
+            'resources/sass',
+            'css/orchid.css',
+            'js/orchid.js',
+        ], [
+            'resources/js/orchid',
+            'resources/sass/orchid',
+            'css/orchid/orchid.css',
+            'js/orchid/orchid.js',
+        ], $transformedConfig);
 
         return $transformedConfig;
     }
@@ -88,7 +101,7 @@ class OrchidPreset extends Preset
      */
     protected static function config()
     {
-        $config = file_get_contents(base_path('webpack.mix.js'));
+        $config = file_get_contents(base_path('webpack.mix.js')) ?? '';
         $config = preg_replace(self::ORCHID_MIX_CONFIG_PATTERN, '', $config);
 
         return $config;
