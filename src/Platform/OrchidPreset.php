@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Orchid\Platform;
-
 
 use Illuminate\Foundation\Console\Presets\Preset;
 
@@ -29,6 +27,7 @@ class OrchidPreset extends Preset
      *
      * @param array $packages
      * @param $configurationKey
+     *
      * @return array
      */
     protected static function updatePackageArray(array $packages, $configurationKey)
