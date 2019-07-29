@@ -195,13 +195,14 @@ class Field implements FieldContract
         $this->translate();
         $this->checkError();
 
-        $this->set('id', $this->getId());
+        $id = $this->getId();
+        $this->set('id', $id);
 
         $attributes = $this->getModifyAttributes();
 
         return view($this->view, array_merge($this->getAttributes(), [
             'attributes' => $attributes,
-            'id'         => $this->getId(),
+            'id'         => $id,
             'old'        => $this->getOldValue(),
             'slug'       => $this->getSlug(),
             'oldName'    => $this->getOldName(),
@@ -268,7 +269,7 @@ class Field implements FieldContract
     {
         $lang = $this->get('lang');
         $slug = $this->get('name');
-        $hash = spl_object_hash($this);
+        $hash = sha1(json_encode($this));
 
         return Str::slug("field-$lang-$slug-$hash");
     }
