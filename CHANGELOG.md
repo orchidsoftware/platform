@@ -8,10 +8,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Preset for source code [915](https://github.com/orchidsoftware/platform/issues/915)
+- Alerts on max files reached for Upload field [908](https://github.com/orchidsoftware/platform/pull/908)
 
 ### Fixed
 - Weird behavior with checkboxes in table layout [920](https://github.com/orchidsoftware/platform/issues/920)
 - Unexpected line break in code field
+- Issue with the multiple files for Upload field [908](https://github.com/orchidsoftware/platform/pull/908)
 
 ## 5.4.0 - 2019-07-28
 
