@@ -129,9 +129,6 @@ class FieldTest extends TestUnitCase
         $this->assertStringContainsString('example', $view->withErrors([])->render());
     }
 
-    /**
-     *
-     */
     public function testUniqueId()
     {
         $collect = collect(range(0, 10000));
