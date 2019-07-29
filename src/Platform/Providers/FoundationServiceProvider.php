@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Orchid\Platform\Preset;
+use Orchid\Platform\Presets\Source;
 use Illuminate\Routing\Router;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +16,6 @@ use Orchid\Platform\Commands\RowsCommand;
 use Orchid\Platform\Commands\AdminCommand;
 use Orchid\Platform\Commands\ChartCommand;
 use Orchid\Platform\Commands\TableCommand;
-use Orchid\Platform\Commands\AssetsCommand;
 use Orchid\Platform\Commands\FilterCommand;
 use Orchid\Platform\Commands\ScreenCommand;
 use Orchid\Platform\Commands\InstallCommand;
@@ -37,7 +36,6 @@ class FoundationServiceProvider extends ServiceProvider
      */
     protected $commands = [
         InstallCommand::class,
-        AssetsCommand::class,
         LinkCommand::class,
         AdminCommand::class,
         FilterCommand::class,
@@ -215,8 +213,16 @@ class FoundationServiceProvider extends ServiceProvider
         /*
          * Adds Orchid preset to Laravel's default preset command.
          */
-        PresetCommand::macro('orchid', function (PresetCommand $command) {
-            Preset::install();
+        PresetCommand::macro('orchid-source', function (PresetCommand $command) {
+
+            $command->call('vendor:publish', [
+                '--provider' => FoundationServiceProvider::class,
+                '--tag'      => 'orchid-assets',
+                '--force'    => true,
+            ]);
+
+            Source::install();
+            $command->warn('Please run "npm install && npm run dev" to compile your fresh scaffolding.');
             $command->info('Orchid scaffolding installed successfully.');
         });
     }

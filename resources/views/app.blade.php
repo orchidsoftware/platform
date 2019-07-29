@@ -18,15 +18,9 @@
     <meta name="turbolinks-root" content="{{  Dashboard::prefix() }}">
     <meta name="dashboard-prefix" content="{{  Dashboard::prefix() }}">
 
-    @if(file_exists(public_path('/js/orchid/manifest.js')))
-        <script src="{{ mix('/js/orchid/manifest.js') }}" type="text/javascript"></script>
-        <script src="{{ mix('/js/orchid/vendor.js') }}" type="text/javascript"></script>
-        <script src="{{ mix('/js/orchid/orchid.js') }}" type="text/javascript"></script>
-    @else
-        <script src="{{ orchid_mix('/js/manifest.js','orchid') }}" type="text/javascript"></script>
-        <script src="{{ orchid_mix('/js/vendor.js','orchid') }}" type="text/javascript"></script>
-        <script src="{{ orchid_mix('/js/orchid.js','orchid') }}" type="text/javascript"></script>
-    @endif
+    <script src="{{ orchid_mix('/js/manifest.js','orchid') }}" type="text/javascript"></script>
+    <script src="{{ orchid_mix('/js/vendor.js','orchid') }}" type="text/javascript"></script>
+    <script src="{{ orchid_mix('/js/orchid.js','orchid') }}" type="text/javascript"></script>
 
     @foreach(Dashboard::getResource('stylesheets') as $stylesheet)
         <link rel="stylesheet" href="{{  $stylesheet }}">
