@@ -26,3 +26,10 @@ Breadcrumbs::for('platform.notifications', function ($trail) {
     $trail->parent('platform.index');
     $trail->push(__('Notifications'));
 });
+
+// Platform -> Search Result
+Breadcrumbs::for('platform.search', function ($trail, $query) {
+    $trail->parent('platform.index');
+    $trail->push(__('Search'));
+    $trail->push($query);
+});

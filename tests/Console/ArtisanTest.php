@@ -97,4 +97,17 @@ class ArtisanTest extends TestConsoleCase
         $this->artisan('orchid:link')
             ->expectsOutput("The [$resources] directory already exists.");
     }
+
+    public function testArtisanOrchidAssets()
+    {
+        $this->artisan('orchid:assets')
+            ->expectsOutput('Orchid scaffolding installed successfully.')
+            ->expectsOutput('Please run "npm install && npm run dev" to compile your fresh scaffolding.');
+    }
+
+    public function testArtisanPresetOrchid()
+    {
+        $this->artisan('preset', ['type' => 'orchid'])
+            ->expectsOutput('Orchid scaffolding installed successfully.');
+    }
 }

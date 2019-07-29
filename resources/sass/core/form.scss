@@ -53,7 +53,7 @@ textarea {
 select {
 	&.form-control {
 		height: $form-height !important;
-	}	
+	}
 }
 
 /**
@@ -91,9 +91,10 @@ select {
 .custom-checkbox{
   height: 35px;
   @extend .v-center;
-  .custom-control-label{
+}
+
+.custom-control-label{
     padding-top: 0.1em;
-  }
 }
 
 .bg-dark {

@@ -26,18 +26,11 @@ export default class extends Controller {
             return;
         }
 
-        setTimeout(() => {
-            if (startQuery !== this.queryTarget.value) {
-                return;
-            }
+        if (event.keyCode === 13) {
+            Turbolinks.visit(platform.prefix(`/search/${this.queryTarget.value}`));
+        }
 
-            axios
-              .post(platform.prefix(`/search/${event.target.value}`))
-              .then((response) => {
-                  element.classList.add('show');
-                  element.innerHTML = response.data;
-              });
-        }, 200);
+        this.showResultQuery(startQuery);
     }
 
     /**
@@ -61,10 +54,28 @@ export default class extends Controller {
             return;
         }
 
+        this.showResultQuery(event.target.value);
+    }
+
+    /**
+     *
+     * @param query
+     */
+    showResultQuery(query) {
+
         const element = this.getResultElement;
 
         setTimeout(() => {
-            element.classList.add('show');
-        }, 240);
+            if (query !== this.queryTarget.value) {
+                return;
+            }
+
+            axios
+                .post(platform.prefix(`/search/${query}/compact`))
+                .then((response) => {
+                    element.classList.add('show');
+                    element.innerHTML = response.data;
+                });
+        }, 200);
     }
 }

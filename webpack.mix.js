@@ -11,6 +11,8 @@ let mix = require('laravel-mix');
  |
  */
 
+/* Orchid mix config start */
+
 if (!mix.inProduction()) {
     mix
         .webpackConfig({
@@ -57,3 +59,5 @@ mix
     })
     .setPublicPath('public')
     .version();
+
+/* Orchid mix config end */

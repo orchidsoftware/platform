@@ -1,14 +1,10 @@
-@section('search', $query)
+@forelse($results as $group)
 
-@empty(!$radios)
-    <div class="row b-b v-center pl-3 pr-4">
-        {!! $radios !!}
-    </div>
-@endempty
+    @empty(!$group['label'])
+        <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs">{{$group['label']}}</div>
+    @endempty
 
-<div class="row">
-    @forelse($results as $item)
-
+    @foreach($group['result'] as $item)
         <a href="{{$item->searchUrl()}}" class="block wrapper-sm dropdown-item" style="font-size: 0.82857rem;">
 
             @empty(!$item->searchAvatar())
@@ -25,24 +21,24 @@
                 </small>
             </span>
         </a>
+    @endforeach
 
     @empty
 
-        <div class="text-center bg-white pt-5 pb-5 w-full">
-            <h3 class="font-thin">
-                <i class="icon-magnifier-remove block m-b"></i>
-                {{ __('Nothing found.') }}
-            </h3>
+        <p class="ml-3 mr-3 mb-0 text-center">
+            {{ __('There are no records in this view.') }}
+        </p>
 
-            {{ __('Try changing the query or type.') }}
-        </div>
+@endforelse
 
 
-    @endforelse
+@if($total >= 5)
 
-    @includeWhen($results instanceof \Illuminate\Contracts\Pagination\Paginator && $results->total() > 0,
-        'platform::layouts.pagination',
-        ['paginator' => $results]
-      )
+    <a href="{{ route('platform.search', $query) }}" class="block wrapper-sm dropdown-item b-t pb-1">
+        <span class="small pl-1">
+            {{ __('See more results.') }}
+            <span class="text-muted">({{ $total }})</span>
+        </span>
+    </a>
 
-</div>
+@endif

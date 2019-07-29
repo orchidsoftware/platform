@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
+use Laravel\Scout\Builder;
 use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Searchable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class SearchTest extends TestUnitCase
 {
@@ -73,6 +73,6 @@ class SearchTest extends TestUnitCase
         ]);
 
         $this->assertEquals($model->searchLabel(), 'Roles');
-        $this->assertInstanceOf(LengthAwarePaginator::class, $model->searchQuery(''));
+        $this->assertInstanceOf(Builder::class, $model->searchQuery(''));
     }
 }

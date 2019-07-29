@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
+use Orchid\Platform\Preset;
 use Illuminate\Routing\Router;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\Route;
@@ -15,11 +16,13 @@ use Orchid\Platform\Commands\RowsCommand;
 use Orchid\Platform\Commands\AdminCommand;
 use Orchid\Platform\Commands\ChartCommand;
 use Orchid\Platform\Commands\TableCommand;
+use Orchid\Platform\Commands\AssetsCommand;
 use Orchid\Platform\Commands\FilterCommand;
 use Orchid\Platform\Commands\ScreenCommand;
 use Orchid\Platform\Commands\InstallCommand;
 use Orchid\Platform\Commands\MetricsCommand;
 use Orchid\Platform\Commands\SelectionCommand;
+use Illuminate\Foundation\Console\PresetCommand;
 
 /**
  * Class FoundationServiceProvider.
@@ -34,6 +37,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     protected $commands = [
         InstallCommand::class,
+        AssetsCommand::class,
         LinkCommand::class,
         AdminCommand::class,
         FilterCommand::class,
@@ -52,6 +56,7 @@ class FoundationServiceProvider extends ServiceProvider
     {
         $this
             ->registerOrchid()
+            ->registerAssets()
             ->registerDatabase()
             ->registerConfig()
             ->registerTranslations()
@@ -114,6 +119,21 @@ class FoundationServiceProvider extends ServiceProvider
             realpath(PLATFORM_PATH.'/install-stubs/routes/') => base_path('routes'),
             realpath(PLATFORM_PATH.'/install-stubs/Orchid/') => app_path('Orchid'),
         ], 'orchid-stubs');
+
+        return $this;
+    }
+
+    /**
+     * Register assets.
+     *
+     * @return $this
+     */
+    protected function registerAssets(): self
+    {
+        $this->publishes([
+            realpath(PLATFORM_PATH.'/resources/js')   => resource_path('js/orchid'),
+            realpath(PLATFORM_PATH.'/resources/sass') => resource_path('sass/orchid'),
+        ], 'orchid-assets');
 
         return $this;
     }
@@ -191,5 +211,13 @@ class FoundationServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             realpath(PLATFORM_PATH.'/config/platform.php'), 'platform'
         );
+
+        /*
+         * Adds Orchid preset to Laravel's default preset command.
+         */
+        PresetCommand::macro('orchid', function (PresetCommand $command) {
+            Preset::install();
+            $command->info('Orchid scaffolding installed successfully.');
+        });
     }
 }
