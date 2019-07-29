@@ -265,13 +265,11 @@ export default class extends Controller {
                     console.log('dropzone.removedfile');
                     if (objHas(file, 'data.id')) {
                         $(`${dropname} .files-${file.data.id}`).remove();
-                        if (!isMediaLibrary) {
-                            axios
-                                .delete(platform.prefix(`/systems/files/${file.data.id}`), {
-                                    storage: $('#post-attachment-dropzone').data('storage'),
-                                })
-                                .then();
-                        }
+                        !isMediaLibrary && axios
+                            .delete(platform.prefix(`/systems/files/${file.data.id}`), {
+                                storage: storage,
+                            })
+                            .then();
                     }
                 });
 
