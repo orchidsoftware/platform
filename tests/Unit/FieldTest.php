@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
+use Orchid\Screen\Field;
 use Orchid\Screen\Fields\Map;
 use Orchid\Screen\Fields\UTM;
 use Orchid\Tests\TestUnitCase;
@@ -126,5 +127,24 @@ class FieldTest extends TestUnitCase
 
         $this->assertInstanceOf(View::class, $view);
         $this->assertStringContainsString('example', $view->withErrors([])->render());
+    }
+
+    /**
+     *
+     */
+    public function testUniqueId()
+    {
+        $collect = collect(range(0, 10000));
+
+        $fields = $collect->map(function ($value) {
+            return (new Field())->set('value', $value)->getId();
+        })->unique();
+
+        $this->assertEquals($fields->count(), $collect->count());
+
+        $expected = (new Field())->set('value', 'test')->getId();
+        $actual = (new Field())->set('value', 'test')->getId();
+
+        $this->assertEquals($expected, $actual);
     }
 }
