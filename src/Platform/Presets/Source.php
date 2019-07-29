@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform;
+namespace Orchid\Platform\Presets;
 
 use Illuminate\Foundation\Console\Presets\Preset as ConsolePreset;
 
-class Preset extends ConsolePreset
+class Source extends ConsolePreset
 {
     /**
      * This pattern should be in the file, part of which should be exported.
@@ -84,11 +84,17 @@ class Preset extends ConsolePreset
             'resources/sass',
             'css/orchid.css',
             'js/orchid.js',
+            'public/orchid',
+            'public/fonts',
+            'public/js/',
         ], [
             'resources/js/orchid',
             'resources/sass/orchid',
-            'css/orchid/orchid.css',
-            'js/orchid/orchid.js',
+            'public/resources/orchid/css/orchid.css',
+            'public/resources/orchid/js/orchid.js',
+            "public/resources/orchid",
+            'public/resources/orchid/fonts',
+            'public/resources/orchid/js/',
         ], $transformedConfig);
 
         return $transformedConfig;
