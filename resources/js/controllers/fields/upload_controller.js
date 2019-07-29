@@ -1,7 +1,7 @@
 import {Controller} from "stimulus";
 import Dropzone from 'dropzone';
 import Sortable from 'sortablejs';
-import {debounce} from "lodash";
+import {debounce, has as objHas} from "lodash";
 
 export default class extends Controller {
 
@@ -134,13 +134,16 @@ export default class extends Controller {
     resortElement() {
         const items = {};
         const self = this;
+        const dropname = this.dropname;
         const CancelToken = axios.CancelToken;
+
+        console.log(self);
 
         if (typeof this.cancelRequest === 'function') {
             this.cancelRequest();
         }
 
-        $('.file-sort').each((index, value) => {
+        $(`${dropname} .file-sort`).each((index, value) => {
             const id = $(value).attr('data-file-id');
             items[id] = index;
         });
@@ -162,7 +165,9 @@ export default class extends Controller {
     initSortable() {
         new Sortable(document.querySelector(this.dropname + ' .sortable-dropzone'), {
             animation: 150,
-            onEnd: this.resortElement,
+            onEnd: () => {
+                this.resortElement();
+            },
         });
     }
 
@@ -192,15 +197,15 @@ export default class extends Controller {
         const loadInfo = this.loadInfo.bind(this);
         const dropname = this.dropname;
         const groups = this.data.get('groups');
+        const multiple = !!this.data.get('multiple');
         const isMediaLibrary = this.data.get('is-media-library');
 
         this.dropZone = new Dropzone(dropname, {
             url: platform.prefix('/systems/files'),
             method: 'post',
-            uploadMultiple: this.data.get('multiple'),
-            parallelUploads: this.data.get('parallel-uploads'),
+            uploadMultiple: true,
             maxFilesize: this.data.get('max-file-size'),
-            maxFiles: this.data.get('max-files'),
+            maxFiles: multiple ? this.data.get('max-files') : 1,
             acceptedFiles: this.data.get('accepted-files'),
             resizeQuality: this.data.get('resize-quality'),
             resizeWidth: this.data.get('resize-width'),
@@ -212,8 +217,15 @@ export default class extends Controller {
             dictFileTooBig: 'File is big',
             autoDiscover: false,
 
-            init() {
+            init: function () {
                 this.on('addedfile', (e) => {
+                    console.log('dropzone.addedfile');
+
+                    if (this.files.length > this.options.maxFiles) {
+                        console.log('max files');
+                        this.removeFile(e);
+                    }
+
                     const removeButton = Dropzone.createElement('<a href="javascript:;" class="btn-remove">&times;</a>');
                     const editButton = Dropzone.createElement('<a href="javascript:;" class="btn-edit"><i class="icon-note" aria-hidden="true"></i></a>');
 
@@ -236,15 +248,39 @@ export default class extends Controller {
                     }
                 });
 
-                this.on('completemultiple', () => {
-                    //  $(`${dropname}.sortable-dropzone`).sortable('enable');
+                this.on("maxfilesexceeded", (file) => {
+                    console.log('dropzone.maxfilesexceeded');
+                    alert('Max files exceeded');
+                    this.removeFile(file);
                 });
+
+                this.on('sending', (file, xhr, formData) => {
+                    console.log('dropzone.sending');
+                    formData.append('_token', $('meta[name=\'csrf_token\']').attr('content'));
+                    formData.append('storage', storage);
+                    formData.append('group', groups);
+                });
+
+                this.on('removedfile', file => {
+                    console.log('dropzone.removedfile');
+                    if (objHas(file, 'data.id')) {
+                        $(`${dropname} .files-${file.data.id}`).remove();
+                        !isMediaLibrary && axios
+                            .delete(platform.prefix(`/systems/files/${file.data.id}`), {
+                                storage: storage,
+                            })
+                            .then();
+                    }
+                });
+
+                if (!multiple) {
+                    this.hiddenFileInput.removeAttribute('multiple');
+                }
 
                 const images = data;
 
                 if (images) {
                     Object.values(images).forEach((item) => {
-
                         const file = {
                             id: item.id,
                             name: item.original_name,
@@ -264,32 +300,13 @@ export default class extends Controller {
                 }
 
                 $(`${dropname} .dz-progress`).remove();
-
-                this.on('sending', (file, xhr, formData) => {
-                    formData.append('_token', $('meta[name=\'csrf_token\']').attr('content'));
-                    formData.append('storage', storage);
-                    formData.append('group', groups);
-                });
-
-                this.on('removedfile', file => {
-                    $(`${dropname} .files-${file.data.id}`).remove();
-                    if (!isMediaLibrary) {
-                        axios
-                            .delete(platform.prefix(`/systems/files/${file.data.id}`), {
-                                storage: $('#post-attachment-dropzone').data('storage'),
-                            })
-                            .then();
-                    }
-                });
             },
             error(file, response) {
-
                 if ($.type(response) === 'string') {
-                    return response; // dropzone sends it's own error messages in string
+                    return response;
                 }
                 return response.message;
             },
-
             success(file, response) {
 
                 if (!Array.isArray(response)) {
@@ -390,6 +407,13 @@ export default class extends Controller {
      * @param attachment
      */
     addedExistFile(attachment) {
+        const multiple = !!this.data.get('multiple');
+        const maxFiles = multiple ? this.data.get('max-files') : 1;
+
+        if (this.dropZone.files.length >= maxFiles) {
+            alert('Max files exceeded');
+            return;
+        }
 
         /** todo: Дублируется дважды */
         const file = {
