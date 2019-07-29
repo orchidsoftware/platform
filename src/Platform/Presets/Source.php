@@ -92,7 +92,7 @@ class Source extends ConsolePreset
             'resources/sass/orchid',
             'public/resources/orchid/css/orchid.css',
             'public/resources/orchid/js/orchid.js',
-            "public/resources/orchid",
+            'public/resources/orchid',
             'public/resources/orchid/fonts',
             'public/resources/orchid/js/',
         ], $transformedConfig);
