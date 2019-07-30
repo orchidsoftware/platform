@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Orchid\Platform\Presets;
-
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Console\Presets\Preset;
@@ -13,7 +11,6 @@ class Orchid extends Preset
      * This pattern should be in the file, part of which should be exported.
      */
     const ORCHID_MIX_CONFIG_PATTERN = "/(\/\* Dashboard mix config start \*\/.*\/\* Dashboard mix config end \*\/)/s";
-
 
     /**
      * Install the preset.
@@ -50,14 +47,15 @@ class Orchid extends Preset
      * since it is supposed to work with existing dependencies.
      *
      * @param array $packages
+     *
      * @return array
      */
     protected static function updatePackageArray(array $packages)
     {
         return [
                 'stimulus'                                => '^1.1.1',
-                '@babel/plugin-proposal-class-properties' => "^7.4.4",
-                '@babel/plugin-transform-block-scoping'   => "^7.4.4"
+                '@babel/plugin-proposal-class-properties' => '^7.4.4',
+                '@babel/plugin-transform-block-scoping'   => '^7.4.4',
             ] + $packages;
     }
 
@@ -100,7 +98,6 @@ class Orchid extends Preset
     {
         copy(__DIR__.'/orchid-stubs/dashboard.js', resource_path('js/dashboard.js'));
     }
-
 
     /**
      * Takes root webpack.mix.js and removes orchid's config (if exists).
