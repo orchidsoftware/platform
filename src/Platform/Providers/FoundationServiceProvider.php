@@ -231,6 +231,8 @@ class FoundationServiceProvider extends ServiceProvider
         PresetCommand::macro('orchid', function (PresetCommand $command) {
             Orchid::install();
             $command->warn('Please run "npm install && npm run dev" to compile your fresh scaffolding.');
+            $command->warn("After that, You need to add this line to AppServiceProvider's register method:");
+            $command->warn("app(\Orchid\Platform\Dashboard::class)->registerResource('scripts','/js/dashboard.js');");
             $command->info('Orchid scaffolding installed successfully.');
         });
     }

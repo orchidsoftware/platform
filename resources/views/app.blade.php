@@ -21,9 +21,6 @@
     <script src="{{ orchid_mix('/js/manifest.js','orchid') }}" type="text/javascript"></script>
     <script src="{{ orchid_mix('/js/vendor.js','orchid') }}" type="text/javascript"></script>
     <script src="{{ orchid_mix('/js/orchid.js','orchid') }}" type="text/javascript"></script>
-    @if(file_exists(public_path('js/dashboard.js')))
-        <script src="{{ mix('/js/dashboard.js') }}" type="text/javascript"></script>
-    @endif
 
     @foreach(Dashboard::getResource('stylesheets') as $stylesheet)
         <link rel="stylesheet" href="{{  $stylesheet }}">
