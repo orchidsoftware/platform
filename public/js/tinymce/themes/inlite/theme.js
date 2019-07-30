@@ -551,10 +551,6 @@ var inlite = (function (domGlobals) {
     var Render = { renderUI: renderUI };
 
     var noop = function () {
-      var args = [];
-      for (var _i = 0; _i < arguments.length; _i++) {
-        args[_i] = arguments[_i];
-      }
     };
     var constant = function (value) {
       return function () {
@@ -697,9 +693,9 @@ var inlite = (function (domGlobals) {
       if (x === null)
         return 'null';
       var t = typeof x;
-      if (t === 'object' && Array.prototype.isPrototypeOf(x))
+      if (t === 'object' && (Array.prototype.isPrototypeOf(x) || x.constructor && x.constructor.name === 'Array'))
         return 'array';
-      if (t === 'object' && String.prototype.isPrototypeOf(x))
+      if (t === 'object' && (String.prototype.isPrototypeOf(x) || x.constructor && x.constructor.name === 'String'))
         return 'string';
       return t;
     };
@@ -711,6 +707,7 @@ var inlite = (function (domGlobals) {
     var isFunction$1 = isType$1('function');
     var isNumber$1 = isType$1('number');
 
+    var slice = Array.prototype.slice;
     var rawIndexOf = function () {
       var pIndexOf = Array.prototype.indexOf;
       var fastIndex = function (xs, x) {
@@ -795,7 +792,6 @@ var inlite = (function (domGlobals) {
       }
       return r;
     };
-    var slice = Array.prototype.slice;
     var from$1 = isFunction$1(Array.from) ? Array.from : function (x) {
       return slice.call(x);
     };
@@ -4228,7 +4224,7 @@ var inlite = (function (domGlobals) {
           return NotificationManagerImpl(editor);
         },
         getWindowManagerImpl: function () {
-          return WindowManagerImpl(editor);
+          return WindowManagerImpl();
         }
       };
     };
@@ -5173,7 +5169,7 @@ var inlite = (function (domGlobals) {
         global$7(input).on('click', function (e) {
           e.stopPropagation();
         });
-        global$7(self.getEl('button')).on('click', function (e) {
+        global$7(self.getEl('button')).on('click touchstart', function (e) {
           e.stopPropagation();
           input.click();
         });

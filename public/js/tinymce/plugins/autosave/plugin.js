@@ -198,7 +198,7 @@ var autosave = (function (domGlobals) {
 
     global.add('autosave', function (editor) {
       var started = Cell(false);
-      setup(editor);
+      setup();
       register(editor, started);
       editor.on('init', function () {
         if (shouldRestoreWhenEmpty(editor) && editor.dom.isEmpty(editor.getBody())) {
