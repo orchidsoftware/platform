@@ -6,6 +6,7 @@ namespace Orchid\Platform\Providers;
 
 use Illuminate\Routing\Router;
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\Presets\Orchid;
 use Orchid\Platform\Presets\Source;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -211,7 +212,7 @@ class FoundationServiceProvider extends ServiceProvider
         );
 
         /*
-         * Adds Orchid preset to Laravel's default preset command.
+         * Adds Orchid source preset to Laravel's default preset command.
          */
         PresetCommand::macro('orchid-source', function (PresetCommand $command) {
             $command->call('vendor:publish', [
@@ -221,6 +222,14 @@ class FoundationServiceProvider extends ServiceProvider
             ]);
 
             Source::install();
+            $command->warn('Please run "npm install && npm run dev" to compile your fresh scaffolding.');
+            $command->info('Orchid scaffolding installed successfully.');
+        });
+        /*
+         * Adds Orchid preset to Laravel's default preset command.
+         */
+        PresetCommand::macro('orchid', function (PresetCommand $command) {
+            Orchid::install();
             $command->warn('Please run "npm install && npm run dev" to compile your fresh scaffolding.');
             $command->info('Orchid scaffolding installed successfully.');
         });
