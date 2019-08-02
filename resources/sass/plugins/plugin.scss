@@ -14,7 +14,9 @@
 .select2-search__field {
   width : 100% !important;
 }
-
+.select2{
+  min-width: 10em;
+}
 .select2-container--bootstrap {
 
   .select2-selection {
