@@ -13,14 +13,13 @@ use Illuminate\Contracts\View\Factory;
  */
 abstract class Selection extends Base
 {
-
     /**
-     * Drop down filters
+     * Drop down filters.
      */
     public const TEMPLATE_DROP_DOWN = 'platform::layouts.selection';
 
     /**
-     * Line filters
+     * Line filters.
      */
     public const TEMPLATE_LINE = 'platform::layouts.filter';
 
