@@ -184,7 +184,7 @@ class Relation extends Field
     public function applyScope(string $scope): self
     {
         $scope = lcfirst($scope);
-
+        $this->set('scope', $scope);
         $this->set('relationScope', Crypt::encryptString($scope));
 
         return $this;
