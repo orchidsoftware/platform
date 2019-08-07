@@ -5,7 +5,7 @@
     @endempty
 
     @foreach($group['result'] as $item)
-        <a href="{{$item->searchUrl()}}" class="block wrapper-sm dropdown-item" style="font-size: 0.82857rem;">
+        <a href="{{$item->searchUrl()}}" class="block wrapper-sm dropdown-item" style="font-size: 0.85em;">
 
             @empty(!$item->searchAvatar())
                 <span class="pull-left thumb-xs avatar m-r-sm">

@@ -4,10 +4,11 @@
 
 
     <div class="d-sm-flex d-md-block wrapper mt-md-4 w-full v-center">
-        <a href="#" class="header-toggler d-lg-none mr-auto order-first"
+        <a href="#" class="header-toggler d-md-none mr-auto order-first"
            data-toggle="collapse"
            data-target="#headerMenuCollapse">
             <span class="header-toggler-icon icon-menu"></span>
+            <span class="ml-2">@yield('title')</span>
         </a>
 
         <a class="header-brand order-last" href="{{route('platform.index')}}">
@@ -15,7 +16,7 @@
         </a>
     </div>
 
-    <nav class="collapse d-lg-block w-full" id="headerMenuCollapse">
+    <nav class="collapse d-md-block w-full" id="headerMenuCollapse">
 
         @include('platform::partials.search')
 
@@ -45,7 +46,7 @@
 @section('body-right')
     <div class="wrapper mt-4">
         <div class="v-md-center">
-            <div class="col-xs-12 col-md-4 no-padder">
+            <div class="d-none d-md-block col-xs-12 col-md-4 no-padder">
                 <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
                 <small class="text-muted text-ellipsis">@yield('description')</small>
             </div>
