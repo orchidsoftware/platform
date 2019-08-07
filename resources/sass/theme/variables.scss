@@ -1,4 +1,4 @@
-/* 
+/*
 
 */
 
@@ -7,12 +7,13 @@ $base-img-url: '../img/';
 $icon-font-path: '../fonts/';
 $orchid-font-path: '../fonts';
 
+/*
 $grid-breakpoints: (
-        xs: 0,
-        sm: 576px,
-        md: 768px,
-        lg: 992px,
-        xl: 1200px,
+        xs: 600px,
+        sm: 800px,
+        md: 1000px,
+        lg: 1200px,
+        xl: 1400px,
         xxl: 1900px,
 );
 
@@ -23,6 +24,7 @@ $container-max-widths: (
         lg: 960px,
         xl: 1200px,
 );
+*/
 
 
 // Colors
@@ -160,9 +162,10 @@ $btn-primary-bg : $brand-primary;
 $border-radius-base : 2px;
 $gray-lighter : #eeeeee;
 $gray-light : #777777;
-$screen-sm-min : map-get($grid-breakpoints, sm);
-$screen-md-min : map-get($grid-breakpoints, md);
-$screen-lg-min : map-get($grid-breakpoints, lg);
+
+$screen-sm-min : 480px;
+$screen-md-min : 768px;
+$screen-lg-min : 1024px;
 
 //Bootstrap
 $enable-caret : false;
