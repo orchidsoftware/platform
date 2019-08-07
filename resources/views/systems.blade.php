@@ -5,8 +5,8 @@
 @section('controller','layouts--systems')
 
 @section('navbar')
-    <div class="pull-right">
-        <div class="input-icon w-md">
+    <div class="float-sm-right">
+        <div class="input-icon w-auto">
             <input
                     data-action="keyup->layouts--systems#filter"
                     type="text" class="form-control input-sm bg-light no-border rounded padder"
