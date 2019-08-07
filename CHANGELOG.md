@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 5.5.1 - 2019-08-08
+
+### Changed
+- Improved mobile device support
+
+### Fixed
+- Undeclared scope [925](https://github.com/orchidsoftware/platform/pull/925)
+
+### Removed
+- Custom css grid
+ 
 ## 5.5.0 - 2019-07-30
 
 ### Added
