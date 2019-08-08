@@ -207,6 +207,7 @@ class Field implements FieldContract
             'slug'       => $this->getSlug(),
             'oldName'    => $this->getOldName(),
             'typeForm'   => $this->typeForm ?? $this->vertical()->typeForm,
+            'value'      => $this->modifyValue($this->getAttributes()['value']),
         ]))
             ->withErrors(session()->get('errors', app(ViewErrorBag::class)));
     }
