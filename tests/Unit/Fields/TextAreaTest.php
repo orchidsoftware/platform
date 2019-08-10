@@ -87,4 +87,31 @@ class TextAreaTest extends TestFieldsUnitCase
 
         $this->assertStringContainsString('autocomplete', $view);
     }
+
+    public function testOldValue()
+    {
+        $textArea = TextArea::make('about')
+            ->value('About Me');
+
+        $oldValue = 'test-old-value';
+        $oldName = $textArea->getOldName();
+
+        $this->app['router']->get('TextAreaTestOldValue', [
+            'middleware' => 'web',
+            'uses'       => function () use ($textArea, $oldValue, $oldName) {
+                request()->merge([
+                    $oldName => $oldValue,
+                ])->flash();
+
+                return self::renderField($textArea);
+            },
+        ]);
+
+        $content = $this
+            ->call('GET', 'TextAreaTestOldValue')
+            ->content();
+
+        $this->assertStringContainsString($oldValue, $content);
+        $this->assertStringNotContainsString('About Me', $content);
+    }
 }
