@@ -110,7 +110,7 @@ class Code extends Field
     {
         $code = (new static())->name($name);
 
-        $code->addBeforeRender(function (){
+        $code->addBeforeRender(function () {
             if ($this->get('language') === 'json') {
                 $value = $this->get('value');
                 $this->set('value', json_encode($value));
