@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens;
 
+use Illuminate\Contracts\Pagination\Paginator;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
@@ -33,17 +34,27 @@ class NotificationScreen extends Screen
     public $permission = 'platform.index';
 
     /**
+     * @var bool
+     */
+    private $isNotEmpty = false;
+
+    /**
      * Query data.
      *
      * @return array
      */
     public function query(Request $request): array
     {
+        /** @var Paginator $notifications */
+        $notifications = $request->user()
+            ->notifications()
+            ->where('type', DashboardNotification::class)
+            ->paginate(10);
+
+        $this->isNotEmpty = $notifications->isNotEmpty();
+
         return [
-            'notifications' => $request->user()
-                ->notifications()
-                ->where('type', DashboardNotification::class)
-                ->paginate(10),
+            'notifications' => $notifications,
         ];
     }
 
@@ -57,11 +68,13 @@ class NotificationScreen extends Screen
         return [
             Link::name(__('Remove all'))
                 ->icon('icon-trash')
-                ->method('removeAll'),
+                ->method('removeAll')
+                ->canSee($this->isNotEmpty),
 
             Link::name(__('Mark all as read'))
                 ->icon('icon-eye')
-                ->method('markAllAsRead'),
+                ->method('markAllAsRead')
+                ->canSee($this->isNotEmpty),
         ];
     }
 
