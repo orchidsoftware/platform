@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens;
 
-use Illuminate\Contracts\Pagination\Paginator;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
 use Orchid\Support\Facades\Alert;
+use Illuminate\Contracts\Pagination\Paginator;
 use Orchid\Platform\Http\Layouts\NotificationTable;
 use Orchid\Platform\Notifications\DashboardNotification;
 
