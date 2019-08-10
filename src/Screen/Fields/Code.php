@@ -108,22 +108,15 @@ class Code extends Field
      */
     public static function make(string $name = null): self
     {
-        return (new static())->name($name);
-    }
+        $code = (new static())->name($name);
 
-    /**
-     * @param mixed $value
-     *
-     * @return mixed
-     */
-    public function modifyValue($value)
-    {
-        $value = parent::modifyValue($value);
+        $code->addBeforeRender(function (){
+            if ($this->get('language') === 'json') {
+                $value = $this->get('value');
+                $this->set('value', json_encode($value));
+            }
+        });
 
-        if ($this->get('language') === 'json') {
-            $value = json_encode($value);
-        }
-
-        return $value;
+        return $code;
     }
 }

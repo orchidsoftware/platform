@@ -198,10 +198,11 @@ class Field implements FieldContract
         $id = $this->getId();
         $this->set('id', $id);
 
-        $attributes = $this->getModifyAttributes();
+        $this->modifyName();
+        $this->modifyValue();
 
         return view($this->view, array_merge($this->getAttributes(), [
-            'attributes' => $attributes,
+            'attributes' => $this->getAllowAttributes(),
             'id'         => $id,
             'old'        => $this->getOldValue(),
             'slug'       => $this->getSlug(),
@@ -218,17 +219,13 @@ class Field implements FieldContract
      */
     private function translate(): self
     {
-        if (empty($this->translations)) {
-            return $this;
-        }
-
         $lang = $this->get('lang');
 
-        foreach ($this->attributes as $key => $attribute) {
-            if (in_array($key, $this->translations, true)) {
-                $this->set($key, __($attribute, [], $lang));
-            }
-        }
+        collect($this->attributes)
+            ->intersectByKeys(array_flip($this->translations))
+            ->each(function ($value, $key) use ($lang) {
+                $this->set($key, __($value, [], $lang));
+            });
 
         return $this;
     }
@@ -244,22 +241,11 @@ class Field implements FieldContract
     /**
      * @return Collection
      */
-    public function getModifyAttributes(): Collection
+    public function getAllowAttributes(): Collection
     {
-        $modifiers = get_class_methods($this);
+        $allow = array_merge($this->universalAttributes, $this->inlineAttributes);
 
-        collect($this->getAttributes())
-            ->only(array_merge($this->universalAttributes, $this->inlineAttributes))
-            ->each(function ($item, $key) use ($modifiers) {
-                $signature = 'modify'.Str::title($key);
-
-                if (in_array($signature, $modifiers, true)) {
-                    $this->set($key, $this->$signature($item));
-                }
-            });
-
-        return collect($this->getAttributes())
-            ->only(array_merge($this->universalAttributes, $this->inlineAttributes));
+        return collect($this->getAttributes())->only($allow);
     }
 
     /**
@@ -345,50 +331,47 @@ class Field implements FieldContract
     }
 
     /**
-     * @param mixed $name
-     *
-     * @return mixed
+     * @return $this
      */
-    public function modifyName($name)
+    public function modifyName()
     {
+        $name = $this->get('name');
         $prefix = $this->get('prefix');
         $lang = $this->get('lang');
 
-        $this->attributes['name'] = $name;
-
         if (! is_null($prefix)) {
-            $this->attributes['name'] = $prefix.$name;
+            $this->set('name', $prefix.$name);
         }
 
         if (is_null($prefix) && ! is_null($lang)) {
-            $this->attributes['name'] = $lang.$name;
+            $this->set('name', $lang.$name);
         }
 
         if (! is_null($prefix) && ! is_null($lang)) {
-            $this->attributes['name'] = $prefix.'['.$lang.']'.$name;
+            $this->set('name', $prefix.'['.$lang.']'.$name);
         }
 
         if ($name instanceof Closure) {
-            $this->attributes['name'] = $name($this->attributes);
+            $this->set('name', $name($this->attributes));
         }
 
-        return $this->attributes['name'];
+        return $this;
     }
 
     /**
-     * @param mixed $value
-     *
-     * @return mixed
+     * @return $this
      */
-    public function modifyValue($value)
+    public function modifyValue()
     {
-        $this->attributes['value'] = $this->getOldValue() ?: $value;
+        $value = $this->getOldValue() ?: $this->get('value');
+
+        $this->set('value', $value);
 
         if ($value instanceof Closure) {
-            $this->attributes['value'] = $value($this->attributes);
+            $this->set('value', $value($this->attributes));
         }
 
-        return $this->attributes['value'];
+        return $this;
     }
 
     /**

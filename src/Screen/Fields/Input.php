@@ -101,20 +101,17 @@ class Input extends Field
      */
     public static function make(string $name = null): self
     {
-        return (new static())->name($name);
-    }
+        $input = (new static())->name($name);
 
-    /**
-     * @param string|array $mask
-     *
-     * @return mixed
-     */
-    public function modifyMask($mask)
-    {
-        if (is_array($mask)) {
-            $this->attributes['mask'] = json_encode($mask);
-        }
+        $input->addBeforeRender(function () {
+            $mask = $this->get('mask');
 
-        return $this->attributes['mask'];
+            if (is_array($mask)) {
+                $this->set('mask', json_encode($mask));
+            }
+
+        });
+
+        return $input;
     }
 }
