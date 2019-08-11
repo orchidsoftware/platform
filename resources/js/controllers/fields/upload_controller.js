@@ -90,7 +90,7 @@ export default class extends Controller {
      */
     save() {
         const attach = this.activeAttachment;
-        $(`${this.dropname} .modal`).modal('toggle');
+        $(`${this.dropname} .attachment.modal`).modal('toggle');
 
         const name = attach.name + attach.id;
 
