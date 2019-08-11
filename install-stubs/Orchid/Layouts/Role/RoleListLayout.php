@@ -12,7 +12,7 @@ class RoleListLayout extends Table
     /**
      * @var string
      */
-    public $data = 'roles';
+    public $target = 'roles';
 
     /**
      * @return array

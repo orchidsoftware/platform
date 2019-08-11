@@ -13,7 +13,7 @@ class UserListLayout extends Table
     /**
      * @var string
      */
-    public $data = 'users';
+    public $target = 'users';
 
     /**
      * @return array

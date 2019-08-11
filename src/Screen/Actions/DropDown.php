@@ -6,7 +6,7 @@ namespace Orchid\Screen\Commands;
 
 use Orchid\Screen\Field;
 use Orchid\Screen\Repository;
-use Orchid\Screen\Contracts\CommandContract;
+use Orchid\Screen\Contracts\ActionContract;
 
 /**
  * Class DropDown.
@@ -15,10 +15,9 @@ use Orchid\Screen\Contracts\CommandContract;
  * @method self modal(string $modalName = null)
  * @method self icon(string $icon = null)
  * @method self class(string $classes = null)
- * @method self method(string $methodName = null)
- * @method self parameters(array|object $name)
+ * @method self group(array $group = null)
  */
-class DropDown extends Field implements CommandContract
+class DropDown extends Field implements ActionContract
 {
     /**
      * Visual style.
@@ -37,7 +36,7 @@ class DropDown extends Field implements CommandContract
     /**
      * @var string
      */
-    public $view = 'platform::fields.button';
+    public $view = 'platform::actions.dropdown';
 
     /**
      * Override the form view.
@@ -52,15 +51,9 @@ class DropDown extends Field implements CommandContract
      * @var array
      */
     public $attributes = [
-        'class'       => 'btn btn-default dropdown-item',
-        'modal'       => null,
-        'method'      => null,
-        'async'       => false,
-        'asyncParams' => [],
-        'modalTitle'  => null,
-        'icon'        => null,
-        'action'      => null,
-        'parameters'  => [],
+        'class' => 'btn btn-link dropdown-item',
+        'icon'  => null,
+        'list'  => [],
     ];
 
     /**
@@ -78,32 +71,13 @@ class DropDown extends Field implements CommandContract
     /**
      * Create instance of the button.
      *
+     * @param string $title
+     *
      * @return self
      */
-    public static function make(): self
+    public static function make(string $title): self
     {
-        return (new static())->name(Str::random())
-            ->addBeforeRender(function () {
-                $url = url()->current();
-                $query = http_build_query($this->get('parameters'));
-
-                $action = "{$url}/{$this->get('method')}?{$query}";
-                $this->set('action', $action);
-            });
-    }
-
-    /**
-     * Set the link.
-     *
-     * @param string $link
-     *
-     * @return $this
-     */
-    public function link(string $link): self
-    {
-        $this->set('href', $link);
-
-        return $this;
+        return (new static())->name($title);
     }
 
     /**
@@ -118,6 +92,16 @@ class DropDown extends Field implements CommandContract
         $this->set('class', $class);
 
         return $this;
+    }
+
+    /**
+     * @param ActionContract[] $list
+     *
+     * @return self
+     */
+    public function list(array $list) : self
+    {
+        return $this->set('list', $list);
     }
 
     /**
@@ -146,28 +130,6 @@ class DropDown extends Field implements CommandContract
     }
 
     /**
-     * Call the modal with async method.
-     * Options should contain values which handle by method.
-     *
-     * @param string       $modal
-     * @param string       $method
-     * @param string|array $options
-     * @param string|null  $modalTitle
-     *
-     * @return Button
-     */
-    public function loadModalAsync(string $modal, string $method, $options = [], string $modalTitle = null): self
-    {
-        $this->set('async');
-        $this->set('modal', $modal);
-        $this->set('method', $method);
-        $this->set('asyncParams', Arr::wrap($options));
-        $this->set('modalTitle', $modalTitle);
-
-        return $this;
-    }
-
-    /**
      * Set the button as block.
      *
      * @return $this
@@ -190,6 +152,8 @@ class DropDown extends Field implements CommandContract
      */
     public function build(Repository $repository)
     {
+        $this->set('source', $repository);
+
         return $this->render();
     }
 }

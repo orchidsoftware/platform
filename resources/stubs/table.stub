@@ -12,7 +12,7 @@ class DummyClass extends Table
      *
      * @var string
      */
-    public $data = '';
+    public $target = '';
 
     /**
      * @return TD[]

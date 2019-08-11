@@ -12,9 +12,9 @@ class MetricsExample extends Metric
     public $title = 'Metric Today';
 
     /**
-     * @var array
+     * @var string
      */
-    public $data = 'metrics';
+    public $target = 'metrics';
 
     /**
      * @var array

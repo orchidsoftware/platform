@@ -24,7 +24,7 @@ abstract class Table extends Base
      *
      * @var string
      */
-    public $data;
+    public $target;
 
     /**
      * @param Repository $repository
@@ -42,7 +42,7 @@ abstract class Table extends Base
         });
 
         return view($this->template, [
-            'rows'         => $repository->getContent($this->data),
+            'rows'         => $repository->getContent($this->target),
             'columns'      => $columns,
             'iconNotFound' => $this->iconNotFound(),
             'textNotFound' => $this->textNotFound(),

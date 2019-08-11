@@ -45,7 +45,7 @@ abstract class Chart extends Base
     /**
      * @var string
      */
-    public $data = '';
+    public $target = '';
 
     /**
      * Colors used.
@@ -84,7 +84,7 @@ abstract class Chart extends Base
             'type'   => $this->type,
             'height' => $this->height,
             'labels' => json_encode(collect($this->labels)),
-            'data'   => json_encode($repository->getContent($this->data)),
+            'data'   => json_encode($repository->getContent($this->target)),
             'colors' => json_encode($this->colors),
         ]);
     }

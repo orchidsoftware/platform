@@ -15,7 +15,7 @@ use Orchid\Screen\Layouts\Base;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\View\Factory;
-use Orchid\Screen\Contracts\CommandContract;
+use Orchid\Screen\Contracts\ActionContract;
 use Orchid\Platform\Http\Controllers\Controller;
 
 /**
@@ -250,8 +250,7 @@ abstract class Screen extends Controller
     public function buildCommandBar() : array
     {
         return collect($this->commandBar())
-            ->map(function (CommandContract $command) {
-                //return $command->render();
+            ->map(function (ActionContract $command) {
                 return $command->build($this->post);
             })->all();
     }

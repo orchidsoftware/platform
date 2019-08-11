@@ -81,19 +81,6 @@ class Layout
     }
 
     /**
-     * @deprecated Use Layout::modal($key, [])
-     *
-     * @param array $layouts
-     *
-     * @return Modals
-     */
-    public static function modals(array $layouts): Modals
-    {
-        return new class($layouts) extends Modals {
-        };
-    }
-
-    /**
      * @param string $key
      * @param array  $layouts
      *
