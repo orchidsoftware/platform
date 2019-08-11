@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Commands;
 
-use Orchid\Screen\Contracts\CommandContract;
 use Orchid\Screen\Field;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Orchid\Screen\Repository;
+use Orchid\Screen\Contracts\CommandContract;
 
 /**
  * Class Button.
@@ -186,11 +186,12 @@ class Button extends Field implements CommandContract
     /**
      * @param Repository $repository
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      * @throws \Throwable
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
     public function build(Repository $repository)
     {
-       return $this->render();
+        return $this->render();
     }
 }
