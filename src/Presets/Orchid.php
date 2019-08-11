@@ -86,7 +86,7 @@ class Orchid extends Preset
     protected static function updateComponent()
     {
         copy(
-            __DIR__ . '/orchid-stubs/hello_controller.js',
+            __DIR__.'/orchid-stubs/hello_controller.js',
             resource_path('js/controllers/hello_controller.js')
         );
     }
@@ -98,7 +98,7 @@ class Orchid extends Preset
      */
     protected static function updateBootstrapping()
     {
-        copy(__DIR__ . '/orchid-stubs/dashboard.js', resource_path('js/dashboard.js'));
+        copy(__DIR__.'/orchid-stubs/dashboard.js', resource_path('js/dashboard.js'));
     }
 
     /**
@@ -123,6 +123,6 @@ class Orchid extends Preset
      */
     protected static function orchid_config()
     {
-        return file_get_contents(__DIR__ . '/orchid-stubs/webpack.mix.js');
+        return file_get_contents(__DIR__.'/orchid-stubs/webpack.mix.js');
     }
 }

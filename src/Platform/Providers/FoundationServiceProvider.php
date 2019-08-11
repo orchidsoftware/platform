@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Illuminate\Routing\Router;
-use Orchid\Platform\Dashboard;
 use Orchid\Presets\Orchid;
 use Orchid\Presets\Source;
+use Illuminate\Routing\Router;
+use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
