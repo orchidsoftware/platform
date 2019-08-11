@@ -2,14 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Screen\Fields;
+namespace Orchid\Screen\Commands;
 
+
+
+use Orchid\Screen\Contracts\CommandContract;
 use Orchid\Screen\Field;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
+use Orchid\Screen\Repository;
 
 /**
- * Class Button.
+ * Class Link.
  *
  * @method self name(string $name = null)
  * @method self modal(string $modalName = null)
@@ -18,7 +20,7 @@ use Illuminate\Support\Str;
  * @method self method(string $methodName = null)
  * @method self parameters(array|object $name)
  */
-class Button extends Field
+class Link extends Field implements CommandContract
 {
     /**
      * Visual style.
@@ -52,7 +54,7 @@ class Button extends Field
      * @var array
      */
     public $attributes = [
-        'class'       => 'btn btn-default',
+        'class'       => 'btn btn-default dropdown-item',
         'modal'       => null,
         'method'      => null,
         'async'       => false,
@@ -179,5 +181,16 @@ class Button extends Field
         $this->set('class', $class);
 
         return $this;
+    }
+
+    /**
+     * @param Repository $repository
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @throws \Throwable
+     */
+    public function build(Repository $repository)
+    {
+        return $this->render();
     }
 }

@@ -6,6 +6,7 @@ namespace Orchid\Screen;
 
 use Illuminate\View\View;
 use Illuminate\Contracts\View\Factory;
+use Orchid\Screen\Contracts\CommandContract;
 
 /**
  * Class Link.
@@ -20,7 +21,7 @@ use Illuminate\Contracts\View\Factory;
  * @method static Link confirm(string $message)
  * @method static Link parameters(array|object $name)
  */
-class Link
+class Link implements CommandContract
 {
     use CanSee;
 

@@ -198,6 +198,13 @@ body {
   overflow: auto;
 }
 
+.command-bar{
+    .form-group {
+        margin: 0;
+    }
+}
+
+
 @include media-breakpoint-down(sm) {
     // Styles
 
@@ -216,7 +223,6 @@ body {
 
         li {
             display: inline-block;
-
             button, a {
                 margin-left: 0;
                 padding-left: 0;
