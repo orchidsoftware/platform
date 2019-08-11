@@ -6,10 +6,10 @@ namespace Orchid\Screen\Commands;
 
 use Orchid\Screen\Field;
 use Orchid\Screen\Repository;
-use Orchid\Screen\Contracts\CommandContract;
+use Orchid\Screen\Contracts\ActionContract;
 
 /**
- * Class Link.
+ * Class ModalToggle.
  *
  * @method self name(string $name = null)
  * @method self modal(string $modalName = null)
@@ -18,7 +18,7 @@ use Orchid\Screen\Contracts\CommandContract;
  * @method self method(string $methodName = null)
  * @method self parameters(array|object $name)
  */
-class Link extends Field implements CommandContract
+class ModalToggle extends Field implements ActionContract
 {
     /**
      * Visual style.
@@ -37,7 +37,7 @@ class Link extends Field implements CommandContract
     /**
      * @var string
      */
-    public $view = 'platform::fields.button';
+    public $view = 'platform::actions.modal';
 
     /**
      * Override the form view.
@@ -78,11 +78,13 @@ class Link extends Field implements CommandContract
     /**
      * Create instance of the button.
      *
+     * @param string $title
+     *
      * @return self
      */
-    public static function make(): self
+    public static function make(string $title): self
     {
-        return (new static())->name(Str::random())
+        return (new static())->name($title)
             ->addBeforeRender(function () {
                 $url = url()->current();
                 $query = http_build_query($this->get('parameters'));

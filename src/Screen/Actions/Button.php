@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Orchid\Screen\Commands;
 
 use Orchid\Screen\Field;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Orchid\Screen\Repository;
-use Orchid\Screen\Contracts\CommandContract;
+use Orchid\Screen\Contracts\ActionContract;
 
 /**
- * Class ModalToggle.
+ * Class Button.
  *
  * @method self name(string $name = null)
  * @method self modal(string $modalName = null)
@@ -18,7 +20,7 @@ use Orchid\Screen\Contracts\CommandContract;
  * @method self method(string $methodName = null)
  * @method self parameters(array|object $name)
  */
-class ModalToggle extends Field implements CommandContract
+class Button extends Field implements ActionContract
 {
     /**
      * Visual style.
@@ -37,7 +39,7 @@ class ModalToggle extends Field implements CommandContract
     /**
      * @var string
      */
-    public $view = 'platform::fields.button';
+    public $view = 'platform::actions.button';
 
     /**
      * Override the form view.
@@ -52,7 +54,7 @@ class ModalToggle extends Field implements CommandContract
      * @var array
      */
     public $attributes = [
-        'class'       => 'btn btn-default dropdown-item',
+        'class'       => 'btn btn-link dropdown-item',
         'modal'       => null,
         'method'      => null,
         'async'       => false,

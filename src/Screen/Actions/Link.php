@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace Orchid\Screen\Commands;
 
 use Orchid\Screen\Field;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Orchid\Screen\Repository;
-use Orchid\Screen\Contracts\CommandContract;
+use Orchid\Screen\Contracts\ActionContract;
 
 /**
- * Class Button.
+ * Class Link.
  *
  * @method self name(string $name = null)
  * @method self modal(string $modalName = null)
@@ -20,7 +18,7 @@ use Orchid\Screen\Contracts\CommandContract;
  * @method self method(string $methodName = null)
  * @method self parameters(array|object $name)
  */
-class Button extends Field implements CommandContract
+class Link extends Field implements ActionContract
 {
     /**
      * Visual style.

@@ -30,7 +30,7 @@ abstract class Metric extends Base
     /**
      * @var string
      */
-    public $data;
+    public $target;
 
     /**
      * @var string
@@ -53,7 +53,7 @@ abstract class Metric extends Base
             return;
         }
 
-        $data = $repository->getContent($this->data, []);
+        $data = $repository->getContent($this->target, []);
         $metrics = array_combine($this->labels, $data);
 
         return view($this->template, [

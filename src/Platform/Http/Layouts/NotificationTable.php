@@ -14,7 +14,7 @@ class NotificationTable extends Table
      *
      * @var string
      */
-    public $data = 'notifications';
+    public $target = 'notifications';
 
     /**
      * @return TD[]

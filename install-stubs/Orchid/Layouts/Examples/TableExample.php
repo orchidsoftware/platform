@@ -12,7 +12,7 @@ class TableExample extends Table
     /**
      * @var string
      */
-    public $data = 'table';
+    public $target = 'table';
 
     /**
      * @return array

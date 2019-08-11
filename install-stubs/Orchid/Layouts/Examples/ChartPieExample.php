@@ -41,5 +41,5 @@ class ChartPieExample extends Chart
     /**
      * @var string
      */
-    public $data = 'charts';
+    public $target = 'charts';
 }

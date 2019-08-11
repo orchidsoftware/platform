@@ -33,7 +33,7 @@ class DummyClass extends Chart
     /**
      * @var string
      */
-    public $data = 'charts';
+    public $target = 'charts';
 
     /**
      * Determines whether to display the export button.
