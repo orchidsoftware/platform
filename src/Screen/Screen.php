@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Orchid\Screen\Contracts\CommandContract;
 use Throwable;
 use ReflectionClass;
 use ReflectionException;
@@ -249,7 +250,8 @@ abstract class Screen extends Controller
     public function buildCommandBar() : array
     {
         return collect($this->commandBar())
-            ->map(function ($command) {
+            ->map(function (CommandContract $command) {
+                //return $command->render();
                 return $command->build($this->post);
             })->all();
     }
