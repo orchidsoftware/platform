@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Commands;
 
-
-
-use Orchid\Screen\Contracts\CommandContract;
 use Orchid\Screen\Field;
 use Orchid\Screen\Repository;
+use Orchid\Screen\Contracts\CommandContract;
 
 /**
  * Class Link.
@@ -186,8 +184,9 @@ class Link extends Field implements CommandContract
     /**
      * @param Repository $repository
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      * @throws \Throwable
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
     public function build(Repository $repository)
     {

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Orchid\Screen\Contracts\CommandContract;
 use Throwable;
 use ReflectionClass;
 use ReflectionException;
@@ -16,6 +15,7 @@ use Orchid\Screen\Layouts\Base;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\View\Factory;
+use Orchid\Screen\Contracts\CommandContract;
 use Orchid\Platform\Http\Controllers\Controller;
 
 /**
