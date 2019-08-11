@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Presets;
+namespace Orchid\Presets;
 
 use Illuminate\Foundation\Console\Presets\Preset as ConsolePreset;
 
