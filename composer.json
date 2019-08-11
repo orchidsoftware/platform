@@ -53,6 +53,7 @@
       "Orchid\\Attachment\\": "src/Attachment/",
       "Orchid\\Filters\\": "src/Filters/",
       "Orchid\\Platform\\": "src/Platform/",
+      "Orchid\\Presets\\": "src/Presets/",
       "Orchid\\Screen\\": "src/Screen/",
       "Orchid\\Setting\\": "src/Setting/",
       "Orchid\\Support\\": "src/Support/"

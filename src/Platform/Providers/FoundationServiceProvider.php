@@ -6,8 +6,8 @@ namespace Orchid\Platform\Providers;
 
 use Illuminate\Routing\Router;
 use Orchid\Platform\Dashboard;
-use Orchid\Platform\Presets\Orchid;
-use Orchid\Platform\Presets\Source;
+use Orchid\Presets\Orchid;
+use Orchid\Presets\Source;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
