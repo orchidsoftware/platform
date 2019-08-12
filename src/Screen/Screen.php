@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Contracts\Routing\UrlRoutable;
 use Throwable;
 use ReflectionClass;
 use ReflectionException;
@@ -119,11 +120,11 @@ abstract class Screen extends Controller
             $layout = is_object($layout) ? $layout : new $layout();
 
             if ($layout->getSlug() === $slugLayouts) {
-                $layout->async = true;
-
-                return $layout->build($post);
+                return $layout->currentAsync()->build($post);
             }
         }
+
+        abort(404, "Async method: {$method} not found");
     }
 
     /**
@@ -222,7 +223,7 @@ abstract class Screen extends Controller
 
         $object = app()->make($class);
 
-        if (method_exists($object, 'resolveRouteBinding') && isset($this->arguments[$key])) {
+        if (is_a($object, UrlRoutable::class) && isset($this->arguments[$key])) {
             $object = $object->resolveRouteBinding($this->arguments[$key]);
         }
 

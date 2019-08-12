@@ -21,7 +21,7 @@ class ViewField extends Field
      *
      * @var array
      */
-    public $required = [
+    protected $required = [
         'view',
     ];
 
@@ -30,14 +30,14 @@ class ViewField extends Field
      *
      * @var array
      */
-    public $attributes = [];
+    protected $attributes = [];
 
     /**
      * Attributes available for a particular tag.
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'accept',
         'accesskey',
         'autocomplete',

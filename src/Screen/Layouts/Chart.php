@@ -16,12 +16,12 @@ abstract class Chart extends Base
     /**
      * @var string
      */
-    public $template = 'platform::layouts.chart';
+    protected $template = 'platform::layouts.chart';
 
     /**
      * @var string
      */
-    public $title = 'My Chart';
+    protected $title = 'My Chart';
 
     /**
      * Available options:
@@ -30,29 +30,29 @@ abstract class Chart extends Base
      *
      * @var string
      */
-    public $type = 'line';
+    protected $type = 'line';
 
     /**
      * @var int
      */
-    public $height = 250;
+    protected $height = 250;
 
     /**
      * @var array
      */
-    public $labels = [];
+    protected $labels = [];
 
     /**
      * @var string
      */
-    public $target = '';
+    protected $target = '';
 
     /**
      * Colors used.
      *
      * @var array
      */
-    public $colors = [
+    protected $colors = [
         '#2274A5',
         '#F75C03',
         '#F1C40F',
@@ -65,7 +65,7 @@ abstract class Chart extends Base
      *
      * @var bool
      */
-    public $export = true;
+    protected $export = true;
 
     /**
      * @param Repository $repository

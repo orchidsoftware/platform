@@ -45,14 +45,14 @@ class Switcher extends Field
     /**
      * @var string
      */
-    public $view = 'platform::fields.switch';
+    protected $view = 'platform::fields.switch';
 
     /**
      * Default attributes value.
      *
      * @var array
      */
-    public $attributes = [
+    protected $attributes = [
         'type'     => 'checkbox',
         'class'    => 'custom-control-input',
         'value'    => false,
@@ -65,7 +65,7 @@ class Switcher extends Field
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'accept',
         'accesskey',
         'autocomplete',

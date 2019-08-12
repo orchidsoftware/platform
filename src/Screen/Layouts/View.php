@@ -12,11 +12,6 @@ use Orchid\Screen\Repository;
 abstract class View extends Base
 {
     /**
-     * @var string
-     */
-    public $template;
-
-    /**
      * @var array
      */
     private $data;

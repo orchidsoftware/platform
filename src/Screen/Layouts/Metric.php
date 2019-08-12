@@ -15,22 +15,22 @@ abstract class Metric extends Base
     /**
      * @var string
      */
-    public $template = 'platform::layouts.metric';
+    protected $template = 'platform::layouts.metric';
 
     /**
      * @var string
      */
-    public $title = 'Example Metric';
+    protected $title = 'Example Metric';
 
     /**
      * @var array
      */
-    public $labels = [];
+    protected $labels = [];
 
     /**
      * @var string
      */
-    public $target;
+    protected $target;
 
     /**
      * @var string

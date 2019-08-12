@@ -17,12 +17,12 @@ abstract class Rows extends Base
     /**
      * @var string
      */
-    public $template = 'platform::layouts.row';
+    protected $template = 'platform::layouts.row';
 
     /**
      * @var Repository
      */
-    public $query;
+    protected $query;
 
     /**
      * @var int
@@ -76,5 +76,5 @@ abstract class Rows extends Base
     /**
      * @return array
      */
-    abstract public function fields(): array;
+    abstract protected function fields(): array;
 }

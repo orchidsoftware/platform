@@ -17,7 +17,7 @@ abstract class Collapse extends Base
     /**
      * @var string
      */
-    public $template = 'platform::layouts.collapse';
+    protected $template = 'platform::layouts.collapse';
 
     /**
      * @var Repository
@@ -77,5 +77,5 @@ abstract class Collapse extends Base
     /**
      * @return array
      */
-    abstract public function fields(): array;
+    abstract protected function fields(): array;
 }

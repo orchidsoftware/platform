@@ -43,14 +43,14 @@ class Password extends Field
     /**
      * @var string
      */
-    public $view = 'platform::fields.password';
+    protected $view = 'platform::fields.password';
 
     /**
      * Default attributes value.
      *
      * @var array
      */
-    public $attributes = [
+    protected $attributes = [
         'type'  => 'password',
         'class' => 'form-control',
     ];
@@ -60,7 +60,7 @@ class Password extends Field
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'accept',
         'accesskey',
         'autocomplete',

@@ -50,14 +50,14 @@ class Field implements FieldContract
      *
      * @var string
      */
-    public $view;
+    protected $view;
 
     /**
      * All attributes that are available to the field.
      *
      * @var array
      */
-    public $attributes = [
+    protected $attributes = [
         'value' => null,
     ];
 
@@ -66,7 +66,7 @@ class Field implements FieldContract
      *
      * @var array
      */
-    public $required = [
+    protected $required = [
         'name',
     ];
 
@@ -76,7 +76,7 @@ class Field implements FieldContract
      *
      * @var string|null
      */
-    public $typeForm;
+    protected $typeForm;
 
     /**
      * A set of attributes for the assignment
@@ -84,7 +84,7 @@ class Field implements FieldContract
      *
      * @var array
      */
-    public $translations = [
+    protected $translations = [
         'title',
         'placeholder',
         'help',
@@ -96,7 +96,7 @@ class Field implements FieldContract
      *
      * @var array
      */
-    public $universalAttributes = [
+    protected $universalAttributes = [
         'accesskey',
         'class',
         'contenteditable',
@@ -118,7 +118,7 @@ class Field implements FieldContract
      *
      * @var array
      */
-    public $inlineAttributes = [];
+    protected $inlineAttributes = [];
 
     /**
      * @param string $name
@@ -146,9 +146,7 @@ class Field implements FieldContract
      */
     public function value($value): self
     {
-        $this->attributes['value'] = $value;
-
-        return $this;
+        return $this->set('value', $value);
     }
 
     /**
@@ -169,7 +167,7 @@ class Field implements FieldContract
      *
      * @return Field
      */
-    public function checkRequired()
+    protected function checkRequired()
     {
         foreach ($this->required as $attribute) {
             throw_if(! collect($this->attributes)->offsetExists($attribute),
@@ -241,7 +239,7 @@ class Field implements FieldContract
     /**
      * @return Collection
      */
-    public function getAllowAttributes(): Collection
+    protected function getAllowAttributes(): Collection
     {
         $allow = array_merge($this->universalAttributes, $this->inlineAttributes);
 
@@ -251,11 +249,11 @@ class Field implements FieldContract
     /**
      * @return string
      */
-    public function getId(): string
+    protected function getId(): string
     {
         $lang = $this->get('lang');
         $slug = $this->get('name');
-        $hash = sha1(json_encode($this));
+        $hash = sha1(json_encode($this->getAttributes()));
 
         return Str::slug("field-$lang-$slug-$hash");
     }
@@ -278,7 +276,7 @@ class Field implements FieldContract
     /**
      * @return string
      */
-    public function getSlug(): string
+    protected function getSlug(): string
     {
         return Str::slug($this->get('name'));
     }
@@ -286,7 +284,7 @@ class Field implements FieldContract
     /**
      * @return mixed
      */
-    public function getOldValue()
+    protected function getOldValue()
     {
         return old($this->getOldName());
     }
@@ -294,7 +292,7 @@ class Field implements FieldContract
     /**
      * @return string
      */
-    public function getOldName(): string
+    protected function getOldName(): string
     {
         $name = str_ireplace(['][', '['], '.', $this->get('name'));
         $name = str_ireplace([']'], '', $name);
@@ -333,7 +331,7 @@ class Field implements FieldContract
     /**
      * @return $this
      */
-    public function modifyName()
+    protected function modifyName()
     {
         $name = $this->get('name');
         $prefix = $this->get('prefix');
@@ -361,7 +359,7 @@ class Field implements FieldContract
     /**
      * @return $this
      */
-    public function modifyValue()
+    protected function modifyValue()
     {
         $value = $this->getOldValue() ?: $this->get('value');
 
