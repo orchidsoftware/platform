@@ -8,107 +8,106 @@
         </div>
         <div class="row">
             <div class="col-md-4 no-padder admin-element-item">
-
                 <div class="admin-element w-full">
                     <h3 class="font-thin h3 text-black">
-                        <i class="icon-screen-desktop"></i> Screens
+                        <i class="icon-screen-desktop"></i><a href="https://orchid.software/en/docs/screens/">Screens</a>
                     </h3>
                     <div class="line line-dashed b-b line-lg"></div>
                     <div class="list-group no-bg no-borders pull-in auto">
                         <div class="list-group-item padder-v admin-element-item">
-                            <small class="text-muted">Something short and leading about the collection below—its
-                                                      contents, the creator, etc.
-                                                      Make it short and sweet, but not too short so folks don't
-                                                      simply skip over it entirely.
+                            <a href="https://orchid.software/en/docs/screens/">
+                            <small class="text-muted">The main element of the platform are the screens described
+                                by the layout hierarchy, according to which
+                                Each element has properties that affect its appearance and behavior.<br/>
                             </small>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="admin-element w-full">
-                    <h3 class="font-thin h3 text-black">
-                        <i class="icon-settings"></i> Settings
-                    </h3>
-                    <div class="line line-dashed b-b line-lg"></div>
-                    <div class="list-group no-bg no-borders pull-in auto">
-                        <div class="list-group-item padder-v admin-element-item">
-                            <small class="text-muted">Something short and leading about the collection below—its
-                                                      contents, the creator, etc.
-                                                      Make it short and sweet, but not too short so folks don't
-                                                      simply skip over it entirely.
-                            </small>
-                        </div>
-                    </div>
-                </div>
-
             </div>
             <div class="col-md-4 no-padder admin-element-item">
-
                 <div class="admin-element w-full">
                     <h3 class="font-thin h3 text-black">
-                        <i class="icon-layers"></i> Layouts
+                        <i class="icon-layers"></i> <a href="https://orchid.software/en/docs/layouts/">Layouts</a>
                     </h3>
                     <div class="line line-dashed b-b line-lg"></div>
                     <div class="list-group no-bg no-borders pull-in auto">
                         <div class="list-group-item padder-v admin-element-item">
-                            <small class="text-muted">Something short and leading about the collection below—its
-                                                      contents, the creator, etc.
-                                                      Make it short and sweet, but not too short so folks don't
-                                                      simply skip over it entirely.
-                            </small>
+                            <a href="https://orchid.software/en/docs/layouts/">
+                                <small class="text-muted">One of the elements of the presentation are “Layouts” that can be displayed in different variations, if you try to explain briefly, it turns out that this is the view on steroids.
+                                </small>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="admin-element w-full">
-                    <h3 class="font-thin h3 text-black">
-                        <i class="icon-fingerprint"></i> Access
-                    </h3>
-                    <div class="line line-dashed b-b line-lg"></div>
-                    <div class="list-group no-bg no-borders pull-in auto">
-                        <div class="list-group-item padder-v admin-element-item">
-                            <small class="text-muted">Something short and leading about the collection below—its
-                                                      contents, the creator, etc.
-                                                      Make it short and sweet, but not too short so folks don't
-                                                      simply skip over it entirely.
-                            </small>
-                        </div>
-                    </div>
-                </div>
-
             </div>
             <div class="col-md-4 no-padder admin-element-item">
-
                 <div class="admin-element w-full">
                     <h3 class="font-thin h3 text-black">
-                        <i class="icon-list"></i> Fields
+                        <i class="icon-list"></i> <a href="https://orchid.software/en/docs/field/">Fields</a>
                     </h3>
                     <div class="line line-dashed b-b line-lg"></div>
                     <div class="list-group no-bg no-borders pull-in auto">
                         <div class="list-group-item padder-v admin-element-item">
-                            <small class="text-muted">Something short and leading about the collection below—its
-                                                      contents, the creator, etc.
-                                                      Make it short and sweet, but not too short so folks don't
-                                                      simply skip over it entirely.
-                            </small>
+                            <a href="https://orchid.software/en/docs/field/">
+                                <small class="text-muted">Fields are used to generate the output form template and edit. Allows you to create different parts of the interface and provide user interaction.
+                                </small>
+                            </a>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 no-padder admin-element-item">
                 <div class="admin-element w-full">
                     <h3 class="font-thin h3 text-black">
-                        <i class="icon-filter"></i> Filters
+                        <i class="icon-bell"></i> <a href="https://orchid.software/en/docs/alert/">Notifications</a>
                     </h3>
                     <div class="line line-dashed b-b line-lg"></div>
                     <div class="list-group no-bg no-borders pull-in auto">
                         <div class="list-group-item padder-v admin-element-item">
-                            <small class="text-muted">Something short and leading about the collection below—its
-                                                      contents, the creator, etc.
-                                                      Make it short and sweet, but not too short so folks don't
-                                                      simply skip over it entirely.
+                            <a href="https://orchid.software/en/docs/alert/">
+                            <small class="text-muted">A simple way to notify the user about the status of your application. For example, they can inform the user about the completion of a lengthy process or the arrival of a new message.
                             </small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 no-padder admin-element-item">
+                <div class="admin-element w-full">
+                    <h3 class="font-thin h3 text-black">
+                        <i class="icon-fingerprint"></i> <a href="https://orchid.software/en/docs/access/">Access</a>
+                    </h3>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="list-group no-bg no-borders pull-in auto">
+                        <div class="list-group-item padder-v admin-element-item">
+                            <a href="https://orchid.software/en/docs/access/">
+                            <small class="text-muted">
+                                In ORCHID permissions can be added for both users and roles. A role is associated with a set of permissions, not with a single user.
+                            </small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 no-padder admin-element-item">
+                <div class="admin-element w-full">
+                    <h3 class="font-thin h3 text-black">
+                        <i class="icon-filter"></i> <a href="https://orchid.software/en/docs/access/">Filters</a>
+                    </h3>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="list-group no-bg no-borders pull-in auto">
+                        <div class="list-group-item padder-v admin-element-item">
+                            <a href="https://orchid.software/en/docs/access/">
+                            <small class="text-muted">Filters are used to simplify the search for records using a typical filter. For example, if you want to filter the product catalog by attributes, brands, etc.
+                            </small>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
