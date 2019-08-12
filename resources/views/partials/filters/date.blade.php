@@ -5,11 +5,11 @@
     </button>
     <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow" x-placement="bottom-end">
         <div class="wrapper-sm">
-    
-            <input class="d-none" name="filter[{{$th->column}}]"
+
+            <input class="d-none" name="filter[{{$column}}]"
                    data-controller="fields--datetime"
                    data-fields--datetime-inline="true"
-                   value="{{get_filter_string($th->column)}}"
+                   value="{{get_filter_string($column)}}"
                    form="filters"
                    placeholder="{{ __('Filter') }}"
             >
