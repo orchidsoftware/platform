@@ -101,7 +101,7 @@
                     <div class="list-group no-bg no-borders pull-in auto">
                         <div class="list-group-item padder-v admin-element-item">
                             <a href="https://orchid.software/en/docs/access/">
-                            <small class="text-muted">Filters are used to simplify the search for records using a typical filter. For example, if you want to filter the product catalog by attributes, brands, etc.
+                            <small class="text-muted">Filters are used to simplify the search for records using a typical filter. For example, if you want to filter the product catalog by attributes, brands and etc.
                             </small>
                             </a>
                         </div>
