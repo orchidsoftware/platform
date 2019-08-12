@@ -122,7 +122,6 @@ abstract class Base
             'templateAsyncMethod' => $this->asyncMethod,
         ]);
 
-
         return view($this->async ? 'platform::layouts.blank' : $this->template, $variables);
     }
 
