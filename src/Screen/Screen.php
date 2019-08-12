@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Contracts\Routing\UrlRoutable;
 use Throwable;
 use ReflectionClass;
 use ReflectionException;
@@ -17,6 +16,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\View\Factory;
 use Orchid\Screen\Contracts\ActionContract;
+use Illuminate\Contracts\Routing\UrlRoutable;
 use Orchid\Platform\Http\Controllers\Controller;
 
 /**
