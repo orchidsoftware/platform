@@ -34,7 +34,7 @@
                     <div class="list-group no-bg no-borders pull-in auto">
                         <div class="list-group-item padder-v admin-element-item">
                             <a href="https://orchid.software/en/docs/layouts/">
-                                <small class="text-muted">One of the elements of the presentation are “Layouts” (layouts) that can be displayed in different variations, if you try to explain briefly, it turns out that this is the view on steroids.
+                                <small class="text-muted">One of the elements of the presentation are “Layouts” that can be displayed in different variations, if you try to explain briefly, it turns out that this is the view on steroids.
                                 </small>
                             </a>
                         </div>
@@ -85,7 +85,7 @@
                         <div class="list-group-item padder-v admin-element-item">
                             <a href="https://orchid.software/en/docs/access/">
                             <small class="text-muted">
-                                Usually, users are not assigned permissions in the ORCHID application (although this is available), but rather roles. The role associated with the permission set, not with the individual user.
+                                In ORCHID permissions can be added for both users and roles. A role is associated with a set of permissions, not with a single user.
                             </small>
                             </a>
                         </div>
