@@ -37,21 +37,21 @@ class ModalToggle extends Field implements ActionContract
     /**
      * @var string
      */
-    public $view = 'platform::actions.modal';
+    protected $view = 'platform::actions.modal';
 
     /**
      * Override the form view.
      *
      * @var string
      */
-    public $typeForm = 'platform::partials.fields.clear';
+    protected $typeForm = 'platform::partials.fields.clear';
 
     /**
      * Default attributes value.
      *
      * @var array
      */
-    public $attributes = [
+    protected $attributes = [
         'class'       => 'btn btn-default dropdown-item',
         'modal'       => null,
         'method'      => null,
@@ -68,7 +68,7 @@ class ModalToggle extends Field implements ActionContract
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'autofocus',
         'disabled',
         'tabindex',

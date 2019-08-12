@@ -58,8 +58,6 @@ class WrapperTest extends TestUnitCase
         $this->assertIsArray($variable1);
 
         $this->assertInstanceOf(View::class, $variable2);
-        $this->assertEquals(Layout::rows([])->template, $variable2->name());
-
         $this->assertInstanceOf(View::class, reset($variable1));
     }
 }

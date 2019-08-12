@@ -60,14 +60,14 @@ class Upload extends Field
     /**
      * @var string
      */
-    public $view = 'platform::fields.upload';
+    protected $view = 'platform::fields.upload';
 
     /**
      * All attributes that are available to the field.
      *
      * @var array
      */
-    public $attributes = [
+    protected $attributes = [
         'value'           => null,
         'multiple'        => true,
         'parallelUploads' => 10,
@@ -86,7 +86,7 @@ class Upload extends Field
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'accept',
         'accesskey',
         'autocomplete',

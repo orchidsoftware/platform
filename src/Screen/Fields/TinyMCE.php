@@ -46,14 +46,14 @@ class TinyMCE extends Field
     /**
      * @var string
      */
-    public $view = 'platform::fields.tinymce';
+    protected $view = 'platform::fields.tinymce';
 
     /**
      * All attributes that are available to the field.
      *
      * @var array
      */
-    public $attributes = [
+    protected $attributes = [
         'value'  => null,
         'height' => '300px',
     ];
@@ -63,7 +63,7 @@ class TinyMCE extends Field
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'accept',
         'accesskey',
         'autocomplete',

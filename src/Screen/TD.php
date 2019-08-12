@@ -35,52 +35,52 @@ class TD
     /**
      * @var string
      */
-    public $name;
+    protected $name;
 
     /**
      * @var string
      */
-    public $title;
+    protected $title;
 
     /**
      * @var string
      */
-    public $width;
+    protected $width;
 
     /**
      * @var string
      */
-    public $filter;
+    protected $filter;
 
     /**
      * @var bool
      */
-    public $sort;
+    protected $sort;
 
     /**
      * @var Closure
      */
-    public $render;
+    protected $render;
 
     /**
      * @var string
      */
-    public $column;
+    protected $column;
 
     /**
      * @var string
      */
-    public $asyncRoute;
+    protected $asyncRoute;
 
     /**
      * @var string
      */
-    public $align = 'left';
+    protected $align = 'left';
 
     /**
      * @var bool
      */
-    public $locale = false;
+    protected $locale = false;
 
     /**
      * TD constructor.

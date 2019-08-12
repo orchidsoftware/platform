@@ -17,7 +17,7 @@ class RoleListLayout extends Table
     /**
      * @return array
      */
-    public function fields() : array
+    public function columns() : array
     {
         return [
             TD::set('id', 'ID')

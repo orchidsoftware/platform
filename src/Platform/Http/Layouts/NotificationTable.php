@@ -19,7 +19,7 @@ class NotificationTable extends Table
     /**
      * @return TD[]
      */
-    public function fields(): array
+    public function columns(): array
     {
         return [
             TD::set('Message', __('Message'))

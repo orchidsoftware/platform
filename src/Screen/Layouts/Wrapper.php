@@ -13,11 +13,6 @@ use Orchid\Screen\Repository;
 abstract class Wrapper extends Base
 {
     /**
-     * @var string
-     */
-    public $template;
-
-    /**
      * Wrapper constructor.
      *
      * @param string $template

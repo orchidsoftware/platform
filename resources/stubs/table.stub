@@ -12,12 +12,12 @@ class DummyClass extends Table
      *
      * @var string
      */
-    public $target = '';
+    protected $target = '';
 
     /**
      * @return TD[]
      */
-    public function fields(): array
+    protected function columns(): array
     {
         return [];
     }

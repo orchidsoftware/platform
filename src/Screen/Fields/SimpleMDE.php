@@ -45,14 +45,14 @@ class SimpleMDE extends Field
     /**
      * @var string
      */
-    public $view = 'platform::fields.simplemde';
+    protected $view = 'platform::fields.simplemde';
 
     /**
      * Attributes available for a particular tag.
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'accept',
         'accesskey',
         'autocomplete',

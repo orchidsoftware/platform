@@ -31,14 +31,14 @@ class TextArea extends Field
     /**
      * @var string
      */
-    public $view = 'platform::fields.textarea';
+    protected $view = 'platform::fields.textarea';
 
     /**
      * Default attributes value.
      *
      * @var array
      */
-    public $attributes = [
+    protected $attributes = [
         'class' => 'form-control no-resize',
         'value' => null,
     ];
@@ -48,7 +48,7 @@ class TextArea extends Field
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'accesskey',
         'autofocus',
         'cols',

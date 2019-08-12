@@ -20,7 +20,7 @@ class Modal extends Base
     /**
      * @var string
      */
-    public $template = 'platform::layouts.modal';
+    protected $template = 'platform::layouts.modal';
 
     /**
      * Modal constructor.

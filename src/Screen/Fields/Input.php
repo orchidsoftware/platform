@@ -46,14 +46,14 @@ class Input extends Field
     /**
      * @var string
      */
-    public $view = 'platform::fields.input';
+    protected $view = 'platform::fields.input';
 
     /**
      * Default attributes value.
      *
      * @var array
      */
-    public $attributes = [
+    protected $attributes = [
         'class' => 'form-control',
     ];
 
@@ -62,7 +62,7 @@ class Input extends Field
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'accept',
         'accesskey',
         'autocomplete',

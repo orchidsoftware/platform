@@ -36,21 +36,21 @@ class DropDown extends Field implements ActionContract
     /**
      * @var string
      */
-    public $view = 'platform::actions.dropdown';
+    protected $view = 'platform::actions.dropdown';
 
     /**
      * Override the form view.
      *
      * @var string
      */
-    public $typeForm = 'platform::partials.fields.clear';
+    protected $typeForm = 'platform::partials.fields.clear';
 
     /**
      * Default attributes value.
      *
      * @var array
      */
-    public $attributes = [
+    protected $attributes = [
         'class' => 'btn btn-link dropdown-item',
         'icon'  => null,
         'list'  => [],
@@ -61,7 +61,7 @@ class DropDown extends Field implements ActionContract
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'autofocus',
         'disabled',
         'tabindex',

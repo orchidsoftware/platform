@@ -30,7 +30,7 @@ class RowExample extends Rows
      *
      * @return array
      */
-    public function fields(): array
+    protected function fields(): array
     {
         return [
 
