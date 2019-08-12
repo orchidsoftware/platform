@@ -94,7 +94,6 @@ class Updates
     public function getStatus(): bool
     {
         foreach ($this->requestVersion() as $key => $version) {
-
             if (Str::contains($key, 'dev')) {
                 continue;
             }
