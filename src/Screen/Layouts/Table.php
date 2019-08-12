@@ -37,8 +37,8 @@ abstract class Table extends Base
             return;
         }
 
-        $columns = collect($this->columns())->filter(function (TD $item) {
-            return $item->isSee();
+        $columns = collect($this->columns())->filter(function (TD $column) {
+            return $column->isSee();
         });
 
         return view($this->template, [
