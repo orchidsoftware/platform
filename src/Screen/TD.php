@@ -278,7 +278,7 @@ class TD
     }
 
     /**
-     * Builds a column heading
+     * Builds a column heading.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -296,7 +296,7 @@ class TD
     }
 
     /**
-     * Builds content for the column
+     * Builds content for the column.
      *
      * @param Repository|AsSource $repository
      *
