@@ -429,7 +429,7 @@ class Field implements FieldContract
     /**
      * @param Closure $closure
      *
-     * @return mixed|self
+     * @return self
      */
     public function addBeforeRender(Closure $closure): self
     {

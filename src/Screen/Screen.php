@@ -53,7 +53,7 @@ abstract class Screen extends Controller
     /**
      * @var Repository
      */
-    private $post;
+    private $source;
 
     /**
      * @var array
@@ -95,7 +95,7 @@ abstract class Screen extends Controller
             $this->layout(),
         ]);
 
-        return $layout->build($this->post);
+        return $layout->build($this->source);
     }
 
     /**
@@ -112,7 +112,7 @@ abstract class Screen extends Controller
 
         $this->reflectionParams($method);
         $query = call_user_func_array([$this, $method], $this->arguments);
-        $post = new Repository($query);
+        $source = new Repository($query);
 
         foreach ($this->layout() as $layout) {
 
@@ -120,7 +120,7 @@ abstract class Screen extends Controller
             $layout = is_object($layout) ? $layout : new $layout();
 
             if ($layout->getSlug() === $slugLayouts) {
-                return $layout->currentAsync()->build($post);
+                return $layout->currentAsync()->build($source);
             }
         }
 
@@ -136,7 +136,7 @@ abstract class Screen extends Controller
     {
         $this->reflectionParams('query');
         $query = call_user_func_array([$this, 'query'], $this->arguments);
-        $this->post = new Repository($query);
+        $this->source = new Repository($query);
 
         return view('platform::layouts.base', [
             'screen'    => $this,
@@ -252,7 +252,7 @@ abstract class Screen extends Controller
     {
         return collect($this->commandBar())
             ->map(function (ActionContract $command) {
-                return $command->build($this->post);
+                return $command->build($this->source);
             })->all();
     }
 }
