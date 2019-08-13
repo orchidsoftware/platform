@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Attachment\Models;
 
 use Exception;
+use Illuminate\Contracts\Filesystem\Cloud;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Mimey\MimeTypes;
 use Orchid\Filters\Filterable;
 use Orchid\Platform\Dashboard;
@@ -94,13 +96,13 @@ class Attachment extends Model
      */
     public function url($default = null): ?string
     {
-        $disk = $this->getAttribute('disk');
+        /** @var Filesystem|Cloud $disk */
+        $disk = Storage::disk($this->getAttribute('disk'));
+        $path = $this->physicalPath();
 
-        if (Storage::disk($disk)->exists($this->physicalPath())) {
-            return Storage::disk($disk)->url($this->physicalPath());
-        }
-
-        return $default;
+        return $disk->exists($path)
+            ? $disk->url($path)
+            : $default;
     }
 
     /**
@@ -153,7 +155,7 @@ class Attachment extends Model
     public function delete()
     {
         if ($this->exists) {
-            if (self::where('hash', $this->hash)->where('disk', $this->disk)->count() <= 1) {
+            if (static::where('hash', $this->hash)->where('disk', $this->disk)->count() <= 1) {
                 //Physical removal of all copies of a file.
                 Storage::disk($this->disk)->delete($this->physicalPath());
             }

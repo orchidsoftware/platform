@@ -156,7 +156,7 @@ class ModalToggle extends Field implements ActionContract
      * @param string|array $options
      * @param string|null  $modalTitle
      *
-     * @return Button
+     * @return ModalToggle
      */
     public function loadModalAsync(string $modal, string $method, $options = [], string $modalTitle = null): self
     {

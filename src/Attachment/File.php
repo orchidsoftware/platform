@@ -80,10 +80,10 @@ class File
         $this->file = $file;
         $this->mimes = new MimeTypes();
         $this->fullPath = storage_path("app/public/$this->date/");
-        $this->loadHashFile();
         $this->disk = $disk;
         $this->group = $group;
         $this->storage = Storage::disk($disk);
+        $this->loadHashFile();
     }
 
     /**

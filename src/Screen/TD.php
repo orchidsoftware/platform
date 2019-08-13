@@ -58,7 +58,7 @@ class TD
     protected $sort;
 
     /**
-     * @var Closure
+     * @var Closure|null
      */
     protected $render;
 
@@ -163,7 +163,7 @@ class TD
      */
     protected function handler($source)
     {
-        return ($this->render)($source);
+        return with($source, $this->render);
     }
 
     /**
