@@ -73,6 +73,8 @@ class File
      */
     public function __construct(UploadedFile $file, string $disk = 'public', string $group = null)
     {
+        abort_if($file->getSize() === false, 415, 'File failed to load.');
+
         $this->time = time();
         $this->date = date('Y/m/d', $this->time);
         $this->file = $file;
