@@ -28,6 +28,7 @@ class CreateOrchidUsersTable extends Migration
         // Fallback for sqlite
         if ($driver === 'sqlite') {
             Schema::dropIfExists('users');
+
             return;
         }
 
