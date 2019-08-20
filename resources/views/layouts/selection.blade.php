@@ -6,7 +6,7 @@
                     aria-haspopup="true"
                     aria-expanded="false">
                 <i class="icon-filter"></i>
-                {{__('Add condition')}}
+                {{__('Filters')}}
             </button>
 
             <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow"
