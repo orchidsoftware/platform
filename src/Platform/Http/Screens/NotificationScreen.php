@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Screens;
 
 use Orchid\Screen\Action;
-use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
+use Orchid\Screen\Actions\Button;
 use Orchid\Support\Facades\Alert;
 use Illuminate\Contracts\Pagination\Paginator;
 use Orchid\Platform\Http\Layouts\NotificationTable;
