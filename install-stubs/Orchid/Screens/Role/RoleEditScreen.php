@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Orchid\Screens\Role;
 
 use Orchid\Screen\Action;
-use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
 use Orchid\Platform\Models\Role;
+use Orchid\Screen\Actions\Button;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
 use App\Orchid\Layouts\Role\RoleEditLayout;

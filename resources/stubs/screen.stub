@@ -2,7 +2,6 @@
 
 namespace DummyNamespace;
 
-use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 
 class DummyClass extends Screen

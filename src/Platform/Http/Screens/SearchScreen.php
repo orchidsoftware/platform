@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens;
 
-use Orchid\Screen\Actions\Button;
 use Illuminate\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
+use Orchid\Screen\Actions\Button;
 use Illuminate\Support\Collection;
 use Orchid\Support\Facades\Dashboard;
 use Illuminate\Contracts\View\Factory;

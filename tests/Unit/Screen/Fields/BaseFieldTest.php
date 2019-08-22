@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Screen\Fields;
 
 use Orchid\Screen\Field;
-use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
+use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
 
 /**
  * Class BaseFieldTest.

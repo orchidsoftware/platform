@@ -67,7 +67,7 @@ class ModalToggleTest extends TestFieldsUnitCase
             ->modal('KeyForModal')
             ->method('method')
             ->parameters([
-                'name' => 'Alexandr'
+                'name' => 'Alexandr',
             ]);
 
         $view = self::renderField($modalToggle);
