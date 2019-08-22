@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens;
 
-use Orchid\Screen\Link;
+use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
@@ -60,17 +60,17 @@ class AnnouncementScreen extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name(__('Create'))
+            Button::make(__('Create'))
                 ->icon('icon-check')
                 ->method('saveOrUpdate')
                 ->canSee(! $this->active),
 
-            Link::name(__('Refresh'))
+            Button::make(__('Refresh'))
                 ->icon('icon-check')
                 ->method('saveOrUpdate')
                 ->canSee($this->active),
 
-            Link::name(__('Delete'))
+            Button::make(__('Delete'))
                 ->icon('icon-trash')
                 ->method('disabled')
                 ->canSee($this->active),

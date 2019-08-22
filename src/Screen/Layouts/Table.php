@@ -19,6 +19,8 @@ abstract class Table extends Base
     protected $template = 'platform::layouts.table';
 
     /**
+     * Data source.
+     *
      * The name of the key to fetch it from the query.
      * The results of which will be elements of the table.
      *

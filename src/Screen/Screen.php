@@ -73,7 +73,7 @@ abstract class Screen extends Controller
     /**
      * Button commands.
      *
-     * @return Link[]
+     * @return Action[]
      */
     abstract public function commandBar(): array;
 
