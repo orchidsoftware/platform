@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Screen\Commands;
+namespace Orchid\Screen\Actions;
 
-use Orchid\Screen\Field;
-use Orchid\Screen\Repository;
-use Orchid\Screen\Contracts\ActionContract;
+use Orchid\Screen\Action;
+use Illuminate\Support\Arr;
 
 /**
  * Class ModalToggle.
@@ -18,33 +17,12 @@ use Orchid\Screen\Contracts\ActionContract;
  * @method self method(string $methodName = null)
  * @method self parameters(array|object $name)
  */
-class ModalToggle extends Field implements ActionContract
+class ModalToggle extends Action
 {
-    /**
-     * Visual style.
-     */
-    public const DEFAULT = 'btn-default';
-    public const SUCCESS = 'btn-success';
-    public const WARNING = 'btn-warning';
-    public const DANGER = 'btn-danger';
-    public const INFO = 'btn-info';
-    public const PRIMARY = 'btn-primary';
-    public const SECONDARY = 'btn-secondary';
-    public const LIGHT = 'btn-light';
-    public const DARK = 'btn-dark';
-    public const LINK = 'btn-link';
-
     /**
      * @var string
      */
     protected $view = 'platform::actions.modal';
-
-    /**
-     * Override the form view.
-     *
-     * @var string
-     */
-    protected $typeForm = 'platform::partials.fields.clear';
 
     /**
      * Default attributes value.
@@ -64,27 +42,15 @@ class ModalToggle extends Field implements ActionContract
     ];
 
     /**
-     * Attributes available for a particular tag.
-     *
-     * @var array
-     */
-    protected $inlineAttributes = [
-        'autofocus',
-        'disabled',
-        'tabindex',
-        'href',
-    ];
-
-    /**
      * Create instance of the button.
      *
-     * @param string $title
+     * @param string $name
      *
      * @return self
      */
-    public static function make(string $title): self
+    public static function make(string $name): self
     {
-        return (new static())->name($title)
+        return (new static())->name($name)
             ->addBeforeRender(function () {
                 $url = url()->current();
                 $query = http_build_query($this->get('parameters'));
@@ -92,59 +58,6 @@ class ModalToggle extends Field implements ActionContract
                 $action = "{$url}/{$this->get('method')}?{$query}";
                 $this->set('action', $action);
             });
-    }
-
-    /**
-     * Set the link.
-     *
-     * @param string $link
-     *
-     * @return $this
-     */
-    public function link(string $link): self
-    {
-        $this->set('href', $link);
-
-        return $this;
-    }
-
-    /**
-     * Align button to the right.
-     *
-     * @return $this
-     */
-    public function right(): self
-    {
-        $class = $this->get('class').' pull-right';
-
-        $this->set('class', $class);
-
-        return $this;
-    }
-
-    /**
-     * @param string $visual
-     *
-     * @return $this
-     */
-    public function type(string $visual): self
-    {
-        $class = str_replace([
-            self::DEFAULT,
-            self::SUCCESS,
-            self::WARNING,
-            self::DANGER,
-            self::INFO,
-            self::PRIMARY,
-            self::SECONDARY,
-            self::LIGHT,
-            self::DARK,
-            self::LINK,
-        ], '', (string) $this->get('class'));
-
-        $this->set('class', $class.' '.$visual);
-
-        return $this;
     }
 
     /**
@@ -167,31 +80,5 @@ class ModalToggle extends Field implements ActionContract
         $this->set('modalTitle', $modalTitle);
 
         return $this;
-    }
-
-    /**
-     * Set the button as block.
-     *
-     * @return $this
-     */
-    public function block(): self
-    {
-        $class = $this->get('class').' pull-block';
-
-        $this->set('class', $class);
-
-        return $this;
-    }
-
-    /**
-     * @param Repository $repository
-     *
-     * @throws \Throwable
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
-     */
-    public function build(Repository $repository)
-    {
-        return $this->render();
     }
 }

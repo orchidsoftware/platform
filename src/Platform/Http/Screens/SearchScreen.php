@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens;
 
-use Orchid\Screen\Link;
+use Orchid\Screen\Actions\Button;
 use Illuminate\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
@@ -82,7 +82,7 @@ class SearchScreen extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name(__('Apply'))
+            Button::name(__('Apply'))
                 ->icon('icon-filter')
                 ->method('changeSearchType'),
         ];

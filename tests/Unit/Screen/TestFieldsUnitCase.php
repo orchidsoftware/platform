@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Tests\Unit\Fields;
+namespace Orchid\Tests\Unit\Screen;
 
 use Orchid\Screen\Field;
 use Orchid\Tests\TestUnitCase;

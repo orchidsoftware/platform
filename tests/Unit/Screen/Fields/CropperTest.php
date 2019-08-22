@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Tests\Unit\Fields;
+namespace Orchid\Tests\Unit\Screen\Fields;
 
 use Orchid\Attachment\File;
 use Illuminate\Http\UploadedFile;
 use Orchid\Screen\Fields\Cropper;
+use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 /**
  * Class CropperTest.
@@ -16,7 +17,7 @@ class CropperTest extends TestFieldsUnitCase
     /**
      * @test
      */
-    public function testInstanse()
+    public function testInstance()
     {
         $picture = Cropper::make('picture')
                 ->width(1920)

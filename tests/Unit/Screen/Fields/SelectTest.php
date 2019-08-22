@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Tests\Unit\Fields;
+namespace Orchid\Tests\Unit\Screen\Fields;
 
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\TextArea;
+use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 /**
  * Class SelectTest.
@@ -28,7 +29,7 @@ class SelectTest extends TestFieldsUnitCase
     /**
      * @test
      */
-    public function testInstanse()
+    public function testInstance()
     {
         $select = Select::make('choice')
             ->title('Title About')

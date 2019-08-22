@@ -2,7 +2,10 @@
 
 namespace App\Orchid\Screens;
 
-use Orchid\Screen\Link;
+use Orchid\Screen\Actions\DropDown;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Actions\ModalToggle;
+use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Repository;
@@ -92,42 +95,42 @@ class ExampleScreen extends Screen
     /**
      * Button commands.
      *
-     * @return Link[]
+     * @return Action[]
      */
     public function commandBar(): array
     {
         return [
 
-            Link::name('Example Button')
+            Button::make('Example Button')
                 ->method('example')
                 ->icon('icon-bag'),
 
-            Link::name('Example Modals')
+            ModalToggle::make('Example Modals')
                 ->modal('exampleModal')
                 ->method('example')
                 ->icon('icon-full-screen'),
 
-            Link::name('Example Group Button')
+            DropDown::make('Example Group Button')
                 ->icon('icon-folder-alt')
-                ->group([
+                ->list([
 
-                    Link::name('Example Button')
+                    Button::make('Example Button')
                         ->method('example')
                         ->icon('icon-bag'),
 
-                    Link::name('Example Button')
+                    Button::make('Example Button')
                         ->method('example')
                         ->icon('icon-bag'),
 
-                    Link::name('Example Button')
+                    Button::make('Example Button')
                         ->method('example')
                         ->icon('icon-bag'),
 
-                    Link::name('Example Button')
+                    Button::make('Example Button')
                         ->method('example')
                         ->icon('icon-bag'),
 
-                    Link::name('Example Button')
+                    Button::make('Example Button')
                         ->method('example')
                         ->icon('icon-bag'),
                 ]),

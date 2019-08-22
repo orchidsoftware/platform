@@ -124,7 +124,7 @@ class Field implements FieldContract
      * @param string $name
      * @param array  $arguments
      *
-     * @return self
+     * @return static
      */
     public function __call(string  $name, array $arguments): self
     {
@@ -142,7 +142,7 @@ class Field implements FieldContract
     /**
      * @param mixed $value
      *
-     * @return self
+     * @return static
      */
     public function value($value): self
     {
@@ -153,7 +153,7 @@ class Field implements FieldContract
      * @param string $key
      * @param mixed  $value
      *
-     * @return self
+     * @return static
      */
     public function set(string $key, $value = true) : self
     {
@@ -165,7 +165,7 @@ class Field implements FieldContract
     /**
      * @throws Throwable
      *
-     * @return Field
+     * @return static
      */
     protected function checkRequired()
     {
@@ -215,7 +215,7 @@ class Field implements FieldContract
     /**
      * Localization of fields.
      *
-     * @return $this
+     * @return static
      */
     private function translate(): self
     {
@@ -264,7 +264,7 @@ class Field implements FieldContract
      * @param string     $key
      * @param mixed|null $value
      *
-     * @return $this|mixed|null
+     * @return static|mixed|null
      */
     public function get($key, $value = null)
     {
@@ -331,7 +331,7 @@ class Field implements FieldContract
     }
 
     /**
-     * @return $this
+     * @return static
      */
     protected function modifyName()
     {
@@ -359,7 +359,7 @@ class Field implements FieldContract
     }
 
     /**
-     * @return $this
+     * @return static
      */
     protected function modifyValue()
     {
@@ -393,7 +393,7 @@ class Field implements FieldContract
     /**
      * Use vertical layout for the field.
      *
-     * @return $this
+     * @return static
      */
     public function vertical(): self
     {
@@ -405,7 +405,7 @@ class Field implements FieldContract
     /**
      * Use horizontal layout for the field.
      *
-     * @return $this
+     * @return static
      */
     public function horizontal(): self
     {
@@ -417,7 +417,7 @@ class Field implements FieldContract
     /**
      * Create separate line after the field.
      *
-     * @return $this
+     * @return static
      */
     public function hr(): self
     {
@@ -429,7 +429,7 @@ class Field implements FieldContract
     /**
      * @param Closure $closure
      *
-     * @return self
+     * @return static
      */
     public function addBeforeRender(Closure $closure): self
     {
