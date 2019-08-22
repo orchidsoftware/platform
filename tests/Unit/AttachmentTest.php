@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
-use Orchid\Attachment\Attachable;
 use Orchid\Attachment\File;
 use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Models\User;
 use Illuminate\Http\UploadedFile;
-use Orchid\Attachment\Models\Attachment;
+use Orchid\Attachment\Attachable;
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Attachment\Models\Attachment;
 
 /**
  * Class AttachmentTest.
