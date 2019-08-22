@@ -18,7 +18,6 @@ use Orchid\Screen\Contracts\ActionContract;
  */
 class DropDown extends Action
 {
-
     /**
      * @var string
      */

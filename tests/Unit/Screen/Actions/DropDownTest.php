@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Fields;
 
-use Orchid\Screen\Actions\DropDown;
-use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Repository;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Actions\DropDown;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 /**
@@ -50,13 +50,11 @@ class DropDownTest extends TestFieldsUnitCase
                 Link::make('Item 2')->href('link-2'),
             ])
             ->build(new Repository())
-            ->render()
-        ;
+            ->render();
 
         $this->assertStringContainsString('Item 1', $view);
         $this->assertStringContainsString('Item 2', $view);
         $this->assertStringContainsString('link-1', $view);
         $this->assertStringContainsString('link-2', $view);
     }
-
 }

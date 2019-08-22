@@ -35,7 +35,7 @@ class ButtonTest extends TestFieldsUnitCase
         $button = Button::make('About')
             ->method('test')
             ->parameters([
-                'name' => 'Alexandr'
+                'name' => 'Alexandr',
             ]);
 
         $view = self::renderField($button);
