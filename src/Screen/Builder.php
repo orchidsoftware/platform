@@ -6,7 +6,6 @@ namespace Orchid\Screen;
 
 use Closure;
 use Throwable;
-use Illuminate\Support\ViewErrorBag;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\Contracts\FieldContract;
 
