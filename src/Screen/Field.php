@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Closure;
-use Illuminate\Contracts\View\Factory;
+use Throwable;
+use Illuminate\View\View;
+use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 use Illuminate\Support\MessageBag;
-use Illuminate\Support\Str;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\Factory;
 use Orchid\Screen\Contracts\FieldContract;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
-use Throwable;
 
 /**
  * Class Field.
