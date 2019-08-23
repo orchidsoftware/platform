@@ -116,9 +116,7 @@ class Builder
 
         return view('platform::partials.fields.groups', [
             'cols' => $cols,
-        ])
-            ->withErrors(session()->get('errors', app(ViewErrorBag::class)))
-            ->render();
+        ])->render();
     }
 
     /**
