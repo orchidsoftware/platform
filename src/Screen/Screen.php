@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Contracts\Routing\UrlRoutable;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
-use Orchid\Platform\Http\Controllers\Controller;
-use Orchid\Screen\Contracts\ActionContract;
-use Orchid\Screen\Layouts\Base;
+use Throwable;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionParameter;
-use Throwable;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Orchid\Screen\Layouts\Base;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\View\Factory;
+use Orchid\Screen\Contracts\ActionContract;
+use Illuminate\Contracts\Routing\UrlRoutable;
+use Orchid\Platform\Http\Controllers\Controller;
 
 /**
  * Class Screen.
