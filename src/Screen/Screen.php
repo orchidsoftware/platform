@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Throwable;
+use Illuminate\Contracts\Routing\UrlRoutable;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Screen\Contracts\ActionContract;
+use Orchid\Screen\Layouts\Base;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionParameter;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Orchid\Screen\Layouts\Base;
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Contracts\View\Factory;
-use Orchid\Screen\Contracts\ActionContract;
-use Illuminate\Contracts\Routing\UrlRoutable;
-use Orchid\Platform\Http\Controllers\Controller;
+use Throwable;
 
 /**
  * Class Screen.
@@ -254,5 +254,13 @@ abstract class Screen extends Controller
             ->map(function (ActionContract $command) {
                 return $command->build($this->source);
             })->all();
+    }
+
+    /**
+     * @return string
+     */
+    public function formValidateMessage(): string
+    {
+        return __('Please check the entered data, it may be necessary to specify in other languages.');
     }
 }
