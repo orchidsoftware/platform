@@ -6,7 +6,6 @@ namespace Orchid\Screen;
 
 use Closure;
 use Throwable;
-use Illuminate\Support\ViewErrorBag;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\Contracts\FieldContract;
 
@@ -116,9 +115,7 @@ class Builder
 
         return view('platform::partials.fields.groups', [
             'cols' => $cols,
-        ])
-            ->withErrors(session()->get('errors', app(ViewErrorBag::class)))
-            ->render();
+        ])->render();
     }
 
     /**

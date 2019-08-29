@@ -255,4 +255,12 @@ abstract class Screen extends Controller
                 return $command->build($this->source);
             })->all();
     }
+
+    /**
+     * @return string
+     */
+    public function formValidateMessage(): string
+    {
+        return __('Please check the entered data, it may be necessary to specify in other languages.');
+    }
 }

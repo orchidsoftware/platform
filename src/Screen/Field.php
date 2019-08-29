@@ -9,7 +9,7 @@ use Throwable;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
-use Illuminate\Support\ViewErrorBag;
+use Illuminate\Support\MessageBag;
 use Illuminate\Contracts\View\Factory;
 use Orchid\Screen\Contracts\FieldContract;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
@@ -200,6 +200,8 @@ class Field implements FieldContract
         $this->modifyName();
         $this->modifyValue();
 
+        $errors = $this->getErrorsMessage();
+
         return view($this->view, array_merge($this->getAttributes(), [
             'attributes' => $this->getAllowAttributes(),
             'id'         => $id,
@@ -208,7 +210,7 @@ class Field implements FieldContract
             'oldName'    => $this->getOldName(),
             'typeForm'   => $this->typeForm ?? $this->vertical()->typeForm,
         ]))
-            ->withErrors(session()->get('errors', app(ViewErrorBag::class)));
+            ->withErrors($errors);
     }
 
     /**
@@ -445,5 +447,15 @@ class Field implements FieldContract
         foreach ($this->beforeRender as $before) {
             $before->call($this);
         }
+    }
+
+    /**
+     * @return array
+     */
+    private function getErrorsMessage()
+    {
+        $errors = session()->get('errors', new MessageBag());
+
+        return $errors->getMessages();
     }
 }

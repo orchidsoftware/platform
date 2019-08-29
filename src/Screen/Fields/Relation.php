@@ -147,7 +147,13 @@ class Relation extends Field
             $value = $this->get('value');
             if (! empty($value)) {
                 $scope = $this->get('scope', 'handler');
-                $class = (new $class())->{$scope}();
+                $class = new $class();
+
+                if (property_exists($class, 'value') && Assert::isIntArray($value)) {
+                    $class->value = $value;
+                }
+
+                $class = $class->{$scope}();
 
                 $item = collect($class)
                     ->whereIn($key, $value)
