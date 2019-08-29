@@ -49,9 +49,33 @@
             </div>
         </div>
     </div>
+
+
+    <!-- Position it -->
+    <div style="position: fixed;top: 2em;right: 2em;width: 20em;">
+        <div class="toast"
+             role="alert"
+             aria-live="assertive"
+             aria-atomic="true"
+             data-delay="2000"
+             data-autohide="false">
+            <div class="toast-header p-3 v-center b-b">
+                <i class="icon-circle text-danger mr-2"></i>
+                <span class="text-black font-thin mr-auto">Validation error</span>
+
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="toast-body p-3 bg-light">
+                <p class="mb-0">Please check the entered data, it may be necessary to specify in other languages.</p>
+            </div>
+        </div>
+    </div>
 </div>
 
 @stack('scripts')
+
 
 </body>
 </html>

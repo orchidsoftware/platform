@@ -32,6 +32,7 @@ use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
  * @method self title(string $value = null)
  * @method self options($value = true)
  * @method self autocomplete($value = true)
+ * @method self help(string $value)
  */
 class Field implements FieldContract
 {
