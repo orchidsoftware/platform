@@ -8,7 +8,6 @@ use Orchid\Screen\Field;
 
 class KeyValue extends Field
 {
-
     /**
      * @var string
      */
@@ -22,7 +21,7 @@ class KeyValue extends Field
     protected $attributes = [
         'columns' => [
             'key',
-            'value'
+            'value',
         ],
     ];
 
