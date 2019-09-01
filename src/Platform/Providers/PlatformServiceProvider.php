@@ -10,8 +10,6 @@ use Orchid\Platform\ItemPermission;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Http\Composers\LockMeComposer;
-use Orchid\Platform\Http\Composers\SystemMenuComposer;
-use Orchid\Platform\Http\Composers\AnnouncementsComposer;
 use Orchid\Platform\Http\Composers\NotificationsComposer;
 
 class PlatformServiceProvider extends ServiceProvider
@@ -30,10 +28,8 @@ class PlatformServiceProvider extends ServiceProvider
     {
         $this->dashboard = $dashboard;
 
-        View::composer('platform::systems', SystemMenuComposer::class);
         View::composer('platform::auth.login', LockMeComposer::class);
         View::composer('platform::partials.profile', NotificationsComposer::class);
-        View::composer('platform::partials.announcement', AnnouncementsComposer::class);
 
         $this->app->booted(function () {
             $this->dashboard
@@ -62,8 +58,7 @@ class PlatformServiceProvider extends ServiceProvider
     protected function registerPermissionsSystems(): ItemPermission
     {
         return ItemPermission::group(__('Systems'))
-            ->addPermission('platform.systems.attachment', __('Attachment'))
-            ->addPermission('platform.systems.announcement', __('Announcement'));
+            ->addPermission('platform.systems.attachment', __('Attachment'));
     }
 
     /**
