@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Tests\Unit\Fields;
+namespace Orchid\Tests\Unit\Screen\Fields;
 
 use DateTimeZone;
 use Orchid\Screen\Fields\TimeZone;
+use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 /**
  * Class TimeZoneTest.
@@ -15,7 +16,7 @@ class TimeZoneTest extends TestFieldsUnitCase
     /**
      * @test
      */
-    public function testInstanse()
+    public function testInstance()
     {
         $textArea = TimeZone::make('time')
             ->title('Select time zone');

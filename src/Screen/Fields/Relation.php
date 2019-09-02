@@ -30,14 +30,14 @@ class Relation extends Field
     /**
      * @var string
      */
-    public $view = 'platform::fields.relation';
+    protected $view = 'platform::fields.relation';
 
     /**
      * Default attributes value.
      *
      * @var array
      */
-    public $attributes = [
+    protected $attributes = [
         'class'         => 'form-control',
         'value'         => [],
         'relationScope' => '',
@@ -46,7 +46,7 @@ class Relation extends Field
     /**
      * @var array
      */
-    public $required = [
+    protected $required = [
         'name',
         'relationModel',
         'relationName',
@@ -59,7 +59,7 @@ class Relation extends Field
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'accesskey',
         'autofocus',
         'disabled',

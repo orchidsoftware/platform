@@ -12,12 +12,12 @@ class TableExample extends Table
     /**
      * @var string
      */
-    public $data = 'table';
+    protected $target = 'table';
 
     /**
      * @return array
      */
-    public function fields(): array
+    protected function columns(): array
     {
         return [
             TD::set('id', 'ID')

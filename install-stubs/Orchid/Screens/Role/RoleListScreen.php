@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\Role;
 
-use Orchid\Screen\Link;
+use Orchid\Screen\Action;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Actions\Link;
 use Orchid\Platform\Models\Role;
 use App\Orchid\Layouts\Role\RoleListLayout;
 
@@ -45,14 +46,14 @@ class RoleListScreen extends Screen
     /**
      * Button commands.
      *
-     * @return Link[]
+     * @return Action[]
      */
     public function commandBar() : array
     {
         return [
-            Link::name(__('Add'))
+            Link::make(__('Add'))
                 ->icon('icon-plus')
-                ->link(route('platform.systems.roles.create')),
+                ->href(route('platform.systems.roles.create')),
         ];
     }
 

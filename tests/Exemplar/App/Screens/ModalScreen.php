@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Exemplar\App\Screens;
 
-use Orchid\Screen\Link;
+use Orchid\Screen\Action;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts\Modal;
+use Orchid\Screen\Actions\ModalToggle;
 
 class ModalScreen extends Screen
 {
@@ -42,12 +43,12 @@ class ModalScreen extends Screen
     /**
      * Button commands.
      *
-     * @return Link[]
+     * @return Action[]
      */
     public function commandBar(): array
     {
         return [
-            Link::modal('exampleModals')
+            ModalToggle::make('exampleModals')
                 ->name('exampleModals'),
         ];
     }

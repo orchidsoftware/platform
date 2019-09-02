@@ -53,7 +53,7 @@ class UserListScreen extends Screen
     /**
      * Button commands.
      *
-     * @return Link[]
+     * @return Action[]
      */
     public function commandBar() : array
     {

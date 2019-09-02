@@ -2,13 +2,15 @@
 
 namespace App\Orchid\Screens;
 
-use Orchid\Screen\Link;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Actions\Button;
 use Orchid\Support\Facades\Alert;
+use Orchid\Screen\Actions\DropDown;
 use Illuminate\Support\Facades\Auth;
+use Orchid\Screen\Actions\ModalToggle;
 use App\Orchid\Layouts\Examples\RowExample;
 use App\Orchid\Layouts\Examples\TableExample;
 use App\Orchid\Layouts\Examples\MetricsExample;
@@ -92,42 +94,42 @@ class ExampleScreen extends Screen
     /**
      * Button commands.
      *
-     * @return Link[]
+     * @return Action[]
      */
     public function commandBar(): array
     {
         return [
 
-            Link::name('Example Button')
+            Button::make('Example Button')
                 ->method('example')
                 ->icon('icon-bag'),
 
-            Link::name('Example Modals')
+            ModalToggle::make('Example Modals')
                 ->modal('exampleModal')
                 ->method('example')
                 ->icon('icon-full-screen'),
 
-            Link::name('Example Group Button')
+            DropDown::make('Example Group Button')
                 ->icon('icon-folder-alt')
-                ->group([
+                ->list([
 
-                    Link::name('Example Button')
+                    Button::make('Example Button')
                         ->method('example')
                         ->icon('icon-bag'),
 
-                    Link::name('Example Button')
+                    Button::make('Example Button')
                         ->method('example')
                         ->icon('icon-bag'),
 
-                    Link::name('Example Button')
+                    Button::make('Example Button')
                         ->method('example')
                         ->icon('icon-bag'),
 
-                    Link::name('Example Button')
+                    Button::make('Example Button')
                         ->method('example')
                         ->icon('icon-bag'),
 
-                    Link::name('Example Button')
+                    Button::make('Example Button')
                         ->method('example')
                         ->icon('icon-bag'),
                 ]),

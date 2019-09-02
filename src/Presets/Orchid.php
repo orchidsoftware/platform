@@ -1,6 +1,8 @@
 <?php
 
-namespace Orchid\Platform\Presets;
+declare(strict_types=1);
+
+namespace Orchid\Presets;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Console\Presets\Preset;

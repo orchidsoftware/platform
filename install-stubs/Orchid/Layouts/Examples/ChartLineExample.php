@@ -9,12 +9,12 @@ class ChartLineExample extends Chart
     /**
      * @var string
      */
-    public $title = 'Line Chart';
+    protected $title = 'Line Chart';
 
     /**
      * @var int
      */
-    public $height = 250;
+    protected $height = 250;
 
     /**
      * Available options:
@@ -23,12 +23,12 @@ class ChartLineExample extends Chart
      *
      * @var string
      */
-    public $type = 'line';
+    protected $type = 'line';
 
     /**
      * @var array
      */
-    public $labels = [
+    protected $labels = [
         '12am-3am',
         '3am-6am',
         '6am-9am',
@@ -41,5 +41,5 @@ class ChartLineExample extends Chart
     /**
      * @var string
      */
-    public $data = 'charts';
+    protected $target = 'charts';
 }

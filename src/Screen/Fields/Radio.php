@@ -43,14 +43,14 @@ class Radio extends Field
     /**
      * @var string
      */
-    public $view = 'platform::fields.radio';
+    protected $view = 'platform::fields.radio';
 
     /**
      * Default attributes value.
      *
      * @var array
      */
-    public $attributes = [
+    protected $attributes = [
         'type'   => 'radio',
         'class'  => 'custom-control-input',
         'value'  => null,
@@ -61,7 +61,7 @@ class Radio extends Field
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'accept',
         'accesskey',
         'autocomplete',

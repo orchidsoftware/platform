@@ -46,14 +46,14 @@ class UTM extends Field
     /**
      * @var string
      */
-    public $view = 'platform::fields.utm';
+    protected $view = 'platform::fields.utm';
 
     /**
      * Default attributes value.
      *
      * @var array
      */
-    public $attributes = [
+    protected $attributes = [
         'type'  => 'url',
         'class' => 'form-control',
     ];
@@ -63,7 +63,7 @@ class UTM extends Field
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'accept',
         'accesskey',
         'autocomplete',

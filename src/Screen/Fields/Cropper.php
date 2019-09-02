@@ -49,14 +49,14 @@ class Cropper extends Field
     /**
      * @var string
      */
-    public $view = 'platform::fields.cropper';
+    protected $view = 'platform::fields.cropper';
 
     /**
      * Default attributes value.
      *
      * @var array
      */
-    public $attributes = [
+    protected $attributes = [
         'value'  => null,
         'target' => 'url',
         'url'    => null,
@@ -67,7 +67,7 @@ class Cropper extends Field
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'accept',
         'accesskey',
         'autocomplete',

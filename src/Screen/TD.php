@@ -35,52 +35,52 @@ class TD
     /**
      * @var string
      */
-    public $name;
+    protected $name;
 
     /**
      * @var string
      */
-    public $title;
+    protected $title;
 
     /**
      * @var string
      */
-    public $width;
+    protected $width;
 
     /**
      * @var string
      */
-    public $filter;
+    protected $filter;
 
     /**
      * @var bool
      */
-    public $sort;
+    protected $sort;
 
     /**
-     * @var Closure
+     * @var Closure|null
      */
-    public $render;
-
-    /**
-     * @var string
-     */
-    public $column;
+    protected $render;
 
     /**
      * @var string
      */
-    public $asyncRoute;
+    protected $column;
 
     /**
      * @var string
      */
-    public $align = 'left';
+    protected $asyncRoute;
+
+    /**
+     * @var string
+     */
+    protected $align = 'left';
 
     /**
      * @var bool
      */
-    public $locale = false;
+    protected $locale = false;
 
     /**
      * TD constructor.
@@ -157,13 +157,13 @@ class TD
     }
 
     /**
-     * @param mixed $data
+     * @param Repository|AsSource $source
      *
      * @return mixed
      */
-    public function handler($data)
+    protected function handler($source)
     {
-        return ($this->render)($data);
+        return with($source, $this->render);
     }
 
     /**
@@ -275,5 +275,43 @@ class TD
         $this->asyncRoute = $route;
 
         return $this;
+    }
+
+    /**
+     * Builds a column heading.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function buildTh()
+    {
+        return view('platform::partials.layouts.th', [
+            'width'        => $this->width,
+            'align'        => $this->align,
+            'sort'         => $this->sort,
+            'column'       => $this->column,
+            'title'        => $this->title,
+            'filter'       => $this->filter,
+            'filterString' => get_filter_string($this->column),
+        ]);
+    }
+
+    /**
+     * Builds content for the column.
+     *
+     * @param Repository|AsSource $repository
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function buildTd($repository)
+    {
+        $value = $this->render
+            ? $this->handler($repository)
+            : $repository->getContent($this->name);
+
+        return view('platform::partials.layouts.td', [
+            'align'  => $this->align,
+            'value'  => $value,
+            'render' => $this->render,
+        ]);
     }
 }

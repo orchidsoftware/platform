@@ -9,17 +9,17 @@ class MetricsExample extends Metric
     /**
      * @var string
      */
-    public $title = 'Metric Today';
+    protected $title = 'Metric Today';
+
+    /**
+     * @var string
+     */
+    protected $target = 'metrics';
 
     /**
      * @var array
      */
-    public $data = 'metrics';
-
-    /**
-     * @var array
-     */
-    public $labels = [
+    protected $labels = [
         'Sales Today',
         'Visitors Today',
         'Total Earnings',

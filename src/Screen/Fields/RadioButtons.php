@@ -25,14 +25,14 @@ class RadioButtons extends Field
     /**
      * @var string
      */
-    public $view = 'platform::fields.radiobutton';
+    protected $view = 'platform::fields.radiobutton';
 
     /**
      * Default attributes value.
      *
      * @var array
      */
-    public $attributes = [
+    protected $attributes = [
         'type' => 'radio',
     ];
 
@@ -41,7 +41,7 @@ class RadioButtons extends Field
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'accesskey',
         'autofocus',
         'disabled',

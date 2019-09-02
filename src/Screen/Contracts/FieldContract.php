@@ -14,11 +14,6 @@ interface FieldContract
     public function render();
 
     /**
-     * @return mixed
-     */
-    public function checkRequired();
-
-    /**
      * @param string $key
      * @param mixed  $value
      *

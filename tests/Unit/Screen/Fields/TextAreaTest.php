@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Tests\Unit\Fields;
+namespace Orchid\Tests\Unit\Screen\Fields;
 
 use Orchid\Screen\Fields\TextArea;
+use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 /**
  * Class TextAreaTest.
@@ -14,7 +15,7 @@ class TextAreaTest extends TestFieldsUnitCase
     /**
      * @test
      */
-    public function testInstanse()
+    public function testInstance()
     {
         $textArea = TextArea::make('about')
             ->title('Title About')

@@ -8,6 +8,7 @@ export default class extends Controller {
      */
     initialize() {
         this.turbo();
+        this.axios();
     }
 
     /**
@@ -27,10 +28,42 @@ export default class extends Controller {
         }
 
         Turbolinks.start();
-        Turbolinks.setProgressBarDelay(50);
+        Turbolinks.setProgressBarDelay(100);
 
         document.addEventListener('turbolinks:load', () => {
             this.csrf();
+        });
+    }
+
+    /**
+     * Creating an instance Axios
+     */
+    axios() {
+        window.axios = axios;
+
+
+        // Add a request interceptor
+        window.axios.interceptors.request.use((config) => {
+            // Do something before request is sent
+
+            this.startProgressBar();
+            return config;
+        }, (error) => {
+
+            this.stopProgressBar();
+            // Do something with request error
+            return Promise.reject(error);
+        });
+
+        // Add a response interceptor
+        window.axios.interceptors.response.use((response) => {
+            // Do something with response data
+            this.stopProgressBar();
+            return response;
+        }, (error) => {
+            // Do something with response error
+            this.stopProgressBar();
+            return Promise.reject(error);
         });
     }
 
@@ -41,7 +74,7 @@ export default class extends Controller {
      */
     csrf() {
         const token = document.head.querySelector('meta[name="csrf_token"]');
-        window.axios = axios;
+
 
         /**
          * Next we will register the CSRF Token as a common header with Axios so that
@@ -56,6 +89,28 @@ export default class extends Controller {
      *
      */
     goToTop() {
-        $("html, body").animate({ scrollTop: 0 }, "slow");
+        $('html, body').animate({ scrollTop: 0 }, 'slow');
+    }
+
+    /**
+     *
+     */
+    startProgressBar() {
+        if (!Turbolinks.supported) {
+            return;
+        }
+        Turbolinks.controller.adapter.progressBar.setValue(0);
+        Turbolinks.controller.adapter.progressBar.show();
+    }
+
+    /**
+     *
+     */
+    stopProgressBar() {
+        if (!Turbolinks.supported) {
+            return;
+        }
+        Turbolinks.controller.adapter.progressBar.hide();
+        Turbolinks.controller.adapter.progressBar.setValue(100);
     }
 }

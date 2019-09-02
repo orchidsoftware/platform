@@ -45,14 +45,14 @@ class Quill extends Field
     /**
      * @var string
      */
-    public $view = 'platform::fields.quill';
+    protected $view = 'platform::fields.quill';
 
     /**
      * All attributes that are available to the field.
      *
      * @var array
      */
-    public $attributes = [
+    protected $attributes = [
         'value'  => null,
         'height' => '300px',
     ];
@@ -62,7 +62,7 @@ class Quill extends Field
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'accept',
         'accesskey',
         'autocomplete',

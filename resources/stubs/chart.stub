@@ -9,12 +9,12 @@ class DummyClass extends Chart
     /**
      * @var string
      */
-    public $title = 'Super Chart';
+    protected $title = 'Super Chart';
 
     /**
      * @var int
      */
-    public $height = 150;
+    protected $height = 150;
 
     /**
      * Available options:
@@ -23,22 +23,22 @@ class DummyClass extends Chart
      *
      * @var string
      */
-    public $type = 'bar';
+    protected $type = 'bar';
 
     /**
      * @var array
      */
-    public $labels = [];
+    protected $labels = [];
 
     /**
      * @var string
      */
-    public $data = 'charts';
+    protected $target = 'charts';
 
     /**
      * Determines whether to display the export button.
      *
      * @var bool
      */
-    public $export = true;
+    protected $export = true;
 }

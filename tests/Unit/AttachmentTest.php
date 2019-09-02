@@ -8,6 +8,8 @@ use Orchid\Attachment\File;
 use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Models\User;
 use Illuminate\Http\UploadedFile;
+use Orchid\Attachment\Attachable;
+use Illuminate\Database\Eloquent\Model;
 use Orchid\Attachment\Models\Attachment;
 
 /**
@@ -142,6 +144,31 @@ class AttachmentTest extends TestUnitCase
         $attachment->original_name = 'blob';
 
         $this->assertEquals($attachment->name.'.'.$attachment->extension, $attachment->getTitleAttribute());
+    }
+
+    public function testAttachmentTrait()
+    {
+        $file = UploadedFile::fake()->create('relations');
+        $upload = (new File($file, $this->disk))->load();
+
+        $model = new class extends Model {
+            use Attachable;
+        };
+
+        $model->id = 1;
+        $model->attachment()->save($upload);
+
+        $attachment = $model->attachment()
+            ->get()
+            ->first();
+
+        $this->assertEquals($attachment->id, $upload->id);
+
+        $sql = $model->attachment()->toSql();
+        $this->assertStringContainsString('order by "sort" asc', $sql);
+
+        $sql = $model->attachment('documents')->toSql();
+        $this->assertStringContainsString(' "group" = ?', $sql);
     }
 
     protected function setUp() : void

@@ -15,22 +15,22 @@ abstract class Metric extends Base
     /**
      * @var string
      */
-    public $template = 'platform::layouts.metric';
+    protected $template = 'platform::layouts.metric';
 
     /**
      * @var string
      */
-    public $title = 'Example Metric';
+    protected $title = 'Example Metric';
 
     /**
      * @var array
      */
-    public $labels = [];
+    protected $labels = [];
 
     /**
      * @var string
      */
-    public $data;
+    protected $target;
 
     /**
      * @var string
@@ -53,7 +53,7 @@ abstract class Metric extends Base
             return;
         }
 
-        $data = $repository->getContent($this->data, []);
+        $data = $repository->getContent($this->target, []);
         $metrics = array_combine($this->labels, $data);
 
         return view($this->template, [

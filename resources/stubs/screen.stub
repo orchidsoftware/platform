@@ -2,7 +2,6 @@
 
 namespace DummyNamespace;
 
-use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 
 class DummyClass extends Screen
@@ -34,7 +33,7 @@ class DummyClass extends Screen
     /**
      * Button commands.
      *
-     * @return Link[]
+     * @return Action[]
      */
     public function commandBar(): array
     {

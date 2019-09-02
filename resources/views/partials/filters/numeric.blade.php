@@ -6,10 +6,10 @@
     <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow" x-placement="bottom-end">
         <div class="wrapper-sm">
             <div class="form-group m-b no-gutters">
-                <input type="number" name="filter[{{$th->column}}]"
+                <input type="number" name="filter[{{$column}}]"
                        class="form-control form-control-sm"
                        form="filters"
-                       value="{{get_filter_string($th->column)}}"
+                       value="{{get_filter_string($column)}}"
                        placeholder="{{ __('Filter') }}"
                 >
             </div>

@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Tests\Unit\Fields;
+namespace Orchid\Tests\Unit\Screen\Fields;
 
 use Orchid\Screen\Fields\Input;
+use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 class InputTest extends TestFieldsUnitCase
 {

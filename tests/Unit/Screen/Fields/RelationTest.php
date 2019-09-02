@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Tests\Unit\Fields;
+namespace Orchid\Tests\Unit\Screen\Fields;
 
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Fields\Relation;
 use Orchid\Tests\Exemplar\App\AjaxRecord;
 use Illuminate\Database\Eloquent\Collection;
+use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 /**
  * Class RelationTest.
@@ -29,7 +30,7 @@ class RelationTest extends TestFieldsUnitCase
     /**
      * @test
      */
-    public function testInstanse()
+    public function testInstance()
     {
         /** @var Role $current */
         $current = $this->roles->random();
@@ -48,7 +49,7 @@ class RelationTest extends TestFieldsUnitCase
     /**
      * @test
      */
-    public function testInstanseArray()
+    public function testInstanceArray()
     {
         /** @var Role $current */
         $current = $this->roles->random();
@@ -67,7 +68,7 @@ class RelationTest extends TestFieldsUnitCase
     /**
      * @test
      */
-    public function testMultipleInstanse()
+    public function testMultipleInstance()
     {
         /** @var Role $current */
         $current = $this->roles->random(2);
@@ -85,7 +86,7 @@ class RelationTest extends TestFieldsUnitCase
     /**
      * @test
      */
-    public function testMultipleInstanseArray()
+    public function testMultipleInstanceArray()
     {
         /** @var Role $current */
         $current = $this->roles->random(2);
