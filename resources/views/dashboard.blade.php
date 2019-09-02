@@ -62,7 +62,6 @@
 
     <div class="d-flex">
         <div class="app-content-body" id="app-content-body">
-            @include('platform::partials.announcement')
             @include('platform::partials.alert')
             @yield('content')
         </div>

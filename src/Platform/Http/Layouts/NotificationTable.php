@@ -14,12 +14,12 @@ class NotificationTable extends Table
      *
      * @var string
      */
-    public $data = 'notifications';
+    public $target = 'notifications';
 
     /**
      * @return TD[]
      */
-    public function fields(): array
+    public function columns(): array
     {
         return [
             TD::set('Message', __('Message'))

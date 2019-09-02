@@ -18,7 +18,7 @@ abstract class Base
      *
      * @var string
      */
-    public $template;
+    protected $template;
 
     /**
      * Nested layers that should be
@@ -26,7 +26,7 @@ abstract class Base
      *
      * @var array
      */
-    public $layouts = [];
+    protected $layouts = [];
 
     /**
      * What screen method should be called
@@ -34,7 +34,7 @@ abstract class Base
      *
      * @var string
      */
-    public $asyncMethod;
+    protected $asyncMethod;
 
     /**
      * The call is asynchronous and should return
@@ -42,14 +42,14 @@ abstract class Base
      *
      * @var bool
      */
-    public $async = false;
+    protected $async = false;
 
     /**
      * The following request must be asynchronous.
      *
      * @var bool
      */
-    public $asyncNext = false;
+    protected $asyncNext = false;
 
     /**
      * @var array
@@ -72,6 +72,16 @@ abstract class Base
     {
         $this->asyncMethod = $method;
         $this->asyncNext = true;
+
+        return $this;
+    }
+
+    /**
+     * @return Base
+     */
+    public function currentAsync() : self
+    {
+        $this->async = true;
 
         return $this;
     }

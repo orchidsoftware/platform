@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Tests\Unit\Fields;
+namespace Orchid\Tests\Unit\Screen\Fields;
 
 use Orchid\Screen\Field;
+use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
 
 /**

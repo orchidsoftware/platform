@@ -17,14 +17,14 @@ class Label extends Field
     /**
      * @var string
      */
-    public $view = 'platform::fields.label';
+    protected $view = 'platform::fields.label';
 
-    public $attributes = [
+    protected $attributes = [
         'id'    => null,
         'value' => null,
     ];
 
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'class',
     ];
 

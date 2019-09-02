@@ -28,14 +28,14 @@ class Select extends Field
     /**
      * @var string
      */
-    public $view = 'platform::fields.select';
+    protected $view = 'platform::fields.select';
 
     /**
      * Default attributes value.
      *
      * @var array
      */
-    public $attributes = [
+    protected $attributes = [
         'class'   => 'form-control',
         'options' => [],
     ];
@@ -45,7 +45,7 @@ class Select extends Field
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'accesskey',
         'autofocus',
         'disabled',

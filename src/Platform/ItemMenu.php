@@ -122,18 +122,6 @@ class ItemMenu
     }
 
     /**
-     * @deprecated use method canSee
-     *
-     * @param bool $show
-     *
-     * @return ItemMenu
-     */
-    public function show(bool $show): self
-    {
-        return $this->canSee($show);
-    }
-
-    /**
      * @param bool $value
      *
      * @return ItemMenu

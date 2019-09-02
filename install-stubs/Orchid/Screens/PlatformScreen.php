@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens;
 
-use Orchid\Screen\Link;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Platform\Dashboard;
+use Orchid\Screen\Actions\Link;
 
 class PlatformScreen extends Screen
 {
@@ -41,21 +41,21 @@ class PlatformScreen extends Screen
     /**
      * Button commands.
      *
-     * @return Link[]
+     * @return Action[]
      */
     public function commandBar(): array
     {
         return [
-            Link::name('Website')
-                ->link('http://orchid.software')
+            Link::make('Website')
+                ->href('http://orchid.software')
                 ->icon('icon-globe-alt'),
 
-            Link::name('Documentation')
-              ->link('https://orchid.software/en/docs')
+            Link::make('Documentation')
+              ->href('https://orchid.software/en/docs')
               ->icon('icon-docs'),
 
-            Link::name('GitHub')
-                ->link('https://github.com/orchidsoftware/platform')
+            Link::make('GitHub')
+                ->href('https://github.com/orchidsoftware/platform')
                 ->icon('icon-social-github'),
         ];
     }

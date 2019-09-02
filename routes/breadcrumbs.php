@@ -15,12 +15,6 @@ Breadcrumbs::for('platform.systems.index', function ($trail) {
     $trail->push(__('Systems'), route('platform.systems.index'));
 });
 
-// Platform > System > Announcement
-Breadcrumbs::for('platform.systems.announcement', function ($trail) {
-    $trail->parent('platform.systems.index');
-    $trail->push(__('Announcement'), route('platform.systems.announcement'));
-});
-
 // Platform -> Notifications
 Breadcrumbs::for('platform.notifications', function ($trail) {
     $trail->parent('platform.index');

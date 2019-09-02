@@ -15,6 +15,8 @@ use Orchid\Screen\Layouts\Base;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\View\Factory;
+use Orchid\Screen\Contracts\ActionContract;
+use Illuminate\Contracts\Routing\UrlRoutable;
 use Orchid\Platform\Http\Controllers\Controller;
 
 /**
@@ -51,7 +53,7 @@ abstract class Screen extends Controller
     /**
      * @var Repository
      */
-    private $post;
+    private $source;
 
     /**
      * @var array
@@ -71,7 +73,7 @@ abstract class Screen extends Controller
     /**
      * Button commands.
      *
-     * @return Link[]
+     * @return Action[]
      */
     abstract public function commandBar(): array;
 
@@ -93,7 +95,7 @@ abstract class Screen extends Controller
             $this->layout(),
         ]);
 
-        return $layout->build($this->post);
+        return $layout->build($this->source);
     }
 
     /**
@@ -110,7 +112,7 @@ abstract class Screen extends Controller
 
         $this->reflectionParams($method);
         $query = call_user_func_array([$this, $method], $this->arguments);
-        $post = new Repository($query);
+        $source = new Repository($query);
 
         foreach ($this->layout() as $layout) {
 
@@ -118,11 +120,11 @@ abstract class Screen extends Controller
             $layout = is_object($layout) ? $layout : new $layout();
 
             if ($layout->getSlug() === $slugLayouts) {
-                $layout->async = true;
-
-                return $layout->build($post);
+                return $layout->currentAsync()->build($source);
             }
         }
+
+        abort(404, "Async method: {$method} not found");
     }
 
     /**
@@ -134,7 +136,7 @@ abstract class Screen extends Controller
     {
         $this->reflectionParams('query');
         $query = call_user_func_array([$this, 'query'], $this->arguments);
-        $this->post = new Repository($query);
+        $this->source = new Repository($query);
 
         return view('platform::layouts.base', [
             'screen'    => $this,
@@ -221,7 +223,7 @@ abstract class Screen extends Controller
 
         $object = app()->make($class);
 
-        if (method_exists($object, 'resolveRouteBinding') && isset($this->arguments[$key])) {
+        if (is_a($object, UrlRoutable::class) && isset($this->arguments[$key])) {
             $object = $object->resolveRouteBinding($this->arguments[$key]);
         }
 
@@ -249,8 +251,16 @@ abstract class Screen extends Controller
     public function buildCommandBar() : array
     {
         return collect($this->commandBar())
-            ->map(function ($command) {
-                return $command->build($this->post);
+            ->map(function (ActionContract $command) {
+                return $command->build($this->source);
             })->all();
+    }
+
+    /**
+     * @return string
+     */
+    public function formValidateMessage(): string
+    {
+        return __('Please check the entered data, it may be necessary to specify in other languages.');
     }
 }

@@ -33,8 +33,17 @@ export default class extends Controller {
 
     /**
      *
+     * @param event
+     * @returns {boolean}
      */
     submit(event) {
+        if (this.isSubmit) {
+            event.preventDefault();
+            return false;
+        }
+
+        this.isSubmit = true;
+
         if (!this.validateForm(event)) {
             event.preventDefault();
             return false;
@@ -62,9 +71,11 @@ export default class extends Controller {
                         url,
                         Turbolinks.Snapshot.wrap(response.data),
                     );
+                    this.isSubmit = false;
                     window.Turbolinks.visit(url, { action: 'restore' });
                 })
                 .catch((error) => {
+                    this.isSubmit = false;
                     if (error.response) {
                         window.history.pushState({ html: error.response.data }, '', error.request.responseURL);
                         document.documentElement.innerHTML = error.response.data;
@@ -98,7 +109,6 @@ export default class extends Controller {
      * @returns {*}
      */
     validateForm(event) {
-
         const message = this.data.get('validation');
 
         if (!event.target.checkValidity()) {
@@ -108,5 +118,23 @@ export default class extends Controller {
         }
 
         return true;
+    }
+
+    /**
+     * Indicating whether the form is submitted or not.
+     *
+     * @returns {boolean}
+     */
+    get isSubmit() {
+        return this.data.get('submit') === 'true';
+    }
+
+    /**
+     * Sets the status whether the form is submitted or not.
+     *
+     * @param value
+     */
+    set isSubmit(value) {
+        this.data.set('submit', value);
     }
 }

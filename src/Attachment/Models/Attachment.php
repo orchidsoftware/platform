@@ -11,6 +11,8 @@ use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Contracts\Filesystem\Cloud;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -94,13 +96,13 @@ class Attachment extends Model
      */
     public function url($default = null): ?string
     {
-        $disk = $this->getAttribute('disk');
+        /** @var Filesystem|Cloud $disk */
+        $disk = Storage::disk($this->getAttribute('disk'));
+        $path = $this->physicalPath();
 
-        if (Storage::disk($disk)->exists($this->physicalPath())) {
-            return Storage::disk($disk)->url($this->physicalPath());
-        }
-
-        return $default;
+        return $disk->exists($path)
+            ? $disk->url($path)
+            : $default;
     }
 
     /**
@@ -153,7 +155,7 @@ class Attachment extends Model
     public function delete()
     {
         if ($this->exists) {
-            if (self::where('hash', $this->hash)->where('disk', $this->disk)->count() <= 1) {
+            if (static::where('hash', $this->hash)->where('disk', $this->disk)->count() <= 1) {
                 //Physical removal of all copies of a file.
                 Storage::disk($this->disk)->delete($this->physicalPath());
             }

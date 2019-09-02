@@ -44,14 +44,14 @@ class CheckBox extends Field
     /**
      * @var string
      */
-    public $view = 'platform::fields.checkbox';
+    protected $view = 'platform::fields.checkbox';
 
     /**
      * Default attributes value.
      *
      * @var array
      */
-    public $attributes = [
+    protected $attributes = [
         'type'     => 'checkbox',
         'class'    => 'custom-control-input',
         'value'    => false,
@@ -64,7 +64,7 @@ class CheckBox extends Field
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'accept',
         'accesskey',
         'autocomplete',

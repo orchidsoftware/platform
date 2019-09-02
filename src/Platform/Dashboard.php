@@ -17,7 +17,7 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    public const VERSION = '5.5.5';
+    public const VERSION = '6.0.0';
 
     /**
      * The Dashboard configuration options.
@@ -46,13 +46,6 @@ class Dashboard
     private $permission;
 
     /**
-     * @deprecated use $resources['entities']
-     *
-     * @var Collection
-     */
-    private $entities;
-
-    /**
      * @var Collection
      */
     private $globalSearch;
@@ -73,7 +66,6 @@ class Dashboard
             'removed' => collect(),
         ]);
         $this->resources = collect();
-        $this->entities = collect();
         $this->globalSearch = collect();
         $this->publicDirectories = collect();
     }
@@ -193,20 +185,6 @@ class Dashboard
     }
 
     /**
-     * @deprecated use Dashboard::macro()
-     *
-     * @param array $value
-     *
-     * @return $this
-     */
-    public function registerEntities(array $value): self
-    {
-        $this->entities = $this->entities->merge($value);
-
-        return $this;
-    }
-
-    /**
      * @param Model[] $value
      *
      * @return $this
@@ -247,18 +225,6 @@ class Dashboard
         }
 
         return $this->resources->get($key);
-    }
-
-    /**
-     * @deprecated use Dashboard::macro()
-     *
-     * @return Collection
-     */
-    public function getEntities(): Collection
-    {
-        return $this->entities->transform(function ($value) {
-            return is_object($value) ? $value : new $value();
-        });
     }
 
     /**

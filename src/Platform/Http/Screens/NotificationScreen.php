@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens;
 
-use Orchid\Screen\Link;
+use Orchid\Screen\Action;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
+use Orchid\Screen\Actions\Button;
 use Orchid\Support\Facades\Alert;
 use Illuminate\Contracts\Pagination\Paginator;
 use Orchid\Platform\Http\Layouts\NotificationTable;
@@ -61,17 +62,17 @@ class NotificationScreen extends Screen
     /**
      * Button commands.
      *
-     * @return Link[]
+     * @return Action[]
      */
     public function commandBar(): array
     {
         return [
-            Link::name(__('Remove all'))
+            Button::make(__('Remove all'))
                 ->icon('icon-trash')
                 ->method('removeAll')
                 ->canSee($this->isNotEmpty),
 
-            Link::name(__('Mark all as read'))
+            Button::make(__('Mark all as read'))
                 ->icon('icon-eye')
                 ->method('markAllAsRead')
                 ->canSee($this->isNotEmpty),

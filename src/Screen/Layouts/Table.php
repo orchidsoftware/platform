@@ -16,15 +16,17 @@ abstract class Table extends Base
     /**
      * @var string
      */
-    public $template = 'platform::layouts.table';
+    protected $template = 'platform::layouts.table';
 
     /**
+     * Data source.
+     *
      * The name of the key to fetch it from the query.
      * The results of which will be elements of the table.
      *
      * @var string
      */
-    public $data;
+    protected $target;
 
     /**
      * @param Repository $repository
@@ -37,12 +39,12 @@ abstract class Table extends Base
             return;
         }
 
-        $columns = collect($this->fields())->filter(function (TD $item) {
-            return $item->isSee();
+        $columns = collect($this->columns())->filter(function (TD $column) {
+            return $column->isSee();
         });
 
         return view($this->template, [
-            'rows'         => $repository->getContent($this->data),
+            'rows'         => $repository->getContent($this->target),
             'columns'      => $columns,
             'iconNotFound' => $this->iconNotFound(),
             'textNotFound' => $this->textNotFound(),
@@ -53,7 +55,7 @@ abstract class Table extends Base
     /**
      * @return string
      */
-    public function iconNotFound(): string
+    protected function iconNotFound(): string
     {
         return 'icon-table';
     }
@@ -61,7 +63,7 @@ abstract class Table extends Base
     /**
      * @return string
      */
-    public function textNotFound(): string
+    protected function textNotFound(): string
     {
         return __('Records not found');
     }
@@ -69,7 +71,7 @@ abstract class Table extends Base
     /**
      * @return string
      */
-    public function subNotFound(): string
+    protected function subNotFound(): string
     {
         return '';
     }
@@ -77,5 +79,5 @@ abstract class Table extends Base
     /**
      * @return array
      */
-    abstract public function fields(): array;
+    abstract protected function columns(): array;
 }

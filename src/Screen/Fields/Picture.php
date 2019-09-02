@@ -25,14 +25,14 @@ class Picture extends Field
     /**
      * @var string
      */
-    public $view = 'platform::fields.picture';
+    protected $view = 'platform::fields.picture';
 
     /**
      * Default attributes value.
      *
      * @var array
      */
-    public $attributes = [
+    protected $attributes = [
         'value'  => null,
         'target' => 'url',
         'url'    => null,
@@ -43,7 +43,7 @@ class Picture extends Field
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'form',
         'formaction',
         'formenctype',

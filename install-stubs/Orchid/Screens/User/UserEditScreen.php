@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
-use Orchid\Screen\Link;
+use Orchid\Screen\Action;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
 use Orchid\Access\UserSwitch;
 use Orchid\Platform\Models\User;
+use Orchid\Screen\Actions\Button;
 use Orchid\Support\Facades\Alert;
 use Orchid\Screen\Fields\Password;
+use Orchid\Screen\Actions\DropDown;
 use Illuminate\Support\Facades\Hash;
 use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserRoleLayout;
@@ -57,31 +59,31 @@ class UserEditScreen extends Screen
     /**
      * Button commands.
      *
-     * @return Link[]
+     * @return Action[]
      */
     public function commandBar(): array
     {
         return [
 
-            Link::name(__('Settings'))
+            DropDown::make(__('Settings'))
                 ->icon('icon-open')
-                ->group([
-                    Link::name(__('Login as user'))
+                ->list([
+                    Button::make(__('Login as user'))
                         ->icon('icon-login')
                         ->method('loginAs'),
 
-                    Link::name(__('Change Password'))
+                    Button::make(__('Change Password'))
                         ->icon('icon-lock-open')
                         ->title(__('Change Password'))
                         ->method('changePassword')
                         ->modal('password'),
                 ]),
 
-            Link::name(__('Save'))
+            Button::make(__('Save'))
                 ->icon('icon-check')
                 ->method('save'),
 
-            Link::name(__('Remove'))
+            Button::make(__('Remove'))
                 ->icon('icon-trash')
                 ->method('remove'),
         ];
@@ -90,7 +92,7 @@ class UserEditScreen extends Screen
     /**
      * @throws \Throwable
      *
-     * @return array
+     * @return Layout[]
      */
     public function layout(): array
     {

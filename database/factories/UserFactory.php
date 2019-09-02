@@ -35,7 +35,6 @@ $factory->define(User::class, function (Faker $faker) {
             'platform.entities.type.example-post' => 1,
             'platform.entities.type.example-page' => 1,
             'platform.bulldozer'                  => 1,
-            'platform.systems.announcement'       => 1,
         ],
         'user'   => [
             'platform.index'                       => 1,

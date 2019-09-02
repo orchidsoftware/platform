@@ -44,14 +44,14 @@ class DateRange extends Field
     /**
      * @var string
      */
-    public $view = 'platform::fields.range';
+    protected $view = 'platform::fields.range';
 
     /**
      * Default attributes value.
      *
      * @var array
      */
-    public $attributes = [
+    protected $attributes = [
         'type'  => 'text',
         'class' => 'form-control',
     ];
@@ -61,7 +61,7 @@ class DateRange extends Field
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'accept',
         'accesskey',
         'autocomplete',

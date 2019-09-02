@@ -47,14 +47,14 @@ class Map extends Field
     /**
      * @var string
      */
-    public $view = 'platform::fields.map';
+    protected $view = 'platform::fields.map';
 
     /**
      * Default attributes value.
      *
      * @var array
      */
-    public $attributes = [
+    protected $attributes = [
         'zoom'   => 14,
         'height' => '300px',
     ];
@@ -64,7 +64,7 @@ class Map extends Field
      *
      * @var array
      */
-    public $inlineAttributes = [
+    protected $inlineAttributes = [
         'accept',
         'accesskey',
         'autocomplete',
