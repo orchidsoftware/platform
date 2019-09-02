@@ -9,8 +9,6 @@ use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Models\User;
 use Illuminate\Http\UploadedFile;
 use Orchid\Attachment\Attachable;
-use Orchid\Attachment\Attachable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Attachment\Models\Attachment;
 
