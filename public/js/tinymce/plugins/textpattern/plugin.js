@@ -22,6 +22,15 @@ var textpattern = (function (domGlobals) {
 
     var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
+    function __spreadArrays() {
+      for (var s = 0, i = 0, il = arguments.length; i < il; i++)
+        s += arguments[i].length;
+      for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+          r[k] = a[j];
+      return r;
+    }
+
     var constant = function (value) {
       return function () {
         return value;
@@ -84,8 +93,9 @@ var textpattern = (function (domGlobals) {
         },
         toString: constant('none()')
       };
-      if (Object.freeze)
+      if (Object.freeze) {
         Object.freeze(me);
+      }
       return me;
     }();
     var some = function (a) {
@@ -160,13 +170,16 @@ var textpattern = (function (domGlobals) {
     };
 
     var typeOf = function (x) {
-      if (x === null)
+      if (x === null) {
         return 'null';
+      }
       var t = typeof x;
-      if (t === 'object' && (Array.prototype.isPrototypeOf(x) || x.constructor && x.constructor.name === 'Array'))
+      if (t === 'object' && (Array.prototype.isPrototypeOf(x) || x.constructor && x.constructor.name === 'Array')) {
         return 'array';
-      if (t === 'object' && (String.prototype.isPrototypeOf(x) || x.constructor && x.constructor.name === 'String'))
+      }
+      if (t === 'object' && (String.prototype.isPrototypeOf(x) || x.constructor && x.constructor.name === 'String')) {
         return 'string';
+      }
       return t;
     };
     var isType = function (type) {
@@ -234,7 +247,7 @@ var textpattern = (function (domGlobals) {
         patternsState.set(createPatternSet(newPatterns));
       };
       var getPatterns = function () {
-        return patternsState.get().inlinePatterns.concat(patternsState.get().blockPatterns, patternsState.get().replacementPatterns);
+        return __spreadArrays(patternsState.get().inlinePatterns, patternsState.get().blockPatterns, patternsState.get().replacementPatterns);
       };
       return {
         setPatterns: setPatterns,
