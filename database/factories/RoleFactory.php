@@ -1,8 +1,8 @@
 <?php
 
+use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Orchid\Platform\Models\Role;
-use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
