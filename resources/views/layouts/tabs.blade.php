@@ -8,8 +8,8 @@
                 <li class="nav-item">
                     <a class="nav-link @if ($loop->first) active @endif"
                        data-action="screen--tabs#setActiveTab"
-                       data-target="#tab-{{str_slug($name)}}"
-                       id="button-tab-{{str_slug($name)}}"
+                       data-target="#tab-{{\Illuminate\Support\Str::slug($name)}}"
+                       id="button-tab-{{\Illuminate\Support\Str::slug($name)}}"
                        role="tab"
                        data-toggle="tab">
                         {!! $name !!}
@@ -25,7 +25,7 @@
             <div class="tab-content">
                 @foreach($manyForms as $name => $forms)
                     <div role="tabpanel" class="tab-pane @if ($loop->first) active @endif"
-                         id="tab-{{str_slug($name)}}">
+                         id="tab-{{\Illuminate\Support\Str::slug($name)}}">
 
                         <div class="padder-v">
                             @foreach($forms as $form)

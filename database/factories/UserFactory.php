@@ -2,6 +2,7 @@
 
 use Faker\Generator as Faker;
 use Orchid\Platform\Models\User as User;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,7 +74,7 @@ $factory->define(User::class, function (Faker $faker) {
         'name'           => $faker->firstName,
         'email'          => $faker->unique()->safeEmail,
         'password'       => $password ?: bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'remember_token' => Str::random(10),
         'last_login'     => $faker->dateTimeBetween('-6 days', 'this week'),
         'permissions'    => $roles['admin'],
     ];
