@@ -2,6 +2,7 @@
 
 use Faker\Generator as Faker;
 use Orchid\Platform\Models\Role;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,7 +57,7 @@ $factory->define(Role::class, function (Faker $faker) {
 
     return [
         'name'        => $Title,
-        'slug'        => str_slug($Title),
+        'slug'        => Str::slug($Title),
         'permissions' => $roles[$selRole],
     ];
 });
