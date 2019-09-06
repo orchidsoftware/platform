@@ -37,18 +37,18 @@ export default class extends Controller {
      * @returns {boolean}
      */
     submit(event) {
-        if (this.isSubmit) {
-            event.preventDefault();
-            return false;
-        }
-
-        this.isSubmit = true;
 
         if (!this.validateForm(event)) {
             event.preventDefault();
             return false;
         }
 
+        if (this.isSubmit) {
+            event.preventDefault();
+            return false;
+        }
+
+        this.isSubmit = true;
         this.animateButton();
         event.preventDefault();
 
