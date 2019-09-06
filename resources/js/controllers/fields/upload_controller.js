@@ -137,8 +137,6 @@ export default class extends Controller {
         const dropname = this.dropname;
         const CancelToken = axios.CancelToken;
 
-        console.log(self);
-
         if (typeof this.cancelRequest === 'function') {
             this.cancelRequest();
         }
@@ -222,7 +220,7 @@ export default class extends Controller {
                     console.log('dropzone.addedfile');
 
                     if (this.files.length > this.options.maxFiles) {
-                        console.log('max files');
+                        window.platform.alert('Validation error', 'Max files');
                         this.removeFile(e);
                     }
 
@@ -249,20 +247,17 @@ export default class extends Controller {
                 });
 
                 this.on("maxfilesexceeded", (file) => {
-                    console.log('dropzone.maxfilesexceeded');
-                    alert('Max files exceeded');
+                    window.platform.alert('Validation error', 'Max files exceeded');
                     this.removeFile(file);
                 });
 
                 this.on('sending', (file, xhr, formData) => {
-                    console.log('dropzone.sending');
                     formData.append('_token', $('meta[name=\'csrf_token\']').attr('content'));
                     formData.append('storage', storage);
                     formData.append('group', groups);
                 });
 
                 this.on('removedfile', file => {
-                    console.log('dropzone.removedfile');
                     if (objHas(file, 'data.id')) {
                         $(`${dropname} .files-${file.data.id}`).remove();
                         !isMediaLibrary && axios
