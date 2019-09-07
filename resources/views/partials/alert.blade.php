@@ -10,7 +10,6 @@
         @yield('flash_notification.sub_message')
     </div>
 @endif
-<div id="dashboard-alerts"></div>
 
 @empty(!$errors->count())
     <div class="alert alert-danger" role="alert">

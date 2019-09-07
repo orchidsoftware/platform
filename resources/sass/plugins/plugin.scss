@@ -272,3 +272,26 @@ div.mce-fullscreen {
 .leaflet-touch .leaflet-control-zoom-out {
   font-size: $font-size-base;
 }
+
+// toast
+.toast-wrapper {
+  position: fixed;
+  top: 2em;
+  right: 2em;
+  z-index: $zindex-fixed;
+  width: 20em;
+}
+
+@include media-breakpoint-down(sm) {
+  .toast-wrapper {
+    width: 100vw;
+    top: 0;
+    right: 0;
+    left: 0;
+    overflow: hidden;
+
+    .toast {
+      max-width: 100vw;
+    }
+  }
+}

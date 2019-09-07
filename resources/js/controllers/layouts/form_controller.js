@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus';
+import {Controller} from 'stimulus';
 
 export default class extends Controller {
 
@@ -37,18 +37,18 @@ export default class extends Controller {
      * @returns {boolean}
      */
     submit(event) {
-        if (this.isSubmit) {
-            event.preventDefault();
-            return false;
-        }
-
-        this.isSubmit = true;
 
         if (!this.validateForm(event)) {
             event.preventDefault();
             return false;
         }
 
+        if (this.isSubmit) {
+            event.preventDefault();
+            return false;
+        }
+
+        this.isSubmit = true;
         this.animateButton();
         event.preventDefault();
 
@@ -81,6 +81,7 @@ export default class extends Controller {
                         document.documentElement.innerHTML = error.response.data;
                     } else {
                         // eslint-disable-next-line no-console
+                        window.platform.alert('Server error', 'The application could not process your request.', 'danger');
                         console.error(`Malformed error ${error}`);
                     }
                 });
@@ -112,7 +113,7 @@ export default class extends Controller {
         const message = this.data.get('validation');
 
         if (!event.target.checkValidity()) {
-            window.platform.alert(message);
+            window.platform.alert('Validation error', message);
 
             return false;
         }

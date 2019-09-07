@@ -55,6 +55,7 @@ export default class extends Controller {
             if (/^image\//.test(file.type)) {
                 this.saveToServer(file);
             } else {
+                window.platform.alert('Validation error', 'You could only upload images.', 'danger');
                 console.warn('You could only upload images.');
             }
         };
@@ -75,6 +76,7 @@ export default class extends Controller {
                 this.insertToEditor(response.data.url);
             })
             .catch((error) => {
+                window.platform.alert('Validation error', 'Quill image upload failed');
                 console.warn('quill image upload failed');
                 console.warn(error);
             });

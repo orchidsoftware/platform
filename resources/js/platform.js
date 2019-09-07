@@ -18,32 +18,14 @@ export default function platform() {
 
         /**
          *
+         * @param title
          * @param message
          * @param type
-         * @param target
          */
-        alert(message, type = 'warning', target = '#dashboard-alerts') {
-
-            if ($(`.alert-${type}`).length !== 0) {
-                return;
-            }
-
-            $(target).append(
-                $('<div/>', {
-                    class: `alert alert-${type}`,
-                    text: message,
-                }).append(
-                    $('<button/>', {
-                        class: 'close',
-                        'data-dismiss': 'alert',
-                        'aria-label': 'Close',
-                        'aria-hidden': 'true',
-                    }).append($('<span/>', {
-                        'aria-hidden': 'true',
-                        html: '&times;',
-                    })),
-                ),
-            );
+        alert(title, message, type = 'warning') {
+          let toastWrapper = document.querySelector('[data-controller="layouts--toast"]');
+          let toastController = application.getControllerForElementAndIdentifier(toastWrapper, 'layouts--toast');
+          toastController.alert(title, message, type);
         },
 
         /**
