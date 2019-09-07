@@ -7,7 +7,6 @@ export default class extends Controller {
      * Connect Form
      */
     connect() {
-
         /**
          * Added focus button for Mac OS firefox/safari
          */
@@ -52,9 +51,7 @@ export default class extends Controller {
         this.animateButton();
         event.preventDefault();
 
-        const formAction = this.element.getAttribute('action');
-        const activeElementAction = document.activeElement.getAttribute('formaction');
-        const action = activeElementAction || formAction;
+        const action = this.loadFormAction();
 
         setTimeout(() => {
             const form = new FormData(event.target);
@@ -106,13 +103,19 @@ export default class extends Controller {
     }
 
     /**
+     * Form validation
      *
-     * @returns {*}
+     * @returns {boolean}
      */
     validateForm(event) {
+        // Cancellation
+        if (document.activeElement.getAttribute('data-novalidate') === 'true') {
+            return true;
+        }
+
         const message = this.data.get('validation');
 
-        if (!event.target.checkValidity()) {
+        if (!event.target.reportValidity()) {
             window.platform.alert('Validation error', message);
 
             return false;
@@ -137,5 +140,17 @@ export default class extends Controller {
      */
     set isSubmit(value) {
         this.data.set('submit', value);
+    }
+
+    /**
+     * Returns the action address
+     *
+     * @returns {string}
+     */
+    loadFormAction() {
+        const formAction = this.element.getAttribute('action');
+        const activeElementAction = document.activeElement.getAttribute('formaction');
+
+        return activeElementAction || formAction;
     }
 }

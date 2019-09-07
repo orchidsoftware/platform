@@ -15,6 +15,7 @@ use Orchid\Screen\Action;
  * @method self class(string $classes = null)
  * @method self method(string $methodName = null)
  * @method self parameters(array|object $name)
+ * @method self novalidate(bool $novalidate = true)
  */
 class Button extends Action
 {
@@ -30,6 +31,7 @@ class Button extends Action
      */
     protected $attributes = [
         'class'       => 'btn btn-link dropdown-item',
+        'novalidate'  => false,
         'method'      => null,
         'icon'        => null,
         'action'      => null,
