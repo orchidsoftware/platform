@@ -37,8 +37,6 @@ class AttachmentController extends Controller
     /**
      * @param Request $request
      *
-     * @throws BindingResolutionException
-     *
      * @return JsonResponse
      */
     public function upload(Request $request)
@@ -101,6 +99,7 @@ class AttachmentController extends Controller
      * @param Request      $request
      *
      * @return mixed
+     * @throws BindingResolutionException
      */
     private function createModel(UploadedFile $file, Request $request)
     {

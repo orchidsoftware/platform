@@ -42,6 +42,8 @@ class NotificationScreen extends Screen
     /**
      * Query data.
      *
+     * @param Request $request
+     *
      * @return array
      */
     public function query(Request $request): array

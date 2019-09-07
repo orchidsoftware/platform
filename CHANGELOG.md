@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Support for laravel 6.0
+- Method `novalidate` for Button [937](https://github.com/orchidsoftware/platform/issues/937)
 
 ### Changed
 - Rename Orchid/Platform/Presets to Orchid/Presets
