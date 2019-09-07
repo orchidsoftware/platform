@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.0.0 - 2019-09-04
+
+### Added
+- Support for laravel 6.0
+
+### Changed
+- Rename Orchid/Platform/Presets to Orchid/Presets
+- Access to properties and methods for removing visual noise
+- Rename commands to actions
+- Rename properties `data` to `target`
+
+### Fixed
+- Duplicate form submission [940](https://github.com/orchidsoftware/platform/issues/940)
+
+### Removed
+- Support php 7.1
+- Announcement [917](https://github.com/orchidsoftware/platform/issues/917)
+- Deprecated methods
 
 ## 5.5.5 - 2019-08-23
 
