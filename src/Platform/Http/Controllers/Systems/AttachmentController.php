@@ -98,8 +98,9 @@ class AttachmentController extends Controller
      * @param UploadedFile $file
      * @param Request      $request
      *
-     * @return mixed
      * @throws BindingResolutionException
+     *
+     * @return mixed
      */
     private function createModel(UploadedFile $file, Request $request)
     {

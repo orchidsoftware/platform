@@ -202,8 +202,9 @@ abstract class Screen extends Controller
      * @param int|string               $key
      * @param ReflectionParameter|null $parameter
      *
-     * @return mixed
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
+     * @return mixed
      */
     private function bind($key, $parameter)
     {
