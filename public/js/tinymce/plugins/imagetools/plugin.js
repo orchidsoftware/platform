@@ -100,9 +100,8 @@ var imagetools = (function (domGlobals) {
         },
         toString: constant('none()')
       };
-      if (Object.freeze) {
+      if (Object.freeze)
         Object.freeze(me);
-      }
       return me;
     }();
     var some = function (a) {
@@ -174,6 +173,58 @@ var imagetools = (function (domGlobals) {
       some: some,
       none: none,
       from: from
+    };
+
+    var Global = typeof domGlobals.window !== 'undefined' ? domGlobals.window : Function('return this;')();
+
+    var path = function (parts, scope) {
+      var o = scope !== undefined && scope !== null ? scope : Global;
+      for (var i = 0; i < parts.length && o !== undefined && o !== null; ++i)
+        o = o[parts[i]];
+      return o;
+    };
+    var resolve = function (p, scope) {
+      var parts = p.split('.');
+      return path(parts, scope);
+    };
+
+    var unsafe = function (name, scope) {
+      return resolve(name, scope);
+    };
+    var getOrDie = function (name, scope) {
+      var actual = unsafe(name, scope);
+      if (actual === undefined || actual === null)
+        throw name + ' not available on this browser';
+      return actual;
+    };
+    var Global$1 = { getOrDie: getOrDie };
+
+    function SandBlob (parts, properties) {
+      var f = Global$1.getOrDie('Blob');
+      return new f(parts, properties);
+    }
+
+    function FileReader () {
+      var f = Global$1.getOrDie('FileReader');
+      return new f();
+    }
+
+    function Uint8Array (arr) {
+      var f = Global$1.getOrDie('Uint8Array');
+      return new f(arr);
+    }
+
+    var requestAnimationFrame = function (callback) {
+      var f = Global$1.getOrDie('requestAnimationFrame');
+      f(callback);
+    };
+    var atob = function (base64) {
+      var f = Global$1.getOrDie('atob');
+      return f(base64);
+    };
+    var Window = {
+      atob: atob,
+      requestAnimationFrame: requestAnimationFrame
     };
 
     function create(width, height) {
@@ -443,7 +494,7 @@ var imagetools = (function (domGlobals) {
       var mimetype = matches[1];
       var base64 = data[1];
       var sliceSize = 1024;
-      var byteCharacters = domGlobals.atob(base64);
+      var byteCharacters = Window.atob(base64);
       var bytesLength = byteCharacters.length;
       var slicesCount = Math.ceil(bytesLength / sliceSize);
       var byteArrays = new Array(slicesCount);
@@ -454,9 +505,9 @@ var imagetools = (function (domGlobals) {
         for (var offset = begin, i = 0; offset < end; ++i, ++offset) {
           bytes[i] = byteCharacters[offset].charCodeAt(0);
         }
-        byteArrays[sliceIndex] = new Uint8Array(bytes);
+        byteArrays[sliceIndex] = Uint8Array(bytes);
       }
-      return Option.some(new domGlobals.Blob(byteArrays, { type: mimetype }));
+      return Option.some(SandBlob(byteArrays, { type: mimetype }));
     }
     function dataUriToBlob(uri) {
       return new Promise(function (resolve, reject) {
@@ -496,7 +547,7 @@ var imagetools = (function (domGlobals) {
     }
     function blobToDataUri(blob) {
       return new Promise(function (resolve) {
-        var reader = new domGlobals.FileReader();
+        var reader = FileReader();
         reader.onloadend = function () {
           resolve(reader.result);
         };
@@ -1300,32 +1351,6 @@ var imagetools = (function (domGlobals) {
     var blobToImageResult = function (blob) {
       return fromBlob(blob);
     };
-
-    var Global = typeof domGlobals.window !== 'undefined' ? domGlobals.window : Function('return this;')();
-
-    var path = function (parts, scope) {
-      var o = scope !== undefined && scope !== null ? scope : Global;
-      for (var i = 0; i < parts.length && o !== undefined && o !== null; ++i) {
-        o = o[parts[i]];
-      }
-      return o;
-    };
-    var resolve = function (p, scope) {
-      var parts = p.split('.');
-      return path(parts, scope);
-    };
-
-    var unsafe = function (name, scope) {
-      return resolve(name, scope);
-    };
-    var getOrDie = function (name, scope) {
-      var actual = unsafe(name, scope);
-      if (actual === undefined || actual === null) {
-        throw new Error(name + ' not available on this browser');
-      }
-      return actual;
-    };
-    var Global$1 = { getOrDie: getOrDie };
 
     var url = function () {
       return Global$1.getOrDie('URL');
@@ -2567,16 +2592,13 @@ var imagetools = (function (domGlobals) {
     };
 
     var typeOf = function (x) {
-      if (x === null) {
+      if (x === null)
         return 'null';
-      }
       var t = typeof x;
-      if (t === 'object' && (Array.prototype.isPrototypeOf(x) || x.constructor && x.constructor.name === 'Array')) {
+      if (t === 'object' && (Array.prototype.isPrototypeOf(x) || x.constructor && x.constructor.name === 'Array'))
         return 'array';
-      }
-      if (t === 'object' && (String.prototype.isPrototypeOf(x) || x.constructor && x.constructor.name === 'String')) {
+      if (t === 'object' && (String.prototype.isPrototypeOf(x) || x.constructor && x.constructor.name === 'String'))
         return 'string';
-      }
       return t;
     };
     var isType = function (type) {
@@ -2599,11 +2621,6 @@ var imagetools = (function (domGlobals) {
     var from$1 = isFunction(Array.from) ? Array.from : function (x) {
       return slice.call(x);
     };
-
-    function FileReader () {
-      var f = Global$1.getOrDie('FileReader');
-      return new f();
-    }
 
     function XMLHttpRequest () {
       var f = Global$1.getOrDie('XMLHttpRequest');
