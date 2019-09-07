@@ -176,8 +176,7 @@ abstract class Screen extends Controller
     /**
      * @param string $method
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     private function reflectionParams(string $method)
     {
@@ -204,6 +203,7 @@ abstract class Screen extends Controller
      * @param ReflectionParameter|null $parameter
      *
      * @return mixed
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     private function bind($key, $parameter)
     {

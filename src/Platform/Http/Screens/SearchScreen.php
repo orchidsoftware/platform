@@ -82,7 +82,7 @@ class SearchScreen extends Screen
     public function commandBar(): array
     {
         return [
-            Button::name(__('Apply'))
+            Button::make(__('Apply'))
                 ->icon('icon-filter')
                 ->method('changeSearchType'),
         ];

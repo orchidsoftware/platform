@@ -15,6 +15,7 @@ trait Filterable
      * @param array   $filters
      *
      * @return Builder
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function scopeFiltersApply(Builder $query, array $filters = []): Builder
     {

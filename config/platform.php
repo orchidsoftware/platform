@@ -51,7 +51,7 @@ return [
     |
     | The property controls the display / hide of the page.
     | The authorization page has basic properties and does not have the
-    | ability to change, use the command to change: artisan make:auth
+    | ability to change, use the command to change: `php artisan ui:auth`
     |
     */
 
