@@ -154,7 +154,6 @@
         position: absolute;
         right: 0;
         margin: 0;
-        height: 100%;
         @include translate3d(100%, 0, 0);
         .modal-content-wrapper {
           height: 100%;
@@ -164,6 +163,7 @@
         }
       }
       .modal-content {
+        min-height: 100vh;
         border-radius: 0;
       }
     }
