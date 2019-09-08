@@ -37,7 +37,7 @@
     "simplemde": "^1.11",
     "sortablejs": "^1.9.0",
     "stimulus": "^1.1.1",
-    "stimulus-flatpickr": "^1.0",
+    "stimulus-flatpickr": "^1.1.1",
     "tinymce": "^4.9.6",
     "turbolinks": "^5.2.0"
   },
