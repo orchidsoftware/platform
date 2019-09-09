@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Orchid\Screens\User;
 
 use Orchid\Screen\Action;
+use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
@@ -72,7 +73,7 @@ class UserEditScreen extends Screen
                         ->icon('icon-login')
                         ->method('loginAs'),
 
-                    Button::make(__('Change Password'))
+                  ModalToggle::make(__('Change Password'))
                         ->icon('icon-lock-open')
                         ->title(__('Change Password'))
                         ->method('changePassword')

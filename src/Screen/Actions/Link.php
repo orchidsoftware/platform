@@ -59,7 +59,11 @@ class Link extends Action
      */
     public static function make(string $name): self
     {
-        return (new static())->name($name);
+        return (new static())
+            ->name($name)
+            ->addBeforeRender(function () use ($name) {
+                $this->set('name', $name);
+            });
     }
 
     /**
