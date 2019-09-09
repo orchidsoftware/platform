@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Orchid\Screens\User;
 
 use Orchid\Screen\Action;
-use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
@@ -16,6 +15,7 @@ use Orchid\Support\Facades\Alert;
 use Orchid\Screen\Fields\Password;
 use Orchid\Screen\Actions\DropDown;
 use Illuminate\Support\Facades\Hash;
+use Orchid\Screen\Actions\ModalToggle;
 use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserRoleLayout;
 
