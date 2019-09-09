@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Screen\Actions;
 
 use Orchid\Screen\Action;
-use Orchid\Screen\Repository;
 use Orchid\Screen\Contracts\ActionContract;
+use Orchid\Screen\Repository;
 
 /**
  * Class DropDown.
@@ -43,7 +43,11 @@ class DropDown extends Action
      */
     public static function make(string $name): self
     {
-        return (new static())->name($name);
+        return (new static())
+            ->name($name)
+            ->addBeforeRender(function () use ($name) {
+                $this->set('name', $name);
+            });
     }
 
     /**

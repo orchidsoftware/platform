@@ -47,13 +47,15 @@ class Button extends Action
      */
     public static function make(string $name): self
     {
-        return (new static())->name($name)
-            ->addBeforeRender(function () {
+        return (new static())
+            ->name($name)
+            ->addBeforeRender(function () use ($name) {
                 $url = url()->current();
                 $query = http_build_query($this->get('parameters'));
 
                 $action = "{$url}/{$this->get('method')}?{$query}";
                 $this->set('action', $action);
+                $this->set('name', $name);
             });
     }
 }
