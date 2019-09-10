@@ -1,6 +1,6 @@
 @component($typeForm,get_defined_vars())
     <button type="button"
-            class="btn btn-link dropdown-item"
+            @include('platform::partials.fields.attributes', ['attributes' => $attributes])
             data-action="screen--base#targetModal"
             data-modal-title="{{ $title ?? '' }}"
             data-modal-key="{{ $modal ?? '' }}"
