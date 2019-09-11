@@ -14,7 +14,7 @@ class LinkCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'orchid:link';
+    protected $signature = 'orchid:link {--force}';
 
     /**
      * The console command description.
@@ -32,20 +32,23 @@ class LinkCommand extends Command
      */
     public function handle(Dashboard $dashboard)
     {
-        $prefix = public_path('/resources');
+        $prefix = public_path('resources');
 
-        if (file_exists($prefix)) {
+        if (file_exists($prefix) && !$this->option('force')) {
             $this->error("The [$prefix] directory already exists.");
 
             return;
         }
 
+        $this->getLaravel()->make('files')->makeDirectory($prefix, 0755, true, true);
+
         $dashboard->getPublicDirectory()->each(function ($path, $package) use ($prefix) {
             $package = $prefix.'/'.$package;
             $path = rtrim($path, '/');
 
-            $this->getLaravel()->make('files')->makeDirectory($prefix, 0755, true);
-            $this->getLaravel()->make('files')->link($path, $package);
+            if (!file_exists($package)) {
+                $this->getLaravel()->make('files')->link($path, $package);
+            }
         });
 
         $this->info("The [$prefix] directory has been linked.");
