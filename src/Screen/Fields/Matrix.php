@@ -7,7 +7,7 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
- * Class Matrix
+ * Class Matrix.
  *
  * @method self columns(array $columns)
  */
