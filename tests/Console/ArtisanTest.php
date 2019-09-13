@@ -87,18 +87,8 @@ class ArtisanTest extends TestConsoleCase
 
     public function testArtisanOrchidLink()
     {
-        $resources = public_path('resources');
-
-        File::deleteDirectory($resources);
-
         $this->artisan('orchid:link')
-            ->expectsOutput("The [$resources] directory has been linked.");
-
-        $this->artisan('orchid:link')
-            ->expectsOutput("The [$resources] directory already exists.");
-
-        $this->artisan('orchid:link --force')
-            ->expectsOutput("The [$resources] directory has been linked.");
+            ->expectsOutput('Links have been created.');
     }
 
     public function testArtisanPresetOrchidSource()
