@@ -4,9 +4,6 @@
            data-fields--matrix-index="{{ count($value) }}"
            data-fields--matrix-rows="{{ $maxRows }}"
     >
-        <colgroup>
-            <col width="*">
-        </colgroup>
         <thead>
         <tr>
             @foreach($columns as $column)
@@ -28,7 +25,7 @@
             <th colspan="{{ count($columns) }}" class="text-center p-0">
                 <a href="#" data-action="fields--matrix#addRow" class="btn btn-block text-xs text-muted">
                     <i class="icon-plus-alt"></i>
-                    <span>Add row</span>
+                    <span>{{ __('Add row') }}</span>
                 </a>
             </th>
         </tr>

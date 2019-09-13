@@ -154,5 +154,6 @@
   "On request: :query": "По запросу: :query",
   "Choose record type:": "Выберите тип записи:",
   "Nothing found.": "Ничего не найдено.",
-  "Try changing the query or type.": "Попробуйте изменить запрос или тип."
+  "Try changing the query or type.": "Попробуйте изменить запрос или тип.",
+  "Add row": "Добавить строку"
 }
