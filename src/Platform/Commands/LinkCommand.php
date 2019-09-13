@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
+use Orchid\Platform\Dashboard;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
-use Orchid\Platform\Dashboard;
 
 class LinkCommand extends Command
 {
@@ -35,20 +35,19 @@ class LinkCommand extends Command
     {
         $prefix = public_path('resources');
 
-        if (!File::exists($prefix)) {
+        if (! File::exists($prefix)) {
             File::makeDirectory($prefix, 0755, true);
         }
 
         $dashboard->getPublicDirectory()->each(function ($path, $package) use ($prefix) {
-            $package = $prefix . '/' . $package;
+            $package = $prefix.'/'.$package;
             $path = rtrim($path, '/');
 
-            if (!File::exists($package)) {
+            if (! File::exists($package)) {
                 File::link($path, $package);
                 $this->line("The [$package] directory has been linked.");
             }
         });
-
 
         $this->info('Links have been created.');
     }
