@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Layouts;
 
-use Orchid\Screen\TD;
 use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\TD;
 
 class NotificationTable extends Table
 {
@@ -25,8 +25,8 @@ class NotificationTable extends Table
             TD::set('Message', __('Message'))
                 ->render(function ($notification) {
                     return view('platform::partials.notification', [
-                    'notification' => $notification,
-                ]);
+                        'notification' => $notification,
+                    ]);
                 }),
 
             TD::set('', __('Date of creation'))

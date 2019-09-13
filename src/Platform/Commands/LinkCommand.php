@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
+use Orchid\Platform\Dashboard;
 
 class LinkCommand extends Command
 {
@@ -14,7 +15,7 @@ class LinkCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'orchid:link {--force}';
+    protected $signature = 'orchid:link';
 
     /**
      * The console command description.
@@ -34,23 +35,21 @@ class LinkCommand extends Command
     {
         $prefix = public_path('resources');
 
-        if (file_exists($prefix) && ! $this->option('force')) {
-            $this->error("The [$prefix] directory already exists.");
-
-            return;
+        if (!File::exists($prefix)) {
+            File::makeDirectory($prefix, 0755, true);
         }
 
-        $this->getLaravel()->make('files')->makeDirectory($prefix, 0755, true, true);
-
         $dashboard->getPublicDirectory()->each(function ($path, $package) use ($prefix) {
-            $package = $prefix.'/'.$package;
+            $package = $prefix . '/' . $package;
             $path = rtrim($path, '/');
 
-            if (! file_exists($package)) {
-                $this->getLaravel()->make('files')->link($path, $package);
+            if (!File::exists($package)) {
+                File::link($path, $package);
+                $this->line("The [$package] directory has been linked.");
             }
         });
 
-        $this->info("The [$prefix] directory has been linked.");
+
+        $this->info('Links have been created.');
     }
 }
