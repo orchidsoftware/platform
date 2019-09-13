@@ -34,7 +34,7 @@ class LinkCommand extends Command
     {
         $prefix = public_path('resources');
 
-        if (file_exists($prefix) && !$this->option('force')) {
+        if (file_exists($prefix) && ! $this->option('force')) {
             $this->error("The [$prefix] directory already exists.");
 
             return;
@@ -46,7 +46,7 @@ class LinkCommand extends Command
             $package = $prefix.'/'.$package;
             $path = rtrim($path, '/');
 
-            if (!file_exists($package)) {
+            if (! file_exists($package)) {
                 $this->getLaravel()->make('files')->link($path, $package);
             }
         });
