@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Tests\Console;
 
 use Orchid\Tests\TestConsoleCase;
-use Illuminate\Support\Facades\File;
 
 class ArtisanTest extends TestConsoleCase
 {
