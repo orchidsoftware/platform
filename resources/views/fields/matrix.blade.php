@@ -16,9 +16,7 @@
         <tbody>
 
         @foreach($value as $key => $row)
-
             @include('platform::partials.fields.matrixRow',['row' => $row, 'key' => $key])
-
         @endforeach
 
         <tr class="add-row">
