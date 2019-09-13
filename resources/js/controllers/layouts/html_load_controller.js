@@ -75,6 +75,9 @@ export default class extends Controller {
     csrf() {
         const token = document.head.querySelector('meta[name="csrf_token"]');
 
+        if (!token) {
+            return;
+        }
 
         /**
          * Next we will register the CSRF Token as a common header with Axios so that
