@@ -29,6 +29,11 @@ This is a package for creating administration-style applications on the [Laravel
 - **Permissions** - offers convenient management in development and support.
 - Menus, graphics, settings, notifications, etc. now.
  
+ ## Getting started
+
+* :uk: To check out the [guide](https://orchid.software/en/docs/), visit [orchid.software](https://orchid.software/en/docs/). 
+* :ru: Чтобы ознакомиться с [руководством](https://orchid.software/ru/docs/), посетите сайт [orchid.software](https://orchid.software/ru/docs/).
+ 
 ###### Screenshot
 
 ![screenshot](https://user-images.githubusercontent.com/5102591/61695228-cc133f80-ad3b-11e9-94b7-11661be67b45.png)
