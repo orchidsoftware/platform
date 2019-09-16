@@ -15,6 +15,7 @@ export default class extends Controller {
      */
     connect() {
         this.template = this.element.querySelector('template');
+        this.keyValueMode = this.data.get('key-value') === 'true';
 
         this.detectMaxRows();
     }

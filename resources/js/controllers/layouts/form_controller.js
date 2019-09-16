@@ -74,8 +74,9 @@ export default class extends Controller {
                 .catch((error) => {
                     this.isSubmit = false;
                     if (error.response) {
-                        window.history.pushState({ html: error.response.data }, '', error.request.responseURL);
-                        document.documentElement.innerHTML = error.response.data;
+                        window.history.pushState({ error: error.response.responseURL }, '', error.request.responseURL);
+                        Turbolinks.clearCache();
+                        document.write(error.response.data);
                     } else {
                         // eslint-disable-next-line no-console
                         window.platform.alert('Server error', 'The application could not process your request.', 'danger');

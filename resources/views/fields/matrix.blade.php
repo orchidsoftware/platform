@@ -3,12 +3,13 @@
            data-controller="fields--matrix"
            data-fields--matrix-index="{{ count($value) }}"
            data-fields--matrix-rows="{{ $maxRows }}"
+           data-fields--matrix-key-value="{{ var_export($keyValue) }}"
     >
         <thead>
         <tr>
-            @foreach($columns as $column)
+            @foreach($columns as $key => $column)
                 <th scope="col" class="text-capitalize">
-                    {{ $column }}
+                    {{ is_int($key) ? $column : $key }}
                 </th>
             @endforeach
         </tr>
