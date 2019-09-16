@@ -3,6 +3,7 @@
            data-controller="fields--matrix"
            data-fields--matrix-index="{{ count($value) }}"
            data-fields--matrix-rows="{{ $maxRows }}"
+           data-fields--matrix-key-value="{{ var_export($keyValue) }}"
     >
         <thead>
         <tr>

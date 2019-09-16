@@ -10,6 +10,7 @@ use Orchid\Screen\Field;
  * Class Matrix.
  *
  * @method self columns(array $columns)
+ * @method self keyValue(bool $keyValue)
  */
 class Matrix extends Field
 {
@@ -25,6 +26,7 @@ class Matrix extends Field
      */
     protected $attributes = [
         'maxRows' => 0,
+        'keyValue' => false,
         'columns' => [
             'key',
             'value',

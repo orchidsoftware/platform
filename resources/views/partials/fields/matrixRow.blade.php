@@ -3,7 +3,11 @@
         <th class="p-0">
                         <textarea class="form-control border-0 no-resize"
                                   rows="auto"
-                                  name="{{$name}}[{{  $key ?? 0 }}][{{ $column }}]"
+                                  @if($keyValue)
+                                    name="{{$name}}[{{ $column }}]"
+                                  @else
+                                    name="{{$name}}[{{  $key ?? 0 }}][{{ $column }}]"
+                                  @endif
                         >{{ $row[$column] ?? '' }}</textarea>
         </th>
 
