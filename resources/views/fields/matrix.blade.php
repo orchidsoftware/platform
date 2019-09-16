@@ -6,9 +6,9 @@
     >
         <thead>
         <tr>
-            @foreach($columns as $column)
+            @foreach($columns as $key => $column)
                 <th scope="col" class="text-capitalize">
-                    {{ $column }}
+                    {{ is_int($key) ? $column : $key }}
                 </th>
             @endforeach
         </tr>
