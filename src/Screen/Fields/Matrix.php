@@ -25,9 +25,9 @@ class Matrix extends Field
      * @var array
      */
     protected $attributes = [
-        'maxRows' => 0,
+        'maxRows'  => 0,
         'keyValue' => false,
-        'columns' => [
+        'columns'  => [
             'key',
             'value',
         ],
