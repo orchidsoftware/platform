@@ -1,4 +1,4 @@
-@extends('platform::app')
+@extends(config('platform.template.layout', 'platform::app'))
 
 @section('body-left')
 

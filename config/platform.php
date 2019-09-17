@@ -98,6 +98,7 @@ return [
     'template' => [
         'header' => 'platform::header',
         'footer' => 'platform::footer',
+        'layout' => 'platform::app',
     ],
 
 ];
