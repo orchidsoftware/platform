@@ -401,7 +401,7 @@ blockquote {
         text-decoration: underline;
         box-shadow: none;
       }
-	}  
+	}
 	&.active{
 		.page-link, span {
 			&,
@@ -415,11 +415,11 @@ blockquote {
             }
 		}
 	}
-		
-	
+
+
   }
-  
-  
+
+
   @at-root .text-right & {
     -webkit-box-pack: end!important;
     -ms-flex-pack: end!important;
@@ -430,6 +430,7 @@ blockquote {
 .panel,
 .card {
   border-radius: $border-radius-base;
+  border-color: $border-color;
   .accordion-toggle {
     font-size: 14px;
     display: block;
