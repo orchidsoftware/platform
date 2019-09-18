@@ -30,7 +30,7 @@ class ModalToggle extends Action
      * @var array
      */
     protected $attributes = [
-        'class'       => 'btn btn-default dropdown-item',
+        'class'       => 'btn btn-link dropdown-item',
         'modal'       => null,
         'method'      => null,
         'async'       => false,
