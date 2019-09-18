@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
-use Illuminate\Support\Arr;
 use JsonSerializable;
+use Illuminate\Support\Arr;
 use Orchid\Screen\Repository;
 
 /**
