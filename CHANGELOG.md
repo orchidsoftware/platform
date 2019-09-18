@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.1.0 - 2019-09-18
+
+### Added
+- Matrix field [910](https://github.com/orchidsoftware/platform/issues/910)
+
+### Changed
+- Command `orchid:link` now adds new paths [951](https://github.com/orchidsoftware/platform/pull/951)
+- Disabled csrf token for page not found
+
+### Fixed
+- ModalToggle class override [949](https://github.com/orchidsoftware/platform/pull/949)
+- Rewrite document content [952](https://github.com/orchidsoftware/platform/issues/952)
+- Serialize layouts [955](https://github.com/orchidsoftware/platform/issues/955)
+
 ## 6.0.2 - 2019-09-09
 
 ### Fixed
