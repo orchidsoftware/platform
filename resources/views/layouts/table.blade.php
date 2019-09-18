@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row table-responsive-lg">
     <table class="table">
         <thead>
         <tr>
