@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\Support\Arr;
+use JsonSerializable;
 use Orchid\Screen\Repository;
 
 /**
  * Class Base.
  */
-abstract class Base
+abstract class Base implements JsonSerializable
 {
     /**
      * Main template to display the layer
@@ -169,5 +170,15 @@ abstract class Base
     public function getSlug(): string
     {
         return sha1(json_encode($this));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function jsonSerialize()
+    {
+        $props = collect(get_object_vars($this));
+
+        return $props->except(['query'])->toArray();
     }
 }
