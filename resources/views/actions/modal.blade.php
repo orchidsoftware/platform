@@ -4,6 +4,7 @@
             data-action="screen--base#targetModal"
             data-modal-title="{{ $title ?? '' }}"
             data-modal-key="{{ $modal ?? '' }}"
+            data-modal-params="@json($asyncParams)"
             data-modal-action="{{ $action }}">
         <i class="{{ $icon ?? '' }} m-r-xs"></i>{{ $name ?? '' }}
     </button>
