@@ -14,7 +14,6 @@
 <a href="https://codecov.io/gh/orchidsoftware/platform"><img src="https://codecov.io/gh/orchidsoftware/platform/branch/master/graph/badge.svg" /></a>
 <a href="https://packagist.org/packages/orchid/platform"><img alt="Packagist" src="https://img.shields.io/packagist/dt/orchid/platform.svg"></a>
 <a href="https://packagist.org/packages/orchid/platform"><img alt="Packagist Version" src="https://img.shields.io/packagist/v/orchid/platform.svg"></a>
-<a href="https://t.me/orchid_community"><img src="https://img.shields.io/badge/chat-telegram-blue.svg"/></a>
 </p>
 
 ## Introduction
@@ -29,14 +28,19 @@ This is a package for creating administration-style applications on the [Laravel
 - **Permissions** - offers convenient management in development and support.
 - Menus, graphics, settings, notifications, etc. now.
  
+###### Screenshot
+
+![screenshot](https://user-images.githubusercontent.com/5102591/61695228-cc133f80-ad3b-11e9-94b7-11661be67b45.png)
+
  ## Getting started
 
 * :uk: To check out the [guide](https://orchid.software/en/docs/), visit [orchid.software](https://orchid.software/en/docs/). 
 * :ru: Чтобы ознакомиться с [руководством](https://orchid.software/ru/docs/), посетите сайт [orchid.software](https://orchid.software/ru/docs/).
- 
-###### Screenshot
 
-![screenshot](https://user-images.githubusercontent.com/5102591/61695228-cc133f80-ad3b-11e9-94b7-11661be67b45.png)
+##### Local User Groups
+
+* [Orchid Global Community](https://t.me/orchid_community)
+* [Orchid Russia](https://t.me/orchid_russian_community)
 
 ## Change log
 
