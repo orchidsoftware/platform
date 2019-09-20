@@ -29,7 +29,7 @@ class DropDown extends Action
      * @var array
      */
     protected $attributes = [
-        'class' => 'btn btn-link dropdown-item',
+        'class' => 'btn btn-link',
         'icon'  => null,
         'list'  => [],
     ];
