@@ -64,7 +64,7 @@ class RelationController extends Controller
             $model = $model->handler();
         }
 
-        $items = collect($model);
+        $items = collect($model->get());
 
         if (! is_null($search) && $search !== '') {
             $items = $items->filter(function ($item) use ($name, $search) {
