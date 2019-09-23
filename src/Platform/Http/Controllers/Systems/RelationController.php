@@ -44,10 +44,10 @@ class RelationController extends Controller
 
     /**
      * @param array|object|Model $model
-     * @param string       $name
-     * @param string       $key
-     * @param string       $search
-     * @param string|null  $scope
+     * @param string             $name
+     * @param string             $key
+     * @param string             $search
+     * @param string|null        $scope
      *
      * @return Collection|array
      */
