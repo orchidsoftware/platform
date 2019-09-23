@@ -16,7 +16,7 @@
                       enctype="multipart/form-data"
                       data-controller="layouts--form"
                       data-action="layouts--form#submit"
-                      data-layouts--form-button-animate="#submit-modal-{{$key}}"
+                      data-layouts--form-button-animate="#screen-modal-{{$key}}"
                       data-layouts--form-button-text="{{ __('Loading...') }}"
                 >
                     <div class="modal-header">
