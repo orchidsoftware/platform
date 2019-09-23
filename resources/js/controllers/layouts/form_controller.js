@@ -85,6 +85,7 @@ export default class extends Controller {
                 });
         });
 
+
         return false;
     }
 
@@ -93,14 +94,16 @@ export default class extends Controller {
      */
     animateButton() {
         const button = this.data.get('button-animate');
-        const text = this.data.get('button-text');
+        const text = this.data.get('button-text') || '';
 
-        if (button) {
-            const buttonElement = document.querySelector(button);
-            buttonElement.disabled = true;
-            buttonElement.innerHTML = '<span class="spinner-border spinner-border-sm mb-1" role="status" aria-hidden="true"></span>'
-                + `<span class="pl-1">${text || ''}</span>`;
+        if (!button || !document.querySelector(button)) {
+            return;
         }
+
+        const buttonElement = document.querySelector(button);
+        buttonElement.disabled = true;
+        buttonElement.innerHTML = '<span class="spinner-border spinner-border-sm mb-1" role="status" aria-hidden="true"></span>'
+            + `<span class="pl-1">${text}</span>`;
     }
 
     /**
