@@ -43,7 +43,7 @@ class RelationController extends Controller
     }
 
     /**
-     * @param object|Model $model
+     * @param array|object|Model $model
      * @param string       $name
      * @param string       $key
      * @param string       $search
@@ -55,7 +55,7 @@ class RelationController extends Controller
     {
         if (is_subclass_of($model, Model::class)) {
             return $model->where($name, 'like', '%'.$search.'%')->limit(10)->pluck($name, $key);
-        } elseif (property_exists($model, 'search')) {
+        } elseif (! is_array($model) && property_exists($model, 'search')) {
             $model->search = $search;
         }
 
@@ -64,7 +64,11 @@ class RelationController extends Controller
             $model = $model->handler();
         }
 
-        $items = collect($model->get());
+        $items = collect($model);
+
+        if (! is_iterable($model)) {
+            $items = collect($model->get());
+        }
 
         if (! is_null($search) && $search !== '') {
             $items = $items->filter(function ($item) use ($name, $search) {
