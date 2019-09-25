@@ -4,6 +4,8 @@ namespace App\Orchid\Layouts\Examples;
 
 use Orchid\Screen\Field;
 use Orchid\Screen\Fields\Map;
+use Orchid\Screen\Fields\Matrix;
+use Orchid\Screen\Fields\Radio;
 use Orchid\Screen\Fields\UTM;
 use Orchid\Screen\Fields\Code;
 use Orchid\Screen\Fields\Input;
@@ -168,6 +170,22 @@ class RowExample extends Rows
             Relation::make('role')
                 ->fromModel(Role::class, 'name')
                 ->title('Select one role'),
+
+            Radio::make('radio')
+                ->placeholder('Yes')
+                ->value(1)
+                ->title('Radio'),
+
+            Radio::make('radio')
+                ->placeholder('No')
+                ->value(0),
+
+            Matrix::make('matrix')
+                ->columns([
+                    'Attribute',
+                    'Value',
+                    'Units',
+                ]),
 
         ];
     }
