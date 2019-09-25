@@ -20,6 +20,8 @@ class MultiSourceTest extends TestUnitCase
 
     protected function setUp(): void
     {
+        parent::setUp();
+
         $model = new class extends Model {
             use AsMultiSource;
 
@@ -64,5 +66,10 @@ class MultiSourceTest extends TestUnitCase
     {
         $this->assertContains('Russia', $this->model->getContent('country', 'en'));
         $this->assertContains('Россия', $this->model->getContent('country', 'ru'));
+    }
+
+    public function testMultiLanguageFallBack()
+    {
+        $this->assertContains('Spain', $this->model->getContent('country', 'es'));
     }
 }
