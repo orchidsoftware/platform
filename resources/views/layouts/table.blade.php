@@ -1,4 +1,4 @@
-<div class="row table-responsive-lg">
+<div class="row table-responsive-lg @if ($striped) table-striped @endif">
     <table class="table">
         <thead>
         <tr>

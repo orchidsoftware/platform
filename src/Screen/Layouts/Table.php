@@ -49,6 +49,7 @@ abstract class Table extends Base
             'iconNotFound' => $this->iconNotFound(),
             'textNotFound' => $this->textNotFound(),
             'subNotFound'  => $this->subNotFound(),
+            'striped'      => $this->striped(),
         ]);
     }
 
@@ -74,6 +75,14 @@ abstract class Table extends Base
     protected function subNotFound(): string
     {
         return '';
+    }
+
+    /**
+     * @return bool
+     */
+    protected function striped(): bool
+    {
+        return false;
     }
 
     /**
