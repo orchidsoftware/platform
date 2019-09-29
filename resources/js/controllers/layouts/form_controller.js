@@ -37,6 +37,12 @@ export default class extends Controller {
      */
     submit(event) {
 
+        // disable
+        if (this.getActiveElementAttr('data-turbolinks') === 'false') {
+            event.preventDefault();
+            return true;
+        }
+
         if (!this.validateForm(event)) {
             event.preventDefault();
             return false;
@@ -113,7 +119,7 @@ export default class extends Controller {
      */
     validateForm(event) {
         // Cancellation
-        if (document.activeElement.getAttribute('data-novalidate') === 'true') {
+        if (this.getActiveElementAttr('data-novalidate') === 'true') {
             return true;
         }
 
@@ -138,6 +144,15 @@ export default class extends Controller {
     }
 
     /**
+     *
+     * @param attribute
+     * @returns {string}
+     */
+    getActiveElementAttr(attribute) {
+        return document.activeElement.getAttribute(attribute);
+    }
+
+    /**
      * Sets the status whether the form is submitted or not.
      *
      * @param value
@@ -153,7 +168,7 @@ export default class extends Controller {
      */
     loadFormAction() {
         const formAction = this.element.getAttribute('action');
-        const activeElementAction = document.activeElement.getAttribute('formaction');
+        const activeElementAction = this.getActiveElementAttr('formaction');
 
         return activeElementAction || formAction;
     }
