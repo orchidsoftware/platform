@@ -39,7 +39,6 @@ export default class extends Controller {
 
         // disable
         if (this.getActiveElementAttr('data-turbolinks') === 'false') {
-            event.preventDefault();
             return true;
         }
 
