@@ -62,4 +62,38 @@ class ButtonTest extends TestFieldsUnitCase
             $view
         );
     }
+
+    /**
+     * @test
+     */
+    public function testButtonDisableTurbolinks()
+    {
+        $button = Button::make('About')
+            ->method('test')
+            ->rawClick();
+
+        $view = self::renderField($button);
+
+        $this->assertStringContainsString(
+            'data-turbolinks="false"',
+            $view
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function testButtonEnabledTurbolinks()
+    {
+        $button = Button::make('About')
+            ->method('test')
+            ->rawClick(true);
+
+        $view = self::renderField($button);
+
+        $this->assertStringContainsString(
+            'data-turbolinks="true"',
+            $view
+        );
+    }
 }
