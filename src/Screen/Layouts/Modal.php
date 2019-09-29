@@ -31,12 +31,13 @@ class Modal extends Base
     public function __construct(string $key, array $layouts = [])
     {
         $this->variables = [
-            'apply' => __('Apply'),
-            'close' => __('Close'),
-            'size'  => '',
-            'type'  => self::TYPE_CENTER,
-            'key'   => $key,
-            'title' => $key,
+            'apply'      => __('Apply'),
+            'close'      => __('Close'),
+            'size'       => '',
+            'type'       => self::TYPE_CENTER,
+            'key'        => $key,
+            'title'      => $key,
+            'turbolinks' => true,
         ];
 
         $this->layouts = $layouts;
@@ -118,6 +119,18 @@ class Modal extends Base
     public function title(string $title):self
     {
         $this->variables['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $status
+     *
+     * @return static
+     */
+    public function rawClick($status = false) : self
+    {
+        $this->variables['turbolinks'] = $status;
 
         return $this;
     }

@@ -33,6 +33,7 @@ class Link extends Action
         'class' => 'btn btn-link',
         'icon'  => null,
         'href'  => '#!',
+        'turbolinks'  => true,
     ];
 
     /**
