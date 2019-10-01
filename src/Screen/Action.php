@@ -104,4 +104,16 @@ class Action extends Field implements ActionContract
     {
         return $this->render();
     }
+
+    /**
+     * @param bool $status
+     *
+     * @return static
+     */
+    public function rawClick($status = false) : self
+    {
+        $this->set('turbolinks', $status);
+
+        return $this;
+    }
 }

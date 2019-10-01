@@ -1,9 +1,9 @@
 @component($typeForm,get_defined_vars())
-    <button type="submit"
+    <button form="post-form"
             formaction="{{ $action }}"
             data-novalidate="{{ var_export($novalidate) }}"
-            form="post-form"
-            @if(!is_null($confirm))onclick="return confirm('{{$confirm}}');"@endif
+            data-turbolinks="{{ var_export($turbolinks) }}"
+            @empty(!$confirm)onclick="return confirm('{{$confirm}}');"@endempty
             @include('platform::partials.fields.attributes', ['attributes' => $attributes])>
         @isset($icon)<i class="{{ $icon }} m-r-xs"></i>@endisset
         {{ $name ?? '' }}

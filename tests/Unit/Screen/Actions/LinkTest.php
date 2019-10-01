@@ -22,6 +22,7 @@ class LinkTest extends TestFieldsUnitCase
 
         $this->assertStringContainsString('About', $view);
         $this->assertStringContainsString('href="#!"', $view);
+        $this->assertStringContainsString('data-turbolinks="true"', $view);
     }
 
     /**
@@ -75,5 +76,19 @@ class LinkTest extends TestFieldsUnitCase
         $view = self::renderField($link);
 
         $this->assertStringContainsString('href="https://google.com"', $view);
+    }
+
+    /**
+     * @test
+     */
+    public function testLinkDisableTurbolinks()
+    {
+        $link = Link::make('About')
+            ->href('https://google.com')
+            ->rawClick();
+
+        $view = self::renderField($link);
+
+        $this->assertStringContainsString('data-turbolinks="false"', $view);
     }
 }

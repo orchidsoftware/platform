@@ -1,10 +1,8 @@
 <div class="row admin-wrapper b-t">
     <div class="wrapper-lg">
-        <div class="row m-b-xl text-center">
-            <div class="wrapper w-full">
-                <h1 class="text-dark font-thin m-t-md m-b-sm"><i class="icon-directions m-r-xs"></i> Get Started</h1>
-                <p class="lead m-b-n">Develop corporate web applications faster than ever</p>
-            </div>
+        <div class="mb-5">
+            <h1 class="text-dark font-thin m-b-sm"><i class="icon-directions m-r-xs"></i> Get Started</h1>
+            <p class="lead m-b-n">Develop corporate web applications faster than ever</p>
         </div>
         <div class="row">
             <div class="col-md-4 no-padder admin-element-item">

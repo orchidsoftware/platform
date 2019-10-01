@@ -32,12 +32,14 @@ class Button extends Action
      */
     protected $attributes = [
         'class'       => 'btn btn-link',
+        'type'        => 'submit',
         'novalidate'  => false,
         'method'      => null,
         'icon'        => null,
         'action'      => null,
         'confirm'     => null,
         'parameters'  => [],
+        'turbolinks'  => true,
     ];
 
     /**
