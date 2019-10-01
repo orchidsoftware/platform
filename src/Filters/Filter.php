@@ -83,14 +83,6 @@ abstract class Filter
     abstract public function name(): string;
 
     /**
-     * @return array
-     */
-    public function valuesAliases(): array
-    {
-        return [];
-    }
-
-    /**
      * @return string
      */
     public function render() : string
@@ -122,15 +114,6 @@ abstract class Filter
     public function value(): string
     {
         $params = $this->request->only($this->parameters, []);
-
-        $aliases = $this->valuesAliases();
-
-        if (!empty($aliases)) {
-            $params = array_map(function ($v) use ($aliases) {
-                return isset($aliases[$v]) ? $aliases[$v] : $v;
-            }, $params);
-        }
-
         $values = collect($params)->flatten()->implode(static::$delimiter);
 
         return $this->name().': '.$values;
