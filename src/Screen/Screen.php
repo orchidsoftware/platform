@@ -24,6 +24,8 @@ use Orchid\Platform\Http\Controllers\Controller;
  */
 abstract class Screen extends Controller
 {
+    use CommandArea;
+
     /**
      * Display header name.
      *
@@ -137,9 +139,11 @@ abstract class Screen extends Controller
         $this->reflectionParams('query');
         $query = call_user_func_array([$this, 'query'], $this->arguments);
         $this->source = new Repository($query);
+        $commandBar = $this->buildCommandBar($this->source);
 
         return view('platform::layouts.base', [
-            'screen'    => $this,
+            'screen' => $this,
+            'commandBar' => $commandBar,
         ]);
     }
 
@@ -244,17 +248,6 @@ abstract class Screen extends Controller
             ->map(function ($item) {
                 return Auth::user()->hasAccess($item);
             })->contains(true);
-    }
-
-    /**
-     * @return array
-     */
-    public function buildCommandBar() : array
-    {
-        return collect($this->commandBar())
-            ->map(function (ActionContract $command) {
-                return $command->build($this->source);
-            })->all();
     }
 
     /**
