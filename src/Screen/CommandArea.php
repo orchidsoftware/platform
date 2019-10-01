@@ -6,8 +6,8 @@ namespace Orchid\Screen;
 
 use Orchid\Screen\Contracts\ActionContract;
 
-trait CommandArea {
-
+trait CommandArea
+{
     /**
      * @return Action[]
      */
@@ -28,5 +28,4 @@ trait CommandArea {
                 return $command->build($repository);
             })->all();
     }
-
 }

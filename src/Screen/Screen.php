@@ -15,7 +15,6 @@ use Orchid\Screen\Layouts\Base;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\View\Factory;
-use Orchid\Screen\Contracts\ActionContract;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Orchid\Platform\Http\Controllers\Controller;
 
@@ -142,7 +141,7 @@ abstract class Screen extends Controller
         $commandBar = $this->buildCommandBar($this->source);
 
         return view('platform::layouts.base', [
-            'screen' => $this,
+            'screen'     => $this,
             'commandBar' => $commandBar,
         ]);
     }
