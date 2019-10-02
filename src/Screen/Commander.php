@@ -6,7 +6,7 @@ namespace Orchid\Screen;
 
 use Orchid\Screen\Contracts\ActionContract;
 
-trait CommandArea
+trait Commander
 {
     /**
      * @return Action[]
