@@ -17,5 +17,10 @@ export default class extends Controller {
         if (mask != '') {
           Inputmask(mask).mask(element);
         }
+        if (mask.removeMaskOnSubmit) {
+            this.element.closest('form').addEventListener('submit', () => {
+                Inputmask.remove(element);
+            })
+        }
     }
 }
