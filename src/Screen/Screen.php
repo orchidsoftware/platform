@@ -23,7 +23,7 @@ use Orchid\Platform\Http\Controllers\Controller;
  */
 abstract class Screen extends Controller
 {
-    use CommandArea;
+    use Commander;
 
     /**
      * Display header name.
