@@ -149,7 +149,10 @@ abstract class Base implements JsonSerializable
         $build = [];
 
         foreach ($layouts as $layout) {
-            $layout = ! is_object($layout) ? new $layout() : $layout;
+
+            if (!is_object($layout)) {
+                $layout = app()->make($layout);
+            }
 
             if (! $this->checkPermission($layout, $repository)) {
                 continue;
