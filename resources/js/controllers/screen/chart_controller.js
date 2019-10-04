@@ -19,9 +19,6 @@ export default class extends Controller {
             colors: JSON.parse(this.data.get('colors')),
         });
 
-        //@see https://github.com/frappe/charts/issues/212
-        this.chart.unbindWindowEvents();
-
         $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', this.drawEvent());
     }
 
