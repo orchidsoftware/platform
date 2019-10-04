@@ -15,14 +15,25 @@
         {{__('Password')}}
         <a href="{{ route('platform.password.request') }}" class="float-right small">{{__('Forgot your password?')}}</a>
     </label>
-    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
+
+    <div data-controller="fields--password"
+         class="input-icon"
+    >
+    <input type="password" class="form-control @error('password') is-invalid @enderror"
+           name="password"
+           data-target="fields--password.password"
            value="{{ old('password') }}"
            placeholder="{{__('Enter your password')}}" required>
+        <div class="input-icon-addon cursor" data-action="click->fields--password#change">
+            <i class="icon-eye" data-target="fields--password.icon"></i>
+        </div>
+    </div>
     @error('password')
         <span class="invalid-feedback text-danger">
             {{ $errors->first('password') }}
         </span>
     @enderror
+
 </div>
 
 <div class="row">
