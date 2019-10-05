@@ -121,9 +121,9 @@ class File
 
         $file = $file->replicate()->fill([
             'original_name' => $this->file->getClientOriginalName(),
-            'sort'    => 0,
-            'user_id' => Auth::id(),
-            'group'   => $this->group,
+            'sort'          => 0,
+            'user_id'       => Auth::id(),
+            'group'         => $this->group,
         ]);
 
         $file->save();
