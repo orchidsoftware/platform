@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.3.0 - 2019-10-05
+
+### Added
+- Creating class from service container[986](https://github.com/orchidsoftware/platform/issues/986)
+- New trait `Commander`
+
+### Changed
+- Show/hide mod for password on authorization form
+
+### Fixed
+- `removeMaskOnSubmit` dont work [982](https://github.com/orchidsoftware/platform/issues/982)
+- Error loading identical files with different names
+- Incorrect filter alignment
+
+
 ## 6.2.0 - 2019-09-30
 
 ### Added

@@ -43,7 +43,7 @@ class AttachmentController extends Controller
     {
         $attachment = collect($request->allFiles())
             ->flatten()
-            ->map(function ($file) use ($request) {
+            ->map(function (UploadedFile $file) use ($request) {
                 return $this->createModel($file, $request);
             });
 

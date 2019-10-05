@@ -118,7 +118,7 @@ abstract class Screen extends Controller
         foreach ($this->layout() as $layout) {
 
             /** @var Base|string $layout */
-            $layout = is_object($layout) ? $layout : new $layout();
+            $layout = is_object($layout) ? $layout : app()->make($layout);
 
             if ($layout->getSlug() === $slugLayouts) {
                 return $layout->currentAsync()->build($source);
