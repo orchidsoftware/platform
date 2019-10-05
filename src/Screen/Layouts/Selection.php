@@ -56,9 +56,9 @@ abstract class Selection extends Base
             return;
         }
 
-        foreach ($filters as $key => $filter) {
-            $filters[$key] = new $filter();
-        }
+        $filters = $filters->map(function ($filter) {
+            return app()->make($filter);
+        });
 
         return view($this->template, [
             'filters' => $filters,
