@@ -52,11 +52,16 @@ export default class extends Controller {
             return false;
         }
 
+        const action = this.loadFormAction();
+
+        if (action === null) {
+            event.preventDefault();
+            return false;
+        }
+
         this.isSubmit = true;
         this.animateButton();
         event.preventDefault();
-
-        const action = this.loadFormAction();
 
         setTimeout(() => {
             const form = new FormData(event.target);
