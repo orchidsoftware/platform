@@ -4,7 +4,7 @@
       th {
         font-weight: 600;
         font-size: 0.9em;
-        vertical-align: top;
+        vertical-align: middle;
         border-bottom: 1px solid fade-out($brand-light, .3);
 		border-top: 0;
         color: fade-out($brand-dark, .65);
@@ -17,6 +17,11 @@
             }
             input.form-control {
                 padding: 0 0.3rem;
+            }
+        }
+        .btn-link {
+            &:hover, &:focus {
+                text-decoration: initial !important;
             }
         }
       }
