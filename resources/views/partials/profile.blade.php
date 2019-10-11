@@ -71,7 +71,11 @@
             <i class="icon-bell"></i>
             @if(count($notifications) > 0)
                 <span class="badge badge-sm up bg-danger pull-right-xs text-white">
-                {{ count($notifications) < 10 ? count($notifications) : '+'}}
+                    @if(count($notifications) < 10)
+                        {{ count($notifications) }}
+                    @else
+                        <i class="icon-circle"></i>
+                    @endif
             </span>
             @endif
         </a>
