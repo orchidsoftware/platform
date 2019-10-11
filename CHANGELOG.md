@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.3.2 - 2019-10-12
+
+### Changed
+- Icon for notifications for more than 9 messages
+
+### Fixed
+- Event for submit screen form [#982]
+
 ## 6.3.1 - 2019-10-09
 
 ### Fixed
