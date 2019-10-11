@@ -14,13 +14,13 @@ export default class extends Controller {
         } catch (e) {
             // default
         }
-        if (mask != '') {
-          Inputmask(mask).mask(element);
+        if (mask !== '') {
+            Inputmask(mask).mask(element);
         }
         if (mask.removeMaskOnSubmit) {
-            this.element.closest('form').addEventListener('submit', () => {
+            this.element.closest('form').addEventListener('orchid:screen-submit', () => {
                 Inputmask.remove(element);
-            })
+            });
         }
     }
 }

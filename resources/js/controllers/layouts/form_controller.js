@@ -36,7 +36,6 @@ export default class extends Controller {
      * @returns {boolean}
      */
     submit(event) {
-
         // disable
         if (this.getActiveElementAttr('data-turbolinks') === 'false') {
             return true;
@@ -62,6 +61,9 @@ export default class extends Controller {
         this.isSubmit = true;
         this.animateButton();
         event.preventDefault();
+
+        const screenEventSubmit = new Event('orchid:screen-submit');
+        event.target.dispatchEvent(screenEventSubmit);
 
         setTimeout(() => {
             const form = new FormData(event.target);
