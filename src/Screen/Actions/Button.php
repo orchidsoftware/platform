@@ -49,7 +49,7 @@ class Button extends Action
      *
      * @return Button $name
      */
-    public static function make(string $name = ''): Button
+    public static function make(string $name = ''): self
     {
         return (new static())
             ->name($name)

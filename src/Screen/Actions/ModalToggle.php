@@ -48,7 +48,7 @@ class ModalToggle extends Action
      *
      * @return ModalToggle
      */
-    public static function make(string $name = ''): ModalToggle
+    public static function make(string $name = ''): self
     {
         return (new static())
             ->name($name)
@@ -73,7 +73,7 @@ class ModalToggle extends Action
      *
      * @return ModalToggle
      */
-    public function loadModalAsync(string $modal, string $method, $options = [], string $modalTitle = null): ModalToggle
+    public function loadModalAsync(string $modal, string $method, $options = [], string $modalTitle = null): self
     {
         $this->set('async');
         $this->set('modal', $modal);

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Carbon\Carbon;
-use Carbon\CarbonImmutable;
 use Carbon\CarbonPeriod;
+use Carbon\CarbonImmutable;
 
 class Calendar
 {
@@ -44,7 +44,6 @@ class Calendar
         $this->generateDates($steps);
     }
 
-
     /**
      * @param int $steps
      */
@@ -77,7 +76,7 @@ class Calendar
 
         /** @var Carbon $day */
         foreach ($period as $day) {
-           $weeks[$day->weekNumberInMonth][] = $day;
+            $weeks[$day->weekNumberInMonth][] = $day;
         }
 
         return $weeks;
@@ -89,9 +88,9 @@ class Calendar
     public function build()
     {
         return view('platform::layouts.calendar', [
-            'weeks' => $this->weekDaysList(),
-            'dates' => $this->dates,
-            'current' => $this->currentDay
+            'weeks'   => $this->weekDaysList(),
+            'dates'   => $this->dates,
+            'current' => $this->currentDay,
         ]);
     }
 
