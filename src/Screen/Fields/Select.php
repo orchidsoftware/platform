@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @method self help(string $value = null)
  * @method self popover(string $value = null)
  * @method self options($value = null)
+ *
  */
 class Select extends Field
 {

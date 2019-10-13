@@ -10,14 +10,14 @@ use Orchid\Screen\Field;
 /**
  * Class TimeZone.
  *
- * @method self autofocus($value = true)
- * @method self disabled($value = true)
- * @method self form($value = true)
- * @method self name(string $value = null)
- * @method self required(bool $value = true)
- * @method self tabindex($value = true)
- * @method self help(string $value = null)
- * @method self popover(string $value = null)
+ * @method TimeZone autofocus($value = true)
+ * @method TimeZone disabled($value = true)
+ * @method TimeZone form($value = true)
+ * @method TimeZone name(string $value = null)
+ * @method TimeZone required(bool $value = true)
+ * @method TimeZone tabindex($value = true)
+ * @method TimeZone help(string $value = null)
+ * @method TimeZone popover(string $value = null)
  */
 class TimeZone extends Field
 {

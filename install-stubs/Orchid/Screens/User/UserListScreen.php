@@ -104,4 +104,19 @@ class UserListScreen extends Screen
 
         return back();
     }
+
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function remove(Request $request)
+    {
+        User::findOrFail($request->get('id'))
+            ->delete();
+
+        Alert::info(__('User was removed'));
+
+        return back();
+    }
 }

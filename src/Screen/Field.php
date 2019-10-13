@@ -20,8 +20,6 @@ use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
  * @method self accesskey($value = true)
  * @method self type($value = true)
  * @method self class($value = true)
- * @method self contenteditable($value = true)
- * @method self contextmenu($value = true)
  * @method self dir($value = true)
  * @method self hidden($value = true)
  * @method self id($value = true)
@@ -30,7 +28,6 @@ use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
  * @method self style($value = true)
  * @method self tabindex($value = true)
  * @method self title(string $value = null)
- * @method self options($value = true)
  * @method self autocomplete($value = true)
  * @method self help(string $value)
  */
@@ -100,8 +97,6 @@ class Field implements FieldContract
     protected $universalAttributes = [
         'accesskey',
         'class',
-        'contenteditable',
-        'contextmenu',
         'dir',
         'hidden',
         'id',
@@ -432,7 +427,7 @@ class Field implements FieldContract
      *
      * @return static
      */
-    public function addBeforeRender(Closure $closure): self
+    public function addBeforeRender(Closure $closure)
     {
         $this->beforeRender[] = $closure;
 

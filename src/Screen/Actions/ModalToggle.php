@@ -10,12 +10,12 @@ use Illuminate\Support\Arr;
 /**
  * Class ModalToggle.
  *
- * @method self name(string $name = null)
- * @method self modal(string $modalName = null)
- * @method self icon(string $icon = null)
- * @method self class(string $classes = null)
- * @method self method(string $methodName = null)
- * @method self parameters(array|object $name)
+ * @method $this name(string $name = null)
+ * @method $this modal(string $modalName = null)
+ * @method $this icon(string $icon = null)
+ * @method $this class(string $classes = null)
+ * @method $this method(string $methodName = null)
+ * @method $this parameters(array|object $name)
  */
 class ModalToggle extends Action
 {
@@ -46,11 +46,12 @@ class ModalToggle extends Action
      *
      * @param string $name
      *
-     * @return self
+     * @return ModalToggle
      */
-    public static function make(string $name): self
+    public static function make(string $name = ''): ModalToggle
     {
-        return (new static())->name($name)
+        return (new static())
+            ->name($name)
             ->addBeforeRender(function () use ($name) {
                 $url = url()->current();
                 $query = http_build_query($this->get('parameters'));
@@ -72,7 +73,7 @@ class ModalToggle extends Action
      *
      * @return ModalToggle
      */
-    public function loadModalAsync(string $modal, string $method, $options = [], string $modalTitle = null): self
+    public function loadModalAsync(string $modal, string $method, $options = [], string $modalTitle = null): ModalToggle
     {
         $this->set('async');
         $this->set('modal', $modal);

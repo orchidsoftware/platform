@@ -102,6 +102,7 @@ class ExampleScreen extends Screen
 
             Button::make('Example Button')
                 ->method('example')
+                ->novalidate()
                 ->icon('icon-bag'),
 
             ModalToggle::make('Example Modals')

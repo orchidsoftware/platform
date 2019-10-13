@@ -43,7 +43,7 @@ class UserEditScreen extends Screen
     /**
      * Query data.
      *
-     * @param \Orchid\Platform\Models\User $user
+     * @param User $user
      *
      * @return array
      */
@@ -75,9 +75,10 @@ class UserEditScreen extends Screen
 
                   ModalToggle::make(__('Change Password'))
                         ->icon('icon-lock-open')
-                        ->title(__('Change Password'))
                         ->method('changePassword')
-                        ->modal('password'),
+                        ->modal('password')
+                        ->title(__('Change Password')),
+
                 ]),
 
             Button::make(__('Save'))
@@ -104,17 +105,17 @@ class UserEditScreen extends Screen
             Layout::modal('password', [
                 Layout::rows([
                     Password::make('password')
-                        ->title(__('Password'))
+                        ->placeholder(__('Enter your password'))
                         ->required()
-                        ->placeholder(__('Enter your password')),
+                        ->title(__('Password'))
                 ]),
             ]),
         ];
     }
 
     /**
-     * @param \Orchid\Platform\Models\User $user
-     * @param \Illuminate\Http\Request     $request
+     * @param User $user
+     * @param Request     $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
