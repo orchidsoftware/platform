@@ -29,10 +29,10 @@ class DropDown extends Action
      * @var array
      */
     protected $attributes = [
-        'class' => 'btn btn-link',
+        'class'  => 'btn btn-link',
         'source' => null,
-        'icon'  => null,
-        'list'  => [],
+        'icon'   => null,
+        'list'   => [],
     ];
 
     /**
@@ -42,7 +42,7 @@ class DropDown extends Action
      *
      * @return DropDown
      */
-    public static function make(string $name  = ''): DropDown
+    public static function make(string $name = ''): self
     {
         return (new static())
             ->name($name)
@@ -56,7 +56,7 @@ class DropDown extends Action
      *
      * @return DropDown
      */
-    public function list(array $list) : DropDown
+    public function list(array $list) : self
     {
         return $this->set('list', $list);
     }

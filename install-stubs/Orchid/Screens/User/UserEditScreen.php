@@ -107,15 +107,15 @@ class UserEditScreen extends Screen
                     Password::make('password')
                         ->placeholder(__('Enter your password'))
                         ->required()
-                        ->title(__('Password'))
+                        ->title(__('Password')),
                 ]),
             ]),
         ];
     }
 
     /**
-     * @param User $user
-     * @param Request     $request
+     * @param User    $user
+     * @param Request $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */

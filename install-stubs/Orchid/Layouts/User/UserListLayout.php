@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\User;
 
-use Orchid\Screen\Actions\Button;
-use Orchid\Screen\Actions\DropDown;
-use Orchid\Screen\Actions\Link;
 use Orchid\Screen\TD;
+use Orchid\Screen\Actions\Link;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Actions\DropDown;
 
 class UserListLayout extends Table
 {
@@ -60,7 +60,7 @@ class UserListLayout extends Table
             TD::set('id', 'ID')
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')
-                ->render(function (User $user){
+                ->render(function (User $user) {
                     return DropDown::make('')
                         ->icon('icon-menu')
                         ->list([
@@ -73,7 +73,7 @@ class UserListLayout extends Table
                                 ->method('remove')
                                 ->confirm('Вы действительно хотите удалить пользователя?')
                                 ->parameters([
-                                    'id' => $user->id
+                                    'id' => $user->id,
                                 ])
                                 ->icon('icon-trash'),
                         ])->render();

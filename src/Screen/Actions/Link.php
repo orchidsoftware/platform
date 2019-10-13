@@ -58,7 +58,7 @@ class Link extends Action
      *
      * @return self
      */
-    public static function make(string $name): Link
+    public static function make(string $name): self
     {
         return (new static())
             ->name($name)
@@ -74,7 +74,7 @@ class Link extends Action
      *
      * @return $this
      */
-    public function href(string $link = ''): Link
+    public function href(string $link = ''): self
     {
         $this->set('href', $link);
 
@@ -88,7 +88,7 @@ class Link extends Action
      *
      * @return $this
      */
-    public function route(string $name, $parameters = [], $absolute = true): Link
+    public function route(string $name, $parameters = [], $absolute = true): self
     {
         $route = route($name, $parameters, $absolute);
 
