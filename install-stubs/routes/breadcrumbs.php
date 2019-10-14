@@ -39,17 +39,17 @@ Breadcrumbs::for('platform.systems.roles.edit', function ($trail, $role) {
 // Platform -> Example Screen
 Breadcrumbs::for('platform.example', function ($trail) {
     $trail->parent('platform.index');
-    $trail->push(__('Example Screen'));
+    $trail->push(__('Example screen'));
 });
 
 // Platform -> Example Fields
 Breadcrumbs::for('platform.example.fields', function ($trail) {
     $trail->parent('platform.index');
-    $trail->push(__('Example Fields'));
+    $trail->push(__('Example fields'));
 });
 
 // Platform -> Example Layouts
 Breadcrumbs::for('platform.example.layouts', function ($trail) {
     $trail->parent('platform.index');
-    $trail->push(__('Example Layouts'));
+    $trail->push(__('Example layouts'));
 });

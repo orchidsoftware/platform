@@ -2,6 +2,8 @@
 
 namespace App\Orchid\Screens;
 
+use App\Orchid\Layouts\Examples\ChartLineExample;
+use App\Orchid\Layouts\Examples\ChartPieExample;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Repository;
@@ -31,7 +33,7 @@ class ExampleScreen extends Screen
      *
      * @var string
      */
-    public $name = 'Example Screen';
+    public $name = 'Example screen';
 
     /**
      * Display header description.
@@ -143,14 +145,20 @@ class ExampleScreen extends Screen
         return [
             MetricsExample::class,
             ChartBarExample::class,
+
+            Layout::columns([
+                ChartPieExample::class,
+                ChartLineExample::class,
+            ]),
+
             TableExample::class,
 
             Layout::modal('exampleModal', [
                 Layout::rows([
                     Input::make('user.password')
                         ->type('test')
-                        ->title(__('Example'))
-                        ->placeholder(__('Example')),
+                        ->title('Example')
+                        ->placeholder('Example...'),
                 ]),
             ])->title('Example Modals'),
         ];

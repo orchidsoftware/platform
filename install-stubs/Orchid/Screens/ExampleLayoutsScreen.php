@@ -14,7 +14,7 @@ class ExampleLayoutsScreen extends Screen
      *
      * @var string
      */
-    public $name = 'Example Layouts Screen';
+    public $name = 'Example layouts';
 
     /**
      * Display header description.
@@ -53,26 +53,12 @@ class ExampleLayoutsScreen extends Screen
     public function layout(): array
     {
         return [
-
-            Layout::view('platform::dummy.layout'),
-
+            Layout::view('platform::dummy.block'),
 
             Layout::tabs([
-                'Example Tab 1' => Layout::view('platform::dummy.layout'),
-                'Example Tab 2' => [
-                    Layout::columns([
-                        Layout::view('platform::dummy.layout'),
-                        Layout::view('platform::dummy.layout'),
-                    ]),
-                ],
-                'Example Tab 3' => [
-                    Layout::columns([
-                        Layout::view('platform::dummy.layout'),
-                        Layout::view('platform::dummy.layout'),
-                        Layout::view('platform::dummy.layout'),
-                        Layout::view('platform::dummy.layout')
-                    ]),
-                ]
+                'Example Tab 1' => Layout::view('platform::dummy.block'),
+                'Example Tab 2' => Layout::view('platform::dummy.block'),
+                'Example Tab 3' => Layout::view('platform::dummy.block'),
             ]),
 
             Layout::collapse([
@@ -82,15 +68,15 @@ class ExampleLayoutsScreen extends Screen
             ])->label('Click for me!'),
 
             Layout::columns([
-                Layout::view('platform::dummy.layout'),
-                Layout::view('platform::dummy.layout'),
-                Layout::view('platform::dummy.layout')
+                Layout::view('platform::dummy.block'),
+                Layout::view('platform::dummy.block'),
+                Layout::view('platform::dummy.block')
             ]),
 
             Layout::accordion([
-                'Collapsible Group Item #1' => Layout::view('platform::dummy.layout'),
-                'Collapsible Group Item #2' => Layout::view('platform::dummy.layout'),
-                'Collapsible Group Item #3' => Layout::view('platform::dummy.layout'),
+                'Collapsible Group Item #1' => Layout::view('platform::dummy.block'),
+                'Collapsible Group Item #2' => Layout::view('platform::dummy.block'),
+                'Collapsible Group Item #3' => Layout::view('platform::dummy.block'),
             ]),
 
         ];

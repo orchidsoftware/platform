@@ -13,7 +13,7 @@ class ExampleFieldsScreen extends Screen
      *
      * @var string
      */
-    public $name = 'Example Fields Screen';
+    public $name = 'Example fields';
 
     /**
      * Display header description.
