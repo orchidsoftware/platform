@@ -30,7 +30,7 @@ class ExampleFieldsScreen extends Screen
     public function query(): array
     {
         return [
-            'name' => 'Hello! We collected all the fields in one place',
+            'name'  => 'Hello! We collected all the fields in one place',
             'place' => [
                 'lat' => 37.181244855427394,
                 'lng' => -3.6021993309259415,
@@ -45,7 +45,7 @@ class ExampleFieldsScreen extends Screen
      */
     public function commandBar(): array
     {
-       return [];
+        return [];
     }
 
     /**
