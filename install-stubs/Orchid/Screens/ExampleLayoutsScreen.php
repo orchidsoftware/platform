@@ -3,9 +3,9 @@
 namespace App\Orchid\Screens;
 
 use Orchid\Screen\Action;
-use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Fields\Input;
 
 class ExampleLayoutsScreen extends Screen
 {
@@ -40,7 +40,7 @@ class ExampleLayoutsScreen extends Screen
      */
     public function commandBar(): array
     {
-       return [];
+        return [];
     }
 
     /**
@@ -56,7 +56,6 @@ class ExampleLayoutsScreen extends Screen
 
             Layout::view('platform::dummy.layout'),
 
-
             Layout::tabs([
                 'Example Tab 1' => Layout::view('platform::dummy.layout'),
                 'Example Tab 2' => [
@@ -70,9 +69,9 @@ class ExampleLayoutsScreen extends Screen
                         Layout::view('platform::dummy.layout'),
                         Layout::view('platform::dummy.layout'),
                         Layout::view('platform::dummy.layout'),
-                        Layout::view('platform::dummy.layout')
+                        Layout::view('platform::dummy.layout'),
                     ]),
-                ]
+                ],
             ]),
 
             Layout::collapse([
@@ -84,7 +83,7 @@ class ExampleLayoutsScreen extends Screen
             Layout::columns([
                 Layout::view('platform::dummy.layout'),
                 Layout::view('platform::dummy.layout'),
-                Layout::view('platform::dummy.layout')
+                Layout::view('platform::dummy.layout'),
             ]),
 
             Layout::accordion([
