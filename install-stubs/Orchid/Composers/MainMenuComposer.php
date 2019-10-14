@@ -47,13 +47,24 @@ class MainMenuComposer
         // Main
         $this->dashboard->menu
             ->add(Menu::MAIN,
-                ItemMenu::label('Example')
+                ItemMenu::label('Example Screen')
                     ->icon('icon-folder')
                     ->route('platform.example')
                     ->title('Example boilerplate')
             )
             ->add(Menu::MAIN,
+                ItemMenu::label('Example Fields')
+                    ->icon('icon-list')
+                    ->route('platform.example.fields')
+            )
+            ->add(Menu::MAIN,
+                ItemMenu::label('Example Layouts')
+                    ->icon('icon-layers')
+                    ->route('platform.example.layouts')
+            )
+            ->add(Menu::MAIN,
                 ItemMenu::label('Empty menu')
+                    ->title('Sub menu')
                     ->slug('example-menu')
                     ->icon('icon-code')
                     ->childs()

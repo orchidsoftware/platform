@@ -11,12 +11,9 @@ use Orchid\Support\Facades\Alert;
 use Orchid\Screen\Actions\DropDown;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Screen\Actions\ModalToggle;
-use App\Orchid\Layouts\Examples\RowExample;
 use App\Orchid\Layouts\Examples\TableExample;
 use App\Orchid\Layouts\Examples\MetricsExample;
 use App\Orchid\Layouts\Examples\ChartBarExample;
-use App\Orchid\Layouts\Examples\ChartPieExample;
-use App\Orchid\Layouts\Examples\ChartLineExample;
 use Orchid\Platform\Notifications\DashboardNotification;
 
 class ExampleScreen extends Screen
@@ -84,10 +81,6 @@ class ExampleScreen extends Screen
                 ['keyValue' => number_format(10000, 0), 'keyDiff' => -169.54],
                 ['keyValue' => number_format(1454887.12, 2), 'keyDiff' => 0.2],
             ],
-            'place'   => [
-                'lat' => 37.181244855427394,
-                'lng' => -3.6021993309259415,
-            ],
         ];
     }
 
@@ -148,19 +141,9 @@ class ExampleScreen extends Screen
     public function layout(): array
     {
         return [
-
             MetricsExample::class,
             ChartBarExample::class,
-
-            Layout::columns([
-                ChartPieExample::class,
-                ChartLineExample::class,
-            ]),
-
-            Layout::tabs([
-                'Example Tab Table' => TableExample::class,
-                'Example Tab Rows'  => RowExample::class,
-            ]),
+            TableExample::class,
 
             Layout::modal('exampleModal', [
                 Layout::rows([
