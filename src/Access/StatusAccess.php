@@ -22,7 +22,7 @@ trait StatusAccess
                 return collect($group)->sortBy('description')
                     ->map(function ($value) use ($permissions) {
                         $slug = $value['slug'];
-                        $value['active'] = array_key_exists($slug, $permissions) && (bool)$permissions[$slug];
+                        $value['active'] = array_key_exists($slug, $permissions) && (bool) $permissions[$slug];
 
                         return $value;
                     });

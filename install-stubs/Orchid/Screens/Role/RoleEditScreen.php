@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Actions\Button;
 use Orchid\Support\Facades\Alert;
-use Orchid\Support\Facades\Dashboard;
 use App\Orchid\Layouts\Role\RoleEditLayout;
 use App\Orchid\Layouts\Role\RolePermissionLayout;
 
