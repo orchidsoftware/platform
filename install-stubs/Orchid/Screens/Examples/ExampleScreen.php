@@ -2,8 +2,6 @@
 
 namespace App\Orchid\Screens\Examples;
 
-use App\Orchid\Layouts\Examples\ChartLineExample;
-use App\Orchid\Layouts\Examples\ChartPieExample;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Repository;
@@ -16,6 +14,8 @@ use Orchid\Screen\Actions\ModalToggle;
 use App\Orchid\Layouts\Examples\TableExample;
 use App\Orchid\Layouts\Examples\MetricsExample;
 use App\Orchid\Layouts\Examples\ChartBarExample;
+use App\Orchid\Layouts\Examples\ChartPieExample;
+use App\Orchid\Layouts\Examples\ChartLineExample;
 use Orchid\Platform\Notifications\DashboardNotification;
 
 class ExampleScreen extends Screen
