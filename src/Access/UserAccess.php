@@ -16,6 +16,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait UserAccess
 {
+    use StatusAccess;
+
     /**
      * @var null|\Illuminate\Support\Collection
      */
@@ -130,7 +132,7 @@ trait UserAccess
      *
      * @return $this
      */
-    public function replaceRoles($roles)
+    public function replaceRoles($roles = [])
     {
         $this->roles()->detach();
 

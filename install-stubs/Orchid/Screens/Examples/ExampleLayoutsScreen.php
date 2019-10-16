@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Orchid\Screens;
+namespace App\Orchid\Screens\Examples;
 
 use Orchid\Screen\Action;
 use Orchid\Screen\Fields\Input;

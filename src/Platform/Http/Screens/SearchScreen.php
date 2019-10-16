@@ -18,7 +18,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class SearchScreen extends Screen
 {
-    const SESSION_NAME = 'orchid_search_type';
+    public const SESSION_NAME = 'orchid_search_type';
 
     /**
      * Display header name.
@@ -42,11 +42,6 @@ class SearchScreen extends Screen
     private $total = 0;
 
     /**
-     * @var Collection
-     */
-    private $results;
-
-    /**
      * Query data.
      *
      * @param string $query
@@ -58,8 +53,6 @@ class SearchScreen extends Screen
         $this->description = __('On request: :query', [
             'query' => $query,
         ]);
-
-        $this->results = collect()->forPage(10, 10);
 
         $searchModels = Dashboard::getGlobalSearch();
 

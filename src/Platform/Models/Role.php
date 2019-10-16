@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
+
+use Illuminate\Support\Collection;
 use Orchid\Screen\AsSource;
 use Orchid\Access\RoleAccess;
 use Orchid\Filters\Filterable;
 use Orchid\Access\RoleInterface;
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Support\Facades\Dashboard;
 
 class Role extends Model implements RoleInterface
 {
@@ -56,17 +59,4 @@ class Role extends Model implements RoleInterface
         'updated_at',
         'created_at',
     ];
-
-    /**
-     * Set permission as boolean.
-     *
-     * @param array $permissions
-     */
-    public function setPermissionsAttribute(array $permissions = [])
-    {
-        foreach ($permissions as $key => $value) {
-            $permissions[$key] = (bool) $value;
-        }
-        $this->attributes['permissions'] = json_encode($permissions ?? []);
-    }
 }

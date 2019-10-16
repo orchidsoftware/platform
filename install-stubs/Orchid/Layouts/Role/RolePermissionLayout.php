@@ -27,31 +27,34 @@ class RolePermissionLayout extends Rows
     /**
      * @param Collection $permissionsRaw
      *
-     * @throws \Throwable
+     * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
      *
      * @return array
      */
-    public function generatedPermissionFields(Collection $permissionsRaw): array
+    public function generatedPermissionFields(Collection $permissionsRaw) : array
     {
-        foreach ($permissionsRaw as $group => $items) {
+        $fields = [];
+
+        $permissionsRaw->each(function ($items, $group) use (&$fields) {
             $fields[] = Label::make($group)
-                ->title($group);
+                ->title($group)
+                ->horizontal();
 
-            foreach (collect($items)->chunk(3) as $chunks) {
-                $fields[] = Field::group(function () use ($chunks) {
-                    foreach ($chunks as $permission) {
-                        $permissions[] = CheckBox::make('permissions.'.base64_encode($permission['slug']))
-                            ->placeholder($permission['description'])
-                            ->value((int) $permission['active']);
-                    }
-
-                    return $permissions ?? [];
+            collect($items)
+                ->chunk(3)
+                ->each(function (Collection $chunks) use (&$fields) {
+                    $fields[] = Field::group(function () use ($chunks) {
+                        return $chunks->map(function ($permission) {
+                            return CheckBox::make('permissions.' . base64_encode($permission['slug']))
+                                ->placeholder($permission['description'])
+                                ->value($permission['active'])
+                                ->sendTrueOrFalse();
+                        })->toArray();
+                    });
                 });
-            }
+        });
 
-            $fields[] = Label::make('close');
-        }
 
-        return $fields ?? [];
+        return $fields;
     }
 }

@@ -51,22 +51,9 @@ class RoleEditScreen extends Screen
     {
         $this->exist = $role->exists;
 
-        $rolePermission = $role->permissions ?? [];
-        $permission = Dashboard::getPermission()
-            ->sort()
-            ->transform(function ($group) use ($rolePermission) {
-                $group = collect($group)->sortBy('description')->toArray();
-
-                foreach ($group as $key => $value) {
-                    $group[$key]['active'] = array_key_exists($value['slug'], $rolePermission);
-                }
-
-                return $group;
-            });
-
         return [
-            'permission' => $permission,
             'role'       => $role,
+            'permission' => $role->getStatusPermission(),
         ];
     }
 
@@ -112,11 +99,13 @@ class RoleEditScreen extends Screen
     {
         $role->fill($request->get('role'));
 
-        foreach ($request->get('permissions', []) as $key => $value) {
-            $permissions[base64_decode($key)] = 1;
-        }
+        $role->permissions = collect($request->get('permissions'))
+            ->map(function ($value, $key) {
+                return [base64_decode($key) => $value];
+            })
+            ->collapse()
+            ->toArray();
 
-        $role->permissions = $permissions ?? [];
         $role->save();
 
         Alert::info(__('Role was saved'));

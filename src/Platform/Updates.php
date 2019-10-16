@@ -45,13 +45,11 @@ class Updates
      */
     public function check()
     {
-        $status = Cache::remember('platform-update-widget', now()->addMinutes($this->cache), function () {
+        return Cache::remember('platform-update-widget', now()->addMinutes($this->cache), function () {
             $this->updateInstall();
 
             return $this->getStatus();
         });
-
-        return $status;
     }
 
     public function updateInstall()

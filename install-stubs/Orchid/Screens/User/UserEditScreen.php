@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
+use App\Orchid\Layouts\Role\RolePermissionLayout;
 use Orchid\Screen\Action;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
@@ -17,7 +18,6 @@ use Orchid\Screen\Actions\DropDown;
 use Illuminate\Support\Facades\Hash;
 use Orchid\Screen\Actions\ModalToggle;
 use App\Orchid\Layouts\User\UserEditLayout;
-use App\Orchid\Layouts\User\UserRoleLayout;
 
 class UserEditScreen extends Screen
 {
@@ -100,7 +100,7 @@ class UserEditScreen extends Screen
     {
         return [
             UserEditLayout::class,
-            UserRoleLayout::class,
+            RolePermissionLayout::class,
 
             Layout::modal('password', [
                 Layout::rows([
@@ -121,17 +121,16 @@ class UserEditScreen extends Screen
      */
     public function save(User $user, Request $request)
     {
-        $permissions = $request->get('permissions', []);
-        $roles = $request->input('user.roles', []);
-
-        foreach ($permissions as $key => $value) {
-            unset($permissions[$key]);
-            $permissions[base64_decode($key)] = $value;
-        }
+        $permissions = collect($request->get('permissions'))
+            ->map(function ($value, $key) {
+                return [base64_decode($key) => $value];
+            })
+            ->collapse()
+            ->toArray();
 
         $user
             ->fill($request->get('user'))
-            ->replaceRoles($roles)
+            ->replaceRoles($request->input('user.roles'))
             ->fill([
                 'permissions' => $permissions,
             ])

@@ -159,24 +159,4 @@ class User extends Authenticatable implements UserInterface
 
         return "https://www.gravatar.com/avatar/$hash";
     }
-
-    /**
-     * @return Collection
-     */
-    public function getStatusPermission() : Collection
-    {
-        $permissions = $this->permissions ?? [];
-
-        return Dashboard::getPermission()
-            ->sort()
-            ->transform(function ($group) use ($permissions) {
-                return collect($group)->sortBy('description')
-                    ->map(function ($value) use ($permissions) {
-                        $slug = $value['slug'];
-                        $value['active'] = array_key_exists($slug, $permissions) && (bool) $permissions[$slug];
-
-                        return $value;
-                    });
-            });
-    }
 }
