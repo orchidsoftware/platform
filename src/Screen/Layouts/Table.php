@@ -39,7 +39,7 @@ abstract class Table extends Base
             return;
         }
 
-        $columns = collect($this->columns())->filter(function (TD $column) {
+        $columns = collect($this->columns())->filter(static function (TD $column) {
             return $column->isSee();
         });
 

@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Orchid\Screen\Field;
-use Orchid\Platform\Dashboard;
-use Orchid\Attachment\Models\Attachment;
-
 /**
  * Class Cropper.
  *
@@ -44,23 +40,12 @@ use Orchid\Attachment\Models\Attachment;
  * @method Cropper height($value = true)
  * @method Cropper popover(string $value = null)
  */
-class Cropper extends Field
+class Cropper extends Picture
 {
     /**
      * @var string
      */
     protected $view = 'platform::fields.cropper';
-
-    /**
-     * Default attributes value.
-     *
-     * @var array
-     */
-    protected $attributes = [
-        'value'  => null,
-        'target' => 'url',
-        'url'    => null,
-    ];
 
     /**
      * Attributes available for a particular tag.
@@ -100,65 +85,4 @@ class Cropper extends Field
         'url',
     ];
 
-    /**
-     * @param string|null $name
-     *
-     * @return self
-     */
-    public static function make(string $name = null): self
-    {
-        return (new static())->name($name);
-    }
-
-    /**
-     * The stored value will be in the form
-     * of id attachment.
-     *
-     * @return self
-     */
-    public function targetId(): self
-    {
-        $this->set('target', 'id');
-
-        return $this->addBeforeRender(function () {
-            $value = (string) $this->get('value');
-
-            if (! ctype_digit($value)) {
-                return;
-            }
-
-            /** @var Attachment $attach */
-            $attach = Dashboard::model(Attachment::class);
-
-            $url = optional($attach::find($value))->url();
-
-            $this->set('url', $url);
-        });
-    }
-
-    /**
-     * The saved value will be in the form
-     * of a full address before the file.
-     *
-     * @return self
-     */
-    public function targetUrl(): self
-    {
-        $this->set('target', 'url');
-
-        return $this;
-    }
-
-    /**
-     * The saved value will be in the form
-     * of a relative address before the file.
-     *
-     * @return self
-     */
-    public function targetRelativeUrl(): self
-    {
-        $this->set('target', 'relativeUrl');
-
-        return $this;
-    }
 }

@@ -217,7 +217,7 @@ abstract class Screen extends Controller
 
         $class = $parameter->getClass()->name;
 
-        $object = Arr::first($this->arguments, function ($value) use ($class) {
+        $object = Arr::first($this->arguments, static function ($value) use ($class) {
             return is_subclass_of($value, $class) || is_a($value, $class);
         });
 
@@ -227,7 +227,7 @@ abstract class Screen extends Controller
 
         $object = app()->make($class);
 
-        if (is_a($object, UrlRoutable::class) && isset($this->arguments[$key])) {
+        if (isset($this->arguments[$key]) && is_a($object, UrlRoutable::class)) {
             $object = $object->resolveRouteBinding($this->arguments[$key]);
         }
 
@@ -244,7 +244,7 @@ abstract class Screen extends Controller
         }
 
         return collect($this->permission)
-            ->map(function ($item) {
+            ->map(static function ($item) {
                 return Auth::user()->hasAccess($item);
             })->contains(true);
     }

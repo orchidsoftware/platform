@@ -119,7 +119,7 @@ class Relation extends Field
             }
 
             $value = collect($value)
-                ->map(function ($item) use ($name, $key) {
+                ->map(static function ($item) use ($name, $key) {
                     return [
                         'id'   => $item->$key,
                         'text' => $item->$name,
@@ -164,7 +164,7 @@ class Relation extends Field
                 }
 
                 $value = collect($item)
-                    ->map(function ($item) use ($name, $key) {
+                    ->map(static function ($item) use ($name, $key) {
                         if (is_array($item)) {
                             $item = collect($item);
                         }

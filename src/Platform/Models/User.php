@@ -97,7 +97,7 @@ class User extends Authenticatable implements UserInterface
      *
      * @return string
      */
-    public function getNameTitle() : string
+    public function getNameTitle(): string
     {
         return $this->name;
     }
@@ -107,7 +107,7 @@ class User extends Authenticatable implements UserInterface
      *
      * @return string
      */
-    public function getSubTitle() : string
+    public function getSubTitle(): string
     {
         return 'Administrator';
     }
@@ -129,7 +129,7 @@ class User extends Authenticatable implements UserInterface
 
         Dashboard::getPermission()
             ->collapse()
-            ->each(function ($item) use ($permissions) {
+            ->each(static function ($item) use ($permissions) {
                 $permissions->put($item['slug'], true);
             });
 

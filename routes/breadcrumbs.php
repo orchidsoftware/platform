@@ -3,26 +3,27 @@
 declare(strict_types=1);
 
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
+use DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator;
 
 // Platform
-Breadcrumbs::for('platform.index', function ($trail) {
+Breadcrumbs::for('platform.index', function (BreadcrumbsGenerator $trail) {
     $trail->push(__('Platform'), route('platform.index'));
 });
 
 // Platform > System
-Breadcrumbs::for('platform.systems.index', function ($trail) {
+Breadcrumbs::for('platform.systems.index', function (BreadcrumbsGenerator $trail) {
     $trail->parent('platform.index');
     $trail->push(__('Systems'), route('platform.systems.index'));
 });
 
 // Platform -> Notifications
-Breadcrumbs::for('platform.notifications', function ($trail) {
+Breadcrumbs::for('platform.notifications', function (BreadcrumbsGenerator $trail) {
     $trail->parent('platform.index');
     $trail->push(__('Notifications'));
 });
 
 // Platform -> Search Result
-Breadcrumbs::for('platform.search', function ($trail, $query) {
+Breadcrumbs::for('platform.search', function (BreadcrumbsGenerator $trail, string $query) {
     $trail->parent('platform.index');
     $trail->push(__('Search'));
     $trail->push($query);

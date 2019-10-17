@@ -232,7 +232,7 @@ class Dashboard
      */
     public function getGlobalSearch(): Collection
     {
-        return $this->globalSearch->transform(function ($value) {
+        return $this->globalSearch->transform(static function ($value) {
             return is_object($value) ? $value : new $value();
         });
     }
@@ -257,7 +257,7 @@ class Dashboard
             return $all;
         }
 
-        return $all->map(function ($group) use ($removed) {
+        return $all->map(static function ($group) use ($removed) {
             foreach ($group[key($group)] as $key => $item) {
                 if ($removed->contains($item['slug'])) {
                     unset($group[key($group)][$key]);
@@ -273,7 +273,7 @@ class Dashboard
      *
      * @return $this
      */
-    public function removePermission(string $key) : self
+    public function removePermission(string $key): self
     {
         $this->permission->get('removed')->push($key);
 
@@ -286,7 +286,7 @@ class Dashboard
      *
      * @return Dashboard
      */
-    public function addPublicDirectory(string $package, string $path) : self
+    public function addPublicDirectory(string $package, string $path): self
     {
         $this->publicDirectories->put($package, $path);
 
@@ -296,7 +296,7 @@ class Dashboard
     /**
      * @return Collection
      */
-    public function getPublicDirectory() : Collection
+    public function getPublicDirectory(): Collection
     {
         return $this->publicDirectories;
     }

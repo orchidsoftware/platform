@@ -124,7 +124,7 @@ class Field implements FieldContract
      */
     public function __call(string  $name, array $arguments): self
     {
-        $arguments = collect($arguments)->map(function ($argument) {
+        $arguments = collect($arguments)->map(static function ($argument) {
             return $argument instanceof Closure ? $argument() : $argument;
         });
 
@@ -151,7 +151,7 @@ class Field implements FieldContract
      *
      * @return static
      */
-    public function set(string $key, $value = true) : self
+    public function set(string $key, $value = true): self
     {
         $this->attributes[$key] = $value;
 

@@ -20,7 +20,7 @@ class Source extends ConsolePreset
      */
     public static function install()
     {
-        static::updatePackages(true);
+        static::updatePackages();
         static::updatePackages(false);
         static::updateWebpackConfiguration();
         static::addBabelConfiguration();

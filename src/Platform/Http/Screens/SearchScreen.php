@@ -150,7 +150,7 @@ class SearchScreen extends Screen
         $class = get_class($searchModels->first());
         $type = $this->request->session()->get(self::SESSION_NAME, $class);
 
-        $model = $searchModels->map(function ($model) use ($type) {
+        $model = $searchModels->map(static function ($model) use ($type) {
             if ($model instanceof $type) {
                 return $model;
             }

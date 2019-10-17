@@ -37,7 +37,7 @@ class UserSwitch
     /**
      * @return bool
      */
-    public static function isSwitch() : bool
+    public static function isSwitch(): bool
     {
         return session()->has(self::SESSION_NAME);
     }

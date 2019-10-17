@@ -23,7 +23,7 @@ class NotificationTable extends Table
     {
         return [
             TD::set('Message', __('Message'))
-                ->render(function ($notification) {
+                ->render(static function ($notification) {
                     return view('platform::partials.notification', [
                         'notification' => $notification,
                     ]);
@@ -32,7 +32,7 @@ class NotificationTable extends Table
             TD::set('', __('Date of creation'))
                 ->width('150px')
                 ->align(TD::ALIGN_RIGHT)
-                ->render(function ($notification) {
+                ->render(static function ($notification) {
                     return $notification->created_at->diffForHumans();
                 }),
         ];

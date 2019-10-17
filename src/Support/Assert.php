@@ -11,7 +11,7 @@ class Assert
      *
      * @return bool
      */
-    public static function isIntArray($array) : bool
+    public static function isIntArray($array): bool
     {
         if (! is_array($array)) {
             return false;

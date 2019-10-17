@@ -58,7 +58,7 @@ class TimeZone extends Field
      *
      * @return self
      */
-    public static function make(string $name = null) : self
+    public static function make(string $name = null): self
     {
         return (new static())->name($name)->listIdentifiers();
     }
@@ -66,7 +66,7 @@ class TimeZone extends Field
     /**
      * @return self
      */
-    public function multiple() : self
+    public function multiple(): self
     {
         $this->attributes['multiple'] = 'multiple';
 
@@ -78,9 +78,9 @@ class TimeZone extends Field
      *
      * @return self
      */
-    public function listIdentifiers($time = DateTimeZone::ALL) : self
+    public function listIdentifiers($time = DateTimeZone::ALL): self
     {
-        $timeZone = collect(DateTimeZone::listIdentifiers($time))->mapWithKeys(function ($timezone) {
+        $timeZone = collect(DateTimeZone::listIdentifiers($time))->mapWithKeys(static function ($timezone) {
             return [$timezone => $timezone];
         })->toArray();
 

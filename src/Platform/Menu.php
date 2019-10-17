@@ -113,7 +113,7 @@ class Menu
 
         return $this->findAllChildren($location)
             ->sortBy('sort')
-            ->map(function ($value) use ($template) {
+            ->map(static function ($value) use ($template) {
                 return view($template, $value)->render();
             })
             ->implode(' ');
@@ -126,7 +126,7 @@ class Menu
      */
     public function build(string $location): Collection
     {
-        return $this->findAllChildren($location)->filter(function ($value) {
+        return $this->findAllChildren($location)->filter(static function ($value) {
             return count($value['children']);
         });
     }
@@ -139,7 +139,7 @@ class Menu
         $user = Auth::user();
 
         $this->container = $this->container
-            ->filter(function ($item) use ($user) {
+            ->filter(static function ($item) use ($user) {
                 if (! isset($item['arg']['permission'])) {
                     return true;
                 }
@@ -167,7 +167,7 @@ class Menu
 
                 $item['children'] = $children;
 
-                $children->each(function ($children) use (&$item) {
+                $children->each(static function ($children) use (&$item) {
                     $item['active'] = array_merge($item['active'], $children['active']);
                 });
 

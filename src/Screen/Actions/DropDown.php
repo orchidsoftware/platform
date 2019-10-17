@@ -56,7 +56,7 @@ class DropDown extends Action
      *
      * @return DropDown
      */
-    public function list(array $list) : self
+    public function list(array $list): self
     {
         return $this->set('list', $list);
     }

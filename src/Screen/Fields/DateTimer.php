@@ -116,7 +116,7 @@ class DateTimer extends Field
      *
      * @return self
      */
-    public function enableTime(bool $time = true) : self
+    public function enableTime(bool $time = true): self
     {
         $this->set('data-fields--datetime-enable-time', var_export($time, true));
 
@@ -128,7 +128,7 @@ class DateTimer extends Field
      *
      * @return self
      */
-    public function format24hr(bool $time = true) : self
+    public function format24hr(bool $time = true): self
     {
         $this->set('data-fields--datetime-time-24hr', var_export($time, true));
 
@@ -140,7 +140,7 @@ class DateTimer extends Field
      *
      * @return self
      */
-    public function allowInput(bool $time = true) : self
+    public function allowInput(bool $time = true): self
     {
         $this->set('data-fields--datetime-allow-input', var_export($time, true));
 
@@ -152,7 +152,7 @@ class DateTimer extends Field
      *
      * @return DateTimer
      */
-    public function format(string  $format) : self
+    public function format(string  $format): self
     {
         $this->set('data-fields--datetime-date-format', $format);
 
@@ -166,7 +166,7 @@ class DateTimer extends Field
      *
      * @return $this
      */
-    public function noCalendar(bool $noCalendar = true) : self
+    public function noCalendar(bool $noCalendar = true): self
     {
         $this->enableTime();
         $this->set('data-fields--datetime-no-calendar', var_export($noCalendar, true));
