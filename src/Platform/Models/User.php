@@ -9,7 +9,6 @@ use Orchid\Screen\AsSource;
 use Orchid\Access\UserAccess;
 use Orchid\Filters\Filterable;
 use Orchid\Access\UserInterface;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use Orchid\Support\Facades\Dashboard;
 use Illuminate\Notifications\Notifiable;
