@@ -72,7 +72,7 @@ class RelationController extends Controller
             $items = collect($model->get());
         }
 
-        if (!empty($search)) {
+        if (! empty($search)) {
             $items = $items->filter(static function ($item) use ($name, $search) {
                 return stripos($item[$name], $search) !== false;
             });

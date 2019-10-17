@@ -22,5 +22,4 @@ class EventServiceProvider extends ServiceProvider
             LockUserForLogin::class,
         ],
     ];
-
 }

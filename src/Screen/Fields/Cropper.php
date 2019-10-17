@@ -84,5 +84,4 @@ class Cropper extends Picture
         'target',
         'url',
     ];
-
 }
