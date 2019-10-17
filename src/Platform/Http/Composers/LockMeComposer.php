@@ -6,10 +6,10 @@ namespace Orchid\Platform\Http\Composers;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\View\Factory;
 use Illuminate\Auth\SessionGuard;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Auth\EloquentUserProvider;
-use Illuminate\View\Factory;
 
 class LockMeComposer
 {
@@ -55,7 +55,7 @@ class LockMeComposer
 
         $view->with('isLockUser', optional($model)->exists ?? false);
 
-       $this->factoryView->composer('platform::auth.lockme', static function (View $view) use ($model) {
+        $this->factoryView->composer('platform::auth.lockme', static function (View $view) use ($model) {
             $view->with('lockUser', $model);
         });
     }
