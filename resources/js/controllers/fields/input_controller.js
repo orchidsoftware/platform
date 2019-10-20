@@ -2,25 +2,44 @@ import {Controller} from 'stimulus';
 import Inputmask    from 'inputmask';
 
 export default class extends Controller {
+    get mask() {
+        try {
+            const maskData = this.data.get('mask');
+
+            if (maskData === '') {
+                return false;
+            }
+
+            const mask = JSON.parse(maskData);
+            return {
+                ...mask,
+                // do unmask after inputmask.remove
+                autoUnmask: mask.autoUnmask || mask.removeMaskOnSubmit || undefined
+            }
+        } catch (e) {
+            return false;
+        }
+    }
+
     /**
      *
      */
     connect() {
         const element = this.element.querySelector('input');
-        let mask = this.data.get('mask');
+        const _mask = this.mask;
 
-        try {
-            mask = JSON.parse(mask);
-        } catch (e) {
-            // default
-        }
-        if (mask !== '') {
+        // mask
+        if (_mask) {
+            // removeMaskOnSubmit conflicts with remove, so we don’t use it
+            // submit -> inputmask.remove -> removeMaskOnSubmit (timeout) -> failure
+            const {removeMaskOnSubmit, ...mask} = _mask;
             Inputmask(mask).mask(element);
-        }
-        if (mask.removeMaskOnSubmit) {
-            this.element.closest('form').addEventListener('orchid:screen-submit', () => {
-                Inputmask.remove(element);
-            });
+
+            if (removeMaskOnSubmit) {
+                this.element.closest('form').addEventListener('orchid:screen-submit', () => {
+                    element.inputmask.remove();
+                });
+            }
         }
     }
 }
