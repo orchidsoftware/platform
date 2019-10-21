@@ -61,7 +61,7 @@ class UserListLayout extends Table
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')
                 ->render(function (User $user) {
-                    return DropDown::make('')
+                    return DropDown::make()
                         ->icon('icon-menu')
                         ->list([
 

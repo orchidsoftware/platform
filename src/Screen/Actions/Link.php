@@ -58,7 +58,7 @@ class Link extends Action
      *
      * @return self
      */
-    public static function make(string $name): self
+    public static function make(string $name = ''): self
     {
         return (new static())
             ->name($name)
