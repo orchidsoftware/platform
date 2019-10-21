@@ -1165,6 +1165,10 @@
   word-break: keep-all;
 }
 
+.w-s-n{
+  white-space: normal;
+}
+
 .opacity {
   @include opacity(0.5);
 }

@@ -11,14 +11,14 @@ use Orchid\Attachment\Models\Attachment;
 /**
  * Class Picture.
  *
- * @method self name(string $value = null)
- * @method self required(bool $value = true)
- * @method self size($value = true)
- * @method self src($value = true)
- * @method self type($value = true)
- * @method self value($value = true)
- * @method self help(string $value = null)
- * @method self popover(string $value = null)
+ * @method Picture name(string $value = null)
+ * @method Picture required(bool $value = true)
+ * @method Picture size($value = true)
+ * @method Picture src($value = true)
+ * @method Picture type($value = true)
+ * @method Picture value($value = true)
+ * @method Picture help(string $value = null)
+ * @method Picture popover(string $value = null)
  */
 class Picture extends Field
 {

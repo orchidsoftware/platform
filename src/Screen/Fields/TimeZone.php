@@ -10,14 +10,14 @@ use Orchid\Screen\Field;
 /**
  * Class TimeZone.
  *
- * @method self autofocus($value = true)
- * @method self disabled($value = true)
- * @method self form($value = true)
- * @method self name(string $value = null)
- * @method self required(bool $value = true)
- * @method self tabindex($value = true)
- * @method self help(string $value = null)
- * @method self popover(string $value = null)
+ * @method TimeZone autofocus($value = true)
+ * @method TimeZone disabled($value = true)
+ * @method TimeZone form($value = true)
+ * @method TimeZone name(string $value = null)
+ * @method TimeZone required(bool $value = true)
+ * @method TimeZone tabindex($value = true)
+ * @method TimeZone help(string $value = null)
+ * @method TimeZone popover(string $value = null)
  */
 class TimeZone extends Field
 {
@@ -58,7 +58,7 @@ class TimeZone extends Field
      *
      * @return self
      */
-    public static function make(string $name = null) : self
+    public static function make(string $name = null): self
     {
         return (new static())->name($name)->listIdentifiers();
     }
@@ -66,7 +66,7 @@ class TimeZone extends Field
     /**
      * @return self
      */
-    public function multiple() : self
+    public function multiple(): self
     {
         $this->attributes['multiple'] = 'multiple';
 
@@ -78,9 +78,9 @@ class TimeZone extends Field
      *
      * @return self
      */
-    public function listIdentifiers($time = DateTimeZone::ALL) : self
+    public function listIdentifiers($time = DateTimeZone::ALL): self
     {
-        $timeZone = collect(DateTimeZone::listIdentifiers($time))->mapWithKeys(function ($timezone) {
+        $timeZone = collect(DateTimeZone::listIdentifiers($time))->mapWithKeys(static function ($timezone) {
             return [$timezone => $timezone];
         })->toArray();
 

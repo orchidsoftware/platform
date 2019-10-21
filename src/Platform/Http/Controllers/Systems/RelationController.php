@@ -25,7 +25,7 @@ class RelationController extends Controller
             'name'  => $name,
             'key'   => $key,
             'scope' => $scope,
-        ] = collect($request->except(['search']))->map(function ($item) {
+        ] = collect($request->except(['search']))->map(static function ($item) {
             return is_null($item) ? null : Crypt::decryptString($item);
         });
 
@@ -51,11 +51,13 @@ class RelationController extends Controller
      *
      * @return Collection|array
      */
-    private function getItems($model, string $name, string $key, string $search = null, string $scope = null) : iterable
+    private function getItems($model, string $name, string $key, string $search = null, string $scope = null): iterable
     {
         if (is_subclass_of($model, Model::class)) {
             return $model->where($name, 'like', '%'.$search.'%')->limit(10)->pluck($name, $key);
-        } elseif (! is_array($model) && property_exists($model, 'search')) {
+        }
+
+        if (! is_array($model) && property_exists($model, 'search')) {
             $model->search = $search;
         }
 
@@ -70,8 +72,8 @@ class RelationController extends Controller
             $items = collect($model->get());
         }
 
-        if (! is_null($search) && $search !== '') {
-            $items = $items->filter(function ($item) use ($name, $search) {
+        if (! empty($search)) {
+            $items = $items->filter(static function ($item) use ($name, $search) {
                 return stripos($item[$name], $search) !== false;
             });
         }

@@ -22,12 +22,4 @@ class EventServiceProvider extends ServiceProvider
             LockUserForLogin::class,
         ],
     ];
-
-    /**
-     * Register any events for your application.
-     */
-    public function boot()
-    {
-        parent::boot();
-    }
 }

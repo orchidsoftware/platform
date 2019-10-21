@@ -21,7 +21,6 @@ use Orchid\Screen\Field;
  * @method self formmethod($value = true)
  * @method self formnovalidate($value = true)
  * @method self formtarget($value = true)
- * @method self list($value = true)
  * @method self max(int $value)
  * @method self maxlength(int $value)
  * @method self min(int $value)

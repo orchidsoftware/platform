@@ -16,6 +16,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait UserAccess
 {
+    use StatusAccess;
+
     /**
      * @var null|\Illuminate\Support\Collection
      */
@@ -44,7 +46,7 @@ trait UserAccess
      */
     public function inRole($role): bool
     {
-        $role = Arr::first($this->roles, function ($instance) use ($role) {
+        $role = Arr::first($this->roles, static function ($instance) use ($role) {
             if ($role instanceof RoleInterface) {
                 return $instance->getRoleId() === $role->getRoleId();
             }
@@ -130,7 +132,7 @@ trait UserAccess
      *
      * @return $this
      */
-    public function replaceRoles($roles)
+    public function replaceRoles($roles = [])
     {
         $this->roles()->detach();
 

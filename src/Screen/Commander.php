@@ -24,7 +24,7 @@ trait Commander
     private function buildCommandBar(Repository $repository): array
     {
         return collect($this->commandBar())
-            ->map(function (ActionContract $command) use ($repository) {
+            ->map(static function (ActionContract $command) use ($repository) {
                 return $command->build($repository);
             })->all();
     }

@@ -80,7 +80,7 @@ abstract class Base implements JsonSerializable
     /**
      * @return Base
      */
-    public function currentAsync() : self
+    public function currentAsync(): self
     {
         $this->async = true;
 

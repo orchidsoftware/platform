@@ -175,7 +175,7 @@ class TD
      */
     public function link(string $route, $options, string $text = null): self
     {
-        $this->render(function ($datum) use ($route, $options, $text) {
+        $this->render(static function ($datum) use ($route, $options, $text) {
             $attributes = [];
             $options = Arr::wrap($options);
 

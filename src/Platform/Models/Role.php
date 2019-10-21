@@ -56,17 +56,4 @@ class Role extends Model implements RoleInterface
         'updated_at',
         'created_at',
     ];
-
-    /**
-     * Set permission as boolean.
-     *
-     * @param array $permissions
-     */
-    public function setPermissionsAttribute(array $permissions = [])
-    {
-        foreach ($permissions as $key => $value) {
-            $permissions[$key] = (bool) $value;
-        }
-        $this->attributes['permissions'] = json_encode($permissions ?? []);
-    }
 }

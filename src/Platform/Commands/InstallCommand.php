@@ -29,7 +29,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Publish files for ORCHID and install package"';
+    protected $description = 'Publish files for ORCHID and install package';
 
     /**
      * Execute the console command.

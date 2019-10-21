@@ -56,7 +56,7 @@ abstract class Selection extends Base
             return;
         }
 
-        $filters = $filters->map(function ($filter) {
+        $filters = $filters->map(static function ($filter) {
             return app()->make($filter);
         });
 

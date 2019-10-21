@@ -35,14 +35,14 @@ class SearchLayout extends Rows
         $searchModel = $this->query->get('model');
 
         $layouts = Dashboard::getGlobalSearch()
-            ->map(function (Model $model) use ($searchModel) {
+            ->map(static function (Model $model) use ($searchModel) {
                 $radio = Radio::make('type')
                     ->value(get_class($model))
                     ->horizontal()
                     ->placeholder($model->searchLabel());
 
                 if ($model instanceof $searchModel) {
-                    $radio->checked(true);
+                    $radio->checked();
                 }
 
                 return $radio;

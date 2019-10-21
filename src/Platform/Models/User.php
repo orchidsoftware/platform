@@ -9,7 +9,6 @@ use Orchid\Screen\AsSource;
 use Orchid\Access\UserAccess;
 use Orchid\Filters\Filterable;
 use Orchid\Access\UserInterface;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use Orchid\Support\Facades\Dashboard;
 use Illuminate\Notifications\Notifiable;
@@ -97,7 +96,7 @@ class User extends Authenticatable implements UserInterface
      *
      * @return string
      */
-    public function getNameTitle() : string
+    public function getNameTitle(): string
     {
         return $this->name;
     }
@@ -107,7 +106,7 @@ class User extends Authenticatable implements UserInterface
      *
      * @return string
      */
-    public function getSubTitle() : string
+    public function getSubTitle(): string
     {
         return 'Administrator';
     }
@@ -129,7 +128,7 @@ class User extends Authenticatable implements UserInterface
 
         Dashboard::getPermission()
             ->collapse()
-            ->each(function ($item) use ($permissions) {
+            ->each(static function ($item) use ($permissions) {
                 $permissions->put($item['slug'], true);
             });
 
@@ -158,25 +157,5 @@ class User extends Authenticatable implements UserInterface
         $hash = md5(strtolower(trim($this->email)));
 
         return "https://www.gravatar.com/avatar/$hash";
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getStatusPermission() : Collection
-    {
-        $permissions = $this->permissions ?? [];
-
-        return Dashboard::getPermission()
-            ->sort()
-            ->transform(function ($group) use ($permissions) {
-                return collect($group)->sortBy('description')
-                    ->map(function ($value) use ($permissions) {
-                        $slug = $value['slug'];
-                        $value['active'] = array_key_exists($slug, $permissions) && (bool) $permissions[$slug];
-
-                        return $value;
-                    });
-            });
     }
 }

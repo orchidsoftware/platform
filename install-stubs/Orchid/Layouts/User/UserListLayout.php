@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace App\Orchid\Layouts\User;
 
 use Orchid\Screen\TD;
+use Orchid\Screen\Actions\Link;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Actions\DropDown;
 
 class UserListLayout extends Table
 {
@@ -21,12 +24,6 @@ class UserListLayout extends Table
     public function columns(): array
     {
         return [
-            TD::set('id', 'ID')
-                ->align(TD::ALIGN_CENTER)
-                ->width('100px')
-                ->sort()
-                ->link('platform.systems.users.edit', 'id'),
-
             TD::set('name', __('Name'))
                 ->sort()
                 ->filter(TD::FILTER_TEXT)
@@ -53,12 +50,34 @@ class UserListLayout extends Table
                 }),
 
             TD::set('email', __('Email'))
-                ->loadModalAsync('oneAsyncModal', 'saveUser', 'id', 'email')
+                ->sort()
                 ->filter(TD::FILTER_TEXT)
-                ->sort(),
+                ->loadModalAsync('oneAsyncModal', 'saveUser', 'id', 'email'),
 
             TD::set('updated_at', __('Last edit'))
                 ->sort(),
+
+            TD::set('id', 'ID')
+                ->align(TD::ALIGN_CENTER)
+                ->width('100px')
+                ->render(function (User $user) {
+                    return DropDown::make('')
+                        ->icon('icon-menu')
+                        ->list([
+
+                            Link::make('Редактировать')
+                                ->route('platform.systems.users.edit', $user->id)
+                                ->icon('icon-pencil'),
+
+                            Button::make('Удалить')
+                                ->method('remove')
+                                ->confirm('Вы действительно хотите удалить пользователя?')
+                                ->parameters([
+                                    'id' => $user->id,
+                                ])
+                                ->icon('icon-trash'),
+                        ])->render();
+                }),
         ];
     }
 }

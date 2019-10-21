@@ -9,14 +9,14 @@ use Orchid\Screen\Action;
 /**
  * Class Button.
  *
- * @method self name(string $name = null)
- * @method self modal(string $modalName = null)
- * @method self icon(string $icon = null)
- * @method self class(string $classes = null)
- * @method self method(string $methodName = null)
- * @method self parameters(array|object $name)
- * @method self novalidate(bool $novalidate = true)
- * @method self confirm(string $confirm = true)
+ * @method Button name(string $name = null)
+ * @method Button modal(string $modalName = null)
+ * @method Button icon(string $icon = null)
+ * @method Button class(string $classes = null)
+ * @method Button method(string $methodName = null)
+ * @method Button parameters(array|object $name)
+ * @method Button novalidate(bool $novalidate = true)
+ * @method Button confirm(string $confirm = true)
  */
 class Button extends Action
 {
@@ -49,7 +49,7 @@ class Button extends Action
      *
      * @return Button $name
      */
-    public static function make(string $name): self
+    public static function make(string $name = ''): self
     {
         return (new static())
             ->name($name)

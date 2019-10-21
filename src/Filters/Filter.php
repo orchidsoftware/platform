@@ -72,9 +72,9 @@ abstract class Filter
     /**
      * @return Field[]
      */
-    public function display() : array
+    public function display(): array
     {
-        //
+        // return any Field
     }
 
     /**
@@ -85,9 +85,9 @@ abstract class Filter
     /**
      * @return string
      */
-    public function render() : string
+    public function render(): string
     {
-        return collect($this->display())->reduce(function ($html, Field $field) {
+        return collect($this->display())->reduce(static function ($html, Field $field) {
             return $html.$field->form('filters')->render();
         });
     }
@@ -95,7 +95,7 @@ abstract class Filter
     /**
      * @return int
      */
-    public function count() : int
+    public function count(): int
     {
         return count($this->display());
     }
@@ -103,7 +103,7 @@ abstract class Filter
     /**
      * @return bool
      */
-    public function isApply() :bool
+    public function isApply(): bool
     {
         return count($this->request->only($this->parameters, [])) > 0;
     }

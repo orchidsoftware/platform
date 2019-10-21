@@ -4,63 +4,48 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Orchid\Screen\Field;
-use Orchid\Platform\Dashboard;
-use Orchid\Attachment\Models\Attachment;
-
 /**
  * Class Cropper.
  *
- * @method self accept($value = true)
- * @method self accesskey($value = true)
- * @method self autocomplete($value = true)
- * @method self autofocus($value = true)
- * @method self checked($value = true)
- * @method self disabled($value = true)
- * @method self form($value = true)
- * @method self formaction($value = true)
- * @method self formenctype($value = true)
- * @method self formmethod($value = true)
- * @method self formnovalidate($value = true)
- * @method self formtarget($value = true)
- * @method self list($value = true)
- * @method self max(int $value)
- * @method self maxlength(int $value)
- * @method self min(int $value)
- * @method self multiple($value = true)
- * @method self name(string $value = null)
- * @method self pattern($value = true)
- * @method self placeholder(string $value = null)
- * @method self readonly($value = true)
- * @method self required(bool $value = true)
- * @method self size($value = true)
- * @method self src($value = true)
- * @method self step($value = true)
- * @method self tabindex($value = true)
- * @method self type($value = true)
- * @method self value($value = true)
- * @method self help(string $value = null)
- * @method self width($value = true)
- * @method self height($value = true)
- * @method self popover(string $value = null)
+ * @method Cropper accept($value = true)
+ * @method Cropper accesskey($value = true)
+ * @method Cropper autocomplete($value = true)
+ * @method Cropper autofocus($value = true)
+ * @method Cropper checked($value = true)
+ * @method Cropper disabled($value = true)
+ * @method Cropper form($value = true)
+ * @method Cropper formaction($value = true)
+ * @method Cropper formenctype($value = true)
+ * @method Cropper formmethod($value = true)
+ * @method Cropper formnovalidate($value = true)
+ * @method Cropper formtarget($value = true)
+ * @method Cropper list($value = true)
+ * @method Cropper max(int $value)
+ * @method Cropper maxlength(int $value)
+ * @method Cropper min(int $value)
+ * @method Cropper multiple($value = true)
+ * @method Cropper name(string $value = null)
+ * @method Cropper pattern($value = true)
+ * @method Cropper placeholder(string $value = null)
+ * @method Cropper readonly($value = true)
+ * @method Cropper required(bool $value = true)
+ * @method Cropper size($value = true)
+ * @method Cropper src($value = true)
+ * @method Cropper step($value = true)
+ * @method Cropper tabindex($value = true)
+ * @method Cropper type($value = true)
+ * @method Cropper value($value = true)
+ * @method Cropper help(string $value = null)
+ * @method Cropper width($value = true)
+ * @method Cropper height($value = true)
+ * @method Cropper popover(string $value = null)
  */
-class Cropper extends Field
+class Cropper extends Picture
 {
     /**
      * @var string
      */
     protected $view = 'platform::fields.cropper';
-
-    /**
-     * Default attributes value.
-     *
-     * @var array
-     */
-    protected $attributes = [
-        'value'  => null,
-        'target' => 'url',
-        'url'    => null,
-    ];
 
     /**
      * Attributes available for a particular tag.
@@ -99,66 +84,4 @@ class Cropper extends Field
         'target',
         'url',
     ];
-
-    /**
-     * @param string|null $name
-     *
-     * @return self
-     */
-    public static function make(string $name = null): self
-    {
-        return (new static())->name($name);
-    }
-
-    /**
-     * The stored value will be in the form
-     * of id attachment.
-     *
-     * @return self
-     */
-    public function targetId(): self
-    {
-        $this->set('target', 'id');
-
-        return $this->addBeforeRender(function () {
-            $value = (string) $this->get('value');
-
-            if (! ctype_digit($value)) {
-                return;
-            }
-
-            /** @var Attachment $attach */
-            $attach = Dashboard::model(Attachment::class);
-
-            $url = optional($attach::find($value))->url();
-
-            $this->set('url', $url);
-        });
-    }
-
-    /**
-     * The saved value will be in the form
-     * of a full address before the file.
-     *
-     * @return self
-     */
-    public function targetUrl(): self
-    {
-        $this->set('target', 'url');
-
-        return $this;
-    }
-
-    /**
-     * The saved value will be in the form
-     * of a relative address before the file.
-     *
-     * @return self
-     */
-    public function targetRelativeUrl(): self
-    {
-        $this->set('target', 'relativeUrl');
-
-        return $this;
-    }
 }

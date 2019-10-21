@@ -143,7 +143,7 @@ class Alert
      *
      * @return bool
      */
-    public function check() : bool
+    public function check(): bool
     {
         return $this->session->has('flash_notification.message');
     }
