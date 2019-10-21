@@ -455,8 +455,9 @@ class Field implements FieldContract
     }
 
     /**
-     * @return string
      * @throws Throwable
+     *
+     * @return string
      */
     public function __toString(): string
     {
@@ -467,10 +468,9 @@ class Field implements FieldContract
         }
 
         if (is_a($view, View::class)) {
-            return (string)$view->render();
+            return (string) $view->render();
         }
 
         return '';
     }
-
 }
