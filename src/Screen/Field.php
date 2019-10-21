@@ -453,4 +453,24 @@ class Field implements FieldContract
 
         return $errors->getMessages();
     }
+
+    /**
+     * @return string
+     * @throws Throwable
+     */
+    public function __toString(): string
+    {
+        $view = $this->render();
+
+        if (is_string($view)) {
+            return $view;
+        }
+
+        if (is_a($view, View::class)) {
+            return (string)$view->render();
+        }
+
+        return '';
+    }
+
 }
