@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait RoleAccess
 {
+    use StatusAccess;
+
     /**
      * @return int
      */

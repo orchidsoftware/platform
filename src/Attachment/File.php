@@ -99,7 +99,7 @@ class File
     /**
      * @return string
      */
-    public function getHashFile() : string
+    public function getHashFile(): string
     {
         return sha1_file($this->file->getRealPath());
     }

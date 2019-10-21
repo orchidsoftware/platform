@@ -11,10 +11,10 @@ use Orchid\Screen\Contracts\ActionContract;
 /**
  * Class DropDown.
  *
- * @method self name(string $name = null)
- * @method self modal(string $modalName = null)
- * @method self icon(string $icon = null)
- * @method self class(string $classes = null)
+ * @method DropDown name(string $name = null)
+ * @method DropDown modal(string $modalName = null)
+ * @method DropDown icon(string $icon = null)
+ * @method DropDown class(string $classes = null)
  */
 class DropDown extends Action
 {
@@ -29,9 +29,10 @@ class DropDown extends Action
      * @var array
      */
     protected $attributes = [
-        'class' => 'btn btn-link',
-        'icon'  => null,
-        'list'  => [],
+        'class'  => 'btn btn-link',
+        'source' => null,
+        'icon'   => null,
+        'list'   => [],
     ];
 
     /**
@@ -39,9 +40,9 @@ class DropDown extends Action
      *
      * @param string $name
      *
-     * @return self
+     * @return DropDown
      */
-    public static function make(string $name): self
+    public static function make(string $name = ''): self
     {
         return (new static())
             ->name($name)
@@ -53,9 +54,9 @@ class DropDown extends Action
     /**
      * @param ActionContract[] $list
      *
-     * @return $this
+     * @return DropDown
      */
-    public function list(array $list) : self
+    public function list(array $list): self
     {
         return $this->set('list', $list);
     }
@@ -67,7 +68,7 @@ class DropDown extends Action
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function build(Repository $repository)
+    public function build(Repository $repository = null)
     {
         $this->set('source', $repository);
 

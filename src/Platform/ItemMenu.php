@@ -168,7 +168,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function url(string $url) : self
+    public function url(string $url): self
     {
         $this->route = $url;
 

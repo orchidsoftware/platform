@@ -9,13 +9,13 @@ use Orchid\Screen\Action;
 /**
  * Class Link.
  *
- * @method self name(string $name = null)
- * @method self icon(string $icon = null)
- * @method self class(string $classes = null)
- * @method self parameters(array|object $name)
- * @method self target(string $target = null)
- * @method self title(string $title = null)
- * @method self download($download = true)
+ * @method Link name(string $name = null)
+ * @method Link icon(string $icon = null)
+ * @method Link class(string $classes = null)
+ * @method Link parameters(array|object $name)
+ * @method Link target(string $target = null)
+ * @method Link title(string $title = null)
+ * @method Link download($download = true)
  */
 class Link extends Action
 {
@@ -74,10 +74,24 @@ class Link extends Action
      *
      * @return $this
      */
-    public function href(string $link): self
+    public function href(string $link = ''): self
     {
         $this->set('href', $link);
 
         return $this;
+    }
+
+    /**
+     * @param string $name
+     * @param array  $parameters
+     * @param bool   $absolute
+     *
+     * @return $this
+     */
+    public function route(string $name, $parameters = [], $absolute = true): self
+    {
+        $route = route($name, $parameters, $absolute);
+
+        return $this->href($route);
     }
 }

@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-use App\Orchid\Screens\ExampleScreen;
 use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
+use App\Orchid\Screens\Examples\ExampleScreen;
+use App\Orchid\Screens\Examples\ExampleFieldsScreen;
+use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +36,6 @@ $this->router->screen('roles', RoleListScreen::class)->name('platform.systems.ro
 
 // Example...
 $this->router->screen('example', ExampleScreen::class)->name('platform.example');
+$this->router->screen('example-fields', ExampleFieldsScreen::class)->name('platform.example.fields');
+$this->router->screen('example-layouts', ExampleLayoutsScreen::class)->name('platform.example.layouts');
 //Route::screen('/dashboard/screen/idea', 'Idea::class','platform.screens.idea');

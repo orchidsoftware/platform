@@ -11,7 +11,7 @@ class Source extends ConsolePreset
     /**
      * This pattern should be in the file, part of which should be exported.
      */
-    const ORCHID_MIX_CONFIG_PATTERN = "/(\/\* Orchid mix config start \*\/.*\/\* Orchid mix config end \*\/)/s";
+    public const ORCHID_MIX_CONFIG_PATTERN = "/(\/\* Orchid mix config start \*\/.*\/\* Orchid mix config end \*\/)/s";
 
     /**
      * Install the preset.
@@ -20,7 +20,7 @@ class Source extends ConsolePreset
      */
     public static function install()
     {
-        static::updatePackages(true);
+        static::updatePackages();
         static::updatePackages(false);
         static::updateWebpackConfiguration();
         static::addBabelConfiguration();

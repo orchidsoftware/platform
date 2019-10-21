@@ -9,35 +9,35 @@ use Orchid\Screen\Field;
 /**
  * Class DateTimer.
  *
- * @method self accept($value = true)
- * @method self accesskey($value = true)
- * @method self autocomplete($value = true)
- * @method self autofocus($value = true)
- * @method self checked($value = true)
- * @method self disabled($value = true)
- * @method self form($value = true)
- * @method self formaction($value = true)
- * @method self formenctype($value = true)
- * @method self formmethod($value = true)
- * @method self formnovalidate($value = true)
- * @method self formtarget($value = true)
- * @method self list($value = true)
- * @method self max(int $value)
- * @method self maxlength(int $value)
- * @method self min(int $value)
- * @method self multiple($value = true)
- * @method self name(string $value = null)
- * @method self pattern($value = true)
- * @method self placeholder(string $value = null)
- * @method self readonly($value = true)
- * @method self required(bool $value = true)
- * @method self size($value = true)
- * @method self src($value = true)
- * @method self step($value = true)
- * @method self tabindex($value = true)
- * @method self value($value = true)
- * @method self help(string $value = null)
- * @method self popover(string $value = null)
+ * @method DateTimer accept($value = true)
+ * @method DateTimer accesskey($value = true)
+ * @method DateTimer autocomplete($value = true)
+ * @method DateTimer autofocus($value = true)
+ * @method DateTimer checked($value = true)
+ * @method DateTimer disabled($value = true)
+ * @method DateTimer form($value = true)
+ * @method DateTimer formaction($value = true)
+ * @method DateTimer formenctype($value = true)
+ * @method DateTimer formmethod($value = true)
+ * @method DateTimer formnovalidate($value = true)
+ * @method DateTimer formtarget($value = true)
+ * @method DateTimer list($value = true)
+ * @method DateTimer max(int $value)
+ * @method DateTimer maxlength(int $value)
+ * @method DateTimer min(int $value)
+ * @method DateTimer multiple($value = true)
+ * @method DateTimer name(string $value = null)
+ * @method DateTimer pattern($value = true)
+ * @method DateTimer placeholder(string $value = null)
+ * @method DateTimer readonly($value = true)
+ * @method DateTimer required(bool $value = true)
+ * @method DateTimer size($value = true)
+ * @method DateTimer src($value = true)
+ * @method DateTimer step($value = true)
+ * @method DateTimer tabindex($value = true)
+ * @method DateTimer value($value = true)
+ * @method DateTimer help(string $value = null)
+ * @method DateTimer popover(string $value = null)
  */
 class DateTimer extends Field
 {
@@ -116,7 +116,7 @@ class DateTimer extends Field
      *
      * @return self
      */
-    public function enableTime(bool $time = true) : self
+    public function enableTime(bool $time = true): self
     {
         $this->set('data-fields--datetime-enable-time', var_export($time, true));
 
@@ -128,7 +128,7 @@ class DateTimer extends Field
      *
      * @return self
      */
-    public function format24hr(bool $time = true) : self
+    public function format24hr(bool $time = true): self
     {
         $this->set('data-fields--datetime-time-24hr', var_export($time, true));
 
@@ -140,7 +140,7 @@ class DateTimer extends Field
      *
      * @return self
      */
-    public function allowInput(bool $time = true) : self
+    public function allowInput(bool $time = true): self
     {
         $this->set('data-fields--datetime-allow-input', var_export($time, true));
 
@@ -152,7 +152,7 @@ class DateTimer extends Field
      *
      * @return DateTimer
      */
-    public function format(string  $format) : self
+    public function format(string  $format): self
     {
         $this->set('data-fields--datetime-date-format', $format);
 
@@ -166,7 +166,7 @@ class DateTimer extends Field
      *
      * @return $this
      */
-    public function noCalendar(bool $noCalendar = true) : self
+    public function noCalendar(bool $noCalendar = true): self
     {
         $this->enableTime();
         $this->set('data-fields--datetime-no-calendar', var_export($noCalendar, true));

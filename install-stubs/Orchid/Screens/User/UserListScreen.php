@@ -98,9 +98,25 @@ class UserListScreen extends Screen
     public function saveUser(User $user, Request $request)
     {
         $user->fill($request->get('user'))
+            ->replaceRoles($request->input('user.roles'))
             ->save();
 
         Alert::info(__('User was saved.'));
+
+        return back();
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function remove(Request $request)
+    {
+        User::findOrFail($request->get('id'))
+            ->delete();
+
+        Alert::info(__('User was removed'));
 
         return back();
     }

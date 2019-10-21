@@ -100,7 +100,7 @@ class Select extends Field
      *
      * @return self
      */
-    private function setFromEloquent($model, string $name, string $key) : self
+    private function setFromEloquent($model, string $name, string $key): self
     {
         $options = $model->pluck($name, $key);
 
@@ -109,7 +109,7 @@ class Select extends Field
         return $this->addBeforeRender(function () {
             $value = [];
 
-            collect($this->get('value'))->each(function ($item) use (&$value) {
+            collect($this->get('value'))->each(static function ($item) use (&$value) {
                 if (is_object($item)) {
                     $value[$item->id] = $item->name;
                 } else {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Orchid\Screens;
+namespace App\Orchid\Screens\Examples;
 
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
@@ -11,7 +11,6 @@ use Orchid\Support\Facades\Alert;
 use Orchid\Screen\Actions\DropDown;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Screen\Actions\ModalToggle;
-use App\Orchid\Layouts\Examples\RowExample;
 use App\Orchid\Layouts\Examples\TableExample;
 use App\Orchid\Layouts\Examples\MetricsExample;
 use App\Orchid\Layouts\Examples\ChartBarExample;
@@ -24,7 +23,7 @@ class ExampleScreen extends Screen
     /**
      * Fish text for the table.
      */
-    const TEXT_EXAMPLE = 'Lorem ipsum at sed ad fusce faucibus primis, potenti inceptos ad taciti nisi tristique 
+    private const TEXT_EXAMPLE = 'Lorem ipsum at sed ad fusce faucibus primis, potenti inceptos ad taciti nisi tristique 
     urna etiam, primis ut lacus habitasse malesuada ut. Lectus aptent malesuada mattis ut etiam fusce nec sed viverra,
     semper mattis viverra malesuada quam metus vulputate torquent magna, lobortis nec nostra nibh sollicitudin 
     erat in luctus.';
@@ -34,7 +33,7 @@ class ExampleScreen extends Screen
      *
      * @var string
      */
-    public $name = 'Example Screen';
+    public $name = 'Example screen';
 
     /**
      * Display header description.
@@ -84,10 +83,6 @@ class ExampleScreen extends Screen
                 ['keyValue' => number_format(10000, 0), 'keyDiff' => -169.54],
                 ['keyValue' => number_format(1454887.12, 2), 'keyDiff' => 0.2],
             ],
-            'place'   => [
-                'lat' => 37.181244855427394,
-                'lng' => -3.6021993309259415,
-            ],
         ];
     }
 
@@ -102,6 +97,7 @@ class ExampleScreen extends Screen
 
             Button::make('Example Button')
                 ->method('example')
+                ->novalidate()
                 ->icon('icon-bag'),
 
             ModalToggle::make('Example Modals')
@@ -147,7 +143,6 @@ class ExampleScreen extends Screen
     public function layout(): array
     {
         return [
-
             MetricsExample::class,
             ChartBarExample::class,
 
@@ -156,17 +151,14 @@ class ExampleScreen extends Screen
                 ChartLineExample::class,
             ]),
 
-            Layout::tabs([
-                'Example Tab Table' => TableExample::class,
-                'Example Tab Rows'  => RowExample::class,
-            ]),
+            TableExample::class,
 
             Layout::modal('exampleModal', [
                 Layout::rows([
                     Input::make('user.password')
                         ->type('test')
-                        ->title(__('Example'))
-                        ->placeholder(__('Example')),
+                        ->title('Example')
+                        ->placeholder('Example...'),
                 ]),
             ])->title('Example Modals'),
         ];

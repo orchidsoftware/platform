@@ -9,14 +9,14 @@ use Orchid\Screen\Field;
 /**
  * Class Input.
  *
- * @method self name(string $value = null)
- * @method self value($value = true)
- * @method self help(string $value = null)
- * @method self popover(string $value = null)
- * @method self language($value = true)
- * @method self lineNumbers($value = true)
- * @method self height($value = '300px')
- * @method self readonly($value = true)
+ * @method Code name(string $value = null)
+ * @method Code value($value = true)
+ * @method Code help(string $value = null)
+ * @method Code popover(string $value = null)
+ * @method Code language($value = true)
+ * @method Code lineNumbers($value = true)
+ * @method Code height($value = '300px')
+ * @method Code readonly($value = true)
  */
 class Code extends Field
 {
@@ -108,15 +108,13 @@ class Code extends Field
      */
     public static function make(string $name = null): self
     {
-        $code = (new static())->name($name);
-
-        $code->addBeforeRender(function () {
-            if ($this->get('language') === 'json') {
-                $value = $this->get('value');
-                $this->set('value', json_encode($value));
-            }
-        });
-
-        return $code;
+        return (new static())
+            ->name($name)
+            ->addBeforeRender(function () {
+                if ($this->get('language') === 'json') {
+                    $value = $this->get('value');
+                    $this->set('value', json_encode($value));
+                }
+            });
     }
 }

@@ -32,7 +32,7 @@ trait CanSee
     /**
      * @return bool
      */
-    public function isSee() :bool
+    public function isSee(): bool
     {
         return $this->display;
     }

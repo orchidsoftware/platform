@@ -188,7 +188,7 @@ class FoundationServiceProvider extends ServiceProvider
     {
         $this->commands($this->commands);
 
-        $this->app->singleton(Dashboard::class, function () {
+        $this->app->singleton(Dashboard::class, static function () {
             return new Dashboard();
         });
 
@@ -214,7 +214,7 @@ class FoundationServiceProvider extends ServiceProvider
         /*
          * Adds Orchid source preset to Laravel's default preset command.
          */
-        PresetCommand::macro('orchid-source', function (PresetCommand $command) {
+        PresetCommand::macro('orchid-source', static function (PresetCommand $command) {
             $command->call('vendor:publish', [
                 '--provider' => self::class,
                 '--tag'      => 'orchid-assets',
@@ -228,7 +228,7 @@ class FoundationServiceProvider extends ServiceProvider
         /*
          * Adds Orchid preset to Laravel's default preset command.
          */
-        PresetCommand::macro('orchid', function (PresetCommand $command) {
+        PresetCommand::macro('orchid', static function (PresetCommand $command) {
             Orchid::install();
             $command->warn('Please run "npm install && npm run dev" to compile your fresh scaffolding.');
             $command->warn("After that, You need to add this line to AppServiceProvider's register method:");

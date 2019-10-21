@@ -15,7 +15,27 @@ class ExampleScreenTest extends TestFeatureCase
             ->get(route('platform.example'));
 
         $response->assertOk()
-            ->assertSee('Example Screen')
+            ->assertSee('Example screen')
             ->assertSee('Sample Screen Components');
+    }
+
+    public function testRoutePlatformExampleFields()
+    {
+        $response = $this
+            ->actingAs($this->createAdminUser())
+            ->get(route('platform.example.fields'));
+
+        $response->assertOk()
+            ->assertSee('Example fields');
+    }
+
+    public function testRoutePlatformExampleLayouts()
+    {
+        $response = $this
+            ->actingAs($this->createAdminUser())
+            ->get(route('platform.example.layouts'));
+
+        $response->assertOk()
+            ->assertSee('Example layouts');
     }
 }

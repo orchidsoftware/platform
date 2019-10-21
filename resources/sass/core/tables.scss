@@ -36,17 +36,6 @@
         font-size: $font-size-sm;
         vertical-align: middle;
         word-break: break-all;
-        .btn-tag {
-          background: fade-out($brand-dark, .93);
-          display: inline-block;
-          margin: 5px;
-          border-radius: 4px;
-          padding: 5px;
-          color: #62605a !important;
-          &:hover {
-            background: fade-out($brand-dark, .85);
-          }
-        }
       }
       &.selected td {
         background: $brand-warning;
@@ -143,13 +132,6 @@
         & > td {
           &:hover {
             cursor: pointer;
-          }
-          &:first-child:before {
-            content: "\f054";
-            display: inline-block;
-            margin-right: 8px;
-            font-family: 'FontAwesome';
-            @include transition(all 0.12s linear);
           }
         }
       }

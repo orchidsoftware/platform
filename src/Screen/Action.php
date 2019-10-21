@@ -100,7 +100,7 @@ class Action extends Field implements ActionContract
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function build(Repository $repository)
+    public function build(Repository $repository = null)
     {
         return $this->render();
     }
@@ -110,7 +110,7 @@ class Action extends Field implements ActionContract
      *
      * @return static
      */
-    public function rawClick($status = false) : self
+    public function rawClick($status = false): self
     {
         $this->set('turbolinks', $status);
 

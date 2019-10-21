@@ -6,6 +6,8 @@ namespace App\Orchid\Layouts\User;
 
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Rows;
+use Orchid\Platform\Models\Role;
+use Orchid\Screen\Fields\Select;
 
 class UserEditLayout extends Rows
 {
@@ -33,6 +35,12 @@ class UserEditLayout extends Rows
                 ->horizontal()
                 ->title(__('Email'))
                 ->placeholder(__('Email')),
+
+            Select::make('user.roles.')
+                ->fromModel(Role::class, 'name')
+                ->multiple()
+                ->horizontal()
+                ->title(__('Name role')),
         ];
     }
 }

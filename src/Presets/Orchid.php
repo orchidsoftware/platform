@@ -12,7 +12,7 @@ class Orchid extends Preset
     /**
      * This pattern should be in the file, part of which should be exported.
      */
-    const ORCHID_MIX_CONFIG_PATTERN = "/(\/\* Dashboard mix config start \*\/.*\/\* Dashboard mix config end \*\/)/s";
+    public const ORCHID_MIX_CONFIG_PATTERN = "/(\/\* Dashboard mix config start \*\/.*\/\* Dashboard mix config end \*\/)/s";
 
     /**
      * Install the preset.

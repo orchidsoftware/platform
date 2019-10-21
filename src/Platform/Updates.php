@@ -45,15 +45,16 @@ class Updates
      */
     public function check()
     {
-        $status = Cache::remember('platform-update-widget', now()->addMinutes($this->cache), function () {
-            $this->updateInstall();
+        $cache = now()->addMinutes($this->cache);
 
-            return $this->getStatus();
+        return Cache::remember('platform-update-widget', $cache, function () {
+            return $this->updateInstall()->getStatus();
         });
-
-        return $status;
     }
 
+    /**
+     * @return $this
+     */
     public function updateInstall()
     {
         try {
@@ -83,6 +84,8 @@ class Updates
         } catch (Exception $exception) {
             // packagist down
         }
+
+        return $this;
     }
 
     /**

@@ -13,17 +13,17 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Relation.
  *
- * @method self accesskey($value = true)
- * @method self autofocus($value = true)
- * @method self disabled($value = true)
- * @method self form($value = true)
- * @method self name(string $value = null)
- * @method self required(bool $value = true)
- * @method self size($value = true)
- * @method self tabindex($value = true)
- * @method self help(string $value = null)
- * @method self placeholder(string $placeholder = null)
- * @method self popover(string $value = null)
+ * @method Relation accesskey($value = true)
+ * @method Relation autofocus($value = true)
+ * @method Relation disabled($value = true)
+ * @method Relation form($value = true)
+ * @method Relation name(string $value = null)
+ * @method Relation required(bool $value = true)
+ * @method Relation size($value = true)
+ * @method Relation tabindex($value = true)
+ * @method Relation help(string $value = null)
+ * @method Relation placeholder(string $placeholder = null)
+ * @method Relation popover(string $value = null)
  */
 class Relation extends Field
 {
@@ -119,7 +119,7 @@ class Relation extends Field
             }
 
             $value = collect($value)
-                ->map(function ($item) use ($name, $key) {
+                ->map(static function ($item) use ($name, $key) {
                     return [
                         'id'   => $item->$key,
                         'text' => $item->$name,
@@ -164,7 +164,7 @@ class Relation extends Field
                 }
 
                 $value = collect($item)
-                    ->map(function ($item) use ($name, $key) {
+                    ->map(static function ($item) use ($name, $key) {
                         if (is_array($item)) {
                             $item = collect($item);
                         }

@@ -17,7 +17,7 @@ use Orchid\Screen\Actions\DropDown;
 use Illuminate\Support\Facades\Hash;
 use Orchid\Screen\Actions\ModalToggle;
 use App\Orchid\Layouts\User\UserEditLayout;
-use App\Orchid\Layouts\User\UserRoleLayout;
+use App\Orchid\Layouts\Role\RolePermissionLayout;
 
 class UserEditScreen extends Screen
 {
@@ -43,7 +43,7 @@ class UserEditScreen extends Screen
     /**
      * Query data.
      *
-     * @param \Orchid\Platform\Models\User $user
+     * @param User $user
      *
      * @return array
      */
@@ -75,9 +75,10 @@ class UserEditScreen extends Screen
 
                   ModalToggle::make(__('Change Password'))
                         ->icon('icon-lock-open')
-                        ->title(__('Change Password'))
                         ->method('changePassword')
-                        ->modal('password'),
+                        ->modal('password')
+                        ->title(__('Change Password')),
+
                 ]),
 
             Button::make(__('Save'))
@@ -99,38 +100,37 @@ class UserEditScreen extends Screen
     {
         return [
             UserEditLayout::class,
-            UserRoleLayout::class,
+            RolePermissionLayout::class,
 
             Layout::modal('password', [
                 Layout::rows([
                     Password::make('password')
-                        ->title(__('Password'))
+                        ->placeholder(__('Enter your password'))
                         ->required()
-                        ->placeholder(__('Enter your password')),
+                        ->title(__('Password')),
                 ]),
             ]),
         ];
     }
 
     /**
-     * @param \Orchid\Platform\Models\User $user
-     * @param \Illuminate\Http\Request     $request
+     * @param User    $user
+     * @param Request $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function save(User $user, Request $request)
     {
-        $permissions = $request->get('permissions', []);
-        $roles = $request->input('user.roles', []);
-
-        foreach ($permissions as $key => $value) {
-            unset($permissions[$key]);
-            $permissions[base64_decode($key)] = $value;
-        }
+        $permissions = collect($request->get('permissions'))
+            ->map(function ($value, $key) {
+                return [base64_decode($key) => $value];
+            })
+            ->collapse()
+            ->toArray();
 
         $user
             ->fill($request->get('user'))
-            ->replaceRoles($roles)
+            ->replaceRoles($request->input('user.roles'))
             ->fill([
                 'permissions' => $permissions,
             ])

@@ -28,7 +28,6 @@ class PlatformScreen extends Screen
     /**
      * Query data.
      *
-     *
      * @return array
      */
     public function query(): array
