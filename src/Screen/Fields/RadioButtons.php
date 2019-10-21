@@ -61,6 +61,16 @@ class RadioButtons extends Field
      */
     public static function make(string $name = null): self
     {
-        return (new static())->name($name);
+        return (new static())->name($name)->declarateActive();
+    }
+
+    /**
+     * @return RadioButtons
+     */
+    public function declarateActive(): RadioButtons
+    {
+        return $this->set('active', function (string $key, string $value = null) {
+            return $key === $value;
+        });
     }
 }
