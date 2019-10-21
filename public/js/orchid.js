@@ -24262,6 +24262,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var inputmask__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(inputmask__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -24300,21 +24310,40 @@ function (_Controller) {
      */
     value: function connect() {
       var element = this.element.querySelector('input');
-      var mask = this.data.get('mask');
+      var _mask = this.mask; // mask
 
-      try {
-        mask = JSON.parse(mask);
-      } catch (e) {// default
-      }
+      if (_mask) {
+        // removeMaskOnSubmit conflicts with remove, so we don’t use it
+        // submit -> inputmask.remove -> removeMaskOnSubmit (timeout) -> failure
+        var removeMaskOnSubmit = _mask.removeMaskOnSubmit,
+            mask = _objectWithoutProperties(_mask, ["removeMaskOnSubmit"]);
 
-      if (mask !== '') {
         inputmask__WEBPACK_IMPORTED_MODULE_1___default()(mask).mask(element);
-      }
 
-      if (mask.removeMaskOnSubmit) {
-        this.element.closest('form').addEventListener('orchid:screen-submit', function () {
-          inputmask__WEBPACK_IMPORTED_MODULE_1___default.a.remove(element);
+        if (removeMaskOnSubmit) {
+          this.element.closest('form').addEventListener('orchid:screen-submit', function () {
+            element.inputmask.remove();
+          });
+        }
+      }
+    }
+  }, {
+    key: "mask",
+    get: function get() {
+      try {
+        var maskData = this.data.get('mask');
+
+        if (maskData === '') {
+          return false;
+        }
+
+        var mask = JSON.parse(maskData);
+        return _objectSpread({}, mask, {
+          // do unmask after inputmask.remove
+          autoUnmask: mask.autoUnmask || mask.removeMaskOnSubmit || undefined
         });
+      } catch (e) {
+        return false;
       }
     }
   }]);
@@ -26535,35 +26564,36 @@ function (_Controller) {
       event.preventDefault();
       var screenEventSubmit = new Event('orchid:screen-submit');
       event.target.dispatchEvent(screenEventSubmit);
-      setTimeout(function () {
-        var form = new FormData(event.target);
-        axios.post(action, form, {
-          headers: {
-            'X-Requested-With': null,
-            Accept: 'text/html,application/xhtml+xml,application/xml'
-          }
-        }).then(function (response) {
-          var url = response.request.responseURL;
-          window.Turbolinks.controller.cache.put(url, Turbolinks.Snapshot.wrap(response.data));
-          _this.isSubmit = false;
-          window.Turbolinks.visit(url, {
-            action: 'restore'
-          });
-        })["catch"](function (error) {
-          _this.isSubmit = false;
-
-          if (error.response) {
-            window.history.pushState({
-              error: error.response.responseURL
-            }, '', error.request.responseURL);
-            Turbolinks.clearCache();
-            document.write(error.response.data);
-          } else {
-            // eslint-disable-next-line no-console
-            window.platform.alert('Server error', 'The application could not process your request.', 'danger');
-            console.error("Malformed error ".concat(error));
-          }
+      var form = new FormData(event.target);
+      axios.post(action, form, {
+        headers: {
+          'X-Requested-With': null,
+          Accept: 'text/html,application/xhtml+xml,application/xml'
+        }
+      }).then(function (response) {
+        var url = response.request.responseURL;
+        window.Turbolinks.controller.cache.put(url, Turbolinks.Snapshot.wrap(response.data));
+        _this.isSubmit = false;
+        window.Turbolinks.visit(url, {
+          action: 'restore'
         });
+      })["catch"](function (error) {
+        _this.isSubmit = false;
+
+        if (error.response) {
+          window.history.pushState({
+            error: error.response.responseURL
+          }, '', error.request.responseURL);
+          Turbolinks.clearCache();
+          var iframe = document.createElement('iframe');
+          iframe.className = 'modal block';
+          document.body.appendChild(iframe);
+          iframe.contentWindow.document.write(error.response.data);
+        } else {
+          // eslint-disable-next-line no-console
+          window.platform.alert('Server error', 'The application could not process your request.', 'danger');
+          console.error("Malformed error ".concat(error));
+        }
       });
       return false;
     }
@@ -27762,8 +27792,8 @@ function platform() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/tabuna/Orchid/develop/orchid-project/platform/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/tabuna/Orchid/develop/orchid-project/platform/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/tabuna/ORCHID/laravel6.0/platform/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/tabuna/ORCHID/laravel6.0/platform/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),
