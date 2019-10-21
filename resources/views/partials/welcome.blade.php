@@ -93,12 +93,12 @@
             <div class="col-md-4 no-padder admin-element-item">
                 <div class="admin-element w-full">
                     <h3 class="font-thin h3 text-black">
-                        <i class="icon-filter"></i> <a href="https://orchid.software/en/docs/access/">Filters</a>
+                        <i class="icon-filter"></i> <a href="https://orchid.software/en/docs/filters/">Filters</a>
                     </h3>
                     <div class="line line-dashed b-b line-lg"></div>
                     <div class="list-group no-bg no-borders pull-in auto">
                         <div class="list-group-item padder-v admin-element-item">
-                            <a href="https://orchid.software/en/docs/access/">
+                            <a href="https://orchid.software/en/docs/filters/">
                             <small class="text-muted">Filters are used to simplify the search for records using a typical filter. For example, if you want to filter the product catalog by attributes, brands and etc.
                             </small>
                             </a>
