@@ -22,18 +22,11 @@ class NotificationTable extends Table
     public function columns(): array
     {
         return [
-            TD::set('Message', __('Message'))
+            TD::set('Message', __('Messages'))
                 ->render(static function ($notification) {
                     return view('platform::partials.notification', [
                         'notification' => $notification,
                     ]);
-                }),
-
-            TD::set('', __('Date of creation'))
-                ->width('150px')
-                ->align(TD::ALIGN_RIGHT)
-                ->render(static function ($notification) {
-                    return $notification->created_at->diffForHumans();
                 }),
         ];
     }

@@ -3,13 +3,11 @@
 @section('description',__($screen->description))
 @section('controller','screen--base')
 @section('navbar')
-    <ul class="nav command-bar justify-content-sm-end justify-content-start v-center">
-        @foreach($commandBar as $command)
-            <li>
-                {!! $command !!}
-            </li>
-        @endforeach
-    </ul>
+    @foreach($commandBar as $command)
+        <li>
+            {!! $command !!}
+        </li>
+    @endforeach
 @stop
 @section('content')
         <form id="post-form"

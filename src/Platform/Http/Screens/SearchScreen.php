@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens;
 
-use Illuminate\View\View;
-use Orchid\Screen\Layout;
-use Orchid\Screen\Screen;
-use Illuminate\Http\Request;
-use Orchid\Screen\Actions\Button;
-use Illuminate\Support\Collection;
-use Orchid\Support\Facades\Dashboard;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\View\View;
 use Orchid\Platform\Http\Layouts\SearchLayout;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Dashboard;
 
 class SearchScreen extends Screen
 {
@@ -150,11 +150,9 @@ class SearchScreen extends Screen
         $class = get_class($searchModels->first());
         $type = $this->request->session()->get(self::SESSION_NAME, $class);
 
-        $model = $searchModels->map(static function ($model) use ($type) {
-            if ($model instanceof $type) {
-                return $model;
-            }
-        })->filter()->first();
+        $model = $searchModels->filter(static function ($model) use ($type) {
+            return $model instanceof $type;
+        })->first();
 
         abort_if(is_null($model), 404, 'Required search type not found');
 

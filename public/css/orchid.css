@@ -20284,6 +20284,10 @@ a.text-black:hover {
   margin-bottom: 0 !important;
 }
 
+.table-notification .table tbody tr td {
+  padding: 0;
+}
+
 .form-control, .chosen-choices, .chosen-single, .bootstrap-tagsinput {
   background: #ffffff none;
   border: 1px solid rgba(28, 43, 54, 0.1);

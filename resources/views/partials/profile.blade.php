@@ -70,7 +70,7 @@
         <a href="{{ route('platform.notifications') }}" class="nav-link icon no-padder">
             <i class="icon-bell"></i>
             @if(count($notifications) > 0)
-                <span class="badge badge-sm up bg-danger pull-right-xs text-white">
+                <span class="badge badge-sm up bg-danger text-white">
                     @if(count($notifications) < 10)
                         {{ count($notifications) }}
                     @else
