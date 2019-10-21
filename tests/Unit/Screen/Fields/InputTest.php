@@ -48,4 +48,14 @@ class InputTest extends TestFieldsUnitCase
 
         $this->assertStringContainsString('(999) 999-9999', $view);
     }
+
+
+    public function testObjectToSting()
+    {
+        $input = Input::make('name')
+            ->title('What is your name?')
+        ;
+
+        $this->assertStringContainsString('What is your name?',  (string) $input);
+    }
 }

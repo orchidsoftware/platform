@@ -76,7 +76,7 @@ class UserListLayout extends Table
                                     'id' => $user->id,
                                 ])
                                 ->icon('icon-trash'),
-                        ])->render();
+                        ]);
                 }),
         ];
     }
