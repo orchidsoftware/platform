@@ -27144,6 +27144,7 @@ function (_Controller) {
       }
 
       this.template = this.element.querySelector('#toast');
+      this.showAllToasts();
     }
     /**
      *
@@ -27156,9 +27157,26 @@ function (_Controller) {
     key: "alert",
     value: function alert(title, message) {
       var type = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'warning';
+      this.toast("<b>".concat(title, "</b><br> ").concat(message), type);
+    }
+    /**
+     *
+     * @param message
+     * @param type
+     */
+
+  }, {
+    key: "toast",
+    value: function toast(message) {
+      var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'warning';
       var toast = this.template.content.querySelector('.toast').cloneNode(true);
-      toast.innerHTML = toast.innerHTML.replace(/{title}/, title).replace(/{message}/, message).replace(/{type}/, type);
+      toast.innerHTML = toast.innerHTML.replace(/{message}/, message).replace(/{type}/, type);
       this.element.appendChild(toast);
+      this.showAllToasts();
+    }
+  }, {
+    key: "showAllToasts",
+    value: function showAllToasts() {
       $('.toast').on('hidden.bs.toast', function (event) {
         event.target.remove();
       }).toast('show');

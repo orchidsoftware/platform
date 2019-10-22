@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
+use Orchid\Support\Facades\Toast;
 use Orchid\Tests\TestUnitCase;
 use Orchid\Support\Facades\Alert;
 
@@ -35,6 +36,31 @@ class AlertTest extends TestUnitCase
 
         self::assertEquals('test', session('flash_notification.message'));
         self::assertEquals($css, session('flash_notification.level'));
+    }
+
+    /**
+     * @dataProvider getLevels
+     *
+     * @param $level
+     * @param $css
+     */
+    public function testShouldFlashLevelsToast(string $level, string $css)
+    {
+        Toast::$level('test');
+
+        self::assertEquals('test', session('toast_notification.message'));
+        self::assertEquals($css, session('toast_notification.level'));
+    }
+
+    public function testShouldToastValue()
+    {
+        Toast::info('Hello Alexandr!')
+            ->autoHide(false)
+            ->delay(3000);
+
+        self::assertEquals('Hello Alexandr!', session('toast_notification.message'));
+        self::assertEquals('false', session('toast_notification.auto_hide'));
+        self::assertEquals('3000', session('toast_notification.delay'));
     }
 
     /**

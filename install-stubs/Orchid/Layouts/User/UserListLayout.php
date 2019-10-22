@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\User;
 
+use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\TD;
 use Orchid\Screen\Actions\Link;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
-use Orchid\Screen\Actions\ModalToggle;
 
 class UserListLayout extends Table
 {

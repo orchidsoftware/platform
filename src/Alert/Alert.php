@@ -32,9 +32,19 @@ class Alert
     public const WARNING = 'warning';
 
     /**
+     * @var string
+     */
+    public const SESSION_MESSAGE = 'flash_notification.message';
+
+    /**
+     * @var string
+     */
+    public const SESSION_LEVEL = 'flash_notification.level';
+
+    /**
      * @var Store
      */
-    private $session;
+    protected $session;
 
     /**
      * Create a new flash notifier instance.
@@ -53,7 +63,7 @@ class Alert
      *
      * @return Alert
      */
-    public function info($message): self
+    public function info(string $message): self
     {
         $this->message($message);
 
@@ -68,10 +78,10 @@ class Alert
      *
      * @return Alert
      */
-    public function message($message, $level = self::INFO): self
+    public function message(string $message, $level = self::INFO): self
     {
-        $this->session->flash('flash_notification.message', $message);
-        $this->session->flash('flash_notification.level', $level);
+        $this->session->flash(static::SESSION_MESSAGE, $message);
+        $this->session->flash(static::SESSION_LEVEL, $level);
 
         return $this;
     }
@@ -83,7 +93,7 @@ class Alert
      *
      * @return Alert
      */
-    public function success($message): self
+    public function success(string $message): self
     {
         $this->message($message, self::SUCCESS);
 
@@ -97,7 +107,7 @@ class Alert
      *
      * @return Alert
      */
-    public function error($message): self
+    public function error(string $message): self
     {
         $this->message($message, self::ERROR);
 
@@ -111,7 +121,7 @@ class Alert
      *
      * @return Alert
      */
-    public function warning($message): self
+    public function warning(string $message): self
     {
         $this->message($message, self::WARNING);
 
@@ -145,6 +155,6 @@ class Alert
      */
     public function check(): bool
     {
-        return $this->session->has('flash_notification.message');
+        return $this->session->has(static::SESSION_MESSAGE);
     }
 }
