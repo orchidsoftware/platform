@@ -53,12 +53,12 @@ class MainMenuComposer
                     ->title('Example boilerplate')
             )
             ->add(Menu::MAIN,
-                ItemMenu::label('Example fields')
+                ItemMenu::label('Form elements')
                     ->icon('icon-list')
                     ->route('platform.example.fields')
             )
             ->add(Menu::MAIN,
-                ItemMenu::label('Example layouts')
+                ItemMenu::label('Screen layouts')
                     ->icon('icon-layers')
                     ->route('platform.example.layouts')
             )

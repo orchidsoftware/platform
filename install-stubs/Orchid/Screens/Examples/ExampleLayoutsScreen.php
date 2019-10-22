@@ -14,7 +14,7 @@ class ExampleLayoutsScreen extends Screen
      *
      * @var string
      */
-    public $name = 'Example layouts';
+    public $name = 'Screen layouts';
 
     /**
      * Display header description.
