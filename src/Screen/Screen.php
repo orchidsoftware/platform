@@ -115,15 +115,18 @@ abstract class Screen extends Controller
         $query = call_user_func_array([$this, $method], $this->arguments);
         $source = new Repository($query);
 
+        /** @var Base $layout */
         $layout = collect($this->layout())
             ->map(function ($layout) {
                 return is_object($layout) ? $layout : app()->make($layout);
             })
-            ->first(function (Base $layout) use ($slugLayouts) {
+            ->filter(function (Base $layout) use ($slugLayouts) {
                 return $layout->getSlug() === $slugLayouts;
-            });
-
-        abort_if($layout === null, 404, "Async method: {$method} not found");
+            })
+            ->whenEmpty(function () use ($method) {
+                abort(404, "Async method: {$method} not found");
+            })
+            ->first();
 
         return $layout->currentAsync()->build($source);
     }
