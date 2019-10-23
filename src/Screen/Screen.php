@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Support\Collection;
 use Throwable;
 use ReflectionClass;
 use ReflectionException;
@@ -86,17 +87,15 @@ abstract class Screen extends Controller
     abstract public function layout(): array;
 
     /**
-     *@throws Throwable
+     * @throws Throwable
      *
      * @return View
      */
     public function build()
     {
-        $layout = Layout::blank([
+        return Layout::blank([
             $this->layout(),
-        ]);
-
-        return $layout->build($this->source);
+        ])->build($this->source);
     }
 
     /**
@@ -110,6 +109,7 @@ abstract class Screen extends Controller
     protected function asyncBuild($method, $slugLayouts)
     {
         $this->arguments = $this->request->json()->all();
+
         $this->reflectionParams($method);
 
         $query = call_user_func_array([$this, $method], $this->arguments);
@@ -170,6 +170,7 @@ abstract class Screen extends Controller
         $method = array_pop($parameters);
         $this->arguments = $parameters;
 
+
         if (Str::startsWith($method, 'async')) {
             return $this->asyncBuild($method, array_pop($this->arguments));
         }
@@ -205,33 +206,32 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param int|string               $key
-     * @param ReflectionParameter|null $parameter
+     * It takes the serial number of the argument and the required parameter.
+     * To convert to object
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @param int                 $key
+     * @param ReflectionParameter $parameter
      *
      * @return mixed
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    private function bind($key, $parameter)
+    private function bind(int $key, ReflectionParameter $parameter)
     {
-        if (is_null($parameter->getClass())) {
-            return $this->arguments[$key] ?? null;
+        $class = optional($parameter->getClass())->name;
+        $original = array_values($this->arguments)[$key] ?? null;
+
+        if ($class === null) {
+            return $original;
         }
 
-        $class = $parameter->getClass()->name;
-
-        $object = Arr::first($this->arguments, static function ($value) use ($class) {
-            return is_subclass_of($value, $class) || is_a($value, $class);
-        });
-
-        if (! is_null($object)) {
-            return $object;
+        if (is_object($original)) {
+            return $original;
         }
 
         $object = app()->make($class);
 
-        if (isset($this->arguments[$key]) && is_a($object, UrlRoutable::class)) {
-            $object = $object->resolveRouteBinding($this->arguments[$key]);
+        if ($original !== null && is_a($object, UrlRoutable::class)) {
+            return $object->resolveRouteBinding($original);
         }
 
         return $object;
@@ -242,14 +242,14 @@ abstract class Screen extends Controller
      */
     private function checkAccess(): bool
     {
-        if (empty($this->permission)) {
-            return true;
-        }
-
         return collect($this->permission)
             ->map(static function ($item) {
                 return Auth::user()->hasAccess($item);
-            })->contains(true);
+            })
+            ->whenEmpty(function (Collection $permission) {
+                return $permission->push(true);
+            })
+            ->contains(true);
     }
 
     /**

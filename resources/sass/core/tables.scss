@@ -32,10 +32,18 @@
       td {
         border-bottom: 1px solid fade-out($brand-light, .3);
         border-top: 0;
-        padding: 20px;
+        padding: 15px;
         font-size: $font-size-sm;
         vertical-align: middle;
         word-break: break-all;
+
+          > .form-group > .btn {
+              padding: 0;
+              margin: 0;
+              display: inline;
+              width: auto;
+              @extend .btn-sm;
+          }
       }
       &.selected td {
         background: $brand-warning;
