@@ -123,6 +123,8 @@ abstract class Screen extends Controller
                 return $layout->getSlug() === $slugLayouts;
             });
 
+        abort_if($layout === null, 404, "Async method: {$method} not found");
+
         return $layout->currentAsync()->build($source);
     }
 
