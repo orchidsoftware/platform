@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\Role;
 
-use Orchid\Platform\Models\Role;
-use Orchid\Screen\Actions\Link;
 use Orchid\Screen\TD;
+use Orchid\Screen\Actions\Link;
+use Orchid\Platform\Models\Role;
 use Orchid\Screen\Layouts\Table;
 
 class RoleListLayout extends Table
@@ -25,7 +25,7 @@ class RoleListLayout extends Table
             TD::set('name', __('Name'))
                 ->sort()
                 ->filter(TD::FILTER_TEXT)
-                ->render(function (Role $role){
+                ->render(function (Role $role) {
                     return Link::make($role->name)
                         ->route('platform.systems.roles.edit', $role->slug);
                 }),
