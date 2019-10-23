@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
-use JsonSerializable;
 use Illuminate\Support\Arr;
+use JsonSerializable;
 use Orchid\Screen\Repository;
 
 /**
@@ -146,21 +146,19 @@ abstract class Base implements JsonSerializable
      */
     protected function buildChild(array $layouts, $key, Repository $repository)
     {
-        $build = [];
+        return collect($layouts)
+            ->map(function ($layout) {
+                return is_object($layout) ? $layout : app()->make($layout);
+            })
+            ->filter(function (Base $layout) use ($repository) {
+                return $this->checkPermission($layout, $repository);
+            })
+            ->reduce(function (array $build, Base $layout) use ($key, $repository) {
 
-        foreach ($layouts as $layout) {
+                $build[$key][] = $layout->build($repository);
 
-            /** @var Base|string $layout */
-            $layout = is_object($layout) ? $layout : app()->make($layout);
-
-            if (! $this->checkPermission($layout, $repository)) {
-                continue;
-            }
-
-            $build[$key][] = $layout->build($repository);
-        }
-
-        return $build;
+                return $build;
+            }, []);
     }
 
     /**

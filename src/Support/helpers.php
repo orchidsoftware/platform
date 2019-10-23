@@ -128,9 +128,8 @@ if (! function_exists('orchid_mix')) {
      * @param string $package
      * @param string $dir
      *
-     * @throws Exception
-     *
      * @return string
+     * @throws \Throwable
      */
     function orchid_mix(string $file, string $package, string $dir = ''): string
     {
@@ -149,9 +148,7 @@ if (! function_exists('orchid_mix')) {
             $manifest = $resource;
         }
 
-        if (is_null($manifest)) {
-            throw new \Exception('mix-manifest.json file not found');
-        }
+        throw_if($manifest === null, \Exception::class, 'mix-manifest.json file not found');
 
         $manifest = json_decode($manifest->getContents(), true);
 

@@ -26,7 +26,7 @@ class ExampleScreenTest extends TestFeatureCase
             ->get(route('platform.example.fields'));
 
         $response->assertOk()
-            ->assertSee('Form Elements');
+            ->assertSee('Form elements');
     }
 
     public function testRoutePlatformExampleLayouts()

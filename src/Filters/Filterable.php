@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Filters;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Orchid\Screen\Layouts\Selection;
-use Illuminate\Database\Eloquent\Builder;
 
 trait Filterable
 {
@@ -20,15 +20,13 @@ trait Filterable
      */
     public function scopeFiltersApply(Builder $query, array $filters = []): Builder
     {
-        foreach ($filters as $filter) {
-            if (! is_object($filter)) {
-                $filter = app()->make($filter);
-            }
-
-            $query = $filter->filter($query);
-        }
-
-        return $query;
+        return collect($filters)
+            ->map(function ($filter) {
+                return is_object($filter) ? $filter : app()->make($filter);
+            })
+            ->reduce(function (Builder $query, Filter $filter) {
+                return $filter->filter($query);
+            }, $query);
     }
 
     /**
@@ -39,11 +37,10 @@ trait Filterable
      *
      * @return Builder
      */
-    public function scopeFiltersApplySelection(Builder $query, $selection)
+    public function scopeFiltersApplySelection(Builder $query, $selection) : Builder
     {
-        if (! is_object($selection)) {
-            $selection = app()->make($selection);
-        }
+        /** @var Selection $selection */
+        $selection = is_object($selection) ? $selection : app()->make($selection);
 
         $filters = $selection->filters();
 
@@ -56,7 +53,7 @@ trait Filterable
      *
      * @return Builder
      */
-    public function scopeFilters(Builder $builder, HttpFilter $httpFilter = null)
+    public function scopeFilters(Builder $builder, HttpFilter $httpFilter = null): Builder
     {
         $filter = $httpFilter ?? new HttpFilter();
         $filter->build($builder);
