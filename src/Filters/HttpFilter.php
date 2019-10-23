@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Builder;
 
 class HttpFilter
 {
@@ -80,7 +80,7 @@ class HttpFilter
      */
     public static function sanitize(string $column): string
     {
-        abort_if(!preg_match(self::VALID_COLUMN_NAME_REGEX, $column), Response::HTTP_BAD_REQUEST);
+        abort_if(! preg_match(self::VALID_COLUMN_NAME_REGEX, $column), Response::HTTP_BAD_REQUEST);
 
         return $column;
     }
