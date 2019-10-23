@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Support\Collection;
 use Throwable;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionParameter;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Orchid\Screen\Layouts\Base;
+use Illuminate\Support\Collection;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\View\Factory;
@@ -170,7 +169,6 @@ abstract class Screen extends Controller
         $method = array_pop($parameters);
         $this->arguments = $parameters;
 
-
         if (Str::startsWith($method, 'async')) {
             return $this->asyncBuild($method, array_pop($this->arguments));
         }
@@ -207,13 +205,14 @@ abstract class Screen extends Controller
 
     /**
      * It takes the serial number of the argument and the required parameter.
-     * To convert to object
+     * To convert to object.
      *
      * @param int                 $key
      * @param ReflectionParameter $parameter
      *
-     * @return mixed
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
+     * @return mixed
      */
     private function bind(int $key, ReflectionParameter $parameter)
     {
