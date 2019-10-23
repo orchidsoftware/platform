@@ -117,7 +117,7 @@ class FieldTest extends TestUnitCase
     public function testHasCorrectInstance(string $field, $options)
     {
         /** @var \Orchid\Screen\Field $field */
-        $field = new $field();
+        $field = $field::make();
 
         foreach ($options as $key => $option) {
             $field->set($key, $option);

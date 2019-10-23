@@ -5,16 +5,17 @@ declare(strict_types=1);
 namespace Orchid\Platform\Models;
 
 use Exception;
-use Orchid\Screen\AsSource;
-use Orchid\Access\UserAccess;
-use Orchid\Filters\Filterable;
-use Orchid\Access\UserInterface;
-use Illuminate\Support\Facades\Hash;
-use Orchid\Support\Facades\Dashboard;
-use Illuminate\Notifications\Notifiable;
-use Orchid\Platform\Notifications\ResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Hash;
+use Orchid\Access\UserAccess;
+use Orchid\Access\UserInterface;
+use Orchid\Filters\Filterable;
 use Orchid\Platform\Notifications\DashboardNotification;
+use Orchid\Platform\Notifications\ResetPassword;
+use Orchid\Screen\AsSource;
+use Orchid\Support\Facades\Dashboard;
 
 class User extends Authenticatable implements UserInterface
 {
@@ -116,30 +117,24 @@ class User extends Authenticatable implements UserInterface
      * @param string $email
      * @param string $password
      *
-     * @throws Exception
+     * @throws \Throwable
      */
     public static function createAdmin(string $name, string $email, string $password)
     {
-        if (static::where('email', $email)->exists()) {
-            throw new Exception('User exist');
-        }
+        throw_if(static::where('email', $email)->exists(), Exception::class, 'User exist');
 
-        $permissions = collect();
-
-        Dashboard::getPermission()
+        $permissions = Dashboard::getPermission()
             ->collapse()
-            ->each(static function ($item) use ($permissions) {
-                $permissions->put($item['slug'], true);
-            });
+            ->reduce(static function (Collection $permissions, array $item) {
+                return $permissions->put($item['slug'], true);
+            }, collect());
 
-        $user = static::create([
+        static::create([
             'name'        => $name,
             'email'       => $email,
             'password'    => Hash::make($password),
             'permissions' => $permissions,
-        ]);
-
-        $user->notify(new DashboardNotification([
+        ])->notify(new DashboardNotification([
             'title'   => "Welcome {$name}",
             'message' => 'You can find the latest news of the project on the website',
             'action'  => 'https://orchid.software/',

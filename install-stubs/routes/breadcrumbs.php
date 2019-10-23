@@ -46,11 +46,11 @@ Breadcrumbs::for('platform.example', function (BreadcrumbsGenerator $trail) {
 // Platform -> Example Fields
 Breadcrumbs::for('platform.example.fields', function (BreadcrumbsGenerator $trail) {
     $trail->parent('platform.index');
-    $trail->push(__('Example fields'));
+    $trail->push(__('Form elements'));
 });
 
 // Platform -> Example Layouts
 Breadcrumbs::for('platform.example.layouts', function (BreadcrumbsGenerator $trail) {
     $trail->parent('platform.index');
-    $trail->push(__('Example layouts'));
+    $trail->push(__('Screen layouts'));
 });
