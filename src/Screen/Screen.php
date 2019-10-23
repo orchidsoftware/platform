@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Throwable;
+use Illuminate\Contracts\Routing\UrlRoutable;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Screen\Layouts\Base;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionParameter;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Orchid\Screen\Layouts\Base;
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\Routing\UrlRoutable;
-use Orchid\Platform\Http\Controllers\Controller;
+use Throwable;
 
 /**
  * Class Screen.
@@ -122,6 +122,8 @@ abstract class Screen extends Controller
             ->first(function (Base $layout) use ($slugLayouts) {
                 return $layout->getSlug() === $slugLayouts;
             });
+
+        abort_if($layout === null, 404, "Async method: {$method} not found");
 
         return $layout->currentAsync()->build($source);
     }

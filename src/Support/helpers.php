@@ -128,9 +128,8 @@ if (! function_exists('orchid_mix')) {
      * @param string $package
      * @param string $dir
      *
-     * @throws \Throwable
-     *
      * @return string
+     * @throws \Throwable
      */
     function orchid_mix(string $file, string $package, string $dir = ''): string
     {
