@@ -2845,7 +2845,7 @@ fieldset:disabled .dropzone-wrapper .dz-preview a.btn-edit,
   border-radius: 0.3rem;
 }
 
-.btn-sm, .btn-group-sm > .btn, .dropzone .dz-preview .btn-group-sm > .btn-edit, .dropzone-wrapper .dz-preview .btn-group-sm > .btn-edit, .dropzone .dz-preview .btn-remove, .dropzone-wrapper .dz-preview .btn-remove {
+.btn-sm, .btn-group-sm > .btn, .dropzone .dz-preview .btn-group-sm > .btn-edit, .dropzone-wrapper .dz-preview .btn-group-sm > .btn-edit, .table tbody tr td > .form-group > .btn, .table tbody tr .dropzone .dz-preview td > .form-group > .btn-remove, .dropzone .dz-preview .table tbody tr td > .form-group > .btn-remove, .table tbody tr .dropzone-wrapper .dz-preview td > .form-group > .btn-remove, .dropzone-wrapper .dz-preview .table tbody tr td > .form-group > .btn-remove, .table tbody tr .dropzone .dz-preview td > .form-group > .btn-edit, .dropzone .dz-preview .table tbody tr td > .form-group > .btn-edit, .table tbody tr .dropzone-wrapper .dz-preview td > .form-group > .btn-edit, .dropzone-wrapper .dz-preview .table tbody tr td > .form-group > .btn-edit, .dropzone .dz-preview .btn-remove, .dropzone-wrapper .dz-preview .btn-remove {
   padding: 0.25rem 0.5rem;
   font-size: 0.92857rem;
   line-height: 1.5;
@@ -3171,7 +3171,7 @@ input[type="button"].btn-block {
   margin-right: 0;
 }
 
-.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, .dropzone .dz-preview .btn-group-sm > .btn-remove + .dropdown-toggle-split, .dropzone-wrapper .dz-preview .btn-group-sm > .btn-remove + .dropdown-toggle-split, .dropzone .dz-preview .btn-group-sm > .btn-edit + .dropdown-toggle-split, .dropzone-wrapper .dz-preview .btn-group-sm > .btn-edit + .dropdown-toggle-split, .dropzone .dz-preview .btn-remove + .dropdown-toggle-split, .dropzone-wrapper .dz-preview .btn-remove + .dropdown-toggle-split {
+.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, .dropzone .dz-preview .btn-group-sm > .btn-remove + .dropdown-toggle-split, .dropzone-wrapper .dz-preview .btn-group-sm > .btn-remove + .dropdown-toggle-split, .dropzone .dz-preview .btn-group-sm > .btn-edit + .dropdown-toggle-split, .dropzone-wrapper .dz-preview .btn-group-sm > .btn-edit + .dropdown-toggle-split, .table tbody tr td > .form-group > .btn + .dropdown-toggle-split, .table tbody tr .dropzone .dz-preview td > .form-group > .btn-remove + .dropdown-toggle-split, .dropzone .dz-preview .table tbody tr td > .form-group > .btn-remove + .dropdown-toggle-split, .table tbody tr .dropzone-wrapper .dz-preview td > .form-group > .btn-remove + .dropdown-toggle-split, .dropzone-wrapper .dz-preview .table tbody tr td > .form-group > .btn-remove + .dropdown-toggle-split, .table tbody tr .dropzone .dz-preview td > .form-group > .btn-edit + .dropdown-toggle-split, .dropzone .dz-preview .table tbody tr td > .form-group > .btn-edit + .dropdown-toggle-split, .table tbody tr .dropzone-wrapper .dz-preview td > .form-group > .btn-edit + .dropdown-toggle-split, .dropzone-wrapper .dz-preview .table tbody tr td > .form-group > .btn-edit + .dropdown-toggle-split, .dropzone .dz-preview .btn-remove + .dropdown-toggle-split, .dropzone-wrapper .dz-preview .btn-remove + .dropdown-toggle-split {
   padding-right: 0.375rem;
   padding-left: 0.375rem;
 }
@@ -17577,12 +17577,12 @@ fieldset[disabled] .btn-black.active {
   line-height: 34px;
 }
 
-.btn-icon.btn-sm, .btn-group-sm > .btn-icon.btn, .dropzone .dz-preview .btn-group-sm > .btn-icon.btn-edit, .dropzone-wrapper .dz-preview .btn-group-sm > .btn-icon.btn-edit, .dropzone .dz-preview .btn-icon.btn-remove, .dropzone-wrapper .dz-preview .btn-icon.btn-remove {
+.btn-icon.btn-sm, .btn-group-sm > .btn-icon.btn, .dropzone .dz-preview .btn-group-sm > .btn-icon.btn-edit, .dropzone-wrapper .dz-preview .btn-group-sm > .btn-icon.btn-edit, .table tbody tr td > .form-group > .btn-icon.btn, .table tbody tr .dropzone .dz-preview td > .form-group > .btn-icon.btn-edit, .dropzone .dz-preview .table tbody tr td > .form-group > .btn-icon.btn-edit, .table tbody tr .dropzone-wrapper .dz-preview td > .form-group > .btn-icon.btn-edit, .dropzone-wrapper .dz-preview .table tbody tr td > .form-group > .btn-icon.btn-edit, .dropzone .dz-preview .btn-icon.btn-remove, .dropzone-wrapper .dz-preview .btn-icon.btn-remove {
   width: 30px;
   height: 30px;
 }
 
-.btn-icon.btn-sm i, .btn-group-sm > .btn-icon.btn i, .dropzone .dz-preview .btn-group-sm > .btn-icon.btn-edit i, .dropzone-wrapper .dz-preview .btn-group-sm > .btn-icon.btn-edit i, .dropzone .dz-preview .btn-icon.btn-remove i, .dropzone-wrapper .dz-preview .btn-icon.btn-remove i {
+.btn-icon.btn-sm i, .btn-group-sm > .btn-icon.btn i, .dropzone .dz-preview .btn-group-sm > .btn-icon.btn-edit i, .dropzone-wrapper .dz-preview .btn-group-sm > .btn-icon.btn-edit i, .table tbody tr td > .form-group > .btn-icon.btn i, .table tbody tr .dropzone .dz-preview td > .form-group > .btn-icon.btn-edit i, .dropzone .dz-preview .table tbody tr td > .form-group > .btn-icon.btn-edit i, .table tbody tr .dropzone-wrapper .dz-preview td > .form-group > .btn-icon.btn-edit i, .dropzone-wrapper .dz-preview .table tbody tr td > .form-group > .btn-icon.btn-edit i, .dropzone .dz-preview .btn-icon.btn-remove i, .dropzone-wrapper .dz-preview .btn-icon.btn-remove i {
   line-height: 30px;
 }
 
@@ -17642,7 +17642,7 @@ fieldset[disabled] .btn-black.active {
   border-radius: 0 2px 2px 0;
 }
 
-.btn-addon.btn-sm i, .btn-group-sm > .btn-addon.btn i, .dropzone .dz-preview .btn-group-sm > .btn-addon.btn-edit i, .dropzone-wrapper .dz-preview .btn-group-sm > .btn-addon.btn-edit i, .dropzone .dz-preview .btn-addon.btn-remove i, .dropzone-wrapper .dz-preview .btn-addon.btn-remove i {
+.btn-addon.btn-sm i, .btn-group-sm > .btn-addon.btn i, .dropzone .dz-preview .btn-group-sm > .btn-addon.btn-edit i, .dropzone-wrapper .dz-preview .btn-group-sm > .btn-addon.btn-edit i, .table tbody tr td > .form-group > .btn-addon.btn i, .table tbody tr .dropzone .dz-preview td > .form-group > .btn-addon.btn-edit i, .dropzone .dz-preview .table tbody tr td > .form-group > .btn-addon.btn-edit i, .table tbody tr .dropzone-wrapper .dz-preview td > .form-group > .btn-addon.btn-edit i, .dropzone-wrapper .dz-preview .table tbody tr td > .form-group > .btn-addon.btn-edit i, .dropzone .dz-preview .btn-addon.btn-remove i, .dropzone-wrapper .dz-preview .btn-addon.btn-remove i {
   margin: -6px -10px;
   margin-right: 10px;
   width: 30px;
@@ -17650,7 +17650,7 @@ fieldset[disabled] .btn-black.active {
   line-height: 30px;
 }
 
-.btn-addon.btn-sm i.pull-right, .btn-group-sm > .btn-addon.btn i.pull-right, .dropzone .dz-preview .btn-group-sm > .btn-addon.btn-edit i.pull-right, .dropzone-wrapper .dz-preview .btn-group-sm > .btn-addon.btn-edit i.pull-right, .dropzone .dz-preview .btn-addon.btn-remove i.pull-right, .dropzone-wrapper .dz-preview .btn-addon.btn-remove i.pull-right {
+.btn-addon.btn-sm i.pull-right, .btn-group-sm > .btn-addon.btn i.pull-right, .dropzone .dz-preview .btn-group-sm > .btn-addon.btn-edit i.pull-right, .dropzone-wrapper .dz-preview .btn-group-sm > .btn-addon.btn-edit i.pull-right, .table tbody tr td > .form-group > .btn-addon.btn i.pull-right, .table tbody tr .dropzone .dz-preview td > .form-group > .btn-addon.btn-edit i.pull-right, .dropzone .dz-preview .table tbody tr td > .form-group > .btn-addon.btn-edit i.pull-right, .table tbody tr .dropzone-wrapper .dz-preview td > .form-group > .btn-addon.btn-edit i.pull-right, .dropzone-wrapper .dz-preview .table tbody tr td > .form-group > .btn-addon.btn-edit i.pull-right, .dropzone .dz-preview .btn-addon.btn-remove i.pull-right, .dropzone-wrapper .dz-preview .btn-addon.btn-remove i.pull-right {
   margin-right: -10px;
   margin-left: 10px;
 }
@@ -18244,11 +18244,11 @@ div.mce-fullscreen {
 
 .bg-dark, .graph-svg-tip {
   background-color: #212529;
-  color: #8a8b8c;
+  color: #979899;
 }
 
 .bg-dark a, .graph-svg-tip a {
-  color: #a4a5a5;
+  color: #b1b1b2;
 }
 
 .bg-dark a:hover, .graph-svg-tip a:hover {
@@ -18265,7 +18265,7 @@ div.mce-fullscreen {
 }
 
 .bg-dark .nav > li > a, .graph-svg-tip .nav > li > a {
-  color: #979899;
+  color: #a4a5a5;
 }
 
 .bg-dark .nav > li > a:hover, .graph-svg-tip .nav > li > a:hover, .bg-dark .nav > li > a:focus, .graph-svg-tip .nav > li > a:focus {
@@ -18277,8 +18277,8 @@ div.mce-fullscreen {
 }
 
 .bg-dark .caret, .graph-svg-tip .caret {
-  border-top-color: #8a8b8c;
-  border-bottom-color: #8a8b8c;
+  border-top-color: #979899;
+  border-bottom-color: #979899;
 }
 
 .bg-dark.navbar .nav > li.active > a, .navbar.graph-svg-tip .nav > li.active > a {
@@ -18291,11 +18291,11 @@ div.mce-fullscreen {
 }
 
 .bg-dark .text-muted, .graph-svg-tip .text-muted, .bg-dark .pagination > li.active .page-link, .pagination > li.active .bg-dark .page-link, .graph-svg-tip .pagination > li.active .page-link, .pagination > li.active .graph-svg-tip .page-link, .bg-dark .pagination > li.active span, .pagination > li.active .bg-dark span, .graph-svg-tip .pagination > li.active span, .pagination > li.active .graph-svg-tip span, .bg-dark .pagination .page-item.active .page-link, .pagination .page-item.active .bg-dark .page-link, .graph-svg-tip .pagination .page-item.active .page-link, .pagination .page-item.active .graph-svg-tip .page-link, .bg-dark .pagination .page-item.active span, .pagination .page-item.active .bg-dark span, .graph-svg-tip .pagination .page-item.active span, .pagination .page-item.active .graph-svg-tip span {
-  color: #717272 !important;
+  color: #7d7e7f !important;
 }
 
 .bg-dark .text-lt, .graph-svg-tip .text-lt {
-  color: #cacbcb !important;
+  color: #d7d8d8 !important;
 }
 
 .bg-dark.auto .list-group-item, .auto.graph-svg-tip .list-group-item,
@@ -18319,11 +18319,11 @@ div.mce-fullscreen {
 
 .bg-black {
   background-color: #1c2b36;
-  color: #7793a7;
+  color: #869fb1;
 }
 
 .bg-black a {
-  color: #96abbb;
+  color: #a5b8c5;
 }
 
 .bg-black a:hover {
@@ -18340,7 +18340,7 @@ div.mce-fullscreen {
 }
 
 .bg-black .nav > li > a {
-  color: #869fb1;
+  color: #96abbb;
 }
 
 .bg-black .nav > li > a:hover, .bg-black .nav > li > a:focus {
@@ -18352,8 +18352,8 @@ div.mce-fullscreen {
 }
 
 .bg-black .caret {
-  border-top-color: #7793a7;
-  border-bottom-color: #7793a7;
+  border-top-color: #869fb1;
+  border-bottom-color: #869fb1;
 }
 
 .bg-black.navbar .nav > li.active > a {
@@ -18366,11 +18366,11 @@ div.mce-fullscreen {
 }
 
 .bg-black .text-muted, .bg-black .pagination > li.active .page-link, .pagination > li.active .bg-black .page-link, .bg-black .pagination > li.active span, .pagination > li.active .bg-black span, .bg-black .pagination .page-item.active .page-link, .pagination .page-item.active .bg-black .page-link, .bg-black .pagination .page-item.active span, .pagination .page-item.active .bg-black span {
-  color: #5c798f !important;
+  color: #67869d !important;
 }
 
 .bg-black .text-lt {
-  color: #c4d0d9 !important;
+  color: #d4dde3 !important;
 }
 
 .bg-black.auto .list-group-item,
@@ -18389,7 +18389,7 @@ div.mce-fullscreen {
 
 .bg-primary {
   background-color: #007bff;
-  color: #cfe5fc;
+  color: #e7f2fe;
 }
 
 .bg-primary a {
@@ -18422,8 +18422,8 @@ div.mce-fullscreen {
 }
 
 .bg-primary .caret {
-  border-top-color: #cfe5fc;
-  border-bottom-color: #cfe5fc;
+  border-top-color: #e7f2fe;
+  border-bottom-color: #e7f2fe;
 }
 
 .bg-primary.navbar .nav > li.active > a {
@@ -18436,7 +18436,7 @@ div.mce-fullscreen {
 }
 
 .bg-primary .text-muted, .bg-primary .pagination > li.active .page-link, .pagination > li.active .bg-primary .page-link, .bg-primary .pagination > li.active span, .pagination > li.active .bg-primary span, .bg-primary .pagination .page-item.active .page-link, .pagination .page-item.active .bg-primary .page-link, .bg-primary .pagination .page-item.active span, .pagination .page-item.active .bg-primary span {
-  color: #9ecafa !important;
+  color: #b6d8fb !important;
 }
 
 .bg-primary .text-lt {
@@ -18459,11 +18459,11 @@ div.mce-fullscreen {
 
 .bg-success {
   background-color: #2f9e44;
-  color: #b6e3bf;
+  color: #c9eacf;
 }
 
 .bg-success a {
-  color: #dbf1df;
+  color: #edf8ef;
 }
 
 .bg-success a:hover {
@@ -18480,7 +18480,7 @@ div.mce-fullscreen {
 }
 
 .bg-success .nav > li > a {
-  color: #c9eacf;
+  color: #dbf1df;
 }
 
 .bg-success .nav > li > a:hover, .bg-success .nav > li > a:focus {
@@ -18492,8 +18492,8 @@ div.mce-fullscreen {
 }
 
 .bg-success .caret {
-  border-top-color: #b6e3bf;
-  border-bottom-color: #b6e3bf;
+  border-top-color: #c9eacf;
+  border-bottom-color: #c9eacf;
 }
 
 .bg-success.navbar .nav > li.active > a {
@@ -18506,7 +18506,7 @@ div.mce-fullscreen {
 }
 
 .bg-success .text-muted, .bg-success .pagination > li.active .page-link, .pagination > li.active .bg-success .page-link, .bg-success .pagination > li.active span, .pagination > li.active .bg-success span, .bg-success .pagination .page-item.active .page-link, .pagination .page-item.active .bg-success .page-link, .bg-success .pagination .page-item.active span, .pagination .page-item.active .bg-success span {
-  color: #91d59e !important;
+  color: #a4dcae !important;
 }
 
 .bg-success .text-lt {
@@ -18529,11 +18529,11 @@ div.mce-fullscreen {
 
 .bg-info {
   background-color: #1c7ed6;
-  color: #cae0f4;
+  color: #dfecf9;
 }
 
 .bg-info a {
-  color: #f4f9fd;
+  color: white;
 }
 
 .bg-info a:hover {
@@ -18550,7 +18550,7 @@ div.mce-fullscreen {
 }
 
 .bg-info .nav > li > a {
-  color: #dfecf9;
+  color: #f2f2f2;
 }
 
 .bg-info .nav > li > a:hover, .bg-info .nav > li > a:focus {
@@ -18562,8 +18562,8 @@ div.mce-fullscreen {
 }
 
 .bg-info .caret {
-  border-top-color: #cae0f4;
-  border-bottom-color: #cae0f4;
+  border-top-color: #dfecf9;
+  border-bottom-color: #dfecf9;
 }
 
 .bg-info.navbar .nav > li.active > a {
@@ -18576,7 +18576,7 @@ div.mce-fullscreen {
 }
 
 .bg-info .text-muted, .bg-info .pagination > li.active .page-link, .pagination > li.active .bg-info .page-link, .bg-info .pagination > li.active span, .pagination > li.active .bg-info span, .bg-info .pagination .page-item.active .page-link, .pagination .page-item.active .bg-info .page-link, .bg-info .pagination .page-item.active span, .pagination .page-item.active .bg-info span {
-  color: #9fc8ec !important;
+  color: #b4d4f0 !important;
 }
 
 .bg-info .text-lt {
@@ -18599,7 +18599,7 @@ div.mce-fullscreen {
 
 .bg-warning {
   background-color: #fcc419;
-  color: #fdf7e4;
+  color: #fffefc;
 }
 
 .bg-warning a {
@@ -18632,8 +18632,8 @@ div.mce-fullscreen {
 }
 
 .bg-warning .caret {
-  border-top-color: #fdf7e4;
-  border-bottom-color: #fdf7e4;
+  border-top-color: #fffefc;
+  border-bottom-color: #fffefc;
 }
 
 .bg-warning.navbar .nav > li.active > a {
@@ -18646,7 +18646,7 @@ div.mce-fullscreen {
 }
 
 .bg-warning .text-muted, .bg-warning .pagination > li.active .page-link, .pagination > li.active .bg-warning .page-link, .bg-warning .pagination > li.active span, .pagination > li.active .bg-warning span, .bg-warning .pagination .page-item.active .page-link, .pagination .page-item.active .bg-warning .page-link, .bg-warning .pagination .page-item.active span, .pagination .page-item.active .bg-warning span {
-  color: #fae9b4 !important;
+  color: #fcf0cc !important;
 }
 
 .bg-warning .text-lt {
@@ -18669,7 +18669,7 @@ div.mce-fullscreen {
 
 .bg-danger {
   background-color: #e03131;
-  color: #f9e4e4;
+  color: #fef9f9;
 }
 
 .bg-danger a {
@@ -18702,8 +18702,8 @@ div.mce-fullscreen {
 }
 
 .bg-danger .caret {
-  border-top-color: #f9e4e4;
-  border-bottom-color: #f9e4e4;
+  border-top-color: #fef9f9;
+  border-bottom-color: #fef9f9;
 }
 
 .bg-danger.navbar .nav > li.active > a {
@@ -18716,7 +18716,7 @@ div.mce-fullscreen {
 }
 
 .bg-danger .text-muted, .bg-danger .pagination > li.active .page-link, .pagination > li.active .bg-danger .page-link, .bg-danger .pagination > li.active span, .pagination > li.active .bg-danger span, .bg-danger .pagination .page-item.active .page-link, .pagination .page-item.active .bg-danger .page-link, .bg-danger .pagination .page-item.active span, .pagination .page-item.active .bg-danger span {
-  color: #f0baba !important;
+  color: #f4cfcf !important;
 }
 
 .bg-danger .text-lt {
@@ -20190,10 +20190,17 @@ a.text-black:hover {
 .table tbody tr td {
   border-bottom: 1px solid rgba(233, 236, 239, 0.7);
   border-top: 0;
-  padding: 20px;
+  padding: 15px;
   font-size: 0.92857rem;
   vertical-align: middle;
   word-break: break-all;
+}
+
+.table tbody tr td > .form-group > .btn, .table tbody tr .dropzone .dz-preview td > .form-group > .btn-remove, .dropzone .dz-preview .table tbody tr td > .form-group > .btn-remove, .table tbody tr .dropzone-wrapper .dz-preview td > .form-group > .btn-remove, .dropzone-wrapper .dz-preview .table tbody tr td > .form-group > .btn-remove, .table tbody tr .dropzone .dz-preview td > .form-group > .btn-edit, .dropzone .dz-preview .table tbody tr td > .form-group > .btn-edit, .table tbody tr .dropzone-wrapper .dz-preview td > .form-group > .btn-edit, .dropzone-wrapper .dz-preview .table tbody tr td > .form-group > .btn-edit {
+  padding: 0;
+  margin: 0;
+  display: inline;
+  width: auto;
 }
 
 .table tbody tr.selected td {

@@ -68,6 +68,8 @@ class TD
     protected $column;
 
     /**
+     * @deprecated
+     *
      * @var string
      */
     protected $asyncRoute;
@@ -78,6 +80,8 @@ class TD
     protected $align = 'left';
 
     /**
+     * @deprecated
+     *
      * @var bool
      */
     protected $locale = false;
@@ -121,6 +125,8 @@ class TD
     }
 
     /**
+     * @deprecated
+     *
      * Set current columns is multi language.
      *
      * @return TD
@@ -167,6 +173,8 @@ class TD
     }
 
     /**
+     * @deprecated Use Link class
+     *
      * @param string $route
      * @param mixed  $options
      * @param string $text
@@ -216,6 +224,8 @@ class TD
     }
 
     /**
+     * @deprecated Use ModalToggle class
+     *
      * @param string       $modal
      * @param string       $method
      * @param string|array $options
@@ -266,6 +276,8 @@ class TD
     }
 
     /**
+     * @deprecated
+     *
      * @param string $route
      *
      * @return $this

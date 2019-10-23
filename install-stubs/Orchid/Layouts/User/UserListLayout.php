@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\User;
 
+use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\TD;
 use Orchid\Screen\Actions\Link;
 use Orchid\Platform\Models\User;
@@ -52,7 +53,15 @@ class UserListLayout extends Table
             TD::set('email', __('Email'))
                 ->sort()
                 ->filter(TD::FILTER_TEXT)
-                ->loadModalAsync('oneAsyncModal', 'saveUser', 'id', 'email'),
+                ->render(function (User $user) {
+                    return ModalToggle::make($user->email)
+                        ->modal('oneAsyncModal')
+                        ->modalTitle($user->getNameTitle())
+                        ->method('saveUser')
+                        ->asyncParameters([
+                            'id' => $user->id,
+                        ]);
+                }),
 
             TD::set('updated_at', __('Last edit'))
                 ->sort(),
@@ -62,7 +71,7 @@ class UserListLayout extends Table
                 ->width('100px')
                 ->render(function (User $user) {
                     return DropDown::make()
-                        ->icon('icon-menu')
+                        ->icon('icon-options-vertical')
                         ->list([
 
                             Link::make('Редактировать')

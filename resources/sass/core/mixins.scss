@@ -3,8 +3,8 @@
 }
 
 @mixin font-variant($bg-color){
-  $font-color: desaturate(lighten($bg-color, 40%), 10%);
-  $link-color: desaturate(lighten($bg-color, 50%), 10%);
+  $font-color: desaturate(lighten($bg-color, 45%), 10%);
+  $link-color: desaturate(lighten($bg-color, 55%), 10%);
   $hover-color: #fff;
   color: $font-color;
   a {
@@ -161,7 +161,7 @@
     border-color: darken($border, 8%);
 	box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
   }
-  
+
 }
 
 @mixin translateZ($z){

@@ -27792,8 +27792,8 @@ function platform() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/tabuna/ORCHID/laravel6.0/platform/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/tabuna/ORCHID/laravel6.0/platform/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/tabuna/Orchid/develop/orchid-project/platform/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/tabuna/Orchid/develop/orchid-project/platform/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),
