@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Presets;
 
+use Orchid\Platform\Dashboard;
 use Illuminate\Foundation\Console\Presets\Preset as ConsolePreset;
 
 class Source extends ConsolePreset
@@ -37,7 +38,9 @@ class Source extends ConsolePreset
      */
     protected static function updatePackageArray(array $packages, $configurationKey)
     {
-        $orchidPackages = json_decode(file_get_contents(PLATFORM_PATH.'/package.json'), true);
+        $path = Dashboard::path('package.json');
+
+        $orchidPackages = json_decode(file_get_contents($path), true);
 
         return $orchidPackages[$configurationKey] + $packages;
     }
@@ -62,7 +65,7 @@ class Source extends ConsolePreset
      */
     protected static function addBabelConfiguration()
     {
-        copy(PLATFORM_PATH.'/.babelrc', base_path('.babelrc'));
+        copy(Dashboard::path('.babelrc'), base_path('.babelrc'));
     }
 
     /**
@@ -74,7 +77,7 @@ class Source extends ConsolePreset
      */
     protected static function orchidConfig(): string
     {
-        $orchidConfig = file_get_contents(PLATFORM_PATH.'/webpack.mix.js');
+        $orchidConfig = file_get_contents(Dashboard::path('webpack.mix.js'));
         preg_match(self::ORCHID_MIX_CONFIG_PATTERN, $orchidConfig, $matches);
 
         $transformedConfig = count($matches) === 2 ? $matches[1] : '';

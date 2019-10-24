@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Commands;
 
 use Orchid\Platform\Updates;
+use Orchid\Platform\Dashboard;
 use Illuminate\Console\Command;
 use Orchid\Platform\Events\InstallEvent;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -51,7 +52,7 @@ class InstallCommand extends Command
              | |  | | |  _  /  | |      |  __  |   | |   | |  | |
              | |__| | | | \ \  | |____  | |  | |  _| |_  | |__| |
               \____/  |_|  \_\  \_____| |_|  |_| |_____| |_____/
-                             
+
                              Installation started. Please wait...
                              Version: $updates->currentVersion
         ________________________________________________________________
@@ -131,7 +132,7 @@ class InstallCommand extends Command
             return;
         }
 
-        $user = file_get_contents(PLATFORM_PATH.'/install-stubs/User.stub');
+        $user = file_get_contents(Dashboard::path('install-stubs/User.stub'));
         file_put_contents(app_path('User.php'), $user);
     }
 
@@ -164,7 +165,7 @@ class InstallCommand extends Command
         $confirm = $this->confirm('The platform has already been installed, do you really want to repeat?');
 
         if (! $confirm) {
-            die();
+            exit(0);
         }
 
         return $this;

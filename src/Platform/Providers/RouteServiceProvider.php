@@ -25,7 +25,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->binding();
 
-        require PLATFORM_PATH.'/routes/breadcrumbs.php';
+        require Dashboard::path('routes/breadcrumbs.php');
 
         parent::boot();
     }
@@ -57,7 +57,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::domain((string) config('platform.domain'))
             ->prefix(Dashboard::prefix('/'))
             ->as('platform.')
-            ->group(realpath(PLATFORM_PATH.'/routes/public.php'));
+            ->group(Dashboard::path('routes/public.php'));
 
         /*
          * Dashboard
@@ -66,7 +66,7 @@ class RouteServiceProvider extends ServiceProvider
             ->prefix(Dashboard::prefix('/'))
             ->as('platform.')
             ->middleware(config('platform.middleware.private'))
-            ->group(realpath(PLATFORM_PATH.'/routes/dashboard.php'));
+            ->group(Dashboard::path('routes/dashboard.php'));
 
         /*
          * Auth
@@ -75,7 +75,7 @@ class RouteServiceProvider extends ServiceProvider
             ->prefix(Dashboard::prefix('/'))
             ->as('platform.')
             ->middleware(config('platform.middleware.public'))
-            ->group(realpath(PLATFORM_PATH.'/routes/auth.php'));
+            ->group(Dashboard::path('routes/auth.php'));
 
         /*
          * Systems
@@ -84,7 +84,7 @@ class RouteServiceProvider extends ServiceProvider
             ->prefix(Dashboard::prefix('/systems'))
             ->as('platform.')
             ->middleware(config('platform.middleware.private'))
-            ->group(realpath(PLATFORM_PATH.'/routes/systems.php'));
+            ->group(Dashboard::path('routes/systems.php'));
 
         /*
          * Application
