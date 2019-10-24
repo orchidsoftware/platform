@@ -70,7 +70,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     protected function registerDatabase(): self
     {
-        $path = realpath(PLATFORM_PATH.'/database/migrations');
+        $path = Dashboard::path('database/migrations');
 
         $this->loadMigrationsFrom($path);
 
@@ -88,7 +88,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerTranslations(): self
     {
-        $this->loadJsonTranslationsFrom(realpath(PLATFORM_PATH.'/resources/lang/'));
+        $this->loadJsonTranslationsFrom(Dashboard::path('resources/lang/'));
 
         return $this;
     }
@@ -101,7 +101,7 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerConfig(): self
     {
         $this->publishes([
-            realpath(PLATFORM_PATH.'/config/platform.php') => config_path('platform.php'),
+            Dashboard::path('config/platform.php') => config_path('platform.php'),
         ], 'config');
 
         return $this;
@@ -115,8 +115,8 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerOrchid(): self
     {
         $this->publishes([
-            realpath(PLATFORM_PATH.'/install-stubs/routes/') => base_path('routes'),
-            realpath(PLATFORM_PATH.'/install-stubs/Orchid/') => app_path('Orchid'),
+            Dashboard::path('install-stubs/routes/') => base_path('routes'),
+            Dashboard::path('install-stubs/Orchid/') => app_path('Orchid'),
         ], 'orchid-stubs');
 
         return $this;
@@ -130,8 +130,8 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerAssets(): self
     {
         $this->publishes([
-            realpath(PLATFORM_PATH.'/resources/js')   => resource_path('js/orchid'),
-            realpath(PLATFORM_PATH.'/resources/sass') => resource_path('sass/orchid'),
+            Dashboard::path('resources/js')   => resource_path('js/orchid'),
+            Dashboard::path('resources/sass') => resource_path('sass/orchid'),
         ], 'orchid-assets');
 
         return $this;
@@ -144,7 +144,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerViews(): self
     {
-        $path = realpath(PLATFORM_PATH.'/resources/views');
+        $path = Dashboard::path('resources/views');
 
         $this->loadViewsFrom($path, 'platform');
 
@@ -202,13 +202,15 @@ class FoundationServiceProvider extends ServiceProvider
 
         if (! defined('PLATFORM_PATH')) {
             /*
+             * @deprecated
+             *
              * Get the path to the ORCHID Platform folder.
              */
-            define('PLATFORM_PATH', realpath(__DIR__.'/../../../'));
+            define('PLATFORM_PATH', Dashboard::path());
         }
 
         $this->mergeConfigFrom(
-            realpath(PLATFORM_PATH.'/config/platform.php'), 'platform'
+            Dashboard::path('config/platform.php'), 'platform'
         );
 
         /*

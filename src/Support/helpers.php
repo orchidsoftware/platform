@@ -18,7 +18,7 @@ if (! function_exists('alert')) {
      *
      * @return Alert
      */
-    function alert($message = null, $level = 'info')
+    function alert(string $message = null, $level = 'info'): Alert
     {
         $notifier = app(Alert::class);
 
@@ -46,11 +46,11 @@ if (! function_exists('setting')) {
 if (! function_exists('is_sort')) {
 
     /**
-     * @param null $property
+     * @param string $property
      *
      * @return bool
      */
-    function is_sort($property = null)
+    function is_sort(string $property): bool
     {
         $filter = new HttpFilter();
 
@@ -65,7 +65,7 @@ if (! function_exists('get_sort')) {
      *
      * @return string
      */
-    function get_sort($property)
+    function get_sort($property): string
     {
         $filter = new HttpFilter();
 
@@ -76,11 +76,11 @@ if (! function_exists('get_sort')) {
 if (! function_exists('get_filter')) {
 
     /**
-     * @param null|string $property
+     * @param string $property
      *
      * @return string|array
      */
-    function get_filter($property)
+    function get_filter(string $property)
     {
         $filter = new HttpFilter();
 
@@ -91,11 +91,11 @@ if (! function_exists('get_filter')) {
 if (! function_exists('get_filter_string')) {
 
     /**
-     * @param null|string $property
+     * @param string $property
      *
      * @return string
      */
-    function get_filter_string($property)
+    function get_filter_string(string $property): ?string
     {
         $filter = get_filter($property);
 
@@ -110,11 +110,11 @@ if (! function_exists('get_filter_string')) {
 if (! function_exists('revert_sort')) {
 
     /**
-     * @param null|string $property
+     * @param string $property
      *
      * @return string
      */
-    function revert_sort($property)
+    function revert_sort(string $property): string
     {
         $filter = new HttpFilter();
 

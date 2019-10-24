@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
+use Orchid\Platform\Dashboard;
 use Illuminate\Console\GeneratorCommand;
 
 class ChartCommand extends GeneratorCommand
@@ -36,7 +37,7 @@ class ChartCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return PLATFORM_PATH.'/resources/stubs/chart.stub';
+        return Dashboard::path('resources/stubs/chart.stub');
     }
 
     /**
