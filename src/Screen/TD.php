@@ -98,8 +98,8 @@ class TD
     }
 
     /**
-     * @param string $name
-     * @param string $title
+     * @param string      $name
+     * @param string|null $title
      *
      * @return TD
      */
@@ -175,9 +175,9 @@ class TD
     /**
      * @deprecated Use Link class
      *
-     * @param string $route
-     * @param mixed  $options
-     * @param string $text
+     * @param string      $route
+     * @param mixed       $options
+     * @param string|null $text
      *
      * @return TD
      */
@@ -233,7 +233,7 @@ class TD
      *
      * @return TD
      */
-    public function loadModalAsync(string $modal, $method, $options, string $text = null): self
+    public function loadModalAsync(string $modal, string $method, $options, string $text = null): self
     {
         $this->render(function ($datum) use ($modal, $method, $options, $text) {
             $attributes = [];

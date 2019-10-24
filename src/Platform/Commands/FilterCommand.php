@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
+use Orchid\Platform\Dashboard;
 use Illuminate\Console\GeneratorCommand;
 
 class FilterCommand extends GeneratorCommand
@@ -36,7 +37,7 @@ class FilterCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return PLATFORM_PATH.'/resources/stubs/filters.stub';
+        return Dashboard::path('resources/stubs/filters.stub');
     }
 
     /**

@@ -136,11 +136,11 @@ class Dashboard
      * Get the class name for a given Dashboard model.
      *
      * @param string      $key
-     * @param null|string $default
+     * @param string|null $default
      *
      * @return string
      */
-    public static function model(string $key, string $default = null)
+    public static function model(string $key, string $default = null): string
     {
         return Arr::get(static::$options, 'models.'.$key, $default ?? $key);
     }
@@ -162,6 +162,18 @@ class Dashboard
     public static function checkUpdate(): bool
     {
         return (new Updates())->check();
+    }
+
+    /**
+     * @param string $path
+     *
+     * @return string
+     */
+    public static function path(string $path = ''): string
+    {
+        $current = dirname(__DIR__, 2);
+
+        return realpath($current.($path ? DIRECTORY_SEPARATOR.$path : $path));
     }
 
     /**

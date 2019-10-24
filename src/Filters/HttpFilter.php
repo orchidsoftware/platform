@@ -23,14 +23,17 @@ class HttpFilter
      * @var Request
      */
     protected $request;
+
     /**
      * @var Collection
      */
     protected $filters;
+
     /**
      * @var Collection
      */
     protected $sorts;
+
     /**
      * Model options and allowed params.
      *
@@ -126,7 +129,7 @@ class HttpFilter
      *
      * @return Builder
      */
-    protected function filtersExact(Builder $query, $value, string $property)
+    protected function filtersExact(Builder $query, $value, string $property): Builder
     {
         $property = self::sanitize($property);
 
@@ -167,7 +170,7 @@ class HttpFilter
      *
      * @return bool
      */
-    public function isSort($property = null)
+    public function isSort(string $property = null): bool
     {
         if (is_null($property)) {
             return $this->sorts->isEmpty();
@@ -187,9 +190,9 @@ class HttpFilter
     /**
      * @param string $property
      *
-     * @return mixed
+     * @return string
      */
-    public function revertSort($property)
+    public function revertSort(string $property): string
     {
         if ($this->getSort($property) === 'asc') {
             return '-'.$property;
@@ -203,7 +206,7 @@ class HttpFilter
      *
      * @return string
      */
-    public function getSort($property)
+    public function getSort(string $property): string
     {
         if ($this->sorts->search($property, true) !== false) {
             return 'asc';
@@ -217,7 +220,7 @@ class HttpFilter
      *
      * @return mixed
      */
-    public function getFilter($property)
+    public function getFilter(string $property)
     {
         return Arr::get($this->filters, $property);
     }

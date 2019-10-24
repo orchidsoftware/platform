@@ -123,7 +123,7 @@ class SearchScreen extends Screen
                 $result = $model->searchQuery($query)->paginate(3);
                 $label = $model->searchLabel();
 
-                if ($result->total() == 0) {
+                if ($result->total() === 0) {
                     return;
                 }
 
