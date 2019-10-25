@@ -163,12 +163,15 @@ class Field implements FieldContract
      *
      * @return static
      */
-    protected function checkRequired()
+    protected function checkRequired(): self
     {
-        foreach ($this->required as $attribute) {
-            throw_if(! collect($this->attributes)->offsetExists($attribute),
-                FieldRequiredAttributeException::class, $attribute);
-        }
+        collect($this->required)
+            ->filter(function ($attribute) {
+                return !array_key_exists($attribute, $this->attributes);
+            })
+            ->each(function ($attribute) {
+                throw new FieldRequiredAttributeException($attribute);
+            });
 
         return $this;
     }
@@ -184,10 +187,10 @@ class Field implements FieldContract
             return;
         }
 
-        $this->runBeforeRender();
-        $this->checkRequired();
-        $this->translate();
-        $this->checkError();
+        $this->runBeforeRender()
+            ->checkRequired()
+            ->translate()
+            ->checkError();
 
         $id = $this->getId();
         $this->set('id', $id);
@@ -300,11 +303,13 @@ class Field implements FieldContract
 
     /**
      * Checking for errors and filling css class.
+     *
+     * @return $this
      */
-    private function checkError()
+    private function checkError(): self
     {
         if (! $this->hasError()) {
-            return;
+            return $this;
         }
 
         $class = $this->get('class');
@@ -312,10 +317,10 @@ class Field implements FieldContract
         if (is_null($class)) {
             $this->set('class', ' is-invalid');
 
-            return;
+            return $this;
         }
 
-        $this->set('class', $class.' is-invalid');
+        return $this->set('class', $class.' is-invalid');
     }
 
     /**
@@ -335,20 +340,16 @@ class Field implements FieldContract
         $prefix = $this->get('prefix');
         $lang = $this->get('lang');
 
-        if (! is_null($prefix)) {
-            $this->set('name', $prefix.$name);
+        if ($prefix !== null && $lang !== null) {
+            return $this->set('name', $prefix.'['.$lang.']'.$name);
         }
 
-        if (is_null($prefix) && ! is_null($lang)) {
-            $this->set('name', $lang.$name);
+        if ($prefix !== null) {
+            return $this->set('name', $prefix.$name);
         }
 
-        if (! is_null($prefix) && ! is_null($lang)) {
-            $this->set('name', $prefix.'['.$lang.']'.$name);
-        }
-
-        if ($name instanceof Closure) {
-            $this->set('name', $name($this->attributes));
+        if ($lang !== null) {
+            return $this->set('name', $lang.'['.$name.']');
         }
 
         return $this;
@@ -379,11 +380,7 @@ class Field implements FieldContract
      */
     public static function group($group)
     {
-        if (! is_array($group)) {
-            return $group();
-        }
-
-        return $group;
+        return is_callable($group) ? $group() : $group;
     }
 
     /**
@@ -436,12 +433,16 @@ class Field implements FieldContract
 
     /**
      * Alternately performs all tasks.
+     *
+     * @return $this
      */
-    public function runBeforeRender()
+    public function runBeforeRender(): self
     {
         foreach ($this->beforeRender as $before) {
             $before->call($this);
         }
+
+        return $this;
     }
 
     /**

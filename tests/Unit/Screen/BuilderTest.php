@@ -44,6 +44,20 @@ class BuilderTest extends TestUnitCase
      */
     public function testLanguageBuild()
     {
+        $form = $this->getBuilder(['en' => ['name' => 'Alexandr']])
+            ->setLanguage('en')
+            ->generateForm();
+
+        $this->assertStringContainsString('name="en[name]', $form);
+        $this->assertStringContainsString('lang="en"', $form);
+        $this->assertStringContainsString('value="Alexandr"', $form);
+    }
+
+    /**
+     * @throws \Throwable
+     */
+    public function testLanguageAndPrefixBuild()
+    {
         $form = $this->getBuilder([
             'profile' => [
                 'en' => ['name' => 'Alexandr'],
