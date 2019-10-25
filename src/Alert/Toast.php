@@ -7,7 +7,7 @@ namespace Orchid\Alert;
 use Illuminate\Session\Store;
 
 /**
- * Class Toast
+ * Class Toast.
  */
 class Toast extends Alert
 {
@@ -50,7 +50,7 @@ class Toast extends Alert
      */
     public function autoHide(bool $autoHide = true): self
     {
-        $this->session->flash(static::SESSION_AUTO_HIDE,  var_export($autoHide, true));
+        $this->session->flash(static::SESSION_AUTO_HIDE, var_export($autoHide, true));
 
         return $this;
     }

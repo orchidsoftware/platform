@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
-use Orchid\Support\Facades\Toast;
 use Orchid\Tests\TestUnitCase;
 use Orchid\Support\Facades\Alert;
+use Orchid\Support\Facades\Toast;
 
 /**
  * Class AlertTest.
