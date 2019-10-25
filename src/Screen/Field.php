@@ -167,7 +167,7 @@ class Field implements FieldContract
     {
         collect($this->required)
             ->filter(function ($attribute) {
-                return !array_key_exists($attribute, $this->attributes);
+                return ! array_key_exists($attribute, $this->attributes);
             })
             ->each(function ($attribute) {
                 throw new FieldRequiredAttributeException($attribute);
