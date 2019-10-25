@@ -176,11 +176,9 @@ class File
     {
         $extension = $this->file->getClientOriginalExtension();
 
-        if (empty($extension)) {
-            $extension = $this->mimes->getExtension($this->file->getClientMimeType());
-        }
-
-        return $extension;
+        return empty($extension)
+            ? $this->mimes->getExtension($this->file->getClientMimeType())
+            : $extension;
     }
 
     /**
