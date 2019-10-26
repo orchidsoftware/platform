@@ -152,7 +152,7 @@ class DateTimer extends Field
      *
      * @return DateTimer
      */
-    public function format(string  $format): self
+    public function format(string $format): self
     {
         $this->set('data-fields--datetime-date-format', $format);
 
