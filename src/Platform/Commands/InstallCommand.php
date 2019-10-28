@@ -142,7 +142,7 @@ class InstallCommand extends Command
      *
      * @return InstallCommand
      */
-    private function setValueEnv($constant, $value = 'null'): self
+    private function setValueEnv(string $constant, string $value = 'null'): self
     {
         $str = $this->fileGetContent(app_path('../.env'));
 

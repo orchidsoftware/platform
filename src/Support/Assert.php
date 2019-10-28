@@ -7,7 +7,7 @@ namespace Orchid\Support;
 class Assert
 {
     /**
-     * @param array $array
+     * @param mixed $array
      *
      * @return bool
      */

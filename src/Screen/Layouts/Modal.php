@@ -128,7 +128,7 @@ class Modal extends Base
      *
      * @return static
      */
-    public function rawClick($status = false): self
+    public function rawClick(bool $status = false): self
     {
         $this->variables['turbolinks'] = $status;
 

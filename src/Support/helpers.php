@@ -18,7 +18,7 @@ if (! function_exists('alert')) {
      *
      * @return Alert
      */
-    function alert(string $message = null, $level = 'info'): Alert
+    function alert(string $message = null, string $level = 'info'): Alert
     {
         $notifier = app(Alert::class);
 
@@ -65,7 +65,7 @@ if (! function_exists('get_sort')) {
      *
      * @return string
      */
-    function get_sort($property): string
+    function get_sort(?string $property): string
     {
         $filter = new HttpFilter();
 

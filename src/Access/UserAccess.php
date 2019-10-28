@@ -66,7 +66,7 @@ trait UserAccess
      *
      * @return bool
      */
-    public function hasAccess(string $checkPermissions, $cache = true): bool
+    public function hasAccess(string $checkPermissions, bool $cache = true): bool
     {
         if (! $cache || is_null($this->cachePermissions)) {
             $this->cachePermissions = $this->roles()
@@ -132,7 +132,7 @@ trait UserAccess
      *
      * @return $this
      */
-    public function replaceRoles($roles = [])
+    public function replaceRoles(array $roles = [])
     {
         $this->roles()->detach();
 
