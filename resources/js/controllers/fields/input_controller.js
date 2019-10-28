@@ -2,22 +2,22 @@ import {Controller} from 'stimulus';
 import Inputmask    from 'inputmask';
 
 export default class extends Controller {
+
+    /**
+     *
+     * @returns {string|object}
+     */
     get mask() {
+        let mask = this.data.get('mask');
+
         try {
-            const maskData = this.data.get('mask');
+            mask = JSON.parse(mask);
+            mask.autoUnmask = mask.autoUnmask || mask.removeMaskOnSubmit || undefined;
 
-            if (maskData === '') {
-                return false;
-            }
-
-            const mask = JSON.parse(maskData);
-            return {
-                ...mask,
-                // do unmask after inputmask.remove
-                autoUnmask: mask.autoUnmask || mask.removeMaskOnSubmit || undefined
-            }
+            return mask;
         } catch (e) {
-            return false;
+            // as string
+            return mask;
         }
     }
 
@@ -26,20 +26,20 @@ export default class extends Controller {
      */
     connect() {
         const element = this.element.querySelector('input');
-        const _mask = this.mask;
+        let mask = this.mask;
 
         // mask
-        if (_mask) {
-            // removeMaskOnSubmit conflicts with remove, so we don’t use it
-            // submit -> inputmask.remove -> removeMaskOnSubmit (timeout) -> failure
-            const {removeMaskOnSubmit, ...mask} = _mask;
-            Inputmask(mask).mask(element);
-
-            if (removeMaskOnSubmit) {
-                this.element.closest('form').addEventListener('orchid:screen-submit', () => {
-                    element.inputmask.remove();
-                });
-            }
+        if (mask.length < 1) {
+            return;
         }
+
+        if (mask.removeMaskOnSubmit) {
+            this.element.closest('form').addEventListener('orchid:screen-submit', () => {
+                element.inputmask.remove();
+            });
+            mask.removeMaskOnSubmit = undefined;
+        }
+
+        Inputmask(mask).mask(element);
     }
 }
