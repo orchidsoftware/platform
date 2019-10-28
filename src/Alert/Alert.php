@@ -78,7 +78,7 @@ class Alert
      *
      * @return Alert
      */
-    public function message(string $message, $level = self::INFO): self
+    public function message(string $message, string $level = self::INFO): self
     {
         $this->session->flash(static::SESSION_MESSAGE, $message);
         $this->session->flash(static::SESSION_LEVEL, $level);

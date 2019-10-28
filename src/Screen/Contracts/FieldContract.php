@@ -19,7 +19,7 @@ interface FieldContract
      *
      * @return $this
      */
-    public function get($key, $value = null);
+    public function get(string $key, $value = null);
 
     /**
      * @param string $key

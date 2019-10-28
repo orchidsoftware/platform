@@ -155,7 +155,7 @@ class Menu
      *
      * @return Collection
      */
-    private function findAllChildren($key): Collection
+    private function findAllChildren(string $key): Collection
     {
         return $this->checkAccess()
             ->where('location', $key)

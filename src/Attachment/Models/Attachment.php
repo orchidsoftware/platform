@@ -94,7 +94,7 @@ class Attachment extends Model
      *
      * @return string|null
      */
-    public function url($default = null): ?string
+    public function url(string $default = null): ?string
     {
         /** @var Filesystem|Cloud $disk */
         $disk = Storage::disk($this->getAttribute('disk'));

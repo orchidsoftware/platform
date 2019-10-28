@@ -92,7 +92,7 @@ class Setting extends Model
      *
      * @return mixed
      */
-    public function get($key, $default = null)
+    public function get($key, ?string $default = null)
     {
         if (! $this->cache) {
             return $this->getNoCache($key, $default);

@@ -265,7 +265,7 @@ class Field implements FieldContract
      *
      * @return static|mixed|null
      */
-    public function get($key, $value = null)
+    public function get(string $key, $value = null)
     {
         if (! isset($this->attributes[$key])) {
             return $value;

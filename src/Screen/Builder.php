@@ -107,7 +107,7 @@ class Builder
      *
      * @return array|string
      */
-    private function renderGroup($groupField)
+    private function renderGroup(array $groupField)
     {
         $cols = collect($groupField)->map(function ($field) {
             return $this->render($field);
