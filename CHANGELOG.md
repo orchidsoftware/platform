@@ -4,6 +4,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.4.0 - 2019-10-**
+
+### Added
+- Support for embedding dependencies in layouts [#986](https://github.com/orchidsoftware/platform/issues/986)
+- Toast notifications [#998](https://github.com/orchidsoftware/platform/issues/998)
+- Forced conversion of an object to a string [#997](https://github.com/orchidsoftware/platform/issues/997)
+- Extended example screens
+
+### Changed
+- Action optional name [#996](https://github.com/orchidsoftware/platform/issues/996)
+- Improved display of commandBar on mobile device
+- Improved display of button in table
+- Static analyzer errors fixed
+
+### Fixed
+- `removeMaskOnSubmit` dont work [#982](https://github.com/orchidsoftware/platform/issues/982)
+- `Radiobutton` does not substitute old value [#990](https://github.com/orchidsoftware/platform/issues/990)
+- Links to filters docs in welcome page [#955](https://github.com/orchidsoftware/platform/pull/995)
+- Error display (ignition) when submitting the form [#952](https://github.com/orchidsoftware/platform/issues/952)
+- Error when using ViewField [#970](https://github.com/orchidsoftware/platform/issues/970)
+
+### Deprecated
+- `loadModalAsync` method for TD/ModalToggle
+- `asyncRoute/locale/link` methods for TD
+- Constant `PLATFORM_PATH`
+
 ## 6.3.2 - 2019-10-12
 
 ### Changed
