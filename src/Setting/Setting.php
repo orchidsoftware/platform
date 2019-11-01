@@ -86,13 +86,14 @@ class Setting extends Model
     }
 
     /**
+     * Get values.
+     *
      * @param string|array $key
-     * @param string|null  $default
-     *                              Get values
+     * @param mixed        $default
      *
      * @return mixed
      */
-    public function get($key, ?string $default = null)
+    public function get($key, $default = null)
     {
         if (! $this->cache) {
             return $this->getNoCache($key, $default);
