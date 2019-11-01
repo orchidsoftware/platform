@@ -4,6 +4,6 @@
         <span class="w-full w-b-k w-s-n">{{$notification->data['title'] ?? ''}}</span>
         <small class="text-muted pl-1">/ {{ $notification->created_at->diffForHumans() }}</small>
         <br>
-        <small class="text-muted w-full w-b-k w-s-n">{{$notification->data['message'] ?? ''}}</small>
+        <small class="text-muted w-full w-b-k w-s-n">{!! $notification->data['message'] ?? '' !!}</small>
     </span>
 </button>
