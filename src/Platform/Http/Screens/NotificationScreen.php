@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens;
 
-use Orchid\Screen\Action;
-use Orchid\Screen\Layout;
-use Orchid\Screen\Screen;
-use Illuminate\Http\Request;
-use Orchid\Screen\Actions\Button;
-use Orchid\Support\Facades\Alert;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Http\Request;
 use Orchid\Platform\Http\Layouts\NotificationTable;
 use Orchid\Platform\Notifications\DashboardNotification;
+use Orchid\Screen\Action;
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Alert;
 
 class NotificationScreen extends Screen
 {

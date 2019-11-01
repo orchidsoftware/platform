@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
-use Laravel\Scout\Builder;
-use Orchid\Tests\TestUnitCase;
-use Orchid\Platform\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Builder;
+use Orchid\Platform\Searchable;
+use Orchid\Tests\TestUnitCase;
 
 class SearchTest extends TestUnitCase
 {

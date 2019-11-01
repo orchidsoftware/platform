@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
-use Orchid\Platform\Updates;
-use Orchid\Platform\Dashboard;
 use Illuminate\Console\Command;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Events\InstallEvent;
-use Symfony\Component\Console\Helper\ProgressBar;
 use Orchid\Platform\Providers\FoundationServiceProvider;
+use Orchid\Platform\Updates;
+use Symfony\Component\Console\Helper\ProgressBar;
 
 class InstallCommand extends Command
 {

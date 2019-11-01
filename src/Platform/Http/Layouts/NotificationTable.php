@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Layouts;
 
-use Orchid\Screen\TD;
 use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\TD;
 
 class NotificationTable extends Table
 {

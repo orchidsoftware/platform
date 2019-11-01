@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
-use Throwable;
+use Illuminate\Contracts\View\Factory;
 use Orchid\Screen\Builder;
 use Orchid\Screen\Repository;
-use Illuminate\Contracts\View\Factory;
+use Throwable;
 
 /**
  * Class Rows.

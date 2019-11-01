@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Filters;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Orchid\Screen\Layouts\Selection;
-use Illuminate\Database\Eloquent\Builder;
 
 trait Filterable
 {

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
+use Orchid\Platform\Dashboard;
 
 class LinkCommand extends Command
 {

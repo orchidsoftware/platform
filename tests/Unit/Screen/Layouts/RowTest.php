@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
+use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Tests\TestUnitCase;
-use Orchid\Screen\Fields\Input;
 
 class RowTest extends TestUnitCase
 {

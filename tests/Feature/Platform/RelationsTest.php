@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
-use Orchid\Platform\Models\User;
-use Orchid\Tests\TestFeatureCase;
-use Illuminate\Support\Facades\Crypt;
-use Orchid\Tests\Exemplar\App\EmptyUserModel;
 use Illuminate\Foundation\Testing\TestResponse;
+use Illuminate\Support\Facades\Crypt;
+use Orchid\Platform\Models\User;
+use Orchid\Tests\Exemplar\App\EmptyUserModel;
+use Orchid\Tests\TestFeatureCase;
 
 class RelationsTest extends TestFeatureCase
 {

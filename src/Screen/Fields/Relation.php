@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Orchid\Screen\Field;
-use Orchid\Support\Assert;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Database\Eloquent\Model;
+use Orchid\Screen\Field;
+use Orchid\Support\Assert;
 
 /**
  * Class Relation.

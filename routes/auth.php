@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
+use Orchid\Platform\Http\Controllers\Auth\ForgotPasswordController;
 use Orchid\Platform\Http\Controllers\Auth\LoginController;
 use Orchid\Platform\Http\Controllers\Auth\ResetPasswordController;
-use Orchid\Platform\Http\Controllers\Auth\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------

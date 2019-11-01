@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 
 class Dashboard

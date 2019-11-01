@@ -2,9 +2,9 @@
 
 namespace App\Orchid\Screens\Examples;
 
+use App\Orchid\Layouts\Examples\RowExample;
 use Orchid\Screen\Action;
 use Orchid\Screen\Screen;
-use App\Orchid\Layouts\Examples\RowExample;
 
 class ExampleFieldsScreen extends Screen
 {

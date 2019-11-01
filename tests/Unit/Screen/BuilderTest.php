@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Screen;
 
 use Orchid\Screen\Builder;
+use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Repository;
 use Orchid\Tests\TestUnitCase;
-use Orchid\Screen\Fields\Input;
 
 /**
  * Class BuilderTest.

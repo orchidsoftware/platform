@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Layouts;
 
-use Throwable;
+use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\Field;
-use Orchid\Screen\Repository;
 use Orchid\Screen\Fields\Label;
 use Orchid\Screen\Fields\Radio;
 use Orchid\Screen\Layouts\Rows;
+use Orchid\Screen\Repository;
 use Orchid\Support\Facades\Dashboard;
-use Illuminate\Database\Eloquent\Model;
+use Throwable;
 
 class SearchLayout extends Rows
 {

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen;
 
-use Orchid\Tests\TestUnitCase;
-use Orchid\Screen\Layouts\Modal;
 use Illuminate\Support\Facades\Validator;
+use Orchid\Screen\Layouts\Modal;
 use Orchid\Tests\Exemplar\App\Screens\ModalScreen;
+use Orchid\Tests\TestUnitCase;
 
 /**
  * Class ModalTest.

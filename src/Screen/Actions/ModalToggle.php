@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Actions;
 
-use Orchid\Screen\Action;
 use Illuminate\Support\Arr;
+use Orchid\Screen\Action;
 
 /**
  * Class ModalToggle.

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\User;
 
-use Orchid\Screen\Fields\Input;
-use Orchid\Screen\Layouts\Rows;
 use Orchid\Platform\Models\Role;
+use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Layouts\Rows;
 
 class UserEditLayout extends Rows
 {

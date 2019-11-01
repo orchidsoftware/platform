@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens;
 
-use Illuminate\View\View;
-use Orchid\Screen\Layout;
-use Orchid\Screen\Screen;
-use Illuminate\Http\Request;
-use Orchid\Screen\Actions\Button;
-use Illuminate\Support\Collection;
-use Orchid\Support\Facades\Dashboard;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\View\View;
 use Orchid\Platform\Http\Layouts\SearchLayout;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Dashboard;
 
 class SearchScreen extends Screen
 {

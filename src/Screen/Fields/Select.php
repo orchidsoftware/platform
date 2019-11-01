@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Orchid\Screen\Field;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Orchid\Screen\Field;
 
 /**
  * Class Select.

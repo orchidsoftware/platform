@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace Orchid\Platform\Models;
 
 use Exception;
-use Orchid\Screen\AsSource;
-use Orchid\Access\UserAccess;
-use Orchid\Filters\Filterable;
-use Orchid\Access\UserInterface;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
-use Orchid\Support\Facades\Dashboard;
-use Illuminate\Notifications\Notifiable;
-use Orchid\Platform\Notifications\ResetPassword;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Orchid\Access\UserAccess;
+use Orchid\Access\UserInterface;
+use Orchid\Filters\Filterable;
 use Orchid\Platform\Notifications\DashboardNotification;
+use Orchid\Platform\Notifications\ResetPassword;
+use Orchid\Screen\AsSource;
+use Orchid\Support\Facades\Dashboard;
 
 class User extends Authenticatable implements UserInterface
 {

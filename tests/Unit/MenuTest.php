@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
-use Orchid\Platform\ItemMenu;
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\ItemMenu;
 use Orchid\Tests\TestUnitCase;
 
 /**

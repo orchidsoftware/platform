@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Composers;
 
-use Illuminate\View\View;
-use Illuminate\Http\Request;
-use Illuminate\View\Factory;
+use Illuminate\Auth\EloquentUserProvider;
 use Illuminate\Auth\SessionGuard;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Auth\EloquentUserProvider;
+use Illuminate\Http\Request;
+use Illuminate\View\Factory;
+use Illuminate\View\View;
 
 class LockMeComposer
 {
