@@ -78,6 +78,32 @@ class SettingsTest extends TestUnitCase
         $this->assertStringContainsString('new', $this->setting->get('cache-key'));
     }
 
+    /**
+     * @dataProvider notExitstValues
+     *
+     * @param $defaultValue
+     */
+    public function testDefaultValue($defaultValue)
+    {
+        $value = $this->setting->get('nonexistent value', $defaultValue);
+
+        $this->assertEquals(gettype($defaultValue), gettype($value));
+        $this->assertEquals($defaultValue, $value);
+    }
+
+    /**
+     * @return array
+     */
+    public function notExitstValues(): array
+    {
+        return [
+            ['string'],
+            [123],
+            [new \stdClass()],
+            [['test', 123]],
+        ];
+    }
+
     public function testUseHelper()
     {
         $this->setting->set('helper', 'run');
