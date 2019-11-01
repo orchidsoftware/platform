@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen;
 
+use Illuminate\Support\Facades\Validator;
 use Orchid\Screen\Field;
 use Orchid\Tests\TestUnitCase;
-use Illuminate\Support\Facades\Validator;
 
 /**
  * Class TestFieldsUnitCase.

@@ -2,21 +2,21 @@
 
 namespace App\Orchid\Screens\Examples;
 
-use Orchid\Screen\Layout;
-use Orchid\Screen\Screen;
-use Orchid\Screen\Repository;
-use Orchid\Screen\Fields\Input;
-use Orchid\Screen\Actions\Button;
-use Orchid\Support\Facades\Alert;
-use Orchid\Screen\Actions\DropDown;
-use Illuminate\Support\Facades\Auth;
-use Orchid\Screen\Actions\ModalToggle;
-use App\Orchid\Layouts\Examples\TableExample;
-use App\Orchid\Layouts\Examples\MetricsExample;
 use App\Orchid\Layouts\Examples\ChartBarExample;
-use App\Orchid\Layouts\Examples\ChartPieExample;
 use App\Orchid\Layouts\Examples\ChartLineExample;
+use App\Orchid\Layouts\Examples\ChartPieExample;
+use App\Orchid\Layouts\Examples\MetricsExample;
+use App\Orchid\Layouts\Examples\TableExample;
+use Illuminate\Support\Facades\Auth;
 use Orchid\Platform\Notifications\DashboardNotification;
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Actions\DropDown;
+use Orchid\Screen\Actions\ModalToggle;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Repository;
+use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Alert;
 
 class ExampleScreen extends Screen
 {

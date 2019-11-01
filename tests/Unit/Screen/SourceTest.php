@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen;
 
+use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\AsSource;
 use Orchid\Tests\TestUnitCase;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class SourceTest.

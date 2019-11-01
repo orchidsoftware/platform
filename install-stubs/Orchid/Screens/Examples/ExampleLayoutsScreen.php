@@ -3,9 +3,9 @@
 namespace App\Orchid\Screens\Examples;
 
 use Orchid\Screen\Action;
+use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
-use Orchid\Screen\Fields\Input;
 
 class ExampleLayoutsScreen extends Screen
 {

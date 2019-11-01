@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
-use Orchid\Screen\Repository;
 use Illuminate\Contracts\View\Factory;
+use Orchid\Screen\Repository;
 
 /**
  * Class Metric.

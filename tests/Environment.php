@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
-use Watson\Active\Active;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
+use Orchid\Database\Seeds\OrchidDatabaseSeeder;
 use Orchid\Platform\Models\User;
+use Orchid\Platform\Providers\FoundationServiceProvider;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
-use Orchid\Database\Seeds\OrchidDatabaseSeeder;
 use Orchid\Tests\Exemplar\ExemplarServiceProvider;
-use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
-use Orchid\Platform\Providers\FoundationServiceProvider;
+use Watson\Active\Active;
 
 /**
  * Trait Environment.

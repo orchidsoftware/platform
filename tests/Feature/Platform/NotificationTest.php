@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
-use Orchid\Tests\TestFeatureCase;
 use Orchid\Platform\Notifications\DashboardNotification;
+use Orchid\Tests\TestFeatureCase;
 
 class NotificationTest extends TestFeatureCase
 {

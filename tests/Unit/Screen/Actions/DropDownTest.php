@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Fields;
 
-use Orchid\Screen\Repository;
-use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Actions\DropDown;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Repository;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 /**

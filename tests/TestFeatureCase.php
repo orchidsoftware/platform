@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
-use Orchid\Platform\Models\User;
 use Orchestra\Testbench\TestCase;
+use Orchid\Platform\Models\User;
 
 /**
  * Class TestUnitCase.

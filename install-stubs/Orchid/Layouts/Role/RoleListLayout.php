@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\Role;
 
-use Orchid\Screen\TD;
-use Orchid\Screen\Actions\Link;
 use Orchid\Platform\Models\Role;
+use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\TD;
 
 class RoleListLayout extends Table
 {

@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Attachment;
 
-use Mimey\MimeTypes;
-use Orchid\Platform\Dashboard;
+use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Mimey\MimeTypes;
 use Orchid\Attachment\Models\Attachment;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Events\UploadFileEvent;
-use Illuminate\Contracts\Filesystem\Filesystem;
 
 /**
  * Class File.

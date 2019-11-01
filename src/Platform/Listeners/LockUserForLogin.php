@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Listeners;
 
-use Illuminate\Cookie\CookieJar;
 use Illuminate\Auth\Events\Login;
+use Illuminate\Cookie\CookieJar;
 
 class LockUserForLogin
 {

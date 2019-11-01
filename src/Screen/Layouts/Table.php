@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
-use Orchid\Screen\TD;
-use Orchid\Screen\Repository;
 use Illuminate\Contracts\View\Factory;
+use Orchid\Screen\Repository;
+use Orchid\Screen\TD;
 
 /**
  * Class Table.

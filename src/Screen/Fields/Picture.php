@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Orchid\Screen\Field;
-use Orchid\Platform\Dashboard;
 use Orchid\Attachment\Models\Attachment;
+use Orchid\Platform\Dashboard;
+use Orchid\Screen\Field;
 
 /**
  * Class Picture.

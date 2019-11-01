@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Fields;
 
-use Orchid\Attachment\File;
 use Illuminate\Http\UploadedFile;
+use Orchid\Attachment\File;
 use Orchid\Screen\Fields\Cropper;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 

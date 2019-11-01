@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Closure;
-use Throwable;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\Contracts\FieldContract;
+use Throwable;
 
 class Builder
 {

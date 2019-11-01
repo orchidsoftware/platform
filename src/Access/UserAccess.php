@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Orchid\Access;
 
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Arr;
 use Orchid\Platform\Dashboard;
-use Orchid\Platform\Models\Role;
-use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Events\AddRoleEvent;
 use Orchid\Platform\Events\RemoveRoleEvent;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Orchid\Platform\Models\Role;
 
 trait UserAccess
 {

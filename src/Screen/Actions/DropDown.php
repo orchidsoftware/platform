@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Screen\Actions;
 
 use Orchid\Screen\Action;
-use Orchid\Screen\Repository;
 use Orchid\Screen\Contracts\ActionContract;
+use Orchid\Screen\Repository;
 
 /**
  * Class DropDown.

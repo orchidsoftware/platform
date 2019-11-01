@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Auth;
 
-use Illuminate\View\View;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 use Orchid\Platform\Http\Controllers\Controller;
 
 class ResetPasswordController extends Controller

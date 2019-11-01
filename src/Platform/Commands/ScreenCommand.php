@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Console\GeneratorCommand;
+use Orchid\Platform\Dashboard;
 
 class ScreenCommand extends GeneratorCommand
 {

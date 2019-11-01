@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Exemplar\App;
 
-use Illuminate\Support\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 /**
  * Class EmptyUserModel.

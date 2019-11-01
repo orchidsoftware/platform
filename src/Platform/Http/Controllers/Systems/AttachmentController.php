@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
-use Orchid\Attachment\File;
-use Illuminate\Http\Request;
-use Orchid\Platform\Dashboard;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\UploadedFile;
-use Orchid\Attachment\Models\Attachment;
-use Symfony\Component\HttpFoundation\Response;
-use Orchid\Platform\Http\Controllers\Controller;
-use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
+use Orchid\Attachment\File;
+use Orchid\Attachment\Models\Attachment;
+use Orchid\Platform\Dashboard;
+use Orchid\Platform\Http\Controllers\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class AttachmentController.

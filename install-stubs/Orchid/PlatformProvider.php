@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Orchid;
 
-use Orchid\Platform\Dashboard;
-use Orchid\Platform\ItemPermission;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\ServiceProvider;
 use App\Orchid\Composers\MainMenuComposer;
 use App\Orchid\Composers\SystemMenuComposer;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
+use Orchid\Platform\Dashboard;
+use Orchid\Platform\ItemPermission;
 
 class PlatformProvider extends ServiceProvider
 {

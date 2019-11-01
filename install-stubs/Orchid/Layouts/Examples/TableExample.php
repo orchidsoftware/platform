@@ -2,10 +2,10 @@
 
 namespace App\Orchid\Layouts\Examples;
 
-use Orchid\Screen\TD;
 use Illuminate\Support\Str;
-use Orchid\Screen\Repository;
 use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\Repository;
+use Orchid\Screen\TD;
 
 class TableExample extends Table
 {

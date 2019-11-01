@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
+use Illuminate\Contracts\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Tests\TestUnitCase;
-use Illuminate\Contracts\View\View;
 
 class WrapperTest extends TestUnitCase
 {

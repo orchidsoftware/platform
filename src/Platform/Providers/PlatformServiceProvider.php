@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Orchid\Platform\Dashboard;
 use App\Orchid\PlatformProvider;
-use Orchid\Platform\ItemPermission;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Composers\LockMeComposer;
 use Orchid\Platform\Http\Composers\NotificationsComposer;
+use Orchid\Platform\ItemPermission;
 
 class PlatformServiceProvider extends ServiceProvider
 {

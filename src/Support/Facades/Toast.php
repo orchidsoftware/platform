@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Support\Facades;
 
-use Orchid\Alert\Toast as ToastClass;
 use Illuminate\Support\Facades\Facade;
+use Orchid\Alert\Toast as ToastClass;
 
 /**
  * Class Toast.

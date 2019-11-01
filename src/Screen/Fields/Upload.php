@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Illuminate\Support\Arr;
+use Orchid\Attachment\Models\Attachment;
+use Orchid\Platform\Dashboard;
 use Orchid\Screen\Field;
 use Orchid\Support\Assert;
-use Illuminate\Support\Arr;
-use Orchid\Platform\Dashboard;
-use Orchid\Attachment\Models\Attachment;
 
 /**
  * Class Upload.

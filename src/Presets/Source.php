@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Presets;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Foundation\Console\Presets\Preset as ConsolePreset;
+use Orchid\Platform\Dashboard;
 
 class Source extends ConsolePreset
 {

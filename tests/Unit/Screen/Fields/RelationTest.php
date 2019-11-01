@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Fields;
 
+use Illuminate\Database\Eloquent\Collection;
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Fields\Relation;
 use Orchid\Tests\Exemplar\App\AjaxRecord;
-use Illuminate\Database\Eloquent\Collection;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 /**

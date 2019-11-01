@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Orchid\Platform\Dashboard;
-use Orchid\Platform\Models\Role;
-use Illuminate\Support\Facades\Route;
-use Orchid\Platform\Http\Middleware\AccessMiddleware;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
+use Orchid\Platform\Dashboard;
+use Orchid\Platform\Http\Middleware\AccessMiddleware;
+use Orchid\Platform\Models\Role;
 
 class RouteServiceProvider extends ServiceProvider
 {

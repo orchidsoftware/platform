@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use Orchid\Alert\Alert;
 use Illuminate\Support\Str;
+use Orchid\Alert\Alert;
 use Orchid\Filters\HttpFilter;
+use Orchid\Support\Facades\Dashboard;
 use Orchid\Support\Facades\Setting;
 use Symfony\Component\Finder\Finder;
-use Orchid\Support\Facades\Dashboard;
 
 if (! function_exists('alert')) {
     /**
