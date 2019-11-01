@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.4.1 - 2019-11-01
+
+### Changed
+- Allowed to pass html to notification messages. [#1002](https://github.com/orchidsoftware/platform/pull/1002)
+
+### Fixed
+- Setting string type default value [#1004](https://github.com/orchidsoftware/platform/issues/1004)
+
 ## 6.4.0 - 2019-10-29
 
 ### Added
