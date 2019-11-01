@@ -86,10 +86,10 @@ class Setting extends Model
     }
 
     /**
-     * Get values
+     * Get values.
      *
      * @param string|array $key
-     * @param mixed  $default
+     * @param mixed        $default
      *
      * @return mixed
      */
