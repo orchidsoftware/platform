@@ -74,13 +74,13 @@ class UserListLayout extends Table
                         ->icon('icon-options-vertical')
                         ->list([
 
-                            Link::make('Редактировать')
+                            Link::make(__('Edit'))
                                 ->route('platform.systems.users.edit', $user->id)
                                 ->icon('icon-pencil'),
 
-                            Button::make('Удалить')
+                            Button::make(__('Delete'))
                                 ->method('remove')
-                                ->confirm('Вы действительно хотите удалить пользователя?')
+                                ->confirm(__('Are you sure you want to delete the user?'))
                                 ->parameters([
                                     'id' => $user->id,
                                 ])
