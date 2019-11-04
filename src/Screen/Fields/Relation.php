@@ -149,6 +149,10 @@ class Relation extends Field
                 $scope = $this->get('scope', 'handler');
                 $class = app()->make($class);
 
+                if (! is_iterable($value)) {
+                    $value = Arr::wrap($value);
+                }
+
                 if (property_exists($class, 'value') && Assert::isIntArray($value)) {
                     $class->value = $value;
                 }
