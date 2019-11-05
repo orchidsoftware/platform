@@ -2,11 +2,11 @@
     <div class="w-full table-responsive-lg @if ($striped) table-striped @endif">
         <table class="table">
             <thead>
-            <tr>
-                @foreach($columns as $column)
-                    {!! $column->buildTh() !!}
-                @endforeach
-            </tr>
+                <tr>
+                    @foreach($columns as $column)
+                        {!! $column->buildTh() !!}
+                    @endforeach
+                </tr>
             </thead>
             <tbody>
 
@@ -20,12 +20,7 @@
             </tbody>
         </table>
 
-        @if(
-        (method_exists($rows,'total') && optional($rows)->total() === 0) ||
-        (method_exists($rows,'count') && optional($rows)->count() === 0) ||
-        (is_array($rows) && count($rows) === 0)
-        )
-
+        @if($rows instanceof \Illuminate\Contracts\Pagination\Paginator && $rows->isEmpty())
             <div class="text-center bg-white pt-5 pb-5 w-full">
                 <h3 class="font-thin">
                     <i class="{{ $iconNotFound }} block m-b"></i>
@@ -34,15 +29,12 @@
 
                 {!! $subNotFound !!}
             </div>
-
         @endif
 
-
-        @includeWhen($rows instanceof \Illuminate\Contracts\Pagination\Paginator && $rows->total() > 0,
+        @includeWhen($rows instanceof \Illuminate\Contracts\Pagination\Paginator && $rows->isNotEmpty(),
             'platform::layouts.pagination',
             ['paginator' => $rows]
           )
-
     </div>
 </div>
 
