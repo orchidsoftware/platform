@@ -11,6 +11,7 @@ use Orchid\Screen\Layouts\Collapse;
 use Orchid\Screen\Layouts\Columns;
 use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Layouts\Rows;
+use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Layouts\View;
 use Orchid\Screen\Layouts\Wrapper;
@@ -53,6 +54,35 @@ class Layout
             public function fields(): array
             {
                 return $this->layouts;
+            }
+        };
+    }
+
+    /**
+     * @param string $target
+     * @param array  $columns
+     *
+     * @return Table
+     */
+    public static function table(string $target, array $columns): Table
+    {
+        return new class($target, $columns) extends Table {
+            /**
+             * @param string $target
+             * @param array  $columns
+             */
+            public function __construct(string $target, array $columns)
+            {
+                $this->target = $target;
+                $this->columns = $columns;
+            }
+
+            /**
+             * @return array
+             */
+            public function columns(): array
+            {
+                return $this->columns;
             }
         };
     }
