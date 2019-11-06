@@ -132,7 +132,7 @@ trait UserAccess
      *
      * @return $this
      */
-    public function replaceRoles(array $roles = [])
+    public function replaceRoles(?array $roles = [])
     {
         $this->roles()->detach();
 
