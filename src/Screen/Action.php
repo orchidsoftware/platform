@@ -35,6 +35,7 @@ class Action extends Field implements ActionContract
      * @var array
      */
     protected $inlineAttributes = [
+        'type',
         'autofocus',
         'disabled',
         'tabindex',
