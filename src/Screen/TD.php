@@ -300,11 +300,11 @@ class TD
             'width'        => $this->width,
             'align'        => $this->align,
             'sort'         => $this->sort,
-            'sortUrl'      => $this->buildSortUrl(),
             'column'       => $this->column,
             'title'        => $this->title,
             'filter'       => $this->filter,
             'filterString' => get_filter_string($this->column),
+            'slug'         => $this->sluggable(),
         ]);
     }
 
@@ -325,17 +325,23 @@ class TD
             'align'  => $this->align,
             'value'  => $value,
             'render' => $this->render,
+            'slug'   => $this->sluggable(),
         ]);
     }
 
     /**
      * @return string
      */
-    public function buildSortUrl(): string
+    public function sluggable(): string
     {
-        $query = request()->query();
-        $query['sort'] = revert_sort($this->column);
+        return Str::slug($this->name);
+    }
 
-        return url()->current().'?'.http_build_query($query);
+    /**
+     * @return string
+     */
+    public function namming(): string
+    {
+        return $this->name;
     }
 }

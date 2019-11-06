@@ -1,5 +1,8 @@
-<div class="row">
-    <div class="w-full table-responsive @if ($striped) table-striped @endif">
+<div class="row"
+     data-controller="layouts--table"
+     data-layouts--table-slug="{{$slug}}"
+    >
+    <div class="w-full table-responsive-lg @if ($striped) table-striped @endif">
         <table class="table">
             <thead>
                 <tr>
@@ -36,5 +39,21 @@
             ['paginator' => $rows]
           )
     </div>
+
+    @foreach($columns as $key => $column)
+
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox"
+                   class="custom-control-input"
+                   id="{{ $column->sluggable().'-'.$key }}"
+                   data-action="layouts--table#toggleColumn"
+                   data-column="{{ $column->sluggable() }}"
+            >
+            <label class="custom-control-label" for="{{ $column->sluggable().'-'.$key }}">
+                {{ $column->namming() }}
+            </label>
+        </div>
+    @endforeach
+
 </div>
 

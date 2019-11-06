@@ -50,6 +50,7 @@ abstract class Table extends Base
             'textNotFound' => $this->textNotFound(),
             'subNotFound'  => $this->subNotFound(),
             'striped'      => $this->striped(),
+            'slug'         => $this->getSlug(),
         ]);
     }
 
