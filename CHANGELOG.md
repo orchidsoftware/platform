@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.5.0 - 2019-11-06
+
+### Added
+- Short record to create a table [#1010](https://github.com/orchidsoftware/platform/pull/1010)
+
+### Fixed
+- Error on saving user [#1011](https://github.com/orchidsoftware/platform/issues/1011)
+- Display simple pagination
+
 ## 6.4.2 - 2019-11-05
 
 ### Fixed
