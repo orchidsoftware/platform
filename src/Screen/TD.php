@@ -88,7 +88,7 @@ class TD
 
     /**
      * Displays whether the user can hide
-     * or show the column in the browser
+     * or show the column in the browser.
      *
      * @var bool
      */
@@ -338,14 +338,14 @@ class TD
     }
 
     /**
-     * Builds item menu for show/hiden column
+     * Builds item menu for show/hiden column.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|null
      */
     public function buildItemMenu()
     {
-        if (!$this->allowUserHidden) {
-            return null;
+        if (! $this->allowUserHidden) {
+            return;
         }
 
         return view('platform::partials.layouts.selectedTd', [
@@ -363,11 +363,11 @@ class TD
     }
 
     /**
-     * Prevents the user from hiding a column in the interface
+     * Prevents the user from hiding a column in the interface.
      *
      * @return TD
      */
-    public function cannotHide(): TD
+    public function cannotHide(): self
     {
         $this->allowUserHidden = false;
 
