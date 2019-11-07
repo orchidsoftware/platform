@@ -17,6 +17,10 @@ export default class extends Controller {
      */
     connect() {
         this.renderColumn();
+
+        $('.dropdown-column-menu').click(function(e) {
+            e.stopPropagation();
+        });
     }
 
     /**
@@ -67,12 +71,23 @@ export default class extends Controller {
             column => `td[data-column="${column}"], th[data-column="${column}"]`,
         ).join();
 
-        if (showClass.length > 0) {
-            this.element.querySelectorAll(showClass)
-                .forEach((column) => {
-                    column.style.display = 'none';
-                });
+        if (showClass.length < 1){
+            return;
         }
+
+        this.element.querySelectorAll(showClass)
+            .forEach((column) => {
+                column.style.display = 'none';
+            });
+
+        const checkBoxEnable = this.hiddenColumns.map(
+            column => `input[data-column="${column}"]`,
+        ).join();
+
+        this.element.querySelectorAll(checkBoxEnable)
+            .forEach((checkbox) => {
+                checkbox.checked = false;
+            });
     }
 
     /**

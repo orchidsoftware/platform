@@ -9,6 +9,21 @@
                         'total' => $paginator->total(),
                     ]) }}
                 </small>
+
+                <div class="btn-group dropup d-inline">
+                    <button type="button"
+                            class="btn btn-sm btn-link dropdown-toggle"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                        Выбрать столбцы
+                    </button>
+                    <div class="dropdown-menu dropdown-column-menu">
+                        @foreach($columns as $column)
+                            {!! $column->buildItemMenu() !!}
+                        @endforeach
+                    </div>
+                </div>
             @endif
         </div>
         <div class="col-sm-7 text-right text-center-xs">

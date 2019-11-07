@@ -87,6 +87,14 @@ class TD
     protected $locale = false;
 
     /**
+     * Displays whether the user can hide
+     * or show the column in the browser
+     *
+     * @var bool
+     */
+    protected $allowUserHidden = true;
+
+    /**
      * TD constructor.
      *
      * @param string $name
@@ -330,18 +338,39 @@ class TD
     }
 
     /**
-     * @return string
+     * Builds item menu for show/hiden column
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|null
      */
-    public function sluggable(): string
+    public function buildItemMenu()
     {
-        return Str::slug($this->name);
+        if (!$this->allowUserHidden) {
+            return null;
+        }
+
+        return view('platform::partials.layouts.selectedTd', [
+            'title' => $this->title,
+            'slug'  => $this->sluggable(),
+        ]);
     }
 
     /**
      * @return string
      */
-    public function namming(): string
+    private function sluggable(): string
     {
-        return $this->name;
+        return Str::slug($this->name);
+    }
+
+    /**
+     * Prevents the user from hiding a column in the interface
+     *
+     * @return TD
+     */
+    public function cannotHide(): TD
+    {
+        $this->allowUserHidden = false;
+
+        return $this;
     }
 }

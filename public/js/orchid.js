@@ -27092,7 +27092,7 @@ function (_Controller) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
+/* WEBPACK VAR INJECTION */(function($) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
 /* harmony import */ var stimulus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! stimulus */ "./node_modules/stimulus/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -27143,6 +27143,9 @@ function (_Controller) {
     key: "connect",
     value: function connect() {
       this.renderColumn();
+      $('.dropdown-column-menu').click(function (e) {
+        e.stopPropagation();
+      });
     }
     /**
      *
@@ -27194,11 +27197,19 @@ function (_Controller) {
         return "td[data-column=\"".concat(column, "\"], th[data-column=\"").concat(column, "\"]");
       }).join();
 
-      if (showClass.length > 0) {
-        this.element.querySelectorAll(showClass).forEach(function (column) {
-          column.style.display = 'none';
-        });
+      if (showClass.length < 1) {
+        return;
       }
+
+      this.element.querySelectorAll(showClass).forEach(function (column) {
+        column.style.display = 'none';
+      });
+      var checkBoxEnable = this.hiddenColumns.map(function (column) {
+        return "input[data-column=\"".concat(column, "\"]");
+      }).join();
+      this.element.querySelectorAll(checkBoxEnable).forEach(function (checkbox) {
+        checkbox.checked = false;
+      });
     }
     /**
      *
@@ -27216,6 +27227,7 @@ function (_Controller) {
 }(stimulus__WEBPACK_IMPORTED_MODULE_0__["Controller"]);
 
 
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
 /***/ }),
 
@@ -27939,8 +27951,8 @@ function platform() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/tabuna/Orchid/develop/orchid-project/platform/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/tabuna/Orchid/develop/orchid-project/platform/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/tabuna/ORCHID/laravel6.0/platform/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/tabuna/ORCHID/laravel6.0/platform/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),
