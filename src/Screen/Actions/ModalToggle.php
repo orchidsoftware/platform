@@ -69,16 +69,15 @@ class ModalToggle extends Action
      *
      * @return ModalToggle
      */
-    public function asyncParameter($slug): ModalToggle
+    public function asyncParameter($slug): self
     {
         return $this
             ->set('asyncParameters', $slug)
             ->set('async', 'true')
             ->addBeforeRender(function () use ($slug) {
-
                 $method = $this->get('method');
                 $action = route(Route::currentRouteName(), $slug);
-                $this->set('action', $action . '/' . $method);
+                $this->set('action', $action.'/'.$method);
             });
     }
 
