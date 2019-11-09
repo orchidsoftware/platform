@@ -58,9 +58,7 @@ class UserListLayout extends Table
                         ->modal('oneAsyncModal')
                         ->modalTitle($user->getNameTitle())
                         ->method('saveUser')
-                        ->asyncParameters([
-                            'id' => $user->id,
-                        ]);
+                        ->asyncParameter($user->id);
                 }),
 
             TD::set('updated_at', __('Last edit'))

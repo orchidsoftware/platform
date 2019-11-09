@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Actions;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Route;
 use Orchid\Screen\Action;
 
 /**
@@ -16,7 +17,6 @@ use Orchid\Screen\Action;
  * @method ModalToggle class(string $classes = null)
  * @method ModalToggle method(string $methodName = null)
  * @method ModalToggle parameters(array|object $name)
- * @method ModalToggle asyncParameters(array|object $parameters)
  * @method ModalToggle modalTitle(string $title)
  */
 class ModalToggle extends Action
@@ -38,7 +38,8 @@ class ModalToggle extends Action
         'modalTitle'      => null,
         'icon'            => null,
         'action'          => null,
-        'asyncParameters' => [],
+        'asyncParameters' => null,
+        'async'           => false,
         'parameters'      => [],
     ];
 
@@ -60,6 +61,24 @@ class ModalToggle extends Action
                 $action = "{$url}/{$this->get('method')}?{$query}";
                 $this->set('action', $action);
                 $this->set('name', $name);
+            });
+    }
+
+    /**
+     * @param string|int $slug
+     *
+     * @return ModalToggle
+     */
+    public function asyncParameter($slug): ModalToggle
+    {
+        return $this
+            ->set('asyncParameters', $slug)
+            ->set('async', 'true')
+            ->addBeforeRender(function () use ($slug) {
+
+                $method = $this->get('method');
+                $action = route(Route::currentRouteName(), $slug);
+                $this->set('action', $action . '/' . $method);
             });
     }
 
