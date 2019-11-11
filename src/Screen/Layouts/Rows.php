@@ -25,6 +25,8 @@ abstract class Rows extends Base
     protected $query;
 
     /**
+     * @deprecated
+     *
      * @var int
      */
     protected $with = 100;
@@ -62,6 +64,8 @@ abstract class Rows extends Base
     }
 
     /**
+     * @deprecated
+     *
      * @param int $with
      *
      * @return $this
