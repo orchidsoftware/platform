@@ -66,7 +66,7 @@
         </div>
     </div>
 
-    <div class="pull-right text-center pl-3 pr-3" data-turbolinks-permanent>
+    <div class="pull-right text-center pl-3" data-turbolinks-permanent>
         <a href="{{ route('platform.notifications') }}" class="nav-link icon no-padder">
             <i class="icon-bell"></i>
             @if(count($notifications) > 0)
