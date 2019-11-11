@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="w-full table-responsive-lg @if ($striped) table-striped @endif">
+    <div class="w-full table-responsive @if ($striped) table-striped @endif">
         <table class="table">
             <thead>
                 <tr>
