@@ -104,6 +104,7 @@ $btn-border-radius : $border-radius-base;
 $input-border : darken($border-color, 5%);
 $input-border-focus : $brand-info;
 $input-border-radius : $border-radius-base;
+$input-group-addon-border-color: $border-color;
 
 $panel-bg : #ffffff;
 $panel-border : $border-color;
@@ -199,4 +200,6 @@ $input-height-small : (floor($font-size-small * $line-height-small) + ($padding-
 $state-warning-text : #8a6d3b;
 $state-danger-text : #a94442;
 $state-success-text : #3c763d;
+
+
 
