@@ -59,7 +59,7 @@ class DateTimer extends Field
         'data-fields--datetime-allow-input' => 'false',
         'data-fields--datetime-date-format' => 'Y-m-d H:i:S',
         'data-fields--datetime-no-calendar' => 'false',
-        'allowEmpty'                        => false
+        'allowEmpty'                        => false,
     ];
 
     /**
@@ -157,7 +157,7 @@ class DateTimer extends Field
     {
         $this->set('allowEmpty', $bool);
 
-        if(true === $bool) {
+        if (true === $bool) {
             $this->addBeforeRender(function () {
                 $this->attributes['class'] .= ' border-right-0';
             });

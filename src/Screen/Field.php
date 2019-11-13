@@ -201,13 +201,13 @@ class Field implements FieldContract
         $errors = $this->getErrorsMessage();
 
         return view($this->view, array_merge($this->getAttributes(), [
-            'attributes' => $this->getAllowAttributes(),
+            'attributes'     => $this->getAllowAttributes(),
             'dataAttributes' => $this->getAllowDataAttributes(),
-            'id'         => $id,
-            'old'        => $this->getOldValue(),
-            'slug'       => $this->getSlug(),
-            'oldName'    => $this->getOldName(),
-            'typeForm'   => $this->typeForm ?? $this->vertical()->typeForm,
+            'id'             => $id,
+            'old'            => $this->getOldValue(),
+            'slug'           => $this->getSlug(),
+            'oldName'        => $this->getOldName(),
+            'typeForm'       => $this->typeForm ?? $this->vertical()->typeForm,
         ]))
             ->withErrors($errors);
     }
@@ -253,7 +253,7 @@ class Field implements FieldContract
      */
     protected function getAllowDataAttributes()
     {
-        return $this->getAllowAttributes()->filter(function ($value, $key){
+        return $this->getAllowAttributes()->filter(function ($value, $key) {
             return Str::startsWith($key, 'data-');
         });
     }
