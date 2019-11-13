@@ -202,6 +202,7 @@ class Field implements FieldContract
 
         return view($this->view, array_merge($this->getAttributes(), [
             'attributes' => $this->getAllowAttributes(),
+            'dataAttributes' => $this->getAllowDataAttributes(),
             'id'         => $id,
             'old'        => $this->getOldValue(),
             'slug'       => $this->getSlug(),
@@ -245,6 +246,16 @@ class Field implements FieldContract
         $allow = array_merge($this->universalAttributes, $this->inlineAttributes);
 
         return collect($this->getAttributes())->only($allow);
+    }
+
+    /**
+     * @return Collection
+     */
+    protected function getAllowDataAttributes()
+    {
+        return $this->getAllowAttributes()->filter(function ($value, $key){
+            return Str::startsWith($key, 'data-');
+        });
     }
 
     /**

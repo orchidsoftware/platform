@@ -59,6 +59,7 @@ class DateTimer extends Field
         'data-fields--datetime-allow-input' => 'false',
         'data-fields--datetime-date-format' => 'Y-m-d H:i:S',
         'data-fields--datetime-no-calendar' => 'false',
+        'allowEmpty'                        => false
     ];
 
     /**
@@ -143,6 +144,24 @@ class DateTimer extends Field
     public function allowInput(bool $time = true): self
     {
         $this->set('data-fields--datetime-allow-input', var_export($time, true));
+
+        return $this;
+    }
+
+    /**
+     * @param bool $bool
+     *
+     * @return self
+     */
+    public function allowEmpty(bool $bool = true): self
+    {
+        $this->set('allowEmpty', $bool);
+
+        if(true === $bool) {
+            $this->addBeforeRender(function () {
+                $this->attributes['class'] .= ' border-right-0';
+            });
+        }
 
         return $this;
     }
