@@ -50,7 +50,7 @@ class ModalToggle extends Action
      *
      * @return ModalToggle
      */
-    public static function make(string $name = ''): ModalToggle
+    public static function make(string $name = ''): self
     {
         return (new static())
             ->name($name)
@@ -69,10 +69,10 @@ class ModalToggle extends Action
      *
      * @return ModalToggle
      */
-    public function asyncParameters($options = []): ModalToggle
+    public function asyncParameters($options = []): self
     {
         return $this
-            ->set('asyncParameters',  Arr::wrap($options))
+            ->set('asyncParameters', Arr::wrap($options))
             ->set('async', 'true')
             ->addBeforeRender(function () use ($options) {
                 $method = $this->get('method');
