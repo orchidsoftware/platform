@@ -145,7 +145,6 @@ class FoundationServiceProvider extends ServiceProvider
     public function registerBlade(): self
     {
         Blade::directive('attributes', function (string $attributes) {
-
             $part = 'function ($attributes) {
                 foreach ($attributes as $name => $value) {
                     if (is_bool($value) && $value === false) {

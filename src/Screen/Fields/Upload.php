@@ -146,6 +146,7 @@ class Upload extends Field
 
             if ($maxFileSize === null) {
                 $this->set('maxFileSize', $serverMaxFileSize);
+
                 return;
             }
 
@@ -154,7 +155,6 @@ class Upload extends Field
                 \RuntimeException::class,
                 'Cannot set the desired maximum file sizw. This contradicts the settings specified in .ini');
         });
-
 
         // set load relation attachment
         $this->addBeforeRender(function () {

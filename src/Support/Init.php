@@ -6,19 +6,18 @@ namespace Orchid\Support;
 
 class Init
 {
-
     /**
-     * Kilobyte
+     * Kilobyte.
      */
     public const KB = 'kB';
 
     /**
-     * Megabyte
+     * Megabyte.
      */
     public const MB = 'MB';
 
     /**
-     * Gigabyte
+     * Gigabyte.
      */
     public const GB = 'GB';
 
@@ -52,7 +51,7 @@ class Init
     }
 
     /**
-     * The smallest of them, this defines the real limit
+     * The smallest of them, this defines the real limit.
      *
      * @param string $format
      *
