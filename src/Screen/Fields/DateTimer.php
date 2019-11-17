@@ -38,6 +38,7 @@ use Orchid\Screen\Field;
  * @method DateTimer value($value = true)
  * @method DateTimer help(string $value = null)
  * @method DateTimer popover(string $value = null)
+ * @method DateTimer allowEmpty(bool $enabled = true)
  */
 class DateTimer extends Field
 {
@@ -144,24 +145,6 @@ class DateTimer extends Field
     public function allowInput(bool $time = true): self
     {
         $this->set('data-fields--datetime-allow-input', var_export($time, true));
-
-        return $this;
-    }
-
-    /**
-     * @param bool $bool
-     *
-     * @return self
-     */
-    public function allowEmpty(bool $bool = true): self
-    {
-        $this->set('allowEmpty', $bool);
-
-        if (true === $bool) {
-            $this->addBeforeRender(function () {
-                $this->attributes['class'] .= ' border-right-0';
-            });
-        }
 
         return $this;
     }

@@ -1,4 +1,4 @@
-@component($typeForm,get_defined_vars())
+@component($typeForm, get_defined_vars())
     <div data-controller="fields--map"
          data-fields--map-id="{{$id}}"
          data-fields--map-zoom="{{$zoom}}"

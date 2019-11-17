@@ -1,8 +1,8 @@
-@component($typeForm,get_defined_vars())
+@component($typeForm, get_defined_vars())
 
     <div data-controller="fields--utm">
         <div class="input-group mb-3">
-            <input @include('platform::partials.fields.attributes', ['attributes' => $attributes]) data-target="fields--utm.url">
+            <input @attributes($attributes) data-target="fields--utm.url">
             <div class="input-group-append">
                 <button type="button" class="btn btn-default" data-toggle="modal"
                         data-target="#utm-{{$id}}">{{__('Generate UTM')}}</button>
