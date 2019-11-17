@@ -1,5 +1,5 @@
-@component($typeForm,get_defined_vars())
-    <p @include('platform::partials.fields.attributes', ['attributes' => $attributes])>
+@component($typeForm, get_defined_vars())
+    <p @attributes($attributes)>
         {{ $value }}
     </p>
 @endcomponent

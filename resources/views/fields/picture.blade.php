@@ -1,4 +1,4 @@
-@component($typeForm,get_defined_vars())
+@component($typeForm, get_defined_vars())
     <div data-controller="fields--picture"
          data-fields--picture-value="{{ $attributes['value'] }}"
          data-fields--picture-storage="{{ $storage ?? 'public' }}"
@@ -31,7 +31,7 @@
         <input class="picture-path"
                type="hidden"
                data-target="fields--picture.source"
-                @include('platform::partials.fields.attributes', ['attributes' => $attributes])
+                @attributes($attributes)
         >
     </div>
 @endcomponent

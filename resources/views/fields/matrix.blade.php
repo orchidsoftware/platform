@@ -1,4 +1,4 @@
-@component($typeForm,get_defined_vars())
+@component($typeForm, get_defined_vars())
     <table class="table table-bordered border-right-0"
            data-controller="fields--matrix"
            data-fields--matrix-index="{{ count($value) }}"
