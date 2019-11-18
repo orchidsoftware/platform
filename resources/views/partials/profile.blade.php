@@ -66,18 +66,5 @@
         </div>
     </div>
 
-    <div class="pull-right text-center pl-3" data-turbolinks-permanent>
-        <a href="{{ route('platform.notifications') }}" class="nav-link icon no-padder">
-            <i class="icon-bell"></i>
-            @if(count($notifications) > 0)
-                <span class="badge badge-sm up bg-danger text-white">
-                    @if(count($notifications) < 10)
-                        {{ count($notifications) }}
-                    @else
-                        <i class="icon-circle"></i>
-                    @endif
-            </span>
-            @endif
-        </a>
-    </div>
+    @include('platform::partials.notificationProfile')
 </div>
