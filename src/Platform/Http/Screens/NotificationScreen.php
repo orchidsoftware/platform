@@ -150,4 +150,12 @@ class NotificationScreen extends Screen
 
         return back();
     }
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function updateProfile()
+    {
+        return view('platform::partials.notificationProfile');
+    }
 }
