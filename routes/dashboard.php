@@ -19,7 +19,6 @@ use Orchid\Platform\Http\Screens\SearchScreen;
 $this->router->get('/', [IndexController::class, 'index'])->name('index');
 $this->router->fallback([IndexController::class, 'fallback']);
 
-
 $this->router->screen('search/{query}', SearchScreen::class)->name('search');
 $this->router->screen('notifications/{id?}', NotificationScreen::class)->name('notifications');
 
