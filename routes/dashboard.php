@@ -22,4 +22,5 @@ $this->router->fallback([IndexController::class, 'fallback']);
 $this->router->screen('search/{query}', SearchScreen::class)->name('search');
 $this->router->screen('notifications/{id?}', NotificationScreen::class)->name('notifications');
 
-$this->router->post('notice', [NotificationScreen::class, 'updateProfile'])->name('profile.notifications');
+$this->router->post('/api/notifications', [NotificationScreen::class, 'unreadNotification'])
+    ->name('api.notifications');

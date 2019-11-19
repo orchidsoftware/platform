@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\Request;
 use Orchid\Platform\Http\Layouts\NotificationTable;
@@ -152,10 +153,15 @@ class NotificationScreen extends Screen
     }
 
     /**
-     * @return \Illuminate\View\View
+     * @param Request $request
+     *
+     * @return LengthAwarePaginator
      */
-    public function updateProfile()
+    public function unreadNotification(Request $request)
     {
-        return view('platform::partials.notificationProfile');
+        return $request->user()
+            ->unreadNotifications()
+            ->where('type', DashboardNotification::class)
+            ->paginate();
     }
 }

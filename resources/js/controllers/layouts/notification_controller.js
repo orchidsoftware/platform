@@ -23,6 +23,12 @@ export default class extends Controller {
      *
      */
     connect() {
+        document.addEventListener("turbolinks:load", () => {
+            this.render();
+        });
+
+
+        this.updateInterval = this.setUpdateInterval();
         this.render();
     }
 
@@ -30,6 +36,7 @@ export default class extends Controller {
      *
      */
     disconnect() {
+        clearInterval(this.updateInterval);
         window.removeEventListener('storage', this.storageChanged());
     }
 
@@ -48,9 +55,28 @@ export default class extends Controller {
     storageChanged() {
         return (event) => {
             if (event.key === this.storageKey()) {
+                Turbolinks.clearCache();
                 this.render();
             }
         }
+    }
+
+    /**
+     *
+     * @returns {number}
+     */
+    setUpdateInterval() {
+        const url = this.data.get('url');
+        const method = this.data.get('method') || 'get';
+
+        /* Time in seconds */
+        const interval = this.data.get('interval') || 1000;
+
+         return setInterval(() => {
+            axios({method, url}).then((response) => {
+                localStorage.setItem('profile.notifications', response.data.total);
+            });
+        }, interval);
     }
 
     /**
@@ -69,43 +95,13 @@ export default class extends Controller {
             badge = '';
         }
 
+
+        let favicon = document.getElementById('favicon');
+        this.application
+            .getControllerForElementAndIdentifier(favicon, "layouts--favicon")
+            .notice(badge !== 0 && badge.length > 0);
+
+
         this.badgeTarget.innerHTML = badge;
     }
-
-
-    noticeFavicon(bool) {
-        const favicon = document.getElementById('favicon');
-
-        const img = document.createElement('img');
-        img.src = favicon.href;
-        const lineWidth = 2;
-        const canvas = document.createElement('canvas');
-
-        img.onload = () => {
-            canvas.width = img.width;
-            canvas.height = img.height;
-
-            const context = canvas.getContext('2d');
-
-            context.clearRect(0, 0, img.width, img.height);
-            context.drawImage(img, 0, 0);
-
-            const centerX = img.width - (img.width / 5) - lineWidth;
-            const centerY = img.height - (img.height / 5) - lineWidth;
-            const radius = img.width / 5;
-
-            context.fillStyle = '#dc3545';
-            context.strokeStyle = '#ffffff';
-            context.lineWidth = lineWidth;
-            context.beginPath();
-            context.arc(centerX, centerY, radius, 0, Math.PI * 2, false);
-            context.closePath();
-            context.fill();
-            context.stroke();
-
-            // Replace favicon
-            favicon.href = canvas.toDataURL('image/png');
-        }
-    }
-
 }
