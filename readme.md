@@ -20,6 +20,12 @@
 
 This is a package for creating administration-style applications on the [Laravel](https://laravel.com) framework. Allows you to abstract the common patterns of business applications, so that developers can easily implement beautiful and elegant interfaces without much effort. The main places of application are: backoffice applications, admin panels, content management systems, etc.
 
+
+<a href="https://raw.githubusercontent.com/orchidsoftware/platform/master/.github/IMAGES/promo-full.png">
+<img src="https://raw.githubusercontent.com/orchidsoftware/platform/master/.github/IMAGES/promo-slim.png" alt="Laravel Orchid Platform" align="right" />
+</a>
+
+
 ###### Some features:
 
 - **Form builder** - no need to describe HTML fields of the same type each time.
@@ -28,10 +34,6 @@ This is a package for creating administration-style applications on the [Laravel
 - **Permissions** - offers convenient management in development and support.
 - Menus, graphics, settings, notifications, etc.
  
-###### Screenshot
-
-![screenshot](https://user-images.githubusercontent.com/5102591/61695228-cc133f80-ad3b-11e9-94b7-11661be67b45.png)
-
  ## Getting started
 
 * :uk: To check out the [guide](https://orchid.software/en/docs/), visit [orchid.software](https://orchid.software/en/docs/). 
