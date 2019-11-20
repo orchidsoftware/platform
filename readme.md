@@ -18,7 +18,7 @@
 
 ## Introduction
 
-This is a package for creating administration-style applications on the [Laravel framework](https://laravel.com). Allows you to abstract the common patterns of business applications, so that developers can easily implement beautiful and elegant interfaces without much effort. The main places of application are: backoffice applications, admin panels, content management systems, etc.
+This is a package for creating administration-style applications with the [Laravel framework](https://laravel.com). Allows you to abstract the common patterns of business applications, so that developers can easily implement beautiful and elegant interfaces without much effort. The main places of application are: backoffice applications, admin panels, content management systems, etc.
 
 
 <a href="https://raw.githubusercontent.com/orchidsoftware/platform/master/.github/IMAGES/promo-full.png">
