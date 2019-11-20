@@ -48,13 +48,6 @@ This is a package for creating administration-style applications on the [Laravel
 
 See [CHANGELOG](CHANGELOG.md).
 
-
-## Test
-
-```bash
-php vendor/bin/phpunit --coverage-html ./logs/coverage ./tests
-```
-
 ## Donate & Support
 
 Since the existence of a healthy open source ecosystem creates real value for the software industry, believe it is fair for maintainers and authors of such software to be compensated for their work with real money.
