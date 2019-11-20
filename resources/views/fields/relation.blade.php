@@ -1,4 +1,4 @@
-@component($typeForm,get_defined_vars())
+@component($typeForm, get_defined_vars())
     <div data-controller="fields--relation"
          data-fields--relation-id="{{$id}}"
          data-fields--relation-placeholder="{{$attributes['placeholder'] ?? ''}}"
@@ -9,7 +9,7 @@
          data-fields--relation-scope="{{ $relationScope }}"
          data-fields--relation-route="{{ route('platform.systems.relation') }}"
     >
-        <select id="{{$id}}" data-target="fields--relation.select" @include('platform::partials.fields.attributes', ['attributes' => $attributes])>
+        <select id="{{$id}}" data-target="fields--relation.select" @attributes($attributes)>
         </select>
     </div>
 @endcomponent

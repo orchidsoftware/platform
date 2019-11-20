@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\Request;
 use Orchid\Platform\Http\Layouts\NotificationTable;
@@ -149,5 +150,18 @@ class NotificationScreen extends Screen
         Alert::info(__('All messages have been deleted.'));
 
         return back();
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return LengthAwarePaginator
+     */
+    public function unreadNotification(Request $request)
+    {
+        return $request->user()
+            ->unreadNotifications()
+            ->where('type', DashboardNotification::class)
+            ->paginate();
     }
 }

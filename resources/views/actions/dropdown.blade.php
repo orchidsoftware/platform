@@ -1,6 +1,6 @@
-@component($typeForm,get_defined_vars())
+@component($typeForm, get_defined_vars())
     <button
-        @include('platform::partials.fields.attributes', ['attributes' => $attributes])
+        @attributes($attributes)
             data-toggle="dropdown"
             aria-expanded="false"
     >

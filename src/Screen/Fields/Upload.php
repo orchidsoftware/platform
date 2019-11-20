@@ -9,6 +9,7 @@ use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Dashboard;
 use Orchid\Screen\Field;
 use Orchid\Support\Assert;
+use Orchid\Support\Init;
 
 /**
  * Class Upload.
@@ -71,7 +72,7 @@ class Upload extends Field
         'value'           => null,
         'multiple'        => true,
         'parallelUploads' => 10,
-        'maxFileSize'     => 9999,
+        'maxFileSize'     => null,
         'maxFiles'        => 9999,
         'acceptedFiles'   => null,
         'resizeQuality'   => 0.8,
@@ -136,6 +137,26 @@ class Upload extends Field
      */
     public function __construct()
     {
+
+        // Set max file size
+        $this->addBeforeRender(function () {
+            $maxFileSize = $this->get('maxFileSize');
+
+            $serverMaxFileSize = Init::maxFileUpload(Init::MB);
+
+            if ($maxFileSize === null) {
+                $this->set('maxFileSize', $serverMaxFileSize);
+
+                return;
+            }
+
+            throw_if(
+                $maxFileSize > $serverMaxFileSize,
+                \RuntimeException::class,
+                'Cannot set the desired maximum file sizw. This contradicts the settings specified in .ini');
+        });
+
+        // set load relation attachment
         $this->addBeforeRender(function () {
             $value = Arr::wrap($this->get('value'));
 

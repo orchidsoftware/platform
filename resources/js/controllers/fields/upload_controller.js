@@ -297,6 +297,8 @@ export default class extends Controller {
                 $(`${dropname} .dz-progress`).remove();
             },
             error(file, response) {
+                window.platform.alert('Validation error', 'File upload error');
+
                 if ($.type(response) === 'string') {
                     return response;
                 }

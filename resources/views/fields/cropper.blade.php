@@ -1,4 +1,4 @@
-@component($typeForm,get_defined_vars())
+@component($typeForm, get_defined_vars())
     <div data-controller="fields--cropper"
          data-fields--cropper-value="{{ $attributes['value'] }}"
          data-fields--cropper-storage="{{ $storage ?? 'public' }}"
@@ -33,7 +33,7 @@
         <input class="cropper-path"
                type="hidden"
                data-target="fields--cropper.source"
-                @include('platform::partials.fields.attributes', ['attributes' => $attributes])
+                @attributes($attributes)
         >
 
         <div class="modal" role="dialog">

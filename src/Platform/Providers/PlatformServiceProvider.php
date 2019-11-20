@@ -29,7 +29,7 @@ class PlatformServiceProvider extends ServiceProvider
         $this->dashboard = $dashboard;
 
         View::composer('platform::auth.login', LockMeComposer::class);
-        View::composer('platform::partials.profile', NotificationsComposer::class);
+        View::composer('platform::partials.notificationProfile', NotificationsComposer::class);
 
         $this->app->booted(function () {
             $this->dashboard

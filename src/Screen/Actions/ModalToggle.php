@@ -65,20 +65,32 @@ class ModalToggle extends Action
     }
 
     /**
+     * @param int|string|array $options
+     *
+     * @return ModalToggle
+     */
+    public function asyncParameters($options = []): self
+    {
+        return $this
+            ->set('asyncParameters', Arr::wrap($options))
+            ->set('async', 'true')
+            ->addBeforeRender(function () use ($options) {
+                $method = $this->get('method');
+                $action = route(Route::currentRouteName(), $options);
+                $this->set('action', $action.'/'.$method);
+            });
+    }
+
+    /**
+     * @deprecated
+     *
      * @param string|int $slug
      *
      * @return ModalToggle
      */
     public function asyncParameter($slug): self
     {
-        return $this
-            ->set('asyncParameters', $slug)
-            ->set('async', 'true')
-            ->addBeforeRender(function () use ($slug) {
-                $method = $this->get('method');
-                $action = route(Route::currentRouteName(), $slug);
-                $this->set('action', $action.'/'.$method);
-            });
+        return $this->asyncParameters($slug);
     }
 
     /**
