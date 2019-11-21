@@ -95,13 +95,6 @@ export default class extends Controller {
             badge = '';
         }
 
-
-        let favicon = document.getElementById('favicon');
-        this.application
-            .getControllerForElementAndIdentifier(favicon, "layouts--favicon")
-            .notice(badge !== 0 && badge.length > 0);
-
-
         this.badgeTarget.innerHTML = badge;
     }
 }

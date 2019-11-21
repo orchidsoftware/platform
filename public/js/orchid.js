@@ -23818,7 +23818,6 @@ var map = {
 	"./fields/tinymce_controller.js": "./resources/js/controllers/fields/tinymce_controller.js",
 	"./fields/upload_controller.js": "./resources/js/controllers/fields/upload_controller.js",
 	"./fields/utm_controller.js": "./resources/js/controllers/fields/utm_controller.js",
-	"./layouts/favicon_controller.js": "./resources/js/controllers/layouts/favicon_controller.js",
 	"./layouts/form_controller.js": "./resources/js/controllers/layouts/form_controller.js",
 	"./layouts/html_load_controller.js": "./resources/js/controllers/layouts/html_load_controller.js",
 	"./layouts/notification_controller.js": "./resources/js/controllers/layouts/notification_controller.js",
@@ -26444,125 +26443,6 @@ _defineProperty(_default, "targets", ["url", "source", "medium", "campaign", "te
 
 /***/ }),
 
-/***/ "./resources/js/controllers/layouts/favicon_controller.js":
-/*!****************************************************************!*\
-  !*** ./resources/js/controllers/layouts/favicon_controller.js ***!
-  \****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
-/* harmony import */ var stimulus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! stimulus */ "./node_modules/stimulus/index.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-var _default =
-/*#__PURE__*/
-function (_Controller) {
-  _inherits(_default, _Controller);
-
-  function _default() {
-    _classCallCheck(this, _default);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(_default).apply(this, arguments));
-  }
-
-  _createClass(_default, [{
-    key: "initialize",
-
-    /**
-     *
-     */
-    value: function initialize() {
-      this.data.set('originalFavicon', this.favicon);
-    }
-    /**
-     *
-     * @param isUnreadNotice
-     */
-
-  }, {
-    key: "notice",
-    value: function notice() {
-      var _this = this;
-
-      var isUnreadNotice = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-      var img = document.createElement('img');
-      img.src = this.data.get('originalFavicon');
-      var lineWidth = 2;
-      var canvas = document.createElement('canvas');
-
-      img.onload = function () {
-        canvas.width = img.width;
-        canvas.height = img.height;
-        var context = canvas.getContext('2d');
-        context.clearRect(0, 0, img.width, img.height);
-        context.drawImage(img, 0, 0);
-
-        if (isUnreadNotice) {
-          var centerX = img.width - img.width / 5 - lineWidth;
-          var centerY = img.height - img.height / 5 - lineWidth;
-          var radius = img.width / 5;
-          context.fillStyle = '#dc3545';
-          context.strokeStyle = '#ffffff';
-          context.lineWidth = lineWidth;
-          context.beginPath();
-          context.arc(centerX, centerY, radius, 0, Math.PI * 2, false);
-          context.closePath();
-          context.fill();
-          context.stroke();
-        } // Replace favicon
-
-
-        _this.favicon = canvas.toDataURL('image/png');
-      };
-    }
-    /**
-     *
-     * @returns {*}
-     */
-
-  }, {
-    key: "favicon",
-    get: function get() {
-      return this.element.href;
-    }
-    /**
-     *
-     * @param href
-     */
-    ,
-    set: function set(href) {
-      this.element.href = href;
-    }
-  }]);
-
-  return _default;
-}(stimulus__WEBPACK_IMPORTED_MODULE_0__["Controller"]);
-
-
-
-/***/ }),
-
 /***/ "./resources/js/controllers/layouts/form_controller.js":
 /*!*************************************************************!*\
   !*** ./resources/js/controllers/layouts/form_controller.js ***!
@@ -27147,8 +27027,6 @@ function (_Controller) {
         badge = '';
       }
 
-      var favicon = document.getElementById('favicon');
-      this.application.getControllerForElementAndIdentifier(favicon, "layouts--favicon").notice(badge !== 0 && badge.length > 0);
       this.badgeTarget.innerHTML = badge;
     }
   }]);
