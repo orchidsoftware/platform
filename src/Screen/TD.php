@@ -95,6 +95,14 @@ class TD
     protected $allowUserHidden = true;
 
     /**
+     * Should the user independently enable
+     * the display of the column.
+     *
+     * @var bool
+     */
+    protected $defaultHidden = false;
+
+    /**
      * TD constructor.
      *
      * @param string $name
@@ -349,8 +357,9 @@ class TD
         }
 
         return view('platform::partials.layouts.selectedTd', [
-            'title' => $this->title,
-            'slug'  => $this->sluggable(),
+            'title'         => $this->title,
+            'slug'          => $this->sluggable(),
+            'defaultHidden' => var_export($this->defaultHidden, true),
         ]);
     }
 
@@ -365,11 +374,25 @@ class TD
     /**
      * Prevents the user from hiding a column in the interface.
      *
+     * @param bool $hidden
+     *
      * @return TD
      */
-    public function cannotHide(): self
+    public function canHide($hidden = false): self
     {
-        $this->allowUserHidden = false;
+        $this->allowUserHidden = $hidden;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $hidden
+     *
+     * @return $this
+     */
+    public function defaultHidden($hidden = true): self
+    {
+        $this->defaultHidden = $hidden;
 
         return $this;
     }

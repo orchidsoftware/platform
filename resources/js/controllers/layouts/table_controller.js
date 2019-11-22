@@ -16,11 +16,26 @@ export default class extends Controller {
      *
      */
     connect() {
+        this.allowDefaultHidden();
         this.renderColumn();
 
-        $('.dropdown-column-menu').click(function(e) {
+        $('.dropdown-column-menu').click((e) => {
             e.stopPropagation();
         });
+    }
+
+    /**
+     * Sets default hidden columns
+     */
+    allowDefaultHidden() {
+        if (localStorage.getItem(this.slug) !== null) {
+            return;
+        }
+
+        this.element.querySelectorAll('input[data-default-hidden="true"]')
+            .forEach((checkbox) => {
+                this.hideColumn(checkbox.dataset.column);
+            });
     }
 
     /**
