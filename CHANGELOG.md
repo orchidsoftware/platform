@@ -4,13 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 6.6.0 - 2019-11-15
+## 6.6.0 - 2019-11-24
 
 ### Added
 - Method `asyncParameters` for ModalToggle
+- Notification background update and tab synchronization [#1009](https://github.com/orchidsoftware/platform/issues/1009)
+- Blade directive `@attributes`
+
+### Changed
+- Update npm packages
 
 ### Deprecated
 - Method `asyncParameter` for ModalToggle
+
+### Fixed
+- Init class to get PHP system parameters [#1019](https://github.com/orchidsoftware/platform/issues/1019)
+- Upload field error notification [#1019](https://github.com/orchidsoftware/platform/issues/1019)
 
 ## 6.5.3 - 2019-11-13
 
