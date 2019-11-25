@@ -53,6 +53,6 @@ class EmptyUserModel extends Model
      */
     public function getFullAttribute(): string
     {
-        return $this->attributes['name'] . ' (' . $this->attributes['email'] . ')';
+        return $this->attributes['name'].' ('.$this->attributes['email'].')';
     }
 }

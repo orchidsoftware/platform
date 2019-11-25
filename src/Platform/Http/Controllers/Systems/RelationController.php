@@ -67,7 +67,7 @@ class RelationController extends Controller
         }
 
         return $model
-            ->where($name, 'like', '%' . $search . '%')
+            ->where($name, 'like', '%'.$search.'%')
             ->limit(10)
             ->get()
             ->pluck($append ?? $name, $key);
