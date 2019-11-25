@@ -47,4 +47,12 @@ class EmptyUserModel extends Model
     {
         return $query->where('name', 'RelationTest')->get()->all();
     }
+
+    /**
+     * @return string
+     */
+    public function getFullAttribute(): string
+    {
+        return $this->attributes['name'] . ' (' . $this->attributes['email'] . ')';
+    }
 }

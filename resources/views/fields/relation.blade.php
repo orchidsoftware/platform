@@ -7,6 +7,7 @@
          data-fields--relation-name="{{ $relationName }}"
          data-fields--relation-key="{{ $relationKey }}"
          data-fields--relation-scope="{{ $relationScope }}"
+         data-fields--relation-append="{{ $relationAppend }}"
          data-fields--relation-route="{{ route('platform.systems.relation') }}"
     >
         <select id="{{$id}}" data-target="fields--relation.select" @attributes($attributes)>
