@@ -21,15 +21,16 @@ class RelationController extends Controller
     public function view(RelationRequest $request)
     {
         [
-            'model' => $model,
-            'name'  => $name,
-            'key'   => $key,
-            'scope' => $scope,
+            'model'  => $model,
+            'name'   => $name,
+            'key'    => $key,
+            'scope'  => $scope,
+            'append' => $append,
         ] = collect($request->except(['search']))->map(static function ($item) {
             return is_null($item) ? null : Crypt::decryptString($item);
         });
 
-        /** @var Model $builder */
+        /** @var Model $model */
         $model = new $model;
         $search = $request->get('search', '');
 
@@ -37,7 +38,7 @@ class RelationController extends Controller
             $model = $model->{$scope}();
         }
 
-        $items = $this->getItems($model, $name, $key, $search, $scope);
+        $items = $this->getItems($model, $name, $key, $search, $scope, $append);
 
         return response()->json($items);
     }
@@ -49,12 +50,17 @@ class RelationController extends Controller
      * @param string             $search
      * @param string|null        $scope
      *
+     * @param string|null        $append
+     *
      * @return Collection|array
      */
-    private function getItems($model, string $name, string $key, string $search = null, string $scope = null): iterable
+    private function getItems($model, string $name, string $key, string $search = null, string $scope = null, string $append = null): iterable
     {
         if (is_subclass_of($model, Model::class)) {
-            return $model->where($name, 'like', '%'.$search.'%')->limit(10)->pluck($name, $key);
+            return $model->where($name, 'like', '%'.$search.'%')
+                ->limit(10)
+                ->get()
+                ->pluck($append ?? $name, $key);
         }
 
         if (! is_array($model) && property_exists($model, 'search')) {

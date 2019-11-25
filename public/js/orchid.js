@@ -25223,6 +25223,7 @@ function (_Controller) {
       var name = this.data.get('name');
       var key = this.data.get('key');
       var scope = this.data.get('scope');
+      var append = this.data.get('append');
       $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
@@ -25261,7 +25262,8 @@ function (_Controller) {
               model: model,
               name: name,
               key: key,
-              scope: scope
+              scope: scope,
+              append: append
             };
           }
         },

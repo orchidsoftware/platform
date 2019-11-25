@@ -40,7 +40,8 @@ class Relation extends Field
     protected $attributes = [
         'class'         => 'form-control',
         'value'         => [],
-        'relationScope' => '',
+        'relationScope' => null,
+        'relationAppend' => null,
     ];
 
     /**
@@ -52,6 +53,7 @@ class Relation extends Field
         'relationName',
         'relationKey',
         'relationScope',
+        'relationAppend'
     ];
 
     /**
@@ -75,17 +77,17 @@ class Relation extends Field
     /**
      * @param string|null $name
      *
-     * @return self
+     * @return Relation
      */
-    public static function make(string $name = null): self
+    public static function make(string $name = null): Relation
     {
         return (new static())->name($name);
     }
 
     /**
-     * @return self
+     * @return Relation
      */
-    public function multiple(): self
+    public function multiple(): Relation
     {
         $this->attributes['multiple'] = 'multiple';
 
@@ -97,9 +99,9 @@ class Relation extends Field
      * @param string       $name
      * @param string|null  $key
      *
-     * @return self
+     * @return Relation
      */
-    public function fromModel(string $model, string $name, string $key = null): self
+    public function fromModel(string $model, string $name, string $key = null): Relation
     {
         $key = $key ?? (new $model())->getModel()->getKeyName();
 
@@ -108,6 +110,14 @@ class Relation extends Field
         $this->set('relationKey', Crypt::encryptString($key));
 
         return $this->addBeforeRender(function () use ($model, $name, $key) {
+
+            $append = $this->get('relationAppend');
+
+            if (is_string($append)) {
+                $append = Crypt::decryptString($append);
+            }
+
+            $text = $append ?? $name;
             $value = $this->get('value');
 
             if (! is_iterable($value)) {
@@ -119,10 +129,10 @@ class Relation extends Field
             }
 
             $value = collect($value)
-                ->map(static function ($item) use ($name, $key) {
+                ->map(static function ($item) use ($text, $key) {
                     return [
                         'id'   => $item->$key,
-                        'text' => $item->$name,
+                        'text' => $item->$text,
                     ];
                 })->toJson();
 
@@ -135,9 +145,9 @@ class Relation extends Field
      * @param string $name
      * @param string $key
      *
-     * @return self
+     * @return Relation
      */
-    public function fromClass(string $class, string $name, string $key = 'id'): self
+    public function fromClass(string $class, string $name, string $key = 'id'): Relation
     {
         $this->set('relationModel', Crypt::encryptString($class));
         $this->set('relationName', Crypt::encryptString($name));
@@ -145,42 +155,37 @@ class Relation extends Field
 
         return $this->addBeforeRender(function () use ($class, $name, $key) {
             $value = $this->get('value');
-            if (! empty($value)) {
-                $scope = $this->get('scope', 'handler');
-                $class = app()->make($class);
 
-                if (! is_iterable($value)) {
-                    $value = Arr::wrap($value);
-                }
-
-                if (property_exists($class, 'value') && Assert::isIntArray($value)) {
-                    $class->value = $value;
-                }
-
-                $class = $class->{$scope}();
-
-                $item = collect($class)
-                    ->whereIn($key, $value)
-                    ->all();
-
-                if (is_array($item)) {
-                    $item = collect(array_values($item));
-                }
-
-                $value = collect($item)
-                    ->map(static function ($item) use ($name, $key) {
-                        if (is_array($item)) {
-                            $item = collect($item);
-                        }
-
-                        return [
-                            'id'   => $item->get($key),
-                            'text' => $item->get($name),
-                        ];
-                    })->toJson();
-            } else {
-                $value = json_encode($value);
+            if (empty($value)) {
+                return $this->set('value', json_encode($value));
             }
+
+            $scope = $this->get('scope', 'handler');
+            $class = app()->make($class);
+
+            if (!is_iterable($value)) {
+                $value = Arr::wrap($value);
+            }
+
+            if (property_exists($class, 'value') && Assert::isIntArray($value)) {
+                $class->value = $value;
+            }
+
+            $class = $class->{$scope}();
+
+            $item = collect($class)
+                ->whereIn($key, $value)
+                ->values();
+
+            $value = collect($item)
+                ->map(static function ($item) use ($name, $key) {
+                    $item = is_array($item) ? collect($item) : $item;
+
+                    return [
+                        'id'   => $item->get($key),
+                        'text' => $item->get($name),
+                    ];
+                })->toJson();
 
             $this->set('value', $value);
         });
@@ -189,13 +194,28 @@ class Relation extends Field
     /**
      * @param string $scope
      *
-     * @return $this
+     * @return Relation
      */
-    public function applyScope(string $scope): self
+    public function applyScope(string $scope): Relation
     {
         $scope = lcfirst($scope);
         $this->set('scope', $scope);
         $this->set('relationScope', Crypt::encryptString($scope));
+
+        return $this;
+    }
+
+    /**
+     * Displays the calculated model
+     * field in the selection field.
+     *
+     * @param string $append
+     *
+     * @return Relation
+     */
+    public function displayAppend(string $append): Relation
+    {
+        $this->set('relationAppend', Crypt::encryptString($append));
 
         return $this;
     }
