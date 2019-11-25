@@ -38,9 +38,9 @@ class Relation extends Field
      * @var array
      */
     protected $attributes = [
-        'class'         => 'form-control',
-        'value'         => [],
-        'relationScope' => null,
+        'class'          => 'form-control',
+        'value'          => [],
+        'relationScope'  => null,
         'relationAppend' => null,
     ];
 
@@ -53,7 +53,7 @@ class Relation extends Field
         'relationName',
         'relationKey',
         'relationScope',
-        'relationAppend'
+        'relationAppend',
     ];
 
     /**
@@ -79,7 +79,7 @@ class Relation extends Field
      *
      * @return Relation
      */
-    public static function make(string $name = null): Relation
+    public static function make(string $name = null): self
     {
         return (new static())->name($name);
     }
@@ -87,7 +87,7 @@ class Relation extends Field
     /**
      * @return Relation
      */
-    public function multiple(): Relation
+    public function multiple(): self
     {
         $this->attributes['multiple'] = 'multiple';
 
@@ -101,7 +101,7 @@ class Relation extends Field
      *
      * @return Relation
      */
-    public function fromModel(string $model, string $name, string $key = null): Relation
+    public function fromModel(string $model, string $name, string $key = null): self
     {
         $key = $key ?? (new $model())->getModel()->getKeyName();
 
@@ -110,7 +110,6 @@ class Relation extends Field
         $this->set('relationKey', Crypt::encryptString($key));
 
         return $this->addBeforeRender(function () use ($model, $name, $key) {
-
             $append = $this->get('relationAppend');
 
             if (is_string($append)) {
@@ -147,7 +146,7 @@ class Relation extends Field
      *
      * @return Relation
      */
-    public function fromClass(string $class, string $name, string $key = 'id'): Relation
+    public function fromClass(string $class, string $name, string $key = 'id'): self
     {
         $this->set('relationModel', Crypt::encryptString($class));
         $this->set('relationName', Crypt::encryptString($name));
@@ -163,7 +162,7 @@ class Relation extends Field
             $scope = $this->get('scope', 'handler');
             $class = app()->make($class);
 
-            if (!is_iterable($value)) {
+            if (! is_iterable($value)) {
                 $value = Arr::wrap($value);
             }
 
@@ -196,7 +195,7 @@ class Relation extends Field
      *
      * @return Relation
      */
-    public function applyScope(string $scope): Relation
+    public function applyScope(string $scope): self
     {
         $scope = lcfirst($scope);
         $this->set('scope', $scope);
@@ -213,7 +212,7 @@ class Relation extends Field
      *
      * @return Relation
      */
-    public function displayAppend(string $append): Relation
+    public function displayAppend(string $append): self
     {
         $this->set('relationAppend', Crypt::encryptString($append));
 
