@@ -79,11 +79,10 @@ class RelationController extends Controller
      * @param string             $key
      * @param string             $search
      * @param string|null        $scope
-     * @param string|null        $append
      *
      * @return Collection|array
      */
-    private function getItems($model, string $name, string $key, string $search = null, string $scope = null, string $append = null): iterable
+    private function getItems($model, string $name, string $key, string $search = null, string $scope = null): iterable
     {
         if (! is_array($model) && property_exists($model, 'search')) {
             $model->search = $search;
