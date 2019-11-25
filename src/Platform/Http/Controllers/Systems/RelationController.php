@@ -79,7 +79,6 @@ class RelationController extends Controller
      * @param string             $key
      * @param string             $search
      * @param string|null        $scope
-     *
      * @param string|null        $append
      *
      * @return Collection|array
