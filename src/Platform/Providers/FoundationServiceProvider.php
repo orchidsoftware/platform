@@ -151,16 +151,16 @@ class FoundationServiceProvider extends ServiceProvider
                         continue;
                     }
                     if (is_bool($value)) {
-                        echo e($name);
+                        echo e($name)." ";
                         continue;
                     }
 
                     if (is_array($value)) {
-                        echo json_decode($value, true, 512, JSON_THROW_ON_ERROR);
+                        echo json_decode($value, true, 512, JSON_THROW_ON_ERROR)." ";
                         continue;
                     }
 
-                    echo e($name) . \'="\' . e($value) . \'"\';
+                    echo e($name) . \'="\' . e($value) . \'"\'." ";
                 }
             }';
 
