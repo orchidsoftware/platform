@@ -4,6 +4,7 @@ dist: xenial
 php:
   - 7.2
   - 7.3
+  - 7.4
 
 node_js:
   - 10
