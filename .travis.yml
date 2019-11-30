@@ -21,7 +21,7 @@ before_script:
    - chmod -R o+w vendor/orchestra
    
 script:
-   - vendor/bin/phpunit --coverage-clover=coverage.xml
+   - vendor/bin/phpunit --coverage-clover=coverage.xml --stop-on-failure
   
 after_success:
     - bash <(curl -s https://codecov.io/bash)
