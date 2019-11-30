@@ -17,12 +17,13 @@ cache:
 
 before_script:
    - travis_retry composer self-update
+   - travis_retry composer clear-cache
    - travis_retry composer install --no-interaction --prefer-dist --no-suggest
    - chmod -R o+w vendor/orchestra
-   
+
 script:
-   - vendor/bin/phpunit --coverage-clover=coverage.xml --stop-on-failure
-  
+  - vendor/bin/phpunit --coverage-clover=coverage.xml
+
 after_success:
     - bash <(curl -s https://codecov.io/bash)
 
