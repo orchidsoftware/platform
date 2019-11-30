@@ -263,9 +263,16 @@ class Field implements FieldContract
      */
     protected function getId(): string
     {
+        $id = $this->get('id');
+
+        if ($id !== null) {
+            return (string)$id;
+        }
+
+
         $lang = $this->get('lang');
         $slug = $this->get('name');
-        $hash = sha1(json_encode($this->getAttributes()));
+        $hash = sha1(json_encode($this->getAttributes(), JSON_THROW_ON_ERROR, 512));
 
         return Str::slug("field-$lang-$slug-$hash");
     }
