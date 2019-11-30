@@ -378,7 +378,7 @@ class Field implements FieldContract
      */
     protected function modifyValue()
     {
-        $value = $this->get('value') ?? $this->getOldValue();
+        $value = $this->getOldValue() ?? $this->get('value');
 
         $this->set('value', $value);
 
