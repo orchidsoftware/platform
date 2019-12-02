@@ -12,7 +12,6 @@ use Orchid\Tests\TestUnitCase;
 class UserTest extends TestUnitCase
 {
     /**
-     * @test
      */
     public function testHasCorrectInstance()
     {
@@ -23,7 +22,6 @@ class UserTest extends TestUnitCase
     }
 
     /**
-     * @test
      */
     public function testCanGetNameTitle()
     {
@@ -41,7 +39,6 @@ class UserTest extends TestUnitCase
     }
 
     /**
-     * @test
      */
     public function testCanGetSubTitle()
     {

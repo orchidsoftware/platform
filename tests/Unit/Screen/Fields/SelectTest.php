@@ -27,7 +27,6 @@ class SelectTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testInstance()
     {
@@ -55,7 +54,6 @@ class SelectTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testNeedRequire()
     {
@@ -69,7 +67,6 @@ class SelectTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testSetValue()
     {
@@ -87,7 +84,6 @@ class SelectTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testAutoFocus()
     {
@@ -100,7 +96,6 @@ class SelectTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testEmptyForAssociativeArray()
     {
@@ -126,7 +121,6 @@ class SelectTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testEmptyForNumericArray()
     {
@@ -152,7 +146,6 @@ class SelectTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testEmptyFromModel()
     {

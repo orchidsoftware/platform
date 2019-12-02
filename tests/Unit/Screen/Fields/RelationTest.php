@@ -28,7 +28,6 @@ class RelationTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testInstance()
     {
@@ -47,7 +46,6 @@ class RelationTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testInstanceArray()
     {
@@ -66,7 +64,6 @@ class RelationTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testMultipleInstance()
     {
@@ -84,7 +81,6 @@ class RelationTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testMultipleInstanceArray()
     {
@@ -105,7 +101,6 @@ class RelationTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testAJAXClass()
     {

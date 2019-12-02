@@ -13,7 +13,7 @@ use Orchid\Tests\TestUnitCase;
  */
 class AlertTest extends TestUnitCase
 {
-    /** @test */
+    /** */
     public function testHelperAlert()
     {
         alert('test');
@@ -64,7 +64,6 @@ class AlertTest extends TestUnitCase
     }
 
     /**
-     * @test
      */
     public function testShouldFlashViewAlert()
     {
@@ -77,7 +76,6 @@ class AlertTest extends TestUnitCase
     }
 
     /**
-     * @test
      */
     public function testShouldCheckAlert()
     {

@@ -14,7 +14,6 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 class TimeZoneTest extends TestFieldsUnitCase
 {
     /**
-     * @test
      */
     public function testInstance()
     {
@@ -28,7 +27,6 @@ class TimeZoneTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testNeedRequire()
     {
@@ -41,7 +39,6 @@ class TimeZoneTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testSetValue()
     {
@@ -54,7 +51,6 @@ class TimeZoneTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testSetMultipleValue()
     {
@@ -72,7 +68,6 @@ class TimeZoneTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testListIdentifiers()
     {

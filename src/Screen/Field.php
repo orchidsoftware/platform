@@ -253,9 +253,11 @@ class Field implements FieldContract
      */
     protected function getAllowDataAttributes()
     {
-        return $this->getAllowAttributes()->filter(function ($value, $key) {
-            return Str::startsWith($key, 'data-');
-        });
+        return $this->getAllowAttributes()
+            ->keys()
+            ->filter(function ($key) {
+                return Str::startsWith($key, 'data-');
+            });
     }
 
     /**

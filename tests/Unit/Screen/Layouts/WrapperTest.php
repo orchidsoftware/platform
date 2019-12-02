@@ -47,7 +47,7 @@ class WrapperTest extends TestUnitCase
 
         $this->assertIsArray($data);
         $this->assertIsArray($data['variable1']);
-        $this->assertEquals(3, count($data['variable1']));
+        $this->assertCount(3, $data['variable1']);
 
         /** @var View[] $variable1 */
         $variable1 = $data['variable1'];
