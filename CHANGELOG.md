@@ -4,11 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 6.7.2 - 2019-11-30
+## 6.7.2 - 2019-12-03
 
 ### Fixed
 - Allow custom `id` from fields [#1022](https://github.com/orchidsoftware/platform/issues/1022)
-- The old input value is displayed on error.
 
 ## 6.7.1 - 2019-11-26
 
