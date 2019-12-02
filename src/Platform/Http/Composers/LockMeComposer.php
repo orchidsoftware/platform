@@ -33,6 +33,7 @@ class LockMeComposer
      *
      * @param Request $request
      * @param Guard   $guard
+     * @param Factory $factoryView
      */
     public function __construct(Request $request, Guard $guard, Factory $factoryView)
     {

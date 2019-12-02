@@ -13,7 +13,6 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 class ButtonTest extends TestFieldsUnitCase
 {
     /**
-     * @test
      */
     public function testButtonInstance()
     {
@@ -28,7 +27,6 @@ class ButtonTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testButtonParams()
     {
@@ -47,7 +45,6 @@ class ButtonTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testButtonTitle()
     {
@@ -64,7 +61,6 @@ class ButtonTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testButtonDisableTurbolinks()
     {
@@ -81,7 +77,6 @@ class ButtonTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testButtonEnabledTurbolinks()
     {

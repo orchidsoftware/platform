@@ -15,7 +15,6 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 class CropperTest extends TestFieldsUnitCase
 {
     /**
-     * @test
      */
     public function testInstance()
     {
@@ -30,7 +29,6 @@ class CropperTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testValueTargetId()
     {

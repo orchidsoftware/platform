@@ -13,7 +13,6 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 class TextAreaTest extends TestFieldsUnitCase
 {
     /**
-     * @test
      */
     public function testInstance()
     {
@@ -31,7 +30,6 @@ class TextAreaTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testNeedRequire()
     {
@@ -44,7 +42,6 @@ class TextAreaTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testSetRows()
     {
@@ -57,7 +54,6 @@ class TextAreaTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testPlaceHolder()
     {

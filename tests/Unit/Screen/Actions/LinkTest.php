@@ -13,7 +13,6 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 class LinkTest extends TestFieldsUnitCase
 {
     /**
-     * @test
      */
     public function testLinkInstance()
     {
@@ -26,7 +25,6 @@ class LinkTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testLinkTarget()
     {
@@ -39,7 +37,6 @@ class LinkTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testLinkDownload()
     {
@@ -52,7 +49,6 @@ class LinkTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testLinkTitle()
     {
@@ -66,7 +62,6 @@ class LinkTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testLinkHref()
     {
@@ -79,7 +74,6 @@ class LinkTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testLinkDisableTurbolinks()
     {

@@ -15,7 +15,6 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 class DropDownTest extends TestFieldsUnitCase
 {
     /**
-     * @test
      */
     public function testDropDownInstance()
     {
@@ -26,7 +25,6 @@ class DropDownTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testDropDownTitle()
     {
@@ -39,7 +37,6 @@ class DropDownTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testDropDownListTitle()
     {

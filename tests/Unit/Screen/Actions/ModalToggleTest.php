@@ -13,7 +13,6 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 class ModalToggleTest extends TestFieldsUnitCase
 {
     /**
-     * @test
      */
     public function testModalToggleInstance()
     {
@@ -24,7 +23,6 @@ class ModalToggleTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testModalToggleTitle()
     {
@@ -37,7 +35,6 @@ class ModalToggleTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testModalToggleModalKey()
     {
@@ -59,7 +56,6 @@ class ModalToggleTest extends TestFieldsUnitCase
     }
 
     /**
-     * @test
      */
     public function testModalToggleModalParams()
     {
