@@ -12,8 +12,6 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
  */
 class TextAreaTest extends TestFieldsUnitCase
 {
-    /**
-     */
     public function testInstance()
     {
         $textArea = TextArea::make('about')
@@ -29,8 +27,6 @@ class TextAreaTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Think about what you want to tell', $view);
     }
 
-    /**
-     */
     public function testNeedRequire()
     {
         $textArea = TextArea::make('about')
@@ -41,8 +37,6 @@ class TextAreaTest extends TestFieldsUnitCase
         $this->assertStringContainsString('required', $view);
     }
 
-    /**
-     */
     public function testSetRows()
     {
         $textArea = TextArea::make('about')
@@ -53,8 +47,6 @@ class TextAreaTest extends TestFieldsUnitCase
         $this->assertStringContainsString('rows="10"', $view);
     }
 
-    /**
-     */
     public function testPlaceHolder()
     {
         $textArea = TextArea::make('about')

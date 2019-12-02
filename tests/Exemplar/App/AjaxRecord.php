@@ -38,7 +38,7 @@ class AjaxRecord
 
         if (! is_null($this->key)) {
             foreach ($data as $key => $result) {
-                if ($result['id'] === (int)$this->key) {
+                if ($result['id'] === (int) $this->key) {
                     return $data[$key];
                 }
             }

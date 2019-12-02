@@ -14,8 +14,6 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
  */
 class CropperTest extends TestFieldsUnitCase
 {
-    /**
-     */
     public function testInstance()
     {
         $picture = Cropper::make('picture')
@@ -28,8 +26,6 @@ class CropperTest extends TestFieldsUnitCase
         $this->assertStringContainsString('https://example.com/img.jpg', $view);
     }
 
-    /**
-     */
     public function testValueTargetId()
     {
         $file = UploadedFile::fake()->create('document.jpg', 200);

@@ -12,8 +12,6 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
  */
 class LinkTest extends TestFieldsUnitCase
 {
-    /**
-     */
     public function testLinkInstance()
     {
         $link = Link::make('About');
@@ -24,8 +22,6 @@ class LinkTest extends TestFieldsUnitCase
         $this->assertStringContainsString('data-turbolinks="true"', $view);
     }
 
-    /**
-     */
     public function testLinkTarget()
     {
         $link = Link::make('About')
@@ -36,8 +32,6 @@ class LinkTest extends TestFieldsUnitCase
         $this->assertStringContainsString('target="_blank"', $view);
     }
 
-    /**
-     */
     public function testLinkDownload()
     {
         $link = Link::make('About')
@@ -48,8 +42,6 @@ class LinkTest extends TestFieldsUnitCase
         $this->assertStringContainsString('download', $view);
     }
 
-    /**
-     */
     public function testLinkTitle()
     {
         $link = Link::make('About')
@@ -61,8 +53,6 @@ class LinkTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Please click to download the file.', $view);
     }
 
-    /**
-     */
     public function testLinkHref()
     {
         $link = Link::make('About')
@@ -73,8 +63,6 @@ class LinkTest extends TestFieldsUnitCase
         $this->assertStringContainsString('href="https://google.com"', $view);
     }
 
-    /**
-     */
     public function testLinkDisableTurbolinks()
     {
         $link = Link::make('About')

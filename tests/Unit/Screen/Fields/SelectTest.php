@@ -26,8 +26,6 @@ class SelectTest extends TestFieldsUnitCase
         $this->roles = factory(Role::class)->times(10)->create();
     }
 
-    /**
-     */
     public function testInstance()
     {
         $select = Select::make('choice')
@@ -53,8 +51,6 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Think about what you want to tell', $view);
     }
 
-    /**
-     */
     public function testNeedRequire()
     {
         $select = Select::make('choice')
@@ -66,8 +62,6 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('required', $view);
     }
 
-    /**
-     */
     public function testSetValue()
     {
         $select = Select::make('choice')
@@ -83,8 +77,6 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('value="second" selected', $view);
     }
 
-    /**
-     */
     public function testAutoFocus()
     {
         $select = TextArea::make('about')
@@ -95,8 +87,6 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('autofocus', $view);
     }
 
-    /**
-     */
     public function testEmptyForAssociativeArray()
     {
         $options = [
@@ -120,8 +110,6 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString($option, $view);
     }
 
-    /**
-     */
     public function testEmptyForNumericArray()
     {
         $options = [
@@ -145,8 +133,6 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString($option, $view);
     }
 
-    /**
-     */
     public function testEmptyFromModel()
     {
         $select = Select::make('choice')

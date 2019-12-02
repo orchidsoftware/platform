@@ -13,7 +13,6 @@ use Orchid\Tests\TestUnitCase;
  */
 class AlertTest extends TestUnitCase
 {
-    /** */
     public function testHelperAlert()
     {
         alert('test');
@@ -63,8 +62,6 @@ class AlertTest extends TestUnitCase
         self::assertEquals('3000', session('toast_notification.delay'));
     }
 
-    /**
-     */
     public function testShouldFlashViewAlert()
     {
         Alert::view('exemplar::alert', 'info', [
@@ -75,8 +72,6 @@ class AlertTest extends TestUnitCase
         self::assertEquals('info', session('flash_notification.level'));
     }
 
-    /**
-     */
     public function testShouldCheckAlert()
     {
         self::assertFalse(Alert::check());
