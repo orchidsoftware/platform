@@ -115,8 +115,9 @@ class RoleEditScreen extends Screen
     /**
      * @param Role $role
      *
-     * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function remove(Role $role)
     {

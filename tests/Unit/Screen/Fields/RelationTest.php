@@ -27,8 +27,6 @@ class RelationTest extends TestFieldsUnitCase
         $this->roles = factory(Role::class)->times(10)->create();
     }
 
-    /**
-     */
     public function testInstance()
     {
         /** @var Role $current */
@@ -45,8 +43,6 @@ class RelationTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Select role', $view);
     }
 
-    /**
-     */
     public function testInstanceArray()
     {
         /** @var Role $current */
@@ -63,8 +59,6 @@ class RelationTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Select roles', $view);
     }
 
-    /**
-     */
     public function testMultipleInstance()
     {
         /** @var Role $current */
@@ -80,8 +74,6 @@ class RelationTest extends TestFieldsUnitCase
         $this->assertStringContainsString($current[1]->name, $view);
     }
 
-    /**
-     */
     public function testMultipleInstanceArray()
     {
         /** @var Role $current */
@@ -100,8 +92,6 @@ class RelationTest extends TestFieldsUnitCase
         $this->assertStringContainsString($current[1]->name, $view);
     }
 
-    /**
-     */
     public function testAJAXClass()
     {
         $select = Relation::make('role.')
