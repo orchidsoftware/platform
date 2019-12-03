@@ -156,7 +156,7 @@ class FoundationServiceProvider extends ServiceProvider
                     }
 
                     if (is_array($value)) {
-                        echo json_decode($value, true, 512, JSON_THROW_ON_ERROR)." ";
+                        echo json_decode($value)." ";
                         continue;
                     }
 
