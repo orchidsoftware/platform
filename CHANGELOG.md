@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Allow custom `id` from fields [#1022](https://github.com/orchidsoftware/platform/issues/1022)
+- The old input value is displayed on error.
+- Incorrect use `JSON_THROW_ON_ERROR` for `php7.2`
 
 ## 6.7.1 - 2019-11-26
 
