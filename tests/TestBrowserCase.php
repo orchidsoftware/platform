@@ -4,23 +4,21 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
-use App\Orchid\PlatformProvider;
-use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
+use DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator;
+use DaveJamesMiller\Breadcrumbs\BreadcrumbsManager;
+use Orchestra\Testbench\Dusk\TestCase;
 use Orchid\Database\Seeds\OrchidDatabaseSeeder;
 use Orchid\Platform\Models\User;
 use Orchid\Platform\Providers\FoundationServiceProvider;
-use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
-use Orchid\Tests\Exemplar\ExemplarServiceProvider;
-use Watson\Active\Active;
-use DaveJamesMiller\Breadcrumbs\BreadcrumbsManager;
-use DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator;
 
 /**
- * Trait Environment.
+ * Class TestConsoleCase.
  */
-trait Environment
+abstract class TestBrowserCase extends TestCase
 {
+    use Environment;
+
     /**
      * Setup the test environment.
      * Run test: php vendor/bin/phpunit --coverage-html ./logs/coverage ./tests
@@ -33,6 +31,25 @@ trait Environment
         $this->loadLaravelMigrations();
         $this->loadMigrationsFrom(realpath('./database/migrations'));
         $this->artisan('migrate', ['--database' => 'orchid']);
+
+
+        $this->artisan('vendor:publish',
+        [
+            '--force' => true,
+            '--tag'   => 'migrations',
+        ]);
+
+       $this->artisan('vendor:publish', [
+            '--provider' => FoundationServiceProvider::class,
+            '--force'    => true,
+            '--tag'      => [
+                'config',
+                'migrations',
+                'orchid-stubs',
+            ], ]);
+
+        $this->artisan('migrate', ['--database' => 'orchid']);
+
 
         $this->withFactories(Dashboard::path('database/factories'));
 
@@ -48,23 +65,27 @@ trait Environment
     }
 
     /**
+     * Define environment setup.
+     *
      * @param \Illuminate\Foundation\Application $app
      */
     protected function getEnvironmentSetUp($app)
     {
+        parent::getEnvironmentSetUp($app);
         $config = config();
+
         $config->set('app.debug', true);
         $config->set('auth.providers.users.model', User::class);
-
-        // set up database configuration
+        $config->set('database.default', 'sqlite');
         $config->set('database.connections.orchid', [
-            'driver'   => 'sqlite',
-            'database' => ':memory:',
-            'prefix'   => '',
+            'driver'                  => 'sqlite',
+            'url'                     => env('DATABASE_URL'),
+            'database'                => env('DB_DATABASE', database_path('database.sqlite')),
+            'prefix'                  => '',
+            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ]);
+
         $config->set('scout.driver', null);
-        $config->set('database.default', 'orchid');
-        $config->set('session.driver', 'array');
 
         $config->set('breadcrumbs', [
             'view'                                     => 'breadcrumbs::bootstrap4',
@@ -75,33 +96,5 @@ trait Environment
             'manager-class'                            => BreadcrumbsManager::class,
             'generator-class'                          => BreadcrumbsGenerator::class,
         ]);
-    }
-
-    /**
-     * @param \Illuminate\Foundation\Application $app
-     *
-     * @return array
-     */
-    protected function getPackageProviders($app)
-    {
-        return [
-            FoundationServiceProvider::class,
-            ExemplarServiceProvider::class
-        ];
-    }
-
-    /**
-     * @param \Illuminate\Foundation\Application $app
-     *
-     * @return array
-     */
-    protected function getPackageAliases($app)
-    {
-        return [
-            'Alert'       => Alert::class,
-            'Active'      => Active::class,
-            'Breadcrumbs' => Breadcrumbs::class,
-            'Dashboard'   => Dashboard::class,
-        ];
     }
 }
