@@ -253,9 +253,7 @@ class Field implements FieldContract
      */
     protected function getAllowDataAttributes()
     {
-        return $this->getAllowAttributes()
-            ->keys()
-            ->filter(function ($key) {
+        return $this->getAllowAttributes()->filter(function (/* @noinspection PhpUnusedParameterInspection */ $value, $key) {
                 return Str::startsWith($key, 'data-');
             });
     }
