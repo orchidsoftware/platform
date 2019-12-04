@@ -12,8 +12,9 @@ class LoginTest extends TestBrowserCase
     /**
      * A basic browser test example.
      *
-     * @return void
      * @throws \Throwable
+     *
+     * @return void
      */
     public function testDisplayPage()
     {
@@ -26,8 +27,9 @@ class LoginTest extends TestBrowserCase
     /**
      * A basic browser test example.
      *
-     * @return void
      * @throws \Throwable
+     *
+     * @return void
      */
     public function testBasicLogin()
     {
@@ -44,8 +46,9 @@ class LoginTest extends TestBrowserCase
     /**
      * A basic browser test example.
      *
-     * @return void
      * @throws \Throwable
+     *
+     * @return void
      */
     public function testErrorLogin()
     {
@@ -62,8 +65,9 @@ class LoginTest extends TestBrowserCase
     /**
      * A basic browser test example.
      *
-     * @return void
      * @throws \Throwable
+     *
+     * @return void
      */
     public function testLogout()
     {

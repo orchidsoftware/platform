@@ -32,14 +32,13 @@ abstract class TestBrowserCase extends TestCase
         $this->loadMigrationsFrom(realpath('./database/migrations'));
         $this->artisan('migrate', ['--database' => 'orchid']);
 
-
         $this->artisan('vendor:publish',
         [
             '--force' => true,
             '--tag'   => 'migrations',
         ]);
 
-       $this->artisan('vendor:publish', [
+        $this->artisan('vendor:publish', [
             '--provider' => FoundationServiceProvider::class,
             '--force'    => true,
             '--tag'      => [
@@ -49,7 +48,6 @@ abstract class TestBrowserCase extends TestCase
             ], ]);
 
         $this->artisan('migrate', ['--database' => 'orchid']);
-
 
         $this->withFactories(Dashboard::path('database/factories'));
 
