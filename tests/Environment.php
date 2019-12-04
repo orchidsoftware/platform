@@ -63,7 +63,6 @@ trait Environment
         ]);
         $config->set('scout.driver', null);
         $config->set('database.default', 'orchid');
-        $config->set('session.driver', 'array');
 
         $config->set('breadcrumbs', [
             'view'                                     => 'breadcrumbs::bootstrap4',

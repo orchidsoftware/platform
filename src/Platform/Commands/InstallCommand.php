@@ -9,15 +9,9 @@ use Orchid\Platform\Dashboard;
 use Orchid\Platform\Events\InstallEvent;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 use Orchid\Platform\Updates;
-use Symfony\Component\Console\Helper\ProgressBar;
 
 class InstallCommand extends Command
 {
-    /**
-     * @var ProgressBar
-     */
-    protected $progressBar;
-
     /**
      * The console command signature.
      *
@@ -42,32 +36,15 @@ class InstallCommand extends Command
         $updates = new Updates();
         $updates->updateInstall();
 
-        $this->progressBar = $this->output->createProgressBar(6);
-
-        $this->info("
-        ________________________________________________________________
-               ____    _____     _____   _    _   _____   _____
-              / __ \  |  __ \   / ____| | |  | | |_   _| |  __ \
-             | |  | | | |__) | | |      | |__| |   | |   | |  | |
-             | |  | | |  _  /  | |      |  __  |   | |   | |  | |
-             | |__| | | | \ \  | |____  | |  | |  _| |_  | |__| |
-              \____/  |_|  \_\  \_____| |_|  |_| |_____| |_____/
-
-                             Installation started. Please wait...
-                             Version: $updates->currentVersion
-        ________________________________________________________________
-        ");
-
-        sleep(1);
+        $this->info('Installation started. Please wait...');
+        $this->info("Version: $updates->currentVersion");
 
         $this
-            ->checkInstall()
             ->executeCommand('migrate')
-            ->executeCommand('vendor:publish',
-                [
-                    '--force' => true,
-                    '--tag'   => 'migrations',
-                ])
+            ->executeCommand('vendor:publish', [
+                '--force' => true,
+                '--tag'   => 'migrations',
+            ])
             ->executeCommand('vendor:publish', [
                 '--provider' => FoundationServiceProvider::class,
                 '--force'    => true,
@@ -75,13 +52,15 @@ class InstallCommand extends Command
                     'config',
                     'migrations',
                     'orchid-stubs',
-                ], ])
+                ],])
             ->executeCommand('migrate')
-            ->executeCommand('storage:link');
+            ->executeCommand('storage:link', [
+                '--force' => true,
+            ])
+            ->changeUserModel();
 
-        $this->changeUserModel();
-        $this->progressBar->finish();
-        $this->info(' Completed!');
+
+        $this->info('Completed!');
 
         $this
             ->setValueEnv('SCOUT_DRIVER')
@@ -100,34 +79,25 @@ class InstallCommand extends Command
      */
     private function executeCommand(string $command, array $parameters = []): self
     {
-        if (! $this->progressBar->getProgress()) {
-            $this->progressBar->start();
-        }
-
         $result = $this->call($command, $parameters);
+
         if ($result) {
             $parameters = http_build_query($parameters, '', ' ');
             $parameters = str_replace('%5C', '/', $parameters);
             $this->alert("An error has occurred. The '{$command} {$parameters}' command was not executed");
         }
 
-        $this->progressBar->advance();
-
-        // Visually slow down the installation process so that the user can read what's happening
-        usleep(350000);
-
         return $this;
     }
 
     private function changeUserModel()
     {
-        $this->progressBar->advance();
-
-        $this->info(' Attempting to set ORCHID User model as parent to App\User');
+        $this->info('Attempting to set ORCHID User model as parent to App\User');
 
         if (! file_exists(app_path('User.php'))) {
             $this->warn('Unable to locate "app/User.php".  Did you move this file?');
-            $this->warn('You will need to update this manually.  Change "extends Authenticatable" to "extends \Orchid\Platform\Models\User" in your User model');
+            $this->warn('You will need to update this manually.');
+            $this->warn('Change "extends Authenticatable" to "extends \Orchid\Platform\Models\User" in your User model');
 
             return;
         }
@@ -148,24 +118,6 @@ class InstallCommand extends Command
 
         if ($str !== false && strpos($str, $constant) === false) {
             file_put_contents(app_path('../.env'), $str.PHP_EOL.$constant.'='.$value.PHP_EOL);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return InstallCommand
-     */
-    private function checkInstall(): self
-    {
-        if (! file_exists(app_path('Orchid'))) {
-            return $this;
-        }
-
-        $confirm = $this->confirm('The platform has already been installed, do you really want to repeat?');
-
-        if (! $confirm) {
-            exit(0);
         }
 
         return $this;
