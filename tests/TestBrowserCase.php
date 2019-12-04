@@ -35,7 +35,7 @@ abstract class TestBrowserCase extends TestCase
                 'config',
                 'migrations',
                 'orchid-stubs',
-            ]]);
+            ], ]);
 
         $this->artisan('migrate', ['--database' => 'orchid']);
     }
