@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
-use App\Orchid\PlatformProvider;
+use DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator;
+use DaveJamesMiller\Breadcrumbs\BreadcrumbsManager;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Orchid\Database\Seeds\OrchidDatabaseSeeder;
 use Orchid\Platform\Models\User;
@@ -13,8 +14,6 @@ use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
 use Orchid\Tests\Exemplar\ExemplarServiceProvider;
 use Watson\Active\Active;
-use DaveJamesMiller\Breadcrumbs\BreadcrumbsManager;
-use DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator;
 
 /**
  * Trait Environment.
@@ -86,7 +85,7 @@ trait Environment
     {
         return [
             FoundationServiceProvider::class,
-            ExemplarServiceProvider::class
+            ExemplarServiceProvider::class,
         ];
     }
 
