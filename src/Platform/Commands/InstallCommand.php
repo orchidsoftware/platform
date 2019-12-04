@@ -52,13 +52,12 @@ class InstallCommand extends Command
                     'config',
                     'migrations',
                     'orchid-stubs',
-                ],])
+                ], ])
             ->executeCommand('migrate')
             ->executeCommand('storage:link', [
                 '--force' => true,
             ])
             ->changeUserModel();
-
 
         $this->info('Completed!');
 
