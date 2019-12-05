@@ -47,7 +47,9 @@ class UserEditTest extends TestBrowserCase
         $this->browse(function (Browser $browser) {
             $user = $this->createAdminUser();
 
-            $browser->loginAs($user)
+            $browser
+                ->resize(1920, 1080)
+                ->loginAs($user)
                 ->visitRoute('platform.systems.users')
                 ->clickLink($user->name, 'table a')
                 ->waitForRoute('platform.systems.users.edit', $user)
