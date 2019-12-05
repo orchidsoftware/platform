@@ -26,18 +26,9 @@ abstract class TestBrowserCase extends TestCase
 
         $this->setEnvUp();
 
-        $this->artisan('orchid:install');
-
-        $this->artisan('vendor:publish', [
-            '--provider' => FoundationServiceProvider::class,
-            '--force'    => true,
-            '--tag'      => [
-                'config',
-                'migrations',
-                'orchid-stubs',
-            ], ]);
-
         $this->artisan('migrate', ['--database' => 'orchid']);
+
+        $this->artisan('orchid:install');
     }
 
     /**
