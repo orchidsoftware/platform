@@ -52,11 +52,11 @@ class UserEditTest extends TestBrowserCase
                 ->visitRoute('platform.systems.users')
                 ->clickLink($user->name, 'table a')
                 ->waitForRoute('platform.systems.users.edit', $user)
-                ->type('user[email]', $user->email . '-edit-test')
+                ->type('user[email]', $user->email.'-edit-test')
                 ->press('Save')
                 ->waitForRoute('platform.systems.users')
                 ->assertSee('User was saved.')
-                ->assertSeeIn('table', $user->email . '-edit-test');
+                ->assertSeeIn('table', $user->email.'-edit-test');
         });
     }
 }
