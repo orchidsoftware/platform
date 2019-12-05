@@ -9,14 +9,8 @@ use Orchid\Tests\TestBrowserCase;
 
 class LoginTest extends TestBrowserCase
 {
-    /**
-     * A basic browser test example.
-     *
-     * @throws \Throwable
-     *
-     * @return void
-     */
-    public function testDisplayPage()
+
+    public function testDisplayPage(): void
     {
         $this->browse(function (Browser $browser) {
             $browser->visitRoute('platform.login')
@@ -24,33 +18,41 @@ class LoginTest extends TestBrowserCase
         });
     }
 
-    /**
-     * A basic browser test example.
-     *
-     * @throws \Throwable
-     *
-     * @return void
-     */
-    public function testBasicLogin()
+    public function testLogout(): void
     {
         $this->browse(function (Browser $browser) {
-            $browser->visitRoute('platform.login')
+            // login
+            $browser
+                ->visitRoute('platform.login')
+                ->waitForText('Sign in to your account')
                 ->type('email', 'admin@admin.com')
                 ->type('password', 'password')
                 ->press('Login')
                 ->waitForLocation('/dashboard/main')
                 ->assertSee('Example screen');
+
+            //Redirect to home
+            $browser
+                ->visitRoute('platform.login')
+                ->waitForLocation('/home');
+
+            //Logout
+            $browser
+                ->visitRoute('platform.main')
+                ->clickLink('admin')
+                ->assertSee('Sign out')
+                ->click('@logout-button')
+                ->waitForText('404');
+
+            //Redirect to login
+            $browser
+                ->visitRoute('platform.main')
+                ->waitForLocation('/dashboard/login')
+                ->assertSee('Sign in to your account');
         });
     }
 
-    /**
-     * A basic browser test example.
-     *
-     * @throws \Throwable
-     *
-     * @return void
-     */
-    public function testErrorLogin()
+    public function testErrorLogin(): void
     {
         $this->browse(function (Browser $browser) {
             $browser->visitRoute('platform.login')
@@ -62,14 +64,7 @@ class LoginTest extends TestBrowserCase
         });
     }
 
-    /**
-     * A basic browser test example.
-     *
-     * @throws \Throwable
-     *
-     * @return void
-     */
-    public function testLogout()
+    public function testSuccessLogin(): void
     {
         $this->browse(function (Browser $browser) {
             $browser->visitRoute('platform.login')
@@ -77,14 +72,7 @@ class LoginTest extends TestBrowserCase
                 ->type('password', 'password')
                 ->press('Login')
                 ->waitForLocation('/dashboard/main')
-                ->assertSee('Example screen')
-                ->clickLink('admin')
-                ->assertSee('Sign out')
-                ->click('@logout-button')
-                ->waitForLocation('/')
-                ->visitRoute('platform.main')
-                ->waitForLocation('/dashboard/login')
-                ->assertSee('Sign in to your account');
+                ->assertSee('Example screen');
         });
     }
 }

@@ -54,9 +54,7 @@ class InstallCommand extends Command
                     'orchid-stubs',
                 ], ])
             ->executeCommand('migrate')
-            ->executeCommand('storage:link', [
-                '--force' => true,
-            ])
+            ->executeCommand('storage:link')
             ->changeUserModel();
 
         $this->info('Completed!');
@@ -78,7 +76,12 @@ class InstallCommand extends Command
      */
     private function executeCommand(string $command, array $parameters = []): self
     {
-        $result = $this->call($command, $parameters);
+        try {
+            $result = $this->call($command, $parameters);
+        } catch (\Exception $exception) {
+            $result = 1;
+            $this->alert($exception->getMessage());
+        }
 
         if ($result) {
             $parameters = http_build_query($parameters, '', ' ');
