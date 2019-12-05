@@ -54,6 +54,7 @@ trait Environment
     protected function getEnvironmentSetUp($app)
     {
         $config = config();
+
         $config->set('app.debug', true);
         $config->set('auth.providers.users.model', User::class);
 
