@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
+use Orchestra\Testbench\Dusk\Options;
 use Orchestra\Testbench\Dusk\TestCase;
 
 /**
@@ -23,6 +24,7 @@ abstract class TestBrowserCase extends TestCase
     {
         parent::setUp();
 
+        Options::withoutUI();
         $this->setEnvUp();
 
         $this->artisan('migrate', ['--database' => 'orchid']);
