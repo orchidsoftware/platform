@@ -9,16 +9,13 @@
          processIsolation="false"
          stopOnFailure="false"
          stopOnError="false"
+         defaultTestSuite="Main"
          verbose="true"
 >
     <testsuites>
-        <testsuite name="Console">
-            <directory suffix="Test.php">./tests/Console</directory>
-        </testsuite>
-        <testsuite name="Feature">
+        <testsuite name="Main">
             <directory suffix="Test.php">./tests/Feature</directory>
-        </testsuite>
-        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests/Console</directory>
             <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
         <testsuite name="Browser">
