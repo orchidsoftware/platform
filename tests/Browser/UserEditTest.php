@@ -57,7 +57,7 @@ class UserEditTest extends TestBrowserCase
                 ->type('user[email]', $email)
                 ->press('Save')
                 ->waitForRoute('platform.systems.users')
-                ->assertSee('User was saved.')
+                ->waitForText('User was saved.')
                 ->assertSeeIn('table', $email);
         });
     }
