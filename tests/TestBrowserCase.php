@@ -6,6 +6,7 @@ namespace Orchid\Tests;
 
 use Orchestra\Testbench\Dusk\Options;
 use Orchestra\Testbench\Dusk\TestCase;
+use Orchid\Platform\Models\User;
 
 /**
  * Class TestConsoleCase.
@@ -18,17 +19,23 @@ abstract class TestBrowserCase extends TestCase
     }
 
     /**
+     * @var User
+     */
+    private $user;
+
+    /**
      * Setup the test environment.
      */
     protected function setUp(): void
     {
         parent::setUp();
 
-        Options::withoutUI();
+        if (env('GITHUB_TOKEN') !== null) {
+            Options::withoutUI();
+        }
+
         $this->setEnvUp();
-
         $this->artisan('migrate', ['--database' => 'orchid']);
-
         $this->artisan('orchid:install');
     }
 
@@ -47,5 +54,17 @@ abstract class TestBrowserCase extends TestCase
             'prefix'                  => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ]);
+    }
+
+    /**
+     * @return User
+     */
+    protected function createAdminUser()
+    {
+        if (is_null($this->user)) {
+            $this->user = factory(User::class)->create();
+        }
+
+        return $this->user;
     }
 }
