@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Tests;
 
 use Orchestra\Testbench\Dusk\TestCase;
-use Orchid\Platform\Providers\FoundationServiceProvider;
 
 /**
  * Class TestConsoleCase.

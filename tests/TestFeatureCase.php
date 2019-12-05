@@ -31,8 +31,6 @@ abstract class TestFeatureCase extends TestCase
         return $this->user;
     }
 
-
-
     /**
      * Make sure all integration tests use the same Laravel "skeleton" files.
      * This avoids duplicate classes during migrations.

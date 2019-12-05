@@ -13,7 +13,6 @@ abstract class TestUnitCase extends TestCase
 {
     use Environment;
 
-
     /**
      * Make sure all integration tests use the same Laravel "skeleton" files.
      * This avoids duplicate classes during migrations.

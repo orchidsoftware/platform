@@ -9,7 +9,6 @@ use Orchid\Tests\TestBrowserCase;
 
 class LoginTest extends TestBrowserCase
 {
-
     public function testDisplayPage(): void
     {
         $this->browse(function (Browser $browser) {
