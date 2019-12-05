@@ -51,7 +51,7 @@ class UserEditTest extends TestBrowserCase
 
             $browser->loginAs($user)
                 ->visitRoute('platform.systems.users')
-                ->clickLink($user->name, '.table a')
+                ->clickLink($user->name, 'table a')
                 ->waitForRoute('platform.systems.users.edit', $user)
                 ->type('user[name]', $user->name . '-edit-test')
                 ->press('Save')
