@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
+use Faker\Factory as Faker;
+use Faker\Generator;
 use Orchestra\Testbench\Dusk\Options;
 use Orchestra\Testbench\Dusk\TestCase;
 use Orchid\Platform\Models\User;
@@ -24,6 +26,11 @@ abstract class TestBrowserCase extends TestCase
     private $user;
 
     /**
+     * @var Generator
+     */
+    private $faker;
+
+    /**
      * Setup the test environment.
      */
     protected function setUp(): void
@@ -34,6 +41,7 @@ abstract class TestBrowserCase extends TestCase
             Options::withoutUI();
         }
 
+        $this->faker = Faker::create();
         $this->setEnvUp();
         $this->artisan('migrate', ['--database' => 'orchid']);
         $this->artisan('orchid:install');
@@ -66,5 +74,13 @@ abstract class TestBrowserCase extends TestCase
         }
 
         return $this->user;
+    }
+
+    /**
+     * @return Generator
+     */
+    protected function faker()
+    {
+        return $this->faker;
     }
 }

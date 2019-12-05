@@ -46,17 +46,19 @@ class UserEditTest extends TestBrowserCase
     {
         $this->browse(function (Browser $browser) {
             $user = $this->createAdminUser();
+            $email = $this->faker()->safeEmail;
 
             $browser
                 ->loginAs($user)
                 ->visitRoute('platform.systems.users')
                 ->clickLink($user->name, 'table a')
                 ->waitForRoute('platform.systems.users.edit', $user)
-                ->type('user[email]', $user->email . '-edit-test')
+                ->assertInputValue('user[email]', $user->email)
+                ->type('user[email]', $email)
                 ->press('Save')
                 ->waitForRoute('platform.systems.users')
                 ->assertSee('User was saved.')
-                ->assertSeeIn('table', $user->email . '-edit-test');
+                ->assertSeeIn('table', $email);
         });
     }
 }
