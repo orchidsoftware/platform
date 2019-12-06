@@ -20,9 +20,9 @@ before_script:
    - travis_retry composer clear-cache
    - travis_retry composer install --no-interaction --prefer-dist --no-suggest
    - chmod -R o+w vendor/orchestra
-   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
    - vendor/bin/dusk-updater detect --auto-update
    - vendor/orchestra/testbench-dusk/create-sqlite-db
+   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 script:
   - vendor/bin/phpunit --testsuite=Browser
