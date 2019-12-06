@@ -12,9 +12,11 @@ jobs:
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
     - name: Upgrade Chrome Driver
-      run: vendor/bin/dusk-updater update
+      run: ./vendor/bin/dusk-updater update
     - name: Create sqlite database
-      run: vendor/orchestra/testbench-dusk/create-sqlite-db
+      run: ./vendor/orchestra/testbench-dusk/create-sqlite-db
+    - name: Start Chrome Driver
+      run: ./vendor/laravel/dusk/bin/chromedriver-linux > /dev/null 2>&1 &
     - name: Execute tests (Browse tests) via Dusk
       run: vendor/bin/phpunit --testsuite=Browser
     - name: Execute tests (Unit and Feature tests) via PHPUnit
