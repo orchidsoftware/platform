@@ -68,7 +68,7 @@ export default class extends Controller {
         tinymce.baseURL = platform.prefix('/resources/orchid/js/tinymce');
 
         const selector = this.element.querySelector('.tinymce').id;
-        const input = this.element.querySelector('input');
+        const input = this.element.querySelector(`#${selector}`);
 
         let plugins = 'image media table link paste contextmenu textpattern autolink codesample';
         let toolbar1 = '';
