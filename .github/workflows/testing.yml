@@ -16,7 +16,7 @@ jobs:
     - name: Create sqlite database
       run: ./vendor/orchestra/testbench-dusk/create-sqlite-db
     - name: Start Chrome Driver
-      run: ./vendor/laravel/dusk/bin/chromedriver-linux > /dev/null 2>&1 &
+      run: ./vendor/laravel/dusk/bin/chromedriver-linux --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
     - name: Execute tests (Browse tests) via Dusk
       run: vendor/bin/phpunit --testsuite=Browser
     - name: Execute tests (Unit and Feature tests) via PHPUnit
