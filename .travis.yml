@@ -9,6 +9,9 @@ php:
 node_js:
   - 10
 
+addons:
+  chrome: stable
+
 cache:
   directories:
     - $HOME/.composer/cache
