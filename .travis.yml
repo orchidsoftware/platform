@@ -9,9 +9,6 @@ php:
 node_js:
   - 10
 
-addons:
-  chrome: stable
-
 cache:
   directories:
     - $HOME/.composer/cache
@@ -24,6 +21,7 @@ before_script:
    - travis_retry composer install --no-interaction --prefer-dist --no-suggest
    - chmod -R o+w vendor/orchestra
    - vendor/bin/dusk-updater detect --auto-update
+   - vendor/bin/dusk-updater update
    - vendor/orchestra/testbench-dusk/create-sqlite-db
    - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
