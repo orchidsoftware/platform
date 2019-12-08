@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Orchid\Screen\Contents;
@@ -9,7 +10,7 @@ use Orchid\Screen\Layouts\Base;
 use Orchid\Screen\Repository;
 
 /**
- * Class CardContent
+ * Class CardContent.
  */
 class Card extends Base
 {
@@ -24,7 +25,7 @@ class Card extends Base
     protected $query;
 
     /**
-     * Key property for query
+     * Key property for query.
      *
      * @var string
      */
@@ -64,7 +65,7 @@ class Card extends Base
             'image'        => $card->image(),
             'commandBar'   => $this->buildCommandBar(),
             'status'       => $card->status(),
-            'users'        => [],//$card->buildUserBar(),
+            'users'        => [], //$card->buildUserBar(),
         ]);
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Orchid\Screen\Contents;
@@ -8,7 +9,7 @@ use Orchid\Screen\Presenters\User as UserPresenter;
 use Orchid\Screen\Repository;
 
 /**
- * Class User
+ * Class User.
  */
 class User extends Base
 {
@@ -23,7 +24,7 @@ class User extends Base
     protected $query;
 
     /**
-     * Key property for query
+     * Key property for query.
      *
      * @var string
      */
@@ -48,11 +49,11 @@ class User extends Base
     {
         $this->query = $repository;
 
-        if (!is_a($this->target, UserPresenter::class)) {
+        if (! is_a($this->target, UserPresenter::class)) {
             $this->target = $repository->get($this->target);
         }
 
-        return (string)$this;
+        return (string) $this;
     }
 
     /**
@@ -60,7 +61,7 @@ class User extends Base
      */
     public function __toString()
     {
-        return (string)$this->render($this->target);
+        return (string) $this->render($this->target);
     }
 
     /**

@@ -10,7 +10,6 @@ use Orchid\Screen\Presenters\User;
 
 class UserPresenter extends Presenter implements Search, User
 {
-
     /**
      * @return string
      */
