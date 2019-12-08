@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
+use App\Orchid\Presenters\UserPresenter;
 use Exception;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -152,5 +153,13 @@ class User extends Authenticatable implements UserInterface
         $hash = md5(strtolower(trim($this->email)));
 
         return "https://www.gravatar.com/avatar/$hash";
+    }
+
+    /**
+     * @return UserPresenter
+     */
+    public function presenter(): UserPresenter
+    {
+        return new UserPresenter($this);
     }
 }
