@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Orchid\Screens\Examples\ExampleContentScreen;
 use App\Orchid\Screens\Examples\ExampleFieldsScreen;
 use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
 use App\Orchid\Screens\Examples\ExampleScreen;
@@ -38,4 +39,5 @@ $this->router->screen('roles', RoleListScreen::class)->name('platform.systems.ro
 $this->router->screen('example', ExampleScreen::class)->name('platform.example');
 $this->router->screen('example-fields', ExampleFieldsScreen::class)->name('platform.example.fields');
 $this->router->screen('example-layouts', ExampleLayoutsScreen::class)->name('platform.example.layouts');
+$this->router->screen('example-contents', ExampleContentScreen::class)->name('platform.example.contents');
 //Route::screen('/dashboard/screen/idea', 'Idea::class','platform.screens.idea');

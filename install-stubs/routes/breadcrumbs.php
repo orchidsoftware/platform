@@ -54,3 +54,9 @@ Breadcrumbs::for('platform.example.layouts', function (BreadcrumbsGenerator $tra
     $trail->parent('platform.index');
     $trail->push(__('Screen layouts'));
 });
+
+// Platform -> Example Contents
+Breadcrumbs::for('platform.example.contents', function (BreadcrumbsGenerator $trail) {
+    $trail->parent('platform.index');
+    $trail->push(__('Screen Contents'));
+});
