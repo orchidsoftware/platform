@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Orchid\Screen\Contents;
@@ -7,7 +8,7 @@ use Orchid\Screen\Layouts\Base;
 use Orchid\Screen\Repository;
 
 /**
- * Class User
+ * Class User.
  */
 class Compendium extends Base
 {
@@ -22,7 +23,7 @@ class Compendium extends Base
     protected $query;
 
     /**
-     * Key property for query
+     * Key property for query.
      *
      * @var string|array
      */
@@ -47,11 +48,11 @@ class Compendium extends Base
     {
         $this->query = $repository;
 
-        if (!is_array($this->target)) {
+        if (! is_array($this->target)) {
             $this->target = $repository->get($this->target);
         }
 
-        return (string)$this;
+        return (string) $this;
     }
 
     /**
@@ -59,7 +60,7 @@ class Compendium extends Base
      */
     public function __toString()
     {
-        return (string)$this->render($this->target);
+        return (string) $this->render($this->target);
     }
 
     /**
