@@ -27,6 +27,7 @@ before_script:
    - chmod -R o+w vendor/orchestra
    - vendor/orchestra/testbench-dusk/create-sqlite-db
    - vendor/bin/dusk-updater update
+   - vendor/bin/dusk-updater detect --auto-update
    - vendor/laravel/dusk/bin/chromedriver-linux &
    - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
