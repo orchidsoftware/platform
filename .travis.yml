@@ -8,6 +8,12 @@ php:
 node_js:
   - 10
 
+services:
+  - xvfb
+
+addons:
+  chrome: stable
+
 cache:
   directories:
     - $HOME/.composer/cache
