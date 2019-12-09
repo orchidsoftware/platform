@@ -34,9 +34,7 @@ class ExampleContentScreen extends Screen
     public function query(): array
     {
         return [
-            'card'       => new class implements Card
-            {
-
+            'card'       => new class implements Card {
                 /**
                  * @return string
                  */
@@ -103,9 +101,9 @@ class ExampleContentScreen extends Screen
     /**
      * Views.
      *
-     * @return array
      * @throws \Throwable
      *
+     * @return array
      */
     public function layout(): array
     {

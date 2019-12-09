@@ -7,7 +7,7 @@ namespace Orchid\Screen\Contents;
 use Orchid\Screen\Content;
 
 /**
- * Class Compendium
+ * Class Compendium.
  */
 class Compendium extends Content
 {

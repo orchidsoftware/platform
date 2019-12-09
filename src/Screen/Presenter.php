@@ -20,7 +20,7 @@ abstract class Presenter
     }
 
     /**
-     * Allow for property-style retrieval
+     * Allow for property-style retrieval.
      *
      * @param $property
      *
@@ -36,11 +36,11 @@ abstract class Presenter
     }
 
     /**
-     * Provide compatibility for the checking
+     * Provide compatibility for the checking.
      *
      * @param $property
      *
-     * @return boolean
+     * @return bool
      */
     public function __isset($property)
     {

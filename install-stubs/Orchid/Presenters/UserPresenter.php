@@ -10,7 +10,6 @@ use Orchid\Screen\Presenters\Searchable;
 
 class UserPresenter extends Presenter implements Searchable, Profilable
 {
-
     /**
      * @return string
      */
