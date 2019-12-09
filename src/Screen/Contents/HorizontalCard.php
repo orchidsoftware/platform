@@ -10,7 +10,7 @@ use Orchid\Screen\Contracts\ActionContract;
 use Orchid\Screen\Presenters\Card;
 
 /**
- * Class HorizontalCard
+ * Class HorizontalCard.
  */
 class HorizontalCard extends Content
 {
@@ -50,7 +50,7 @@ class HorizontalCard extends Content
             'image'        => $card->image(),
             'commandBar'   => $this->buildCommandBar(),
             'status'       => $card->status(),
-            'users'        => [],//$card->buildUserBar(),
+            'users'        => [], //$card->buildUserBar(),
         ]);
     }
 
