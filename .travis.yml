@@ -18,7 +18,6 @@ before_script:
    - travis_retry composer self-update
    - travis_retry composer clear-cache
    - travis_retry composer install --no-interaction --prefer-dist --no-suggest
-   - mkdir vendor/orchestra/testbench-core/laravel/storage/app/public
    - chmod -R o+w vendor/orchestra
    - vendor/orchestra/testbench-dusk/create-sqlite-db
    - vendor/bin/dusk-updater update
