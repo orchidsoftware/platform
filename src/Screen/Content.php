@@ -14,7 +14,7 @@ abstract class Content extends Base
     protected $query;
 
     /**
-     * Key property for query
+     * Key property for query.
      *
      * @var mixed
      */
@@ -43,7 +43,7 @@ abstract class Content extends Base
             $this->target = $repository->get($this->target);
         }
 
-        return (string)$this;
+        return (string) $this;
     }
 
     /**
@@ -51,6 +51,6 @@ abstract class Content extends Base
      */
     public function __toString()
     {
-        return (string)$this->render($this->target);
+        return (string) $this->render($this->target);
     }
 }

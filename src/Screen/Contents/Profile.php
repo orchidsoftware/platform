@@ -8,7 +8,7 @@ use Orchid\Screen\Content;
 use Orchid\Screen\Presenters\Profilable;
 
 /**
- * Class Profile
+ * Class Profile.
  */
 class Profile extends Content
 {
