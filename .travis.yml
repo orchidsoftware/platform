@@ -1,6 +1,12 @@
 language: php
 dist: bionic
 
+services:
+  - xvfb
+
+addons:
+  chrome: stable
+
 php:
   - 7.2
   - 7.3
