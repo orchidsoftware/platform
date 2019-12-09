@@ -26,7 +26,6 @@ before_script:
    - travis_retry composer install --no-interaction --prefer-dist --no-suggest
    - chmod -R o+w vendor/orchestra
    - export DISPLAY=:99.0
-   - sh -e /etc/init.d/xvfb start
    - vendor/bin/dusk-updater update
    - vendor/laravel/dusk/bin/chromedriver-linux &
    - vendor/orchestra/testbench-dusk/create-sqlite-db
