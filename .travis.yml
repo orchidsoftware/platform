@@ -20,6 +20,8 @@ before_script:
    - travis_retry composer clear-cache
    - travis_retry composer install --no-interaction --prefer-dist --no-suggest
    - chmod -R o+w vendor/orchestra
+   - export DISPLAY=:99.0
+   - sh -e /etc/init.d/xvfb start
    - vendor/bin/dusk-updater update
    - vendor/bin/dusk-updater detect --auto-update
    - vendor/orchestra/testbench-dusk/create-sqlite-db
