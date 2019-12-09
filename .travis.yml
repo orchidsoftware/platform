@@ -1,5 +1,4 @@
 language: php
-dist: bionic
 
 php:
   - 7.2
@@ -19,10 +18,11 @@ before_script:
    - travis_retry composer self-update
    - travis_retry composer clear-cache
    - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+   - mkdir vendor/orchestra/testbench-core/laravel/storage/app/public
    - chmod -R o+w vendor/orchestra
-   - vendor/bin/dusk-updater update
-   - vendor/bin/dusk-updater detect --auto-update
    - vendor/orchestra/testbench-dusk/create-sqlite-db
+   - vendor/bin/dusk-updater update
+   - vendor/laravel/dusk/bin/chromedriver-linux &
    - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 script:

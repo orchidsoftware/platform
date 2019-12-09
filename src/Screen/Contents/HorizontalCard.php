@@ -1,34 +1,23 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Orchid\Screen\Contents;
 
 use Orchid\Screen\Action;
+use Orchid\Screen\Content;
 use Orchid\Screen\Contracts\ActionContract;
-use Orchid\Screen\Layouts\Base;
-use Orchid\Screen\Repository;
+use Orchid\Screen\Presenters\Card;
 
 /**
- * Class CardContent
+ * Class HorizontalCard
  */
-class Card extends Base
+class HorizontalCard extends Content
 {
     /**
      * @var string
      */
     protected $template = 'platform::contents.card';
-
-    /**
-     * @var Repository
-     */
-    protected $query;
-
-    /**
-     * Key property for query
-     *
-     * @var string
-     */
-    protected $target;
 
     /**
      * @var array|Action[]
@@ -43,21 +32,18 @@ class Card extends Base
      */
     public function __construct(string $target, array $commandBar = [])
     {
-        $this->target = $target;
+        parent::__construct($target);
+
         $this->commandBar = $commandBar;
     }
 
     /**
-     * @param Repository $repository
+     * @param Card $card
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function build(Repository $repository)
+    public function render(Card $card)
     {
-        $this->query = $repository;
-
-        $card = $repository->get($this->target);
-
         return view($this->template, [
             'title'        => $card->title(),
             'descriptions' => $card->descriptions(),

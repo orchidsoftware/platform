@@ -110,7 +110,7 @@ class ExampleContentScreen extends Screen
     public function layout(): array
     {
         return [
-            new \Orchid\Screen\Contents\Card('card', [
+            new \Orchid\Screen\Contents\HorizontalCard('card', [
                 Button::make('Example Button')
                     ->method('example')
                     ->icon('icon-bag'),
