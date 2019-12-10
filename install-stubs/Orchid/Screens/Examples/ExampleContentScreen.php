@@ -42,9 +42,7 @@ class ExampleContentScreen extends Screen
         })->toArray();
 
         return [
-            'quote'      => new class implements Quotation
-            {
-
+            'quote'      => new class implements Quotation {
                 public function date(): string
                 {
                     return '6 дней назад';
