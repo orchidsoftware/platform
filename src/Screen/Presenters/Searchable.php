@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Presenters;
 
-interface User
+interface Searchable
 {
+    /**
+     * @return string
+     */
+    public function label(): string;
+
     /**
      * @return string
      */

@@ -17,6 +17,30 @@ class LoginTest extends TestBrowserCase
         });
     }
 
+    public function testErrorLogin(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visitRoute('platform.login')
+                ->type('email', 'admin@admin.com')
+                ->type('password', 'error')
+                ->press('Login')
+                ->waitForText('The details you entered did not match our records. Please double-check and try again.')
+                ->assertSee('The details you entered did not match our records. Please double-check and try again.');
+        });
+    }
+
+    public function testSuccessLogin(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visitRoute('platform.login')
+                ->type('email', 'admin@admin.com')
+                ->type('password', 'password')
+                ->press('Login')
+                ->waitForLocation('/dashboard/main')
+                ->assertSee('Example screen');
+        });
+    }
+
     public function testLogout(): void
     {
         $this->browse(function (Browser $browser) {
@@ -48,30 +72,6 @@ class LoginTest extends TestBrowserCase
                 ->visitRoute('platform.main')
                 ->waitForLocation('/dashboard/login')
                 ->assertSee('Sign in to your account');
-        });
-    }
-
-    public function testErrorLogin(): void
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visitRoute('platform.login')
-                ->type('email', 'admin@admin.com')
-                ->type('password', 'error')
-                ->press('Login')
-                ->waitForText('The details you entered did not match our records. Please double-check and try again.')
-                ->assertSee('The details you entered did not match our records. Please double-check and try again.');
-        });
-    }
-
-    public function testSuccessLogin(): void
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visitRoute('platform.login')
-                ->type('email', 'admin@admin.com')
-                ->type('password', 'password')
-                ->press('Login')
-                ->waitForLocation('/dashboard/main')
-                ->assertSee('Example screen');
         });
     }
 }

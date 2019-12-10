@@ -4,13 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Presenters;
 
-interface Search
+interface Profilable
 {
-    /**
-     * @return string
-     */
-    public function label(): string;
-
     /**
      * @return string
      */

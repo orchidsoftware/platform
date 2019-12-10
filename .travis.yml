@@ -1,11 +1,5 @@
 language: php
 
-services:
-  - xvfb
-
-addons:
-  chrome: stable
-
 php:
   - 7.2
   - 7.3
@@ -13,6 +7,12 @@ php:
 
 node_js:
   - 10
+
+services:
+  - xvfb
+
+addons:
+  chrome: stable
 
 cache:
   directories:
@@ -25,10 +25,10 @@ before_script:
    - travis_retry composer clear-cache
    - travis_retry composer install --no-interaction --prefer-dist --no-suggest
    - chmod -R o+w vendor/orchestra
-   - export DISPLAY=:99.0
-   - vendor/bin/dusk-updater update
-   - vendor/laravel/dusk/bin/chromedriver-linux &
    - vendor/orchestra/testbench-dusk/create-sqlite-db
+   - vendor/bin/dusk-updater update
+   - vendor/bin/dusk-updater detect --auto-update
+   - vendor/laravel/dusk/bin/chromedriver-linux &
    - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 script:
