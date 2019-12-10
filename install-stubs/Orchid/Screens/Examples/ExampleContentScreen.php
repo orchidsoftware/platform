@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\Examples;
 
+use App\User;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Contents\AvatarList;
 use Orchid\Screen\Contents\Compendium;
+use Orchid\Screen\Contents\Quote;
 use Orchid\Screen\Presenters\Card;
+use Orchid\Screen\Presenters\Quotation;
 use Orchid\Screen\Screen;
 
 class ExampleContentScreen extends Screen
@@ -33,7 +37,59 @@ class ExampleContentScreen extends Screen
      */
     public function query(): array
     {
+        $avatarList = User::limit(10)->get()->map(function (User $user) {
+            return $user->presenter();
+        })->toArray();
+
         return [
+            'quote'      => new class implements Quotation
+            {
+
+                public function date(): string
+                {
+                    return '6 дней назад';
+                }
+
+                public function message(): string
+                {
+                    return 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a
+                  little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This
+                  content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.';
+                }
+
+                /**
+                 * @return string
+                 */
+                public function subTitle(): string
+                {
+                    return 'Owner';
+                }
+
+                /**
+                 * @return string
+                 */
+                public function url(): string
+                {
+                    return '#';
+                }
+
+                /**
+                 * @return string
+                 */
+                public function title(): string
+                {
+                    return 'Kristina Claire';
+                }
+
+                /**
+                 * @return string
+                 */
+                public function image(): ?string
+                {
+                    return 'https://pipeline.mediumra.re/assets/img/avatar-female-4.jpg';
+                }
+            },
             'card'       => new class implements Card {
                 /**
                  * @return string
@@ -85,6 +141,7 @@ class ExampleContentScreen extends Screen
                 'Клиентов'          => '10',
                 'Сотрудников'       => '21',
             ],
+            'avatarList' => $avatarList,
         ];
     }
 
@@ -118,6 +175,9 @@ class ExampleContentScreen extends Screen
             ]),
 
             new Compendium('compendium'),
+            new AvatarList('avatarList'),
+
+            new Quote('quote'),
         ];
     }
 }
