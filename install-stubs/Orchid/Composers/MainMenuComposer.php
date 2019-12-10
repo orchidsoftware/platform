@@ -50,7 +50,7 @@ class MainMenuComposer
                 ItemMenu::label('Example screen')
                     ->icon('icon-folder')
                     ->route('platform.example')
-                    ->title('Example boilerplate')
+                    ->title('Navigation')
             )
             ->add(Menu::MAIN,
                 ItemMenu::label('Form elements')

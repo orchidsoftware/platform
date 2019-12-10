@@ -1,10 +1,10 @@
 <div class="wrapper v-center">
     <div class="dropdown col no-padder">
         <a href="#" class="nav-link p-0 v-center" data-toggle="dropdown">
-                    <span class="thumb-xs avatar m-r-xs">
+                    <span class="thumb-sm avatar mr-3">
                         <img src="{{Auth::user()->getAvatar()}}" class="b b-dark bg-light">
                     </span>
-            <span class="ml-2" style="width:11em;font-size: 0.85em;">
+            <span style="width:11em;font-size: 0.85em;">
                 <span class="text-ellipsis">{{Auth::user()->getNameTitle()}}</span>
                 <span class="text-muted d-block text-ellipsis">{{Auth::user()->getSubTitle()}}</span>
             </span>
