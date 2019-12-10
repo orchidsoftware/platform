@@ -27,7 +27,7 @@ class UserEditTest extends TestBrowserCase
                 ->waitForText('User was saved.')
                 ->clickLink($user->name, 'table a')
                 ->waitForRoute('platform.systems.users.edit', $user)
-                ->pause(10000)
+                ->pause(30000)
                 ->assertInputValue('user[email]', $email);
         });
     }

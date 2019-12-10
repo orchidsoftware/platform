@@ -63,11 +63,11 @@
                                     <p class="card-text align-text-bottom">
                                         <a href="{{ $user['link'] }}" class="nav-link p-0 v-center "
                                            data-toggle="dropdown">
-                                            <span class="thumb-xs avatar m-r-xs">
+                                            <span class="thumb-sm avatar mr-3">
                                             <img src="{{ $user['avatar'] }}"
                                                  class="b bg-light">
                                             </span>
-                                            <span class="ml-2" style="width:11em;font-size: 0.85em;">
+                                            <span style="width:11em;font-size: 0.85em;">
                                             <span class="text-ellipsis">{{ $user['name'] }}</span>
                                             <span class="text-muted d-block text-ellipsis">{{ $user['sub'] }}</span>
                                             </span>

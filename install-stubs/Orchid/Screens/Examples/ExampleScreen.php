@@ -23,9 +23,9 @@ class ExampleScreen extends Screen
     /**
      * Fish text for the table.
      */
-    private const TEXT_EXAMPLE = 'Lorem ipsum at sed ad fusce faucibus primis, potenti inceptos ad taciti nisi tristique 
+    private const TEXT_EXAMPLE = 'Lorem ipsum at sed ad fusce faucibus primis, potenti inceptos ad taciti nisi tristique
     urna etiam, primis ut lacus habitasse malesuada ut. Lectus aptent malesuada mattis ut etiam fusce nec sed viverra,
-    semper mattis viverra malesuada quam metus vulputate torquent magna, lobortis nec nostra nibh sollicitudin 
+    semper mattis viverra malesuada quam metus vulputate torquent magna, lobortis nec nostra nibh sollicitudin
     erat in luctus.';
 
     /**
@@ -100,34 +100,26 @@ class ExampleScreen extends Screen
                 ->novalidate()
                 ->icon('icon-bag'),
 
-            ModalToggle::make('Example Modals')
+            ModalToggle::make('Launch demo modal')
                 ->modal('exampleModal')
                 ->method('example')
                 ->icon('icon-full-screen'),
 
-            DropDown::make('Example Group Button')
+            DropDown::make('Dropdown button')
                 ->icon('icon-folder-alt')
                 ->list([
 
-                    Button::make('Example Button')
+                    Button::make('Action')
                         ->method('example')
                         ->icon('icon-bag'),
 
-                    Button::make('Example Button')
+                    Button::make('Another action')
                         ->method('example')
-                        ->icon('icon-bag'),
+                        ->icon('icon-bubbles'),
 
-                    Button::make('Example Button')
+                    Button::make('Something else here')
                         ->method('example')
-                        ->icon('icon-bag'),
-
-                    Button::make('Example Button')
-                        ->method('example')
-                        ->icon('icon-bag'),
-
-                    Button::make('Example Button')
-                        ->method('example')
-                        ->icon('icon-bag'),
+                        ->icon('icon-bulb'),
                 ]),
 
         ];

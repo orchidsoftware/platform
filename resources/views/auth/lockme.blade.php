@@ -1,8 +1,8 @@
 <div class="form-group v-center">
-    <span class="thumb-xs avatar m-r-xs">
+    <span class="thumb-sm avatar mr-3">
         <img src="{{ $lockUser->getAvatar() }}" class="b bg-light" alt="test">
     </span>
-    <span class="ml-2" style="width:125px;font-size: 0.85em;">
+    <span style="width:125px;font-size: 0.85em;">
         <span class="text-ellipsis">{{ $lockUser->getNameTitle() }}</span>
         <span class="text-muted d-block text-ellipsis">{{ $lockUser->getSubTitle() }}</span>
     </span>
