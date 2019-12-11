@@ -81,7 +81,7 @@ export default class extends Controller {
      */
     search() {
 
-        const results = document.getElementById('marker__results');
+        const results = this.element.querySelector('.marker-results');
 
         if (this.searchTarget.value.length <= 3) {
             return;
