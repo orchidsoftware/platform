@@ -114,7 +114,7 @@ export default class extends Controller {
 
         const buttonElement = document.querySelector(button);
         buttonElement.disabled = true;
-        buttonElement.innerHTML = '<span class="spinner-border spinner-border-sm mb-1" role="status" aria-hidden="true"></span>'
+        buttonElement.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>'
             + `<span class="pl-1">${text}</span>`;
     }
 

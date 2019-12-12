@@ -10,6 +10,7 @@ use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Contents\AvatarList;
 use Orchid\Screen\Contents\Compendium;
 use Orchid\Screen\Contents\Quote;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Presenters\Card;
 use Orchid\Screen\Presenters\Quotation;
 use Orchid\Screen\Screen;
@@ -172,10 +173,12 @@ class ExampleContentScreen extends Screen
                     ->icon('icon-bag'),
             ]),
 
-            new Compendium('compendium'),
             new AvatarList('avatarList'),
 
-            new Quote('quote'),
+            Layout::columns([
+                new Compendium('compendium'),
+                new Quote('quote'),
+            ]),
         ];
     }
 }

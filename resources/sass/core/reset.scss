@@ -727,11 +727,22 @@ blockquote {
 }
 
 .sub-menu {
-  transition: all .4s ease-in-out 0s;
-  .dropdown-item{
-    padding: .5rem 2.5rem;
-  }
-  .dropdown-item:hover, .dropdown-item:focus {
-    background-color: inherit;
-  }
+    transition: all .4s ease-in-out 0s;
+
+    .dropdown-item {
+        padding: .5rem 2.5rem;
+    }
+
+    .dropdown-item:hover, .dropdown-item:focus {
+        background-color: inherit;
+    }
+}
+
+dl {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: $border-color;
+    margin: 0;
+    padding: 0.15em 0;
 }

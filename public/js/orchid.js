@@ -2345,10 +2345,10 @@ function fromByteArray (uint8) {
 /* WEBPACK VAR INJECTION */(function(global) {/*!
  * The buffer module from node.js, for the browser.
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <http://feross.org>
  * @license  MIT
  */
-/* eslint-disable no-proto */
+            /* eslint-disable no-proto */
 
 
 
@@ -26602,8 +26602,8 @@ function (_Controller) {
       }
 
       var buttonElement = document.querySelector(button);
-      buttonElement.disabled = true;
-      buttonElement.innerHTML = '<span class="spinner-border spinner-border-sm mb-1" role="status" aria-hidden="true"></span>' + "<span class=\"pl-1\">".concat(text, "</span>");
+        buttonElement.disabled = true;
+        buttonElement.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>' + "<span class=\"pl-1\">".concat(text, "</span>");
     }
     /**
      * Form validation
@@ -28040,11 +28040,12 @@ function platform() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/tabuna/ORCHID/laravel6.0/platform/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/tabuna/ORCHID/laravel6.0/platform/resources/sass/app.scss */"./resources/sass/app.scss");
+        __webpack_require__(/*! /Users/tabuna/Orchid/develop/orchid-project/platform/resources/js/app.js */"./resources/js/app.js");
+        module.exports = __webpack_require__(/*! /Users/tabuna/Orchid/develop/orchid-project/platform/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
-/***/ }),
+        /***/
+    }),
 
 /***/ 1:
 /*!********************!*\
