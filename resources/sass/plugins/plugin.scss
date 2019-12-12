@@ -15,7 +15,9 @@
   width : 100% !important;
 }
 .select2{
-  min-width: 10em;
+    width: 100% !important;
+    min-width: 10em;
+    max-width: 450px;
 }
 .select2-container--bootstrap {
 

@@ -7,6 +7,7 @@ use App\Orchid\Layouts\Examples\ChartLineExample;
 use App\Orchid\Layouts\Examples\ChartPieExample;
 use App\Orchid\Layouts\Examples\MetricsExample;
 use App\Orchid\Layouts\Examples\TableExample;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Platform\Notifications\DashboardNotification;
 use Orchid\Screen\Actions\Button;
@@ -16,7 +17,7 @@ use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Alert;
+use Orchid\Support\Facades\Toast;
 
 class ExampleScreen extends Screen
 {
@@ -95,14 +96,14 @@ class ExampleScreen extends Screen
     {
         return [
 
-            Button::make('Example Button')
-                ->method('example')
+            Button::make('Show toast')
+                ->method('showToast')
                 ->novalidate()
                 ->icon('icon-bag'),
 
             ModalToggle::make('Launch demo modal')
                 ->modal('exampleModal')
-                ->method('example')
+                ->method('showToast')
                 ->icon('icon-full-screen'),
 
             DropDown::make('Dropdown button')
@@ -110,15 +111,15 @@ class ExampleScreen extends Screen
                 ->list([
 
                     Button::make('Action')
-                        ->method('example')
+                        ->method('showToast')
                         ->icon('icon-bag'),
 
                     Button::make('Another action')
-                        ->method('example')
+                        ->method('showToast')
                         ->icon('icon-bubbles'),
 
                     Button::make('Something else here')
-                        ->method('example')
+                        ->method('showToast')
                         ->icon('icon-bulb'),
                 ]),
 
@@ -147,21 +148,23 @@ class ExampleScreen extends Screen
 
             Layout::modal('exampleModal', [
                 Layout::rows([
-                    Input::make('user.password')
-                        ->type('test')
-                        ->title('Example')
-                        ->placeholder('Example...'),
+                    Input::make('toast')
+                        ->title('Messages to display')
+                        ->placeholder('Hello word!')
+                        ->required(),
                 ]),
-            ])->title('Example Modals'),
+            ])->title('Create your own toast message'),
         ];
     }
 
     /**
+     * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function example()
+    public function showToast(Request $request)
     {
-        Alert::warning('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel vulputate mi.');
+        Toast::warning($request->get('toast', 'Hello, world! This is a toast message.'));
 
         Auth::user()->notify(new DashboardNotification([
             'title'   => 'Hello Word',

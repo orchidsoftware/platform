@@ -1,8 +1,12 @@
 .btn {
-  font-weight: 400;
-  border-radius: $btn-border-radius;
-  cursor:pointer;
-  outline: 0 !important;
+    font-weight: 400;
+    border-radius: $btn-border-radius;
+    cursor: pointer;
+    outline: 0 !important;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .btn-link {

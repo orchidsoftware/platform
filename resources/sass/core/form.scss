@@ -4,26 +4,28 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   color: $brand-black;
-  outline: 0;
-  height: $form-height;
-  line-height: normal;
-  font-weight: normal;
-  vertical-align: middle;
-  @include transition(all 0.12s ease);
-  @include box-shadow(none);
-  border-radius: 2px;
-  @include placeholder($text-muted);
-
-  @include transition(background 0.2s linear 0s);
-  &:focus {
-    border-color: fade-out($brand-black, 0.9);
-    background-color: $brand-grey-light;
-    outline: 0 !important;
-    color: $brand-black;
+    outline: 0;
+    height: $form-height;
+    line-height: normal;
+    font-weight: normal;
+    vertical-align: middle;
+    @include transition(all 0.12s ease);
     @include box-shadow(none);
-    @include placeholder($brand-dark);
-  }
-  &[disabled],
+    border-radius: 2px;
+    @include placeholder($text-muted);
+    @include transition(background 0.2s linear 0s);
+    max-width: 450px;
+
+    &:focus {
+        border-color: fade-out($brand-black, 0.9);
+        background-color: $brand-grey-light;
+        outline: 0 !important;
+        color: $brand-black;
+        @include box-shadow(none);
+        @include placeholder($brand-dark);
+    }
+
+    &[disabled],
   &[readonly],
   fieldset[disabled] & {
     background: mix($brand-grey-light, #fff, 50%);
@@ -37,11 +39,13 @@
 }
 
 .input-group {
-	.input-group-btn {
-		.btn-default{
-			height: $form-height;
-		}
-	}
+    max-width: 450px;
+
+    .input-group-btn {
+        .btn-default {
+            height: $form-height;
+        }
+    }
 }
 
 textarea {
