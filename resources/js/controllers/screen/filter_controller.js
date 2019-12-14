@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus';
+import {Controller} from 'stimulus';
 
 export default class extends Controller {
     static get targets() {
@@ -10,8 +10,10 @@ export default class extends Controller {
      * @param event
      */
     submit(event) {
-        this.setAllFilter();
+        const screenEventSubmit = new Event('orchid:screen-submit');
+        event.target.dispatchEvent(screenEventSubmit);
 
+        this.setAllFilter();
         event.preventDefault();
     }
 

@@ -24305,10 +24305,11 @@ function (_Controller) {
       }
 
       if (mask.removeMaskOnSubmit) {
-        this.element.closest('form').addEventListener('orchid:screen-submit', function () {
-          element.inputmask.remove();
-        });
-        mask.removeMaskOnSubmit = undefined;
+          var form = element.form || this.element.closest('form');
+          form.addEventListener('orchid:screen-submit', function () {
+              element.inputmask.remove();
+          });
+          mask.removeMaskOnSubmit = undefined;
       }
 
       inputmask__WEBPACK_IMPORTED_MODULE_1___default()(mask).mask(element);
@@ -27648,8 +27649,10 @@ function (_Controller) {
      * @param event
      */
     value: function submit(event) {
-      this.setAllFilter();
-      event.preventDefault();
+        var screenEventSubmit = new Event('orchid:screen-submit');
+        event.target.dispatchEvent(screenEventSubmit);
+        this.setAllFilter();
+        event.preventDefault();
     }
   }, {
     key: "onFilterClick",
