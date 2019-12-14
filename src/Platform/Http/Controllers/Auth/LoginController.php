@@ -61,8 +61,9 @@ class LoginController extends Controller
     /**
      * Get the failed login response instance.
      *
-     * @return void
      * @throws ValidationException
+     *
+     * @return void
      */
     protected function sendFailedLoginResponse()
     {

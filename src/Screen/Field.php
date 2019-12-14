@@ -253,11 +253,9 @@ class Field implements FieldContract
      */
     protected function getAllowDataAttributes()
     {
-        return $this->getAllowAttributes()
-            ->keys()
-            ->filter(function ($key) {
-                return Str::startsWith($key, 'data-');
-            });
+        return $this->getAllowAttributes()->filter(function (/* @noinspection PhpUnusedParameterInspection */ $value, $key) {
+            return Str::startsWith($key, 'data-');
+        });
     }
 
     /**
@@ -273,7 +271,7 @@ class Field implements FieldContract
 
         $lang = $this->get('lang');
         $slug = $this->get('name');
-        $hash = sha1(json_encode($this->getAttributes(), JSON_THROW_ON_ERROR, 512));
+        $hash = sha1(json_encode($this->getAttributes()));
 
         return Str::slug("field-$lang-$slug-$hash");
     }
@@ -379,15 +377,13 @@ class Field implements FieldContract
      */
     protected function modifyValue()
     {
-        $value = $this->getOldValue() ?? $this->get('value');
-
-        $this->set('value', $value);
+        $value = $this->get('value', $this->getOldValue());
 
         if ($value instanceof Closure) {
-            $this->set('value', $value($this->attributes));
+            $value = $value($this->attributes);
         }
 
-        return $this;
+        return $this->set('value', $value);
     }
 
     /**
