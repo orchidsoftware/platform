@@ -1,5 +1,5 @@
 import {Controller} from 'stimulus';
-import Inputmask    from 'inputmask';
+import Inputmask from 'inputmask';
 
 export default class extends Controller {
 
@@ -34,7 +34,9 @@ export default class extends Controller {
         }
 
         if (mask.removeMaskOnSubmit) {
-            this.element.closest('form').addEventListener('orchid:screen-submit', () => {
+            let form = element.form || this.element.closest('form')
+
+            form.addEventListener('orchid:screen-submit', () => {
                 element.inputmask.remove();
             });
             mask.removeMaskOnSubmit = undefined;

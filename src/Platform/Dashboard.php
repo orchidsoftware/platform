@@ -17,7 +17,7 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    public const VERSION = '6.7.5';
+    public const VERSION = '6.7.6';
 
     /**
      * The Dashboard configuration options.
