@@ -23815,21 +23815,22 @@ var map = {
 	"./fields/relation_controller.js": "./resources/js/controllers/fields/relation_controller.js",
 	"./fields/select_controller.js": "./resources/js/controllers/fields/select_controller.js",
 	"./fields/simplemde_controller.js": "./resources/js/controllers/fields/simplemde_controller.js",
-	"./fields/tinymce_controller.js": "./resources/js/controllers/fields/tinymce_controller.js",
-	"./fields/upload_controller.js": "./resources/js/controllers/fields/upload_controller.js",
-	"./fields/utm_controller.js": "./resources/js/controllers/fields/utm_controller.js",
-	"./layouts/form_controller.js": "./resources/js/controllers/layouts/form_controller.js",
-	"./layouts/html_load_controller.js": "./resources/js/controllers/layouts/html_load_controller.js",
-	"./layouts/notification_controller.js": "./resources/js/controllers/layouts/notification_controller.js",
-	"./layouts/reload_controller.js": "./resources/js/controllers/layouts/reload_controller.js",
-	"./layouts/search_controller.js": "./resources/js/controllers/layouts/search_controller.js",
-	"./layouts/systems_controller.js": "./resources/js/controllers/layouts/systems_controller.js",
-	"./layouts/toast_controller.js": "./resources/js/controllers/layouts/toast_controller.js",
-	"./screen/base_controller.js": "./resources/js/controllers/screen/base_controller.js",
-	"./screen/chart_controller.js": "./resources/js/controllers/screen/chart_controller.js",
-	"./screen/filter_controller.js": "./resources/js/controllers/screen/filter_controller.js",
-	"./screen/modal_controller.js": "./resources/js/controllers/screen/modal_controller.js",
-	"./screen/tabs_controller.js": "./resources/js/controllers/screen/tabs_controller.js"
+    "./fields/tinymce_controller.js": "./resources/js/controllers/fields/tinymce_controller.js",
+    "./fields/upload_controller.js": "./resources/js/controllers/fields/upload_controller.js",
+    "./fields/utm_controller.js": "./resources/js/controllers/fields/utm_controller.js",
+    "./layouts/form_controller.js": "./resources/js/controllers/layouts/form_controller.js",
+    "./layouts/html_load_controller.js": "./resources/js/controllers/layouts/html_load_controller.js",
+    "./layouts/notification_controller.js": "./resources/js/controllers/layouts/notification_controller.js",
+    "./layouts/reload_controller.js": "./resources/js/controllers/layouts/reload_controller.js",
+    "./layouts/search_controller.js": "./resources/js/controllers/layouts/search_controller.js",
+    "./layouts/systems_controller.js": "./resources/js/controllers/layouts/systems_controller.js",
+    "./layouts/toast_controller.js": "./resources/js/controllers/layouts/toast_controller.js",
+    "./layouts/tooltip_controller.js": "./resources/js/controllers/layouts/tooltip_controller.js",
+    "./screen/base_controller.js": "./resources/js/controllers/screen/base_controller.js",
+    "./screen/chart_controller.js": "./resources/js/controllers/screen/chart_controller.js",
+    "./screen/filter_controller.js": "./resources/js/controllers/screen/filter_controller.js",
+    "./screen/modal_controller.js": "./resources/js/controllers/screen/modal_controller.js",
+    "./screen/tabs_controller.js": "./resources/js/controllers/screen/tabs_controller.js"
 };
 
 
@@ -26595,14 +26596,14 @@ function (_Controller) {
   }, {
     key: "animateButton",
     value: function animateButton() {
-      var button = this.data.get('button-animate');
-      var text = this.data.get('button-text') || '';
+        var button = this.data.get('button-animate');
+        var text = this.data.get('button-text') || '';
 
-      if (!button || !document.querySelector(button)) {
-        return;
-      }
+        if (!button || !document.querySelector(button)) {
+            return;
+        }
 
-      var buttonElement = document.querySelector(button);
+        var buttonElement = document.querySelector(button);
         buttonElement.disabled = true;
         buttonElement.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>' + "<span class=\"pl-1\">".concat(text, "</span>");
     }
@@ -27414,23 +27415,153 @@ function (_Controller) {
     }
   }]);
 
-  return _default;
+    return _default;
 }(stimulus__WEBPACK_IMPORTED_MODULE_0__["Controller"]);
 
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
+            /* WEBPACK VAR INJECTION */
+        }.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
-/***/ }),
+        /***/
+    }),
 
-/***/ "./resources/js/controllers/screen/base_controller.js":
-/*!************************************************************!*\
-  !*** ./resources/js/controllers/screen/base_controller.js ***!
-  \************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+    /***/ "./resources/js/controllers/layouts/tooltip_controller.js":
+    /*!****************************************************************!*\
+      !*** ./resources/js/controllers/layouts/tooltip_controller.js ***!
+      \****************************************************************/
+    /*! exports provided: default */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* WEBPACK VAR INJECTION */
+        (function ($) {/* harmony export (binding) */
+            __webpack_require__.d(__webpack_exports__, "default", function () {
+                return _default;
+            });
+            /* harmony import */
+            var stimulus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! stimulus */ "./node_modules/stimulus/index.js");
+
+            function _typeof(obj) {
+                if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+                    _typeof = function _typeof(obj) {
+                        return typeof obj;
+                    };
+                } else {
+                    _typeof = function _typeof(obj) {
+                        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+                    };
+                }
+                return _typeof(obj);
+            }
+
+            function _classCallCheck(instance, Constructor) {
+                if (!(instance instanceof Constructor)) {
+                    throw new TypeError("Cannot call a class as a function");
+                }
+            }
+
+            function _defineProperties(target, props) {
+                for (var i = 0; i < props.length; i++) {
+                    var descriptor = props[i];
+                    descriptor.enumerable = descriptor.enumerable || false;
+                    descriptor.configurable = true;
+                    if ("value" in descriptor) descriptor.writable = true;
+                    Object.defineProperty(target, descriptor.key, descriptor);
+                }
+            }
+
+            function _createClass(Constructor, protoProps, staticProps) {
+                if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+                if (staticProps) _defineProperties(Constructor, staticProps);
+                return Constructor;
+            }
+
+            function _possibleConstructorReturn(self, call) {
+                if (call && (_typeof(call) === "object" || typeof call === "function")) {
+                    return call;
+                }
+                return _assertThisInitialized(self);
+            }
+
+            function _assertThisInitialized(self) {
+                if (self === void 0) {
+                    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+                }
+                return self;
+            }
+
+            function _getPrototypeOf(o) {
+                _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+                    return o.__proto__ || Object.getPrototypeOf(o);
+                };
+                return _getPrototypeOf(o);
+            }
+
+            function _inherits(subClass, superClass) {
+                if (typeof superClass !== "function" && superClass !== null) {
+                    throw new TypeError("Super expression must either be null or a function");
+                }
+                subClass.prototype = Object.create(superClass && superClass.prototype, {
+                    constructor: {
+                        value: subClass,
+                        writable: true,
+                        configurable: true
+                    }
+                });
+                if (superClass) _setPrototypeOf(subClass, superClass);
+            }
+
+            function _setPrototypeOf(o, p) {
+                _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+                    o.__proto__ = p;
+                    return o;
+                };
+                return _setPrototypeOf(o, p);
+            }
+
+
+            var _default =
+                /*#__PURE__*/
+                function (_Controller) {
+                    _inherits(_default, _Controller);
+
+                    function _default() {
+                        _classCallCheck(this, _default);
+
+                        return _possibleConstructorReturn(this, _getPrototypeOf(_default).apply(this, arguments));
+                    }
+
+                    _createClass(_default, [{
+                        key: "mouseOver",
+
+                        /**
+                         *
+                         */
+                        value: function mouseOver() {
+                            $(this.element).tooltip('enable');
+                        }
+                    }]);
+
+                    return _default;
+                }(stimulus__WEBPACK_IMPORTED_MODULE_0__["Controller"]);
+
+
+            /* WEBPACK VAR INJECTION */
+        }.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
+
+        /***/
+    }),
+
+    /***/ "./resources/js/controllers/screen/base_controller.js":
+    /*!************************************************************!*\
+      !*** ./resources/js/controllers/screen/base_controller.js ***!
+      \************************************************************/
+    /*! exports provided: default */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
 /* harmony import */ var stimulus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! stimulus */ "./node_modules/stimulus/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -28037,11 +28168,11 @@ function platform() {
 /***/ }),
 
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+    /*!*************************************************************!*\
+      !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
+      \*************************************************************/
+    /*! no static exports found */
+    /***/ (function (module, exports, __webpack_require__) {
 
         __webpack_require__(/*! /Users/tabuna/Orchid/develop/orchid-project/platform/resources/js/app.js */"./resources/js/app.js");
         module.exports = __webpack_require__(/*! /Users/tabuna/Orchid/develop/orchid-project/platform/resources/sass/app.scss */"./resources/sass/app.scss");
@@ -28050,14 +28181,14 @@ function platform() {
         /***/
     }),
 
-/***/ 1:
-/*!********************!*\
-  !*** fs (ignored) ***!
-  \********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+    /***/ 1:
+    /*!********************!*\
+      !*** fs (ignored) ***!
+      \********************/
+    /*! no static exports found */
+    /***/ (function (module, exports) {
 
-/* (ignored) */
+        /* (ignored) */
 
 /***/ })
 
