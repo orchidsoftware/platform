@@ -27,13 +27,15 @@
             <button type="button" class="btn btn-outline-danger cropper-remove"
                     data-action="fields--cropper#clear">{{ __('Remove') }}</button>
 
-            <input type="file" class="d-none">
+            <input type="file"
+                   accept="image/*"
+                   class="d-none">
         </div>
 
         <input class="cropper-path"
                type="hidden"
                data-target="fields--cropper.source"
-                @attributes($attributes)
+            @attributes($attributes)
         >
 
         <div class="modal" role="dialog">
