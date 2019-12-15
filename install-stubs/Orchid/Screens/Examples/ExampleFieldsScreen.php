@@ -34,14 +34,14 @@ class ExampleFieldsScreen extends Screen
      *
      * @var string
      */
-    public $name = 'Form elements';
+    public $name = 'Form controls';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'Sample Screen Components';
+    public $description = 'Examples for creating a wide variety of forms.';
 
     /**
      * Query data.

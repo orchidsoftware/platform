@@ -48,23 +48,23 @@ class MainMenuComposer
         $this->dashboard->menu
             ->add(Menu::MAIN,
                 ItemMenu::label('Example screen')
-                    ->icon('icon-folder')
+                    ->icon('icon-monitor')
                     ->route('platform.example')
                     ->title('Navigation')
             )
             ->add(Menu::MAIN,
-                ItemMenu::label('Form elements')
+                ItemMenu::label('Form controls')
                     ->icon('icon-list')
                     ->route('platform.example.fields')
             )
             ->add(Menu::MAIN,
-                ItemMenu::label('Screen layouts')
+                ItemMenu::label('Overview layouts')
                     ->icon('icon-layers')
                     ->route('platform.example.layouts')
             )
             ->add(Menu::MAIN,
                 ItemMenu::label('Screen contents')
-                    ->icon('icon-monitor')
+                    ->icon('icon-folder')
                     ->route('platform.example.contents')
             )
             ->add(Menu::MAIN,

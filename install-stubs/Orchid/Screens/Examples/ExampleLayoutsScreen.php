@@ -14,14 +14,14 @@ class ExampleLayoutsScreen extends Screen
      *
      * @var string
      */
-    public $name = 'Screen layouts';
+    public $name = 'Overview layouts';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'Sample Screen Components';
+    public $description = 'Components for laying out your project';
 
     /**
      * Query data.
