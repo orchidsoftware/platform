@@ -44,7 +44,7 @@ class Label extends Field
      *
      * @return Label
      */
-    public static function make(string $name = null): Label
+    public static function make(string $name = null): self
     {
         return (new static())->name($name);
     }
