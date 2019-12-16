@@ -227,7 +227,8 @@ class Relation extends Field
      */
     public function max(int $number)
     {
-        $this->set('data-maximum-selection-length', "$number");
+        $this->set('data-maximum-selection-length', (string) $number);
+
         return $this;
     }
 }
