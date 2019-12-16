@@ -33,15 +33,15 @@ class MainMenuComposer
         // Profile
         $this->dashboard->menu
             ->add(Menu::PROFILE,
-                ItemMenu::label('Empty 1')
+                ItemMenu::label('Action')
                     ->icon('icon-compass')
-            )
-            ->add(Menu::PROFILE,
-                ItemMenu::label('Empty 2')
-                    ->icon('icon-heart')
                     ->badge(function () {
                         return 6;
                     })
+            )
+            ->add(Menu::PROFILE,
+                ItemMenu::label('Another action')
+                    ->icon('icon-heart')
             );
 
         // Main
@@ -68,20 +68,19 @@ class MainMenuComposer
                     ->route('platform.example.contents')
             )
             ->add(Menu::MAIN,
-                ItemMenu::label('Empty menu')
+                ItemMenu::label('Dropdown menu')
                     ->title('Sub menu')
                     ->slug('example-menu')
                     ->icon('icon-code')
                     ->childs()
             )
             ->add('example-menu',
-                ItemMenu::label('Empty sub item 1')
+                ItemMenu::label('Sub element item 1')
                     ->icon('icon-bag')
             )
             ->add('example-menu',
-                ItemMenu::label('Empty sub item 2')
+                ItemMenu::label('Sub element item 2')
                     ->icon('icon-heart')
-                    ->title('Separate')
             );
     }
 }

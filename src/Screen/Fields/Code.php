@@ -17,6 +17,7 @@ use Orchid\Screen\Field;
  * @method Code lineNumbers($value = true)
  * @method Code height($value = '300px')
  * @method Code readonly($value = true)
+ * @method Code title(string $value = null)
  */
 class Code extends Field
 {

@@ -18,7 +18,6 @@ use Throwable;
  * Class Field.
  *
  * @method self accesskey($value = true)
- * @method self type($value = true)
  * @method self class($value = true)
  * @method self dir($value = true)
  * @method self hidden($value = true)
@@ -27,9 +26,7 @@ use Throwable;
  * @method self spellcheck($value = true)
  * @method self style($value = true)
  * @method self tabindex($value = true)
- * @method self title(string $value = null)
  * @method self autocomplete($value = true)
- * @method self help(string $value)
  */
 class Field implements FieldContract
 {

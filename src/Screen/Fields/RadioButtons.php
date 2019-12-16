@@ -19,6 +19,8 @@ use Orchid\Screen\Field;
  * @method RadioButtons tabindex($value = true)
  * @method RadioButtons help(string $value = null)
  * @method RadioButtons popover(string $value = null)
+ * @method RadioButtons title(string $value = null)
+ * @method RadioButtons options(array $value = [])
  */
 class RadioButtons extends Field
 {

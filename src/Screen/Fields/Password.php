@@ -21,7 +21,6 @@ use Orchid\Screen\Field;
  * @method Password formmethod($value = true)
  * @method Password formnovalidate($value = true)
  * @method Password formtarget($value = true)
- * @method Password list($value = true)
  * @method Password max(int $value)
  * @method Password maxlength(int $value)
  * @method Password min(int $value)
@@ -32,11 +31,10 @@ use Orchid\Screen\Field;
  * @method Password readonly($value = true)
  * @method Password required(bool $value = true)
  * @method Password size($value = true)
- * @method Password src($value = true)
- * @method Password step($value = true)
  * @method Password tabindex($value = true)
  * @method Password help(string $value = null)
  * @method Password popover(string $value = null)
+ * @method Password title(string $value = null)
  */
 class Password extends Field
 {

@@ -24,6 +24,7 @@ use Orchid\Support\Assert;
  * @method Relation help(string $value = null)
  * @method Relation placeholder(string $placeholder = null)
  * @method Relation popover(string $value = null)
+ * @method Relation title(string $value = null)
  */
 class Relation extends Field
 {

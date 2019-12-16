@@ -9,9 +9,7 @@ use Orchid\Screen\Field;
 /**
  * Class DateTimer.
  *
- * @method DateTimer accept($value = true)
  * @method DateTimer accesskey($value = true)
- * @method DateTimer autocomplete($value = true)
  * @method DateTimer autofocus($value = true)
  * @method DateTimer checked($value = true)
  * @method DateTimer disabled($value = true)
@@ -21,24 +19,16 @@ use Orchid\Screen\Field;
  * @method DateTimer formmethod($value = true)
  * @method DateTimer formnovalidate($value = true)
  * @method DateTimer formtarget($value = true)
- * @method DateTimer list($value = true)
- * @method DateTimer max(int $value)
- * @method DateTimer maxlength(int $value)
- * @method DateTimer min(int $value)
- * @method DateTimer multiple($value = true)
  * @method DateTimer name(string $value = null)
- * @method DateTimer pattern($value = true)
  * @method DateTimer placeholder(string $value = null)
  * @method DateTimer readonly($value = true)
  * @method DateTimer required(bool $value = true)
- * @method DateTimer size($value = true)
- * @method DateTimer src($value = true)
- * @method DateTimer step($value = true)
  * @method DateTimer tabindex($value = true)
  * @method DateTimer value($value = true)
  * @method DateTimer help(string $value = null)
  * @method DateTimer popover(string $value = null)
  * @method DateTimer allowEmpty(bool $enabled = true)
+ * @method DateTimer title(string $value = null)
  */
 class DateTimer extends Field
 {
