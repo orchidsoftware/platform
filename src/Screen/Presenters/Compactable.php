@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Presenters;
 
-interface MiniCard
+interface Compactable
 {
     /**
      * @return string

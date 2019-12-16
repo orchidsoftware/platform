@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Screen\Contents;
+namespace Orchid\Screen\Templates;
 
 use Orchid\Screen\Content;
-use Orchid\Screen\Presenters\Profilable;
+use Orchid\Screen\Presenters\Personable;
 
-class AvatarList extends Content
+class Facepile extends Content
 {
     /**
      * @var string
      */
-    protected $template = 'platform::contents.avatarList';
+    protected $template = 'platform::templates.facepile';
 
     /**
-     * @param Profilable[] $user
+     * @param Personable[] $users
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

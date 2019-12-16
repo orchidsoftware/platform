@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Screen\Contents;
+namespace Orchid\Screen\Templates;
 
 use Orchid\Screen\Content;
 use Orchid\Screen\Presenters\Quotation;
@@ -12,7 +12,7 @@ class Quote extends Content
     /**
      * @var string
      */
-    protected $template = 'platform::contents.note';
+    protected $template = 'platform::templates.note';
 
     /**
      * @param Quotation $quotation
@@ -21,7 +21,7 @@ class Quote extends Content
      */
     public function render(Quotation $quotation)
     {
-        $profile = new Profile($quotation);
+        $profile = new Persona($quotation);
 
         return view($this->template, [
             'profile' => $profile,

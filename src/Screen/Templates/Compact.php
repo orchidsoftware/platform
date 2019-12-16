@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Screen\Contents;
+namespace Orchid\Screen\Templates;
 
 use Orchid\Screen\Content;
-use Orchid\Screen\Presenters\MiniCard as Presentor;
+use Orchid\Screen\Presenters\Compactable;
 
-class MiniCard extends Content
+class Compact extends Content
 {
     /**
      * @var string
      */
-    protected $template = 'platform::contents.miniCard';
+    protected $template = 'platform::templates.compact';
 
     /**
-     * @param Presentor $card
+     * @param Compactable $card
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function render(Presentor $card)
+    public function render(Compactable $card)
     {
         return view($this->template, [
             'id'    => $card->id(),

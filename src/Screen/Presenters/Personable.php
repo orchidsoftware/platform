@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Presenters;
 
-interface Card
+interface Personable
 {
     /**
      * @return string
@@ -14,20 +14,15 @@ interface Card
     /**
      * @return string
      */
-    public function descriptions(): string;
+    public function subTitle(): string;
+
+    /**
+     * @return string
+     */
+    public function url(): string;
 
     /**
      * @return string
      */
     public function image(): ?string;
-
-    /**
-     * @return mixed
-     */
-    public function status();
-
-    /**
-     * @return mixed
-     */
-    public function users();
 }
