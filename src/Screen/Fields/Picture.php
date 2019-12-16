@@ -19,6 +19,7 @@ use Orchid\Screen\Field;
  * @method Picture value($value = true)
  * @method Picture help(string $value = null)
  * @method Picture popover(string $value = null)
+ * @method Picture title(string $value = null)
  */
 class Picture extends Field
 {

@@ -9,9 +9,7 @@ use Orchid\Screen\Field;
 /**
  * Class DateRange.
  *
- * @method DateRange accept($value = true)
  * @method DateRange accesskey($value = true)
- * @method DateRange autocomplete($value = true)
  * @method DateRange autofocus($value = true)
  * @method DateRange checked($value = true)
  * @method DateRange disabled($value = true)
@@ -21,23 +19,15 @@ use Orchid\Screen\Field;
  * @method DateRange formmethod($value = true)
  * @method DateRange formnovalidate($value = true)
  * @method DateRange formtarget($value = true)
- * @method DateRange list($value = true)
- * @method DateRange max(int $value)
- * @method DateRange maxlength(int $value)
- * @method DateRange min(int $value)
- * @method DateRange multiple($value = true)
  * @method DateRange name(string $value = null)
- * @method DateRange pattern($value = true)
  * @method DateRange placeholder(string $value = null)
  * @method DateRange readonly($value = true)
  * @method DateRange required(bool $value = true)
- * @method DateRange size($value = true)
- * @method DateRange src($value = true)
- * @method DateRange step($value = true)
  * @method DateRange tabindex($value = true)
  * @method DateRange value($value = true)
  * @method DateRange help(string $value = null)
  * @method DateRange popover(string $value = null)
+ * @method DateRange title(string $value = null)
  */
 class DateRange extends Field
 {

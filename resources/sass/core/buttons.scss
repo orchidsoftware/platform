@@ -103,8 +103,9 @@
 }
 
 .btn-block {
-  padding-left: 12px;
-  padding-right: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    justify-content: center;
 }
 
 .btn-group-vertical > .btn:first-child:not(:last-child) {

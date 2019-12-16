@@ -25,6 +25,7 @@ use Orchid\Screen\Field;
  * @method TextArea help(string $value = null)
  * @method TextArea max(int $value)
  * @method TextArea popover(string $value = null)
+ * @method TextArea title(string $value = null)
  */
 class TextArea extends Field
 {

@@ -11,6 +11,7 @@ use Orchid\Screen\Field;
  *
  * @method Matrix columns(array $columns)
  * @method Matrix keyValue(bool $keyValue)
+ * @method Matrix title(string $value = null)
  */
 class Matrix extends Field
 {

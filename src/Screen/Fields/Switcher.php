@@ -9,7 +9,6 @@ use Orchid\Screen\Field;
 /**
  * Class Switcher.
  *
- * @method Switcher accept($value = true)
  * @method Switcher accesskey($value = true)
  * @method Switcher autocomplete($value = true)
  * @method Switcher autofocus($value = true)
@@ -21,24 +20,17 @@ use Orchid\Screen\Field;
  * @method Switcher formmethod($value = true)
  * @method Switcher formnovalidate($value = true)
  * @method Switcher formtarget($value = true)
- * @method Switcher list($value = true)
- * @method Switcher max(int $value)
- * @method Switcher maxlength(int $value)
- * @method Switcher min(int $value)
  * @method Switcher multiple($value = true)
  * @method Switcher name(string $value = null)
- * @method Switcher pattern($value = true)
  * @method Switcher placeholder(string $value = null)
  * @method Switcher readonly($value = true)
  * @method Switcher required(bool $value = true)
- * @method Switcher size($value = true)
- * @method Switcher src($value = true)
- * @method Switcher step($value = true)
  * @method Switcher tabindex($value = true)
  * @method Switcher value($value = true)
  * @method Switcher type($value = true)
  * @method Switcher help(string $value = null)
  * @method Switcher sendTrueOrFalse($value = true)
+ * @method Switcher title(string $value = null)
  */
 class Switcher extends Field
 {

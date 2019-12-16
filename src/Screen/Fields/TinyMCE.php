@@ -9,11 +9,9 @@ use Orchid\Screen\Field;
 /**
  * Class TinyMCE.
  *
- * @method TinyMCE accept($value = true)
  * @method TinyMCE accesskey($value = true)
  * @method TinyMCE autocomplete($value = true)
  * @method TinyMCE autofocus($value = true)
- * @method TinyMCE checked($value = true)
  * @method TinyMCE disabled($value = true)
  * @method TinyMCE form($value = true)
  * @method TinyMCE formaction($value = true)
@@ -21,25 +19,17 @@ use Orchid\Screen\Field;
  * @method TinyMCE formmethod($value = true)
  * @method TinyMCE formnovalidate($value = true)
  * @method TinyMCE formtarget($value = true)
- * @method TinyMCE list($value = true)
- * @method TinyMCE max(int $value)
- * @method TinyMCE maxlength(int $value)
- * @method TinyMCE min(int $value)
  * @method TinyMCE name(string $value = null)
- * @method TinyMCE pattern($value = true)
  * @method TinyMCE placeholder(string $value = null)
  * @method TinyMCE readonly($value = true)
  * @method TinyMCE required(bool $value = true)
- * @method TinyMCE size($value = true)
- * @method TinyMCE src($value = true)
- * @method TinyMCE step($value = true)
  * @method TinyMCE tabindex($value = true)
- * @method TinyMCE type($value = true)
  * @method TinyMCE value($value = true)
  * @method TinyMCE theme(string $theme = null)
  * @method TinyMCE help(string $value = null)
  * @method TinyMCE popover(string $value = null)
  * @method TinyMCE height($value = '300px')
+ * @method TinyMCE title(string $value = null)
  */
 class TinyMCE extends Field
 {

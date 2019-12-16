@@ -39,6 +39,7 @@ namespace Orchid\Screen\Fields;
  * @method Cropper width($value = true)
  * @method Cropper height($value = true)
  * @method Cropper popover(string $value = null)
+ * @method Cropper title(string $value = null)
  */
 class Cropper extends Picture
 {

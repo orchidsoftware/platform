@@ -14,33 +14,15 @@ use Orchid\Support\Init;
 /**
  * Class Upload.
  *
- * @method Upload accept($value = true)
- * @method Upload accesskey($value = true)
- * @method Upload autocomplete($value = true)
- * @method Upload autofocus($value = true)
- * @method Upload checked($value = true)
- * @method Upload disabled($value = true)
  * @method Upload form($value = true)
  * @method Upload formaction($value = true)
  * @method Upload formenctype($value = true)
  * @method Upload formmethod($value = true)
  * @method Upload formnovalidate($value = true)
  * @method Upload formtarget($value = true)
- * @method Upload list($value = true)
- * @method Upload max(int $value)
- * @method Upload maxlength(int $value)
- * @method Upload min(int $value)
  * @method Upload multiple($value = true)
  * @method Upload name(string $value = null)
- * @method Upload pattern($value = true)
  * @method Upload placeholder(string $value = null)
- * @method Upload readonly($value = true)
- * @method Upload required(bool $value = true)
- * @method Upload size($value = true)
- * @method Upload src($value = true)
- * @method Upload step($value = true)
- * @method Upload tabindex($value = true)
- * @method Upload type($value = true)
  * @method Upload value($value = true)
  * @method Upload help(string $value = null)
  * @method Upload storage($value = true)
@@ -55,6 +37,7 @@ use Orchid\Support\Init;
  * @method Upload groups($value = true)
  * @method Upload media($value = true)
  * @method Upload closeOnAdd($value = true)
+ * @method Upload title(string $value = null)
  */
 class Upload extends Field
 {
