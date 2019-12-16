@@ -2,19 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Screen\Contents;
+namespace Orchid\Screen\Templates;
 
 use Orchid\Screen\Content;
 
-/**
- * Class Compendium.
- */
 class Compendium extends Content
 {
     /**
      * @var string
      */
-    protected $template = 'platform::contents.compendium';
+    protected $template = 'platform::templates.compendium';
 
     /**
      * @param array $list

@@ -2,27 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Screen\Contents;
+namespace Orchid\Screen\Templates;
 
 use Orchid\Screen\Content;
-use Orchid\Screen\Presenters\Profilable;
+use Orchid\Screen\Presenters\Personable;
 
-/**
- * Class Profile.
- */
-class Profile extends Content
+class Persona extends Content
 {
     /**
      * @var string
      */
-    protected $template = 'platform::contents.profile';
+    protected $template = 'platform::templates.persona';
 
     /**
-     * @param Profilable $user
+     * @param Personable $user
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function render(Profilable $user)
+    public function render(Personable $user)
     {
         return view($this->template, [
             'title'    => $user->title(),

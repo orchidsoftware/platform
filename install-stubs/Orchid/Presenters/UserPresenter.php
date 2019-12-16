@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Orchid\Presenters;
 
 use Orchid\Screen\Presenter;
-use Orchid\Screen\Presenters\Profilable;
+use Orchid\Screen\Presenters\Personable;
 use Orchid\Screen\Presenters\Searchable;
 
-class UserPresenter extends Presenter implements Searchable, Profilable
+class UserPresenter extends Presenter implements Searchable, Personable
 {
     /**
      * @return string

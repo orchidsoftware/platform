@@ -2,22 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Screen\Contents;
+namespace Orchid\Screen\Templates;
 
 use Orchid\Screen\Action;
 use Orchid\Screen\Content;
 use Orchid\Screen\Contracts\ActionContract;
-use Orchid\Screen\Presenters\Card;
+use Orchid\Screen\Presenters\Cardable;
 
-/**
- * Class HorizontalCard.
- */
-class HorizontalCard extends Content
+class Card extends Content
 {
     /**
      * @var string
      */
-    protected $template = 'platform::contents.card';
+    protected $template = 'platform::templates.card';
 
     /**
      * @var array|Action[]
@@ -38,11 +35,11 @@ class HorizontalCard extends Content
     }
 
     /**
-     * @param Card $card
+     * @param Cardable $card
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function render(Card $card)
+    public function render(Cardable $card)
     {
         return view($this->template, [
             'title'        => $card->title(),

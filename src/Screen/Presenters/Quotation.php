@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Presenters;
 
-interface Quotation extends Profilable
+interface Quotation extends Personable
 {
     /**
      * @return string

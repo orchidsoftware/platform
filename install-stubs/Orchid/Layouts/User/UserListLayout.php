@@ -9,9 +9,9 @@ use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Actions\ModalToggle;
-use Orchid\Screen\Contents\Profile;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
+use Orchid\Screen\Templates\Persona;
 
 class UserListLayout extends Table
 {
@@ -30,7 +30,7 @@ class UserListLayout extends Table
                 ->sort()
                 ->filter(TD::FILTER_TEXT)
                 ->render(function (User $user) {
-                    return new Profile($user->presenter());
+                    return new Persona($user->presenter());
                 }),
 
             TD::set('email', __('Email'))

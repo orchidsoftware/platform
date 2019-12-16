@@ -7,13 +7,13 @@ namespace App\Orchid\Screens\Examples;
 use App\User;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
-use Orchid\Screen\Contents\AvatarList;
-use Orchid\Screen\Contents\Compendium;
-use Orchid\Screen\Contents\Quote;
 use Orchid\Screen\Layout;
-use Orchid\Screen\Presenters\Card;
+use Orchid\Screen\Presenters\Cardable;
 use Orchid\Screen\Presenters\Quotation;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Templates\Compendium;
+use Orchid\Screen\Templates\Facepile;
+use Orchid\Screen\Templates\Quote;
 
 class ExampleContentScreen extends Screen
 {
@@ -89,7 +89,7 @@ class ExampleContentScreen extends Screen
                     return 'https://pipeline.mediumra.re/assets/img/avatar-female-4.jpg';
                 }
             },
-            'card'       => new class implements Card {
+            'card' => new class implements Cardable {
                 /**
                  * @return string
                  */
@@ -164,7 +164,7 @@ class ExampleContentScreen extends Screen
     public function layout(): array
     {
         return [
-            new \Orchid\Screen\Contents\HorizontalCard('card', [
+            new \Orchid\Screen\Templates\Card('card', [
                 Button::make('Example Button')
                     ->method('example')
                     ->icon('icon-bag'),
@@ -173,7 +173,7 @@ class ExampleContentScreen extends Screen
                     ->icon('icon-bag'),
             ]),
 
-            new AvatarList('avatarList'),
+            new Facepile('avatarList'),
 
             Layout::columns([
                 new Compendium('compendium'),
