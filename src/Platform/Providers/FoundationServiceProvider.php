@@ -74,8 +74,6 @@ class FoundationServiceProvider extends ServiceProvider
     {
         $path = Dashboard::path('database/migrations');
 
-        $this->loadMigrationsFrom($path);
-
         $this->publishes([
             $path => database_path('migrations'),
         ], 'migrations');
