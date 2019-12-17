@@ -72,6 +72,7 @@ class Relation extends Field
         'required',
         'size',
         'tabindex',
+        'data-maximum-selection-length',
     ];
 
     /**
@@ -215,6 +216,18 @@ class Relation extends Field
     public function displayAppend(string $append): self
     {
         $this->set('relationAppend', Crypt::encryptString($append));
+
+        return $this;
+    }
+
+    /**
+     * Set the maximum number of items that may be selected
+     * @param  int  $number
+     * @return $this
+     */
+    public function max(int $number)
+    {
+        $this->set('data-maximum-selection-length', (string) $number);
 
         return $this;
     }
