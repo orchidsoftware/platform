@@ -760,3 +760,12 @@ dl {
     margin: 0;
     padding: 0.15em 0;
 }
+
+.card-text {
+    text-overflow: ellipsis;
+    max-height: 4.4em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}

@@ -104,17 +104,19 @@ abstract class Base implements JsonSerializable
      */
     protected function buildAsDeep(Repository $repository)
     {
-        $build = [];
-
-        if (! $this->checkPermission($this, $repository)) {
+        if (!$this->checkPermission($this, $repository)) {
             return;
         }
 
-        foreach ($this->layouts as $key => $layouts) {
-            $layouts = Arr::wrap($layouts);
-
-            $build += $this->buildChild($layouts, $key, $repository);
-        }
+        $build = collect($this->layouts)
+            ->map(function ($layouts) {
+                return Arr::wrap($layouts);
+            })
+            ->map(function (array $layouts, string $key) use ($repository) {
+                return $this->buildChild($layouts, $key, $repository);
+            })
+            ->collapse()
+            ->all();
 
         $variables = array_merge($this->variables, [
             'manyForms'           => $build,

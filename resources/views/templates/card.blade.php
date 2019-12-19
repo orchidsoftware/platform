@@ -17,7 +17,6 @@
             <div class="col">
                 <div class="card-body h-full d-table">
 
-
                     <div class="row d-flex align-items-center mb-1">
                         <div class="col-auto">
                             <h5 class="card-title">
@@ -43,62 +42,7 @@
                             @endif
                         </div>
                     </div>
-
-
-                    <p class="card-text" style="
-        text-overflow: ellipsis;
-        max-height: 4.4em;
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-    ">{{ $descriptions }}</p>
-
-
-                    <div class="row justify-content-between">
-                        <div class="col">
-
-                            @if(count($users) === 1)
-                                @foreach($users as $user)
-                                    <p class="card-text align-text-bottom">
-                                        <a href="{{ $user['link'] }}" class="nav-link p-0 v-center "
-                                           data-toggle="dropdown">
-                                            <span class="thumb-sm avatar mr-3">
-                                            <img src="{{ $user['avatar'] }}"
-                                                 class="b bg-light">
-                                            </span>
-                                            <span style="width:11em;font-size: 0.85em;">
-                                            <span class="text-ellipsis">{{ $user['name'] }}</span>
-                                            <span class="text-muted d-block text-ellipsis">{{ $user['sub'] }}</span>
-                                            </span>
-                                        </a>
-                                    </p>
-                                @endforeach
-                            @else
-
-
-                                <div class="avatar-group d-flex justify-content-start">
-                                    @foreach($users as $user)
-                                        <a href="{{ $user['link'] }}" class="avatar thumb-xs"
-                                           data-controller="layouts--tooltip"
-                                           data-action="mouseover->layouts--tooltip#mouseOver"
-                                           data-toggle="tooltip"
-                                           data-placement="top"
-                                           title="{{ $user['name'] }}">
-                                            <img src="{{ $user['avatar'] }}"
-                                                 class="avatar-img rounded-circle b bg-light" alt="{{ $user['name'] }}">
-                                        </a>
-                                    @endforeach
-
-                                </div>
-
-
-                            @endif
-
-
-                        </div>
-                    </div>
-
+                    <div class="card-text">{!! $descriptions  !!}</div>
                 </div>
             </div>
 

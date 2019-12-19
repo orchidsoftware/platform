@@ -47,7 +47,6 @@ class Card extends Content
             'image'        => $card->image(),
             'commandBar'   => $this->buildCommandBar(),
             'status'       => $card->status(),
-            'users'        => [], //$card->buildUserBar(),
         ]);
     }
 
@@ -56,6 +55,7 @@ class Card extends Content
      */
     private function buildCommandBar(): array
     {
+
         return collect($this->commandBar)
             ->map(function (ActionContract $command) {
                 return $command->build($this->query);

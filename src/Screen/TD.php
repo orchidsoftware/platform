@@ -300,6 +300,7 @@ class TD
             'width'        => $this->width,
             'align'        => $this->align,
             'sort'         => $this->sort,
+            'sortUrl'      => $this->buildSortUrl(),
             'column'       => $this->column,
             'title'        => $this->title,
             'filter'       => $this->filter,
@@ -325,5 +326,16 @@ class TD
             'value'  => $value,
             'render' => $this->render,
         ]);
+    }
+
+    /**
+     * @return string
+     */
+    public function buildSortUrl(): string
+    {
+        $query = request()->query();
+        $query['sort'] = revert_sort($this->column);
+
+        return url()->current() . '?' . http_build_query($query);
     }
 }

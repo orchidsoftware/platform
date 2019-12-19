@@ -23801,10 +23801,10 @@ application.load(Object(stimulus_webpack_helpers__WEBPACK_IMPORTED_MODULE_1__["d
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./fields/code_controller.js": "./resources/js/controllers/fields/code_controller.js",
-	"./fields/cropper_controller.js": "./resources/js/controllers/fields/cropper_controller.js",
-	"./fields/datetime_controller.js": "./resources/js/controllers/fields/datetime_controller.js",
-	"./fields/input_controller.js": "./resources/js/controllers/fields/input_controller.js",
+    "./fields/code_controller.js": "./resources/js/controllers/fields/code_controller.js",
+    "./fields/cropper_controller.js": "./resources/js/controllers/fields/cropper_controller.js",
+    "./fields/datetime_controller.js": "./resources/js/controllers/fields/datetime_controller.js",
+    "./fields/input_controller.js": "./resources/js/controllers/fields/input_controller.js",
     "./fields/map_controller.js": "./resources/js/controllers/fields/map_controller.js",
     "./fields/matrix_controller.js": "./resources/js/controllers/fields/matrix_controller.js",
     "./fields/password_controller.js": "./resources/js/controllers/fields/password_controller.js",
@@ -27604,9 +27604,19 @@ function (_Controller) {
             return Constructor;
         }
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+        function _possibleConstructorReturn(self, call) {
+            if (call && (_typeof(call) === "object" || typeof call === "function")) {
+                return call;
+            }
+            return _assertThisInitialized(self);
+        }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+        function _assertThisInitialized(self) {
+            if (self === void 0) {
+                throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+            }
+            return self;
+        }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -27857,6 +27867,7 @@ function (_Controller) {
       var formElement = document.getElementById('filters');
       var filters = window.platform.formToObject(formElement);
       var params = $.param(this.removeEmpty(filters));
+        params.sort = this.getUrlParameter('sort');
       var url = "".concat(window.location.origin + window.location.pathname, "?").concat(params);
       window.Turbolinks.visit(url, {
         action: 'replace'
@@ -27886,10 +27897,14 @@ function (_Controller) {
   }, {
     key: "clear",
     value: function clear(event) {
-      window.Turbolinks.visit(window.location.origin + window.location.pathname, {
-        action: 'replace'
-      });
-      event.preventDefault();
+        var params = {
+            sort: this.getUrlParameter('sort')
+        };
+        var url = "".concat(window.location.origin + window.location.pathname, "?").concat(params);
+        window.Turbolinks.visit(url, {
+            action: 'replace'
+        });
+        event.preventDefault();
     }
     /**
      *
@@ -27897,14 +27912,28 @@ function (_Controller) {
      */
 
   }, {
-    key: "clearFilter",
-    value: function clearFilter(event) {
-      var filter = event.target.dataset.filter;
-      document.querySelector("input[name='filter[".concat(filter, "]']")).value = '';
-      this.element.remove();
-      this.setAllFilter();
-      event.preventDefault();
-    }
+      key: "clearFilter",
+      value: function clearFilter(event) {
+          var filter = event.target.dataset.filter;
+          document.querySelector("input[name='filter[".concat(filter, "]']")).value = '';
+          this.element.remove();
+          this.setAllFilter();
+          event.preventDefault();
+      }
+      /**
+       *
+       * @param property
+       * @returns {string}
+       */
+
+  }, {
+      key: "getUrlParameter",
+      value: function getUrlParameter(property) {
+          var name = property.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+          var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+          var results = regex.exec(window.location.search);
+          return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+      }
   }], [{
     key: "targets",
     get: function get() {

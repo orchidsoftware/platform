@@ -1,7 +1,7 @@
 <th width="{{$width}}" class="text-{{$align}}">
     <div>
         @if($sort)
-            <a href="?sort={{revert_sort($column)}}"
+            <a href="{{ $sortUrl }}"
                class="@if(!is_sort($column)) text-muted @endif">
                 {{$title}}
 
