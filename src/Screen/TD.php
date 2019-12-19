@@ -336,6 +336,6 @@ class TD
         $query = request()->query();
         $query['sort'] = revert_sort($this->column);
 
-        return url()->current() . '?' . http_build_query($query);
+        return url()->current().'?'.http_build_query($query);
     }
 }

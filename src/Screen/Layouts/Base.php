@@ -104,7 +104,7 @@ abstract class Base implements JsonSerializable
      */
     protected function buildAsDeep(Repository $repository)
     {
-        if (!$this->checkPermission($this, $repository)) {
+        if (! $this->checkPermission($this, $repository)) {
             return;
         }
 

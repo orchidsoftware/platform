@@ -22,7 +22,7 @@ class Modal extends Base
 
     /**
      * The modal window variation key,
-     * for example, on the right, in the center
+     * for example, on the right, in the center.
      *
      * @var string
      */
@@ -30,7 +30,7 @@ class Modal extends Base
 
     /**
      * The size of the modal window,
-     * for example, large or small
+     * for example, large or small.
      *
      * @var string
      */
