@@ -30,11 +30,6 @@ class Setting extends Model
     /**
      * @var string
      */
-    protected $table = 'settings';
-
-    /**
-     * @var string
-     */
     protected $primaryKey = 'key';
 
     /**
@@ -52,6 +47,17 @@ class Setting extends Model
         'value' => 'array',
     ];
 
+    /**
+     * Create a new model instance.
+     *
+     * @param array $attributes
+     */
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->table = config('platform.settingsTable');
+    }    
+    
     /**
      * @param string       $key
      * @param string|array $value
