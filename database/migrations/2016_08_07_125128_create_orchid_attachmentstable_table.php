@@ -11,8 +11,8 @@ class CreateOrchidAttachmentstableTable extends Migration
      */
     public function up()
     {
-        $table = config('platform.attachmentsTable');
-        $tableAttachmentable = config('platform.attachmentableTable');
+        $table = env('ORCHID_ATTACHMENTS_DATABASE_TABLE', 'attachments');
+        $tableAttachmentable = env('ORCHID_ATTACHMENTABLE_DATABASE_TABLE', 'attachmentable');
         
         Schema::create($table, function (Blueprint $table) {
             $table->increments('id');
@@ -53,8 +53,8 @@ class CreateOrchidAttachmentstableTable extends Migration
      */
     public function down()
     {
-        $table = config('platform.attachmentsTable');
-        $tableAttachmentable = config('platform.attachmentableTable');
+        $table = env('ORCHID_ATTACHMENTS_DATABASE_TABLE', 'attachments');
+        $tableAttachmentable = env('ORCHID_ATTACHMENTABLE_DATABASE_TABLE', 'attachmentable');
         
         Schema::drop($tableAttachmentable);
         Schema::drop($table);
