@@ -13,8 +13,10 @@ class CreateNotificationsTable extends Migration
      */
     public function up()
     {
-        if (! Schema::hasTable('notifications')) {
-            Schema::create('notifications', function (Blueprint $table) {
+        $table = config('platform.notificationsTable');
+        
+        if (! Schema::hasTable($table)) {
+            Schema::create($table, function (Blueprint $table) {
                 $table->uuid('id')->primary();
                 $table->string('type');
                 $table->morphs('notifiable');
@@ -32,6 +34,7 @@ class CreateNotificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notifications');
+        $table = config('platform.notificationsTable');
+        Schema::dropIfExists($table);
     }
 }
