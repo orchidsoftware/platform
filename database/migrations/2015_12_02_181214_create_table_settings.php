@@ -11,7 +11,8 @@ class CreateTableSettings extends Migration
      */
     public function up()
     {
-        Schema::create('settings', function (Blueprint $table) {
+        $table = config('platform.settingsTable');
+        Schema::create($table, function (Blueprint $table) {
             $table->string('key')->primary();
             $table->json('value');
         });
@@ -22,6 +23,7 @@ class CreateTableSettings extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('settings');
+        $table = config('platform.settingsTable');
+        Schema::dropIfExists($table);
     }
 }
