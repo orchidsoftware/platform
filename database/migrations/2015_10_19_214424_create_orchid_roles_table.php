@@ -11,7 +11,7 @@ class CreateOrchidRolesTable extends Migration
      */
     public function up()
     {
-        $table = config('platform.rolesTable');
+        $table = env('ORCHID_ROLES_ROLES_DATABASE_TABLE', 'roles');
         Schema::create($table, function (Blueprint $table) {
             $table->increments('id');
             $table->string('slug')->unique();
@@ -26,7 +26,7 @@ class CreateOrchidRolesTable extends Migration
      */
     public function down()
     {
-        $table = config('platform.rolesTable');
+        $table = env('ORCHID_ROLES_ROLES_DATABASE_TABLE', 'roles');
         Schema::dropIfExists($table);
     }
 }
