@@ -15,8 +15,15 @@ class Attachmentable extends Model
      * @var bool
      */
     public $timestamps = false;
+    
     /**
-     * @var string
+     * Create a new model instance.
+     *
+     * @param array $attributes
      */
-    protected $table = 'attachmentable';
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->table = config('platform.attachmentableTable');
+    }     
 }
