@@ -14,10 +14,6 @@ class Role extends Model implements RoleInterface
 {
     use RoleAccess, Filterable, AsSource;
 
-    /**
-     * @var string
-     */
-    protected $table = 'roles';
 
     /**
      * @var array
@@ -56,4 +52,15 @@ class Role extends Model implements RoleInterface
         'updated_at',
         'created_at',
     ];
+    
+    /**
+     * Create a new model instance.
+     *
+     * @param array $attributes
+     */
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->table = config('platform.rolesTable');
+    }     
 }
