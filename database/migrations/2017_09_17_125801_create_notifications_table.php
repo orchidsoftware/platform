@@ -13,7 +13,7 @@ class CreateNotificationsTable extends Migration
      */
     public function up()
     {
-        $table = config('platform.notificationsTable');
+        $table = env('ORCHID_NOTIFICATIONS_DATABASE_TABLE', 'notifications');
         
         if (! Schema::hasTable($table)) {
             Schema::create($table, function (Blueprint $table) {
@@ -34,7 +34,7 @@ class CreateNotificationsTable extends Migration
      */
     public function down()
     {
-        $table = config('platform.notificationsTable');
+        $table = env('ORCHID_NOTIFICATIONS_DATABASE_TABLE', 'notifications');
         Schema::dropIfExists($table);
     }
 }
