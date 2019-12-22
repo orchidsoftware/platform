@@ -80,6 +80,17 @@ class Attachment extends Model
     ];
 
     /**
+     * Create a new model instance.
+     *
+     * @param array $attributes
+     */
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->table = config('platform.attachmentsTable');
+    }    
+    
+    /**
      * @return BelongsTo
      */
     public function user(): BelongsTo
