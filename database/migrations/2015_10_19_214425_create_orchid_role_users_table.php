@@ -12,9 +12,11 @@ class CreateOrchidRoleUsersTable extends Migration
     public function up()
     {
         $table = env('ORCHID_ROLE_USERS_DATABASE_TABLE', 'role_users');
-        $tableRoles = env('ORCHID_ROLES_ROLES_DATABASE_TABLE', 'roles');
         
         Schema::create($table, function (Blueprint $table) {
+            
+            $tableRoles = env('ORCHID_ROLES_ROLES_DATABASE_TABLE', 'roles');
+            
             $table->unsignedBigInteger('user_id');
             $table->unsignedInteger('role_id');
             $table->primary(['user_id', 'role_id']);
