@@ -42,7 +42,7 @@ class UserListScreen extends Screen
     public function query() : array
     {
         return  [
-            'users'  => User::with('roles')
+            'users'  => User::with( config('platform.rolesTable') )
                 ->filters()
                 ->filtersApplySelection(UserFiltersLayout::class)
                 ->defaultSort('id', 'desc')
