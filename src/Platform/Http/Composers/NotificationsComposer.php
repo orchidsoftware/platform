@@ -23,6 +23,6 @@ class NotificationsComposer
             ->limit(15)
             ->get();
 
-        $view->with('notifications', $notifications);
+        $view->with( config('platform.notificationsTable'), $notifications);
     }
 }
