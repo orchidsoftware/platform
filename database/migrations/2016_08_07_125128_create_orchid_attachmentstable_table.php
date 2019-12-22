@@ -11,7 +11,10 @@ class CreateOrchidAttachmentstableTable extends Migration
      */
     public function up()
     {
-        Schema::create('attachments', function (Blueprint $table) {
+        $table = config('platform.attachmentsTable');
+        $tableAttachmentable = config('platform.attachmentableTable');
+        
+        Schema::create($table, function (Blueprint $table) {
             $table->increments('id');
             $table->text('name');
             $table->text('original_name');
@@ -29,7 +32,7 @@ class CreateOrchidAttachmentstableTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('attachmentable', function (Blueprint $table) {
+        Schema::create($tableAttachmentable, function (Blueprint $table) {
             $table->increments('id');
             $table->string('attachmentable_type');
             $table->unsignedInteger('attachmentable_id');
@@ -39,7 +42,7 @@ class CreateOrchidAttachmentstableTable extends Migration
 
             $table->foreign('attachment_id')
                 ->references('id')
-                ->on('attachments')
+                ->on($table)
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
@@ -50,7 +53,10 @@ class CreateOrchidAttachmentstableTable extends Migration
      */
     public function down()
     {
-        Schema::drop('attachmentable');
-        Schema::drop('attachments');
+        $table = config('platform.attachmentsTable');
+        $tableAttachmentable = config('platform.attachmentableTable');
+        
+        Schema::drop($tableAttachmentable);
+        Schema::drop($table);
     }
 }
