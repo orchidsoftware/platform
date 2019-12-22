@@ -33,6 +33,9 @@ class CreateOrchidAttachmentstableTable extends Migration
         });
 
         Schema::create($tableAttachmentable, function (Blueprint $table) {
+            
+            $tableAttachments = env('ORCHID_ATTACHMENTS_DATABASE_TABLE', 'attachments');
+            
             $table->increments('id');
             $table->string('attachmentable_type');
             $table->unsignedInteger('attachmentable_id');
@@ -42,7 +45,7 @@ class CreateOrchidAttachmentstableTable extends Migration
 
             $table->foreign('attachment_id')
                 ->references('id')
-                ->on($table)
+                ->on($tableAttachments)
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
