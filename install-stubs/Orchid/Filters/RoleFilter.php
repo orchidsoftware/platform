@@ -34,7 +34,7 @@ class RoleFilter extends Filter
      */
     public function run(Builder $builder) : Builder
     {
-        return $builder->whereHas('roles', function (Builder $query) {
+        return $builder->whereHas( config('platform.rolesTable'), function (Builder $query) {
             $query->where('slug', $this->request->get('role'));
         });
     }
