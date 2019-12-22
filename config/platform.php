@@ -110,7 +110,7 @@ return [
     */
 
     'rolesTable'            => env('ORCHID_ROLES_ROLES_DATABASE_TABLE', 'roles'),
-    'roleUserTable'         => env('ORCHID_ROLES_ROLE_USER_DATABASE_TABLE', 'role_users'),
+    'roleUserTable'         => env('ORCHID_ROLE_USERS_DATABASE_TABLE', 'role_users'),
     'settingsTable'         => env('ORCHID_SETTINGS_DATABASE_TABLE', 'settings'),
     'attachmentsTable'      => env('ORCHID_ATTACHMENTS_DATABASE_TABLE', 'attachments'),
     'attachmentableTable'   => env('ORCHID_ATTACHMENTABLE_DATABASE_TABLE', 'attachmentable'),
