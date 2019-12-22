@@ -11,8 +11,8 @@ class CreateOrchidRoleUsersTable extends Migration
      */
     public function up()
     {
-        $table = config('platform.roleUsersTable');
-        $tableRoles = config('platform.rolesTable');
+        $table = env('ORCHID_ROLE_USERS_DATABASE_TABLE', 'role_users');
+        $tableRoles = env('ORCHID_ROLES_ROLES_DATABASE_TABLE', 'roles');
         
         Schema::create($table, function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
@@ -36,7 +36,7 @@ class CreateOrchidRoleUsersTable extends Migration
      */
     public function down()
     {
-        $table = config('platform.roleUsersTable');
+        $table = env('ORCHID_ROLE_USERS_DATABASE_TABLE', 'role_users');
         Schema::dropIfExists($table);
     }
 }
