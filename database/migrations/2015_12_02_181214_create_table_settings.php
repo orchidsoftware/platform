@@ -11,7 +11,7 @@ class CreateTableSettings extends Migration
      */
     public function up()
     {
-        $table = config('platform.settingsTable');
+        $table = env('ORCHID_SETTINGS_DATABASE_TABLE', 'settings');
         Schema::create($table, function (Blueprint $table) {
             $table->string('key')->primary();
             $table->json('value');
@@ -23,7 +23,7 @@ class CreateTableSettings extends Migration
      */
     public function down()
     {
-        $table = config('platform.settingsTable');
+        $table = env('ORCHID_SETTINGS_DATABASE_TABLE', 'settings');
         Schema::dropIfExists($table);
     }
 }
