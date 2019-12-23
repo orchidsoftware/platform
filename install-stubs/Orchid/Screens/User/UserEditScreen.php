@@ -33,7 +33,7 @@ class UserEditScreen extends Screen
      *
      * @var string
      */
-    public $description = 'All registered users';
+    public $description = 'Details such as name, email and password';
 
     /**
      * @var string

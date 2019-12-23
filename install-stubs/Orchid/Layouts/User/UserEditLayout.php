@@ -40,7 +40,8 @@ class UserEditLayout extends Rows
                 ->fromModel(Role::class, 'name')
                 ->multiple()
                 ->horizontal()
-                ->title(__('Name role')),
+                ->title(__('Name role'))
+                ->help('Specify which groups this account should belong to.'),
         ];
     }
 }

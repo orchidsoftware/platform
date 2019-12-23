@@ -20,7 +20,7 @@ class RoleEditScreen extends Screen
      *
      * @var string
      */
-    public $name = 'Roles';
+    public $name = 'Manage Roles';
 
     /**
      * Display header description.
