@@ -52,7 +52,7 @@
                         <div class="modal-content">
                             <div class="modal-header clearfix">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                    <span aria-hidden="true">&times;</span>
+                                    <i class="icon-cross icons" ria-hidden="true"></i>
                                 </button>
                                 <h5>{{__('File Information')}}</h5>
                                 <p class="m-b-md">{{__('Information to display')}}</p>
@@ -81,12 +81,28 @@
                                               maxlength="255"
                                               rows="3"></textarea>
                                 </div>
+
+
+                                <div class="form-group">
+                                    <label><i class="icon-link mr-2"></i> Link for file</label>
+
+                                    <p>
+                                        Скачать файл
+                                        <a href="#" data-action="click->fields--upload#openLink">
+                                            {{__('Link')}}
+                                        </a>
+                                    </p>
+                                </div>
+
+
                             </div>
                             <div class="modal-footer">
-                                <button type="button" data-action="click->fields--upload#openLink"
-                                        class="btn btn-link ">
-                                    <i class="icon-link"></i>
-                                    {{__('Link')}}
+                                <button type="button"
+                                        data-dismiss="modal"
+                                        class="btn btn-link">
+                                    <span>
+                                        {{__('Close')}}
+                                    </span>
                                 </button>
                                 <button type="button" data-action="click->fields--upload#save" class="btn btn-default">
                                     {{__('Apply')}}

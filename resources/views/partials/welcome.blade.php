@@ -1,14 +1,15 @@
 <div class="row admin-wrapper b-t">
     <div class="wrapper-lg">
         <div class="mb-5">
-            <h1 class="text-dark font-thin m-b-sm"><i class="icon-directions m-r-xs"></i> Get Started</h1>
+            <h1 class="text-dark font-thin m-b-sm"><i class="icon-directions mr-2"></i> Get Started</h1>
             <p class="lead m-b-n">Develop corporate web applications faster than ever</p>
         </div>
         <div class="row">
             <div class="col-md-4 no-padder admin-element-item">
                 <div class="admin-element w-full">
                     <h3 class="font-thin h3 text-black">
-                        <i class="icon-screen-desktop"></i><a href="https://orchid.software/en/docs/screens/">Screens</a>
+                        <i class="icon-screen-desktop"></i><a
+                            href="https://orchid.software/en/docs/screens/">Screens</a>
                     </h3>
                     <div class="line line-dashed b-b mt-3 mb-1"></div>
                     <div class="list-group no-bg no-borders pull-in auto">

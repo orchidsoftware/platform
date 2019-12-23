@@ -49,7 +49,7 @@
     </div>
     <div class="form-group col-md-6 col-xs-12">
         <button id="button-login" type="submit" class="btn btn-default btn-block">
-            <i class="icon-login text-xs m-r-xs"></i> {{__('Login')}}
+            <i class="icon-login text-xs mr-2"></i> {{__('Login')}}
         </button>
     </div>
 </div>

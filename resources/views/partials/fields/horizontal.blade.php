@@ -7,7 +7,7 @@
             ])
 
             @if(isset($attributes['required']) && $attributes['required'])
-                <span class="text-danger m-l-xs">*</span>
+                <span class="text-danger">*</span>
             @endif
         </label>
     @endisset

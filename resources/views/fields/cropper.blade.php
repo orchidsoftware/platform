@@ -15,17 +15,19 @@
 
             <span class="mt-1 float-left">{{ __('Upload image from your computer:') }}</span>
 
-            <label class="btn btn-default m-n">
-                <i class="icon-cloud-upload"></i> {{ __('Browse') }}
-                <input type="file"
-                       accept="image/*"
-                       data-target="fields--cropper.upload"
-                       data-action="change->fields--cropper#upload click->fields--cropper#openModal"
-                       class="d-none">
-            </label>
+            <div class="btn-group">
+                <label class="btn btn-default m-n">
+                    <i class="icon-cloud-upload"></i> {{ __('Browse') }}
+                    <input type="file"
+                           accept="image/*"
+                           data-target="fields--cropper.upload"
+                           data-action="change->fields--cropper#upload click->fields--cropper#openModal"
+                           class="d-none">
+                </label>
 
-            <button type="button" class="btn btn-outline-danger cropper-remove"
-                    data-action="fields--cropper#clear">{{ __('Remove') }}</button>
+                <button type="button" class="btn btn-outline-danger cropper-remove"
+                        data-action="fields--cropper#clear">{{ __('Remove') }}</button>
+            </div>
 
             <input type="file"
                    accept="image/*"

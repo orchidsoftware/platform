@@ -24057,17 +24057,20 @@ function (_Controller) {
         formData.append('file', blob);
         formData.append('storage', _this2.data.get('storage'));
         var element = _this2.element;
-        axios.post(platform.prefix('/systems/files'), formData).then(function (response) {
-          var image = response.data.url;
+          axios.post(platform.prefix('/systems/files'), formData).then(function (response) {
+              var image = response.data.url;
 
-          var targetValue = _this2.data.get('target');
+              var targetValue = _this2.data.get('target');
 
-          element.querySelector('.cropper-preview').src = image;
-          element.querySelector('.cropper-preview').classList.remove('none');
-          element.querySelector('.cropper-remove').classList.remove('none');
-          element.querySelector('.cropper-path').value = response.data[targetValue];
-          $(element.querySelector('.modal')).modal('hide');
-        });
+              element.querySelector('.cropper-preview').src = image;
+              element.querySelector('.cropper-preview').classList.remove('none');
+              element.querySelector('.cropper-remove').classList.remove('none');
+              element.querySelector('.cropper-path').value = response.data[targetValue];
+              $(element.querySelector('.modal')).modal('hide');
+          })["catch"](function (error) {
+              window.platform.alert('Validation error', 'File upload error');
+              console.warn(error);
+          });
       });
     }
     /**
@@ -24842,17 +24845,20 @@ function (_Controller) {
         formData.append('file', event.target.files[0]);
         formData.append('storage', _this.data.get('storage'));
         var element = _this.element;
-        axios.post(platform.prefix('/systems/files'), formData).then(function (response) {
-          var image = response.data.url;
+          axios.post(platform.prefix('/systems/files'), formData).then(function (response) {
+              var image = response.data.url;
 
-          var targetValue = _this.data.get('target');
+              var targetValue = _this.data.get('target');
 
-          element.querySelector('.picture-preview').src = image;
-          element.querySelector('.picture-preview').classList.remove('none');
-          element.querySelector('.picture-remove').classList.remove('none');
-          element.querySelector('.picture-path').value = response.data[targetValue];
-          $(element.querySelector('.modal')).modal('hide');
-        });
+              element.querySelector('.picture-preview').src = image;
+              element.querySelector('.picture-preview').classList.remove('none');
+              element.querySelector('.picture-remove').classList.remove('none');
+              element.querySelector('.picture-path').value = response.data[targetValue];
+              $(element.querySelector('.modal')).modal('hide');
+          })["catch"](function (error) {
+              window.platform.alert('Validation error', 'File upload error');
+              console.warn(error);
+          });
       };
     }
     /**
@@ -25765,7 +25771,8 @@ function (_Controller) {
       axios.post(platform.prefix('/systems/files'), data).then(function (response) {
         success(response.data.url);
       })["catch"](function (error) {
-        console.warn(error);
+          window.platform.alert('Validation error', 'File upload error');
+          console.warn(error);
       });
     }
   }, {
@@ -26605,6 +26612,7 @@ function (_Controller) {
 
         var buttonElement = document.querySelector(button);
         buttonElement.disabled = true;
+        buttonElement.classList.add('cursor-wait');
         buttonElement.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>' + "<span class=\"pl-1\">".concat(text, "</span>");
     }
     /**

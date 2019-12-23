@@ -4,7 +4,7 @@
 <a href="{{$route ?? '#'}}" class="dropdown-item">
 
     <span class="col-auto mr-auto no-padder">
-        <i class="{{$icon}} m-r-xs"></i>
+        <i class="{{$icon}} mr-2"></i>
         {{ __($label) }}
     </span>
 

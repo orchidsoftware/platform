@@ -27,7 +27,7 @@
                        required
                        value="{{ old('email') }}">
                 @error('email')
-                    <span class="invalid-feedback text-danger">
+                <span class="invalid-feedback text-danger">
                         <strong>{{ $errors->first('email') }}</strong>
                     </span>
                 @enderror
@@ -35,7 +35,7 @@
         </div>
         <div class="form-group">
             <button class="btn btn-default btn-block" id="button-email" type="submit">
-                <i class="icon-envelope text-xs m-r-xs"></i>  {{ __('Send Password Reset Link') }}
+                <i class="icon-envelope text-xs mr-2"></i> {{ __('Send Password Reset Link') }}
             </button>
         </div>
     </form>

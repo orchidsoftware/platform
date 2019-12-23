@@ -9,10 +9,12 @@
 }
 
 .btn-link {
-  color: $text-color;
-  &.active {
-    box-shadow: none;
-  }
+    color: $text-color;
+    align-items: baseline;
+
+    &.active {
+        box-shadow: none;
+    }
 }
 
 .btn-default {

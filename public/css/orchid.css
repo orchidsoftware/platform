@@ -1055,22 +1055,26 @@ pre code {
       -webkit-box-ordinal-group: 3;
       order: 2;
   }
-  .order-sm-3 {
-      -webkit-box-ordinal-group: 4;
-      order: 3;
-  }
-  .order-sm-4 {
-      -webkit-box-ordinal-group: 5;
-      order: 4;
-  }
-  .order-sm-5 {
-      -webkit-box-ordinal-group: 6;
-      order: 5;
-  }
-  .order-sm-6 {
-      -webkit-box-ordinal-group: 7;
-      order: 6;
-  }
+
+    .order-sm-3 {
+        -webkit-box-ordinal-group: 4;
+        order: 3;
+    }
+
+    .order-sm-4 {
+        -webkit-box-ordinal-group: 5;
+        order: 4;
+    }
+
+    .order-sm-5 {
+        -webkit-box-ordinal-group: 6;
+        order: 5;
+    }
+
+    .order-sm-6 {
+        -webkit-box-ordinal-group: 7;
+        order: 6;
+    }
 
     .order-sm-7 {
         -webkit-box-ordinal-group: 8;
@@ -1244,22 +1248,26 @@ pre code {
       -webkit-box-ordinal-group: 3;
       order: 2;
   }
-  .order-md-3 {
-      -webkit-box-ordinal-group: 4;
-      order: 3;
-  }
-  .order-md-4 {
-      -webkit-box-ordinal-group: 5;
-      order: 4;
-  }
-  .order-md-5 {
-      -webkit-box-ordinal-group: 6;
-      order: 5;
-  }
-  .order-md-6 {
-      -webkit-box-ordinal-group: 7;
-      order: 6;
-  }
+
+    .order-md-3 {
+        -webkit-box-ordinal-group: 4;
+        order: 3;
+    }
+
+    .order-md-4 {
+        -webkit-box-ordinal-group: 5;
+        order: 4;
+    }
+
+    .order-md-5 {
+        -webkit-box-ordinal-group: 6;
+        order: 5;
+    }
+
+    .order-md-6 {
+        -webkit-box-ordinal-group: 7;
+        order: 6;
+    }
 
     .order-md-7 {
         -webkit-box-ordinal-group: 8;
@@ -1433,22 +1441,26 @@ pre code {
       -webkit-box-ordinal-group: 3;
       order: 2;
   }
-  .order-lg-3 {
-      -webkit-box-ordinal-group: 4;
-      order: 3;
-  }
-  .order-lg-4 {
-      -webkit-box-ordinal-group: 5;
-      order: 4;
-  }
-  .order-lg-5 {
-      -webkit-box-ordinal-group: 6;
-      order: 5;
-  }
-  .order-lg-6 {
-      -webkit-box-ordinal-group: 7;
-      order: 6;
-  }
+
+    .order-lg-3 {
+        -webkit-box-ordinal-group: 4;
+        order: 3;
+    }
+
+    .order-lg-4 {
+        -webkit-box-ordinal-group: 5;
+        order: 4;
+    }
+
+    .order-lg-5 {
+        -webkit-box-ordinal-group: 6;
+        order: 5;
+    }
+
+    .order-lg-6 {
+        -webkit-box-ordinal-group: 7;
+        order: 6;
+    }
 
     .order-lg-7 {
         -webkit-box-ordinal-group: 8;
@@ -1622,22 +1634,26 @@ pre code {
       -webkit-box-ordinal-group: 3;
       order: 2;
   }
-  .order-xl-3 {
-      -webkit-box-ordinal-group: 4;
-      order: 3;
-  }
-  .order-xl-4 {
-      -webkit-box-ordinal-group: 5;
-      order: 4;
-  }
-  .order-xl-5 {
-      -webkit-box-ordinal-group: 6;
-      order: 5;
-  }
-  .order-xl-6 {
-      -webkit-box-ordinal-group: 7;
-      order: 6;
-  }
+
+    .order-xl-3 {
+        -webkit-box-ordinal-group: 4;
+        order: 3;
+    }
+
+    .order-xl-4 {
+        -webkit-box-ordinal-group: 5;
+        order: 4;
+    }
+
+    .order-xl-5 {
+        -webkit-box-ordinal-group: 6;
+        order: 5;
+    }
+
+    .order-xl-6 {
+        -webkit-box-ordinal-group: 7;
+        order: 6;
+    }
 
     .order-xl-7 {
         -webkit-box-ordinal-group: 8;
@@ -7660,22 +7676,26 @@ button.graph-svg-tip:focus {
   .flex-sm-shrink-1 {
       flex-shrink: 1 !important;
   }
-  .justify-content-sm-start {
-      -webkit-box-pack: start !important;
-      justify-content: flex-start !important;
-  }
-  .justify-content-sm-end {
-      -webkit-box-pack: end !important;
-      justify-content: flex-end !important;
-  }
-  .justify-content-sm-center {
-      -webkit-box-pack: center !important;
-      justify-content: center !important;
-  }
-  .justify-content-sm-between {
-      -webkit-box-pack: justify !important;
-      justify-content: space-between !important;
-  }
+
+    .justify-content-sm-start {
+        -webkit-box-pack: start !important;
+        justify-content: flex-start !important;
+    }
+
+    .justify-content-sm-end {
+        -webkit-box-pack: end !important;
+        justify-content: flex-end !important;
+    }
+
+    .justify-content-sm-center {
+        -webkit-box-pack: center !important;
+        justify-content: center !important;
+    }
+
+    .justify-content-sm-between {
+        -webkit-box-pack: justify !important;
+        justify-content: space-between !important;
+    }
 
     .justify-content-sm-around {
         justify-content: space-around !important;
@@ -7803,22 +7823,26 @@ button.graph-svg-tip:focus {
   .flex-md-shrink-1 {
       flex-shrink: 1 !important;
   }
-  .justify-content-md-start {
-      -webkit-box-pack: start !important;
-      justify-content: flex-start !important;
-  }
-  .justify-content-md-end {
-      -webkit-box-pack: end !important;
-      justify-content: flex-end !important;
-  }
-  .justify-content-md-center {
-      -webkit-box-pack: center !important;
-      justify-content: center !important;
-  }
-  .justify-content-md-between {
-      -webkit-box-pack: justify !important;
-      justify-content: space-between !important;
-  }
+
+    .justify-content-md-start {
+        -webkit-box-pack: start !important;
+        justify-content: flex-start !important;
+    }
+
+    .justify-content-md-end {
+        -webkit-box-pack: end !important;
+        justify-content: flex-end !important;
+    }
+
+    .justify-content-md-center {
+        -webkit-box-pack: center !important;
+        justify-content: center !important;
+    }
+
+    .justify-content-md-between {
+        -webkit-box-pack: justify !important;
+        justify-content: space-between !important;
+    }
 
     .justify-content-md-around {
         justify-content: space-around !important;
@@ -7946,22 +7970,26 @@ button.graph-svg-tip:focus {
   .flex-lg-shrink-1 {
       flex-shrink: 1 !important;
   }
-  .justify-content-lg-start {
-      -webkit-box-pack: start !important;
-      justify-content: flex-start !important;
-  }
-  .justify-content-lg-end {
-      -webkit-box-pack: end !important;
-      justify-content: flex-end !important;
-  }
-  .justify-content-lg-center {
-      -webkit-box-pack: center !important;
-      justify-content: center !important;
-  }
-  .justify-content-lg-between {
-      -webkit-box-pack: justify !important;
-      justify-content: space-between !important;
-  }
+
+    .justify-content-lg-start {
+        -webkit-box-pack: start !important;
+        justify-content: flex-start !important;
+    }
+
+    .justify-content-lg-end {
+        -webkit-box-pack: end !important;
+        justify-content: flex-end !important;
+    }
+
+    .justify-content-lg-center {
+        -webkit-box-pack: center !important;
+        justify-content: center !important;
+    }
+
+    .justify-content-lg-between {
+        -webkit-box-pack: justify !important;
+        justify-content: space-between !important;
+    }
 
     .justify-content-lg-around {
         justify-content: space-around !important;
@@ -8089,22 +8117,26 @@ button.graph-svg-tip:focus {
   .flex-xl-shrink-1 {
       flex-shrink: 1 !important;
   }
-  .justify-content-xl-start {
-      -webkit-box-pack: start !important;
-      justify-content: flex-start !important;
-  }
-  .justify-content-xl-end {
-      -webkit-box-pack: end !important;
-      justify-content: flex-end !important;
-  }
-  .justify-content-xl-center {
-      -webkit-box-pack: center !important;
-      justify-content: center !important;
-  }
-  .justify-content-xl-between {
-      -webkit-box-pack: justify !important;
-      justify-content: space-between !important;
-  }
+
+    .justify-content-xl-start {
+        -webkit-box-pack: start !important;
+        justify-content: flex-start !important;
+    }
+
+    .justify-content-xl-end {
+        -webkit-box-pack: end !important;
+        justify-content: flex-end !important;
+    }
+
+    .justify-content-xl-center {
+        -webkit-box-pack: center !important;
+        justify-content: center !important;
+    }
+
+    .justify-content-xl-between {
+        -webkit-box-pack: justify !important;
+        justify-content: space-between !important;
+    }
 
     .justify-content-xl-around {
         justify-content: space-around !important;
@@ -9124,18 +9156,21 @@ button.graph-svg-tip:focus {
   .my-sm-n3 {
       margin-top: -1rem !important;
   }
-  .mr-sm-n3,
-  .mx-sm-n3 {
-      margin-right: -1rem !important;
-  }
-  .mb-sm-n3,
-  .my-sm-n3 {
-      margin-bottom: -1rem !important;
-  }
-  .ml-sm-n3,
-  .mx-sm-n3 {
-      margin-left: -1rem !important;
-  }
+
+    .mr-sm-n3,
+    .mx-sm-n3 {
+        margin-right: -1rem !important;
+    }
+
+    .mb-sm-n3,
+    .my-sm-n3 {
+        margin-bottom: -1rem !important;
+    }
+
+    .ml-sm-n3,
+    .mx-sm-n3 {
+        margin-left: -1rem !important;
+    }
 
     .m-sm-n4 {
         margin: -1.5rem !important;
@@ -9484,18 +9519,21 @@ button.graph-svg-tip:focus {
   .my-md-n3 {
       margin-top: -1rem !important;
   }
-  .mr-md-n3,
-  .mx-md-n3 {
-      margin-right: -1rem !important;
-  }
-  .mb-md-n3,
-  .my-md-n3 {
-      margin-bottom: -1rem !important;
-  }
-  .ml-md-n3,
-  .mx-md-n3 {
-      margin-left: -1rem !important;
-  }
+
+    .mr-md-n3,
+    .mx-md-n3 {
+        margin-right: -1rem !important;
+    }
+
+    .mb-md-n3,
+    .my-md-n3 {
+        margin-bottom: -1rem !important;
+    }
+
+    .ml-md-n3,
+    .mx-md-n3 {
+        margin-left: -1rem !important;
+    }
 
     .m-md-n4 {
         margin: -1.5rem !important;
@@ -9844,18 +9882,21 @@ button.graph-svg-tip:focus {
   .my-lg-n3 {
       margin-top: -1rem !important;
   }
-  .mr-lg-n3,
-  .mx-lg-n3 {
-      margin-right: -1rem !important;
-  }
-  .mb-lg-n3,
-  .my-lg-n3 {
-      margin-bottom: -1rem !important;
-  }
-  .ml-lg-n3,
-  .mx-lg-n3 {
-      margin-left: -1rem !important;
-  }
+
+    .mr-lg-n3,
+    .mx-lg-n3 {
+        margin-right: -1rem !important;
+    }
+
+    .mb-lg-n3,
+    .my-lg-n3 {
+        margin-bottom: -1rem !important;
+    }
+
+    .ml-lg-n3,
+    .mx-lg-n3 {
+        margin-left: -1rem !important;
+    }
 
     .m-lg-n4 {
         margin: -1.5rem !important;
@@ -10204,18 +10245,21 @@ button.graph-svg-tip:focus {
   .my-xl-n3 {
       margin-top: -1rem !important;
   }
-  .mr-xl-n3,
-  .mx-xl-n3 {
-      margin-right: -1rem !important;
-  }
-  .mb-xl-n3,
-  .my-xl-n3 {
-      margin-bottom: -1rem !important;
-  }
-  .ml-xl-n3,
-  .mx-xl-n3 {
-      margin-left: -1rem !important;
-  }
+
+    .mr-xl-n3,
+    .mx-xl-n3 {
+        margin-right: -1rem !important;
+    }
+
+    .mb-xl-n3,
+    .my-xl-n3 {
+        margin-bottom: -1rem !important;
+    }
+
+    .ml-xl-n3,
+    .mx-xl-n3 {
+        margin-left: -1rem !important;
+    }
 
     .m-xl-n4 {
         margin: -1.5rem !important;
@@ -11291,7 +11335,7 @@ a.text-dark:hover, a.text-dark:focus {
   /**
    * Dropdown border color and box-shadow.
    */
-  /**
+    /**
    * Limit the dropdown height.
    */
     /*------------------------------------*\
@@ -18266,6 +18310,8 @@ body {
 
 .btn-link {
     color: #58666e;
+    -webkit-box-align: baseline;
+    align-items: baseline;
 }
 
 .btn-link.active {
@@ -21247,6 +21293,10 @@ a.text-black:hover {
     cursor: pointer;
 }
 
+.cursor-wait {
+    cursor: wait;
+}
+
 .pull-left {
     float: left;
 }
@@ -21659,6 +21709,10 @@ select.form-control, select.chosen-choices, select.chosen-single, select.bootstr
 }
 
 .dropzone .media-item *, .dropzone-wrapper .media-item *, .dropzone-wrapper .media-item * {
+    cursor: pointer;
+}
+
+.dropzone .dz-clickable .btn:hover, .dropzone-wrapper .dz-clickable .btn:hover, .dropzone .dz-clickable .dz-preview .btn-remove:hover, .dropzone .dz-preview .dz-clickable .btn-remove:hover, .dropzone-wrapper .dz-clickable .dz-preview .btn-remove:hover, .dropzone-wrapper .dz-preview .dz-clickable .btn-remove:hover, .dropzone .dz-clickable .dz-preview .btn-edit:hover, .dropzone .dz-preview .dz-clickable .btn-edit:hover, .dropzone-wrapper .dz-clickable .dz-preview .btn-edit:hover, .dropzone-wrapper .dz-preview .dz-clickable .btn-edit:hover, .dropzone .modal button:hover, .dropzone-wrapper .modal button:hover, .dropzone-wrapper .dz-clickable .btn:hover, .dropzone .dz-preview .dropzone-wrapper .dz-clickable .btn-remove:hover, .dropzone-wrapper .dz-clickable .dz-preview .btn-remove:hover, .dropzone-wrapper .dz-preview .dz-clickable .btn-remove:hover, .dropzone .dz-preview .dropzone-wrapper .dz-clickable .btn-edit:hover, .dropzone-wrapper .dz-clickable .dz-preview .btn-edit:hover, .dropzone-wrapper .dz-preview .dz-clickable .btn-edit:hover, .dropzone-wrapper .modal button:hover {
     cursor: pointer;
 }
 
