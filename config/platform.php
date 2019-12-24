@@ -93,6 +93,9 @@ return [
     | allowing to customize the part of the user interface that is
     | suitable for specifying the name, logo, accompanying documents, etc.
     |
+    | Example: Path to your file '/views/brand/header.blade.php',
+    | then its value should be 'brand.header'
+    |
     */
 
     'template' => [
