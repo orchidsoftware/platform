@@ -138,7 +138,7 @@ class User extends Authenticatable implements UserInterface
         ])->notify(new DashboardNotification([
             'title'   => "Welcome {$name}",
             'message' => 'You can find the latest news of the project on the website',
-            'action'  => 'https://orchid.software/',
+            'action'  => route('platform.main'),
             'type'    => DashboardNotification::INFO,
         ]));
     }
