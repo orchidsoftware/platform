@@ -102,12 +102,12 @@ class Action extends Field implements ActionContract
         $reflectionClass = new \ReflectionClass(Color::class);
 
         $colors = array_map(static function (string $color) {
-            return 'btn-' . $color;
+            return 'btn-'.$color;
         }, $reflectionClass->getConstants());
 
-        $class = str_replace($colors, '', (string)$this->get('class'));
+        $class = str_replace($colors, '', (string) $this->get('class'));
 
-        $this->set('class', $class . ' btn-' . $visual);
+        $this->set('class', $class.' btn-'.$visual);
 
         return $this;
     }

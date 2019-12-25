@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Support;
 
 /**
- * Class Color
+ * Class Color.
  *
  * All colors available in package,
  * are available as constants
- *
- * @package Orchid\Support
  */
 class Color
 {
