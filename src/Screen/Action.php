@@ -5,22 +5,59 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Orchid\Screen\Contracts\ActionContract;
+use Orchid\Support\Color;
 
 class Action extends Field implements ActionContract
 {
     /**
-     * Visual style.
+     * @deprecated
      */
-    public const DEFAULT = 'btn-default';
-    public const SUCCESS = 'btn-success';
-    public const WARNING = 'btn-warning';
-    public const DANGER = 'btn-danger';
-    public const INFO = 'btn-info';
-    public const PRIMARY = 'btn-primary';
-    public const SECONDARY = 'btn-secondary';
-    public const LIGHT = 'btn-light';
-    public const DARK = 'btn-dark';
-    public const LINK = 'btn-link';
+    public const DEFAULT = 'default';
+
+    /**
+     * @deprecated
+     */
+    public const SUCCESS = 'success';
+
+    /**
+     * @deprecated
+     */
+    public const WARNING = 'warning';
+
+    /**
+     * @deprecated
+     */
+    public const DANGER = 'danger';
+
+    /**
+     * @deprecated
+     */
+    public const INFO = 'info';
+
+    /**
+     * @deprecated
+     */
+    public const PRIMARY = 'primary';
+
+    /**
+     * @deprecated
+     */
+    public const SECONDARY = 'secondary';
+
+    /**
+     * @deprecated
+     */
+    public const LIGHT = 'light';
+
+    /**
+     * @deprecated
+     */
+    public const DARK = 'dark';
+
+    /**
+     * @deprecated
+     */
+    public const LINK = 'link';
 
     /**
      * Override the form view.
@@ -62,20 +99,15 @@ class Action extends Field implements ActionContract
      */
     public function type(string $visual): self
     {
-        $class = str_replace([
-            static::DEFAULT,
-            static::SUCCESS,
-            static::WARNING,
-            static::DANGER,
-            static::INFO,
-            static::PRIMARY,
-            static::SECONDARY,
-            static::LIGHT,
-            static::DARK,
-            static::LINK,
-        ], '', (string) $this->get('class'));
+        $reflectionClass = new \ReflectionClass(Color::class);
 
-        $this->set('class', $class.' '.$visual);
+        $colors = array_map(static function (string $color) {
+            return 'btn-' . $color;
+        }, $reflectionClass->getConstants());
+
+        $class = str_replace($colors, '', (string)$this->get('class'));
+
+        $this->set('class', $class . ' btn-' . $visual);
 
         return $this;
     }

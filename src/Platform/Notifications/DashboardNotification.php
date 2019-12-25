@@ -7,33 +7,34 @@ namespace Orchid\Platform\Notifications;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
+use Orchid\Support\Color;
 
 class DashboardNotification extends Notification
 {
     use Queueable;
 
     /**
-     * @var array|null
+     * @var array
      */
-    public $message;
+    public $message = [];
 
     /**
-     * Status.
+     * @deprecated
      */
     public const INFO = 'info';
 
     /**
-     * Status.
+     * @deprecated
      */
     public const SUCCESS = 'success';
 
     /**
-     * Status.
+     * @deprecated
      */
     public const ERROR = 'danger';
 
     /**
-     * Status.
+     * @deprecated
      */
     public const WARNING = 'warning';
 
@@ -44,7 +45,7 @@ class DashboardNotification extends Notification
      */
     public function __construct(array $message)
     {
-        $message['type'] = $message['type'] ?? self::INFO;
+        $message['type'] = $message['type'] ?? Color::INFO;
         $message['time'] = Carbon::now();
 
         $this->message = $message;
