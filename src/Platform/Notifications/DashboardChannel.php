@@ -33,9 +33,9 @@ class DashboardChannel extends DatabaseChannel
      * @param mixed        $notifiable
      * @param Notification $notification
      *
-     * @return array
-     *
      * @throws \RuntimeException
+     *
+     * @return array
      */
     protected function getData($notifiable, Notification $notification)
     {
