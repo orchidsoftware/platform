@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Notifications;
 
-use App\Notifications\DashboardMessage;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Orchid\Support\Color;
