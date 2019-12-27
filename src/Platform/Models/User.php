@@ -30,6 +30,8 @@ class User extends Authenticatable implements UserInterface
     protected $table = 'users';
 
     /**
+     * The attributes that are mass assignable.
+     *
      * @var array
      */
     protected $fillable = [
@@ -51,6 +53,8 @@ class User extends Authenticatable implements UserInterface
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
      * @var array
      */
     protected $casts = [
@@ -60,6 +64,8 @@ class User extends Authenticatable implements UserInterface
     ];
 
     /**
+     * The attributes for which you can use filters in url.
+     *
      * @var array
      */
     protected $allowedFilters = [
@@ -70,6 +76,8 @@ class User extends Authenticatable implements UserInterface
     ];
 
     /**
+     * The attributes for which can use sort in url.
+     *
      * @var array
      */
     protected $allowedSorts = [
@@ -144,9 +152,9 @@ class User extends Authenticatable implements UserInterface
     }
 
     /**
-     *@throws Exception
-     *
      * @return string
+     * @throws Exception
+     *
      */
     public function getAvatar()
     {
