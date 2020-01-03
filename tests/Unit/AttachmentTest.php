@@ -171,7 +171,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertStringContainsString(' "group" = ?', $sql);
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->disk = 'public';
