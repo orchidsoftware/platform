@@ -36,73 +36,73 @@ class FieldTest extends TestUnitCase
     {
         return [
             [TextArea::class,
-             [
-                 'name' => 'example',
-             ], ],
+                [
+                    'name' => 'example',
+                ], ],
             [Input::class,
-             [
-                 'name' => 'example',
-             ], ],
+                [
+                    'name' => 'example',
+                ], ],
             [Select::class,
-             [
-                 'name'    => 'example',
-                 'options' => [],
-             ], ],
+                [
+                    'name'    => 'example',
+                    'options' => [],
+                ], ],
             [RadioButtons::class,
-             [
-                 'name'    => 'example',
-                 'options' => ['value' => 'example'],
-             ], ],
+                [
+                    'name'    => 'example',
+                    'options' => ['value' => 'example'],
+                ], ],
             [Map::class,
-             [
-                 'name' => 'example',
-             ], ],
+                [
+                    'name' => 'example',
+                ], ],
             [Cropper::class,
-             [
-                 'name'   => 'example',
-                 'width'  => '100',
-                 'height' => '100',
-             ], ],
+                [
+                    'name'   => 'example',
+                    'width'  => '100',
+                    'height' => '100',
+                ], ],
             [DateTimer::class,
-             [
-                 'name' => 'example',
-             ], ],
+                [
+                    'name' => 'example',
+                ], ],
             [CheckBox::class,
-             [
-                 'name' => 'example',
-             ], ],
+                [
+                    'name' => 'example',
+                ], ],
             [TinyMCE::class,
-             [
-                 'name' => 'example',
-             ], ],
+                [
+                    'name' => 'example',
+                ], ],
             [Password::class,
-             [
-                 'name' => 'example',
-             ], ],
+                [
+                    'name' => 'example',
+                ], ],
             [SimpleMDE::class,
-             [
-                 'name' => 'example',
-             ], ],
+                [
+                    'name' => 'example',
+                ], ],
             [Upload::class,
-             [
-                 'name' => 'example',
-             ], ],
+                [
+                    'name' => 'example',
+                ], ],
             [UTM::class,
-             [
-                 'name' => 'example',
-             ], ],
+                [
+                    'name' => 'example',
+                ], ],
             [DateRange::class,
-             [
-                 'name' => 'example',
-             ], ],
+                [
+                    'name' => 'example',
+                ], ],
             [Switcher::class,
-             [
-                 'name' => 'example',
-             ], ],
+                [
+                    'name' => 'example',
+                ], ],
             [Picture::class,
-             [
-                 'name' => 'example',
-             ], ],
+                [
+                    'name' => 'example',
+                ], ],
         ];
     }
 
