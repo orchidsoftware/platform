@@ -147,7 +147,7 @@ class ExampleScreen extends Screen
 
             Layout::table('table', [
                 TD::set('id', 'ID')
-                    ->width(150)
+                    ->width('150')
                     ->render(function (Repository $model) {
                         // Please use view('path')
                         return "<img src='https://picsum.photos/450/200?random={$model->get('id')}'
@@ -157,7 +157,7 @@ class ExampleScreen extends Screen
                     }),
 
                 TD::set('name', 'Name')
-                    ->width(450)
+                    ->width('450')
                     ->render(function (Repository $model) {
                         return Str::limit($model->get('name'), 200);
                     }),
