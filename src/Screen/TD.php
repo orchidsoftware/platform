@@ -361,7 +361,7 @@ class TD
      */
     public function buildItemMenu()
     {
-        if (!$this->isAllowUserHidden()) {
+        if (! $this->isAllowUserHidden()) {
             return;
         }
 
@@ -414,7 +414,7 @@ class TD
         $query = request()->query();
         $query['sort'] = revert_sort($this->column);
 
-        return url()->current() . '?' . http_build_query($query);
+        return url()->current().'?'.http_build_query($query);
     }
 
     /**
@@ -425,7 +425,7 @@ class TD
     public static function isShowVisibleColumns($columns): bool
     {
         return collect($columns)->filter(function ($column) {
-                return $column->isAllowUserHidden();
-            })->count() > 0;
+            return $column->isAllowUserHidden();
+        })->count() > 0;
     }
 }

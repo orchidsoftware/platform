@@ -81,7 +81,7 @@ class Alert
      */
     public function message(string $message, string $level = null): self
     {
-        $level = $level ?? (string)Color::INFO();
+        $level = $level ?? (string) Color::INFO();
 
         $this->session->flash(static::SESSION_MESSAGE, $message);
         $this->session->flash(static::SESSION_LEVEL, $level);
@@ -98,7 +98,7 @@ class Alert
      */
     public function success(string $message): self
     {
-        $this->message($message, (string)Color::SUCCESS());
+        $this->message($message, (string) Color::SUCCESS());
 
         return $this;
     }
@@ -126,7 +126,7 @@ class Alert
      */
     public function warning(string $message): self
     {
-        $this->message($message, (string)Color::WARNING());
+        $this->message($message, (string) Color::WARNING());
 
         return $this;
     }
