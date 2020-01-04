@@ -143,7 +143,7 @@ class Modal extends Base
      *
      * @return Modal
      */
-    public function title(string $title):self
+    public function title(string $title): self
     {
         $this->variables['title'] = $title;
 

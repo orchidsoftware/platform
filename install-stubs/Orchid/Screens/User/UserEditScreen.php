@@ -73,11 +73,11 @@ class UserEditScreen extends Screen
                         ->icon('icon-login')
                         ->method('loginAs'),
 
-                  ModalToggle::make(__('Change Password'))
-                        ->icon('icon-lock-open')
-                        ->method('changePassword')
-                        ->modal('password')
-                        ->title(__('Change Password')),
+                    ModalToggle::make(__('Change Password'))
+                          ->icon('icon-lock-open')
+                          ->method('changePassword')
+                          ->modal('password')
+                          ->title(__('Change Password')),
 
                 ]),
 

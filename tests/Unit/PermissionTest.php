@@ -44,7 +44,7 @@ class PermissionTest extends TestUnitCase
     /**
      * @return User
      */
-    private function createUser() : User
+    private function createUser(): User
     {
         return User::firstOrCreate([
             'email' => 'test@test.com',
@@ -62,7 +62,7 @@ class PermissionTest extends TestUnitCase
     /**
      * @return Role
      */
-    private function createRole() : Role
+    private function createRole(): Role
     {
         return Role::firstOrCreate([
             'slug' => 'admin',
