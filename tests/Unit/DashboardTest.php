@@ -112,13 +112,13 @@ class DashboardTest extends TestUnitCase
         $this->assertEquals(Dashboard::returnNameMacroFunction($name), $name);
     }
 
-    protected function setUp(): void
+    protected function setUp() : void
     {
         parent::setUp();
         Dashboard::configure([]);
     }
 
-    protected function tearDown(): void
+    protected function tearDown() : void
     {
         parent::tearDown();
         Dashboard::configure([]);

@@ -55,10 +55,10 @@ class Orchid extends Preset
     protected static function updatePackageArray(array $packages)
     {
         return [
-            'stimulus'                                => '^1.1.1',
-            '@babel/plugin-proposal-class-properties' => '^7.4.4',
-            '@babel/plugin-transform-block-scoping'   => '^7.4.4',
-        ] + $packages;
+                'stimulus'                                => '^1.1.1',
+                '@babel/plugin-proposal-class-properties' => '^7.4.4',
+                '@babel/plugin-transform-block-scoping'   => '^7.4.4',
+            ] + $packages;
     }
 
     /**

@@ -31,7 +31,7 @@ class RolePermissionLayout extends Rows
      *
      * @return array
      */
-    public function generatedPermissionFields(Collection $permissionsRaw): array
+    public function generatedPermissionFields(Collection $permissionsRaw) : array
     {
         $fields = [];
 

@@ -113,7 +113,7 @@ class SettingsTest extends TestUnitCase
         $this->assertEquals('default', setting('not-found', 'default'));
     }
 
-    protected function setUp(): void
+    protected function setUp() : void
     {
         parent::setUp();
         $setting = new Setting();

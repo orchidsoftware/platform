@@ -23,7 +23,7 @@ class EmptyUserModel extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeAsBuilder(Builder $query): Builder
+    public function scopeAsBuilder(Builder $query) : Builder
     {
         return $query->where('name', 'RelationTest');
     }
@@ -33,7 +33,7 @@ class EmptyUserModel extends Model
      *
      * @return \Illuminate\Support\Collection
      */
-    public function scopeAsCollection(Builder $query): Collection
+    public function scopeAsCollection(Builder $query) : Collection
     {
         return $query->where('name', 'RelationTest')->get();
     }

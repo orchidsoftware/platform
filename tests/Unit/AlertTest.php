@@ -86,7 +86,7 @@ class AlertTest extends TestUnitCase
      *
      * @return array
      */
-    public function getLevels(): array
+    public function getLevels() :array
     {
         return [
             [

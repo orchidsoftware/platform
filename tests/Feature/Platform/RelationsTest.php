@@ -28,7 +28,7 @@ class RelationsTest extends TestFeatureCase
     /**
      * @return array
      */
-    public function scopeList(): array
+    public function scopeList() : array
     {
         return [
             ['asBuilder'],
