@@ -151,9 +151,8 @@ class ExampleScreen extends Screen
                     ->render(function (Repository $model) {
                         // Please use view('path')
                         return "<img src='https://picsum.photos/450/200?random={$model->get('id')}'
-                              alt='sample'
-                              class='mw-100 d-block img-fluid'>
-                            <span class='small text-muted mt-1 mb-0'># {$model->get('id')}</span>";
+                                     class='mw-100 d-block img-fluid'>
+                                <span class='small text-muted mt-1 mb-0'># {$model->get('id')}</span>";
                     }),
 
                 TD::set('name', 'Name')
