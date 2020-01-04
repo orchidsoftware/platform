@@ -53,7 +53,7 @@ class DashboardNotification extends Notification
      */
     public function __construct(array $message)
     {
-        $message['type'] = $message['type'] ?? Color::INFO;
+        $message['type'] = $message['type'] ?? Color::INFO();
 
         $this->message = $message;
     }

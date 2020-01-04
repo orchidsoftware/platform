@@ -30,13 +30,14 @@
     }
   ],
   "require": {
-    "ext-curl": "*",
-    "ext-json": "*",
-    "davejamesmiller/laravel-breadcrumbs": "^5.3",
-    "laravel/framework": "^6.0",
-    "laravel/scout": "^7.1",
-    "ralouphie/mimey": "^2.1",
-    "watson/active": "^4.0"
+      "ext-curl": "*",
+      "ext-json": "*",
+      "davejamesmiller/laravel-breadcrumbs": "^5.3",
+      "laravel/framework": "^6.0",
+      "laravel/scout": "^7.1",
+      "myclabs/php-enum": "^1.7",
+      "ralouphie/mimey": "^2.1",
+      "watson/active": "^4.0"
   },
   "require-dev": {
     "fzaninotto/faker": "^1.4",
