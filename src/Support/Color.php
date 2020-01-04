@@ -12,17 +12,17 @@ use MyCLabs\Enum\Enum;
  * All colors available in package,
  * are available as constants
  *
- * @method static Color INFO()
- * @method static Color SUCCESS()
- * @method static Color WARNING()
- * @method static Color DEFAULT()
- * @method static Color DANGER()
- * @method static Color PRIMARY()
- * @method static Color SECONDARY()
- * @method static Color LIGHT()
- * @method static Color DARK()
- * @method static Color LINK()
- * @method static Color ERROR()
+ * @method static string|Color INFO()
+ * @method static string|Color SUCCESS()
+ * @method static string|Color WARNING()
+ * @method static string|Color DEFAULT()
+ * @method static string|Color DANGER()
+ * @method static string|Color PRIMARY()
+ * @method static string|Color SECONDARY()
+ * @method static string|Color LIGHT()
+ * @method static string|Color DARK()
+ * @method static string|Color LINK()
+ * @method static string|Color ERROR()
  */
 class Color extends Enum
 {

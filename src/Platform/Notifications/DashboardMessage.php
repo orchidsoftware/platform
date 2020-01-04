@@ -19,7 +19,6 @@ class DashboardMessage extends DatabaseMessage
         'title'   => '',
         'action'  => '#',
         'message' => '',
-        'type'    => Color::INFO,
     ];
 
     public function __construct(array $data = [])
@@ -27,6 +26,10 @@ class DashboardMessage extends DatabaseMessage
         parent::__construct($data);
 
         $this->data['time'] = Carbon::now();
+
+        if (empty($this->data['type'])) {
+            $this->data['type'] = Color::INFO();
+        }
     }
 
     /**

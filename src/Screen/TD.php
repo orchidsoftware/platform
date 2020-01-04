@@ -230,7 +230,7 @@ class TD
     /**
      * @param Closure $closure
      *
-     * @return $this
+     * @return TD
      */
     public function render(Closure $closure): self
     {
@@ -316,6 +316,7 @@ class TD
             'width'        => $this->width,
             'align'        => $this->align,
             'sort'         => $this->sort,
+            'sortUrl'      => $this->buildSortUrl(),
             'column'       => $this->column,
             'title'        => $this->title,
             'filter'       => $this->filter,
@@ -346,13 +347,21 @@ class TD
     }
 
     /**
+     * @return bool
+     */
+    public function isAllowUserHidden(): bool
+    {
+        return $this->allowUserHidden;
+    }
+
+    /**
      * Builds item menu for show/hiden column.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|null
      */
     public function buildItemMenu()
     {
-        if (! $this->allowUserHidden) {
+        if (!$this->isAllowUserHidden()) {
             return;
         }
 
@@ -395,5 +404,28 @@ class TD
         $this->defaultHidden = $hidden;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function buildSortUrl(): string
+    {
+        $query = request()->query();
+        $query['sort'] = revert_sort($this->column);
+
+        return url()->current() . '?' . http_build_query($query);
+    }
+
+    /**
+     * @param TD[] $columns
+     *
+     * @return bool
+     */
+    public static function isShowVisibleColumns($columns): bool
+    {
+        return collect($columns)->filter(function ($column) {
+                return $column->isAllowUserHidden();
+            })->count() > 0;
     }
 }

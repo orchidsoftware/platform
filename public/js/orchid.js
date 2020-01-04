@@ -23810,25 +23810,28 @@ var map = {
 	"./fields/password_controller.js": "./resources/js/controllers/fields/password_controller.js",
 	"./fields/picture_controller.js": "./resources/js/controllers/fields/picture_controller.js",
 	"./fields/popover_controller.js": "./resources/js/controllers/fields/popover_controller.js",
-	"./fields/quill_controller.js": "./resources/js/controllers/fields/quill_controller.js",
-	"./fields/radiobutton_controller.js": "./resources/js/controllers/fields/radiobutton_controller.js",
-	"./fields/relation_controller.js": "./resources/js/controllers/fields/relation_controller.js",
-	"./fields/select_controller.js": "./resources/js/controllers/fields/select_controller.js",
-	"./fields/simplemde_controller.js": "./resources/js/controllers/fields/simplemde_controller.js",
-	"./fields/tinymce_controller.js": "./resources/js/controllers/fields/tinymce_controller.js",
-	"./fields/upload_controller.js": "./resources/js/controllers/fields/upload_controller.js",
-	"./fields/utm_controller.js": "./resources/js/controllers/fields/utm_controller.js",
-	"./layouts/form_controller.js": "./resources/js/controllers/layouts/form_controller.js",
-	"./layouts/html_load_controller.js": "./resources/js/controllers/layouts/html_load_controller.js",
-	"./layouts/search_controller.js": "./resources/js/controllers/layouts/search_controller.js",
-	"./layouts/systems_controller.js": "./resources/js/controllers/layouts/systems_controller.js",
-	"./layouts/table_controller.js": "./resources/js/controllers/layouts/table_controller.js",
-	"./layouts/toast_controller.js": "./resources/js/controllers/layouts/toast_controller.js",
-	"./screen/base_controller.js": "./resources/js/controllers/screen/base_controller.js",
-	"./screen/chart_controller.js": "./resources/js/controllers/screen/chart_controller.js",
-	"./screen/filter_controller.js": "./resources/js/controllers/screen/filter_controller.js",
-	"./screen/modal_controller.js": "./resources/js/controllers/screen/modal_controller.js",
-	"./screen/tabs_controller.js": "./resources/js/controllers/screen/tabs_controller.js"
+    "./fields/quill_controller.js": "./resources/js/controllers/fields/quill_controller.js",
+    "./fields/radiobutton_controller.js": "./resources/js/controllers/fields/radiobutton_controller.js",
+    "./fields/relation_controller.js": "./resources/js/controllers/fields/relation_controller.js",
+    "./fields/select_controller.js": "./resources/js/controllers/fields/select_controller.js",
+    "./fields/simplemde_controller.js": "./resources/js/controllers/fields/simplemde_controller.js",
+    "./fields/tinymce_controller.js": "./resources/js/controllers/fields/tinymce_controller.js",
+    "./fields/upload_controller.js": "./resources/js/controllers/fields/upload_controller.js",
+    "./fields/utm_controller.js": "./resources/js/controllers/fields/utm_controller.js",
+    "./layouts/form_controller.js": "./resources/js/controllers/layouts/form_controller.js",
+    "./layouts/html_load_controller.js": "./resources/js/controllers/layouts/html_load_controller.js",
+    "./layouts/notification_controller.js": "./resources/js/controllers/layouts/notification_controller.js",
+    "./layouts/reload_controller.js": "./resources/js/controllers/layouts/reload_controller.js",
+    "./layouts/search_controller.js": "./resources/js/controllers/layouts/search_controller.js",
+    "./layouts/systems_controller.js": "./resources/js/controllers/layouts/systems_controller.js",
+    "./layouts/table_controller.js": "./resources/js/controllers/layouts/table_controller.js",
+    "./layouts/toast_controller.js": "./resources/js/controllers/layouts/toast_controller.js",
+    "./layouts/tooltip_controller.js": "./resources/js/controllers/layouts/tooltip_controller.js",
+    "./screen/base_controller.js": "./resources/js/controllers/screen/base_controller.js",
+    "./screen/chart_controller.js": "./resources/js/controllers/screen/chart_controller.js",
+    "./screen/filter_controller.js": "./resources/js/controllers/screen/filter_controller.js",
+    "./screen/modal_controller.js": "./resources/js/controllers/screen/modal_controller.js",
+    "./screen/tabs_controller.js": "./resources/js/controllers/screen/tabs_controller.js"
 };
 
 
@@ -24055,17 +24058,20 @@ function (_Controller) {
         formData.append('file', blob);
         formData.append('storage', _this2.data.get('storage'));
         var element = _this2.element;
-        axios.post(platform.prefix('/systems/files'), formData).then(function (response) {
-          var image = response.data.url;
+          axios.post(platform.prefix('/systems/files'), formData).then(function (response) {
+              var image = response.data.url;
 
-          var targetValue = _this2.data.get('target');
+              var targetValue = _this2.data.get('target');
 
-          element.querySelector('.cropper-preview').src = image;
-          element.querySelector('.cropper-preview').classList.remove('none');
-          element.querySelector('.cropper-remove').classList.remove('none');
-          element.querySelector('.cropper-path').value = response.data[targetValue];
-          $(element.querySelector('.modal')).modal('hide');
-        });
+              element.querySelector('.cropper-preview').src = image;
+              element.querySelector('.cropper-preview').classList.remove('none');
+              element.querySelector('.cropper-remove').classList.remove('none');
+              element.querySelector('.cropper-path').value = response.data[targetValue];
+              $(element.querySelector('.modal')).modal('hide');
+          })["catch"](function (error) {
+              window.platform.alert('Validation error', 'File upload error');
+              console.warn(error);
+          });
       });
     }
     /**
@@ -24226,19 +24232,15 @@ function (_Flatpickr) {
         plugins: plugins
       };
     }
-    /**
-     *
-     * @param selectedDates
-     * @param dateStr
-     * @param instance
-     * @returns {*}
-     */
+      /**
+       * Clear input time
+       */
 
   }, {
-    key: "change",
-    value: function change(selectedDates, dateStr, instance) {
-      return dateStr;
-    }
+      key: "clear",
+      value: function clear() {
+          this.fp.clear();
+      }
   }]);
 
   return _default;
@@ -24468,7 +24470,7 @@ function (_Controller) {
   }, {
     key: "search",
     value: function search() {
-      var results = document.getElementById('marker__results');
+        var results = this.element.querySelector('.marker-results');
 
       if (this.searchTarget.value.length <= 3) {
         return;
@@ -24843,17 +24845,20 @@ function (_Controller) {
         formData.append('file', event.target.files[0]);
         formData.append('storage', _this.data.get('storage'));
         var element = _this.element;
-        axios.post(platform.prefix('/systems/files'), formData).then(function (response) {
-          var image = response.data.url;
+          axios.post(platform.prefix('/systems/files'), formData).then(function (response) {
+              var image = response.data.url;
 
-          var targetValue = _this.data.get('target');
+              var targetValue = _this.data.get('target');
 
-          element.querySelector('.picture-preview').src = image;
-          element.querySelector('.picture-preview').classList.remove('none');
-          element.querySelector('.picture-remove').classList.remove('none');
-          element.querySelector('.picture-path').value = response.data[targetValue];
-          $(element.querySelector('.modal')).modal('hide');
-        });
+              element.querySelector('.picture-preview').src = image;
+              element.querySelector('.picture-preview').classList.remove('none');
+              element.querySelector('.picture-remove').classList.remove('none');
+              element.querySelector('.picture-path').value = response.data[targetValue];
+              $(element.querySelector('.modal')).modal('hide');
+          })["catch"](function (error) {
+              window.platform.alert('Validation error', 'File upload error');
+              console.warn(error);
+          });
       };
     }
     /**
@@ -25225,7 +25230,8 @@ function (_Controller) {
       var model = this.data.get('model');
       var name = this.data.get('name');
       var key = this.data.get('key');
-      var scope = this.data.get('scope');
+        var scope = this.data.get('scope');
+        var append = this.data.get('append');
       $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
@@ -25260,11 +25266,12 @@ function (_Controller) {
           },
           data: function data(params) {
             return {
-              search: params.term,
-              model: model,
-              name: name,
-              key: key,
-              scope: scope
+                search: params.term,
+                model: model,
+                name: name,
+                key: key,
+                scope: scope,
+                append: append
             };
           }
         },
@@ -25764,7 +25771,8 @@ function (_Controller) {
       axios.post(platform.prefix('/systems/files'), data).then(function (response) {
         success(response.data.url);
       })["catch"](function (error) {
-        console.warn(error);
+          window.platform.alert('Validation error', 'File upload error');
+          console.warn(error);
       });
     }
   }, {
@@ -26096,11 +26104,13 @@ function (_Controller) {
           $("".concat(dropname, " .dz-progress")).remove();
         },
         error: function error(file, response) {
-          if ($.type(response) === 'string') {
-            return response;
-          }
+            window.platform.alert('Validation error', 'File upload error');
 
-          return response.message;
+            if ($.type(response) === 'string') {
+                return response;
+            }
+
+            return response.message;
         },
         success: function success(file, response) {
           if (!Array.isArray(response)) {
@@ -26597,16 +26607,17 @@ function (_Controller) {
   }, {
     key: "animateButton",
     value: function animateButton() {
-      var button = this.data.get('button-animate');
-      var text = this.data.get('button-text') || '';
+        var button = this.data.get('button-animate');
+        var text = this.data.get('button-text') || '';
 
-      if (!button || !document.querySelector(button)) {
-        return;
-      }
+        if (!button || !document.querySelector(button)) {
+            return;
+        }
 
-      var buttonElement = document.querySelector(button);
-      buttonElement.disabled = true;
-      buttonElement.innerHTML = '<span class="spinner-border spinner-border-sm mb-1" role="status" aria-hidden="true"></span>' + "<span class=\"pl-1\">".concat(text, "</span>");
+        var buttonElement = document.querySelector(button);
+        buttonElement.disabled = true;
+        buttonElement.classList.add('cursor-wait');
+        buttonElement.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>' + "<span class=\"pl-1\">".concat(text, "</span>");
     }
     /**
      * Form validation
@@ -26871,23 +26882,400 @@ function (_Controller) {
     }
   }]);
 
-  return _default;
+    return _default;
 }(stimulus__WEBPACK_IMPORTED_MODULE_0__["Controller"]);
 
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
+            /* WEBPACK VAR INJECTION */
+        }.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
-/***/ }),
+        /***/
+    }),
 
-/***/ "./resources/js/controllers/layouts/search_controller.js":
-/*!***************************************************************!*\
-  !*** ./resources/js/controllers/layouts/search_controller.js ***!
-  \***************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+    /***/ "./resources/js/controllers/layouts/notification_controller.js":
+    /*!*********************************************************************!*\
+      !*** ./resources/js/controllers/layouts/notification_controller.js ***!
+      \*********************************************************************/
+    /*! exports provided: default */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+        __webpack_require__.d(__webpack_exports__, "default", function () {
+            return _default;
+        });
+        /* harmony import */
+        var stimulus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! stimulus */ "./node_modules/stimulus/index.js");
+
+        function _typeof(obj) {
+            if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+                _typeof = function _typeof(obj) {
+                    return typeof obj;
+                };
+            } else {
+                _typeof = function _typeof(obj) {
+                    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+                };
+            }
+            return _typeof(obj);
+        }
+
+        function _classCallCheck(instance, Constructor) {
+            if (!(instance instanceof Constructor)) {
+                throw new TypeError("Cannot call a class as a function");
+            }
+        }
+
+        function _defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+                var descriptor = props[i];
+                descriptor.enumerable = descriptor.enumerable || false;
+                descriptor.configurable = true;
+                if ("value" in descriptor) descriptor.writable = true;
+                Object.defineProperty(target, descriptor.key, descriptor);
+            }
+        }
+
+        function _createClass(Constructor, protoProps, staticProps) {
+            if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) _defineProperties(Constructor, staticProps);
+            return Constructor;
+        }
+
+        function _possibleConstructorReturn(self, call) {
+            if (call && (_typeof(call) === "object" || typeof call === "function")) {
+                return call;
+            }
+            return _assertThisInitialized(self);
+        }
+
+        function _assertThisInitialized(self) {
+            if (self === void 0) {
+                throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+            }
+            return self;
+        }
+
+        function _getPrototypeOf(o) {
+            _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+                return o.__proto__ || Object.getPrototypeOf(o);
+            };
+            return _getPrototypeOf(o);
+        }
+
+        function _inherits(subClass, superClass) {
+            if (typeof superClass !== "function" && superClass !== null) {
+                throw new TypeError("Super expression must either be null or a function");
+            }
+            subClass.prototype = Object.create(superClass && superClass.prototype, {
+                constructor: {
+                    value: subClass,
+                    writable: true,
+                    configurable: true
+                }
+            });
+            if (superClass) _setPrototypeOf(subClass, superClass);
+        }
+
+        function _setPrototypeOf(o, p) {
+            _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+                o.__proto__ = p;
+                return o;
+            };
+            return _setPrototypeOf(o, p);
+        }
+
+        function _defineProperty(obj, key, value) {
+            if (key in obj) {
+                Object.defineProperty(obj, key, {value: value, enumerable: true, configurable: true, writable: true});
+            } else {
+                obj[key] = value;
+            }
+            return obj;
+        }
+
+
+        var _default =
+            /*#__PURE__*/
+            function (_Controller) {
+                _inherits(_default, _Controller);
+
+                function _default() {
+                    _classCallCheck(this, _default);
+
+                    return _possibleConstructorReturn(this, _getPrototypeOf(_default).apply(this, arguments));
+                }
+
+                _createClass(_default, [{
+                    key: "initialize",
+
+                    /**
+                     *
+                     * @type {*[]}
+                     */
+
+                    /**
+                     *
+                     */
+                    value: function initialize() {
+                        var count = this.data.get('count');
+                        localStorage.setItem('profile.notifications', count);
+                        window.addEventListener('storage', this.storageChanged());
+                    }
+                    /**
+                     *
+                     */
+
+                }, {
+                    key: "connect",
+                    value: function connect() {
+                        var _this = this;
+
+                        document.addEventListener("turbolinks:load", function () {
+                            _this.render();
+                        });
+                        this.updateInterval = this.setUpdateInterval();
+                        this.render();
+                    }
+                    /**
+                     *
+                     */
+
+                }, {
+                    key: "disconnect",
+                    value: function disconnect() {
+                        clearInterval(this.updateInterval);
+                        window.removeEventListener('storage', this.storageChanged());
+                    }
+                    /**
+                     *
+                     * @returns {string}
+                     */
+
+                }, {
+                    key: "storageKey",
+                    value: function storageKey() {
+                        return 'profile.notifications';
+                    }
+                    /**
+                     *
+                     * @returns {Function}
+                     */
+
+                }, {
+                    key: "storageChanged",
+                    value: function storageChanged() {
+                        var _this2 = this;
+
+                        return function (event) {
+                            if (event.key === _this2.storageKey()) {
+                                Turbolinks.clearCache();
+
+                                _this2.render();
+                            }
+                        };
+                    }
+                    /**
+                     *
+                     * @returns {number}
+                     */
+
+                }, {
+                    key: "setUpdateInterval",
+                    value: function setUpdateInterval() {
+                        var url = this.data.get('url');
+                        var method = this.data.get('method') || 'get';
+                        /* Time in seconds */
+
+                        var interval = this.data.get('interval') || 1000;
+                        return setInterval(function () {
+                            axios({
+                                method: method,
+                                url: url
+                            }).then(function (response) {
+                                localStorage.setItem('profile.notifications', response.data.total);
+                            });
+                        }, interval);
+                    }
+                    /**
+                     *
+                     */
+
+                }, {
+                    key: "render",
+                    value: function render() {
+                        var count = localStorage.getItem('profile.notifications');
+                        var badge = '<i class="icon-circle"></i>';
+
+                        if (count < 10) {
+                            badge = count;
+                        }
+
+                        if (count === null || parseInt(count) === 0) {
+                            badge = '';
+                        }
+
+                        this.badgeTarget.innerHTML = badge;
+                    }
+                }]);
+
+                return _default;
+            }(stimulus__WEBPACK_IMPORTED_MODULE_0__["Controller"]);
+
+        _defineProperty(_default, "targets", ["badge"]);
+
+
+        /***/
+    }),
+
+    /***/ "./resources/js/controllers/layouts/reload_controller.js":
+    /*!***************************************************************!*\
+      !*** ./resources/js/controllers/layouts/reload_controller.js ***!
+      \***************************************************************/
+    /*! exports provided: default */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+        __webpack_require__.d(__webpack_exports__, "default", function () {
+            return _default;
+        });
+        /* harmony import */
+        var stimulus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! stimulus */ "./node_modules/stimulus/index.js");
+
+        function _typeof(obj) {
+            if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+                _typeof = function _typeof(obj) {
+                    return typeof obj;
+                };
+            } else {
+                _typeof = function _typeof(obj) {
+                    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+                };
+            }
+            return _typeof(obj);
+        }
+
+        function _classCallCheck(instance, Constructor) {
+            if (!(instance instanceof Constructor)) {
+                throw new TypeError("Cannot call a class as a function");
+            }
+        }
+
+        function _defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+                var descriptor = props[i];
+                descriptor.enumerable = descriptor.enumerable || false;
+                descriptor.configurable = true;
+                if ("value" in descriptor) descriptor.writable = true;
+                Object.defineProperty(target, descriptor.key, descriptor);
+            }
+        }
+
+        function _createClass(Constructor, protoProps, staticProps) {
+            if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) _defineProperties(Constructor, staticProps);
+            return Constructor;
+        }
+
+        function _possibleConstructorReturn(self, call) {
+            if (call && (_typeof(call) === "object" || typeof call === "function")) {
+                return call;
+            }
+            return _assertThisInitialized(self);
+        }
+
+        function _assertThisInitialized(self) {
+            if (self === void 0) {
+                throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+            }
+            return self;
+        }
+
+        function _getPrototypeOf(o) {
+            _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+                return o.__proto__ || Object.getPrototypeOf(o);
+            };
+            return _getPrototypeOf(o);
+        }
+
+        function _inherits(subClass, superClass) {
+            if (typeof superClass !== "function" && superClass !== null) {
+                throw new TypeError("Super expression must either be null or a function");
+            }
+            subClass.prototype = Object.create(superClass && superClass.prototype, {
+                constructor: {
+                    value: subClass,
+                    writable: true,
+                    configurable: true
+                }
+            });
+            if (superClass) _setPrototypeOf(subClass, superClass);
+        }
+
+        function _setPrototypeOf(o, p) {
+            _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+                o.__proto__ = p;
+                return o;
+            };
+            return _setPrototypeOf(o, p);
+        }
+
+
+        var _default =
+            /*#__PURE__*/
+            function (_Controller) {
+                _inherits(_default, _Controller);
+
+                function _default() {
+                    _classCallCheck(this, _default);
+
+                    return _possibleConstructorReturn(this, _getPrototypeOf(_default).apply(this, arguments));
+                }
+
+                _createClass(_default, [{
+                    key: "connect",
+
+                    /**
+                     *
+                     */
+                    value: function connect() {
+                        var _this = this;
+
+                        var url = this.data.get('url');
+                        var method = this.data.get('method') || 'get';
+                        /* Time in seconds */
+
+                        var interval = this.data.get('interval') || 1000;
+                        setInterval(function () {
+                            axios({
+                                method: method,
+                                url: url
+                            }).then(function (response) {
+                                _this.element.innerHTML = response.data;
+                            });
+                        }, interval);
+                    }
+                }]);
+
+                return _default;
+            }(stimulus__WEBPACK_IMPORTED_MODULE_0__["Controller"]);
+
+
+        /***/
+    }),
+
+    /***/ "./resources/js/controllers/layouts/search_controller.js":
+    /*!***************************************************************!*\
+      !*** ./resources/js/controllers/layouts/search_controller.js ***!
+      \***************************************************************/
+    /*! exports provided: default */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
 /* harmony import */ var stimulus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! stimulus */ "./node_modules/stimulus/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -27342,23 +27730,153 @@ function (_Controller) {
     }
   }]);
 
-  return _default;
+    return _default;
 }(stimulus__WEBPACK_IMPORTED_MODULE_0__["Controller"]);
 
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
+            /* WEBPACK VAR INJECTION */
+        }.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
-/***/ }),
+        /***/
+    }),
 
-/***/ "./resources/js/controllers/screen/base_controller.js":
-/*!************************************************************!*\
-  !*** ./resources/js/controllers/screen/base_controller.js ***!
-  \************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+    /***/ "./resources/js/controllers/layouts/tooltip_controller.js":
+    /*!****************************************************************!*\
+      !*** ./resources/js/controllers/layouts/tooltip_controller.js ***!
+      \****************************************************************/
+    /*! exports provided: default */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* WEBPACK VAR INJECTION */
+        (function ($) {/* harmony export (binding) */
+            __webpack_require__.d(__webpack_exports__, "default", function () {
+                return _default;
+            });
+            /* harmony import */
+            var stimulus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! stimulus */ "./node_modules/stimulus/index.js");
+
+            function _typeof(obj) {
+                if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+                    _typeof = function _typeof(obj) {
+                        return typeof obj;
+                    };
+                } else {
+                    _typeof = function _typeof(obj) {
+                        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+                    };
+                }
+                return _typeof(obj);
+            }
+
+            function _classCallCheck(instance, Constructor) {
+                if (!(instance instanceof Constructor)) {
+                    throw new TypeError("Cannot call a class as a function");
+                }
+            }
+
+            function _defineProperties(target, props) {
+                for (var i = 0; i < props.length; i++) {
+                    var descriptor = props[i];
+                    descriptor.enumerable = descriptor.enumerable || false;
+                    descriptor.configurable = true;
+                    if ("value" in descriptor) descriptor.writable = true;
+                    Object.defineProperty(target, descriptor.key, descriptor);
+                }
+            }
+
+            function _createClass(Constructor, protoProps, staticProps) {
+                if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+                if (staticProps) _defineProperties(Constructor, staticProps);
+                return Constructor;
+            }
+
+            function _possibleConstructorReturn(self, call) {
+                if (call && (_typeof(call) === "object" || typeof call === "function")) {
+                    return call;
+                }
+                return _assertThisInitialized(self);
+            }
+
+            function _assertThisInitialized(self) {
+                if (self === void 0) {
+                    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+                }
+                return self;
+            }
+
+            function _getPrototypeOf(o) {
+                _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+                    return o.__proto__ || Object.getPrototypeOf(o);
+                };
+                return _getPrototypeOf(o);
+            }
+
+            function _inherits(subClass, superClass) {
+                if (typeof superClass !== "function" && superClass !== null) {
+                    throw new TypeError("Super expression must either be null or a function");
+                }
+                subClass.prototype = Object.create(superClass && superClass.prototype, {
+                    constructor: {
+                        value: subClass,
+                        writable: true,
+                        configurable: true
+                    }
+                });
+                if (superClass) _setPrototypeOf(subClass, superClass);
+            }
+
+            function _setPrototypeOf(o, p) {
+                _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+                    o.__proto__ = p;
+                    return o;
+                };
+                return _setPrototypeOf(o, p);
+            }
+
+
+            var _default =
+                /*#__PURE__*/
+                function (_Controller) {
+                    _inherits(_default, _Controller);
+
+                    function _default() {
+                        _classCallCheck(this, _default);
+
+                        return _possibleConstructorReturn(this, _getPrototypeOf(_default).apply(this, arguments));
+                    }
+
+                    _createClass(_default, [{
+                        key: "mouseOver",
+
+                        /**
+                         *
+                         */
+                        value: function mouseOver() {
+                            $(this.element).tooltip('enable');
+                        }
+                    }]);
+
+                    return _default;
+                }(stimulus__WEBPACK_IMPORTED_MODULE_0__["Controller"]);
+
+
+            /* WEBPACK VAR INJECTION */
+        }.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
+
+        /***/
+    }),
+
+    /***/ "./resources/js/controllers/screen/base_controller.js":
+    /*!************************************************************!*\
+      !*** ./resources/js/controllers/screen/base_controller.js ***!
+      \************************************************************/
+    /*! exports provided: default */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
 /* harmony import */ var stimulus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! stimulus */ "./node_modules/stimulus/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -27620,6 +28138,7 @@ function (_Controller) {
       var formElement = document.getElementById('filters');
       var filters = window.platform.formToObject(formElement);
       var params = $.param(this.removeEmpty(filters));
+        params.sort = this.getUrlParameter('sort');
       var url = "".concat(window.location.origin + window.location.pathname, "?").concat(params);
       window.Turbolinks.visit(url, {
         action: 'replace'
@@ -27649,10 +28168,14 @@ function (_Controller) {
   }, {
     key: "clear",
     value: function clear(event) {
-      window.Turbolinks.visit(window.location.origin + window.location.pathname, {
-        action: 'replace'
-      });
-      event.preventDefault();
+        var params = {
+            sort: this.getUrlParameter('sort')
+        };
+        var url = "".concat(window.location.origin + window.location.pathname, "?").concat(params);
+        window.Turbolinks.visit(url, {
+            action: 'replace'
+        });
+        event.preventDefault();
     }
     /**
      *
@@ -27660,14 +28183,28 @@ function (_Controller) {
      */
 
   }, {
-    key: "clearFilter",
-    value: function clearFilter(event) {
-      var filter = event.target.dataset.filter;
-      document.querySelector("input[name='filter[".concat(filter, "]']")).value = '';
-      this.element.remove();
-      this.setAllFilter();
-      event.preventDefault();
-    }
+      key: "clearFilter",
+      value: function clearFilter(event) {
+          var filter = event.target.dataset.filter;
+          document.querySelector("input[name='filter[".concat(filter, "]']")).value = '';
+          this.element.remove();
+          this.setAllFilter();
+          event.preventDefault();
+      }
+      /**
+       *
+       * @param property
+       * @returns {string}
+       */
+
+  }, {
+      key: "getUrlParameter",
+      value: function getUrlParameter(property) {
+          var name = property.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+          var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+          var results = regex.exec(window.location.search);
+          return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+      }
   }], [{
     key: "targets",
     get: function get() {

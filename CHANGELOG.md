@@ -10,11 +10,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Presenters for content [#965](https://github.com/orchidsoftware/platform/issues/965)
 - Rubber layout
 - Dusk testing browser
+- Channel to send a notification [#1038](https://github.com/orchidsoftware/platform/issues/1038)
+- Dynamic columns [#1003](https://github.com/orchidsoftware/platform/issues/1003)
 
 ### Changed
 - First look enhancement
 - Cursor loading animations
 - Indented icons are stylized
+- Source is optional for form builder
+- Extend the user model that comes with the installation [#1039](https://github.com/orchidsoftware/platform/issues/1039)
 
 ### Fixed
 - Sort&Filter generator

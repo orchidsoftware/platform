@@ -28,6 +28,7 @@ class UserListLayout extends Table
         return [
             TD::set('name', __('Name'))
                 ->sort()
+                ->canHide()
                 ->filter(TD::FILTER_TEXT)
                 ->render(function (User $user) {
                     return new Persona($user->presenter());
@@ -35,6 +36,7 @@ class UserListLayout extends Table
 
             TD::set('email', __('Email'))
                 ->sort()
+                ->canHide()
                 ->filter(TD::FILTER_TEXT)
                 ->render(function (User $user) {
                     return ModalToggle::make($user->email)
