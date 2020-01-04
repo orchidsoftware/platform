@@ -23801,15 +23801,15 @@ application.load(Object(stimulus_webpack_helpers__WEBPACK_IMPORTED_MODULE_1__["d
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./fields/code_controller.js": "./resources/js/controllers/fields/code_controller.js",
-	"./fields/cropper_controller.js": "./resources/js/controllers/fields/cropper_controller.js",
-	"./fields/datetime_controller.js": "./resources/js/controllers/fields/datetime_controller.js",
-	"./fields/input_controller.js": "./resources/js/controllers/fields/input_controller.js",
-	"./fields/map_controller.js": "./resources/js/controllers/fields/map_controller.js",
-	"./fields/matrix_controller.js": "./resources/js/controllers/fields/matrix_controller.js",
-	"./fields/password_controller.js": "./resources/js/controllers/fields/password_controller.js",
-	"./fields/picture_controller.js": "./resources/js/controllers/fields/picture_controller.js",
-	"./fields/popover_controller.js": "./resources/js/controllers/fields/popover_controller.js",
+    "./fields/code_controller.js": "./resources/js/controllers/fields/code_controller.js",
+    "./fields/cropper_controller.js": "./resources/js/controllers/fields/cropper_controller.js",
+    "./fields/datetime_controller.js": "./resources/js/controllers/fields/datetime_controller.js",
+    "./fields/input_controller.js": "./resources/js/controllers/fields/input_controller.js",
+    "./fields/map_controller.js": "./resources/js/controllers/fields/map_controller.js",
+    "./fields/matrix_controller.js": "./resources/js/controllers/fields/matrix_controller.js",
+    "./fields/password_controller.js": "./resources/js/controllers/fields/password_controller.js",
+    "./fields/picture_controller.js": "./resources/js/controllers/fields/picture_controller.js",
+    "./fields/popover_controller.js": "./resources/js/controllers/fields/popover_controller.js",
     "./fields/quill_controller.js": "./resources/js/controllers/fields/quill_controller.js",
     "./fields/radiobutton_controller.js": "./resources/js/controllers/fields/radiobutton_controller.js",
     "./fields/relation_controller.js": "./resources/js/controllers/fields/relation_controller.js",
@@ -24054,10 +24054,10 @@ function (_Controller) {
         height: this.data.get('height'),
         imageSmoothingQuality: 'medium'
       }).toBlob(function (blob) {
-        var formData = new FormData();
-        formData.append('file', blob);
-        formData.append('storage', _this2.data.get('storage'));
-        var element = _this2.element;
+          var formData = new FormData();
+          formData.append('file', blob);
+          formData.append('storage', _this2.data.get('storage'));
+          var element = _this2.element;
           axios.post(platform.prefix('/systems/files'), formData).then(function (response) {
               var image = response.data.url;
 
@@ -24222,15 +24222,15 @@ function (_Flatpickr) {
       var plugins = [];
 
       if (this.data.get('range')) {
-        plugins.push(new flatpickr_dist_plugins_rangePlugin__WEBPACK_IMPORTED_MODULE_1___default.a({
-          input: this.data.get('range')
-        }));
+          plugins.push(new flatpickr_dist_plugins_rangePlugin__WEBPACK_IMPORTED_MODULE_1___default.a({
+              input: this.data.get('range')
+          }));
       }
 
-      this.config = {
-        locale: document.documentElement.lang,
-        plugins: plugins
-      };
+        this.config = {
+            locale: document.documentElement.lang,
+            plugins: plugins
+        };
     }
       /**
        * Clear input time
@@ -24841,10 +24841,10 @@ function (_Controller) {
       reader.readAsDataURL(event.target.files[0]);
 
       reader.onloadend = function () {
-        var formData = new FormData();
-        formData.append('file', event.target.files[0]);
-        formData.append('storage', _this.data.get('storage'));
-        var element = _this.element;
+          var formData = new FormData();
+          formData.append('file', event.target.files[0]);
+          formData.append('storage', _this.data.get('storage'));
+          var element = _this.element;
           axios.post(platform.prefix('/systems/files'), formData).then(function (response) {
               var image = response.data.url;
 
@@ -25220,28 +25220,28 @@ function (_Controller) {
   _createClass(_default, [{
     key: "connect",
     value: function connect() {
-      var _this = this;
+        var _this = this;
 
-      if (document.documentElement.hasAttribute('data-turbolinks-preview')) {
-        return;
-      }
+        if (document.documentElement.hasAttribute('data-turbolinks-preview')) {
+            return;
+        }
 
-      var select = this.selectTarget;
-      var model = this.data.get('model');
-      var name = this.data.get('name');
-      var key = this.data.get('key');
+        var select = this.selectTarget;
+        var model = this.data.get('model');
+        var name = this.data.get('name');
+        var key = this.data.get('key');
         var scope = this.data.get('scope');
         var append = this.data.get('append');
-      $.ajaxSetup({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
-        }
-      });
-      $(select).select2({
-        theme: 'bootstrap',
-        allowClear: !select.hasAttribute('required'),
-        ajax: {
-          type: 'POST',
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+            }
+        });
+        $(select).select2({
+            theme: 'bootstrap',
+            allowClear: !select.hasAttribute('required'),
+            ajax: {
+                type: 'POST',
           cache: true,
           delay: 250,
           url: function url() {
@@ -26877,8 +26877,8 @@ function (_Controller) {
         return;
       }
 
-      turbolinks__WEBPACK_IMPORTED_MODULE_1___default.a.controller.adapter.progressBar.hide();
-      turbolinks__WEBPACK_IMPORTED_MODULE_1___default.a.controller.adapter.progressBar.setValue(100);
+        turbolinks__WEBPACK_IMPORTED_MODULE_1___default.a.controller.adapter.progressBar.hide();
+        turbolinks__WEBPACK_IMPORTED_MODULE_1___default.a.controller.adapter.progressBar.setValue(100);
     }
   }]);
 
@@ -27276,15 +27276,47 @@ function (_Controller) {
 
         "use strict";
         __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
-/* harmony import */ var stimulus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! stimulus */ "./node_modules/stimulus/index.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+        /* harmony export (binding) */
+        __webpack_require__.d(__webpack_exports__, "default", function () {
+            return _default;
+        });
+        /* harmony import */
+        var stimulus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! stimulus */ "./node_modules/stimulus/index.js");
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+        function _typeof(obj) {
+            if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+                _typeof = function _typeof(obj) {
+                    return typeof obj;
+                };
+            } else {
+                _typeof = function _typeof(obj) {
+                    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+                };
+            }
+            return _typeof(obj);
+        }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+        function _classCallCheck(instance, Constructor) {
+            if (!(instance instanceof Constructor)) {
+                throw new TypeError("Cannot call a class as a function");
+            }
+        }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+        function _defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+                var descriptor = props[i];
+                descriptor.enumerable = descriptor.enumerable || false;
+                descriptor.configurable = true;
+                if ("value" in descriptor) descriptor.writable = true;
+                Object.defineProperty(target, descriptor.key, descriptor);
+            }
+        }
+
+        function _createClass(Constructor, protoProps, staticProps) {
+            if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) _defineProperties(Constructor, staticProps);
+            return Constructor;
+        }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -27724,9 +27756,9 @@ function (_Controller) {
   }, {
     key: "showAllToasts",
     value: function showAllToasts() {
-      $('.toast').on('hidden.bs.toast', function (event) {
-        event.target.remove();
-      }).toast('show');
+        $('.toast').on('hidden.bs.toast', function (event) {
+            event.target.remove();
+        }).toast('show');
     }
   }]);
 
@@ -27877,15 +27909,47 @@ function (_Controller) {
 
         "use strict";
         __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
-/* harmony import */ var stimulus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! stimulus */ "./node_modules/stimulus/index.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+        /* harmony export (binding) */
+        __webpack_require__.d(__webpack_exports__, "default", function () {
+            return _default;
+        });
+        /* harmony import */
+        var stimulus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! stimulus */ "./node_modules/stimulus/index.js");
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+        function _typeof(obj) {
+            if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+                _typeof = function _typeof(obj) {
+                    return typeof obj;
+                };
+            } else {
+                _typeof = function _typeof(obj) {
+                    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+                };
+            }
+            return _typeof(obj);
+        }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+        function _classCallCheck(instance, Constructor) {
+            if (!(instance instanceof Constructor)) {
+                throw new TypeError("Cannot call a class as a function");
+            }
+        }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+        function _defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+                var descriptor = props[i];
+                descriptor.enumerable = descriptor.enumerable || false;
+                descriptor.configurable = true;
+                if ("value" in descriptor) descriptor.writable = true;
+                Object.defineProperty(target, descriptor.key, descriptor);
+            }
+        }
+
+        function _createClass(Constructor, protoProps, staticProps) {
+            if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) _defineProperties(Constructor, staticProps);
+            return Constructor;
+        }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 

@@ -112,7 +112,7 @@ class Alert
      */
     public function error(string $message): self
     {
-        $this->message($message, Color::ERROR());
+        $this->message($message, (string)Color::ERROR());
 
         return $this;
     }

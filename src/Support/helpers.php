@@ -19,11 +19,15 @@ if (! function_exists('alert')) {
      *
      * @return Alert
      */
-    function alert(string $message = null, string $level = Color::INFO): Alert
+    function alert(string $message = null, string $level = null): Alert
     {
         $notifier = app(Alert::class);
 
-        if (! is_null($message)) {
+        if (!is_null($level)) {
+            $level = (string)Color::INFO();
+        }
+
+        if (!is_null($message)) {
             return $notifier->message($message, $level);
         }
 
