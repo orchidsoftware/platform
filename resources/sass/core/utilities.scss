@@ -1144,23 +1144,27 @@
 }
 
 .pull-up {
-  position: absolute !important;
-  top: 0;
+    position: absolute !important;
+    top: 0;
 }
 
 .cursor {
-  cursor: pointer;
+    cursor: pointer;
 }
 
-.pull-left{
-  float: left;
+.cursor-wait {
+    cursor: wait;
 }
 
-.pull-right{
-  float: right;
+.pull-left {
+    float: left;
 }
 
-.w-b-k{
+.pull-right {
+    float: right;
+}
+
+.w-b-k {
   word-wrap: break-word;
   word-break: keep-all;
 }

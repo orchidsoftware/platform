@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus';
+import {Controller} from 'stimulus';
 // Core
 import tinymce from 'tinymce/tinymce';
 
@@ -133,6 +133,7 @@ export default class extends Controller {
                 success(response.data.url);
             })
             .catch((error) => {
+                window.platform.alert('Validation error', 'File upload error');
                 console.warn(error);
             });
     }

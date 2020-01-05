@@ -9,36 +9,37 @@ use Orchid\Screen\Field;
 /**
  * Class Input.
  *
- * @method self accept($value = true)
- * @method self accesskey($value = true)
- * @method self autocomplete($value = true)
- * @method self autofocus($value = true)
- * @method self checked($value = true)
- * @method self disabled($value = true)
- * @method self form($value = true)
- * @method self formaction($value = true)
- * @method self formenctype($value = true)
- * @method self formmethod($value = true)
- * @method self formnovalidate($value = true)
- * @method self formtarget($value = true)
- * @method self max(int $value)
- * @method self maxlength(int $value)
- * @method self min(int $value)
- * @method self multiple($value = true)
- * @method self name(string $value = null)
- * @method self pattern($value = true)
- * @method self placeholder(string $value = null)
- * @method self readonly($value = true)
- * @method self required(bool $value = true)
- * @method self size($value = true)
- * @method self src($value = true)
- * @method self step($value = true)
- * @method self tabindex($value = true)
- * @method self type($value = true)
- * @method self value($value = true)
- * @method self help(string $value = null)
- * @method self popover(string $value = null)
- * @method self mask($value = true)
+ * @method Input accept($value = true)
+ * @method Input accesskey($value = true)
+ * @method Input autocomplete($value = true)
+ * @method Input autofocus($value = true)
+ * @method Input checked($value = true)
+ * @method Input disabled($value = true)
+ * @method Input form($value = true)
+ * @method Input formaction($value = true)
+ * @method Input formenctype($value = true)
+ * @method Input formmethod($value = true)
+ * @method Input formnovalidate($value = true)
+ * @method Input formtarget($value = true)
+ * @method Input max(int $value)
+ * @method Input maxlength(int $value)
+ * @method Input min(int $value)
+ * @method Input multiple($value = true)
+ * @method Input name(string $value = null)
+ * @method Input pattern($value = true)
+ * @method Input placeholder(string $value = null)
+ * @method Input readonly($value = true)
+ * @method Input required(bool $value = true)
+ * @method Input size($value = true)
+ * @method Input src($value = true)
+ * @method Input step($value = true)
+ * @method Input tabindex($value = true)
+ * @method Input type($value = true)
+ * @method Input value($value = true)
+ * @method Input help(string $value = null)
+ * @method Input popover(string $value = null)
+ * @method Input mask($value = true)
+ * @method Input title(string $value = null)
  */
 class Input extends Field
 {
@@ -96,7 +97,7 @@ class Input extends Field
     /**
      * @param string|null $name
      *
-     * @return self
+     * @return Input
      */
     public static function make(string $name = null): self
     {

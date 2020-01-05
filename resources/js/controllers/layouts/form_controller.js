@@ -36,17 +36,22 @@ export default class extends Controller {
      * @returns {boolean}
      */
     submit(event) {
+
         // disable
         if (this.getActiveElementAttr('data-turbolinks') === 'false') {
+
+            console.log('exit 1');
             return true;
         }
 
         if (!this.validateForm(event)) {
+            console.log('exit 2');
             event.preventDefault();
             return false;
         }
 
         if (this.isSubmit) {
+            console.log('exit 3');
             event.preventDefault();
             return false;
         }
@@ -54,6 +59,7 @@ export default class extends Controller {
         const action = this.loadFormAction();
 
         if (action === null) {
+            console.log('exit 4');
             event.preventDefault();
             return false;
         }
@@ -114,7 +120,8 @@ export default class extends Controller {
 
         const buttonElement = document.querySelector(button);
         buttonElement.disabled = true;
-        buttonElement.innerHTML = '<span class="spinner-border spinner-border-sm mb-1" role="status" aria-hidden="true"></span>'
+        buttonElement.classList.add('cursor-wait');
+        buttonElement.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>'
             + `<span class="pl-1">${text}</span>`;
     }
 

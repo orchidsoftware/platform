@@ -17,7 +17,7 @@ class RoleListScreen extends Screen
      *
      * @var string
      */
-    public $name = 'Roles';
+    public $name = 'Manage roles';
 
     /**
      * Display header description.

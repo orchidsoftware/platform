@@ -80,7 +80,6 @@ class ArtisanTest extends TestConsoleCase
     public function testArtisanOrchidInstall()
     {
         $this->artisan('orchid:install')
-            ->expectsQuestion('The platform has already been installed, do you really want to repeat?', 'yes')
             ->expectsOutput("To start the embedded server, run 'artisan serve'");
     }
 

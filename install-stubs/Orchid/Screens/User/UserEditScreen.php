@@ -17,7 +17,7 @@ use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Fields\Password;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Alert;
+use Orchid\Support\Facades\Toast;
 
 class UserEditScreen extends Screen
 {
@@ -33,7 +33,7 @@ class UserEditScreen extends Screen
      *
      * @var string
      */
-    public $description = 'All registered users';
+    public $description = 'Details such as name, email and password';
 
     /**
      * @var string
@@ -74,10 +74,10 @@ class UserEditScreen extends Screen
                         ->method('loginAs'),
 
                     ModalToggle::make(__('Change Password'))
-                          ->icon('icon-lock-open')
-                          ->method('changePassword')
-                          ->modal('password')
-                          ->title(__('Change Password')),
+                        ->icon('icon-lock-open')
+                        ->method('changePassword')
+                        ->modal('password')
+                        ->title(__('Change Password')),
 
                 ]),
 
@@ -87,6 +87,7 @@ class UserEditScreen extends Screen
 
             Button::make(__('Remove'))
                 ->icon('icon-trash')
+                ->confirm('Are you sure you want to delete the user?')
                 ->method('remove'),
         ];
     }
@@ -100,7 +101,10 @@ class UserEditScreen extends Screen
     {
         return [
             UserEditLayout::class,
-            RolePermissionLayout::class,
+
+            Layout::rubbers([
+                RolePermissionLayout::class,
+            ]),
 
             Layout::modal('password', [
                 Layout::rows([
@@ -136,7 +140,7 @@ class UserEditScreen extends Screen
             ])
             ->save();
 
-        Alert::info(__('User was saved.'));
+        Toast::info(__('User was saved.'));
 
         return redirect()->route('platform.systems.users');
     }
@@ -152,7 +156,7 @@ class UserEditScreen extends Screen
     {
         $user->delete();
 
-        Alert::info(__('User was removed'));
+        Toast::info(__('User was removed'));
 
         return redirect()->route('platform.systems.users');
     }
@@ -180,7 +184,7 @@ class UserEditScreen extends Screen
         $user->password = Hash::make($request->get('password'));
         $user->save();
 
-        Alert::info(__('User was saved.'));
+        Toast::info(__('User was saved.'));
 
         return back();
     }

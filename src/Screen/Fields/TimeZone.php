@@ -18,6 +18,7 @@ use Orchid\Screen\Field;
  * @method TimeZone tabindex($value = true)
  * @method TimeZone help(string $value = null)
  * @method TimeZone popover(string $value = null)
+ * @method TimeZone title(string $value = null)
  */
 class TimeZone extends Field
 {

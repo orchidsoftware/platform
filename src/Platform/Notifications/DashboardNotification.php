@@ -4,36 +4,45 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Notifications;
 
-use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
+use Orchid\Support\Color;
 
+/**
+ * Class DashboardNotification.
+ *
+ * @deprecated
+ */
 class DashboardNotification extends Notification
 {
     use Queueable;
 
     /**
-     * @var array|null
+     * @var array
      */
-    public $message;
+    public $message = [
+        'title'   => null,
+        'action'  => '#',
+        'message' => '',
+    ];
 
     /**
-     * Status.
+     * @deprecated
      */
     public const INFO = 'info';
 
     /**
-     * Status.
+     * @deprecated
      */
     public const SUCCESS = 'success';
 
     /**
-     * Status.
+     * @deprecated
      */
     public const ERROR = 'danger';
 
     /**
-     * Status.
+     * @deprecated
      */
     public const WARNING = 'warning';
 
@@ -44,8 +53,7 @@ class DashboardNotification extends Notification
      */
     public function __construct(array $message)
     {
-        $message['type'] = $message['type'] ?? self::INFO;
-        $message['time'] = Carbon::now();
+        $message['type'] = $message['type'] ?? Color::INFO();
 
         $this->message = $message;
     }
@@ -57,16 +65,20 @@ class DashboardNotification extends Notification
      */
     public function via()
     {
-        return ['database'];
+        return [DashboardChannel::class];
     }
 
     /**
-     * Get the array representation of the notification.
+     * Get the dashboard representation of the notification.
      *
-     * @return array
+     * @return DashboardMessage
      */
-    public function toArray()
+    public function toDashboard()
     {
-        return $this->message;
+        return (new DashboardMessage)
+            ->title($this->message['title'])
+            ->message($this->message['message'])
+            ->action($this->message['action'])
+            ->type($this->message['type']);
     }
 }

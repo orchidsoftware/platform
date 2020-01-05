@@ -1,15 +1,20 @@
 .btn {
-  font-weight: 400;
-  border-radius: $btn-border-radius;
-  cursor:pointer;
-  outline: 0 !important;
+    font-weight: 400;
+    border-radius: $btn-border-radius;
+    cursor: pointer;
+    outline: 0 !important;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
 }
 
 .btn-link {
-  color: $text-color;
-  &.active {
-    box-shadow: none;
-  }
+    color: $text-color;
+    align-items: baseline;
+
+    &.active {
+        box-shadow: none;
+    }
 }
 
 .btn-default {
@@ -100,8 +105,9 @@
 }
 
 .btn-block {
-  padding-left: 12px;
-  padding-right: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    justify-content: center;
 }
 
 .btn-group-vertical > .btn:first-child:not(:last-child) {

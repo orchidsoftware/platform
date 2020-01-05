@@ -3,12 +3,9 @@
 namespace App\Orchid\Screens\Examples;
 
 use App\Orchid\Layouts\Examples\ChartBarExample;
-use App\Orchid\Layouts\Examples\ChartLineExample;
-use App\Orchid\Layouts\Examples\ChartPieExample;
 use App\Orchid\Layouts\Examples\MetricsExample;
-use App\Orchid\Layouts\Examples\TableExample;
-use Illuminate\Support\Facades\Auth;
-use Orchid\Platform\Notifications\DashboardNotification;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\ModalToggle;
@@ -16,16 +13,17 @@ use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Alert;
+use Orchid\Screen\TD;
+use Orchid\Support\Facades\Toast;
 
 class ExampleScreen extends Screen
 {
     /**
      * Fish text for the table.
      */
-    private const TEXT_EXAMPLE = 'Lorem ipsum at sed ad fusce faucibus primis, potenti inceptos ad taciti nisi tristique 
+    public const TEXT_EXAMPLE = 'Lorem ipsum at sed ad fusce faucibus primis, potenti inceptos ad taciti nisi tristique
     urna etiam, primis ut lacus habitasse malesuada ut. Lectus aptent malesuada mattis ut etiam fusce nec sed viverra,
-    semper mattis viverra malesuada quam metus vulputate torquent magna, lobortis nec nostra nibh sollicitudin 
+    semper mattis viverra malesuada quam metus vulputate torquent magna, lobortis nec nostra nibh sollicitudin
     erat in luctus.';
 
     /**
@@ -95,39 +93,31 @@ class ExampleScreen extends Screen
     {
         return [
 
-            Button::make('Example Button')
-                ->method('example')
+            Button::make('Show toast')
+                ->method('showToast')
                 ->novalidate()
                 ->icon('icon-bag'),
 
-            ModalToggle::make('Example Modals')
+            ModalToggle::make('Launch demo modal')
                 ->modal('exampleModal')
-                ->method('example')
+                ->method('showToast')
                 ->icon('icon-full-screen'),
 
-            DropDown::make('Example Group Button')
+            DropDown::make('Dropdown button')
                 ->icon('icon-folder-alt')
                 ->list([
 
-                    Button::make('Example Button')
-                        ->method('example')
+                    Button::make('Action')
+                        ->method('showToast')
                         ->icon('icon-bag'),
 
-                    Button::make('Example Button')
-                        ->method('example')
-                        ->icon('icon-bag'),
+                    Button::make('Another action')
+                        ->method('showToast')
+                        ->icon('icon-bubbles'),
 
-                    Button::make('Example Button')
-                        ->method('example')
-                        ->icon('icon-bag'),
-
-                    Button::make('Example Button')
-                        ->method('example')
-                        ->icon('icon-bag'),
-
-                    Button::make('Example Button')
-                        ->method('example')
-                        ->icon('icon-bag'),
+                    Button::make('Something else here')
+                        ->method('showToast')
+                        ->icon('icon-bulb'),
                 ]),
 
         ];
@@ -146,37 +136,50 @@ class ExampleScreen extends Screen
             MetricsExample::class,
             ChartBarExample::class,
 
-            Layout::columns([
-                ChartPieExample::class,
-                ChartLineExample::class,
-            ]),
+            Layout::table('table', [
+                TD::set('id', 'ID')
+                    ->width('150')
+                    ->render(function (Repository $model) {
+                        // Please use view('path')
+                        return "<img src='https://picsum.photos/450/200?random={$model->get('id')}'
+                              alt='sample'
+                              class='mw-100 d-block img-fluid'>
+                            <span class='small text-muted mt-1 mb-0'># {$model->get('id')}</span>";
+                    }),
 
-            TableExample::class,
+                TD::set('name', 'Name')
+                    ->width('450')
+                    ->render(function (Repository $model) {
+                        return Str::limit($model->get('name'), 200);
+                    }),
+
+                TD::set('price', 'Price')
+                    ->render(function (Repository $model) {
+                        return '$ '.number_format($model->get('price'), 2);
+                    }),
+
+                TD::set('created_at', 'Created'),
+            ]),
 
             Layout::modal('exampleModal', [
                 Layout::rows([
-                    Input::make('user.password')
-                        ->type('test')
-                        ->title('Example')
-                        ->placeholder('Example...'),
+                    Input::make('toast')
+                        ->title('Messages to display')
+                        ->placeholder('Hello word!')
+                        ->required(),
                 ]),
-            ])->title('Example Modals'),
+            ])->title('Create your own toast message'),
         ];
     }
 
     /**
+     * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function example()
+    public function showToast(Request $request)
     {
-        Alert::warning('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel vulputate mi.');
-
-        Auth::user()->notify(new DashboardNotification([
-            'title'   => 'Hello Word',
-            'message' => self::TEXT_EXAMPLE,
-            'action'  => route('platform.main'),
-            'type'    => DashboardNotification::INFO,
-        ]));
+        Toast::warning($request->get('toast', 'Hello, world! This is a toast message.'));
 
         return back();
     }

@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Alert;
+use Orchid\Support\Facades\Toast;
 
 class UserListScreen extends Screen
 {
@@ -41,8 +41,8 @@ class UserListScreen extends Screen
      */
     public function query(): array
     {
-        return  [
-            'users'  => User::with('roles')
+        return [
+            'users' => User::with('roles')
                 ->filters()
                 ->filtersApplySelection(UserFiltersLayout::class)
                 ->defaultSort('id', 'desc')
@@ -101,7 +101,7 @@ class UserListScreen extends Screen
             ->replaceRoles($request->input('user.roles'))
             ->save();
 
-        Alert::info(__('User was saved.'));
+        Toast::info(__('User was saved.'));
 
         return back();
     }
@@ -116,7 +116,7 @@ class UserListScreen extends Screen
         User::findOrFail($request->get('id'))
             ->delete();
 
-        Alert::info(__('User was removed'));
+        Toast::info(__('User was removed'));
 
         return back();
     }

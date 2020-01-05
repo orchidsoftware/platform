@@ -14,14 +14,14 @@ class ExampleLayoutsScreen extends Screen
      *
      * @var string
      */
-    public $name = 'Screen layouts';
+    public $name = 'Overview layouts';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'Sample Screen Components';
+    public $description = 'Components for laying out your project';
 
     /**
      * Query data.
@@ -62,9 +62,9 @@ class ExampleLayoutsScreen extends Screen
             ]),
 
             Layout::collapse([
-                Input::make('collapse-1')->title('Title'),
-                Input::make('collapse-1')->title('Title'),
-                Input::make('collapse-1')->title('Title'),
+                Input::make('collapse-1')->title('First name'),
+                Input::make('collapse-2')->title('Last name'),
+                Input::make('collapse-3')->title('Username'),
             ])->label('Click for me!'),
 
             Layout::columns([

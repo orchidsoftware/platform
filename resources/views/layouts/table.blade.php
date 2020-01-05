@@ -1,5 +1,8 @@
-<div class="row">
-    <div class="w-full table-responsive @if ($striped) table-striped @endif">
+<div class="row"
+     data-controller="layouts--table"
+     data-layouts--table-slug="{{$slug}}"
+    >
+    <div class="w-full table-responsive-lg @if ($striped) table-striped @endif">
         <table class="table">
             <thead>
                 <tr>
@@ -32,9 +35,14 @@
         @endif
 
         @includeWhen($rows instanceof \Illuminate\Contracts\Pagination\Paginator && $rows->isNotEmpty(),
-            'platform::layouts.pagination',
-            ['paginator' => $rows]
+            'platform::layouts.pagination',[
+                'paginator' => $rows,
+                'columns' => $columns
+            ]
           )
     </div>
+
+
+
 </div>
 

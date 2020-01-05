@@ -25,13 +25,15 @@
             <button type="button" class="btn btn-outline-danger picture-remove"
                     data-action="fields--picture#clear">{{ __('Remove') }}</button>
 
-            <input type="file" class="d-none">
+            <input type="file"
+                   accept="image/*"
+                   class="d-none">
         </div>
 
         <input class="picture-path"
                type="hidden"
                data-target="fields--picture.source"
-                @attributes($attributes)
+            @attributes($attributes)
         >
     </div>
 @endcomponent

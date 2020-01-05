@@ -52,6 +52,7 @@ export default class extends Controller {
         const filters = window.platform.formToObject(formElement);
 
         const params = $.param(this.removeEmpty(filters));
+        params.sort = this.getUrlParameter('sort');
 
         const url = `${window.location.origin + window.location.pathname}?${params}`;
 
@@ -77,7 +78,13 @@ export default class extends Controller {
      * @param event
      */
     clear(event) {
-        window.Turbolinks.visit(window.location.origin + window.location.pathname, { action: 'replace' });
+
+        const params = {
+            sort: this.getUrlParameter('sort'),
+        };
+        const url = `${window.location.origin + window.location.pathname}?${params}`;
+
+        window.Turbolinks.visit(url, {action: 'replace'});
         event.preventDefault();
     }
 
@@ -86,11 +93,23 @@ export default class extends Controller {
      * @param event
      */
     clearFilter(event) {
-        const { filter } = event.target.dataset;
+        const {filter} = event.target.dataset;
         document.querySelector(`input[name='filter[${filter}]']`).value = '';
 
         this.element.remove();
         this.setAllFilter();
         event.preventDefault();
+    }
+
+    /**
+     *
+     * @param property
+     * @returns {string}
+     */
+    getUrlParameter(property) {
+        const name = property.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        const results = regex.exec(window.location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     }
 }

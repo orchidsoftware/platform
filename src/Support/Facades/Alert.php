@@ -16,6 +16,7 @@ use Orchid\Alert\Alert as AlertClass;
  * @method static AlertClass warning(string $message)
  * @method static AlertClass view(string $template, string $level, array $data)
  * @method static AlertClass check()
+ * @method static AlertClass message(string $message, string $level = null)
  */
 class Alert extends Facade
 {

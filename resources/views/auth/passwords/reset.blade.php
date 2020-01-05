@@ -52,7 +52,7 @@
                        class="form-control @error('password_confirmation') is-invalid @enderror"
                        required>
                 @error('password_confirmation')
-                    <span class="invalid-feedback text-danger">
+                <span class="invalid-feedback text-danger">
                        {{ $errors->first('password_confirmation') }}
                     </span>
                 @enderror
@@ -60,7 +60,7 @@
         </div>
         <div class="form-group">
             <button class="btn btn-default btn-block" id="button-reset" type="submit">
-                <i class="icon-refresh text-xs m-r-xs"></i>  {{ __('Reset Password') }}
+                <i class="icon-refresh text-xs mr-2"></i> {{ __('Reset Password') }}
             </button>
         </div>
     </form>

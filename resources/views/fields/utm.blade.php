@@ -15,9 +15,10 @@
                 <div class="modal-content">
                     <div class="modal-header m-b">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                            <i class="icon-cross icons" aria-hidden="true"></i>
                         </button>
-                        <h5 class="modal-title" id="exampleModalLabel">{{__('UTM Generator')}}</h5>
+                        <h4 class="modal-title m-b text-black font-thin"
+                            id="exampleModalLabel">{{__('UTM Generator')}}</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -27,7 +28,8 @@
                                     <label>{{__('Campaign Source')}} - <span class="font-bold">utm_source</span></label>
                                     <input type="text" data-target="fields--utm.source" placeholder="google"
                                            class="form-control">
-                                    <small class="form-text text-muted w-b-k">{{__('Original referrer: (e.g. google, newsletter)')}}</small>
+                                    <small
+                                        class="form-text text-muted w-b-k">{{__('Original referrer: (e.g. google, newsletter)')}}</small>
                                 </div>
 
                                 <div class="form-group">

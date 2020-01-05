@@ -25,7 +25,7 @@ class RoleEditLayout extends Rows
                 ->required()
                 ->title(__('Name'))
                 ->placeholder(__('Name'))
-                ->help(__('User role display name')),
+                ->help(__('Role display name')),
 
             Input::make('role.slug')
                 ->type('text')

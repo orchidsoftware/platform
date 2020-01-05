@@ -27,11 +27,11 @@ class UserListLayout extends Table
         return [
             TD::set('name', __('Name'))
                 ->sort()
+                ->canHide()
                 ->filter(TD::FILTER_TEXT)
                 ->render(function (User $user) {
                     // Please use Blade templates.
                     // This will be a simple example: view('path', ['user' => $user])
-
                     $avatar = e($user->getAvatar());
                     $name = e($user->getNameTitle());
                     $sub = e($user->getSubTitle());
@@ -52,6 +52,7 @@ class UserListLayout extends Table
 
             TD::set('email', __('Email'))
                 ->sort()
+                ->canHide()
                 ->filter(TD::FILTER_TEXT)
                 ->render(function (User $user) {
                     return ModalToggle::make($user->email)

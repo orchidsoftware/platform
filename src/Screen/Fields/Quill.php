@@ -9,9 +9,6 @@ use Orchid\Screen\Field;
 /**
  * Class Quill.
  *
- * @method Quill accept($value = true)
- * @method Quill accesskey($value = true)
- * @method Quill autocomplete($value = true)
  * @method Quill autofocus($value = true)
  * @method Quill checked($value = true)
  * @method Quill disabled($value = true)
@@ -21,24 +18,15 @@ use Orchid\Screen\Field;
  * @method Quill formmethod($value = true)
  * @method Quill formnovalidate($value = true)
  * @method Quill formtarget($value = true)
- * @method Quill list($value = true)
- * @method Quill max(int $value)
- * @method Quill maxlength(int $value)
- * @method Quill min(int $value)
- * @method Quill multiple($value = true)
  * @method Quill name(string $value = null)
- * @method Quill pattern($value = true)
  * @method Quill placeholder(string $value = null)
  * @method Quill readonly($value = true)
  * @method Quill required(bool $value = true)
- * @method Quill size($value = true)
- * @method Quill src($value = true)
- * @method Quill step($value = true)
  * @method Quill tabindex($value = true)
- * @method Quill type($value = true)
  * @method Quill value($value = true)
  * @method Quill help(string $value = null)
  * @method Quill height($value = '300px')
+ * @method Quill title(string $value = null)
  */
 class Quill extends Field
 {

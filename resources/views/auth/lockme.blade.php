@@ -1,8 +1,8 @@
 <div class="form-group v-center">
-    <span class="thumb-xs avatar m-r-xs">
+    <span class="thumb-sm avatar mr-3">
         <img src="{{ $lockUser->getAvatar() }}" class="b bg-light" alt="test">
     </span>
-    <span class="ml-2" style="width:125px;font-size: 0.85em;">
+    <span style="width:125px;font-size: 0.85em;">
         <span class="text-ellipsis">{{ $lockUser->getNameTitle() }}</span>
         <span class="text-muted d-block text-ellipsis">{{ $lockUser->getSubTitle() }}</span>
     </span>
@@ -49,7 +49,7 @@
     </div>
     <div class="form-group col-md-6 col-xs-12">
         <button id="button-login" type="submit" class="btn btn-default btn-block">
-            <i class="icon-login text-xs m-r-xs"></i> {{__('Login')}}
+            <i class="icon-login text-xs mr-2"></i> {{__('Login')}}
         </button>
     </div>
 </div>

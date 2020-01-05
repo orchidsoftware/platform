@@ -122,6 +122,20 @@ class BuilderTest extends TestUnitCase
     }
 
     /**
+     * @throws \Throwable
+     */
+    public function emptyRepositoryBuilder()
+    {
+        $builder = new Builder([
+            Input::make('name'),
+        ]);
+
+        $form = $builder->generateForm();
+
+        $this->assertStringContainsString('input', $form);
+    }
+
+    /**
      * @param array $value
      *
      * @return Builder

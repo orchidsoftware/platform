@@ -36,7 +36,7 @@ class SystemMenuComposer
                     ->icon('icon-lock')
                     ->slug('Auth')
                     ->active('platform.systems.*')
-                    ->permission('platform.systems')
+                    ->permission('platform.systems.index')
                     ->sort(1000)
             )
             ->add('Auth',
