@@ -36,9 +36,7 @@ class RolePermissionLayout extends Rows
         $fields = [];
 
         $permissionsRaw->each(function ($items, $group) use (&$fields) {
-            $fields[] = Label::make($group)
-                ->title($group)
-                ->horizontal();
+            $fields[] = Label::make($group)->title($group);
 
             collect($items)
                 ->chunk(3)

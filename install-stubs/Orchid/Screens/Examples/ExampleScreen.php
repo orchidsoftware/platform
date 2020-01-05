@@ -1,15 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Screens\Examples;
 
 use App\Orchid\Layouts\Examples\ChartBarExample;
-use App\Orchid\Layouts\Examples\ChartLineExample;
-use App\Orchid\Layouts\Examples\ChartPieExample;
 use App\Orchid\Layouts\Examples\MetricsExample;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use Orchid\Platform\Notifications\DashboardNotification;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\ModalToggle;
@@ -140,19 +138,15 @@ class ExampleScreen extends Screen
             MetricsExample::class,
             ChartBarExample::class,
 
-            Layout::columns([
-                ChartPieExample::class,
-                ChartLineExample::class,
-            ]),
-
             Layout::table('table', [
                 TD::set('id', 'ID')
                     ->width('150')
                     ->render(function (Repository $model) {
                         // Please use view('path')
                         return "<img src='https://picsum.photos/450/200?random={$model->get('id')}'
-                                     class='mw-100 d-block img-fluid'>
-                                <span class='small text-muted mt-1 mb-0'># {$model->get('id')}</span>";
+                              alt='sample'
+                              class='mw-100 d-block img-fluid'>
+                            <span class='small text-muted mt-1 mb-0'># {$model->get('id')}</span>";
                     }),
 
                 TD::set('name', 'Name')
@@ -188,13 +182,6 @@ class ExampleScreen extends Screen
     public function showToast(Request $request)
     {
         Toast::warning($request->get('toast', 'Hello, world! This is a toast message.'));
-
-        Auth::user()->notify(new DashboardNotification([
-            'title'   => 'Hello Word',
-            'message' => self::TEXT_EXAMPLE,
-            'action'  => route('platform.main'),
-            'type'    => DashboardNotification::INFO,
-        ]));
 
         return back();
     }

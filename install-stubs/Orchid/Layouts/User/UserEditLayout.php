@@ -25,23 +25,20 @@ class UserEditLayout extends Rows
                 ->type('text')
                 ->max(255)
                 ->required()
-                ->horizontal()
                 ->title(__('Name'))
                 ->placeholder(__('Name')),
 
             Input::make('user.email')
                 ->type('email')
                 ->required()
-                ->horizontal()
                 ->title(__('Email'))
                 ->placeholder(__('Email')),
 
             Select::make('user.roles.')
                 ->fromModel(Role::class, 'name')
                 ->multiple()
-                ->horizontal()
                 ->title(__('Name role'))
-                ->help('Specify which groups this account should belong to.'),
+                ->help('Specify which groups this account should belong to'),
         ];
     }
 }

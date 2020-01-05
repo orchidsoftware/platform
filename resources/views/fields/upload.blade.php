@@ -84,14 +84,9 @@
 
 
                                 <div class="form-group">
-                                    <label><i class="icon-link mr-2"></i> Link for file</label>
-
-                                    <p>
-                                        Скачать файл
-                                        <a href="#" data-action="click->fields--upload#openLink">
-                                            {{__('Link')}}
-                                        </a>
-                                    </p>
+                                    <a href="#" data-action="click->fields--upload#openLink">
+                                        <small><i class="icon-link mr-2"></i>{{ __('Link to file') }}</small>
+                                    </a>
                                 </div>
 
 

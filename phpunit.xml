@@ -9,10 +9,14 @@
          processIsolation="false"
          stopOnFailure="false"
          stopOnError="false"
-         defaultTestSuite="Main"
+         defaultTestSuite="Install,Main"
          verbose="true"
 >
     <testsuites>
+        <testsuite name="Install">
+            <file>./tests/Bootstrap.php</file>
+        </testsuite>
+
         <testsuite name="Main">
             <directory suffix="Test.php">./tests/Feature</directory>
             <directory suffix="Test.php">./tests/Console</directory>

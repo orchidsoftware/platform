@@ -10,8 +10,9 @@ use Illuminate\Http\Request;
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Alert;
+use Orchid\Support\Facades\Toast;
 
 class RoleEditScreen extends Screen
 {
@@ -20,7 +21,7 @@ class RoleEditScreen extends Screen
      *
      * @var string
      */
-    public $name = 'Manage Roles';
+    public $name = 'Manage roles';
 
     /**
      * Display header description.
@@ -84,7 +85,10 @@ class RoleEditScreen extends Screen
     {
         return [
             RoleEditLayout::class,
-            RolePermissionLayout::class,
+
+            Layout::rubbers([
+                RolePermissionLayout::class,
+            ]),
         ];
     }
 
@@ -107,7 +111,7 @@ class RoleEditScreen extends Screen
 
         $role->save();
 
-        Alert::info(__('Role was saved'));
+        Toast::info(__('Role was saved'));
 
         return redirect()->route('platform.systems.roles');
     }
@@ -123,7 +127,7 @@ class RoleEditScreen extends Screen
     {
         $role->delete();
 
-        Alert::info(__('Role was removed'));
+        Toast::info(__('Role was removed'));
 
         return redirect()->route('platform.systems.roles');
     }
