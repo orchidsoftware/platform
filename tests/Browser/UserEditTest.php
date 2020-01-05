@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Orchid\Tests\Browser;
@@ -14,21 +13,21 @@ class UserEditTest extends TestBrowserCase
         $this->browse(function (Browser $browser) {
             $user = $this->createAdminUser();
             $email = $this->faker()->safeEmail;
-
             $browser
                 ->loginAs($user)
                 ->visitRoute('platform.systems.users')
                 ->clickLink($user->name, 'table a')
                 ->waitForRoute('platform.systems.users.edit', $user)
+                ->pause(5000)
                 ->assertInputValue('user[email]', $user->email)
                 ->type('user[email]', $email)
                 ->press('Save')
                 ->waitForRoute('platform.systems.users')
                 ->waitForText('User was saved.')
                 ->clickLink($user->name, 'table a')
-                ->waitForRoute('platform.systems.users.edit', $user);
-            //->pause(30000)
-                //->assertInputValue('user[email]', $email);
+                ->waitForRoute('platform.systems.users.edit', $user)
+                ->pause(5000)
+                ->assertInputValue('user[email]', $email);
         });
     }
 
@@ -36,7 +35,6 @@ class UserEditTest extends TestBrowserCase
     {
         $this->browse(function (Browser $browser) {
             $user = $this->createAdminUser();
-
             $browser
                 ->loginAs($user, 'web')
                 ->assertAuthenticatedAs($user)
@@ -50,7 +48,6 @@ class UserEditTest extends TestBrowserCase
     {
         $this->browse(function (Browser $browser) {
             $user = $this->createAdminUser();
-
             $browser->loginAs($user)
                 ->visitRoute('platform.systems.users')
                 ->press($user->email)
@@ -58,10 +55,10 @@ class UserEditTest extends TestBrowserCase
                 ->waitForText($user->name)
                 ->waitForText('Close')
                 ->waitForText('Apply')
-                ->type('user[name]', $user->name.'-async-test')
+                ->type('user[name]', $user->name . '-async-test')
                 ->press('Apply')
                 ->waitForText('User was saved.')
-                ->assertSee($user->name.'-async-test');
+                ->assertSee($user->name . '-async-test');
         });
     }
 }
