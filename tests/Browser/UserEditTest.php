@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Orchid\Tests\Browser;
@@ -55,10 +56,10 @@ class UserEditTest extends TestBrowserCase
                 ->waitForText($user->name)
                 ->waitForText('Close')
                 ->waitForText('Apply')
-                ->type('user[name]', $user->name . '-async-test')
+                ->type('user[name]', $user->name.'-async-test')
                 ->press('Apply')
                 ->waitForText('User was saved.')
-                ->assertSee($user->name . '-async-test');
+                ->assertSee($user->name.'-async-test');
         });
     }
 }
