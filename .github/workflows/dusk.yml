@@ -21,8 +21,8 @@ jobs:
       - name: Dusk detect
         run: vendor/bin/dusk-updater detect --auto-update
       - name: Chrome driver
-        run: vendor/laravel/dusk/bin/chromedriver-linux &
+        run: vendor/laravel/dusk/bin/chromedriver-linux > /dev/null 2>&1 &
       - name: Run Chrome
-        run: google-chrome-stable --headless --disable-gpu --no-sandbox --remote-debugging-port=9222 http://localhost &
+        run: google-chrome-stable --headless --disable-gpu --no-sandbox --remote-debugging-port=9222 http://localhost > /dev/null 2>&1 &
       - name: Run dusk tests
         run: vendor/bin/phpunit --testsuite=Browser
