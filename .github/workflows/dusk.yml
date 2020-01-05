@@ -1,0 +1,28 @@
+name: Unit and feature tests
+
+on: [push]
+
+jobs:
+  dusk-host:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - name: PHP version
+        run: php -v
+      - uses: actions/checkout@v1
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+      - name: Make SQLite database
+        run: vendor/orchestra/testbench-dusk/create-sqlite-db
+      - name: Dusk updater
+        run: vendor/bin/dusk-updater update
+      - name: Dusk detect
+        run: vendor/bin/dusk-updater detect --auto-update
+      - name: Chrome driver
+        run: vendor/laravel/dusk/bin/chromedriver-linux &
+      - name: Run Chrome
+        run: google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+      - name: Run dusk tests
+        run: vendor/bin/phpunit --testsuite=Browser
