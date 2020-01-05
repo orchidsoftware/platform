@@ -32,7 +32,7 @@ before_script:
    - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 script:
-  - vendor/bin/phpunit --testsuite=Browser
+  - vendor/bin/phpunit --testsuite=Install,Browser
   - vendor/bin/phpunit --coverage-clover=coverage.xml
 
 after_success:
