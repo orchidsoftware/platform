@@ -39,7 +39,7 @@ class UserListScreen extends Screen
      *
      * @return array
      */
-    public function query(): array
+    public function query() : array
     {
         return  [
             'users'  => User::with('roles')
@@ -55,7 +55,7 @@ class UserListScreen extends Screen
      *
      * @return Action[]
      */
-    public function commandBar(): array
+    public function commandBar() : array
     {
         return [];
     }
@@ -65,7 +65,7 @@ class UserListScreen extends Screen
      *
      * @return Layout[]
      */
-    public function layout(): array
+    public function layout() : array
     {
         return [
             UserFiltersLayout::class,
@@ -82,7 +82,7 @@ class UserListScreen extends Screen
      *
      * @return array
      */
-    public function asyncGetUser(User $user): array
+    public function asyncGetUser(User $user) : array
     {
         return [
             'user' => $user,

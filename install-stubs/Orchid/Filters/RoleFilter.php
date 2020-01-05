@@ -32,7 +32,7 @@ class RoleFilter extends Filter
      *
      * @return Builder
      */
-    public function run(Builder $builder): Builder
+    public function run(Builder $builder) : Builder
     {
         return $builder->whereHas('roles', function (Builder $query) {
             $query->where('slug', $this->request->get('role'));
@@ -42,7 +42,7 @@ class RoleFilter extends Filter
     /**
      * @return Field[]
      */
-    public function display(): array
+    public function display() : array
     {
         return [
             Select::make('role')
