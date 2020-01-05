@@ -1,4 +1,4 @@
-name: Unit and feature tests
+name: Dusk tests
 
 on: [push]
 
@@ -23,6 +23,6 @@ jobs:
       - name: Chrome driver
         run: vendor/laravel/dusk/bin/chromedriver-linux &
       - name: Run Chrome
-        run: google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+        run: google-chrome-stable --headless --disable-gpu --no-sandbox --remote-debugging-port=9222 http://localhost &
       - name: Run dusk tests
         run: vendor/bin/phpunit --testsuite=Browser
