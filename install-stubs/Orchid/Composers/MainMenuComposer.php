@@ -63,11 +63,6 @@ class MainMenuComposer
                     ->route('platform.example.layouts')
             )
             ->add(Menu::MAIN,
-                ItemMenu::label('Screen contents')
-                    ->icon('icon-folder')
-                    ->route('platform.example.contents')
-            )
-            ->add(Menu::MAIN,
                 ItemMenu::label('Dropdown menu')
                     ->title('Sub menu')
                     ->slug('example-menu')
