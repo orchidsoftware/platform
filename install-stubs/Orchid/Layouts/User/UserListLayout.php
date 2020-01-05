@@ -35,6 +35,7 @@ class UserListLayout extends Table
                     $name = e($user->getNameTitle());
                     $sub = e($user->getSubTitle());
                     $route = route('platform.systems.users.edit', $user->id);
+
                     return "<a href='{$route}'>
                                 <div class='d-sm-flex flex-row flex-wrap text-center text-sm-left align-items-center'>
                                     <span class='thumb-xs avatar m-r-xs d-none d-md-inline-block'>
