@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Orchid\Screen\Commander;
 use Orchid\Screen\Repository;
 
 /**
@@ -11,11 +12,29 @@ use Orchid\Screen\Repository;
  */
 class Modal extends Base
 {
+    use Commander;
+
     public const SIZE_LG = 'modal-lg';
     public const SIZE_SM = 'modal-sm';
 
     public const TYPE_CENTER = '';
     public const TYPE_RIGHT = 'slide-right';
+
+    /**
+     * The modal window variation key,
+     * for example, on the right, in the center.
+     *
+     * @var string
+     */
+    protected $type = self::TYPE_CENTER;
+
+    /**
+     * The size of the modal window,
+     * for example, large or small.
+     *
+     * @var string
+     */
+    protected $size;
 
     /**
      * @var string
@@ -38,6 +57,7 @@ class Modal extends Base
             'key'        => $key,
             'title'      => $key,
             'turbolinks' => true,
+            'commandBar' => [],
         ];
 
         $this->layouts = $layouts;
@@ -50,6 +70,13 @@ class Modal extends Base
      */
     public function build(Repository $repository)
     {
+        /*
+                $this->variables['type'] = $this->type;
+
+                $this->variables['title'] = $this->type;
+                $this->variables['commandBar'] = $this->buildCommandBar($repository);
+        */
+
         return $this->buildAsDeep($repository);
     }
 
@@ -116,7 +143,7 @@ class Modal extends Base
      *
      * @return Modal
      */
-    public function title(string $title):self
+    public function title(string $title): self
     {
         $this->variables['title'] = $title;
 

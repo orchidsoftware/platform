@@ -87,6 +87,22 @@ class TD
     protected $locale = false;
 
     /**
+     * Displays whether the user can hide
+     * or show the column in the browser.
+     *
+     * @var bool
+     */
+    protected $allowUserHidden = true;
+
+    /**
+     * Should the user independently enable
+     * the display of the column.
+     *
+     * @var bool
+     */
+    protected $defaultHidden = false;
+
+    /**
      * TD constructor.
      *
      * @param string $name
@@ -214,7 +230,7 @@ class TD
     /**
      * @param Closure $closure
      *
-     * @return $this
+     * @return TD
      */
     public function render(Closure $closure): self
     {
@@ -300,10 +316,12 @@ class TD
             'width'        => $this->width,
             'align'        => $this->align,
             'sort'         => $this->sort,
+            'sortUrl'      => $this->buildSortUrl(),
             'column'       => $this->column,
             'title'        => $this->title,
             'filter'       => $this->filter,
             'filterString' => get_filter_string($this->column),
+            'slug'         => $this->sluggable(),
         ]);
     }
 
@@ -324,6 +342,90 @@ class TD
             'align'  => $this->align,
             'value'  => $value,
             'render' => $this->render,
+            'slug'   => $this->sluggable(),
         ]);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAllowUserHidden(): bool
+    {
+        return $this->allowUserHidden;
+    }
+
+    /**
+     * Builds item menu for show/hiden column.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|null
+     */
+    public function buildItemMenu()
+    {
+        if (! $this->isAllowUserHidden()) {
+            return;
+        }
+
+        return view('platform::partials.layouts.selectedTd', [
+            'title'         => $this->title,
+            'slug'          => $this->sluggable(),
+            'defaultHidden' => var_export($this->defaultHidden, true),
+        ]);
+    }
+
+    /**
+     * @return string
+     */
+    private function sluggable(): string
+    {
+        return Str::slug($this->name);
+    }
+
+    /**
+     * Prevents the user from hiding a column in the interface.
+     *
+     * @param bool $hidden
+     *
+     * @return TD
+     */
+    public function canHide($hidden = false): self
+    {
+        $this->allowUserHidden = $hidden;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $hidden
+     *
+     * @return $this
+     */
+    public function defaultHidden($hidden = true): self
+    {
+        $this->defaultHidden = $hidden;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function buildSortUrl(): string
+    {
+        $query = request()->query();
+        $query['sort'] = revert_sort($this->column);
+
+        return url()->current().'?'.http_build_query($query);
+    }
+
+    /**
+     * @param TD[] $columns
+     *
+     * @return bool
+     */
+    public static function isShowVisibleColumns($columns): bool
+    {
+        return collect($columns)->filter(function ($column) {
+            return $column->isAllowUserHidden();
+        })->count() > 0;
     }
 }

@@ -1,7 +1,7 @@
 @extends('platform::dashboard')
 
 @section('title',__('System settings'))
-@section('description', __('Global system settings'))
+@section('description', __('Back-end preferences'))
 @section('controller','layouts--systems')
 
 @section('navbar')

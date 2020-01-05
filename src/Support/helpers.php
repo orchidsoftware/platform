@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Illuminate\Support\Str;
 use Orchid\Alert\Alert;
 use Orchid\Filters\HttpFilter;
+use Orchid\Support\Color;
 use Orchid\Support\Facades\Dashboard;
 use Orchid\Support\Facades\Setting;
 use Symfony\Component\Finder\Finder;
@@ -18,9 +19,13 @@ if (! function_exists('alert')) {
      *
      * @return Alert
      */
-    function alert(string $message = null, string $level = 'info'): Alert
+    function alert(string $message = null, string $level = null): Alert
     {
         $notifier = app(Alert::class);
+
+        if (! is_null($level)) {
+            $level = (string) Color::INFO();
+        }
 
         if (! is_null($message)) {
             return $notifier->message($message, $level);

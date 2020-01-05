@@ -56,6 +56,10 @@ export default class extends Controller {
                     element.querySelector('.picture-remove').classList.remove('none');
                     element.querySelector('.picture-path').value = response.data[targetValue];
                     $(element.querySelector('.modal')).modal('hide');
+                })
+                .catch((error) => {
+                    window.platform.alert('Validation error', 'File upload error');
+                    console.warn(error);
                 });
         };
 

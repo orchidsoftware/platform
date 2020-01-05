@@ -4,20 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 6.7.6 - 2019-12-14
+## 6.8.0 - 2020-01-06
+
+### Added
+- Rubber layout
+- Dusk testing browser
+- Channel to send a notification [#1038](https://github.com/orchidsoftware/platform/issues/1038)
+- Dynamic columns [#1003](https://github.com/orchidsoftware/platform/issues/1003)
+
+### Changed
+- First look enhancement
+- Cursor loading animations
+- Indented icons are stylized
+- Source is optional for form builder
+- Extend the user model that comes with the installation [#1039](https://github.com/orchidsoftware/platform/issues/1039)
 
 ### Fixed
-- Remove mask on submit for filter [#1028](https://github.com/orchidsoftware/platform/issues/1028)
-
-## 6.7.5 - 2019-12-10
-
-### Fixed
-- Revert error sending when multiple TinyMCE
-
-## 6.7.4 - 2019-12-09
-
-### Fixed
-- Error sending when multiple TinyMCE
+- Sort&Filter generator
+- Loading files for cropper and picture (only images)
+- Display of modal window title in Utm field
+- Duplication bug fixed using map search
 
 ## 6.7.3 - 2019-12-04
 

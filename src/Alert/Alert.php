@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Alert;
 
 use Illuminate\Session\Store;
+use Orchid\Support\Color;
 
 /**
  * Class Alert.
@@ -12,22 +13,22 @@ use Illuminate\Session\Store;
 class Alert
 {
     /**
-     * Status.
+     * @deprecated
      */
     public const INFO = 'info';
 
     /**
-     * Status.
+     * @deprecated
      */
     public const SUCCESS = 'success';
 
     /**
-     * Status.
+     * @deprecated
      */
     public const ERROR = 'danger';
 
     /**
-     * Status.
+     * @deprecated
      */
     public const WARNING = 'warning';
 
@@ -78,8 +79,10 @@ class Alert
      *
      * @return Alert
      */
-    public function message(string $message, string $level = self::INFO): self
+    public function message(string $message, string $level = null): self
     {
+        $level = $level ?? (string) Color::INFO();
+
         $this->session->flash(static::SESSION_MESSAGE, $message);
         $this->session->flash(static::SESSION_LEVEL, $level);
 
@@ -95,7 +98,7 @@ class Alert
      */
     public function success(string $message): self
     {
-        $this->message($message, self::SUCCESS);
+        $this->message($message, (string) Color::SUCCESS());
 
         return $this;
     }
@@ -109,7 +112,7 @@ class Alert
      */
     public function error(string $message): self
     {
-        $this->message($message, self::ERROR);
+        $this->message($message, (string) Color::ERROR());
 
         return $this;
     }
@@ -123,7 +126,7 @@ class Alert
      */
     public function warning(string $message): self
     {
-        $this->message($message, self::WARNING);
+        $this->message($message, (string) Color::WARNING());
 
         return $this;
     }

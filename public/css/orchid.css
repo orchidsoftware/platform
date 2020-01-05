@@ -2577,8 +2577,8 @@ input[type="button"].btn-block {
           align-items: flex-start;
   -webkit-box-pack: center;
           justify-content: center; }
-  
-  .btn-group-vertical > .btn,
+
+.btn-group-vertical > .btn,
   .dropzone .dz-preview .btn-group-vertical > .btn-remove,
   .dropzone-wrapper .dz-preview .btn-group-vertical > .btn-remove,
   .dropzone .dz-preview .btn-group-vertical > .btn-edit,
@@ -2812,21 +2812,22 @@ input[type="button"].btn-block {
   margin-left: -1px; }
 
 .input-group-text {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-          align-items: center;
-  padding: 0.375rem 0.75rem;
-  margin-bottom: 0;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #555555;
-  text-align: center;
-  white-space: nowrap;
-  background-color: #e9ecef;
-  border: 1px solid #dadfe4;
-  border-radius: 2px; }
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #555555;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #e9ecef;
+    border: 1px solid #dadfe4;
+    border-radius: 2px;
+}
   .input-group-text input[type="radio"],
   .input-group-text input[type="checkbox"] {
     margin-top: 0; }
@@ -13236,37 +13237,70 @@ blockquote {
       color: #99c8f2 !important; }
     .list-group-item.active a {
       color: #fff; }
-  .list-group-item.focus {
-    background-color: #e0e4e9 !important; }
-  .list-group-item.select {
+
+.list-group-item.focus {
+    background-color: #e0e4e9 !important;
+}
+
+.list-group-item.select {
     position: relative;
     z-index: 1;
     background-color: #dbeef9 !important;
-    border-color: #c5e4f5; }
-  .list-group-alt .list-group-item:nth-child(2n+2) {
-    background-color: rgba(0, 0, 0, 0.02) !important; }
-  .list-group-lg .list-group-item {
+    border-color: #c5e4f5;
+}
+
+.list-group-alt .list-group-item:nth-child(2n+2) {
+    background-color: rgba(0, 0, 0, 0.02) !important;
+}
+
+.list-group-lg .list-group-item {
     padding-top: 15px;
-    padding-bottom: 15px; }
-  .list-group-sm .list-group-item {
-    padding: 6px 10px; }
-  .list-group-sp .list-group-item {
+    padding-bottom: 15px;
+}
+
+.list-group-sm .list-group-item {
+    padding: 6px 10px;
+}
+
+.list-group-sp .list-group-item {
     margin-bottom: 5px;
-    border-radius: 3px; }
-  .list-group-item > .badge {
-    margin-right: 0; }
+    border-radius: 3px;
+}
+
+.list-group-item > .badge {
+    margin-right: 0;
+}
+
+.nav .nav-item {
+    -webkit-box-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    text-overflow: ellipsis;
+}
+
+.nav .nav-item .nav-link {
+    width: 100%;
+}
 
 .nav .nav-item .nav-link:hover, .nav .nav-item .nav-link:focus {
-  border-radius: unset; }
+    border-radius: unset;
+}
 
 .nav.nav-lg .nav-item .nav-link {
-  padding: 20px 20px; }
+    padding: 20px 20px;
+}
 
 .nav.nav-md .nav-item .nav-link {
-  padding: 15px 15px; }
+    padding: 15px 15px;
+}
 
 .nav.nav-sm .nav-item .nav-link {
-  padding: 6px 12px; }
+    padding: 6px 12px;
+}
 
 .nav.nav-xs .nav-item .nav-link {
   padding: 4px 10px; }
@@ -13518,51 +13552,98 @@ blockquote {
     filter: alpha(opacity=80); }
 
 .modal-over {
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  position: fixed; }
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+}
 
 .modal-center {
-  position: absolute;
-  left: 50%;
-  top: 50%; }
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.dropdown-item, .command-bar .btn, .command-bar .dropzone .dz-preview .btn-remove, .dropzone .dz-preview .command-bar .btn-remove, .command-bar .dropzone-wrapper .dz-preview .btn-remove, .dropzone-wrapper .dz-preview .command-bar .btn-remove, .command-bar .dropzone .dz-preview .btn-edit, .dropzone .dz-preview .command-bar .btn-edit, .command-bar .dropzone-wrapper .dz-preview .btn-edit, .dropzone-wrapper .dz-preview .command-bar .btn-edit, .table td .btn, .table td .dropzone .dz-preview .btn-remove, .dropzone .dz-preview .table td .btn-remove, .table td .dropzone-wrapper .dz-preview .btn-remove, .dropzone-wrapper .dz-preview .table td .btn-remove, .table td .dropzone .dz-preview .btn-edit, .dropzone .dz-preview .table td .btn-edit, .table td .dropzone-wrapper .dz-preview .btn-edit, .dropzone-wrapper .dz-preview .table td .btn-edit {
+    -webkit-box-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    text-overflow: ellipsis;
+}
 
 .dropdown-item:hover, .command-bar .btn:hover, .command-bar .dropzone .dz-preview .btn-remove:hover, .dropzone .dz-preview .command-bar .btn-remove:hover, .command-bar .dropzone-wrapper .dz-preview .btn-remove:hover, .dropzone-wrapper .dz-preview .command-bar .btn-remove:hover, .command-bar .dropzone .dz-preview .btn-edit:hover, .dropzone .dz-preview .command-bar .btn-edit:hover, .command-bar .dropzone-wrapper .dz-preview .btn-edit:hover, .dropzone-wrapper .dz-preview .command-bar .btn-edit:hover, .table td .btn:hover, .table td .dropzone .dz-preview .btn-remove:hover, .dropzone .dz-preview .table td .btn-remove:hover, .table td .dropzone-wrapper .dz-preview .btn-remove:hover, .dropzone-wrapper .dz-preview .table td .btn-remove:hover, .table td .dropzone .dz-preview .btn-edit:hover, .dropzone .dz-preview .table td .btn-edit:hover, .table td .dropzone-wrapper .dz-preview .btn-edit:hover, .dropzone-wrapper .dz-preview .table td .btn-edit:hover, .dropdown-item:focus, .command-bar .btn:focus, .command-bar .dropzone .dz-preview .btn-remove:focus, .dropzone .dz-preview .command-bar .btn-remove:focus, .command-bar .dropzone-wrapper .dz-preview .btn-remove:focus, .dropzone-wrapper .dz-preview .command-bar .btn-remove:focus, .command-bar .dropzone .dz-preview .btn-edit:focus, .dropzone .dz-preview .command-bar .btn-edit:focus, .command-bar .dropzone-wrapper .dz-preview .btn-edit:focus, .dropzone-wrapper .dz-preview .command-bar .btn-edit:focus, .table td .btn:focus, .table td .dropzone .dz-preview .btn-remove:focus, .dropzone .dz-preview .table td .btn-remove:focus, .table td .dropzone-wrapper .dz-preview .btn-remove:focus, .dropzone-wrapper .dz-preview .table td .btn-remove:focus, .table td .dropzone .dz-preview .btn-edit:focus, .dropzone .dz-preview .table td .btn-edit:focus, .table td .dropzone-wrapper .dz-preview .btn-edit:focus, .dropzone-wrapper .dz-preview .table td .btn-edit:focus {
-  color: #16181b;
-  background-color: #f8f9fa; }
+    color: #16181b;
+    background-color: #f8f9fa;
+}
 
 .dropdown-item.active, .command-bar .active.btn, .command-bar .dropzone .dz-preview .active.btn-remove, .dropzone .dz-preview .command-bar .active.btn-remove, .command-bar .dropzone-wrapper .dz-preview .active.btn-remove, .dropzone-wrapper .dz-preview .command-bar .active.btn-remove, .command-bar .dropzone .dz-preview .active.btn-edit, .dropzone .dz-preview .command-bar .active.btn-edit, .command-bar .dropzone-wrapper .dz-preview .active.btn-edit, .dropzone-wrapper .dz-preview .command-bar .active.btn-edit, .table td .active.btn, .table td .dropzone .dz-preview .active.btn-remove, .dropzone .dz-preview .table td .active.btn-remove, .table td .dropzone-wrapper .dz-preview .active.btn-remove, .dropzone-wrapper .dz-preview .table td .active.btn-remove, .table td .dropzone .dz-preview .active.btn-edit, .dropzone .dz-preview .table td .active.btn-edit, .table td .dropzone-wrapper .dz-preview .active.btn-edit, .dropzone-wrapper .dz-preview .table td .active.btn-edit, .dropdown-item:active, .command-bar .btn:active, .command-bar .dropzone .dz-preview .btn-remove:active, .dropzone .dz-preview .command-bar .btn-remove:active, .command-bar .dropzone-wrapper .dz-preview .btn-remove:active, .dropzone-wrapper .dz-preview .command-bar .btn-remove:active, .command-bar .dropzone .dz-preview .btn-edit:active, .dropzone .dz-preview .command-bar .btn-edit:active, .command-bar .dropzone-wrapper .dz-preview .btn-edit:active, .dropzone-wrapper .dz-preview .command-bar .btn-edit:active, .table td .btn:active, .table td .dropzone .dz-preview .btn-remove:active, .dropzone .dz-preview .table td .btn-remove:active, .table td .dropzone-wrapper .dz-preview .btn-remove:active, .dropzone-wrapper .dz-preview .table td .btn-remove:active, .table td .dropzone .dz-preview .btn-edit:active, .dropzone .dz-preview .table td .btn-edit:active, .table td .dropzone-wrapper .dz-preview .btn-edit:active, .dropzone-wrapper .dz-preview .table td .btn-edit:active {
-  color: #16181b;
-  background-color: #f8f9fa; }
+    color: #16181b;
+    background-color: #f8f9fa;
+}
 
 .dropdown-item.disabled, .command-bar .disabled.btn, .command-bar .dropzone .dz-preview .disabled.btn-remove, .dropzone .dz-preview .command-bar .disabled.btn-remove, .command-bar .dropzone-wrapper .dz-preview .disabled.btn-remove, .dropzone-wrapper .dz-preview .command-bar .disabled.btn-remove, .command-bar .dropzone .dz-preview .disabled.btn-edit, .dropzone .dz-preview .command-bar .disabled.btn-edit, .command-bar .dropzone-wrapper .dz-preview .disabled.btn-edit, .dropzone-wrapper .dz-preview .command-bar .disabled.btn-edit, .table td .disabled.btn, .table td .dropzone .dz-preview .disabled.btn-remove, .dropzone .dz-preview .table td .disabled.btn-remove, .table td .dropzone-wrapper .dz-preview .disabled.btn-remove, .dropzone-wrapper .dz-preview .table td .disabled.btn-remove, .table td .dropzone .dz-preview .disabled.btn-edit, .dropzone .dz-preview .table td .disabled.btn-edit, .table td .dropzone-wrapper .dz-preview .disabled.btn-edit, .dropzone-wrapper .dz-preview .table td .disabled.btn-edit, .dropdown-item:disabled, .command-bar .btn:disabled, .command-bar .dropzone .dz-preview .btn-remove:disabled, .dropzone .dz-preview .command-bar .btn-remove:disabled, .command-bar .dropzone-wrapper .dz-preview .btn-remove:disabled, .dropzone-wrapper .dz-preview .command-bar .btn-remove:disabled, .command-bar .dropzone .dz-preview .btn-edit:disabled, .dropzone .dz-preview .command-bar .btn-edit:disabled, .command-bar .dropzone-wrapper .dz-preview .btn-edit:disabled, .dropzone-wrapper .dz-preview .command-bar .btn-edit:disabled, .table td .btn:disabled, .table td .dropzone .dz-preview .btn-remove:disabled, .dropzone .dz-preview .table td .btn-remove:disabled, .table td .dropzone-wrapper .dz-preview .btn-remove:disabled, .dropzone-wrapper .dz-preview .table td .btn-remove:disabled, .table td .dropzone .dz-preview .btn-edit:disabled, .dropzone .dz-preview .table td .btn-edit:disabled, .table td .dropzone-wrapper .dz-preview .btn-edit:disabled, .dropzone-wrapper .dz-preview .table td .btn-edit:disabled {
-  color: #6c757d; }
+    color: #6c757d;
+}
 
 .breadcrumb {
-  border-radius: unset; }
+    border-radius: unset;
+}
 
 .sub-menu {
-  -webkit-transition: all .4s ease-in-out 0s;
-  transition: all .4s ease-in-out 0s; }
-  .sub-menu .dropdown-item, .sub-menu .command-bar .btn, .command-bar .sub-menu .btn, .sub-menu .command-bar .dropzone .dz-preview .btn-remove, .command-bar .dropzone .dz-preview .sub-menu .btn-remove, .sub-menu .dropzone .dz-preview .command-bar .btn-remove, .dropzone .dz-preview .command-bar .sub-menu .btn-remove, .sub-menu .command-bar .dropzone-wrapper .dz-preview .btn-remove, .command-bar .dropzone-wrapper .dz-preview .sub-menu .btn-remove, .sub-menu .dropzone-wrapper .dz-preview .command-bar .btn-remove, .dropzone-wrapper .dz-preview .command-bar .sub-menu .btn-remove, .sub-menu .command-bar .dropzone .dz-preview .btn-edit, .command-bar .dropzone .dz-preview .sub-menu .btn-edit, .sub-menu .dropzone .dz-preview .command-bar .btn-edit, .dropzone .dz-preview .command-bar .sub-menu .btn-edit, .sub-menu .command-bar .dropzone-wrapper .dz-preview .btn-edit, .command-bar .dropzone-wrapper .dz-preview .sub-menu .btn-edit, .sub-menu .dropzone-wrapper .dz-preview .command-bar .btn-edit, .dropzone-wrapper .dz-preview .command-bar .sub-menu .btn-edit, .sub-menu .table td .btn, .table td .sub-menu .btn, .sub-menu .table td .dropzone .dz-preview .btn-remove, .table td .dropzone .dz-preview .sub-menu .btn-remove, .sub-menu .dropzone .dz-preview .table td .btn-remove, .dropzone .dz-preview .table td .sub-menu .btn-remove, .sub-menu .table td .dropzone-wrapper .dz-preview .btn-remove, .table td .dropzone-wrapper .dz-preview .sub-menu .btn-remove, .sub-menu .dropzone-wrapper .dz-preview .table td .btn-remove, .dropzone-wrapper .dz-preview .table td .sub-menu .btn-remove, .sub-menu .table td .dropzone .dz-preview .btn-edit, .table td .dropzone .dz-preview .sub-menu .btn-edit, .sub-menu .dropzone .dz-preview .table td .btn-edit, .dropzone .dz-preview .table td .sub-menu .btn-edit, .sub-menu .table td .dropzone-wrapper .dz-preview .btn-edit, .table td .dropzone-wrapper .dz-preview .sub-menu .btn-edit, .sub-menu .dropzone-wrapper .dz-preview .table td .btn-edit, .dropzone-wrapper .dz-preview .table td .sub-menu .btn-edit {
-    padding: .5rem 2.5rem; }
-  .sub-menu .dropdown-item:hover, .sub-menu .command-bar .btn:hover, .command-bar .sub-menu .btn:hover, .sub-menu .command-bar .dropzone .dz-preview .btn-remove:hover, .command-bar .dropzone .dz-preview .sub-menu .btn-remove:hover, .sub-menu .dropzone .dz-preview .command-bar .btn-remove:hover, .dropzone .dz-preview .command-bar .sub-menu .btn-remove:hover, .sub-menu .command-bar .dropzone-wrapper .dz-preview .btn-remove:hover, .command-bar .dropzone-wrapper .dz-preview .sub-menu .btn-remove:hover, .sub-menu .dropzone-wrapper .dz-preview .command-bar .btn-remove:hover, .dropzone-wrapper .dz-preview .command-bar .sub-menu .btn-remove:hover, .sub-menu .command-bar .dropzone .dz-preview .btn-edit:hover, .command-bar .dropzone .dz-preview .sub-menu .btn-edit:hover, .sub-menu .dropzone .dz-preview .command-bar .btn-edit:hover, .dropzone .dz-preview .command-bar .sub-menu .btn-edit:hover, .sub-menu .command-bar .dropzone-wrapper .dz-preview .btn-edit:hover, .command-bar .dropzone-wrapper .dz-preview .sub-menu .btn-edit:hover, .sub-menu .dropzone-wrapper .dz-preview .command-bar .btn-edit:hover, .dropzone-wrapper .dz-preview .command-bar .sub-menu .btn-edit:hover, .sub-menu .table td .btn:hover, .table td .sub-menu .btn:hover, .sub-menu .table td .dropzone .dz-preview .btn-remove:hover, .table td .dropzone .dz-preview .sub-menu .btn-remove:hover, .sub-menu .dropzone .dz-preview .table td .btn-remove:hover, .dropzone .dz-preview .table td .sub-menu .btn-remove:hover, .sub-menu .table td .dropzone-wrapper .dz-preview .btn-remove:hover, .table td .dropzone-wrapper .dz-preview .sub-menu .btn-remove:hover, .sub-menu .dropzone-wrapper .dz-preview .table td .btn-remove:hover, .dropzone-wrapper .dz-preview .table td .sub-menu .btn-remove:hover, .sub-menu .table td .dropzone .dz-preview .btn-edit:hover, .table td .dropzone .dz-preview .sub-menu .btn-edit:hover, .sub-menu .dropzone .dz-preview .table td .btn-edit:hover, .dropzone .dz-preview .table td .sub-menu .btn-edit:hover, .sub-menu .table td .dropzone-wrapper .dz-preview .btn-edit:hover, .table td .dropzone-wrapper .dz-preview .sub-menu .btn-edit:hover, .sub-menu .dropzone-wrapper .dz-preview .table td .btn-edit:hover, .dropzone-wrapper .dz-preview .table td .sub-menu .btn-edit:hover, .sub-menu .dropdown-item:focus, .sub-menu .command-bar .btn:focus, .command-bar .sub-menu .btn:focus, .sub-menu .command-bar .dropzone .dz-preview .btn-remove:focus, .command-bar .dropzone .dz-preview .sub-menu .btn-remove:focus, .sub-menu .dropzone .dz-preview .command-bar .btn-remove:focus, .dropzone .dz-preview .command-bar .sub-menu .btn-remove:focus, .sub-menu .command-bar .dropzone-wrapper .dz-preview .btn-remove:focus, .command-bar .dropzone-wrapper .dz-preview .sub-menu .btn-remove:focus, .sub-menu .dropzone-wrapper .dz-preview .command-bar .btn-remove:focus, .dropzone-wrapper .dz-preview .command-bar .sub-menu .btn-remove:focus, .sub-menu .command-bar .dropzone .dz-preview .btn-edit:focus, .command-bar .dropzone .dz-preview .sub-menu .btn-edit:focus, .sub-menu .dropzone .dz-preview .command-bar .btn-edit:focus, .dropzone .dz-preview .command-bar .sub-menu .btn-edit:focus, .sub-menu .command-bar .dropzone-wrapper .dz-preview .btn-edit:focus, .command-bar .dropzone-wrapper .dz-preview .sub-menu .btn-edit:focus, .sub-menu .dropzone-wrapper .dz-preview .command-bar .btn-edit:focus, .dropzone-wrapper .dz-preview .command-bar .sub-menu .btn-edit:focus, .sub-menu .table td .btn:focus, .table td .sub-menu .btn:focus, .sub-menu .table td .dropzone .dz-preview .btn-remove:focus, .table td .dropzone .dz-preview .sub-menu .btn-remove:focus, .sub-menu .dropzone .dz-preview .table td .btn-remove:focus, .dropzone .dz-preview .table td .sub-menu .btn-remove:focus, .sub-menu .table td .dropzone-wrapper .dz-preview .btn-remove:focus, .table td .dropzone-wrapper .dz-preview .sub-menu .btn-remove:focus, .sub-menu .dropzone-wrapper .dz-preview .table td .btn-remove:focus, .dropzone-wrapper .dz-preview .table td .sub-menu .btn-remove:focus, .sub-menu .table td .dropzone .dz-preview .btn-edit:focus, .table td .dropzone .dz-preview .sub-menu .btn-edit:focus, .sub-menu .dropzone .dz-preview .table td .btn-edit:focus, .dropzone .dz-preview .table td .sub-menu .btn-edit:focus, .sub-menu .table td .dropzone-wrapper .dz-preview .btn-edit:focus, .table td .dropzone-wrapper .dz-preview .sub-menu .btn-edit:focus, .sub-menu .dropzone-wrapper .dz-preview .table td .btn-edit:focus, .dropzone-wrapper .dz-preview .table td .sub-menu .btn-edit:focus {
-    background-color: inherit; }
+    width: 100%;
+    -webkit-transition: all .4s ease-in-out 0s;
+    transition: all .4s ease-in-out 0s;
+}
+
+.sub-menu .dropdown-item, .sub-menu .command-bar .btn, .command-bar .sub-menu .btn, .sub-menu .command-bar .dropzone .dz-preview .btn-remove, .command-bar .dropzone .dz-preview .sub-menu .btn-remove, .sub-menu .dropzone .dz-preview .command-bar .btn-remove, .dropzone .dz-preview .command-bar .sub-menu .btn-remove, .sub-menu .command-bar .dropzone-wrapper .dz-preview .btn-remove, .command-bar .dropzone-wrapper .dz-preview .sub-menu .btn-remove, .sub-menu .dropzone-wrapper .dz-preview .command-bar .btn-remove, .dropzone-wrapper .dz-preview .command-bar .sub-menu .btn-remove, .sub-menu .command-bar .dropzone .dz-preview .btn-edit, .command-bar .dropzone .dz-preview .sub-menu .btn-edit, .sub-menu .dropzone .dz-preview .command-bar .btn-edit, .dropzone .dz-preview .command-bar .sub-menu .btn-edit, .sub-menu .command-bar .dropzone-wrapper .dz-preview .btn-edit, .command-bar .dropzone-wrapper .dz-preview .sub-menu .btn-edit, .sub-menu .dropzone-wrapper .dz-preview .command-bar .btn-edit, .dropzone-wrapper .dz-preview .command-bar .sub-menu .btn-edit, .sub-menu .table td .btn, .table td .sub-menu .btn, .sub-menu .table td .dropzone .dz-preview .btn-remove, .table td .dropzone .dz-preview .sub-menu .btn-remove, .sub-menu .dropzone .dz-preview .table td .btn-remove, .dropzone .dz-preview .table td .sub-menu .btn-remove, .sub-menu .table td .dropzone-wrapper .dz-preview .btn-remove, .table td .dropzone-wrapper .dz-preview .sub-menu .btn-remove, .sub-menu .dropzone-wrapper .dz-preview .table td .btn-remove, .dropzone-wrapper .dz-preview .table td .sub-menu .btn-remove, .sub-menu .table td .dropzone .dz-preview .btn-edit, .table td .dropzone .dz-preview .sub-menu .btn-edit, .sub-menu .dropzone .dz-preview .table td .btn-edit, .dropzone .dz-preview .table td .sub-menu .btn-edit, .sub-menu .table td .dropzone-wrapper .dz-preview .btn-edit, .table td .dropzone-wrapper .dz-preview .sub-menu .btn-edit, .sub-menu .dropzone-wrapper .dz-preview .table td .btn-edit, .dropzone-wrapper .dz-preview .table td .sub-menu .btn-edit {
+    padding: .5rem 2.5rem;
+}
+
+.sub-menu .dropdown-item:hover, .sub-menu .command-bar .btn:hover, .command-bar .sub-menu .btn:hover, .sub-menu .command-bar .dropzone .dz-preview .btn-remove:hover, .command-bar .dropzone .dz-preview .sub-menu .btn-remove:hover, .sub-menu .dropzone .dz-preview .command-bar .btn-remove:hover, .dropzone .dz-preview .command-bar .sub-menu .btn-remove:hover, .sub-menu .command-bar .dropzone-wrapper .dz-preview .btn-remove:hover, .command-bar .dropzone-wrapper .dz-preview .sub-menu .btn-remove:hover, .sub-menu .dropzone-wrapper .dz-preview .command-bar .btn-remove:hover, .dropzone-wrapper .dz-preview .command-bar .sub-menu .btn-remove:hover, .sub-menu .command-bar .dropzone .dz-preview .btn-edit:hover, .command-bar .dropzone .dz-preview .sub-menu .btn-edit:hover, .sub-menu .dropzone .dz-preview .command-bar .btn-edit:hover, .dropzone .dz-preview .command-bar .sub-menu .btn-edit:hover, .sub-menu .command-bar .dropzone-wrapper .dz-preview .btn-edit:hover, .command-bar .dropzone-wrapper .dz-preview .sub-menu .btn-edit:hover, .sub-menu .dropzone-wrapper .dz-preview .command-bar .btn-edit:hover, .dropzone-wrapper .dz-preview .command-bar .sub-menu .btn-edit:hover, .sub-menu .table td .btn:hover, .table td .sub-menu .btn:hover, .sub-menu .table td .dropzone .dz-preview .btn-remove:hover, .table td .dropzone .dz-preview .sub-menu .btn-remove:hover, .sub-menu .dropzone .dz-preview .table td .btn-remove:hover, .dropzone .dz-preview .table td .sub-menu .btn-remove:hover, .sub-menu .table td .dropzone-wrapper .dz-preview .btn-remove:hover, .table td .dropzone-wrapper .dz-preview .sub-menu .btn-remove:hover, .sub-menu .dropzone-wrapper .dz-preview .table td .btn-remove:hover, .dropzone-wrapper .dz-preview .table td .sub-menu .btn-remove:hover, .sub-menu .table td .dropzone .dz-preview .btn-edit:hover, .table td .dropzone .dz-preview .sub-menu .btn-edit:hover, .sub-menu .dropzone .dz-preview .table td .btn-edit:hover, .dropzone .dz-preview .table td .sub-menu .btn-edit:hover, .sub-menu .table td .dropzone-wrapper .dz-preview .btn-edit:hover, .table td .dropzone-wrapper .dz-preview .sub-menu .btn-edit:hover, .sub-menu .dropzone-wrapper .dz-preview .table td .btn-edit:hover, .dropzone-wrapper .dz-preview .table td .sub-menu .btn-edit:hover, .sub-menu .dropdown-item:focus, .sub-menu .command-bar .btn:focus, .command-bar .sub-menu .btn:focus, .sub-menu .command-bar .dropzone .dz-preview .btn-remove:focus, .command-bar .dropzone .dz-preview .sub-menu .btn-remove:focus, .sub-menu .dropzone .dz-preview .command-bar .btn-remove:focus, .dropzone .dz-preview .command-bar .sub-menu .btn-remove:focus, .sub-menu .command-bar .dropzone-wrapper .dz-preview .btn-remove:focus, .command-bar .dropzone-wrapper .dz-preview .sub-menu .btn-remove:focus, .sub-menu .dropzone-wrapper .dz-preview .command-bar .btn-remove:focus, .dropzone-wrapper .dz-preview .command-bar .sub-menu .btn-remove:focus, .sub-menu .command-bar .dropzone .dz-preview .btn-edit:focus, .command-bar .dropzone .dz-preview .sub-menu .btn-edit:focus, .sub-menu .dropzone .dz-preview .command-bar .btn-edit:focus, .dropzone .dz-preview .command-bar .sub-menu .btn-edit:focus, .sub-menu .command-bar .dropzone-wrapper .dz-preview .btn-edit:focus, .command-bar .dropzone-wrapper .dz-preview .sub-menu .btn-edit:focus, .sub-menu .dropzone-wrapper .dz-preview .command-bar .btn-edit:focus, .dropzone-wrapper .dz-preview .command-bar .sub-menu .btn-edit:focus, .sub-menu .table td .btn:focus, .table td .sub-menu .btn:focus, .sub-menu .table td .dropzone .dz-preview .btn-remove:focus, .table td .dropzone .dz-preview .sub-menu .btn-remove:focus, .sub-menu .dropzone .dz-preview .table td .btn-remove:focus, .dropzone .dz-preview .table td .sub-menu .btn-remove:focus, .sub-menu .table td .dropzone-wrapper .dz-preview .btn-remove:focus, .table td .dropzone-wrapper .dz-preview .sub-menu .btn-remove:focus, .sub-menu .dropzone-wrapper .dz-preview .table td .btn-remove:focus, .dropzone-wrapper .dz-preview .table td .sub-menu .btn-remove:focus, .sub-menu .table td .dropzone .dz-preview .btn-edit:focus, .table td .dropzone .dz-preview .sub-menu .btn-edit:focus, .sub-menu .dropzone .dz-preview .table td .btn-edit:focus, .dropzone .dz-preview .table td .sub-menu .btn-edit:focus, .sub-menu .table td .dropzone-wrapper .dz-preview .btn-edit:focus, .table td .dropzone-wrapper .dz-preview .sub-menu .btn-edit:focus, .sub-menu .dropzone-wrapper .dz-preview .table td .btn-edit:focus, .dropzone-wrapper .dz-preview .table td .sub-menu .btn-edit:focus {
+    background-color: inherit;
+}
+
+dl {
+    -webkit-box-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    border-bottom: #dadfe4;
+    margin: 0;
+    padding: 0;
+}
+
+.card-text {
+    text-overflow: ellipsis;
+    max-height: 4.4em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
 
 html, body {
-  width: 100%;
-  height: 100%; }
+    width: 100%;
+    height: 100%;
+}
 
 body {
-  overflow-x: hidden; }
+    overflow-x: hidden;
+}
 
 .app {
-  height: auto;
-  min-height: 100%;
-  width: 100%;
-  position: relative; }
+    height: auto;
+    min-height: 100%;
+    width: 100%;
+    position: relative;
+}
   .app:before {
     content: "";
     position: absolute;
@@ -13727,13 +13808,24 @@ body {
         padding-left: 0; } }
 
 .btn, .dropzone .dz-preview .btn-remove, .dropzone-wrapper .dz-preview .btn-remove, .dropzone .dz-preview .btn-edit, .dropzone-wrapper .dz-preview .btn-edit {
-  font-weight: 400;
-  border-radius: 2px;
-  cursor: pointer;
-  outline: 0 !important; }
+    font-weight: 400;
+    border-radius: 2px;
+    cursor: pointer;
+    outline: 0 !important;
+    -webkit-box-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+}
 
 .btn-link {
-  color: #58666e; }
+    color: #58666e;
+    -webkit-box-align: baseline;
+    align-items: baseline;
+}
   .btn-link.active {
     box-shadow: none; }
 
@@ -14041,8 +14133,11 @@ body {
   line-height: 1.5; }
 
 .btn-block {
-  padding-left: 12px;
-  padding-right: 12px; }
+    padding-left: 12px;
+    padding-right: 12px;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
 
 .btn-group-vertical > .btn:first-child:not(:last-child), .dropzone .dz-preview .btn-group-vertical > .btn-remove:first-child:not(:last-child), .dropzone-wrapper .dz-preview .btn-group-vertical > .btn-remove:first-child:not(:last-child), .dropzone .dz-preview .btn-group-vertical > .btn-edit:first-child:not(:last-child), .dropzone-wrapper .dz-preview .btn-group-vertical > .btn-edit:first-child:not(:last-child) {
   border-top-right-radius: 2px; }
@@ -14292,7 +14387,10 @@ button.close {
   width: 100% !important; }
 
 .select2 {
-  min-width: 10em; }
+    width: 100% !important;
+    min-width: 10em;
+    max-width: 450px;
+}
 
 .select2-container--bootstrap .select2-selection {
   box-shadow: none;
@@ -15848,24 +15946,34 @@ a.text-black:hover {
   bottom: 0; }
 
 .login-container .pull-bottom {
-  width: 100%; }
+    width: 100%;
+}
 
 .pull-up {
-  position: absolute !important;
-  top: 0; }
+    position: absolute !important;
+    top: 0;
+}
 
 .cursor {
-  cursor: pointer; }
+    cursor: pointer;
+}
+
+.cursor-wait {
+    cursor: wait;
+}
 
 .pull-left {
-  float: left; }
+    float: left;
+}
 
 .pull-right {
-  float: right; }
+    float: right;
+}
 
 .w-b-k {
-  word-wrap: break-word;
-  word-break: keep-all; }
+    word-wrap: break-word;
+    word-break: keep-all;
+}
 
 .w-s-n {
   white-space: normal; }
@@ -15965,22 +16073,24 @@ a.text-black:hover {
   padding: 0; }
 
 .form-control, .chosen-choices, .chosen-single, .bootstrap-tagsinput {
-  background: #ffffff none;
-  border: 1px solid rgba(28, 43, 54, 0.1);
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  color: #1c2b36;
-  outline: 0;
-  height: 35px;
-  line-height: normal;
-  font-weight: normal;
-  vertical-align: middle;
-  -webkit-transition: all 0.12s ease;
-  transition: all 0.12s ease;
-  box-shadow: none;
-  border-radius: 2px;
-  -webkit-transition: background 0.2s linear 0s;
-  transition: background 0.2s linear 0s; }
+    background: #ffffff none;
+    border: 1px solid rgba(28, 43, 54, 0.1);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    color: #1c2b36;
+    outline: 0;
+    height: 35px;
+    line-height: normal;
+    font-weight: normal;
+    vertical-align: middle;
+    -webkit-transition: all 0.12s ease;
+    transition: all 0.12s ease;
+    box-shadow: none;
+    border-radius: 2px;
+    -webkit-transition: background 0.2s linear 0s;
+    transition: background 0.2s linear 0s;
+    max-width: 450px;
+}
   .form-control:-moz-placeholder, .chosen-choices:-moz-placeholder, .chosen-single:-moz-placeholder, .bootstrap-tagsinput:-moz-placeholder {
     color: #99a6ad; }
   .form-control::-moz-placeholder, .chosen-choices::-moz-placeholder, .chosen-single::-moz-placeholder, .bootstrap-tagsinput::-moz-placeholder {
@@ -16004,31 +16114,47 @@ a.text-black:hover {
       color: #212529;
       opacity: 1; }
     .form-control:focus:-ms-input-placeholder, .chosen-choices:focus:-ms-input-placeholder, .chosen-single:focus:-ms-input-placeholder, .bootstrap-tagsinput:focus:-ms-input-placeholder {
-      color: #212529; }
-    .form-control:focus::-webkit-input-placeholder, .chosen-choices:focus::-webkit-input-placeholder, .chosen-single:focus::-webkit-input-placeholder, .bootstrap-tagsinput:focus::-webkit-input-placeholder {
-      color: #212529; }
-    .form-control:focus.placeholder, .chosen-choices:focus.placeholder, .chosen-single:focus.placeholder, .bootstrap-tagsinput:focus.placeholder {
-      color: #212529; }
-  .form-control[disabled], .chosen-choices[disabled], .chosen-single[disabled], .bootstrap-tagsinput[disabled], .form-control[readonly], .chosen-choices[readonly], .chosen-single[readonly], .bootstrap-tagsinput[readonly],
-  fieldset[disabled] .form-control,
-  fieldset[disabled] .chosen-choices,
-  fieldset[disabled] .chosen-single,
-  fieldset[disabled] .bootstrap-tagsinput {
+        color: #212529;
+    }
+
+.form-control:focus::-webkit-input-placeholder, .chosen-choices:focus::-webkit-input-placeholder, .chosen-single:focus::-webkit-input-placeholder, .bootstrap-tagsinput:focus::-webkit-input-placeholder {
+    color: #212529;
+}
+
+.form-control:focus.placeholder, .chosen-choices:focus.placeholder, .chosen-single:focus.placeholder, .bootstrap-tagsinput:focus.placeholder {
+    color: #212529;
+}
+
+.form-control[disabled], .chosen-choices[disabled], .chosen-single[disabled], .bootstrap-tagsinput[disabled], .form-control[readonly], .chosen-choices[readonly], .chosen-single[readonly], .bootstrap-tagsinput[readonly],
+fieldset[disabled] .form-control,
+fieldset[disabled] .chosen-choices,
+fieldset[disabled] .chosen-single,
+fieldset[disabled] .bootstrap-tagsinput {
     background: #f6f7f7;
-    color: rgba(73, 80, 87, 0.23); }
-  .form-control select, .chosen-choices select, .chosen-single select, .bootstrap-tagsinput select {
+    color: rgba(73, 80, 87, 0.23);
+}
+
+.form-control select, .chosen-choices select, .chosen-single select, .bootstrap-tagsinput select {
     -moz-appearance: none;
     text-indent: 0.01px;
-    text-overflow: ''; }
+    text-overflow: '';
+}
+
+.input-group {
+    max-width: 450px;
+}
 
 .input-group .input-group-btn .btn-default, .input-group .input-group-btn .dropzone .dz-preview .btn-remove, .dropzone .dz-preview .input-group .input-group-btn .btn-remove, .input-group .input-group-btn .dropzone-wrapper .dz-preview .btn-remove, .dropzone-wrapper .dz-preview .input-group .input-group-btn .btn-remove {
-  height: 35px; }
+    height: 35px;
+}
 
 textarea.form-control, textarea.chosen-choices, textarea.chosen-single, textarea.bootstrap-tagsinput {
-  height: auto; }
+    height: auto;
+}
 
 select.form-control, select.chosen-choices, select.chosen-single, select.bootstrap-tagsinput {
-  height: 35px !important; }
+    height: 35px !important;
+}
 
 /**
  Icon input
@@ -16126,34 +16252,47 @@ select.form-control, select.chosen-choices, select.chosen-single, select.bootstr
     height: 100%;
     width: 100%; }
   .dropzone img:after, .dropzone-wrapper img:after, .dropzone-wrapper img:after {
-    content: "\1F517";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-            justify-content: center;
-    width: 100%;
-    text-align: center; }
-  .dropzone .dz-message, .dropzone-wrapper .dz-message, .dropzone-wrapper .dz-message {
-    margin: 0.5rem; }
-  .dropzone .media-item, .dropzone-wrapper .media-item, .dropzone-wrapper .media-item {
-    cursor: pointer; }
-    .dropzone .media-item *, .dropzone-wrapper .media-item *, .dropzone-wrapper .media-item * {
-      cursor: pointer; }
+      content: "\1F517";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+  }
+
+.dropzone .dz-message, .dropzone-wrapper .dz-message, .dropzone-wrapper .dz-message {
+    margin: 0.5rem;
+}
+
+.dropzone .media-item, .dropzone-wrapper .media-item, .dropzone-wrapper .media-item {
+    cursor: pointer;
+}
+
+.dropzone .media-item *, .dropzone-wrapper .media-item *, .dropzone-wrapper .media-item * {
+    cursor: pointer;
+}
+
+.dropzone .dz-clickable .btn:hover, .dropzone-wrapper .dz-clickable .btn:hover, .dropzone .dz-clickable .dz-preview .btn-remove:hover, .dropzone .dz-preview .dz-clickable .btn-remove:hover, .dropzone-wrapper .dz-clickable .dz-preview .btn-remove:hover, .dropzone-wrapper .dz-preview .dz-clickable .btn-remove:hover, .dropzone .dz-clickable .dz-preview .btn-edit:hover, .dropzone .dz-preview .dz-clickable .btn-edit:hover, .dropzone-wrapper .dz-clickable .dz-preview .btn-edit:hover, .dropzone-wrapper .dz-preview .dz-clickable .btn-edit:hover, .dropzone .modal button:hover, .dropzone-wrapper .modal button:hover, .dropzone-wrapper .dz-clickable .btn:hover, .dropzone .dz-preview .dropzone-wrapper .dz-clickable .btn-remove:hover, .dropzone-wrapper .dz-clickable .dz-preview .btn-remove:hover, .dropzone-wrapper .dz-preview .dz-clickable .btn-remove:hover, .dropzone .dz-preview .dropzone-wrapper .dz-clickable .btn-edit:hover, .dropzone-wrapper .dz-clickable .dz-preview .btn-edit:hover, .dropzone-wrapper .dz-preview .dz-clickable .btn-edit:hover, .dropzone-wrapper .modal button:hover {
+    cursor: pointer;
+}
 
 .turbolinks-progress-bar {
-  height: 1px;
-  background-color: #007bff; }
+    height: 1px;
+    background-color: #007bff;
+}
 
 .dropdown-menu.show {
-  -webkit-animation: smooth-appearance 240ms ease-in;
-          animation: smooth-appearance 240ms ease-in; }
+    -webkit-animation: smooth-appearance 240ms ease-in;
+    animation: smooth-appearance 240ms ease-in;
+}
 
 .media-results * {
   -webkit-animation: smooth-appearance 240ms ease-in;

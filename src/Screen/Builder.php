@@ -52,10 +52,10 @@ class Builder
      * @param FieldContract[] $fields
      * @param Repository      $data
      */
-    public function __construct(array $fields, $data)
+    public function __construct(array $fields, $data = null)
     {
         $this->fields = $fields;
-        $this->data = $data;
+        $this->data = $data ?? new Repository();
     }
 
     /**

@@ -1,5 +1,5 @@
 import {Controller} from "stimulus";
-import Cropper      from 'cropperjs';
+import Cropper from 'cropperjs';
 
 export default class extends Controller {
 
@@ -94,6 +94,10 @@ export default class extends Controller {
                     element.querySelector('.cropper-remove').classList.remove('none');
                     element.querySelector('.cropper-path').value = response.data[targetValue];
                     $(element.querySelector('.modal')).modal('hide');
+                })
+                .catch((error) => {
+                    window.platform.alert('Validation error', 'File upload error');
+                    console.warn(error);
                 });
         });
 

@@ -18,7 +18,6 @@ use Throwable;
  * Class Field.
  *
  * @method self accesskey($value = true)
- * @method self type($value = true)
  * @method self class($value = true)
  * @method self dir($value = true)
  * @method self hidden($value = true)
@@ -27,9 +26,7 @@ use Throwable;
  * @method self spellcheck($value = true)
  * @method self style($value = true)
  * @method self tabindex($value = true)
- * @method self title(string $value = null)
  * @method self autocomplete($value = true)
- * @method self help(string $value)
  */
 class Field implements FieldContract
 {
@@ -302,7 +299,7 @@ class Field implements FieldContract
     /**
      * @return mixed
      */
-    protected function getOldValue()
+    public function getOldValue()
     {
         return old($this->getOldName());
     }
@@ -310,7 +307,7 @@ class Field implements FieldContract
     /**
      * @return string
      */
-    protected function getOldName(): string
+    public function getOldName(): string
     {
         $name = str_ireplace(['][', '['], '.', $this->get('name'));
         $name = str_ireplace([']'], '', $name);
@@ -377,7 +374,7 @@ class Field implements FieldContract
      */
     protected function modifyValue()
     {
-        $value = $this->get('value', $this->getOldValue());
+        $value = $this->getOldValue() ?? $this->get('value');
 
         if ($value instanceof Closure) {
             $value = $value($this->attributes);

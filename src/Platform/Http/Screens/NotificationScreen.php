@@ -8,7 +8,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\Request;
 use Orchid\Platform\Http\Layouts\NotificationTable;
-use Orchid\Platform\Notifications\DashboardNotification;
+use Orchid\Platform\Notifications\DashboardMessage;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Layout;
@@ -53,7 +53,7 @@ class NotificationScreen extends Screen
         /** @var Paginator $notifications */
         $notifications = $request->user()
             ->notifications()
-            ->where('type', DashboardNotification::class)
+            ->where('type', DashboardMessage::class)
             ->paginate(10);
 
         $this->isNotEmpty = $notifications->isNotEmpty();
@@ -107,7 +107,7 @@ class NotificationScreen extends Screen
     {
         $notification = $request->user()
             ->notifications()
-            ->where('type', DashboardNotification::class)
+            ->where('type', DashboardMessage::class)
             ->where('id', $id)
             ->firstOrFail();
 
@@ -127,7 +127,7 @@ class NotificationScreen extends Screen
     {
         $request->user()
             ->unreadNotifications
-            ->where('type', DashboardNotification::class)
+            ->where('type', DashboardMessage::class)
             ->markAsRead();
 
         Alert::info(__('All messages have been read.'));
@@ -144,7 +144,7 @@ class NotificationScreen extends Screen
     {
         $request->user()
             ->notifications()
-            ->where('type', DashboardNotification::class)
+            ->where('type', DashboardMessage::class)
             ->delete();
 
         Alert::info(__('All messages have been deleted.'));
@@ -161,7 +161,7 @@ class NotificationScreen extends Screen
     {
         return $request->user()
             ->unreadNotifications()
-            ->where('type', DashboardNotification::class)
+            ->where('type', DashboardMessage::class)
             ->paginate();
     }
 }

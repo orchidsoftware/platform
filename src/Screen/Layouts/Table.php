@@ -50,6 +50,7 @@ abstract class Table extends Base
             'textNotFound' => $this->textNotFound(),
             'subNotFound'  => $this->subNotFound(),
             'striped'      => $this->striped(),
+            'slug'         => $this->getSlug(),
         ]);
     }
 
@@ -66,7 +67,7 @@ abstract class Table extends Base
      */
     protected function textNotFound(): string
     {
-        return __('Records not found');
+        return __('There are no records in this view');
     }
 
     /**

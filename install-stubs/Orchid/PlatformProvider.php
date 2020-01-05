@@ -23,24 +23,11 @@ class PlatformProvider extends ServiceProvider
         View::composer('platform::dashboard', MainMenuComposer::class);
         View::composer('platform::systems', SystemMenuComposer::class);
 
-        $dashboard
-            //->registerPermissions($this->registerPermissionsMain())
-            ->registerPermissions($this->registerPermissionsSystems());
+        $dashboard->registerPermissions($this->registerPermissionsSystems());
 
         $dashboard->registerGlobalSearch([
             //...Models
         ]);
-    }
-
-    /**
-     * @return ItemPermission
-     */
-    protected function registerPermissionsMain(): ItemPermission
-    {
-        return ItemPermission::group(__('Main'))
-            ->addPermission('platform.index', __('Main'))
-            ->addPermission('platform.systems', __('Systems'))
-            ->addPermission('platform.systems.index', __('Settings'));
     }
 
     /**

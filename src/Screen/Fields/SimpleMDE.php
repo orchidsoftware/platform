@@ -9,9 +9,7 @@ use Orchid\Screen\Field;
 /**
  * Class SimpleMDE.
  *
- * @method SimpleMDE accept($value = true)
  * @method SimpleMDE accesskey($value = true)
- * @method SimpleMDE autocomplete($value = true)
  * @method SimpleMDE autofocus($value = true)
  * @method SimpleMDE checked($value = true)
  * @method SimpleMDE disabled($value = true)
@@ -21,24 +19,16 @@ use Orchid\Screen\Field;
  * @method SimpleMDE formmethod($value = true)
  * @method SimpleMDE formnovalidate($value = true)
  * @method SimpleMDE formtarget($value = true)
- * @method SimpleMDE list($value = true)
- * @method SimpleMDE max(int $value)
- * @method SimpleMDE maxlength(int $value)
- * @method SimpleMDE min(int $value)
- * @method SimpleMDE multiple($value = true)
  * @method SimpleMDE name(string $value = null)
- * @method SimpleMDE pattern($value = true)
  * @method SimpleMDE placeholder(string $value = null)
  * @method SimpleMDE readonly($value = true)
  * @method SimpleMDE required(bool $value = true)
- * @method SimpleMDE size($value = true)
- * @method SimpleMDE src($value = true)
- * @method SimpleMDE step($value = true)
  * @method SimpleMDE tabindex($value = true)
  * @method SimpleMDE type($value = true)
  * @method SimpleMDE value($value = true)
  * @method SimpleMDE help(string $value = null)
  * @method SimpleMDE popover(string $value = null)
+ * @method SimpleMDE title(string $value = null)
  */
 class SimpleMDE extends Field
 {

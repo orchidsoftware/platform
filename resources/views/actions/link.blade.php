@@ -3,6 +3,6 @@
         data-turbolinks="{{ var_export($turbolinks) }}"
         @attributes($attributes)
     >
-        <i class="{{ $icon ?? '' }} m-r-xs"></i>{{ $name ?? '' }}
+        <i class="{{ $icon ?? '' }} mr-2"></i>{{ $name ?? '' }}
     </a>
 @endcomponent

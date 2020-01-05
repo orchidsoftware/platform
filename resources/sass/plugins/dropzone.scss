@@ -113,14 +113,17 @@
     margin: 0.5rem;
   }
 
-  .media {
-    &-item {
-      cursor: pointer;
+    .media {
+        &-item {
+            cursor: pointer;
 
-      * {
-        cursor: pointer;
-      }
+            * {
+                cursor: pointer;
+            }
+        }
     }
-  }
 
+    .dz-clickable .btn:hover, .modal button:hover {
+        cursor: pointer;
+    }
 }

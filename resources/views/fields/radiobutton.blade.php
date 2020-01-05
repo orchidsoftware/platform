@@ -1,6 +1,6 @@
 @component($typeForm, get_defined_vars())
     <div data-controller="fields--radiobutton">
-        <div class="btn-group btn-group-toggle btn-block no-padder" data-toggle="buttons">
+        <div class="btn-group btn-group-toggle no-padder" data-toggle="buttons">
 
             @foreach($options as $key => $option)
                 <label class="btn btn-default @if($active($key, $value)) active @endif"

@@ -7,7 +7,7 @@ use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 
 // Platform
 Breadcrumbs::for('platform.index', function (BreadcrumbsGenerator $trail) {
-    $trail->push(__('Platform'), route('platform.index'));
+    $trail->push(__('Main'), route('platform.index'));
 });
 
 // Platform > System

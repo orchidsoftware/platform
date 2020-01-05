@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
+use App\Orchid\Presenters\UserPresenter;
 use Exception;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -29,6 +30,8 @@ class User extends Authenticatable implements UserInterface
     protected $table = 'users';
 
     /**
+     * The attributes that are mass assignable.
+     *
      * @var array
      */
     protected $fillable = [
@@ -50,6 +53,8 @@ class User extends Authenticatable implements UserInterface
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
      * @var array
      */
     protected $casts = [
@@ -59,6 +64,8 @@ class User extends Authenticatable implements UserInterface
     ];
 
     /**
+     * The attributes for which you can use filters in url.
+     *
      * @var array
      */
     protected $allowedFilters = [
@@ -69,6 +76,8 @@ class User extends Authenticatable implements UserInterface
     ];
 
     /**
+     * The attributes for which can use sort in url.
+     *
      * @var array
      */
     protected $allowedSorts = [
@@ -137,13 +146,13 @@ class User extends Authenticatable implements UserInterface
         ])->notify(new DashboardNotification([
             'title'   => "Welcome {$name}",
             'message' => 'You can find the latest news of the project on the website',
-            'action'  => 'https://orchid.software/',
+            'action'  => route('platform.main'),
             'type'    => DashboardNotification::INFO,
         ]));
     }
 
     /**
-     *@throws Exception
+     * @throws Exception
      *
      * @return string
      */
@@ -152,5 +161,13 @@ class User extends Authenticatable implements UserInterface
         $hash = md5(strtolower(trim($this->email)));
 
         return "https://www.gravatar.com/avatar/$hash";
+    }
+
+    /**
+     * @return UserPresenter
+     */
+    public function presenter(): UserPresenter
+    {
+        return new UserPresenter($this);
     }
 }

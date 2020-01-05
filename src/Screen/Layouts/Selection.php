@@ -29,16 +29,6 @@ abstract class Selection extends Base
     public $template = self::TEMPLATE_DROP_DOWN;
 
     /**
-     * Base constructor.
-     *
-     * @param Base[] $layouts
-     */
-    public function __construct(array $layouts = [])
-    {
-        $this->layouts = $layouts;
-    }
-
-    /**
      * @param Repository $repository
      *
      * @return Factory|\Illuminate\View\View|mixed

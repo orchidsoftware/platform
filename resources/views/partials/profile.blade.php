@@ -1,10 +1,10 @@
 <div class="wrapper v-center">
     <div class="dropdown col no-padder">
         <a href="#" class="nav-link p-0 v-center" data-toggle="dropdown">
-                    <span class="thumb-xs avatar m-r-xs">
+                    <span class="thumb-sm avatar mr-3">
                         <img src="{{Auth::user()->getAvatar()}}" class="b b-dark bg-light">
                     </span>
-            <span class="ml-2" style="width:11em;font-size: 0.85em;">
+            <span style="width:11em;font-size: 0.85em;">
                 <span class="text-ellipsis">{{Auth::user()->getNameTitle()}}</span>
                 <span class="text-muted d-block text-ellipsis">{{Auth::user()->getSubTitle()}}</span>
             </span>
@@ -19,7 +19,7 @@
 
             @if(Auth::user()->hasAccess('platform.systems.index'))
                 <a href="{{ route('platform.systems.index') }}" class="dropdown-item">
-                    <i class="icon-settings m-r-xs" aria-hidden="true"></i>
+                    <i class="icon-settings mr-2" aria-hidden="true"></i>
                     <span>{{ __('Systems') }}</span>
                 </a>
             @endif
@@ -31,7 +31,7 @@
                    data-action="layouts--form#submitByForm"
                    data-layouts--form-id="return-original-user"
                 >
-                    <i class="icon-logout m-r-xs" aria-hidden="true"></i>
+                    <i class="icon-logout mr-2" aria-hidden="true"></i>
                     <span>{{ __('Back to my account') }}</span>
                 </a>
                 <form id="return-original-user"
@@ -49,7 +49,7 @@
                    data-action="layouts--form#submitByForm"
                    data-layouts--form-id="logout-form"
                    dusk="logout-button">
-                    <i class="icon-logout m-r-xs" aria-hidden="true"></i>
+                    <i class="icon-logout mr-2" aria-hidden="true"></i>
                     <span>{{ __('Sign out') }}</span>
                 </a>
                 <form id="logout-form"

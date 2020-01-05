@@ -301,12 +301,19 @@ blockquote {
 
 .nav {
   .nav-item {
-    .nav-link {
-      &:hover,
-      &:focus {
-        border-radius: unset;
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      text-overflow: ellipsis;
+
+      .nav-link {
+          width: 100%;
+
+          &:hover,
+          &:focus {
+              border-radius: unset;
+          }
       }
-    }
   }
   &.nav-lg {
     .nav-item .nav-link {
@@ -705,15 +712,20 @@ blockquote {
 }
 
 .dropdown-item {
-  @include hover-focus {
-    color: $dropdown-link-hover-color;
-    @include gradient-bg($dropdown-link-hover-bg);
-  }
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    text-overflow: ellipsis;
 
-  &.active,
-  &:active {
-    color: $dropdown-link-hover-color;
-    @include gradient-bg($dropdown-link-hover-bg);
+    @include hover-focus {
+        color: $dropdown-link-hover-color;
+        @include gradient-bg($dropdown-link-hover-bg);
+    }
+
+    &.active,
+    &:active {
+        color: $dropdown-link-hover-color;
+        @include gradient-bg($dropdown-link-hover-bg);
   }
 
   &.disabled,
@@ -727,11 +739,33 @@ blockquote {
 }
 
 .sub-menu {
-  transition: all .4s ease-in-out 0s;
-  .dropdown-item{
-    padding: .5rem 2.5rem;
-  }
-  .dropdown-item:hover, .dropdown-item:focus {
-    background-color: inherit;
-  }
+    width: 100%;
+
+    transition: all .4s ease-in-out 0s;
+
+    .dropdown-item {
+        padding: .5rem 2.5rem;
+    }
+
+    .dropdown-item:hover, .dropdown-item:focus {
+        background-color: inherit;
+    }
+}
+
+dl {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: $border-color;
+    margin: 0;
+    padding: 0;
+}
+
+.card-text {
+    text-overflow: ellipsis;
+    max-height: 4.4em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }

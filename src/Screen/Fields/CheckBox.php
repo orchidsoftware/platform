@@ -23,13 +23,11 @@ use Orchid\Screen\Field;
  * @method CheckBox placeholder(string $value = null)
  * @method CheckBox readonly($value = true)
  * @method CheckBox required(bool $value = true)
- * @method CheckBox size($value = true)
- * @method CheckBox src($value = true)
- * @method CheckBox step($value = true)
  * @method CheckBox tabindex($value = true)
  * @method CheckBox value($value = true)
  * @method CheckBox help(string $value = null)
  * @method CheckBox sendTrueOrFalse($value = true)
+ * @method CheckBox title(string $value = null)
  */
 class CheckBox extends Field
 {

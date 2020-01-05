@@ -17,7 +17,7 @@ class RoleListScreen extends Screen
      *
      * @var string
      */
-    public $name = 'Roles';
+    public $name = 'Manage roles';
 
     /**
      * Display header description.
@@ -36,7 +36,7 @@ class RoleListScreen extends Screen
      *
      * @return array
      */
-    public function query() : array
+    public function query(): array
     {
         return [
             'roles' => Role::filters()->defaultSort('id', 'desc')->paginate(),
@@ -48,7 +48,7 @@ class RoleListScreen extends Screen
      *
      * @return Action[]
      */
-    public function commandBar() : array
+    public function commandBar(): array
     {
         return [
             Link::make(__('Add'))
@@ -62,7 +62,7 @@ class RoleListScreen extends Screen
      *
      * @return Layout[]
      */
-    public function layout() : array
+    public function layout(): array
     {
         return [
             RoleListLayout::class,

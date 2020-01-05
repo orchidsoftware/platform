@@ -1,8 +1,9 @@
 @push('modals-container')
     <div class="modal fade in {{$type}}"
              id="screen-modal-{{$key}}"
-             role="dialog"
-             aria-labelledby="screen-modal-{{$key}}"
+         role="dialog"
+         tabindex="-1"
+         aria-labelledby="screen-modal-{{$key}}"
              data-controller="screen--modal"
              data-screen--modal-slug="{{$templateSlug}}"
              data-screen--modal-async="{{$templateAsync}}"
@@ -41,14 +42,20 @@
                             {{ $close }}
                         </button>
 
-                        <button type="submit"
-                                id="submit-modal-{{$key}}"
-                                data-turbolinks="{{ var_export($turbolinks) }}"
-                                class="btn btn-default">
-                            {{ $apply }}
-                        </button>
+                        @empty($commandBar)
+                            <button type="submit"
+                                    id="submit-modal-{{$key}}"
+                                    data-turbolinks="{{ var_export($turbolinks) }}"
+                                    class="btn btn-default">
+                                {{ $apply }}
+                            </button>
+                        @else
+                            {!! $commandBar !!}
+                        @endempty
+
+
                     </div>
                 </form>
             </div>
-        </div>
+    </div>
 @endpush

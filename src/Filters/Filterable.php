@@ -35,7 +35,7 @@ trait Filterable
      *
      * @return Builder
      */
-    public function scopeFiltersApplySelection(Builder $query, $selection) : Builder
+    public function scopeFiltersApplySelection(Builder $query, $selection): Builder
     {
         /** @var Selection $selection */
         $selection = is_object($selection) ? $selection : app()->make($selection);

@@ -31,14 +31,12 @@ class RolePermissionLayout extends Rows
      *
      * @return array
      */
-    public function generatedPermissionFields(Collection $permissionsRaw) : array
+    public function generatedPermissionFields(Collection $permissionsRaw): array
     {
         $fields = [];
 
         $permissionsRaw->each(function ($items, $group) use (&$fields) {
-            $fields[] = Label::make($group)
-                ->title($group)
-                ->horizontal();
+            $fields[] = Label::make($group)->title($group);
 
             collect($items)
                 ->chunk(3)

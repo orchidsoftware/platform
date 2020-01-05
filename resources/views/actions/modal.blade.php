@@ -7,6 +7,6 @@
             data-modal-async="{{ $async }}"
             data-modal-params='@json($asyncParameters)'
             data-modal-action="{{ $action }}">
-        <i class="{{ $icon ?? '' }} m-r-xs"></i>{{ $name ?? '' }}
+        <i class="{{ $icon ?? '' }} mr-2"></i>{{ $name ?? '' }}
     </button>
 @endcomponent

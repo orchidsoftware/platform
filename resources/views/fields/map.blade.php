@@ -26,16 +26,16 @@
                        name="{{$name}}[lng]"
                        value="{{ $value['lng'] ?? '' }}"/>
             </div>
-        </div>
-        <div class="row mt-3">
             <div class="col-md">
                 <label>{{ __('Object search') }}</label>
                 <input class="form-control" type="text"
                        value="{{$valuename ?? ''}}"
                        data-target="fields--map.search"
                        data-action="keyup->fields--map#search"/>
-                <div id="marker__results"></div>
             </div>
         </div>
+
+        <div class="marker-results"></div>
+
     </div>
 @endcomponent

@@ -6,6 +6,6 @@
        data-trigger="focus"
        data-placement="auto"
        data-content="{{ $content }}">
-        <i class="icon-exclamation m-r-xs"></i>
+        <i class="icon-exclamation mr-2"></i>
     </a>
 </span>

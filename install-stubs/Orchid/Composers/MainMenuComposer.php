@@ -33,50 +33,49 @@ class MainMenuComposer
         // Profile
         $this->dashboard->menu
             ->add(Menu::PROFILE,
-                ItemMenu::label('Empty 1')
+                ItemMenu::label('Action')
                     ->icon('icon-compass')
-            )
-            ->add(Menu::PROFILE,
-                ItemMenu::label('Empty 2')
-                    ->icon('icon-heart')
                     ->badge(function () {
                         return 6;
                     })
+            )
+            ->add(Menu::PROFILE,
+                ItemMenu::label('Another action')
+                    ->icon('icon-heart')
             );
 
         // Main
         $this->dashboard->menu
             ->add(Menu::MAIN,
                 ItemMenu::label('Example screen')
-                    ->icon('icon-folder')
+                    ->icon('icon-monitor')
                     ->route('platform.example')
-                    ->title('Example boilerplate')
+                    ->title('Navigation')
             )
             ->add(Menu::MAIN,
-                ItemMenu::label('Form elements')
+                ItemMenu::label('Form controls')
                     ->icon('icon-list')
                     ->route('platform.example.fields')
             )
             ->add(Menu::MAIN,
-                ItemMenu::label('Screen layouts')
+                ItemMenu::label('Overview layouts')
                     ->icon('icon-layers')
                     ->route('platform.example.layouts')
             )
             ->add(Menu::MAIN,
-                ItemMenu::label('Empty menu')
+                ItemMenu::label('Dropdown menu')
                     ->title('Sub menu')
                     ->slug('example-menu')
                     ->icon('icon-code')
                     ->childs()
             )
             ->add('example-menu',
-                ItemMenu::label('Empty sub item 1')
+                ItemMenu::label('Sub element item 1')
                     ->icon('icon-bag')
             )
             ->add('example-menu',
-                ItemMenu::label('Empty sub item 2')
+                ItemMenu::label('Sub element item 2')
                     ->icon('icon-heart')
-                    ->title('Separate')
             );
     }
 }
