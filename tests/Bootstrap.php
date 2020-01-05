@@ -11,7 +11,7 @@ class Bootstrap extends TestCase
     use Environment;
 
     /**
-     * Performs initial installation before running tests
+     * Performs initial installation before running tests.
      */
     public function testInstallPackage(): void
     {
