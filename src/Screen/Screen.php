@@ -179,19 +179,19 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param string $method
+     * @param mixed $method
      *
      * @throws ReflectionException
      */
-    private function reflectionParams(string $method)
+    private function reflectionParams($method)
     {
         $class = new ReflectionClass($this);
 
-        if (! is_string($method)) {
+        if (!is_string($method)) {
             return;
         }
 
-        if (! $class->hasMethod($method)) {
+        if (!$class->hasMethod($method)) {
             return;
         }
 
