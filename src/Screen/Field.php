@@ -258,12 +258,12 @@ class Field implements FieldContract
     /**
      * @return string
      */
-    protected function getId(): string
+    protected function getId(): ?string
     {
         $id = $this->get('id');
 
         if ($id !== null) {
-            return (string) $id;
+            return (string)$id;
         }
 
         $lang = $this->get('lang');

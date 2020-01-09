@@ -149,4 +149,12 @@ class Action extends Field implements ActionContract
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    protected function getId(): ?string
+    {
+        return $this->get('id');
+    }
 }
