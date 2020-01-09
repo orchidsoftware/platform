@@ -101,7 +101,7 @@ class RoleEditScreen extends Screen
     public function save(Role $role, Request $request)
     {
         $request->validate([
-            'role.slug' => 'required|unique:roles,slug,' . $role->id,
+            'role.slug' => 'required|unique:roles,slug,'.$role->id,
         ]);
 
         $role->fill($request->get('role'));
