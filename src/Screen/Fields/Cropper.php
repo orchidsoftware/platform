@@ -49,6 +49,19 @@ class Cropper extends Picture
     protected $view = 'platform::fields.cropper';
 
     /**
+     * Default attributes value.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'value'  => null,
+        'target' => 'url',
+        'url'    => null,
+        'width'  => null,
+        'height' => null,
+    ];
+
+    /**
      * Attributes available for a particular tag.
      *
      * @var array
