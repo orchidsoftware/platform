@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 6.8.0 - 2020-01-06
+## 6.8.0 - 2020-01-09
 
 ### Added
 - Rubber layout
@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Indented icons are stylized
 - Source is optional for form builder
 - Extend the user model that comes with the installation [#1039](https://github.com/orchidsoftware/platform/issues/1039)
+- Do not generate `id` for default buttons
 
 ### Fixed
 - Sort&Filter generator
