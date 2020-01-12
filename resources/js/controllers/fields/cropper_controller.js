@@ -31,7 +31,9 @@ export default class extends Controller {
         cropPanel.height = this.data.get('height');
 
         this.cropper = new Cropper(cropPanel, {
+            viewMode: 2,
             aspectRatio: this.data.get('width') / this.data.get('height'),
+            minContainerHeight: 500,
         });
     }
 
@@ -76,7 +78,7 @@ export default class extends Controller {
         this.cropper.getCroppedCanvas({
             width: this.data.get('width'),
             height: this.data.get('height'),
-            imageSmoothingQuality: 'medium'
+            imageSmoothingQuality: 'medium',
         }).toBlob((blob) => {
             const formData = new FormData();
 

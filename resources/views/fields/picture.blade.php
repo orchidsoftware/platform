@@ -14,7 +14,7 @@
             <span class="mt-1 float-left">{{ __('Upload image from your computer:') }}</span>
 
             <label class="btn btn-default m-n">
-                <i class="icon-cloud-upload"></i> {{ __('Browse') }}
+                <i class="icon-cloud-upload mr-2"></i> {{ __('Browse') }}
                 <input type="file"
                        accept="image/*"
                        data-target="fields--picture.upload"
