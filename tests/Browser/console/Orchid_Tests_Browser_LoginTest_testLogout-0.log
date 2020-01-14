@@ -3,12 +3,12 @@
         "level": "SEVERE",
         "message": "http:\/\/127.0.0.1:8000\/home - Failed to load resource: the server responded with a status of 404 (Not Found)",
         "source": "network",
-        "timestamp": 1579004706166
+        "timestamp": 1579018535072
     },
     {
         "level": "SEVERE",
         "message": "http:\/\/127.0.0.1:8000\/ - Failed to load resource: the server responded with a status of 404 (Not Found)",
         "source": "network",
-        "timestamp": 1579004706797
+        "timestamp": 1579018535750
     }
 ]
