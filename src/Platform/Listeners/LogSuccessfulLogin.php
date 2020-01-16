@@ -21,7 +21,8 @@ class LogSuccessfulLogin implements ShouldQueue
      */
     public function handle(Login $event)
     {
-        $event->user->last_login = date('Y-m-d H:i:s');
-        $event->user->save();
+        tap($event->user, function ($user) {
+            $user->last_login = now();
+        })->save();
     }
 }
