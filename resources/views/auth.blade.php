@@ -4,7 +4,7 @@
     <div class="hidden-xs v-center h-100 w-100 justify-content-center">
         <div class="text-center">
             <a href="{{Dashboard::prefix()}}">
-                @includeIf(config('platform.template.header','platform::layouts.header'))
+                @includeFirst([config('platform.template.header'), 'platform::header'])
             </a>
         </div>
     </div>
