@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 6.8.3 - 2020-01-17
 
 ### Fixed
+- Logo display on the authorization form
 - Change the placeholder for a field with a date
 
 ## 6.8.2 - 2020-01-14
