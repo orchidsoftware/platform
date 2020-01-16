@@ -51,6 +51,7 @@ class DateTimer extends Field
         'data-fields--datetime-date-format' => 'Y-m-d H:i:S',
         'data-fields--datetime-no-calendar' => 'false',
         'allowEmpty'                        => false,
+        'placeholder'                       => 'Select Date...',
     ];
 
     /**
