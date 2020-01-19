@@ -1,7 +1,6 @@
 <?php
 
 use Faker\Generator as Faker;
-use Illuminate\Support\Str;
 use Orchid\Platform\Models\Role;
 
 /*
@@ -19,18 +18,18 @@ $factory->define(Role::class, function (Faker $faker) {
     $role = ['Admin', 'User', 'Autor'];
     $roles = [
         $role[0] => [
-            'platform.index'                => 1,
-            'platform.systems'              => 1,
-            'platform.systems.roles'        => 1,
-            'platform.systems.settings'     => 1,
-            'platform.systems.users'        => 1,
-            'platform.systems.menu'         => 1,
-            'platform.systems.category'     => 1,
-            'platform.systems.comment'      => 1,
-            'platform.systems.attachment'   => 1,
-            'platform.systems.media'        => 1,
-            'platform.pages'                => 1,
-            'platform.posts'                => 1,
+            'platform.index'              => 1,
+            'platform.systems'            => 1,
+            'platform.systems.roles'      => 1,
+            'platform.systems.settings'   => 1,
+            'platform.systems.users'      => 1,
+            'platform.systems.menu'       => 1,
+            'platform.systems.category'   => 1,
+            'platform.systems.comment'    => 1,
+            'platform.systems.attachment' => 1,
+            'platform.systems.media'      => 1,
+            'platform.pages'              => 1,
+            'platform.posts'              => 1,
         ],
         $role[1] => [
             'platform.index'              => 1,
@@ -41,23 +40,22 @@ $factory->define(Role::class, function (Faker $faker) {
             'platform.systems.media'      => 1,
         ],
         $role[2] => [
-            'platform.index'                => 1,
-            'platform.systems'              => 1,
-            'platform.systems.settings'     => 1,
-            'platform.systems.comment'      => 1,
-            'platform.systems.attachment'   => 1,
-            'platform.systems.media'        => 1,
-            'platform.pages'                => 1,
-            'platform.posts'                => 1,
+            'platform.index'              => 1,
+            'platform.systems'            => 1,
+            'platform.systems.settings'   => 1,
+            'platform.systems.comment'    => 1,
+            'platform.systems.attachment' => 1,
+            'platform.systems.media'      => 1,
+            'platform.pages'              => 1,
+            'platform.posts'              => 1,
         ],
     ];
+
     $selRole = $faker->randomElement($role);
-    $Title = $faker->lexify($selRole.'_???');
-    //$jobTitle = $faker->jobTitle;
 
     return [
-        'name'        => $Title,
-        'slug'        => Str::slug($Title),
+        'name'        => $faker->lexify($selRole . '_???'),
+        'slug'        => $faker->unique()->jobTitle,
         'permissions' => $roles[$selRole],
     ];
 });

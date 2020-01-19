@@ -55,11 +55,11 @@ abstract class Filter
      */
     public function filter(Builder $builder): Builder
     {
-        if (is_null($this->parameters) || $this->request->hasAny($this->parameters)) {
-            return $this->run($builder);
-        }
+        $when = $this->parameters === null || $this->request->hasAny($this->parameters);
 
-        return $builder;
+        return $builder->when($when, function (Builder $builder) {
+            return $this->run($builder);
+        });
     }
 
     /**
