@@ -54,7 +54,7 @@ $factory->define(Role::class, function (Faker $faker) {
     $selRole = $faker->randomElement($role);
 
     return [
-        'name'        => $faker->lexify($selRole . '_???'),
+        'name'        => $faker->lexify($selRole.'_???'),
         'slug'        => $faker->unique()->jobTitle,
         'permissions' => $roles[$selRole],
     ];
