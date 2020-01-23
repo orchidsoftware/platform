@@ -14,7 +14,6 @@
                         <i class="icon-refresh"></i>
                     </button>
                     <button type="submit"
-                            id="button-filter"
                             form="filters"
                             class="btn btn-default">
                         <i class="icon-filter"></i>

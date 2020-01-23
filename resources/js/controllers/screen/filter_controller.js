@@ -50,9 +50,9 @@ export default class extends Controller {
         const formElement = document.getElementById('filters');
 
         const filters = window.platform.formToObject(formElement);
+        filters.sort = this.getUrlParameter('sort');
 
         const params = $.param(this.removeEmpty(filters));
-        params.sort = this.getUrlParameter('sort');
 
         const url = `${window.location.origin + window.location.pathname}?${params}`;
 
@@ -61,16 +61,20 @@ export default class extends Controller {
 
     /**
      *
-     * @param obj
+     * @param filter
+     * @returns {*}
      */
-    removeEmpty(obj) {
-        return Object.keys(obj)
-            .filter(k => obj[k] !== null && obj[k] !== undefined && obj[k] !== '')
-            .reduce((newObj, k) =>
-                    typeof obj[k] === 'object' ?
-                        Object.assign(newObj, {[k]: this.removeEmpty(obj[k])}) :
-                        Object.assign(newObj, {[k]: obj[k]}),
-                {});
+    removeEmpty(filter) {
+        Object.keys(filter).forEach((key) => {
+
+            let value = filter[key];
+
+            if(value === null || value === undefined  || value === ''){
+                delete filter[key]
+            }
+        });
+
+        return filter;
     }
 
     /**
