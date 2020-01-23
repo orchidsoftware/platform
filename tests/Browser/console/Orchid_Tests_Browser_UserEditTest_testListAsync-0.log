@@ -1,14 +1,8 @@
 [
     {
         "level": "SEVERE",
-        "message": "http:\/\/127.0.0.1:8000\/dashboard\/resources\/orchid\/js\/vendor.js?id=6113841edb22468a9730 86616:20 \"The select2('destroy') method was called on an element that is not using Select2.\"",
-        "source": "console-api",
-        "timestamp": 1579771896254
-    },
-    {
-        "level": "SEVERE",
-        "message": "http:\/\/127.0.0.1:8000\/dashboard\/resources\/orchid\/js\/vendor.js?id=6113841edb22468a9730 86622:24 Uncaught TypeError: Cannot read property 'destroy' of undefined",
+        "message": "http:\/\/127.0.0.1:8000\/dashboard\/resources\/orchid\/js\/vendor.js?id=b81c51a94b318cf3f477 49:67252 Uncaught TypeError: Cannot read property 'destroy' of undefined",
         "source": "javascript",
-        "timestamp": 1579771896255
+        "timestamp": 1579772174590
     }
 ]
