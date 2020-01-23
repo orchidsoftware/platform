@@ -39,19 +39,15 @@ export default class extends Controller {
 
         // disable
         if (this.getActiveElementAttr('data-turbolinks') === 'false') {
-
-            console.log('exit 1');
             return true;
         }
 
         if (!this.validateForm(event)) {
-            console.log('exit 2');
             event.preventDefault();
             return false;
         }
 
         if (this.isSubmit) {
-            console.log('exit 3');
             event.preventDefault();
             return false;
         }
@@ -59,7 +55,6 @@ export default class extends Controller {
         const action = this.loadFormAction();
 
         if (action === null) {
-            console.log('exit 4');
             event.preventDefault();
             return false;
         }

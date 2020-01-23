@@ -24,7 +24,6 @@
                                 {!! $filter->render() !!}
                                 <div class="dropdown-divider"></div>
                                 <button type="submit"
-                                        id="button-filter"
                                         form="filters"
                                         class="btn btn-sm btn-default">
                                     {{ __('Apply') }}
@@ -38,7 +37,6 @@
                             {!! $filters->where('display', true)->first()->render() !!}
                             <div class="dropdown-divider"></div>
                             <button type="submit"
-                                    id="button-filter"
                                     form="filters"
                                     class="btn btn-sm btn-default">
                                 {{ __('Apply') }}
