@@ -30,6 +30,15 @@ export default class extends Controller {
         return false;
     }
 
+    keypress(e) {
+        const textarea = /textarea/i.test(e.target.tagName);
+        if(!textarea && (e.keyCode || e.which || e.charCode || 0) === 13){
+            e.preventDefault();
+
+            return false;
+        }
+    }
+
     /**
      *
      * @param event

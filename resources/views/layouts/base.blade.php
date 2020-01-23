@@ -15,7 +15,7 @@
               method="post"
               enctype="multipart/form-data"
               data-controller="layouts--form"
-              data-action="layouts--form#submit"
+              data-action="keypress->layouts--form#keypress layouts--form#submit"
               data-layouts--form-validation="{{ $screen->formValidateMessage() }}"
               novalidate
         >
