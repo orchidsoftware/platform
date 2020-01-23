@@ -120,21 +120,21 @@
 // and disabled options for all buttons
 
 @mixin button-variant($color,$background, $border){
-  $button-variant:&;
-  color: $color !important;
-  background-color: $background;
-  border-color: $border;
-
-  &:hover,
-  &:focus,
-  &:active,
-  &.active,
-  .open .dropdown-toggle {
+    $button-variant: &;
     color: $color !important;
-    background-color: darken($background, 5%);
-    border-color: darken($border, 8%);
-    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
-  }
+    background-color: $background !important;
+    border-color: $border !important;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active,
+    .open .dropdown-toggle {
+        color: $color !important;
+        background-color: darken($background, 5%) !important;
+        border-color: darken($border, 8%) !important;
+        box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125) !important;
+    }
   &:active,
   &.active,
   .open .dropdown-toggle#{$button-variant} {
@@ -148,18 +148,18 @@
     &:focus,
     &:active,
     &.active {
-      background-color: $background;
-      border-color: $border
+        background-color: $background !important;
+        border-color: $border !important
     }
   }
   &:not([disabled]):not(.disabled):active,
   &:not([disabled]):not(.disabled).active,
   .show > &.dropdown-toggle {
-    cursor: default;
-	color: $color !important;
-    background-color: darken($background, 5%);
-    border-color: darken($border, 8%);
-	box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+      cursor: default !important;
+      color: $color !important;
+      background-color: darken($background, 5%) !important;
+      border-color: darken($border, 8%) !important;
+      box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125) !important;
   }
 
 }

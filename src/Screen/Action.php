@@ -93,11 +93,13 @@ class Action extends Field implements ActionContract
     }
 
     /**
-     * @param string $visual
+     * @param Color|string $visual
+     *
+     * @throws \ReflectionException
      *
      * @return static
      */
-    public function type(string $visual): self
+    public function type($visual): self
     {
         $reflectionClass = new \ReflectionClass(Color::class);
 
