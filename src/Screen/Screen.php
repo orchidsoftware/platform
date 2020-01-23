@@ -26,7 +26,7 @@ abstract class Screen extends Controller
     use Commander;
 
     /**
-     * The number of predefined arguments in the route
+     * The number of predefined arguments in the route.
      *
      * Example: dashboard/my-screen/{method?}/{argument?}
      */
@@ -170,7 +170,6 @@ abstract class Screen extends Controller
         if ($this->request->method() === 'GET' || (! count($parameters))) {
             $this->arguments = $parameters;
 
-
             return $this->redirectOnGetMethodCallOrShowView();
         }
 
@@ -269,10 +268,11 @@ abstract class Screen extends Controller
 
     /**
      * Defines the URL to represent
-     * the page based on the calculation of link arguments
+     * the page based on the calculation of link arguments.
+     *
+     * @throws Throwable
      *
      * @return Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
-     * @throws Throwable
      */
     protected function redirectOnGetMethodCallOrShowView()
     {
