@@ -93,21 +93,22 @@ class Action extends Field implements ActionContract
     }
 
     /**
-     * @param string $visual
+     * @param Color|string $visual
      *
      * @return static
+     * @throws \ReflectionException
      */
-    public function type(string $visual): self
+    public function type($visual): self
     {
         $reflectionClass = new \ReflectionClass(Color::class);
 
         $colors = array_map(static function (string $color) {
-            return 'btn-'.$color;
+            return 'btn-' . $color;
         }, $reflectionClass->getConstants());
 
-        $class = str_replace($colors, '', (string) $this->get('class'));
+        $class = str_replace($colors, '', (string)$this->get('class'));
 
-        $this->set('class', $class.' btn-'.$visual);
+        $this->set('class', $class . ' btn-' . $visual);
 
         return $this;
     }

@@ -726,12 +726,12 @@ blockquote {
     &:active {
         color: $dropdown-link-hover-color;
         @include gradient-bg($dropdown-link-hover-bg);
-  }
+    }
 
-  &.disabled,
-  &:disabled {
-    color: $dropdown-link-disabled-color;
-  }
+    &.disabled,
+    &:disabled {
+        color: $dropdown-link-disabled-color;
+    }
 }
 
 .breadcrumb {
