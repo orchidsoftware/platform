@@ -26,6 +26,13 @@ abstract class Screen extends Controller
     use Commander;
 
     /**
+     * The number of predefined arguments in the route
+     *
+     * Example: dashboard/my-screen/{method?}/{argument?}
+     */
+    private const COUNT_ROUTE_VARIABLES = 2;
+
+    /**
      * Display header name.
      *
      * @var string
@@ -163,7 +170,8 @@ abstract class Screen extends Controller
         if ($this->request->method() === 'GET' || (! count($parameters))) {
             $this->arguments = $parameters;
 
-            return $this->view();
+
+            return $this->redirectOnGetMethodCallOrShowView();
         }
 
         $method = array_pop($parameters);
@@ -257,5 +265,26 @@ abstract class Screen extends Controller
     public function formValidateMessage(): string
     {
         return __('Please check the entered data, it may be necessary to specify in other languages.');
+    }
+
+    /**
+     * Defines the URL to represent
+     * the page based on the calculation of link arguments
+     *
+     * @return Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @throws Throwable
+     */
+    protected function redirectOnGetMethodCallOrShowView()
+    {
+        $expectedArg = count($this->request->route()->getCompiled()->getVariables()) - self::COUNT_ROUTE_VARIABLES;
+        $realArg = count($this->arguments);
+
+        if ($realArg <= $expectedArg) {
+            return $this->view();
+        }
+
+        array_pop($this->arguments);
+
+        return redirect()->action([static::class, 'handle'], $this->arguments);
     }
 }
