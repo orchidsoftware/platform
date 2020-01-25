@@ -13,17 +13,19 @@
 
             <span class="mt-1 float-left">{{ __('Upload image from your computer:') }}</span>
 
-            <label class="btn btn-default m-n">
-                <i class="icon-cloud-upload mr-2"></i> {{ __('Browse') }}
-                <input type="file"
-                       accept="image/*"
-                       data-target="fields--picture.upload"
-                       data-action="change->fields--picture#upload"
-                       class="d-none">
-            </label>
+            <div class="btn-group">
+                <label class="btn btn-default m-n">
+                    <i class="icon-cloud-upload mr-2"></i> {{ __('Browse') }}
+                    <input type="file"
+                           accept="image/*"
+                           data-target="fields--picture.upload"
+                           data-action="change->fields--picture#upload"
+                           class="d-none">
+                </label>
 
-            <button type="button" class="btn btn-outline-danger picture-remove"
-                    data-action="fields--picture#clear">{{ __('Remove') }}</button>
+                <button type="button" class="btn btn-outline-danger picture-remove"
+                        data-action="fields--picture#clear">{{ __('Remove') }}</button>
+            </div>
 
             <input type="file"
                    accept="image/*"
