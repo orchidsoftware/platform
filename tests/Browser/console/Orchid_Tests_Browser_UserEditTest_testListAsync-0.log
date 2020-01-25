@@ -3,6 +3,6 @@
         "level": "SEVERE",
         "message": "http:\/\/127.0.0.1:8000\/dashboard\/resources\/orchid\/js\/vendor.js?id=4c8240a2e9934c9c81dc 49:67252 Uncaught TypeError: Cannot read property 'destroy' of undefined",
         "source": "javascript",
-        "timestamp": 1579950128257
+        "timestamp": 1579950331822
     }
 ]
