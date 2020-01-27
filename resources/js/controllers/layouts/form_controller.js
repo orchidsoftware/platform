@@ -17,7 +17,6 @@ export default class extends Controller {
         });
     }
 
-
     /**
      *
      */
@@ -179,5 +178,28 @@ export default class extends Controller {
         const activeElementAction = this.getActiveElementAttr('formaction');
 
         return activeElementAction || formAction;
+    }
+
+    /**
+     *
+     * @param event
+     * @returns {boolean}
+     */
+    disableKey(event) {
+
+        if (this.element.querySelector('[type=submit]')) {
+            return true;
+        }
+
+        if (/textarea/i.test(event.target.tagName)) {
+            return true;
+        }
+
+        if ((event.keyCode || event.which || event.charCode) !== 13) {
+            return true;
+        }
+
+        event.preventDefault();
+        return false;
     }
 }

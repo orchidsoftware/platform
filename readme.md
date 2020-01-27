@@ -36,8 +36,8 @@ This is a package for creating administration-style applications with the [Larav
  
  ## Getting started
 
-* :uk: To check out the [guide](https://orchid.software/en/docs/), visit [orchid.software](https://orchid.software/en/docs/). 
-* :ru: Чтобы ознакомиться с [руководством](https://orchid.software/ru/docs/), посетите сайт [orchid.software](https://orchid.software/ru/docs/).
+* :uk: To check out the [guide](https://orchid.software/en/docs/), visit [orchid.software](https://orchid.software/en). 
+* :ru: Чтобы ознакомиться с [руководством](https://orchid.software/ru/docs/), посетите сайт [orchid.software](https://orchid.software/ru).
 
 ##### Local User Groups
 
