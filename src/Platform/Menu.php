@@ -111,12 +111,20 @@ class Menu
     {
         $this->checkAccess();
 
+
         return $this->findAllChildren($location)
             ->sortBy('sort')
+            ->filter(function ($value) {
+
+                if (!$value['childs']) {
+                    return true;
+                }
+
+                return $this->showCountElement($value['slug']);
+            })
             ->map(static function ($value) use ($template) {
                 return view($template, $value)->render();
-            })
-            ->implode(' ');
+            })->implode(' ');
     }
 
     /**

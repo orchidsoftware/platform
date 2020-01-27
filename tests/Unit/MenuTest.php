@@ -6,6 +6,7 @@ namespace Orchid\Tests\Unit;
 
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemMenu;
+use Orchid\Platform\Menu;
 use Orchid\Tests\TestUnitCase;
 
 /**
@@ -13,18 +14,18 @@ use Orchid\Tests\TestUnitCase;
  */
 class MenuTest extends TestUnitCase
 {
-    public function testIsMenu()
+    public function testIsMenu(): void
     {
         $menu = (new Dashboard())->menu;
 
-        $menu->add('Main', ItemMenu::label('Main Test')
+        $menu->add(Menu::MAIN, ItemMenu::label('Main Test')
             ->slug('Test')
             ->icon('icon-layers')
             ->childs()
             ->sort(1000)
         );
 
-        $this->assertEquals(! is_null($menu->render('Main')), true);
+        $this->assertNotNull($menu->render('Main'));
         $this->assertEquals($menu->container->count(), 1);
 
         $menu->add('Test', ItemMenu::label('Users')
@@ -35,10 +36,10 @@ class MenuTest extends TestUnitCase
             ->sort(503)
         );
 
-        $this->assertEquals(! is_null($menu->render('Test')), true);
+        $this->assertNotNull($menu->render('Test'));
     }
 
-    public function testCountLocation()
+    public function testCountLocation(): void
     {
         $menu = (new Dashboard())->menu;
 
@@ -61,11 +62,11 @@ class MenuTest extends TestUnitCase
         $this->assertEquals(2, $count);
     }
 
-    public function testCanSee()
+    public function testCanSee(): void
     {
         $menu = (new Dashboard())->menu;
 
-        $menu->add('Main', ItemMenu::label('No Display')
+        $menu->add(Menu::MAIN, ItemMenu::label('No Display')
             ->childs()
             ->sort(1000)
             ->canSee(false)
@@ -74,5 +75,43 @@ class MenuTest extends TestUnitCase
         $count = $menu->showCountElement('Main');
 
         $this->assertEquals(0, $count);
+    }
+
+    public function testChildEmpty(): void
+    {
+        $menu = (new Dashboard())->menu;
+
+        $menu->add(Menu::MAIN, ItemMenu::label('Dropdown menu')
+            ->slug('example-menu')
+            ->childs()
+            ->hiddenEmpty()
+        )
+            ->add('example-menu', ItemMenu::label('Sub element item 1')->canSee(false))
+            ->add('example-menu', ItemMenu::label('Sub element item 2')->canSee(false));
+
+        $count = $menu->showCountElement('example-menu');
+
+        $this->assertEquals(0, $count);
+        $this->assertEmpty($menu->render('example-menu'));
+        $this->assertEmpty($menu->render(Menu::MAIN));
+    }
+
+    public function testChildNotEmpty(): void
+    {
+        $menu = (new Dashboard())->menu;
+
+        $menu->add(Menu::MAIN, ItemMenu::label('Dropdown menu')
+            ->slug('example-menu')
+            ->childs()
+            ->hiddenEmpty()
+        )
+            ->add('example-menu', ItemMenu::label('Sub element item 1')->canSee(false))
+            ->add('example-menu', ItemMenu::label('Sub element item 2')->canSee(true));
+
+        $count = $menu->showCountElement('example-menu');
+
+        $this->assertEquals(1, $count);
+        $this->assertNotEmpty($menu->render('example-menu'));
+        $this->assertNotEmpty($menu->render(Menu::MAIN));
     }
 }
