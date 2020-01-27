@@ -6,6 +6,7 @@
          data-fields--cropper-height="{{ $height }}"
          data-fields--cropper-target="{{ $target }}"
          data-fields--cropper-url="{{ $url }}"
+         data-fields--cropper-max-file-size="{{ $maxFileSize }}"
     >
         <div class="b text-right wrapper cropper-actions">
 

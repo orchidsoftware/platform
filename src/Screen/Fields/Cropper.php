@@ -40,6 +40,7 @@ namespace Orchid\Screen\Fields;
  * @method Cropper height($value = true)
  * @method Cropper popover(string $value = null)
  * @method Cropper title(string $value = null)
+ * @method Cropper maxFileSize($value = true)
  */
 class Cropper extends Picture
 {
@@ -54,11 +55,12 @@ class Cropper extends Picture
      * @var array
      */
     protected $attributes = [
-        'value'  => null,
-        'target' => 'url',
-        'url'    => null,
-        'width'  => null,
-        'height' => null,
+        'value'       => null,
+        'target'      => 'url',
+        'url'         => null,
+        'width'       => null,
+        'height'      => null,
+        'maxFileSize' => null,
     ];
 
     /**

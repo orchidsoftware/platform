@@ -43,6 +43,14 @@ export default class extends Controller {
      * @param event
      */
     upload(event) {
+
+        let maxFileSize = this.data.get('max-file-size');
+        if (event.target.files[0].size / 1024 / 1024 > maxFileSize) {
+            window.platform.alert('Validation error', `The download file is too large. Max size: ${maxFileSize} MB`);
+            event.target.value = null;
+            return;
+        }
+
         if (!event.target.files[0]) {
             $(this.element.querySelector('.modal')).modal('show');
             return;
