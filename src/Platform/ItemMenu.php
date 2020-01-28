@@ -73,7 +73,7 @@ class ItemMenu
     /**
      * @var bool
      */
-    public $hiddenEmpty = false;
+    public $hideEmpty = false;
 
     /**
      * @param string $permission
@@ -139,13 +139,15 @@ class ItemMenu
     }
 
     /**
+     * Hide menu item if no children are available
+     *
      * @param bool $value
      *
      * @return ItemMenu
      */
-    public function hiddenEmpty(bool $value = true): self
+    public function hideEmpty(bool $value = true): self
     {
-        $this->hiddenEmpty = $value;
+        $this->hideEmpty = $value;
 
         return $this;
     }
