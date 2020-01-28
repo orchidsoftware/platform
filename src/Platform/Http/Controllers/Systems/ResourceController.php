@@ -21,6 +21,27 @@ class ResourceController
     private $resource;
 
     /**
+     * @var MimeTypes
+     */
+    private $mimeTypes;
+
+    /**
+     * @var Finder
+     */
+    private $finder;
+
+    /**
+     * ResourceController constructor.
+     *
+     * @param MimeTypes $mimeTypes
+     */
+    public function __construct(MimeTypes $mimeTypes, Finder $finder)
+    {
+        $this->mimeTypes = $mimeTypes;
+        $this->finder = $finder;
+    }
+
+    /**
      * Serve the requested resource.
      *
      * @param string    $package
@@ -35,9 +56,9 @@ class ResourceController
             ->getPublicDirectory()
             ->get($package);
 
-        abort_if(is_null($dir), 404);
+        abort_if($dir === null, 404);
 
-        $resources = (new Finder())
+        $resources = $this->finder
             ->ignoreUnreadableDirs()
             ->followLinks()
             ->in($dir)
@@ -45,15 +66,17 @@ class ResourceController
             ->path(dirname($path))
             ->name(basename($path));
 
-        $iterator = tap($resources->getIterator())
-            ->rewind();
+        $iterator = tap($resources->getIterator())->rewind();
 
-        $this->resource = $iterator->current();
+        $this->resource = collect($iterator)
+            ->filter(static function (SplFileInfo $file) use ($path) {
+                return $file->getRelativePathname() === $path;
+            })
+            ->first();
 
-        abort_if(is_null($this->resource), 404);
+        abort_if($this->resource === null, 404);
 
-        $mime = new MimeTypes();
-        $mime = $mime->getMimeType($this->resource->getExtension());
+        $mime = $this->mimeTypes->getMimeType($this->resource->getExtension());
 
         return response()->file($this->resource->getRealPath(), [
             'Content-Type'  => $mime ?? 'text/plain',
