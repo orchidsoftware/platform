@@ -139,7 +139,7 @@ class ItemMenu
     }
 
     /**
-     * Hide menu item if no children are available
+     * Hide menu item if no children are available.
      *
      * @param bool $value
      *
