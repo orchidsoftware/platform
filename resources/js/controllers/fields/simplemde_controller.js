@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus';
+import {Controller} from 'stimulus';
 import SimpleMDE from 'simplemde';
 
 export default class extends Controller {
@@ -123,6 +123,11 @@ export default class extends Controller {
             placeholder: this.textarea.placeholder,
             spellChecker: false,
         });
+
+        // Required attribute https://github.com/sparksuite/simplemde-markdown-editor/issues/324
+        if (this.textarea.required) {
+            this.element.querySelector('.CodeMirror textarea').required = true;
+        }
     }
 
     /**

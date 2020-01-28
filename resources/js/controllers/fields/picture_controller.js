@@ -36,6 +36,13 @@ export default class extends Controller {
             return;
         }
 
+        let maxFileSize = this.data.get('max-file-size');
+        if (event.target.files[0].size / 1024 / 1024 > maxFileSize) {
+            window.platform.alert('Validation error', `The download file is too large. Max size: ${maxFileSize} MB`);
+            event.target.value = null;
+            return;
+        }
+
         let reader = new FileReader();
         reader.readAsDataURL(event.target.files[0]);
 

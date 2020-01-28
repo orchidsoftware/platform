@@ -111,12 +111,10 @@ class Menu
     {
         $this->checkAccess();
 
-
         return $this->findAllChildren($location)
             ->sortBy('sort')
             ->filter(function ($value) {
-
-                if (!$value['childs']) {
+                if (! $value['childs']) {
                     return true;
                 }
 
