@@ -4,6 +4,7 @@
          data-fields--picture-storage="{{ $storage ?? 'public' }}"
          data-fields--picture-target="{{ $target }}"
          data-fields--picture-url="{{ $url }}"
+         data-fields--picture-max-file-size="{{ $maxFileSize }}"
     >
         <div class="b text-right wrapper picture-actions">
 

@@ -37,6 +37,7 @@ class MenuTest extends TestUnitCase
         );
 
         $this->assertNotNull($menu->render('Test'));
+        $this->assertStringContainsString('Users', $menu->render('Test'));
     }
 
     public function testCountLocation(): void

@@ -7,6 +7,7 @@ namespace Orchid\Screen\Fields;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Dashboard;
 use Orchid\Screen\Field;
+use Orchid\Support\Init;
 
 /**
  * Class Picture.
@@ -20,6 +21,7 @@ use Orchid\Screen\Field;
  * @method Picture help(string $value = null)
  * @method Picture popover(string $value = null)
  * @method Picture title(string $value = null)
+ * @method Picture maxFileSize($value = true)
  */
 class Picture extends Field
 {
@@ -34,9 +36,10 @@ class Picture extends Field
      * @var array
      */
     protected $attributes = [
-        'value'  => null,
-        'target' => 'url',
-        'url'    => null,
+        'value'       => null,
+        'target'      => 'url',
+        'url'         => null,
+        'maxFileSize' => null,
     ];
 
     /**
@@ -65,6 +68,30 @@ class Picture extends Field
         'target',
         'url',
     ];
+
+    /**
+     * Picture constructor.
+     */
+    public function __construct()
+    {
+        // Set max file size
+        $this->addBeforeRender(function () {
+            $maxFileSize = $this->get('maxFileSize');
+
+            $serverMaxFileSize = Init::maxFileUpload(Init::MB);
+
+            if ($maxFileSize === null) {
+                $this->set('maxFileSize', $serverMaxFileSize);
+
+                return;
+            }
+
+            throw_if(
+                $maxFileSize > $serverMaxFileSize,
+                \RuntimeException::class,
+                'Cannot set the desired maximum file size. This contradicts the settings specified in .ini');
+        });
+    }
 
     /**
      * @param string|null $name
