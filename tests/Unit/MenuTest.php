@@ -85,7 +85,7 @@ class MenuTest extends TestUnitCase
         $menu->add(Menu::MAIN, ItemMenu::label('Dropdown menu')
             ->slug('example-menu')
             ->childs()
-            ->hiddenEmpty()
+            ->hideEmpty()
         )
             ->add('example-menu', ItemMenu::label('Sub element item 1')->canSee(false))
             ->add('example-menu', ItemMenu::label('Sub element item 2')->canSee(false));
@@ -104,7 +104,7 @@ class MenuTest extends TestUnitCase
         $menu->add(Menu::MAIN, ItemMenu::label('Dropdown menu')
             ->slug('example-menu')
             ->childs()
-            ->hiddenEmpty()
+            ->hideEmpty()
         )
             ->add('example-menu', ItemMenu::label('Sub element item 1')->canSee(false))
             ->add('example-menu', ItemMenu::label('Sub element item 2')->canSee(true));
@@ -114,5 +114,17 @@ class MenuTest extends TestUnitCase
         $this->assertEquals(1, $count);
         $this->assertNotEmpty($menu->render('example-menu'));
         $this->assertNotEmpty($menu->render(Menu::MAIN));
+    }
+
+    public function testChildShowEmpty(): void
+    {
+        $menu = (new Dashboard())->menu;
+
+        $menu->add(Menu::MAIN, ItemMenu::label('Dropdown menu')
+            ->slug('example-menu')
+            ->childs()
+        );
+
+        $this->assertStringContainsString('Dropdown menu', $menu->render(Menu::MAIN));
     }
 }

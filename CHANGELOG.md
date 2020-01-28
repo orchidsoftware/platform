@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Method `maxFileSize` for `Cropper` and `Picture` fields
-- Method `hiddenEmpty` for `ItemMenu`
+- Method `hideEmpty` for `ItemMenu`
 
 ### Fixed
 - Accurate resource address determination
