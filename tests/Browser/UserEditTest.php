@@ -54,11 +54,11 @@ class UserEditTest extends TestBrowserCase
                 ->visitRoute('platform.systems.users')
                 ->press($user->email)
                 ->pause(500)
-                ->type('user[name]', $user->name . '-async-test')
+                ->type('user[name]', $user->name.'-async-test')
                 ->press('Apply')
                 ->waitForText('User was saved.')
-                ->waitForText($user->name . '-async-test')
-                ->assertSee($user->name . '-async-test');
+                ->waitForText($user->name.'-async-test')
+                ->assertSee($user->name.'-async-test');
         });
     }
 }

@@ -17,7 +17,6 @@ class LoginTest extends TestBrowserCase
                 ->visitRoute('platform.login')
                 ->waitForText('Sign in to your account')
 
-
                 // invalid login
                 ->type('email', 'admin@admin.com')
                 ->type('password', 'error')
