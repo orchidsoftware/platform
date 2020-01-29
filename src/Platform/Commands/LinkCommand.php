@@ -38,10 +38,10 @@ class LinkCommand extends Command
         $filesystem->ensureDirectoryExists($prefix);
 
         $dashboard->getPublicDirectory()->each(function ($path, $package) use ($prefix, $filesystem) {
-            $package = $prefix . '/' . $package;
+            $package = $prefix.'/'.$package;
             $path = rtrim($path, '/');
 
-            if (!$filesystem->exists($package)) {
+            if (! $filesystem->exists($package)) {
                 $filesystem->link($path, $package);
                 $this->line("The [$package] directory has been linked.");
             }
