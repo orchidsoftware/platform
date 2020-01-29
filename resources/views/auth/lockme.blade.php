@@ -21,6 +21,7 @@
         <a href="{{ route('platform.password.request') }}" class="float-right small">{{__('Forgot your password?')}}</a>
     </label>
 
+    <input type="hidden" name="remember" value="true">
     <div data-controller="fields--password"
          class="input-icon"
     >
