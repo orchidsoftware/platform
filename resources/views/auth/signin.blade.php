@@ -39,7 +39,9 @@
 <div class="row">
     <div class="form-group col-md-6 col-xs-12">
         <label class="custom-control custom-checkbox">
-            <input type="checkbox" name="remember" class="custom-control-input" {{ old('remember') ? 'checked' : '' }}>
+            <input type="hidden" name="remember">
+            <input type="checkbox" name="remember" value="true"
+                   class="custom-control-input" {{ !old('remember') || old('remember') === 'true'  ? 'checked' : '' }}>
             <span class="custom-control-label"> {{__('Remember Me')}}</span>
         </label>
     </div>
