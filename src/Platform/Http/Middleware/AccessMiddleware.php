@@ -47,7 +47,7 @@ class AccessMiddleware
                 return response('Unauthorized.', 401);
             }
 
-            return redirect()->route('platform.login');
+            return redirect()->guest(route('platform.login'));
         }
 
         if ($this->auth->user()->hasAccess('platform.index')) {
