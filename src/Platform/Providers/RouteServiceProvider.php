@@ -7,7 +7,8 @@ namespace Orchid\Platform\Providers;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Dashboard;
-use Orchid\Platform\Http\Middleware\AccessMiddleware;
+use Orchid\Platform\Http\Middleware\Access;
+use Orchid\Platform\Http\Middleware\TurbolinksLocation;
 use Orchid\Platform\Models\Role;
 
 class RouteServiceProvider extends ServiceProvider
@@ -20,7 +21,8 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::middlewareGroup('platform', [
-            AccessMiddleware::class,
+            TurbolinksLocation::class,
+            Access::class,
         ]);
 
         $this->binding();
