@@ -16,6 +16,15 @@ class LoginTest extends TestBrowserCase
             $browser
                 ->visitRoute('platform.login')
                 ->waitForText('Sign in to your account')
+
+                // invalid login
+                ->type('email', 'admin@admin.com')
+                ->type('password', 'error')
+                ->press('Login')
+                ->waitForText('The details you entered did not match our records. Please double-check and try again.')
+                ->assertSee('The details you entered did not match our records. Please double-check and try again.')
+
+                // valid login
                 ->type('email', 'admin@admin.com')
                 ->type('password', 'password')
                 ->press('Login')
@@ -40,38 +49,6 @@ class LoginTest extends TestBrowserCase
                 ->visitRoute('platform.main')
                 ->waitForLocation('/dashboard/login')
                 ->assertSee('Sign in to your account');
-        });
-    }
-
-    public function testDisplayPage(): void
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visitRoute('platform.login')
-                ->assertSee('Sign in to your account');
-        });
-    }
-
-    public function testErrorLogin(): void
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visitRoute('platform.login')
-                ->type('email', 'admin@admin.com')
-                ->type('password', 'error')
-                ->press('Login')
-                ->waitForText('The details you entered did not match our records. Please double-check and try again.')
-                ->assertSee('The details you entered did not match our records. Please double-check and try again.');
-        });
-    }
-
-    public function testSuccessLogin(): void
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visitRoute('platform.login')
-                ->type('email', 'admin@admin.com')
-                ->type('password', 'password')
-                ->press('Login')
-                ->waitForLocation('/dashboard/main')
-                ->assertSee('Example screen');
         });
     }
 }

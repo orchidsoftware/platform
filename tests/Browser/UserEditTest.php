@@ -19,7 +19,7 @@ class UserEditTest extends TestBrowserCase
                 ->visitRoute('platform.systems.users')
                 ->clickLink($user->name, 'table a')
                 ->waitForRoute('platform.systems.users.edit', $user)
-                ->pause(5000)
+                ->pause(500)
                 ->assertInputValue('user[email]', $user->email)
                 ->type('user[email]', $email)
                 ->press('Save')
@@ -27,7 +27,7 @@ class UserEditTest extends TestBrowserCase
                 ->waitForText('User was saved.')
                 ->clickLink($user->name, 'table a')
                 ->waitForRoute('platform.systems.users.edit', $user)
-                ->pause(5000)
+                ->pause(500)
                 ->assertInputValue('user[email]', $email);
         });
     }
@@ -49,16 +49,15 @@ class UserEditTest extends TestBrowserCase
     {
         $this->browse(function (Browser $browser) {
             $user = $this->createAdminUser();
-            $browser->loginAs($user)
+            $browser
+                ->loginAs($user)
                 ->visitRoute('platform.systems.users')
                 ->press($user->email)
-                ->waitForText($user->email)
-                ->waitForText($user->name)
-                ->waitForText('Close')
-                ->waitForText('Apply')
+                ->pause(500)
                 ->type('user[name]', $user->name.'-async-test')
                 ->press('Apply')
                 ->waitForText('User was saved.')
+                ->waitForText($user->name.'-async-test')
                 ->assertSee($user->name.'-async-test');
         });
     }
