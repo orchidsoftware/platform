@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Added `TurbolinksLocation` middleware for the correct redirects [#1049](https://github.com/orchidsoftware/platform/issues/1049)
 
+### Changed
+- Return user to desired page [#1046](https://github.com/orchidsoftware/platform/issues/1046)
+- Remember user by default [#1047](https://github.com/orchidsoftware/platform/issues/1047)
+
 ### Deprecated
 - Rename `AccessMiddleware` to `Access`, previous name is outdated
 
