@@ -184,16 +184,16 @@ class Field implements FieldContract
             return;
         }
 
-        $this->runBeforeRender()
+        $this
             ->checkRequired()
+            ->modifyName()
+            ->modifyValue()
+            ->runBeforeRender()
             ->translate()
             ->checkError();
 
         $id = $this->getId();
         $this->set('id', $id);
-
-        $this->modifyName();
-        $this->modifyValue();
 
         $errors = $this->getErrorsMessage();
 
