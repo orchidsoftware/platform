@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
- * Class TurbolinksLocation
+ * Class TurbolinksLocation.
  *
  * @see https://github.com/turbolinks/turbolinks#following-redirects
  */

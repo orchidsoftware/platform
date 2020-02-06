@@ -11,5 +11,4 @@ namespace Orchid\Platform\Http\Middleware;
  */
 class AccessMiddleware extends Access
 {
-
 }
