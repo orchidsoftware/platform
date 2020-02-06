@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.10.0 - 2020-02-06
+
+### Added
+- Added `TurbolinksLocation` middleware for the correct redirects [#1049](https://github.com/orchidsoftware/platform/issues/1049)
+
+### Deprecated
+- Rename `AccessMiddleware` to `Access`, previous name is outdated
+
+### Fixed
+- Old field values did not trigger an event [#1050](https://github.com/orchidsoftware/platform/issues/1050)
+
 ## 6.9.0 - 2020-01-28
 
 ### Added

@@ -10,14 +10,17 @@ use Orchid\Tests\TestUnitCase;
 
 class TurbolinksLocationTest extends TestUnitCase
 {
+
     protected function setUp(): void
     {
         parent::setUp();
 
         Route::middleware(TurbolinksLocation::class)->group(static function () {
+
             Route::post('turbolink-html-response-test', static function () {
                 return response()->make('Availability headers location');
             });
+
 
             Route::post('turbolink-json-response-test', static function () {
                 return response()->json([
@@ -34,6 +37,8 @@ class TurbolinksLocationTest extends TestUnitCase
             Route::post('turbolink-file-response-test', static function () {
                 return response()->download(__FILE__);
             });
+
+
         });
     }
 
