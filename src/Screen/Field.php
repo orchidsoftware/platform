@@ -184,6 +184,9 @@ class Field implements FieldContract
             return;
         }
 
+        $this->modifyName();
+        $this->modifyValue();
+
         $this->runBeforeRender()
             ->checkRequired()
             ->translate()
@@ -191,9 +194,6 @@ class Field implements FieldContract
 
         $id = $this->getId();
         $this->set('id', $id);
-
-        $this->modifyName();
-        $this->modifyValue();
 
         $errors = $this->getErrorsMessage();
 
