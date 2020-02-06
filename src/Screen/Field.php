@@ -184,11 +184,11 @@ class Field implements FieldContract
             return;
         }
 
-        $this->modifyName();
-        $this->modifyValue();
-
-        $this->runBeforeRender()
+        $this
             ->checkRequired()
+            ->modifyName()
+            ->modifyValue()
+            ->runBeforeRender()
             ->translate()
             ->checkError();
 
