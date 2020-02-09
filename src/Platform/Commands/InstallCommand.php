@@ -33,7 +33,7 @@ class InstallCommand extends Command
     public function handle(Dashboard $dashboard)
     {
         $this->info('Installation started. Please wait...');
-        $this->info('Version: ' . Dashboard::VERSION);
+        $this->info('Version: '.Dashboard::VERSION);
 
         if ($dashboard->checkUpdate()) {
             $this->warn('Warning, this is not the latest available version.');
