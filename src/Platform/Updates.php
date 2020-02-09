@@ -36,7 +36,7 @@ class Updates
     {
         $newReleases = $this->requestVersion()
             ->filter(static function ($version, $key) {
-                return !Str::contains($key, 'dev');
+                return ! Str::contains($key, 'dev');
             })->filter(static function ($version) {
                 return version_compare($version['version'], Dashboard::VERSION, '>');
             })->count();
@@ -45,15 +45,16 @@ class Updates
     }
 
     /**
-     * @return void
      * @throws Exception
+     *
+     * @return void
      */
     public function updateInstall()
     {
         $packages = [];
 
         for ($i = 0, $max = random_int(10, 20); $i < $max; $i++) {
-            $packages[] = ['name' => 'orchid/platform', 'version' => Dashboard::VERSION . '.0'];
+            $packages[] = ['name' => 'orchid/platform', 'version' => Dashboard::VERSION.'.0'];
         }
 
         $content = json_encode([
@@ -82,8 +83,8 @@ class Updates
     {
         try {
             $versions = Cache::remember('check-platform-update', now()->addMinutes($this->cache), function () {
-
                 $this->updateInstall();
+
                 return json_decode(file_get_contents($this->apiURL), true)['packages']['orchid/platform'];
             });
         } catch (Exception $exception) {
