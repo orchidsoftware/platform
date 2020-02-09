@@ -8,7 +8,6 @@ use Illuminate\Console\Command;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Events\InstallEvent;
 use Orchid\Platform\Providers\FoundationServiceProvider;
-use Orchid\Platform\Updates;
 
 class InstallCommand extends Command
 {
@@ -31,13 +30,14 @@ class InstallCommand extends Command
      *
      * @return void
      */
-    public function handle()
+    public function handle(Dashboard $dashboard)
     {
-        $updates = new Updates();
-        $updates->updateInstall();
-
         $this->info('Installation started. Please wait...');
-        $this->info("Version: $updates->currentVersion");
+        $this->info('Version: ' . Dashboard::VERSION);
+
+        if ($dashboard->checkUpdate()) {
+            $this->warn('Warning, this is not the latest available version.');
+        }
 
         $this
             ->executeCommand('migrate')
