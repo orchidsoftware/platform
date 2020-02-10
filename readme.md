@@ -6,7 +6,7 @@
   <br>
 </h1>
 
-<h4 align="center">For full documentation, visit <a href="http://orchid.software">orchid.software</a>.</h4>
+<h4 align="center">For the full documentation, visit <a href="http://orchid.software">orchid.software</a>.</h4>
 
 <p align="center">
 <a href="https://travis-ci.org/orchidsoftware/platform/"><img src="https://travis-ci.org/orchidsoftware/platform.svg?branch=master"></a>
@@ -18,7 +18,7 @@
 
 ## Introduction
 
-This is a package for creating administration-style applications with the [Laravel framework](https://laravel.com). Allows you to abstract the common patterns of business applications, so that developers can easily implement beautiful and elegant interfaces without much effort. The main places of application are: backoffice applications, admin panels, content management systems, etc.
+This is a package for creating administration-style applications with the [Laravel framework](https://laravel.com). It allows you to abstract the common patterns of business applications so that developers can easily implement beautiful and elegant interfaces without much effort. The main places of application are back-office applications, admin panels, content management systems, etc.
 
 
 <a href="https://raw.githubusercontent.com/orchidsoftware/platform/master/.github/IMAGES/promo-full.png">
@@ -44,7 +44,7 @@ This is a package for creating administration-style applications with the [Larav
 * [Orchid Global Community](https://t.me/orchid_community)
 * [Orchid Russia](https://t.me/orchid_russian_community)
 
-## Change log
+## Сhangelog
 
 See [CHANGELOG](CHANGELOG.md).
 
