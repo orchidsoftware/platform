@@ -41,6 +41,7 @@ after_success:
 before_deploy:
   - rm -R public/css
   - rm -R public/js
+  - npm cache clear --force
   - npm install
   - npm run production
 

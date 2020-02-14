@@ -24,7 +24,7 @@
     "laravel-mix": "^5.0",
     "leaflet": "^1.6.0",
     "lodash": "^4.17.15",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "open-color": "^1.7.0",
     "orchid-icons": "^1.0.10",
     "popper.js": "^1.16.0",
