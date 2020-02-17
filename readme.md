@@ -41,8 +41,8 @@ This is a package for creating administration-style applications with the [Larav
 
 ##### Local User Groups
 
-* [Orchid Global Community](https://t.me/orchid_community)
-* [Orchid Russia](https://t.me/orchid_russian_community)
+* [Global Community](https://t.me/orchid_community)
+* [Russia Community](https://t.me/orchid_russian_community)
 
 ## Сhangelog
 
@@ -61,6 +61,6 @@ The MIT License (MIT). Please see [License File](LICENSE) for more information.
 
 ---
 
-> [orchid.software](https://orchid.software) &nbsp;&middot;&nbsp;
+> Website [orchid.software](https://orchid.software) &nbsp;&middot;&nbsp;
 > GitHub [@tabuna](https://github.com/tabuna) &nbsp;&middot;&nbsp;
 > Twitter [@orchid_platform](https://twitter.com/orchid_platform)
