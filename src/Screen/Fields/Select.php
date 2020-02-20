@@ -107,12 +107,13 @@ class Select extends Field
 
         $this->set('options', $options);
 
-        return $this->addBeforeRender(function () {
+        return $this->addBeforeRender(function () use ($name) {
             $value = [];
 
-            collect($this->get('value'))->each(static function ($item) use (&$value) {
+            collect($this->get('value'))->each(static function ($item) use (&$value, $name) {
+
                 if (is_object($item)) {
-                    $value[$item->id] = $item->name;
+                    $value[$item->id] = $item->$name;
                 } else {
                     $value[] = $item;
                 }
