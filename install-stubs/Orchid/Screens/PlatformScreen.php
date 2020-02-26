@@ -50,8 +50,8 @@ class PlatformScreen extends Screen
                 ->icon('icon-globe-alt'),
 
             Link::make('Documentation')
-              ->href('https://orchid.software/en/docs')
-              ->icon('icon-docs'),
+                ->href('https://orchid.software/en/docs')
+                ->icon('icon-docs'),
 
             Link::make('GitHub')
                 ->href('https://github.com/orchidsoftware/platform')
