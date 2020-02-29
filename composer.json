@@ -1,6 +1,6 @@
 {
   "name": "orchid/platform",
-  "description": "Basis for back-office applications , admin panel or CMS.",
+  "description": "Platform for back-office applications, admin panel or CMS your Laravel app.",
   "keywords": [
     "framework",
     "laravel",
