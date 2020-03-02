@@ -33,12 +33,12 @@ class AccessTest extends TestFeatureCase
     {
         parent::setUp();
 
-        Route::middleware(Access::class . ':access.to.public.data')
+        Route::middleware(Access::class.':access.to.public.data')
             ->any('/_test/accessMiddlewarePublicData', function () {
                 return 'OK';
             });
 
-        Route::middleware(Access::class . ':access.to.private.data')
+        Route::middleware(Access::class.':access.to.private.data')
             ->any('/_test/accessMiddlewarePrivateData', function () {
                 return 'OK';
             });
