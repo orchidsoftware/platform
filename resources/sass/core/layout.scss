@@ -114,8 +114,10 @@ body {
   }
 }
 
-.aside {
-  min-width: $app-aside-min-width;
+@media (min-width: $tablet) {
+    .aside {
+        min-width: $app-aside-min-width;
+    }
 }
 
 @media (min-width: 1900px) {

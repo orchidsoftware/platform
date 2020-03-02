@@ -19,19 +19,11 @@
         @csrf
         <div class="form-group">
             <label>{{ __('E-Mail Address') }}</label>
-            <div class="controls">
-                <input type="email"
-                       name="email"
-                       placeholder="{{ __('Enter your email') }}"
-                       class="form-control @error('password') is-invalid @enderror"
-                       required
-                       value="{{ old('email') }}">
-                @error('email')
-                <span class="invalid-feedback text-danger">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                @enderror
-            </div>
+            {!!  \Orchid\Screen\Fields\Input::make('email')
+                ->type('email')
+                ->required()
+                ->placeholder(__('Enter your email'))
+            !!}
         </div>
         <div class="form-group">
             <button class="btn btn-default btn-block" id="button-email" type="submit">

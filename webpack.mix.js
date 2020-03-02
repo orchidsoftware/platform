@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -19,7 +19,7 @@ if (!mix.inProduction()) {
             devtool: 'source-map',
         })
         .sourceMaps();
-}else{
+} else {
     mix.options({
         clearConsole: true,
         terser: {
@@ -38,10 +38,10 @@ mix
     .copyDirectory('./node_modules/tinymce/themes', 'public/js/tinymce/themes')
     .copyDirectory('./node_modules/tinymce/skins', 'public/js/tinymce/skins')
     .sass('resources/sass/app.scss', 'css/orchid.css', {
-        implementation: require('node-sass')
+        implementation: require('node-sass'),
     })
     .options({
-        processCssUrls: false
+        processCssUrls: false,
     })
     .js('resources/js/app.js', 'js/orchid.js')
     .extract([
@@ -49,12 +49,12 @@ mix
         'jquery', 'popper.js', 'bootstrap',
         'dropzone', 'select2', 'cropperjs', 'frappe-charts', 'inputmask',
         'simplemde', 'tinymce', 'axios', 'leaflet', 'codeflask', 'stimulus-flatpickr',
-        'flatpickr', 'quill', 'codemirror', 'typo-js', 'sortablejs'
+        'flatpickr', 'quill', 'codemirror', 'typo-js', 'sortablejs',
     ])
     .autoload({
         jquery: [
             '$', 'window.jQuery', 'jQuery', 'jquery',
-            'bootstrap', 'select2'
+            'bootstrap', 'select2',
         ],
     })
     .setPublicPath('public')
