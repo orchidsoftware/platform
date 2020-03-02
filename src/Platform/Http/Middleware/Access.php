@@ -35,10 +35,11 @@ class Access
     /**
      * @param Request $request
      * @param Closure $next
+     * @param string  $permission
      *
      * @return ResponseFactory|RedirectResponse|Response|mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, string $permission = 'platform.index')
     {
         Carbon::setLocale(config('app.locale'));
 
@@ -50,7 +51,7 @@ class Access
             return redirect()->guest(route('platform.login'));
         }
 
-        if ($this->auth->user()->hasAccess('platform.index')) {
+        if ($this->auth->user()->hasAccess($permission)) {
             return $next($request);
         }
 
