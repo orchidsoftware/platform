@@ -35,8 +35,8 @@
                    class="d-none">
         </div>
 
-        <input class="cropper-path"
-               type="hidden"
+        <input class="cropper-path d-none"
+               type="text"
                data-target="fields--cropper.source"
             @attributes($attributes)
         >
