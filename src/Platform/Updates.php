@@ -36,7 +36,7 @@ class Updates
     {
         $newReleases = $this->requestVersion()
             ->filter(static function ($version, $key) {
-                return !Str::contains($key, 'dev');
+                return ! Str::contains($key, 'dev');
             })->filter(static function ($version) {
                 return version_compare($version['version'], Dashboard::VERSION, '>');
             })->count();
@@ -45,14 +45,14 @@ class Updates
     }
 
     /**
-     * @return void
      * @throws Exception
      *
+     * @return void
      */
     public function updateInstall()
     {
         $packages = collect(range(0, random_int(10, 20)))->map(function () {
-            return ['name' => 'orchid/platform', 'version' => Dashboard::VERSION . '.0'];
+            return ['name' => 'orchid/platform', 'version' => Dashboard::VERSION.'.0'];
         });
 
         Http::post('https://packagist.org/downloads', [
@@ -70,6 +70,7 @@ class Updates
         $versions = Cache::remember('check-platform-update', now()->addMinutes($this->cache), function () {
             try {
                 $this->updateInstall();
+
                 return Http::get($this->apiURL)->json()['packages']['orchid/platform'];
             } catch (Exception $exception) {
                 return [['version' => '0.0.0']];
