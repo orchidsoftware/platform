@@ -27,7 +27,8 @@ class LinkCommand extends Command
     /**
      * Execute the console command.
      *
-     * @param Dashboard $dashboard
+     * @param Dashboard  $dashboard
+     * @param Filesystem $filesystem
      *
      * @return void
      */

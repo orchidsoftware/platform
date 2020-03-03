@@ -7,7 +7,7 @@ namespace Orchid\Platform;
 use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
 class Updates
@@ -36,7 +36,7 @@ class Updates
     {
         $newReleases = $this->requestVersion()
             ->filter(static function ($version, $key) {
-                return ! Str::contains($key, 'dev');
+                return !Str::contains($key, 'dev');
             })->filter(static function ($version) {
                 return version_compare($version['version'], Dashboard::VERSION, '>');
             })->count();
@@ -45,33 +45,19 @@ class Updates
     }
 
     /**
+     * @return void
      * @throws Exception
      *
-     * @return void
      */
     public function updateInstall()
     {
-        $packages = [];
+        $packages = collect(range(0, random_int(10, 20)))->map(function () {
+            return ['name' => 'orchid/platform', 'version' => Dashboard::VERSION . '.0'];
+        });
 
-        for ($i = 0, $max = random_int(10, 20); $i < $max; $i++) {
-            $packages[] = ['name' => 'orchid/platform', 'version' => Dashboard::VERSION.'.0'];
-        }
-
-        $content = json_encode([
+        Http::post('https://packagist.org/downloads', [
             'downloads' => $packages,
         ]);
-
-        $curl = curl_init('https://packagist.org/downloads/');
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-type: application/json']);
-        curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
-        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 0);
-        curl_setopt($curl, CURLOPT_TIMEOUT, 6); //timeout in seconds
-        curl_exec($curl);
-        curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        curl_close($curl);
     }
 
     /**
@@ -81,16 +67,14 @@ class Updates
      */
     public function requestVersion(): Collection
     {
-        try {
-            $versions = Cache::remember('check-platform-update', now()->addMinutes($this->cache), function () {
+        $versions = Cache::remember('check-platform-update', now()->addMinutes($this->cache), function () {
+            try {
                 $this->updateInstall();
-
-                return json_decode(file_get_contents($this->apiURL), true)['packages']['orchid/platform'];
-            });
-        } catch (Exception $exception) {
-            Log::alert($exception->getMessage());
-            $versions = [['version' => '0.0.0']];
-        }
+                return Http::get($this->apiURL)->json()['packages']['orchid/platform'];
+            } catch (Exception $exception) {
+                return [['version' => '0.0.0']];
+            }
+        });
 
         return collect($versions)->reverse();
     }

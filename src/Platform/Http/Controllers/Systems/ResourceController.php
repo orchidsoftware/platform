@@ -34,6 +34,7 @@ class ResourceController
      * ResourceController constructor.
      *
      * @param MimeTypes $mimeTypes
+     * @param Finder    $finder
      */
     public function __construct(MimeTypes $mimeTypes, Finder $finder)
     {
