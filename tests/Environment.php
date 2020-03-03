@@ -7,6 +7,7 @@ namespace Orchid\Tests;
 use DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator;
 use DaveJamesMiller\Breadcrumbs\BreadcrumbsManager;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
+use Orchestra\Testbench\Dusk\Options;
 use Orchid\Database\Seeds\OrchidDatabaseSeeder;
 use Orchid\Platform\Models\User;
 use Orchid\Platform\Providers\FoundationServiceProvider;
@@ -29,9 +30,10 @@ trait Environment
     {
         parent::setUp();
 
+        $this->artisan('db:wipe');
         $this->loadLaravelMigrations();
         $this->loadMigrationsFrom(realpath('./database/migrations'));
-        $this->artisan('migrate', ['--database' => 'orchid']);
+        $this->artisan('orchid:install');
 
         $this->withFactories(Dashboard::path('database/factories'));
 
@@ -44,6 +46,10 @@ trait Environment
             'email'    => 'admin@admin.com',
             'password' => 'password',
         ]);
+
+        if (env('GITHUB_TOKEN') !== null) {
+            Options::withoutUI();
+        }
     }
 
     /**
