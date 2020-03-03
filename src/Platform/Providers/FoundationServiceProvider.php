@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
 use Laravel\Ui\UiCommand;
+use Laravel\Ui\UiServiceProvider;
 use Orchid\Platform\Commands\AdminCommand;
 use Orchid\Platform\Commands\ChartCommand;
 use Orchid\Platform\Commands\FilterCommand;
@@ -210,6 +211,7 @@ class FoundationServiceProvider extends ServiceProvider
     public function provides(): array
     {
         return [
+            UiServiceProvider::class,
             ScoutServiceProvider::class,
             ActiveServiceProvider::class,
             RouteServiceProvider::class,
