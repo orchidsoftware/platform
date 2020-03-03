@@ -45,6 +45,9 @@ abstract class TestBrowserCase extends TestCase
         $this->setEnvUp();
         $this->artisan('migrate', ['--database' => 'orchid']);
         $this->artisan('orchid:install');
+
+        $this->refreshApplication();
+        $this->setEnvUp();
     }
 
     /**
