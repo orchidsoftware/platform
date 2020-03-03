@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Presets;
 
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Foundation\Console\Presets\Preset;
+use Laravel\Ui\Presets\Preset;
 
 class Orchid extends Preset
 {

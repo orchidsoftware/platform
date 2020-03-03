@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Illuminate\Foundation\Console\PresetCommand;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
+use Laravel\Ui\UiCommand;
+use Laravel\Ui\UiServiceProvider;
 use Orchid\Platform\Commands\AdminCommand;
 use Orchid\Platform\Commands\ChartCommand;
 use Orchid\Platform\Commands\FilterCommand;
@@ -210,6 +211,7 @@ class FoundationServiceProvider extends ServiceProvider
     public function provides(): array
     {
         return [
+            UiServiceProvider::class,
             ScoutServiceProvider::class,
             ActiveServiceProvider::class,
             RouteServiceProvider::class,
@@ -253,7 +255,8 @@ class FoundationServiceProvider extends ServiceProvider
         /*
          * Adds Orchid source preset to Laravel's default preset command.
          */
-        PresetCommand::macro('orchid-source', static function (PresetCommand $command) {
+
+        UiCommand::macro('orchid-source', static function (UiCommand $command) {
             $command->call('vendor:publish', [
                 '--provider' => self::class,
                 '--tag'      => 'orchid-assets',
@@ -264,10 +267,11 @@ class FoundationServiceProvider extends ServiceProvider
             $command->warn('Please run "npm install && npm run dev" to compile your fresh scaffolding.');
             $command->info('Orchid scaffolding installed successfully.');
         });
+
         /*
          * Adds Orchid preset to Laravel's default preset command.
          */
-        PresetCommand::macro('orchid', static function (PresetCommand $command) {
+        UiCommand::macro('orchid', static function (UiCommand $command) {
             Orchid::install();
             $command->warn('Please run "npm install && npm run dev" to compile your fresh scaffolding.');
             $command->warn("After that, You need to add this line to AppServiceProvider's register method:");

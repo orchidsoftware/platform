@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Presets;
 
-use Illuminate\Foundation\Console\Presets\Preset as ConsolePreset;
+use Laravel\Ui\Presets\Preset;
 use Orchid\Platform\Dashboard;
 
-class Source extends ConsolePreset
+class Source extends Preset
 {
     /**
      * This pattern should be in the file, part of which should be exported.

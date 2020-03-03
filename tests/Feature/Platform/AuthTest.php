@@ -14,8 +14,8 @@ class AuthTest extends TestFeatureCase
 
         $response
             ->assertOk()
-            ->assertSee('type="email"')
-            ->assertSee('type="password"');
+            ->assertSee('type="email"', false)
+            ->assertSee('type="password"', false);
     }
 
     public function testRouteDashboardLoginAuth()
@@ -60,8 +60,8 @@ class AuthTest extends TestFeatureCase
         $response = $this->get(route('platform.password.request'));
 
         $response->assertOk()
-            ->assertSee('type="email"')
-            ->assertDontSee('type="password"');
+            ->assertSee('type="email"', false)
+            ->assertDontSee('type="password"', false);
     }
 
     public function testRouteDashboardPasswordReset()
@@ -69,9 +69,9 @@ class AuthTest extends TestFeatureCase
         $response = $this->get(route('platform.password.reset', '11111'));
 
         $response->assertOk()
-            ->assertSee('type="email"')
-            ->assertSee('type="password"')
-            ->assertSee('"password_confirmation"');
+            ->assertSee('type="email"', false)
+            ->assertSee('type="password"', false)
+            ->assertSee('"password_confirmation"', false);
     }
 
     public function testRouteDashboardPasswordResetAuth()
