@@ -33,8 +33,8 @@
                    class="d-none">
         </div>
 
-        <input class="picture-path"
-               type="hidden"
+        <input class="picture-path d-none"
+               type="text"
                data-target="fields--picture.source"
             @attributes($attributes)
         >
