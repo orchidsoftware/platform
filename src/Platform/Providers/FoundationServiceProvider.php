@@ -73,12 +73,8 @@ class FoundationServiceProvider extends ServiceProvider
      */
     protected function registerDatabase(): self
     {
-        $path = Dashboard::path('database/migrations');
-
-        $this->loadMigrationsFrom($path);
-
         $this->publishes([
-            $path => database_path('migrations'),
+            Dashboard::path('database/migrations') => database_path('migrations'),
         ], 'migrations');
 
         return $this;
