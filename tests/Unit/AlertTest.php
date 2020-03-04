@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
+use Orchid\Support\Color;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Toast;
 use Orchid\Tests\TestUnitCase;
@@ -64,7 +65,7 @@ class AlertTest extends TestUnitCase
 
     public function testShouldFlashViewAlert()
     {
-        Alert::view('exemplar::alert', 'info', [
+        Alert::view('exemplar::alert', Color::INFO(), [
             'name' => 'Alexandr',
         ]);
 

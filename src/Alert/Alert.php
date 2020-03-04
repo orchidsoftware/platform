@@ -13,26 +13,6 @@ use Orchid\Support\Color;
 class Alert
 {
     /**
-     * @deprecated
-     */
-    public const INFO = 'info';
-
-    /**
-     * @deprecated
-     */
-    public const SUCCESS = 'success';
-
-    /**
-     * @deprecated
-     */
-    public const ERROR = 'danger';
-
-    /**
-     * @deprecated
-     */
-    public const WARNING = 'warning';
-
-    /**
      * @var string
      */
     public const SESSION_MESSAGE = 'flash_notification.message';
@@ -75,16 +55,16 @@ class Alert
      * Flash a general message.
      *
      * @param string $message
-     * @param string $level
+     * @param Color  $level
      *
      * @return Alert
      */
-    public function message(string $message, string $level = null): self
+    public function message(string $message, Color $level = null): self
     {
-        $level = $level ?? (string) Color::INFO();
+        $level = $level ?? Color::INFO();
 
         $this->session->flash(static::SESSION_MESSAGE, $message);
-        $this->session->flash(static::SESSION_LEVEL, $level);
+        $this->session->flash(static::SESSION_LEVEL, (string) $level);
 
         return $this;
     }
@@ -98,7 +78,7 @@ class Alert
      */
     public function success(string $message): self
     {
-        $this->message($message, (string) Color::SUCCESS());
+        $this->message($message, Color::SUCCESS());
 
         return $this;
     }
@@ -112,7 +92,7 @@ class Alert
      */
     public function error(string $message): self
     {
-        $this->message($message, (string) Color::ERROR());
+        $this->message($message, Color::ERROR());
 
         return $this;
     }
@@ -126,7 +106,7 @@ class Alert
      */
     public function warning(string $message): self
     {
-        $this->message($message, (string) Color::WARNING());
+        $this->message($message, Color::WARNING());
 
         return $this;
     }
@@ -135,18 +115,18 @@ class Alert
      * Flash a view message.
      *
      * @param string $template
-     * @param string $level
+     * @param Color  $level
      * @param array  $data
      *
      * @throws \Throwable
      *
      * @return Alert
      */
-    public function view(string $template, string $level = self::INFO, array $data = []): self
+    public function view(string $template, Color $level = null, array $data = []): self
     {
         $message = view($template, $data)->render();
 
-        $this->message($message, $level);
+        $this->message($message, $level ?? Color::INFO());
 
         return $this;
     }

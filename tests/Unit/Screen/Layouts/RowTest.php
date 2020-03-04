@@ -25,18 +25,4 @@ class RowTest extends TestUnitCase
 
         $this->assertStringContainsString('Alexandr Chernyaev', $html);
     }
-
-    /**
-     * @throws \Throwable
-     */
-    public function testWith()
-    {
-        $layout = Layout::rows([
-            Input::make('name'),
-        ])->with(10);
-
-        $html = $layout->build(new Repository())->withErrors([])->render();
-
-        $this->assertStringContainsString('10%', $html);
-    }
 }

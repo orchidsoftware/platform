@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Closure;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 
@@ -68,23 +67,9 @@ class TD
     protected $column;
 
     /**
-     * @deprecated
-     *
-     * @var string
-     */
-    protected $asyncRoute;
-
-    /**
      * @var string
      */
     protected $align = 'left';
-
-    /**
-     * @deprecated
-     *
-     * @var bool
-     */
-    protected $locale = false;
 
     /**
      * Displays whether the user can hide
@@ -141,20 +126,6 @@ class TD
     }
 
     /**
-     * @deprecated
-     *
-     * Set current columns is multi language.
-     *
-     * @return TD
-     */
-    public function locale(): self
-    {
-        $this->locale = true;
-
-        return $this;
-    }
-
-    /**
      * @param string $filter
      *
      * @return TD
@@ -189,45 +160,6 @@ class TD
     }
 
     /**
-     * @deprecated Use Link class
-     *
-     * @param string      $route
-     * @param mixed       $options
-     * @param string|null $text
-     *
-     * @return TD
-     */
-    public function link(string $route, $options, string $text = null): self
-    {
-        $this->render(static function ($datum) use ($route, $options, $text) {
-            $attributes = [];
-            $options = Arr::wrap($options);
-
-            foreach ($options as $option) {
-                if (method_exists($datum, 'getContent')) {
-                    $attributes[] = $datum->getContent($option);
-                    continue;
-                }
-
-                $attributes[] = $datum->getAttribute($option);
-            }
-
-            if (! is_null($text)) {
-                $text = $datum->getContent($text);
-                $text = $text ?? '—';
-            }
-
-            return view('platform::partials.td.link', [
-                'route'      => $route,
-                'attributes' => $attributes,
-                'text'       => $text,
-            ]);
-        });
-
-        return $this;
-    }
-
-    /**
      * @param Closure $closure
      *
      * @return TD
@@ -240,46 +172,6 @@ class TD
     }
 
     /**
-     * @deprecated Use ModalToggle class
-     *
-     * @param string       $modal
-     * @param string       $method
-     * @param string|array $options
-     * @param string|null  $text
-     *
-     * @return TD
-     */
-    public function loadModalAsync(string $modal, string $method, $options, string $text = null): self
-    {
-        $this->render(function ($datum) use ($modal, $method, $options, $text) {
-            $attributes = [];
-            $options = Arr::wrap($options);
-
-            foreach ($options as $option) {
-                if (method_exists($datum, 'getContent')) {
-                    $attributes[] = $datum->getContent($option);
-                    continue;
-                }
-
-                $attributes[] = $datum->getAttribute($option);
-            }
-
-            $text = $datum->getContent($text) ?: $text;
-
-            return view('platform::partials.td.async', [
-                'modal'      => $modal,
-                'attributes' => $attributes,
-                'text'       => $text,
-                'method'     => $method,
-                'title'      => $this->title,
-                'route'      => $this->asyncRoute,
-            ]);
-        });
-
-        return $this;
-    }
-
-    /**
      * @param string $align
      *
      * @return $this
@@ -287,20 +179,6 @@ class TD
     public function align(string $align): self
     {
         $this->align = $align;
-
-        return $this;
-    }
-
-    /**
-     * @deprecated
-     *
-     * @param string $route
-     *
-     * @return $this
-     */
-    public function asyncRoute(string $route): self
-    {
-        $this->asyncRoute = $route;
 
         return $this;
     }

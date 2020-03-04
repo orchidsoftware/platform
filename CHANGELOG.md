@@ -4,13 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 6.12.0 - 2020-03-04
+## 7.0.0 - 2020-03-04
 
 ### Added
 - Support Laravel 7.0
 
 ### Fixed
 - Not found resource for Windows [#1056](https://github.com/orchidsoftware/platform/pull/1056)
+
+### Removed
+- Methods `asyncParameter`, `loadModalAsync` for `ModalToggle` action
+- Color constant for `Alert`
+- `DashboardNotification` replace `DashboardChannel` and `DashboardMessage`
+- Property `width` for `Rows`
+- Methods `locale`, `link`, `loadModalAsync`, `asyncRoute` for `TD`
+- `PLATFORM_PATH` Constant 
+- `AccessMiddleware` replace `Access`
 
 ## 6.11.1 - 2020-03-03
 

@@ -25,13 +25,6 @@ abstract class Rows extends Base
     protected $query;
 
     /**
-     * @deprecated
-     *
-     * @var int
-     */
-    protected $with = 100;
-
-    /**
      * Base constructor.
      *
      * @param Base[] $layouts
@@ -58,23 +51,8 @@ abstract class Rows extends Base
         $form = new Builder($this->fields(), $repository);
 
         return view($this->template, [
-            'with' => $this->with,
             'form' => $form->generateForm(),
         ]);
-    }
-
-    /**
-     * @deprecated
-     *
-     * @param int $with
-     *
-     * @return $this
-     */
-    public function with(int $with = 100): self
-    {
-        $this->with = $with;
-
-        return $this;
     }
 
     /**
