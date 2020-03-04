@@ -6,7 +6,6 @@ namespace Orchid\Tests;
 
 use Faker\Factory as Faker;
 use Faker\Generator;
-use Orchestra\Testbench\Dusk\Options;
 use Orchestra\Testbench\Dusk\TestCase;
 use Orchid\Platform\Models\User;
 
@@ -16,7 +15,6 @@ use Orchid\Platform\Models\User;
 abstract class TestBrowserCase extends TestCase
 {
     use Environment {
-        Environment::setUp as setEnvUp;
         Environment::getEnvironmentSetUp as getEnvSetUp;
     }
 
@@ -31,26 +29,6 @@ abstract class TestBrowserCase extends TestCase
     private $faker;
 
     /**
-     * Setup the test environment.
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        if (env('GITHUB_TOKEN') !== null) {
-            Options::withoutUI();
-        }
-
-        $this->faker = Faker::create();
-        $this->setEnvUp();
-        $this->artisan('migrate', ['--database' => 'orchid']);
-        $this->artisan('orchid:install');
-
-        $this->refreshApplication();
-        $this->setEnvUp();
-    }
-
-    /**
      * Define environment setup.
      *
      * @param \Illuminate\Foundation\Application $app
@@ -58,6 +36,7 @@ abstract class TestBrowserCase extends TestCase
     protected function getEnvironmentSetUp($app)
     {
         $this->getEnvSetUp($app);
+
         config()->set('database.connections.orchid', [
             'driver'                  => 'sqlite',
             'url'                     => env('DATABASE_URL'),
@@ -72,7 +51,7 @@ abstract class TestBrowserCase extends TestCase
      */
     protected function createAdminUser()
     {
-        if (is_null($this->user)) {
+        if ($this->user === null) {
             $this->user = factory(User::class)->create();
         }
 
@@ -84,6 +63,10 @@ abstract class TestBrowserCase extends TestCase
      */
     protected function faker()
     {
+        if ($this->faker === null) {
+            $this->faker = Faker::create();
+        }
+
         return $this->faker;
     }
 }
