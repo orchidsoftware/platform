@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 6.12.0 - 2020-03-04
 
 ### Added
-- Support Laravel 6.0
+- Support Laravel 7.0
 
 ### Fixed
 - Not found resource for Windows [#1056](https://github.com/orchidsoftware/platform/pull/1056)
