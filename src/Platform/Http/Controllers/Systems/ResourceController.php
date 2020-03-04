@@ -69,7 +69,8 @@ class ResourceController
 
         $iterator = tap($resources->getIterator())->rewind();
 
-        $path = DIRECTORY_SEPARATOR === '\\' ? str_replace('/', DIRECTORY_SEPARATOR, $path) : $path;
+        /* Changing the separator for Windows operating systems */
+        $path = str_replace('/', DIRECTORY_SEPARATOR, $path);
 
         $this->resource = collect($iterator)
             ->filter(static function (SplFileInfo $file) use ($path) {
