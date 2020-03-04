@@ -10,7 +10,7 @@
 
     @isset($badge)
         <span class="col-auto no-padder">
-                <b class="badge {{$badge['class']}}">{{$badge['data']()}}</b>
+                <b class="badge bg-{{$badge['class']}}">{{$badge['data']()}}</b>
         </span>
     @endisset
 </a>
