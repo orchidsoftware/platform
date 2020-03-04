@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Hash;
 use Orchid\Access\UserAccess;
 use Orchid\Access\UserInterface;
 use Orchid\Filters\Filterable;
-use Orchid\Platform\Notifications\DashboardNotification;
 use Orchid\Platform\Notifications\ResetPassword;
 use Orchid\Screen\AsSource;
 use Orchid\Support\Facades\Dashboard;
@@ -143,12 +142,7 @@ class User extends Authenticatable implements UserInterface
             'email'       => $email,
             'password'    => Hash::make($password),
             'permissions' => $permissions,
-        ])->notify(new DashboardNotification([
-            'title'   => "Welcome {$name}",
-            'message' => 'You can find the latest news of the project on the website',
-            'action'  => route('platform.main'),
-            'type'    => DashboardNotification::INFO,
-        ]));
+        ]);
     }
 
     /**

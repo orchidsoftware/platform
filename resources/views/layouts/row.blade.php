@@ -1,3 +1,3 @@
-<div data-async @if($with !== 100) style="max-width: {{$with}}%" @endif>
+<div data-async>
     {!! $form ?? '' !!}
 </div>

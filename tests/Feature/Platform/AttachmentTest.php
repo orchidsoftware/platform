@@ -52,7 +52,7 @@ class AttachmentTest extends TestFeatureCase
 
     public function testAttachmentHttpDestroy()
     {
-        /** @var $response \Illuminate\Foundation\Testing\TestResponse */
+        /** @var $response \Illuminate\Testing\TestResponse */
         $response = $this
             ->actingAs($this->createAdminUser())
             ->post(route('platform.systems.files.upload'), [
@@ -71,7 +71,7 @@ class AttachmentTest extends TestFeatureCase
 
     public function testAttachmentHttpGetFile()
     {
-        /** @var $response \Illuminate\Foundation\Testing\TestResponse */
+        /** @var $response \Illuminate\Testing\TestResponse */
         $response = $this
             ->actingAs($this->createAdminUser())
             ->post(route('platform.systems.files.upload'), [
@@ -98,7 +98,7 @@ class AttachmentTest extends TestFeatureCase
 
     public function testAttachmentHttpUpdate()
     {
-        /** @var $response \Illuminate\Foundation\Testing\TestResponse */
+        /** @var $response \Illuminate\Testing\TestResponse */
         $response = $this
             ->actingAs($this->createAdminUser())
             ->post(route('platform.systems.files.upload'), [
