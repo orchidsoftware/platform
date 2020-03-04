@@ -14,10 +14,9 @@
         @endif
     >
         @isset($badge)
-            <b class="badge {{$badge['class']}} pull-right mr-3">{{$badge['data']()}}</b>
+            <b class="badge bg-{{$badge['class']}} pull-right mr-3">{{$badge['data']()}}</b>
         @endisset
-        <i class="{{$icon}} mr-2"></i>
-        {{ __($label) }}
+        <i class="{{$icon}} mr-2"></i>{{ __($label) }}
     </a>
 </li>
 @if($childs)

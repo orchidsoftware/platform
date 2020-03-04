@@ -254,7 +254,7 @@ class ItemMenu
     public function badge(Closure $badge, Color $color = null): self
     {
         $this->badge = [
-            'class' => 'bg-'.$color ?? Color::PRIMARY(),
+            'class' => $color ?? Color::PRIMARY(),
             'data'  => $badge,
         ];
 
