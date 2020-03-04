@@ -49,7 +49,7 @@ return [
     | Login page
     |--------------------------------------------------------------------------
     |
-    | The property controls the display / hide of the page.
+    | The property controls the display / hide from the page.
     | The authorization page has basic properties and does not have the
     | ability to change, use the command to change: `php artisan ui:auth`
     |

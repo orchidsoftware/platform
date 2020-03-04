@@ -10,56 +10,6 @@ use Orchid\Support\Color;
 class Action extends Field implements ActionContract
 {
     /**
-     * @deprecated
-     */
-    public const DEFAULT = 'default';
-
-    /**
-     * @deprecated
-     */
-    public const SUCCESS = 'success';
-
-    /**
-     * @deprecated
-     */
-    public const WARNING = 'warning';
-
-    /**
-     * @deprecated
-     */
-    public const DANGER = 'danger';
-
-    /**
-     * @deprecated
-     */
-    public const INFO = 'info';
-
-    /**
-     * @deprecated
-     */
-    public const PRIMARY = 'primary';
-
-    /**
-     * @deprecated
-     */
-    public const SECONDARY = 'secondary';
-
-    /**
-     * @deprecated
-     */
-    public const LIGHT = 'light';
-
-    /**
-     * @deprecated
-     */
-    public const DARK = 'dark';
-
-    /**
-     * @deprecated
-     */
-    public const LINK = 'link';
-
-    /**
      * Override the form view.
      *
      * @var string
@@ -93,13 +43,13 @@ class Action extends Field implements ActionContract
     }
 
     /**
-     * @param Color|string $visual
+     * @param Color $visual
      *
      * @throws \ReflectionException
      *
      * @return static
      */
-    public function type($visual): self
+    public function type(Color $visual): self
     {
         $reflectionClass = new \ReflectionClass(Color::class);
 

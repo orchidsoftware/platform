@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform;
 
 use Exception;
+use GuzzleHttp\Client;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
@@ -49,7 +50,7 @@ class Updates
      *
      * @return void
      */
-    public function updateInstall()
+    private function updateInstall()
     {
         $packages = collect(range(0, random_int(10, 20)))->map(function () {
             return ['name' => 'orchid/platform', 'version' => Dashboard::VERSION.'.0'];
@@ -61,6 +62,23 @@ class Updates
     }
 
     /**
+     * @throws \Throwable
+     *
+     * @return array|mixed
+     */
+    private function getVersion()
+    {
+        try {
+            throw_unless(class_exists(Client::class), new Exception("Class 'GuzzleHttp\Client' not found"));
+            $this->updateInstall();
+
+            return Http::get($this->apiURL)->json()['packages']['orchid/platform'];
+        } catch (Exception | \Throwable $exception) {
+            return [['version' => Dashboard::VERSION]];
+        }
+    }
+
+    /**
      * Make a request for Packagist API.
      *
      * @return Collection
@@ -68,13 +86,7 @@ class Updates
     public function requestVersion(): Collection
     {
         $versions = Cache::remember('check-platform-update', now()->addMinutes($this->cache), function () {
-            try {
-                $this->updateInstall();
-
-                return Http::get($this->apiURL)->json()['packages']['orchid/platform'];
-            } catch (Exception $exception) {
-                return [['version' => '0.0.0']];
-            }
+            $this->getVersion();
         });
 
         return collect($versions)->reverse();

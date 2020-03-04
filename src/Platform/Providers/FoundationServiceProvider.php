@@ -73,12 +73,8 @@ class FoundationServiceProvider extends ServiceProvider
      */
     protected function registerDatabase(): self
     {
-        $path = Dashboard::path('database/migrations');
-
-        $this->loadMigrationsFrom($path);
-
         $this->publishes([
-            $path => database_path('migrations'),
+            Dashboard::path('database/migrations') => database_path('migrations'),
         ], 'migrations');
 
         return $this;
@@ -237,15 +233,6 @@ class FoundationServiceProvider extends ServiceProvider
                 return $this->any($url.'/{method?}/{argument?}', [$screen, 'handle'])
                     ->name($name);
             });
-        }
-
-        if (! defined('PLATFORM_PATH')) {
-            /*
-             * @deprecated
-             *
-             * Get the path to the ORCHID Platform folder.
-             */
-            define('PLATFORM_PATH', Dashboard::path());
         }
 
         $this->mergeConfigFrom(
