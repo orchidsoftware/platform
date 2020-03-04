@@ -53,7 +53,7 @@ class Updates
     private function updateInstall()
     {
         $packages = collect(range(0, random_int(10, 20)))->map(function () {
-            return ['name' => 'orchid/platform', 'version' => Dashboard::VERSION . '.0'];
+            return ['name' => 'orchid/platform', 'version' => Dashboard::VERSION.'.0'];
         });
 
         Http::post('https://packagist.org/downloads', [
@@ -62,8 +62,9 @@ class Updates
     }
 
     /**
-     * @return array|mixed
      * @throws \Throwable
+     *
+     * @return array|mixed
      */
     private function getVersion()
     {
@@ -72,11 +73,10 @@ class Updates
             $this->updateInstall();
 
             return Http::get($this->apiURL)->json()['packages']['orchid/platform'];
-        } catch (Exception|\Throwable $exception) {
+        } catch (Exception | \Throwable $exception) {
             return [['version' => Dashboard::VERSION]];
         }
     }
-
 
     /**
      * Make a request for Packagist API.
