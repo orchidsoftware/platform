@@ -35,7 +35,7 @@ abstract class TestBrowserCase extends TestCase
      */
     protected function getEnvironmentSetUp($app)
     {
-        parent::getEnvironmentSetUp($app);
+        $this->getEnvSetUp($app);
 
         config()->set('database.connections.orchid', [
             'driver'                  => 'sqlite',

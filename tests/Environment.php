@@ -30,10 +30,16 @@ trait Environment
     {
         parent::setUp();
 
+        /* Install application */
         $this->artisan('db:wipe');
         $this->loadLaravelMigrations();
         $this->loadMigrationsFrom(realpath('./database/migrations'));
         $this->artisan('orchid:install');
+
+        /* Refresh application for route/breadcrumbs/orchid provider */
+        $this->refreshApplication();
+        $this->loadLaravelMigrations();
+        $this->loadMigrationsFrom(realpath('./database/migrations'));
 
         $this->withFactories(Dashboard::path('database/factories'));
 
