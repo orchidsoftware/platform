@@ -11,7 +11,7 @@ use Orchid\Platform\Dashboard as DashboardKernel;
 /**
  * Class Dashboard.
  *
- * @method Collection getGlobalSearch()
+ * @method Collection getSearch()
  * @method static Collection getPermission()
  * @method static string version()
  * @method static string prefix(string $path = '')

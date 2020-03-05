@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -48,7 +47,7 @@ class Dashboard
     /**
      * @var Collection
      */
-    private $globalSearch;
+    private $search;
 
     /**
      * @var Collection
@@ -66,7 +65,7 @@ class Dashboard
             'removed' => collect(),
         ]);
         $this->resources = collect();
-        $this->globalSearch = collect();
+        $this->search = collect();
         $this->publicDirectories = collect();
     }
 
@@ -197,13 +196,13 @@ class Dashboard
     }
 
     /**
-     * @param Model[] $value
+     * @param string $model
      *
      * @return $this
      */
-    public function registerGlobalSearch(array $value): self
+    public function registerSearch(string $model): self
     {
-        $this->globalSearch = $this->globalSearch->merge($value);
+        $this->search = $this->search->merge($model);
 
         return $this;
     }
@@ -242,10 +241,10 @@ class Dashboard
     /**
      * @return Collection
      */
-    public function getGlobalSearch(): Collection
+    public function getSearch(): Collection
     {
-        return $this->globalSearch->transform(static function ($value) {
-            return is_object($value) ? $value : new $value();
+        return $this->search->transform(static function ($model) {
+            return is_object($model) ? $model : app()->make($model);
         });
     }
 

@@ -3,7 +3,7 @@
         <div class="col-sm-5">
             @if($paginator instanceof \Illuminate\Contracts\Pagination\LengthAwarePaginator)
 
-                @if(\Orchid\Screen\TD::isShowVisibleColumns($columns))
+                @if(isset($columns) && \Orchid\Screen\TD::isShowVisibleColumns($columns))
                     <div class="btn-group dropup d-inline-block">
                         <button type="button"
                                 class="btn btn-sm btn-link dropdown-toggle p-0 m-0"

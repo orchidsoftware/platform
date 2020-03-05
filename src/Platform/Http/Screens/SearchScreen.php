@@ -12,6 +12,7 @@ use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Orchid\Platform\Http\Layouts\SearchLayout;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Contracts\Searchable;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Dashboard;
@@ -54,12 +55,17 @@ class SearchScreen extends Screen
             'query' => $query,
         ]);
 
-        $searchModels = Dashboard::getGlobalSearch();
+        $searchModels = Dashboard::getSearch();
 
         $model = $this->getSearchModel($searchModels);
 
         /** @var LengthAwarePaginator $results */
         $results = $model->searchQuery($query)->paginate();
+
+        $results->getCollection()
+            ->transform(static function (Model $model) {
+                return $model->presenter();
+            });
 
         return [
             'query'   => $query,
@@ -116,14 +122,32 @@ class SearchScreen extends Screen
      */
     public function compact(string $query = null)
     {
-        $results = Dashboard::getGlobalSearch()
-            ->map(function (Model $model) use ($query) {
+
+        /** @var Searchable[] $results */
+        $results = Dashboard::getSearch()
+            ->transform(function (Model $model) use ($query) {
+
+                /** @var Searchable $presenter */
+                $presenter = optional($model)->presenter();
+
+                throw_unless(is_a($presenter, Searchable::class),
+                    new \Exception("
+                        The presenter must have an interface 'Orchid\Screen\Contracts\Searchable'
+                        for model " . get_class($model)
+                    ));
+
+                $label = $presenter->label();
 
                 /** @var LengthAwarePaginator $result */
-                $result = $model->searchQuery($query)->paginate(3);
-                $label = $model->searchLabel();
+                $result = $model->searchQuery($query)
+                    ->paginate($model->perSearchShow);
 
-                if ($result->total() === 0) {
+                $result->getCollection()
+                    ->transform(static function (Model $model) {
+                        return $model->presenter();
+                    });
+
+                if ($result->isEmpty()) {
                     return;
                 }
 

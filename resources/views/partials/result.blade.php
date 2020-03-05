@@ -9,23 +9,21 @@
 <div class="row">
     @forelse($results as $item)
 
-        <a href="{{$item->searchUrl()}}" class="block wrapper-sm dropdown-item" style="font-size: 0.85em;">
+        <a href="{{$item->url()}}" class="block wrapper-sm dropdown-item" style="font-size: 0.85em;">
 
-            @empty(!$item->searchAvatar())
+            @empty(!$item->image())
                 <span class="pull-left thumb-xs avatar m-r-sm">
-                  <img src="{{$item->searchAvatar()}}" alt="{{$item->searchTitle()}}">
-                  {{-- <i class="on b-white bottom"></i> --}}
+                  <img src="{{$item->image()}}" alt="{{$item->title()}}">
                 </span>
             @endempty
 
             <span class="clear">
-                <span class="text-ellipsis">{{$item->searchTitle()}}</span>
+                <span class="text-ellipsis">{{$item->title()}}</span>
                 <small class="text-muted clear text-ellipsis">
-                    {{$item->searchSubTitle()}}
+                    {{$item->subTitle()}}
                 </small>
             </span>
         </a>
-
     @empty
 
         <div class="text-center bg-white pt-5 pb-5 w-full">
@@ -36,13 +34,12 @@
 
             {{ __('Try changing the query or type.') }}
         </div>
-
-
     @endforelse
 
-    @includeWhen($results instanceof \Illuminate\Contracts\Pagination\Paginator && $results->total() > 0,
+    @includeWhen($results instanceof \Illuminate\Contracts\Pagination\Paginator && $results->isNotEmpty(),
         'platform::layouts.pagination',
         ['paginator' => $results]
       )
 
 </div>
+

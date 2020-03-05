@@ -304,6 +304,6 @@ class TD
     {
         return collect($columns)->filter(function ($column) {
             return $column->isAllowUserHidden();
-        })->count() > 0;
+        })->isNotEmpty();
     }
 }

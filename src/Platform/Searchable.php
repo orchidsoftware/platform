@@ -12,6 +12,13 @@ trait Searchable
     use ScoutSearchable;
 
     /**
+     * The number of models to return for show compact search result.
+     *
+     * @var int
+     */
+    public $perSearchShow = 3;
+
+    /**
      * @return string
      */
     public function searchLabel(): ?string
