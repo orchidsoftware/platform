@@ -32,9 +32,9 @@ class UserListLayout extends Table
                 ->render(function (User $user) {
                     // Please use Blade templates.
                     // This will be a simple example: view('path', ['user' => $user])
-                    $avatar = e($user->getAvatar());
-                    $name = e($user->getNameTitle());
-                    $sub = e($user->getSubTitle());
+                    $avatar = e($user->presenter()->image());
+                    $name = e($user->presenter()->title());
+                    $sub = e($user->presenter()->subTitle());
                     $route = route('platform.systems.users.edit', $user->id);
 
                     return "<a href='{$route}'>
