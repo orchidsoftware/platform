@@ -70,7 +70,6 @@ class NotificationTest extends TestFeatureCase
             ->post(route('platform.notifications', [$notification->id, 'maskNotification']))
             ->assertRedirect();
 
-
         $notification = $notification->fresh();
         $this->assertTrue($notification->read());
     }
