@@ -57,7 +57,7 @@ class UserListLayout extends Table
                 ->render(function (User $user) {
                     return ModalToggle::make($user->email)
                         ->modal('oneAsyncModal')
-                        ->modalTitle($user->getNameTitle())
+                        ->modalTitle($user->presenter()->title())
                         ->method('saveUser')
                         ->asyncParameters($user->id);
                 }),
