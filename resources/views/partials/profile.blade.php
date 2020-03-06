@@ -2,11 +2,11 @@
     <div class="dropdown col no-padder">
         <a href="#" class="nav-link p-0 v-center" data-toggle="dropdown">
                     <span class="thumb-sm avatar mr-3">
-                        <img src="{{Auth::user()->getAvatar()}}" class="b b-dark bg-light">
+                        <img src="{{Auth::user()->presenter()->image()}}" class="b b-dark bg-light">
                     </span>
             <span style="width:11em;font-size: 0.85em;">
-                <span class="text-ellipsis">{{Auth::user()->getNameTitle()}}</span>
-                <span class="text-muted d-block text-ellipsis">{{Auth::user()->getSubTitle()}}</span>
+                <span class="text-ellipsis">{{Auth::user()->presenter()->title()}}</span>
+                <span class="text-muted d-block text-ellipsis">{{Auth::user()->presenter()->subTitle()}}</span>
             </span>
         </a>
         <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow bg-white">

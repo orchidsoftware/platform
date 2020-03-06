@@ -6,7 +6,7 @@ namespace Orchid\Tests\Feature\Platform;
 
 use Orchid\Platform\Models\User;
 use Orchid\Platform\Notifications\DashboardMessage;
-use Orchid\Tests\Exemplar\App\Notifications\TaskCompleted;
+use Orchid\Tests\App\Notifications\TaskCompleted;
 use Orchid\Tests\TestFeatureCase;
 
 class NotificationTest extends TestFeatureCase

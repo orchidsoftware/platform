@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Tests\Exemplar\App;
+namespace Orchid\Tests\App;
 
 class AjaxRecord
 {

@@ -6,7 +6,7 @@ namespace Orchid\Tests\Unit\Screen;
 
 use Illuminate\Support\Facades\Validator;
 use Orchid\Screen\Layouts\Modal;
-use Orchid\Tests\Exemplar\App\Screens\ModalScreen;
+use Orchid\Tests\App\Screens\ModalScreen;
 use Orchid\Tests\TestUnitCase;
 
 /**

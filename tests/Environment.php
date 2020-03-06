@@ -13,7 +13,8 @@ use Orchid\Platform\Models\User;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
-use Orchid\Tests\Exemplar\ExemplarServiceProvider;
+use Orchid\Tests\App\ExemplarServiceProvider;
+use Sti3bas\ScoutArray\ScoutArrayEngineServiceProvider;
 use Watson\Active\Active;
 
 /**
@@ -75,7 +76,7 @@ trait Environment
             'database' => ':memory:',
             'prefix'   => '',
         ]);
-        $config->set('scout.driver', null);
+        $config->set('scout.driver', 'array');
         $config->set('database.default', 'orchid');
 
         $config->set('breadcrumbs', [
@@ -99,6 +100,7 @@ trait Environment
         return [
             FoundationServiceProvider::class,
             ExemplarServiceProvider::class,
+            ScoutArrayEngineServiceProvider::class,
         ];
     }
 
