@@ -24,5 +24,4 @@ class User extends Authenticatable
             'email',
         ]);
     }
-
 }
