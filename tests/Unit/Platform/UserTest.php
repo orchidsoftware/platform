@@ -23,7 +23,7 @@ class UserTest extends TestUnitCase
     {
         $user = $this->createUser();
 
-        $this->assertEquals($user->name, $user->getNameTitle());
+        $this->assertEquals($user->name, $user->presenter()->title());
     }
 
     /**
@@ -38,7 +38,7 @@ class UserTest extends TestUnitCase
     {
         $user = $this->createUser();
 
-        $this->assertEquals('Administrator', $user->getSubTitle());
+        $this->assertEquals('Administrator', $user->presenter()->subTitle());
     }
 
     public function testLoginAs()

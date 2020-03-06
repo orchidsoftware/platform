@@ -7,7 +7,7 @@ namespace Orchid\Tests\Feature\Platform;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Testing\TestResponse;
 use Orchid\Platform\Models\User;
-use Orchid\Tests\Exemplar\App\EmptyUserModel;
+use Orchid\Tests\App\EmptyUserModel;
 use Orchid\Tests\TestFeatureCase;
 
 class RelationsTest extends TestFeatureCase

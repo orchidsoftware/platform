@@ -47,8 +47,6 @@ class UserPresenter extends Presenter implements Searchable, Personable
      */
     public function image(): ?string
     {
-        $hash = md5(strtolower(trim($this->entity->email)));
-
-        return "https://www.gravatar.com/avatar/$hash";
+        return $this->entity->getAvatar();
     }
 }

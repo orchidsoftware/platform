@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Tests\Exemplar\App\Notifications;
+namespace Orchid\Tests\App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;

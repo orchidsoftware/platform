@@ -101,26 +101,6 @@ class User extends Authenticatable implements UserInterface
     }
 
     /**
-     * Display name.
-     *
-     * @return string
-     */
-    public function getNameTitle(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     * Display sub.
-     *
-     * @return string
-     */
-    public function getSubTitle(): string
-    {
-        return 'Administrator';
-    }
-
-    /**
      * @param string $name
      * @param string $email
      * @param string $password
@@ -143,18 +123,6 @@ class User extends Authenticatable implements UserInterface
             'password'    => Hash::make($password),
             'permissions' => $permissions,
         ]);
-    }
-
-    /**
-     * @throws Exception
-     *
-     * @return string
-     */
-    public function getAvatar()
-    {
-        $hash = md5(strtolower(trim($this->email)));
-
-        return "https://www.gravatar.com/avatar/$hash";
     }
 
     /**
