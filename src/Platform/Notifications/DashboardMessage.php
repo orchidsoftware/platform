@@ -69,13 +69,13 @@ class DashboardMessage extends DatabaseMessage
     }
 
     /**
-     * @param string $type
+     * @param Color $color
      *
      * @return $this
      */
-    public function type(string $type)
+    public function type(Color $color)
     {
-        $this->data['type'] = $type;
+        $this->data['type'] = (string) $color;
 
         return $this;
     }
