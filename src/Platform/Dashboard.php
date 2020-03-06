@@ -196,11 +196,11 @@ class Dashboard
     }
 
     /**
-     * @param string $model
+     * @param array $model
      *
      * @return $this
      */
-    public function registerSearch(string $model): self
+    public function registerSearch(array $model): self
     {
         $this->search = $this->search->merge($model);
 
