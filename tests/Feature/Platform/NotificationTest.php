@@ -9,48 +9,46 @@ use Orchid\Tests\TestFeatureCase;
 
 class NotificationTest extends TestFeatureCase
 {
-   public function testViewNotification()
-   {
-       $user = $this->createAdminUser();
-       $user->notify(new TaskCompleted());
+    public function testViewNotification()
+    {
+        $user = $this->createAdminUser();
+        $user->notify(new TaskCompleted());
 
-       $response = $this
+        $response = $this
            ->actingAs($user)
            ->get(route('platform.notifications'));
 
-       $response
+        $response
            ->assertOk()
            ->assertSee('Task Completed');
-   }
+    }
 
+    public function testMaskAllAsRead()
+    {
+        $user = $this->createAdminUser();
+        $user->notify(new TaskCompleted());
 
-   public function testMaskAllAsRead()
-   {
-       $user = $this->createAdminUser();
-       $user->notify(new TaskCompleted());
-
-       $response = $this
+        $response = $this
            ->actingAs($user)
-           ->post(route('platform.notifications',[
-               'method' => 'read'
+           ->post(route('platform.notifications', [
+               'method' => 'read',
            ]));
 
-       $response->assertDontSee('Mask all as read');
-   }
+        $response->assertDontSee('Mask all as read');
+    }
 
-   public function testRemove()
-   {
-       $user = $this->createAdminUser();
-       $user->notify(new TaskCompleted());
+    public function testRemove()
+    {
+        $user = $this->createAdminUser();
+        $user->notify(new TaskCompleted());
 
-       $response = $this
+        $response = $this
            ->actingAs($user)
            ->post(route('platform.notifications', [
                'method' => 'remove',
            ]));
 
-       $response->assertDontSee('Test remove notification');
-       $response->assertDontSee('Task Completed');
-   }
-
+        $response->assertDontSee('Test remove notification');
+        $response->assertDontSee('Task Completed');
+    }
 }
