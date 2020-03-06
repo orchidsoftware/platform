@@ -4,61 +4,53 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
+use Orchid\Tests\Exemplar\App\Notifications\TaskCompleted;
 use Orchid\Tests\TestFeatureCase;
 
 class NotificationTest extends TestFeatureCase
 {
-    protected function setUp(): void
-    {
-        $this->markTestSkipped('To do');
-    }
-
-    /*
    public function testViewNotification()
    {
-       $this->createNotification('Hello Test');
+       $user = $this->createAdminUser();
+       $user->notify(new TaskCompleted());
 
        $response = $this
-           ->actingAs($this->createAdminUser())
+           ->actingAs($user)
            ->get(route('platform.notifications'));
 
        $response
            ->assertOk()
-           ->assertSee('Hello Test');
+           ->assertSee('Task Completed');
    }
 
 
    public function testMaskAllAsRead()
    {
-       $this->createNotification('Mask all as read');
+       $user = $this->createAdminUser();
+       $user->notify(new TaskCompleted());
 
        $response = $this
-           ->actingAs($this->createAdminUser())
-           ->post(route('platform.notification.read'));
+           ->actingAs($user)
+           ->post(route('platform.notifications',[
+               'method' => 'read'
+           ]));
 
        $response->assertDontSee('Mask all as read');
    }
 
    public function testRemove()
    {
-       $this->createNotification('Test remove notification');
+       $user = $this->createAdminUser();
+       $user->notify(new TaskCompleted());
 
        $response = $this
-           ->actingAs($this->createAdminUser())
-           ->post(route('platform.notification.remove'));
+           ->actingAs($user)
+           ->post(route('platform.notifications', [
+               'method' => 'remove',
+           ]));
 
        $response->assertDontSee('Test remove notification');
+       $response->assertDontSee('Task Completed');
    }
 
-
-    private function createNotification($title = 'test')
-    {
-        $this->createAdminUser()->notify(new DashboardNotification([
-            'title'   => $title,
-            'message' => 'New Test!',
-            'action'  => 'https://orchid.software',
-            'type'    => DashboardNotification::SUCCESS,
-        ]));
-    }
-     */
 }

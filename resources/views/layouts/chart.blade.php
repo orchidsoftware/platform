@@ -8,9 +8,9 @@
      data-screen--chart-height="{{$height}}"
      data-screen--chart-colors="{{$colors}}"
 >
-    <div class="row padder-v">
+    <div class="row py-3">
         <div class="pos-rlt w-full">
-            <div class="top-right pt-1 pr-4"  style="z-index: 1">
+            <div class="top-right pt-1 pr-4" style="z-index: 1">
                 <button class="btn btn-sm btn-link"
                         data-action="screen--chart#export">
                     {{ __('Export') }}

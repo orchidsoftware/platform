@@ -1,4 +1,4 @@
-@empty(!Dashboard::getGlobalSearch()->all())
+@empty(!Dashboard::getSearch()->all())
     <div class="wrapper">
         <div class="dropdown position-relative" data-controller="layouts--search">
             <div class="input-icon">

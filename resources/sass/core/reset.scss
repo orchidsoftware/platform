@@ -757,8 +757,22 @@ dl {
     display: flex;
     justify-content: space-between;
     border-bottom: $border-color;
-    margin: 0;
+    margin: 0.15em 0;
     padding: 0;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAABCAAAAAA+i0toAAAAAnRSTlMA/1uRIrUAAAAMSURBVHheY7j1/z8ABY8C2UtBe8oAAAAASUVORK5CYII=) 0 80% repeat-x;
+
+    dt, dd {
+        margin: 0;
+        background-color: $brand-white;
+    }
+
+    dt {
+        padding-right: 1em;
+    }
+
+    dd {
+        padding-left: 1em;
+    }
 }
 
 .card-text {

@@ -1,31 +1,31 @@
 @forelse($results as $group)
 
-    @empty(!$group['label'])
-        <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs">{{$group['label']}}</div>
-    @endempty
+@empty(!$group['label'])
+    <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs">{{$group['label']}}</div>
+@endempty
 
-    @foreach($group['result'] as $item)
-        <a href="{{$item->searchUrl()}}" class="block wrapper-sm dropdown-item" style="font-size: 0.85em;">
+@foreach($group['result'] as $item)
+    <a href="{{$item->url()}}" class="block wrapper-sm dropdown-item" style="font-size: 0.85em;">
 
-            @empty(!$item->searchAvatar())
-                <span class="pull-left thumb-xs avatar m-r-sm">
-                  <img src="{{$item->searchAvatar()}}" alt="{{$item->searchTitle()}}">
+        @empty(!$item->image())
+            <span class="pull-left thumb-xs avatar m-r-sm">
+                  <img src="{{$item->image()}}" alt="{{$item->title()}}">
                   {{-- <i class="on b-white bottom"></i> --}}
                 </span>
-            @endempty
+        @endempty
 
-            <span class="clear">
-                <span class="text-ellipsis">{{$item->searchTitle()}}</span>
+        <span class="clear">
+                <span class="text-ellipsis">{{$item->title()}}</span>
                 <small class="text-muted clear text-ellipsis">
-                    {{$item->searchSubTitle()}}
+                    {{$item->subTitle()}}
                 </small>
             </span>
-        </a>
-    @endforeach
+    </a>
+@endforeach
 
-    @empty
+@empty
 
-        <p class="ml-3 mr-3 mb-0 text-center">
+    <p class="ml-3 mr-3 mb-0 text-center">
             {{ __('There are no records in this view.') }}
         </p>
 
