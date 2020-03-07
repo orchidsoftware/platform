@@ -10,7 +10,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
-use Orchid\Screen\Contracts\FieldContract;
+use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
 use Throwable;
 
@@ -28,7 +28,7 @@ use Throwable;
  * @method self tabindex($value = true)
  * @method self autocomplete($value = true)
  */
-class Field implements FieldContract
+class Field implements Fieldable
 {
     use CanSee;
 

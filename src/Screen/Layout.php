@@ -9,6 +9,7 @@ use Orchid\Screen\Layouts\Accordion;
 use Orchid\Screen\Layouts\Blank;
 use Orchid\Screen\Layouts\Collapse;
 use Orchid\Screen\Layouts\Columns;
+use Orchid\Screen\Layouts\Component;
 use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Layouts\Rubbers;
@@ -25,11 +26,6 @@ class Layout
     use Macroable;
 
     /**
-     * @var array
-     */
-    public $layouts = [];
-
-    /**
      * @param string                                        $view
      * @param \Illuminate\Contracts\Support\Arrayable|array $data
      *
@@ -38,6 +34,17 @@ class Layout
     public static function view(string $view, $data = []): View
     {
         return new class($view, $data) extends View {
+        };
+    }
+
+    /**
+     * @param string $component
+     *
+     * @return Component
+     */
+    public static function component(string $component): Component
+    {
+        return new class($component) extends Component {
         };
     }
 

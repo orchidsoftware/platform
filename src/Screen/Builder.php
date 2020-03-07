@@ -6,7 +6,7 @@ namespace Orchid\Screen;
 
 use Closure;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Screen\Contracts\FieldContract;
+use Orchid\Screen\Contracts\Fieldable;
 use Throwable;
 
 class Builder
@@ -14,7 +14,7 @@ class Builder
     /**
      * Fields to be reflected, in the form Field.
      *
-     * @var FieldContract[]|mixed
+     * @var Fieldable[]|mixed
      */
     public $fields;
 
@@ -49,8 +49,8 @@ class Builder
     /**
      * Builder constructor.
      *
-     * @param FieldContract[] $fields
-     * @param Repository      $data
+     * @param Fieldable[] $fields
+     * @param Repository  $data
      */
     public function __construct(array $fields, $data = null)
     {
