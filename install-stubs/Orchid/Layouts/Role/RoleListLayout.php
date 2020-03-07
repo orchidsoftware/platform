@@ -24,7 +24,7 @@ class RoleListLayout extends Table
         return [
             TD::set('name', __('Name'))
                 ->sort()
-                ->canHide()
+                ->cantHide()
                 ->filter(TD::FILTER_TEXT)
                 ->render(function (Role $role) {
                     return Link::make($role->name)
@@ -33,7 +33,7 @@ class RoleListLayout extends Table
 
             TD::set('slug', __('Slug'))
                 ->sort()
-                ->canHide()
+                ->cantHide()
                 ->filter(TD::FILTER_TEXT),
 
             TD::set('created_at', __('Created'))

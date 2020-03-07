@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Support Laravel 7.0
+- Presenter
+
+### Changed
+- Rename `canSee` to `cantSee` for `TD` [#1060](https://github.com/orchidsoftware/platform/pull/1060)
 
 ### Fixed
 - Not found resource for Windows [#1056](https://github.com/orchidsoftware/platform/pull/1056)
