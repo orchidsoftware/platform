@@ -23,7 +23,7 @@ class NotificationTable extends Table
     {
         return [
             TD::set('Message', __('Messages'))
-                ->canHide()
+                ->cantHide()
                 ->render(static function ($notification) {
                     return view('platform::partials.notification', [
                         'notification' => $notification,
