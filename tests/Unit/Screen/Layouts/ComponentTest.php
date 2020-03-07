@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Orchid\Tests\Unit\Screen\Layouts;
-
 
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
