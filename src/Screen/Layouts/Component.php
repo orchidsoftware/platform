@@ -30,19 +30,20 @@ abstract class Component extends Base
     /**
      * @param Repository $repository
      *
-     * @return mixed
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
+     * @return mixed
      */
     public function build(Repository $repository)
     {
-        if (!$this->checkPermission($this, $repository)) {
+        if (! $this->checkPermission($this, $repository)) {
             return;
         }
 
         /** @var ViewComponent $component */
         $component = app()->make($this->component, $repository->toArray());
 
-        if (!$component->shouldRender()) {
+        if (! $component->shouldRender()) {
             return;
         }
 
