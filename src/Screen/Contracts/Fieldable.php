@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Contracts;
 
-interface FieldContract
+interface Fieldable
 {
     /**
      * The process of creating.

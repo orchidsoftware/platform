@@ -7,7 +7,7 @@ namespace Orchid\Screen\Layouts;
 use Orchid\Screen\Repository;
 
 /**
- * Class Tabs.
+ * Class View.
  */
 abstract class View extends Base
 {

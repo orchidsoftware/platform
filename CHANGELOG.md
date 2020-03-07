@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Support Laravel 7.0
-- Presenter
+- Presenters for content [#965](https://github.com/orchidsoftware/platform/issues/965)
+- Support blade component with `Layout::component` 
 
 ### Changed
 - Rename `canSee` to `cantSee` for `TD` [#1060](https://github.com/orchidsoftware/platform/pull/1060)

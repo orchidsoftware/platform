@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Orchid\Screen\Contracts\ActionContract;
+use Orchid\Screen\Contracts\Actionable;
 use Orchid\Support\Color;
 
-class Action extends Field implements ActionContract
+class Action extends Field implements Actionable
 {
     /**
      * Override the form view.

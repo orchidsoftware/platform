@@ -6,7 +6,7 @@ namespace Orchid\Screen\Contracts;
 
 use Orchid\Screen\Repository;
 
-interface ActionContract
+interface Actionable
 {
     /**
      * @param Repository $repository

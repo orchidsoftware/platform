@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Orchid\Screen\Contracts\ActionContract;
+use Orchid\Screen\Contracts\Actionable;
 
 trait Commander
 {
@@ -24,7 +24,7 @@ trait Commander
     private function buildCommandBar(Repository $repository): array
     {
         return collect($this->commandBar())
-            ->map(static function (ActionContract $command) use ($repository) {
+            ->map(static function (Actionable $command) use ($repository) {
                 return $command->build($repository);
             })->all();
     }

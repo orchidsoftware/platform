@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Orchid\Presenters;
+namespace Orchid\Tests\App\Presenters;
 
 use Orchid\Screen\Contracts\Personable;
 use Orchid\Screen\Contracts\Searchable;
