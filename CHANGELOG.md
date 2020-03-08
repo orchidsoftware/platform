@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Support Laravel 7.0
 - Presenters for content [#965](https://github.com/orchidsoftware/platform/issues/965)
+- Card layout [#965](https://github.com/orchidsoftware/platform/issues/965)
+- Compact layout [#965](https://github.com/orchidsoftware/platform/issues/965)
+- Compendium layout [#965](https://github.com/orchidsoftware/platform/issues/965)
+- Facepile layout [#965](https://github.com/orchidsoftware/platform/issues/965)
+- Persona layout [#965](https://github.com/orchidsoftware/platform/issues/965)
 - Support blade component with `Layout::component` 
 
 ### Changed
