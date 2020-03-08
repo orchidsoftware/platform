@@ -40,7 +40,7 @@ class Card extends Content
      *
      * @return View
      */
-    public function render(Cardable $card) : View
+    public function render(Cardable $card): View
     {
         return view($this->template, [
             'title'        => $card->title(),

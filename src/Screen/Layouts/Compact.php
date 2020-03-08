@@ -20,7 +20,7 @@ class Compact extends Content
      *
      * @return View
      */
-    public function render(Compactable $card) : View
+    public function render(Compactable $card): View
     {
         return view($this->template, [
             'id'    => $card->id(),
