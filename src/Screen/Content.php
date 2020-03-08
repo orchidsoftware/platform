@@ -51,6 +51,6 @@ abstract class Content extends Base
      */
     public function __toString(): string
     {
-        return (string)$this->render($this->target);
+        return (string) $this->render($this->target);
     }
 }
