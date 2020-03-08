@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Actions;
 
-use Orchid\Screen\Action;use Orchid\Screen\Contracts\Actionable;use Orchid\Screen\Repository;
+use Orchid\Screen\Action;
+use Orchid\Screen\Contracts\Actionable;
+use Orchid\Screen\Repository;
 
 /**
  * Class DropDown.
