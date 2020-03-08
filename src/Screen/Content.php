@@ -35,12 +35,12 @@ abstract class Content extends Base
      *
      * @return string
      */
-    public function build(Repository $repository)
+    public function build(Repository $repository): string
     {
         $this->query = $repository;
 
         if (is_string($this->target) || is_array($this->target)) {
-            $this->target = $repository->get($this->target);
+            $this->target = $repository->get($this->target, $this->target);
         }
 
         return (string) $this;
@@ -49,8 +49,8 @@ abstract class Content extends Base
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
-        return (string) $this->render($this->target);
+        return (string)$this->render($this->target);
     }
 }
