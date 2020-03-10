@@ -33,7 +33,7 @@ if (!mix.inProduction()) {
 }
 
 mix
-    .copy('./node_modules/orchid-icons/src/fonts/', 'public/fonts')
+    .copy('./node_modules/orchid-icons/src/svg/', 'public/icons')
     .copyDirectory('./node_modules/tinymce/plugins', 'public/js/tinymce/plugins')
     .copyDirectory('./node_modules/tinymce/themes', 'public/js/tinymce/themes')
     .copyDirectory('./node_modules/tinymce/skins', 'public/js/tinymce/skins')

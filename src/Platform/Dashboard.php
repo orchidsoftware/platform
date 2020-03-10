@@ -55,6 +55,11 @@ class Dashboard
     private $publicDirectories;
 
     /**
+     * @var Collection
+     */
+    private $iconsDirectories;
+
+    /**
      * Dashboard constructor.
      */
     public function __construct()
@@ -67,6 +72,9 @@ class Dashboard
         $this->resources = collect();
         $this->search = collect();
         $this->publicDirectories = collect();
+        $this->iconsDirectories = collect([
+            self::path('public/icons/')
+        ]);
     }
 
     /**
@@ -310,5 +318,37 @@ class Dashboard
     public function getPublicDirectory(): Collection
     {
         return $this->publicDirectories;
+    }
+
+    /**
+     * @param string $directory
+     * @param string $prefix
+     *
+     * @return Dashboard
+     */
+    public function registerIconDirectory(string $directory, string $prefix = null): Dashboard
+    {
+        $this->iconsDirectories->merge([
+            $prefix => $directory,
+        ]);
+
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @param array  $attributes
+     *
+     * @return string
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function icon(string $name, array $attributes = []): string
+    {
+        /** @var Icon $icon */
+        $icon = app()->make(Icon::class, [
+            'directories' => $this->iconsDirectories->toArray(),
+        ]);
+
+        return $icon->render($name, $attributes);
     }
 }

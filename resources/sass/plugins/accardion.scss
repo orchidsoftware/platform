@@ -4,12 +4,12 @@
   }
 
   .icon-accardion {
-    @extend .icon-arrow-right;
+    /* @extend .icon-arrow-right;*/
   }
 
   &.collapsed {
     .icon-accardion {
-      @extend .icon-arrow-down;
+      /* @extend .icon-arrow-down;*/
     }
 
   }
