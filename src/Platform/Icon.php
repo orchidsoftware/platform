@@ -23,19 +23,19 @@ class Icon
     private $directories;
 
     /**
-     * Icon tag content
+     * Icon tag content.
      *
      * @var string
      */
     private $icon = '';
 
     /**
-     * Tag attributes for XML
+     * Tag attributes for XML.
      *
      * @var array
      */
     private $attributes = [
-        'width' => '1em',
+        'width'  => '1em',
         'height' => '1em',
         'class'  => 'icon',
         'role'   => 'img',
@@ -76,7 +76,7 @@ class Icon
      *
      * @return Icon
      */
-    private function loadFile(string $name): Icon
+    private function loadFile(string $name): self
     {
         $icons = $this->finder
             ->ignoreUnreadableDirs()
@@ -104,7 +104,7 @@ class Icon
      *
      * @return Icon
      */
-    private function setAttributes(array $attributes): Icon
+    private function setAttributes(array $attributes): self
     {
         $dom = new DOMDocument();
         $dom->loadXML($this->icon);

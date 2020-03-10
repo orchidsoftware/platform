@@ -73,7 +73,7 @@ class Dashboard
         $this->search = collect();
         $this->publicDirectories = collect();
         $this->iconsDirectories = collect([
-            self::path('public/icons/')
+            self::path('public/icons/'),
         ]);
     }
 
@@ -326,7 +326,7 @@ class Dashboard
      *
      * @return Dashboard
      */
-    public function registerIconDirectory(string $directory, string $prefix = null): Dashboard
+    public function registerIconDirectory(string $directory, string $prefix = null): self
     {
         $this->iconsDirectories->merge([
             $prefix => $directory,
@@ -339,8 +339,9 @@ class Dashboard
      * @param string $name
      * @param array  $attributes
      *
-     * @return string
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
+     * @return string
      */
     public function icon(string $name, array $attributes = []): string
     {
