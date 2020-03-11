@@ -96,28 +96,28 @@ class ExampleScreen extends Screen
             Button::make('Show toast')
                 ->method('showToast')
                 ->novalidate()
-                ->icon('icon-bag'),
+                ->icon('bag'),
 
             ModalToggle::make('Launch demo modal')
                 ->modal('exampleModal')
                 ->method('showToast')
-                ->icon('icon-full-screen'),
+                ->icon('full-screen'),
 
             DropDown::make('Dropdown button')
-                ->icon('icon-folder-alt')
+                ->icon('folder-alt')
                 ->list([
 
                     Button::make('Action')
                         ->method('showToast')
-                        ->icon('icon-bag'),
+                        ->icon('bag'),
 
                     Button::make('Another action')
                         ->method('showToast')
-                        ->icon('icon-bubbles'),
+                        ->icon('bubbles'),
 
                     Button::make('Something else here')
                         ->method('showToast')
-                        ->icon('icon-bulb'),
+                        ->icon('bulb'),
                 ]),
 
         ];

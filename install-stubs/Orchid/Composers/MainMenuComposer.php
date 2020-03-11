@@ -34,48 +34,48 @@ class MainMenuComposer
         $this->dashboard->menu
             ->add(Menu::PROFILE,
                 ItemMenu::label('Action')
-                    ->icon('icon-compass')
+                    ->icon('compass')
                     ->badge(function () {
                         return 6;
                     })
             )
             ->add(Menu::PROFILE,
                 ItemMenu::label('Another action')
-                    ->icon('icon-heart')
+                    ->icon('heart')
             );
 
         // Main
         $this->dashboard->menu
             ->add(Menu::MAIN,
                 ItemMenu::label('Example screen')
-                    ->icon('icon-monitor')
+                    ->icon('monitor')
                     ->route('platform.example')
                     ->title('Navigation')
             )
             ->add(Menu::MAIN,
                 ItemMenu::label('Form controls')
-                    ->icon('icon-list')
+                    ->icon('list')
                     ->route('platform.example.fields')
             )
             ->add(Menu::MAIN,
                 ItemMenu::label('Overview layouts')
-                    ->icon('icon-layers')
+                    ->icon('layers')
                     ->route('platform.example.layouts')
             )
             ->add(Menu::MAIN,
                 ItemMenu::label('Dropdown menu')
                     ->title('Sub menu')
                     ->slug('example-menu')
-                    ->icon('icon-code')
+                    ->icon('code')
                     ->childs()
             )
             ->add('example-menu',
                 ItemMenu::label('Sub element item 1')
-                    ->icon('icon-bag')
+                    ->icon('bag')
             )
             ->add('example-menu',
                 ItemMenu::label('Sub element item 2')
-                    ->icon('icon-heart')
+                    ->icon('heart')
             );
     }
 }

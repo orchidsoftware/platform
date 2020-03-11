@@ -17,10 +17,6 @@
             <b class="badge bg-{{$badge['class']}} pull-right mr-3">{{$badge['data']()}}</b>
         @endisset
         {!! \Orchid\Support\Facades\Dashboard::icon($icon) !!} {{ __($label) }}
-
-        <!--
-            <i class="{{ $icon}} mr-2"></i>
-        -->
     </a>
 </li>
 @if($childs)

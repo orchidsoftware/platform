@@ -67,14 +67,14 @@ class UserEditScreen extends Screen
         return [
 
             DropDown::make(__('Settings'))
-                ->icon('icon-open')
+                ->icon('open')
                 ->list([
                     Button::make(__('Login as user'))
-                        ->icon('icon-login')
+                        ->icon('login')
                         ->method('loginAs'),
 
                     ModalToggle::make(__('Change Password'))
-                        ->icon('icon-lock-open')
+                        ->icon('lock-open')
                         ->method('changePassword')
                         ->modal('password')
                         ->title(__('Change Password')),
@@ -82,11 +82,11 @@ class UserEditScreen extends Screen
                 ]),
 
             Button::make(__('Save'))
-                ->icon('icon-check')
+                ->icon('check')
                 ->method('save'),
 
             Button::make(__('Remove'))
-                ->icon('icon-trash')
+                ->icon('trash')
                 ->confirm('Are you sure you want to delete the user?')
                 ->method('remove'),
         ];

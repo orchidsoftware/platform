@@ -19,7 +19,7 @@
 
             @if(Auth::user()->hasAccess('platform.systems.index'))
                 <a href="{{ route('platform.systems.index') }}" class="dropdown-item">
-                    <i class="icon-settings mr-2" aria-hidden="true"></i>
+                    {!! \Orchid\Support\Facades\Dashboard::icon('settings') !!}
                     <span>{{ __('Systems') }}</span>
                 </a>
             @endif
@@ -31,7 +31,7 @@
                    data-action="layouts--form#submitByForm"
                    data-layouts--form-id="return-original-user"
                 >
-                    <i class="icon-logout mr-2" aria-hidden="true"></i>
+                    {!! \Orchid\Support\Facades\Dashboard::icon('logout') !!}
                     <span>{{ __('Back to my account') }}</span>
                 </a>
                 <form id="return-original-user"
@@ -49,7 +49,7 @@
                    data-action="layouts--form#submitByForm"
                    data-layouts--form-id="logout-form"
                    dusk="logout-button">
-                    <i class="icon-logout mr-2" aria-hidden="true"></i>
+                    {!! \Orchid\Support\Facades\Dashboard::icon('logout') !!}
                     <span>{{ __('Sign out') }}</span>
                 </a>
                 <form id="logout-form"

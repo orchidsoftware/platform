@@ -5,7 +5,7 @@
             data-turbolinks="{{ var_export($turbolinks) }}"
             @empty(!$confirm)onclick="return confirm('{{$confirm}}');"@endempty
         @attributes($attributes)>
-        @isset($icon)<i class="{{ $icon }} mr-2"></i>@endisset
+        @isset($icon){!! \Orchid\Support\Facades\Dashboard::icon($icon) !!}@endisset
         {{ $name ?? '' }}
     </button>
 @endcomponent

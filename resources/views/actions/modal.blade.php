@@ -7,6 +7,6 @@
             data-modal-async="{{ $async }}"
             data-modal-params='@json($asyncParameters)'
             data-modal-action="{{ $action }}">
-        <i class="{{ $icon ?? '' }} mr-2"></i>{{ $name ?? '' }}
+        {!! \Orchid\Support\Facades\Dashboard::icon( $icon ?? '') !!}{{ $name ?? '' }}
     </button>
 @endcomponent

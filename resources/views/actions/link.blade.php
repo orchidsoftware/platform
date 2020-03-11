@@ -3,6 +3,6 @@
         data-turbolinks="{{ var_export($turbolinks) }}"
         @attributes($attributes)
     >
-        <i class="{{ $icon ?? '' }} mr-2"></i>{{ $name ?? '' }}
+        {!! \Orchid\Support\Facades\Dashboard::icon( $icon ?? '') !!} {{ $name ?? '' }}
     </a>
 @endcomponent

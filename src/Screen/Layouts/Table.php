@@ -59,7 +59,7 @@ abstract class Table extends Base
      */
     protected function iconNotFound(): string
     {
-        return 'icon-table';
+        return 'table';
     }
 
     /**

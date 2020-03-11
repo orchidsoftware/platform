@@ -4,7 +4,9 @@
         data-toggle="dropdown"
         aria-expanded="false"
     >
-        <i class="{{ $icon ?? '' }} mr-2"></i>
+        {!! \Orchid\Support\Facades\Dashboard::icon( $icon ?? '') !!}
+
+
         {{ $name ?? '' }}
     </button>
 
