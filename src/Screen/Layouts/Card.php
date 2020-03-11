@@ -47,7 +47,7 @@ class Card extends Content
             'descriptions' => $card->descriptions(),
             'image'        => $card->image(),
             'commandBar'   => $this->buildCommandBar(),
-            'status'       => $card->status(),
+            'color'        => $card->color(),
         ]);
     }
 

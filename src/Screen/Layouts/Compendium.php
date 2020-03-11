@@ -15,6 +15,11 @@ class Compendium extends Content
     protected $template = 'platform::layouts.compendium';
 
     /**
+     * @var string
+     */
+    protected $label = '';
+
+    /**
      * @param array $list
      *
      * @return View
@@ -22,7 +27,20 @@ class Compendium extends Content
     public function render(array $list): View
     {
         return view($this->template, [
-            'list' => $list,
+            'list'  => $list,
+            'label' => $this->label,
         ]);
+    }
+
+    /**
+     * @param string $label
+     *
+     * @return Compendium
+     */
+    public function label(string $label): self
+    {
+        $this->label = $label;
+
+        return $this;
     }
 }

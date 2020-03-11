@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\App;
 
+use App\Orchid\Presenters\UserPresenter;
 use Orchid\Platform\Models\User as Authenticatable;
-use Orchid\Platform\Searchable;
+use Laravel\Scout\Searchable;
 
-class User extends Authenticatable
+class SearchUser extends Authenticatable
 {
     use Searchable;
 
@@ -23,5 +24,13 @@ class User extends Authenticatable
             'name',
             'email',
         ]);
+    }
+
+    /**
+     * @return UserPresenter
+     */
+    public function presenter(): UserPresenter
+    {
+        return new UserPresenter($this);
     }
 }

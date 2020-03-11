@@ -60,7 +60,7 @@ class SearchScreen extends Screen
         $model = $this->getSearchModel($searchModels);
 
         /** @var LengthAwarePaginator $results */
-        $results = $model->searchQuery($query)->paginate();
+        $results = $model->presenter()->searchQuery($query)->paginate();
 
         $results->getCollection()
             ->transform(static function (Model $model) {
@@ -83,6 +83,7 @@ class SearchScreen extends Screen
         return [
             Button::make(__('Apply'))
                 ->icon('icon-filter')
+                ->canSee(Dashboard::getSearch()->count() > 1)
                 ->method('changeSearchType'),
         ];
     }
@@ -139,8 +140,8 @@ class SearchScreen extends Screen
                 $label = $presenter->label();
 
                 /** @var LengthAwarePaginator $result */
-                $result = $model->searchQuery($query)
-                    ->paginate($model->perSearchShow);
+                $result = $presenter->searchQuery($query)
+                    ->paginate($presenter->perSearchShow());
 
                 $result->getCollection()
                     ->transform(static function (Model $model) {
@@ -178,7 +179,7 @@ class SearchScreen extends Screen
             return $model instanceof $type;
         })->first();
 
-        abort_if(is_null($model), 404, 'Required search type not found');
+        abort_if($model === null, 404, 'Required search type not found');
 
         return $model;
     }

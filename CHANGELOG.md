@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 7.0.0 - 2020-03-04
+## 7.0.0 - 2020-03-12
 
 ### Added
 - Support Laravel 7.0
@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Support blade component with `Layout::component` 
 
 ### Changed
-- Rename `canSee` to `cantSee` for `TD` [#1060](https://github.com/orchidsoftware/platform/pull/1060)
+- Rename `canHide` to `cantHide` for `TD` [#1060](https://github.com/orchidsoftware/platform/pull/1060)
 
 ### Fixed
 - Not found resource for Windows [#1056](https://github.com/orchidsoftware/platform/pull/1056)
