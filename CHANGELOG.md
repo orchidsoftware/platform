@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Rename `canHide` to `cantHide` for `TD` [#1060](https://github.com/orchidsoftware/platform/pull/1060)
+- Rename `registerGlobalSearch` to `registerSearch` for `Dashboard`
 
 ### Fixed
 - Not found resource for Windows [#1056](https://github.com/orchidsoftware/platform/pull/1056)
@@ -30,6 +31,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Methods `locale`, `link`, `loadModalAsync`, `asyncRoute` for `TD`
 - `PLATFORM_PATH` Constant 
 - `AccessMiddleware` replace `Access`
+- `Orchid\Platform\Searchable` traits replace contract for presenter
 
 ## 6.11.1 - 2020-03-03
 
