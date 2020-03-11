@@ -166,7 +166,7 @@ class Dashboard
     }
 
     /**
-     * The real path to the package files
+     * The real path to the package files.
      *
      * @param string $path
      *
