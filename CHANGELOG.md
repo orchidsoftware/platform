@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Rename `registerGlobalSearch` to `registerSearch` for `Dashboard`
 
 ### Fixed
-- Not found resource for Windows [#1056](https://github.com/orchidsoftware/platform/pull/1056)
+- Not found a resource for Windows [#1056](https://github.com/orchidsoftware/platform/pull/1056)
 
 ### Removed
 - Methods `asyncParameter`, `loadModalAsync` for `ModalToggle` action
