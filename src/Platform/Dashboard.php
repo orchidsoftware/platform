@@ -145,6 +145,8 @@ class Dashboard
     }
 
     /**
+     * Get the user model class name.
+     *
      * @param string $key
      * @param string $custom
      */
@@ -164,6 +166,8 @@ class Dashboard
     }
 
     /**
+     * The real path to the package files
+     *
      * @param string $path
      *
      * @return string
@@ -176,6 +180,8 @@ class Dashboard
     }
 
     /**
+     * Registers a ItemPermission that defines authentication permissions.
+     *
      * @param ItemPermission $permission
      *
      * @return $this
@@ -196,6 +202,8 @@ class Dashboard
     }
 
     /**
+     * Registers a set of models for which full-text search is required.
+     *
      * @param array $model
      *
      * @return $this
