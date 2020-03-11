@@ -8,9 +8,8 @@
     <a href="{{$item->url()}}" class="block wrapper-sm dropdown-item" style="font-size: 0.85em;">
 
         @empty(!$item->image())
-            <span class="pull-left thumb-xs avatar m-r-sm">
+            <span class="pull-left thumb-xs rounded m-r-sm">
                   <img src="{{$item->image()}}" alt="{{$item->title()}}">
-                  {{-- <i class="on b-white bottom"></i> --}}
                 </span>
         @endempty
 

@@ -1,6 +1,6 @@
 <div class="row padder-v">
     <div class="col">
-        <p class="font-bold text-black mb-2">General</p>
+        @empty(!$label)<p class="font-bold text-black mb-2">{{ $label }}</p>@endempty
         @foreach($list as $key => $value)
             <dl>
                 <dt>{{ $key }}</dt>

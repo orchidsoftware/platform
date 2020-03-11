@@ -5,28 +5,24 @@
             @empty(!$image)
                 <div class="col-md-3">
                     <div class="h-100" style="display: contents">
-                        <img src="{{ $image }}" class="img-fluid" style="
-                            object-fit: cover;
-                            width: 100%;
-                            height: 100%;
-                        ">
+                        <img src="{{ $image }}" class="img-fluid img-card">
                     </div>
                 </div>
             @endempty
 
             <div class="col">
                 <div class="card-body h-full d-table">
-
                     <div class="row d-flex align-items-center mb-1">
                         <div class="col-auto">
                             <h5 class="card-title">
-                                <i class="text-success">●</i> {{ $title }}
+                                @empty(!$color)<i class="text-{{ $color }}">●</i>@endempty
+                                {{ $title ?? '' }}
                             </h5>
                         </div>
 
-                        <div class="col-auto ml-auto text-right">
-                            @if(count($commandBar) > 0)
-                                <div class="btn-group command-bar" style="position: initial">
+                        @if(count($commandBar) > 0)
+                            <div class="col-auto ml-auto text-right">
+                                <div class="btn-group command-bar">
                                     <button class="btn btn-link btn-sm dropdown-toggle dropdown-item p-2" type="button"
                                             data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">
@@ -39,10 +35,10 @@
                                         @endforeach
                                     </div>
                                 </div>
-                            @endif
-                        </div>
+                            </div>
+                        @endif
                     </div>
-                    <div class="card-text">{!! $descriptions  !!}</div>
+                    <div class="card-text">{!! $descriptions ?? '' !!}</div>
                 </div>
             </div>
 

@@ -13,36 +13,3 @@
     @endforeach
 </div>
 
-
-<style>
-    .avatar-group .thumb-xs + .thumb-xs {
-        margin-left: -.40625rem;
-    }
-
-    .avatar {
-        transition: all 340ms;
-    }
-
-    /*
-    .avatar-group .avatar:hover {
-        -webkit-mask-image: none;
-        mask-image: none;
-        z-index: 1;
-    }
-     */
-    .avatar-title {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-        background-color: #f5f8fa;
-    }
-</style>
-
-
-<script>
-    window.addEventListener("load", function () {
-        $('.avatar.thumb-xs').tooltip('toggleEnabled');
-    });
-</script>

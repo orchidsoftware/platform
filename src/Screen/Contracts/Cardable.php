@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Contracts;
 
+use Orchid\Support\Color;
+
 interface Cardable
 {
     /**
@@ -22,12 +24,7 @@ interface Cardable
     public function image(): ?string;
 
     /**
-     * @return mixed
+     * @return Color
      */
-    public function status();
-
-    /**
-     * @return mixed
-     */
-    public function users();
+    public function color(): ?Color;
 }

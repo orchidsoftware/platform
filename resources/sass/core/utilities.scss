@@ -751,6 +751,7 @@
   display: block;
   border-radius: 500px;
   white-space: nowrap;
+  transition: all 340ms;
   img {
     border-radius: 500px;
     width: 100%;
@@ -803,6 +804,10 @@
   &.thumb-xs i {
     margin: 0;
   }
+}
+
+.avatar-group .thumb-xs {
+    margin-left: -.40625rem;
 }
 
 .w-1x {
@@ -923,6 +928,12 @@
   img {
     width: 100%;
   }
+}
+
+.img-card {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
 }
 
 .scrollable {
