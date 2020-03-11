@@ -54,7 +54,7 @@ class UserPresenter extends Presenter implements Searchable, Personable
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function perSearchShow(): int
     {
@@ -62,7 +62,7 @@ class UserPresenter extends Presenter implements Searchable, Personable
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function searchQuery(string $query = null): Builder
     {

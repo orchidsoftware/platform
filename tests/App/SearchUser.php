@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Tests\App;
 
 use App\Orchid\Presenters\UserPresenter;
-use Orchid\Platform\Models\User as Authenticatable;
 use Laravel\Scout\Searchable;
+use Orchid\Platform\Models\User as Authenticatable;
 
 class SearchUser extends Authenticatable
 {
