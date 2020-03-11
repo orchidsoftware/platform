@@ -37,7 +37,7 @@ class Compendium extends Content
      *
      * @return Compendium
      */
-    public function label(string $label): Compendium
+    public function label(string $label): self
     {
         $this->label = $label;
 

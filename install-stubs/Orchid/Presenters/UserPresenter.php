@@ -70,6 +70,6 @@ class UserPresenter extends Presenter implements Searchable, Personable
      */
     public function searchQuery(string $query = null): Builder
     {
-       return $this->entity->search($query);
+        return $this->entity->search($query);
     }
 }
