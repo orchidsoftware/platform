@@ -15,7 +15,7 @@ class ExemplarServiceProvider extends ServiceProvider
     public function boot(Dashboard $dashboard): void
     {
         $dashboard->registerSearch([
-            User::class,
+            SearchUser::class,
         ]);
 
         $this->loadViewsFrom($dashboard->path('tests/App/Views'), 'exemplar');
