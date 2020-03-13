@@ -56,7 +56,7 @@ class Updates
             return ['name' => 'orchid/platform', 'version' => Dashboard::VERSION.'.0'];
         });
 
-        Http::post('https://packagist.org/downloads', [
+        Http::post('https://packagist.org/downloads/', [
             'downloads' => $packages,
         ]);
     }
