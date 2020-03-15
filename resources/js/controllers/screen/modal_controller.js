@@ -12,6 +12,23 @@ export default class extends Controller {
 
     /**
      *
+     */
+    connect() {
+        if (this.element.querySelectorAll('.is-invalid').length > 0) {
+            this.setFormAction(sessionStorage.getItem('last-open-modal'));
+            this.element.classList.remove('fade', 'in');
+            $(this.element).modal('show');
+
+            $(this.element).on('hide.bs.modal', () => {
+                if (!this.element.classList.contains('fade')) {
+                    this.element.classList.add('fade', 'in');
+                }
+            })
+        }
+    }
+
+    /**
+     *
      * @param options
      */
     open(options) {
@@ -19,7 +36,7 @@ export default class extends Controller {
             this.titleTarget.textContent = options.title;
         }
 
-        this.element.querySelector('form').action = options.submit;
+        this.setFormAction(options.submit);
 
         if (this.data.get('async')) {
             this.asyncLoadData(JSON.parse(options.params));
@@ -41,4 +58,12 @@ export default class extends Controller {
         });
     }
 
+    /**
+     *
+     * @param action
+     */
+    setFormAction(action) {
+        this.element.querySelector('form').action = action;
+        sessionStorage.setItem('last-open-modal', action);
+    }
 }
