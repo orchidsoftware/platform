@@ -75,7 +75,9 @@ export default class extends Controller {
         });
 
         document.addEventListener('turbolinks:before-cache', () => {
-            $(select).select2('destroy');
+            if (typeof $(select) === 'undefined') {
+                $(select).select2('destroy');
+            }
         }, { once: true });
     }
 }

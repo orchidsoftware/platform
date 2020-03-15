@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus';
+import {Controller} from 'stimulus';
 
 export default class extends Controller {
     /**
@@ -17,9 +17,10 @@ export default class extends Controller {
             theme: 'bootstrap',
         });
 
-
         document.addEventListener('turbolinks:before-cache', () => {
-            $(select).select2('destroy');
-        }, { once: true });
+            if (typeof $(select) === 'undefined') {
+                $(select).select2('destroy');
+            }
+        }, {once: true});
     }
 }
