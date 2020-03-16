@@ -44,11 +44,11 @@
 @section('body-right')
     <div class="wrapper mt-md-4 @hasSection('navbar') @else d-none d-md-block @endif">
         <div class="v-md-center">
-            <div class="d-none d-md-block col-xs-12 col-md-4 no-padder">
+            <div class="d-none d-md-block col-xs-12 col-md no-padder">
                 <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
-                <small class="text-muted text-ellipsis" title="@yield('description')">@yield('description')</small>
+                <small class="text-muted" title="@yield('description')">@yield('description')</small>
             </div>
-            <div class="col-xs-12 col-md-8 no-padder">
+            <div class="col-xs-12 col-md-auto ml-auto no-padder">
                 <ul class="nav command-bar justify-content-sm-end justify-content-start v-center">
                     @yield('navbar')
                 </ul>

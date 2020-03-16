@@ -36,6 +36,7 @@
         <env name="APP_KEY" value="AckfSECXIvnK5r28GVIWUAxmbBSjTsmF"/>
         <env name="APP_DEBUG" value="true"/>
         <env name="APP_URL" value="http://127.0.0.1:8000"/>
+        <env name="BCRYPT_ROUNDS" value="4"/>
         <env name="DASHBOARD_DOMAIN" value="127.0.0.1"/>
         <env name="DASHBOARD_PREFIX" value="/dashboard"/>
         <env name="CACHE_DRIVER" value="file"/>
