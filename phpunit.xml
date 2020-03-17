@@ -45,6 +45,9 @@
         <env name="SCOUT_DRIVER" value="array"/>
         <env name="SCOUT_QUEUE" value="true"/>
         <env name="QUEUE_DRIVER" value="sync"/>
+        <ini name="memory_limit" value="1024M" />
+        <ini name="post_max_size" value="1024M" />
+        <ini name="upload_max_filesize" value="1024M" />
     </php>
     <logging>
          <log type="coverage-clover" target="clover.xml"/>
