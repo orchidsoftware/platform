@@ -25,10 +25,10 @@ class Card extends Content
     /**
      * Card constructor.
      *
-     * @param string   $target
-     * @param Action[] $commandBar
+     * @param string|Cardable $target
+     * @param Action[]        $commandBar
      */
-    public function __construct(string $target, array $commandBar = [])
+    public function __construct($target, array $commandBar = [])
     {
         parent::__construct($target);
 
