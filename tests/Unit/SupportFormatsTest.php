@@ -27,8 +27,10 @@ class SupportFormatsTest extends TestUnitCase
 
     public function testConvertBytes()
     {
-        $this->assertEquals(Init::maxFileUpload(Init::KB), 1048576);
-        $this->assertEquals(Init::maxFileUpload(Init::MB), 1024);
-        $this->assertEquals(Init::maxFileUpload(Init::GB), 1);
+        ini_set('upload_max_filesize', '2M');
+
+        $this->assertEquals(Init::maxFileUpload(Init::KB), 2048);
+        $this->assertEquals(Init::maxFileUpload(Init::MB), 2);
+        $this->assertEquals(Init::maxFileUpload(Init::GB), 0);
     }
 }
