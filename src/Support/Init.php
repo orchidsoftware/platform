@@ -88,9 +88,9 @@ class Init
     private static function convertBytesTo(string $to, $bytes, $point = 0)
     {
         return [
-            self::KB => number_format($bytes / 1024, $point),
-            self::MB => number_format($bytes / 1048576, $point),
-            self::GB => number_format($bytes / 1073741824, $point),
+            self::KB => number_format($bytes / 1024, $point, '.', ''),
+            self::MB => number_format($bytes / 1048576, $point, '.', ''),
+            self::GB => number_format($bytes / 1073741824, $point, '.', ''),
         ][$to] ?? 0;
     }
 }
