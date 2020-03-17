@@ -36,7 +36,7 @@ class Init
 
         $lastSymbol = strtolower($string[strlen($string) - 1]);
 
-        $value = (int)$string;
+        $value = (int) $string;
 
         switch ($lastSymbol) {
             case 'g':
@@ -88,9 +88,9 @@ class Init
     public static function convertBytesTo(string $to, $bytes, $point = 0)
     {
         return [
-                   self::KB => number_format($bytes / 1024, $point, '.', ''),
-                   self::MB => number_format($bytes / 1048576, $point, '.', ''),
-                   self::GB => number_format($bytes / 1073741824, $point, '.', ''),
-               ][$to] ?? 0;
+            self::KB => number_format($bytes / 1024, $point, '.', ''),
+            self::MB => number_format($bytes / 1048576, $point, '.', ''),
+            self::GB => number_format($bytes / 1073741824, $point, '.', ''),
+        ][$to] ?? 0;
     }
 }
