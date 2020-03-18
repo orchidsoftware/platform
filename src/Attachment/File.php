@@ -76,7 +76,7 @@ class File
         abort_if($file->getSize() === false, 415, 'File failed to load.');
 
         $this->time = time();
-        $this->date = str_replace('/', DIRECTORY_SEPARATOR, date('Y/m/d', $this->time));
+        $this->date = date('Y/m/d', $this->time);
         $this->file = $file;
         $this->mimes = new MimeTypes();
         $this->fullPath = storage_path("app/public/$this->date/");
@@ -157,7 +157,7 @@ class File
             'mime'          => $this->getMimeType(),
             'extension'     => $this->getClientOriginalExtension(),
             'size'          => $this->file->getSize(),
-            'path'          => $this->date.DIRECTORY_SEPARATOR,
+            'path'          => $this->date . '/',
             'hash'          => $this->hash,
             'disk'          => $this->disk,
             'group'         => $this->group,
