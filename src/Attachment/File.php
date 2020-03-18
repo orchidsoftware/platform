@@ -157,7 +157,7 @@ class File
             'mime'          => $this->getMimeType(),
             'extension'     => $this->getClientOriginalExtension(),
             'size'          => $this->file->getSize(),
-            'path'          => $this->date . '/',
+            'path'          => $this->date.'/',
             'hash'          => $this->hash,
             'disk'          => $this->disk,
             'group'         => $this->group,
