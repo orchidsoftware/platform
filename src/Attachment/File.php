@@ -76,7 +76,7 @@ class File
         abort_if($file->getSize() === false, 415, 'File failed to load.');
 
         $this->time = time();
-        $this->date = date('Y/m/d', $this->time);
+        $this->date = str_replace('/', DIRECTORY_SEPARATOR, date('Y/m/d', $this->time));
         $this->file = $file;
         $this->mimes = new MimeTypes();
         $this->fullPath = storage_path("app/public/$this->date/");
