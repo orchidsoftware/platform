@@ -19,6 +19,11 @@ abstract class Table extends Base
     protected $template = 'platform::layouts.table';
 
     /**
+     * @var Repository
+     */
+    protected $query;
+
+    /**
      * Data source.
      *
      * The name of the key to fetch it from the query.
@@ -38,6 +43,8 @@ abstract class Table extends Base
         if (! $this->checkPermission($this, $repository)) {
             return;
         }
+
+        $this->query = $repository;
 
         $columns = collect($this->columns())->filter(static function (TD $column) {
             return $column->isSee();
