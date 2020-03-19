@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 7.0.4 - 2020-03-18
+- Windows separator when downloading files [#1070](https://github.com/orchidsoftware/platform/issues/1070)
+
+## 7.0.3 - 2020-03-18
+
+### Changed
+- Access to all variables in tables [#1069](https://github.com/orchidsoftware/platform/issues/1069)
+
+### Fixed
+- Max file size null MB [#1067](https://github.com/orchidsoftware/platform/pull/1067)
+- Windows separator when downloading files [#1070](https://github.com/orchidsoftware/platform/issues/1070)
+
 ## 7.0.2 - 2020-03-16
 
 ### Fixed
