@@ -37,7 +37,10 @@ class RoleListLayout extends Table
                 ->filter(TD::FILTER_TEXT),
 
             TD::set('created_at', __('Created'))
-                ->sort(),
+                ->sort()
+                ->render(function (Role $role) {
+                    return $role->created_at->toDateTimeString();
+                }),
         ];
     }
 }

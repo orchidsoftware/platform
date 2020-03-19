@@ -63,7 +63,10 @@ class UserListLayout extends Table
                 }),
 
             TD::set('updated_at', __('Last edit'))
-                ->sort(),
+                ->sort()
+                ->render(function (User $user) {
+                    return $user->updated_at->toDateTimeString();
+                }),
 
             TD::set('id', 'ID')
                 ->align(TD::ALIGN_CENTER)
