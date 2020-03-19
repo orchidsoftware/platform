@@ -3,10 +3,10 @@
      data-layouts--table-slug="{{$slug}}"
     >
     <div class="w-full table-responsive-lg @if ($striped) table-striped @endif">
-        <table class="table">
+        <table class="table text-truncate">
             <thead>
-                <tr>
-                    @foreach($columns as $column)
+            <tr>
+                @foreach($columns as $column)
                         {!! $column->buildTh() !!}
                     @endforeach
                 </tr>
