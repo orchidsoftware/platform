@@ -61,12 +61,12 @@ trait UserAccess
     }
 
     /**
-     * @param string $checkPermissions
+     * @param string $permit
      * @param bool   $cache
      *
      * @return bool
      */
-    public function hasAccess(string $checkPermissions, bool $cache = true): bool
+    public function hasAccess(string $permit, bool $cache = true): bool
     {
         if (! $cache || is_null($this->cachePermissions)) {
             $this->cachePermissions = $this->roles()
@@ -74,15 +74,11 @@ trait UserAccess
                 ->prepend($this->permissions);
         }
 
-        $permissions = $this->cachePermissions;
-
-        foreach ($permissions as $permission) {
-            if (isset($permission[$checkPermissions]) && $permission[$checkPermissions]) {
-                return true;
-            }
-        }
-
-        return false;
+        return $this->cachePermissions
+            ->filter(function (array $permissions) use ($permit) {
+                return isset($permissions[$permit]) && $permissions[$permit];
+            })
+            ->isNotEmpty();
     }
 
     /**
