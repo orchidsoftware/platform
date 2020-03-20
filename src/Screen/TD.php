@@ -42,7 +42,7 @@ class TD
     protected $title;
 
     /**
-     * @var string
+     * @var string|null|int
      */
     protected $width;
 
@@ -114,11 +114,11 @@ class TD
     }
 
     /**
-     * @param string $width
+     * @param string|int $width
      *
      * @return TD
      */
-    public function width(string $width): self
+    public function width($width): self
     {
         $this->width = $width;
 
@@ -221,6 +221,7 @@ class TD
             'value'  => $value,
             'render' => $this->render,
             'slug'   => $this->sluggable(),
+            'width'  => $this->width,
         ]);
     }
 
