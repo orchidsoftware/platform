@@ -1,5 +1,5 @@
 <th width="{{$width}}" class="text-{{$align}}" data-column="{{ $slug }}">
-    <div class="text-truncate">
+    <div>
         @if($sort)
             <a href="{{ $sortUrl }}"
                class="@if(!is_sort($column)) text-muted @endif">
