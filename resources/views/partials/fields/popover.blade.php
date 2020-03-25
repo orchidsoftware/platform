@@ -1,11 +1,14 @@
-<span data-controller="fields--popover">
-    <a class="text-black"
-       data-container="body"
-       data-toggle="popover"
-       tabindex="0"
-       data-trigger="focus"
-       data-placement="auto"
-       data-content="{{ $content }}">
-        <i class="icon-exclamation mr-2"></i>
-    </a>
-</span>
+<a class="text-black"
+   data-controller="fields--popover"
+   data-action="click->fields--popover#trigger"
+   data-container="body"
+   data-toggle="popover"
+   tabindex="0"
+   data-trigger="focus"
+   data-placement="auto"
+   data-delay-show="300"
+   data-delay-hide="200"
+   data-content="{{ $content }}">
+    <i class="icon-exclamation"></i>
+</a>
+
