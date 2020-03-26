@@ -40,5 +40,8 @@ jobs:
           composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
           composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
 
-      - name: Execute tests
-        run: vendor/bin/phpunit
+      - name: Execute tests (Unit and Feature tests) via PHPUnit
+        run: vendor/bin/phpunit --coverage-clover=coverage.xml
+        
+      - name: Submit code coverage
+        run: bash <(curl -s https://codecov.io/bash)
