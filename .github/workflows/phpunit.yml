@@ -1,6 +1,6 @@
 name: Unit tests
 
-on: [push]
+on: [push,pull_request]
 
 jobs:
   test:
@@ -32,7 +32,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
-          coverage: xdebug
+          coverage: none
 
       - name: Install dependencies 🔧
         run: |
@@ -41,6 +41,3 @@ jobs:
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit 🧪
         run: vendor/bin/phpunit --coverage-clover=coverage.xml
-
-      - name: Submit code coverage 🔭
-        run: bash <(curl -s https://codecov.io/bash)
