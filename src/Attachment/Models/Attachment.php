@@ -148,7 +148,7 @@ class Attachment extends Model
             return null;
         }
 
-        return $this->path . $this->name . '.' . $this->extension;
+        return $this->path.$this->name.'.'.$this->extension;
     }
 
     /**
