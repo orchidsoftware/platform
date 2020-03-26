@@ -140,11 +140,15 @@ class Attachment extends Model
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function physicalPath(): string
+    public function physicalPath(): ?string
     {
-        return $this->path.$this->name.'.'.$this->extension;
+        if ($this->path === null || $this->name === null) {
+            return null;
+        }
+
+        return $this->path . $this->name . '.' . $this->extension;
     }
 
     /**
