@@ -19,6 +19,8 @@ abstract class Chart extends Base
     protected $template = 'platform::layouts.chart';
 
     /**
+     * Add a title to the Chart.
+     *
      * @var string
      */
     protected $title = 'My Chart';
@@ -43,6 +45,11 @@ abstract class Chart extends Base
     protected $labels = [];
 
     /**
+     * Data source.
+     *
+     * The name of the key to fetch it from the query.
+     * The results of which will be elements of the chart.
+     *
      * @var string
      */
     protected $target = '';
