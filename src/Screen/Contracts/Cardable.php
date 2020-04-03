@@ -16,7 +16,7 @@ interface Cardable
     /**
      * @return string
      */
-    public function descriptions(): string;
+    public function description(): string;
 
     /**
      * @return string
