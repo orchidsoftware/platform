@@ -43,11 +43,11 @@ class Card extends Content
     public function render(Cardable $card): View
     {
         return view($this->template, [
-            'title'        => $card->title(),
-            'descriptions' => $card->descriptions(),
-            'image'        => $card->image(),
-            'commandBar'   => $this->buildCommandBar(),
-            'color'        => $card->color(),
+            'title'       => $card->title(),
+            'description' => $card->description(),
+            'image'       => $card->image(),
+            'commandBar'  => $this->buildCommandBar(),
+            'color'       => $card->color(),
         ]);
     }
 

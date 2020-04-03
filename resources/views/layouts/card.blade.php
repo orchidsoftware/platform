@@ -38,7 +38,7 @@
                             </div>
                         @endif
                     </div>
-                    <div class="card-text">{!! $descriptions ?? '' !!}</div>
+                    <div class="card-text">{!! $description ?? '' !!}</div>
                 </div>
             </div>
 

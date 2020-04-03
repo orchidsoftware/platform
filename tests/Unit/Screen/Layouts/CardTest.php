@@ -46,7 +46,7 @@ class CardTest extends TestUnitCase
             /**
              * @return string
              */
-            public function descriptions(): string
+            public function description(): string
             {
                 return 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a
                   little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This
