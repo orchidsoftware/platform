@@ -33,10 +33,6 @@ before_script:
 
 script:
   - vendor/bin/phpunit --testsuite=Browser
-  - vendor/bin/phpunit --coverage-clover=coverage.xml
-
-after_success:
-    - bash <(curl -s https://codecov.io/bash)
 
 before_deploy:
   - rm -R public/css
@@ -44,17 +40,6 @@ before_deploy:
   - npm cache clear --force
   - npm install
   - npm run production
-
-deploy:
-  target_branch: build
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  keep_history: true
-  verbose: true
-  on:
-    branch: master
-    condition: $(phpenv version-name) = "7.3"
 
 notifications:
   email:

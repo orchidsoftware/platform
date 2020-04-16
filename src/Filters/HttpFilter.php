@@ -57,7 +57,7 @@ class HttpFilter
     }
 
     /**
-     * @param null|string $query
+     * @param string|null $query
      *
      * @return string|array|null
      */

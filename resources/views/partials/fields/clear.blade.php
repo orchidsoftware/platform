@@ -10,5 +10,5 @@
     @endif
 </div>
 @isset($hr)
-    <div class="line line-dashed b-b line-lg"></div>
+    <div class="line line-dashed border-bottom line-lg"></div>
 @endisset

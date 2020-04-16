@@ -1,9 +1,10 @@
 <div
-        data-controller="screen--tabs"
-        data-screen--tabs-slug="{{$templateSlug}}"
+    class="mt-3"
+    data-controller="screen--tabs"
+    data-screen--tabs-slug="{{$templateSlug}}"
 >
     <div class="nav-tabs-alt">
-        <ul class="nav nav-tabs" role="tablist">
+        <ul class="nav nav-tabs row" role="tablist">
             @foreach($manyForms as $name => $tab)
                 <li class="nav-item">
                     <a class="nav-link @if ($loop->first) active @endif"
@@ -27,7 +28,7 @@
                     <div role="tabpanel" class="tab-pane @if ($loop->first) active @endif"
                          id="tab-{{\Illuminate\Support\Str::slug($name)}}">
 
-                        <div class="padder-v">
+                        <div class="py-3">
                             @foreach($forms as $form)
                                 {!! $form !!}
                             @endforeach

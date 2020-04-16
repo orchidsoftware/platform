@@ -45,8 +45,6 @@ class Action extends Field implements Actionable
     /**
      * @param Color $visual
      *
-     * @throws \ReflectionException
-     *
      * @return static
      */
     public function type(Color $visual): self

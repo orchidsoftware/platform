@@ -8,10 +8,10 @@
          data-fields--cropper-url="{{ $url }}"
          data-fields--cropper-max-file-size="{{ $maxFileSize }}"
     >
-        <div class="b text-right wrapper cropper-actions">
+        <div class="border text-right p-3 cropper-actions">
 
             <div class="fields-cropper-container">
-                <img src="#" class="cropper-preview img-fluid img-full m-b-md b" alt="">
+                <img src="#" class="cropper-preview img-fluid img-full m-b-md border" alt="">
             </div>
 
             <span class="mt-1 float-left">{{ __('Upload image from your computer:') }}</span>

@@ -1,7 +1,7 @@
 @section('search', $query)
 
 @empty(!$radios)
-    <div class="row b-b v-center pl-3 pr-4">
+    <div class="row border-bottom v-center pl-3 pr-4">
         {!! $radios !!}
     </div>
 @endempty
@@ -26,7 +26,7 @@
         </a>
     @empty
 
-        <div class="text-center bg-white pt-5 pb-5 w-full">
+        <div class="text-center bg-white pt-5 pb-5 w-100">
             <h3 class="font-thin">
                 <i class="icon-magnifier-remove block m-b"></i>
                 {{ __('Nothing found.') }}

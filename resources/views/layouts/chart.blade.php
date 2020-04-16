@@ -9,7 +9,7 @@
      data-screen--chart-colors="{{$colors}}"
 >
     <div class="row py-3">
-        <div class="pos-rlt w-full">
+        <div class="pos-rlt w-100">
             <div class="top-right pt-1 pr-4" style="z-index: 1">
                 <button class="btn btn-sm btn-link"
                         data-action="screen--chart#export">
@@ -17,7 +17,7 @@
                 </button>
             </div>
 
-            <figure id="{{$slug}}" class="w-full h-full"></figure>
+            <figure id="{{$slug}}" class="w-100 h-full"></figure>
         </div>
     </div>
 </div>

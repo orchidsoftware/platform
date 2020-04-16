@@ -1,4 +1,4 @@
-<footer class="wrapper w-full">
+<footer class="p-3 w-100">
     <div class="row v-md-center">
         <div class="col-sm-5">
             @if($paginator instanceof \Illuminate\Contracts\Pagination\LengthAwarePaginator)

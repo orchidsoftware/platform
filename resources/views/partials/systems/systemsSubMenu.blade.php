@@ -1,4 +1,4 @@
-<li class="list-group-item padder-v admin-element-item {{$class ?? ''}}">
+<li class="list-group-item py-3 admin-element-item {{$class ?? ''}}">
     <a href="{{$route}}" class="d-block padder">
         @isset($badge)
             <b class="badge bg-{{$badge['class']}} pull-right">{{$badge['data']()}}</b>

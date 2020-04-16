@@ -33,11 +33,11 @@
 
   }
   .modal-footer {
-    @extend .b-t;
-    @extend .bg-light;
-    box-shadow: none;
-    margin-top: 0;
-    padding: 15px 25px;
+      @extend .border-top;
+      @extend .bg-light;
+      box-shadow: none;
+      margin-top: 0;
+      padding: 15px 25px;
   }
   &.fade {
     opacity: 1 !important;

@@ -6,10 +6,10 @@
          data-fields--picture-url="{{ $url }}"
          data-fields--picture-max-file-size="{{ $maxFileSize }}"
     >
-        <div class="b text-right wrapper picture-actions">
+        <div class="border text-right p-3 picture-actions">
 
             <div class="fields-picture-container">
-                <img src="#" class="picture-preview img-fluid img-full m-b-md b" alt="">
+                <img src="#" class="picture-preview img-fluid img-full m-b-md border" alt="">
             </div>
 
             <span class="mt-1 float-left">{{ __('Upload image from your computer:') }}</span>
