@@ -26,5 +26,5 @@
 @endif
 
 @if($divider)
-    <li class="divider border-top b-dark"></li>
+    <li class="divider my-2"></li>
 @endif

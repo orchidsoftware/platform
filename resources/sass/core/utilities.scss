@@ -1164,3 +1164,7 @@
 .opacity {
   @include opacity(0.5);
 }
+
+.divider {
+  border-bottom: 1px solid rgba(233, 236, 239, 0.05);
+}
