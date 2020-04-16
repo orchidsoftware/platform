@@ -2,7 +2,7 @@
     data-controller="screen--tabs"
     data-screen--tabs-slug="{{$templateSlug}}"
 >
-    <div class="nav-tabs-alt mt-3">
+    <div class="nav-tabs-alt mt-2">
         <ul class="nav nav-tabs row" role="tablist">
             @foreach($manyForms as $name => $tab)
                 <li class="nav-item">
