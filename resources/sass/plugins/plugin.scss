@@ -105,10 +105,10 @@ div.mce-fullscreen {
 }
 
 .editor-preview-side{
-  border-left: none!important;
-  @extend .b-t;
-  @extend .bg-white;
-  @extend .wrapper;
+    border-left: none !important;
+    @extend .border-top;
+    @extend .bg-white;
+    @extend .wrapper;
 }
 
 .editor-toolbar.fullscreen{

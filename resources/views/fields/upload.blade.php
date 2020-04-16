@@ -23,7 +23,7 @@
             </div>
             <div class="visual-dropzone sortable-dropzone dropzone-previews">
                 <div class="dz-message dz-preview dz-processing dz-image-preview">
-                    <div class="bg-light d-flex justify-content-center align-items-center b r-2x"
+                    <div class="bg-light d-flex justify-content-center align-items-center border r-2x"
                          style="min-height: 112px;">
                         <div class="pr-1 pl-1 pt-3 pb-3">
                             <span class="text-2x icon-cloud-upload"></span>
@@ -35,7 +35,7 @@
                 @if($media)
                     <div class="dz-message dz-preview dz-processing dz-image-preview"
                          data-action="click->fields--upload#openMedia">
-                        <div class="bg-light d-flex justify-content-center align-items-center b r-2x"
+                        <div class="bg-light d-flex justify-content-center align-items-center border r-2x"
                              style="min-height: 112px;">
                             <div class="pr-1 pl-1 pt-3 pb-3">
                                 <span class="text-2x icon-open"></span>

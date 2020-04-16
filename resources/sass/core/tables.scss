@@ -49,18 +49,6 @@
       }
     }
   }
-  &.table-hover {
-    tbody {
-      tr {
-        &:hover td {
-          background: $brand-info !important;
-        }
-        &.selected:hover td {
-          background: $brand-warning !important;
-        }
-      }
-    }
-  }
   &.table-striped {
     tbody {
       tr {
@@ -73,98 +61,11 @@
       }
     }
   }
-  &.table-borderless {
-    tbody {
-      tr {
-        td {
-          border-top: 0;
-        }
-      }
-    }
-  }
-  &.table-condensed {
-    table-layout: fixed;
-    thead {
-      tr {
-        th {
-          padding-left: 20px;
-          padding-right: 20px;
-        }
-      }
-    }
-    tbody {
-      tr {
-        td {
-          padding-top: 12px;
-          padding-bottom: 12px;
-        }
-      }
-    }
-    thead tr th, tbody tr td, tbody tr td * {
-      white-space: nowrap;
-      vertical-align: middle;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    &.table-detailed {
-      & > tbody > tr {
-        &.shown {
-          & > td {
-            background: $brand-warning;
-            &:first-child:before {
-              @include rotate(90deg);
-            }
-          }
-          & + tr {
-            & > td {
-              background: fade-out(mix($brand-light, #fff, 3%), .6);
-              padding: 0 40px;
-              .table-inline {
-                background: transparent;
-                tr, td {
-                  background: transparent;
-                  font-weight: 600;
-                }
-              }
-            }
-          }
-        }
-        &.row-details {
-          & > td {
-            &:first-child:before {
-              content: '';
-            }
-          }
-        }
-        & > td {
-          &:hover {
-            cursor: pointer;
-          }
-        }
-      }
-      .table-inline {
-        td {
-          border: none;
-          text-align: left;
-        }
-      }
-    }
-  }
-  &.table-borderless {
-    & > tbody {
-      & > tr {
-        & > td {
-          border-bottom: 0;
-        }
-      }
-    }
-  }
 }
 
 .fht-table {
   margin-bottom: 0 !important;
 }
-
 
 .table-notification {
     .table tbody tr td {

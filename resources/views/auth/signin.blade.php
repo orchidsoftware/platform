@@ -12,7 +12,7 @@
 </div>
 
 <div class="form-group">
-    <label class="form-label w-full">
+    <label class="form-label w-100">
         {{__('Password')}}
         <a href="{{ route('platform.password.request') }}" class="float-right small">{{__('Forgot your password?')}}</a>
     </label>

@@ -17,7 +17,7 @@
     .dz-details{
         background-color: inherit;
         height: 100%;
-        @extend .b;
+        @extend .border;
         border-radius: $border-radius-base * 2 !important;
         @extend .bg-light;
     }
@@ -29,12 +29,12 @@
       @extend .r-2x;
 
       img {
-        object-fit: cover;
-        width:      100%;
-        height:     100%;
-        @extend .b;
-        border-radius: $border-radius-base * 2 !important;
-        @extend .bg-light;
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+          @extend .border;
+          border-radius: $border-radius-base * 2 !important;
+          @extend .bg-light;
       }
     }
 

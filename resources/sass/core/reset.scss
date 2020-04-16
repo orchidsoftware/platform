@@ -37,10 +37,11 @@ a:focus {
 }
 
 label {
-  font-weight: normal;
-  font-size: 12px;
-  word-break: normal;
-  white-space: nowrap;
+    color: lighten($black, 20%);
+    font-weight: normal;
+    font-size: 13px;
+    word-break: normal;
+    white-space: nowrap;
 }
 
 small, .small {
@@ -779,4 +780,8 @@ dl {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
+}
+
+sub, sup {
+    font-size: 80%;
 }

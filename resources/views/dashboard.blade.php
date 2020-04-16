@@ -2,7 +2,7 @@
 
 @section('body-left')
 
-    <div class="d-sm-flex d-md-block wrapper mt-md-4 w-full v-center">
+    <div class="d-sm-flex d-md-block p-3 mt-md-4 w-100 v-center">
         <a href="#" class="header-toggler d-md-none mr-auto order-first"
            data-toggle="collapse"
            data-target="#headerMenuCollapse">
@@ -15,7 +15,7 @@
         </a>
     </div>
 
-    <nav class="collapse d-md-block w-full" id="headerMenuCollapse">
+    <nav class="collapse d-md-block w-100 mb-md-5" id="headerMenuCollapse">
 
         @include('platform::partials.search')
 
@@ -27,7 +27,7 @@
 
     </nav>
 
-    <div class="h-100 w-100 position-relative to-top cursor b-b mt-md-5"
+    <div class="h-100 w-100 position-relative to-top cursor mt-md-5"
          data-action="click->layouts--html-load#goToTop"
          title="{{ __('Go to top') }}"
          style="border-bottom: 1px solid rgba(233, 236, 239, 0.05);">
@@ -36,13 +36,13 @@
         </div>
     </div>
 
-    <div class="wrapper m-b m-t d-none d-lg-block w-full">
+    <div class="p-3 m-b m-t d-none d-lg-block w-100">
         @includeFirst([config('platform.template.footer'), 'platform::footer'])
     </div>
 @endsection
 
 @section('body-right')
-    <div class="wrapper mt-md-4 @hasSection('navbar') @else d-none d-md-block @endif">
+    <div class="p-3 mt-md-4 @hasSection('navbar') @else d-none d-md-block @endif">
         <div class="v-md-center">
             <div class="d-none d-md-block col-xs-12 col-md no-padder">
                 <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>

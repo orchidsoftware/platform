@@ -1,6 +1,6 @@
 <div id="accardion-{{$templateSlug}}" class="accardion">
     @foreach($manyForms as $name => $forms)
-        <div class="accardion-heading b-b @if ($loop->index) collapsed @endif"
+        <div class="accardion-heading border-bottom @if ($loop->index) collapsed @endif"
              id="heading-{{\Illuminate\Support\Str::slug($name)}}"
              data-toggle="collapse"
              data-target="#collapse-{{\Illuminate\Support\Str::slug($name)}}"
@@ -12,7 +12,7 @@
         </div>
 
         <div id="collapse-{{\Illuminate\Support\Str::slug($name)}}"
-             class="b-b mt-2 collapse @if (!$loop->index) show @endif"
+             class="border-bottom mt-2 collapse @if (!$loop->index) show @endif"
              aria-labelledby="heading-{{\Illuminate\Support\Str::slug($name)}}"
              data-parent="#accardion-{{$templateSlug}}">
             @foreach($forms as $form)

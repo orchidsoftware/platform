@@ -20,10 +20,10 @@
 
 @section('content')
 
-    <div class="admin-wrapper padder-v">
-            <div class="row">
+    <div class="admin-wrapper py-3">
+        <div class="row">
 
-                @php
+            @php
                     /** @var \Illuminate\Support\Collection $menu */
                     $menu = Dashboard::menu()->build('Systems');
                     $chunk = ceil($menu->count() / 2);

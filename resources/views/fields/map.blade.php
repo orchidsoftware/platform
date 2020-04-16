@@ -3,7 +3,7 @@
          data-fields--map-id="{{$id}}"
          data-fields--map-zoom="{{$zoom}}"
     >
-        <div id="{{$id}}" class="osmap-map b m-b w-full" style="min-height: {{ $attributes['height'] }}">
+        <div id="{{$id}}" class="osmap-map border m-b w-100" style="min-height: {{ $attributes['height'] }}">
 
         </div>
         <div class="row mt-3">

@@ -25,15 +25,15 @@
 @empty
 
     <p class="ml-3 mr-3 mb-0 text-center">
-            {{ __('There are no records in this view.') }}
-        </p>
+        {{ __('There are no records in this view.') }}
+    </p>
 
 @endforelse
 
 
 @if($total >= 5)
 
-    <a href="{{ route('platform.search', $query) }}" class="block wrapper-sm dropdown-item b-t pb-1">
+    <a href="{{ route('platform.search', $query) }}" class="block wrapper-sm dropdown-item border-top pb-1">
         <span class="small pl-1">
             {{ __('See more results.') }}
             <span class="text-muted">({{ $total }})</span>

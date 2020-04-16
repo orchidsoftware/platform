@@ -2,7 +2,7 @@
     @isset($title)
         <label for="{{$id}}">{{$title}}
             @if(isset($attributes['required']) && $attributes['required'])
-                <span class="text-danger">*</span>
+                <sup class="text-danger">*</sup>
             @endif
             @includeWhen(isset($popover),'platform::partials.fields.popover',[
                 'content' => $popover ?? ''
@@ -21,5 +21,5 @@
     @endif
 </div>
 @isset($hr)
-    <div class="line line-dashed b-b line-lg"></div>
+    <div class="line line-dashed border-bottom line-lg"></div>
 @endisset

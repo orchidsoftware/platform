@@ -854,10 +854,6 @@
   width: 360px;
 }
 
-.w-full {
-  width: 100%;
-}
-
 .w-auto {
   width: auto;
 }
@@ -965,25 +961,6 @@
 
 .scroll-x {
   overflow-x: auto;
-}
-
-.hover-action {
-  display: none;
-}
-
-.hover-rotate {
-  @include transition(all .2s ease-in-out .1s)
-}
-
-.hover-anchor:hover,
-.hover-anchor:focus,
-.hover-anchor:active {
-  > .hover-action {
-    display: inherit;
-  }
-  > .hover-rotate {
-    @include rotate(90deg)
-  }
 }
 
 .backdrop {
