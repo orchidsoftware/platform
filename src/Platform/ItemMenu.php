@@ -214,7 +214,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function divider(bool $divider): self
+    public function divider(bool $divider = true): self
     {
         $this->divider = $divider;
 

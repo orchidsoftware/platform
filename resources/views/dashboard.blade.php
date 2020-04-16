@@ -27,10 +27,9 @@
 
     </nav>
 
-    <div class="h-100 w-100 position-relative to-top cursor mt-md-5"
+    <div class="h-100 w-100 position-relative to-top cursor mt-md-5 divider"
          data-action="click->layouts--html-load#goToTop"
-         title="{{ __('Go to top') }}"
-         style="border-bottom: 1px solid rgba(233, 236, 239, 0.05);">
+         title="{{ __('Go to top') }}">
         <div class="bottom-left w-100 mb-2 pl-3">
             <small><i class="icon-arrow-up mr-2"></i> {{ __('Go to top') }}</small>
         </div>
