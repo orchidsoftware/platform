@@ -15,7 +15,7 @@ class InputTest extends TestFieldsUnitCase
     public function testShowHr()
     {
         $input = Input::make('inputFieldName');
-        $hr = '<div class="line line-dashed b-b line-lg"></div>';
+        $hr = '<div class="line line-dashed border-bottom line-lg"></div>';
 
         $this->assertStringNotContainsString($hr, self::renderField($input));
 
