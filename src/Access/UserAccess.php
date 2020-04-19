@@ -71,7 +71,10 @@ trait UserAccess
         if (! $cache || is_null($this->cachePermissions)) {
             $this->cachePermissions = $this->roles()
                 ->pluck('permissions')
-                ->prepend($this->permissions);
+                ->prepend($this->permissions)
+                ->filter(function ($permission){
+                    return is_array($permission);
+                });
         }
 
         return $this->cachePermissions
