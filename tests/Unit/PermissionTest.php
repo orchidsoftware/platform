@@ -135,4 +135,18 @@ class PermissionTest extends TestUnitCase
 
         $this->assertFalse($user->inRole($role));
     }
+
+    public function testEmptyPermission(): void
+    {
+        $nullPermission = $this->createUser()
+            ->setAttribute('permissions', null)
+            ->hasAccess('access.to.secret.data');
+
+        $stringPermission = $this->createUser()
+            ->setAttribute('permissions', '')
+            ->hasAccess('access.to.secret.data');
+
+        $this->assertFalse($nullPermission);
+        $this->assertFalse($stringPermission);
+    }
 }
