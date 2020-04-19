@@ -67,7 +67,6 @@ class Quill extends Field
         'max',
         'maxlength',
         'min',
-        'multiple',
         'name',
         'pattern',
         'placeholder',

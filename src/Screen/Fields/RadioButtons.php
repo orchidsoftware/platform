@@ -48,7 +48,6 @@ class RadioButtons extends Field
         'autofocus',
         'disabled',
         'form',
-        'multiple',
         'name',
         'required',
         'size',

@@ -76,7 +76,6 @@ class DateTimer extends Field
         'max',
         'maxlength',
         'min',
-        'multiple',
         'name',
         'pattern',
         'placeholder',

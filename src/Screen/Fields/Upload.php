@@ -20,7 +20,6 @@ use Orchid\Support\Init;
  * @method Upload formmethod($value = true)
  * @method Upload formnovalidate($value = true)
  * @method Upload formtarget($value = true)
- * @method Upload multiple($value = true)
  * @method Upload name(string $value = null)
  * @method Upload placeholder(string $value = null)
  * @method Upload value($value = true)

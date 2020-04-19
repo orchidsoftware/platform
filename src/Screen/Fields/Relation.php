@@ -7,6 +7,7 @@ namespace Orchid\Screen\Fields;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Str;
 use Orchid\Screen\Field;
 use Orchid\Support\Assert;
 
@@ -87,11 +88,12 @@ class Relation extends Field
     }
 
     /**
-     * @return Relation
+     * @return self
      */
     public function multiple(): self
     {
         $this->attributes['multiple'] = 'multiple';
+        $this->attributes['name'] = Str::finish($this->get('name'), '.');
 
         return $this;
     }

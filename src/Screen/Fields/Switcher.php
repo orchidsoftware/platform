@@ -20,7 +20,6 @@ use Orchid\Screen\Field;
  * @method Switcher formmethod($value = true)
  * @method Switcher formnovalidate($value = true)
  * @method Switcher formtarget($value = true)
- * @method Switcher multiple($value = true)
  * @method Switcher name(string $value = null)
  * @method Switcher placeholder(string $value = null)
  * @method Switcher readonly($value = true)
@@ -74,7 +73,6 @@ class Switcher extends Field
         'max',
         'maxlength',
         'min',
-        'multiple',
         'name',
         'pattern',
         'placeholder',

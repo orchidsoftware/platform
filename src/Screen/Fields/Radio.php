@@ -68,7 +68,6 @@ class Radio extends Field
         'max',
         'maxlength',
         'min',
-        'multiple',
         'name',
         'pattern',
         'placeholder',

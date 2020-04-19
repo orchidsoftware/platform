@@ -23,7 +23,6 @@ namespace Orchid\Screen\Fields;
  * @method Cropper max(int $value)
  * @method Cropper maxlength(int $value)
  * @method Cropper min(int $value)
- * @method Cropper multiple($value = true)
  * @method Cropper name(string $value = null)
  * @method Cropper pattern($value = true)
  * @method Cropper placeholder(string $value = null)
@@ -85,7 +84,6 @@ class Cropper extends Picture
         'max',
         'maxlength',
         'min',
-        'multiple',
         'name',
         'pattern',
         'placeholder',

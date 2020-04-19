@@ -6,6 +6,7 @@ namespace Orchid\Screen\Fields;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use Orchid\Screen\Field;
 
 /**
@@ -74,6 +75,7 @@ class Select extends Field
     public function multiple(): self
     {
         $this->attributes['multiple'] = 'multiple';
+        $this->attributes['name'] = Str::finish($this->get('name'), '.');
 
         return $this;
     }

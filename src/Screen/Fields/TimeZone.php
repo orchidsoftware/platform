@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Fields;
 
 use DateTimeZone;
+use Illuminate\Support\Str;
 use Orchid\Screen\Field;
 
 /**
@@ -47,7 +48,6 @@ class TimeZone extends Field
         'autofocus',
         'disabled',
         'form',
-        'multiple',
         'name',
         'required',
         'size',
@@ -70,6 +70,7 @@ class TimeZone extends Field
     public function multiple(): self
     {
         $this->attributes['multiple'] = 'multiple';
+        $this->attributes['name'] = Str::finish($this->get('name'), '.');
 
         return $this;
     }

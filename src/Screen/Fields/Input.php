@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Illuminate\Support\Str;
 use Orchid\Screen\Field;
 
 /**
@@ -24,7 +25,6 @@ use Orchid\Screen\Field;
  * @method Input max(int $value)
  * @method Input maxlength(int $value)
  * @method Input min(int $value)
- * @method Input multiple($value = true)
  * @method Input name(string $value = null)
  * @method Input pattern($value = true)
  * @method Input placeholder(string $value = null)
@@ -112,5 +112,16 @@ class Input extends Field
         });
 
         return $input;
+    }
+
+    /**
+     * @return self
+     */
+    public function multiple(): self
+    {
+        $this->attributes['multiple'] = 'multiple';
+        $this->attributes['name'] = Str::finish($this->get('name'), '.');
+
+        return $this;
     }
 }
