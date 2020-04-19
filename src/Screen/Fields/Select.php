@@ -133,7 +133,7 @@ class Select extends Field
     {
         $key = $key ?? $builder->getModel()->getKeyName();
 
-        return $this->setFromEloquent($builder, $name, $key);
+        return $this->setFromEloquent($builder->get(), $name, $key);
     }
 
     /**
