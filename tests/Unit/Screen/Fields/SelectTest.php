@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Fields;
 
@@ -153,7 +153,6 @@ class SelectTest extends TestFieldsUnitCase
 
     public function testAttributesCanBeUsed()
     {
-
         $select = Select::make('choice')
             ->empty('empty')
             ->fromQuery(EmptyUserModel::orderBy('id'), 'full');
