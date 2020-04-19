@@ -72,7 +72,7 @@ trait UserAccess
             $this->cachePermissions = $this->roles()
                 ->pluck('permissions')
                 ->prepend($this->permissions)
-                ->filter(function ($permission){
+                ->filter(function ($permission) {
                     return is_array($permission);
                 });
         }
