@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Screen\Fields;
 
 use Orchid\Platform\Models\Role;
+use Orchid\Screen\Builder;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\TextArea;
+use Orchid\Screen\Repository;
 use Orchid\Tests\App\EmptyUserModel;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
@@ -170,10 +172,13 @@ class SelectTest extends TestFieldsUnitCase
 
     public function testNameContainDotForMultiple(): void
     {
-        $select = Select::make('choice')->multiple();
-        $view = self::minifyRenderField($select);
+        $builder = new Builder([
+            Select::make('choice')->multiple()
+        ]);
 
-        $this->assertStringContainsString('choice[]', $view);
+        $html = $builder->generateForm();
+
+        $this->assertStringContainsString('choice[]', $html);
     }
 
     /**
