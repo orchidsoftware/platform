@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Illuminate\Support\Str;
+use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
 
 /**
@@ -43,6 +43,8 @@ use Orchid\Screen\Field;
  */
 class Input extends Field
 {
+    use Multipliable;
+
     /**
      * @var string
      */
@@ -112,16 +114,5 @@ class Input extends Field
         });
 
         return $input;
-    }
-
-    /**
-     * @return self
-     */
-    public function multiple(): self
-    {
-        $this->attributes['multiple'] = 'multiple';
-        $this->attributes['name'] = Str::finish($this->get('name'), '.');
-
-        return $this;
     }
 }

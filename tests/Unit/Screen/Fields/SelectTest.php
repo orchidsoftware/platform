@@ -168,6 +168,14 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString($option, $view);
     }
 
+    public function testNameContainDotForMultiple(): void
+    {
+        $select = Select::make('choice')->multiple();
+        $view = self::minifyRenderField($select);
+
+        $this->assertStringContainsString('choice[]', $view);
+    }
+
     /**
      * @param        $name
      * @param string $value

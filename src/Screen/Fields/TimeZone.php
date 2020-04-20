@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Fields;
 
 use DateTimeZone;
-use Illuminate\Support\Str;
+use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
 
 /**
@@ -23,6 +23,8 @@ use Orchid\Screen\Field;
  */
 class TimeZone extends Field
 {
+    use Multipliable;
+
     /**
      * @var string
      */
@@ -62,17 +64,6 @@ class TimeZone extends Field
     public static function make(string $name = null): self
     {
         return (new static())->name($name)->listIdentifiers();
-    }
-
-    /**
-     * @return self
-     */
-    public function multiple(): self
-    {
-        $this->attributes['multiple'] = 'multiple';
-        $this->attributes['name'] = Str::finish($this->get('name'), '.');
-
-        return $this;
     }
 
     /**

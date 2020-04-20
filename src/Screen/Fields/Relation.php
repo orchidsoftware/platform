@@ -7,7 +7,7 @@ namespace Orchid\Screen\Fields;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Str;
+use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
 use Orchid\Support\Assert;
 
@@ -29,6 +29,8 @@ use Orchid\Support\Assert;
  */
 class Relation extends Field
 {
+    use Multipliable;
+
     /**
      * @var string
      */
@@ -85,17 +87,6 @@ class Relation extends Field
     public static function make(string $name = null): self
     {
         return (new static())->name($name);
-    }
-
-    /**
-     * @return self
-     */
-    public function multiple(): self
-    {
-        $this->attributes['multiple'] = 'multiple';
-        $this->attributes['name'] = Str::finish($this->get('name'), '.');
-
-        return $this;
     }
 
     /**
