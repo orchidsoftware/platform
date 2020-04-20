@@ -8,7 +8,6 @@ use Orchid\Platform\Models\Role;
 use Orchid\Screen\Builder;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\TextArea;
-use Orchid\Screen\Repository;
 use Orchid\Tests\App\EmptyUserModel;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
@@ -173,7 +172,7 @@ class SelectTest extends TestFieldsUnitCase
     public function testNameContainDotForMultiple(): void
     {
         $builder = new Builder([
-            Select::make('choice')->multiple()
+            Select::make('choice')->multiple(),
         ]);
 
         $html = $builder->generateForm();
