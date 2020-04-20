@@ -7,6 +7,7 @@ namespace Orchid\Tests\Unit\Screen\Fields;
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\TextArea;
+use Orchid\Tests\App\EmptyUserModel;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 /**
@@ -143,6 +144,23 @@ class SelectTest extends TestFieldsUnitCase
 
         foreach ($this->roles as $role) {
             $option = $this->stringOption($role->name, $role->id);
+            $this->assertStringContainsString($option, $view);
+        }
+
+        $option = $this->stringOption('empty');
+        $this->assertStringContainsString($option, $view);
+    }
+
+    public function testAttributesCanBeUsed()
+    {
+        $select = Select::make('choice')
+            ->empty('empty')
+            ->fromQuery(EmptyUserModel::orderBy('id'), 'full');
+
+        $view = self::minifyRenderField($select);
+
+        foreach (EmptyUserModel::all() as $user) {
+            $option = $this->stringOption($user->full, $user->id);
             $this->assertStringContainsString($option, $view);
         }
 
