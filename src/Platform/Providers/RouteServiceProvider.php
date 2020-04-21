@@ -59,6 +59,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::domain((string) config('platform.domain'))
             ->prefix(Dashboard::prefix('/'))
             ->as('platform.')
+            ->middleware(config('platform.middleware.public'))
             ->group(Dashboard::path('routes/public.php'));
 
         /*
