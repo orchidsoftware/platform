@@ -31,7 +31,6 @@
   ],
   "require": {
       "ext-json": "*",
-      "davejamesmiller/laravel-breadcrumbs": "^5.3",
       "laravel/framework": "^7.0",
       "laravel/scout": "^8.0",
       "myclabs/php-enum": "^1.7",
@@ -60,7 +59,8 @@
       "Orchid\\Presets\\": "src/Presets/",
       "Orchid\\Screen\\": "src/Screen/",
       "Orchid\\Setting\\": "src/Setting/",
-      "Orchid\\Support\\": "src/Support/"
+      "Orchid\\Support\\": "src/Support/",
+      "Orchid\\Breadcrumbs\\": "src/Breadcrumbs/"
     },
     "files": [
       "src/Support/helpers.php"
@@ -83,8 +83,10 @@
       ],
       "aliases": {
         "Alert": "Orchid\\Support\\Facades\\Alert",
+        "Toast": "Orchid\\Support\\Facades\\Toast",
         "Dashboard": "Orchid\\Support\\Facades\\Dashboard",
-        "Setting": "Orchid\\Support\\Facades\\Setting"
+        "Setting": "Orchid\\Support\\Facades\\Setting",
+        "Breadcrumbs": "Orchid\\Support\\Facades\\Breadcrumbs"
       }
     }
   },

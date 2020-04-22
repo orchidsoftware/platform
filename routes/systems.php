@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Orchid\Platform\Http\Controllers\Systems\AttachmentController;
 use Orchid\Platform\Http\Controllers\Systems\RelationController;
 use Orchid\Platform\Http\Controllers\Systems\SystemController;
+use Orchid\Breadcrumbs\Trail;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,11 @@ use Orchid\Platform\Http\Controllers\Systems\SystemController;
 */
 
 $this->router->get('/', [SystemController::class, 'index'])
-    ->name('systems.index');
+    ->name('systems.index')
+    ->breadcrumbs(function (Trail $trail) {
+        return $trail->parent('platform.index')
+            ->push(__('Systems'), route('platform.systems.index'));
+    });
 
 $this->router->post('files', [AttachmentController::class, 'upload'])
     ->name('systems.files.upload');

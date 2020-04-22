@@ -55,9 +55,7 @@
         </div>
     </div>
 
-    @if (Breadcrumbs::exists())
-        {{ Breadcrumbs::view('platform::partials.breadcrumbs') }}
-    @endif
+    @includeWhen(Breadcrumbs::has(), 'platform::partials.breadcrumbs')
 
     <div class="d-flex">
         <div class="app-content-body" id="app-content-body">
