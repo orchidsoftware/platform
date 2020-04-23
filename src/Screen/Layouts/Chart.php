@@ -75,7 +75,7 @@ abstract class Chart extends Base
     protected $export = true;
 
     /**
-     * Limiting the slices
+     * Limiting the slices.
      *
      * When there are too many data values to show visually,
      * it makes sense to bundle up the least of the values as a cumulated data point,
@@ -93,19 +93,19 @@ abstract class Chart extends Base
     protected $valuesOverPoints = 0;
 
     /**
-     * Configuring percentage bars
+     * Configuring percentage bars.
      *
      * @var array
      */
-    protected $barOptions=  [
+    protected $barOptions = [
         'spaceRatio' => 0.5,
-        'stacked' => 0,
-        'height' => 20,
-        'depth' => 2
+        'stacked'    => 0,
+        'height'     => 20,
+        'depth'      => 2,
     ];
 
     /**
-     * Configuring line
+     * Configuring line.
      *
      * @var array
      */
@@ -118,13 +118,13 @@ abstract class Chart extends Base
     ];
 
     /**
-     * Configuring axios
+     * Configuring axios.
      *
      * @var array
      */
     protected $axisOptions = [
         'xIsSeries'  => false,
-        'xAxisMode' => 'span' //'tick'
+        'xAxisMode'  => 'span', //'tick'
     ];
 
     /**
