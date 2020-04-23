@@ -7,6 +7,11 @@
      data-screen--chart-type="{{$type}}"
      data-screen--chart-height="{{$height}}"
      data-screen--chart-colors="{{$colors}}"
+     data-screen--chart-max-slices="{{$maxSlices}}"
+     data-screen--chart-values-over-points="{{$valuesOverPoints}}"
+     data-screen--chart-axis-options="{{$axisOptions}}"
+     data-screen--chart-bar-options="{{$barOptions}}"
+     data-screen--chart-line-options="{{$lineOptions}}"
 >
     <div class="row py-3">
         <div class="pos-rlt w-100">

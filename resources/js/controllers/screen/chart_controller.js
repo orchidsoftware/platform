@@ -16,6 +16,13 @@ export default class extends Controller {
             type: this.data.get('type'),
             height: this.data.get('height'),
 
+            maxSlices: JSON.parse(this.data.get('max-slices')),
+
+            valuesOverPoints: JSON.parse(this.data.get('values-over-points')),
+            axisOptions: JSON.parse(this.data.get('axis-options')),
+            barOptions:  JSON.parse(this.data.get('bar-options')),
+            lineOptions:  JSON.parse(this.data.get('line-options')),
+
             colors: JSON.parse(this.data.get('colors')),
         });
 
