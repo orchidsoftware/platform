@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
+use Orchid\Breadcrumbs\Trail;
 use Orchid\Platform\Http\Controllers\Systems\AttachmentController;
 use Orchid\Platform\Http\Controllers\Systems\RelationController;
 use Orchid\Platform\Http\Controllers\Systems\SystemController;
-use Orchid\Breadcrumbs\Trail;
 
 /*
 |--------------------------------------------------------------------------

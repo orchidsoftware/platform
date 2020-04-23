@@ -27,7 +27,6 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->binding();
 
-
         parent::boot();
     }
 

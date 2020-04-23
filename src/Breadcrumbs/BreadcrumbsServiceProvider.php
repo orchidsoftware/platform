@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Breadcrumbs;
 
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Routing\Route;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Contracts\Support\DeferrableProvider;
 use function Opis\Closure\serialize;
 
 class BreadcrumbsServiceProvider extends ServiceProvider implements DeferrableProvider

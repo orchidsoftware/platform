@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
-
 use Orchestra\Testbench\Dusk\Options;
 use Orchid\Database\Seeds\OrchidDatabaseSeeder;
 use Orchid\Platform\Models\User;

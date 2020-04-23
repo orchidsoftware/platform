@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
+use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Support\Facades\Route;
 use Orchid\Breadcrumbs\Trail;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Breadcrumbs;
 use Orchid\Tests\TestFeatureCase;
-use \Illuminate\Routing\Middleware\SubstituteBindings;
 
 class BreadcrumbsTest extends TestFeatureCase
 {

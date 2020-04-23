@@ -19,7 +19,7 @@ use Orchid\Platform\Http\Screens\SearchScreen;
 // Index and default...
 $this->router->get('/', [IndexController::class, 'index'])
     ->name('index')
-    ->breadcrumbs(function (Trail $trail){
+    ->breadcrumbs(function (Trail $trail) {
         return $trail->push(__('Main'), route('platform.index'));
     });
 

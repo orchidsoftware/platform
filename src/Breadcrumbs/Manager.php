@@ -36,8 +36,9 @@ class Manager
      * @param string   $route
      * @param \Closure $definition
      *
-     * @return void
      * @throws \Throwable
+     *
+     * @return void
      */
     public function for(string $route, Closure $definition)
     {
@@ -45,12 +46,13 @@ class Manager
     }
 
     /**
-     * Render the breadcrumbs as an HTML string
+     * Render the breadcrumbs as an HTML string.
      *
      * @param array $parameters
      *
-     * @return Collection
      * @throws \Throwable
+     *
+     * @return Collection
      */
     public function render($parameters = null): Collection
     {

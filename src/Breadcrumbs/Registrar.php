@@ -21,8 +21,9 @@ class Registrar
      *
      * @param string $name
      *
-     * @return \Closure
      * @throws \Throwable
+     *
+     * @return \Closure
      */
     public function get(string $name): Closure
     {
@@ -34,9 +35,10 @@ class Registrar
     }
 
     /**
-     * Return whether a definition exists for a route name
+     * Return whether a definition exists for a route name.
      *
-     * @param  string  $name
+     * @param string $name
+     *
      * @return bool
      */
     public function has(string $name): bool
@@ -50,8 +52,9 @@ class Registrar
      * @param string   $name
      * @param \Closure $definition
      *
-     * @return void
      * @throws \Throwable
+     *
+     * @return void
      */
     public function set(string $name, Closure $definition): void
     {

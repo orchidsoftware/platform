@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use Opis\Closure\SerializableClosure;
-use Orchid\Support\Facades\Breadcrumbs;
 use function Opis\Closure\unserialize;
 
 class BreadcrumbsMiddleware
@@ -40,8 +39,9 @@ class BreadcrumbsMiddleware
      * @param Request $request
      * @param Closure $next
      *
-     * @return mixed
      * @throws \Throwable
+     *
+     * @return mixed
      */
     public function handle(Request $request, Closure $next)
     {
@@ -50,11 +50,10 @@ class BreadcrumbsMiddleware
                 return array_key_exists(self::class, $route->defaults);
             })
             ->filter(function (Route $route) {
-                return !$this->breadcrumbs->has($route->getName());
+                return ! $this->breadcrumbs->has($route->getName());
             })
             ->each(function (Route $route) {
                 $serialize = $route->defaults[self::class];
-
 
                 // Check if a security provider was set
                 if (null !== $securityProvider = SerializableClosure::getSecurityProvider()) {
@@ -70,7 +69,7 @@ class BreadcrumbsMiddleware
                     SerializableClosure::addSecurityProvider($securityProvider);
                 }
 
-                if(is_a($callback, SerializableClosure::class)){
+                if (is_a($callback, SerializableClosure::class)) {
                     $callback = $callback->getClosure();
                 }
 
@@ -81,5 +80,4 @@ class BreadcrumbsMiddleware
 
         return $next($request);
     }
-
 }

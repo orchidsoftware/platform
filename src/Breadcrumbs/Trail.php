@@ -49,11 +49,12 @@ class Trail
     /**
      * Register a definition with the registrar.
      *
-     * @param string   $name
+     * @param string  $name
      * @param Closure $definition
      *
-     * @return void
      * @throws \Throwable
+     *
+     * @return void
      */
     public function register(string $name, Closure $definition)
     {
@@ -65,8 +66,9 @@ class Trail
      *
      * @param array|null $parameters
      *
-     * @return \Illuminate\Support\Collection
      * @throws \Throwable
+     *
+     * @return \Illuminate\Support\Collection
      */
     public function generate(): Collection
     {
@@ -85,10 +87,11 @@ class Trail
      * @param string $name
      * @param mixed  $parameters
      *
-     * @return Trail
      * @throws \Throwable
+     *
+     * @return Trail
      */
-    public function parent(string $name, ...$parameters): Trail
+    public function parent(string $name, ...$parameters): self
     {
         $this->call($name, $parameters);
 
@@ -98,12 +101,12 @@ class Trail
     /**
      * Add a breadcrumb to the collection.
      *
-     * @param  string  $title
-     * @param  string  $url
+     * @param string $title
+     * @param string $url
      *
      * @return Trail
      */
-    public function push(string $title, string $url = null): Trail
+    public function push(string $title, string $url = null): self
     {
         $this->breadcrumbs->push(new Crumb($title, $url));
 
@@ -116,8 +119,9 @@ class Trail
      * @param string $name
      * @param array  $parameters
      *
-     * @return void
      * @throws \Throwable
+     *
+     * @return void
      */
     protected function call(string $name, array $parameters)
     {

@@ -7,7 +7,6 @@ use Orchid\Platform\Http\Controllers\Auth\LoginController;
 use Orchid\Platform\Http\Controllers\Auth\ResetPasswordController;
 use Orchid\Platform\Http\Controllers\Systems\ResourceController;
 
-
 if (config('platform.auth', true)) {
     // Authentication Routes...
     $this->router->get('login', [LoginController::class, 'showLoginForm'])->name('login');
