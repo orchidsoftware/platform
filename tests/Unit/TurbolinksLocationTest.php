@@ -15,6 +15,10 @@ class TurbolinksLocationTest extends TestUnitCase
         parent::setUp();
 
         Route::middleware(TurbolinksLocation::class)->group(static function () {
+            Route::get('turbolink-get-response-test', static function () {
+                return response()->make('Availability headers location');
+            });
+
             Route::post('turbolink-html-response-test', static function () {
                 return response()->make('Availability headers location');
             });
@@ -41,6 +45,12 @@ class TurbolinksLocationTest extends TestUnitCase
     {
         $response = $this->post('turbolink-html-response-test');
         $response->assertHeader('Turbolinks-Location', url('turbolink-html-response-test'));
+    }
+
+    public function testHtmlParamsResponse()
+    {
+        $response = $this->get('turbolink-get-response-test?turbo=1');
+        $response->assertHeader('Turbolinks-Location', url('turbolink-get-response-test?turbo=1'));
     }
 
     public function testJsonResponse()
