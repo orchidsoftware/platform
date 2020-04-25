@@ -43,6 +43,12 @@ class TurbolinksLocationTest extends TestUnitCase
         $response->assertHeader('Turbolinks-Location', url('turbolink-html-response-test'));
     }
 
+    public function testHtmlParamsResponse()
+    {
+        $response = $this->post('turbolink-html-response-test', ['turbo' => 1]);
+        $response->assertHeader('Turbolinks-Location', url('turbolink-html-response-test?turbo=1'));
+    }
+
     public function testJsonResponse()
     {
         $response = $this->post('turbolink-json-response-test');
