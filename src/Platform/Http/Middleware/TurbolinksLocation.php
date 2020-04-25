@@ -28,6 +28,6 @@ class TurbolinksLocation
 
         return ($response instanceof BinaryFileResponse || $response instanceof StreamedResponse)
             ? $response
-            : $response->header('Turbolinks-Location', $request->url());
+            : $response->header('Turbolinks-Location', $request->fullUrl());
     }
 }
