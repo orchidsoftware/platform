@@ -40,7 +40,7 @@ class DependentSumListener extends Listener
                     ->canSee(
                         $this->query->has('first')
                         && $this->query->get('second')
-                    )
+                    ),
             ]),
         ];
     }
