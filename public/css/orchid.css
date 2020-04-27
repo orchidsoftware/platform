@@ -17183,6 +17183,10 @@ sup {
   font-size: 80%;
 }
 
+legend {
+  font-size: 1.3rem;
+}
+
 html, body {
   width: 100%;
   height: 100%;
@@ -20375,6 +20379,10 @@ a.text-black:hover {
 
 .divider {
   border-bottom: 1px solid rgba(233, 236, 239, 0.05);
+}
+
+.border-dashed {
+  border: 1px dashed #dadfe4 !important;
 }
 
 .table thead tr th {
