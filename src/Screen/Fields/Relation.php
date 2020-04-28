@@ -193,15 +193,21 @@ class Relation extends Field
     }
 
     /**
-     * @param string $scope
+     * @param string     $scope
+     * @param array|null $parameters
      *
      * @return Relation
      */
-    public function applyScope(string $scope): self
+    public function applyScope(string $scope, array $parameters = []): self
     {
-        $scope = lcfirst($scope);
-        $this->set('scope', $scope);
-        $this->set('relationScope', Crypt::encryptString($scope));
+        $data = [
+            'name' => lcfirst($scope),
+            'parameters' => $parameters,
+        ];
+        $this->set('scope', $data);
+        $this->set('relationScope', Crypt::encryptString(
+            base64_encode(serialize($data))
+        ));
 
         return $this;
     }
