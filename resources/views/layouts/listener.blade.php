@@ -6,9 +6,9 @@
      data-layouts--listener-url="{{ url()->current() }}"
 >
     <div data-async>
-        @foreach($manyForms as $formKey => $modal)
-            @foreach($modal as $item)
-                {!! $item ?? '' !!}
+        @foreach($manyForms as $layouts)
+            @foreach($layouts as $layout)
+                {!! $layout ?? '' !!}
             @endforeach
         @endforeach
     </div>
