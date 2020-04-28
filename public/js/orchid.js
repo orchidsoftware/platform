@@ -25531,7 +25531,17 @@ var _default = /*#__PURE__*/function (_Controller) {
           }
         },
         placeholder: select.getAttribute('placeholder') || ''
-      });
+      }); // force change event for https://github.com/select2/select2/issues/1908
+
+      var forceChange = function forceChange() {
+        setTimeout(function () {
+          select.dispatchEvent(new Event('change'));
+        }, 100);
+      };
+
+      $(select).on('select2:select', forceChange);
+      $(select).on('select2:unselect', forceChange);
+      $(select).on('select2:clear', forceChange);
 
       if (!this.data.get('value')) {
         return;
@@ -25627,7 +25637,17 @@ var _default = /*#__PURE__*/function (_Controller) {
         allowClear: !select.hasAttribute('required'),
         placeholder: select.getAttribute('placeholder') || '',
         theme: 'bootstrap'
-      });
+      }); // force change event for https://github.com/select2/select2/issues/1908
+
+      var forceChange = function forceChange() {
+        setTimeout(function () {
+          select.dispatchEvent(new Event('change'));
+        }, 100);
+      };
+
+      $(select).on('select2:select', forceChange);
+      $(select).on('select2:unselect', forceChange);
+      $(select).on('select2:clear', forceChange);
       document.addEventListener('turbolinks:before-cache', function () {
         if (typeof $(select) === 'undefined') {
           $(select).select2('destroy');
