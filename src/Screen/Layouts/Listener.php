@@ -13,7 +13,7 @@ abstract class Listener extends Base
     protected $template = 'platform::layouts.listener';
 
     /**
-     * List of field names for which values will be listened
+     * List of field names for which values will be listened.
      *
      * @var string[]
      */
@@ -69,7 +69,7 @@ abstract class Listener extends Base
         $this->layouts = $this->layouts();
         $this->variables['targets'] = collect($this->targets)->map(function ($target) {
             return rtrim($target, '.') !== $target
-                ? rtrim($target, '.') . '[]' // for listener name="ideas[]"
+                ? rtrim($target, '.').'[]' // for listener name="ideas[]"
                 : $target;
         })->toJson();
 
