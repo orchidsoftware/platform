@@ -8,7 +8,7 @@ use Orchid\Screen\Layouts\Listener;
 class DummyClass extends Listener
 {
     /**
-     * List of field names for which values will be listened
+     * List of field names for which values will be listened.
      *
      * @var string[]
      */
