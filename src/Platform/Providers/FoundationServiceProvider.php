@@ -16,6 +16,7 @@ use Orchid\Platform\Commands\ChartCommand;
 use Orchid\Platform\Commands\FilterCommand;
 use Orchid\Platform\Commands\InstallCommand;
 use Orchid\Platform\Commands\LinkCommand;
+use Orchid\Platform\Commands\ListenerCommand;
 use Orchid\Platform\Commands\MetricsCommand;
 use Orchid\Platform\Commands\RowsCommand;
 use Orchid\Platform\Commands\ScreenCommand;
@@ -48,6 +49,7 @@ class FoundationServiceProvider extends ServiceProvider
         ChartCommand::class,
         MetricsCommand::class,
         SelectionCommand::class,
+        ListenerCommand::class,
     ];
 
     /**
