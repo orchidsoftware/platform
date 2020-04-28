@@ -18,7 +18,7 @@ abstract class Listener extends Base
      * @var string[]
      */
     protected $targets = [
-        'name'
+        'name',
     ];
 
     /**
