@@ -8757,6 +8757,9 @@ var table = (function (domGlobals) {
           if (raw.buttons === undefined) {
             return true;
           }
+          if (global$2.ie && global$2.ie >= 12 && raw.buttons === 0) {
+            return true;
+          }
           return (raw.buttons & 1) !== 0;
         };
         var mouseDown = function (e) {

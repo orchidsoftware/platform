@@ -62,6 +62,13 @@ class ArtisanTest extends TestConsoleCase
             ->assertExitCode(0);
     }
 
+    public function testArtisanOrchidListener()
+    {
+        $this->artisan('orchid:listener', ['name' => $this->generateNameFromMethod()])
+            ->expectsOutput('Listener created successfully.')
+            ->assertExitCode(0);
+    }
+
     public function testArtisanOrchidAdmin()
     {
         $this->artisan('orchid:admin')
