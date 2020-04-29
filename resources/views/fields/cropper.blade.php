@@ -8,7 +8,7 @@
          data-fields--cropper-url="{{ $url }}"
          data-fields--cropper-max-file-size="{{ $maxFileSize }}"
     >
-        <div class="border text-right p-3 cropper-actions">
+        <div class="border-dashed text-right p-3 cropper-actions">
 
             <div class="fields-cropper-container">
                 <img src="#" class="cropper-preview img-fluid img-full m-b-md border" alt="">
