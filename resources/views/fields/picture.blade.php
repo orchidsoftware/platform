@@ -6,7 +6,7 @@
          data-fields--picture-url="{{ $url }}"
          data-fields--picture-max-file-size="{{ $maxFileSize }}"
     >
-        <div class="border text-right p-3 picture-actions">
+        <div class="border-dashed text-right p-3 picture-actions">
 
             <div class="fields-picture-container">
                 <img src="#" class="picture-preview img-fluid img-full m-b-md border" alt="">
