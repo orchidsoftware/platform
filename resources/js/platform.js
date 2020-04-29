@@ -9,8 +9,10 @@ export default function platform() {
         prefix(path) {
             let prefix = document.head.querySelector('meta[name="dashboard-prefix"]');
 
-            if (prefix.content.charAt(0) !== '/') {
+            if (prefix.content.charAt(0) !== '/'.charAt(0)) {
                 prefix = `/${prefix.content}`;
+            } else if (path.charAt(0) === '/'.charAt(0)) {
+                path = path.slice(1)
             }
 
             return `${location.protocol}//${location.hostname}${location.port ? `:${location.port}` : ''}${prefix.content}${path}`;
