@@ -198,7 +198,7 @@ class Relation extends Field
      *
      * @return Relation
      */
-    public function applyScope(string $scope, array $parameters = []): self
+    public function applyScope(string $scope, ...$parameters): self
     {
         $data = [
             'name'       => lcfirst($scope),
