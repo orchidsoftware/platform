@@ -193,8 +193,8 @@ class Relation extends Field
     }
 
     /**
-     * @param string     $scope
-     * @param array      $parameters
+     * @param string $scope
+     * @param array  $parameters
      *
      * @return Relation
      */
