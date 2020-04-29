@@ -65,7 +65,7 @@ class RelationController extends Controller
     private function buildersItems(Model $model, string $name, string $key, string $search = null, array $scope = [], string $append = null)
     {
         if ($scope !== null) {
-            $model = $model->{$scope['name']}($scope['parameters']);
+            $model = $model->{$scope['name']}(...$scope['parameters']);
         }
 
         if (is_array($model)) {

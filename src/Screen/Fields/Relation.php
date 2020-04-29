@@ -172,7 +172,7 @@ class Relation extends Field
                 $class->value = $value;
             }
 
-            $class = $class->{$scope['name']}($scope['parameters']);
+            $class = $class->{$scope['name']}(...$scope['parameters']);
 
             $item = collect($class)
                 ->whereIn($key, $value)
@@ -194,14 +194,14 @@ class Relation extends Field
 
     /**
      * @param string     $scope
-     * @param array|null $parameters
+     * @param array      $parameters
      *
      * @return Relation
      */
     public function applyScope(string $scope, array $parameters = []): self
     {
         $data = [
-            'name' => lcfirst($scope),
+            'name'       => lcfirst($scope),
             'parameters' => $parameters,
         ];
         $this->set('scope', $data);
