@@ -172,7 +172,7 @@ class Relation extends Field
                 $class->value = $value;
             }
 
-            $class = $class->{$scope}();
+            $class = $class->{$scope['name']}($scope['parameters']);
 
             $item = collect($class)
                 ->whereIn($key, $value)
