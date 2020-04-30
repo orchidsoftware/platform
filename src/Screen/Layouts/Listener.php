@@ -2,6 +2,7 @@
 
 namespace Orchid\Screen\Layouts;
 
+use Orchid\Screen\Builder;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
@@ -68,9 +69,7 @@ abstract class Listener extends Base
         $this->query = $repository;
         $this->layouts = $this->layouts();
         $this->variables['targets'] = collect($this->targets)->map(function ($target) {
-            return rtrim($target, '.') !== $target
-                ? rtrim($target, '.').'[]' // for listener name="ideas[]"
-                : $target;
+            return Builder::convertDotToArray($target);
         })->toJson();
 
         return $this->buildAsDeep($repository);
