@@ -146,48 +146,27 @@ class Builder
      */
     private function buildPrefix(Field $field)
     {
-        $prefix = $field->get('prefix');
-
-        if (is_null($prefix)) {
-            return $this->prefix;
-        }
-
-        return $prefix;
+        return $field->get('prefix', $this->prefix);
     }
 
     /**
      * @param array $attributes
      *
-     * @return mixed
+     * @return array
      */
-    private function fill(array $attributes)
+    private function fill(array $attributes): array
     {
-        $name = array_filter(explode(' ', $attributes['name']));
-        $name = array_shift($name);
+        $name = $attributes['name'];
 
-        $bindValueName = $name;
-        if (substr($name, -1) === '.') {
-            $bindValueName = substr($bindValueName, 0, -1);
-        }
-
+        $bindValueName = rtrim($name, '.');
         $attributes['value'] = $this->getValue($bindValueName, $attributes['value'] ?? null);
 
-        $binding = explode('.', $name);
-
-        $attributes['name'] = '';
-        foreach ($binding as $key => $bind) {
-            if (! is_null($attributes['prefix'])) {
-                $attributes['name'] .= '['.$bind.']';
-                continue;
-            }
-
-            if ($key === 0) {
-                $attributes['name'] .= $bind;
-                continue;
-            }
-
-            $attributes['name'] .= '['.$bind.']';
+        //set prefix
+        if ($attributes['prefix'] !== null) {
+            $name = '.' . $name;
         }
+
+        $attributes['name'] = self::convertDotToArray($name);
 
         return $attributes;
     }
@@ -202,18 +181,18 @@ class Builder
      */
     private function getValue(string $key, $value = null)
     {
-        if (! is_null($this->language)) {
+        if ($this->language !== null) {
             $key = $this->language.'.'.$key;
         }
 
-        if (! is_null($this->prefix)) {
+        if ($this->prefix !== null) {
             $key = $this->prefix.'.'.$key;
         }
 
         $data = $this->data->getContent($key);
 
         // default value
-        if (is_null($data)) {
+        if ($data === null) {
             return $value;
         }
 
@@ -222,5 +201,22 @@ class Builder
         }
 
         return $data;
+    }
+
+    /**
+     * @param string $string
+     *
+     * @return string
+     */
+    public static function convertDotToArray(string $string): string
+    {
+        $name = '';
+        $binding = explode('.', $string);
+
+        foreach ($binding as $key => $bind) {
+            $name .= $key === 0 ? $bind : '[' . $bind . ']';
+        }
+
+        return $name;
     }
 }

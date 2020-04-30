@@ -28760,8 +28760,10 @@ function platform() {
     prefix: function prefix(path) {
       var prefix = document.head.querySelector('meta[name="dashboard-prefix"]');
 
-      if (prefix.content.charAt(0) !== '/') {
+      if (prefix.content.charAt(0) !== '/'.charAt(0)) {
         prefix = "/".concat(prefix.content);
+      } else if (path.charAt(0) === '/'.charAt(0)) {
+        path = path.slice(1);
       }
 
       return "".concat(location.protocol, "//").concat(location.hostname).concat(location.port ? ":".concat(location.port) : '').concat(prefix.content).concat(path);
