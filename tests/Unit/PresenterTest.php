@@ -30,7 +30,6 @@ class PresenterTest extends TestUnitCase
     protected function getPresenterClass(): Presenter
     {
         $class = new class {
-
             /**
              * @var bool
              */
@@ -38,7 +37,6 @@ class PresenterTest extends TestUnitCase
         };
 
         return new class($class) extends Presenter {
-
             /**
              * @return bool
              */
@@ -47,7 +45,5 @@ class PresenterTest extends TestUnitCase
                 return $this->entity->status;
             }
         };
-
-
     }
 }
