@@ -25,7 +25,6 @@ class AsyncScreenTest extends TestFeatureCase
                 'second' => 3,
             ]);
 
-
         $response->assertOk();
 
         $this->assertStringContainsString('value="5"', $response->getContent());
