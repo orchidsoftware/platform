@@ -46,7 +46,6 @@ class AsyncScreenTest extends TestFeatureCase
                 'second' => 3,
             ]);
 
-
         $response->assertNotFound();
     }
 }
