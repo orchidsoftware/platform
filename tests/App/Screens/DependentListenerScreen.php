@@ -42,12 +42,12 @@ class DependentListenerScreen extends Screen
     }
 
     /**
-     * @param int $first
-     * @param int $b
+     * @param int      $first
+     * @param int|null $second
      *
      * @return int[]
      */
-    public function asyncSum(int $first, int $second): array
+    public function asyncSum(int $first = null, int $second = null): array
     {
         return [
             'first'  => $first,
