@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use JsonSerializable;
 use Orchid\Screen\Repository;
 
@@ -25,7 +26,7 @@ abstract class Base implements JsonSerializable
      * Nested layers that should be
      * displayed along with it.
      *
-     * @var array
+     * @var Base[]
      */
     protected $layouts = [];
 
@@ -171,6 +172,28 @@ abstract class Base implements JsonSerializable
     public function getSlug(): string
     {
         return sha1(json_encode($this));
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getMapSlugsLayouts(): Collection
+    {
+        $map = collect();
+
+        collect($this->layouts)
+            ->map(function ($layout) {
+                return is_object($layout) ? $layout : app()->make($layout);
+            })
+            ->each(function (Base $layout) use ($map){
+                $map->put($layout->getSlug(), $layout);
+            })
+            ->each(function (Base $layout) use ($map){
+                return $map->merge($layout->getMapSlugsLayouts());
+            });
+
+
+        return $map;
     }
 
     /**

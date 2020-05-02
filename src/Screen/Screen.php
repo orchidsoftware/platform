@@ -126,6 +126,10 @@ abstract class Screen extends Controller
             ->map(function ($layout) {
                 return is_object($layout) ? $layout : app()->make($layout);
             })
+            ->map(function (Base $layout) {
+                return $layout->getMapSlugsLayouts();
+            })
+            ->flatten()
             ->filter(function (Base $layout) use ($slugLayouts) {
                 return $layout->getSlug() === $slugLayouts;
             })

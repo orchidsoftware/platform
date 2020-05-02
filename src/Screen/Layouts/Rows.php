@@ -25,16 +25,6 @@ abstract class Rows extends Base
     protected $query;
 
     /**
-     * Base constructor.
-     *
-     * @param Base[] $layouts
-     */
-    public function __construct(array $layouts = [])
-    {
-        $this->layouts = $layouts;
-    }
-
-    /**
      * @param Repository $repository
      *
      * @throws Throwable
