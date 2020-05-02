@@ -163,7 +163,7 @@ class Builder
 
         //set prefix
         if ($attributes['prefix'] !== null) {
-            $name = '.' . $name;
+            $name = '.'.$name;
         }
 
         $attributes['name'] = self::convertDotToArray($name);
@@ -214,7 +214,7 @@ class Builder
         $binding = explode('.', $string);
 
         foreach ($binding as $key => $bind) {
-            $name .= $key === 0 ? $bind : '[' . $bind . ']';
+            $name .= $key === 0 ? $bind : '['.$bind.']';
         }
 
         return $name;
