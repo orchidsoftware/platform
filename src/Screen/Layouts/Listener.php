@@ -3,7 +3,6 @@
 namespace Orchid\Screen\Layouts;
 
 use Orchid\Screen\Builder;
-use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
 abstract class Listener extends Base
@@ -41,14 +40,6 @@ abstract class Listener extends Base
      * @var Repository
      */
     public $query;
-
-    /**
-     * Listener constructor.
-     */
-    public function __construct()
-    {
-        $this->layouts[] = Layout::view('hello');
-    }
 
     /**
      * @return array
