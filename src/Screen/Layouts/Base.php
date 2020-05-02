@@ -182,6 +182,7 @@ abstract class Base implements JsonSerializable
         $map = collect()->put($this->getSlug(), $this);
 
         collect($this->layouts)
+            ->flatten()
             ->map(function ($layout) {
                 return is_object($layout) ? $layout : app()->make($layout);
             })
