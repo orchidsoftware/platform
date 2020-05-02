@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use JsonSerializable;
 use Orchid\Screen\Repository;
 
@@ -175,25 +174,30 @@ abstract class Base implements JsonSerializable
     }
 
     /**
-     * @return Collection
+     * @param string $slug
+     *
+     * @return Base|null
      */
-    public function getMapSlugsLayouts(): Collection
+    public function findBySlug(string $slug)
     {
-        $map = collect()->put($this->getSlug(), $this);
+        if ($this->getSlug() === $slug) {
+            return $this;
+        }
 
-        collect($this->layouts)
+        return collect($this->layouts)
             ->flatten()
-            ->map(function ($layout) {
-                return is_object($layout) ? $layout : app()->make($layout);
-            })
-            ->each(function (self $layout) use ($map) {
-                $map->put($layout->getSlug(), $layout);
-            })
-            ->each(function (self $layout) use ($map) {
-                $map->push($layout->getMapSlugsLayouts());
-            });
+            ->map(static function ($layout) use ($slug) {
+                $layout = is_object($layout)
+                    ? $layout
+                    : app()->make($layout);
 
-        return $map;
+                return $layout->findBySlug($slug);
+            })
+            ->filter()
+            ->filter(static function ($layout) use ($slug) {
+                return $layout->getSlug() === $slug;
+            })
+            ->first();
     }
 
     /**
