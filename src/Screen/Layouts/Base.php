@@ -185,13 +185,12 @@ abstract class Base implements JsonSerializable
             ->map(function ($layout) {
                 return is_object($layout) ? $layout : app()->make($layout);
             })
-            ->each(function (Base $layout) use ($map){
+            ->each(function (self $layout) use ($map) {
                 $map->put($layout->getSlug(), $layout);
             })
-            ->each(function (Base $layout) use ($map){
+            ->each(function (self $layout) use ($map) {
                 return $map->merge($layout->getMapSlugsLayouts());
             });
-
 
         return $map;
     }

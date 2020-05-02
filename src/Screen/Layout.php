@@ -56,7 +56,6 @@ class Layout
     public static function rows(array $fields): Rows
     {
         return new class($fields) extends Rows {
-
             /**
              * @var Field[]
              */
