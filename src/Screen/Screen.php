@@ -106,13 +106,13 @@ abstract class Screen extends Controller
 
     /**
      * @param mixed $method
-     * @param mixed $slugLayouts
+     * @param mixed $slug
      *
      * @throws Throwable
      *
      * @return View
      */
-    protected function asyncBuild($method, $slugLayouts)
+    protected function asyncBuild($method, $slug)
     {
         $this->arguments = $this->request->all();
 
@@ -126,15 +126,12 @@ abstract class Screen extends Controller
             ->map(function ($layout) {
                 return is_object($layout) ? $layout : app()->make($layout);
             })
-            ->map(function (Base $layout) {
-                return $layout->getMapSlugsLayouts();
+            ->map(function (Base $layout) use ($slug) {
+                return $layout->findBySlug($slug);
             })
-            ->flatten()
-            ->filter(function (Base $layout) use ($slugLayouts) {
-                return $layout->getSlug() === $slugLayouts;
-            })
-            ->whenEmpty(function () use ($method) {
-                abort(404, "Async method: {$method} not found");
+            ->filter()
+            ->whenEmpty(function () use ($slug) {
+                abort(404, "Async template: {$slug} not found");
             })
             ->first();
 
