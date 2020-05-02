@@ -179,7 +179,7 @@ abstract class Base implements JsonSerializable
      */
     public function getMapSlugsLayouts(): Collection
     {
-        $map = collect();
+        $map = collect()->put($this->getSlug(), $this);
 
         collect($this->layouts)
             ->map(function ($layout) {

@@ -114,7 +114,7 @@ abstract class Screen extends Controller
      */
     protected function asyncBuild($method, $slugLayouts)
     {
-        $this->arguments = $this->request->json()->all();
+        $this->arguments = $this->request->all();
 
         $this->reflectionParams($method);
 
