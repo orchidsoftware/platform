@@ -35,9 +35,7 @@ class BaseTest extends TestUnitCase
 
     public function testCanSeeLayout(): void
     {
-
         $layout = new class() extends Base {
-
             /***
              * @param Repository $query
              *
@@ -55,7 +53,7 @@ class BaseTest extends TestUnitCase
              */
             public function build(Repository $repository)
             {
-                if (!$this->checkPermission($this, $repository)) {
+                if (! $this->checkPermission($this, $repository)) {
                     return;
                 }
 
