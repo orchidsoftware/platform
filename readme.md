@@ -1,7 +1,7 @@
 
 <h1 align="center">
   <br>
-  <a href="https://orchid.software/"><img src="https://orchid.software/assets/img/orchid.svg" alt="ORCHID" width="250"></a>
+  <a href="https://orchid.software/"><img src="https://orchid.software/assets/img/orchid-black.svg" alt="ORCHID" width="250"></a>
   <br>
   <br>
 </h1>
