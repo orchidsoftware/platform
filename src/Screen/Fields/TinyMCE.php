@@ -9,6 +9,8 @@ use Orchid\Screen\Field;
 /**
  * Class TinyMCE.
  *
+ * @deprecated
+ *
  * @method TinyMCE accesskey($value = true)
  * @method TinyMCE autocomplete($value = true)
  * @method TinyMCE autofocus($value = true)
