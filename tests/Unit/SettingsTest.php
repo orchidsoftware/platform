@@ -9,7 +9,7 @@ use Orchid\Setting\Setting;
 use Orchid\Tests\TestUnitCase;
 
 /**
- * Class SettingsTest
+ * Class SettingsTest.
  *
  * @deprecated
  */
