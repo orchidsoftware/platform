@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Orchid\Setting\Setting;
 
 /**
- * Class SettingsTableSeeder
+ * Class SettingsTableSeeder.
  *
  * @deprecated
  */
