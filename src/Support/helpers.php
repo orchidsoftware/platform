@@ -37,6 +37,7 @@ if (! function_exists('alert')) {
 
 if (! function_exists('setting')) {
     /**
+     * @deprecated
      * @param string|array $key
      * @param null         $default
      *

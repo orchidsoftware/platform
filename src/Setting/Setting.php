@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Cache;
 
 /**
  * Class Setting.
+ *
+ * @deprecated
  */
 class Setting extends Model
 {
