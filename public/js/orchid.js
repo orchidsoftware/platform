@@ -28258,6 +28258,8 @@ var _default = /*#__PURE__*/function (_Controller) {
      *
      */
     value: function connect() {
+      var _this = this;
+
       this.chart = new frappe_charts_dist_frappe_charts_min_esm__WEBPACK_IMPORTED_MODULE_1__["Chart"](this.data.get('parent'), {
         title: this.data.get('title'),
         data: {
@@ -28273,21 +28275,14 @@ var _default = /*#__PURE__*/function (_Controller) {
         lineOptions: JSON.parse(this.data.get('line-options')),
         colors: JSON.parse(this.data.get('colors'))
       });
-      $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', this.drawEvent());
-    }
-    /**
-     *
-     * @returns {Function}
-     */
 
-  }, {
-    key: "drawEvent",
-    value: function drawEvent() {
-      var _this = this;
-
-      return function () {
-        _this.chart.draw();
+      this.drawEvent = function () {
+        return setTimeout(function () {
+          _this.chart.draw();
+        }, 320);
       };
+
+      $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', this.drawEvent);
     }
     /**
      *
@@ -28305,7 +28300,8 @@ var _default = /*#__PURE__*/function (_Controller) {
   }, {
     key: "disconnect",
     value: function disconnect() {
-      $(document).off('shown.bs.tab', 'a[data-toggle="tab"]', this.drawEvent());
+      this.chart.destroy();
+      $(document).off('shown.bs.tab', 'a[data-toggle="tab"]', this.drawEvent);
     }
   }]);
 

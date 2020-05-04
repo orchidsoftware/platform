@@ -1,5 +1,5 @@
-import { Controller } from 'stimulus';
-import { Chart } from 'frappe-charts/dist/frappe-charts.min.esm';
+import {Controller} from 'stimulus';
+import {Chart} from 'frappe-charts/dist/frappe-charts.min.esm';
 
 export default class extends Controller {
 
@@ -26,18 +26,13 @@ export default class extends Controller {
             colors: JSON.parse(this.data.get('colors')),
         });
 
-        $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', this.drawEvent());
+        this.drawEvent = () => setTimeout(() => {
+            this.chart.draw();
+        }, 100);
+
+        $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', this.drawEvent);
     }
 
-    /**
-     *
-     * @returns {Function}
-     */
-    drawEvent() {
-        return () => {
-            this.chart.draw();
-        };
-    }
 
     /**
      *
@@ -50,6 +45,7 @@ export default class extends Controller {
      *
      */
     disconnect() {
-        $(document).off('shown.bs.tab', 'a[data-toggle="tab"]', this.drawEvent());
+        this.chart.destroy();
+        $(document).off('shown.bs.tab', 'a[data-toggle="tab"]', this.drawEvent);
     }
 }
