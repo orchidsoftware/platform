@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Browser;
 
+use Illuminate\Support\Str;
 use Laravel\Dusk\Browser;
 use Orchid\Tests\TestBrowserCase;
 
@@ -47,18 +48,21 @@ class UserEditTest extends TestBrowserCase
 
     public function testListAsync(): void
     {
+
         $this->browse(function (Browser $browser) {
             $user = $this->createAdminUser();
+            $string = Str::random(5);
+
             $browser
                 ->loginAs($user)
                 ->visitRoute('platform.systems.users')
                 ->press($user->email)
                 ->pause(500)
-                ->type('user[name]', $user->name.'-async-test')
+                ->type('user[name]', $string)
                 ->press('Apply')
                 ->waitForText('User was saved.', 10)
-                ->waitForText($user->name.'-async-test')
-                ->assertSee($user->name.'-async-test');
+                ->waitForText($string)
+                ->assertSee($string);
         });
     }
 }
