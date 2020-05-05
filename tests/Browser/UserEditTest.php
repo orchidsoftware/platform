@@ -48,7 +48,6 @@ class UserEditTest extends TestBrowserCase
 
     public function testListAsync(): void
     {
-
         $this->browse(function (Browser $browser) {
             $user = $this->createAdminUser();
             $string = Str::random(5);
