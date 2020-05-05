@@ -20,16 +20,15 @@ jobs:
       - name: Make SQLite database
         run: vendor/orchestra/testbench-dusk/create-sqlite-db
 
-      - name: Dusk updater
-        run: vendor/bin/dusk-updater update
-
-      - name: Dusk detect
+      - name: Update Dusk Chromedriver
         run: vendor/bin/dusk-updater detect --auto-update
 
-      - name: Chrome driver
-        run: vendor/laravel/dusk/bin/chromedriver-linux > /dev/null 2>&1 &
+      - name: Execute Unit Tests
+        run: vendor/bin/phpunit --testsuite=Browser
 
-      - name: Run Chrome
-        run: google-chrome-stable --headless --disable-gpu --no-sandbox --remote-debugging-port=9222 http://localhost > /dev/null 2>&1 &
-      #- name: Run dusk tests
-      #  run: vendor/bin/phpunit --testsuite=Browser
+      - name: Upload Failed Screenshots
+        uses: actions/upload-artifact@v2-preview
+        if: failure()
+        with:
+          name: screenshots
+          path: tests/Browser/screenshots/*
