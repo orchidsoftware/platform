@@ -56,7 +56,7 @@ trait Environment
         ]);
 
         if (env('GITHUB_TOKEN') !== null) {
-            Options::withoutUI();
+            //Options::withoutUI();
         }
     }
 
