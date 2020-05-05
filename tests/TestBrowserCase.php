@@ -20,16 +20,6 @@ abstract class TestBrowserCase extends TestCase
     }
 
     /**
-     * @var string
-     */
-    protected static $baseServeHost = '127.0.0.1';
-
-    /**
-     * @var int
-     */
-    protected static $baseServePort = 9292;
-
-    /**
      * @var User
      */
     private $user;
