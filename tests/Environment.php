@@ -55,9 +55,9 @@ trait Environment
             'password' => 'password',
         ]);
 
-        if (env('GITHUB_TOKEN') !== null) {
-            //Options::withoutUI();
-        }
+        //if (env('GITHUB_TOKEN') !== null) {
+        Options::withoutUI();
+        //}
     }
 
     /**
