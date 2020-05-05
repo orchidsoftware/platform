@@ -6,6 +6,7 @@ namespace Orchid\Tests;
 
 use Faker\Factory as Faker;
 use Faker\Generator;
+use Orchestra\Testbench\Dusk\Options;
 use Orchestra\Testbench\Dusk\TestCase;
 use Orchid\Platform\Models\User;
 
@@ -14,6 +15,10 @@ use Orchid\Platform\Models\User;
  */
 abstract class TestBrowserCase extends TestCase
 {
+    use Environment {
+        Environment::getEnvironmentSetUp as getEnvSetUp;
+    }
+
     /**
      * @var string
      */
@@ -23,11 +28,6 @@ abstract class TestBrowserCase extends TestCase
      * @var int
      */
     protected static $baseServePort = 9292;
-
-
-    use Environment {
-        Environment::getEnvironmentSetUp as getEnvSetUp;
-    }
 
     /**
      * @var User
@@ -55,6 +55,8 @@ abstract class TestBrowserCase extends TestCase
             'prefix'                  => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ]);
+
+        Options::withoutUI();
     }
 
     /**

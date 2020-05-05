@@ -54,10 +54,6 @@ trait Environment
             'email'    => 'admin@admin.com',
             'password' => 'password',
         ]);
-
-        //if (env('GITHUB_TOKEN') !== null) {
-        Options::withoutUI();
-        //}
     }
 
     /**
