@@ -56,7 +56,7 @@ class UserEditTest extends TestBrowserCase
                 ->pause(500)
                 ->type('user[name]', $user->name.'-async-test')
                 ->press('Apply')
-                ->waitForText('User was saved.')
+                ->waitForText('User was saved.', 10)
                 ->waitForText($user->name.'-async-test')
                 ->assertSee($user->name.'-async-test');
         });
