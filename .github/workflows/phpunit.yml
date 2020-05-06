@@ -3,7 +3,7 @@ name: Unit tests
 on: [push,pull_request]
 
 jobs:
-  test:
+  phpunit:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -41,3 +41,33 @@ jobs:
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit 🧪
         run: vendor/bin/phpunit --coverage-clover=coverage.xml
+
+  dusk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: PHP version
+        run: php -v
+
+      - uses: actions/checkout@v1
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+
+      - name: Make SQLite database
+        run: vendor/orchestra/testbench-dusk/create-sqlite-db
+
+      - name: Update Dusk Chromedriver
+        run: vendor/bin/dusk-updater detect --auto-update
+
+      - name: Execute Unit Tests
+        run: vendor/bin/phpunit --testsuite=Browser
+
+      - name: Upload Failed Screenshots
+        uses: actions/upload-artifact@v2-preview
+        if: failure()
+        with:
+          name: screenshots
+          path: tests/Browser/screenshots/*
