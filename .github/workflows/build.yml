@@ -21,8 +21,7 @@ jobs:
           npm run production
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+      - uses: stefanzweifel/git-auto-commit-action@v4.1.6
         with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: build
-          FOLDER: .
+          commit_message: Build automatic assets
+          branch: build
