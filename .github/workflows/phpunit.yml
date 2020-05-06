@@ -1,4 +1,4 @@
-name: Unit tests
+name: Tests
 
 on: [push,pull_request]
 
