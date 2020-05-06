@@ -1,6 +1,7 @@
 import {Controller} from "stimulus";
 import Dropzone from 'dropzone';
 import Sortable from 'sortablejs';
+import {debounce, has as objHas} from "lodash";
 
 export default class extends Controller {
 
@@ -25,6 +26,10 @@ export default class extends Controller {
         super(props);
         this.attachments = {};
         this.mediaList = {};
+    }
+
+    initialize() {
+        this.loadMedia = debounce(this.loadMedia, 500);
     }
 
     /**
@@ -66,9 +71,8 @@ export default class extends Controller {
 
     /**
      *
-     * @param event
      */
-    openLink(event) {
+    openLink() {
         event.preventDefault();
         window.open(this.data.get('url'));
     }
@@ -254,17 +258,14 @@ export default class extends Controller {
                 });
 
                 this.on('removedfile', file => {
-
-                    if(file === null || !file.hasOwnProperty('data')){
-                        return;
+                    if (objHas(file, 'data.id')) {
+                        $(`${dropname} .files-${file.data.id}`).remove();
+                        !isMediaLibrary && axios
+                            .delete(platform.prefix(`/systems/files/${file.data.id}`), {
+                                storage: storage,
+                            })
+                            .then();
                     }
-
-                    $(`${dropname} .files-${file.data.id}`).remove();
-                    !isMediaLibrary && axios
-                        .delete(platform.prefix(`/systems/files/${file.data.id}`), {
-                            storage: storage,
-                        })
-                        .then();
                 });
 
                 if (!multiple) {
@@ -342,6 +343,7 @@ export default class extends Controller {
         if (typeof this.cancelRequest === 'function') {
             this.cancelRequest();
         }
+        $(`${this.dropname} .media.modal`).modal('show');
 
         axios
             .post(platform.prefix('/systems/media'), {
@@ -357,7 +359,6 @@ export default class extends Controller {
             .then((response) => {
                 this.mediaList = response.data;
                 this.renderMedia();
-                $(`${this.dropname} .media.modal`).modal('show');
             });
     }
 
@@ -373,7 +374,7 @@ export default class extends Controller {
                 '    <div data-action="click->fields--upload#addFile" data-key="' + key + '">\n' +
                 '        <img src="' + element.url + '"\n' +
                 '             class="rounded mw-100"\n' +
-                '             style="max-height: 100px;width: 100%;object-fit: cover;">\n' +
+                '             style="height: 50px;width: 100%;object-fit: cover;">\n' +
                 '        <p class="text-ellipsis small text-muted mt-1 mb-0" title="' + element.original_name + '">' + element.original_name + '</p>\n' +
                 '    </div>\n' +
                 '</div>';
