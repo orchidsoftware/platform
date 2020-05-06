@@ -9,13 +9,10 @@ export default function platform() {
         prefix(path) {
             let prefix = document.head.querySelector('meta[name="dashboard-prefix"]');
 
-            if (prefix.content.charAt(0) !== '/'.charAt(0)) {
-                prefix = `/${prefix.content}`;
-            } else if (path.charAt(0) === '/'.charAt(0)) {
-                path = path.slice(1)
-            }
+            // Remove double slashes from url
+            let pathname = `${prefix.content}${path}`.replace(/\/\/+/g, '/')
 
-            return `${location.protocol}//${location.hostname}${location.port ? `:${location.port}` : ''}${prefix.content}${path}`;
+            return `${location.protocol}//${location.hostname}${location.port ? `:${location.port}` : ''}${pathname}`;
         },
 
         /**
