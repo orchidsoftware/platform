@@ -7,19 +7,25 @@ export default class extends Controller {
      */
     connect() {
         this.targets.forEach(name => {
-            document.querySelector(`[name="${name}"]`)
-                .addEventListener('change', () => {
-                    this.render();
-                });
+            document.querySelectorAll(`[name="${name}"]`)
+                .forEach((field) =>
+                    field.addEventListener('change', () => this.render())
+                );
         });
     }
 
     render() {
         let params = {};
 
-        this.targets.forEach(name => {
-            params[name] = document.querySelector(`[name="${name}"]`).value;
-        });
+        this.targets.forEach(name => document.querySelectorAll(`[name="${name}"]`)
+            .forEach((field) => {
+
+                if ((field.type === 'checkbox' || field.type === 'radio') && !field.checked) {
+                    return;
+                }
+
+                params[name] = field.value;
+            }));
 
         this.asyncLoadData(params);
     }
