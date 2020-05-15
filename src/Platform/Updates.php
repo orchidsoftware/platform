@@ -86,7 +86,7 @@ class Updates
     public function requestVersion(): Collection
     {
         $versions = Cache::remember('check-platform-update', now()->addMinutes($this->cache), function () {
-            $this->getVersion();
+            return $this->getVersion();
         });
 
         return collect($versions)->reverse();
