@@ -29,6 +29,6 @@ class ModalWithoutButtonsTest extends TestUnitCase
         $this->assertStringNotContainsString(ModalScreenWithoutButtons::APPLY_BUTTON, $html);
         $this->assertStringNotContainsString(ModalScreenWithoutButtons::CLOSE_BUTTON, $html);
 
-        $this->assertStringNotContainsString(Modal::SIZE_LG, $html);
+        $this->assertStringContainsString(Modal::SIZE_LG, $html);
     }
 }
