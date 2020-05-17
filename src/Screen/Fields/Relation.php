@@ -125,7 +125,7 @@ class Relation extends Field
                 $value = Arr::wrap($value);
             }
 
-            if (Assert::isIntArray($value)) {
+            if (! Assert::isObjectArray($value)) {
                 $value = $model::whereIn($key, $value)->get();
             }
 
