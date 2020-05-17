@@ -47,7 +47,7 @@ class AttachmentTest extends TestUnitCase
         ]);
 
         $this->assertTrue(Storage::disk($this->disk)->exists($upload->physicalPath()));
-        $this->assertStringContainsString($upload->name . '.xml', $upload->url());
+        $this->assertStringContainsString($upload->name.'.xml', $upload->url());
     }
 
     public function testAttachmentCustomEngineFile(): void
@@ -69,7 +69,7 @@ class AttachmentTest extends TestUnitCase
 
         $this->assertTrue(Storage::disk($this->disk)->exists($upload->physicalPath()));
 
-        $path = 'custom/' . $upload->name . '.xml';
+        $path = 'custom/'.$upload->name.'.xml';
 
         $this->assertStringContainsString($path, $upload->physicalPath());
         $this->assertStringContainsString('/storage/'.$path, $upload->url());
@@ -179,7 +179,7 @@ class AttachmentTest extends TestUnitCase
 
         $attachment->original_name = 'blob';
 
-        $this->assertEquals($attachment->name . '.' . $attachment->extension, $attachment->getTitleAttribute());
+        $this->assertEquals($attachment->name.'.'.$attachment->extension, $attachment->getTitleAttribute());
     }
 
     public function testAttachmentTrait(): void
