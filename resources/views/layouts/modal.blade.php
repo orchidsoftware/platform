@@ -38,9 +38,11 @@
                     </div>
                     <div class="modal-footer">
 
-                        <button type="button" class="btn btn-link" data-dismiss="modal">
-                            {{ $close }}
-                        </button>
+                        @if(!$withoutCloseButton)
+                            <button type="button" class="btn btn-link" data-dismiss="modal">
+                                {{ $close }}
+                            </button>
+                        @endif
 
                         @empty($commandBar)
                             @if(!$withoutApplyButton)

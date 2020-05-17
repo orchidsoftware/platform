@@ -59,6 +59,7 @@ class Modal extends Base
             'turbolinks'            => true,
             'commandBar'            => [],
             'withoutApplyButton'    => false,
+            'withoutCloseButton'    => false,
         ];
 
         $this->layouts = $layouts;
@@ -98,13 +99,27 @@ class Modal extends Base
     /**
      * Whether to disable the apply button or not.
      *
-     * @param bool $withoutApplayButton
+     * @param bool $withoutApplyButton
      *
      * @return Modal
      */
-    public function withoutApplyButton(bool $withoutApplayButton = true): self
+    public function withoutApplyButton(bool $withoutApplyButton = true): self
     {
-        $this->variables['withoutApplyButton'] = $withoutApplayButton;
+        $this->variables['withoutApplyButton'] = $withoutApplyButton;
+
+        return $this;
+    }
+
+    /**
+     * Whether to disable the close button or not.
+     *
+     * @param bool $withoutCloseButton
+     *
+     * @return Modal
+     */
+    public function withoutCloseButton(bool $withoutCloseButton = true): self
+    {
+        $this->variables['withoutCloseButton'] = $withoutCloseButton;
 
         return $this;
     }
