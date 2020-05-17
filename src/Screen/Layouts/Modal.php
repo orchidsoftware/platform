@@ -96,7 +96,7 @@ class Modal extends Base
     }
 
     /**
-     * Whether to disable the apply button or not
+     * Whether to disable the apply button or not.
      *
      * @param bool $withoutApplayButton
      *
