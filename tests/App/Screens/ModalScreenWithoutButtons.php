@@ -49,7 +49,8 @@ class ModalScreenWithoutButtons extends Screen
     {
         return [
             ModalToggle::make('exampleModalsWithoutButtons')
-                ->name('exampleModalsWithoutButtons'),
+                ->name('exampleModalsWithoutButtons')
+                ->modal('exampleOneModalWithoutButtons'),
         ];
     }
 
@@ -66,7 +67,6 @@ class ModalScreenWithoutButtons extends Screen
             Layout::modal('exampleOneModalWithoutButtons', [
                 Layout::rows([]),
             ])
-                ->modal('exampleModalsWithoutButtons')
                 ->title(self::TITLE_MODAL)
                 ->size(Modal::SIZE_LG)
                 ->applyButton(self::APPLY_BUTTON)

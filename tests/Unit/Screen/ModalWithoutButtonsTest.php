@@ -12,7 +12,7 @@ use Orchid\Tests\TestUnitCase;
 /**
  * Class ModalTest.
  */
-class ModalWithoutButtonTest extends TestUnitCase
+class ModalWithoutButtonsTest extends TestUnitCase
 {
     /**
      * @throws \Throwable
@@ -22,10 +22,10 @@ class ModalWithoutButtonTest extends TestUnitCase
         $screen = new ModalScreenWithoutButtons();
         $html = $screen->view()->withErrors(Validator::make([], []))->render();
 
-        $this->assertStringNotContainsString($screen->name, $html);
-        $this->assertStringNotContainsString($screen->description, $html);
+        $this->assertStringContainsString($screen->name, $html);
+        $this->assertStringContainsString($screen->description, $html);
+        $this->assertStringContainsString(ModalScreenWithoutButtons::TITLE_MODAL, $html);
 
-        $this->assertStringNotContainsString(ModalScreenWithoutButtons::TITLE_MODAL, $html);
         $this->assertStringNotContainsString(ModalScreenWithoutButtons::APPLY_BUTTON, $html);
         $this->assertStringNotContainsString(ModalScreenWithoutButtons::CLOSE_BUTTON, $html);
 
