@@ -34,9 +34,9 @@ class Assert
      *
      * @return bool
      */
-    public static function isArrayClosure($array, $callback):bool
+    public static function isArrayClosure($array, $callback): bool
     {
-        if(is_a($array, Collection::class)){
+        if (is_a($array, Collection::class)) {
             $array = $array->all();
         }
 
