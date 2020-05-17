@@ -44,6 +44,6 @@ abstract class Presenter
      */
     public function __isset($property)
     {
-        return method_exists($this, $property);
+        return property_exists($this, $property) || property_exists($this->entity, $property);
     }
 }

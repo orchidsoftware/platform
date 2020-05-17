@@ -57,11 +57,26 @@ class Layout
     {
         return new class($fields) extends Rows {
             /**
+             * @var Field[]
+             */
+            protected $fields;
+
+            /**
+             *  constructor.
+             *
+             * @param array $fields
+             */
+            public function __construct(array $fields = [])
+            {
+                $this->fields = $fields;
+            }
+
+            /**
              * @return array
              */
             public function fields(): array
             {
-                return $this->layouts;
+                return $this->fields;
             }
         };
     }

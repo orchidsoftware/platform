@@ -4,10 +4,75 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 7.2.8 - 2020-05-15
+
+### Fixed
+- `Updates::requestVersion()` cache broken [#1093](https://github.com/orchidsoftware/platform/issues/1093)
+
+
+## 7.2.7 - 2020-05-13
+
+### Changed
+- Update bootstrap to 4.5.0
+
+### Fixed
+- Listener layout not updating with RadioButtons [1090](https://github.com/orchidsoftware/platform/issues/1090)
+
+## 7.2.6 - 2020-05-11
+
+### Fixed
+- Listener layout not updating with RadioButtons or Checkbox [1090](https://github.com/orchidsoftware/platform/issues/1090)
+
+## 7.2.5 - 2020-05-07
+
+### Fixed
+- Empty avatar display
+
+## 7.2.4 - 2020-05-06
+
+### Fixed
+- Missing slash in prefix name
+
+## 7.2.3 - 2020-05-05
+
+### Fixed
+- Jquery < 3.5.0 security vulnerabilities
+
+## 7.2.2 - 2020-05-04
+
+### Deprecated
+- TinyMCE field [#873](https://github.com/orchidsoftware/platform/issues/873)
+- Settings [#1087](https://github.com/orchidsoftware/platform/issues/1087)
+
+
+## 7.2.1 - 2020-05-04
+
+### Fixed
+- Updating the chart when it is in tabs
+
+## 7.2.0 - 2020-05-03
+
+### Added
+- Listener layout [#774](https://github.com/orchidsoftware/platform/issues/774) , [#869](https://github.com/orchidsoftware/platform/issues/869)
+
+### Changed
+- Border type to dashed for picture/cropper
+- Position badge
+
+## 7.1.4 - 2020-04-29
+
+### Fixed
+- Double slash address generation
+
+## 7.1.3 - 2020-04-26
+
+### Fixed
+- Removed typehinting from role id [#1083](https://github.com/orchidsoftware/platform/pull/1083)
+
 ## 7.1.2 - 2020-04-26
 
 ### Fixed
-- Incomplete url address transfer in Turbolinks header
+- Incomplete url address transfer in Turbolinks header [#1081](https://github.com/orchidsoftware/platform/issues/1081)
 
 ## 7.1.1 - 2020-04-24
 

@@ -1,4 +1,4 @@
-<div class=" pt-0" data-async>
+<div class="pt-0" data-async>
 
     <p>
         <a data-toggle="collapse"

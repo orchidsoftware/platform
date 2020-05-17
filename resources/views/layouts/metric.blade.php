@@ -1,4 +1,4 @@
-<div class="py-3 border-bottom">
+<div class="pt-3">
     @isset($title)
         <h4 class="font-thin text-black mb-0">{{ __($title) }}</h4>
     @endisset

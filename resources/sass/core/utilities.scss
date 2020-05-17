@@ -1168,3 +1168,7 @@
 .divider {
   border-bottom: 1px solid rgba(233, 236, 239, 0.05);
 }
+
+.border-dashed {
+  border: 1px dashed $border-color !important;
+}

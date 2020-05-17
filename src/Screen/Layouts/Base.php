@@ -25,7 +25,7 @@ abstract class Base implements JsonSerializable
      * Nested layers that should be
      * displayed along with it.
      *
-     * @var array
+     * @var Base[]
      */
     protected $layouts = [];
 
@@ -171,6 +171,33 @@ abstract class Base implements JsonSerializable
     public function getSlug(): string
     {
         return sha1(json_encode($this));
+    }
+
+    /**
+     * @param string $slug
+     *
+     * @return Base|null
+     */
+    public function findBySlug(string $slug)
+    {
+        if ($this->getSlug() === $slug) {
+            return $this;
+        }
+
+        return collect($this->layouts)
+            ->flatten()
+            ->map(static function ($layout) use ($slug) {
+                $layout = is_object($layout)
+                    ? $layout
+                    : app()->make($layout);
+
+                return $layout->findBySlug($slug);
+            })
+            ->filter()
+            ->filter(static function ($layout) use ($slug) {
+                return $layout->getSlug() === $slug;
+            })
+            ->first();
     }
 
     /**

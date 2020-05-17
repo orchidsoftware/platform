@@ -5,6 +5,11 @@ namespace Orchid\Database\Seeds;
 use Illuminate\Database\Seeder;
 use Orchid\Setting\Setting;
 
+/**
+ * Class SettingsTableSeeder.
+ *
+ * @deprecated
+ */
 class SettingsTableSeeder extends Seeder
 {
     /**

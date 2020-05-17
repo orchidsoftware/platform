@@ -8,6 +8,11 @@ use Illuminate\Support\Str;
 use Orchid\Setting\Setting;
 use Orchid\Tests\TestUnitCase;
 
+/**
+ * Class SettingsTest.
+ *
+ * @deprecated
+ */
 class SettingsTest extends TestUnitCase
 {
     /**
