@@ -106,12 +106,13 @@ class Relation extends Field
     public function fromModel(string $model, string $name, string $key = null): self
     {
         $key = $key ?? (new $model())->getModel()->getKeyName();
+        $keyType = (new $model)->getKeyType();
 
         $this->set('relationModel', Crypt::encryptString($model));
         $this->set('relationName', Crypt::encryptString($name));
         $this->set('relationKey', Crypt::encryptString($key));
 
-        return $this->addBeforeRender(function () use ($model, $name, $key) {
+        return $this->addBeforeRender(function () use ($model, $name, $key, $keyType) {
             $append = $this->get('relationAppend');
 
             if (is_string($append)) {
@@ -125,7 +126,7 @@ class Relation extends Field
                 $value = Arr::wrap($value);
             }
 
-            if (Assert::isIntArray($value)) {
+            if (($keyType == 'int' && Assert::isIntArray($value)) || ($keyType == 'string' && Assert::isStringArray($value))) {
                 $value = $model::whereIn($key, $value)->get();
             }
 

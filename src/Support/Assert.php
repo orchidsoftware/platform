@@ -19,4 +19,18 @@ class Assert
 
         return count($array) === count(array_filter($array, 'is_numeric'));
     }
+
+    /**
+     * @param mixed $array
+     *
+     * @return bool
+     */
+    public static function isStringArray($array): bool
+    {
+        if (! is_array($array)) {
+            return false;
+        }
+
+        return count($array) === count(array_filter($array, 'is_string'));
+    }
 }
