@@ -43,12 +43,14 @@
                         </button>
 
                         @empty($commandBar)
-                            <button type="submit"
-                                    id="submit-modal-{{$key}}"
-                                    data-turbolinks="{{ var_export($turbolinks) }}"
-                                    class="btn btn-default">
-                                {{ $apply }}
-                            </button>
+                            @if($withoutApplyButton)
+                                <button type="submit"
+                                        id="submit-modal-{{$key}}"
+                                        data-turbolinks="{{ var_export($turbolinks) }}"
+                                        class="btn btn-default">
+                                    {{ $apply }}
+                                </button>
+                            @endif
                         @else
                             {!! $commandBar !!}
                         @endempty

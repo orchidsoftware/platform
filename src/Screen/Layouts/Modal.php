@@ -50,14 +50,15 @@ class Modal extends Base
     public function __construct(string $key, array $layouts = [])
     {
         $this->variables = [
-            'apply'      => __('Apply'),
-            'close'      => __('Close'),
-            'size'       => '',
-            'type'       => self::TYPE_CENTER,
-            'key'        => $key,
-            'title'      => $key,
-            'turbolinks' => true,
-            'commandBar' => [],
+            'apply'                 => __('Apply'),
+            'close'                 => __('Close'),
+            'size'                  => '',
+            'type'                  => self::TYPE_CENTER,
+            'key'                   => $key,
+            'title'                 => $key,
+            'turbolinks'            => true,
+            'commandBar'            => [],
+            'withoutApplyButton'    => false,
         ];
 
         $this->layouts = $layouts;
@@ -90,6 +91,20 @@ class Modal extends Base
     public function applyButton(string $text): self
     {
         $this->variables['apply'] = $text;
+
+        return $this;
+    }
+
+    /**
+     * Whether to disable the apply button or not
+     *
+     * @param bool $withoutApplayButton
+     *
+     * @return Modal
+     */
+    public function withoutApplyButton(bool $withoutApplayButton = false): self
+    {
+        $this->variables['withoutApplyButton'] = $withoutApplayButton;
 
         return $this;
     }
