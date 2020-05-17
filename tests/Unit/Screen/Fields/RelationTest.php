@@ -59,6 +59,26 @@ class RelationTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Select roles', $view);
     }
 
+    public function testInstanceArrayWithStringPrimary()
+    {
+        $stringPrimaryClass = new class extends Role {
+            protected $primaryKey = 'slug';
+        };
+
+        /** @var Role $current */
+        $current = $this->roles->random();
+
+        $select = Relation::make('role')
+            ->title('Select roles')
+            ->fromModel(get_class(new $stringPrimaryClass), 'name')
+            ->value($current->getRoleSlug());
+
+        $view = self::renderField($select);
+
+        $this->assertStringContainsString($current->name, $view);
+        $this->assertStringContainsString('Select roles', $view);
+    }
+
     public function testMultipleInstance()
     {
         /** @var Role $current */
