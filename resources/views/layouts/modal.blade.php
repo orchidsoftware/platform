@@ -43,7 +43,7 @@
                         </button>
 
                         @empty($commandBar)
-                            @if($withoutApplyButton)
+                            @if(!$withoutApplyButton)
                                 <button type="submit"
                                         id="submit-modal-{{$key}}"
                                         data-turbolinks="{{ var_export($turbolinks) }}"
