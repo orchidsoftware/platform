@@ -102,7 +102,7 @@ class Modal extends Base
      *
      * @return Modal
      */
-    public function withoutApplyButton(bool $withoutApplayButton = false): self
+    public function withoutApplyButton(bool $withoutApplayButton = true): self
     {
         $this->variables['withoutApplyButton'] = $withoutApplayButton;
 
