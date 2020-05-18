@@ -66,6 +66,7 @@ return [
     | it will be opened by users when they enter or click on logos and links.
     |
     */
+
     'index' => 'platform.main',
 
     /*
@@ -101,6 +102,20 @@ return [
     'template' => [
         'header' => null,
         'footer' => null,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Default configuration for attachments.
+    |--------------------------------------------------------------------------
+    |
+    | Strategy properties for the file and storage used.
+    |
+    */
+
+    'attachment' => [
+        'disk'      => 'public',
+        'generator' => \Orchid\Attachment\Engines\Generator::class,
     ],
 
 ];
