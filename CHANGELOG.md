@@ -7,17 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 7.4.0 - 2020-05-18
 
 ### Added
-- The class that contains the strategy for determining attachment
+- The class that contains the strategy for determining attachment [#1100](https://github.com/orchidsoftware/platform/pull/1100)
 
 ## 7.3.0 - 2020-05-17
 
 ## Added
-- Method `withoutApplyButton` and `withoutCloseButton` to modal based layouts
+- Method `withoutApplyButton` and `withoutCloseButton` to modal based layouts [#1099](https://github.com/orchidsoftware/platform/pull/1099)
 
 ## 7.2.9 - 2020-05-17
 
 ### Fixed
-- Support for string primary models in relations field
+- Support for string primary models in relations field [#1098](https://github.com/orchidsoftware/platform/pull/1098), [#1096](https://github.com/orchidsoftware/platform/pull/1096)
+
 
 ## 7.2.8 - 2020-05-15
 
