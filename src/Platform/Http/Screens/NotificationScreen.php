@@ -13,7 +13,7 @@ use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Alert;
+use Orchid\Support\Facades\Toast;
 
 class NotificationScreen extends Screen
 {
@@ -130,7 +130,7 @@ class NotificationScreen extends Screen
             ->where('type', DashboardMessage::class)
             ->markAsRead();
 
-        Alert::info(__('All messages have been read.'));
+        Toast::info(__('All messages have been read.'));
 
         return back();
     }
@@ -147,7 +147,7 @@ class NotificationScreen extends Screen
             ->where('type', DashboardMessage::class)
             ->delete();
 
-        Alert::info(__('All messages have been deleted.'));
+        Toast::info(__('All messages have been deleted.'));
 
         return back();
     }

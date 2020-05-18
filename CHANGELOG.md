@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 7.5.0 - 2020-05-19
+
+### Added
+- Title property for `Row` layout
+- Request validation for `User` screen
+
+### Changed
+- Increased contrast for label forms
+- Replace `Alert` to `Toast` in Notification screen
+- Use `Persona` layouts for stubs
+- Default avatar user
+
+### Fixed
+- Disable button focus for bootstrap 4.5
+- Disable `Matrix` textarea border
+
 ## 7.4.0 - 2020-05-18
 
 ### Added

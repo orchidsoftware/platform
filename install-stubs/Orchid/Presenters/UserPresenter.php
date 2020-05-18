@@ -50,7 +50,7 @@ class UserPresenter extends Presenter implements Searchable, Personable
     {
         $hash = md5(strtolower(trim($this->entity->email)));
 
-        return "https://www.gravatar.com/avatar/$hash";
+        return "https://www.gravatar.com/avatar/$hash?d=mp";
     }
 
     /**

@@ -31,7 +31,7 @@ class RolePermissionLayout extends Rows
      *
      * @return array
      */
-    public function generatedPermissionFields(Collection $permissionsRaw): array
+    private function generatedPermissionFields(Collection $permissionsRaw): array
     {
         $fields = [];
 
@@ -42,16 +42,26 @@ class RolePermissionLayout extends Rows
                 ->chunk(3)
                 ->each(function (Collection $chunks) use (&$fields) {
                     $fields[] = Field::group(function () use ($chunks) {
-                        return $chunks->map(function ($permission) {
-                            return CheckBox::make('permissions.'.base64_encode($permission['slug']))
-                                ->placeholder($permission['description'])
-                                ->value($permission['active'])
-                                ->sendTrueOrFalse();
-                        })->toArray();
+                        return $this->getCheckBoxGroup($chunks);
                     });
                 });
         });
 
         return $fields;
+    }
+
+    /**
+     * @param Collection $chunks
+     *
+     * @return array
+     */
+    private function getCheckBoxGroup(Collection $chunks): array
+    {
+        return $chunks->map(function ($permission) {
+            return CheckBox::make('permissions.'.base64_encode($permission['slug']))
+                ->placeholder($permission['description'])
+                ->value($permission['active'])
+                ->sendTrueOrFalse();
+        })->toArray();
     }
 }

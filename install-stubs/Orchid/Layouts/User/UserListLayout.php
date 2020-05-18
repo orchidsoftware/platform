@@ -9,6 +9,7 @@ use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Actions\ModalToggle;
+use Orchid\Screen\Layouts\Persona;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
@@ -30,24 +31,7 @@ class UserListLayout extends Table
                 ->cantHide()
                 ->filter(TD::FILTER_TEXT)
                 ->render(function (User $user) {
-                    // Please use Blade templates.
-                    // This will be a simple example: view('path', ['user' => $user])
-                    $avatar = e($user->presenter()->image());
-                    $name = e($user->presenter()->title());
-                    $sub = e($user->presenter()->subTitle());
-                    $route = route('platform.systems.users.edit', $user->id);
-
-                    return "<a href='{$route}'>
-                                <div class='d-sm-flex flex-row flex-wrap text-center text-sm-left align-items-center'>
-                                    <span class='thumb-xs avatar m-r-xs d-none d-md-inline-block'>
-                                      <img src='{$avatar}' class='bg-light'>
-                                    </span>
-                                    <div class='ml-sm-3 ml-md-0 ml-xl-3 mt-2 mt-sm-0 mt-md-2 mt-xl-0'>
-                                      <p class='mb-0'>{$name}</p>
-                                      <small class='text-xs text-muted'>{$sub}</small>
-                                    </div>
-                                </div>
-                            </a>";
+                    return new Persona($user->presenter());
                 }),
 
             TD::set('email', __('Email'))

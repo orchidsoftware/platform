@@ -173,7 +173,7 @@ class SearchScreen extends Screen
     private function getSearchModel(Collection $searchModels)
     {
         $class = get_class($searchModels->first());
-        $type = $this->request->session()->get(self::SESSION_NAME, $class);
+        $type = session()->get(self::SESSION_NAME, $class);
 
         $model = $searchModels->filter(static function ($model) use ($type) {
             return $model instanceof $type;

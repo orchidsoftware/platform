@@ -11,6 +11,8 @@ use Orchid\Screen\Layouts\Selection;
 trait Filterable
 {
     /**
+     * Apply the filter to the given query.
+     *
      * @param Builder $query
      * @param array   $filters
      *
@@ -28,6 +30,8 @@ trait Filterable
     }
 
     /**
+     * Apply the filter to the given selection.
+     *
      * @param Builder          $query
      * @param string|Selection $selection
      *

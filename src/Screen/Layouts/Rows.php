@@ -6,6 +6,7 @@ namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
 use Orchid\Screen\Builder;
+use Orchid\Screen\Field;
 use Orchid\Screen\Repository;
 use Throwable;
 
@@ -18,6 +19,13 @@ abstract class Rows extends Base
      * @var string
      */
     protected $template = 'platform::layouts.row';
+
+    /**
+     * Used to create the title of a group of form elements.
+     *
+     * @var string|null
+     */
+    protected $title;
 
     /**
      * @var Repository
@@ -41,12 +49,25 @@ abstract class Rows extends Base
         $form = new Builder($this->fields(), $repository);
 
         return view($this->template, [
-            'form' => $form->generateForm(),
+            'form'  => $form->generateForm(),
+            'title' => $this->title,
         ]);
     }
 
     /**
-     * @return array
+     * @param string|null $title
+     *
+     * @return Rows
+     */
+    public function title(string $title = null): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * @return Field[]
      */
     abstract protected function fields(): array;
 }

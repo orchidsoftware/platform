@@ -12,8 +12,8 @@ class DashboardChannel extends DatabaseChannel
     /**
      * Build an array payload for the DatabaseNotification Model.
      *
-     * @param mixed                                  $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
+     * @param mixed        $notifiable
+     * @param Notification $notification
      *
      * @return array
      */

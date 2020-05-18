@@ -6,6 +6,7 @@ namespace Orchid\Tests\Unit\Screen\Layouts;
 
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Repository;
 use Orchid\Tests\TestUnitCase;
 
@@ -24,5 +25,34 @@ class RowTest extends TestUnitCase
         $html = $layout->build($repository)->withErrors([])->render();
 
         $this->assertStringContainsString('Alexandr Chernyaev', $html);
+    }
+
+    public function testTitleForShortRow()
+    {
+        $layout = Layout::rows([])->title('Profile');
+
+        $html = $layout->build(new Repository())
+            ->withErrors([])
+            ->render();
+
+        $this->assertStringContainsString('Profile', $html);
+    }
+
+    public function testTitleForRow()
+    {
+        $rows = new class extends Rows {
+            protected $title = 'Profile';
+
+            protected function fields(): array
+            {
+                return [];
+            }
+        };
+
+        $html = $rows->build(new Repository())
+            ->withErrors([])
+            ->render();
+
+        $this->assertStringContainsString('Profile', $html);
     }
 }
