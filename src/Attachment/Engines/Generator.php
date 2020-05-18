@@ -39,6 +39,9 @@ class Generator implements Engine
     }
 
     /**
+     * Returns name to create a real file on disk and write to the database.
+     * Specified any string without extension.
+     *
      * @return string
      */
     public function name(): string
@@ -47,14 +50,18 @@ class Generator implements Engine
     }
 
     /**
+     * Returns name to create a file with extension
+     *
      * @return string
      */
     public function fullName(): string
     {
-        return Str::finish($this->name(), '.') . $this->getClientOriginalExtension();
+        return Str::finish($this->name(), '.') . $this->extension();
     }
 
     /**
+     * Returns the relative file path
+     *
      * @return string
      */
     public function path(): string
@@ -63,6 +70,9 @@ class Generator implements Engine
     }
 
     /**
+     * Returns file hash string that will indicate
+     * that the same file has already been downloaded
+     *
      * @return string
      */
     public function hash(): string
@@ -71,6 +81,8 @@ class Generator implements Engine
     }
 
     /**
+     * Return a Unix file upload timestamp
+     *
      * @return int
      */
     public function time(): int
@@ -79,9 +91,11 @@ class Generator implements Engine
     }
 
     /**
+     * Returns file extension
+     *
      * @return string
      */
-    public function getClientOriginalExtension(): string
+    public function extension(): string
     {
         $extension = $this->file->getClientOriginalExtension();
 
@@ -91,11 +105,13 @@ class Generator implements Engine
     }
 
     /**
+     * Returns the file mime type.
+     *
      * @return string
      */
     public function mime(): string
     {
-        return $this->mimes->getMimeType($this->getClientOriginalExtension())
+        return $this->mimes->getMimeType($this->extension())
             ?? $this->mimes->getMimeType($this->file->getClientMimeType())
             ?? 'unknown';
     }

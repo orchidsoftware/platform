@@ -53,14 +53,14 @@ class File
      * @param string       $disk
      * @param string       $group
      */
-    public function __construct(UploadedFile $file, string $disk = 'public', string $group = null)
+    public function __construct(UploadedFile $file, string $disk = null, string $group = null)
     {
         abort_if($file->getSize() === false, 415, 'File failed to load.');
 
         $this->file = $file;
 
-        $this->storage = Storage::disk($disk);
-        $this->disk = $disk;
+        $this->disk = $disk ?? config('platform.attachment.disk');
+        $this->storage = Storage::disk($this->disk);
 
         $generator = config('platform.attachment.generator', Generator::class);
 
@@ -119,7 +119,7 @@ class File
             'name'          => $this->engine->name(),
             'mime'          => $this->engine->mime(),
             'hash'          => $this->engine->hash(),
-            'extension'     => $this->engine->getClientOriginalExtension(),
+            'extension'     => $this->engine->extension(),
             'original_name' => $this->file->getClientOriginalName(),
             'size'          => $this->file->getSize(),
             'path'          => Str::finish($this->engine->path(), '/'),
