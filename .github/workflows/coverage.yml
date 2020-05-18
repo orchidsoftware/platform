@@ -13,7 +13,7 @@ jobs:
         with:
           php-version: 7.3
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
-          coverage: xdebug
+          coverage: pcov
 
       - name: Validate composer.json and composer.lock 👀
         run: composer validate
