@@ -9,8 +9,8 @@ use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Actions\ModalToggle;
-use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Layouts\Persona;
+use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
 class UserListLayout extends Table

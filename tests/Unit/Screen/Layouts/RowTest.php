@@ -38,11 +38,9 @@ class RowTest extends TestUnitCase
         $this->assertStringContainsString('Profile', $html);
     }
 
-
     public function testTitleForRow()
     {
         $rows = new class extends Rows {
-
             protected $title = 'Profile';
 
             protected function fields(): array

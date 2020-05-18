@@ -15,9 +15,9 @@ class RolePermissionLayout extends Rows
     /**
      * Views.
      *
-     * @return array
      * @throws \Throwable
      *
+     * @return array
      */
     public function fields(): array
     {
@@ -27,9 +27,9 @@ class RolePermissionLayout extends Rows
     /**
      * @param Collection $permissionsRaw
      *
-     * @return array
      * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
      *
+     * @return array
      */
     private function generatedPermissionFields(Collection $permissionsRaw): array
     {
@@ -58,7 +58,7 @@ class RolePermissionLayout extends Rows
     private function getCheckBoxGroup(Collection $chunks): array
     {
         return $chunks->map(function ($permission) {
-            return CheckBox::make('permissions.' . base64_encode($permission['slug']))
+            return CheckBox::make('permissions.'.base64_encode($permission['slug']))
                 ->placeholder($permission['description'])
                 ->value($permission['active'])
                 ->sendTrueOrFalse();
