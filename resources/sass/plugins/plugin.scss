@@ -297,3 +297,9 @@ div.mce-fullscreen {
     }
   }
 }
+
+.matrix {
+    .form-control:focus {
+        border-radius: 0;
+    }
+}

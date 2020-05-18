@@ -12,7 +12,9 @@ class DummyClass extends Metric
     protected $title = 'Example Metric';
 
     /**
-     * @var array
+     * Get the labels available for the metric.
+     *
+     * @return array
      */
     protected $labels = [];
 

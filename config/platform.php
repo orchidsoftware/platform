@@ -7,6 +7,10 @@ return [
     | Sub-Domain Routing
     |--------------------------------------------------------------------------
     |
+    | This value is the "domain name" associated with your application. This
+    | can be used to prevent panel internal routes from being registered
+    | on subdomains that do not need access to your admin application.
+    |
     | You can use the admin panel on a separate subdomain.
     |
     | Example: 'admin.example.com'
@@ -21,7 +25,8 @@ return [
     |--------------------------------------------------------------------------
     |
     | This prefix method can be used for the prefix of each
-    | route in the administration panel.
+    | route in the administration panel. Feel free to
+    | change this path to anything you like.
     |
     | Example: '/', '/admin', '/dashboard'
     |
@@ -34,8 +39,9 @@ return [
     | Middleware
     |--------------------------------------------------------------------------
     |
-    | Provide a convenient mechanism for filtering HTTP
-    | requests entering your application.
+    | This middleware will be assigned to every route, giving you the
+    | chance to add your own middleware to this stack or override any of
+    | the existing middleware. Or, you can just stick with this stack.
     |
     */
 
