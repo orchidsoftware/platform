@@ -106,7 +106,7 @@ class AttachmentController extends Controller
     {
         $model = app()->make(File::class, [
             'file'  => $file,
-            'disk'  => $request->get('storage', 'public'),
+            'disk'  => $request->get('storage'),
             'group' => $request->get('group'),
         ])->load();
 
