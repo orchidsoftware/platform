@@ -46,21 +46,21 @@ class Generator implements Engine
      */
     public function name(): string
     {
-        return sha1($this->time . $this->file->getClientOriginalName());
+        return sha1($this->time.$this->file->getClientOriginalName());
     }
 
     /**
-     * Returns name to create a file with extension
+     * Returns name to create a file with extension.
      *
      * @return string
      */
     public function fullName(): string
     {
-        return Str::finish($this->name(), '.') . $this->extension();
+        return Str::finish($this->name(), '.').$this->extension();
     }
 
     /**
-     * Returns the relative file path
+     * Returns the relative file path.
      *
      * @return string
      */
@@ -71,7 +71,7 @@ class Generator implements Engine
 
     /**
      * Returns file hash string that will indicate
-     * that the same file has already been downloaded
+     * that the same file has already been downloaded.
      *
      * @return string
      */
@@ -81,7 +81,7 @@ class Generator implements Engine
     }
 
     /**
-     * Return a Unix file upload timestamp
+     * Return a Unix file upload timestamp.
      *
      * @return int
      */
@@ -91,7 +91,7 @@ class Generator implements Engine
     }
 
     /**
-     * Returns file extension
+     * Returns file extension.
      *
      * @return string
      */

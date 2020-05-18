@@ -27,7 +27,7 @@ interface Engine
     public function name(): string;
 
     /**
-     * Returns name to create a file with extension
+     * Returns name to create a file with extension.
      *
      * For example "calc.exe"
      *
@@ -36,7 +36,7 @@ interface Engine
     public function fullName(): string;
 
     /**
-     * Returns the relative file path
+     * Returns the relative file path.
      *
      * @return string
      */
@@ -44,21 +44,21 @@ interface Engine
 
     /**
      * Returns file hash string that will indicate
-     * that the same file has already been downloaded
+     * that the same file has already been downloaded.
      *
      * @return string
      */
     public function hash(): string;
 
     /**
-     * Return a Unix file upload timestamp
+     * Return a Unix file upload timestamp.
      *
      * @return int
      */
     public function time(): int;
 
     /**
-     * Returns file extension
+     * Returns file extension.
      *
      * For example `jpg`
      *
@@ -72,5 +72,4 @@ interface Engine
      * @return string
      */
     public function mime(): string;
-
 }
