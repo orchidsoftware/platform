@@ -107,7 +107,7 @@ class DateTimer extends Field
     }
 
     /**
-     * Enables time picker
+     * Enables time picker.
      *
      * @param bool $time
      *
@@ -180,7 +180,7 @@ class DateTimer extends Field
     }
 
     /**
-     * Adjusts the step for the minute input (incl. scrolling)
+     * Adjusts the step for the minute input (incl. scrolling).
      *
      * @param int $increment
      *
@@ -194,7 +194,7 @@ class DateTimer extends Field
     }
 
     /**
-     * Adjusts the step for the hour input (incl. scrolling)
+     * Adjusts the step for the hour input (incl. scrolling).
      *
      * @param int $increment
      *
