@@ -1,11 +1,7 @@
-<div class="row">
-    <div class="container">
-        <div class="row">
-            @foreach($cols as $col)
-                <div class="col-md">
-                    {!! $col !!}
-                </div>
-            @endforeach
+<div class="row align-items-center">
+    @foreach($cols as $col)
+        <div class="col-auto @if (!$loop->last) pr-0 @endif">
+            {!! $col !!}
         </div>
-    </div>
+    @endforeach
 </div>

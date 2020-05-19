@@ -7,6 +7,7 @@ namespace Orchid\Screen;
 use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\Contracts\Fieldable;
+use Orchid\Screen\Contracts\Groupable;
 use Throwable;
 
 class Builder
@@ -91,8 +92,8 @@ class Builder
      */
     public function generateForm(): string
     {
-        collect($this->fields)->each(function ($field) {
-            $this->form .= is_array($field)
+        collect($this->fields)->each(function (Field $field) {
+            $this->form .= is_subclass_of($field, Groupable::class)
                 ? $this->renderGroup($field)
                 : $this->render($field);
         });
@@ -101,21 +102,21 @@ class Builder
     }
 
     /**
-     * @param Field[] $groupField
+     * @param Groupable $group
      *
      * @throws \Throwable
      *
      * @return array|string
      */
-    private function renderGroup(array $groupField)
+    private function renderGroup(Groupable $group)
     {
-        $cols = collect($groupField)->map(function ($field) {
+        $prepare = collect($group->getGroup())->map(function ($field) {
             return $this->render($field);
-        })->filter();
+        })
+            ->filter()
+            ->toArray();
 
-        return view('platform::partials.fields.groups', [
-            'cols' => $cols,
-        ])->render();
+        return $group->setGroup($prepare)->render();
     }
 
     /**
