@@ -53,18 +53,12 @@ class MainMenuComposer
                     ->title('Navigation')
             )
             ->add(Menu::MAIN,
-                ItemMenu::label('Form controls')
-                    ->icon('icon-list')
-                    ->route('platform.example.fields')
-            )
-            ->add(Menu::MAIN,
-                ItemMenu::label('Overview layouts')
-                    ->icon('icon-layers')
-                    ->route('platform.example.layouts')
+                ItemMenu::label('System settings')
+                    ->icon('icon-settings')
+                    ->route('platform.systems.index')
             )
             ->add(Menu::MAIN,
                 ItemMenu::label('Dropdown menu')
-                    ->title('Sub menu')
                     ->slug('example-menu')
                     ->icon('icon-code')
                     ->childs()
@@ -76,6 +70,44 @@ class MainMenuComposer
             ->add('example-menu',
                 ItemMenu::label('Sub element item 2')
                     ->icon('icon-heart')
+            )
+            ->add(Menu::MAIN,
+                ItemMenu::label('Basic Elements')
+                    ->title('Form controls')
+                    ->icon('icon-note')
+                    ->route('platform.example.fields')
+            )
+            ->add(Menu::MAIN,
+                ItemMenu::label('Advanced Elements')
+                    ->icon('icon-briefcase')
+                    ->route('platform.example.advanced')
+            )
+            ->add(Menu::MAIN,
+                ItemMenu::label('Text Editors')
+                    ->icon('icon-list')
+                    ->route('platform.example.editors')
+            )
+            ->add(Menu::MAIN,
+                ItemMenu::label('Overview layouts')
+                    ->title('Layouts')
+                    ->icon('icon-layers')
+                    ->route('platform.example.layouts')
+            )
+            ->add(Menu::MAIN,
+                ItemMenu::label('Chart tools')
+                    ->icon('icon-bar-chart')
+                    ->route('platform.example.charts')
+            )
+            ->add(Menu::MAIN,
+                ItemMenu::label('Cards')
+                    ->icon('icon-grid')
+                    ->route('platform.example.cards')
+            )
+            ->add(Menu::MAIN,
+                ItemMenu::label('Documentation')
+                    ->title('Docs')
+                    ->icon('icon-docs')
+                    ->url('https://orchid.software/en/docs')
             );
     }
 }

@@ -53,8 +53,6 @@ class ExampleLayoutsScreen extends Screen
     public function layout(): array
     {
         return [
-            Layout::view('platform::dummy.block'),
-
             Layout::tabs([
                 'Example Tab 1' => Layout::view('platform::dummy.block'),
                 'Example Tab 2' => Layout::view('platform::dummy.block'),
@@ -66,6 +64,8 @@ class ExampleLayoutsScreen extends Screen
                 Input::make('collapse-2')->title('Last name'),
                 Input::make('collapse-3')->title('Username'),
             ])->label('Click for me!'),
+
+            Layout::view('platform::dummy.block'),
 
             Layout::columns([
                 Layout::view('platform::dummy.block'),

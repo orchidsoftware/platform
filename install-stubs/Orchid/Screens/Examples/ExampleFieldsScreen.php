@@ -4,6 +4,7 @@ namespace App\Orchid\Screens\Examples;
 
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
+use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Field;
 use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Code;
@@ -11,8 +12,11 @@ use Orchid\Screen\Fields\Cropper;
 use Orchid\Screen\Fields\DateRange;
 use Orchid\Screen\Fields\DateTimer;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Label;
 use Orchid\Screen\Fields\Map;
 use Orchid\Screen\Fields\Matrix;
+use Orchid\Screen\Fields\Password;
+use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\Radio;
 use Orchid\Screen\Fields\RadioButtons;
@@ -26,6 +30,7 @@ use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Fields\UTM;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
+use Orchid\Support\Color;
 
 class ExampleFieldsScreen extends Screen
 {
@@ -34,7 +39,7 @@ class ExampleFieldsScreen extends Screen
      *
      * @var string
      */
-    public $name = 'Form controls';
+    public $name = 'Basic form controls';
 
     /**
      * Display header description.
@@ -52,10 +57,6 @@ class ExampleFieldsScreen extends Screen
     {
         return [
             'name'  => 'Hello! We collected all the fields in one place',
-            'place' => [
-                'lat' => 37.181244855427394,
-                'lng' => -3.6021993309259415,
-            ],
         ];
     }
 
@@ -79,158 +80,185 @@ class ExampleFieldsScreen extends Screen
     public function layout(): array
     {
         return [
-            Layout::rows([
-                Field::group([
+
+            Layout::columns([
+                Layout::rows([
 
                     Input::make('name')
-                        ->type('text')
-                        ->max(255)
+                        ->title('Full Name:')
+                        ->placeholder('Enter full name')
                         ->required()
-                        ->title('Name Articles')
-                        ->help('Article title')
+                        ->help('Please enter your full name'),
+
+                    Input::make('email')
+                        ->title('Email address')
+                        ->placeholder('Email address')
+                        ->help("We'll never share your email with anyone else.")
                         ->popover('Tooltip - hint that user opens himself.'),
 
-                    Input::make('title')
-                        ->type('text')
-                        ->max(255)
-                        ->required()
-                        ->title('Article Title')
-                        ->help('SEO title')
-                        ->popover('Tooltip - hint that user opens himself.'),
+                    Password::make('password')
+                        ->title('Password')
+                        ->placeholder('Password'),
 
-                ]),
+                    Label::make('static')
+                        ->title('Static:')
+                        ->value('email@example.com'),
 
-                Field::group([
+                    Select::make('select')
+                        ->title('Select')
+                        ->options([1, 2]),
 
-                    DateTimer::make('open')
-                        ->title('Opening date')
-                        ->help('The opening event will take place'),
+                    CheckBox::make('checkbox')
+                        ->title('Checkbox')
+                        ->placeholder('Remember me'),
 
-                    Input::make('phone')
-                        ->type('text')
-                        ->mask('(999) 999-9999')
-                        ->title('Phone')
-                        ->help('Number Phone'),
+                    Radio::make('radio')
+                        ->placeholder('Yes')
+                        ->value(1)
+                        ->title('Radio'),
 
-                    CheckBox::make('free-checkbox')
-                        ->sendTrueOrFalse()
-                        ->title('Free checkbox')
-                        ->placeholder('Event for free')
-                        ->help('Event for free'),
+                    Radio::make('radio')
+                        ->placeholder('No')
+                        ->value(0),
 
-                    Switcher::make('free-switch')
-                        ->sendTrueOrFalse()
-                        ->title('Free switch')
-                        ->placeholder('Event for free')
-                        ->help('Event for free'),
-                ]),
+                    TextArea::make('textarea')
+                        ->title('Example textarea')
+                        ->rows(6),
 
-                TextArea::make('description')
-                    ->max(255)
-                    ->rows(5)
-                    ->required()
-                    ->title('Short description'),
+                ])->title('Base Controls'),
+                Layout::rows([
+                    Input::make('disabled_input')
+                        ->title('Disabled Input')
+                        ->placeholder('Disabled Input')
+                        ->help('A disabled input element is unusable and un-clickable.')
+                        ->disabled(),
 
-                Field::group([
+                    Select::make('disabled_select')
+                        ->title('Disabled select')
+                        ->options([1, 2])
+                        ->value(0)
+                        ->disabled(),
 
-                    DateTimer::make('allowInput')
-                        ->title('DateTimer allowInput')
-                        ->allowInput(),
+                    TextArea::make('disabled_textarea')
+                        ->title('Disabled textarea')
+                        ->placeholder('Disabled textarea')
+                        ->rows(6)
+                        ->disabled(),
 
-                    DateTimer::make('enabledTime')
-                        ->title('DateTimer enabledTime')
-                        ->enableTime(),
+                    Input::make('readonly_input')
+                        ->title('Readonly Input')
+                        ->placeholder('Readonly Input')
+                        ->readonly(),
 
-                    DateTimer::make('format24hr')
-                        ->title('DateTimer format24hr')
-                        ->enableTime()
-                        ->format24hr(),
+                    CheckBox::make('readonly_checkbox')
+                        ->title('Readonly Checkbox')
+                        ->placeholder('Remember me')
+                        ->disabled(),
 
-                    DateTimer::make('custom')
-                        ->title('DateTimer Custom')
-                        ->noCalendar()
-                        ->format('h:i K'),
+                    Radio::make('radio')
+                        ->placeholder('Yes')
+                        ->value(1)
+                        ->title('Radio')
+                        ->disabled(),
 
-                ]),
+                    Radio::make('radio')
+                        ->placeholder('No')
+                        ->value(0)
+                        ->disabled(),
+
+                    TextArea::make('readonly_textarea')
+                        ->title('Readonlyd textarea')
+                        ->placeholder('Readonlyd textarea')
+                        ->rows(6)
+                        ->disabled(),
+
+                ])->title('Input States'),
+            ]),
+
+            Layout::rows([
+                Input::make('test')
+                    ->title('Text')
+                    ->value('Artisanal kale')
+                    ->help('Elements of type text create basic single-line text fields.')
+                    ->horizontal(),
+
+                Input::make('search')
+                    ->type('search')
+                    ->title('Search')
+                    ->value('How do I shoot web')
+                    ->help('Elements of type search are text fields designed for the user to enter search queries into.')
+                    ->horizontal(),
+
+                Input::make('email')
+                    ->type('email')
+                    ->title('Email')
+                    ->value('bootstrap@example.com')
+                    ->help('Elements of type email are used to let the user enter and edit an e-mail address')
+                    ->horizontal(),
+
+                Input::make('url')
+                    ->type('url')
+                    ->title('Url')
+                    ->value('https://getbootstrap.com')
+                    ->horizontal(),
+
+                Input::make('tel')
+                    ->type('tel')
+                    ->title('Telephone')
+                    ->value('1-(555)-555-5555')
+                    ->horizontal(),
+
+                Input::make('password')
+                    ->type('password')
+                    ->title('Password')
+                    ->value('Password')
+                    ->horizontal(),
+
+                Input::make('number')
+                    ->type('number')
+                    ->title('Number')
+                    ->value(42)
+                    ->horizontal(),
+
+                Input::make('date_and_time')
+                    ->type('datetime-local')
+                    ->title('Date and time')
+                    ->value('2011-08-19T13:45:00')
+                    ->horizontal(),
+
+                Input::make('date')
+                    ->type('date')
+                    ->title('Date')
+                    ->value('2011-08-19')
+                    ->horizontal(),
+
+                Input::make('month')
+                    ->type('month')
+                    ->title('Month')
+                    ->value('2011-08')
+                    ->horizontal(),
+
+                Input::make('week')
+                    ->type('week')
+                    ->title('Week')
+                    ->value('2011-W33')
+                    ->horizontal(),
+
+                Input::make('Time')
+                    ->type('time')
+                    ->title('Time')
+                    ->value('13:45:00')
+                    ->horizontal(),
 
                 Input::make('color')
                     ->type('color')
-                    ->title('Select color'),
+                    ->title('Color')
+                    ->value('#563d7c')
+                    ->horizontal(),
 
-                DateRange::make('rangeDate')
-                    ->title('Range date'),
+                Button::make('Submit')->type(Color::DEFAULT()),
 
-                RadioButtons::make('radioButtons')
-                    ->title('Status for radio buttons')
-                    ->options([
-                        1 => 'Enabled',
-                        0 => 'Disabled',
-                        3 => 'Pause',
-                        4 => 'Work',
-                    ]),
-
-                TinyMCE::make('body')
-                    ->required()
-                    ->title('Name Articles')
-                    ->help('Article title'),
-
-                Map::make('place')
-                    ->required()
-                    ->title('Object on the map')
-                    ->help('Enter the coordinates, or use the search'),
-
-                Cropper::make('picture')
-                    ->width(500)
-                    ->height(300),
-
-                UTM::make('link')
-                    ->title('UTM link')
-                    ->help('Generated link'),
-
-                Select::make('robot.')
-                    ->options([
-                        'index'   => 'Index',
-                        'noindex' => 'No index',
-                    ])
-                    ->multiple()
-                    ->title('Indexing')
-                    ->help('Allow search bots to index'),
-
-                SimpleMDE::make('body2')
-                    ->title('Name Articles')
-                    ->help('Article title'),
-
-                Code::make('code')
-                    ->title('Name Articles')
-                    ->help('Article title'),
-
-                Quill::make('body3')
-                    ->title('Name Articles')
-                    ->help('Article title'),
-
-                Upload::make('files')
-                    ->title('Upload files'),
-
-                Relation::make('role')
-                    ->fromModel(Role::class, 'name')
-                    ->title('Select one role'),
-
-                Radio::make('radio')
-                    ->placeholder('Yes')
-                    ->value(1)
-                    ->title('Radio'),
-
-                Radio::make('radio')
-                    ->placeholder('No')
-                    ->value(0),
-
-                Matrix::make('matrix')
-                    ->columns([
-                        'Attribute',
-                        'Value',
-                        'Units',
-                    ]),
-            ]),
+            ])->title('Textual HTML5 Inputs'),
         ];
     }
 }

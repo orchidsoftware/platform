@@ -59,7 +59,7 @@
         {{ Breadcrumbs::view('platform::partials.breadcrumbs') }}
     @endif
 
-    <div class="d-flex">
+    <div class="d-flex @if (!Breadcrumbs::exists()) border-top @endif">
         <div class="app-content-body" id="app-content-body">
             @include('platform::partials.alert')
             @yield('content')

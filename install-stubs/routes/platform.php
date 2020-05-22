@@ -10,6 +10,10 @@ use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
+use App\Orchid\Screens\Examples\ExampleChartsScreen;
+use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
+use App\Orchid\Screens\Examples\ExampleCardsScreen;
+use App\Orchid\Screens\Examples\ExampleFieldsAdvancedScreen;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,4 +43,9 @@ Route::screen('roles', RoleListScreen::class)->name('platform.systems.roles');
 Route::screen('example', ExampleScreen::class)->name('platform.example');
 Route::screen('example-fields', ExampleFieldsScreen::class)->name('platform.example.fields');
 Route::screen('example-layouts', ExampleLayoutsScreen::class)->name('platform.example.layouts');
+Route::screen('example-charts', ExampleChartsScreen::class)->name('platform.example.charts');
+Route::screen('example-editors', ExampleTextEditorsScreen::class)->name('platform.example.editors');
+Route::screen('example-cards', ExampleCardsScreen::class)->name('platform.example.cards');
+Route::screen('example-advanced', ExampleFieldsAdvancedScreen::class)->name('platform.example.advanced');
+
 //Route::screen('/dashboard/screen/idea', 'Idea::class','platform.screens.idea');

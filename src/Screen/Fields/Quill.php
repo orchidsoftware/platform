@@ -27,6 +27,7 @@ use Orchid\Screen\Field;
  * @method Quill help(string $value = null)
  * @method Quill height($value = '300px')
  * @method Quill title(string $value = null)
+ * @method Quill popover(string $value = null)
  */
 class Quill extends Field
 {
