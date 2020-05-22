@@ -46,22 +46,6 @@ class Updates
     }
 
     /**
-     * @throws Exception
-     *
-     * @return void
-     */
-    private function updateInstall()
-    {
-        $packages = collect(range(0, random_int(10, 20)))->map(function () {
-            return ['name' => 'orchid/platform', 'version' => Dashboard::VERSION.'.0'];
-        });
-
-        Http::post('https://packagist.org/downloads/', [
-            'downloads' => $packages,
-        ]);
-    }
-
-    /**
      * @throws \Throwable
      *
      * @return array|mixed
@@ -70,7 +54,6 @@ class Updates
     {
         try {
             throw_unless(class_exists(Client::class), new Exception("Class 'GuzzleHttp\Client' not found"));
-            $this->updateInstall();
 
             return Http::get($this->apiURL)->json()['packages']['orchid/platform'];
         } catch (Exception | \Throwable $exception) {
