@@ -2,32 +2,15 @@
 
 namespace App\Orchid\Screens\Examples;
 
-use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
-use Orchid\Screen\Field;
 use Orchid\Screen\Fields\CheckBox;
-use Orchid\Screen\Fields\Code;
-use Orchid\Screen\Fields\Cropper;
-use Orchid\Screen\Fields\DateRange;
-use Orchid\Screen\Fields\DateTimer;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Label;
-use Orchid\Screen\Fields\Map;
-use Orchid\Screen\Fields\Matrix;
 use Orchid\Screen\Fields\Password;
-use Orchid\Screen\Fields\Picture;
-use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\Radio;
-use Orchid\Screen\Fields\RadioButtons;
-use Orchid\Screen\Fields\Relation;
 use Orchid\Screen\Fields\Select;
-use Orchid\Screen\Fields\SimpleMDE;
-use Orchid\Screen\Fields\Switcher;
 use Orchid\Screen\Fields\TextArea;
-use Orchid\Screen\Fields\TinyMCE;
-use Orchid\Screen\Fields\Upload;
-use Orchid\Screen\Fields\UTM;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Support\Color;

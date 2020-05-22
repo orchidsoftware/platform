@@ -67,14 +67,13 @@ class ExampleFieldsAdvancedScreen extends Screen
     /**
      * Views.
      *
-     * @return array
      * @throws \Throwable
      *
+     * @return array
      */
     public function layout(): array
     {
         return [
-
 
             Layout::rows([
 
@@ -122,9 +121,7 @@ class ExampleFieldsAdvancedScreen extends Screen
                         ]),
                 ]),
 
-
             ])->title('Input mask'),
-
 
             Layout::rows([
 
@@ -160,7 +157,6 @@ class ExampleFieldsAdvancedScreen extends Screen
 
             ])->title('DateTime'),
 
-
             Layout::columns([
                 Layout::rows([
                     Select::make('robot.')
@@ -171,7 +167,6 @@ class ExampleFieldsAdvancedScreen extends Screen
                         ->multiple()
                         ->title('Multiple select')
                         ->help('Allow search bots to index'),
-
 
                     Relation::make('role')
                         ->fromModel(Role::class, 'name')
@@ -205,7 +200,6 @@ class ExampleFieldsAdvancedScreen extends Screen
                 ])->title('Status'),
             ]),
 
-
             Layout::rows([
 
                 Picture::make('picture')
@@ -229,7 +223,6 @@ class ExampleFieldsAdvancedScreen extends Screen
                 UTM::make('link')
                     ->title('UTM link')
                     ->help('Generated UTM link'),
-
 
                 Matrix::make('matrix')
                     ->columns([
