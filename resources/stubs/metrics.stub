@@ -19,6 +19,8 @@ class DummyClass extends Metric
     protected $labels = [];
 
     /**
+     * The name of the key to fetch it from the query.
+     *
      * @var string
      */
     protected $target = '';
