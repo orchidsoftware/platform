@@ -53,11 +53,6 @@ class MainMenuComposer
                     ->title('Navigation')
             )
             ->add(Menu::MAIN,
-                ItemMenu::label('System settings')
-                    ->icon('icon-settings')
-                    ->route('platform.systems.index')
-            )
-            ->add(Menu::MAIN,
                 ItemMenu::label('Dropdown menu')
                     ->slug('example-menu')
                     ->icon('icon-code')
