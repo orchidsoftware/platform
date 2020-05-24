@@ -70,7 +70,7 @@ class ExampleCardsScreen extends Screen
                 }
 
                 /**
-                 * @inheritDoc
+                 * {@inheritdoc}
                  */
                 public function status(): ?Color
                 {
@@ -91,13 +91,13 @@ class ExampleCardsScreen extends Screen
                  */
                 public function description(): string
                 {
-                    return (new Compendium([
+                    return new Compendium([
                         'Type'                               => 'electric stove',
                         'Model'                              => 'dream 251CH',
                         'Main color'                         => 'white',
                         'Complementary color'                => 'none',
                         'Color declared by the manufacturer' => 'white',
-                    ]));
+                    ]);
                 }
 
                 /**
@@ -117,7 +117,7 @@ class ExampleCardsScreen extends Screen
                 }
 
                 /**
-                 * @inheritDoc
+                 * {@inheritdoc}
                  */
                 public function status(): ?Color
                 {
@@ -139,7 +139,7 @@ class ExampleCardsScreen extends Screen
                 public function description(): string
                 {
                     return
-                        '<p>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>' .
+                        '<p>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>'.
                         new Facepile(User::limit(4)->get()->map->presenter());
                 }
 
@@ -160,7 +160,7 @@ class ExampleCardsScreen extends Screen
                 }
 
                 /**
-                 * @inheritDoc
+                 * {@inheritdoc}
                  */
                 public function status(): ?Color
                 {
@@ -183,9 +183,9 @@ class ExampleCardsScreen extends Screen
     /**
      * Views.
      *
-     * @return array
      * @throws \Throwable
      *
+     * @return array
      */
     public function layout(): array
     {
@@ -198,7 +198,6 @@ class ExampleCardsScreen extends Screen
                     ->method('showToast')
                     ->icon('icon-bag'),
             ]),
-
 
             Layout::columns([
                 new Card('cardPersona'),
