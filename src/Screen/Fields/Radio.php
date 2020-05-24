@@ -52,9 +52,7 @@ class Radio extends Field
      * @var array
      */
     protected $inlineAttributes = [
-        'accept',
         'accesskey',
-        'autocomplete',
         'autofocus',
         'checked',
         'disabled',
@@ -64,18 +62,10 @@ class Radio extends Field
         'formmethod',
         'formnovalidate',
         'formtarget',
-        'list',
-        'max',
-        'maxlength',
-        'min',
-        'multiple',
         'name',
-        'pattern',
         'placeholder',
         'readonly',
         'required',
-        'size',
-        'src',
         'step',
         'tabindex',
         'value',

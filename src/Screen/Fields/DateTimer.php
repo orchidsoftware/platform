@@ -11,7 +11,6 @@ use Orchid\Screen\Field;
  *
  * @method DateTimer accesskey($value = true)
  * @method DateTimer autofocus($value = true)
- * @method DateTimer checked($value = true)
  * @method DateTimer disabled($value = true)
  * @method DateTimer form($value = true)
  * @method DateTimer formaction($value = true)
@@ -43,7 +42,6 @@ class DateTimer extends Field
      * @var array
      */
     protected $attributes = [
-        'type'                                   => 'text',
         'class'                                  => 'form-control',
         'data-fields--datetime-enable-time'      => 'false',
         'data-fields--datetime-time-24hr'        => 'false',
@@ -74,19 +72,10 @@ class DateTimer extends Field
         'formmethod',
         'formnovalidate',
         'formtarget',
-        'list',
-        'max',
-        'maxlength',
-        'min',
-        'multiple',
         'name',
-        'pattern',
         'placeholder',
         'readonly',
         'required',
-        'size',
-        'src',
-        'step',
         'tabindex',
         'value',
         'data-fields--datetime-enable-time',

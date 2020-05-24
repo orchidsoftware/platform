@@ -9,9 +9,7 @@ namespace Orchid\Screen\Fields;
  *
  * @method Cropper accept($value = true)
  * @method Cropper accesskey($value = true)
- * @method Cropper autocomplete($value = true)
  * @method Cropper autofocus($value = true)
- * @method Cropper checked($value = true)
  * @method Cropper disabled($value = true)
  * @method Cropper form($value = true)
  * @method Cropper formaction($value = true)
@@ -19,21 +17,12 @@ namespace Orchid\Screen\Fields;
  * @method Cropper formmethod($value = true)
  * @method Cropper formnovalidate($value = true)
  * @method Cropper formtarget($value = true)
- * @method Cropper list($value = true)
- * @method Cropper max(int $value)
- * @method Cropper maxlength(int $value)
- * @method Cropper min(int $value)
- * @method Cropper multiple($value = true)
  * @method Cropper name(string $value = null)
- * @method Cropper pattern($value = true)
  * @method Cropper placeholder(string $value = null)
  * @method Cropper readonly($value = true)
  * @method Cropper required(bool $value = true)
- * @method Cropper size($value = true)
- * @method Cropper src($value = true)
  * @method Cropper step($value = true)
  * @method Cropper tabindex($value = true)
- * @method Cropper type($value = true)
  * @method Cropper value($value = true)
  * @method Cropper help(string $value = null)
  * @method Cropper width($value = true)
@@ -71,9 +60,7 @@ class Cropper extends Picture
     protected $inlineAttributes = [
         'accept',
         'accesskey',
-        'autocomplete',
         'autofocus',
-        'checked',
         'disabled',
         'form',
         'formaction',
@@ -81,21 +68,12 @@ class Cropper extends Picture
         'formmethod',
         'formnovalidate',
         'formtarget',
-        'list',
-        'max',
-        'maxlength',
-        'min',
-        'multiple',
         'name',
-        'pattern',
         'placeholder',
         'readonly',
         'required',
-        'size',
-        'src',
         'step',
         'tabindex',
-        'type',
         'value',
         'target',
         'url',
