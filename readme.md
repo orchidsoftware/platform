@@ -39,10 +39,6 @@ It allows you to abstract the common patterns of business applications so that d
 * [Global Community](https://t.me/orchid_community)
 * [Russia Community](https://t.me/orchid_russian_community)
 
-## Сhangelog
-
-See [CHANGELOG](CHANGELOG.md).
-
 ## Donate & Support
 
 Since the existence of a healthy open source ecosystem creates real value for the software industry, believe it is fair for maintainers and authors of such software to be compensated for their work with real money.
