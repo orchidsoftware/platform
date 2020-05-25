@@ -23,7 +23,7 @@ This is a package for creating administration-style applications with the [Larav
 ###### Some features:
 
 - **Form builder** - no need to describe HTML fields of the same type each time.
-- **Screen** - a comfortable balance between CRUD generation and handwriting.
+- **Screen** - a comfortable balance between CRUD generation and boring coding.
 - **Fields** - over 40 types.
 - **Permissions** - offers convenient management in development and support.
 - Menus, graphics, settings, notifications, etc.
