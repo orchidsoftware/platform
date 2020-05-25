@@ -1,4 +1,4 @@
-<p align="center"> <a href="https://orchid.software/"><img src="https://orchid.software/assets/img/orchid-black.svg" alt="ORCHID" width="250"></p>
+<p align="center"> <a href="https://orchid.software/"><img src="https://orchid.software/assets/img/orchid-black.svg" alt="ORCHID" width="250"></a></p>
 
 
 <h4 align="center">For the full documentation, visit <a href="http://orchid.software">orchid.software</a>.</h4>
