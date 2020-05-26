@@ -88,7 +88,7 @@ class RelationsTest extends TestFeatureCase
             'name'  => Crypt::encryptString('email'),
             'key'   => Crypt::encryptString('id'),
             'scope' => CryptArray::encrypt([
-                'name' => $scope,
+                'name'       => $scope,
                 'parameters' => [],
             ]),
         ];
