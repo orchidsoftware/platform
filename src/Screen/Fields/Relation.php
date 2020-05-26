@@ -9,6 +9,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Crypt;
 use Orchid\Screen\Field;
 use Orchid\Support\Assert;
+use Orchid\Support\CryptArray;
 
 /**
  * Class Relation.
@@ -205,9 +206,7 @@ class Relation extends Field
             'parameters' => $parameters,
         ];
         $this->set('scope', $data);
-        $this->set('relationScope', Crypt::encryptString(
-            base64_encode(serialize($data))
-        ));
+        $this->set('relationScope', CryptArray::encrypt($data));
 
         return $this;
     }

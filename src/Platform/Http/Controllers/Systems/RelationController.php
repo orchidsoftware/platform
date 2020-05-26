@@ -11,6 +11,7 @@ use Illuminate\Support\Collection as BaseCollection;
 use Illuminate\Support\Facades\Crypt;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Platform\Http\Requests\RelationRequest;
+use Orchid\Support\CryptArray;
 
 class RelationController extends Controller
 {
@@ -32,13 +33,11 @@ class RelationController extends Controller
                 return;
             }
 
-            $item = Crypt::decryptString($item);
-
             if ($key === 'scope') {
-                return unserialize(base64_decode($item));
+                return CryptArray::decrypt($item);
             }
 
-            return $item;
+            return Crypt::decryptString($item);
         });
 
         /** @var Model $model */

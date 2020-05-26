@@ -7,6 +7,7 @@ namespace Orchid\Tests\Feature\Platform;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Testing\TestResponse;
 use Orchid\Platform\Models\User;
+use Orchid\Support\CryptArray;
 use Orchid\Tests\App\EmptyUserModel;
 use Orchid\Tests\TestFeatureCase;
 
@@ -86,7 +87,10 @@ class RelationsTest extends TestFeatureCase
             'model' => Crypt::encryptString(EmptyUserModel::class),
             'name'  => Crypt::encryptString('email'),
             'key'   => Crypt::encryptString('id'),
-            'scope' => Crypt::encryptString($scope),
+            'scope' => CryptArray::encrypt([
+                'name' => $scope,
+                'parameters' => [],
+            ]),
         ];
 
         if ($append !== null) {
