@@ -63,7 +63,7 @@ class HttpFilter
      */
     protected function parseHttpValue($query)
     {
-        if (is_null($query)) {
+        if ($query === null) {
             return $query;
         }
 
@@ -83,7 +83,7 @@ class HttpFilter
      */
     public static function sanitize(string $column): string
     {
-        abort_if(! preg_match(self::VALID_COLUMN_NAME_REGEX, $column), Response::HTTP_BAD_REQUEST);
+        abort_unless(preg_match(self::VALID_COLUMN_NAME_REGEX, $column), Response::HTTP_BAD_REQUEST);
 
         return $column;
     }
@@ -172,7 +172,7 @@ class HttpFilter
      */
     public function isSort(string $property = null): bool
     {
-        if (is_null($property)) {
+        if ($property === null) {
             return $this->sorts->isEmpty();
         }
 
@@ -194,11 +194,9 @@ class HttpFilter
      */
     public function revertSort(string $property): string
     {
-        if ($this->getSort($property) === 'asc') {
-            return '-'.$property;
-        }
-
-        return $property;
+        return $this->getSort($property) === 'asc'
+            ? '-'.$property
+            : $property;
     }
 
     /**
@@ -208,11 +206,9 @@ class HttpFilter
      */
     public function getSort(string $property): string
     {
-        if ($this->sorts->search($property, true) !== false) {
-            return 'asc';
-        }
-
-        return 'desc';
+        return $this->sorts->search($property, true) !== false
+            ? 'asc'
+            : 'desc';
     }
 
     /**

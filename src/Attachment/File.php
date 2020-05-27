@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Mimey\MimeTypes;
+use Illuminate\Support\Str;
+use Orchid\Attachment\Contracts\Engine;
+use Orchid\Attachment\Engines\Generator;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Events\UploadFileEvent;
@@ -20,49 +22,29 @@ use Orchid\Platform\Events\UploadFileEvent;
 class File
 {
     /**
-     * @var int
-     */
-    public $time;
-
-    /**
-     * @var false|string
-     */
-    public $date;
-
-    /**
-     * @var MimeTypes
-     */
-    public $mimes;
-
-    /**
      * @var UploadedFile
      */
-    public $file;
+    protected $file;
 
     /**
      * @var Filesystem
      */
-    public $storage;
+    protected $storage;
 
     /**
      * @var string
      */
-    public $fullPath;
-
-    /**
-     * @var string
-     */
-    private $hash;
-
-    /**
-     * @var string
-     */
-    public $disk;
+    protected $disk;
 
     /**
      * @var string|null
      */
-    public $group;
+    protected $group;
+
+    /**
+     * @var Engine
+     */
+    protected $engine;
 
     /**
      * File constructor.
@@ -71,37 +53,19 @@ class File
      * @param string       $disk
      * @param string       $group
      */
-    public function __construct(UploadedFile $file, string $disk = 'public', string $group = null)
+    public function __construct(UploadedFile $file, string $disk = null, string $group = null)
     {
         abort_if($file->getSize() === false, 415, 'File failed to load.');
 
-        $this->time = time();
-        $this->date = date('Y/m/d', $this->time);
         $this->file = $file;
-        $this->mimes = new MimeTypes();
-        $this->fullPath = storage_path("app/public/$this->date/");
-        $this->disk = $disk;
+
+        $this->disk = $disk ?? config('platform.attachment.disk', 'public');
+        $this->storage = Storage::disk($this->disk);
+
+        $generator = config('platform.attachment.generator', Generator::class);
+
+        $this->engine = new $generator($file);
         $this->group = $group;
-        $this->storage = Storage::disk($disk);
-        $this->loadHashFile();
-    }
-
-    /**
-     * @return $this
-     */
-    private function loadHashFile()
-    {
-        $this->hash = $this->getHashFile();
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getHashFile(): string
-    {
-        return sha1_file($this->file->getRealPath());
     }
 
     /**
@@ -109,34 +73,36 @@ class File
      */
     public function load(): Model
     {
-        $file = $this->getMatchesHash();
+        $attachment = $this->getMatchesHash();
 
-        if (! $this->storage->has($this->date)) {
-            $this->storage->makeDirectory($this->date);
+        if (! $this->storage->has($this->engine->path())) {
+            $this->storage->makeDirectory($this->engine->path());
         }
 
-        if (is_null($file)) {
+        if ($attachment === null) {
             return $this->save();
         }
 
-        $file = $file->replicate()->fill([
+        $attachment = $attachment->replicate()->fill([
             'original_name' => $this->file->getClientOriginalName(),
             'sort'          => 0,
             'user_id'       => Auth::id(),
             'group'         => $this->group,
         ]);
 
-        $file->save();
+        $attachment->save();
 
-        return $file;
+        return $attachment;
     }
 
     /**
-     * @return mixed
+     * @return Attachment|null
      */
     private function getMatchesHash()
     {
-        return Dashboard::model(Attachment::class)::where('hash', $this->hash)->where('disk', $this->disk)->first();
+        return Dashboard::model(Attachment::class)::where('hash', $this->engine->hash())
+            ->where('disk', $this->disk)
+            ->first();
     }
 
     /**
@@ -144,50 +110,25 @@ class File
      */
     private function save(): Model
     {
-        $hashName = sha1($this->time.$this->file->getClientOriginalName());
-        $name = $hashName.'.'.$this->getClientOriginalExtension();
-
-        $this->storage->putFileAs($this->date, $this->file, $name, [
-            'mime_type' => $this->getMimeType(),
+        $this->storage->putFileAs($this->engine->path(), $this->file, $this->engine->fullName(), [
+            'mime_type' => $this->engine->mime(),
         ]);
 
-        $attach = Dashboard::model(Attachment::class)::create([
-            'name'          => $hashName,
+        $attachment = Dashboard::model(Attachment::class)::create([
+            'name'          => $this->engine->name(),
+            'mime'          => $this->engine->mime(),
+            'hash'          => $this->engine->hash(),
+            'extension'     => $this->engine->extension(),
             'original_name' => $this->file->getClientOriginalName(),
-            'mime'          => $this->getMimeType(),
-            'extension'     => $this->getClientOriginalExtension(),
             'size'          => $this->file->getSize(),
-            'path'          => $this->date.'/',
-            'hash'          => $this->hash,
+            'path'          => Str::finish($this->engine->path(), '/'),
             'disk'          => $this->disk,
             'group'         => $this->group,
             'user_id'       => Auth::id(),
         ]);
 
-        event(new UploadFileEvent($attach, $this->time));
+        event(new UploadFileEvent($attachment, $this->engine->time()));
 
-        return $attach;
-    }
-
-    /**
-     * @return string
-     */
-    private function getClientOriginalExtension()
-    {
-        $extension = $this->file->getClientOriginalExtension();
-
-        return empty($extension)
-            ? $this->mimes->getExtension($this->file->getClientMimeType())
-            : $extension;
-    }
-
-    /**
-     * @return File|string
-     */
-    public function getMimeType()
-    {
-        return $this->mimes->getMimeType($this->getClientOriginalExtension())
-            ?? $this->mimes->getMimeType($this->file->getClientMimeType())
-            ?? 'unknown';
+        return $attachment;
     }
 }

@@ -97,6 +97,10 @@ class UserListScreen extends Screen
      */
     public function saveUser(User $user, Request $request)
     {
+        $request->validate([
+            'user.email' => 'required|unique:users,email,'.$user->id,
+        ]);
+
         $user->fill($request->get('user'))
             ->replaceRoles($request->input('user.roles'))
             ->save();

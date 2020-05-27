@@ -14,6 +14,9 @@ use Orchid\Screen\Repository;
 abstract class Chart extends Base
 {
     /**
+     * Main template to display the layer
+     * Represents the view() argument.
+     *
      * @var string
      */
     protected $template = 'platform::layouts.chart';
@@ -40,6 +43,8 @@ abstract class Chart extends Base
     protected $height = 250;
 
     /**
+     * Set the labels for each possible field value.
+     *
      * @var array
      */
     protected $labels = [];

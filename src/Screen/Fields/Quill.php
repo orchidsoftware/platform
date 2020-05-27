@@ -10,7 +10,6 @@ use Orchid\Screen\Field;
  * Class Quill.
  *
  * @method Quill autofocus($value = true)
- * @method Quill checked($value = true)
  * @method Quill disabled($value = true)
  * @method Quill form($value = true)
  * @method Quill formaction($value = true)
@@ -27,6 +26,7 @@ use Orchid\Screen\Field;
  * @method Quill help(string $value = null)
  * @method Quill height($value = '300px')
  * @method Quill title(string $value = null)
+ * @method Quill popover(string $value = null)
  */
 class Quill extends Field
 {
@@ -51,7 +51,6 @@ class Quill extends Field
      * @var array
      */
     protected $inlineAttributes = [
-        'accept',
         'accesskey',
         'autocomplete',
         'autofocus',
@@ -63,21 +62,12 @@ class Quill extends Field
         'formmethod',
         'formnovalidate',
         'formtarget',
-        'list',
-        'max',
-        'maxlength',
-        'min',
-        'multiple',
         'name',
-        'pattern',
         'placeholder',
         'readonly',
         'required',
-        'size',
-        'src',
         'step',
         'tabindex',
-        'type',
         'value',
         'height',
     ];

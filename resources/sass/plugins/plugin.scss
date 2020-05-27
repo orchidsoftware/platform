@@ -47,6 +47,11 @@
   }
 
 }
+.select2-container--bootstrap.select2-container--disabled .select2-selection{
+    background: mix($brand-grey-light, #fff, 50%);
+    color: fade-out($brand-grey, .77);
+    border: 1px solid $form-control-border-color;
+}
 
 .mce-content-body:focus {
   background-color : $brand-grey-light;
@@ -129,9 +134,9 @@ div.mce-fullscreen {
 
 .simplemde-wrapper{
   .editor-toolbar{
-    border-top: 1px solid $form-control-border-color;
-    border-left: 1px solid $form-control-border-color;
-    border-right: 1px solid $form-control-border-color;
+      @extend .border-top;
+      @extend .border-left;
+      @extend .border-right;
   }
 
   .CodeMirror{
@@ -296,4 +301,10 @@ div.mce-fullscreen {
       max-width: 100vw;
     }
   }
+}
+
+.matrix {
+    .form-control:focus {
+        border-radius: 0;
+    }
 }

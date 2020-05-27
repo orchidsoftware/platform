@@ -11,7 +11,6 @@ use Orchid\Screen\Field;
  *
  * @method DateTimer accesskey($value = true)
  * @method DateTimer autofocus($value = true)
- * @method DateTimer checked($value = true)
  * @method DateTimer disabled($value = true)
  * @method DateTimer form($value = true)
  * @method DateTimer formaction($value = true)
@@ -43,15 +42,16 @@ class DateTimer extends Field
      * @var array
      */
     protected $attributes = [
-        'type'                              => 'text',
-        'class'                             => 'form-control',
-        'data-fields--datetime-enable-time' => 'false',
-        'data-fields--datetime-time-24hr'   => 'false',
-        'data-fields--datetime-allow-input' => 'false',
-        'data-fields--datetime-date-format' => 'Y-m-d H:i:S',
-        'data-fields--datetime-no-calendar' => 'false',
-        'allowEmpty'                        => false,
-        'placeholder'                       => 'Select Date...',
+        'class'                                  => 'form-control',
+        'data-fields--datetime-enable-time'      => 'false',
+        'data-fields--datetime-time-24hr'        => 'false',
+        'data-fields--datetime-allow-input'      => 'false',
+        'data-fields--datetime-date-format'      => 'Y-m-d H:i:S',
+        'data-fields--datetime-no-calendar'      => 'false',
+        'data-fields--datetime-minute-increment' => 5,
+        'data-fields--datetime-hour-increment'   => 1,
+        'allowEmpty'                             => false,
+        'placeholder'                            => 'Select Date...',
     ];
 
     /**
@@ -72,19 +72,10 @@ class DateTimer extends Field
         'formmethod',
         'formnovalidate',
         'formtarget',
-        'list',
-        'max',
-        'maxlength',
-        'min',
-        'multiple',
         'name',
-        'pattern',
         'placeholder',
         'readonly',
         'required',
-        'size',
-        'src',
-        'step',
         'tabindex',
         'value',
         'data-fields--datetime-enable-time',
@@ -105,6 +96,8 @@ class DateTimer extends Field
     }
 
     /**
+     * Enables time picker.
+     *
      * @param bool $time
      *
      * @return self
@@ -117,6 +110,8 @@ class DateTimer extends Field
     }
 
     /**
+     * Displays time picker in 24 hour mode without AM/PM selection when enabled.
+     *
      * @param bool $time
      *
      * @return self
@@ -129,6 +124,9 @@ class DateTimer extends Field
     }
 
     /**
+     * Allows the user to enter a date directly input the input field.
+     * By default, direct entry is disabled.
+     *
      * @param bool $time
      *
      * @return self
@@ -141,6 +139,9 @@ class DateTimer extends Field
     }
 
     /**
+     * A string of characters which are used
+     * to define how the date will be displayed in the input box.
+     *
      * @param string $format
      *
      * @return DateTimer
@@ -163,6 +164,34 @@ class DateTimer extends Field
     {
         $this->enableTime();
         $this->set('data-fields--datetime-no-calendar', var_export($noCalendar, true));
+
+        return $this;
+    }
+
+    /**
+     * Adjusts the step for the minute input (incl. scrolling).
+     *
+     * @param int $increment
+     *
+     * @return $this
+     */
+    public function minuteIncrement(int $increment)
+    {
+        $this->set('data-fields--datetime-minute-increment', $increment);
+
+        return $this;
+    }
+
+    /**
+     * Adjusts the step for the hour input (incl. scrolling).
+     *
+     * @param int $increment
+     *
+     * @return $this
+     */
+    public function hourIncrement(int $increment)
+    {
+        $this->set('data-fields--datetime-hour-increment', $increment);
 
         return $this;
     }

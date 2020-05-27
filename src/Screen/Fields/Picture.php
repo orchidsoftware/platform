@@ -16,7 +16,6 @@ use Orchid\Support\Init;
  * @method Picture required(bool $value = true)
  * @method Picture size($value = true)
  * @method Picture src($value = true)
- * @method Picture type($value = true)
  * @method Picture value($value = true)
  * @method Picture help(string $value = null)
  * @method Picture popover(string $value = null)
@@ -55,15 +54,10 @@ class Picture extends Field
         'formnovalidate',
         'formtarget',
         'name',
-        'pattern',
         'placeholder',
         'readonly',
         'required',
-        'size',
-        'src',
-        'step',
         'tabindex',
-        'type',
         'value',
         'target',
         'url',

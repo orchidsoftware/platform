@@ -11,8 +11,8 @@
             @endempty
 
             <div class="col">
-                <div class="card-body h-full d-table">
-                    <div class="row d-flex align-items-center mb-1">
+                <div class="card-body h-full">
+                    <div class="row d-flex align-items-center">
                         <div class="col-auto">
                             <h5 class="card-title">
                                 @empty(!$color)<i class="text-{{ $color }}">●</i>@endempty

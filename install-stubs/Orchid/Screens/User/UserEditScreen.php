@@ -125,6 +125,10 @@ class UserEditScreen extends Screen
      */
     public function save(User $user, Request $request)
     {
+        $request->validate([
+            'user.email' => 'required|unique:users,email,'.$user->id,
+        ]);
+
         $permissions = collect($request->get('permissions'))
             ->map(function ($value, $key) {
                 return [base64_decode($key) => $value];

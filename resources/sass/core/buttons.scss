@@ -6,6 +6,9 @@
     align-items: center;
     display: flex;
     flex-direction: row;
+    &:focus{
+        box-shadow: none;
+    }
 }
 
 .btn-link {

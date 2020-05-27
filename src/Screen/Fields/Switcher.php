@@ -20,14 +20,12 @@ use Orchid\Screen\Field;
  * @method Switcher formmethod($value = true)
  * @method Switcher formnovalidate($value = true)
  * @method Switcher formtarget($value = true)
- * @method Switcher multiple($value = true)
  * @method Switcher name(string $value = null)
  * @method Switcher placeholder(string $value = null)
  * @method Switcher readonly($value = true)
  * @method Switcher required(bool $value = true)
  * @method Switcher tabindex($value = true)
  * @method Switcher value($value = true)
- * @method Switcher type($value = true)
  * @method Switcher help(string $value = null)
  * @method Switcher sendTrueOrFalse($value = true)
  * @method Switcher title(string $value = null)
@@ -58,7 +56,6 @@ class Switcher extends Field
      * @var array
      */
     protected $inlineAttributes = [
-        'accept',
         'accesskey',
         'autocomplete',
         'autofocus',
@@ -70,19 +67,10 @@ class Switcher extends Field
         'formmethod',
         'formnovalidate',
         'formtarget',
-        'list',
-        'max',
-        'maxlength',
-        'min',
-        'multiple',
         'name',
-        'pattern',
         'placeholder',
         'readonly',
         'required',
-        'size',
-        'src',
-        'step',
         'tabindex',
         'value',
         'type',

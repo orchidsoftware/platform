@@ -4,6 +4,54 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 7.5.3 - 2020-05-25
+
+### Removed
+- Cleaning the non-existent methods
+
+## 7.5.2 - 2020-05-24
+
+### Changed
+- Extend examples for install
+
+## 7.5.1 - 2020-05-22
+
+### Changed
+- No more packagist download requests
+- More space between columns [#1104](https://github.com/orchidsoftware/platform/pull/1104)
+
+## 7.5.0 - 2020-05-19
+
+### Added
+- Title property for `Row` layout
+- Request validation for `User` screen
+
+### Changed
+- Increased contrast for label forms
+- Replace `Alert` to `Toast` in Notification screen
+- Use `Persona` layouts for stubs
+- Default avatar user
+
+### Fixed
+- Disable button focus for bootstrap 4.5
+- Disable `Matrix` textarea border
+
+## 7.4.0 - 2020-05-18
+
+### Added
+- The class that contains the strategy for determining attachment [#1100](https://github.com/orchidsoftware/platform/pull/1100)
+
+## 7.3.0 - 2020-05-17
+
+## Added
+- Method `withoutApplyButton` and `withoutCloseButton` to modal based layouts [#1099](https://github.com/orchidsoftware/platform/pull/1099)
+
+## 7.2.9 - 2020-05-17
+
+### Fixed
+- Support for string primary models in relations field [#1098](https://github.com/orchidsoftware/platform/pull/1098), [#1096](https://github.com/orchidsoftware/platform/pull/1096)
+
+
 ## 7.2.8 - 2020-05-15
 
 ### Fixed
