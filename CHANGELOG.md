@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 7.6.0 - 2020-05-28
+
+### Added
+- Storage to Cropper and Image metadata [#1110](https://github.com/orchidsoftware/platform/pull/1110)
+- Resizing options to Cropper [#1109](https://github.com/orchidsoftware/platform/pull/1109)
+
+### Changed
+- Arrow icons for Accordion [#1107](https://github.com/orchidsoftware/platform/pull/1107)
+
 ## 7.5.3 - 2020-05-25
 
 ### Removed
