@@ -141,7 +141,7 @@ class Cropper extends Picture
      * @param integer $size
      * @return self
      */
-    public function min(int $size): self
+    public function minCanvas(int $size): self
     {
         $this->set('minWidth', $size);
         $this->set('minHeight', $size);
@@ -155,7 +155,7 @@ class Cropper extends Picture
      * @param integer $size
      * @return self
      */
-    public function max(int $size): self
+    public function maxCanvas(int $size): self
     {
         $this->set('maxWidth', $size);
         $this->set('maxHeight', $size);
