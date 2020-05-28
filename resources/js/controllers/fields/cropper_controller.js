@@ -86,6 +86,10 @@ export default class extends Controller {
         this.cropper.getCroppedCanvas({
             width: this.data.get('width'),
             height: this.data.get('height'),
+            minWidth: this.data.get('min-width'),
+            minHeight: this.data.get('min-height'),
+            maxWidth: this.data.get('max-width'),
+            maxHeight: this.data.get('max-height'),
             imageSmoothingQuality: 'medium',
         }).toBlob((blob) => {
             const formData = new FormData();

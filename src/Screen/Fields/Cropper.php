@@ -30,6 +30,12 @@ namespace Orchid\Screen\Fields;
  * @method Cropper popover(string $value = null)
  * @method Cropper title(string $value = null)
  * @method Cropper maxFileSize($value = true)
+ * @method Cropper minWidth($value = null)
+ * @method Cropper minHeight($value = null)
+ * @method Cropper maxWidth($value = null)
+ * @method Cropper maxHeight($value = null)
+ * @method Cropper min($value = null)
+ * @method Cropper max($value = null)
  */
 class Cropper extends Picture
 {
@@ -49,6 +55,10 @@ class Cropper extends Picture
         'url'         => null,
         'width'       => null,
         'height'      => null,
+        'minWidth'    => null,
+        'minHeight'   => null,
+        'maxWidth'    => null,
+        'maxHeight'   => null,
         'maxFileSize' => null,
     ];
 
@@ -78,4 +88,84 @@ class Cropper extends Picture
         'target',
         'url',
     ];
+
+    /**
+     * Set the minimum with of the resized image
+     *
+     * @param integer $width
+     * @return self
+     */
+    public function minWidth(int $width): self
+    {
+        $this->set('minWidth', $width);
+
+        return $this;
+    }
+
+    /**
+     * Set the minimum height of the resized image
+     *
+     * @param integer $height
+     * @return self
+     */
+    public function minHeight(int $height): self
+    {
+        $this->set('minHeight', $height);
+
+        return $this;
+    }
+
+    /**
+     * Set the maximum width of the resized image
+     *
+     * @param integer $width
+     * @return self
+     */
+    public function maxWidth(int $width): self
+    {
+        $this->set('maxWidth', $width);
+
+        return $this;
+    }
+
+    /**
+     * Set the maximum height of the resized image
+     *
+     * @param integer $height
+     * @return self
+     */
+    public function maxHeight(int $height): self
+    {
+        $this->set('maxHeight', $height);
+
+        return $this;
+    }
+
+    /**
+     * Set the minimum with and height of the resized image
+     *
+     * @param integer $size
+     * @return self
+     */
+    public function min(int $size): self
+    {
+        $this->set('minWidth', $size);
+        $this->set('minHeight', $size);
+
+        return $this;
+    }
+
+    /**
+     * Set the maximum with and height of the resized image
+     *
+     * @param integer $size
+     * @return self
+     */
+    public function max(int $size): self
+    {
+        $this->set('maxWidth', $size);
+        $this->set('maxHeight', $size);
+
+        return $this;
+    }
 }
