@@ -21,6 +21,7 @@ use Orchid\Support\Init;
  * @method Picture popover(string $value = null)
  * @method Picture title(string $value = null)
  * @method Picture maxFileSize($value = true)
+ * @method Cropper storage($value = null)
  */
 class Picture extends Field
 {
