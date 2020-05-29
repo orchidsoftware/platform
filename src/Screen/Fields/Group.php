@@ -10,32 +10,26 @@ use Orchid\Screen\Field;
 class Group extends Field implements Groupable
 {
     /**
-     * @var Field[]
-     */
-    protected $group = [];
-
-    /**
      * Default attributes value.
      *
      * @var array
      */
     protected $attributes = [
-        'name' => 'group',
-        'class'  => 'col',
+        'group' => [],
+        'class' => 'col',
     ];
+
+    /**
+     * Required Attributes.
+     *
+     * @var array
+     */
+    protected $required = [];
 
     /**
      * @var string
      */
     protected $view = 'platform::partials.fields.groups';
-
-    /**
-     * Group constructor.
-     */
-    public function __construct(array $group = [])
-    {
-        $this->group = $group;
-    }
 
     /**
      * @param array $group
@@ -44,7 +38,7 @@ class Group extends Field implements Groupable
      */
     public static function make(array $group = [])
     {
-        return new static($group);
+        return (new static())->setGroup($group);
     }
 
     /**
@@ -52,51 +46,44 @@ class Group extends Field implements Groupable
      */
     public function getGroup(): array
     {
-        return $this->group;
+        return $this->get('group', []);
     }
 
     /**
      * @param array $group
      *
-     * @return array
+     * @return $this
      */
-    public function setGroup(array $group = []): self
+    public function setGroup(array $group = []): Groupable
     {
-        $this->group = $group;
-
-        return $this;
+        return $this->set('group', $group);
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @return \Illuminate\View\View
      */
     public function render()
     {
-        return view($this->view, [
-            'group' => $this->group,
-            'class'   => $this->get('class'),
-        ]);
+        return view($this->view, $this->attributes);
     }
 
-
     /**
+     * Columns only take up as much space as needed.
      *
+     * @return self
      */
     public function autoWidth(): self
     {
-        $this->attributes['class'] = 'col-auto';
-
-
-        return $this;
+        return $this->set('class', 'col-auto');
     }
 
     /**
-     * @return $this
+     * Columns occupy the entire width of the screen.
+     *
+     * @return self
      */
     public function fullWidth(): self
     {
-        $this->attributes['class'] = 'col';
-
-        return $this;
+        return $this->set('class', 'col');
     }
 }
