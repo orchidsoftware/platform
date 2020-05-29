@@ -1,120 +1,91 @@
-<div class="row admin-wrapper">
-    <div class="wrapper-lg">
-        <div class="mb-5">
-            <h1 class="text-dark font-thin m-b-sm"><i class="icon-directions mr-2"></i> Get Started</h1>
-            <p class="lead m-b-n">Develop corporate web applications faster than ever</p>
-        </div>
+<div class="admin-wrapper">
+    <div class="py-4">
+
         <div class="row">
-            <div class="col-md-4 no-padder admin-element-item">
-                <div class="admin-element w-100">
-                    <h3 class="font-thin h3 text-black">
-                        <i class="icon-screen-desktop"></i><a
-                            href="https://orchid.software/en/docs/screens/">Screens</a>
-                    </h3>
-                    <div class="line line-dashed border-bottom mt-3 mb-1"></div>
-                    <div class="list-group no-bg no-borders pull-in auto">
-                        <div class="list-group-item admin-element-item">
-                            <a href="https://orchid.software/en/docs/screens/">
-                                <small class="text-muted">The main element of the platform are the screens described
-                                    by the layout hierarchy, according to which
-                                    Each element has properties that affect its appearance and behavior.<br/>
-                                </small>
-                            </a>
+            <div class="col-md-7 col-sm-12">
+                <div class="mb-5 jumbotron">
+                    <h1 class="display-5 text-dark font-thin m-b-sm">
+                        <i class="icon-trophy mr-2 mb-3"></i> Congratulations!
+
+                        <span
+                            class="badge badge-success small v-top bg-primary text-white">{{\Orchid\Platform\Dashboard::VERSION}}</span>
+                    </h1>
+                    <p class="lead">You have successfully installed the platform, let's get started</p>
+
+                    <p>
+                        The installation includes examples of pages and the use of fields, layers and tables, and more
+                        on them.
+                    </p>
+
+                    <p>
+                        <strong> Why not explore them?</strong>
+                    </p>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <ul class="pl-4 m-0">
+                                @if(Route::has('platform.example'))
+                                    <li><a href="{{ route('platform.example') }}">Example screen</a></li>
+                                @endif
+                                @if(Route::has('platform.example.fields'))
+                                    <li><a href="{{ route('platform.example.fields') }}">Basic form controls</a></li>
+                                @endif
+                                @if(Route::has('platform.example.advanced'))
+                                    <li><a href="{{ route('platform.example.advanced') }}">Advanced form controls</a>
+                                    </li>
+                                @endif
+                                @if(Route::has('platform.example.editors'))
+                                    <li><a href="{{ route('platform.example.editors') }}">Form Text Editors</a></li>
+                                @endif
+                            </ul>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <ul class="pl-4 m-0">
+                                @if(Route::has('platform.example.layouts'))
+                                    <li><a href="{{ route('platform.example.layouts') }}">Overview layouts</a></li>
+                                @endif
+                                @if(Route::has('platform.example.charts'))
+                                    <li><a href="{{ route('platform.example.charts') }}">Charts</a></li>
+                                @endif
+                                @if(Route::has('platform.example.cards'))
+                                    <li><a href="{{ route('platform.example.cards') }}">Cards</a>
+                                    </li>
+                                @endif
+                                @if(Route::has('platform.systems.roles') && Route::has('platform.systems.roles'))
+                                        <li><a href="{{ route('platform.systems.users') }}">Users</a> and <a href="{{ route('platform.systems.roles') }}"> roles</a></li>
+                                @endif
+                            </ul>
                         </div>
                     </div>
+
                 </div>
             </div>
-            <div class="col-md-4 no-padder admin-element-item">
-                <div class="admin-element w-100">
-                    <h3 class="font-thin h3 text-black">
-                        <i class="icon-layers"></i> <a href="https://orchid.software/en/docs/layouts/">Layouts</a>
-                    </h3>
-                    <div class="line line-dashed border-bottom mt-3 mb-1"></div>
-                    <div class="list-group no-bg no-borders pull-in auto">
-                        <div class="list-group-item admin-element-item">
-                            <a href="https://orchid.software/en/docs/layouts/">
-                                <small class="text-muted">One of the elements of the presentation are “Layouts” that can
-                                    be displayed in different variations, if you try to explain briefly, it turns out
-                                    that this is the view on steroids.
-                                </small>
-                            </a>
-                        </div>
-                    </div>
+            <div class="col-md-5 col-sm-12 pr-md-5 mt-md-3">
+                <div class="mb-5">
+                    <h2 class="display-5 text-dark font-thin m-b-sm">
+                        <i class="icon-rocket mr-2 mb-3"></i>
+                        Quick start
+                    </h2>
+                    <div class="line line-dashed border-bottom mt-3 mb-3"></div>
+                    <p>For a quick study of the main features, step-by-step tutorials are prepared, which you can
+                        <a href="https://orchid.software/en/docs/quickstart" target="_blank"> see on the site</a>.</p>
                 </div>
-            </div>
-            <div class="col-md-4 no-padder admin-element-item">
-                <div class="admin-element w-100">
-                    <h3 class="font-thin h3 text-black">
-                        <i class="icon-list"></i> <a href="https://orchid.software/en/docs/field/">Fields</a>
-                    </h3>
-                    <div class="line line-dashed border-bottom mt-3 mb-1"></div>
-                    <div class="list-group no-bg no-borders pull-in auto">
-                        <div class="list-group-item admin-element-item">
-                            <a href="https://orchid.software/en/docs/field/">
-                                <small class="text-muted">Fields are used to generate the output form template and edit.
-                                    Allows you to create different parts of the interface and provide user interaction.
-                                </small>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 no-padder admin-element-item">
-                <div class="admin-element w-100">
-                    <h3 class="font-thin h3 text-black">
-                        <i class="icon-bell"></i> <a href="https://orchid.software/en/docs/alert/">Notifications</a>
-                    </h3>
-                    <div class="line line-dashed border-bottom mt-3 mb-1"></div>
-                    <div class="list-group no-bg no-borders pull-in auto">
-                        <div class="list-group-item admin-element-item">
-                            <a href="https://orchid.software/en/docs/alert/">
-                                <small class="text-muted">A simple way to notify the user about the status of your
-                                    application. For example, they can inform the user about the completion of a lengthy
-                                    process or the arrival of a new message.
-                                </small>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 no-padder admin-element-item">
-                <div class="admin-element w-100">
-                    <h3 class="font-thin h3 text-black">
-                        <i class="icon-fingerprint"></i> <a href="https://orchid.software/en/docs/access/">Access</a>
-                    </h3>
-                    <div class="line line-dashed border-bottom mt-3 mb-1"></div>
-                    <div class="list-group no-bg no-borders pull-in auto">
-                        <div class="list-group-item admin-element-item">
-                            <a href="https://orchid.software/en/docs/access/">
-                                <small class="text-muted">
-                                    In ORCHID permissions can be added for both users and roles. A role is associated
-                                    with a set of permissions, not with a single user.
-                                </small>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 no-padder admin-element-item">
-                <div class="admin-element w-100">
-                    <h3 class="font-thin h3 text-black">
-                        <i class="icon-filter"></i> <a href="https://orchid.software/en/docs/filters/">Filters</a>
-                    </h3>
-                    <div class="line line-dashed border-bottom mt-3 mb-1"></div>
-                    <div class="list-group no-bg no-borders pull-in auto">
-                        <div class="list-group-item admin-element-item">
-                            <a href="https://orchid.software/en/docs/filters/">
-                                <small class="text-muted">Filters are used to simplify the search for records using a
-                                    typical filter. For example, if you want to filter the product catalog by
-                                    attributes, brands and etc.
-                                </small>
-                            </a>
-                        </div>
-                    </div>
+                <div class="mb-5">
+                    <h2 class="display-5 text-dark font-thin m-b-sm">
+                        <i class="icon-help mr-2 mb-3"></i>
+                        Community
+                    </h2>
+                    <div class="line line-dashed border-bottom mt-3 mb-3"></div>
+                    <p>Stay up to date on the development of "Orchid Platform" and reach out to the community with these
+                        helpful
+                        resources.</p>
+                    <ul>
+                        <li>Follow <a href="https://twitter.com/orchid_platform">@orchid_platform on Twitter</a>.</li>
+                        <li>Join <a href="https://t.me/orchid_community">the official Telegram group</a>.</li>
+                    </ul>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
