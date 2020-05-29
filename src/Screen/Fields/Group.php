@@ -20,7 +20,7 @@ class Group extends Field implements Groupable
      * @var array
      */
     protected $attributes = [
-        'name' => 'group',
+        'name'   => 'group',
         'class'  => 'col',
     ];
 
@@ -73,19 +73,14 @@ class Group extends Field implements Groupable
     public function render()
     {
         return view($this->view, [
-            'group' => $this->group,
+            'group'   => $this->group,
             'class'   => $this->get('class'),
         ]);
     }
 
-
-    /**
-     *
-     */
     public function autoWidth(): self
     {
         $this->attributes['class'] = 'col-auto';
-
 
         return $this;
     }
