@@ -18,5 +18,5 @@ interface Groupable extends Fieldable
      *
      * @return Groupable
      */
-    public function setGroup(array $group = []): Groupable;
+    public function setGroup(array $group = []): self;
 }
