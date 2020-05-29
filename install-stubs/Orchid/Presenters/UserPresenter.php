@@ -32,7 +32,7 @@ class UserPresenter extends Presenter implements Searchable, Personable
      */
     public function subTitle(): string
     {
-        return $this->entity->roles->pluck('name')->implode(' - ');
+        return $this->entity->roles->pluck('name')->implode(' / ');
     }
 
     /**
