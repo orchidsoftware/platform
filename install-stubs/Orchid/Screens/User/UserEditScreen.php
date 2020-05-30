@@ -101,10 +101,7 @@ class UserEditScreen extends Screen
     {
         return [
             UserEditLayout::class,
-
-            Layout::rubbers([
-                RolePermissionLayout::class,
-            ]),
+            RolePermissionLayout::class,
 
             Layout::modal('password', [
                 Layout::rows([

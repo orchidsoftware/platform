@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Orchid\Layouts\Role;
 
 use Illuminate\Support\Collection;
-use Orchid\Screen\Field;
 use Orchid\Screen\Fields\CheckBox;
+use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Label;
 use Orchid\Screen\Layouts\Rows;
 
@@ -15,9 +15,9 @@ class RolePermissionLayout extends Rows
     /**
      * Views.
      *
+     * @return array
      * @throws \Throwable
      *
-     * @return array
      */
     public function fields(): array
     {
@@ -27,27 +27,20 @@ class RolePermissionLayout extends Rows
     /**
      * @param Collection $permissionsRaw
      *
-     * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
-     *
      * @return array
      */
     private function generatedPermissionFields(Collection $permissionsRaw): array
     {
-        $fields = [];
-
-        $permissionsRaw->each(function ($items, $group) use (&$fields) {
-            $fields[] = Label::make($group)->title($group);
-
-            collect($items)
+        return $permissionsRaw->map(function ($items, $group) {
+            return collect($items)
                 ->chunk(3)
-                ->each(function (Collection $chunks) use (&$fields) {
-                    $fields[] = Field::group(function () use ($chunks) {
-                        return $this->getCheckBoxGroup($chunks);
-                    });
-                });
-        });
-
-        return $fields;
+                ->map(function (Collection $chunks) {
+                    return Group::make($this->getCheckBoxGroup($chunks))->autoWidth();
+                })
+                ->prepend(Label::make($group)->title($group));
+        })
+            ->flatten()
+            ->toArray();
     }
 
     /**
@@ -58,7 +51,7 @@ class RolePermissionLayout extends Rows
     private function getCheckBoxGroup(Collection $chunks): array
     {
         return $chunks->map(function ($permission) {
-            return CheckBox::make('permissions.'.base64_encode($permission['slug']))
+            return CheckBox::make('permissions.' . base64_encode($permission['slug']))
                 ->placeholder($permission['description'])
                 ->value($permission['active'])
                 ->sendTrueOrFalse();

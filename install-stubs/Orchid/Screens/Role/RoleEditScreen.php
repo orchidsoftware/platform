@@ -85,10 +85,7 @@ class RoleEditScreen extends Screen
     {
         return [
             RoleEditLayout::class,
-
-            Layout::rubbers([
-                RolePermissionLayout::class,
-            ]),
+            RolePermissionLayout::class,
         ];
     }
 

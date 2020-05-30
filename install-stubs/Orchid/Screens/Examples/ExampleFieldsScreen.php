@@ -5,6 +5,7 @@ namespace App\Orchid\Screens\Examples;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Fields\CheckBox;
+use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Label;
 use Orchid\Screen\Fields\Password;
@@ -39,7 +40,7 @@ class ExampleFieldsScreen extends Screen
     public function query(): array
     {
         return [
-            'name'  => 'Hello! We collected all the fields in one place',
+            'name' => 'Hello! We collected all the fields in one place',
         ];
     }
 
@@ -56,14 +57,13 @@ class ExampleFieldsScreen extends Screen
     /**
      * Views.
      *
+     * @return array
      * @throws \Throwable
      *
-     * @return array
      */
     public function layout(): array
     {
         return [
-
             Layout::columns([
                 Layout::rows([
 
@@ -157,6 +157,30 @@ class ExampleFieldsScreen extends Screen
 
                 ])->title('Input States'),
             ]),
+
+            Layout::rows([
+                Group::make([
+                    Button::make('Primary')->type(Color::PRIMARY()),
+                    Button::make('Secondary')->type(Color::SECONDARY()),
+                    Button::make('Success')->type(Color::SUCCESS()),
+                    Button::make('Danger')->type(Color::DANGER()),
+                    Button::make('Warning')->type(Color::WARNING()),
+                    Button::make('Info')->type(Color::INFO()),
+                    Button::make('Light')->type(Color::LIGHT()),
+                    Button::make('Dark')->type(Color::DARK()),
+                    Button::make('Default')->type(Color::DEFAULT()),
+                    Button::make('Link')->type(Color::LINK()),
+                ])->autoWidth(),
+
+                Button::make('Block level button')
+                    ->type(Color::DEFAULT())
+                    ->block(),
+
+                Button::make('Right button')
+                    ->type(Color::DEFAULT())
+                    ->right(),
+
+            ])->title('Buttons'),
 
             Layout::rows([
                 Input::make('test')

@@ -69,7 +69,7 @@ class Action extends Field implements Actionable
      */
     public function block(): self
     {
-        $class = $this->get('class').' pull-block';
+        $class = $this->get('class').' btn-block';
 
         $this->set('class', $class);
 

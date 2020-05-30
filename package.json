@@ -8,13 +8,13 @@
     "eslint": "./node_modules/.bin/eslint resources/js/ --fix"
   },
   "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.7.4",
-    "@babel/plugin-transform-block-scoping": "^7.7.4",
-    "@babel/preset-env": "^7.9.6",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/plugin-transform-block-scoping": "^7.10.1",
+    "@babel/preset-env": "^7.10.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "codeflask": "^1.4.0",
-    "cropperjs": "^1.5.6",
+    "cropperjs": "^1.5.7",
     "cross-env": "^7.0.0",
     "dropzone": "^5.7.0",
     "flatpickr": "^4.6.3",

@@ -29,7 +29,7 @@ class Group extends Field implements Groupable
     /**
      * @var string
      */
-    protected $view = 'platform::partials.fields.groups';
+    protected $view = 'platform::fields.group';
 
     /**
      * @param array $group
