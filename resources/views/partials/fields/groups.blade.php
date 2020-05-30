@@ -1,11 +1,7 @@
-<div class="row">
-    <div class="container">
-        <div class="row">
-            @foreach($cols as $col)
-                <div class="col-md">
-                    {!! $col !!}
-                </div>
-            @endforeach
+<div class="row align-items-baseline">
+    @foreach($group as $field)
+        <div class="{{ $class }} @if (!$loop->last) pr-0 @endif">
+            {!! $field !!}
         </div>
-    </div>
+    @endforeach
 </div>

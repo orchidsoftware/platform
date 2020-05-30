@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
+use Orchid\Screen\Fields\Group;
 use Throwable;
 
 /**
@@ -174,7 +175,7 @@ class Field implements Fieldable
     }
 
     /**
-     *@throws Throwable
+     * @throws Throwable
      *
      * @return Factory|View|mixed
      */
@@ -384,15 +385,17 @@ class Field implements Fieldable
     }
 
     /**
+     * @deprecated
+     *
      * Create a group of the fields.
      *
      * @param Closure|array $group
      *
-     * @return mixed
+     * @return Group
      */
     public static function group($group)
     {
-        return is_callable($group) ? $group() : $group;
+        return Group::make(is_callable($group) ? $group() : $group);
     }
 
     /**
