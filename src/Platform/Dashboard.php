@@ -8,6 +8,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
+use Orchid\Screen\Screen;
 use Orchid\Access\TwoFactor;
 
 class Dashboard
@@ -54,6 +55,11 @@ class Dashboard
      * @var Collection
      */
     private $publicDirectories;
+
+    /**
+     * @var Screen|null
+     */
+    private $currentScreen;
 
     /**
      * Dashboard constructor.
@@ -240,7 +246,7 @@ class Dashboard
      */
     public function getResource($key = null)
     {
-        if (is_null($key)) {
+        if ($key === null) {
             return $this->resources;
         }
 
@@ -319,5 +325,25 @@ class Dashboard
     public function getPublicDirectory(): Collection
     {
         return $this->publicDirectories;
+    }
+
+    /**
+     * @param Screen $screen
+     *
+     * @return $this
+     */
+    public function setCurrentScreen(Screen $screen): self
+    {
+        $this->currentScreen = $screen;
+
+        return $this;
+    }
+
+    /**
+     * @return Screen|null
+     */
+    public function getCurrentScreen(): ?Screen
+    {
+        return $this->currentScreen;
     }
 }

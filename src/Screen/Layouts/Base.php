@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Crypt;
 use JsonSerializable;
 use Orchid\Screen\Repository;
+use Orchid\Support\Facades\Dashboard;
 
 /**
  * Class Base.
@@ -46,13 +48,6 @@ abstract class Base implements JsonSerializable
     protected $async = false;
 
     /**
-     * The following request must be asynchronous.
-     *
-     * @var bool
-     */
-    protected $asyncNext = false;
-
-    /**
      * @var array
      */
     protected $variables = [];
@@ -72,7 +67,6 @@ abstract class Base implements JsonSerializable
     public function async(string $method): self
     {
         $this->asyncMethod = $method;
-        $this->asyncNext = true;
 
         return $this;
     }
@@ -121,11 +115,30 @@ abstract class Base implements JsonSerializable
         $variables = array_merge($this->variables, [
             'manyForms'           => $build,
             'templateSlug'        => $this->getSlug(),
-            'templateAsync'       => $this->asyncNext,
-            'templateAsyncMethod' => $this->asyncMethod,
+            'asyncRoute'          => $this->asyncRoute(),
         ]);
 
         return view($this->async ? 'platform::layouts.blank' : $this->template, $variables);
+    }
+
+    /**
+     * Return URL for screen template requests from browser
+     *
+     * @return string|null
+     */
+    private function asyncRoute(): ?string
+    {
+        $screen = Dashboard::getCurrentScreen();
+
+        if (!$screen) {
+            return null;
+        }
+
+        return route('platform.async', [
+            'screen'   => Crypt::encryptString(get_class($screen)),
+            'method'   => $this->asyncMethod,
+            'template' => $this->getSlug(),
+        ]);
     }
 
     /**
@@ -184,7 +197,11 @@ abstract class Base implements JsonSerializable
             return $this;
         }
 
-        return collect($this->layouts)
+        $layouts = method_exists($this,'layouts')
+            ? $this->layouts()
+            : $this->layouts;
+
+        return collect($layouts)
             ->flatten()
             ->map(static function ($layout) use ($slug) {
                 $layout = is_object($layout)
