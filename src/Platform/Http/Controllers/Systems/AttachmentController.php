@@ -68,22 +68,22 @@ class AttachmentController extends Controller
     /**
      * Delete files.
      *
-     * @param int     $id
+     * @param string     $id
      * @param Request $request
      */
-    public function destroy(int $id, Request $request)
+    public function destroy(string $id, Request $request)
     {
         $storage = $request->get('storage', 'public');
         $this->attachment->findOrFail($id)->delete($storage);
     }
 
     /**
-     * @param int     $id
+     * @param string     $id
      * @param Request $request
      *
      * @return ResponseFactory|Response
      */
-    public function update(int $id, Request $request)
+    public function update(string $id, Request $request)
     {
         $attachment = $this->attachment
             ->findOrFail($id)
