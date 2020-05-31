@@ -68,7 +68,7 @@ class AttachmentController extends Controller
     /**
      * Delete files.
      *
-     * @param string     $id
+     * @param string  $id
      * @param Request $request
      */
     public function destroy(string $id, Request $request)
@@ -78,7 +78,7 @@ class AttachmentController extends Controller
     }
 
     /**
-     * @param string     $id
+     * @param string  $id
      * @param Request $request
      *
      * @return ResponseFactory|Response
