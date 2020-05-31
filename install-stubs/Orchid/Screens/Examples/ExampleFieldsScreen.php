@@ -15,6 +15,7 @@ use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Support\Color;
+use Orchid\Support\Facades\Alert;
 
 class ExampleFieldsScreen extends Screen
 {
@@ -160,23 +161,25 @@ class ExampleFieldsScreen extends Screen
 
             Layout::rows([
                 Group::make([
-                    Button::make('Primary')->type(Color::PRIMARY()),
-                    Button::make('Secondary')->type(Color::SECONDARY()),
-                    Button::make('Success')->type(Color::SUCCESS()),
-                    Button::make('Danger')->type(Color::DANGER()),
-                    Button::make('Warning')->type(Color::WARNING()),
-                    Button::make('Info')->type(Color::INFO()),
-                    Button::make('Light')->type(Color::LIGHT()),
-                    Button::make('Dark')->type(Color::DARK()),
-                    Button::make('Default')->type(Color::DEFAULT()),
-                    Button::make('Link')->type(Color::LINK()),
+                    Button::make('Primary')->method('buttonClickProcessing')->type(Color::PRIMARY()),
+                    Button::make('Secondary')->method('buttonClickProcessing')->type(Color::SECONDARY()),
+                    Button::make('Success')->method('buttonClickProcessing')->type(Color::SUCCESS()),
+                    Button::make('Danger')->method('buttonClickProcessing')->type(Color::DANGER()),
+                    Button::make('Warning')->method('buttonClickProcessing')->type(Color::WARNING()),
+                    Button::make('Info')->method('buttonClickProcessing')->type(Color::INFO()),
+                    Button::make('Light')->method('buttonClickProcessing')->type(Color::LIGHT()),
+                    Button::make('Dark')->method('buttonClickProcessing')->type(Color::DARK()),
+                    Button::make('Default')->method('buttonClickProcessing')->type(Color::DEFAULT()),
+                    Button::make('Link')->method('buttonClickProcessing')->type(Color::LINK()),
                 ])->autoWidth(),
 
                 Button::make('Block level button')
+                    ->method('buttonClickProcessing')
                     ->type(Color::DEFAULT())
                     ->block(),
 
                 Button::make('Right button')
+                    ->method('buttonClickProcessing')
                     ->type(Color::DEFAULT())
                     ->right(),
 
@@ -263,9 +266,21 @@ class ExampleFieldsScreen extends Screen
                     ->value('#563d7c')
                     ->horizontal(),
 
-                Button::make('Submit')->type(Color::DEFAULT()),
+                Button::make('Submit')
+                    ->method('buttonClickProcessing')
+                    ->type(Color::DEFAULT()),
 
             ])->title('Textual HTML5 Inputs'),
         ];
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function buttonClickProcessing()
+    {
+        Alert::warning('Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.');
+
+        return back();
     }
 }
