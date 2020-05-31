@@ -7,12 +7,13 @@ namespace Orchid\Screen;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Screen\Layouts\Base;
+use Orchid\Support\Facades\Dashboard;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionParameter;
@@ -28,9 +29,9 @@ abstract class Screen extends Controller
     /**
      * The number of predefined arguments in the route.
      *
-     * Example: dashboard/my-screen/{method?}/{argument?}
+     * Example: dashboard/my-screen/{method?}
      */
-    private const COUNT_ROUTE_VARIABLES = 2;
+    private const COUNT_ROUTE_VARIABLES = 1;
 
     /**
      * Display header name.
@@ -47,11 +48,6 @@ abstract class Screen extends Controller
     public $description;
 
     /**
-     * @var Request
-     */
-    public $request;
-
-    /**
      * Permission.
      *
      * @var string|array
@@ -62,21 +58,6 @@ abstract class Screen extends Controller
      * @var Repository
      */
     private $source;
-
-    /**
-     * @var array
-     */
-    protected $arguments = [];
-
-    /**
-     * Screen constructor.
-     *
-     * @param Request|null $request
-     */
-    public function __construct(Request $request = null)
-    {
-        $this->request = $request ?? request();
-    }
 
     /**
      * Button commands.
@@ -93,9 +74,9 @@ abstract class Screen extends Controller
     abstract public function layout(): array;
 
     /**
+     * @return View
      * @throws Throwable
      *
-     * @return View
      */
     public function build()
     {
@@ -105,20 +86,20 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param mixed $method
-     * @param mixed $slug
-     *
-     * @throws Throwable
+     * @param string $method
+     * @param string $slug
      *
      * @return View
+     * @throws Throwable
+     *
      */
-    protected function asyncBuild($method, $slug)
+    public function asyncBuild(string $method, string $slug)
     {
-        $this->arguments = $this->request->all();
+        Dashboard::setCurrentScreen($this);
 
-        $this->reflectionParams($method);
+        abort_unless(method_exists($this, $method), 404, "Async method: {$method} not found");
 
-        $query = call_user_func_array([$this, $method], $this->arguments);
+        $query = $this->callMethod($method, request()->all());
         $source = new Repository($query);
 
         /** @var Base $layout */
@@ -139,14 +120,15 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @throws Throwable
+     * @param array $httpQueryArguments
      *
      * @return Factory|\Illuminate\View\View
+     * @throws ReflectionException
+     *
      */
-    public function view()
+    public function view(array $httpQueryArguments = [])
     {
-        $this->reflectionParams('query');
-        $query = call_user_func_array([$this, 'query'], $this->arguments);
+        $query = $this->callMethod('query', $httpQueryArguments);
         $this->source = new Repository($query);
         $commandBar = $this->buildCommandBar($this->source);
 
@@ -159,55 +141,56 @@ abstract class Screen extends Controller
     /**
      * @param mixed ...$parameters
      *
-     * @throws ReflectionException
+     * @return Factory|View|\Illuminate\View\View|mixed
      * @throws Throwable
      *
-     * @return Factory|View|\Illuminate\View\View|mixed
+     * @throws ReflectionException
      */
     public function handle(...$parameters)
     {
-        abort_if(! $this->checkAccess(), 403);
+        Dashboard::setCurrentScreen($this);
+        abort_unless($this->checkAccess(), 403);
 
-        if ($this->request->method() === 'GET' || (! count($parameters))) {
-            $this->arguments = $parameters;
-
-            return $this->redirectOnGetMethodCallOrShowView();
+        if (request()->isMethod('GET')) {
+            return $this->redirectOnGetMethodCallOrShowView($parameters);
         }
 
-        $method = array_pop($parameters);
-        $this->arguments = $parameters;
+        $method = Route::current()->parameter('method', Arr::last($parameters));
 
-        if (Str::startsWith($method, 'async')) {
-            return $this->asyncBuild($method, array_pop($this->arguments));
-        }
+        $parameters = array_diff(
+            $parameters,
+            [$method]
+        );
 
-        $this->reflectionParams($method);
+        $parameters = array_filter($parameters);
 
-        return call_user_func_array([$this, $method], $this->arguments);
+        return $this->callMethod($method, $parameters);
     }
 
     /**
-     * @param mixed $method
+     * @param string $method
+     * @param array  $httpQueryArguments
      *
+     * @return array
      * @throws ReflectionException
      */
-    private function reflectionParams($method)
+    private function reflectionParams(string $method, array $httpQueryArguments = []): array
     {
         $class = new ReflectionClass($this);
 
-        if (! is_string($method)) {
-            return;
+        if (!is_string($method)) {
+            return [];
         }
 
-        if (! $class->hasMethod($method)) {
-            return;
+        if (!$class->hasMethod($method)) {
+            return [];
         }
 
         $parameters = $class->getMethod($method)->getParameters();
 
-        $this->arguments = collect($parameters)
-            ->map(function ($parameter, $key) {
-                return $this->bind($key, $parameter);
+        return collect($parameters)
+            ->map(function ($parameter, $key) use ($httpQueryArguments) {
+                return $this->bind($key, $parameter, $httpQueryArguments);
             })->all();
     }
 
@@ -218,14 +201,14 @@ abstract class Screen extends Controller
      * @param int                 $key
      * @param ReflectionParameter $parameter
      *
+     * @return mixed
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      *
-     * @return mixed
      */
-    private function bind(int $key, ReflectionParameter $parameter)
+    private function bind(int $key, ReflectionParameter $parameter, array $httpQueryArguments)
     {
         $class = optional($parameter->getClass())->name;
-        $original = array_values($this->arguments)[$key] ?? null;
+        $original = array_values($httpQueryArguments)[$key] ?? null;
 
         if ($class === null) {
             return $original;
@@ -271,21 +254,51 @@ abstract class Screen extends Controller
      * Defines the URL to represent
      * the page based on the calculation of link arguments.
      *
+     * @return Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      * @throws Throwable
      *
-     * @return Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    protected function redirectOnGetMethodCallOrShowView()
+    protected function redirectOnGetMethodCallOrShowView(array $httpQueryArguments)
     {
-        $expectedArg = count($this->request->route()->getCompiled()->getVariables()) - self::COUNT_ROUTE_VARIABLES;
-        $realArg = count($this->arguments);
+        $expectedArg = count(Route::current()->getCompiled()->getVariables()) - self::COUNT_ROUTE_VARIABLES;
+        $realArg = count($httpQueryArguments);
 
         if ($realArg <= $expectedArg) {
-            return $this->view();
+            return $this->view($httpQueryArguments);
         }
 
-        array_pop($this->arguments);
+        array_pop($httpQueryArguments);
 
-        return redirect()->action([static::class, 'handle'], $this->arguments);
+        return redirect()->action([static::class, 'handle'], $httpQueryArguments);
+    }
+
+    /**
+     * @param string $method
+     * @param array  $parameters
+     *
+     * @return mixed
+     * @throws ReflectionException
+     *
+     */
+    private function callMethod(string $method, array $parameters = [])
+    {
+        return call_user_func_array([$this, $method],
+            $this->reflectionParams($method, $parameters)
+        );
+    }
+
+    /**
+     * Get can transfer to the screen only
+     * user-created methods available in it.
+     *
+     * @array
+     */
+    public static function getAvailableMethods(): array
+    {
+        return array_diff(
+            get_class_methods(static::class), // Custom methods
+            get_class_methods(self::class),   // Basic methods
+            ['query']                                   // Except methods
+        );
     }
 }

@@ -6,9 +6,7 @@
          aria-labelledby="screen-modal-{{$key}}"
              data-controller="screen--modal"
              data-screen--modal-slug="{{$templateSlug}}"
-             data-screen--modal-async="{{$templateAsync}}"
-             data-screen--modal-method="{{$templateAsyncMethod}}"
-             data-screen--modal-url="{{ url()->current() }}"
+             data-screen--modal-async="{{$asyncRoute}}"
         >
             <div class="modal-dialog {{$size}}" role="document" id="screen-modal-type-{{$key}}">
                 <form class="modal-content"
