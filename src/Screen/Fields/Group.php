@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Contracts\Groupable;
 use Orchid\Screen\Field;
 
-class Group extends Field implements Groupable
+class Group implements Fieldable, Groupable
 {
     /**
      * Default attributes value.
@@ -85,5 +86,41 @@ class Group extends Field implements Groupable
     public function fullWidth(): self
     {
         return $this->set('class', 'col');
+    }
+
+    /**
+     * @param string $key
+     * @param mixed  $value
+     *
+     * @return static
+     */
+    public function set(string $key, $value = true): self
+    {
+        $this->attributes[$key] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string     $key
+     * @param mixed|null $value
+     *
+     * @return static|mixed|null
+     */
+    public function get(string $key, $value = null)
+    {
+        if (!isset($this->attributes[$key])) {
+            return $value;
+        }
+
+        return $this->attributes[$key];
+    }
+
+    /**
+     * @return array
+     */
+    public function getAttributes(): array
+    {
+        return $this->attributes;
     }
 }

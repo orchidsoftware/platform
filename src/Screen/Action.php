@@ -29,6 +29,16 @@ class Action extends Field implements Actionable
     ];
 
     /**
+     * @param string $name
+     *
+     * @return static
+     */
+    public static function make(string $name = null): self
+    {
+        return parent::make($name ?? '');
+    }
+
+    /**
      * Align button to the right.
      *
      * @return static

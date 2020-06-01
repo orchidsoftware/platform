@@ -87,14 +87,4 @@ class Password extends Field
         'tabindex',
         'type',
     ];
-
-    /**
-     * @param string|null $name
-     *
-     * @return Password
-     */
-    public static function make(string $name = null): self
-    {
-        return (new static())->name($name);
-    }
 }

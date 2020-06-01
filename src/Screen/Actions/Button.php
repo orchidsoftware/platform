@@ -43,23 +43,15 @@ class Button extends Action
     ];
 
     /**
-     * Create instance of the button.
-     *
-     * @param string $name
-     *
-     * @return Button $name
+     * Button constructor.
      */
-    public static function make(string $name = ''): self
+    public function __construct()
     {
-        return (new static())
-            ->name($name)
-            ->addBeforeRender(function () use ($name) {
-                $url = url()->current();
-                $query = http_build_query($this->get('parameters'));
+        $this->addBeforeRender(function () {
+            $url = url()->current();
+            $query = http_build_query($this->get('parameters'));
 
-                $action = "{$url}/{$this->get('method')}?{$query}";
-                $this->set('action', $action);
-                $this->set('name', $name);
-            });
+            $this->set('action', "{$url}/{$this->get('method')}?{$query}");
+        });
     }
 }

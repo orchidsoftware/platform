@@ -38,14 +38,4 @@ class Label extends Field
     protected $inlineAttributes = [
         'class',
     ];
-
-    /**
-     * @param string|null $name
-     *
-     * @return Label
-     */
-    public static function make(string $name = null): self
-    {
-        return (new static())->name($name);
-    }
 }
