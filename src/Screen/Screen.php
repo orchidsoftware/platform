@@ -74,9 +74,9 @@ abstract class Screen extends Controller
     abstract public function layout(): array;
 
     /**
-     * @return View
      * @throws Throwable
      *
+     * @return View
      */
     public function build()
     {
@@ -89,9 +89,9 @@ abstract class Screen extends Controller
      * @param string $method
      * @param string $slug
      *
-     * @return View
      * @throws Throwable
      *
+     * @return View
      */
     public function asyncBuild(string $method, string $slug)
     {
@@ -122,9 +122,9 @@ abstract class Screen extends Controller
     /**
      * @param array $httpQueryArguments
      *
-     * @return Factory|\Illuminate\View\View
      * @throws ReflectionException
      *
+     * @return Factory|\Illuminate\View\View
      */
     public function view(array $httpQueryArguments = [])
     {
@@ -141,10 +141,10 @@ abstract class Screen extends Controller
     /**
      * @param mixed ...$parameters
      *
-     * @return Factory|View|\Illuminate\View\View|mixed
      * @throws Throwable
-     *
      * @throws ReflectionException
+     *
+     * @return Factory|View|\Illuminate\View\View|mixed
      */
     public function handle(...$parameters)
     {
@@ -171,18 +171,19 @@ abstract class Screen extends Controller
      * @param string $method
      * @param array  $httpQueryArguments
      *
-     * @return array
      * @throws ReflectionException
+     *
+     * @return array
      */
     private function reflectionParams(string $method, array $httpQueryArguments = []): array
     {
         $class = new ReflectionClass($this);
 
-        if (!is_string($method)) {
+        if (! is_string($method)) {
             return [];
         }
 
-        if (!$class->hasMethod($method)) {
+        if (! $class->hasMethod($method)) {
             return [];
         }
 
@@ -201,9 +202,9 @@ abstract class Screen extends Controller
      * @param int                 $key
      * @param ReflectionParameter $parameter
      *
-     * @return mixed
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      *
+     * @return mixed
      */
     private function bind(int $key, ReflectionParameter $parameter, array $httpQueryArguments)
     {
@@ -254,9 +255,9 @@ abstract class Screen extends Controller
      * Defines the URL to represent
      * the page based on the calculation of link arguments.
      *
-     * @return Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      * @throws Throwable
      *
+     * @return Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     protected function redirectOnGetMethodCallOrShowView(array $httpQueryArguments)
     {
@@ -276,9 +277,9 @@ abstract class Screen extends Controller
      * @param string $method
      * @param array  $parameters
      *
-     * @return mixed
      * @throws ReflectionException
      *
+     * @return mixed
      */
     private function callMethod(string $method, array $parameters = [])
     {
