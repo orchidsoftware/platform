@@ -29,6 +29,16 @@ class Action extends Field implements Actionable
     ];
 
     /**
+     * @param string|null $name
+     *
+     * @return self
+     */
+    public function name(string $name = null): self
+    {
+        return $this->set('name', $name ?? '');
+    }
+
+    /**
      * Align button to the right.
      *
      * @return static
