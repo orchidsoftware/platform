@@ -37,33 +37,31 @@ class Matrix extends Field
     ];
 
     /**
-     * @param string|null $name
-     *
-     * @return self
+     * Matrix constructor.
      */
-    public static function make(string $name = null): self
+    public function __construct()
     {
-        return (new static())->name($name)
-            ->addBeforeRender(function () {
-                if ($this->get('value') === null) {
-                    $this->set('value', []);
-                }
-            })
-            ->addBeforeRender(function () {
-                $fields = $this->get('fields');
+         $this
+             ->addBeforeRender(function () {
+                 if ($this->get('value') === null) {
+                     $this->set('value', []);
+                 }
+             })
+             ->addBeforeRender(function () {
+                 $fields = $this->get('fields');
 
-                foreach ($this->get('columns') as $key => $column) {
-                    if (! isset($fields[$key])) {
-                        $fields[$key] = TextArea::make();
-                    }
+                 foreach ($this->get('columns') as $key => $column) {
+                     if (! isset($fields[$key])) {
+                         $fields[$key] = TextArea::make();
+                     }
 
-                    if (! isset($fields[$column])) {
-                        $fields[$column] = TextArea::make();
-                    }
-                }
+                     if (! isset($fields[$column])) {
+                         $fields[$column] = TextArea::make();
+                     }
+                 }
 
-                $this->set('fields', $fields);
-            });
+                 $this->set('fields', $fields);
+             });
     }
 
     /**
@@ -74,15 +72,5 @@ class Matrix extends Field
     public function maxRows(int $count)
     {
         return $this->set('maxRows', $count);
-    }
-
-    /**
-     * @param Field[] $fields
-     *
-     * @return $this
-     */
-    public function fields(array $fields = []): self
-    {
-        return $this->set('fields', $fields);
     }
 }

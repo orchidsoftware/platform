@@ -55,13 +55,11 @@ class TimeZone extends Field
     ];
 
     /**
-     * @param string|null $name
-     *
-     * @return self
+     * TimeZone constructor.
      */
-    public static function make(string $name = null): self
+    public function __construct()
     {
-        return (new static())->name($name)->listIdentifiers();
+        $this->listIdentifiers();
     }
 
     /**
