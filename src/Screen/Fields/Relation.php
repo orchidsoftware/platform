@@ -77,16 +77,6 @@ class Relation extends Field
     ];
 
     /**
-     * @param string|null $name
-     *
-     * @return Relation
-     */
-    public static function make(string $name = null): self
-    {
-        return (new static())->name($name);
-    }
-
-    /**
      * @return Relation
      */
     public function multiple(): self

@@ -91,19 +91,15 @@ class Code extends Field
     ];
 
     /**
-     * @param string|null $name
-     *
-     * @return self
+     * Code constructor.
      */
-    public static function make(string $name = null): self
+    public function __construct()
     {
-        return (new static())
-            ->name($name)
-            ->addBeforeRender(function () {
-                if ($this->get('language') === 'json') {
-                    $value = $this->get('value');
-                    $this->set('value', json_encode($value));
-                }
-            });
+        $this->addBeforeRender(function () {
+            if ($this->get('language') === 'json') {
+                $value = $this->get('value');
+                $this->set('value', json_encode($value));
+            }
+        });
     }
 }

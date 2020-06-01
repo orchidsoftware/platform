@@ -85,14 +85,4 @@ class TinyMCE extends Field
         'value',
         'height',
     ];
-
-    /**
-     * @param string|null $name
-     *
-     * @return self
-     */
-    public static function make(string $name = null): self
-    {
-        return (new static())->name($name);
-    }
 }

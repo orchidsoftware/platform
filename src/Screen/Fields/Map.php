@@ -46,14 +46,4 @@ class Map extends Field
         'value',
         'height',
     ];
-
-    /**
-     * @param string|null $name
-     *
-     * @return Map
-     */
-    public static function make(string $name = null): self
-    {
-        return (new static())->name($name);
-    }
 }
