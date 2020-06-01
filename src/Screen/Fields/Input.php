@@ -95,22 +95,16 @@ class Input extends Field
     ];
 
     /**
-     * @param string|null $name
-     *
-     * @return Input
+     * Input constructor.
      */
-    public static function make(string $name = null): self
+    public function __construct()
     {
-        $input = (new static())->name($name);
-
-        $input->addBeforeRender(function () {
+        $this->addBeforeRender(function () {
             $mask = $this->get('mask');
 
             if (is_array($mask)) {
                 $this->set('mask', json_encode($mask));
             }
         });
-
-        return $input;
     }
 }
