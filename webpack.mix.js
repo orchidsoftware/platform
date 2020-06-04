@@ -34,9 +34,6 @@ if (!mix.inProduction()) {
 
 mix
     .copy('./node_modules/orchid-icons/src/fonts/', 'public/fonts')
-    .copyDirectory('./node_modules/tinymce/plugins', 'public/js/tinymce/plugins')
-    .copyDirectory('./node_modules/tinymce/themes', 'public/js/tinymce/themes')
-    .copyDirectory('./node_modules/tinymce/skins', 'public/js/tinymce/skins')
     .sass('resources/sass/app.scss', 'css/orchid.css', {
         implementation: require('node-sass'),
     })
@@ -48,7 +45,7 @@ mix
         'stimulus', 'turbolinks', 'stimulus/webpack-helpers',
         'jquery', 'popper.js', 'bootstrap',
         'dropzone', 'select2', 'cropperjs', 'frappe-charts', 'inputmask',
-        'simplemde', 'tinymce', 'axios', 'leaflet', 'codeflask', 'stimulus-flatpickr',
+        'simplemde', 'axios', 'leaflet', 'codeflask', 'stimulus-flatpickr',
         'flatpickr', 'quill', 'codemirror', 'typo-js', 'sortablejs',
     ])
     .autoload({

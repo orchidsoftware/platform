@@ -7,7 +7,6 @@ use Orchid\Screen\Action;
 use Orchid\Screen\Fields\Code;
 use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\SimpleMDE;
-use Orchid\Screen\Fields\TinyMCE;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 
@@ -73,15 +72,6 @@ class ExampleTextEditorsScreen extends Screen
                 Code::make('code')
                     ->title('Name Articles'),
 
-                TinyMCE::make('tinymce')
-                    ->required()
-                    ->title('Name Articles')
-                    ->popover('TinyMCE for free, the most advanced WYSIWYG HTML editor designed to simplify website content creation.'),
-
-                TinyMCE::make('tinymce_with_toolbar')
-                    ->title('TinyMCE with Toolbar')
-                    ->help('Article title')
-                    ->theme('modern'),
             ]),
         ];
     }
