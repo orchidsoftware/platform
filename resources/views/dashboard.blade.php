@@ -55,11 +55,9 @@
         </div>
     </div>
 
-    @if (Breadcrumbs::exists())
-        {{ Breadcrumbs::view('platform::partials.breadcrumbs') }}
-    @endif
+    @includeWhen(Breadcrumbs::has(), 'platform::partials.breadcrumbs')
 
-    <div class="d-flex @if (!Breadcrumbs::exists()) border-top @endif">
+    <div class="d-flex @if (!Breadcrumbs::has()) border-top @endif">
         <div class="app-content-body" id="app-content-body">
             @include('platform::partials.alert')
             @yield('content')
