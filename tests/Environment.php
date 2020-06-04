@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
-use Tabuna\Breadcrumbs\Breadcrumbs;
 use Orchid\Database\Seeds\OrchidDatabaseSeeder;
 use Orchid\Platform\Models\User;
 use Orchid\Platform\Providers\FoundationServiceProvider;
@@ -12,6 +11,7 @@ use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
 use Orchid\Tests\App\ExemplarServiceProvider;
 use Sti3bas\ScoutArray\ScoutArrayEngineServiceProvider;
+use Tabuna\Breadcrumbs\Breadcrumbs;
 use Tabuna\Breadcrumbs\BreadcrumbsServiceProvider;
 use Watson\Active\Active;
 
