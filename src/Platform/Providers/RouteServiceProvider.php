@@ -26,9 +26,6 @@ class RouteServiceProvider extends ServiceProvider
         ]);
 
         $this->binding();
-
-        require Dashboard::path('routes/breadcrumbs.php');
-
         parent::boot();
     }
 
