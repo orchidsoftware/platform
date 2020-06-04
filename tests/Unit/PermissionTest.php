@@ -91,6 +91,19 @@ class PermissionTest extends TestUnitCase
         $this->assertEquals($dashboard->getPermission()->count(), 1);
     }
 
+    /**
+     * Dashboard remove permission
+     */
+    public function testIsWasRemovedPermission()
+    {
+        $dashboard = new Dashboard();
+        $permission = ItemPermission::group('Test')
+            ->addPermission('test', 'Test Description');
+        $dashboard->registerPermissions($permission);
+        $dashboard->removePermission('test');
+        $this->assertEmpty($dashboard->getPermission()->get('Test'));
+    }
+
     public function testReplasePermission()
     {
         $user = $this->createUser();

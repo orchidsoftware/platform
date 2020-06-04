@@ -278,8 +278,8 @@ class Dashboard
 
         return $all->map(static function ($group) use ($removed) {
             foreach ($group[key($group)] as $key => $item) {
-                if ($removed->contains($item['slug'])) {
-                    unset($group[key($group)][$key]);
+                if ($removed->contains($item)) {
+                    unset($group[key($group)]);
                 }
             }
 
