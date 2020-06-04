@@ -92,7 +92,7 @@ class PermissionTest extends TestUnitCase
     }
 
     /**
-     * Dashboard remove permission
+     * Dashboard remove permission.
      */
     public function testIsWasRemovedPermission()
     {
