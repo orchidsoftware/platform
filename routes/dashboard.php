@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
+use Orchid\Platform\Http\Controllers\Systems\AsyncController;
 use Orchid\Platform\Http\Controllers\Systems\IndexController;
 use Orchid\Platform\Http\Screens\NotificationScreen;
 use Orchid\Platform\Http\Screens\SearchScreen;
-use Orchid\Platform\Http\Controllers\Systems\AsyncController;
+
 /*
 |--------------------------------------------------------------------------
 | Dashboard Web Routes

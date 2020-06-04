@@ -122,7 +122,7 @@ abstract class Base implements JsonSerializable
     }
 
     /**
-     * Return URL for screen template requests from browser
+     * Return URL for screen template requests from browser.
      *
      * @return string|null
      */
@@ -130,7 +130,7 @@ abstract class Base implements JsonSerializable
     {
         $screen = Dashboard::getCurrentScreen();
 
-        if (!$screen) {
+        if (! $screen) {
             return null;
         }
 
@@ -197,7 +197,7 @@ abstract class Base implements JsonSerializable
             return $this;
         }
 
-        $layouts = method_exists($this,'layouts')
+        $layouts = method_exists($this, 'layouts')
             ? $this->layouts()
             : $this->layouts;
 
