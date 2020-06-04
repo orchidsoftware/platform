@@ -7,7 +7,6 @@ use Orchid\Alert\Alert;
 use Orchid\Filters\HttpFilter;
 use Orchid\Support\Color;
 use Orchid\Support\Facades\Dashboard;
-use Orchid\Support\Facades\Setting;
 use Symfony\Component\Finder\Finder;
 
 if (! function_exists('alert')) {
@@ -32,21 +31,6 @@ if (! function_exists('alert')) {
         }
 
         return $notifier;
-    }
-}
-
-if (! function_exists('setting')) {
-    /**
-     * @deprecated
-     *
-     * @param string|array $key
-     * @param null         $default
-     *
-     * @return Setting
-     */
-    function setting($key, $default = null)
-    {
-        return Setting::get($key, $default);
     }
 }
 
