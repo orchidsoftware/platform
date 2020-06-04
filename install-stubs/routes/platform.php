@@ -97,7 +97,6 @@ Route::screen('example-layouts', ExampleLayoutsScreen::class)
 
 //Route::screen('/dashboard/screen/idea', 'Idea::class','platform.screens.idea');
 
-
 Route::screen('example-charts', ExampleChartsScreen::class)->name('platform.example.charts');
 Route::screen('example-editors', ExampleTextEditorsScreen::class)->name('platform.example.editors');
 Route::screen('example-cards', ExampleCardsScreen::class)->name('platform.example.cards');
