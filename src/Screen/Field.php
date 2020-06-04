@@ -10,10 +10,10 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use Orchid\Screen\Concerns\Makeable;
 use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
 use Orchid\Screen\Fields\Group;
-use Orchid\Screen\Concerns\Makeable;
 use Throwable;
 
 /**
