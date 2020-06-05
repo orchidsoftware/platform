@@ -24,7 +24,6 @@ use Orchid\Screen\Field;
  * @method Input max(int $value)
  * @method Input maxlength(int $value)
  * @method Input min(int $value)
- * @method Input multiple($value = true)
  * @method Input name(string $value = null)
  * @method Input pattern($value = true)
  * @method Input placeholder(string $value = null)
@@ -79,7 +78,6 @@ class Input extends Field
         'max',
         'maxlength',
         'min',
-        'multiple',
         'name',
         'pattern',
         'placeholder',

@@ -7,6 +7,7 @@ namespace Orchid\Screen\Fields;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\Field;
+use Orchid\Screen\Concerns\Multipliable;
 
 /**
  * Class Select.
@@ -26,6 +27,8 @@ use Orchid\Screen\Field;
  */
 class Select extends Field
 {
+    use Multipliable;
+
     /**
      * @var string
      */
@@ -51,22 +54,11 @@ class Select extends Field
         'autofocus',
         'disabled',
         'form',
-        'multiple',
         'name',
         'required',
         'size',
         'tabindex',
     ];
-
-    /**
-     * @return self
-     */
-    public function multiple(): self
-    {
-        $this->attributes['multiple'] = 'multiple';
-
-        return $this;
-    }
 
     /**
      * @param string|Model $model
