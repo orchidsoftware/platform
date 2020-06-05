@@ -14,8 +14,9 @@ class AsyncController
      * @param string $method
      * @param string $layout
      *
-     * @return mixed
      * @throws \Throwable
+     *
+     * @return mixed
      */
     public function load(string $screen, string $method, string $layout)
     {

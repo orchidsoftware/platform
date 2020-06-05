@@ -7,9 +7,10 @@ namespace Orchid\Screen\Fields;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Crypt;
+use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
 use Orchid\Support\Assert;
-use Orchid\Screen\Concerns\Multipliable;
+
 /**
  * Class Relation.
  *
