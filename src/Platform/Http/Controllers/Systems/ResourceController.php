@@ -15,10 +15,6 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
  */
 class ResourceController
 {
-    /**
-     * @var SplFileInfo|null
-     */
-    private $resource;
 
     /**
      * @var MimeTypes
@@ -72,17 +68,17 @@ class ResourceController
         /* Changing the separator for Windows operating systems */
         $path = str_replace('/', DIRECTORY_SEPARATOR, $path);
 
-        $this->resource = collect($iterator)
+        $resource = collect($iterator)
             ->filter(static function (SplFileInfo $file) use ($path) {
                 return $file->getRelativePathname() === $path;
             })
             ->first();
 
-        abort_if($this->resource === null, 404);
+        abort_if($resource === null, 404);
 
-        $mime = $this->mimeTypes->getMimeType($this->resource->getExtension());
+        $mime = $this->mimeTypes->getMimeType($resource->getExtension());
 
-        return response()->file($this->resource->getRealPath(), [
+        return response()->file($resource->getRealPath(), [
             'Content-Type'  => $mime ?? 'text/plain',
             'Cache-Control' => 'public, max-age=31536000',
         ]);

@@ -68,7 +68,7 @@ trait UserAccess
      */
     public function hasAccess(string $permit, bool $cache = true): bool
     {
-        if (! $cache || is_null($this->cachePermissions)) {
+        if (! $cache || $this->cachePermissions === null) {
             $this->cachePermissions = $this->roles()
                 ->pluck('permissions')
                 ->prepend($this->permissions)

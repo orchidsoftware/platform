@@ -28,7 +28,7 @@ class RelationController extends Controller
             'scope'  => $scope,
             'append' => $append,
         ] = collect($request->except(['search']))->map(static function ($item) {
-            return is_null($item) ? null : Crypt::decryptString($item);
+            return $item === null ? null : Crypt::decryptString($item);
         });
 
         /** @var Model $model */

@@ -14,10 +14,8 @@ class AsyncController
      * @param string $method
      * @param string $layout
      *
-     * @throws \ReflectionException
-     * @throws \Throwable
-     *
      * @return mixed
+     * @throws \Throwable
      */
     public function load(string $screen, string $method, string $layout)
     {
