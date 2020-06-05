@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
  */
 class ResourceController
 {
-
     /**
      * @var MimeTypes
      */

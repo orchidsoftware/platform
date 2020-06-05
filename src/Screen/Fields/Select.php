@@ -6,8 +6,8 @@ namespace Orchid\Screen\Fields;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Screen\Field;
 use Orchid\Screen\Concerns\Multipliable;
+use Orchid\Screen\Field;
 
 /**
  * Class Select.
