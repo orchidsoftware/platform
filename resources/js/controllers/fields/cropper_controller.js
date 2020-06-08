@@ -27,12 +27,16 @@ export default class extends Controller {
 
         let cropPanel = this.element.querySelector('.upload-panel');
 
-        cropPanel.width = this.data.get('width');
-        cropPanel.height = this.data.get('height');
+        if(this.data.has('width')){
+            cropPanel.width = this.data.get('width');
+        }
+        if(this.data.has('height')){
+            cropPanel.height = this.data.get('height');
+        }
 
         this.cropper = new Cropper(cropPanel, {
             viewMode: 2,
-            aspectRatio: this.data.get('width') / this.data.get('height'),
+            aspectRatio: (this.data.get('width') || 1) / (this.data.get('height') || 1),
             minContainerHeight: 500,
         });
     }
@@ -84,12 +88,12 @@ export default class extends Controller {
     crop() {
 
         this.cropper.getCroppedCanvas({
-            width: this.data.get('width'),
-            height: this.data.get('height'),
-            minWidth: this.data.get('min-width'),
-            minHeight: this.data.get('min-height'),
-            maxWidth: this.data.get('max-width'),
-            maxHeight: this.data.get('max-height'),
+            width: this.data.get('width') || undefined,
+            height: this.data.get('height') || undefined,
+            minWidth: this.data.get('min-width') || undefined,
+            minHeight: this.data.get('min-height') || undefined,
+            maxWidth: this.data.get('max-width') || undefined,
+            maxHeight: this.data.get('max-height') || undefined,
             imageSmoothingQuality: 'medium',
         }).toBlob((blob) => {
             const formData = new FormData();
