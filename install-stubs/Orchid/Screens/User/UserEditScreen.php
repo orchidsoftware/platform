@@ -8,6 +8,8 @@ use App\Orchid\Layouts\Role\RolePermissionLayout;
 use App\Orchid\Layouts\User\UserEditLayout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Orchid\Access\TwoFactorGenerator;
 use Orchid\Access\UserSwitch;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Action;
@@ -17,6 +19,7 @@ use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Fields\Password;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Toast;
 
 class UserEditScreen extends Screen
@@ -41,6 +44,11 @@ class UserEditScreen extends Screen
     public $permission = 'platform.systems.users';
 
     /**
+     * @var User
+     */
+    protected $user;
+
+    /**
      * Query data.
      *
      * @param User $user
@@ -50,6 +58,8 @@ class UserEditScreen extends Screen
     public function query(User $user): array
     {
         $user->load(['roles']);
+
+        $this->user = $user;
 
         return [
             'user'       => $user,
@@ -76,8 +86,25 @@ class UserEditScreen extends Screen
                     ModalToggle::make(__('Change Password'))
                         ->icon('icon-lock-open')
                         ->method('changePassword')
-                        ->modal('password')
-                        ->title(__('Change Password')),
+                        ->modal('password'),
+
+                    ModalToggle::make(__('Two Factor Authentication'))
+                        ->icon('icon-screen-smartphone')
+                        ->method('enableTwoFactorAuth')
+                        ->modal('twoFactorEnabled')
+                        ->canSee(!$this->user->uses_two_factor_auth)
+                        ->asyncParameters([
+                            'users' => $this->user->id,
+                        ]),
+
+                    ModalToggle::make(__('Two Factor Authentication'))
+                        ->icon('icon-screen-smartphone')
+                        ->method('disableTwoFactorAuth')
+                        ->canSee($this->user->uses_two_factor_auth)
+                        ->modal('twoFactorDisabled')
+                        ->asyncParameters([
+                            'users' => $this->user->id,
+                        ]),
 
                 ]),
 
@@ -93,9 +120,9 @@ class UserEditScreen extends Screen
     }
 
     /**
+     * @return Layout[]
      * @throws \Throwable
      *
-     * @return Layout[]
      */
     public function layout(): array
     {
@@ -110,8 +137,82 @@ class UserEditScreen extends Screen
                         ->required()
                         ->title(__('Password')),
                 ]),
-            ]),
+            ])->title(__('Change Password')),
+
+            Layout::modal('twoFactorEnabled', [Layout::view('platform::auth.settings.enable-two-factor-auth')])
+                ->title(__('Two Factor Authentication'))
+                ->applyButton(__('Enable two-factor authentication'))
+                ->async('asyncGenerateTwoFactorCode'),
+
+            Layout::modal('twoFactorDisabled', [Layout::view('platform::auth.settings.disable-two-factor-auth')])
+                ->title(__('Are you sure you wish to disable two-factor authentication?'))
+                ->applyButton(__('Disable two-factor authentication')),
         ];
+    }
+
+    /**
+     * @param User $user
+     *
+     * @return array
+     */
+    public function asyncGenerateTwoFactorCode(User $user, TwoFactorGenerator $generator): array
+    {
+        return [
+            'secret' => $generator->getSecretKey(),
+            'image'  => $generator->getQrCode(config('app.name'), $user->email),
+        ];
+    }
+
+    /**
+     * Enable two-factor authentication for the user.
+     *
+     * @param User    $user
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function enableTwoFactorAuth(User $user, Request $request)
+    {
+        $generator = new TwoFactorGenerator();
+        $secret = $request->get('secret');
+
+        $generator->setSecretKey($secret);
+
+        if (!$generator->verify($request->get('token'))) {
+            Alert::warning('Failed');
+
+            return back();
+        }
+
+        $user->forceFill([
+            'uses_two_factor_auth'   => true,
+            'two_factor_secret_code' => $request->get('secret'),
+            'two_factor_reset_code'  => Str::random(8),
+        ])->save();
+
+        Alert::success('Well done');
+
+        return back();
+    }
+
+    /**
+     * Disable two-factor authentication for the given user.
+     *
+     * @param User $user
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function disableTwoFactorAuth(User $user)
+    {
+        $user->forceFill([
+            'uses_two_factor_auth'   => false,
+            'two_factor_secret_code' => null,
+            'two_factor_reset_code'  => null,
+        ])->save();
+
+        Alert::success('Well done');
+
+        return back();
     }
 
     /**
@@ -123,7 +224,7 @@ class UserEditScreen extends Screen
     public function save(User $user, Request $request)
     {
         $request->validate([
-            'user.email' => 'required|unique:users,email,'.$user->id,
+            'user.email' => 'required|unique:users,email,' . $user->id,
         ]);
 
         $permissions = collect($request->get('permissions'))
@@ -149,9 +250,9 @@ class UserEditScreen extends Screen
     /**
      * @param User $user
      *
+     * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function remove(User $user)
     {
