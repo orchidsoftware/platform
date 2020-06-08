@@ -29,7 +29,6 @@ class TwoFactorGenerator
     {
         $this->google2fa = new Google2FA();
         $this->secretKey = $this->google2fa->generateSecretKey();
-
     }
 
     /**
@@ -74,7 +73,7 @@ class TwoFactorGenerator
 
         $quCodeImage = base64_encode($writer->writeString($qrCodeUrl));
 
-        return 'data:image/png;base64,' . $quCodeImage;
+        return 'data:image/png;base64,'.$quCodeImage;
     }
 
     /**

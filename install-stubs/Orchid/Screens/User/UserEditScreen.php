@@ -92,7 +92,7 @@ class UserEditScreen extends Screen
                         ->icon('icon-screen-smartphone')
                         ->method('enableTwoFactorAuth')
                         ->modal('twoFactorEnabled')
-                        ->canSee(!$this->user->uses_two_factor_auth)
+                        ->canSee(! $this->user->uses_two_factor_auth)
                         ->asyncParameters([
                             'users' => $this->user->id,
                         ]),
@@ -120,9 +120,9 @@ class UserEditScreen extends Screen
     }
 
     /**
-     * @return Layout[]
      * @throws \Throwable
      *
+     * @return Layout[]
      */
     public function layout(): array
     {
@@ -178,7 +178,7 @@ class UserEditScreen extends Screen
 
         $generator->setSecretKey($secret);
 
-        if (!$generator->verify($request->get('token'))) {
+        if (! $generator->verify($request->get('token'))) {
             Alert::warning('Failed');
 
             return back();
@@ -224,7 +224,7 @@ class UserEditScreen extends Screen
     public function save(User $user, Request $request)
     {
         $request->validate([
-            'user.email' => 'required|unique:users,email,' . $user->id,
+            'user.email' => 'required|unique:users,email,'.$user->id,
         ]);
 
         $permissions = collect($request->get('permissions'))
@@ -250,9 +250,9 @@ class UserEditScreen extends Screen
     /**
      * @param User $user
      *
-     * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function remove(User $user)
     {
