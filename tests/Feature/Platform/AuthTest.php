@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Orchid\Access\TwoFactorEngine;
+use Orchid\Platform\Models\User;
+use Orchid\Support\Facades\Dashboard;
 use Orchid\Tests\TestFeatureCase;
 
 class AuthTest extends TestFeatureCase
@@ -93,5 +98,101 @@ class AuthTest extends TestFeatureCase
         $response
             ->assertRedirect(route('platform.login'))
             ->assertCookieExpired('lockUser');
+    }
+
+    public function testRouteDashboardTwoFactorAuthRedirect(): void
+    {
+        Dashboard::useTwoFactorAuth();
+
+        $password = 'test';
+
+        $user = factory(User::class)->create([
+            'password'                 => Hash::make($password),
+            'uses_two_factor_auth'     => true,
+            'two_factor_secret_code'   => 'WSI7ZQUZDPZQZ3EC',
+            'two_factor_recovery_code' => 'TAOrwweK',
+        ]);
+
+        $this->call('POST', route('platform.login.auth'), [
+            'email'    => $user->email,
+            'password' => $password,
+        ])
+            ->assertRedirect(route('platform.login.token'));
+    }
+
+    public function testRouteDashboardTwoFactorUnAuthRedirect(): void
+    {
+        $this->call('GET', route('platform.login.token'))
+            ->assertRedirect(route('platform.login'));
+    }
+
+    public function testRouteDashboardTwoFactorAuthTimeCode(): void
+    {
+        Dashboard::useTwoFactorAuth();
+
+        $user = factory(User::class)->create([
+            'uses_two_factor_auth'     => true,
+            'two_factor_secret_code'   => 'WSI7ZQUZDPZQZ3EC',
+            'two_factor_recovery_code' => 'TAOrwweK',
+        ]);
+
+        /** @var TwoFactorEngine $generator */
+        $generator = Dashboard::getTwoFactor();
+        $generator->setSecretKey($user->two_factor_secret_code);
+
+        $this->session([
+            'orchid:auth:id' => $user->getKey(),
+        ])
+            ->call('POST', route('platform.login.token.auth'), [
+                'token' => $generator->currentCode(),
+            ])
+            ->assertRedirect(route(config('platform.index')));
+    }
+
+    public function testRouteDashboardTwoFactorAuthRecoveryCode(): void
+    {
+        Dashboard::useTwoFactorAuth();
+
+        $user = factory(User::class)->create([
+            'uses_two_factor_auth'     => true,
+            'two_factor_secret_code'   => 'WSI7ZQUZDPZQZ3EC',
+            'two_factor_recovery_code' => 'TAOrwweK',
+        ]);
+
+        /** @var TwoFactorEngine $generator */
+        $generator = Dashboard::getTwoFactor();
+        $generator->setSecretKey($user->two_factor_secret_code);
+
+        /* Recovery code */
+        $this->session([
+            'orchid:auth:id' => $user->getKey(),
+        ])
+            ->call('POST', route('platform.login.token.auth'), [
+                'token' => $user->two_factor_recovery_code,
+            ])
+            ->assertRedirect(route(config('platform.index')));
+    }
+
+    public function testRouteDashboardTwoFactorAuthRandomCode(): void
+    {
+        Dashboard::useTwoFactorAuth();
+
+        $user = factory(User::class)->create([
+            'uses_two_factor_auth'     => true,
+            'two_factor_secret_code'   => 'WSI7ZQUZDPZQZ3EC',
+            'two_factor_recovery_code' => 'TAOrwweK',
+        ]);
+
+        /** @var TwoFactorEngine $generator */
+        $generator = Dashboard::getTwoFactor();
+        $generator->setSecretKey($user->two_factor_secret_code);
+
+        $this->session([
+            'orchid:auth:id' => $user->getKey(),
+        ])
+            ->call('POST', route('platform.login.token.auth'), [
+                'token' => Str::random(),
+            ])
+            ->assertRedirect(route('platform.login.token.auth'));
     }
 }

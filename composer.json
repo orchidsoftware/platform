@@ -30,14 +30,16 @@
     }
   ],
   "require": {
-      "ext-json": "*",
-      "davejamesmiller/laravel-breadcrumbs": "^5.3",
-      "laravel/framework": "^7.0",
-      "laravel/scout": "^8.0",
-      "myclabs/php-enum": "^1.7",
-      "ralouphie/mimey": "^2.1",
-      "watson/active": "^5.0",
-      "laravel/ui": "^2.0"
+    "ext-json": "*",
+    "bacon/bacon-qr-code": "^2.0",
+    "davejamesmiller/laravel-breadcrumbs": "^5.3",
+    "laravel/framework": "^7.0",
+    "laravel/scout": "^8.0",
+    "laravel/ui": "^2.0",
+    "myclabs/php-enum": "^1.7",
+    "pragmarx/google2fa": "^8.0",
+    "ralouphie/mimey": "^2.1",
+    "watson/active": "^5.0"
   },
   "require-dev": {
     "fzaninotto/faker": "^1.4",
