@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
-use Orchid\Access\TwoFactorGenerator;
 use Orchid\Access\UserSwitch;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Controllers\Controller;
@@ -81,9 +80,9 @@ class LoginController extends Controller
     }
 
     /**
-     * @param \Illuminate\Cookie\CookieJar $cookieJar
+     * @param CookieJar $cookieJar
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function resetCookieLockMe(CookieJar $cookieJar)
     {
@@ -93,7 +92,7 @@ class LoginController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function switchLogout()
     {
@@ -105,8 +104,8 @@ class LoginController extends Controller
     /**
      * Handle a successful authentication attempt.
      *
-     * @param Request         $request
-     * @param Authenticatable $user
+     * @param Request               $request
+     * @param Authenticatable|Model $user
      *
      * @return RedirectResponse
      */
@@ -152,7 +151,7 @@ class LoginController extends Controller
     public function showTokenForm(Request $request)
     {
         return $request->session()->has('orchid:auth:id')
-            ? view('platform::auth.token') : redirect('platform.login');
+            ? view('platform::auth.token') : redirect()->route('platform.login');
     }
 
     /**
@@ -179,13 +178,13 @@ class LoginController extends Controller
             $request->session()->pull('orchid:auth:id')
         );
 
-        $generator = new TwoFactorGenerator();
+        $generator =  Dashboard::getTwoFactor();
         $generator->setSecretKey($user->two_factor_secret_code);
 
         // Next, we'll verify the actual token with our two-factor authentication service
         // to see if the token is valid. If it is, we can login the user and send them
         // to their intended location within the protected part of this application.
-        if ($generator->verify($request->token) || $request->token == $user->two_factor_reset_code) {
+        if ($generator->verify($request->token) || $request->token == $user->two_factor_recovery_code) {
             Auth::login($user, $request->session()->pull(
                 'orchid:auth:remember', false
             ));
@@ -193,9 +192,8 @@ class LoginController extends Controller
             return redirect()->intended($this->redirectPath());
         }
 
-        return $this->redirectForTwoFactorAuth($request, $user)
-            ->withErrors([
-                'token' => 'This value is not valid',
-            ]);
+        return $this->redirectForTwoFactorAuth($request, $user)->withErrors([
+            'token' => 'This value is not valid',
+        ]);
     }
 }

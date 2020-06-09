@@ -10,7 +10,7 @@ use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
 use PragmaRX\Google2FA\Google2FA;
 
-class TwoFactorGenerator
+class TwoFactorAuth implements TwoFactorEngine
 {
     /**
      * @var Google2FA
@@ -60,7 +60,7 @@ class TwoFactorGenerator
      *
      * @return string
      */
-    public function getQrCode(string $company, string $email)
+    public function getQrCode(string $company, string $email): string
     {
         $qrCodeUrl = $this->google2fa->getQRCodeUrl($company, $email, $this->getSecretKey());
 
@@ -73,7 +73,7 @@ class TwoFactorGenerator
 
         $quCodeImage = base64_encode($writer->writeString($qrCodeUrl));
 
-        return 'data:image/png;base64,'.$quCodeImage;
+        return 'data:image/png;base64,' . $quCodeImage;
     }
 
     /**
@@ -89,6 +89,20 @@ class TwoFactorGenerator
             return $this->google2fa->verify($token, $this->getSecretKey(), 8);
         } catch (\Exception $exception) {
             return false;
+        }
+    }
+
+    /**
+     * Get the current one time password for a key.
+     *
+     * @return string|null
+     */
+    public function currentCode(): ?string
+    {
+        try {
+            return $this->google2fa->getCurrentOtp($this->getSecretKey());
+        } catch (\Exception $exception) {
+            return null;
         }
     }
 }

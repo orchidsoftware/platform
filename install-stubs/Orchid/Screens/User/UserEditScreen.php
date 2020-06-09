@@ -9,8 +9,8 @@ use App\Orchid\Layouts\User\UserEditLayout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Orchid\Access\TwoFactorGenerator;
 use Orchid\Access\UserSwitch;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
@@ -151,12 +151,15 @@ class UserEditScreen extends Screen
     }
 
     /**
-     * @param User $user
+     * @param User      $user
+     * @param Dashboard $dashboard
      *
      * @return array
      */
-    public function asyncGenerateTwoFactorCode(User $user, TwoFactorGenerator $generator): array
+    public function asyncGenerateTwoFactorCode(User $user, Dashboard $dashboard): array
     {
+        $generator = $dashboard->getTwoFactor();
+
         return [
             'secret' => $generator->getSecretKey(),
             'image'  => $generator->getQrCode(config('app.name'), $user->email),
@@ -166,14 +169,15 @@ class UserEditScreen extends Screen
     /**
      * Enable two-factor authentication for the user.
      *
-     * @param User    $user
-     * @param Request $request
+     * @param User      $user
+     * @param Request   $request
+     * @param Dashboard $dashboard
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function enableTwoFactorAuth(User $user, Request $request)
+    public function enableTwoFactorAuth(User $user, Request $request, Dashboard $dashboard)
     {
-        $generator = new TwoFactorGenerator();
+        $generator = $dashboard->getTwoFactor();
         $secret = $request->get('secret');
 
         $generator->setSecretKey($secret);
@@ -187,7 +191,7 @@ class UserEditScreen extends Screen
         $user->forceFill([
             'uses_two_factor_auth'   => true,
             'two_factor_secret_code' => $request->get('secret'),
-            'two_factor_reset_code'  => Str::random(8),
+            'two_factor_recovery_code'  => Str::random(8),
         ])->save();
 
         Alert::success('Well done');
@@ -207,7 +211,7 @@ class UserEditScreen extends Screen
         $user->forceFill([
             'uses_two_factor_auth'   => false,
             'two_factor_secret_code' => null,
-            'two_factor_reset_code'  => null,
+            'two_factor_recovery_code'  => null,
         ])->save();
 
         Alert::success('Well done');

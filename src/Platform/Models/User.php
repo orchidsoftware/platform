@@ -52,7 +52,7 @@ class User extends Authenticatable implements UserInterface
         'permissions',
         'uses_two_factor_auth',
         'two_factor_secret_code',
-        'two_factor_reset_code',
+        'two_factor_recovery_code',
     ];
 
     /**

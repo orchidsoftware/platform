@@ -19,8 +19,8 @@
 
         <div class="form-group">
             <p>
-                This account is protected by two-factor authentication.<br>
-                Please enter your code below to proceed.
+                {{ __('This account is protected by two-factor authentication.') }}<br>
+                {{ __('Please enter your code below to proceed.') }}
             </p>
             {!!
                 \Orchid\Screen\Fields\Input::make('token')

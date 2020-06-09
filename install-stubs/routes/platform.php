@@ -12,7 +12,7 @@ use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
 use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
-use App\Orchid\Screens\User\UserEditScreen;
+use App\Orchid\Screens\User\UserEditScreen2;
 use App\Orchid\Screens\User\UserListScreen;
 use Illuminate\Support\Facades\Route;
 
@@ -31,7 +31,7 @@ use Illuminate\Support\Facades\Route;
 Route::screen('/main', PlatformScreen::class)->name('platform.main');
 
 // Users...
-Route::screen('users/{users}/edit', UserEditScreen::class)->name('platform.systems.users.edit');
+Route::screen('users/{users}/edit', UserEditScreen2::class)->name('platform.systems.users.edit');
 Route::screen('users', UserListScreen::class)->name('platform.systems.users');
 
 // Roles...

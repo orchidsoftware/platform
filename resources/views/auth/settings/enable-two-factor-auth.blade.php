@@ -14,11 +14,11 @@
 
     <strong>2.Enter the pin the code to Enable 2FA</strong><br/><br/>
 
-    {!! \Orchid\Screen\Fields\Input::make('secret')->type('hidden')->value($secret ?? '') !!}
-
     {!!  \Orchid\Screen\Fields\Input::make('token')
         ->title('Authenticator Code')
         ->placeholder('Authenticator code')
         ->required()
     !!}
+
+    {!! \Orchid\Screen\Fields\Input::make('secret')->type('hidden')->value($secret ?? '') !!}
 </div>

@@ -32,4 +32,12 @@ trait TwoFactor
     {
         static::$usesTwoFactorAuth = true;
     }
+
+    /**
+     * @return TwoFactorEngine
+     */
+    public static function getTwoFactor(): TwoFactorEngine
+    {
+        return app(config('platform.two_factor', TwoFactorAuth::class));
+    }
 }
