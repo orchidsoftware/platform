@@ -126,7 +126,6 @@ class AuthTest extends TestFeatureCase
             ->assertRedirect(route('platform.login'));
     }
 
-
     public function testRouteDashboardTwoFactorAuthTimeCode(): void
     {
         Dashboard::useTwoFactorAuth();

@@ -189,8 +189,8 @@ class UserEditScreen extends Screen
         }
 
         $user->forceFill([
-            'uses_two_factor_auth'   => true,
-            'two_factor_secret_code' => $request->get('secret'),
+            'uses_two_factor_auth'      => true,
+            'two_factor_secret_code'    => $request->get('secret'),
             'two_factor_recovery_code'  => Str::random(8),
         ])->save();
 
@@ -209,8 +209,8 @@ class UserEditScreen extends Screen
     public function disableTwoFactorAuth(User $user)
     {
         $user->forceFill([
-            'uses_two_factor_auth'   => false,
-            'two_factor_secret_code' => null,
+            'uses_two_factor_auth'      => false,
+            'two_factor_secret_code'    => null,
             'two_factor_recovery_code'  => null,
         ])->save();
 
