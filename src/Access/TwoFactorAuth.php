@@ -73,7 +73,7 @@ class TwoFactorAuth implements TwoFactorEngine
 
         $quCodeImage = base64_encode($writer->writeString($qrCodeUrl));
 
-        return 'data:image/png;base64,' . $quCodeImage;
+        return 'data:image/png;base64,'.$quCodeImage;
     }
 
     /**

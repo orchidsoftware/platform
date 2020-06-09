@@ -26,7 +26,7 @@ interface TwoFactorEngine
      *
      * @return string
      */
-    public function getQrCode(string $company, string $email):string;
+    public function getQrCode(string $company, string $email): string;
 
     /**
      * Verify a two-factor authentication token for the given user.
@@ -42,5 +42,5 @@ interface TwoFactorEngine
      *
      * @return string|null
      */
-    public function currentCode():?string;
+    public function currentCode(): ?string;
 }

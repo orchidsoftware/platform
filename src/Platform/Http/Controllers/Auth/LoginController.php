@@ -178,7 +178,7 @@ class LoginController extends Controller
             $request->session()->pull('orchid:auth:id')
         );
 
-        $generator =  Dashboard::getTwoFactor();
+        $generator = Dashboard::getTwoFactor();
         $generator->setSecretKey($user->two_factor_secret_code);
 
         // Next, we'll verify the actual token with our two-factor authentication service
