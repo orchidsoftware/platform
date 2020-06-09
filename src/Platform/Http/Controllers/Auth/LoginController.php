@@ -69,9 +69,9 @@ class LoginController extends Controller
     /**
      * Get the failed login response instance.
      *
-     * @return void
      * @throws ValidationException
      *
+     * @return void
      */
     protected function sendFailedLoginResponse()
     {
@@ -160,8 +160,9 @@ class LoginController extends Controller
      *
      * @param Request $request
      *
-     * @return RedirectResponse
      * @throws ValidationException
+     *
+     * @return RedirectResponse
      */
     public function verifyToken(Request $request)
     {
@@ -170,7 +171,7 @@ class LoginController extends Controller
         // If there is no authentication ID stored in the session, it means that the user
         // hasn't made it through the login screen so we'll just redirect them back to
         // the login view. They must have hit the route manually via a specific URL.
-        if (!$request->session()->has('orchid:auth:id')) {
+        if (! $request->session()->has('orchid:auth:id')) {
             return redirect()->route('platform.login');
         }
 
