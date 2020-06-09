@@ -34,9 +34,9 @@ class TwoFactorAuth implements TwoFactorEngine
     /**
      * @param string $key
      *
-     * @return $this
+     * @return TwoFactorEngine
      */
-    public function setSecretKey(string $key): self
+    public function setSecretKey(string $key): TwoFactorEngine
     {
         $this->secretKey = $key;
         $this->google2fa->setSecret($key);
