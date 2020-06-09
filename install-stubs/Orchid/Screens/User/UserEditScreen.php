@@ -184,7 +184,7 @@ class UserEditScreen extends Screen
 
         if (! $generator->verify($request->get('token'))) {
             return back()->withErrors([
-                'token' => __('This value is not valid')
+                'token' => __('This value is not valid'),
             ]);
         }
 
