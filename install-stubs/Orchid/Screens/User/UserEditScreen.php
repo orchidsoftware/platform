@@ -19,6 +19,7 @@ use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Fields\Password;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
+use Orchid\Support\Color;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Toast;
 
@@ -179,13 +180,12 @@ class UserEditScreen extends Screen
     {
         $generator = $dashboard->getTwoFactor();
         $secret = $request->get('secret');
-
         $generator->setSecretKey($secret);
 
         if (! $generator->verify($request->get('token'))) {
-            Alert::warning('Failed');
-
-            return back();
+            return back()->withErrors([
+                'token' => __('This value is not valid')
+            ]);
         }
 
         $user->forceFill([
@@ -194,7 +194,11 @@ class UserEditScreen extends Screen
             'two_factor_recovery_code'  => Str::random(8),
         ])->save();
 
-        Alert::success('Well done');
+        Toast::success(__('Two-factor authentication has been enabled.'));
+
+        Alert::view('platform::auth.settings.two-factor-generator-message', Color::SECONDARY(), [
+            'code' => $user->two_factor_recovery_code,
+        ]);
 
         return back();
     }
@@ -214,7 +218,7 @@ class UserEditScreen extends Screen
             'two_factor_recovery_code'  => null,
         ])->save();
 
-        Alert::success('Well done');
+        Toast::success(__('Two-factor authentication has been disabled.'));
 
         return back();
     }
