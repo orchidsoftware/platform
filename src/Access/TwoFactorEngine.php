@@ -11,7 +11,7 @@ interface TwoFactorEngine
      *
      * @return TwoFactorEngine
      */
-    public function setSecretKey(string $key): TwoFactorEngine;
+    public function setSecretKey(string $key): self;
 
     /**
      * @return string
