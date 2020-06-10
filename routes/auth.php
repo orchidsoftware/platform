@@ -26,6 +26,10 @@ if (config('platform.auth', true)) {
     $this->router->post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
     $this->router->get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
     $this->router->post('password/reset', [ResetPasswordController::class, 'reset']);
+
+    // Two-Factor Authentication Routes...
+    $this->router->get('login/token', [LoginController::class, 'showTokenForm'])->name('login.token');
+    $this->router->post('login/token', [LoginController::class, 'verifyToken'])->name('login.token.auth');
 }
 
 $this->router->get('switch-logout', [LoginController::class, 'switchLogout']);
