@@ -9,7 +9,9 @@
     <strong>1. Scan this barcode with your authenticator app:</strong>
 
     <p>
-        <img src="{{$image ?? '' }}" alt="QR Code" class="img-fluid">
+        <img src="{{$image ?? '' }}" alt="QR Code" class="img-fluid block">
+
+        <small>TOTP Key: <code>{{$secret ?? ''}}</code></small>
     </p>
 
     <strong>2.Enter the pin the code to Enable 2FA</strong><br/><br/>
