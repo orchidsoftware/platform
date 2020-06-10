@@ -65,6 +65,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Default Two-Factor Authentication Provider
+    |--------------------------------------------------------------------------
+    |
+    | This option controls the default two-factor authentication provider that
+    | will be used by the framework when a user needs to be two-factor
+    | authenticated.
+    |
+    */
+
+    'two_factor' => \Orchid\Access\TwoFactorAuth::class,
+
+    /*
+    |--------------------------------------------------------------------------
     | Main Route
     |--------------------------------------------------------------------------
     |
