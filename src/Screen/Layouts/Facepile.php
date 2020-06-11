@@ -6,7 +6,6 @@ namespace Orchid\Screen\Layouts;
 
 use ArrayAccess;
 use Illuminate\View\View;
-use Orchid\Screen\Content;
 use Orchid\Screen\Contracts\Personable;
 
 class Facepile extends Content
