@@ -304,7 +304,25 @@ div.mce-fullscreen {
 }
 
 .matrix {
-    .form-control:focus {
-        border-radius: 0;
+
+    div, span {
+        border: none !important;
+    }
+
+    .form-control, .select2-selection--single {
+        border: none !important;
+        height: 40px !important;
+        font-weight: 400;
+        &:focus{
+            border-radius: 0;
+        }
+    }
+
+    .form-group {
+        margin: 0 !important;
+    }
+
+    .custom-control {
+        margin-left: 1em;
     }
 }
