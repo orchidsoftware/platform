@@ -31,7 +31,7 @@ class AddedColumnsFor2fa extends Migration
             $table->dropColumn([
                 'uses_two_factor_auth',
                 'two_factor_secret_code',
-                'two_factor_recovery_code'
+                'two_factor_recovery_code',
             ]);
         });
     }
