@@ -28,9 +28,11 @@ class AddedColumnsFor2fa extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropIfExists('uses_two_factor_auth');
-            $table->dropIfExists('two_factor_secret_code');
-            $table->dropIfExists('two_factor_recovery_code');
+            $table->dropColumn([
+                'uses_two_factor_auth',
+                'two_factor_secret_code',
+                'two_factor_recovery_code'
+            ]);
         });
     }
 }
