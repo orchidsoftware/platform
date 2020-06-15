@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 7.11.0 - 2020-06-16
+
+## Added
+- Method `->fields()` for `Matrix` [#1147](https://github.com/orchidsoftware/platform/pull/1147)
+
+
 ## 7.10.3 - 2020-06-15
 
 ## Fixed
