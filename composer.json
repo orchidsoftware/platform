@@ -42,6 +42,7 @@
     "watson/active": "^5.0"
   },
   "require-dev": {
+    "doctrine/dbal": "^2.10",
     "fzaninotto/faker": "^1.4",
     "guzzlehttp/guzzle": "~6.0",
     "mockery/mockery": "~1.0",
