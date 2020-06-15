@@ -10,7 +10,6 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 class MatrixTest extends TestFieldsUnitCase
 {
-
     public function testColumns(): void
     {
         $matrix = Matrix::make('matrix')
@@ -65,7 +64,6 @@ class MatrixTest extends TestFieldsUnitCase
         $this->assertStringContainsString('rgb', $view);
     }
 
-
     public function testColumnsField(): void
     {
         $matrix = Matrix::make('matrix')
@@ -75,7 +73,7 @@ class MatrixTest extends TestFieldsUnitCase
                 'units',
             ])
             ->fields([
-                'attribute' => Input::make()
+                'attribute' => Input::make(),
             ])
             ->value([
                 [
@@ -91,7 +89,6 @@ class MatrixTest extends TestFieldsUnitCase
                 ->value('color')
                 ->id('attribute-0-attribute')
         );
-
 
         $this->assertStringContainsString($input, $view);
     }
