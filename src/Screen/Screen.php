@@ -99,7 +99,7 @@ abstract class Screen extends Controller
 
         abort_unless(method_exists($this, $method), 404, "Async method: {$method} not found");
 
-        collect(request()->all())->each(function ($value, $key){
+        collect(request()->all())->each(function ($value, $key) {
             Route::current()->setParameter($key, $value);
         });
 

@@ -44,7 +44,7 @@ class UserListLayout extends Table
                         ->modalTitle($user->presenter()->title())
                         ->method('saveUser')
                         ->asyncParameters([
-                            'user' => $user->id
+                            'user' => $user->id,
                         ]);
                 }),
 
