@@ -50,10 +50,10 @@ class Cropper extends Picture
         'url'         => null,
         'width'       => null,
         'height'      => null,
-        'minWidth'    => null,
-        'minHeight'   => null,
-        'maxWidth'    => null,
-        'maxHeight'   => null,
+        'minWidth'    => 0,
+        'minHeight'   => 0,
+        'maxWidth'    => 'Infinity',
+        'maxHeight'   => 'Infinity',
         'maxFileSize' => null,
     ];
 
