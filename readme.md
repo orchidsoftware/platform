@@ -12,7 +12,7 @@
 
 ## Introduction
 
-This is a package for creating administration-style applications for the [Laravel framework](https://laravel.com).
+This is a package for creating administration-style applications for the [Laravel](https://laravel.com).
 It allows you to abstract the common patterns of business applications so that developers can easily implement beautiful and elegant interfaces without much effort. The main places of application are back-office applications, admin panels, content management systems, etc.
 
 
@@ -31,8 +31,8 @@ It allows you to abstract the common patterns of business applications so that d
  
  ## Getting started
 
-* :uk: To check out the [guide](https://orchid.software/en/docs/), visit [orchid.software](https://orchid.software/en). 
-* :ru: Чтобы ознакомиться с [руководством](https://orchid.software/ru/docs/), посетите сайт [orchid.software](https://orchid.software/ru).
+* :uk: To check out the guide, visit [orchid.software](https://orchid.software/en/docs). 
+* :ru: Чтобы ознакомиться с руководством, посетите сайт [orchid.software](https://orchid.software/ru/docs).
 
 ##### Local User Groups
 
