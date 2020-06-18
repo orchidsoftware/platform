@@ -27,17 +27,17 @@ class PublishedResourceTest extends TestUnitCase
 
         $this->assertLessThan($maxCssSize,
             filesize(Dashboard::path('/public/css/orchid.css')),
-            'File orchid.css more ' . Formats::formatBytes($maxCssSize)
+            'File orchid.css more '.Formats::formatBytes($maxCssSize)
         );
 
         $this->assertLessThan($maxJsSize,
             filesize(Dashboard::path('/public/js/orchid.js')),
-            'File orchid.js more ' . Formats::formatBytes($maxJsSize)
+            'File orchid.js more '.Formats::formatBytes($maxJsSize)
         );
 
         $this->assertLessThan($maxVendorSize,
             filesize(Dashboard::path('/public/js/vendor.js')),
-            'File vendor.js more ' . Formats::formatBytes($maxVendorSize)
+            'File vendor.js more '.Formats::formatBytes($maxVendorSize)
         );
     }
 }
