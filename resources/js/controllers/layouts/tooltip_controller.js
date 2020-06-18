@@ -1,4 +1,5 @@
 import {Controller} from 'stimulus';
+import {Tooltip} from 'bootstrap'
 
 export default class extends Controller {
 
@@ -6,6 +7,6 @@ export default class extends Controller {
      *
      */
     mouseOver() {
-        $(this.element).tooltip('enable');
+        new Tooltip(this.element);
     }
 }

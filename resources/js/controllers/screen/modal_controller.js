@@ -1,4 +1,5 @@
 import {Controller} from "stimulus";
+import {Modal} from 'bootstrap'
 
 export default class extends Controller {
 
@@ -14,10 +15,14 @@ export default class extends Controller {
      *
      */
     connect() {
+        this.modal = new Modal(this.element)
+
         if (this.element.querySelectorAll('.is-invalid').length > 0) {
             this.setFormAction(sessionStorage.getItem('last-open-modal'));
             this.element.classList.remove('fade', 'in');
-            $(this.element).modal('show');
+
+            this.modal.show();
+
 
             $(this.element).on('hide.bs.modal', () => {
                 if (!this.element.classList.contains('fade')) {
@@ -42,7 +47,7 @@ export default class extends Controller {
             this.asyncLoadData(JSON.parse(options.params));
         }
 
-        $(this.element).modal('toggle');
+        this.modal.toggle();
     }
 
     /**

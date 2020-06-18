@@ -1,4 +1,4 @@
-<div class="form-group row">
+<div class="mb-3 row">
     @isset($title)
         <label for="{{$id}}" class="col-sm-2 text-wrap mt-2 form-label">
             {{$title}}

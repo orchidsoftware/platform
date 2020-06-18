@@ -6,7 +6,7 @@
             </div>
         @endforeach
         <div class="col-sm-auto ml-auto align-self-end text-right">
-            <div class="form-group">
+            <div class="mb-3">
                 <div class="btn-group" role="group">
                     <button
                             data-action="screen--filter#clear"

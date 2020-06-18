@@ -1,7 +1,7 @@
-<fieldset class="py-3" data-async>
+<fieldset class="py-3 d-flex" data-async>
 
     @empty(!$title)
-        <div class="col p-0">
+        <div class="row p-0">
             <legend class="text-black">{{ $title }}</legend>
         </div>
     @endempty

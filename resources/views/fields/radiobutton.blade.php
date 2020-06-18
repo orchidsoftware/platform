@@ -3,13 +3,17 @@
         <div class="btn-group btn-group-toggle no-padder" data-toggle="buttons">
 
             @foreach($options as $key => $option)
+
+                @php $attributes['id'] = $id . $key @endphp
+
+                <input @attributes($attributes)
+                       autocomplete="off"
+                       @if($active($key, $value)) checked @endif
+                        value="{{ $key }}">
                 <label class="btn btn-default @if($active($key, $value)) active @endif"
-                       data-action="click->fields--radiobutton#checked"
-                >
-                    <input @attributes($attributes)
-                           @if($active($key, $value)) checked @endif
-                            value="{{ $key }}"
-                    >{{ $option }}</label>
+                       for="{{ $id . $key }}">
+                    {{ $option }}
+                </label>
             @endforeach
         </div>
     </div>

@@ -1,6 +1,6 @@
 <div class="toast-wrapper" data-controller="layouts--toast">
     <template id="toast">
-        <div class="toast"
+        <div class="toast show"
              role="alert"
              aria-live="assertive"
              aria-atomic="true"
@@ -17,7 +17,7 @@
 
 
     @if (session()->has(\Orchid\Alert\Toast::SESSION_MESSAGE))
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="{{ session(\Orchid\Alert\Toast::SESSION_DELAY) }}"
+        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" data-delay="{{ session(\Orchid\Alert\Toast::SESSION_DELAY) }}"
              data-autohide="{{ session(\Orchid\Alert\Toast::SESSION_AUTO_HIDE) }}">
             <div class="toast-body p-3 bg-light">
                 <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">

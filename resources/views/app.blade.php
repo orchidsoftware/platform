@@ -18,15 +18,17 @@
     <meta name="turbolinks-root" content="{{  Dashboard::prefix() }}">
     <meta name="dashboard-prefix" content="{{  Dashboard::prefix() }}">
 
-    <script src="{{ orchid_mix('/js/manifest.js','orchid') }}" type="text/javascript"></script>
-    <script src="{{ orchid_mix('/js/vendor.js','orchid') }}" type="text/javascript"></script>
-    <script src="{{ orchid_mix('/js/orchid.js','orchid') }}" type="text/javascript"></script>
 
     @foreach(Dashboard::getResource('stylesheets') as $stylesheet)
         <link rel="stylesheet" href="{{  $stylesheet }}">
     @endforeach
 
     @stack('stylesheets')
+
+
+    <script src="{{ orchid_mix('/js/manifest.js','orchid') }}" type="text/javascript"></script>
+    <script src="{{ orchid_mix('/js/vendor.js','orchid') }}" type="text/javascript"></script>
+    <script src="{{ orchid_mix('/js/orchid.js','orchid') }}" type="text/javascript"></script>
 
     @foreach(Dashboard::getResource('scripts') as $scripts)
         <script src="{{  $scripts }}" defer type="text/javascript"></script>
@@ -36,15 +38,15 @@
 <body>
 
 
-<div class="app row m-n" id="app" data-controller="@yield('controller')" @yield('controller-data')>
-    <div class="container-lg">
+<div class="app m-n" id="app" data-controller="@yield('controller')" @yield('controller-data')>
+    <div class="container-xxl">
         <div class="row">
-            <div class="aside col-xs-12 col-md-2 offset-xxl-0 col-xl-2 col-xxl-3 no-padder bg-dark">
+            <div class="aside col-xs-12 col-md-2 offset-xxl-0 col-xl-2 col-xxl-2 no-padder bg-dark">
                 <div class="d-md-flex align-items-start flex-column d-sm-block h-full">
                     @yield('body-left')
                 </div>
             </div>
-            <div class="col-md col-xl col-xxl-9 bg-white shadow no-padder min-vh-100 overflow-hidden">
+            <div class="col-md col-xl col-xxl bg-white shadow no-padder min-vh-100 overflow-hidden">
                 @yield('body-right')
             </div>
         </div>
@@ -55,7 +57,6 @@
 </div>
 
 @stack('scripts')
-
 
 </body>
 </html>

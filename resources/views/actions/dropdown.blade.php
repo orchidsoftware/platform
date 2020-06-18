@@ -1,8 +1,10 @@
 @component($typeForm, get_defined_vars())
+
     <button
         @attributes($attributes)
-        data-toggle="dropdown"
         aria-expanded="false"
+        data-toggle="dropdown"
+        type="button"
     >
         <i class="{{ $icon ?? '' }} mr-2"></i>
         {{ $name ?? '' }}
@@ -15,4 +17,5 @@
             {!!  $item->build($source) !!}
         @endforeach
     </div>
+
 @endcomponent

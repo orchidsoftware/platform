@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="mb-3">
 
     <label class="form-label">{{__('Email address')}}</label>
 
@@ -11,7 +11,7 @@
     !!}
 </div>
 
-<div class="form-group">
+<div class="mb-3">
     <label class="form-label w-100">
         {{__('Password')}}
         <a href="{{ route('platform.password.request') }}" class="float-right small">{{__('Forgot your password?')}}</a>
@@ -25,7 +25,7 @@
 </div>
 
 <div class="row">
-    <div class="form-group col-md-6 col-xs-12">
+    <div class="mb-3 col-md-6 col-xs-12">
         <label class="custom-control custom-checkbox">
             <input type="hidden" name="remember">
             <input type="checkbox" name="remember" value="true"
@@ -33,7 +33,7 @@
             <span class="custom-control-label"> {{__('Remember Me')}}</span>
         </label>
     </div>
-    <div class="form-group col-md-6 col-xs-12">
+    <div class="mb-3 col-md-6 col-xs-12">
         <button id="button-login" type="submit" class="btn btn-default btn-block" tabindex="3">
             <i class="icon-login text-xs mr-2"></i> {{__('Login')}}
         </button>

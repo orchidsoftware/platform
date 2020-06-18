@@ -3,7 +3,7 @@
          data-fields--datetime-allow-input="true"
          data-fields--datetime-range="#end_{{ \Illuminate\Support\Str::slug($attributes['name']) }}">
         <div class="col-md-6 pr-1">
-            <div class="form-group">
+            <div class="mb-3">
                 <input type="text"
                        @isset($attributes['form']) form="{{ $attributes['form'] ?? null }}" @endisset
                        name="{{ $attributes['name'] }}[start]"
@@ -15,7 +15,7 @@
         </div>
 
         <div class="col-md-6 pl-1">
-            <div class="form-group">
+            <div class="mb-3">
                 <input type="text"
                        @isset($attributes['form']) form="{{ $attributes['form'] ?? null }}" @endisset
                        name="{{ $attributes['name'] }}[end]"

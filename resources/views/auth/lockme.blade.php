@@ -1,4 +1,4 @@
-<div class="form-group v-center">
+<div class="mb-3 v-center">
     <span class="thumb-sm avatar mr-3">
         <img src="{{ $lockUser->presenter()->image() }}" class="b bg-light" alt="test">
     </span>
@@ -15,7 +15,7 @@
     </span>
 @enderror
 
-<div class="form-group">
+<div class="mb-3">
     <input type="hidden" name="remember" value="true">
 
     {!!  \Orchid\Screen\Fields\Password::make('password')
@@ -27,12 +27,12 @@
 </div>
 
 <div class="row">
-    <div class="form-group col-md-6 col-xs-12">
+    <div class="mb-3 col-md-6 col-xs-12">
         <a href="{{ route('platform.login.lock') }}" class="small">
             {{__('Sign in with another user.')}}
         </a>
     </div>
-    <div class="form-group col-md-6 col-xs-12">
+    <div class="mb-3 col-md-6 col-xs-12">
         <button id="button-login" type="submit" class="btn btn-default btn-block" tabindex="2">
             <i class="icon-login text-xs mr-2"></i> {{__('Login')}}
         </button>

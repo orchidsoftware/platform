@@ -24,7 +24,7 @@
                         <div class="row">
 
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>{{__('Campaign Source')}} - <span class="font-bold">utm_source</span></label>
                                     <input type="text" data-target="fields--utm.source" placeholder="google"
                                            class="form-control">
@@ -32,14 +32,14 @@
                                         class="form-text text-muted w-b-k">{{__('Original referrer: (e.g. google, newsletter)')}}</small>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>{{__('Campaign medium')}} - <span class="font-bold">utm_medium</span></label>
                                     <input type="text" data-target="fields--utm.medium" placeholder="cpc"
                                            class="form-control">
                                     <small class="form-text text-muted w-b-k">{{__('Marketing medium: (e.g. cpc, ppc, banner, email)')}}</small>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>{{__('Campaign name')}} - <span class="font-bold">utm_campaign</span></label>
                                     <input type="text" data-target="fields--utm.campaign" pattern="[a-zA-Z0-9]+"
                                            placeholder="sleeping_beds"
@@ -49,14 +49,14 @@
                             </div>
 
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>{{__('Campaign term')}} - <span class="font-bold">utm_term</span></label>
                                     <input type="text" data-target="fields--utm.term" placeholder="Golf ball"
                                            class="form-control">
                                     <small class="form-text text-muted w-b-k">{{__('Paid keywords: (e.g. running+shoes)')}}</small>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>{{__('Campaign content')}} - <span
                                                 class="font-bold">utm_content</span></label>
                                     <input type="text" data-target="fields--utm.content" placeholder="cpc"

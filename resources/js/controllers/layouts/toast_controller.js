@@ -1,4 +1,6 @@
 import {Controller} from 'stimulus';
+import {Toast} from 'bootstrap'
+
 
 export default class extends Controller {
 
@@ -42,8 +44,10 @@ export default class extends Controller {
     }
 
     showAllToasts() {
-        $('.toast').on('hidden.bs.toast', (event) => {
-            event.target.remove();
-        }).toast('show');
+        Array.from(document.querySelectorAll('.toast'))
+            .forEach(toastNode => {
+                toastNode.addEventListener('hidden.bs.toast', (event) => event.target.remove())
+                new Toast(toastNode);
+            });
     }
 }

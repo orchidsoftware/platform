@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="mb-3">
     @isset($title)
         <label for="{{$id}}" class="form-label">{{$title}}
             @if(isset($attributes['required']) && $attributes['required'])

@@ -58,22 +58,22 @@
                                 <p class="m-b-md">{{__('Information to display')}}</p>
                             </div>
                             <div class="modal-body">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>{{__('System name')}}</label>
                                     <input type="text" class="form-control" data-target="fields--upload.name" readonly
                                            maxlength="255">
                                 </div>
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>{{ __('Display name') }}</label>
                                     <input type="text" class="form-control" data-target="fields--upload.original"
                                            maxlength="255" placeholder="{{ __('Display Name') }}">
                                 </div>
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>{{ __('Alternative text') }}</label>
                                     <input type="text" class="form-control" data-target="fields--upload.alt"
                                            maxlength="255" placeholder="{{  __('Alternative Text')  }}">
                                 </div>
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>{{ __('Description') }}</label>
                                     <textarea class="form-control no-resize"
                                               data-target="fields--upload.description"
@@ -83,7 +83,7 @@
                                 </div>
 
 
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <a href="#" data-action="click->fields--upload#openLink">
                                         <small><i class="icon-link mr-2"></i>{{ __('Link to file') }}</small>
                                     </a>
@@ -123,7 +123,7 @@
                                 <div class="row justify-content-center">
 
                                     <div class="col-md-12">
-                                        <div class="form-group">
+                                        <div class="mb-3">
                                             <label>{{__('Search file')}}</label>
                                             <input type="search"
                                                    data-target="fields--upload.search"

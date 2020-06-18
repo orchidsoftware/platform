@@ -1,4 +1,5 @@
 import { Controller } from 'stimulus';
+import {Tab} from 'bootstrap'
 
 export default class extends Controller {
     /**
@@ -8,8 +9,10 @@ export default class extends Controller {
         const tabs = this.tabs();
         const activeId = tabs[window.location.href][this.data.get('slug')];
 
+        this.tab = new Tab(this.element.querySelector(`#${activeId}`))
+
         if (activeId !== null) {
-            $(`#${activeId}`).tab('show');
+            this.tab.show();
         }
     }
 
@@ -23,7 +26,7 @@ export default class extends Controller {
 
         tabs[window.location.href][this.data.get('slug')] = activeId;
         localStorage.setItem('tabs', JSON.stringify(tabs));
-        $(`#${activeId}`).tab('show');
+        this.tab.show();
 
         return event.preventDefault();
     }

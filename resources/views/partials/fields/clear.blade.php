@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="">
     {{$slot}}
 
     @if($errors->has($oldName))

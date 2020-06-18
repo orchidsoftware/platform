@@ -17,7 +17,7 @@
           data-layouts--form-button-text="{{ __('Loading...') }}"
           action="{{ route('platform.password.email') }}">
         @csrf
-        <div class="form-group">
+        <div class="mb-3">
             <label>{{ __('E-Mail Address') }}</label>
             {!!  \Orchid\Screen\Fields\Input::make('email')
                 ->type('email')
@@ -25,7 +25,7 @@
                 ->placeholder(__('Enter your email'))
             !!}
         </div>
-        <div class="form-group">
+        <div class="mb-3">
             <button class="btn btn-default btn-block" id="button-email" type="submit">
                 <i class="icon-envelope text-xs mr-2"></i> {{ __('Send Password Reset Link') }}
             </button>
