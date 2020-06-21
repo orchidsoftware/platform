@@ -6,6 +6,13 @@ export default class extends Controller {
      *
      */
     connect() {
+        this.addListenerForTargets();
+    }
+
+    /**
+     *
+     */
+    addListenerForTargets() {
         this.targets.forEach(name => {
             document.querySelectorAll(`[name="${name}"]`)
                 .forEach((field) =>
@@ -13,6 +20,7 @@ export default class extends Controller {
                 );
         });
     }
+
 
     render() {
         let params = {};
@@ -44,6 +52,7 @@ export default class extends Controller {
 
         axios.post(name, params).then((response) => {
             this.element.querySelector('[data-async]').innerHTML = response.data;
+            this.addListenerForTargets();
         });
     }
 
