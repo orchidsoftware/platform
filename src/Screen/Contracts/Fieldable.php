@@ -17,7 +17,7 @@ interface Fieldable
      * @param string $key
      * @param mixed  $value
      *
-     * @return $this
+     * @return mixed
      */
     public function get(string $key, $value = null);
 
