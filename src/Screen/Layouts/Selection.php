@@ -6,12 +6,13 @@ namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
 use Orchid\Filters\Filter;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
 /**
  * Class Selection.
  */
-abstract class Selection extends Base
+abstract class Selection extends Layout
 {
     /**
      * Drop down filters.

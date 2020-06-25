@@ -3,8 +3,8 @@
 namespace Orchid\Tests\App\Layouts;
 
 use Orchid\Screen\Fields\Input;
-use Orchid\Screen\Layout;
 use Orchid\Screen\Layouts\Listener;
+use Orchid\Support\Facades\Layout;
 
 class DependentSumListener extends Listener
 {
@@ -28,7 +28,7 @@ class DependentSumListener extends Listener
     protected $asyncMethod = 'asyncSum';
 
     /**
-     * @return Layout[]
+     * @return \Orchid\Screen\Layout[]
      */
     protected function layouts(): array
     {

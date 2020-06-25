@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
-use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Toast;
 
@@ -79,7 +78,7 @@ class RoleEditScreen extends Screen
     /**
      * Views.
      *
-     * @return Layout[]
+     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): array
     {

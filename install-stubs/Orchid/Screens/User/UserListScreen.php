@@ -9,8 +9,8 @@ use App\Orchid\Layouts\User\UserFiltersLayout;
 use App\Orchid\Layouts\User\UserListLayout;
 use Illuminate\Http\Request;
 use Orchid\Platform\Models\User;
-use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
 class UserListScreen extends Screen
@@ -63,7 +63,7 @@ class UserListScreen extends Screen
     /**
      * Views.
      *
-     * @return Layout[]
+     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): array
     {

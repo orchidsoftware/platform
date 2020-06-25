@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
-abstract class Content extends Base
+abstract class Content extends Layout
 {
     /**
      * @var Repository|null

@@ -12,10 +12,10 @@ use Orchid\Screen\Fields\Password;
 use Orchid\Screen\Fields\Radio;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\TextArea;
-use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Support\Color;
 use Orchid\Support\Facades\Alert;
+use Orchid\Support\Facades\Layout;
 
 class ExampleFieldsScreen extends Screen
 {
@@ -58,9 +58,7 @@ class ExampleFieldsScreen extends Screen
     /**
      * Views.
      *
-     * @throws \Throwable
-     *
-     * @return array
+     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): array
     {

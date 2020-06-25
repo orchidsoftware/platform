@@ -10,10 +10,10 @@ use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Fields\Input;
-use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Screen;
 use Orchid\Screen\TD;
+use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
 class ExampleScreen extends Screen
@@ -126,9 +126,7 @@ class ExampleScreen extends Screen
     /**
      * Views.
      *
-     * @throws \Throwable
-     *
-     * @return array
+     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): array
     {

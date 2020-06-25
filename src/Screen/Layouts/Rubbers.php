@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
-class Rubbers extends Base
+class Rubbers extends Layout
 {
     /**
      * @var string
@@ -14,9 +15,9 @@ class Rubbers extends Base
     protected $template = 'platform::layouts.rubbers';
 
     /**
-     * Base constructor.
+     * Layout constructor.
      *
-     * @param Base[] $layouts
+     * @param Layout[] $layouts
      */
     public function __construct(array $layouts = [])
     {
