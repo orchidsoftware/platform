@@ -41,7 +41,7 @@ class Matrix extends Field
      */
     public function __construct()
     {
-         $this
+        $this
              ->addBeforeRender(function () {
                  if ($this->get('value') === null) {
                      $this->set('value', []);
