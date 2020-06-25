@@ -6,7 +6,6 @@ namespace App\Orchid\Screens;
 
 use Orchid\Platform\Dashboard;
 use Orchid\Screen\Actions\Link;
-use Orchid\Screen\LayoutFactory;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 

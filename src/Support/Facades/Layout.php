@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Support\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Orchid\Screen\LayoutFactory;
 use Orchid\Screen\Layout as AbstractLayout;
+use Orchid\Screen\LayoutFactory;
 
 /**
  * Class Layout.
