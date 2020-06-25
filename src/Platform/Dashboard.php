@@ -8,8 +8,8 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
-use Orchid\Screen\Screen;
 use Orchid\Access\TwoFactor;
+use Orchid\Screen\Screen;
 
 class Dashboard
 {
