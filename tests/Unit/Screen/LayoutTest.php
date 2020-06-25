@@ -6,8 +6,8 @@ namespace Orchid\Tests\Unit\Screen;
 
 use Illuminate\Support\Str;
 use Orchid\Screen\Fields\Input;
-use Orchid\Screen\LayoutFactory;
 use Orchid\Screen\Layout;
+use Orchid\Screen\LayoutFactory;
 use Orchid\Screen\Repository;
 use Orchid\Tests\TestUnitCase;
 
