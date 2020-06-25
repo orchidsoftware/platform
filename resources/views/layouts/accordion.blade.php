@@ -7,7 +7,7 @@
              aria-expanded="true"
              aria-controls="collapse-{{\Illuminate\Support\Str::slug($name)}}">
             <h6 class="btn btn-link btn-group-justified pt-2 pb-2 mb-0 pr-0 pl-0 v-center">
-                <span class="icon-accordion text-xs mr-2"></span> {!! $name !!}
+                <x-orchid-icon path="accordion" class="text-xs mr-2"/> {!! $name !!}
             </h6>
         </div>
 

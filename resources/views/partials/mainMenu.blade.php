@@ -15,7 +15,12 @@
         @isset($badge)
             <b class="badge bg-{{$badge['class']}} pull-right mr-3 mt-1">{{$badge['data']()}}</b>
         @endisset
-        <i class="{{$icon}} mr-2"></i>{{ __($label) }}
+
+        @isset($icon)
+            <x-orchid-icon :path="$icon" class="mr-2"/>
+        @endisset
+
+        {{ __($label) }}
     </a>
 </li>
 

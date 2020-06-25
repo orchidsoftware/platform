@@ -57,12 +57,12 @@ class UserListLayout extends Table
                 ->width('100px')
                 ->render(function (User $user) {
                     return DropDown::make()
-                        ->icon('icon-options-vertical')
+                        ->icon('options-vertical')
                         ->list([
 
                             Link::make(__('Edit'))
                                 ->route('platform.systems.users.edit', $user->id)
-                                ->icon('icon-pencil'),
+                                ->icon('pencil'),
 
                             Button::make(__('Delete'))
                                 ->method('remove')
@@ -70,7 +70,7 @@ class UserListLayout extends Table
                                 ->parameters([
                                     'id' => $user->id,
                                 ])
-                                ->icon('icon-trash'),
+                                ->icon('trash'),
                         ]);
                 }),
         ];

@@ -7,7 +7,7 @@
        data-layouts--notification-method="post"
        data-layouts--notification-interval="60000"
     >
-        <i class="icon-bell"></i>
+        <x-orchid-icon path="bell"/>
 
         <span class="badge badge-sm up bg-danger text-white" data-target="layouts--notification.badge"></span>
     </a>

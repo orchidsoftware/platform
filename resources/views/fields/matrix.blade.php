@@ -23,7 +23,8 @@
         <tr class="add-row">
             <th colspan="{{ count($columns) }}" class="text-center p-0">
                 <a href="#" data-action="fields--matrix#addRow" class="btn btn-block text-xs text-muted">
-                    <i class="icon-plus-alt"></i>
+                    <x-orchid-icon path="plus-alt"/>
+
                     <span>{{ __('Add row') }}</span>
                 </a>
             </th>

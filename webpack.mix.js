@@ -33,7 +33,6 @@ if (!mix.inProduction()) {
 }
 
 mix
-    .copy('./node_modules/orchid-icons/src/fonts/', 'public/fonts')
     .sass('resources/sass/app.scss', 'css/orchid.css', {
         implementation: require('node-sass'),
     })

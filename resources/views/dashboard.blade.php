@@ -6,7 +6,8 @@
         <a href="#" class="header-toggler d-md-none mr-auto order-first"
            data-toggle="collapse"
            data-target="#headerMenuCollapse">
-            <span class="header-toggler-icon icon-menu"></span>
+            <x-orchid-icon path="menu" class="icon-menu"/>
+
             <span class="ml-2">@yield('title')</span>
         </a>
 
@@ -31,7 +32,11 @@
          data-action="click->layouts--html-load#goToTop"
          title="{{ __('Go to top') }}">
         <div class="bottom-left w-100 mb-2 pl-3">
-            <small><i class="icon-arrow-up mr-2"></i> {{ __('Go to top') }}</small>
+            <small>
+                <x-orchid-icon path="arrow-up" class="mr-2"/>
+
+                {{ __('Go to top') }}
+            </small>
         </div>
     </div>
 

@@ -35,7 +35,8 @@
     </div>
     <div class="form-group col-md-6 col-xs-12">
         <button id="button-login" type="submit" class="btn btn-default btn-block" tabindex="3">
-            <i class="icon-login text-xs mr-2"></i> {{__('Login')}}
+            <x-orchid-icon path="login" class="text-xs mr-2"/>
+            {{__('Login')}}
         </button>
     </div>
 </div>

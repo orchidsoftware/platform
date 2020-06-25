@@ -78,19 +78,19 @@ class UserEditScreen extends Screen
         return [
 
             DropDown::make(__('Settings'))
-                ->icon('icon-open')
+                ->icon('open')
                 ->list([
                     Button::make(__('Login as user'))
-                        ->icon('icon-login')
+                        ->icon('login')
                         ->method('loginAs'),
 
                     ModalToggle::make(__('Change Password'))
-                        ->icon('icon-lock-open')
+                        ->icon('lock-open')
                         ->method('changePassword')
                         ->modal('password'),
 
                     ModalToggle::make(__('Two Factor Authentication'))
-                        ->icon('icon-screen-smartphone')
+                        ->icon('screen-smartphone')
                         ->method('enableTwoFactorAuth')
                         ->modal('twoFactorEnabled')
                         ->canSee(! $this->user->uses_two_factor_auth)
@@ -99,7 +99,7 @@ class UserEditScreen extends Screen
                         ]),
 
                     ModalToggle::make(__('Two Factor Authentication'))
-                        ->icon('icon-screen-smartphone')
+                        ->icon('screen-smartphone')
                         ->method('disableTwoFactorAuth')
                         ->canSee($this->user->uses_two_factor_auth)
                         ->modal('twoFactorDisabled')
@@ -110,11 +110,11 @@ class UserEditScreen extends Screen
                 ]),
 
             Button::make(__('Save'))
-                ->icon('icon-check')
+                ->icon('check')
                 ->method('save'),
 
             Button::make(__('Remove'))
-                ->icon('icon-trash')
+                ->icon('trash')
                 ->confirm('Are you sure you want to delete the user?')
                 ->method('remove'),
         ];

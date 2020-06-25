@@ -8,7 +8,7 @@
                 <div class="modal-content-wrapper">
                     <div class="modal-content">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            <i class="icon-close p-3 v-center text-lg"></i>
+                            <x-orchid-icon path="close" class="p-3 v-center text-lg"/>
                         </button>
                         <div class="full-height">
                             <div class="modal-body">

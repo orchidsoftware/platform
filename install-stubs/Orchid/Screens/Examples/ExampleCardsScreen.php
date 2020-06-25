@@ -193,10 +193,10 @@ class ExampleCardsScreen extends Screen
             new Card('card', [
                 Button::make('Example Button')
                     ->method('showToast')
-                    ->icon('icon-bag'),
+                    ->icon('bag'),
                 Button::make('Example Button')
                     ->method('showToast')
-                    ->icon('icon-bag'),
+                    ->icon('bag'),
             ]),
 
             Layout::columns([
@@ -204,11 +204,11 @@ class ExampleCardsScreen extends Screen
                 new Card('cardPersona', [
                     Button::make('Example Button')
                         ->method('showToast')
-                        ->icon('icon-bag'),
+                        ->icon('bag'),
 
                     Button::make('Example Button')
                         ->method('showToast')
-                        ->icon('icon-bag'),
+                        ->icon('bag'),
                 ]),
             ]),
 

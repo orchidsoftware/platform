@@ -10,13 +10,17 @@
 
                 @isset($metric['keyDiff'])
                     @if((float)$metric['keyDiff'] < 0)
-                        <small class="text-xs text-danger">{{ $metric['keyDiff'] }} % <i
-                                class="icon-arrow-down v-top"></i></small>
+                        <small class="text-xs text-danger">{{ $metric['keyDiff'] }} %
+                            <x-orchid-icon path="arrow-down" class="v-top"/>
+                        </small>
                     @elseif((float)$metric['keyDiff'] == 0)
-                        <small class="text-xs text-muted">{{ $metric['keyDiff'] }} % <i class="icon-refresh v-top"></i></small>
+                        <small class="text-xs text-muted">{{ $metric['keyDiff'] }} %
+                            <x-orchid-icon path="refresh" class="v-top"/>
+                        </small>
                     @else
-                        <small class="text-xs text-success">{{ $metric['keyDiff'] }} % <i
-                                class="icon-arrow-up v-top"></i></small>
+                        <small class="text-xs text-success">{{ $metric['keyDiff'] }} %
+                            <x-orchid-icon path="arrow-up" class="v-top"/>
+                        </small>
                     @endif
                 @endisset
             </div>
