@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
 /**
  * Class Columns.
  */
-abstract class Columns extends Base
+abstract class Columns extends Layout
 {
     /**
      * @var string
@@ -17,9 +18,9 @@ abstract class Columns extends Base
     protected $template = 'platform::layouts.columns';
 
     /**
-     * Base constructor.
+     * Layout constructor.
      *
-     * @param Base[] $layouts
+     * @param Layout[] $layouts
      */
     public function __construct(array $layouts = [])
     {

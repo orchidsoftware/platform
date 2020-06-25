@@ -61,7 +61,7 @@ class ExampleChartsScreen extends Screen
      *
      * @throws \Throwable
      *
-     * @return array
+     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): array
     {

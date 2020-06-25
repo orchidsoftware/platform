@@ -6,12 +6,13 @@ namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Str;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
 /**
  * Class Chart.
  */
-abstract class Chart extends Base
+abstract class Chart extends Layout
 {
     /**
      * Main template to display the layer

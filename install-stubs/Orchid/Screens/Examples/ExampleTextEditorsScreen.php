@@ -7,8 +7,8 @@ use Orchid\Screen\Action;
 use Orchid\Screen\Fields\Code;
 use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\SimpleMDE;
-use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Layout;
 
 class ExampleTextEditorsScreen extends Screen
 {
@@ -55,7 +55,7 @@ class ExampleTextEditorsScreen extends Screen
      *
      * @throws \Throwable
      *
-     * @return array
+     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): array
     {

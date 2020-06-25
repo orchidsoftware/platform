@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Tests\Unit\Screen\Layouts;
+namespace Orchid\Tests\Unit\Screen;
 
 use Illuminate\Support\Str;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\LayoutFactory;
 use Orchid\Screen\Layout;
-use Orchid\Screen\Layouts\Base;
 use Orchid\Screen\Repository;
 use Orchid\Tests\TestUnitCase;
 
-class BaseTest extends TestUnitCase
+class LayoutTest extends TestUnitCase
 {
     public function testFindLayoutBySlugs(): void
     {
-        $row = Layout::rows([
+        $row = LayoutFactory::rows([
             Input::make('input'),
         ]);
 
-        $layout = Layout::columns([
-            Layout::tabs([
-                'action 1' => Layout::collapse([$row]),
+        $layout = LayoutFactory::columns([
+            LayoutFactory::tabs([
+                'action 1' => LayoutFactory::collapse([$row]),
                 'action 2' => $row,
             ]),
         ]);
@@ -35,7 +35,7 @@ class BaseTest extends TestUnitCase
 
     public function testCanSeeLayout(): void
     {
-        $layout = new class() extends Base {
+        $layout = new class() extends Layout {
             /***
              * @param Repository $query
              *

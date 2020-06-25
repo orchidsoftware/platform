@@ -7,8 +7,8 @@ namespace Orchid\Tests\App\Screens;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Fields\Input;
-use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
 class ModalValidationScreen extends Screen
@@ -55,9 +55,7 @@ class ModalValidationScreen extends Screen
     /**
      * Views.
      *
-     * @throws \Throwable
-     *
-     * @return array
+     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): array
     {

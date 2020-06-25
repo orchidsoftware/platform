@@ -6,8 +6,9 @@ namespace App\Orchid\Screens;
 
 use Orchid\Platform\Dashboard;
 use Orchid\Screen\Actions\Link;
-use Orchid\Screen\Layout;
+use Orchid\Screen\LayoutFactory;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Layout;
 
 class PlatformScreen extends Screen
 {
@@ -62,7 +63,7 @@ class PlatformScreen extends Screen
     /**
      * Views.
      *
-     * @return Layout[]
+     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): array
     {

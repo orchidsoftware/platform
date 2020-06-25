@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
 /**
  * Class Blank.
  */
-abstract class Blank extends Base
+abstract class Blank extends Layout
 {
     /**
      * @var string
@@ -17,9 +18,9 @@ abstract class Blank extends Base
     protected $template = 'platform::layouts.blank';
 
     /**
-     * Base constructor.
+     * Layout constructor.
      *
-     * @param Base[] $layouts
+     * @param Layout[] $layouts
      */
     public function __construct(array $layouts = [])
     {

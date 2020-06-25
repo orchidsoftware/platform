@@ -4,8 +4,8 @@ namespace App\Orchid\Screens\Examples;
 
 use Orchid\Screen\Action;
 use Orchid\Screen\Fields\Input;
-use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Layout;
 
 class ExampleLayoutsScreen extends Screen
 {
@@ -48,7 +48,7 @@ class ExampleLayoutsScreen extends Screen
      *
      * @throws \Throwable
      *
-     * @return array
+     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): array
     {

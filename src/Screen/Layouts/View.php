@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
 /**
  * Class View.
  */
-abstract class View extends Base
+abstract class View extends Layout
 {
     /**
      * @var array

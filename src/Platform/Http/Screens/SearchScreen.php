@@ -13,9 +13,9 @@ use Illuminate\View\View;
 use Orchid\Platform\Http\Layouts\SearchLayout;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Contracts\Searchable;
-use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Layout;
 
 class SearchScreen extends Screen
 {
@@ -91,7 +91,7 @@ class SearchScreen extends Screen
     /**
      * Views.
      *
-     * @return Layout[]
+     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): array
     {

@@ -4,206 +4,225 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Support\Traits\Macroable;
-use Orchid\Screen\Layouts\Accordion;
-use Orchid\Screen\Layouts\Blank;
-use Orchid\Screen\Layouts\Collapse;
-use Orchid\Screen\Layouts\Columns;
-use Orchid\Screen\Layouts\Component;
-use Orchid\Screen\Layouts\Modal;
-use Orchid\Screen\Layouts\Rows;
-use Orchid\Screen\Layouts\Rubbers;
-use Orchid\Screen\Layouts\Table;
-use Orchid\Screen\Layouts\Tabs;
-use Orchid\Screen\Layouts\View;
-use Orchid\Screen\Layouts\Wrapper;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Crypt;
+use JsonSerializable;
+use Orchid\Support\Facades\Dashboard;
 
 /**
  * Class Layout.
  */
-class Layout
+abstract class Layout implements JsonSerializable
 {
-    use Macroable;
+    /**
+     * Main template to display the layer
+     * Represents the view() argument.
+     *
+     * @var string
+     */
+    protected $template;
 
     /**
-     * @param string                                        $view
-     * @param \Illuminate\Contracts\Support\Arrayable|array $data
+     * Nested layers that should be
+     * displayed along with it.
      *
-     * @return View
+     * @var Layout[]
      */
-    public static function view(string $view, $data = []): View
+    protected $layouts = [];
+
+    /**
+     * What screen method should be called
+     * as a source for an asynchronous request.
+     *
+     * @var string
+     */
+    protected $asyncMethod;
+
+    /**
+     * The call is asynchronous and should return
+     * only the template of the specific layer.
+     *
+     * @var bool
+     */
+    protected $async = false;
+
+    /**
+     * @var array
+     */
+    protected $variables = [];
+
+    /**
+     * @param Repository $repository
+     *
+     * @return mixed
+     */
+    abstract public function build(Repository $repository);
+
+    /**
+     * @param string $method
+     *
+     * @return self
+     */
+    public function async(string $method): self
     {
-        return new class($view, $data) extends View {
-        };
+        $this->asyncMethod = $method;
+
+        return $this;
     }
 
     /**
-     * @param string $component
-     *
-     * @return Component
+     * @return Layout
      */
-    public static function component(string $component): Component
+    public function currentAsync(): self
     {
-        return new class($component) extends Component {
-        };
+        $this->async = true;
+
+        return $this;
     }
 
     /**
-     * @param array $fields
+     * @param Repository $query
      *
-     * @return Rows
+     * @return bool
      */
-    public static function rows(array $fields): Rows
+    public function canSee(/* @noinspection PhpUnusedParameterInspection */ Repository $query): bool
     {
-        return new class($fields) extends Rows {
-            /**
-             * @var Field[]
-             */
-            protected $fields;
-
-            /**
-             *  constructor.
-             *
-             * @param array $fields
-             */
-            public function __construct(array $fields = [])
-            {
-                $this->fields = $fields;
-            }
-
-            /**
-             * @return array
-             */
-            public function fields(): array
-            {
-                return $this->fields;
-            }
-        };
+        return true;
     }
 
     /**
-     * @param string $target
-     * @param array  $columns
+     * @param Repository $repository
      *
-     * @return Table
+     * @return mixed
      */
-    public static function table(string $target, array $columns): Table
+    protected function buildAsDeep(Repository $repository)
     {
-        return new class($target, $columns) extends Table {
-            /**
-             * @param string $target
-             * @param array  $columns
-             */
-            public function __construct(string $target, array $columns)
-            {
-                $this->target = $target;
-                $this->columns = $columns;
-            }
+        if (! $this->checkPermission($this, $repository)) {
+            return;
+        }
 
-            /**
-             * @return array
-             */
-            public function columns(): array
-            {
-                return $this->columns;
-            }
-        };
+        $build = collect($this->layouts)
+            ->map(function ($layouts) {
+                return Arr::wrap($layouts);
+            })
+            ->map(function (array $layouts, string $key) use ($repository) {
+                return $this->buildChild($layouts, $key, $repository);
+            })
+            ->collapse()
+            ->all();
+
+        $variables = array_merge($this->variables, [
+            'manyForms'           => $build,
+            'templateSlug'        => $this->getSlug(),
+            'asyncRoute'          => $this->asyncRoute(),
+        ]);
+
+        return view($this->async ? 'platform::layouts.blank' : $this->template, $variables);
     }
 
     /**
-     * @param array $layouts
+     * Return URL for screen template requests from browser.
      *
-     * @return Columns
+     * @return string|null
      */
-    public static function columns(array $layouts): Columns
+    private function asyncRoute(): ?string
     {
-        return new class($layouts) extends Columns {
-        };
+        $screen = Dashboard::getCurrentScreen();
+
+        if (! $screen) {
+            return null;
+        }
+
+        return route('platform.async', [
+            'screen'   => Crypt::encryptString(get_class($screen)),
+            'method'   => $this->asyncMethod,
+            'template' => $this->getSlug(),
+        ]);
     }
 
     /**
-     * @param array $layouts
+     * @param self       $layout
+     * @param Repository $repository
      *
-     * @return Tabs
+     * @return bool
      */
-    public static function tabs(array $layouts): Tabs
+    protected function checkPermission(self $layout, Repository $repository): bool
     {
-        return new class($layouts) extends Tabs {
-        };
+        return method_exists($layout, 'canSee') && $layout->canSee($repository);
     }
 
     /**
-     * @param string $key
-     * @param array  $layouts
+     * @param array      $layouts
+     * @param int|string $key
+     * @param Repository $repository
      *
-     * @return Modal
+     * @return array
      */
-    public static function modal(string $key, array $layouts): Modal
+    protected function buildChild(array $layouts, $key, Repository $repository)
     {
-        return new class($key, $layouts) extends Modal {
-        };
+        return collect($layouts)
+            ->map(function ($layout) {
+                return is_object($layout) ? $layout : app()->make($layout);
+            })
+            ->filter(function (self $layout) use ($repository) {
+                return $this->checkPermission($layout, $repository);
+            })
+            ->reduce(function (array $build, self $layout) use ($key, $repository) {
+                $build[$key][] = $layout->build($repository);
+
+                return $build;
+            }, []);
     }
 
     /**
-     * @param array $layouts
+     * Returns the system layer name.
+     * Required to define an asynchronous layer.
      *
-     * @return Blank
+     * @return string
      */
-    public static function blank(array $layouts): Blank
+    public function getSlug(): string
     {
-        return new class($layouts) extends Blank {
-        };
+        return sha1(json_encode($this));
     }
 
     /**
-     * @param array $fields
+     * @param string $slug
      *
-     * @return Collapse
+     * @return Layout|null
      */
-    public static function collapse(array $fields): Collapse
+    public function findBySlug(string $slug)
     {
-        return new class($fields) extends Collapse {
-            /**
-             * @return array
-             */
-            public function fields(): array
-            {
-                return $this->layouts;
-            }
-        };
+        if ($this->getSlug() === $slug) {
+            return $this;
+        }
+
+        $layouts = method_exists($this, 'layouts')
+            ? $this->layouts()
+            : $this->layouts;
+
+        return collect($layouts)
+            ->flatten()
+            ->map(static function ($layout) use ($slug) {
+                $layout = is_object($layout)
+                    ? $layout
+                    : app()->make($layout);
+
+                return $layout->findBySlug($slug);
+            })
+            ->filter()
+            ->filter(static function ($layout) use ($slug) {
+                return $layout->getSlug() === $slug;
+            })
+            ->first();
     }
 
     /**
-     * @param string $template
-     * @param array  $layouts
-     *
-     * @return Wrapper
+     * @return mixed
      */
-    public static function wrapper(string $template, array $layouts): Wrapper
+    public function jsonSerialize()
     {
-        return new class($template, $layouts) extends Wrapper {
-        };
-    }
+        $props = collect(get_object_vars($this));
 
-    /**
-     * @param array $layouts
-     *
-     * @return Accordion
-     */
-    public static function accordion(array $layouts): Accordion
-    {
-        return new class($layouts) extends Accordion {
-        };
-    }
-
-    /**
-     * @param array $layouts
-     *
-     * @return Rubbers
-     */
-    public static function rubbers(array $layouts): Rubbers
-    {
-        return new class($layouts) extends Rubbers {
-        };
+        return $props->except(['query'])->toArray();
     }
 }
