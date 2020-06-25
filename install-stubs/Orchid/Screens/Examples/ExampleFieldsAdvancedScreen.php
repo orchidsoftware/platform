@@ -19,8 +19,8 @@ use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\Switcher;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Fields\UTM;
-use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Layout;
 
 class ExampleFieldsAdvancedScreen extends Screen
 {
@@ -69,7 +69,7 @@ class ExampleFieldsAdvancedScreen extends Screen
      *
      * @throws \Throwable
      *
-     * @return array
+     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): array
     {

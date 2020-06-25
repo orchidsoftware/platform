@@ -3,9 +3,10 @@
 namespace Orchid\Screen\Layouts;
 
 use Orchid\Screen\Builder;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
-abstract class Listener extends Base
+abstract class Listener extends Layout
 {
     /**
      * @var string
