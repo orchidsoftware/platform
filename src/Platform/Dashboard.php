@@ -8,16 +8,17 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
+use Orchid\Access\TwoFactor;
 use Orchid\Screen\Screen;
 
 class Dashboard
 {
-    use Macroable;
+    use Macroable, TwoFactor;
 
     /**
      * ORCHID Version.
      */
-    public const VERSION = '7.7.1';
+    public const VERSION = '7.10.3';
 
     /**
      * The Dashboard configuration options.
@@ -54,11 +55,6 @@ class Dashboard
      * @var Collection
      */
     private $publicDirectories;
-
-    /**
-     * @var Screen|null
-     */
-    private $currentScreen;
 
     /**
      * Dashboard constructor.
@@ -245,7 +241,7 @@ class Dashboard
      */
     public function getResource($key = null)
     {
-        if ($key === null) {
+        if (is_null($key)) {
             return $this->resources;
         }
 

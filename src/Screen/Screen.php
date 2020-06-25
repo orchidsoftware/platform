@@ -99,7 +99,11 @@ abstract class Screen extends Controller
 
         abort_unless(method_exists($this, $method), 404, "Async method: {$method} not found");
 
-        $query = $this->callMethod($method, request()->all());
+        collect(request()->all())->each(function ($value, $key) {
+            Route::current()->setParameter($key, $value);
+        });
+
+        $query = $this->callMethod($method);
         $source = new Repository($query);
 
         /** @var Layout $layout */
@@ -120,15 +124,13 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param array $httpQueryArguments
-     *
      * @throws ReflectionException
      *
      * @return Factory|\Illuminate\View\View
      */
-    public function view(array $httpQueryArguments = [])
+    public function view()
     {
-        $query = $this->callMethod('query', $httpQueryArguments);
+        $query = $this->callMethod('query');
         $this->source = new Repository($query);
         $commandBar = $this->buildCommandBar($this->source);
 
@@ -157,64 +159,46 @@ abstract class Screen extends Controller
 
         $method = Route::current()->parameter('method', Arr::last($parameters));
 
-        $parameters = array_diff(
-            $parameters,
-            [$method]
-        );
-
-        $query = request()->query();
-        $query = ! is_array($query) ? [] : $query;
-
-        $parameters = array_filter($parameters);
-        $parameters = array_merge(array_keys($query), $parameters);
-
-        return $this->callMethod($method, $parameters);
+        return $this->callMethod($method);
     }
 
     /**
      * @param string $method
-     * @param array  $httpQueryArguments
      *
      * @throws ReflectionException
      *
      * @return array
      */
-    private function reflectionParams(string $method, array $httpQueryArguments = []): array
+    private function reflectionParams(string $method): array
     {
         $class = new ReflectionClass($this);
-
-        if (! is_string($method)) {
-            return [];
-        }
 
         if (! $class->hasMethod($method)) {
             return [];
         }
 
-        $parameters = $class->getMethod($method)->getParameters();
-
-        return collect($parameters)
-            ->map(function ($parameter, $key) use ($httpQueryArguments) {
-                return $this->bind($key, $parameter, $httpQueryArguments);
-            })->all();
+        return array_map(function ($parameters) {
+            return $this->bind($parameters);
+        }, $class->getMethod($method)->getParameters());
     }
 
     /**
      * It takes the serial number of the argument and the required parameter.
      * To convert to object.
      *
-     * @param int                 $key
      * @param ReflectionParameter $parameter
-     * @param array               $httpQueryArguments
      *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      *
      * @return mixed
      */
-    private function bind(int $key, ReflectionParameter $parameter, array $httpQueryArguments)
+    private function bind(ReflectionParameter $parameter)
     {
+        $route = Route::current();
+        $name = $parameter->getName();
+
         $class = optional($parameter->getClass())->name;
-        $original = array_values($httpQueryArguments)[$key] ?? null;
+        $original = $route->parameter($name);
 
         if ($class === null) {
             return $original;
@@ -226,7 +210,7 @@ abstract class Screen extends Controller
 
         $object = app()->make($class);
 
-        if ($original !== null && is_a($object, UrlRoutable::class)) {
+        if (is_a($object, UrlRoutable::class) && $route->hasParameter($parameter->getName())) {
             return $object->resolveRouteBinding($original);
         }
 
@@ -288,10 +272,10 @@ abstract class Screen extends Controller
      *
      * @return mixed
      */
-    private function callMethod(string $method, array $parameters = [])
+    private function callMethod(string $method)
     {
         return call_user_func_array([$this, $method],
-            $this->reflectionParams($method, $parameters)
+            $this->reflectionParams($method)
         );
     }
 

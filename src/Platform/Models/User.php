@@ -49,6 +49,10 @@ class User extends Authenticatable implements UserInterface
     protected $hidden = [
         'password',
         'remember_token',
+        'permissions',
+        'uses_two_factor_auth',
+        'two_factor_secret_code',
+        'two_factor_recovery_code',
     ];
 
     /**
@@ -57,9 +61,10 @@ class User extends Authenticatable implements UserInterface
      * @var array
      */
     protected $casts = [
-        'permissions'       => 'array',
-        'email_verified_at' => 'datetime',
-        'last_login'        => 'datetime',
+        'permissions'          => 'array',
+        'email_verified_at'    => 'datetime',
+        'last_login'           => 'datetime',
+        'uses_two_factor_auth' => 'boolean',
     ];
 
     /**

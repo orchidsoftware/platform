@@ -4,6 +4,43 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 7.10.3 - 2020-06-15
+
+## Fixed
+- Fixed deleting columns when rolling back
+
+## 7.10.2 - 2020-06-11
+
+## Fixed
+- Syntax error in user model stub
+
+## 7.10.1 - 2020-06-11
+
+## Fixed
+- Error in lang es.json [1142](https://github.com/orchidsoftware/platform/issues/1142)
+
+## 7.10.0 - 2020-06-10
+
+### Added
+- Two-Factor authentication [#1132](https://github.com/orchidsoftware/platform/issues/1132)
+- Support for Portuguese (PT-pt) language [#1136](https://github.com/orchidsoftware/platform/pull/1136)
+
+## 7.9.0 - 2020-06-08
+
+### Added
+- German translation [#1131](https://github.com/orchidsoftware/platform/pull/1131)
+
+## Fixed
+- Default values ​​fixed [#1109](https://github.com/orchidsoftware/platform/pull/1109)
+
+## 7.8.0 - 2020-06-07
+
+### Added
+- Spanish translation [#1130](https://github.com/orchidsoftware/platform/pull/1130)
+
+## Fixed
+- Remove permission [#1119](https://github.com/orchidsoftware/platform/pull/1119)
+
 ## 7.7.1 - 2020-06-01
 
 ### Changed

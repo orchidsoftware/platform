@@ -34,7 +34,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function binding()
     {
-        Route::bind('roles', static function ($value) {
+        Route::bind('role', static function ($value) {
             $role = Dashboard::modelClass(Role::class);
 
             return is_numeric($value)
