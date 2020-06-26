@@ -1,6 +1,6 @@
 @extends('platform::dashboard')
-@section('title',__($screen->name))
-@section('description',__($screen->description))
+@section('title',__($name))
+@section('description',__($description))
 @section('controller','screen--base')
 @section('navbar')
     @foreach($commandBar as $command)
@@ -17,10 +17,10 @@
               data-controller="layouts--form"
               data-action="keypress->layouts--form#disableKey
                            layouts--form#submit"
-              data-layouts--form-validation="{{ $screen->formValidateMessage() }}"
+              data-layouts--form-validation="{{ $formValidateMessage }}"
               novalidate
         >
-            {!! $screen->build() !!}
+            {!! $layouts !!}
             @csrf
         </form>
     <div id="modals-container">

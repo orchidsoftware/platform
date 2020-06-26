@@ -10,7 +10,7 @@ use JsonSerializable;
 use Orchid\Support\Facades\Dashboard;
 
 /**
- * Class Layout.
+ * Class Base.
  */
 abstract class Layout implements JsonSerializable
 {
@@ -71,7 +71,7 @@ abstract class Layout implements JsonSerializable
     }
 
     /**
-     * @return Layout
+     * @return Base
      */
     public function currentAsync(): self
     {
@@ -188,7 +188,7 @@ abstract class Layout implements JsonSerializable
     /**
      * @param string $slug
      *
-     * @return Layout|null
+     * @return Base|null
      */
     public function findBySlug(string $slug)
     {

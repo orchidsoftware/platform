@@ -10,7 +10,6 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Orchid\Access\TwoFactor;
 use Orchid\Screen\Screen;
-use Orchid\Access\TwoFactor;
 
 class Dashboard
 {

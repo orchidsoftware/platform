@@ -47,7 +47,7 @@ class RoleTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->get(route('platform.systems.roles.edit', $this->role->slug));
+            ->get(route('platform.systems.roles.edit', $this->role->id));
 
         $response->assertOk()
         ->assertSee('field-roles')

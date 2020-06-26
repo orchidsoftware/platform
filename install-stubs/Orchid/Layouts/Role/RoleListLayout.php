@@ -28,7 +28,7 @@ class RoleListLayout extends Table
                 ->filter(TD::FILTER_TEXT)
                 ->render(function (Role $role) {
                     return Link::make($role->name)
-                        ->route('platform.systems.roles.edit', $role->slug);
+                        ->route('platform.systems.roles.edit', $role->id);
                 }),
 
             TD::set('slug', __('Slug'))

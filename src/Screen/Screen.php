@@ -12,7 +12,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Controllers\Controller;
-use Orchid\Screen\Layouts\Base;
 use Orchid\Support\Facades\Dashboard;
 use ReflectionClass;
 use ReflectionException;
@@ -80,7 +79,7 @@ abstract class Screen extends Controller
      */
     public function build()
     {
-        return Layout::blank([
+        return LayoutFactory::blank([
             $this->layout(),
         ])->build($this->source);
     }
@@ -102,12 +101,12 @@ abstract class Screen extends Controller
         $query = $this->callMethod($method, request()->all());
         $source = new Repository($query);
 
-        /** @var Base $layout */
+        /** @var Layout $layout */
         $layout = collect($this->layout())
             ->map(function ($layout) {
                 return is_object($layout) ? $layout : app()->make($layout);
             })
-            ->map(function (Base $layout) use ($slug) {
+            ->map(function (Layout $layout) use ($slug) {
                 return $layout->findBySlug($slug);
             })
             ->filter()
@@ -133,8 +132,11 @@ abstract class Screen extends Controller
         $commandBar = $this->buildCommandBar($this->source);
 
         return view('platform::layouts.base', [
-            'screen'     => $this,
-            'commandBar' => $commandBar,
+            'name'                => $this->name,
+            'description'         => $this->description,
+            'commandBar'          => $commandBar,
+            'layouts'             => $this->build(),
+            'formValidateMessage' => $this->formValidateMessage(),
         ]);
     }
 
