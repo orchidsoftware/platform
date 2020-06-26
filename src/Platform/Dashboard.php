@@ -57,6 +57,11 @@ class Dashboard
     private $publicDirectories;
 
     /**
+     * @var Screen
+     */
+    private $currentScreen;
+
+    /**
      * Dashboard constructor.
      */
     public function __construct()
