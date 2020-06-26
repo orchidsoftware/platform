@@ -33,7 +33,7 @@ Route::screen('/main', PlatformScreen::class)
     ->name('platform.main');
 
 // Platform > System > Users
-Route::screen('users/{user}/edit', UserEditScreen::class)
+Route::screen('users/{users}/edit', UserEditScreen::class)
     ->name('platform.systems.users.edit')
     ->breadcrumbs(function (Trail $trail, $user) {
         return $trail
@@ -51,7 +51,7 @@ Route::screen('users', UserListScreen::class)
     });
 
 // Platform > System > Roles > Role
-Route::screen('roles/{role}/edit', RoleEditScreen::class)
+Route::screen('roles/{roles}/edit', RoleEditScreen::class)
     ->name('platform.systems.roles.edit')
     ->breadcrumbs(function (Trail $trail, $role) {
         return $trail

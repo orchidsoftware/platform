@@ -15,7 +15,7 @@
                 <div class="modal-content">
                     <div class="modal-header m-b">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <i class="icon-cross icons" aria-hidden="true"></i>
+                            <x-orchid-icon path="cross"/>
                         </button>
                         <h4 class="modal-title m-b text-black font-thin"
                             id="exampleModalLabel">{{__('UTM Generator')}}</h4>

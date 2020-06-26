@@ -26,7 +26,7 @@
                     <div class="bg-light d-flex justify-content-center align-items-center border r-2x"
                          style="min-height: 112px;">
                         <div class="pr-1 pl-1 pt-3 pb-3">
-                            <span class="text-2x icon-cloud-upload"></span>
+                            <x-orchid-icon path="cloud-upload" class="text-2x"/>
                             <small class="text-muted w-b-k text-xs block">{{__('Upload file')}}</small>
                         </div>
                     </div>
@@ -38,7 +38,8 @@
                         <div class="bg-light d-flex justify-content-center align-items-center border r-2x"
                              style="min-height: 112px;">
                             <div class="pr-1 pl-1 pt-3 pb-3">
-                                <span class="text-2x icon-open"></span>
+                                <x-orchid-icon path="open" class="text-2x"/>
+
                                 <small class="text-muted w-b-k text-xs block">{{__('Media catalog')}}</small>
                             </div>
                         </div>
@@ -52,7 +53,7 @@
                         <div class="modal-content">
                             <div class="modal-header clearfix">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                    <i class="icon-cross icons" ria-hidden="true"></i>
+                                    <x-orchid-icon path="cross"/>
                                 </button>
                                 <h5>{{__('File Information')}}</h5>
                                 <p class="m-b-md">{{__('Information to display')}}</p>
@@ -85,7 +86,11 @@
 
                                 <div class="form-group">
                                     <a href="#" data-action="click->fields--upload#openLink">
-                                        <small><i class="icon-link mr-2"></i>{{ __('Link to file') }}</small>
+                                        <small>
+                                            <x-orchid-icon path="link" class="mr-2"/>
+
+                                            {{ __('Link to file') }}
+                                        </small>
                                     </a>
                                 </div>
 

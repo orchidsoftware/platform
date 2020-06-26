@@ -12,6 +12,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Screen\Layouts\Base;
 use Orchid\Support\Facades\Dashboard;
 use ReflectionClass;
 use ReflectionException;
@@ -68,7 +69,7 @@ abstract class Screen extends Controller
     /**
      * Views.
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     abstract public function layout(): array;
 
@@ -79,7 +80,7 @@ abstract class Screen extends Controller
      */
     public function build()
     {
-        return LayoutFactory::blank([
+        return Layout::blank([
             $this->layout(),
         ])->build($this->source);
     }
@@ -98,19 +99,15 @@ abstract class Screen extends Controller
 
         abort_unless(method_exists($this, $method), 404, "Async method: {$method} not found");
 
-        collect(request()->all())->each(function ($value, $key) {
-            Route::current()->setParameter($key, $value);
-        });
-
-        $query = $this->callMethod($method);
+        $query = $this->callMethod($method, request()->all());
         $source = new Repository($query);
 
-        /** @var Layout $layout */
+        /** @var Base $layout */
         $layout = collect($this->layout())
             ->map(function ($layout) {
                 return is_object($layout) ? $layout : app()->make($layout);
             })
-            ->map(function (Layout $layout) use ($slug) {
+            ->map(function (Base $layout) use ($slug) {
                 return $layout->findBySlug($slug);
             })
             ->filter()
@@ -123,13 +120,15 @@ abstract class Screen extends Controller
     }
 
     /**
+     * @param array $httpQueryArguments
+     *
      * @throws ReflectionException
      *
      * @return Factory|\Illuminate\View\View
      */
-    public function view()
+    public function view(array $httpQueryArguments = [])
     {
-        $query = $this->callMethod('query');
+        $query = $this->callMethod('query', $httpQueryArguments);
         $this->source = new Repository($query);
         $commandBar = $this->buildCommandBar($this->source);
 
@@ -158,46 +157,63 @@ abstract class Screen extends Controller
 
         $method = Route::current()->parameter('method', Arr::last($parameters));
 
-        return $this->callMethod($method);
+        $parameters = array_diff(
+            $parameters,
+            [$method]
+        );
+
+        $query = request()->query();
+        $query = ! is_array($query) ? [] : $query;
+
+        $parameters = array_filter($parameters);
+        $parameters = array_merge(array_keys($query), $parameters);
+
+        return $this->callMethod($method, $parameters);
     }
 
     /**
      * @param string $method
+     * @param array  $httpQueryArguments
      *
      * @throws ReflectionException
      *
      * @return array
      */
-    private function reflectionParams(string $method): array
+    private function reflectionParams(string $method, array $httpQueryArguments = []): array
     {
         $class = new ReflectionClass($this);
+
+        if (! is_string($method)) {
+            return [];
+        }
 
         if (! $class->hasMethod($method)) {
             return [];
         }
 
-        return array_map(function ($parameters) {
-            return $this->bind($parameters);
-        }, $class->getMethod($method)->getParameters());
+        $parameters = $class->getMethod($method)->getParameters();
+
+        return collect($parameters)
+            ->map(function ($parameter, $key) use ($httpQueryArguments) {
+                return $this->bind($key, $parameter, $httpQueryArguments);
+            })->all();
     }
 
     /**
      * It takes the serial number of the argument and the required parameter.
      * To convert to object.
      *
+     * @param int                 $key
      * @param ReflectionParameter $parameter
      *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      *
      * @return mixed
      */
-    private function bind(ReflectionParameter $parameter)
+    private function bind(int $key, ReflectionParameter $parameter, array $httpQueryArguments)
     {
-        $route = Route::current();
-        $name = $parameter->getName();
-
         $class = optional($parameter->getClass())->name;
-        $original = $route->parameter($name);
+        $original = array_values($httpQueryArguments)[$key] ?? null;
 
         if ($class === null) {
             return $original;
@@ -209,7 +225,7 @@ abstract class Screen extends Controller
 
         $object = app()->make($class);
 
-        if (is_a($object, UrlRoutable::class) && $route->hasParameter($parameter->getName())) {
+        if ($original !== null && is_a($object, UrlRoutable::class)) {
             return $object->resolveRouteBinding($original);
         }
 
@@ -243,9 +259,7 @@ abstract class Screen extends Controller
      * Defines the URL to represent
      * the page based on the calculation of link arguments.
      *
-     * @param array $httpQueryArguments
-     *
-     * @throws ReflectionException
+     * @throws Throwable
      *
      * @return Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
@@ -271,10 +285,10 @@ abstract class Screen extends Controller
      *
      * @return mixed
      */
-    private function callMethod(string $method)
+    private function callMethod(string $method, array $parameters = [])
     {
         return call_user_func_array([$this, $method],
-            $this->reflectionParams($method)
+            $this->reflectionParams($method, $parameters)
         );
     }
 

@@ -27,7 +27,9 @@
         </div>
         <div class="form-group">
             <button class="btn btn-default btn-block" id="button-email" type="submit">
-                <i class="icon-envelope text-xs mr-2"></i> {{ __('Send Password Reset Link') }}
+                <x-orchid-icon path="envelope" class="text-xs mr-2"/>
+
+                {{ __('Send Password Reset Link') }}
             </button>
         </div>
     </form>

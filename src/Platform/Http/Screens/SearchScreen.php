@@ -82,7 +82,7 @@ class SearchScreen extends Screen
     {
         return [
             Button::make(__('Apply'))
-                ->icon('icon-filter')
+                ->icon('filter')
                 ->canSee(Dashboard::getSearch()->count() > 1)
                 ->method('changeSearchType'),
         ];

@@ -11,12 +11,12 @@
                     <button
                             data-action="screen--filter#clear"
                             class="btn btn-default">
-                        <i class="icon-refresh"></i>
+                        <x-orchid-icon path="refresh"/>
                     </button>
                     <button type="submit"
                             form="filters"
                             class="btn btn-default">
-                        <i class="icon-filter"></i>
+                        <x-orchid-icon path="filter"/>
                     </button>
                 </div>
             </div>

@@ -33,7 +33,7 @@ class SystemMenuComposer
         $this->dashboard->menu
             ->add(Menu::SYSTEMS,
                 ItemMenu::label(__('Access rights'))
-                    ->icon('icon-lock')
+                    ->icon('lock')
                     ->slug('Auth')
                     ->active('platform.systems.*')
                     ->permission('platform.systems.index')
@@ -41,7 +41,7 @@ class SystemMenuComposer
             )
             ->add('Auth',
                 ItemMenu::label(__('Users'))
-                    ->icon('icon-user')
+                    ->icon('user')
                     ->route('platform.systems.users')
                     ->permission('platform.systems.users')
                     ->sort(1000)
@@ -49,7 +49,7 @@ class SystemMenuComposer
             )
             ->add('Auth',
                 ItemMenu::label(__('Roles'))
-                    ->icon('icon-lock')
+                    ->icon('lock')
                     ->route('platform.systems.roles')
                     ->permission('platform.systems.roles')
                     ->sort(1000)

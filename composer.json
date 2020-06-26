@@ -32,6 +32,7 @@
   "require": {
     "ext-json": "*",
     "bacon/bacon-qr-code": "^2.0",
+    "orchid/blade-icons": "^1.0",
     "tabuna/breadcrumbs": "^1.0",
     "laravel/framework": "^7.0",
     "laravel/scout": "^8.0",

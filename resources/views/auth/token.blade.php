@@ -3,7 +3,8 @@
 
 @section('content')
     <h1 class="h5 text-black">
-        <i class="icon-screen-smartphone h4 mr-1"></i>
+        <x-orchid-icon path="screen-smartphone" class="h4 mr-1"/>
+
         {{__('Two-Factor Authentication')}}
     </h1>
 
@@ -38,7 +39,8 @@
             </div>
             <div class="form-group col-md-6 col-xs-12">
                 <button id="button-login" type="submit" class="btn btn-default btn-block" tabindex="2">
-                    <i class="icon-login text-xs mr-2"></i> {{__('Login')}}
+                    <x-orchid-icon path="login" class="text-xs mr-2"/>
+                    {{__('Login')}}
                 </button>
             </div>
         </div>

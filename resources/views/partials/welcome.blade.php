@@ -5,7 +5,8 @@
             <div class="col-md-7 col-sm-12">
                 <div class="mb-5 jumbotron">
                     <h1 class="display-5 text-dark font-thin m-b-sm">
-                        <i class="icon-trophy mr-2 mb-3"></i> Congratulations!
+                        <x-orchid-icon path="trophy" class="mr-2 mb-3"/>
+                        Congratulations!
 
                         <span
                             class="badge badge-success small v-top bg-primary text-white">{{\Orchid\Platform\Dashboard::VERSION}}</span>
@@ -63,7 +64,7 @@
             <div class="col-md-5 col-sm-12 pr-md-5 mt-md-3">
                 <div class="mb-5">
                     <h2 class="display-5 text-dark font-thin m-b-sm">
-                        <i class="icon-rocket mr-2 mb-3"></i>
+                        <x-orchid-icon path="rocket" class="mr-2 mb-1"/>
                         Quick start
                     </h2>
                     <div class="line line-dashed border-bottom mt-3 mb-3"></div>
@@ -72,7 +73,7 @@
                 </div>
                 <div class="mb-5">
                     <h2 class="display-5 text-dark font-thin m-b-sm">
-                        <i class="icon-help mr-2 mb-3"></i>
+                        <x-orchid-icon path="help" class="mr-2 mb-1"/>
                         Community
                     </h2>
                     <div class="line line-dashed border-bottom mt-3 mb-3"></div>

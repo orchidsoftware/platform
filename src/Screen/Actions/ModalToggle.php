@@ -51,12 +51,6 @@ class ModalToggle extends Button
     {
         return $this
             ->set('asyncParameters', Arr::wrap($options))
-            ->set('async', 'true')
-            ->addBeforeRender(function () use ($options) {
-                $options = Arr::wrap($options);
-                $options['method'] = $this->get('method');
-
-                $this->set('action', route(Route::currentRouteName(), $options));
-            });
+            ->set('async', 'true');
     }
 }

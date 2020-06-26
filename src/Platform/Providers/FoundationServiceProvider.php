@@ -11,6 +11,7 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
 use Laravel\Ui\UiCommand;
 use Laravel\Ui\UiServiceProvider;
+use Orchid\Icons\IconServiceProvider;
 use Orchid\Platform\Commands\AdminCommand;
 use Orchid\Platform\Commands\ChartCommand;
 use Orchid\Platform\Commands\FilterCommand;
@@ -212,6 +213,7 @@ class FoundationServiceProvider extends ServiceProvider
             UiServiceProvider::class,
             ScoutServiceProvider::class,
             ActiveServiceProvider::class,
+            IconServiceProvider::class,
             RouteServiceProvider::class,
             EventServiceProvider::class,
             PlatformServiceProvider::class,

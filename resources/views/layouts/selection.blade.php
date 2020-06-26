@@ -5,7 +5,7 @@
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false">
-                <i class="icon-filter"></i>
+                <x-orchid-icon path="filter"/>
                 {{__('Filters')}}
             </button>
 

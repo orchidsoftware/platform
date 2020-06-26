@@ -34,74 +34,74 @@ class MainMenuComposer
         $this->dashboard->menu
             ->add(Menu::PROFILE,
                 ItemMenu::label('Action')
-                    ->icon('icon-compass')
+                    ->icon('compass')
                     ->badge(function () {
                         return 6;
                     })
             )
             ->add(Menu::PROFILE,
                 ItemMenu::label('Another action')
-                    ->icon('icon-heart')
+                    ->icon('heart')
             );
 
         // Main
         $this->dashboard->menu
             ->add(Menu::MAIN,
                 ItemMenu::label('Example screen')
-                    ->icon('icon-monitor')
+                    ->icon('monitor')
                     ->route('platform.example')
                     ->title('Navigation')
             )
             ->add(Menu::MAIN,
                 ItemMenu::label('Dropdown menu')
                     ->slug('example-menu')
-                    ->icon('icon-code')
+                    ->icon('code')
                     ->childs()
             )
             ->add('example-menu',
                 ItemMenu::label('Sub element item 1')
-                    ->icon('icon-bag')
+                    ->icon('bag')
             )
             ->add('example-menu',
                 ItemMenu::label('Sub element item 2')
-                    ->icon('icon-heart')
+                    ->icon('heart')
             )
             ->add(Menu::MAIN,
                 ItemMenu::label('Basic Elements')
                     ->title('Form controls')
-                    ->icon('icon-note')
+                    ->icon('note')
                     ->route('platform.example.fields')
             )
             ->add(Menu::MAIN,
                 ItemMenu::label('Advanced Elements')
-                    ->icon('icon-briefcase')
+                    ->icon('briefcase')
                     ->route('platform.example.advanced')
             )
             ->add(Menu::MAIN,
                 ItemMenu::label('Text Editors')
-                    ->icon('icon-list')
+                    ->icon('list')
                     ->route('platform.example.editors')
             )
             ->add(Menu::MAIN,
                 ItemMenu::label('Overview layouts')
                     ->title('Layouts')
-                    ->icon('icon-layers')
+                    ->icon('layers')
                     ->route('platform.example.layouts')
             )
             ->add(Menu::MAIN,
                 ItemMenu::label('Chart tools')
-                    ->icon('icon-bar-chart')
+                    ->icon('bar-chart')
                     ->route('platform.example.charts')
             )
             ->add(Menu::MAIN,
                 ItemMenu::label('Cards')
-                    ->icon('icon-grid')
+                    ->icon('grid')
                     ->route('platform.example.cards')
             )
             ->add(Menu::MAIN,
                 ItemMenu::label('Documentation')
                     ->title('Docs')
-                    ->icon('icon-docs')
+                    ->icon('docs')
                     ->url('https://orchid.software/en/docs')
             );
     }

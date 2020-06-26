@@ -14,7 +14,8 @@
                 <a class="input-group-text bg-transparent"
                    title="clear"
                    data-action="click->fields--datetime#clear">
-                        <i class="icon-cross"></i>
+                        <x-orchid-icon path="cross"/>
+
                     </a>
                 </div>
             @endif

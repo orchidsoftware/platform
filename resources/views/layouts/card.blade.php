@@ -26,7 +26,8 @@
                                     <button class="btn btn-link btn-sm dropdown-toggle dropdown-item p-2" type="button"
                                             data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">
-                                        <i class="icon-options-vertical"></i>
+                                        <x-orchid-icon path="options-vertical"/>
+
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow bg-white"
                                          x-placement="bottom-end">

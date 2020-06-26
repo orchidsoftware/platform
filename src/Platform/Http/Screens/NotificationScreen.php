@@ -72,12 +72,12 @@ class NotificationScreen extends Screen
     {
         return [
             Button::make(__('Remove all'))
-                ->icon('icon-trash')
+                ->icon('trash')
                 ->method('removeAll')
                 ->canSee($this->isNotEmpty),
 
             Button::make(__('Mark all as read'))
-                ->icon('icon-eye')
+                ->icon('eye')
                 ->method('markAllAsRead')
                 ->canSee($this->isNotEmpty),
         ];

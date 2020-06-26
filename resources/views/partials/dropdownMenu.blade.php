@@ -4,7 +4,9 @@
 <a href="{{$route ?? '#'}}" class="dropdown-item">
 
     <span class="col-auto mr-auto no-padder">
-        <i class="{{$icon}} mr-2"></i>
+        @isset($icon)
+            <x-orchid-icon :path="$icon" class="mr-2"/>
+        @endisset
         {{ __($label) }}
     </span>
 

@@ -58,6 +58,11 @@ class Dashboard
     private $publicDirectories;
 
     /**
+     * @var Screen|null
+     */
+    private $currentScreen;
+
+    /**
      * Dashboard constructor.
      */
     public function __construct()
@@ -242,7 +247,7 @@ class Dashboard
      */
     public function getResource($key = null)
     {
-        if (is_null($key)) {
+        if ($key === null) {
             return $this->resources;
         }
 
