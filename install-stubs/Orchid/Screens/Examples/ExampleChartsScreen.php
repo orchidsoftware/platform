@@ -49,7 +49,7 @@ class ExampleChartsScreen extends Screen
     /**
      * Button commands.
      *
-     * @return Action[]
+     * @return \Orchid\Screen\Action[]
      */
     public function commandBar(): array
     {
