@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 7.11.2 - 2020-06-26
+
+## Fixed
+- PHPDoc return type for `Fieldable::get()` [#1156](https://github.com/orchidsoftware/platform/pull/1156)
+- Delete row for Matrix field does not work in Firefox [#1166](https://github.com/orchidsoftware/platform/issues/1166)
+
 ## 7.11.1 - 2020-06-21
 
 ## Fixed
