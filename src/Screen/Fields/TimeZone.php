@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Fields;
 
 use DateTimeZone;
+use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
 
 /**
@@ -22,6 +23,8 @@ use Orchid\Screen\Field;
  */
 class TimeZone extends Field
 {
+    use Multipliable;
+
     /**
      * @var string
      */
@@ -47,7 +50,6 @@ class TimeZone extends Field
         'autofocus',
         'disabled',
         'form',
-        'multiple',
         'name',
         'required',
         'size',
@@ -60,16 +62,6 @@ class TimeZone extends Field
     public function __construct()
     {
         $this->listIdentifiers();
-    }
-
-    /**
-     * @return self
-     */
-    public function multiple(): self
-    {
-        $this->attributes['multiple'] = 'multiple';
-
-        return $this;
     }
 
     /**
