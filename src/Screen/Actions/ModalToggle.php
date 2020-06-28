@@ -36,7 +36,6 @@ class ModalToggle extends Button
         'modalTitle'      => null,
         'icon'            => null,
         'action'          => null,
-        'asyncParameters' => null,
         'async'           => false,
         'parameters'      => [],
     ];
@@ -49,7 +48,7 @@ class ModalToggle extends Button
     public function asyncParameters($options = []): self
     {
         return $this
-            ->set('asyncParameters', Arr::wrap($options))
+            ->set('parameters', Arr::wrap($options))
             ->set('async', 'true');
     }
 }

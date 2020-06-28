@@ -5,7 +5,7 @@
             data-modal-title="{{ $modalTitle ?? $title ??  '' }}"
             data-modal-key="{{ $modal ?? '' }}"
             data-modal-async="{{ $async }}"
-            data-modal-params='@json($asyncParameters)'
+            data-modal-params='@json($parameters)'
             data-modal-action="{{ $action }}">
 
         @isset($icon)
