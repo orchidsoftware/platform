@@ -25276,22 +25276,26 @@ var _default = /*#__PURE__*/function (_Controller) {
     value: function change() {
       var currentType = this.passwordTarget.type;
       var type = 'password';
-      var icon = 'icon-eye';
+
+      if (currentType === 'text') {
+        this.iconLockTarget.classList.add('none');
+        this.iconShowTarget.classList.remove('none');
+      }
 
       if (currentType === 'password') {
         type = 'text';
-        icon = 'icon-lock';
+        this.iconLockTarget.classList.remove('none');
+        this.iconShowTarget.classList.add('none');
       }
 
       this.passwordTarget.setAttribute('type', type);
-      this.iconTarget.setAttribute('class', icon);
     }
   }]);
 
   return _default;
 }(stimulus__WEBPACK_IMPORTED_MODULE_0__["Controller"]);
 
-_defineProperty(_default, "targets", ['password', 'icon']);
+_defineProperty(_default, "targets", ['password', 'iconShow', 'iconLock']);
 
 
 
@@ -26004,7 +26008,7 @@ var _default = /*#__PURE__*/function (_Controller) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function($) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
 /* harmony import */ var stimulus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! stimulus */ "./node_modules/stimulus/index.js");
 /* harmony import */ var simplemde__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! simplemde */ "./node_modules/simplemde/src/js/simplemde.js");
 /* harmony import */ var simplemde__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(simplemde__WEBPACK_IMPORTED_MODULE_1__);
@@ -26054,93 +26058,88 @@ var _default = /*#__PURE__*/function (_Controller) {
       var _this = this;
 
       this.editor = new simplemde__WEBPACK_IMPORTED_MODULE_1___default.a({
-        autoDownloadFontAwesome: false,
+        // Defaults to undefined, which will intelligently check whether
+        // Font Awesome has already been included, then download accordingly.
+        autoDownloadFontAwesome: undefined,
         forceSync: true,
         element: this.textarea,
         toolbar: [{
           name: 'bold',
           action: simplemde__WEBPACK_IMPORTED_MODULE_1___default.a.toggleBold,
-          className: 'icon-bold',
+          className: 'fa fa-bold',
           title: 'Bold'
         }, {
           name: 'italic',
           action: simplemde__WEBPACK_IMPORTED_MODULE_1___default.a.toggleItalic,
-          className: 'icon-italic',
+          className: 'fa fa-italic',
           title: 'Italic'
         }, {
           name: 'heading',
           action: simplemde__WEBPACK_IMPORTED_MODULE_1___default.a.toggleHeadingSmaller,
-          className: 'icon-font',
+          className: 'fa fa-header',
           title: 'Heading'
         }, '|', {
           name: 'quote',
           action: simplemde__WEBPACK_IMPORTED_MODULE_1___default.a.toggleBlockquote,
-          className: 'icon-quote',
+          className: 'fa fa-quote-left',
           title: 'Quote'
         }, {
           name: 'code',
           action: simplemde__WEBPACK_IMPORTED_MODULE_1___default.a.toggleCodeBlock,
-          className: 'icon-code',
+          className: 'fa fa-code',
           title: 'Code'
         }, {
           name: 'unordered-list',
           action: simplemde__WEBPACK_IMPORTED_MODULE_1___default.a.toggleUnorderedList,
-          className: 'icon-list',
+          className: 'fa fa-list-ul',
           title: 'Generic List'
         }, {
           name: 'ordered-list',
           action: simplemde__WEBPACK_IMPORTED_MODULE_1___default.a.toggleOrderedList,
-          className: 'icon-number-list',
+          className: 'fa fa-list-ol',
           title: 'Numbered List'
         }, '|', {
           name: 'link',
           action: simplemde__WEBPACK_IMPORTED_MODULE_1___default.a.drawLink,
-          className: 'icon-link',
+          className: 'fa fa-link',
           title: 'Link'
         }, {
           name: 'image',
           action: simplemde__WEBPACK_IMPORTED_MODULE_1___default.a.drawImage,
-          className: 'icon-picture',
+          className: 'fa fa-picture-o',
           title: 'Insert Image'
         }, {
           name: 'upload',
           action: function action() {
             return _this.showDialogUpload();
           },
-          className: 'icon-cloud-upload',
+          className: 'fa fa-upload',
           title: 'Upload File'
         }, {
           name: 'table',
           action: simplemde__WEBPACK_IMPORTED_MODULE_1___default.a.drawTable,
-          className: 'icon-table',
+          className: 'fa fa-table',
           title: 'Insert Table'
         }, '|', {
           name: 'preview',
           action: simplemde__WEBPACK_IMPORTED_MODULE_1___default.a.togglePreview,
-          className: 'icon-eye no-disable',
+          className: 'fa fa-eye no-disable',
           title: 'Toggle Preview'
         }, {
           name: 'side-by-side',
           action: simplemde__WEBPACK_IMPORTED_MODULE_1___default.a.toggleSideBySide,
-          className: 'icon-browser no-disable no-mobile',
+          className: 'fa fa-columns no-disable no-mobile',
           title: 'Toggle Side by Side'
         }, {
           name: 'fullscreen',
           action: simplemde__WEBPACK_IMPORTED_MODULE_1___default.a.toggleFullScreen,
-          className: 'icon-full-screen no-disable no-mobile',
+          className: 'fa fa-arrows-alt no-disable no-mobile',
           title: 'Toggle Fullscreen'
         }, '|', {
           name: 'horizontal-rule',
           action: simplemde__WEBPACK_IMPORTED_MODULE_1___default.a.drawHorizontalRule,
-          className: 'icon-options',
+          className: 'fa fa-minus',
           title: 'Insert Horizontal Line'
-        }, {
-          name: 'guide',
-          action: function action() {
-            return _this.showModal();
-          },
-          className: 'icon-help',
-          title: 'Markdown Guide'
         }],
         placeholder: this.textarea.placeholder,
         spellChecker: false
@@ -26149,16 +26148,6 @@ var _default = /*#__PURE__*/function (_Controller) {
       if (this.textarea.required) {
         this.element.querySelector('.CodeMirror textarea').required = true;
       }
-    }
-    /**
-     *
-     * @returns {Element}
-     */
-
-  }, {
-    key: "showModal",
-    value: function showModal() {
-      $(this.element.querySelector('.modal')).modal('show');
     }
     /**
      *
@@ -26221,7 +26210,6 @@ var _default = /*#__PURE__*/function (_Controller) {
 }(stimulus__WEBPACK_IMPORTED_MODULE_0__["Controller"]);
 
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
 /***/ }),
 
@@ -26311,7 +26299,7 @@ var _default = /*#__PURE__*/function (_Controller) {
     /**
      *
      */
-    value: function openLink() {
+    value: function openLink(event) {
       event.preventDefault();
       window.open(this.data.get('url'));
     }
@@ -26445,6 +26433,8 @@ var _default = /*#__PURE__*/function (_Controller) {
       var groups = this.data.get('groups');
       var multiple = !!this.data.get('multiple');
       var isMediaLibrary = this.data.get('is-media-library');
+      var removeButton = dropzone__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(this.element.querySelector('#' + this.data.get('id') + '-remove-button').innerHTML.trim());
+      var editButton = dropzone__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(this.element.querySelector('#' + this.data.get('id') + '-edit-button').innerHTML.trim());
       this.dropZone = new dropzone__WEBPACK_IMPORTED_MODULE_1___default.a(dropname, {
         url: platform.prefix('/systems/files'),
         method: 'post',
@@ -26472,8 +26462,6 @@ var _default = /*#__PURE__*/function (_Controller) {
               _this3.removeFile(e);
             }
 
-            var removeButton = dropzone__WEBPACK_IMPORTED_MODULE_1___default.a.createElement('<a href="javascript:;" class="btn-remove">&times;</a>');
-            var editButton = dropzone__WEBPACK_IMPORTED_MODULE_1___default.a.createElement('<a href="javascript:;" class="btn-edit"><i class="icon-note" aria-hidden="true"></i></a>');
             removeButton.addEventListener('click', function (event) {
               event.preventDefault();
               event.stopPropagation();
@@ -27429,6 +27417,8 @@ var _default = /*#__PURE__*/function (_Controller) {
         document.querySelectorAll("[name=\"".concat(name, "\"]")).forEach(function (field) {
           return field.addEventListener('change', function () {
             return _this.render();
+          }, {
+            once: true
           });
         });
       });
@@ -27634,7 +27624,7 @@ var _default = /*#__PURE__*/function (_Controller) {
     key: "render",
     value: function render() {
       var count = localStorage.getItem('profile.notifications');
-      var badge = '<i class="icon-circle"></i>';
+      var badge = this.element.querySelector('#notification-circle').innerHTML.trim();
 
       if (count < 10) {
         badge = count;

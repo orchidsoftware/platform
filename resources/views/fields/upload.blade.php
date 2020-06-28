@@ -151,6 +151,19 @@
                     </div>
                 </div>
             </div>
+
+
+            <template id="dropzone-{{$id}}-remove-button">
+                <a href="javascript:;" class="btn-remove">&times;</a>
+            </template>
+
+            <template id="dropzone-{{$id}}-edit-button">
+                <a href="javascript:;" class="btn-edit">
+                    <x-orchid-icon path="note" class="mb-1"/>
+                </a>
+            </template>
+
+
         </div>
     </div>
 @endcomponent

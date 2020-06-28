@@ -7950,7 +7950,7 @@ button.graph-svg-tip:focus {
   padding-left: 0.25rem !important;
 }
 
-.p-2 {
+.p-2, .admin-wrapper .admin-element h3 svg {
   padding: 0.5rem !important;
 }
 
@@ -9700,7 +9700,7 @@ button.graph-svg-tip:focus {
   font-style: italic !important;
 }
 
-.text-white, .admin-wrapper .admin-element h3 i {
+.text-white, .admin-wrapper .admin-element h3 svg {
   color: #ffffff !important;
 }
 
@@ -17231,7 +17231,7 @@ button.close {
   position: relative;
 }
 
-.admin-wrapper .admin-element h3 i {
+.admin-wrapper .admin-element h3 svg {
   top: 0;
   left: 0;
   border-radius: 3px;
@@ -17241,7 +17241,7 @@ button.close {
   position: absolute;
 }
 
-.admin-wrapper .admin-element h3 i:before {
+.admin-wrapper .admin-element h3 svg:before {
   width: 100%;
   text-align: center;
   font-size: 14px;
@@ -18098,7 +18098,7 @@ a.text-black:hover {
   color: #0b1014;
 }
 
-.text-white, .admin-wrapper .admin-element h3 i {
+.text-white, .admin-wrapper .admin-element h3 svg {
   color: #fff;
 }
 
@@ -18536,7 +18536,7 @@ a.text-black:hover {
   border-radius: 4px;
 }
 
-.r-3x, .admin-wrapper .admin-element h3 i {
+.r-3x, .admin-wrapper .admin-element h3 svg {
   border-radius: 6px;
 }
 
@@ -19186,7 +19186,7 @@ a.text-black:hover {
   margin: 0 auto;
 }
 
-.v-center, .admin-wrapper .admin-element h3 i:before, .custom-checkbox {
+.v-center, .admin-wrapper .admin-element h3 svg:before, .custom-checkbox {
   display: flex;
   align-items: center;
 }
@@ -19585,6 +19585,10 @@ select.form-control, select.chosen-choices, select.chosen-single, select.bootstr
 
 .dropzone .dz-message, .dropzone-wrapper .dz-message, .dropzone-wrapper .dz-message {
   margin: 0.5rem;
+}
+
+.dropzone .svg :hover, .dropzone-wrapper .svg :hover, .dropzone .svg *:hover, .dropzone-wrapper .svg *:hover, .dropzone a :hover, .dropzone-wrapper a :hover, .dropzone a *:hover, .dropzone-wrapper a *:hover, .dropzone-wrapper .svg :hover, .dropzone-wrapper .svg *:hover, .dropzone-wrapper a :hover, .dropzone-wrapper a *:hover {
+  cursor: pointer !important;
 }
 
 .dropzone .media-item, .dropzone-wrapper .media-item, .dropzone-wrapper .media-item {

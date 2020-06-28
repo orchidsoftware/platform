@@ -176,9 +176,10 @@
       margin: 0;
       padding-left: 40px;
       position: relative;
-      i {
+      svg {
         @extend .r-3x;
         @extend .text-white;
+        @extend .p-2;
         top: 0;
         left: 0;
         border-radius: 3px;

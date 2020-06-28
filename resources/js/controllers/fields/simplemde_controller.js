@@ -22,102 +22,99 @@ export default class extends Controller {
      */
     connect() {
         this.editor = new SimpleMDE({
-            autoDownloadFontAwesome: false,
+            // Defaults to undefined, which will intelligently check whether
+            // Font Awesome has already been included, then download accordingly.
+            autoDownloadFontAwesome: undefined,
             forceSync: true,
             element: this.textarea,
             toolbar: [
                 {
                     name: 'bold',
                     action: SimpleMDE.toggleBold,
-                    className: 'icon-bold',
+                    className: 'fa fa-bold',
                     title: 'Bold',
                 },
                 {
                     name: 'italic',
                     action: SimpleMDE.toggleItalic,
-                    className: 'icon-italic',
+                    className: 'fa fa-italic',
                     title: 'Italic',
                 },
                 {
                     name: 'heading',
                     action: SimpleMDE.toggleHeadingSmaller,
-                    className: 'icon-font',
+                    className: 'fa fa-header',
                     title: 'Heading',
                 },
                 '|',
                 {
                     name: 'quote',
                     action: SimpleMDE.toggleBlockquote,
-                    className: 'icon-quote',
+                    className: 'fa fa-quote-left',
                     title: 'Quote',
                 }, {
                     name: 'code',
                     action: SimpleMDE.toggleCodeBlock,
-                    className: 'icon-code',
+                    className: 'fa fa-code',
                     title: 'Code',
                 }, {
                     name: 'unordered-list',
                     action: SimpleMDE.toggleUnorderedList,
-                    className: 'icon-list',
+                    className: 'fa fa-list-ul',
                     title: 'Generic List',
                 }, {
                     name: 'ordered-list',
                     action: SimpleMDE.toggleOrderedList,
-                    className: 'icon-number-list',
+                    className: 'fa fa-list-ol',
                     title: 'Numbered List',
                 },
                 '|',
                 {
                     name: 'link',
                     action: SimpleMDE.drawLink,
-                    className: 'icon-link',
+                    className: 'fa fa-link',
                     title: 'Link',
                 },
                 {
                     name: 'image',
                     action: SimpleMDE.drawImage,
-                    className: 'icon-picture',
+                    className: 'fa fa-picture-o',
                     title: 'Insert Image',
                 }, {
                     name: 'upload',
                     action: () => this.showDialogUpload(),
-                    className: 'icon-cloud-upload',
+                    className: 'fa fa-upload',
                     title: 'Upload File',
                 },
                 {
                     name: 'table',
                     action: SimpleMDE.drawTable,
-                    className: 'icon-table',
+                    className: 'fa fa-table',
                     title: 'Insert Table',
                 },
                 '|',
                 {
                     name: 'preview',
                     action: SimpleMDE.togglePreview,
-                    className: 'icon-eye no-disable',
+                    className: 'fa fa-eye no-disable',
                     title: 'Toggle Preview',
                 }, {
                     name: 'side-by-side',
                     action: SimpleMDE.toggleSideBySide,
-                    className: 'icon-browser no-disable no-mobile',
+                    className: 'fa fa-columns no-disable no-mobile',
                     title: 'Toggle Side by Side',
                 }, {
                     name: 'fullscreen',
                     action: SimpleMDE.toggleFullScreen,
-                    className: 'icon-full-screen no-disable no-mobile',
+                    className: 'fa fa-arrows-alt no-disable no-mobile',
                     title: 'Toggle Fullscreen',
                 },
                 '|',
                 {
                     name: 'horizontal-rule',
                     action: SimpleMDE.drawHorizontalRule,
-                    className: 'icon-options',
+                    className: 'fa fa-minus',
                     title: 'Insert Horizontal Line',
-                }, {
-                    name: 'guide',
-                    action: () => this.showModal(),
-                    className: 'icon-help',
-                    title: 'Markdown Guide',
                 },
             ],
             placeholder: this.textarea.placeholder,
@@ -128,14 +125,6 @@ export default class extends Controller {
         if (this.textarea.required) {
             this.element.querySelector('.CodeMirror textarea').required = true;
         }
-    }
-
-    /**
-     *
-     * @returns {Element}
-     */
-    showModal() {
-        $(this.element.querySelector('.modal')).modal('show');
     }
 
     /**

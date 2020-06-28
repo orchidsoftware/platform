@@ -9,6 +9,10 @@
     >
         <x-orchid-icon path="bell"/>
 
+        <template id="notification-circle">
+            <x-orchid-icon path="circle" width="0.5em" height="0.5em" />
+        </template>
+
         <span class="badge badge-sm up bg-danger text-white" data-target="layouts--notification.badge"></span>
     </a>
 </div>
