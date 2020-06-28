@@ -16,7 +16,9 @@ export default class extends Controller {
         this.targets.forEach(name => {
             document.querySelectorAll(`[name="${name}"]`)
                 .forEach((field) =>
-                    field.addEventListener('change', () => this.render())
+                    field.addEventListener('change', () => this.render(), {
+                        once: true
+                    })
                 );
         });
     }
