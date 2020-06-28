@@ -16,6 +16,7 @@ use Illuminate\Support\Arr;
  * @method ModalToggle method(string $methodName = null)
  * @method ModalToggle parameters(array|object $name)
  * @method ModalToggle modalTitle(string $title)
+ * @method ModalToggle async(bool $enabled = true)
  */
 class ModalToggle extends Button
 {

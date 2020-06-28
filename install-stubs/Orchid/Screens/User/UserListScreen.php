@@ -101,7 +101,7 @@ class UserListScreen extends Screen
             'user.email' => 'required|unique:users,email,'.$user->id,
         ]);
 
-        $user->fill($request->get('user'))
+        $user->fill($request->input('user'))
             ->replaceRoles($request->input('user.roles'))
             ->save();
 
