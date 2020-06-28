@@ -67,6 +67,10 @@ class TurbolinksLocationTest extends TestUnitCase
 
     public function testFileResponse()
     {
+        if (PHP_OS === 'WIN') {
+            return;
+        }
+
         $response = $this->post('turbolink-file-response-test');
         $response->assertHeaderMissing('Turbolinks-Location');
     }
