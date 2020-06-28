@@ -10,7 +10,7 @@
           data-action="layouts--form#submit"
           data-layouts--form-button-animate="#button-reset"
           data-layouts--form-button-text="{{ __('Loading...') }}"
-          action="{{ route('platform.password.email') }}">
+          action="{{ route('platform.password.update') }}">
         @csrf
         <div class="form-group">
             <label>{{ __('E-Mail Address') }}</label>
