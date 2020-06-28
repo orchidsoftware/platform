@@ -67,7 +67,7 @@ class TurbolinksLocationTest extends TestUnitCase
 
     public function testFileResponse()
     {
-        if (PHP_OS === 'WIN') {
+        if (stristr(PHP_OS, 'WIN')) {
             return;
         }
 
