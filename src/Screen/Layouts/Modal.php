@@ -73,13 +73,6 @@ class Modal extends Layout
      */
     public function build(Repository $repository)
     {
-        /*
-                $this->variables['type'] = $this->type;
-
-                $this->variables['title'] = $this->type;
-                $this->variables['commandBar'] = $this->buildCommandBar($repository);
-        */
-
         return $this->buildAsDeep($repository);
     }
 

@@ -46,11 +46,11 @@ export default class extends Controller {
      */
     asyncLoadData(params) {
 
-        if (!this.data.get('async')) {
+        if (!this.data.get('async-route')) {
             return;
         }
 
-        axios.post(this.data.get('async'), params).then((response) => {
+        axios.post(this.data.get('async-route'), params).then((response) => {
             this.element.querySelector('[data-async]').innerHTML = response.data;
             this.addListenerForTargets();
         });
