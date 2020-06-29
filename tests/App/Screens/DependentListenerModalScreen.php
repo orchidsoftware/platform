@@ -41,7 +41,7 @@ class DependentListenerModalScreen extends Screen
     {
         return [
             ModalToggle::make('Open Listener Modal')
-                ->modal('modal-listener')
+                ->modal('modal-listener'),
         ];
     }
 
@@ -70,7 +70,7 @@ class DependentListenerModalScreen extends Screen
     public function layout(): array
     {
         return [
-            Layout::modal('modal-listener',[
+            Layout::modal('modal-listener', [
                 Layout::rows([
                     Input::make('first')
                         ->title('First argument')
