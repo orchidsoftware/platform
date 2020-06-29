@@ -28,4 +28,23 @@ class DependentListenerTest extends TestBrowserCase
                 ->assertInputValue('sum', 300);
         });
     }
+
+    public function testLoadDataFromModal(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $browser
+                ->loginAs($this->createAdminUser())
+                ->visitRoute('test.dependent-listener-modal')
+                ->waitForText('Test Dependent in Modal')
+                ->press('Open Listener Modal')
+                ->waitForText('Listener in modal')
+                ->assertInputValue('first', 100)
+                ->assertDontSee('The result of adding the first argument and the second')
+                ->type('second', 200)
+                ->click('.modal-title') // return cursor for run event onchange
+                ->waitForText('The result of adding the first argument and the second')
+                ->assertSee('SUM')
+                ->assertInputValue('sum', 300);
+        });
+    }
 }
