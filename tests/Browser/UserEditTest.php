@@ -60,7 +60,7 @@ class UserEditTest extends TestBrowserCase
                 ->type('user[name]', $string)
                 ->press('Apply')
                 ->waitForText('User was saved.', 10)
-                ->waitForText($string)
+                ->waitForText($string, 10)
                 ->assertSee($string);
         });
     }
