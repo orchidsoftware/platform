@@ -1,10 +1,6 @@
 import {Controller} from 'stimulus';
 import Quill from 'quill';
 
-function customColor(value) {
-    return value === 'custom-color' ? window.prompt('Enter Color Code (#c0ffee or rgba(255, 0, 0, 0.5))') : value;
-}
-
 export default class extends Controller {
     /**
      *
@@ -20,10 +16,6 @@ export default class extends Controller {
             modules: {
                 toolbar: {
                     container: this.containerToolbar(),
-                    handlers: {
-                        color: this.setColor,
-                        background: this.setBackground,
-                    },
                 },
             },
         });
@@ -41,28 +33,47 @@ export default class extends Controller {
         this.editor.on('text-change', () => {
             input.value = this.editor.getText() ? this.editor.root.innerHTML : '';
         });
+
+        this.editor.getModule('toolbar').addHandler('color', (value) => {
+            this.editor.format('color', this.customColor(value));
+        });
+
+        this.editor.getModule('toolbar').addHandler('background', (value) => {
+            this.editor.format('background', this.customColor(value));
+        });
+
+    }
+
+    /**
+     * Show dialog for custom color
+     *
+     * @param value
+     */
+    customColor = (value) => {
+        return value === 'custom-color'
+            ? window.prompt('Enter Color Code (#c0ffee or rgba(255, 0, 0, 0.5))')
+            : value;
     }
 
     colors() {
-        return ['#000000', '#e60000', '#ff9900', '#ffff00', '#008a00', '#0066cc', '#9933ff', '#ffffff', '#facccc', '#ffebcc', '#ffffcc', '#cce8cc', '#cce0f5', '#ebd6ff', '#bbbbbb', '#f06666', '#ffc266', '#ffff66', '#66b966', '#66a3e0', '#c285ff', '#888888', '#a10000', '#b26b00', '#b2b200', '#006100', '#0047b2', '#6b24b2', '#444444', '#5c0000', '#663d00', '#666600', '#003700', '#002966', '#3d1466', 'custom-color'];
+        return [
+            '#000000', '#e60000', '#ff9900', '#ffff00', '#008a00', '#0066cc',
+            '#9933ff', '#ffffff', '#facccc', '#ffebcc', '#ffffcc', '#cce8cc',
+            '#cce0f5', '#ebd6ff', '#bbbbbb', '#f06666', '#ffc266', '#ffff66',
+            '#66b966', '#66a3e0', '#c285ff', '#888888', '#a10000', '#b26b00',
+            '#b2b200', '#006100', '#0047b2', '#6b24b2', '#444444', '#5c0000',
+            '#663d00', '#666600', '#003700', '#002966', '#3d1466', 'custom-color'
+        ];
     }
 
     containerToolbar() {
         return [
             ['bold', 'italic', 'underline', 'strike'],
-            [{background: this.colors()}, {color: this.colors()}],
+            [{color: this.colors()}, {background: this.colors()}],
             [{header: '1'}, {header: '2'}, 'blockquote', 'code-block'],
             [{list: 'ordered'}, {list: 'bullet'}, {indent: '-1'}, {indent: '+1'}, {align: []}],
             ['link', 'image', 'video', 'clean'],
         ];
-    }
-
-    setColor(value) {
-        this.quill.format('color', customColor(value));
-    }
-
-    setBackground(value) {
-        this.quill.format('background', customColor(value));
     }
 
     /**
