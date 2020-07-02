@@ -262,6 +262,12 @@ div.mce-fullscreen {
   }
 }
 
+.ql-picker-label {
+    svg {
+        vertical-align: baseline;
+    }
+}
+
 .ql-color, .ql-background {
   .ql-picker-options [data-value=custom-color] {
     background: none !important;
