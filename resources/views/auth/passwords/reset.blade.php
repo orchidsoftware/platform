@@ -12,6 +12,7 @@
           data-layouts--form-button-text="{{ __('Loading...') }}"
           action="{{ route('platform.password.update') }}">
         @csrf
+        <input type="hidden" name="token" value="{{ $token }}">
         <div class="form-group">
             <label>{{ __('E-Mail Address') }}</label>
             {!!  \Orchid\Screen\Fields\Input::make('email')
