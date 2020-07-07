@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 7.12.1 - 2020-07-07
 
 ## Fixed
-- Adding the the toke to reset password form [#1173](https://github.com/orchidsoftware/platform/pull/1173)
+- Adding the toke to reset password form [#1173](https://github.com/orchidsoftware/platform/pull/1173)
 
 ## 7.12.0 - 2020-07-02
 
