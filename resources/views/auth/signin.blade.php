@@ -7,6 +7,7 @@
         ->required()
         ->tabindex(1)
         ->autofocus()
+        ->autocomplete('off')
         ->placeholder(__('Enter your email'))
     !!}
 </div>
