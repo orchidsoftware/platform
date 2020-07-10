@@ -52,16 +52,26 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Login page
+    | Auth pages
     |--------------------------------------------------------------------------
     |
-    | The property controls the display / hide from the page.
-    | The authorization page has basic properties and does not have the
-    | ability to change, use the command to change: `php artisan ui:auth`
+    | The property controls visibility of Orchid's built-in authentication pages.
+    | To customize them use this command: `php artisan ui:auth`
     |
     */
 
     'auth'  => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Reset password
+    |--------------------------------------------------------------------------
+    |
+    | The property controls reset password functionality.
+    |
+    */
+
+    'password_reset'  => true,
 
     /*
     |--------------------------------------------------------------------------

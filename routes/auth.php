@@ -21,11 +21,13 @@ if (config('platform.auth', true)) {
     $this->router->post('login', [LoginController::class, 'login'])->name('login.auth');
     $this->router->get('lock', [LoginController::class, 'resetCookieLockMe'])->name('login.lock');
 
-    // Password Reset Routes...
-    $this->router->get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-    $this->router->post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-    $this->router->get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-    $this->router->post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+    if (config('platform.password_reset', true)) {
+        // Password Reset Routes...
+        $this->router->get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+        $this->router->post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+        $this->router->get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+        $this->router->post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+    }
 
     // Two-Factor Authentication Routes...
     $this->router->get('login/token', [LoginController::class, 'showTokenForm'])->name('login.token');
