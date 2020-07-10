@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Added
 - Configuration option to switch on/off reset password functionality [#1177](https://github.com/orchidsoftware/platform/pull/1177)
 
-## Changed
+### Changed
 - Override `sendResetLinkEmail` method to return success message in all cases [#1176](https://github.com/orchidsoftware/platform/pull/1176)
 
 ## 7.12.1 - 2020-07-07
@@ -30,7 +30,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 7.11.2 - 2020-06-26
 
-## Fixed
+### Fixed
 - PHPDoc return type for `Fieldable::get()` [#1156](https://github.com/orchidsoftware/platform/pull/1156)
 - Delete row for Matrix field does not work in Firefox [#1166](https://github.com/orchidsoftware/platform/issues/1166)
 
@@ -42,18 +42,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 7.11.0 - 2020-06-16
 
-## Added
+### Added
 - Method `->fields()` for `Matrix` [#1147](https://github.com/orchidsoftware/platform/pull/1147)
 
 
 ## 7.10.3 - 2020-06-15
 
-## Fixed
+### Fixed
 - Fixed deleting columns when rolling back
 
 ## 7.10.2 - 2020-06-11
 
-## Fixed
+### Fixed
 - Syntax error in user model stub
 
 ## 7.10.1 - 2020-06-11
@@ -80,7 +80,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Spanish translation [#1130](https://github.com/orchidsoftware/platform/pull/1130)
 
-## Fixed
+### Fixed
 - Remove permission [#1119](https://github.com/orchidsoftware/platform/pull/1119)
 
 ## 7.7.1 - 2020-06-01
