@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 7.13.0 - 2020-07-11
 
-## Added
+### Added
 - Configuration option to switch on/off reset password functionality [#1177](https://github.com/orchidsoftware/platform/pull/1177)
 
 ### Changed
@@ -15,17 +15,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 7.12.1 - 2020-07-07
 
-## Fixed
+### Fixed
 - Adding the toke to reset password form [#1173](https://github.com/orchidsoftware/platform/pull/1173)
 
 ## 7.12.0 - 2020-07-02
 
-## Added
+### Added
 - Added the ability to specify the colors of characters and background  [#1172](https://github.com/orchidsoftware/platform/pull/1172)
 
 ## 7.11.3 - 2020-06-29
 
-## Fixed
+### Fixed
 - Adding a name to the reset password route of auth group [#1169](https://github.com/orchidsoftware/platform/pull/1169)
 
 ## 7.11.2 - 2020-06-26
@@ -36,7 +36,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 7.11.1 - 2020-06-21
 
-## Fixed
+### Fixed
 - Listener updates after execution.
 - Select2 cache destroy [#1155](https://github.com/orchidsoftware/platform/pull/1155)
 
@@ -58,7 +58,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 7.10.1 - 2020-06-11
 
-## Fixed
+### Fixed
 - Error in lang es.json [1142](https://github.com/orchidsoftware/platform/issues/1142)
 
 ## 7.10.0 - 2020-06-10
@@ -72,7 +72,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - German translation [#1131](https://github.com/orchidsoftware/platform/pull/1131)
 
-## Fixed
+### Fixed
 - Default values ​​fixed [#1109](https://github.com/orchidsoftware/platform/pull/1109)
 
 ## 7.8.0 - 2020-06-07
