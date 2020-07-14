@@ -22,6 +22,7 @@ use Orchid\Support\Init;
  * @method Picture title(string $value = null)
  * @method Picture maxFileSize($value = true)
  * @method Picture storage($value = null)
+ * @method Picture groups($value = true)
  */
 class Picture extends Field
 {
@@ -62,6 +63,7 @@ class Picture extends Field
         'value',
         'target',
         'url',
+        'groups',
     ];
 
     /**
