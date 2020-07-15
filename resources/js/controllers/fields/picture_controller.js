@@ -51,6 +51,7 @@ export default class extends Controller {
 
             formData.append('file', event.target.files[0]);
             formData.append('storage', this.data.get('storage'));
+            formData.append('group', this.data.get('groups'));
 
             let element = this.element;
             axios.post(platform.prefix('/systems/files'), formData)
