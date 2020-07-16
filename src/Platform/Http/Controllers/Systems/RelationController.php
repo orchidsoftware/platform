@@ -11,7 +11,6 @@ use Illuminate\Support\Collection as BaseCollection;
 use Illuminate\Support\Facades\Crypt;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Platform\Http\Requests\RelationRequest;
-use Orchid\Support\CryptArray;
 
 class RelationController extends Controller
 {
