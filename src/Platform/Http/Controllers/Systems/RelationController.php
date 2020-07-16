@@ -34,7 +34,7 @@ class RelationController extends Controller
             }
 
             if ($key === 'scope') {
-                return CryptArray::decrypt($item);
+                return Crypt::decrypt($item);
             }
 
             return Crypt::decryptString($item);

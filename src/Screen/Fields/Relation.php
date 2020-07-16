@@ -206,7 +206,7 @@ class Relation extends Field
             'parameters' => $parameters,
         ];
         $this->set('scope', $data);
-        $this->set('relationScope', CryptArray::encrypt($data));
+        $this->set('relationScope', Crypt::encrypt($data));
 
         return $this;
     }
