@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.10.1",
-    "@babel/plugin-transform-block-scoping": "^7.10.1",
+    "@babel/plugin-transform-block-scoping": "^7.10.5",
     "@babel/preset-env": "^7.10.3",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
@@ -18,12 +18,12 @@
     "cross-env": "^7.0.0",
     "dropzone": "^5.7.0",
     "flatpickr": "^4.6.3",
-    "frappe-charts": "^1.4.1",
+    "frappe-charts": "^1.5.2",
     "inputmask": "^5.0.3",
     "jquery": "^3.5.1",
     "laravel-mix": "^5.0.1",
     "leaflet": "^1.6.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "node-sass": "^4.14.1",
     "open-color": "^1.7.0",
     "orchid-icons": "^1.0.10",
@@ -35,7 +35,7 @@
     "sortablejs": "^1.10.2",
     "stimulus": "^1.1.1",
     "stimulus-flatpickr": "^1.2.1",
-    "tinymce": "^4.9.8",
+    "tinymce": "^4.9.11",
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {
