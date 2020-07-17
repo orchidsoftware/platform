@@ -19,11 +19,4 @@ interface Groupable extends Fieldable
      * @return Groupable
      */
     public function setGroup(array $group = []): self;
-
-    /**
-     * @param string $name
-     *
-     * @return $this
-     */
-    public function form(string $name): self;
 }
