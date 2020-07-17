@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Attribute `group` for picture field [#118](https://github.com/orchidsoftware/platform/pull/1180)
 
+### Fixed
+- Inputs that in group don't serialize in filter [#1181](https://github.com/orchidsoftware/platform/issues/1181)
+
 ## 7.13.0 - 2020-07-11
 
 ### Added
