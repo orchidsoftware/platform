@@ -25,5 +25,5 @@ interface Groupable extends Fieldable
      *
      * @return $this
      */
-    public function form(string $name): self ;
+    public function form(string $name): self;
 }
