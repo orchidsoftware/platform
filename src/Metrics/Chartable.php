@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 trait Chartable
 {
     /**
-     * Counts the values for model at the range and previous range
+     * Counts the values for model at the range and previous range.
      *
      * @param Builder $builder
      * @param string  $groupColumn
@@ -28,7 +28,7 @@ trait Chartable
     }
 
     /**
-     * Get total models grouped by `created_at` day
+     * Get total models grouped by `created_at` day.
      *
      * @param Builder $builder
      * @param string  $dateColumn
@@ -53,7 +53,6 @@ trait Chartable
         $days = $startDate->diffInDays($stopDate) + 1;
 
         return TimeCollection::times($days, function () use ($startDate, $query) {
-
             $found = $query->firstWhere(
                 'date',
                 $startDate->startOfDay()->toDateString()
@@ -61,7 +60,7 @@ trait Chartable
 
             $result = [
                 'date'  => $startDate->toDateString(),
-                'value' => (int)($found ? $found->value : 0),
+                'value' => (int) ($found ? $found->value : 0),
                 'label' => $found ? $found->value : 0,
             ];
 

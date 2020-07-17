@@ -33,7 +33,7 @@ class GroupCollection extends Collection
         return $this
             ->map(static function ($item) use ($name) {
                 return $item->label === $name
-                    ? (int)$item->value
+                    ? (int) $item->value
                     : 0;
             })
             ->toArray();

@@ -139,7 +139,7 @@ abstract class Chart extends Base
      */
     public function build(Repository $repository)
     {
-        if (!$this->checkPermission($this, $repository)) {
+        if (! $this->checkPermission($this, $repository)) {
             return;
         }
 
