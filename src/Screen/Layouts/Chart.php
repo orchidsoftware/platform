@@ -115,7 +115,7 @@ abstract class Chart extends Base
      * @var array
      */
     protected $lineOptions = [
-        'regionFill' => 0,
+        'regionFill' => 1,
         'hideDots'   => 0,
         'hideLine'   => 0,
         'heatline'   => 0,
@@ -128,8 +128,8 @@ abstract class Chart extends Base
      * @var array
      */
     protected $axisOptions = [
-        'xIsSeries'  => false,
-        'xAxisMode'  => 'span', //'tick'
+        'xIsSeries' => true,
+        'xAxisMode' => 'span', //'tick'
     ];
 
     /**
@@ -139,16 +139,24 @@ abstract class Chart extends Base
      */
     public function build(Repository $repository)
     {
-        if (! $this->checkPermission($this, $repository)) {
+        if (!$this->checkPermission($this, $repository)) {
             return;
         }
+
+        $labels = collect($repository->getContent($this->target))
+            ->map(function ($item) {
+                return $item['labels'] ?? [];
+            })
+            ->flatten()
+            ->unique()
+            ->toJson();
 
         return view($this->template, [
             'title'            => $this->title,
             'slug'             => Str::slug($this->title),
             'type'             => $this->type,
             'height'           => $this->height,
-            'labels'           => json_encode(collect($this->labels)),
+            'labels'           => $labels, //json_encode(collect($this->labels)),
             'data'             => json_encode($repository->getContent($this->target)),
             'colors'           => json_encode($this->colors),
             'maxSlices'        => json_encode($this->maxSlices),
