@@ -58,11 +58,28 @@ abstract class Base implements JsonSerializable
     protected $variables = [];
 
     /**
+     * @var array
+     */
+    protected $attributes = [];
+
+    /**
      * @param Repository $repository
      *
      * @return mixed
      */
     abstract public function build(Repository $repository);
+
+    /**
+     * @param  array  $attributes
+     *
+     * @return self
+     */
+    public function attributes(array $attributes = []): self
+    {
+        $this->attributes = $attributes;
+
+        return $this;
+    }
 
     /**
      * @param string $method
@@ -119,6 +136,7 @@ abstract class Base implements JsonSerializable
             ->all();
 
         $variables = array_merge($this->variables, [
+            'attributes'          => $this->attributes,
             'manyForms'           => $build,
             'templateSlug'        => $this->getSlug(),
             'templateAsync'       => $this->asyncNext,
