@@ -49,9 +49,3 @@ If you would like to support development by making a donation you can do so [her
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
-
----
-
-> Website [orchid.software](https://orchid.software) &nbsp;&middot;&nbsp;
-> GitHub [@tabuna](https://github.com/tabuna) &nbsp;&middot;&nbsp;
-> Twitter [@orchid_platform](https://twitter.com/orchid_platform)
