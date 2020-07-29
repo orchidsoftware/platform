@@ -10,7 +10,6 @@ use Orchid\Tests\TestUnitCase;
 
 class MetricsTest extends TestUnitCase
 {
-
     public function testGroupCount(): void
     {
         factory(User::class, 5)->create([
@@ -37,7 +36,6 @@ class MetricsTest extends TestUnitCase
             ],
         ], $group->toChart());
 
-
         $namedLabel = $group->toChart(static function (bool $title) {
             return $title ? 'Enabled' : 'Disabled';
         });
@@ -54,9 +52,6 @@ class MetricsTest extends TestUnitCase
         ], $namedLabel);
     }
 
-    /**
-     *
-     */
     public function testPeriod(): void
     {
         $current = Carbon::now();
