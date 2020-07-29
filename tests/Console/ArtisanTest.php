@@ -77,6 +77,8 @@ class ArtisanTest extends TestConsoleCase
             ->expectsQuestion('What is the password?', 'testConsoleCreateUser')
             ->expectsOutput('User created successfully.');
 
+        $this->assertDatabaseCount('users', 1);
+
         $this->artisan('orchid:admin')
             ->expectsQuestion('What is your name?', 'testConsoleCreateUser')
             ->expectsQuestion('What is your email?', 'testConsoleCreateUser@console.loc')

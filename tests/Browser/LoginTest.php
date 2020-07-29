@@ -12,6 +12,8 @@ class LoginTest extends TestBrowserCase
     public function testLogout(): void
     {
         $this->browse(function (Browser $browser) {
+            $user = $this->createAdminUser();
+
             // login
             $browser
                 ->visitRoute('platform.login')
@@ -25,8 +27,8 @@ class LoginTest extends TestBrowserCase
                 ->assertSee('The details you entered did not match our records. Please double-check and try again.')
 
                 // valid login
-                ->type('email', 'admin@admin.com')
-                ->type('password', 'password')
+                ->type('email', $user->email)
+                ->type('password', 'secret')
                 ->press('Login')
                 ->waitForLocation('/dashboard/main')
                 ->assertSee('Example screen');
