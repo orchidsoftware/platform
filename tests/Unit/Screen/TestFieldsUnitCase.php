@@ -29,7 +29,7 @@ class TestFieldsUnitCase extends TestUnitCase
 
             return $field->render()->withErrors($validator)->render();
         } catch (\Throwable $throwable) {
-            die($throwable->getMessage());
+            exit($throwable->getMessage());
         }
     }
 

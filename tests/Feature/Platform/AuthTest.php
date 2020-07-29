@@ -38,7 +38,7 @@ class AuthTest extends TestFeatureCase
     {
         $response = $this->post(route('platform.login.auth'), [
             'email'    => $this->createAdminUser()->email,
-            'password' => 'secret',
+            'password' => 'password',
             'remember' => 'on',
         ]);
 

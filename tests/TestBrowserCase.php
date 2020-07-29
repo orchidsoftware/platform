@@ -50,12 +50,14 @@ abstract class TestBrowserCase extends TestCase
     }
 
     /**
+     * @param array $attributes
+     *
      * @return User
      */
-    protected function createAdminUser()
+    protected function createAdminUser(array $attributes = [])
     {
         if ($this->user === null) {
-            $this->user = factory(User::class)->create();
+            $this->user = factory(User::class)->create($attributes);
         }
 
         return $this->user;
