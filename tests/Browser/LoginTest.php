@@ -13,7 +13,7 @@ class LoginTest extends TestBrowserCase
     {
         $this->browse(function (Browser $browser) {
             $user = $this->createAdminUser([
-                'password' => bcrypt('secret')
+                'password' => bcrypt('secret'),
             ]);
 
             // login
