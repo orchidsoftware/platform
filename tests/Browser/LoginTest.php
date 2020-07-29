@@ -12,9 +12,7 @@ class LoginTest extends TestBrowserCase
     public function testLogout(): void
     {
         $this->browse(function (Browser $browser) {
-            $user = $this->createAdminUser([
-                'password' => bcrypt('secret')
-            ]);
+            $user = $this->createAdminUser();
 
             // login
             $browser
@@ -30,7 +28,7 @@ class LoginTest extends TestBrowserCase
 
                 // valid login
                 ->type('email', $user->email)
-                ->type('password', 'secret')
+                ->type('password', 'password')
                 ->press('Login')
                 ->waitForLocation('/dashboard/main')
                 ->assertSee('Example screen');

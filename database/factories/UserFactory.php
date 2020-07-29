@@ -3,7 +3,7 @@
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 use Orchid\Platform\Models\User as User;
-
+use Illuminate\Support\Facades\Hash;
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -73,7 +73,7 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         'name'           => $faker->firstName,
         'email'          => $faker->unique()->safeEmail,
-        'password'       => $password ?: bcrypt('secret'),
+        'password'       => Hash::make($password ?? 'password'),
         'remember_token' => Str::random(10),
         'last_login'     => $faker->dateTimeBetween('-6 days', 'this week'),
         'permissions'    => $roles['admin'],
