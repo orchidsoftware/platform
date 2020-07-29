@@ -33,7 +33,7 @@
     "ext-json": "*",
     "bacon/bacon-qr-code": "^2.0",
     "davejamesmiller/laravel-breadcrumbs": "^5.3",
-    "laravel/framework": "^v7.10.3",
+    "laravel/framework": "^7.0",
     "laravel/scout": "^8.0",
     "laravel/ui": "^2.0",
     "myclabs/php-enum": "^1.7",

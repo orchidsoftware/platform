@@ -12,7 +12,9 @@ class LoginTest extends TestBrowserCase
     public function testLogout(): void
     {
         $this->browse(function (Browser $browser) {
-            $user = $this->createAdminUser();
+            $user = $this->createAdminUser([
+                'password' => bcrypt('secret')
+            ]);
 
             // login
             $browser
