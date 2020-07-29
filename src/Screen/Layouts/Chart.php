@@ -46,6 +46,7 @@ abstract class Chart extends Base
      * Set the labels for each possible field value.
      *
      * @deprecated
+     *
      * @var array
      */
     protected $labels = [];
@@ -144,7 +145,7 @@ abstract class Chart extends Base
             return;
         }
 
-        $labels = !empty($this->labels)
+        $labels = ! empty($this->labels)
             ? json_encode(collect($this->labels))
             : collect($repository->getContent($this->target))
                 ->map(function ($item) {
@@ -153,7 +154,6 @@ abstract class Chart extends Base
                 ->flatten()
                 ->unique()
                 ->toJson(JSON_NUMERIC_CHECK);
-
 
         return view($this->template, [
             'title'            => $this->title,

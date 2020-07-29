@@ -14,12 +14,12 @@ class GroupCollection extends Collection
     public function toChart(\Closure $closure = null): array
     {
         $closure = $closure ?? static function ($label) {
-                return $label;
-            };
+            return $label;
+        };
 
         return $this
             ->pluck('label')
-            ->map(function (string $name) use ($closure){
+            ->map(function (string $name) use ($closure) {
                 return [
                     'labels' => $this->pluck('label')->map($closure)->toArray(),
                     'values' => $this->getChartsValues($name),
@@ -38,7 +38,7 @@ class GroupCollection extends Collection
         return $this
             ->map(static function ($item) use ($name) {
                 return $item->label === $name
-                    ? (int)$item->value
+                    ? (int) $item->value
                     : 0;
             })
             ->toArray();
