@@ -1,9 +1,10 @@
 <?php
 
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Orchid\Platform\Models\User as User;
-use Illuminate\Support\Facades\Hash;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
