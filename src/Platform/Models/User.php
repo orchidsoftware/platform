@@ -16,10 +16,11 @@ use Orchid\Filters\Filterable;
 use Orchid\Platform\Notifications\ResetPassword;
 use Orchid\Screen\AsSource;
 use Orchid\Support\Facades\Dashboard;
+use Orchid\Metrics\Chartable;
 
 class User extends Authenticatable implements UserInterface
 {
-    use Notifiable, UserAccess, AsSource, Filterable;
+    use Notifiable, UserAccess, AsSource, Filterable, Chartable;
 
     /**
      * The database table used by the model.

@@ -9,10 +9,11 @@ use Orchid\Access\RoleAccess;
 use Orchid\Access\RoleInterface;
 use Orchid\Filters\Filterable;
 use Orchid\Screen\AsSource;
+use Orchid\Metrics\Chartable;
 
 class Role extends Model implements RoleInterface
 {
-    use RoleAccess, Filterable, AsSource;
+    use RoleAccess, Filterable, AsSource, Chartable;
 
     /**
      * @var string

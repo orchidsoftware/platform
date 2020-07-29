@@ -48,11 +48,13 @@ trait Environment
             '--class' => OrchidDatabaseSeeder::class,
         ]);
 
+        /*
         $this->artisan('orchid:admin', [
             'name'     => 'admin',
             'email'    => 'admin@admin.com',
             'password' => 'password',
         ]);
+        */
     }
 
     /**
