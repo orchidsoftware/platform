@@ -18,6 +18,7 @@ class GroupCollection extends Collection
         };
 
         return $this
+            ->sortByDesc('value')
             ->pluck('label')
             ->map(function (string $name) use ($closure) {
                 return [
