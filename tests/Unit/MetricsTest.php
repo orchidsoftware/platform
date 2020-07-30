@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Carbon\Carbon;
+use Orchid\Metrics\GroupCollection;
 use Orchid\Platform\Models\User;
 use Orchid\Tests\TestUnitCase;
 
@@ -20,10 +21,11 @@ class MetricsTest extends TestUnitCase
             'uses_two_factor_auth' => false,
         ]);
 
+        /** @var GroupCollection $group */
         $group = User::countForGroup('uses_two_factor_auth');
 
-        $this->assertEquals(8, $group->pluck('value')->first());
-        $this->assertEquals(5, $group->pluck('value')->last());
+        $this->assertContains(8, $group->pluck('value')->toArray());
+        $this->assertContains(5, $group->pluck('value')->toArray());
 
         $this->assertEquals([
             [
