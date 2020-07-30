@@ -28,19 +28,6 @@ class ChartPieExample extends Chart
     protected $type = 'pie';
 
     /**
-     * @var array
-     */
-    protected $labels = [
-        '12am-3am',
-        '3am-6am',
-        '6am-9am',
-        '9am-12pm',
-        '12pm-3pm',
-        '3pm-6pm',
-        '6pm-9pm',
-    ];
-
-    /**
      * @var string
      */
     protected $target = 'charts';
