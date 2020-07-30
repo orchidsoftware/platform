@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 use Orchid\Access\RoleAccess;
 use Orchid\Access\RoleInterface;
 use Orchid\Filters\Filterable;
+use Orchid\Metrics\Chartable;
 use Orchid\Screen\AsSource;
 
 class Role extends Model implements RoleInterface
 {
-    use RoleAccess, Filterable, AsSource;
+    use RoleAccess, Filterable, AsSource, Chartable;
 
     /**
      * @var string
