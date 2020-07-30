@@ -7,10 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 7.15.0 - 2020-07-30
 
 ### Added
-- Added `Chartable` trait
+- Added `Chartable` trait [#1179](https://github.com/orchidsoftware/platform/issues/1179)
 
 ### Deprecated
-- Property `labels` in `Chart`
+- Property `labels` in `Chart` [#1179](https://github.com/orchidsoftware/platform/issues/1179)
 
 ## 7.14.1 - 2020-07-27
 
