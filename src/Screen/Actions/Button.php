@@ -65,7 +65,7 @@ class Button extends Action
 
     /**
      * Sets the URL form action to the address.
-     * Always sending by the POST method
+     * Always sending by the POST method.
      *
      * @param string $url
      *
