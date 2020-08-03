@@ -95,7 +95,6 @@ class ButtonTest extends TestFieldsUnitCase
             $view
         );
 
-
         $buttonForLink = Button::make('Example')
             ->action('http://example.com');
 
