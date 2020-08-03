@@ -62,11 +62,10 @@ class DropDown extends Action
     }
 
     /**
-     * @param Repository $repository
-     *
-     * @throws \Throwable
+     * @param Repository|null $repository
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @throws \Throwable
      */
     public function build(Repository $repository = null)
     {

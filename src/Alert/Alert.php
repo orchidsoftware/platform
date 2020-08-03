@@ -54,8 +54,8 @@ class Alert
     /**
      * Flash a general message.
      *
-     * @param string $message
-     * @param Color  $level
+     * @param string     $message
+     * @param Color|null $level
      *
      * @return Alert
      */
@@ -114,13 +114,12 @@ class Alert
     /**
      * Flash a view message.
      *
-     * @param string $template
-     * @param Color  $level
-     * @param array  $data
-     *
-     * @throws \Throwable
+     * @param string     $template
+     * @param Color|null $level
+     * @param array      $data
      *
      * @return Alert
+     * @throws \Throwable
      */
     public function view(string $template, Color $level = null, array $data = []): self
     {

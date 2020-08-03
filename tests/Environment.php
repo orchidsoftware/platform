@@ -52,7 +52,7 @@ trait Environment
     /**
      * @param \Illuminate\Foundation\Application $app
      */
-    protected function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app): void
     {
         $config = config();
 
@@ -84,7 +84,7 @@ trait Environment
      *
      * @return array
      */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             FoundationServiceProvider::class,
@@ -98,7 +98,7 @@ trait Environment
      *
      * @return array
      */
-    protected function getPackageAliases($app)
+    protected function getPackageAliases($app): array
     {
         return [
             'Alert'       => Alert::class,

@@ -51,16 +51,16 @@ class Builder
      * Builder constructor.
      *
      * @param Fieldable[] $fields
-     * @param Repository  $data
+     * @param Repository|null  $data
      */
-    public function __construct(array $fields, $data = null)
+    public function __construct(array $fields, Repository $data = null)
     {
         $this->fields = $fields;
         $this->data = $data ?? new Repository();
     }
 
     /**
-     * @param string $language
+     * @param string|null $language
      *
      * @return $this
      */
@@ -72,7 +72,7 @@ class Builder
     }
 
     /**
-     * @param string $prefix
+     * @param string|null $prefix
      *
      * @return $this
      */

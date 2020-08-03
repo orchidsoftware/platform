@@ -50,8 +50,8 @@ class File
      * File constructor.
      *
      * @param UploadedFile $file
-     * @param string       $disk
-     * @param string       $group
+     * @param string|null  $disk
+     * @param string|null  $group
      */
     public function __construct(UploadedFile $file, string $disk = null, string $group = null)
     {

@@ -329,7 +329,7 @@ class Field implements Fieldable
 
         $class = $this->get('class');
 
-        if (is_null($class)) {
+        if ($class === null) {
             $this->set('class', ' is-invalid');
 
             return $this;

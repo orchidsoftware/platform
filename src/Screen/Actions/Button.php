@@ -17,6 +17,7 @@ use Orchid\Screen\Action;
  * @method Button parameters(array|object $name)
  * @method Button novalidate(bool $novalidate = true)
  * @method Button confirm(string $confirm = true)
+ * @method Button action(string $url)
  */
 class Button extends Action
 {
@@ -53,28 +54,17 @@ class Button extends Action
     {
         return (new static())
             ->name($name)
-            ->addBeforeRender(function () use ($name) {
+            ->addBeforeRender(function () {
+
+                if ($this->get('action') !== null) {
+                    return;
+                }
+
                 $url = url()->current();
                 $query = http_build_query($this->get('parameters'));
 
                 $action = rtrim("{$url}/{$this->get('method')}?{$query}", '/?');
                 $this->set('action', $action);
-                $this->set('name', $name);
             });
-    }
-
-    /**
-     * Sets the URL form action to the address.
-     * Always sending by the POST method.
-     *
-     * @param string $url
-     *
-     * @return Button
-     */
-    public function action(string $url): self
-    {
-        return $this->addBeforeRender(function () use ($url) {
-            $this->set('action', $url);
-        });
     }
 }

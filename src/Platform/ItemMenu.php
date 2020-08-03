@@ -246,8 +246,8 @@ class ItemMenu
     }
 
     /**
-     * @param Closure $badge
-     * @param Color   $color
+     * @param Closure    $badge
+     * @param Color|null $color
      *
      * @return ItemMenu
      */

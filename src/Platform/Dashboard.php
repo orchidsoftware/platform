@@ -240,7 +240,7 @@ class Dashboard
      */
     public function getResource($key = null)
     {
-        if (is_null($key)) {
+        if ($key === null) {
             return $this->resources;
         }
 

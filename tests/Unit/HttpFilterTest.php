@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
  */
 class HttpFilterTest extends TestUnitCase
 {
-    public function testHttpIsSort()
+    public function testHttpIsSort(): void
     {
         $request = new Request([
             'sort' => 'foobar',
@@ -32,7 +32,7 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringContainsString('order by "foobar" asc', $sql);
     }
 
-    public function testHttpFilterInteger()
+    public function testHttpFilterInteger(): void
     {
         $request = new Request([
             'filter' => [
@@ -42,14 +42,14 @@ class HttpFilterTest extends TestUnitCase
 
         $filter = new HttpFilter($request);
 
-        $this->assertEquals($filter->getFilter('foo'), 123);
+        $this->assertEquals(123, $filter->getFilter('foo'));
 
         $sql = $this->getModelBuilder($filter)->toSql();
 
         $this->assertStringContainsString('"foo" = ?', $sql);
     }
 
-    public function testHttpFilterLike()
+    public function testHttpFilterLike(): void
     {
         $request = new Request([
             'filter' => [
@@ -60,8 +60,8 @@ class HttpFilterTest extends TestUnitCase
 
         $filter = new HttpFilter($request);
 
-        $this->assertEquals($filter->getFilter('foo'), 'bar');
-        $this->assertEquals($filter->getFilter('baz'), 'qux');
+        $this->assertEquals('bar', $filter->getFilter('foo'));
+        $this->assertEquals('qux', $filter->getFilter('baz'));
 
         $sql = $this->getModelBuilder($filter)->toSql();
 
@@ -69,7 +69,7 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringContainsString('"baz" like ?', $sql);
     }
 
-    public function testHttpFilterArray()
+    public function testHttpFilterArray(): void
     {
         $request = new Request([
             'filter' => [
@@ -79,17 +79,17 @@ class HttpFilterTest extends TestUnitCase
 
         $filter = new HttpFilter($request);
 
-        $this->assertEquals($filter->getFilter('foo'), [
+        $this->assertEquals([
             'bar',
             'qux',
-        ]);
+        ], $filter->getFilter('foo'));
 
         $sql = $this->getModelBuilder($filter)->toSql();
 
         $this->assertStringContainsString('"foo" in (?, ?)', $sql);
     }
 
-    public function testHttpUnknownAttributes()
+    public function testHttpUnknownAttributes(): void
     {
         $request = new Request([
             'sort'   => 'unknown',
@@ -106,7 +106,7 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringNotContainsStringIgnoringCase('"unknown" like ?', $sql);
     }
 
-    public function testHttpSortDESC()
+    public function testHttpSortDESC(): void
     {
         $request = new Request([
             'sort' => 'foobar',
@@ -114,10 +114,10 @@ class HttpFilterTest extends TestUnitCase
 
         $filter = new HttpFilter($request);
 
-        $this->assertEquals($filter->getSort('foo'), 'desc');
+        $this->assertEquals('desc', $filter->getSort('foo'));
     }
 
-    public function testHttpJSONFilter()
+    public function testHttpJSONFilter(): void
     {
         $request = new Request([
             'filter' => [
@@ -132,7 +132,7 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringContainsString("json_extract(\"content\", '$.\"ru\".\"name\"') like ?", $sql);
     }
 
-    public function testHttpJSONSort()
+    public function testHttpJSONSort(): void
     {
         $request = new Request([
             'sort' => 'content.ru.name',
@@ -145,7 +145,7 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringContainsString("order by json_extract(\"content\", '$.\"ru\".\"name\"') asc", $sql);
     }
 
-    public function testHttpJSONSortDesc()
+    public function testHttpJSONSortDesc(): void
     {
         $request = new Request([
             'sort' => '-content.ru.name',
@@ -158,13 +158,13 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringContainsString("order by json_extract(\"content\", '$.\"ru\".\"name\"') desc", $sql);
     }
 
-    public function testHttpSanitize()
+    public function testHttpSanitize(): void
     {
-        $this->assertEquals(HttpFilter::sanitize('content->name'), 'content->name');
-        $this->assertEquals(HttpFilter::sanitize('email'), 'email');
+        $this->assertEquals('content->name', HttpFilter::sanitize('content->name'));
+        $this->assertEquals('email', HttpFilter::sanitize('email'));
     }
 
-    public function testHttpInjectedSQL()
+    public function testHttpInjectedSQL(): void
     {
         $this->expectException(HttpException::class);
 
@@ -176,7 +176,7 @@ class HttpFilterTest extends TestUnitCase
      *
      * @return Builder
      */
-    private function getModelBuilder(HttpFilter $filter)
+    private function getModelBuilder(HttpFilter $filter): Builder
     {
         $model = new class extends Model {
             use Filterable;

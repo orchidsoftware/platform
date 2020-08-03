@@ -11,7 +11,7 @@ use Orchid\Tests\TestUnitCase;
 
 class CardTest extends TestUnitCase
 {
-    public function testQueryStringBind()
+    public function testQueryStringBind(): void
     {
         $repository = new Repository([
             'card' => $this->getCardClass(),
@@ -72,7 +72,7 @@ class CardTest extends TestUnitCase
         };
     }
 
-    public function testQueryParams()
+    public function testQueryParams(): void
     {
         $layout = new Card($this->getCardClass(), [
             Link::make('Website')

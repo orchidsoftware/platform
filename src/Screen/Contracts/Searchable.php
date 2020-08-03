@@ -16,7 +16,7 @@ interface Searchable
     public function perSearchShow(): int;
 
     /**
-     * @param string $query
+     * @param string|null $query
      *
      * @return Builder
      */
