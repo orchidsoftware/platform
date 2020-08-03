@@ -4,11 +4,11 @@ namespace App\Orchid\Screens\Examples;
 
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
-use Orchid\Screen\Field;
 use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Cropper;
 use Orchid\Screen\Fields\DateRange;
 use Orchid\Screen\Fields\DateTimer;
+use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Map;
 use Orchid\Screen\Fields\Matrix;
@@ -77,7 +77,7 @@ class ExampleFieldsAdvancedScreen extends Screen
 
             Layout::rows([
 
-                Field::group([
+                Group::make([
                     Input::make('phone')
                         ->mask('(999) 999-9999')
                         ->title('Phone')
@@ -99,7 +99,7 @@ class ExampleFieldsAdvancedScreen extends Screen
                         ]),
                 ]),
 
-                Field::group([
+                Group::make([
 
                     Input::make('credit_card')
                         ->mask('9999-9999-9999-9999')
@@ -125,7 +125,7 @@ class ExampleFieldsAdvancedScreen extends Screen
 
             Layout::rows([
 
-                Field::group([
+                Group::make([
                     DateTimer::make('open')
                         ->title('Opening date')
                         ->help('The opening event will take place'),
@@ -140,7 +140,7 @@ class ExampleFieldsAdvancedScreen extends Screen
                         ->enableTime(),
                 ]),
 
-                Field::group([
+                Group::make([
                     DateTimer::make('format24hr')
                         ->title('Format 24hr')
                         ->enableTime()
@@ -174,7 +174,7 @@ class ExampleFieldsAdvancedScreen extends Screen
                 ])->title('Select'),
                 Layout::rows([
 
-                    Field::group([
+                    Group::make([
                         CheckBox::make('free-checkbox')
                             ->sendTrueOrFalse()
                             ->title('Free checkbox')
