@@ -57,9 +57,24 @@ class Button extends Action
                 $url = url()->current();
                 $query = http_build_query($this->get('parameters'));
 
-                $action = "{$url}/{$this->get('method')}?{$query}";
+                $action = rtrim("{$url}/{$this->get('method')}?{$query}", '/?');
                 $this->set('action', $action);
                 $this->set('name', $name);
             });
+    }
+
+    /**
+     * Sets the URL form action to the address.
+     * Always sending by the POST method
+     *
+     * @param string $url
+     *
+     * @return Button
+     */
+    public function action(string $url): self
+    {
+        return $this->addBeforeRender(function () use ($url) {
+            $this->set('action', $url);
+        });
     }
 }
