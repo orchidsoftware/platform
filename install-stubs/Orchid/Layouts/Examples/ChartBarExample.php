@@ -14,11 +14,6 @@ class ChartBarExample extends Chart
     protected $title = 'Bar Chart';
 
     /**
-     * @var int
-     */
-    protected $height = 250;
-
-    /**
      * Available options:
      * 'bar', 'line',
      * 'pie', 'percentage'.
