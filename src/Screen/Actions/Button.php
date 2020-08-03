@@ -55,7 +55,6 @@ class Button extends Action
         return (new static())
             ->name($name)
             ->addBeforeRender(function () {
-
                 if ($this->get('action') !== null) {
                     return;
                 }

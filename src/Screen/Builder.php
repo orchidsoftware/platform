@@ -50,8 +50,8 @@ class Builder
     /**
      * Builder constructor.
      *
-     * @param Fieldable[] $fields
-     * @param Repository|null  $data
+     * @param Fieldable[]     $fields
+     * @param Repository|null $data
      */
     public function __construct(array $fields, Repository $data = null)
     {
