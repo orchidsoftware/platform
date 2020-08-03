@@ -118,8 +118,9 @@ class Alert
      * @param Color|null $level
      * @param array      $data
      *
-     * @return Alert
      * @throws \Throwable
+     *
+     * @return Alert
      */
     public function view(string $template, Color $level = null, array $data = []): self
     {
