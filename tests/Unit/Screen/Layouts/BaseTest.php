@@ -71,6 +71,6 @@ class BaseTest extends TestUnitCase
             'show' => true,
         ]));
 
-        $this->assertEquals($render, 'display');
+        $this->assertEquals('display', $render);
     }
 }

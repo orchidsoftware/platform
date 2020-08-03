@@ -113,7 +113,7 @@ class AttachmentTest extends TestUnitCase
         $upload = new Attachment();
 
         $this->assertNull($upload->url());
-        $this->assertEquals($upload->url('default'), 'default');
+        $this->assertEquals('default', $upload->url('default'));
     }
 
     public function testAttachmentMimeType(): void
@@ -122,7 +122,7 @@ class AttachmentTest extends TestUnitCase
         $attachment = new File($file, $this->disk);
         $upload = $attachment->load();
 
-        $this->assertEquals($upload->getMimeType(), 'image/jpeg');
+        $this->assertEquals('image/jpeg', $upload->getMimeType());
     }
 
     public function testAttachmentDelete(): void
@@ -156,7 +156,7 @@ class AttachmentTest extends TestUnitCase
         $file = UploadedFile::fake()->create('duplicate.gyhkjfewfowejg');
         $upload = (new File($file, $this->disk))->load();
 
-        $this->assertEquals($upload->getMimeType(), 'unknown');
+        $this->assertEquals('unknown', $upload->getMimeType());
     }
 
     public function testUnknownExtensionAttachmentUpload(): void
@@ -164,7 +164,7 @@ class AttachmentTest extends TestUnitCase
         $file = UploadedFile::fake()->create('unknown-file');
         $upload = (new File($file, $this->disk))->load();
 
-        $this->assertEquals($upload->extension, 'bin');
+        $this->assertEquals('bin', $upload->extension);
     }
 
     public function testAttachmentTitleAttribute(): void

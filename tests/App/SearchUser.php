@@ -17,7 +17,7 @@ class SearchUser extends Authenticatable
      *
      * @return array
      */
-    public function toSearchableArray()
+    public function toSearchableArray(): array
     {
         return $this->only([
             'id',

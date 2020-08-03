@@ -14,7 +14,7 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
  */
 class DropDownTest extends TestFieldsUnitCase
 {
-    public function testDropDownInstance()
+    public function testDropDownInstance(): void
     {
         $dropDown = DropDown::make('About');
         $view = self::renderField($dropDown);
@@ -22,7 +22,7 @@ class DropDownTest extends TestFieldsUnitCase
         $this->assertStringContainsString('About', $view);
     }
 
-    public function testDropDownTitle()
+    public function testDropDownTitle(): void
     {
         $dropDown = DropDown::make('About')
             ->title('Please click to open');
@@ -32,7 +32,7 @@ class DropDownTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Please click to open', $view);
     }
 
-    public function testDropDownListTitle()
+    public function testDropDownListTitle(): void
     {
         $view = DropDown::make('About')
             ->title('Please click to open')

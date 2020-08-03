@@ -11,7 +11,7 @@ use Orchid\Tests\TestUnitCase;
 
 class UserTest extends TestUnitCase
 {
-    public function testHasCorrectInstance()
+    public function testHasCorrectInstance(): void
     {
         $user = factory(User::class)->create();
 
@@ -19,7 +19,7 @@ class UserTest extends TestUnitCase
         $this->assertInstanceOf(User::class, $user);
     }
 
-    public function testCanGetNameTitle()
+    public function testCanGetNameTitle(): void
     {
         $user = $this->createUser();
 
@@ -29,19 +29,19 @@ class UserTest extends TestUnitCase
     /**
      * @return User
      */
-    private function createUser()
+    private function createUser(): User
     {
         return factory(User::class)->create();
     }
 
-    public function testCanGetSubTitle()
+    public function testCanGetSubTitle(): void
     {
         $user = $this->createUser();
 
         $this->assertEquals('Regular user', $user->presenter()->subTitle());
     }
 
-    public function testLoginAs()
+    public function testLoginAs(): void
     {
         $user = $this->createUser();
         $userSwitch = $this->createUser();

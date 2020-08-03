@@ -26,7 +26,7 @@ class MenuTest extends TestUnitCase
         );
 
         $this->assertNotNull($menu->render('Main'));
-        $this->assertEquals($menu->container->count(), 1);
+        $this->assertEquals(1, $menu->container->count());
 
         $menu->add('Test', ItemMenu::label('Users')
             ->slug('users')

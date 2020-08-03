@@ -21,12 +21,12 @@ class TaskCompleted extends Notification
      *
      * @return array
      */
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return [DashboardChannel::class];
     }
 
-    public function toDashboard($notifiable)
+    public function toDashboard($notifiable): DashboardMessage
     {
         return (new DashboardMessage())
             ->title('Task Completed')
@@ -42,7 +42,7 @@ class TaskCompleted extends Notification
      *
      * @return array
      */
-    public function toArray($notifiable)
+    public function toArray($notifiable): array
     {
         return [
             //

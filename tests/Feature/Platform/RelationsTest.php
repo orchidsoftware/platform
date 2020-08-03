@@ -44,7 +44,7 @@ class RelationsTest extends TestFeatureCase
      *
      * @throws \Throwable
      */
-    public function testScopeModel(string $scope)
+    public function testScopeModel(string $scope): void
     {
         $response = $this->getScope($scope);
         $json = $this->users->pluck('email', 'id')->toArray();
@@ -59,7 +59,7 @@ class RelationsTest extends TestFeatureCase
      *
      * @throws \Throwable
      */
-    public function testAppendModel(string $scope)
+    public function testAppendModel(string $scope): void
     {
         $response = $this->getScope($scope, 'full');
 

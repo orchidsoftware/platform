@@ -78,7 +78,7 @@ class ModalValidationScreen extends Screen
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function showMessage(Request $request)
+    public function showMessage(Request $request): \Illuminate\Http\RedirectResponse
     {
         $request->validate([
             'message' => 'required|string|min:10',

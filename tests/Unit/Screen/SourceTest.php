@@ -59,14 +59,14 @@ class SourceTest extends TestUnitCase
         $this->model = $model;
     }
 
-    public function testGetSimpleAttribute()
+    public function testGetSimpleAttribute(): void
     {
         $this->assertEquals(8, $this->model->getContent('id'));
         $this->assertEquals('Alexandr Chernyaev', $this->model->getContent('name'));
         $this->assertEquals('red', $this->model->getContent('color'));
     }
 
-    public function testGetArrayAttribute()
+    public function testGetArrayAttribute(): void
     {
         $this->assertIsArray($this->model->getContent('options.country'));
         $this->assertContains('Russia', $this->model->getContent('options.country'));
@@ -75,7 +75,7 @@ class SourceTest extends TestUnitCase
         $this->assertTrue($this->model->getContent('options.skills.php'));
     }
 
-    public function testGetRelation()
+    public function testGetRelation(): void
     {
         $this->assertIsInt($this->model->getContent('many.three'));
         $this->assertEquals(84, $this->model->getContent('many.three'));

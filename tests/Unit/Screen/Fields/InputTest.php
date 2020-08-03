@@ -12,7 +12,7 @@ class InputTest extends TestFieldsUnitCase
     /**
      * @throws \Throwable
      */
-    public function testShowHr()
+    public function testShowHr(): void
     {
         $input = Input::make('inputFieldName');
         $hr = '<div class="line line-dashed border-bottom line-lg"></div>';
@@ -24,7 +24,7 @@ class InputTest extends TestFieldsUnitCase
         $this->assertStringContainsString($hr, self::renderField($input));
     }
 
-    public function testArrayMask()
+    public function testArrayMask(): void
     {
         $input = Input::make('price')
             ->mask([
@@ -39,7 +39,7 @@ class InputTest extends TestFieldsUnitCase
         $this->assertStringContainsString('currency', $view);
     }
 
-    public function testStringMask()
+    public function testStringMask(): void
     {
         $input = Input::make('phone')
             ->mask('(999) 999-9999');
@@ -49,7 +49,7 @@ class InputTest extends TestFieldsUnitCase
         $this->assertStringContainsString('(999) 999-9999', $view);
     }
 
-    public function testObjectToSting()
+    public function testObjectToSting(): void
     {
         $input = Input::make('name')
             ->title('What is your name?');

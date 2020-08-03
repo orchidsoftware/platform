@@ -14,7 +14,7 @@ use Orchid\Platform\Dashboard;
 trait Attachable
 {
     /**
-     * @param string $group
+     * @param string|null $group
      *
      * @return MorphToMany
      */

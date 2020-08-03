@@ -32,7 +32,7 @@ class FieldTest extends TestUnitCase
     /**
      * @return \Generator
      */
-    public function exampleFields()
+    public function exampleFields(): ?\Generator
     {
         yield [Input::class, [
             'name' => 'example',
@@ -111,7 +111,7 @@ class FieldTest extends TestUnitCase
      *
      * @throws \Throwable
      */
-    public function testHasCorrectInstance(string $field, $options)
+    public function testHasCorrectInstance(string $field, $options): void
     {
         /** @var \Orchid\Screen\Field $field */
         $field = $field::make();
@@ -126,7 +126,7 @@ class FieldTest extends TestUnitCase
         $this->assertStringContainsString('example', $view->withErrors([])->render());
     }
 
-    public function testUniqueId()
+    public function testUniqueId(): void
     {
         $collect = collect(range(0, 10000));
 

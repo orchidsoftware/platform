@@ -8,7 +8,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class ExampleScreenTest extends TestFeatureCase
 {
-    public function testRoutePlatformExample()
+    public function testRoutePlatformExample(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())
@@ -19,7 +19,7 @@ class ExampleScreenTest extends TestFeatureCase
             ->assertSee('Sample Screen Components');
     }
 
-    public function testRoutePlatformExampleFields()
+    public function testRoutePlatformExampleFields(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())
@@ -29,7 +29,7 @@ class ExampleScreenTest extends TestFeatureCase
             ->assertSee('Form controls');
     }
 
-    public function testRoutePlatformExampleLayouts()
+    public function testRoutePlatformExampleLayouts(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())

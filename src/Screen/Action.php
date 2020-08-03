@@ -77,7 +77,7 @@ class Action extends Field implements Actionable
     }
 
     /**
-     * @param Repository $repository
+     * @param Repository|null $repository
      *
      * @throws \Throwable
      *
