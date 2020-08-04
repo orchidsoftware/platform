@@ -77,6 +77,11 @@ class ItemMenu
     public $hideEmpty = false;
 
     /**
+     * @var string|null
+     */
+    public $place;
+
+    /**
      * @param string $permission
      *
      * @return ItemMenu
@@ -257,6 +262,18 @@ class ItemMenu
             'class' => $color ?? Color::PRIMARY(),
             'data'  => $badge,
         ];
+
+        return $this;
+    }
+
+    /**
+     * @param string $place
+     *
+     * @return $this
+     */
+    public function place(string $place)
+    {
+        $this->place = $place;
 
         return $this;
     }

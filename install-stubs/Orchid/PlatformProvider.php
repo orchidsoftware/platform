@@ -1,42 +1,139 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Orchid;
 
-use App\Orchid\Composers\MainMenuComposer;
-use App\Orchid\Composers\SystemMenuComposer;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Dashboard;
+use Laravel\Scout\Searchable;
+use Orchid\Platform\ItemMenu;
 use Orchid\Platform\ItemPermission;
+use Orchid\Platform\OrchidServiceProvider;
 
-class PlatformProvider extends ServiceProvider
+class PlatformProvider extends OrchidServiceProvider
 {
     /**
-     * Boot the application events.
-     *
-     * @param Dashboard $dashboard
+     * @return ItemMenu[]
      */
-    public function boot(Dashboard $dashboard)
+    public function registerMainMenu(): array
     {
-        View::composer('platform::dashboard', MainMenuComposer::class);
-        View::composer('platform::systems', SystemMenuComposer::class);
+        return [
+            ItemMenu::label('Example screen')
+                ->icon('icon-monitor')
+                ->route('platform.example')
+                ->title('Navigation'),
 
-        $dashboard->registerPermissions($this->registerPermissionsSystems());
+            ItemMenu::label('Dropdown menu')
+                ->slug('example-menu')
+                ->icon('icon-code')
+                ->childs(),
 
-        $dashboard->registerSearch([
-            //...Models
-        ]);
+            ItemMenu::label('Sub element item 1')
+                ->place('example-menu')
+                ->icon('icon-bag'),
+
+            ItemMenu::label('Sub element item 2')
+                ->place('example-menu')
+                ->icon('icon-heart'),
+
+            ItemMenu::label('Basic Elements')
+                ->title('Form controls')
+                ->icon('icon-note')
+                ->route('platform.example.fields'),
+
+            ItemMenu::label('Advanced Elements')
+                ->icon('icon-briefcase')
+                ->route('platform.example.advanced'),
+
+            ItemMenu::label('Text Editors')
+                ->icon('icon-list')
+                ->route('platform.example.editors'),
+
+            ItemMenu::label('Overview layouts')
+                ->title('Layouts')
+                ->icon('icon-layers')
+                ->route('platform.example.layouts'),
+
+            ItemMenu::label('Chart tools')
+                ->icon('icon-bar-chart')
+                ->route('platform.example.charts'),
+
+            ItemMenu::label('Cards')
+                ->icon('icon-grid')
+                ->route('platform.example.cards'),
+
+            ItemMenu::label('Documentation')
+                ->title('Docs')
+                ->icon('icon-docs')
+                ->url('https://orchid.software/en/docs'),
+        ];
     }
 
     /**
-     * @return ItemPermission
+     * @return ItemMenu[]
      */
-    protected function registerPermissionsSystems(): ItemPermission
+    public function registerProfileMenu(): array
     {
-        return ItemPermission::group(__('Systems'))
-            ->addPermission('platform.systems.roles', __('Roles'))
-            ->addPermission('platform.systems.users', __('Users'));
+        return [
+            ItemMenu::label('Action')
+                ->icon('icon-compass')
+                ->badge(function () {
+                    return 6;
+                }),
+
+            ItemMenu::label('Another action')
+                ->icon('icon-heart'),
+        ];
+    }
+
+    /**
+     * @return ItemMenu[]
+     */
+    public function registerSystemMenu(): array
+    {
+        return [
+            ItemMenu::label(__('Access rights'))
+                ->icon('icon-lock')
+                ->slug('Auth')
+                ->active('platform.systems.*')
+                ->permission('platform.systems.index')
+                ->sort(1000),
+
+            ItemMenu::label(__('Users'))
+                ->place('Auth')
+                ->icon('icon-user')
+                ->route('platform.systems.users')
+                ->permission('platform.systems.users')
+                ->sort(1000)
+                ->title(__('All registered users')),
+
+            ItemMenu::label(__('Roles'))
+                ->place('Auth')
+                ->icon('icon-lock')
+                ->route('platform.systems.roles')
+                ->permission('platform.systems.roles')
+                ->sort(1000)
+                ->title(__('A Role defines a set of tasks a user assigned the role is allowed to perform. ')),
+        ];
+    }
+
+    /**
+     * @return ItemPermission[]
+     */
+    public function registerPermissions(): array
+    {
+        return [
+            ItemPermission::group(__('Systems'))
+                ->addPermission('platform.systems.roles', __('Roles'))
+                ->addPermission('platform.systems.users', __('Users')),
+        ];
+    }
+
+    /**
+     * @return Searchable|string[]
+     */
+    public function registerSearchModels(): array
+    {
+        return [
+            // ...Models
+            // \App\User::class
+        ];
     }
 }

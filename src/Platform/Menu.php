@@ -58,7 +58,7 @@ class Menu
         $slug = $arg['slug'];
 
         $this->container[$slug] = [
-            'location' => $place,
+            'location' => $itemMenu->place ?? $place,
             'arg'      => $arg,
             'sort'     => $arg['sort'],
         ];
