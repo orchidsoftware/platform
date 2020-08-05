@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 7.17.0 - 2020-08-05
+
+### Changed
+- Simplified registration of the menu [#1157](https://github.com/orchidsoftware/platform/pull/1157)
+- Replaced the outdated group definition with the actual
+- Update NPM packages
+
+### Removed
+- Removed unused constructor code [#1199](https://github.com/orchidsoftware/platform/pull/1199)
+- Removed height declaration from default charts
+
+### Fixed
+- Fixed bugs found by the static analyzer [#1196](https://github.com/orchidsoftware/platform/pull/1196)
+
 ## 7.16.0 - 2020-08-03
 
 ### Added

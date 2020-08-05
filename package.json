@@ -9,10 +9,10 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.10.1",
-    "@babel/plugin-transform-block-scoping": "^7.10.5",
-    "@babel/preset-env": "^7.10.3",
+    "@babel/plugin-transform-block-scoping": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
     "axios": "^0.19.2",
-    "bootstrap": "^4.5.0",
+    "bootstrap": "^4.5.1",
     "codeflask": "^1.4.0",
     "cropperjs": "^1.5.7",
     "cross-env": "^7.0.0",
