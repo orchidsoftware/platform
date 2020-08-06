@@ -48,7 +48,7 @@ class Button extends Action
      *
      * @param string $name
      *
-     * @return Button $name
+     * @return static $name
      */
     public static function make(string $name = ''): self
     {
