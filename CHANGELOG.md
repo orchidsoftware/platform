@@ -4,12 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 7.17.1 - 2020-08-07
+
+### Changed
+- Updated bootstrap packages to 4.5.2 
+- Updated inputmask packages to 5.0.5
+
 ## 7.17.0 - 2020-08-05
 
 ### Changed
 - Simplified registration of the menu [#1157](https://github.com/orchidsoftware/platform/pull/1157)
 - Replaced the outdated group definition with the actual
-- Update NPM packages
+- Updated NPM packages
 
 ### Removed
 - Removed unused constructor code [#1199](https://github.com/orchidsoftware/platform/pull/1199)
