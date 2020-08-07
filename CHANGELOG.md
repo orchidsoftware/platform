@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 7.17.1 - 2020-08-07
 
 ### Changed
+- Updated phpDoc block in Button class [#1200](https://github.com/orchidsoftware/platform/pull/1200)
 - Updated bootstrap packages to 4.5.2 
 - Updated inputmask packages to 5.0.5
 
