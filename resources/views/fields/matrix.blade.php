@@ -1,7 +1,7 @@
 @component($typeForm, get_defined_vars())
     <table class="matrix table table-bordered border-right-0"
            data-controller="fields--matrix"
-           data-fields--matrix-index="{{ count($value) }}"
+           data-fields--matrix-index="{{ $index }}"
            data-fields--matrix-rows="{{ $maxRows }}"
            data-fields--matrix-key-value="{{ var_export($keyValue) }}"
     >
