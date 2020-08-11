@@ -58,7 +58,6 @@ class Matrix extends Field
                 $this->set('index',
                     empty($value) ? 0 : array_key_last($value)
                 );
-
             })
             ->addBeforeRender(function () {
                 $fields = $this->get('fields');
