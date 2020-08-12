@@ -49,18 +49,6 @@
       }
     }
   }
-  &.table-striped {
-    tbody {
-      tr {
-        td {
-          background: mix($brand-light, #fff, 3%) !important;
-        }
-        &:nth-child(2n+1) td {
-          background: #fff !important;
-        }
-      }
-    }
-  }
 }
 
 .fht-table {
