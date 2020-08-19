@@ -20,6 +20,16 @@
                     @endforeach
                 </tr>
             @endforeach
+
+            @empty(!$total)
+                <tr>
+                    @foreach($total as $column)
+                        {!! $column->buildTd($repository) !!}
+                    @endforeach
+                </tr>
+            @endempty
+
+
             </tbody>
         </table>
 
