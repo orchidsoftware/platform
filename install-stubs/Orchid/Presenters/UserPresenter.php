@@ -35,7 +35,7 @@ class UserPresenter extends Presenter implements Searchable, Personable
         $roles = $this->entity->roles->pluck('name')->implode(' / ');
 
         return empty($roles)
-            ? 'Regular user'
+            ? __('Regular user')
             : $roles;
     }
 
