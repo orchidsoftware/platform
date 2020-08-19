@@ -8,7 +8,6 @@ use Orchid\Screen\TD;
 
 class TotalTable extends Table
 {
-
     /**
      * @var string
      */
@@ -49,7 +48,7 @@ class TotalTable extends Table
      */
     public static function getData(): Repository
     {
-       return new Repository([
+        return new Repository([
             'table'       => [
                 new Repository(['id' => 100, 'price' => 10.24, 'tax' => 0.13]),
                 new Repository(['id' => 200, 'price' => 65.9, 'tax' => 0.13]),
