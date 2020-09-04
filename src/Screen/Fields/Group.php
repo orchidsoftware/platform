@@ -123,4 +123,18 @@ class Group implements Fieldable, Groupable
     {
         return $this->attributes;
     }
+
+    /**
+     * @param string $name
+     *
+     * @return $this
+     */
+    public function form(string $name): self
+    {
+        $group = array_map(function ($field) use ($name) {
+            return $field->form($name);
+        }, $this->getGroup());
+
+        return $this->setGroup($group);
+    }
 }

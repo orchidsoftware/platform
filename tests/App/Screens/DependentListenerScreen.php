@@ -42,7 +42,7 @@ class DependentListenerScreen extends Screen
     }
 
     /**
-     * @param int      $first
+     * @param int|null $first
      * @param int|null $second
      *
      * @return int[]

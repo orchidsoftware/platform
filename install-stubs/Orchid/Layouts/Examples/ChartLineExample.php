@@ -14,11 +14,6 @@ class ChartLineExample extends Chart
     protected $title = 'Line Chart';
 
     /**
-     * @var int
-     */
-    protected $height = 250;
-
-    /**
      * Available options:
      * 'bar', 'line',
      * 'pie', 'percentage'.
@@ -26,19 +21,6 @@ class ChartLineExample extends Chart
      * @var string
      */
     protected $type = 'line';
-
-    /**
-     * @var array
-     */
-    protected $labels = [
-        '12am-3am',
-        '3am-6am',
-        '6am-9am',
-        '9am-12pm',
-        '12pm-3pm',
-        '3pm-6pm',
-        '6pm-9pm',
-    ];
 
     /**
      * @var string

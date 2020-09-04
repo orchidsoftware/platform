@@ -2,8 +2,8 @@
      data-controller="layouts--table"
      data-layouts--table-slug="{{$slug}}"
 >
-    <div class="w-100 table-responsive @if ($striped) table-striped @endif">
-        <table class="table">
+    <div class="w-100 table-responsive">
+        <table class="table @if($striped) table-striped @endif">
             <thead>
             <tr>
                 @foreach($columns as $column)
@@ -20,6 +20,16 @@
                     @endforeach
                 </tr>
             @endforeach
+
+            @empty(!$total)
+                <tr>
+                    @foreach($total as $column)
+                        {!! $column->buildTd($repository) !!}
+                    @endforeach
+                </tr>
+            @endempty
+
+
             </tbody>
         </table>
 

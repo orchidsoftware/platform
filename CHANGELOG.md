@@ -4,31 +4,131 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 7.18.0 - 2020-08-19
+
+### Added
+- Added a row with totals to the table [#1205](https://github.com/orchidsoftware/platform/issues/1205)
+
+## 7.17.4 - 2020-08-15
+
+### Changed
+- Updated lodash packages to 4.17.20
+- Updated flatpickr packages to 4.6.6
+
+### Fixed
+- Fixed duplicate values in Upload field
+
+## 7.17.3 - 2020-08-12
+
+### Fixed
+- Fixed position class ".table-striped" [#1204](https://github.com/orchidsoftware/platform/pull/1204)
+
+## 7.17.2 - 2020-08-11
+
+### Fixed
+- Fixed index calculation instead of quantity [#1201](https://github.com/orchidsoftware/platform/issues/1201)
+
+## 7.17.1 - 2020-08-07
+
+### Changed
+- Updated phpDoc block in Button class [#1200](https://github.com/orchidsoftware/platform/pull/1200)
+- Updated bootstrap packages to 4.5.2 
+- Updated inputmask packages to 5.0.5
+
+## 7.17.0 - 2020-08-05
+
+### Changed
+- Simplified registration of the menu [#1157](https://github.com/orchidsoftware/platform/pull/1157)
+- Replaced the outdated group definition with the actual
+- Updated NPM packages
+
+### Removed
+- Removed unused constructor code [#1199](https://github.com/orchidsoftware/platform/pull/1199)
+- Removed height declaration from default charts
+
+### Fixed
+- Fixed bugs found by the static analyzer [#1196](https://github.com/orchidsoftware/platform/pull/1196)
+
+## 7.16.0 - 2020-08-03
+
+### Added
+- Method `action` for setting the address of the form action
+
+## 7.15.0 - 2020-07-30
+
+### Added
+- Added `Chartable` trait [#1179](https://github.com/orchidsoftware/platform/issues/1179)
+
+### Deprecated
+- Property `labels` in `Chart` [#1179](https://github.com/orchidsoftware/platform/issues/1179)
+
+## 7.14.1 - 2020-07-27
+
+### Fixed
+- Search Page: label is overlays help text [#1185](https://github.com/orchidsoftware/platform/issues/1185)
+
+## 7.14.0 - 2020-07-17
+
+### Added
+- Attribute `group` for picture field [#118](https://github.com/orchidsoftware/platform/pull/1180)
+
+### Fixed
+- Inputs that in group don't serialize in filter [#1181](https://github.com/orchidsoftware/platform/issues/1181)
+
+## 7.13.0 - 2020-07-11
+
+### Added
+- Configuration option to switch on/off reset password functionality [#1177](https://github.com/orchidsoftware/platform/pull/1177)
+
+### Changed
+- Override `sendResetLinkEmail` method to return success message in all cases [#1176](https://github.com/orchidsoftware/platform/pull/1176)
+
+## 7.12.1 - 2020-07-07
+
+### Fixed
+- Adding the toke to reset password form [#1173](https://github.com/orchidsoftware/platform/pull/1173)
+
+## 7.12.0 - 2020-07-02
+
+### Added
+- Added the ability to specify the colors of characters and background  [#1172](https://github.com/orchidsoftware/platform/pull/1172)
+
+## 7.11.3 - 2020-06-29
+
+### Fixed
+- Adding a name to the reset password route of auth group [#1169](https://github.com/orchidsoftware/platform/pull/1169)
+
+## 7.11.2 - 2020-06-26
+
+### Fixed
+- PHPDoc return type for `Fieldable::get()` [#1156](https://github.com/orchidsoftware/platform/pull/1156)
+- Delete row for Matrix field does not work in Firefox [#1166](https://github.com/orchidsoftware/platform/issues/1166)
+
 ## 7.11.1 - 2020-06-21
 
-## Fixed
+### Fixed
 - Listener updates after execution.
 - Select2 cache destroy [#1155](https://github.com/orchidsoftware/platform/pull/1155)
 
 ## 7.11.0 - 2020-06-16
 
-## Added
+### Added
 - Method `->fields()` for `Matrix` [#1147](https://github.com/orchidsoftware/platform/pull/1147)
 
 
 ## 7.10.3 - 2020-06-15
 
-## Fixed
+### Fixed
 - Fixed deleting columns when rolling back
 
 ## 7.10.2 - 2020-06-11
 
-## Fixed
+### Fixed
 - Syntax error in user model stub
 
 ## 7.10.1 - 2020-06-11
 
-## Fixed
+### Fixed
 - Error in lang es.json [1142](https://github.com/orchidsoftware/platform/issues/1142)
 
 ## 7.10.0 - 2020-06-10
@@ -42,7 +142,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - German translation [#1131](https://github.com/orchidsoftware/platform/pull/1131)
 
-## Fixed
+### Fixed
 - Default values ​​fixed [#1109](https://github.com/orchidsoftware/platform/pull/1109)
 
 ## 7.8.0 - 2020-06-07
@@ -50,7 +150,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Spanish translation [#1130](https://github.com/orchidsoftware/platform/pull/1130)
 
-## Fixed
+### Fixed
 - Remove permission [#1119](https://github.com/orchidsoftware/platform/pull/1119)
 
 ## 7.7.1 - 2020-06-01

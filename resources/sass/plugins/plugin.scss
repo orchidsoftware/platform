@@ -243,6 +243,29 @@
   }
 }
 
+.ql-picker-label {
+    svg {
+        vertical-align: baseline;
+    }
+}
+
+.ql-color, .ql-background {
+  .ql-picker-options [data-value=custom-color] {
+    background: none !important;
+    width: 100% !important;
+    height: 20px !important;
+    text-align: center;
+
+    &:before {
+      content: 'Custom Color';
+    }
+
+    &:hover {
+      border-color: transparent !important;
+    }
+  }
+}
+
 .ql-toolbar.ql-snow,.ql-container.ql-snow{
   border: 1px solid $form-control-border-color;
 }

@@ -77,7 +77,7 @@ class RelationController extends Controller
      * @param array|object|Model $model
      * @param string             $name
      * @param string             $key
-     * @param string             $search
+     * @param string|null        $search
      * @param string|null        $scope
      *
      * @return Collection|array
@@ -89,7 +89,7 @@ class RelationController extends Controller
         }
 
         /* Execution branch for source class */
-        if (is_null($scope)) {
+        if ($scope === null) {
             $model = $model->handler();
         }
 

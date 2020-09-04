@@ -34,7 +34,13 @@ export default class extends Controller {
                     return;
                 }
 
-                params[name] = field.value;
+                if (field.type === "select-multiple") {
+                    params[name] = Array.from(
+                        field.querySelectorAll("option:checked")
+                    ).map(e => e.value);
+                } else {
+                    params[name] = field.value;
+                }
             }));
 
         this.asyncLoadData(params);

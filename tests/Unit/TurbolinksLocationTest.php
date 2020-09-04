@@ -41,31 +41,31 @@ class TurbolinksLocationTest extends TestUnitCase
         });
     }
 
-    public function testHtmlResponse()
+    public function testHtmlResponse(): void
     {
         $response = $this->post('turbolink-html-response-test');
         $response->assertHeader('Turbolinks-Location', url('turbolink-html-response-test'));
     }
 
-    public function testHtmlParamsResponse()
+    public function testHtmlParamsResponse(): void
     {
         $response = $this->get('turbolink-get-response-test?turbo=1');
         $response->assertHeader('Turbolinks-Location', url('turbolink-get-response-test?turbo=1'));
     }
 
-    public function testJsonResponse()
+    public function testJsonResponse(): void
     {
         $response = $this->post('turbolink-json-response-test');
         $response->assertHeader('Turbolinks-Location', url('turbolink-json-response-test'));
     }
 
-    public function testStreamResponse()
+    public function testStreamResponse(): void
     {
         $response = $this->post('turbolink-stream-response-test');
         $response->assertHeaderMissing('Turbolinks-Location');
     }
 
-    public function testFileResponse()
+    public function testFileResponse(): void
     {
         if (windows_os()) {
             $this->markTestSkipped('Skipping since operating system is Windows');

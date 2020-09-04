@@ -9,7 +9,7 @@ use Orchid\Tests\TestUnitCase;
 
 class ComponentTest extends TestUnitCase
 {
-    public function testQueryVariables()
+    public function testQueryVariables(): void
     {
         $repository = new Repository([
             'name' => 'Alexandr Chernyaev',

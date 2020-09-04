@@ -46,18 +46,12 @@ trait Environment
         $this->artisan('db:seed', [
             '--class' => OrchidDatabaseSeeder::class,
         ]);
-
-        $this->artisan('orchid:admin', [
-            'name'     => 'admin',
-            'email'    => 'admin@admin.com',
-            'password' => 'password',
-        ]);
     }
 
     /**
      * @param \Illuminate\Foundation\Application $app
      */
-    protected function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app): void
     {
         $config = config();
 
@@ -79,7 +73,7 @@ trait Environment
      *
      * @return array
      */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             BreadcrumbsServiceProvider::class,
@@ -94,7 +88,7 @@ trait Environment
      *
      * @return array
      */
-    protected function getPackageAliases($app)
+    protected function getPackageAliases($app): array
     {
         return [
             'Alert'       => Alert::class,

@@ -45,18 +45,18 @@ class RepositoryTest extends TestUnitCase
         parent::setUp();
     }
 
-    public function testRepositoryCount()
+    public function testRepositoryCount(): void
     {
         $this->assertEquals(7, $this->repository->count());
     }
 
-    public function testRepositoryToArray()
+    public function testRepositoryToArray(): void
     {
         $this->assertInstanceOf(Repository::class, $this->repository);
         $this->assertIsArray($this->repository->toArray());
     }
 
-    public function testRepositoryContent()
+    public function testRepositoryContent(): void
     {
         $this->assertEquals('yyy', $this->repository->getContent('associate.y'));
         $this->assertEquals('ggg', $this->repository->getContent('associate.g', 'ggg'));

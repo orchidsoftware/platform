@@ -13,7 +13,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class AuthTest extends TestFeatureCase
 {
-    public function testRouteDashboardLogin()
+    public function testRouteDashboardLogin(): void
     {
         $response = $this->get(route('platform.login'));
 
@@ -23,7 +23,7 @@ class AuthTest extends TestFeatureCase
             ->assertSee('type="password"', false);
     }
 
-    public function testRouteDashboardLoginAuth()
+    public function testRouteDashboardLoginAuth(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())
@@ -34,11 +34,11 @@ class AuthTest extends TestFeatureCase
             ->assertRedirect('/home');
     }
 
-    public function testRouteDashboardLoginAuthSuccess()
+    public function testRouteDashboardLoginAuthSuccess(): void
     {
         $response = $this->post(route('platform.login.auth'), [
             'email'    => $this->createAdminUser()->email,
-            'password' => 'secret',
+            'password' => 'password',
             'remember' => 'on',
         ]);
 
@@ -48,7 +48,7 @@ class AuthTest extends TestFeatureCase
             ->assertCookieNotExpired('lockUser');
     }
 
-    public function testRouteDashboardLoginAuthFail()
+    public function testRouteDashboardLoginAuthFail(): void
     {
         $response = $this->post(route('platform.login.auth'), [
             'email'    => $this->createAdminUser()->email,
@@ -60,7 +60,7 @@ class AuthTest extends TestFeatureCase
             ->assertRedirect('/');
     }
 
-    public function testRouteDashboardPasswordRequest()
+    public function testRouteDashboardPasswordRequest(): void
     {
         $response = $this->get(route('platform.password.request'));
 
@@ -69,7 +69,7 @@ class AuthTest extends TestFeatureCase
             ->assertDontSee('type="password"', false);
     }
 
-    public function testRouteDashboardPasswordReset()
+    public function testRouteDashboardPasswordReset(): void
     {
         $response = $this->get(route('platform.password.reset', '11111'));
 
@@ -79,7 +79,7 @@ class AuthTest extends TestFeatureCase
             ->assertSee('"password_confirmation"', false);
     }
 
-    public function testRouteDashboardPasswordResetAuth()
+    public function testRouteDashboardPasswordResetAuth(): void
     {
         $response = $this->actingAs($this->createAdminUser())
             ->get(route('platform.password.reset', '11111'));
@@ -89,7 +89,7 @@ class AuthTest extends TestFeatureCase
             ->assertRedirect('/home');
     }
 
-    public function testRouteDashboardGuestLockAuth()
+    public function testRouteDashboardGuestLockAuth(): void
     {
         $response = $this->call('GET', route('platform.login.lock'), $parameters = [], $cookies = [
             'lockUser' => 1,

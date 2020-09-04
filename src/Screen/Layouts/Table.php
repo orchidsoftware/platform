@@ -51,9 +51,15 @@ abstract class Table extends Layout
             return $column->isSee();
         });
 
+        $total = collect($this->total())->filter(static function (TD $column) {
+            return $column->isSee();
+        });
+
         return view($this->template, [
+            'repository'   => $repository,
             'rows'         => $repository->getContent($this->target),
             'columns'      => $columns,
+            'total'        => $total,
             'iconNotFound' => $this->iconNotFound(),
             'textNotFound' => $this->textNotFound(),
             'subNotFound'  => $this->subNotFound(),
@@ -98,4 +104,12 @@ abstract class Table extends Layout
      * @return array
      */
     abstract protected function columns(): array;
+
+    /**
+     * @return array
+     */
+    protected function total(): array
+    {
+        return [];
+    }
 }

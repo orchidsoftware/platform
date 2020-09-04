@@ -46,7 +46,7 @@ class DropDown extends Action
     }
 
     /**
-     * @param Repository $repository
+     * @param Repository|null $repository
      *
      * @throws \Throwable
      *

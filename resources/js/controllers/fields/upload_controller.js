@@ -247,10 +247,6 @@ export default class extends Controller {
 
                     e.previewElement.appendChild(removeButton);
                     e.previewElement.appendChild(editButton);
-
-                    if (e.data !== undefined) {
-                        self.addSortDataAtributes(dropname, name, e.data);
-                    }
                 });
 
                 this.on("maxfilesexceeded", (file) => {

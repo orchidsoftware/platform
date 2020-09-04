@@ -14,7 +14,7 @@ if (! function_exists('alert')) {
      * Helper function to send an alert.
      *
      * @param string|null $message
-     * @param string      $level
+     * @param string|null $level
      *
      * @return Alert
      */

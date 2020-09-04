@@ -4,6 +4,6 @@
         <div class="quill p-3 position-relative" id="quill-wrapper-{{$id}}"
              style="min-height: {{ $attributes['height'] }}">
         </div>
-        <input type="hidden" @attributes($attributes)>
+        <input class="d-none" @attributes($attributes)>
     </div>
 @endcomponent

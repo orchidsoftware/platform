@@ -12,19 +12,20 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
  */
 class ButtonTest extends TestFieldsUnitCase
 {
-    public function testButtonInstance()
+    public function testButtonInstance(): void
     {
         $button = Button::make('About')
             ->method('test');
+
         $view = self::renderField($button);
 
         $this->assertStringContainsString(
-            'formaction="http://127.0.0.1:8000/test?',
+            'formaction="http://127.0.0.1:8000/test',
             $view
         );
     }
 
-    public function testButtonParams()
+    public function testButtonParams(): void
     {
         $button = Button::make('About')
             ->method('test')
@@ -40,7 +41,7 @@ class ButtonTest extends TestFieldsUnitCase
         );
     }
 
-    public function testButtonTitle()
+    public function testButtonTitle(): void
     {
         $button = Button::make('About')
             ->method('test')
@@ -54,7 +55,7 @@ class ButtonTest extends TestFieldsUnitCase
         );
     }
 
-    public function testButtonDisableTurbolinks()
+    public function testButtonDisableTurbolinks(): void
     {
         $button = Button::make('About')
             ->method('test')
@@ -68,7 +69,7 @@ class ButtonTest extends TestFieldsUnitCase
         );
     }
 
-    public function testButtonEnabledTurbolinks()
+    public function testButtonEnabledTurbolinks(): void
     {
         $button = Button::make('About')
             ->method('test')
@@ -78,6 +79,29 @@ class ButtonTest extends TestFieldsUnitCase
 
         $this->assertStringContainsString(
             'data-turbolinks="true"',
+            $view
+        );
+    }
+
+    public function testButtonForCustomAction(): void
+    {
+        $buttonForRoute = Button::make('About')
+            ->action(route('platform.systems.index'));
+
+        $view = self::renderField($buttonForRoute);
+
+        $this->assertStringContainsString(
+            'formaction="http://127.0.0.1:8000/dashboard/systems"',
+            $view
+        );
+
+        $buttonForLink = Button::make('Example')
+            ->action('http://example.com');
+
+        $view = self::renderField($buttonForLink);
+
+        $this->assertStringContainsString(
+            'formaction="http://example.com"',
             $view
         );
     }

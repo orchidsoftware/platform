@@ -13,12 +13,12 @@ use Orchid\Tests\TestUnitCase;
  */
 class DashboardTest extends TestUnitCase
 {
-    public function testIsVersion()
+    public function testIsVersion(): void
     {
-        $this->assertEquals(Dashboard::version(), Dashboard::VERSION);
+        $this->assertEquals(Dashboard::VERSION, Dashboard::version());
     }
 
-    public function testIsModelDefault()
+    public function testIsModelDefault(): void
     {
         $class = Dashboard::modelClass('UnknownClass', User::class);
 
@@ -27,16 +27,16 @@ class DashboardTest extends TestUnitCase
         $this->assertEquals($class, $default);
     }
 
-    public function testIsModelCustomNotFound()
+    public function testIsModelCustomNotFound(): void
     {
         Dashboard::useModel(User::class, 'MyCustomClass');
 
         $user = Dashboard::modelClass(User::class);
 
-        $this->assertEquals($user, 'MyCustomClass');
+        $this->assertEquals('MyCustomClass', $user);
     }
 
-    public function testIsModelConfigure()
+    public function testIsModelConfigure(): void
     {
         Dashboard::configure([
             'models' => [
@@ -47,12 +47,12 @@ class DashboardTest extends TestUnitCase
         $class = Dashboard::model(User::class);
         $option = Dashboard::option('models.'.User::class);
 
-        $this->assertEquals($class, 'MyCustomClass');
-        $this->assertEquals($option, 'MyCustomClass');
-        $this->assertEquals(Dashboard::option('random'), null);
+        $this->assertEquals('MyCustomClass', $class);
+        $this->assertEquals('MyCustomClass', $option);
+        $this->assertEquals(null, Dashboard::option('random'));
     }
 
-    public function testIsRegisterResource()
+    public function testIsRegisterResource(): void
     {
         $dashboard = new Dashboard();
 
@@ -60,17 +60,17 @@ class DashboardTest extends TestUnitCase
             ->registerResource('scripts', 'app.js')
             ->getResource('scripts');
 
-        $this->assertEquals($script, [
+        $this->assertEquals([
             'app.js',
-        ]);
+        ], $script);
 
         $stylesheets = $dashboard
             ->registerResource('stylesheets', 'style.css')
             ->getResource('stylesheets');
 
-        $this->assertEquals($stylesheets, [
+        $this->assertEquals([
             'style.css',
-        ]);
+        ], $stylesheets);
 
         $this->assertEquals($dashboard->getResource(), collect([
             'scripts'     => [
@@ -85,25 +85,25 @@ class DashboardTest extends TestUnitCase
             ->registerResource('scripts', 'custom-app.js')
             ->getResource('scripts');
 
-        $this->assertEquals($rewriteScript, [
+        $this->assertEquals([
             'app.js',
             'custom-app.js',
-        ]);
+        ], $rewriteScript);
 
         $rewriteStyle = $dashboard
             ->registerResource('stylesheets', 'custom-style.css')
             ->getResource('stylesheets');
 
-        $this->assertEquals($rewriteStyle, [
+        $this->assertEquals([
             'style.css',
             'custom-style.css',
-        ]);
+        ], $rewriteStyle);
     }
 
     /**
      * @param string $name
      */
-    public function testIsMacro($name = 'customMarcoName')
+    public function testIsMacro($name = 'customMarcoName'): void
     {
         Dashboard::macro('returnNameMacroFunction', function (string $test) {
             return $test;

@@ -127,7 +127,7 @@ trait UserAccess
     }
 
     /**
-     * @param array $roles
+     * @param array|null $roles
      *
      * @return $this
      */

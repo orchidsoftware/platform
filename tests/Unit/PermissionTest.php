@@ -18,7 +18,7 @@ class PermissionTest extends TestUnitCase
     /**
      * Verify permissions.
      */
-    public function testIsPermission()
+    public function testIsPermission(): void
     {
         $user = $this->createUser();
 
@@ -31,8 +31,8 @@ class PermissionTest extends TestUnitCase
         $user->addRole($role);
 
         // User of role
-        $this->assertEquals($user->getRoles()->count(), 1);
-        $this->assertEquals($role->getUsers()->count(), 1);
+        $this->assertEquals(1, $user->getRoles()->count());
+        $this->assertEquals(1, $role->getUsers()->count());
         $this->assertTrue($user->inRole('admin'));
         $this->assertTrue($user->inRole($role));
         $this->assertFalse($user->inRole('notFoundRole'));
@@ -79,7 +79,7 @@ class PermissionTest extends TestUnitCase
     /**
      * Dashboard registered permission.
      */
-    public function testIsRegisteredPermission()
+    public function testIsRegisteredPermission(): void
     {
         $dashboard = new Dashboard();
 
@@ -88,13 +88,13 @@ class PermissionTest extends TestUnitCase
 
         $dashboard->registerPermissions($permission);
 
-        $this->assertEquals($dashboard->getPermission()->count(), 1);
+        $this->assertEquals(1, $dashboard->getPermission()->count());
     }
 
     /**
      * Dashboard remove permission.
      */
-    public function testIsWasRemovedPermission()
+    public function testIsWasRemovedPermission(): void
     {
         $dashboard = new Dashboard();
         $permission = ItemPermission::group('Test')
@@ -104,7 +104,7 @@ class PermissionTest extends TestUnitCase
         $this->assertEmpty($dashboard->getPermission()->get('Test'));
     }
 
-    public function testReplasePermission()
+    public function testReplasePermission(): void
     {
         $user = $this->createUser();
 
@@ -116,7 +116,7 @@ class PermissionTest extends TestUnitCase
     /**
      * @throws \Exception
      */
-    public function testDeleteUser()
+    public function testDeleteUser(): void
     {
         $user = $this->createUser();
         $role = $this->createRole();
@@ -134,7 +134,7 @@ class PermissionTest extends TestUnitCase
         $this->assertTrue($user->delete());
     }
 
-    public function testDeleteRole()
+    public function testDeleteRole(): void
     {
         $user = $this->createUser();
         $role = $this->createRole();

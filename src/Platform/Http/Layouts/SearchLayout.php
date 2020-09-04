@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Layouts;
 
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Label;
 use Orchid\Screen\Fields\Radio;
 use Orchid\Screen\Layouts\Rows;
@@ -51,7 +51,7 @@ class SearchLayout extends Rows
         $layouts->prepend(Label::make('search')->title(__('Choose record type:')));
 
         return [
-            Field::group($layouts->all()),
+            Group::make($layouts->all())->autoWidth(),
         ];
     }
 }

@@ -184,7 +184,7 @@ class LoginController extends Controller
         // Next, we'll verify the actual token with our two-factor authentication service
         // to see if the token is valid. If it is, we can login the user and send them
         // to their intended location within the protected part of this application.
-        if ($generator->verify($request->token) || $request->token == $user->two_factor_recovery_code) {
+        if ($generator->verify($request->token) || $request->token === $user->two_factor_recovery_code) {
             Auth::login($user, $request->session()->pull(
                 'orchid:auth:remember', false
             ));

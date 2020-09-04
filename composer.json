@@ -60,6 +60,7 @@
       "Orchid\\Alert\\": "src/Alert/",
       "Orchid\\Attachment\\": "src/Attachment/",
       "Orchid\\Filters\\": "src/Filters/",
+      "Orchid\\Metrics\\": "src/Metrics/",
       "Orchid\\Platform\\": "src/Platform/",
       "Orchid\\Presets\\": "src/Presets/",
       "Orchid\\Screen\\": "src/Screen/",

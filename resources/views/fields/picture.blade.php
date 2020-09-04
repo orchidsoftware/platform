@@ -5,6 +5,7 @@
          data-fields--picture-target="{{ $target }}"
          data-fields--picture-url="{{ $url }}"
          data-fields--picture-max-file-size="{{ $maxFileSize }}"
+         data-fields--picture-groups="{{$attributes['groups'] ?? ''}}"
     >
         <div class="border-dashed text-right p-3 picture-actions">
 
