@@ -49,15 +49,15 @@ class Button extends Action
     public function __construct()
     {
         return $this->addBeforeRender(function () {
-                if ($this->get('action') !== null) {
-                    return;
-                }
+            if ($this->get('action') !== null) {
+                return;
+            }
 
-                $url = url()->current();
-                $query = http_build_query($this->get('parameters'));
+            $url = url()->current();
+            $query = http_build_query($this->get('parameters'));
 
-                $action = rtrim("{$url}/{$this->get('method')}?{$query}", '/?');
-                $this->set('action', $action);
-            });
+            $action = rtrim("{$url}/{$this->get('method')}?{$query}", '/?');
+            $this->set('action', $action);
+        });
     }
 }
