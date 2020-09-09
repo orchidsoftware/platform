@@ -37,7 +37,7 @@ class MetricsCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return Dashboard::path('resources/stubs/metrics.stub');
+        return Dashboard::path('stubs/metrics.stub');
     }
 
     /**

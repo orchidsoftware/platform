@@ -103,7 +103,7 @@ class InstallCommand extends Command
             return;
         }
 
-        $user = file_get_contents(Dashboard::path('install-stubs/User.stub'));
+        $user = file_get_contents(Dashboard::path('stubs/app/User.stub'));
         file_put_contents(app_path($path), $user);
     }
 

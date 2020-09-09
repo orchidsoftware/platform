@@ -37,7 +37,7 @@ class TableCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return Dashboard::path('resources/stubs/table.stub');
+        return Dashboard::path('stubs/table.stub');
     }
 
     /**

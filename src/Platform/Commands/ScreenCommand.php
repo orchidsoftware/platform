@@ -37,7 +37,7 @@ class ScreenCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return Dashboard::path('resources/stubs/screen.stub');
+        return Dashboard::path('stubs/screen.stub');
     }
 
     /**

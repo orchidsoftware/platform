@@ -37,7 +37,7 @@ class ChartCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return Dashboard::path('resources/stubs/chart.stub');
+        return Dashboard::path('stubs/chart.stub');
     }
 
     /**

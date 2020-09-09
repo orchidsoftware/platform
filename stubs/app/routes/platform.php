@@ -33,6 +33,15 @@ use Tabuna\Breadcrumbs\Trail;
 Route::screen('/main', PlatformScreen::class)
     ->name('platform.main');
 
+// Platform > Profile
+Route::screen('profile', UserProfileScreen::class)
+    ->name('platform.profile')
+    ->breadcrumbs(function (Trail $trail) {
+        return $trail
+            ->parent('platform.systems.users')
+            ->push(__('Profile'), route('platform.profile'));
+    });
+
 // Platform > System > Users
 Route::screen('users/{users}/edit', UserEditScreen::class)
     ->name('platform.systems.users.edit')
@@ -87,27 +96,11 @@ Route::screen('example', ExampleScreen::class)
             ->push(__('Example screen'));
     });
 
-Route::screen('example-fields', ExampleFieldsScreen::class)
-    ->name('platform.example.fields')
-    ->breadcrumbs(function (Trail $trail) {
-        return $trail
-            ->parent('platform.index')
-            ->push(__('Form controls'));
-    });
-
-Route::screen('example-layouts', ExampleLayoutsScreen::class)
-    ->name('platform.example.layouts')
-    ->breadcrumbs(function (Trail $trail) {
-        return $trail
-            ->parent('platform.index')
-            ->push(__('Overview layouts'));
-    });
-
+Route::screen('example-fields', ExampleFieldsScreen::class)->name('platform.example.fields');
+Route::screen('example-layouts', ExampleLayoutsScreen::class)->name('platform.example.layouts');
 Route::screen('example-charts', ExampleChartsScreen::class)->name('platform.example.charts');
 Route::screen('example-editors', ExampleTextEditorsScreen::class)->name('platform.example.editors');
 Route::screen('example-cards', ExampleCardsScreen::class)->name('platform.example.cards');
 Route::screen('example-advanced', ExampleFieldsAdvancedScreen::class)->name('platform.example.advanced');
-
-Route::screen('profile', UserProfileScreen::class)->name('platform.profile');
 
 //Route::screen('idea', 'Idea::class','platform.screens.idea');

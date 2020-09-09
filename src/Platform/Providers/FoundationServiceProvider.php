@@ -117,8 +117,8 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerOrchid(): self
     {
         $this->publishes([
-            Dashboard::path('install-stubs/routes/') => base_path('routes'),
-            Dashboard::path('install-stubs/Orchid/') => app_path('Orchid'),
+            Dashboard::path('stubs/app/routes/') => base_path('routes'),
+            Dashboard::path('stubs/app/Orchid/') => app_path('Orchid'),
         ], 'orchid-stubs');
 
         return $this;

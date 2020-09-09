@@ -74,7 +74,7 @@
       "Orchid\\Platform\\Database\\Factories\\": "database/factories/",
       "Orchid\\Platform\\Database\\Seeders\\": "database/seeders/",
       "Orchid\\Tests\\": "tests/",
-      "App\\": "install-stubs/"
+      "App\\": "stubs/app/"
     }
   },
   "extra": {
