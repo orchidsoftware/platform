@@ -44,7 +44,8 @@ trait Environment
 
         Factory::guessFactoryNamesUsing(function ($factory) {
             $factoryBasename = class_basename($factory);
-            return "Orchid\Platform\Database\Factories\\$factoryBasename" . 'Factory';
+
+            return "Orchid\Platform\Database\Factories\\$factoryBasename".'Factory';
         });
 
         $this->artisan('db:seed', [
