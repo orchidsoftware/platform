@@ -2,8 +2,8 @@
 
 namespace  Orchid\Platform\Database\Factories;
 
-use Orchid\Platform\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Orchid\Platform\Models\Role;
 
 class RoleFactory extends Factory
 {

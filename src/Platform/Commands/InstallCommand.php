@@ -99,6 +99,7 @@ class InstallCommand extends Command
             $this->warn('You will need to update this manually.');
             $this->warn('Change "extends Authenticatable" to "extends \Orchid\Platform\Models\User" in your User model');
             $this->warn('Also pay attention to the properties so that they are not overwritten.');
+
             return;
         }
 

@@ -228,7 +228,7 @@ class UserProfileScreen extends Screen
     {
         $request->validate([
             'user.name'  => 'required|string',
-            'user.email' => 'required|unique:users,email,' . $request->user()->id,
+            'user.email' => 'required|unique:users,email,'.$request->user()->id,
         ]);
 
         $request->user()

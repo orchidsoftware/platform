@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
-use Illuminate\Support\Str;
 use Orchestra\Testbench\TestCase;
 use Orchid\Platform\Models\User;
 

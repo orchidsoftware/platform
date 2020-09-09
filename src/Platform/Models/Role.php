@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Access\RoleAccess;
 use Orchid\Access\RoleInterface;
 use Orchid\Filters\Filterable;
 use Orchid\Metrics\Chartable;
 use Orchid\Screen\AsSource;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Role extends Model implements RoleInterface
 {

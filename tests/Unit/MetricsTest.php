@@ -24,7 +24,6 @@ class MetricsTest extends TestUnitCase
         /** @var GroupCollection $group */
         $group = User::countForGroup('uses_two_factor_auth');
 
-
         $this->assertContains('8', $group->pluck('value')->toArray());
         $this->assertContains('5', $group->pluck('value')->toArray());
 

@@ -6,6 +6,7 @@ namespace Orchid\Platform\Models;
 
 use App\Orchid\Presenters\UserPresenter;
 use Exception;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
@@ -17,7 +18,6 @@ use Orchid\Metrics\Chartable;
 use Orchid\Platform\Notifications\ResetPassword;
 use Orchid\Screen\AsSource;
 use Orchid\Support\Facades\Dashboard;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable implements UserInterface
 {
