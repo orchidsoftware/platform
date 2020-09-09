@@ -6,6 +6,7 @@ namespace App\Orchid\Screens\User;
 
 use App\Orchid\Layouts\Role\RolePermissionLayout;
 use App\Orchid\Layouts\User\UserEditLayout;
+use App\Orchid\Layouts\User\UserRoleLayout;
 use Illuminate\Http\Request;
 use Orchid\Access\UserSwitch;
 use Orchid\Platform\Models\User;
@@ -82,6 +83,7 @@ class UserEditScreen extends Screen
     {
         return [
             UserEditLayout::class,
+            UserRoleLayout::class,
             RolePermissionLayout::class,
         ];
     }
