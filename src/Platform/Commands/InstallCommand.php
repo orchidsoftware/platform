@@ -90,20 +90,20 @@ class InstallCommand extends Command
         return $this;
     }
 
-    private function changeUserModel()
+    private function changeUserModel(string $path = 'Models/User.php')
     {
         $this->info('Attempting to set ORCHID User model as parent to App\User');
 
-        if (! file_exists(app_path('User.php'))) {
-            $this->warn('Unable to locate "app/User.php".  Did you move this file?');
+        if (! file_exists(app_path($path))) {
+            $this->warn('Unable to locate "app/Models/User.php".  Did you move this file?');
             $this->warn('You will need to update this manually.');
             $this->warn('Change "extends Authenticatable" to "extends \Orchid\Platform\Models\User" in your User model');
-
+            $this->warn('Also pay attention to the properties so that they are not overwritten.');
             return;
         }
 
         $user = file_get_contents(Dashboard::path('install-stubs/User.stub'));
-        file_put_contents(app_path('User.php'), $user);
+        file_put_contents(app_path($path), $user);
     }
 
     /**

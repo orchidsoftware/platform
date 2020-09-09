@@ -167,7 +167,8 @@ class ExampleScreen extends Screen
                 Layout::rows([
                     Input::make('toast')
                         ->title('Messages to display')
-                        ->placeholder('Hello word!')
+                        ->placeholder('Hello world!')
+                        ->help('The entered text will be displayed on the right side as a toast.')
                         ->required(),
                 ]),
             ])->title('Create your own toast message'),

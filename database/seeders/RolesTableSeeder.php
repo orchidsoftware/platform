@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Database\Seeds;
+namespace  Orchid\Platform\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Orchid\Platform\Models\Role;

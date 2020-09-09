@@ -87,7 +87,7 @@ class AttachmentTest extends TestUnitCase
 
     public function testAttachmentUser(): void
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->actingAs($user);
 

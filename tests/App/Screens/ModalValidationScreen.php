@@ -64,7 +64,7 @@ class ModalValidationScreen extends Screen
                 Layout::rows([
                     Input::make('message')
                         ->title('Messages to display')
-                        ->placeholder('Hello word!')
+                        ->placeholder('Hello world!')
                         ->required(),
                 ]),
             ])->title('Validation modal message'),

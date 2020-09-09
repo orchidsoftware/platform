@@ -10,19 +10,19 @@
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/plugin-transform-block-scoping": "^7.11.1",
-    "@babel/preset-env": "^7.11.0",
-    "axios": "^0.19.2",
+    "@babel/preset-env": "^7.11.5",
+    "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
     "codeflask": "^1.4.0",
-    "cropperjs": "^1.5.7",
+    "cropperjs": "^1.5.8",
     "cross-env": "^7.0.0",
     "dropzone": "^5.7.1",
     "flatpickr": "^4.6.3",
     "frappe-charts": "^1.5.0",
     "inputmask": "^5.0.3",
     "jquery": "^3.5.1",
-    "laravel-mix": "^5.0.1",
-    "leaflet": "^1.6.0",
+    "laravel-mix": "^5.0.5",
+    "leaflet": "^1.7.1",
     "lodash": "^4.17.20",
     "node-sass": "^4.14.1",
     "open-color": "^1.7.0",
@@ -35,15 +35,14 @@
     "sortablejs": "^1.10.2",
     "stimulus": "^1.1.1",
     "stimulus-flatpickr": "^1.2.1",
-    "tinymce": "^4.9.11",
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
+    "eslint": "^7.8.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.19.1",
     "resolve-url-loader": "^3.1.1",
-    "sass-loader": "8.*",
-    "vue-template-compiler": "^2.6.11"
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.12"
   }
 }

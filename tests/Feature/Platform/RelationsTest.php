@@ -20,7 +20,7 @@ class RelationsTest extends TestFeatureCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->users = factory(User::class, 10)->create([
+        $this->users = User::factory()->count(10)->create([
             'name' => 'RelationTest',
         ]);
     }

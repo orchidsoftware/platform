@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Orchid\Platform\Models\User as Authenticatable;
 

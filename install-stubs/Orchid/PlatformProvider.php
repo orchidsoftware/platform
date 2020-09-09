@@ -27,52 +27,55 @@ class PlatformProvider extends OrchidServiceProvider
     {
         return [
             ItemMenu::label('Example screen')
-                ->icon('icon-monitor')
+                ->icon('monitor')
                 ->route('platform.example')
-                ->title('Navigation'),
+                ->title('Navigation')
+                ->badge(function () {
+                    return 6;
+                }),
 
             ItemMenu::label('Dropdown menu')
                 ->slug('example-menu')
-                ->icon('icon-code')
+                ->icon('code')
                 ->childs(),
 
             ItemMenu::label('Sub element item 1')
                 ->place('example-menu')
-                ->icon('icon-bag'),
+                ->icon('bag'),
 
             ItemMenu::label('Sub element item 2')
                 ->place('example-menu')
-                ->icon('icon-heart'),
+                ->icon('heart'),
 
             ItemMenu::label('Basic Elements')
                 ->title('Form controls')
-                ->icon('icon-note')
+                ->icon('note')
                 ->route('platform.example.fields'),
 
             ItemMenu::label('Advanced Elements')
-                ->icon('icon-briefcase')
+                ->icon('briefcase')
                 ->route('platform.example.advanced'),
 
             ItemMenu::label('Text Editors')
-                ->icon('icon-list')
+                ->icon('list')
                 ->route('platform.example.editors'),
 
             ItemMenu::label('Overview layouts')
                 ->title('Layouts')
-                ->icon('icon-layers')
+                ->icon('layers')
                 ->route('platform.example.layouts'),
 
             ItemMenu::label('Chart tools')
-                ->icon('icon-bar-chart')
+                ->icon('bar-chart')
                 ->route('platform.example.charts'),
 
             ItemMenu::label('Cards')
-                ->icon('icon-grid')
+                ->icon('grid')
                 ->route('platform.example.cards'),
 
             ItemMenu::label('Documentation')
                 ->title('Docs')
-                ->icon('icon-docs')
+                ->icon('docs')
                 ->url('https://orchid.software/en/docs'),
         ];
     }
@@ -83,14 +86,9 @@ class PlatformProvider extends OrchidServiceProvider
     public function registerProfileMenu(): array
     {
         return [
-            ItemMenu::label('Action')
-                ->icon('icon-compass')
-                ->badge(function () {
-                    return 6;
-                }),
-
-            ItemMenu::label('Another action')
-                ->icon('icon-heart'),
+            ItemMenu::label('Profile')
+                ->route('platform.profile')
+                ->icon('user'),
         ];
     }
 
@@ -101,7 +99,7 @@ class PlatformProvider extends OrchidServiceProvider
     {
         return [
             ItemMenu::label(__('Access rights'))
-                ->icon('icon-lock')
+                ->icon('lock')
                 ->slug('Auth')
                 ->active('platform.systems.*')
                 ->permission('platform.systems.index')
@@ -109,7 +107,7 @@ class PlatformProvider extends OrchidServiceProvider
 
             ItemMenu::label(__('Users'))
                 ->place('Auth')
-                ->icon('icon-user')
+                ->icon('user')
                 ->route('platform.systems.users')
                 ->permission('platform.systems.users')
                 ->sort(1000)
@@ -117,7 +115,7 @@ class PlatformProvider extends OrchidServiceProvider
 
             ItemMenu::label(__('Roles'))
                 ->place('Auth')
-                ->icon('icon-lock')
+                ->icon('lock')
                 ->route('platform.systems.roles')
                 ->permission('platform.systems.roles')
                 ->sort(1000)

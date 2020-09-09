@@ -13,7 +13,7 @@ class UserTest extends TestUnitCase
 {
     public function testHasCorrectInstance(): void
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->assertNotNull($user);
         $this->assertInstanceOf(User::class, $user);
@@ -31,7 +31,7 @@ class UserTest extends TestUnitCase
      */
     private function createUser(): User
     {
-        return factory(User::class)->create();
+        return User::factory()->create();
     }
 
     public function testCanGetSubTitle(): void

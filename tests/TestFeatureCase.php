@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
+use Illuminate\Support\Str;
 use Orchestra\Testbench\TestCase;
 use Orchid\Platform\Models\User;
 
@@ -25,7 +26,7 @@ abstract class TestFeatureCase extends TestCase
     protected function createAdminUser(): User
     {
         if ($this->user === null) {
-            $this->user = factory(User::class)->create();
+            $this->user = User::factory()->create();
         }
 
         return $this->user;

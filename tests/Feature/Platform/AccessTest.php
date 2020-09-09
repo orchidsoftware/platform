@@ -13,7 +13,7 @@ class AccessTest extends TestFeatureCase
 {
     public function testAccessMiddleware(): void
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'permissions' => [
                 'access.to.public.data' => 1,
                 'access.to.secret.data' => 0,

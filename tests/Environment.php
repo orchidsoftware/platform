@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
-use Orchid\Database\Seeds\OrchidDatabaseSeeder;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Orchid\Platform\Database\Seeders\OrchidDatabaseSeeder;
 use Orchid\Platform\Models\User;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 use Orchid\Support\Facades\Alert;
@@ -41,7 +42,10 @@ trait Environment
             $this->loadMigrationsFrom(realpath('./database/migrations'));
         }
 
-        $this->withFactories(Dashboard::path('database/factories'));
+        Factory::guessFactoryNamesUsing(function ($factory) {
+            $factoryBasename = class_basename($factory);
+            return "Orchid\Platform\Database\Factories\\$factoryBasename" . 'Factory';
+        });
 
         $this->artisan('db:seed', [
             '--class' => OrchidDatabaseSeeder::class,

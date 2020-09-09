@@ -136,7 +136,7 @@ class AttachmentTest extends TestFeatureCase
                 ],
             ]);
 
-        $attachments = $response->decodeResponseJson();
+        $attachments = $response->decodeResponseJson()->json();
 
         $originalFiles = [];
         $files = [];

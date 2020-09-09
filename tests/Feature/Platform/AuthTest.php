@@ -106,7 +106,7 @@ class AuthTest extends TestFeatureCase
 
         $password = 'test';
 
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'password'                 => Hash::make($password),
             'uses_two_factor_auth'     => true,
             'two_factor_secret_code'   => 'WSI7ZQUZDPZQZ3EC',
@@ -130,7 +130,7 @@ class AuthTest extends TestFeatureCase
     {
         Dashboard::useTwoFactorAuth();
 
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'uses_two_factor_auth'     => true,
             'two_factor_secret_code'   => 'WSI7ZQUZDPZQZ3EC',
             'two_factor_recovery_code' => 'TAOrwweK',
@@ -153,7 +153,7 @@ class AuthTest extends TestFeatureCase
     {
         Dashboard::useTwoFactorAuth();
 
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'uses_two_factor_auth'     => true,
             'two_factor_secret_code'   => 'WSI7ZQUZDPZQZ3EC',
             'two_factor_recovery_code' => 'TAOrwweK',
@@ -177,7 +177,7 @@ class AuthTest extends TestFeatureCase
     {
         Dashboard::useTwoFactorAuth();
 
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'uses_two_factor_auth'     => true,
             'two_factor_secret_code'   => 'WSI7ZQUZDPZQZ3EC',
             'two_factor_recovery_code' => 'TAOrwweK',

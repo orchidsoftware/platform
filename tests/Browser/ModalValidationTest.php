@@ -28,10 +28,10 @@ class ModalValidationTest extends TestBrowserCase
                 ->assertInputValue('message', 'Hello')
                 ->pause(1500)
                 ->waitForText('Validation modal message')
-                ->type('message', 'Hello Word!')
+                ->type('message', 'Hello World!')
                 ->press('Apply')
-                ->waitForText('Hello Word!')
-                ->assertSee('Hello Word!')
+                ->waitForText('Hello World!')
+                ->assertSee('Hello World!')
                 ->assertDontSee('Validation modal message');
         });
     }

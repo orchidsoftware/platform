@@ -18,7 +18,7 @@ class RoleTest extends TestFeatureCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->role = factory(Role::class)->create();
+        $this->role = Role::factory()->create();
     }
 
     public function testRouteSystemsRoles(): void

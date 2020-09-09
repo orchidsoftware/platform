@@ -57,7 +57,7 @@ abstract class TestBrowserCase extends TestCase
     protected function createAdminUser(array $attributes = []): User
     {
         if ($this->user === null) {
-            $this->user = factory(User::class)->create($attributes);
+            $this->user = User::factory()->create($attributes);
         }
 
         return $this->user;
