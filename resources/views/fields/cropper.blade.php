@@ -22,7 +22,9 @@
 
             <div class="btn-group">
                 <label class="btn btn-default m-n">
-                    <i class="icon-cloud-upload mr-2"></i> {{ __('Browse') }}
+                    <x-orchid-icon path="cloud-upload" class="mr-2"/>
+
+                    {{ __('Browse') }}
                     <input type="file"
                            accept="image/*"
                            data-target="fields--cropper.upload"

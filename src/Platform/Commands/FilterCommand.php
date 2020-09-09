@@ -37,7 +37,7 @@ class FilterCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return Dashboard::path('resources/stubs/filters.stub');
+        return Dashboard::path('stubs/filters.stub');
     }
 
     /**

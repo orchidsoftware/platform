@@ -24,7 +24,7 @@ class SelectTest extends TestFieldsUnitCase
     {
         parent::setUp();
 
-        $this->roles = factory(Role::class)->times(10)->create();
+        $this->roles = Role::factory()->times(10)->create();
     }
 
     public function testInstance(): void

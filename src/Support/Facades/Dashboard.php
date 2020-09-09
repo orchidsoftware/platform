@@ -7,6 +7,7 @@ namespace Orchid\Support\Facades;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
 use Orchid\Platform\Dashboard as DashboardKernel;
+use Orchid\Screen\Screen;
 
 /**
  * Class Dashboard.
@@ -21,6 +22,8 @@ use Orchid\Platform\Dashboard as DashboardKernel;
  * @method static model(string $key, string $default = null)
  * @method static useModel(string $key, string $custom)
  * @method static bool checkUpdate()
+ * @method static setCurrentScreen(Screen $screen)
+ * @method static Screen|null getCurrentScreen()
  */
 class Dashboard extends Facade
 {

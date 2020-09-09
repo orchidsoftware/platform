@@ -28,7 +28,8 @@
 
         <div class="text-center bg-white pt-5 pb-5 w-100">
             <h3 class="font-thin">
-                <i class="icon-magnifier-remove block m-b"></i>
+                <x-orchid-icon path="magnifier-remove" class="block m-b"/>
+
                 {{ __('Nothing found.') }}
             </h3>
 

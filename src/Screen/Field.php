@@ -10,6 +10,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use Orchid\Screen\Concerns\Makeable;
 use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
 use Orchid\Screen\Fields\Group;
@@ -31,7 +32,7 @@ use Throwable;
  */
 class Field implements Fieldable
 {
-    use CanSee;
+    use CanSee, Makeable;
 
     /**
      * A set of closure functions
@@ -310,10 +311,9 @@ class Field implements Fieldable
      */
     public function getOldName(): string
     {
-        $name = str_ireplace(['][', '['], '.', $this->get('name'));
-        $name = str_ireplace([']'], '', $name);
-
-        return $name;
+        return (string) Str::of($this->get('name'))
+            ->replace(['][', '['], '.')
+            ->replace([']'], '');
     }
 
     /**
@@ -328,12 +328,6 @@ class Field implements Fieldable
         }
 
         $class = $this->get('class');
-
-        if ($class === null) {
-            $this->set('class', ' is-invalid');
-
-            return $this;
-        }
 
         return $this->set('class', $class.' is-invalid');
     }

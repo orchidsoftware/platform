@@ -53,26 +53,6 @@
     border: 1px solid $form-control-border-color;
 }
 
-.mce-content-body:focus {
-  background-color : $brand-grey-light;
-}
-
-// Tiny MCE Editor
-.mce-content-body {
-  img {
-    max-width  : 100%;
-    object-fit : cover;
-  }
-}
-
-div.mce-fullscreen {
-  z-index: 1050;
-}
-
-.editor-toolbar, .CodeMirror {
-  border-radius: 0;
-}
-
 // SimpleMDE Markdown Editor
 .CodeMirror-fullscreen, .editor-toolbar.fullscreen, .editor-preview-side {
   z-index : 1040;
@@ -196,9 +176,10 @@ div.mce-fullscreen {
       margin: 0;
       padding-left: 40px;
       position: relative;
-      i {
+      svg {
         @extend .r-3x;
         @extend .text-white;
+        @extend .p-2;
         top: 0;
         left: 0;
         border-radius: 3px;

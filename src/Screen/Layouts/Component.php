@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\View\Component as ViewComponent;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
 /**
  * Class Component.
  */
-abstract class Component extends Base
+abstract class Component extends Layout
 {
     /**
      * @var string

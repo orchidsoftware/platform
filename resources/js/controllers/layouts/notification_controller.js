@@ -85,7 +85,7 @@ export default class extends Controller {
     render() {
         const count = localStorage.getItem('profile.notifications');
 
-        let badge = '<i class="icon-circle"></i>';
+        let badge =  this.element.querySelector('#notification-circle').innerHTML.trim();
 
         if (count < 10) {
             badge = count;

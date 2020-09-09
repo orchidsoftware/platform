@@ -5,18 +5,19 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\Support\Arr;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
 /**
  * Class Wrapper.
  */
-abstract class Wrapper extends Base
+abstract class Wrapper extends Layout
 {
     /**
      * Wrapper constructor.
      *
-     * @param string $template
-     * @param Base[] $layouts
+     * @param string   $template
+     * @param Layout[] $layouts
      */
     public function __construct(string $template, array $layouts = [])
     {

@@ -13,19 +13,19 @@ class MetricsTest extends TestUnitCase
 {
     public function testGroupCount(): void
     {
-        factory(User::class, 5)->create([
+        User::factory()->count(5)->create([
             'uses_two_factor_auth' => true,
         ]);
 
-        factory(User::class, 8)->create([
+        User::factory()->count(8)->create([
             'uses_two_factor_auth' => false,
         ]);
 
         /** @var GroupCollection $group */
         $group = User::countForGroup('uses_two_factor_auth');
 
-        $this->assertContains(8, $group->pluck('value')->toArray());
-        $this->assertContains(5, $group->pluck('value')->toArray());
+        $this->assertContains('8', $group->pluck('value')->toArray());
+        $this->assertContains('5', $group->pluck('value')->toArray());
 
         $this->assertEquals([
             [
@@ -60,11 +60,11 @@ class MetricsTest extends TestUnitCase
         $start = (clone $current)->subDay(2);
         $end = (clone $current)->subDay(1);
 
-        factory(User::class, 5)->create([
+        User::factory()->count(5)->create([
             'created_at' => $start,
         ]);
 
-        factory(User::class, 8)->create([
+        User::factory()->count(8)->create([
             'created_at' => $end,
         ]);
 

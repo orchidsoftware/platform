@@ -48,7 +48,6 @@ class RadioButtons extends Field
         'autofocus',
         'disabled',
         'form',
-        'multiple',
         'name',
         'required',
         'size',
@@ -57,13 +56,11 @@ class RadioButtons extends Field
     ];
 
     /**
-     * @param string|null $name
-     *
-     * @return self
+     * RadioButtons constructor.
      */
-    public static function make(string $name = null): self
+    public function __construct()
     {
-        return (new static())->name($name)->declarateActive();
+        $this->declarateActive();
     }
 
     /**

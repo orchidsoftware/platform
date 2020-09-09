@@ -25,7 +25,7 @@ abstract class TestFeatureCase extends TestCase
     protected function createAdminUser(): User
     {
         if ($this->user === null) {
-            $this->user = factory(User::class)->create();
+            $this->user = User::factory()->create();
         }
 
         return $this->user;

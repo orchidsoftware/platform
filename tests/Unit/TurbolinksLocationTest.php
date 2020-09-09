@@ -67,6 +67,10 @@ class TurbolinksLocationTest extends TestUnitCase
 
     public function testFileResponse(): void
     {
+        if (windows_os()) {
+            $this->markTestSkipped('Skipping since operating system is Windows');
+        }
+
         $response = $this->post('turbolink-file-response-test');
         $response->assertHeaderMissing('Turbolinks-Location');
     }

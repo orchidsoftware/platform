@@ -6,6 +6,7 @@ namespace Orchid\Platform\Models;
 
 use App\Orchid\Presenters\UserPresenter;
 use Exception;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
@@ -20,7 +21,7 @@ use Orchid\Support\Facades\Dashboard;
 
 class User extends Authenticatable implements UserInterface
 {
-    use Notifiable, UserAccess, AsSource, Filterable, Chartable;
+    use Notifiable, UserAccess, AsSource, Filterable, Chartable, HasFactory;
 
     /**
      * The database table used by the model.

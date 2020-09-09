@@ -33,14 +33,4 @@ class DateRange extends Field
         'name',
         'value',
     ];
-
-    /**
-     * @param string|null $name
-     *
-     * @return DateRange
-     */
-    public static function make(string $name = null): self
-    {
-        return (new static())->name($name);
-    }
 }

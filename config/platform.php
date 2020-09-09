@@ -147,4 +147,16 @@ return [
         'generator' => \Orchid\Attachment\Engines\Generator::class,
     ],
 
+    /*
+    |-----------------------------------------------------------------
+    | Icons Path
+    |-----------------------------------------------------------------
+    |
+    | Provide the path from your app to your SVG icons directory.
+    |
+    | Example: [ 'fa' => storage_path('app/fontawesome') ]
+    */
+
+    'icons' => [],
+
 ];

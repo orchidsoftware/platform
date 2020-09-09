@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 8.0.0 - 2020-09-09
+
+### Added
+- French translation [#1208](https://github.com/orchidsoftware/platform/pull/1208)
+
+### Changed
+- The screen only responds to POST and GET requests. [#1092](https://github.com/orchidsoftware/platform/pull/1092)
+- Replaced a package of davejamesmiller/laravel-breadcrumbs with tabuna/breadcrumbs. [#1073](https://github.com/orchidsoftware/platform/issue/1073)
+- Using SVG icons [#1061](https://github.com/orchidsoftware/platform/issues/1061)
+- Route for *acync* screen methods [#1116](https://github.com/orchidsoftware/platform/issues/1116)
+
+### Fixed
+- Improper behavior when implementing dependency [#1150](https://github.com/orchidsoftware/platform/issues/1150)
+- If the field is a multi-select an array of values is sent to the async method [#1209](https://github.com/orchidsoftware/platform/pull/1209)
+
+### Remove
+- Pending Requests in the screen constructor. [#1092](https://github.com/orchidsoftware/platform/pull/1092)
+- TinyMCE field. [#873](https://github.com/orchidsoftware/platform/issues/873)
+- Settings. [#1087](https://github.com/orchidsoftware/platform/issues/1087)
+
 ## 7.18.0 - 2020-08-19
 
 ### Added

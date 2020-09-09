@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Access\RoleAccess;
 use Orchid\Access\RoleInterface;
@@ -13,7 +14,7 @@ use Orchid\Screen\AsSource;
 
 class Role extends Model implements RoleInterface
 {
-    use RoleAccess, Filterable, AsSource, Chartable;
+    use RoleAccess, Filterable, AsSource, Chartable, HasFactory;
 
     /**
      * @var string

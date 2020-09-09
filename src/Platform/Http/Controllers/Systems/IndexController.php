@@ -16,7 +16,7 @@ class IndexController
     /**
      * @return RedirectResponse
      */
-    public function index()
+    public function index(): RedirectResponse
     {
         return redirect()->route(config('platform.index'));
     }

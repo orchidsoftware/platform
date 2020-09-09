@@ -17,7 +17,7 @@
                    data-action="fields--matrix#deleteRow"
                    class="text-xs text-muted"
                    title="Remove row">
-                    <i class="icon-trash"></i>
+                    <x-orchid-icon path="trash"/>
                 </a>
             </th>
         @endif

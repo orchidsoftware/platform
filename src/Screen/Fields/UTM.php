@@ -15,7 +15,6 @@ use Orchid\Screen\Field;
  * @method UTM formmethod($value = true)
  * @method UTM formnovalidate($value = true)
  * @method UTM formtarget($value = true)
- * @method UTM multiple($value = true)
  * @method UTM name(string $value = null)
  * @method UTM placeholder(string $value = null)
  * @method UTM required(bool $value = true)
@@ -67,14 +66,4 @@ class UTM extends Field
         'tabindex',
         'value',
     ];
-
-    /**
-     * @param string|null $name
-     *
-     * @return self
-     */
-    public static function make(string $name = null): self
-    {
-        return (new static())->name($name);
-    }
 }

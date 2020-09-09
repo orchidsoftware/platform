@@ -37,7 +37,7 @@ class ListenerCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return Dashboard::path('resources/stubs/listener.stub');
+        return Dashboard::path('stubs/listener.stub');
     }
 
     /**

@@ -11,6 +11,7 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
 use Laravel\Ui\UiCommand;
 use Laravel\Ui\UiServiceProvider;
+use Orchid\Icons\IconServiceProvider;
 use Orchid\Platform\Commands\AdminCommand;
 use Orchid\Platform\Commands\ChartCommand;
 use Orchid\Platform\Commands\FilterCommand;
@@ -116,8 +117,8 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerOrchid(): self
     {
         $this->publishes([
-            Dashboard::path('install-stubs/routes/') => base_path('routes'),
-            Dashboard::path('install-stubs/Orchid/') => app_path('Orchid'),
+            Dashboard::path('stubs/app/routes/') => base_path('routes'),
+            Dashboard::path('stubs/app/Orchid/') => app_path('Orchid'),
         ], 'orchid-stubs');
 
         return $this;
@@ -212,6 +213,7 @@ class FoundationServiceProvider extends ServiceProvider
             UiServiceProvider::class,
             ScoutServiceProvider::class,
             ActiveServiceProvider::class,
+            IconServiceProvider::class,
             RouteServiceProvider::class,
             EventServiceProvider::class,
             PlatformServiceProvider::class,
@@ -230,10 +232,17 @@ class FoundationServiceProvider extends ServiceProvider
         });
 
         if (! Route::hasMacro('screen')) {
-            Route::macro('screen', function ($url, $screen, $name = null) {
+            Route::macro('screen', function ($url, $screen) {
                 /* @var Router $this */
-                return $this->any($url.'/{method?}/{argument?}', [$screen, 'handle'])
-                    ->name($name);
+                $route = $this->any($url.'/{method?}', [$screen, 'handle']);
+
+                $methods = $screen::getAvailableMethods();
+
+                if (! empty($methods)) {
+                    $route->where('method', implode('|', $methods));
+                }
+
+                return $route;
             });
         }
 

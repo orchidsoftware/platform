@@ -20,7 +20,7 @@ class UserEditTest extends TestBrowserCase
                 ->visitRoute('platform.systems.users')
                 ->clickLink($user->name, 'table a')
                 ->waitForRoute('platform.systems.users.edit', $user)
-                ->pause(500)
+                ->pause(2500)
                 ->assertInputValue('user[email]', $user->email)
                 ->type('user[email]', $email)
                 ->press('Save')
@@ -28,7 +28,7 @@ class UserEditTest extends TestBrowserCase
                 ->waitForText('User was saved.')
                 ->clickLink($user->name, 'table a')
                 ->waitForRoute('platform.systems.users.edit', $user)
-                ->pause(500)
+                ->pause(2500)
                 ->assertInputValue('user[email]', $email);
         });
     }

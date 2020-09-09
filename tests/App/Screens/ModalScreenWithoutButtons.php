@@ -6,9 +6,9 @@ namespace Orchid\Tests\App\Screens;
 
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\ModalToggle;
-use Orchid\Screen\Layout;
 use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Layout;
 
 class ModalScreenWithoutButtons extends Screen
 {
@@ -59,7 +59,7 @@ class ModalScreenWithoutButtons extends Screen
      *
      * @throws \Throwable
      *
-     * @return array
+     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): array
     {

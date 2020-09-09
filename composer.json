@@ -32,29 +32,29 @@
   "require": {
     "ext-json": "*",
     "bacon/bacon-qr-code": "^2.0",
-    "davejamesmiller/laravel-breadcrumbs": "^5.3",
-    "laravel/framework": "^7.0",
+    "orchid/blade-icons": "^1.2.0",
+    "tabuna/breadcrumbs": "^2.0",
+    "laravel/framework": "^8.0",
     "laravel/scout": "^8.0",
     "laravel/ui": "^2.0",
     "myclabs/php-enum": "^1.7",
     "pragmarx/google2fa": "^8.0",
     "ralouphie/mimey": "^2.1",
-    "watson/active": "^5.0"
+    "watson/active": "^6.0"
   },
   "require-dev": {
     "doctrine/dbal": "^2.10",
     "fzaninotto/faker": "^1.4",
     "guzzlehttp/guzzle": "~6.0",
     "mockery/mockery": "~1.0",
-    "orchestra/testbench": "^5.0",
-    "orchestra/testbench-dusk": "^5.1",
-    "phpunit/php-code-coverage": "^7.0",
-    "phpunit/phpunit": "^8.0",
-    "sti3bas/laravel-scout-array-driver": "^2.0"
+    "orchestra/testbench": "^6.0",
+    "orchestra/testbench-dusk": "^6.0",
+    "phpunit/php-code-coverage": "^9.0",
+    "phpunit/phpunit": "^9.0",
+    "sti3bas/laravel-scout-array-driver": "^2.1"
   },
   "autoload": {
     "psr-4": {
-      "Orchid\\Database\\Seeds\\": "database/seeds/",
       "Orchid\\Access\\": "src/Access/",
       "Orchid\\Alert\\": "src/Alert/",
       "Orchid\\Attachment\\": "src/Attachment/",
@@ -63,7 +63,6 @@
       "Orchid\\Platform\\": "src/Platform/",
       "Orchid\\Presets\\": "src/Presets/",
       "Orchid\\Screen\\": "src/Screen/",
-      "Orchid\\Setting\\": "src/Setting/",
       "Orchid\\Support\\": "src/Support/"
     },
     "files": [
@@ -71,13 +70,11 @@
     ]
   },
   "autoload-dev": {
-    "classmap": [
-      "database/seeds",
-      "database/factories"
-    ],
     "psr-4": {
+      "Orchid\\Platform\\Database\\Factories\\": "database/factories/",
+      "Orchid\\Platform\\Database\\Seeders\\": "database/seeders/",
       "Orchid\\Tests\\": "tests/",
-      "App\\": "install-stubs/"
+      "App\\": "stubs/app/"
     }
   },
   "extra": {
@@ -87,8 +84,7 @@
       ],
       "aliases": {
         "Alert": "Orchid\\Support\\Facades\\Alert",
-        "Dashboard": "Orchid\\Support\\Facades\\Dashboard",
-        "Setting": "Orchid\\Support\\Facades\\Setting"
+        "Dashboard": "Orchid\\Support\\Facades\\Dashboard"
       }
     }
   },

@@ -12,7 +12,7 @@
                     type="text" class="form-control input-sm bg-light no-border rounded padder"
                     placeholder="{{__('Search...')}}">
             <div class="input-icon-addon">
-                <i class="icon-magnifier"></i>
+                <x-orchid-icon path="magnifier"/>
             </div>
         </div>
     </div>

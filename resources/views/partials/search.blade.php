@@ -11,7 +11,7 @@
                        placeholder="{{ __('What to search...') }}"
                 >
                 <div class="input-icon-addon">
-                    <i class="icon-magnifier"></i>
+                    <x-orchid-icon path="magnifier"/>
                 </div>
             </div>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow bg-white w-100"

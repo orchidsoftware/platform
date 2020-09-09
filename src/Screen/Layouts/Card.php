@@ -6,7 +6,6 @@ namespace Orchid\Screen\Layouts;
 
 use Illuminate\View\View;
 use Orchid\Screen\Action;
-use Orchid\Screen\Content;
 use Orchid\Screen\Contracts\Actionable;
 use Orchid\Screen\Contracts\Cardable;
 

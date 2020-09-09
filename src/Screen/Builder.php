@@ -92,7 +92,7 @@ class Builder
      */
     public function generateForm(): string
     {
-        collect($this->fields)->each(function (Field $field) {
+        collect($this->fields)->each(function (Fieldable $field) {
             $this->form .= is_subclass_of($field, Groupable::class)
                 ? $this->renderGroup($field)
                 : $this->render($field);
@@ -122,13 +122,13 @@ class Builder
     /**
      * Render field for forms.
      *
-     * @param Field $field
+     * @param Fieldable $field
      *
      * @throws Throwable
      *
      * @return mixed
      */
-    private function render(Field $field)
+    private function render(Fieldable $field)
     {
         $field->set('lang', $this->language);
         $field->set('prefix', $this->buildPrefix($field));
@@ -141,11 +141,11 @@ class Builder
     }
 
     /**
-     * @param Field $field
+     * @param Fieldable $field
      *
      * @return string|null
      */
-    private function buildPrefix(Field $field)
+    private function buildPrefix(Fieldable $field)
     {
         return $field->get('prefix', $this->prefix);
     }

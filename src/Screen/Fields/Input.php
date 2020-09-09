@@ -24,7 +24,6 @@ use Orchid\Screen\Field;
  * @method Input max(int $value)
  * @method Input maxlength(int $value)
  * @method Input min(int $value)
- * @method Input multiple($value = true)
  * @method Input name(string $value = null)
  * @method Input pattern($value = true)
  * @method Input placeholder(string $value = null)
@@ -79,7 +78,6 @@ class Input extends Field
         'max',
         'maxlength',
         'min',
-        'multiple',
         'name',
         'pattern',
         'placeholder',
@@ -95,22 +93,16 @@ class Input extends Field
     ];
 
     /**
-     * @param string|null $name
-     *
-     * @return Input
+     * Input constructor.
      */
-    public static function make(string $name = null): self
+    public function __construct()
     {
-        $input = (new static())->name($name);
-
-        $input->addBeforeRender(function () {
+        $this->addBeforeRender(function () {
             $mask = $this->get('mask');
 
             if (is_array($mask)) {
                 $this->set('mask', json_encode($mask));
             }
         });
-
-        return $input;
     }
 }

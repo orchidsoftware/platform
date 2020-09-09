@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Orchid\Screen\Commander;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
 /**
  * Class Modal.
  */
-class Modal extends Base
+class Modal extends Layout
 {
     use Commander;
 
@@ -72,13 +73,6 @@ class Modal extends Base
      */
     public function build(Repository $repository)
     {
-        /*
-                $this->variables['type'] = $this->type;
-
-                $this->variables['title'] = $this->type;
-                $this->variables['commandBar'] = $this->buildCommandBar($repository);
-        */
-
         return $this->buildAsDeep($repository);
     }
 

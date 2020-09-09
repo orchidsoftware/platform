@@ -24,7 +24,6 @@ use Orchid\Screen\Field;
  * @method Password max(int $value)
  * @method Password maxlength(int $value)
  * @method Password min(int $value)
- * @method Password multiple($value = true)
  * @method Password name(string $value = null)
  * @method Password pattern($value = true)
  * @method Password placeholder(string $value = null)
@@ -75,7 +74,6 @@ class Password extends Field
         'max',
         'maxlength',
         'min',
-        'multiple',
         'name',
         'pattern',
         'placeholder',
@@ -87,14 +85,4 @@ class Password extends Field
         'tabindex',
         'type',
     ];
-
-    /**
-     * @param string|null $name
-     *
-     * @return Password
-     */
-    public static function make(string $name = null): self
-    {
-        return (new static())->name($name);
-    }
 }

@@ -67,7 +67,6 @@ class ResourceController
         /* Changing the separator for Windows operating systems */
         $path = str_replace('/', DIRECTORY_SEPARATOR, $path);
 
-        /** @var SplFileInfo|null $resource */
         $resource = collect($iterator)
             ->filter(static function (SplFileInfo $file) use ($path) {
                 return $file->getRelativePathname() === $path;

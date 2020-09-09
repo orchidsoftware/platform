@@ -7,13 +7,14 @@ namespace Orchid\Screen\Layouts;
 use Illuminate\Contracts\View\Factory;
 use Orchid\Screen\Builder;
 use Orchid\Screen\Field;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Throwable;
 
 /**
  * Class Rows.
  */
-abstract class Rows extends Base
+abstract class Rows extends Layout
 {
     /**
      * @var string

@@ -37,7 +37,8 @@
         </div>
         <div class="form-group">
             <button class="btn btn-default btn-block" id="button-reset" type="submit">
-                <i class="icon-refresh text-xs mr-2"></i> {{ __('Reset Password') }}
+                <x-orchid-icon path="refresh" class="text-xs mr-2"/>
+                {{ __('Reset Password') }}
             </button>
         </div>
     </form>

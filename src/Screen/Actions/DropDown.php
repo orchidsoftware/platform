@@ -36,22 +36,6 @@ class DropDown extends Action
     ];
 
     /**
-     * Create instance of the button.
-     *
-     * @param string $name
-     *
-     * @return DropDown
-     */
-    public static function make(string $name = ''): self
-    {
-        return (new static())
-            ->name($name)
-            ->addBeforeRender(function () use ($name) {
-                $this->set('name', $name);
-            });
-    }
-
-    /**
      * @param Actionable[] $list
      *
      * @return DropDown

@@ -113,6 +113,12 @@
     margin: 0.5rem;
   }
 
+  .svg, a{
+     :hover, *:hover {
+          cursor: pointer !important;
+      }
+  }
+
     .media {
         &-item {
             cursor: pointer;

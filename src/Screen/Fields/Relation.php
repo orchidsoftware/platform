@@ -7,6 +7,7 @@ namespace Orchid\Screen\Fields;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Crypt;
+use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
 use Orchid\Support\Assert;
 
@@ -28,6 +29,8 @@ use Orchid\Support\Assert;
  */
 class Relation extends Field
 {
+    use Multipliable;
+
     /**
      * @var string
      */
@@ -67,7 +70,6 @@ class Relation extends Field
         'autofocus',
         'disabled',
         'form',
-        'multiple',
         'placeholder',
         'name',
         'required',
@@ -75,26 +77,6 @@ class Relation extends Field
         'tabindex',
         'data-maximum-selection-length',
     ];
-
-    /**
-     * @param string|null $name
-     *
-     * @return Relation
-     */
-    public static function make(string $name = null): self
-    {
-        return (new static())->name($name);
-    }
-
-    /**
-     * @return Relation
-     */
-    public function multiple(): self
-    {
-        $this->attributes['multiple'] = 'multiple';
-
-        return $this;
-    }
 
     /**
      * @param string|Model $model

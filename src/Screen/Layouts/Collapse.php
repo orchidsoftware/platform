@@ -6,13 +6,14 @@ namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
 use Orchid\Screen\Builder;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Throwable;
 
 /**
  * Class Collapse.
  */
-abstract class Collapse extends Base
+abstract class Collapse extends Layout
 {
     /**
      * @var string
@@ -30,9 +31,9 @@ abstract class Collapse extends Base
     private $label = 'Options';
 
     /**
-     * Base constructor.
+     * Layout constructor.
      *
-     * @param Base[] $layouts
+     * @param Layout[] $layouts
      */
     public function __construct(array $layouts = [])
     {

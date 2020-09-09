@@ -72,7 +72,7 @@ export default class extends Controller {
     /**
      *
      */
-    openLink() {
+    openLink(event) {
         event.preventDefault();
         window.open(this.data.get('url'));
     }
@@ -198,6 +198,16 @@ export default class extends Controller {
         const multiple = !!this.data.get('multiple');
         const isMediaLibrary = this.data.get('is-media-library');
 
+
+        const removeButton = Dropzone.createElement(
+            this.element.querySelector('#'+this.data.get('id') + '-remove-button').innerHTML.trim()
+        );
+
+        const editButton = Dropzone.createElement(
+            this.element.querySelector('#'+this.data.get('id') + '-edit-button').innerHTML.trim()
+        );
+
+
         this.dropZone = new Dropzone(dropname, {
             url: platform.prefix('/systems/files'),
             method: 'post',
@@ -223,9 +233,6 @@ export default class extends Controller {
                         window.platform.alert('Validation error', 'Max files');
                         this.removeFile(e);
                     }
-
-                    const removeButton = Dropzone.createElement('<a href="javascript:;" class="btn-remove">&times;</a>');
-                    const editButton = Dropzone.createElement('<a href="javascript:;" class="btn-edit"><i class="icon-note" aria-hidden="true"></i></a>');
 
                     removeButton.addEventListener('click', (event) => {
                         event.preventDefault();

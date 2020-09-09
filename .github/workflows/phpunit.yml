@@ -4,18 +4,19 @@ on: [push,pull_request]
 
 jobs:
   phpunit:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        php: [7.4, 7.3, 7.2]
-        laravel: [7.*]
+        php: [7.4, 7.3]
+        os: [ubuntu-latest, windows-latest]
+        laravel: [8.*]
         dependency-version: [prefer-lowest, prefer-stable]
         include:
-          - laravel: 7.*
-            testbench: 5.*
+          - laravel: 8.*
+            testbench: 6.*
 
-    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }}
+    name: P${{ matrix.php }} - ${{ matrix.os }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }}
 
     steps:
       - name: Checkout code 🛎️

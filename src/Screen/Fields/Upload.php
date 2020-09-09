@@ -20,7 +20,6 @@ use Orchid\Support\Init;
  * @method Upload formmethod($value = true)
  * @method Upload formnovalidate($value = true)
  * @method Upload formtarget($value = true)
- * @method Upload multiple($value = true)
  * @method Upload name(string $value = null)
  * @method Upload placeholder(string $value = null)
  * @method Upload value($value = true)
@@ -88,16 +87,6 @@ class Upload extends Field
         'media',
         'closeOnAdd',
     ];
-
-    /**
-     * @param string|null $name
-     *
-     * @return self
-     */
-    public static function make(string $name = null): self
-    {
-        return (new static())->name($name);
-    }
 
     /**
      * Upload constructor.

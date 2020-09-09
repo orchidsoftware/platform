@@ -18,7 +18,7 @@ class RoleTest extends TestFeatureCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->role = factory(Role::class)->create();
+        $this->role = Role::factory()->create();
     }
 
     public function testRouteSystemsRoles(): void
@@ -47,7 +47,7 @@ class RoleTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->get(route('platform.systems.roles.edit', $this->role->slug));
+            ->get(route('platform.systems.roles.edit', $this->role->id));
 
         $response->assertOk()
         ->assertSee('field-roles')

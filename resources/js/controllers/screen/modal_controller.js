@@ -38,7 +38,7 @@ export default class extends Controller {
 
         this.setFormAction(options.submit);
 
-        if (this.data.get('async')) {
+        if (parseInt(this.data.get('async-enable'))) {
             this.asyncLoadData(JSON.parse(options.params));
         }
 
@@ -50,10 +50,7 @@ export default class extends Controller {
      * @param params
      */
     asyncLoadData(params) {
-
-        let name = this.data.get('url') + '/' + this.data.get('slug') + '/' + this.data.get('method');
-
-        axios.post(name, params).then((response) => {
+        axios.post(this.data.get('async-route'), params).then((response) => {
             this.element.querySelector('[data-async]').innerHTML = response.data;
         });
     }

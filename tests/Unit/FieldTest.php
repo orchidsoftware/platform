@@ -19,7 +19,6 @@ use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\SimpleMDE;
 use Orchid\Screen\Fields\Switcher;
 use Orchid\Screen\Fields\TextArea;
-use Orchid\Screen\Fields\TinyMCE;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Fields\UTM;
 use Orchid\Tests\TestUnitCase;
@@ -67,10 +66,6 @@ class FieldTest extends TestUnitCase
         ]];
 
         yield [CheckBox::class, [
-            'name' => 'example',
-        ]];
-
-        yield [TinyMCE::class, [
             'name' => 'example',
         ]];
 
