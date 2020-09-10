@@ -2,8 +2,8 @@
 
 namespace App\Orchid\Screens\Examples;
 
-use Orchid\Platform\Models\User;
 use Illuminate\Http\Request;
+use Orchid\Platform\Models\User;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Contracts\Cardable;
