@@ -142,7 +142,7 @@ class PlatformProvider extends OrchidServiceProvider
     {
         return [
             // ...Models
-            // \App\User::class
+            // \App\Models\User::class
         ];
     }
 }
