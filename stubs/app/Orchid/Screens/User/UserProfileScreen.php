@@ -121,7 +121,7 @@ class UserProfileScreen extends Screen
                         ->required()
                         ->title(__('New password')),
 
-                    Password::make('password')
+                    Password::make('password_confirmation')
                         ->placeholder(__('Enter the password to be set'))
                         ->required()
                         ->title(__('Confirm new password'))
@@ -235,9 +235,9 @@ class UserProfileScreen extends Screen
             ->fill($request->get('user'))
             ->save();
 
-        Toast::info(__('User was saved.'));
+        Toast::info(__('Profile updated.'));
 
-        return redirect()->route('platform.systems.users');
+        return back();
     }
 
     /**
@@ -247,11 +247,16 @@ class UserProfileScreen extends Screen
      */
     public function changePassword(Request $request)
     {
+        $request->validate([
+            'old_password' => 'required|password:web',
+            'password'     => 'required|confirmed',
+        ]);
+
         tap($request->user(), function ($user) use ($request) {
             $user->password = Hash::make($request->get('password'));
         })->save();
 
-        Toast::info(__('User was saved.'));
+        Toast::info(__('Password changed.'));
 
         return back();
     }
