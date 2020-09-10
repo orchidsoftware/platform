@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 8.0.0 - 2020-09-09
+## 8.0.0 - 2020-09-10
 
 ### Added
 - French translation [#1208](https://github.com/orchidsoftware/platform/pull/1208)
@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Pending Requests in the screen constructor. [#1092](https://github.com/orchidsoftware/platform/pull/1092)
 - TinyMCE field. [#873](https://github.com/orchidsoftware/platform/issues/873)
 - Settings. [#1087](https://github.com/orchidsoftware/platform/issues/1087)
+- Release Messages [#1217](https://github.com/orchidsoftware/platform/pull/1217)
 
 ## 7.18.0 - 2020-08-19
 
