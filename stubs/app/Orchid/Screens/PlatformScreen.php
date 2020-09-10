@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens;
 
-use Orchid\Platform\Dashboard;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
@@ -32,9 +31,7 @@ class PlatformScreen extends Screen
      */
     public function query(): array
     {
-        return [
-            'status' => Dashboard::checkUpdate(),
-        ];
+        return [];
     }
 
     /**
@@ -67,7 +64,6 @@ class PlatformScreen extends Screen
     public function layout(): array
     {
         return [
-            Layout::view('platform::partials.update'),
             Layout::view('platform::partials.welcome'),
         ];
     }

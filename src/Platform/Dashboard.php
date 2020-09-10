@@ -163,16 +163,6 @@ class Dashboard
     }
 
     /**
-     * Checks if a new and stable version exists.
-     *
-     * @return bool
-     */
-    public static function checkUpdate(): bool
-    {
-        return (new Updates())->check();
-    }
-
-    /**
      * The real path to the package files.
      *
      * @param string $path

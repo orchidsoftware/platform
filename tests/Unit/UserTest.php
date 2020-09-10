@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Tests\Unit\Platform;
+namespace Orchid\Tests\Unit;
 
 use Illuminate\Support\Facades\Auth;
 use Orchid\Access\UserSwitch;
