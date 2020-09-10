@@ -209,8 +209,9 @@ abstract class Screen extends Controller
      * @param ReflectionParameter $parameter
      * @param array               $httpQueryArguments
      *
-     * @return mixed
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
+     * @return mixed
      */
     private function bind(int $key, ReflectionParameter $parameter, array $httpQueryArguments)
     {
@@ -263,8 +264,9 @@ abstract class Screen extends Controller
      *
      * @param array $httpQueryArguments
      *
-     * @return Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      * @throws ReflectionException
+     *
+     * @return Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     protected function redirectOnGetMethodCallOrShowView(array $httpQueryArguments)
     {
