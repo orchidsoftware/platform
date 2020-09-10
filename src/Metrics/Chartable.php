@@ -13,15 +13,14 @@ trait Chartable
      *
      * @param Builder $builder
      * @param string  $groupColumn
-     * @param string  $dateColumn
      *
      * @return GroupCollection
      */
-    public function scopeCountForGroup(Builder $builder, string $groupColumn, string $dateColumn = 'created_at'): GroupCollection
+    public function scopeCountForGroup(Builder $builder, string $groupColumn): GroupCollection
     {
         $group = $builder->select("$groupColumn as label", DB::raw('count(*) as value'))
             ->groupBy($groupColumn)
-            ->orderBy($dateColumn, 'asc')
+            ->orderBy('value', 'desc')
             ->get();
 
         return new GroupCollection($group);
