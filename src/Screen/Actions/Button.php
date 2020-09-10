@@ -48,7 +48,7 @@ class Button extends Action
      */
     public function __construct()
     {
-        return $this->addBeforeRender(function () {
+        $this->addBeforeRender(function () {
             if ($this->get('action') !== null) {
                 return;
             }
