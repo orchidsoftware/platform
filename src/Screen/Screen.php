@@ -207,10 +207,10 @@ abstract class Screen extends Controller
      *
      * @param int                 $key
      * @param ReflectionParameter $parameter
-     *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @param array               $httpQueryArguments
      *
      * @return mixed
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     private function bind(int $key, ReflectionParameter $parameter, array $httpQueryArguments)
     {
@@ -261,9 +261,10 @@ abstract class Screen extends Controller
      * Defines the URL to represent
      * the page based on the calculation of link arguments.
      *
-     * @throws Throwable
+     * @param array $httpQueryArguments
      *
      * @return Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @throws ReflectionException
      */
     protected function redirectOnGetMethodCallOrShowView(array $httpQueryArguments)
     {
