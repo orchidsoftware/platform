@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Pending Requests in the screen constructor. [#1092](https://github.com/orchidsoftware/platform/pull/1092)
 - TinyMCE field. [#873](https://github.com/orchidsoftware/platform/issues/873)
 - Settings. [#1087](https://github.com/orchidsoftware/platform/issues/1087)
+- Release Messages [#1217](https://github.com/orchidsoftware/platform/pull/1217)
 
 ## 7.18.0 - 2020-08-19
 
