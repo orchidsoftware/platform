@@ -33,6 +33,7 @@
     "ext-json": "*",
     "bacon/bacon-qr-code": "^2.0",
     "orchid/blade-icons": "^1.2.0",
+    "orchid/icons": "^2.0",
     "tabuna/breadcrumbs": "^2.0",
     "laravel/framework": "^8.0",
     "laravel/scout": "^8.0",

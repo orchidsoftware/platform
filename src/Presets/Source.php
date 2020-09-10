@@ -88,7 +88,6 @@ class Source extends Preset
             'css/orchid.css',
             'js/orchid.js',
             'public/orchid',
-            'public/fonts',
             'public/js/',
         ], [
             'resources/js/orchid',
@@ -96,7 +95,6 @@ class Source extends Preset
             'public/resources/orchid/css/orchid.css',
             'public/resources/orchid/js/orchid.js',
             'public/resources/orchid',
-            'public/resources/orchid/fonts',
             'public/resources/orchid/js/',
         ], $transformedConfig);
 
