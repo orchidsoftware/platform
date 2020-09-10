@@ -37,10 +37,6 @@ class InstallCommand extends Command
         $this->info('Installation started. Please wait...');
         $this->info('Version: '.Dashboard::VERSION);
 
-        if ($dashboard->checkUpdate()) {
-            $this->warn('Warning, this is not the latest available version.');
-        }
-
         $this
             ->executeCommand('vendor:publish', [
                 '--provider' => FoundationServiceProvider::class,
