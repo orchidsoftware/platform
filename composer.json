@@ -37,7 +37,7 @@
     "tabuna/breadcrumbs": "^2.0",
     "laravel/framework": "^8.0",
     "laravel/scout": "^8.0",
-    "laravel/ui": "^2.0",
+    "laravel/ui": "^3.0",
     "myclabs/php-enum": "^1.7",
     "pragmarx/google2fa": "^8.0",
     "ralouphie/mimey": "^2.1",
