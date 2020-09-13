@@ -170,7 +170,9 @@ abstract class Screen extends Controller
         $parameters = array_filter($parameters);
         $parameters = array_merge($query, $parameters);
 
-        return $this->callMethod($method, $parameters);
+        $response = $this->callMethod($method, $parameters);
+
+        return $response ?? back();
     }
 
     /**
