@@ -46,10 +46,18 @@ class RoleFilter extends Filter
     {
         return [
             Select::make('role')
-                ->fromModel(Role::class, 'slug', 'slug')
+                ->fromModel(Role::class, 'name', 'slug')
                 ->empty()
                 ->value($this->request->get('role'))
                 ->title(__('Roles')),
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public function value(): string
+    {
+        return Role::where('slug', $this->request->get('role'))->first()->name;
     }
 }
