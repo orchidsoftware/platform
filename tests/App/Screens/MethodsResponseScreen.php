@@ -49,21 +49,24 @@ class MethodsResponseScreen extends Screen
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function redirect() {
+    public function redirect()
+    {
         return redirect()->to('#');
     }
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function response() {
+    public function response()
+    {
         return response('content', 200);
     }
 
     /**
-     * No return method
+     * No return method.
      */
-    public function empty():void {
+    public function empty(): void
+    {
         // do not delete
     }
 }
