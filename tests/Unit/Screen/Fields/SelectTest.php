@@ -196,5 +196,4 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('<option value="-" selected>-</option>', $view);
         $this->assertStringContainsString('<option value="0">0</option>', $view);
     }
-
 }
