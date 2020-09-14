@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 8.1.0 - 2020-09-14
+
+### Changed
+- Return `back()` for `Screen` to default [#1221](https://github.com/orchidsoftware/platform/issues/1221)
+
+### Fixed
+- Role selection field and added an example of displaying a value [#1226](https://github.com/orchidsoftware/platform/pull/1226)
+
 ## 8.0.2 - 2020-09-14
 
 ### Fixed
