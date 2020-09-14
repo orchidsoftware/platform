@@ -104,16 +104,12 @@ class SearchScreen extends Screen
 
     /**
      * @param Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function changeSearchType(Request $request)
     {
         $type = $request->get('type');
 
         $request->session()->put(self::SESSION_NAME, $type);
-
-        return back();
     }
 
     /**

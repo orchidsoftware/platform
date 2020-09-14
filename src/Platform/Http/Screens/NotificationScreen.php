@@ -120,8 +120,6 @@ class NotificationScreen extends Screen
 
     /**
      * @param Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function markAllAsRead(Request $request)
     {
@@ -131,8 +129,6 @@ class NotificationScreen extends Screen
             ->markAsRead();
 
         Toast::info(__('All messages have been read.'));
-
-        return back();
     }
 
     /**

@@ -106,14 +106,10 @@ class UserListScreen extends Screen
             ->save();
 
         Toast::info(__('User was saved.'));
-
-        return back();
     }
 
     /**
      * @param Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function remove(Request $request)
     {
@@ -121,7 +117,5 @@ class UserListScreen extends Screen
             ->delete();
 
         Toast::info(__('User was removed'));
-
-        return back();
     }
 }

@@ -177,13 +177,9 @@ class ExampleScreen extends Screen
 
     /**
      * @param Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function showToast(Request $request)
     {
         Toast::warning($request->get('toast', 'Hello, world! This is a toast message.'));
-
-        return back();
     }
 }

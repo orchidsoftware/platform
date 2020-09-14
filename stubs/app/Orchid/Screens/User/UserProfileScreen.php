@@ -164,7 +164,6 @@ class UserProfileScreen extends Screen
      * @param Request   $request
      * @param Dashboard $dashboard
      *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function enableTwoFactorAuth(Request $request, Dashboard $dashboard)
     {
@@ -195,16 +194,12 @@ class UserProfileScreen extends Screen
         Alert::view('platform::auth.settings.two-factor-generator-message', Color::SECONDARY(), [
             'code' => $request->user()->two_factor_recovery_code,
         ]);
-
-        return back();
     }
 
     /**
      * Disable two-factor authentication for the given user.
      *
      * @param Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function disableTwoFactorAuth(Request $request)
     {
@@ -215,14 +210,10 @@ class UserProfileScreen extends Screen
         ])->save();
 
         Toast::success(__('Two-factor authentication has been disabled.'));
-
-        return back();
     }
 
     /**
      * @param Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function save(Request $request)
     {
@@ -236,14 +227,10 @@ class UserProfileScreen extends Screen
             ->save();
 
         Toast::info(__('Profile updated.'));
-
-        return back();
     }
 
     /**
      * @param Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function changePassword(Request $request)
     {
@@ -257,7 +244,5 @@ class UserProfileScreen extends Screen
         })->save();
 
         Toast::info(__('Password changed.'));
-
-        return back();
     }
 }
