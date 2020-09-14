@@ -46,6 +46,7 @@ class TestFieldsUnitCase extends TestUnitCase
             '/(\s)+/s',         // shorten multiple whitespace sequences
             '/<!--(.|\s)*?-->/', // Remove HTML comments
             '/" >/',
+            '/ >/',
         ];
 
         $replace = [
@@ -54,6 +55,7 @@ class TestFieldsUnitCase extends TestUnitCase
             '\\1',
             '',
             '">',
+            '>',
         ];
 
         return preg_replace($search, $replace, $view);

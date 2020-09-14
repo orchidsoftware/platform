@@ -180,4 +180,21 @@ class SelectTest extends TestFieldsUnitCase
 
         return sprintf($option, $value, $name);
     }
+
+    public function testStrictTypeCasting(): void
+    {
+        $select = Select::make('choice')
+            ->value('-')
+            ->options([
+                '-' => '-',
+                '0' => '0',
+                '1' => '1',
+            ]);
+
+        $view = self::minifyRenderField($select);
+
+        $this->assertStringContainsString('<option value="-" selected>-</option>', $view);
+        $this->assertStringContainsString('<option value="0">0</option>', $view);
+    }
+
 }
