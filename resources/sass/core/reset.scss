@@ -510,7 +510,7 @@ blockquote {
     }
   }
   > thead > tr > th {
-    padding: 8px 15px;
+    padding: 1em;
     border-bottom: 1px solid $table-border-color;
   }
 }
@@ -789,4 +789,9 @@ sub, sup {
 legend {
     font-size: 1.3rem;
     margin-bottom: 1rem;
+}
+
+.toast{
+    border-radius: $border-radius;
+    border: none;
 }

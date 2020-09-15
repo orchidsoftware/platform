@@ -1,4 +1,4 @@
-<div id="accordion-{{$templateSlug}}" class="accordion">
+<div id="accordion-{{$templateSlug}}" class="accordion mb-3">
     @foreach($manyForms as $name => $forms)
         <div class="accordion-heading border-bottom @if ($loop->index) collapsed @endif"
              id="heading-{{\Illuminate\Support\Str::slug($name)}}"
@@ -15,9 +15,11 @@
              class="border-bottom mt-2 collapse @if (!$loop->index) show @endif"
              aria-labelledby="heading-{{\Illuminate\Support\Str::slug($name)}}"
              data-parent="#accordion-{{$templateSlug}}">
-            @foreach($forms as $form)
-                {!! $form !!}
-            @endforeach
+            <div class="bg-white rounded shadow-sm mb-3 layout-wrapper">
+                @foreach($forms as $form)
+                    {!! $form !!}
+                @endforeach
+            </div>
         </div>
     @endforeach
 </div>

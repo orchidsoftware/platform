@@ -1,9 +1,7 @@
-<div class="admin-wrapper">
-    <div class="py-4">
-
-        <div class="row">
+<div class="admin-wrapper bg-white rounded shadow-sm p-3 mb-3">
+    <div class="row">
             <div class="col-md-7 col-sm-12">
-                <div class="mb-5 jumbotron">
+                <div class="mb-0 jumbotron">
                     <h1 class="display-5 text-dark font-thin m-b-sm">
                         <x-orchid-icon path="trophy" class="mr-2 mb-3"/>
                         Congratulations!
@@ -87,6 +85,4 @@
                 </div>
             </div>
         </div>
-
-    </div>
 </div>

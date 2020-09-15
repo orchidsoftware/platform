@@ -1,12 +1,12 @@
 @section('search', $query)
 
 @empty(!$radios)
-    <div class="row border-bottom v-center pl-3 pr-4">
+    <div class="v-center shadow-sm rounded bg-white mb-3 w-100 layout-wrapper">
         {!! $radios !!}
     </div>
 @endempty
 
-<div class="row">
+<div class="bg-white shadow-sm rounded mb-3">
     @forelse($results as $item)
 
         <a href="{{$item->url()}}" class="block wrapper-sm dropdown-item" style="font-size: 0.85em;">
@@ -26,9 +26,9 @@
         </a>
     @empty
 
-        <div class="text-center bg-white pt-5 pb-5 w-100">
+        <div class="text-center pt-5 pb-5 w-100">
             <h3 class="font-thin">
-                <x-orchid-icon path="magnifier-remove" class="block m-b"/>
+                <x-orchid-icon path="magnifier-remove" class="block mb-3 center"/>
 
                 {{ __('Nothing found.') }}
             </h3>
@@ -37,10 +37,12 @@
         </div>
     @endforelse
 
-    @includeWhen($results instanceof \Illuminate\Contracts\Pagination\Paginator && $results->isNotEmpty(),
-        'platform::layouts.pagination',
-        ['paginator' => $results]
-      )
-
+    <div class="mt-2">
+        @includeWhen($results instanceof \Illuminate\Contracts\Pagination\Paginator && $results->isNotEmpty(),
+            'platform::layouts.pagination',
+            ['paginator' => $results]
+          )
+    </div>
 </div>
+
 
