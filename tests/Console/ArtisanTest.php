@@ -95,20 +95,4 @@ class ArtisanTest extends TestConsoleCase
         $this->artisan('orchid:link')
             ->expectsOutput('Links have been created.');
     }
-
-    public function testArtisanPresetOrchidSource(): void
-    {
-        $this->artisan('ui', ['type' => 'orchid-source'])
-            ->expectsOutput('Please run "npm install && npm run dev" to compile your fresh scaffolding.')
-            ->expectsOutput('Orchid scaffolding installed successfully.');
-    }
-
-    public function testArtisanPresetOrchid(): void
-    {
-        $this->artisan('ui', ['type' => 'orchid'])
-            ->expectsOutput('Please run "npm install && npm run dev" to compile your fresh scaffolding.')
-            ->expectsOutput("After that, You need to add this line to AppServiceProvider's register method:")
-            ->expectsOutput("app(\Orchid\Platform\Dashboard::class)->registerResource('scripts','/js/dashboard.js');")
-            ->expectsOutput('Orchid scaffolding installed successfully.');
-    }
 }
