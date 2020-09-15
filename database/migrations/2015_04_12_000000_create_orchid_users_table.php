@@ -12,7 +12,6 @@ class CreateOrchidUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->timestamp('last_login')->nullable();
             $table->jsonb('permissions')->nullable();
         });
     }
@@ -23,7 +22,7 @@ class CreateOrchidUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['last_login', 'permissions']);
+            $table->dropColumn(['permissions']);
         });
     }
 }
