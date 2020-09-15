@@ -106,6 +106,7 @@ class Field implements Fieldable
         'title',
         'xml:lang',
         'autocomplete',
+        'data-test',
     ];
 
     /**
