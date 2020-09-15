@@ -1,4 +1,4 @@
-<div class="row pt-3" data-controller="screen--filter">
+<div class="" data-controller="screen--filter">
     <div class="col-md-12">
         <div class="btn-group" role="group">
             <button class="btn btn-link dropdown-toggle pl-0"

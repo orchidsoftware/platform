@@ -13,23 +13,6 @@ body {
   min-height: 100%;
   width: 100%;
   position: relative;
-  &:before {
-    content: "";
-    position: absolute;
-    width: inherit;
-    top: 0;
-    bottom: 0;
-    z-index: -1;
-    background: $brand-dark;
-    background: -moz-linear-gradient(left, $brand-dark 0%, $brand-dark 50%, $body-bg 51%, $body-bg 71%, $body-bg 100%);
-    background: -webkit-gradient(left top, right top, color-stop(0%, $brand-dark), color-stop(50%, $brand-dark), color-stop(51%, $body-bg), color-stop(71%, $body-bg), color-stop(100%, $body-bg));
-    background: -webkit-linear-gradient(left, $brand-dark 0%, $brand-dark 50%, $body-bg 51%, $body-bg 71%, $body-bg 100%);
-    background: -o-linear-gradient(left, $brand-dark 0%, $brand-dark 50%, $body-bg 51%, $body-bg 71%, $body-bg 100%);
-    background: -ms-linear-gradient(left, $brand-dark 0%, $brand-dark 50%, $body-bg 51%, $body-bg 71%, $body-bg 100%);
-    background: linear-gradient(to right, $brand-dark 0%, $brand-dark 50%, $body-bg 51%, $body-bg 71%, $body-bg 100%);
-    border: inherit;
-    display: block;
-  }
   .app-header {
     .navbar-header {
       display: inherit;
@@ -248,5 +231,20 @@ body {
             }
 
         }
+    }
+}
+
+
+.layout {
+    @extend .bg-white;
+    @extend .shadow-sm;
+    @extend .rounded;
+    @extend .p-4;
+    @extend .mb-3;
+}
+
+.layout-wrapper {
+    .shadow-sm {
+        box-shadow: none!important;
     }
 }

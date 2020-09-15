@@ -11,7 +11,7 @@
 @stop
 @section('content')
         <form id="post-form"
-              class="px-3"
+              class="mb-md-4"
               method="post"
               enctype="multipart/form-data"
               data-controller="layouts--form"

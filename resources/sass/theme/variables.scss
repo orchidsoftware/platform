@@ -47,7 +47,7 @@ $dark:          #212529 !default;
 
 $brand-grey-light : mix($brand-grey, #ffffff, 10%);
 
-$body-bg : #f6f8fa;//lighten($brand-light, 1%);
+$body-bg : #eaf1f7;//lighten($brand-light, 1%);
 $text-color : #58666e;
 $text-muted : lighten($text-color, 25%);
 
@@ -173,4 +173,8 @@ $state-danger-text : #a94442;
 $state-success-text : #3c763d;
 
 
+//Border
+$border-radius:               .35rem;
+$border-radius-lg:            .4rem;
+$border-radius-sm:            .3rem;
 

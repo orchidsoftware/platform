@@ -13,7 +13,7 @@
      data-screen--chart-bar-options="{{$barOptions}}"
      data-screen--chart-line-options="{{$lineOptions}}"
 >
-    <div class="row pt-3">
+    <div class="bg-white rounded shadow-sm mb-3 pt-3">
         <div class="pos-rlt w-100">
 
             @if($export)
