@@ -14,15 +14,15 @@ class MetricsTest extends TestUnitCase
     public function testGroupCount(): void
     {
         User::factory()->count(5)->create([
-            'uses_two_factor_auth' => true,
+            'name' => true,
         ]);
 
         User::factory()->count(8)->create([
-            'uses_two_factor_auth' => false,
+            'name' => false,
         ]);
 
         /** @var GroupCollection $group */
-        $group = User::countForGroup('uses_two_factor_auth');
+        $group = User::countForGroup('name');
 
         $this->assertContains(8, $group->pluck('value')->toArray());
         $this->assertContains(5, $group->pluck('value')->toArray());

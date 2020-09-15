@@ -15,7 +15,6 @@ use Orchid\Access\UserAccess;
 use Orchid\Access\UserInterface;
 use Orchid\Filters\Filterable;
 use Orchid\Metrics\Chartable;
-use Orchid\Platform\Notifications\ResetPassword;
 use Orchid\Screen\AsSource;
 use Orchid\Support\Facades\Dashboard;
 
@@ -39,7 +38,6 @@ class User extends Authenticatable implements UserInterface
         'name',
         'email',
         'password',
-        'last_login',
         'permissions',
     ];
 
@@ -52,9 +50,6 @@ class User extends Authenticatable implements UserInterface
         'password',
         'remember_token',
         'permissions',
-        'uses_two_factor_auth',
-        'two_factor_secret_code',
-        'two_factor_recovery_code',
     ];
 
     /**
@@ -65,8 +60,6 @@ class User extends Authenticatable implements UserInterface
     protected $casts = [
         'permissions'          => 'array',
         'email_verified_at'    => 'datetime',
-        'last_login'           => 'datetime',
-        'uses_two_factor_auth' => 'boolean',
     ];
 
     /**
@@ -90,22 +83,9 @@ class User extends Authenticatable implements UserInterface
         'id',
         'name',
         'email',
-        'last_login',
         'updated_at',
         'created_at',
     ];
-
-    /**
-     * Send the password reset notification.
-     *
-     * @param string $token
-     *
-     * @return void
-     */
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new ResetPassword($token));
-    }
 
     /**
      * @param string $name
