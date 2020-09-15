@@ -163,7 +163,6 @@ class UserProfileScreen extends Screen
      *
      * @param Request   $request
      * @param Dashboard $dashboard
-     *
      */
     public function enableTwoFactorAuth(Request $request, Dashboard $dashboard)
     {
