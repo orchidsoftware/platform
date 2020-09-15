@@ -8,16 +8,15 @@
             </a>
         </div>
     </div>
-
 @endsection
 
 
 @section('body-right')
 
-    <div class="v-center h-100 w-100 justify-content-center">
+    <div class="v-center min-vh-100 w-100 justify-content-center">
         <div class="container">
             <div class="row">
-                <div class="col mx-auto p-5" style="max-width: 32rem;">
+                <div class="col mx-auto bg-white p-5 rounded shadow-sm" style="max-width: 32rem;">
                     @yield('content')
                 </div>
             </div>

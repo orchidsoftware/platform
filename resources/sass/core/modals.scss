@@ -6,7 +6,7 @@
     transition: all 340ms !important;
   }
   .modal-content {
-    border-radius: 3px;
+    border-radius: $border-radius;
     box-shadow: none;
   }
   .modal-header {
@@ -23,7 +23,7 @@
   }
   .modal-body {
     box-shadow: none;
-    padding: 0 25px 15px;
+    padding: 0 1rem;
     white-space: normal;
 
     .card{

@@ -1,8 +1,8 @@
-<div class="pt-3">
+<div class="bg-white rounded shadow-sm mb-3 p-4">
     @isset($title)
-        <h4 class="font-thin text-black mb-0">{{ __($title) }}</h4>
+        <h4 class="font-thin text-black mb-3">{{ __($title) }}</h4>
     @endisset
-    <div class="row mt-2">
+    <div class="row mb-2">
         @foreach($metrics as $key => $metric)
             <div class="col-sm col-6 mb-3 mb-sm-0  @if(!$loop->last) border-right @endif">
                 <small class="text-muted block mb-1">{{ __($key) }}</small>

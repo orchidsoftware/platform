@@ -13,7 +13,7 @@
         <div class="modal fade" id="utm-{{$id}}" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <div class="modal-header m-b">
+                    <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <x-orchid-icon path="cross"/>
                         </button>
@@ -21,7 +21,7 @@
                             id="exampleModalLabel">{{__('UTM Generator')}}</h4>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
+                        <div class="row px-2">
 
                             <div class="col-md-6">
                                 <div class="form-group">

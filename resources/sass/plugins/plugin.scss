@@ -167,7 +167,6 @@
 .admin-wrapper {
   .admin-element {
     box-sizing: border-box;
-    @extend .wrapper;
     display: inline-block;
     vertical-align: top;
     justify-self: center;

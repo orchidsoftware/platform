@@ -1,5 +1,5 @@
 @if (session()->has(\Orchid\Alert\Alert::SESSION_MESSAGE))
-    <div class="alert alert-{{ session(\Orchid\Alert\Alert::SESSION_LEVEL) }}">
+    <div class="alert alert-{{ session(\Orchid\Alert\Alert::SESSION_LEVEL) }} rounded shadow-sm mb-3 p-3">
         <button type="button"
                 class="close"
                 data-dismiss="alert"
@@ -12,7 +12,7 @@
 @endif
 
 @empty(!$errors->count())
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger rounded shadow-sm mb-3 p-3" role="alert">
         <strong>{{  __('Oh snap!') }}</strong>
         {{ __('Change a few things up and try submitting again.') }}
         <ul class="m-t-xs">
