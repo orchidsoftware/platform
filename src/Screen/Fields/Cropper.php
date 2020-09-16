@@ -31,6 +31,7 @@ namespace Orchid\Screen\Fields;
  * @method Cropper title(string $value = null)
  * @method Cropper maxFileSize($value = true)
  * @method Cropper storage($value = null)
+ * @method Cropper staticBackdrop($value = false)
  */
 class Cropper extends Picture
 {
@@ -55,6 +56,7 @@ class Cropper extends Picture
         'maxWidth'    => 'Infinity',
         'maxHeight'   => 'Infinity',
         'maxFileSize' => null,
+        'staticBackdrop'=> false,
     ];
 
     /**
