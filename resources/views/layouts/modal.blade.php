@@ -26,7 +26,7 @@
 
                     <h4 class="modal-title text-black font-thin" data-target="screen--modal.title">{{$title}}</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body layout-wrapper">
                     <div data-async>
                         @foreach($manyForms as $formKey => $modal)
                             @foreach($modal as $item)

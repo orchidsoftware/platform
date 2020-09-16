@@ -1,9 +1,10 @@
 <div
+    class="mb-3"
     data-controller="screen--tabs"
     data-screen--tabs-slug="{{$templateSlug}}"
 >
-    <div class="nav-tabs-alt mt-2">
-        <ul class="nav nav-tabs row" role="tablist">
+    <div class="nav-tabs-alt">
+        <ul class="nav nav-tabs" role="tablist">
             @foreach($manyForms as $name => $tab)
                 <li class="nav-item">
                     <a class="nav-link @if ($loop->first) active @endif"
@@ -20,7 +21,7 @@
     </div>
 
     <!-- main content -->
-    <section>
+    <section class="bg-white rounded shadow-sm mb-3">
         <div class="no-border-xs">
             <div class="tab-content">
                 @foreach($manyForms as $name => $forms)

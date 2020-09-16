@@ -27,6 +27,8 @@
         > a {
           color: $hover-color;
           @include color-schema($bg-color, 5%, 2.5%);
+          @extend .rounded;
+          @extend .shadow-sm;
         }
       }
       > a {
@@ -34,6 +36,7 @@
         &:hover,
         &:focus {
           @include color-schema($bg-color, 3%, 2.5%);
+          @extend .rounded;
         }
       }
     }

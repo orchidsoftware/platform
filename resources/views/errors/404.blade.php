@@ -1,8 +1,11 @@
 @extends('platform::dashboard')
 
+@section('title', '404')
+@section('description', __("You request a page that doesn't exist."))
+
 @section('content')
 
-    <div class="container p-md-5">
+    <div class="container p-md-5 layout">
         <div class="display-1 text-muted mb-5 mt-sm-5 mt-0">
             <x-orchid-icon path="bug"/>
             404

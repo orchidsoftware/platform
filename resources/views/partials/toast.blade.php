@@ -24,7 +24,7 @@
     @if (session()->has(\Orchid\Alert\Toast::SESSION_MESSAGE))
         <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="{{ session(\Orchid\Alert\Toast::SESSION_DELAY) }}"
              data-autohide="{{ session(\Orchid\Alert\Toast::SESSION_AUTO_HIDE) }}">
-            <div class="toast-body p-3 bg-light">
+            <div class="toast-body p-3 bg-light bg-white rounded shadow-sm">
                 <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>

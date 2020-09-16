@@ -69,6 +69,13 @@ class ArtisanTest extends TestConsoleCase
             ->assertExitCode(0);
     }
 
+    public function testArtisanOrchidPresenter(): void
+    {
+        $this->artisan('orchid:presenter', ['name' => $this->generateNameFromMethod()])
+            ->expectsOutput('Presenter created successfully.')
+            ->assertExitCode(0);
+    }
+
     public function testArtisanOrchidAdmin(): void
     {
         $this->artisan('orchid:admin')
