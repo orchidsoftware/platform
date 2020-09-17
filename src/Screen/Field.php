@@ -256,7 +256,7 @@ class Field implements Fieldable
      */
     protected function getAllowDataAttributes()
     {
-        return collect($this->getAttributes())->filter(function (/* @noinspection PhpUnusedParameterInspection */ $value, $key) {
+        return $this->getAllowAttributes()->filter(function (/* @noinspection PhpUnusedParameterInspection */ $value, $key) {
             return Str::startsWith($key, 'data-');
         });
     }
