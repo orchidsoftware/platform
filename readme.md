@@ -1,4 +1,4 @@
-<p align="center"> <a href="https://orchid.software/"><img src="https://orchid.software/assets/img/logo-laravel-style.svg" alt="Laravel Orchid" height="64"></a></p>
+<p align="center"> <a href="https://orchid.software/"><img src="https://orchid.software/assets/img/logo-laravel-style.svg" alt="Laravel Orchid" height="48"></a></p>
 
 
 <h4 align="center">For the full documentation, visit <a href="http://orchid.software">orchid.software</a>.</h4>
