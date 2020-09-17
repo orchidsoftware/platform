@@ -46,8 +46,9 @@ class LoginController extends Controller
      *
      * @param Request $request
      *
-     * @return JsonResponse|RedirectResponse
      * @throws ValidationException
+     *
+     * @return JsonResponse|RedirectResponse
      */
     public function login(Request $request)
     {
@@ -93,7 +94,6 @@ class LoginController extends Controller
     {
         return view('platform::auth.login');
     }
-
 
     /**
      * @param CookieJar $cookieJar
