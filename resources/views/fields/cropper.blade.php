@@ -47,7 +47,7 @@
             @attributes($attributes)
         >
 
-        <div class="modal" role="dialog">
+        <div class="modal" role="dialog" {{$staticBackdrop ? "data-backdrop=static" : ''}}>
             <div class="modal-dialog modal-lg">
                 <div class="modal-content-wrapper">
                     <div class="modal-content">
