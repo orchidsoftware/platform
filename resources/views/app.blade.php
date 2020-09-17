@@ -39,15 +39,12 @@
 <div class="app row m-n" id="app" data-controller="@yield('controller')" @yield('controller-data')>
     <div class="container-fluid">
         <div class="row">
-            <div class="aside col-xs-12 col-md-2 col-xl-2 col-xxl-3 bg-dark">
-                <div class="d-md-flex align-items-start flex-column d-sm-block h-full">
-                    @yield('body-left')
-                </div>
-            </div>
+            @yield('body-left')
+
             <div class="col min-vh-100 overflow-hidden">
 
                 <div class="d-flex flex-column-fluid">
-                    <div class="container h-full">
+                    <div class="container h-full px-0">
                         @yield('body-right')
                     </div>
                 </div>
