@@ -15,14 +15,14 @@ class PlatformScreen extends Screen
      *
      * @var string
      */
-    public $name = 'Dashboard';
+    public $name = 'Get Started';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'Welcome';
+    public $description = 'Welcome to your Orchid application.';
 
     /**
      * Query data.

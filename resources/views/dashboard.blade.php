@@ -2,46 +2,52 @@
 
 @section('body-left')
 
-    <div class="d-sm-flex d-md-block p-3 mt-md-4 w-100 v-center">
-        <a href="#" class="header-toggler d-md-none mr-auto order-first"
-           data-toggle="collapse"
-           data-target="#headerMenuCollapse">
-            <x-orchid-icon path="menu" class="icon-menu"/>
+    <div class="aside col-xs-12 col-md-2 col-xl-2 col-xxl-3 bg-dark">
+        <div class="d-md-flex align-items-start flex-column d-sm-block h-full">
 
-            <span class="ml-2">@yield('title')</span>
-        </a>
+            <div class="d-sm-flex d-md-block p-3 mt-md-4 w-100 v-center">
+                <a href="#" class="header-toggler d-md-none mr-auto order-first"
+                   data-toggle="collapse"
+                   data-target="#headerMenuCollapse">
+                    <x-orchid-icon path="menu" class="icon-menu"/>
 
-        <a class="header-brand order-last" href="{{route('platform.index')}}">
-            @includeFirst([config('platform.template.header'), 'platform::header'])
-        </a>
-    </div>
+                    <span class="ml-2">@yield('title')</span>
+                </a>
 
-    <nav class="collapse d-md-block w-100 mb-md-5" id="headerMenuCollapse">
+                <a class="header-brand order-last" href="{{route('platform.index')}}">
+                    @includeFirst([config('platform.template.header'), 'platform::header'])
+                </a>
+            </div>
 
-        @include('platform::partials.search')
+            <nav class="collapse d-md-block w-100 mb-md-3" id="headerMenuCollapse">
 
-        @includeWhen(Auth::check(), 'platform::partials.profile')
+                @include('platform::partials.search')
 
-        <ul class="nav flex-column m-b">
-            {!! Dashboard::menu()->render('Main') !!}
-        </ul>
+                @includeWhen(Auth::check(), 'platform::partials.profile')
 
-    </nav>
+                <ul class="nav flex-column m-b">
+                    {!! Dashboard::menu()->render('Main') !!}
+                </ul>
 
-    <div class="h-100 w-100 position-relative to-top cursor mt-md-5 divider"
-         data-action="click->layouts--html-load#goToTop"
-         title="{{ __('Go to top') }}">
-        <div class="bottom-left w-100 mb-2 pl-3">
-            <small>
-                <x-orchid-icon path="arrow-up" class="mr-2"/>
+            </nav>
 
-                {{ __('Go to top') }}
-            </small>
+            <div class="h-100 w-100 position-relative to-top cursor mt-md-5 divider"
+                 data-action="click->layouts--html-load#goToTop"
+                 title="{{ __('Go to top') }}">
+                <div class="bottom-left w-100 mb-2 pl-3">
+                    <small>
+                        <x-orchid-icon path="arrow-up" class="mr-2"/>
+
+                        {{ __('Go to top') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="p-3 m-b m-t d-none d-lg-block w-100">
+                @includeFirst([config('platform.template.footer'), 'platform::footer'])
+            </div>
+
         </div>
-    </div>
-
-    <div class="p-3 m-b m-t d-none d-lg-block w-100">
-        @includeFirst([config('platform.template.footer'), 'platform::footer'])
     </div>
 @endsection
 
