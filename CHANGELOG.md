@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 8.2.0 - 2020-09-19
+
+### Added
+- Static backdrop method to `Cropper` field [#1239](https://github.com/orchidsoftware/platform/pull/1239)
+- Command to create a presenter [#1234](https://github.com/orchidsoftware/platform/pull/1234)
+
+### Fixed
+- Definition of icon configuration
+- Assets compilation [#1235](https://github.com/orchidsoftware/platform/pull/1235)
+
 ## 8.1.0 - 2020-09-14
 
 ### Changed
