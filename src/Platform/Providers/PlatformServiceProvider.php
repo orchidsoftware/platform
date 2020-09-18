@@ -34,7 +34,7 @@ class PlatformServiceProvider extends ServiceProvider
         View::composer('platform::auth.login', LockMeComposer::class);
         View::composer('platform::partials.notificationProfile', NotificationsComposer::class);
 
-        $icons = array_merge(['o' => Path::getFolder()], config('orchid.icons', []));
+        $icons = array_merge(['o' => Path::getFolder()], config('platform.icons', []));
 
         foreach ($icons as $key => $path) {
             $iconFinder->registerIconDirectory($key, $path);
