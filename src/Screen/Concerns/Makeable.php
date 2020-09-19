@@ -11,7 +11,7 @@ trait Makeable
      *
      * @param string|null $name
      *
-     * @return self
+     * @return static
      */
     public static function make(string $name = null): self
     {
