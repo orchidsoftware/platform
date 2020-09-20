@@ -25,8 +25,8 @@ trait Chartable
             ->get()
             ->map(function (Model $model) {
                 return $model->forceFill([
-                    'label' => (string)$model->label,
-                    'value' => (int)$model->value,
+                    'label' => (string) $model->label,
+                    'value' => (int) $model->value,
                 ]);
             });
 
