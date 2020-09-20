@@ -7,6 +7,9 @@ namespace Orchid\Screen\Layouts;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
+/**
+ * @deprecated
+ */
 class Rubbers extends Layout
 {
     /**
