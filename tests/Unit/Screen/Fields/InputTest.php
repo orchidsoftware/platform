@@ -56,4 +56,16 @@ class InputTest extends TestFieldsUnitCase
 
         $this->assertStringContainsString('What is your name?', (string) $input);
     }
+
+    public function testDataAttributes(): void
+    {
+        $input = (string) Input::make('name')
+            ->set('data-name', 'Alexandr Chernyaev')
+            ->set('data-location', 'Russia')
+            ->set('data-hello', 'world!');
+
+        $this->assertStringContainsString('data-name="Alexandr Chernyaev"', $input);
+        $this->assertStringContainsString('data-location="Russia"', $input);
+        $this->assertStringContainsString('data-hello="world!"', $input);
+    }
 }
