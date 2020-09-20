@@ -15,12 +15,15 @@
 >
     <div class="row pt-3">
         <div class="pos-rlt w-100">
-            <div class="top-right pt-1 pr-4" style="z-index: 1">
-                <button class="btn btn-sm btn-link"
-                        data-action="screen--chart#export">
-                    {{ __('Export') }}
-                </button>
-            </div>
+
+            @if($export)
+                <div class="top-right pt-1 pr-4" style="z-index: 1">
+                    <button class="btn btn-sm btn-link"
+                            data-action="screen--chart#export">
+                        {{ __('Export') }}
+                    </button>
+                </div>
+            @endif
 
             <figure id="{{$slug}}" class="w-100 h-full"></figure>
         </div>

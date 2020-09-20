@@ -162,6 +162,7 @@ abstract class Chart extends Layout
             'type'             => $this->type,
             'height'           => $this->height,
             'labels'           => $labels,
+            'export'           => $this->export,
             'data'             => json_encode($repository->getContent($this->target), JSON_NUMERIC_CHECK),
             'colors'           => json_encode($this->colors),
             'maxSlices'        => json_encode($this->maxSlices),
