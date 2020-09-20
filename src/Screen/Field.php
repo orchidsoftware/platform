@@ -106,6 +106,7 @@ class Field implements Fieldable
         'title',
         'xml:lang',
         'autocomplete',
+        'data-*',
     ];
 
     /**
@@ -244,7 +245,10 @@ class Field implements Fieldable
     {
         $allow = array_merge($this->universalAttributes, $this->inlineAttributes);
 
-        return collect($this->getAttributes())->only($allow);
+        return collect($this->getAttributes())
+            ->filter(function ($value, $attribute) use ($allow) {
+                return Str::is($allow, $attribute);
+            });
     }
 
     /**
@@ -387,7 +391,7 @@ class Field implements Fieldable
      *
      * @return Group
      */
-    public static function group($group)
+    public static function group($group): Group
     {
         return Group::make(is_callable($group) ? $group() : $group);
     }
