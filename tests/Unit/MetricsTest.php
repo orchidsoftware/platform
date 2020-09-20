@@ -24,10 +24,10 @@ class MetricsTest extends TestUnitCase
         /** @var GroupCollection $group */
         $group = User::countForGroup('uses_two_factor_auth');
 
-        $this->assertContains('8', $group->pluck('value')->toArray());
-        $this->assertContains('5', $group->pluck('value')->toArray());
+        $this->assertContains(8, $group->pluck('value')->toArray());
+        $this->assertContains(5, $group->pluck('value')->toArray());
 
-        $this->assertEquals([
+        $this->assertSame([
             [
                 'labels' => ['0', '1'],
                 'values' => [8, 0],
@@ -42,7 +42,7 @@ class MetricsTest extends TestUnitCase
             return $title ? 'Enabled' : 'Disabled';
         });
 
-        $this->assertEquals([
+        $this->assertSame([
             [
                 'labels' => ['Disabled', 'Enabled'],
                 'values' => [8, 0],
@@ -57,8 +57,8 @@ class MetricsTest extends TestUnitCase
     public function testPeriod(): void
     {
         $current = Carbon::now();
-        $start = (clone $current)->subDay(2);
-        $end = (clone $current)->subDay(1);
+        $start = (clone $current)->subDays(2);
+        $end = (clone $current)->subDay();
 
         User::factory()->count(5)->create([
             'created_at' => $start,
@@ -76,7 +76,7 @@ class MetricsTest extends TestUnitCase
         $this->assertEquals($start->toDateString(), $period->pluck('label')->first());
         $this->assertEquals($end->toDateString(), $period->pluck('label')->last());
 
-        $this->assertEquals([
+        $this->assertSame([
             'name'   => 'Users',
             'labels' => $period->pluck('label')->toArray(),
             'values' => $period->pluck('value')->toArray(),

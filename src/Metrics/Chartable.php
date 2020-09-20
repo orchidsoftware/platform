@@ -4,6 +4,7 @@ namespace Orchid\Metrics;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 trait Chartable
@@ -21,7 +22,13 @@ trait Chartable
         $group = $builder->select("$groupColumn as label", DB::raw('count(*) as value'))
             ->groupBy($groupColumn)
             ->orderBy('value', 'desc')
-            ->get();
+            ->get()
+            ->map(function (Model $model) {
+                return $model->forceFill([
+                    'label' => (string)$model->label,
+                    'value' => (int)$model->value,
+                ]);
+            });
 
         return new GroupCollection($group);
     }
