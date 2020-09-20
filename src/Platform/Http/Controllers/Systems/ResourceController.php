@@ -9,11 +9,12 @@ use Orchid\Platform\Dashboard;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Orchid\Platform\Http\Controllers\Controller;
 
 /**
  * Class ResourceController.
  */
-class ResourceController
+class ResourceController extends Controller
 {
     /**
      * @var MimeTypes

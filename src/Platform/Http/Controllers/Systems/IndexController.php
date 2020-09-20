@@ -7,11 +7,12 @@ namespace Orchid\Platform\Http\Controllers\Systems;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Orchid\Platform\Http\Controllers\Controller;
 
 /**
  * Class IndexController.
  */
-class IndexController
+class IndexController extends Controller
 {
     /**
      * @return RedirectResponse

@@ -6,8 +6,9 @@ namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Support\Facades\Crypt;
 use Orchid\Screen\Screen;
+use Orchid\Platform\Http\Controllers\Controller;
 
-class AsyncController
+class AsyncController extends Controller
 {
     /**
      * @param string $screen
