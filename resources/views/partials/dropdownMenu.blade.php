@@ -1,7 +1,8 @@
 @isset($title)
     <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs m-l">{{ __($title) }}</div>
 @endisset
-<a href="{{$route ?? '#'}}" class="dropdown-item">
+
+<a href="{{$route ?? '#'}}" class="dropdown-item @isset($active) {{active($active)}} @endisset">
 
     <span class="col-auto mr-auto no-padder v-center">
         @isset($icon)

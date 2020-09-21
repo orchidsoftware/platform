@@ -244,7 +244,11 @@ body {
 }
 
 .layout-wrapper {
+    > .p-4 {
+        padding: 0!important;
+    }
+
     .shadow-sm {
-        box-shadow: none!important;
+        box-shadow: none !important;
     }
 }

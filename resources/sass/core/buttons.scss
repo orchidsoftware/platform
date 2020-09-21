@@ -32,34 +32,34 @@
 }
 
 .btn-primary {
-  @include button-variant(#fff, $brand-primary, $brand-primary);
+  @include button-variant(#fff, $primary, $primary);
 }
 
 .btn-success {
-  @include button-variant(#fff, $brand-success, $brand-success);
+  @include button-variant(#fff, $success, $success);
 }
 
 .btn-info {
-  @include button-variant(#fff, $brand-info, $brand-info);
+  @include button-variant(#fff, $info, $info);
   @at-root label#{&} {
 	margin-bottom: 0px;
   }
 }
 
 .btn-warning {
-  @include button-variant(#fff, $brand-warning, $brand-warning);
+  @include button-variant(#fff, $warning, $warning);
 }
 
 .btn-danger {
-  @include button-variant(#fff, $brand-danger, $brand-danger);
+  @include button-variant(#fff, $danger, $danger);
 }
 
 .btn-dark {
-  @include button-variant(#fff, $brand-dark, $brand-dark);
+  @include button-variant(#fff, $dark, $dark);
 }
 
 .btn-black {
-  @include button-variant(#fff, $brand-black, $brand-black);
+  @include button-variant(#fff, $black, $black);
 }
 
 .btn-icon {

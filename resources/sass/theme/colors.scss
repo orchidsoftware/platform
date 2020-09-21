@@ -9,46 +9,47 @@
 }
 
 .bg-light {
-  background-color: $brand-light;
+  background-color: $light;
   color: $text-color;
 }
 
 .bg-dark {
-  background-color: $brand-dark;
-  @include font-variant($brand-dark);
+  background-color: $dark;
+  @include font-variant($dark);
 }
 
 .bg-black {
-  background-color: $brand-black;
-  @include font-variant($brand-black);
+  background-color: $black;
+  @include font-variant($black);
 }
 
 .bg-primary {
-  background-color: $brand-primary;
-  @include font-variant($brand-primary);
+  background-color: $primary;
+  @include font-variant($primary);
 }
 
 .bg-success {
-  background-color: $brand-success;
-  @include font-variant($brand-success);
+  background-color: $success;
+  @include font-variant($success);
 }
 
 .bg-info {
-  background-color: $brand-info;
-  @include font-variant($brand-info);
+  background-color: $info;
+  @include font-variant($info);
 }
 
 .bg-warning {
-  background-color: $brand-warning;
-  @include font-variant($brand-warning);
+  background-color: $warning;
+  @include font-variant($warning);
 }
 
 .bg-danger {
-  background-color: $brand-danger;
-  @include font-variant($brand-danger);
+  background-color: $danger;
+  @include font-variant($danger);
 }
 
 .bg-white {
+  @include font-variant($white);
   background-color: #fff;
   color: $text-color;
   a {
@@ -86,13 +87,14 @@ a.bg-light {
   }
 }
 
-@include text-wariant($brand-primary, primary);
-@include text-wariant($brand-info, info);
-@include text-wariant($brand-success, success);
-@include text-wariant($brand-warning, warning);
-@include text-wariant($brand-danger, danger);
-@include text-wariant($brand-dark, dark);
-@include text-wariant($brand-black, black);
+@include text-wariant($primary, primary);
+@include text-wariant($info, info);
+@include text-wariant($success, success);
+@include text-wariant($warning, warning);
+@include text-wariant($danger, danger);
+@include text-wariant($dark, dark);
+@include text-wariant($black, black);
+@include text-wariant($white, white);
 
 .text-white {
   color: #fff;

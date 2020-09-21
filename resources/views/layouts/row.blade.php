@@ -9,7 +9,7 @@
         </div>
     @endempty
 
-    <div class="bg-white rounded shadow-sm p-3 py-4 d-flex flex-column">
+    <div class="bg-white rounded shadow-sm p-4 py-4 d-flex flex-column">
         {!! $form ?? '' !!}
     </div>
 </fieldset>

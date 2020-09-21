@@ -28,7 +28,7 @@
                     <div role="tabpanel" class="tab-pane @if ($loop->first) active @endif"
                          id="tab-{{\Illuminate\Support\Str::slug($name)}}">
 
-                        <div class="py-3">
+                        <div class="py-3 layout-wrapper">
                             @foreach($forms as $form)
                                 {!! $form !!}
                             @endforeach

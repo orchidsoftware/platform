@@ -44,6 +44,22 @@
       @include color-schema($bg-color, 5%, 2.5%);
     }
   }
+  .dropdown-item{
+      &.active,
+      &:active {
+          @if $bg-color == #fff{
+              color: initial;
+          } @else{
+              color: $hover-color;
+          }
+
+          @include color-schema($bg-color, 5%, 2.5%);
+          @extend .rounded;
+          @extend .shadow-sm;
+      }
+  }
+
+
   .caret {
     border-top-color: $font-color;
     border-bottom-color: $font-color;

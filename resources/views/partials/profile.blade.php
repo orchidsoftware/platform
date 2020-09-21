@@ -3,7 +3,7 @@
         <a href="#" class="nav-link p-0 v-center" data-toggle="dropdown">
             @if($image = Auth::user()->presenter()->image())
                 <span class="thumb-sm avatar mr-3">
-                        <img src="{{$image}}" class="b b-dark bg-light">
+                        <img src="{{$image}}" class="b">
                 </span>
             @endif
             <span style="width:11em;font-size: 0.85em;">

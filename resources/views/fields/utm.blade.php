@@ -14,7 +14,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" title="Close" aria-label="Close">
                             <x-orchid-icon path="cross"/>
                         </button>
                         <h4 class="modal-title m-b text-black font-thin"

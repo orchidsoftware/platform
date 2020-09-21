@@ -20,7 +20,7 @@
                   data-layouts--form-button-text="{{ __('Loading...') }}"
             >
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" title="Close" data-dismiss="modal" aria-label="Close">
                         <x-orchid-icon path="cross"/>
                     </button>
 

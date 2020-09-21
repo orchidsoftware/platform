@@ -31,7 +31,7 @@
 
             </nav>
 
-            <div class="h-100 w-100 position-relative to-top cursor mt-md-5 divider"
+            <div class="h-100 w-100 position-relative to-top cursor d-none d-md-block mt-md-5 divider"
                  data-action="click->layouts--html-load#goToTop"
                  title="{{ __('Go to top') }}">
                 <div class="bottom-left w-100 mb-2 pl-3">
@@ -53,7 +53,7 @@
 
 @section('body-right')
 
-    <div class="mt-md-4">
+    <div class="mt-3 mt-md-4">
         @includeWhen(Breadcrumbs::has(), 'platform::partials.breadcrumbs')
 
         <div class="@hasSection('navbar') @else d-none d-md-block @endif layout">

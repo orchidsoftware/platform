@@ -307,35 +307,35 @@
 }
 
 .b-light {
-  border-color: $brand-light
+  border-color: $light
 }
 
 .b-dark {
-  border-color: $brand-dark
+  border-color: $dark
 }
 
 .b-black {
-  border-color: $brand-dark
+  border-color: $dark
 }
 
 .b-primary {
-  border-color: $brand-primary
+  border-color: $primary
 }
 
 .b-success {
-  border-color: $brand-success
+  border-color: $success
 }
 
 .b-info {
-  border-color: $brand-info
+  border-color: $info
 }
 
 .b-warning {
-  border-color: $brand-warning
+  border-color: $warning
 }
 
 .b-danger {
-  border-color: $brand-danger
+  border-color: $danger
 }
 
 .b-white {
@@ -347,35 +347,35 @@
 }
 
 .b-l-light {
-  border-left-color: $brand-light
+  border-left-color: $light
 }
 
 .b-l-dark {
-  border-left-color: $brand-dark
+  border-left-color: $dark
 }
 
 .b-l-black {
-  border-left-color: $brand-dark
+  border-left-color: $dark
 }
 
 .b-l-primary {
-  border-left-color: $brand-primary
+  border-left-color: $primary
 }
 
 .b-l-success {
-  border-left-color: $brand-success
+  border-left-color: $success
 }
 
 .b-l-info {
-  border-left-color: $brand-info
+  border-left-color: $info
 }
 
 .b-l-warning {
-  border-left-color: $brand-warning
+  border-left-color: $warning
 }
 
 .b-l-danger {
-  border-left-color: $brand-danger
+  border-left-color: $danger
 }
 
 .b-l-white {
@@ -776,16 +776,16 @@
       bottom: 0;
     }
     &.on {
-      background-color: $brand-success;
+      background-color: $success;
     }
     &.off {
       background-color: $text-muted;
     }
     &.busy {
-      background-color: $brand-danger;
+      background-color: $danger;
     }
     &.away {
-      background-color: $brand-warning;
+      background-color: $warning;
     }
   }
 
