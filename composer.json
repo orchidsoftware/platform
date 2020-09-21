@@ -37,7 +37,6 @@
     "laravel/framework": "^8.0",
     "laravel/scout": "^8.0",
     "myclabs/php-enum": "^1.7",
-    "ralouphie/mimey": "^2.1",
     "watson/active": "^6.0"
   },
   "require-dev": {
