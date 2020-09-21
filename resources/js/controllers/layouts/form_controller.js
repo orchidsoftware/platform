@@ -88,9 +88,17 @@ export default class extends Controller {
                     window.history.pushState({error: error.response.responseURL}, '', error.request.responseURL);
                     Turbolinks.clearCache();
                     const iframe = document.createElement('iframe');
-                    iframe.className = 'modal block';
+                    iframe.className = 'iframe-error';
                     document.body.appendChild(iframe);
                     iframe.contentWindow.document.write(error.response.data);
+
+                    Array.from(document.body.children).forEach( (element) => {
+                        if(element.nodeName != 'IFRAME'){
+                            element.style.display = "none";
+                        }
+                    });
+
+
                 } else {
                     // eslint-disable-next-line no-console
                     window.platform.alert('Server error', 'The application could not process your request.', 'danger');

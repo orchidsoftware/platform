@@ -27,29 +27,29 @@
   }
 
   .select2-dropdown {
-    border-color : fade-out($brand-black, 0.9);
+    border-color : fade-out($black, 0.9);
     outline      : 0 !important;
     @include box-shadow(none);
     @include placeholder($text-muted);
   }
 
   &.select2-container--focus .select2-selection, &.select2-container--open .select2-selection {
-    border-color     : fade-out($brand-black, 0.9);
-    background-color : $brand-grey-light;
+    border-color     : fade-out($black, 0.9);
+    background-color : $grey-light;
     outline          : 0 !important;
     @include box-shadow(none);
     @include placeholder($text-muted);
   }
 
   .select2-results__option--highlighted[aria-selected]{
-    background-color : $brand-grey-light;
+    background-color : $grey-light;
     color: inherit;
   }
 
 }
 .select2-container--bootstrap.select2-container--disabled .select2-selection{
-    background: mix($brand-grey-light, #fff, 50%);
-    color: fade-out($brand-grey, .77);
+    background: mix($grey-light, #fff, 50%);
+    color: fade-out($grey, .77);
     border: 1px solid $form-control-border-color;
 }
 
@@ -155,7 +155,7 @@
 .flatpickr-input {
     &.form-control[readonly] {
         background: $white;
-        color: $brand-black;
+        color: $black;
     }
 }
 
@@ -184,7 +184,7 @@
         border-radius: 3px;
         height: 28px;
         width: 28px;
-        background: $brand-dark;
+        background: $dark;
         position: absolute;
 
         &:before {

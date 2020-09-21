@@ -20,11 +20,11 @@
                   data-layouts--form-button-text="{{ __('Loading...') }}"
             >
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" title="Close" data-dismiss="modal" aria-label="Close">
                         <x-orchid-icon path="cross"/>
                     </button>
 
-                    <h4 class="modal-title text-black font-thin" data-target="screen--modal.title">{{$title}}</h4>
+                    <h4 class="modal-title text-black font-weight-light" data-target="screen--modal.title">{{$title}}</h4>
                 </div>
                 <div class="modal-body layout-wrapper">
                     <div data-async>

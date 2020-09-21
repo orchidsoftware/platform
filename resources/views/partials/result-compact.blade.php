@@ -1,14 +1,14 @@
 @forelse($results as $group)
 
 @empty(!$group['label'])
-    <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs">{{$group['label']}}</div>
+    <div class="hidden-folded padder m-t-xs mb-1 text-muted text-xs">{{$group['label']}}</div>
 @endempty
 
 @foreach($group['result'] as $item)
     <a href="{{$item->url()}}" class="block wrapper-sm dropdown-item" style="font-size: 0.85em;">
 
         @empty(!$item->image())
-            <span class="pull-left thumb-xs rounded m-r-sm">
+            <span class="pull-left thumb-xs rounded mr-3">
                   <img src="{{$item->image()}}" alt="{{$item->title()}}">
                 </span>
         @endempty

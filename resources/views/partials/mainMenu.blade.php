@@ -13,7 +13,7 @@
         @endif
     >
         @isset($badge)
-            <b class="badge bg-{{$badge['class']}} pull-right mr-3 mt-1">{{$badge['data']()}}</b>
+            <b class="badge bg-{{$badge['class']}} pull-right mr-2 mt-1">{{$badge['data']()}}</b>
         @endisset
 
         @isset($icon)

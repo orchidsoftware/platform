@@ -25,13 +25,13 @@
 
                 @includeWhen(Auth::check(), 'platform::partials.profile')
 
-                <ul class="nav flex-column m-b">
+                <ul class="nav flex-column mb-1">
                     {!! Dashboard::menu()->render('Main') !!}
                 </ul>
 
             </nav>
 
-            <div class="h-100 w-100 position-relative to-top cursor mt-md-5 divider"
+            <div class="h-100 w-100 position-relative to-top cursor d-none d-md-block mt-md-5 divider"
                  data-action="click->layouts--html-load#goToTop"
                  title="{{ __('Go to top') }}">
                 <div class="bottom-left w-100 mb-2 pl-3">
@@ -43,7 +43,7 @@
                 </div>
             </div>
 
-            <div class="p-3 m-b m-t d-none d-lg-block w-100">
+            <div class="p-3 mb-2 m-t d-none d-lg-block w-100">
                 @includeFirst([config('platform.template.footer'), 'platform::footer'])
             </div>
 
@@ -53,16 +53,16 @@
 
 @section('body-right')
 
-    <div class="mt-md-4">
+    <div class="mt-3 mt-md-4">
         @includeWhen(Breadcrumbs::has(), 'platform::partials.breadcrumbs')
 
         <div class="@hasSection('navbar') @else d-none d-md-block @endif layout">
             <div class="v-md-center">
-                <div class="d-none d-md-block col-xs-12 col-md no-padder">
-                    <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
+                <div class="d-none d-md-block col-xs-12 col-md p-0">
+                    <h1 class="m-0 font-weight-light h3 text-black">@yield('title')</h1>
                     <small class="text-muted" title="@yield('description')">@yield('description')</small>
                 </div>
-                <div class="col-xs-12 col-md-auto ml-auto no-padder">
+                <div class="col-xs-12 col-md-auto ml-auto p-0">
                     <ul class="nav command-bar justify-content-sm-end justify-content-start v-center">
                         @yield('navbar')
                     </ul>
@@ -70,12 +70,7 @@
             </div>
         </div>
 
-        <div class="d-flex">
-            <div class="app-content-body" id="app-content-body">
-                @include('platform::partials.alert')
-                @yield('content')
-            </div>
-        </div>
-
+        @include('platform::partials.alert')
+        @yield('content')
     </div>
 @endsection

@@ -44,10 +44,6 @@
       @include color-schema($bg-color, 5%, 2.5%);
     }
   }
-  .caret {
-    border-top-color: $font-color;
-    border-bottom-color: $font-color;
-  }
   &.navbar .nav {
     > li.active > a {
       color: $hover-color;
@@ -64,22 +60,6 @@
   .text-muted {
     color: darken($font-color, 10%) !important;
   }
-  .text-lt {
-    color: lighten($font-color, 25%) !important;
-  }
-  &.auto,
-  .auto {
-    .list-group-item {
-      border-color: darken($bg-color, 5%) !important;
-      background-color: transparent;
-      &:hover,
-      &:focus,
-      &:active,
-      &.active {
-        @include color-schema($bg-color, 5%, 2.5% !important);
-      }
-    }
-  }
 }
 
 @mixin text-wariant($bg-color, $name){
@@ -91,18 +71,6 @@
   }
   .text-#{$name} {
     color: $bg-color !important;
-  }
-  .text-#{$name}-lt {
-    color: lighten($bg-color, 5%);
-  }
-  .text-#{$name}-lter {
-    color: lighten($bg-color, 10%);
-  }
-  .text-#{$name}-dk {
-    color: darken($bg-color, 5%);
-  }
-  .text-#{$name}-dker {
-    color: darken($bg-color, 10%);
   }
 }
 
@@ -255,16 +223,6 @@
 @mixin translate3d($x, $y, $z){
   -webkit-transform: translate3d($x, $y, $z);
   transform: translate3d($x, $y, $z);
-}
-
-// Backface visibility
-// Prevent browsers from flickering when using CSS 3D transforms.
-// Default value is `visible`, but can be changed to `hidden`
-// See git pull https://github.com/dannykeane/bootstrap.git backface-visibility for examples
-@mixin backface-visibility($visibility){
-  -webkit-backface-visibility: $visibility;
-  -moz-backface-visibility: $visibility;
-  backface-visibility: $visibility;
 }
 
 // Box sizing

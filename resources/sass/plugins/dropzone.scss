@@ -9,9 +9,13 @@
   background: inherit;
   padding:    10px 0 0;
 
+  &.dz-drag-hover{
+    border: none;
+  }
+
   .dz-preview {
     @extend .bg-white;
-    margin: 0.5rem;
+    margin: 0 0.5rem 0.5rem 0;
     float: left;
 
     .dz-details{
@@ -110,7 +114,7 @@
   }
 
   .dz-message {
-    margin: 0.5rem;
+    margin: 0 0.5rem 0.5rem 0;
   }
 
   .svg, a{

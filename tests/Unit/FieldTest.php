@@ -7,6 +7,7 @@ namespace Orchid\Tests\Unit;
 use Illuminate\Contracts\View\View;
 use Orchid\Screen\Field;
 use Orchid\Screen\Fields\CheckBox;
+use Orchid\Screen\Fields\Code;
 use Orchid\Screen\Fields\Cropper;
 use Orchid\Screen\Fields\DateRange;
 use Orchid\Screen\Fields\DateTimer;
@@ -94,6 +95,18 @@ class FieldTest extends TestUnitCase
         ]];
 
         yield [Picture::class, [
+            'name' => 'example',
+        ]];
+
+        yield [Code::class, [
+            'name' => 'example',
+        ]];
+
+        yield [Cropper::class, [
+            'name' => 'example',
+        ]];
+
+        yield [DateTimer::class, [
             'name' => 'example',
         ]];
     }
