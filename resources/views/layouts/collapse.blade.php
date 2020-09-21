@@ -9,7 +9,7 @@
            {{ __($label) }}
         </a>
     </p>
-    <div class="collapse" id="collapse-{{ $slug }}">
+    <div class="collapse bg-white rounded shadow-sm mb-3 p-4" id="collapse-{{ $slug }}">
         {!! $form ?? '' !!}
     </div>
 
