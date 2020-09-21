@@ -2,7 +2,8 @@
 @section('title',__('Sign in to your account'))
 
 @section('content')
-    <h1 class="h5 text-black">{{__('Sign in to your account')}}</h1>
+    <h1 class="h4 text-black mb-4">{{__('Sign in to your account')}}</h1>
+
     <form class="m-t-md"
           role="form"
           method="POST"

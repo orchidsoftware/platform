@@ -1,9 +1,9 @@
 .form-control {
-  background: $brand-white none;
+  background: $white none;
   border: 1px solid $form-control-border-color;
   -webkit-appearance: none;
   -moz-appearance: none;
-  color: $brand-black;
+  color: $black;
     outline: 0;
     height: $form-height;
     line-height: normal;
@@ -17,19 +17,19 @@
     max-width: 450px;
 
     &:focus {
-        border-color: fade-out($brand-black, 0.9);
-        background-color: $brand-grey-light;
+        border-color: fade-out($black, 0.9);
+        background-color: $grey-light;
         outline: 0 !important;
-        color: $brand-black;
+        color: $black;
         @include box-shadow(none);
-        @include placeholder($brand-dark);
+        @include placeholder($dark);
     }
 
     &[disabled],
   &[readonly],
   fieldset[disabled] & {
-    background: mix($brand-grey-light, #fff, 50%);
-    color: fade-out($brand-grey, .77);
+    background: mix($grey-light, #fff, 50%);
+    color: fade-out($grey, .77);
   }
   select {
     -moz-appearance : none;
@@ -64,6 +64,7 @@ select {
  Icon input
  */
 .input-icon {
+  max-width: 450px;
   position: relative;
 
   .form-control:not(:last-child) {
