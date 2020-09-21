@@ -44,4 +44,3 @@ class MimeTypes
         return Arr::first($this->mime->getMimeTypes($ext), null, $default);
     }
 }
-

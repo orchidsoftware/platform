@@ -6,8 +6,8 @@ namespace Orchid\Attachment\Engines;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
-use Orchid\Attachment\MimeTypes;
 use Orchid\Attachment\Contracts\Engine;
+use Orchid\Attachment\MimeTypes;
 
 class Generator implements Engine
 {
