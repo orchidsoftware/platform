@@ -27,7 +27,7 @@ It allows you to abstract the common patterns of business applications so that d
 - **Screen** - a comfortable balance between CRUD generation and boring coding.
 - **Fields** - over 40 types.
 - **Permissions** - offers convenient management in development and support.
-- Menus, graphics, settings, notifications, etc.
+- Menus, charts, notifications, etc.
  
  ## Getting started
 
