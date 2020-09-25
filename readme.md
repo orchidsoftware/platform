@@ -23,8 +23,8 @@ It allows you to abstract the typical patterns of business applications so that 
 ###### Some features:
 
 - **Form builder** - no need to describe HTML fields of the same type each time.
-- **Screen** - a comfortable balance between CRUD generation and boring coding.
-- **Fields** - over 40 types.
+- **Screen** - a comfortable balance between CRUD generation and tedious coding.
+- **Fields** - over 40 varieties.
 - **Permissions** - offers convenient management in development and support.
 - Menus, charts, notifications, etc.
  
