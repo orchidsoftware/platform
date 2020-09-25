@@ -41,9 +41,8 @@ It allows you to abstract the common patterns of business applications so that d
 
 ## Donate & Support
 
-Since the existence of a healthy open source ecosystem creates real value for the software industry, believe it is fair for maintainers and authors of such software to be compensated for their work with real money.
-
-If you would like to support development by making a donation you can do so [here](https://www.paypal.me/tabuna/10usd). &#x1F60A;
+Since a healthy open source ecosystem creates real value for the software industry, 
+I believe it is fair for the developers [to reward their work with real money](https://www.paypal.me/tabuna/10usd). &#x1F60A;
 
 
 ## License
