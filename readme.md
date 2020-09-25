@@ -30,7 +30,7 @@ It allows you to abstract the typical patterns of business applications so that 
  
  ## Getting started
 
-* :uk: To check out the guide, visit [orchid.software](https://orchid.software/en/docs). 
+* :globe_with_meridians: To check out the guide, visit [orchid.software](https://orchid.software/en/docs). 
 * :ru: Чтобы ознакомиться с руководством, посетите сайт [orchid.software](https://orchid.software/ru/docs).
 
 ##### Local User Groups
