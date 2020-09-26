@@ -31,7 +31,7 @@
     "select2": "^4.0.13",
     "select2-bootstrap-theme": "0.1.0-beta.10",
     "simplemde": "^1.11",
-    "sortablejs": "^1.10.2",
+    "sortablejs": "^1.12.0",
     "stimulus": "^1.1.1",
     "stimulus-flatpickr": "^1.2.1",
     "turbolinks": "^5.2.0"

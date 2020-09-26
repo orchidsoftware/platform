@@ -199,13 +199,8 @@ export default class extends Controller {
         const isMediaLibrary = this.data.get('is-media-library');
 
 
-        const removeButton = Dropzone.createElement(
-            this.element.querySelector('#'+this.data.get('id') + '-remove-button').innerHTML.trim()
-        );
-
-        const editButton = Dropzone.createElement(
-            this.element.querySelector('#'+this.data.get('id') + '-edit-button').innerHTML.trim()
-        );
+        const removeButtonTemplate = this.element.querySelector('#'+this.data.get('id') + '-remove-button').innerHTML.trim();
+        const editButtonTemplate = this.element.querySelector('#'+this.data.get('id') + '-edit-button').innerHTML.trim();
 
 
         this.dropZone = new Dropzone(dropname, {
@@ -233,6 +228,9 @@ export default class extends Controller {
                         window.platform.alert('Validation error', 'Max files');
                         this.removeFile(e);
                     }
+
+                    const editButton = Dropzone.createElement(editButtonTemplate);
+                    const removeButton = Dropzone.createElement(removeButtonTemplate);
 
                     removeButton.addEventListener('click', (event) => {
                         event.preventDefault();
@@ -301,6 +299,8 @@ export default class extends Controller {
             },
             error(file, response) {
                 window.platform.alert('Validation error', 'File upload error');
+
+                this.removeFile(file);
 
                 if ($.type(response) === 'string') {
                     return response;
