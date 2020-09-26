@@ -25,7 +25,7 @@
 
                 @includeWhen(Auth::check(), 'platform::partials.profile')
 
-                <ul class="nav flex-column m-b">
+                <ul class="nav flex-column mb-1">
                     {!! Dashboard::menu()->render('Main') !!}
                 </ul>
 
@@ -43,7 +43,7 @@
                 </div>
             </div>
 
-            <div class="p-3 m-b m-t d-none d-lg-block w-100">
+            <div class="p-3 mb-2 m-t d-none d-lg-block w-100">
                 @includeFirst([config('platform.template.footer'), 'platform::footer'])
             </div>
 
@@ -58,11 +58,11 @@
 
         <div class="@hasSection('navbar') @else d-none d-md-block @endif layout">
             <div class="v-md-center">
-                <div class="d-none d-md-block col-xs-12 col-md no-padder">
-                    <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
+                <div class="d-none d-md-block col-xs-12 col-md p-0">
+                    <h1 class="m-0 font-weight-light h3 text-black">@yield('title')</h1>
                     <small class="text-muted" title="@yield('description')">@yield('description')</small>
                 </div>
-                <div class="col-xs-12 col-md-auto ml-auto no-padder">
+                <div class="col-xs-12 col-md-auto ml-auto p-0">
                     <ul class="nav command-bar justify-content-sm-end justify-content-start v-center">
                         @yield('navbar')
                     </ul>

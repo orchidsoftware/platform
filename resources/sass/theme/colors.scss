@@ -49,7 +49,6 @@
 }
 
 .bg-white {
-  @include font-variant($white);
   background-color: #fff;
   color: $text-color;
   a {
@@ -94,7 +93,6 @@ a.bg-light {
 @include text-wariant($danger, danger);
 @include text-wariant($dark, dark);
 @include text-wariant($black, black);
-@include text-wariant($white, white);
 
 .text-white {
   color: #fff;

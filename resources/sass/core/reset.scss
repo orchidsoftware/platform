@@ -737,6 +737,7 @@ blockquote {
 }
 .breadcrumb {
   border-radius: unset;
+  background-color: initial;
 }
 
 .sub-menu {
@@ -786,8 +787,7 @@ sub, sup {
     font-size: 80%;
 }
 
-legend, .legend {
-    @extend legend;
+legend {
     font-size: 1.3rem;
     margin-bottom: 1rem;
 }
@@ -795,4 +795,16 @@ legend, .legend {
 .toast{
     border-radius: $border-radius;
     border: none;
+}
+
+
+.bg-dark {
+    .nav {
+        .dropdown-item.active {
+            color: desaturate(lighten($dark, 60%), 5%);
+            @include color-schema($dark, 5%, 2.5%);
+            @extend .rounded;
+            @extend .shadow-sm;
+        }
+    }
 }

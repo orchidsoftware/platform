@@ -8,10 +8,10 @@
     >
 @endpush
 
-<p class="h2 n-m font-thin v-center">
+<p class="h2 n-m font-weight-light v-center">
    <x-orchid-icon path="orchid"/>
 
-    <span class="m-l d-none d-sm-block">
+    <span class="ml-3 d-none d-sm-block">
         ORCHID
     <small class="v-top opacity">Platform</small>
     </span>

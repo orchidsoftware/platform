@@ -44,26 +44,6 @@
       @include color-schema($bg-color, 5%, 2.5%);
     }
   }
-  .dropdown-item{
-      &.active,
-      &:active {
-          @if $bg-color == #fff{
-              color: initial;
-          } @else{
-              color: $hover-color;
-          }
-
-          @include color-schema($bg-color, 5%, 2.5%);
-          @extend .rounded;
-          @extend .shadow-sm;
-      }
-  }
-
-
-  .caret {
-    border-top-color: $font-color;
-    border-bottom-color: $font-color;
-  }
   &.navbar .nav {
     > li.active > a {
       color: $hover-color;
@@ -80,22 +60,6 @@
   .text-muted {
     color: darken($font-color, 10%) !important;
   }
-  .text-lt {
-    color: lighten($font-color, 25%) !important;
-  }
-  &.auto,
-  .auto {
-    .list-group-item {
-      border-color: darken($bg-color, 5%) !important;
-      background-color: transparent;
-      &:hover,
-      &:focus,
-      &:active,
-      &.active {
-        @include color-schema($bg-color, 5%, 2.5% !important);
-      }
-    }
-  }
 }
 
 @mixin text-wariant($bg-color, $name){
@@ -107,18 +71,6 @@
   }
   .text-#{$name} {
     color: $bg-color !important;
-  }
-  .text-#{$name}-lt {
-    color: lighten($bg-color, 5%);
-  }
-  .text-#{$name}-lter {
-    color: lighten($bg-color, 10%);
-  }
-  .text-#{$name}-dk {
-    color: darken($bg-color, 5%);
-  }
-  .text-#{$name}-dker {
-    color: darken($bg-color, 10%);
   }
 }
 

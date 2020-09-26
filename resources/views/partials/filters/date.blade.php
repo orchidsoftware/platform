@@ -14,7 +14,7 @@
                    placeholder="{{ __('Filter') }}"
             >
 
-            <div class="line line-dashed border-bottom line-lg"></div>
+            <div class="line line-dashed border-bottom my-3"></div>
             <button type="submit" form="filters" class="btn btn-default btn-sm w-100">{{__('Apply')}}</button>
         </div>
     </div>

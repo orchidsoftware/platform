@@ -1,5 +1,5 @@
 <div class="p-3 v-center">
-    <div class="dropdown col no-padder">
+    <div class="dropdown col p-0">
         <a href="#" class="nav-link p-0 v-center" data-toggle="dropdown">
             @if($image = Auth::user()->presenter()->image())
                 <span class="thumb-sm avatar mr-3">

@@ -27,5 +27,5 @@
 </div>
 
 @isset($hr)
-    <div class="line line-dashed border-bottom line-lg"></div>
+    <div class="line line-dashed border-bottom my-3"></div>
 @endisset

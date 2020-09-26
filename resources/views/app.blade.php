@@ -36,7 +36,7 @@
 <body>
 
 
-<div class="app row m-n" id="app" data-controller="@yield('controller')" @yield('controller-data')>
+<div class="app row m-0" id="app" data-controller="@yield('controller')" @yield('controller-data')>
     <div class="container-fluid">
         <div class="row">
             @yield('body-left')

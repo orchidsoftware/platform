@@ -1,5 +1,5 @@
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb px-4 m-0" style="background: #eaf1f7;">
+    <ol class="breadcrumb px-4 m-0">
         @foreach (Breadcrumbs::current() as $crumbs)
             @if ($crumbs->url() && !$loop->last)
                 <li class="breadcrumb-item">
