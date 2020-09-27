@@ -10,6 +10,6 @@
 /tests              export-ignore
 /docs               export-ignore
 
-*.php linguist-language=PHP
-*.js linguist-language=PHP
-*.blade.php linguist-language=HTML
+# Use the linguist-generated attribute to mark or unmark paths as generated.
+/public/css/* linguist-generated
+/public/js/* linguist-generated
