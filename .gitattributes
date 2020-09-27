@@ -13,3 +13,4 @@
 # Use the linguist-generated attribute to mark or unmark paths as generated.
 /public/css/*.css linguist-generated
 /public/js/*.js linguist-generated
+/public/mix-manifest.json linguist-generated
