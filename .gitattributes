@@ -11,5 +11,5 @@
 /docs               export-ignore
 
 # Use the linguist-generated attribute to mark or unmark paths as generated.
-/public/css/* linguist-generated
-/public/js/* linguist-generated
+/public/css/*.css linguist-generated
+/public/js/*.js linguist-generated
