@@ -10,7 +10,7 @@
          data-fields--relation-append="{{ $relationAppend }}"
          data-fields--relation-route="{{ route('platform.systems.relation') }}"
     >
-        <select id="{{$id}}" data-target="fields--relation.select" @attributes($attributes)>
+        <select id="{{$id}}" data-target="fields--relation.select" {{ $attributes }}>
         </select>
     </div>
 @endcomponent

@@ -1,6 +1,6 @@
 @component($typeForm, get_defined_vars())
     <button
-        @attributes($attributes)
+        {{ $attributes }}
         data-toggle="dropdown"
         aria-expanded="false"
     >

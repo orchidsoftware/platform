@@ -2,6 +2,6 @@
     <div data-controller="fields--input"
          data-fields--input-mask="{{$mask ?? ''}}"
     >
-        <input @attributes($attributes)>
+        <input {{ $attributes }}>
     </div>
 @endcomponent

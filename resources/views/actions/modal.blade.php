@@ -1,6 +1,6 @@
 @component($typeForm, get_defined_vars())
     <button type="button"
-            @attributes($attributes)
+            {{ $attributes }}
             data-action="screen--base#targetModal"
             data-modal-title="{{ $modalTitle ?? $title ??  '' }}"
             data-modal-key="{{ $modal ?? '' }}"

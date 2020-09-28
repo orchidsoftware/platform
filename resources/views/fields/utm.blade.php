@@ -2,7 +2,7 @@
 
     <div data-controller="fields--utm">
         <div class="input-group mb-3">
-            <input @attributes($attributes) data-target="fields--utm.url">
+            <input {{ $attributes }} data-target="fields--utm.url">
             <div class="input-group-append">
                 <button type="button" class="btn btn-default" data-toggle="modal"
                         data-target="#utm-{{$id}}">{{__('Generate UTM')}}</button>

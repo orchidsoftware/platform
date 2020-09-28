@@ -6,7 +6,7 @@
                 <label class="btn btn-default @if($active($key, $value)) active @endif"
                        data-action="click->fields--radiobutton#checked"
                 >
-                    <input @attributes($attributes)
+                    <input {{ $attributes }}
                            @if($active($key, $value)) checked @endif
                             value="{{ $key }}"
                     >{{ $option }}</label>

@@ -44,7 +44,7 @@
         <input class="cropper-path d-none"
                type="text"
                data-target="fields--cropper.source"
-            @attributes($attributes)
+            {{ $attributes }}
         >
 
         <div class="modal" role="dialog" {{$staticBackdrop ? "data-backdrop=static" : ''}}>
