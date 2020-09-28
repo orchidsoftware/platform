@@ -54,7 +54,17 @@
 @section('body-right')
 
     <div class="mt-3 mt-md-4">
-        @includeWhen(Breadcrumbs::has(), 'platform::partials.breadcrumbs')
+
+        @if(Breadcrumbs::has())
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb px-4 m-0">
+                    <x-tabuna-breadcrumbs
+                        class="breadcrumb-item"
+                        active="active"
+                    />
+                </ol>
+            </nav>
+        @endif
 
         <div class="@hasSection('navbar') @else d-none d-md-block @endif layout">
             <div class="v-md-center">

@@ -33,7 +33,7 @@
     "ext-json": "*",
     "orchid/blade-icons": "^1.2.0",
     "orchid/icons": "^2.0",
-    "tabuna/breadcrumbs": "^2.0",
+    "tabuna/breadcrumbs": "^2.1",
     "laravel/framework": "^8.0",
     "laravel/scout": "^8.0",
     "myclabs/php-enum": "^1.7",
