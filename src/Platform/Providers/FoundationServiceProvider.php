@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Illuminate\Routing\Router;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
