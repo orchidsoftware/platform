@@ -39,7 +39,7 @@
         <input class="picture-path d-none"
                type="text"
                data-target="fields--picture.source"
-            @attributes($attributes)
+               {{ $attributes }}
         >
     </div>
 @endcomponent

@@ -62,7 +62,6 @@ class FoundationServiceProvider extends ServiceProvider
             ->registerDatabase()
             ->registerConfig()
             ->registerTranslations()
-            ->registerBlade()
             ->registerViews()
             ->registerProviders();
     }
@@ -133,41 +132,6 @@ class FoundationServiceProvider extends ServiceProvider
             Dashboard::path('resources/js')   => resource_path('js/orchid'),
             Dashboard::path('resources/sass') => resource_path('sass/orchid'),
         ], 'orchid-assets');
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function registerBlade(): self
-    {
-        Blade::directive('attributes', function (string $attributes) {
-            $part = 'function ($attributes) {
-                foreach ($attributes as $name => $value) {
-                    if (is_null($value)) {
-                        continue;
-                    }
-
-                    if (is_bool($value) && $value === false) {
-                        continue;
-                    }
-                    if (is_bool($value)) {
-                        echo e($name)." ";
-                        continue;
-                    }
-
-                    if (is_array($value)) {
-                        echo json_decode($value)." ";
-                        continue;
-                    }
-
-                    echo e($name) . \'="\' . e($value) . \'"\'." ";
-                }
-            }';
-
-            return "<?php call_user_func($part, $attributes); ?>";
-        });
 
         return $this;
     }
