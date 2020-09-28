@@ -6,9 +6,9 @@ namespace Orchid\Screen;
 
 use Closure;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Support\Collection;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
+use Illuminate\View\ComponentAttributeBag;
 use Illuminate\View\View;
 use Orchid\Screen\Concerns\Makeable;
 use Orchid\Screen\Contracts\Fieldable;
@@ -239,22 +239,23 @@ class Field implements Fieldable
     }
 
     /**
-     * @return Collection
+     * @return ComponentAttributeBag
      */
-    protected function getAllowAttributes(): Collection
+    protected function getAllowAttributes(): ComponentAttributeBag
     {
         $allow = array_merge($this->universalAttributes, $this->inlineAttributes);
 
-        return collect($this->getAttributes())
-            ->filter(function ($value, $attribute) use ($allow) {
-                return Str::is($allow, $attribute);
-            });
+        $attribute = new ComponentAttributeBag($this->getAttributes());
+
+        return $attribute->filter(function ($value, $attribute) use ($allow) {
+            return Str::is($allow, $attribute);
+        });
     }
 
     /**
-     * @return Collection
+     * @return ComponentAttributeBag
      */
-    protected function getAllowDataAttributes()
+    protected function getAllowDataAttributes(): ComponentAttributeBag
     {
         return $this->getAllowAttributes()->filter(function (/* @noinspection PhpUnusedParameterInspection */ $value, $key) {
             return Str::startsWith($key, 'data-');

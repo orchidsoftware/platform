@@ -3,7 +3,7 @@
         <input hidden name="{{$attributes['name']}}" value="{{$attributes['novalue']}}">
         <div class="custom-control custom-switch">
             <input value="{{$attributes['yesvalue']}}"
-                   @attributes($attributes)
+                   {{ $attributes }}
                    @if(isset($attributes['value']) && $attributes['value']) checked @endif
                    id="{{$id}}"
             >
@@ -11,7 +11,7 @@
         </div>
     @else
         <div class="custom-control custom-switch">
-            <input @attributes($attributes)
+            <input {{ $attributes }}
                    @if(isset($attributes['value']) && $attributes['value']) checked @endif
             id="{{$id}}"
             >

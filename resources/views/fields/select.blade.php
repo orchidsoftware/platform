@@ -1,6 +1,6 @@
 @component($typeForm, get_defined_vars())
     <div data-controller="fields--select">
-        <select @attributes($attributes)>
+        <select {{ $attributes }}>
             @foreach($options as $key => $option)
                 <option value="{{$key}}"
                         @isset($value)
