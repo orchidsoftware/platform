@@ -64,6 +64,7 @@ select {
  Icon input
  */
 .input-icon {
+  max-width: 450px;
   position: relative;
 
   .form-control:not(:last-child) {

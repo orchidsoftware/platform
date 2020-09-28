@@ -14,7 +14,7 @@
      data-screen--chart-line-options="{{$lineOptions}}"
 >
     <div class="bg-white rounded shadow-sm mb-3 pt-3">
-        <div class="position-relativ w-100">
+        <div class="position-relative w-100">
             @if($export)
                 <div class="top-right pt-1 pr-4" style="z-index: 1">
                     <button class="btn btn-sm btn-link"
