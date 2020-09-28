@@ -36,9 +36,9 @@
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {
-    "eslint": "^7.9.0",
+    "eslint": "^7.10.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-import": "^2.22.1",
     "resolve-url-loader": "^3.1.1",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.12"

@@ -8,39 +8,6 @@ body {
 }
 
 
-.app {
-  height: auto;
-  min-height: 100%;
-  width: 100%;
-  position: relative;
-  .app-header {
-    .navbar-header {
-      display: inherit;
-    }
-  }
-
-}
-
-// content
-.app-content {
-  height: 100%;
-  @include clearfix();
-}
-
-.app-content-body {
-  float: left;
-  width: 100%;
-}
-
-.app-content-center {
-  height          : calc(100vh - 300px);
-  min-height      : 200px;
-  display         : flex;
-  align-items     : center;
-  justify-content : center;
-  margin-bottom   : 0;
-}
-
 .v-middle {
   vertical-align: middle !important;
 }
@@ -52,7 +19,6 @@ body {
 .v-bottom {
   vertical-align: bottom !important;
 }
-
 
 @media (min-width: $tablet) {
     .aside {
@@ -66,74 +32,6 @@ body {
   }
 }
 
-@media (min-width: 768px) {
-
-  .app-header {
-    .navbar-header {
-      display: none!important;
-    }
-  }
-
-  //.navbar-collapse,
-  .app-content{
-    margin-left: $app-aside-width;
-  }
-
-  .bg-auto {
-    &:before {
-      content: "";
-      position: absolute;
-      width: inherit;
-      top: 0;
-      bottom: 0;
-      z-index: -1;
-      background-color: inherit;
-      border: inherit;
-    }
-    &.b-l:before {
-      margin-left: -1px;
-    }
-    &.b-r:before {
-      margin-right: -1px;
-    }
-  }
-
-  .col.show {
-    display: table-cell !important;
-  }
-}
-
-// sm
-@media (min-width: 768px) and (max-width: 991px) {
-  .hbox-auto-sm {
-    display: block;
-    > .hbox-col {
-      width: auto;
-      height: auto;
-      display: block;
-      &.show {
-        display: block !important;
-      }
-    }
-  }
-}
-
-// xs
-@media (max-width: 767px) {
-
-  .app-content-full {
-    width: 100% !important;
-  }
-
-  .hbox-auto-xs {
-    display: block;
-    > .hbox-col {
-      width: auto;
-      height: auto;
-      display: block;
-    }
-  }
-}
 
 .full-height {
   height: 100vh;

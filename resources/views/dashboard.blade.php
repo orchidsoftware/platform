@@ -70,12 +70,7 @@
             </div>
         </div>
 
-        <div class="d-flex">
-            <div class="app-content-body" id="app-content-body">
-                @include('platform::partials.alert')
-                @yield('content')
-            </div>
-        </div>
-
+        @include('platform::partials.alert')
+        @yield('content')
     </div>
 @endsection
