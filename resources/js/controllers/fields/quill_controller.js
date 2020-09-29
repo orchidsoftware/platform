@@ -15,7 +15,7 @@ export default class extends Controller {
             theme: 'snow',
             modules: {
                 toolbar: {
-                    container: this.containerToolbar(),
+                    container: this.data.get('toolbar') ? this.containerCustomToolbar() : this.containerToolbar(),
                 },
             },
         });
@@ -74,6 +74,25 @@ export default class extends Controller {
             [{list: 'ordered'}, {list: 'bullet'}, {indent: '-1'}, {indent: '+1'}, {align: []}],
             ['link', 'image', 'video', 'clean'],
         ];
+    }
+
+    containerCustomToolbar() {
+        const groups = JSON.parse(this.data.get("toolbar"));
+        let container = [];
+        if (groups.includes('text'))
+            container.push(['bold', 'italic', 'underline', 'strike', 'link', 'clean'])
+        if (groups.includes('color'))
+            container.push([{color: this.colors()}, {background: this.colors()}])
+        if (groups.includes('header'))
+            container.push([{header: '1'}, {header: '2'}])
+        if (groups.includes('list'))
+            container.push([{list: 'ordered'}, {list: 'bullet'}])
+        if (groups.includes('format'))
+            container.push([{indent: '-1'}, {indent: '+1'}, {align: []}])
+        if (groups.includes('media'))
+            container.push(['image', 'video'])
+
+        return container
     }
 
     /**

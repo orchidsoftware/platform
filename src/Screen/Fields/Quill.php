@@ -41,8 +41,9 @@ class Quill extends Field
      * @var array
      */
     protected $attributes = [
-        'value'  => null,
-        'height' => '300px',
+        'value'   => null,
+        'toolbar' => null,
+        'height'  => '300px',
     ];
 
     /**
@@ -71,4 +72,15 @@ class Quill extends Field
         'value',
         'height',
     ];
+
+    /**
+     * The given options will be add to the Toolbar.
+     *
+     * @return self
+     */
+    public function toolbar(array $options): self
+    {
+        $this->set('toolbar', json_encode($options));
+        return $this;
+    }
 }
