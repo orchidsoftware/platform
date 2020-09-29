@@ -77,20 +77,20 @@ export default class extends Controller {
     }
 
     containerCustomToolbar() {
-        const groups = JSON.parse(this.data.get("toolbar"));
+        const controlsGroup = {
+            "text":   ['bold', 'italic', 'underline', 'strike', 'link', 'clean'],
+            "color":  [{color: this.colors()}, {background: this.colors()}],
+            "header": [{header: '1'}, {header: '2'}],
+            "list":   [{list: 'ordered'}, {list: 'bullet'}],
+            "format": [{indent: '-1'}, {indent: '+1'}, {align: []}],
+            "media":  ['image', 'video'],
+        }
         let container = [];
-        if (groups.includes('text'))
-            container.push(['bold', 'italic', 'underline', 'strike', 'link', 'clean'])
-        if (groups.includes('color'))
-            container.push([{color: this.colors()}, {background: this.colors()}])
-        if (groups.includes('header'))
-            container.push([{header: '1'}, {header: '2'}])
-        if (groups.includes('list'))
-            container.push([{list: 'ordered'}, {list: 'bullet'}])
-        if (groups.includes('format'))
-            container.push([{indent: '-1'}, {indent: '+1'}, {align: []}])
-        if (groups.includes('media'))
-            container.push(['image', 'video'])
+
+        JSON.parse(this.data.get("toolbar")).forEach(function (element) {
+            if (element in controlsGroup)
+                container.push(controlsGroup[element])
+        });
 
         return container
     }

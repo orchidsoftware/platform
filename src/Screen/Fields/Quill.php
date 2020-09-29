@@ -81,6 +81,7 @@ class Quill extends Field
     public function toolbar(array $options): self
     {
         $this->set('toolbar', json_encode($options));
+
         return $this;
     }
 }
