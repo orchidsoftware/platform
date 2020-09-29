@@ -58,6 +58,7 @@ class Select extends Field
         'required',
         'size',
         'tabindex',
+        'tags'
     ];
 
     /**
@@ -137,5 +138,10 @@ class Select extends Field
 
             $this->set('options', $value);
         });
+    }
+
+    public function taggable()
+    {
+        return $this->set('tags',true);
     }
 }

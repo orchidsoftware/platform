@@ -1,4 +1,4 @@
-import {Controller} from 'stimulus';
+import { Controller } from 'stimulus';
 
 export default class extends Controller {
     /**
@@ -14,6 +14,7 @@ export default class extends Controller {
             width: '100%',
             allowClear: !select.hasAttribute('required'),
             placeholder: select.getAttribute('placeholder') || '',
+            ...!select.hasAttribute('tags') ? { tags: true } : '',
             theme: 'bootstrap',
         });
 
@@ -21,9 +22,9 @@ export default class extends Controller {
 
         // force change event for https://github.com/select2/select2/issues/1908
         let forceChange = () => {
-            setTimeout(()=>{
+            setTimeout(() => {
                 select.dispatchEvent(new Event('change'));
-            },100);
+            }, 100);
         }
         $(select).on('select2:select', forceChange);
         $(select).on('select2:unselect', forceChange);
@@ -35,6 +36,6 @@ export default class extends Controller {
             if (typeof $(select) !== 'undefined') {
                 $(select).select2('destroy');
             }
-        }, {once: true});
+        }, { once: true });
     }
 }
