@@ -27,6 +27,7 @@ use Orchid\Screen\Field;
  * @method Quill height($value = '300px')
  * @method Quill title(string $value = null)
  * @method Quill popover(string $value = null)
+ * @method Quill toolbar(array $options)
  */
 class Quill extends Field
 {
@@ -42,7 +43,7 @@ class Quill extends Field
      */
     protected $attributes = [
         'value'   => null,
-        'toolbar' => null,
+        'toolbar' => ["text", "color", "quote", "header", "list", "format", "media"],
         'height'  => '300px',
     ];
 
@@ -74,14 +75,13 @@ class Quill extends Field
     ];
 
     /**
-     * The given options will be add to the Toolbar.
-     *
-     * @return self
+     * Quill constructor.
      */
-    public function toolbar(array $options): self
+    public function __construct()
     {
-        $this->set('toolbar', json_encode($options));
-
-        return $this;
+        $this->addBeforeRender(function () {
+            $toolbar = $this->get('toolbar');
+            $this->set('toolbar', json_encode($toolbar));
+        });
     }
 }

@@ -15,7 +15,7 @@ export default class extends Controller {
             theme: 'snow',
             modules: {
                 toolbar: {
-                    container: this.data.get('toolbar') ? this.containerCustomToolbar() : this.containerToolbar(),
+                    container: this.containerToolbar(),
                 },
             },
         });
@@ -67,32 +67,18 @@ export default class extends Controller {
     }
 
     containerToolbar() {
-        return [
-            ['bold', 'italic', 'underline', 'strike'],
-            [{color: this.colors()}, {background: this.colors()}],
-            [{header: '1'}, {header: '2'}, 'blockquote', 'code-block'],
-            [{list: 'ordered'}, {list: 'bullet'}, {indent: '-1'}, {indent: '+1'}, {align: []}],
-            ['link', 'image', 'video', 'clean'],
-        ];
-    }
-
-    containerCustomToolbar() {
         const controlsGroup = {
             "text":   ['bold', 'italic', 'underline', 'strike', 'link', 'clean'],
+            "quote":  ['blockquote', 'code-block'],
             "color":  [{color: this.colors()}, {background: this.colors()}],
             "header": [{header: '1'}, {header: '2'}],
             "list":   [{list: 'ordered'}, {list: 'bullet'}],
             "format": [{indent: '-1'}, {indent: '+1'}, {align: []}],
             "media":  ['image', 'video'],
         }
-        let container = [];
 
-        JSON.parse(this.data.get("toolbar")).forEach(function (element) {
-            if (element in controlsGroup)
-                container.push(controlsGroup[element])
-        });
-
-        return container
+        return JSON.parse(this.data.get("toolbar"))
+            .map(tool => controlsGroup[tool]);
     }
 
     /**
