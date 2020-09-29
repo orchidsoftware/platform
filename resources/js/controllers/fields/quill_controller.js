@@ -67,13 +67,18 @@ export default class extends Controller {
     }
 
     containerToolbar() {
-        return [
-            ['bold', 'italic', 'underline', 'strike'],
-            [{color: this.colors()}, {background: this.colors()}],
-            [{header: '1'}, {header: '2'}, 'blockquote', 'code-block'],
-            [{list: 'ordered'}, {list: 'bullet'}, {indent: '-1'}, {indent: '+1'}, {align: []}],
-            ['link', 'image', 'video', 'clean'],
-        ];
+        const controlsGroup = {
+            "text":   ['bold', 'italic', 'underline', 'strike', 'link', 'clean'],
+            "quote":  ['blockquote', 'code-block'],
+            "color":  [{color: this.colors()}, {background: this.colors()}],
+            "header": [{header: '1'}, {header: '2'}],
+            "list":   [{list: 'ordered'}, {list: 'bullet'}],
+            "format": [{indent: '-1'}, {indent: '+1'}, {align: []}],
+            "media":  ['image', 'video'],
+        }
+
+        return JSON.parse(this.data.get("toolbar"))
+            .map(tool => controlsGroup[tool]);
     }
 
     /**

@@ -27,6 +27,7 @@ use Orchid\Screen\Field;
  * @method Quill height($value = '300px')
  * @method Quill title(string $value = null)
  * @method Quill popover(string $value = null)
+ * @method Quill toolbar(array $options)
  */
 class Quill extends Field
 {
@@ -41,8 +42,9 @@ class Quill extends Field
      * @var array
      */
     protected $attributes = [
-        'value'  => null,
-        'height' => '300px',
+        'value'   => null,
+        'toolbar' => ["text", "color", "quote", "header", "list", "format", "media"],
+        'height'  => '300px',
     ];
 
     /**
@@ -71,4 +73,15 @@ class Quill extends Field
         'value',
         'height',
     ];
+
+    /**
+     * Quill constructor.
+     */
+    public function __construct()
+    {
+        $this->addBeforeRender(function () {
+            $toolbar = $this->get('toolbar');
+            $this->set('toolbar', json_encode($toolbar));
+        });
+    }
 }
