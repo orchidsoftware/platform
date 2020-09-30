@@ -65,14 +65,6 @@ small, .small {
     padding: 3px 6px;
     margin-left: -10px;
   }
-
-  .icon-circle{
-      @extend .icon-circle;
-      font-size: 0.5em;
-      line-height: 0;
-      vertical-align: middle;
-  }
-
 }
 
 .badge-sm {
@@ -114,7 +106,7 @@ blockquote {
 }
 
 .progress {
-  background-color: $brand-light;
+  background-color: $light;
 }
 
 .progress-xxs {
@@ -138,27 +130,27 @@ blockquote {
 }
 
 .progress-bar-primary {
-  background-color: $brand-primary;
+  background-color: $primary;
 }
 
 .progress-bar-info {
-  background-color: $brand-info;
+  background-color: $info;
 }
 
 .progress-bar-success {
-  background-color: $brand-success;
+  background-color: $success;
 }
 
 .progress-bar-warning {
-  background-color: $brand-warning;
+  background-color: $warning;
 }
 
 .progress-bar-danger {
-  background-color: $brand-danger;
+  background-color: $danger;
 }
 
 .progress-bar-black {
-  background-color: $brand-black;
+  background-color: $black;
 }
 
 .progress-bar-white {
@@ -218,7 +210,7 @@ blockquote {
 
 .input-group-addon {
   border-color: $input-border;
-  background-color: $brand-light;
+  background-color: $light;
 }
 
 .list-group {
@@ -362,10 +354,10 @@ blockquote {
     &:hover .nav-link,
     &.active .nav-link,
     &.active .nav-link:hover {
-      border-bottom-color: $brand-primary;
+      border-bottom-color: $primary;
     }
     &.active .nav-link {
-      border-bottom-color: $brand-primary;
+      border-bottom-color: $primary;
     }
   }
   .nav-tabs-alt & {
@@ -377,17 +369,18 @@ blockquote {
     }
     .nav-item {
       .nav-link {
+        padding: 0.5rem 1.5rem;
         border-radius: 0;
         border-color: transparent !important;
         background: transparent !important;
 		&.active {
-			border-bottom-color: $brand-primary !important;
+			border-bottom-color: $primary !important;
             cursor: default;
 		}
       }
       &.active {
         .nav-link {
-          border-bottom-color: $brand-primary !important;
+          border-bottom-color: $primary !important;
         }
       }
     }
@@ -510,7 +503,7 @@ blockquote {
     }
   }
   > thead > tr > th {
-    padding: 8px 15px;
+    padding: 1em;
     border-bottom: 1px solid $table-border-color;
   }
 }
@@ -552,7 +545,7 @@ blockquote {
 }
 
 .well, pre {
-  background-color: $brand-light;
+  background-color: $light;
   border-color: $border-color;
 }
 
@@ -580,7 +573,7 @@ blockquote {
   > .active > a:focus {
     background-image: none;
     filter: none;
-    background-color: $brand-light !important;
+    background-color: $light !important;
     color: $link-hover-color;
   }
 }
@@ -627,7 +620,7 @@ blockquote {
   &:hover,
   &:focus {
     > a {
-      background-color: $brand-light !important;
+      background-color: $light !important;
       color: $text-color;
     }
     > .dropdown-menu {
@@ -691,7 +684,7 @@ blockquote {
 }
 
 .modal-backdrop {
-  background-color: $brand-dark;
+  background-color: $dark;
   &.in {
     opacity: 0.8;
     filter: alpha(opacity=80);
@@ -734,9 +727,9 @@ blockquote {
         color: $dropdown-link-disabled-color;
     }
 }
-
 .breadcrumb {
   border-radius: unset;
+  background-color: initial;
 }
 
 .sub-menu {
@@ -764,7 +757,7 @@ dl {
 
     dt, dd {
         margin: 0;
-        background-color: $brand-white;
+        background-color: $white;
     }
 
     dt {
@@ -789,4 +782,21 @@ sub, sup {
 legend {
     font-size: 1.3rem;
     margin-bottom: 1rem;
+}
+
+.toast{
+    border-radius: $border-radius;
+    border: none;
+}
+
+
+.bg-dark {
+    .nav {
+        .dropdown-item.active {
+            color: desaturate(lighten($dark, 60%), 5%);
+            @include color-schema($dark, 5%, 2.5%);
+            @extend .rounded;
+            @extend .shadow-sm;
+        }
+    }
 }

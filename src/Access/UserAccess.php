@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Events\AddRoleEvent;
@@ -167,7 +168,8 @@ trait UserAccess
      */
     public function delete(): bool
     {
-        $isSoftDeleted = array_key_exists('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this));
+        $isSoftDeleted = array_key_exists(SoftDeletes::class, class_uses($this));
+
         if ($this->exists && ! $isSoftDeleted) {
             $this->roles()->detach();
         }

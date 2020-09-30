@@ -1,9 +1,8 @@
-<div class="py-3 d-block">
-    <div class="card">
-        <div class="row no-gutters">
+<div class="d-block bg-white rounded shadow-sm mb-3">
+    <div class="row no-gutters">
 
             @empty(!$image)
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="h-100" style="display: contents">
                         <img src="{{ $image }}" class="img-fluid img-card">
                     </div>
@@ -11,7 +10,7 @@
             @endempty
 
             <div class="col">
-                <div class="card-body h-full">
+                <div class="card-body h-full p-4">
                     <div class="row d-flex align-items-center">
                         <div class="col-auto">
                             <h5 class="card-title">
@@ -39,10 +38,9 @@
                             </div>
                         @endif
                     </div>
-                    <div class="card-text">{!! $description ?? '' !!}</div>
+                    <div class="card-text layout-wrapper">{!! $description ?? '' !!}</div>
                 </div>
             </div>
 
         </div>
-    </div>
 </div>

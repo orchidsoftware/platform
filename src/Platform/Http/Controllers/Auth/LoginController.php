@@ -4,20 +4,16 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Auth;
 
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Cookie\CookieJar;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use Orchid\Access\UserSwitch;
-use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Controllers\Controller;
-use Orchid\Platform\Models\User;
 
 class LoginController extends Controller
 {
@@ -31,8 +27,6 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
-    use AuthenticatesUsers;
 
     /**
      * Create a new controller instance.
@@ -48,35 +42,57 @@ class LoginController extends Controller
     }
 
     /**
+     * Handle a login request to the application.
+     *
+     * @param Request $request
+     *
+     * @throws ValidationException
+     *
+     * @return JsonResponse|RedirectResponse
+     */
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email'    => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        $auth = Auth::guard()->attempt(
+            $request->only(['email', 'password']),
+            $request->filled('remember')
+        );
+
+        if ($auth) {
+            return $this->sendLoginResponse($request);
+        }
+
+        throw ValidationException::withMessages([
+            'email' => __('The details you entered did not match our records. Please double-check and try again.'),
+        ]);
+    }
+
+    /**
+     * Send the response after the user was authenticated.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    protected function sendLoginResponse(Request $request)
+    {
+        $request->session()->regenerate();
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 204)
+            : redirect()->intended(route(config('platform.index')));
+    }
+
+    /**
      * @return Factory|View
      */
     public function showLoginForm()
     {
         return view('platform::auth.login');
-    }
-
-    /**
-     * Where to redirect users after login / registration.
-     *
-     * @return string
-     */
-    public function redirectTo()
-    {
-        return route(config('platform.index'));
-    }
-
-    /**
-     * Get the failed login response instance.
-     *
-     * @throws ValidationException
-     *
-     * @return void
-     */
-    protected function sendFailedLoginResponse()
-    {
-        throw ValidationException::withMessages([
-            $this->username() => [__('The details you entered did not match our records. Please double-check and try again.')],
-        ]);
     }
 
     /**
@@ -102,98 +118,22 @@ class LoginController extends Controller
     }
 
     /**
-     * Handle a successful authentication attempt.
+     * Log the user out of the application.
      *
-     * @param Request               $request
-     * @param Authenticatable|Model $user
+     * @param \Illuminate\Http\Request $request
      *
-     * @return RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
-    public function authenticated(Request $request, Authenticatable $user)
+    public function logout(Request $request)
     {
-        if (Dashboard::usesTwoFactorAuth() && $user->uses_two_factor_auth) {
-            return $this->redirectForTwoFactorAuth($request, $user);
-        }
+        Auth::guard()->logout();
 
-        return redirect()->intended($this->redirectPath());
-    }
+        $request->session()->invalidate();
 
-    /**
-     * Redirect the user for two-factor authentication.
-     *
-     * @param Request $request
-     * @param Model   $user
-     *
-     * @return RedirectResponse
-     */
-    protected function redirectForTwoFactorAuth(Request $request, Model $user)
-    {
-        Auth::logout();
+        $request->session()->regenerateToken();
 
-        // Before we redirect the user to the two-factor token verification screen we will
-        // store this user's ID and "remember me" choice in the session so that we will
-        // be able to get it back out and log in the correct user after verification.
-        $request->session()->put([
-            'orchid:auth:id'       => $user->getKey(),
-            'orchid:auth:remember' => $request->remember,
-        ]);
-
-        return redirect()->route('platform.login.token');
-    }
-
-    /**
-     * Show the two-factor authentication token form.
-     *
-     * @param Request $request
-     *
-     * @return RedirectResponse|View
-     */
-    public function showTokenForm(Request $request)
-    {
-        return $request->session()->has('orchid:auth:id')
-            ? view('platform::auth.token') : redirect()->route('platform.login');
-    }
-
-    /**
-     * Verify the given authentication token.
-     *
-     * @param Request $request
-     *
-     * @throws ValidationException
-     *
-     * @return RedirectResponse
-     */
-    public function verifyToken(Request $request)
-    {
-        $this->validate($request, ['token' => 'required']);
-
-        // If there is no authentication ID stored in the session, it means that the user
-        // hasn't made it through the login screen so we'll just redirect them back to
-        // the login view. They must have hit the route manually via a specific URL.
-        if (! $request->session()->has('orchid:auth:id')) {
-            return redirect()->route('platform.login');
-        }
-
-        $user = Dashboard::modelClass(User::class)->findOrFail(
-            $request->session()->pull('orchid:auth:id')
-        );
-
-        $generator = Dashboard::getTwoFactor();
-        $generator->setSecretKey($user->two_factor_secret_code);
-
-        // Next, we'll verify the actual token with our two-factor authentication service
-        // to see if the token is valid. If it is, we can login the user and send them
-        // to their intended location within the protected part of this application.
-        if ($generator->verify($request->token) || $request->token === $user->two_factor_recovery_code) {
-            Auth::login($user, $request->session()->pull(
-                'orchid:auth:remember', false
-            ));
-
-            return redirect()->intended($this->redirectPath());
-        }
-
-        return $this->redirectForTwoFactorAuth($request, $user)->withErrors([
-            'token' => 'This value is not valid',
-        ]);
+        return $request->wantsJson()
+            ? new JsonResponse([], 204)
+            : redirect('/');
     }
 }

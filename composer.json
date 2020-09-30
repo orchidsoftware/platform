@@ -31,16 +31,12 @@
   ],
   "require": {
     "ext-json": "*",
-    "bacon/bacon-qr-code": "^2.0",
     "orchid/blade-icons": "^1.2.0",
     "orchid/icons": "^2.0",
-    "tabuna/breadcrumbs": "^2.0",
+    "tabuna/breadcrumbs": "^2.1",
     "laravel/framework": "^8.0",
     "laravel/scout": "^8.0",
-    "laravel/ui": "^3.0",
     "myclabs/php-enum": "^1.7",
-    "pragmarx/google2fa": "^8.0",
-    "ralouphie/mimey": "^2.1",
     "watson/active": "^6.0"
   },
   "require-dev": {
@@ -62,7 +58,6 @@
       "Orchid\\Filters\\": "src/Filters/",
       "Orchid\\Metrics\\": "src/Metrics/",
       "Orchid\\Platform\\": "src/Platform/",
-      "Orchid\\Presets\\": "src/Presets/",
       "Orchid\\Screen\\": "src/Screen/",
       "Orchid\\Support\\": "src/Support/"
     },

@@ -28,11 +28,11 @@ return [
     | route in the administration panel. Feel free to
     | change this path to anything you like.
     |
-    | Example: '/', '/admin', '/dashboard'
+    | Example: '/', '/admin', '/panel'
     |
     */
 
-    'prefix' => env('DASHBOARD_PREFIX', '/dashboard'),
+    'prefix' => env('DASHBOARD_PREFIX', '/admin'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,39 +52,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Auth pages
+    | Auth Page
     |--------------------------------------------------------------------------
     |
     | The property controls visibility of Orchid's built-in authentication pages.
-    | To customize them use this command: `php artisan ui:auth`
+    | You can disable this page and use your own set like 'Jetstream'
+    |
+    | You can learn more here: https://laravel.com/docs/authentication
     |
     */
 
     'auth'  => true,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Reset password
-    |--------------------------------------------------------------------------
-    |
-    | The property controls reset password functionality.
-    |
-    */
-
-    'password_reset'  => true,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Default Two-Factor Authentication Provider
-    |--------------------------------------------------------------------------
-    |
-    | This option controls the default two-factor authentication provider that
-    | will be used by the framework when a user needs to be two-factor
-    | authenticated.
-    |
-    */
-
-    'two_factor' => \Orchid\Access\TwoFactorAuth::class,
 
     /*
     |--------------------------------------------------------------------------

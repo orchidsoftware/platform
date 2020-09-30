@@ -1,4 +1,4 @@
-<div class="row pt-3" data-controller="screen--filter">
+<div class="" data-controller="screen--filter">
     <div class="col-md-12">
         <div class="btn-group" role="group">
             <button class="btn btn-link dropdown-toggle pl-0"
@@ -50,7 +50,7 @@
         </div>
         @foreach($filters as $filter)
             @if($filter->display && $filter->isApply())
-                <a href="{{ $filter->resetLink() }}" class="badge badge-light">
+                <a href="{{ $filter->resetLink() }}" class="badge badge-light mr-1 p-1">
                     {{$filter->value()}}
                 </a>
             @endif

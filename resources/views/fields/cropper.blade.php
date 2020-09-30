@@ -15,13 +15,13 @@
         <div class="border-dashed text-right p-3 cropper-actions">
 
             <div class="fields-cropper-container">
-                <img src="#" class="cropper-preview img-fluid img-full m-b-md border" alt="">
+                <img src="#" class="cropper-preview img-fluid img-full mb-2 border" alt="">
             </div>
 
             <span class="mt-1 float-left">{{ __('Upload image from your computer:') }}</span>
 
             <div class="btn-group">
-                <label class="btn btn-default m-n">
+                <label class="btn btn-default m-0">
                     <x-orchid-icon path="cloud-upload" class="mr-2"/>
 
                     {{ __('Browse') }}
@@ -44,7 +44,7 @@
         <input class="cropper-path d-none"
                type="text"
                data-target="fields--cropper.source"
-            @attributes($attributes)
+            {{ $attributes }}
         >
 
         <div class="modal" role="dialog" {{$staticBackdrop ? "data-backdrop=static" : ''}}>

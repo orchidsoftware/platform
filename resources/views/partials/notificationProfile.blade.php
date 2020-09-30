@@ -1,6 +1,6 @@
 <div class="pull-right text-center pl-3" data-turbolinks-permanent>
     <a href="{{ route('platform.notifications') }}"
-       class="nav-link icon no-padder"
+       class="nav-link p-0 v-center"
        data-controller="layouts--notification"
        data-layouts--notification-count="{{ count($notifications) }}"
        data-layouts--notification-url="{{ route('platform.api.notifications') }}"

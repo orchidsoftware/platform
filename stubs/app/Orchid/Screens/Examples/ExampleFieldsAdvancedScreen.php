@@ -2,7 +2,7 @@
 
 namespace App\Orchid\Screens\Examples;
 
-use Orchid\Platform\Models\Role;
+use Orchid\Platform\Models\User;
 use Orchid\Screen\Action;
 use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Cropper;
@@ -168,8 +168,8 @@ class ExampleFieldsAdvancedScreen extends Screen
                         ->title('Multiple select')
                         ->help('Allow search bots to index'),
 
-                    Relation::make('role')
-                        ->fromModel(Role::class, 'name')
+                    Relation::make('user')
+                        ->fromModel(User::class, 'name')
                         ->title('Select for Eloquent model'),
                 ])->title('Select'),
                 Layout::rows([

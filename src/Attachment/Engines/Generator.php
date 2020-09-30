@@ -6,8 +6,8 @@ namespace Orchid\Attachment\Engines;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
-use Mimey\MimeTypes;
 use Orchid\Attachment\Contracts\Engine;
+use Orchid\Attachment\MimeTypes;
 
 class Generator implements Engine
 {
@@ -100,7 +100,7 @@ class Generator implements Engine
         $extension = $this->file->getClientOriginalExtension();
 
         return empty($extension)
-            ? $this->mimes->getExtension($this->file->getClientMimeType())
+            ? $this->mimes->getExtension($this->file->getClientMimeType(), 'unknown')
             : $extension;
     }
 

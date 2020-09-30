@@ -15,7 +15,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'last_login',
         'permissions',
     ];
 
@@ -28,9 +27,6 @@ class User extends Authenticatable
         'password',
         'remember_token',
         'permissions',
-        'uses_two_factor_auth',
-        'two_factor_secret_code',
-        'two_factor_recovery_code',
     ];
 
     /**
@@ -41,8 +37,6 @@ class User extends Authenticatable
     protected $casts = [
         'permissions'          => 'array',
         'email_verified_at'    => 'datetime',
-        'last_login'           => 'datetime',
-        'uses_two_factor_auth' => 'boolean',
     ];
 
     /**
@@ -66,7 +60,6 @@ class User extends Authenticatable
         'id',
         'name',
         'email',
-        'last_login',
         'updated_at',
         'created_at',
     ];

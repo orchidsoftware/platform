@@ -4,7 +4,7 @@
         <x-orchid-icon path="circle" class="mr-2"/>
     </span>
 
-    <span class="clear pl-3 block">
+    <span class="clear pl-3 d-block">
         <span class="w-100 w-b-k w-s-n">{{$notification->data['title'] ?? ''}}</span>
         <small class="text-muted pl-1">/ {{ $notification->created_at->diffForHumans() }}</small>
         <br>

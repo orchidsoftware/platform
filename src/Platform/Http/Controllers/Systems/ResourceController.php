@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
-use Mimey\MimeTypes;
+use Orchid\Attachment\MimeTypes;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Controllers\Controller;
 use Symfony\Component\Finder\Finder;

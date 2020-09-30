@@ -1,6 +1,8 @@
 <div class="form-group">
 
-    <label class="form-label">{{__('Email address')}}</label>
+    <label class="form-label">
+        {{__('Email address')}}
+    </label>
 
     {!!  \Orchid\Screen\Fields\Input::make('email')
         ->type('email')
@@ -14,9 +16,6 @@
 <div class="form-group">
     <label class="form-label w-100">
         {{__('Password')}}
-        @if (config('platform.password_reset', true))
-            <a href="{{ route('platform.password.request') }}" class="float-right small">{{__('Forgot your password?')}}</a>
-        @endif
     </label>
 
     {!!  \Orchid\Screen\Fields\Password::make('password')

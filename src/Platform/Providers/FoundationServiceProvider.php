@@ -5,12 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Illuminate\Routing\Router;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
-use Laravel\Ui\UiCommand;
-use Laravel\Ui\UiServiceProvider;
 use Orchid\Icons\IconServiceProvider;
 use Orchid\Platform\Commands\AdminCommand;
 use Orchid\Platform\Commands\ChartCommand;
@@ -25,8 +22,6 @@ use Orchid\Platform\Commands\ScreenCommand;
 use Orchid\Platform\Commands\SelectionCommand;
 use Orchid\Platform\Commands\TableCommand;
 use Orchid\Platform\Dashboard;
-use Orchid\Presets\Orchid;
-use Orchid\Presets\Source;
 use Watson\Active\ActiveServiceProvider;
 
 /**
@@ -66,7 +61,6 @@ class FoundationServiceProvider extends ServiceProvider
             ->registerDatabase()
             ->registerConfig()
             ->registerTranslations()
-            ->registerBlade()
             ->registerViews()
             ->registerProviders();
     }
@@ -142,41 +136,6 @@ class FoundationServiceProvider extends ServiceProvider
     }
 
     /**
-     * @return $this
-     */
-    public function registerBlade(): self
-    {
-        Blade::directive('attributes', function (string $attributes) {
-            $part = 'function ($attributes) {
-                foreach ($attributes as $name => $value) {
-                    if (is_null($value)) {
-                        continue;
-                    }
-
-                    if (is_bool($value) && $value === false) {
-                        continue;
-                    }
-                    if (is_bool($value)) {
-                        echo e($name)." ";
-                        continue;
-                    }
-
-                    if (is_array($value)) {
-                        echo json_decode($value)." ";
-                        continue;
-                    }
-
-                    echo e($name) . \'="\' . e($value) . \'"\'." ";
-                }
-            }';
-
-            return "<?php call_user_func($part, $attributes); ?>";
-        });
-
-        return $this;
-    }
-
-    /**
      * Register views & Publish views.
      *
      * @return $this
@@ -212,7 +171,6 @@ class FoundationServiceProvider extends ServiceProvider
     public function provides(): array
     {
         return [
-            UiServiceProvider::class,
             ScoutServiceProvider::class,
             ActiveServiceProvider::class,
             IconServiceProvider::class,
@@ -251,32 +209,5 @@ class FoundationServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             Dashboard::path('config/platform.php'), 'platform'
         );
-
-        /*
-         * Adds Orchid source preset to Laravel's default preset command.
-         */
-
-        UiCommand::macro('orchid-source', static function (UiCommand $command) {
-            $command->call('vendor:publish', [
-                '--provider' => self::class,
-                '--tag'      => 'orchid-assets',
-                '--force'    => true,
-            ]);
-
-            Source::install();
-            $command->warn('Please run "npm install && npm run dev" to compile your fresh scaffolding.');
-            $command->info('Orchid scaffolding installed successfully.');
-        });
-
-        /*
-         * Adds Orchid preset to Laravel's default preset command.
-         */
-        UiCommand::macro('orchid', static function (UiCommand $command) {
-            Orchid::install();
-            $command->warn('Please run "npm install && npm run dev" to compile your fresh scaffolding.');
-            $command->warn("After that, You need to add this line to AppServiceProvider's register method:");
-            $command->warn("app(\Orchid\Platform\Dashboard::class)->registerResource('scripts','/js/dashboard.js');");
-            $command->info('Orchid scaffolding installed successfully.');
-        });
     }
 }

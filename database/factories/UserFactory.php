@@ -52,7 +52,6 @@ class UserFactory extends Factory
             'email'          => $this->faker->unique()->safeEmail,
             'password'       => Hash::make('password'),
             'remember_token' => Str::random(10),
-            'last_login'     => $this->faker->dateTimeBetween('-6 days', 'this week'),
             'permissions'    => $roles['admin'],
         ];
     }

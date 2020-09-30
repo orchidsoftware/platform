@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title','ORCHID') - @yield('description','Admin')</title>
     <meta name="csrf_token" content="{{  csrf_token() }}" id="csrf_token" data-turbolinks-permanent>
-    <meta name="auth" content="{{  Auth::check() }}"  id="auth" data-turbolinks-permanent>
+    <meta name="auth" content="{{  Auth::check() }}" id="auth" data-turbolinks-permanent>
     @if(file_exists(public_path('/css/orchid/orchid.css')))
         <link rel="stylesheet" type="text/css" href="{{  mix('/css/orchid/orchid.css') }}">
     @else
@@ -36,22 +36,22 @@
 <body>
 
 
-<div class="app row m-n" id="app" data-controller="@yield('controller')" @yield('controller-data')>
-    <div class="container-lg">
-        <div class="row">
-            <div class="aside col-xs-12 col-md-2 offset-xxl-0 col-xl-2 col-xxl-3 no-padder bg-dark">
-                <div class="d-md-flex align-items-start flex-column d-sm-block h-full">
-                    @yield('body-left')
+<div class="container-fluid" data-controller="@yield('controller')" @yield('controller-data')>
+
+    <div class="row">
+        @yield('body-left')
+
+        <div class="col min-vh-100 overflow-hidden">
+            <div class="d-flex flex-column-fluid">
+                <div class="container h-full px-0">
+                    @yield('body-right')
                 </div>
-            </div>
-            <div class="col-md col-xl col-xxl-9 bg-white shadow no-padder min-vh-100 overflow-hidden">
-                @yield('body-right')
             </div>
         </div>
     </div>
 
 
-@include('platform::partials.toast')
+    @include('platform::partials.toast')
 </div>
 
 @stack('scripts')
