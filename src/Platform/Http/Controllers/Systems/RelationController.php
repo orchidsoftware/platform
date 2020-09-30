@@ -35,9 +35,7 @@ class RelationController extends Controller
         $model = new $model;
         $search = $request->get('search', '');
 
-        $method = is_a($model, Model::class) ? 'buildersItems' : 'getItems';
-
-        $items = $this->{$method}($model, $name, $key, $search, $scope, $append);
+        $items = $this->buildersItems($model, $name, $key, $search, $scope, $append);
 
         return response()->json($items);
     }
@@ -71,40 +69,5 @@ class RelationController extends Controller
             ->limit(10)
             ->get()
             ->pluck($append ?? $name, $key);
-    }
-
-    /**
-     * @param array|object|Model $model
-     * @param string             $name
-     * @param string             $key
-     * @param string|null        $search
-     * @param string|null        $scope
-     *
-     * @return Collection|array
-     */
-    private function getItems($model, string $name, string $key, string $search = null, string $scope = null): iterable
-    {
-        if (! is_array($model) && property_exists($model, 'search')) {
-            $model->search = $search;
-        }
-
-        /* Execution branch for source class */
-        if ($scope === null) {
-            $model = $model->handler();
-        }
-
-        $items = collect($model);
-
-        if (! is_iterable($model)) {
-            $items = collect($model->get());
-        }
-
-        if (! empty($search)) {
-            $items = $items->filter(static function ($item) use ($name, $search) {
-                return stripos($item[$name], $search) !== false;
-            });
-        }
-
-        return $items->take(10)->pluck($name, $key);
     }
 }
