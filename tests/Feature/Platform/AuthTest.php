@@ -73,5 +73,4 @@ class AuthTest extends TestFeatureCase
         $auth->get(route('platform.index'))
             ->assertRedirect(route('platform.login'));
     }
-
 }
