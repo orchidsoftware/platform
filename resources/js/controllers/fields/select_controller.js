@@ -14,7 +14,7 @@ export default class extends Controller {
             width: '100%',
             allowClear: !select.hasAttribute('required'),
             placeholder: select.getAttribute('placeholder') || '',
-            ...!select.hasAttribute('tags') ? { tags: true } : '',
+            ...select.hasAttribute('tags') ? { tags: true } : '',
             theme: 'bootstrap',
         });
 
