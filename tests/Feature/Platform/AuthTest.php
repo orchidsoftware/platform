@@ -54,4 +54,24 @@ class AuthTest extends TestFeatureCase
             ->assertRedirect(route('platform.login'))
             ->assertCookieExpired('lockUser');
     }
+
+    public function testRouteDashboardSwitchLogout(): void
+    {
+        $this
+            ->actingAs($this->createAdminUser())
+            ->post(route('platform.switch.logout'))
+            ->assertRedirect(route(config('platform.index')));
+    }
+
+    public function testRouteDashboardAuthLogout(): void
+    {
+        $auth = $this->actingAs($this->createAdminUser());
+
+        $auth->post(route('platform.logout'))
+            ->assertRedirect('/');
+
+        $auth->get(route('platform.index'))
+            ->assertRedirect(route('platform.login'));
+    }
+
 }
