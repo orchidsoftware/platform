@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus';
+import {Controller} from 'stimulus';
 
 import CKEditor from '@xccjh/xccjh-ckeditor5-video-file-upload/';
 import '@xccjh/xccjh-ckeditor5-video-file-upload/build/translations/ru';
@@ -104,6 +104,56 @@ export default class extends Controller {
     }
   }
 
+  options(){
+    return {
+      alignment: {
+        options: ['left', 'center', 'right', 'justify'],
+      },
+      image: {
+        toolbar: [
+          'imageTextAlternative',
+          '|',
+          'imageStyle:alignLeft',
+          'imageStyle:full',
+          'imageStyle:alignRight',
+        ],
+        resizeUnit: 'px',
+        types: ['jpeg', 'png', 'gif', 'bmp', 'webp', 'tiff'],
+        styles: ['full', 'alignLeft', 'alignRight'],
+      },
+      table: {
+        contentToolbar: [
+          'tableColumn',
+          'tableRow',
+          'mergeTableCells',
+          'tableCellProperties',
+          'tableProperties',
+        ],
+      },
+      tableProperties: {
+        // ...
+      },
+
+      tableCellProperties: {
+        // ...
+      },
+      fontFamily: {
+        options: [
+          'default',
+          'Arial, Helvetica, sans-serif',
+          'Courier New, Courier, monospace',
+          'Georgia, serif',
+          'Lucida Sans Unicode, Lucida Grande, sans-serif',
+          'Tahoma, Geneva, sans-serif',
+          'Times New Roman, Times, serif',
+          'Trebuchet MS, Helvetica, sans-serif',
+          'Verdana, Geneva, sans-serif',
+        ],
+      },
+      licenseKey: '',
+    }
+  }
+
   connect() {
     const selector = this.element.querySelector('.ckeditor');
     const input = this.element.querySelector('input');
@@ -115,51 +165,7 @@ export default class extends Controller {
         mediaEmbed: this.mediaEmbed(),
         heading: this.heading(),
         toolbar: this.toolbar(),
-        alignment: {
-          options: ['left', 'center', 'right', 'justify'],
-        },
-        image: {
-          toolbar: [
-            'imageTextAlternative',
-            '|',
-            'imageStyle:alignLeft',
-            'imageStyle:full',
-            'imageStyle:alignRight',
-          ],
-          resizeUnit: 'px',
-          types: ['jpeg', 'png', 'gif', 'bmp', 'webp', 'tiff'],
-          styles: ['full', 'alignLeft', 'alignRight'],
-        },
-        table: {
-          contentToolbar: [
-            'tableColumn',
-            'tableRow',
-            'mergeTableCells',
-            'tableCellProperties',
-            'tableProperties',
-          ],
-        },
-        tableProperties: {
-          // ...
-        },
-
-        tableCellProperties: {
-          // ...
-        },
-        fontFamily: {
-          options: [
-            'default',
-            'Arial, Helvetica, sans-serif',
-            'Courier New, Courier, monospace',
-            'Georgia, serif',
-            'Lucida Sans Unicode, Lucida Grande, sans-serif',
-            'Tahoma, Geneva, sans-serif',
-            'Times New Roman, Times, serif',
-            'Trebuchet MS, Helvetica, sans-serif',
-            'Verdana, Geneva, sans-serif',
-          ],
-        },
-        licenseKey: '',
+        ...this.options()
       })
       .then(editor => {
         window.editor = editor;
