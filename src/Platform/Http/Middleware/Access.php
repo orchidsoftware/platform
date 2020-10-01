@@ -11,6 +11,7 @@ use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Route;
 
 /**
  * Class Access.
@@ -44,17 +45,39 @@ class Access
         Carbon::setLocale(config('app.locale'));
 
         if ($this->auth->guest()) {
-            if ($request->ajax() || $request->wantsJson()) {
-                return response('Unauthorized.', 401);
-            }
-
-            return redirect()->guest(route('platform.login'));
+            return $this->redirectToLogin($request);
         }
 
         if ($this->auth->user()->hasAccess($permission)) {
             return $next($request);
         }
 
+        // The current user is already signed in.
+        // It means that he does not have the privileges to view.
         abort(403);
+    }
+
+    /**
+     * Redirect on the application login form.
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|ResponseFactory|RedirectResponse|Response
+     */
+    protected function redirectToLogin(Request $request)
+    {
+        if ($request->ajax() || $request->wantsJson()) {
+            return response('Unauthorized.', 401);
+        }
+
+        if (Route::has('platform.login')) {
+            return redirect()->guest(route('platform.login'));
+        }
+
+        if (Route::has('login')) {
+            return redirect()->guest(route('login'));
+        }
+
+        abort(401);
     }
 }
