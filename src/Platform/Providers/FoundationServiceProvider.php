@@ -22,6 +22,7 @@ use Orchid\Platform\Commands\ScreenCommand;
 use Orchid\Platform\Commands\SelectionCommand;
 use Orchid\Platform\Commands\TableCommand;
 use Orchid\Platform\Dashboard;
+use Tabuna\Breadcrumbs\BreadcrumbsServiceProvider;
 use Watson\Active\ActiveServiceProvider;
 
 /**
@@ -174,6 +175,7 @@ class FoundationServiceProvider extends ServiceProvider
             ScoutServiceProvider::class,
             ActiveServiceProvider::class,
             IconServiceProvider::class,
+            BreadcrumbsServiceProvider::class,
             RouteServiceProvider::class,
             EventServiceProvider::class,
             PlatformServiceProvider::class,
