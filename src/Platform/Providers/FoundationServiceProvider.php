@@ -62,8 +62,7 @@ class FoundationServiceProvider extends ServiceProvider
             ->registerDatabase()
             ->registerConfig()
             ->registerTranslations()
-            ->registerViews()
-            ->registerProviders();
+            ->registerViews();
     }
 
     /**
@@ -187,6 +186,8 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->registerProviders();
+
         $this->commands($this->commands);
 
         $this->app->singleton(Dashboard::class, static function () {
