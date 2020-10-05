@@ -70,7 +70,7 @@ class UserListScreen extends Screen
     {
         return [
             Layout::selection([
-                RoleFilter::class
+                RoleFilter::class,
             ]),
 
             UserListLayout::class,
