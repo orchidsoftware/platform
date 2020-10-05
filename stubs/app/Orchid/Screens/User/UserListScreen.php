@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
+use App\Orchid\Filters\RoleFilter;
 use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserFiltersLayout;
 use App\Orchid\Layouts\User\UserListLayout;
@@ -68,7 +69,10 @@ class UserListScreen extends Screen
     public function layout(): array
     {
         return [
-            UserFiltersLayout::class,
+            Layout::selection([
+                RoleFilter::class
+            ]),
+
             UserListLayout::class,
 
             Layout::modal('oneAsyncModal', [
