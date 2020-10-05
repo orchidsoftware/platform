@@ -44,7 +44,7 @@ class ModalToggleTest extends TestFieldsUnitCase
         );
 
         $this->assertStringContainsString(
-            'data-modal-action="http://127.0.0.1:8000/method',
+            'data-modal-action="http://127.0.0.1:8001/method',
             $view
         );
     }
@@ -61,7 +61,7 @@ class ModalToggleTest extends TestFieldsUnitCase
         $view = self::renderField($modalToggle);
 
         $this->assertStringContainsString(
-            'data-modal-action="http://127.0.0.1:8000/method?name=Alexandr',
+            'data-modal-action="http://127.0.0.1:8001/method?name=Alexandr',
             $view
         );
     }

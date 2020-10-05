@@ -150,8 +150,12 @@ if (! function_exists('orchid_mix')) {
             $mixPath = ltrim($mixPath, '/');
         }
 
+        if ($mixUrl = config('app.mix_url', false)) {
+            return $mixUrl."/resources/$package/$mixPath";
+        }
+
         if (file_exists(public_path('/resources'))) {
-            return url("/resources/$package/$mixPath");
+            return url()->asset("/resources/$package/$mixPath");
         }
 
         return route('platform.resource', [$package, $mixPath]);

@@ -12,6 +12,7 @@ use Orchid\Screen\Layouts\Columns;
 use Orchid\Screen\Layouts\Component;
 use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Layouts\Rows;
+use Orchid\Screen\Layouts\Selection;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Layouts\View;
@@ -192,6 +193,39 @@ class LayoutFactory
     public static function accordion(array $layouts): Accordion
     {
         return new class($layouts) extends Accordion {
+        };
+    }
+
+    /**
+     * @param string[] $filters
+     *
+     * @return Selection
+     */
+    public static function selection(array $filters): Selection
+    {
+        return new class($filters) extends Selection {
+            /**
+             * @var sting[]
+             */
+            protected $filters;
+
+            /**
+             * Constructor.
+             *
+             * @param string[] $filters
+             */
+            public function __construct(array $filters = [])
+            {
+                $this->filters = $filters;
+            }
+
+            /**
+             * @return string[]
+             */
+            public function filters(): array
+            {
+                return $this->filters;
+            }
         };
     }
 }
