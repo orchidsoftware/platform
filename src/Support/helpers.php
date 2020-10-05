@@ -151,7 +151,7 @@ if (! function_exists('orchid_mix')) {
         }
 
         if ($mixUrl = config('app.mix_url', false)) {
-            return $mixUrl . "/resources/$package/$mixPath";
+            return $mixUrl."/resources/$package/$mixPath";
         }
 
         if (file_exists(public_path('/resources'))) {
