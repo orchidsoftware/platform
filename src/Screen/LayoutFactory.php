@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Illuminate\Support\Traits\Macroable;
+use Orchid\Filters\Filter;
 use Orchid\Screen\Layouts\Accordion;
 use Orchid\Screen\Layouts\Blank;
 use Orchid\Screen\Layouts\Collapse;
@@ -204,6 +205,7 @@ class LayoutFactory
     public static function selection(array $filters): Selection
     {
         return new class($filters) extends Selection {
+
             /**
              * @var sting[]
              */
@@ -216,7 +218,7 @@ class LayoutFactory
              */
             public function __construct(array $filters = [])
             {
-                $this->filters = $filters;
+               $this->filters = $filters;
             }
 
             /**
