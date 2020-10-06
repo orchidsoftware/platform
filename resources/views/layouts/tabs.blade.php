@@ -1,5 +1,4 @@
 <div
-    class="mb-3"
     data-controller="screen--tabs"
     data-screen--tabs-slug="{{$templateSlug}}"
 >
@@ -21,19 +20,15 @@
     </div>
 
     <!-- main content -->
-    <section class="bg-white rounded shadow-sm mb-3">
+    <section class="mb-3">
         <div class="no-border-xs">
             <div class="tab-content">
                 @foreach($manyForms as $name => $forms)
                     <div role="tabpanel" class="tab-pane @if ($loop->first) active @endif"
                          id="tab-{{\Illuminate\Support\Str::slug($name)}}">
-
-                        <div class="py-3 layout-wrapper">
                             @foreach($forms as $form)
                                 {!! $form !!}
                             @endforeach
-                        </div>
-
                     </div>
                 @endforeach
             </div>
