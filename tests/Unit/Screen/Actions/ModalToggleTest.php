@@ -39,12 +39,12 @@ class ModalToggleTest extends TestFieldsUnitCase
         $view = self::renderField($modalToggle);
 
         $this->assertStringContainsString(
-            'data-modal-key="KeyForModal"',
+            'data-screen--modal-toggle-key="KeyForModal"',
             $view
         );
 
         $this->assertStringContainsString(
-            'data-modal-action="http://127.0.0.1:8001/method',
+            'data-screen--modal-toggle-action="http://127.0.0.1:8001/method',
             $view
         );
     }
@@ -61,7 +61,7 @@ class ModalToggleTest extends TestFieldsUnitCase
         $view = self::renderField($modalToggle);
 
         $this->assertStringContainsString(
-            'data-modal-action="http://127.0.0.1:8001/method?name=Alexandr',
+            'data-screen--modal-toggle-action="http://127.0.0.1:8001/method?name=Alexandr',
             $view
         );
     }

@@ -62,6 +62,8 @@ class Modal extends Layout
             'withoutApplyButton' => false,
             'withoutCloseButton' => false,
             'open'               => false,
+            'method'             => null,
+            'staticBackdrop'     => false,
         ];
 
         $this->layouts = $layouts;
@@ -195,6 +197,30 @@ class Modal extends Layout
     public function open(bool $status = true): self
     {
         $this->variables['open'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * @param string $method
+     *
+     * @return $this
+     */
+    public function method(string $method): self
+    {
+        $this->variables['method'] = $method;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $status
+     *
+     * @return $this
+     */
+    public function staticBackdrop(bool $status = true): self
+    {
+        $this->variables['staticBackdrop'] = $status;
 
         return $this;
     }
