@@ -15,21 +15,33 @@ export default class extends Controller {
      */
     connect() {
 
-        if (this.data.get('open')) {
-            this.element.classList.remove('fade', 'in');
-            $(this.element).modal('show');
-        }
+        $(this.element).on('shown.bs.modal', () => {
+            let autoFocusElement = this.element.querySelector('[autofocus]');
+
+            if(autoFocusElement !== null){
+                autoFocusElement.focus();
+            }
+
+
+            let backdrop = document.querySelector('.modal-backdrop');
+
+            if(backdrop !== null){
+                backdrop.id = 'backdrop';
+                backdrop.dataset.turbolinksPermanent = true;
+            }
+        });
+
+
+        $(this.element).on('hide.bs.modal', () => {
+            if (!this.element.classList.contains('fade')) {
+                this.element.classList.add('fade', 'in');
+            }
+        })
 
         if (this.element.querySelectorAll('.is-invalid').length > 0) {
             this.setFormAction(sessionStorage.getItem('last-open-modal'));
             this.element.classList.remove('fade', 'in');
             $(this.element).modal('show');
-
-            $(this.element).on('hide.bs.modal', () => {
-                if (!this.element.classList.contains('fade')) {
-                    this.element.classList.add('fade', 'in');
-                }
-            })
         }
     }
 
@@ -47,6 +59,7 @@ export default class extends Controller {
         if (parseInt(this.data.get('async-enable'))) {
             this.asyncLoadData(JSON.parse(options.params));
         }
+
 
         $(this.element).modal('toggle');
     }

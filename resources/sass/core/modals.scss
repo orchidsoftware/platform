@@ -178,9 +178,13 @@
 
 .modal-backdrop {
   opacity: 0;
-  @include transition(opacity 340ms linear);
+  transition: none;
+  &.fade{
+      @include transition(opacity 340ms linear);
+  }
+
   &.in, &.show {
-    opacity: 0.75;
+    opacity: 0.5;
   }
 }
 

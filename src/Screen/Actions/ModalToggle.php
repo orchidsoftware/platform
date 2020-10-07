@@ -17,6 +17,7 @@ use Illuminate\Support\Arr;
  * @method ModalToggle parameters(array|object $name)
  * @method ModalToggle modalTitle(string $title)
  * @method ModalToggle async(bool $enabled = true)
+ * @method ModalToggle open(bool $status = true)
  */
 class ModalToggle extends Button
 {
@@ -31,14 +32,15 @@ class ModalToggle extends Button
      * @var array
      */
     protected $attributes = [
-        'class'           => 'btn btn-link',
-        'modal'           => null,
-        'method'          => null,
-        'modalTitle'      => null,
-        'icon'            => null,
-        'action'          => null,
-        'async'           => false,
-        'parameters'      => [],
+        'class'      => 'btn btn-link',
+        'modal'      => null,
+        'method'     => null,
+        'modalTitle' => null,
+        'icon'       => null,
+        'action'     => null,
+        'async'      => false,
+        'open'       => false,
+        'parameters' => [],
     ];
 
     /**
