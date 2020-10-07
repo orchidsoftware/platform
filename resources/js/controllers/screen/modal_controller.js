@@ -14,6 +14,12 @@ export default class extends Controller {
      *
      */
     connect() {
+
+        if (this.data.get('open')) {
+            this.element.classList.remove('fade', 'in');
+            $(this.element).modal('show');
+        }
+
         if (this.element.querySelectorAll('.is-invalid').length > 0) {
             this.setFormAction(sessionStorage.getItem('last-open-modal'));
             this.element.classList.remove('fade', 'in');
