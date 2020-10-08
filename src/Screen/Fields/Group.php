@@ -110,7 +110,7 @@ class Group implements Fieldable, Groupable
      */
     public function get(string $key, $value = null)
     {
-        if (!isset($this->attributes[$key])) {
+        if (! isset($this->attributes[$key])) {
             return $value;
         }
 

@@ -44,13 +44,12 @@ class LocaleTest extends TestUnitCase
             });
     }
 
-
     /**
      * @return Collection
      */
     protected function getTranslationFiles(): Collection
     {
-        $patternPath = Dashboard::path('resources/lang') . '/*.json';
+        $patternPath = Dashboard::path('resources/lang').'/*.json';
 
         return collect(glob($patternPath));
     }

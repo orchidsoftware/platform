@@ -39,7 +39,7 @@ class Action extends Field implements Actionable
     }
 
     /**
-     * @deprecated 
+     * @deprecated
      *
      * Align button to the right.
      *

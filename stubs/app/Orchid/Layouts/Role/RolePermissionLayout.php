@@ -7,7 +7,6 @@ namespace App\Orchid\Layouts\Role;
 use Illuminate\Support\Collection;
 use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Group;
-use Orchid\Screen\Fields\Label;
 use Orchid\Screen\Layouts\Rows;
 
 class RolePermissionLayout extends Rows
@@ -34,7 +33,7 @@ class RolePermissionLayout extends Rows
         return $permissionsRaw->map(function ($items, $title) {
             return collect($items)
                 ->chunk(3)
-                ->map(function (Collection $chunks) use($title) {
+                ->map(function (Collection $chunks) use ($title) {
                     return Group::make($this->getCheckBoxGroup($chunks, $title))
                         ->alignEnd()
                         ->autoWidth();
