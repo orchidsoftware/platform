@@ -410,6 +410,18 @@ class Field implements Fieldable
     }
 
     /**
+     * Use clear layout for the field.
+     *
+     * @return static
+     */
+    public function clear(): self
+    {
+        $this->typeForm = 'platform::partials.fields.clear';
+
+        return $this;
+    }
+
+    /**
      * Use horizontal layout for the field.
      *
      * @return static
