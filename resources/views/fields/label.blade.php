@@ -1,5 +1,7 @@
 @component($typeForm, get_defined_vars())
-    <p {{ $attributes }}>
-        {{ $value }}
-    </p>
+   @empty(!$value)
+        <p {{ $attributes }}>
+            {{ $value }}
+        </p>
+   @endempty
 @endcomponent

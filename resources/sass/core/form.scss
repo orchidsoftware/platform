@@ -4,17 +4,17 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   color: $black;
-    outline: 0;
-    height: $form-height;
-    line-height: normal;
-    font-weight: normal;
-    vertical-align: middle;
-    @include transition(all 0.12s ease);
-    @include box-shadow(none);
-    border-radius: 2px;
-    @include placeholder($text-muted);
-    @include transition(background 0.2s linear 0s);
-    max-width: 450px;
+  outline: 0;
+  height: $form-height;
+  line-height: normal;
+  font-weight: normal;
+  vertical-align: middle;
+  @include transition(all 0.12s ease);
+  @include box-shadow(none);
+  border-radius: 2px;
+  @include placeholder($text-muted);
+  @include transition(background 0.2s linear 0s);
+  max-width: 600px;
 
     &:focus {
         border-color: fade-out($black, 0.9);
@@ -39,7 +39,7 @@
 }
 
 .input-group {
-    max-width: 450px;
+    max-width: 600px;
 
     .input-group-btn {
         .btn-default {
@@ -64,7 +64,7 @@ select {
  Icon input
  */
 .input-icon {
-  max-width: 450px;
+  max-width: 600px;
   position: relative;
 
   .form-control:not(:last-child) {
