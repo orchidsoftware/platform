@@ -155,12 +155,16 @@ class FoundationServiceProvider extends ServiceProvider
 
     /**
      * Register provider.
+     *
+     * @return $this
      */
-    public function registerProviders(): void
+    public function registerProviders(): self
     {
         foreach ($this->provides() as $provide) {
             $this->app->register($provide);
         }
+
+        return $this;
     }
 
     /**
@@ -186,9 +190,10 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->registerProviders();
-
-        $this->commands($this->commands);
+        $this
+            ->registerTranslations()
+            ->registerProviders()
+            ->commands($this->commands);
 
         $this->app->singleton(Dashboard::class, static function () {
             return new Dashboard();
