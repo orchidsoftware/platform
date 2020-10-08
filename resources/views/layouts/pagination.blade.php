@@ -1,25 +1,24 @@
 <footer class="pb-3 w-100">
     <div class="v-md-center">
         <div class="col-sm-5">
-            @if($paginator instanceof \Illuminate\Contracts\Pagination\LengthAwarePaginator)
-
-                @if(isset($columns) && \Orchid\Screen\TD::isShowVisibleColumns($columns))
-                    <div class="btn-group dropup d-inline-block">
-                        <button type="button"
-                                class="btn btn-sm btn-link dropdown-toggle p-0 m-0"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false">
-                            {{ __('Configure columns') }}
-                        </button>
-                        <div class="dropdown-menu dropdown-column-menu">
-                            @foreach($columns as $column)
-                                {!! $column->buildItemMenu() !!}
-                            @endforeach
-                        </div>
+            @if(isset($columns) && \Orchid\Screen\TD::isShowVisibleColumns($columns))
+                <div class="btn-group dropup d-inline-block">
+                    <button type="button"
+                            class="btn btn-sm btn-link dropdown-toggle p-0 m-0"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                        {{ __('Configure columns') }}
+                    </button>
+                    <div class="dropdown-menu dropdown-column-menu">
+                        @foreach($columns as $column)
+                            {!! $column->buildItemMenu() !!}
+                        @endforeach
                     </div>
-                @endif
+                </div>
+            @endif
 
+            @if($paginator instanceof \Illuminate\Contracts\Pagination\LengthAwarePaginator)
                 <small class="text-muted d-block">
                     {{ __('Displayed records: :from-:to of :total',[
                         'from' => ($paginator->currentPage() -1 ) * $paginator->perPage() + 1,

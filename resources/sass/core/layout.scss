@@ -39,9 +39,6 @@ body {
 }
 
 .command-bar, .table td{
-    .form-group {
-        margin: 0;
-    }
     .btn {
         @extend .dropdown-item;
     }

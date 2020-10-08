@@ -39,6 +39,8 @@ class Action extends Field implements Actionable
     }
 
     /**
+     * @deprecated
+     *
      * Align button to the right.
      *
      * @return static
@@ -73,6 +75,8 @@ class Action extends Field implements Actionable
     }
 
     /**
+     * @deprecated
+     *
      * Set the button as block.
      *
      * @return static

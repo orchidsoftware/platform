@@ -18,6 +18,7 @@ class Group implements Fieldable, Groupable
     protected $attributes = [
         'group' => [],
         'class' => 'col',
+        'align' => 'align-items-baseline',
     ];
 
     /**
@@ -136,5 +137,37 @@ class Group implements Fieldable, Groupable
         }, $this->getGroup());
 
         return $this->setGroup($group);
+    }
+
+    /**
+     * @return $this
+     */
+    public function alignBaseLine(): self
+    {
+        return $this->set('align', 'align-items-baseline');
+    }
+
+    /**
+     * @return $this
+     */
+    public function alignCenter(): self
+    {
+        return $this->set('align', 'align-items-center');
+    }
+
+    /**
+     * @return $this
+     */
+    public function alignEnd(): self
+    {
+        return $this->set('align', 'align-items-end');
+    }
+
+    /**
+     * @return $this
+     */
+    public function alignStart(): self
+    {
+        return $this->set('align', 'align-items-end');
     }
 }

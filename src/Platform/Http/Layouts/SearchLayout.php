@@ -39,6 +39,7 @@ class SearchLayout extends Rows
                 $radio = Radio::make('type')
                     ->value(get_class($model))
                     ->horizontal()
+                    ->clear()
                     ->placeholder($model->presenter()->label());
 
                 if ($model instanceof $searchModel) {
@@ -48,7 +49,7 @@ class SearchLayout extends Rows
                 return $radio;
             });
 
-        $layouts->prepend(Label::make('search')->title(__('Choose record type:')));
+        $layouts->prepend(Label::make('search')->clear()->title(__('Choose record type:')));
 
         return [
             Group::make($layouts->all())->autoWidth(),

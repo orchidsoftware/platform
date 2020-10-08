@@ -1,4 +1,11 @@
-<div class="form-group">
+<div class="form-group mb-0">
+
+    @isset($title)
+        <label for="{{$id}}" class="form-label mb-0">
+            {{$title}}
+        </label>
+    @endisset
+
     {{$slot}}
 
     @if($errors->has($oldName))
@@ -9,7 +16,3 @@
         <small class="form-text text-muted">{!!$help!!}</small>
     @endif
 </div>
-
-@isset($hr)
-    <div class="line line-dashed border-bottom my-3"></div>
-@endisset

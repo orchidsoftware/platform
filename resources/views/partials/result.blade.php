@@ -1,9 +1,9 @@
 @section('search', $query)
 
 @empty(!$radios)
-    <div class="v-center shadow-sm rounded bg-white mb-3 w-100 layout-wrapper">
+
         {!! $radios !!}
-    </div>
+
 @endempty
 
 <div class="bg-white shadow-sm rounded mb-3">
