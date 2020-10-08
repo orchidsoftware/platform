@@ -21,14 +21,13 @@
                 </tr>
             @endforeach
 
-            @empty(!$total)
+            @if($total->isNotEmpty())
                 <tr>
                     @foreach($total as $column)
                         {!! $column->buildTd($repository) !!}
                     @endforeach
                 </tr>
-            @endempty
-
+            @endif
 
             </tbody>
         </table>
