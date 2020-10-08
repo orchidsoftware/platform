@@ -11,6 +11,9 @@
         &:first-child {
           padding-left: 1.5rem !important;
         }
+        &:last-child {
+            padding-right: 1.5rem !important;
+        }
         .form-group.row {
             select.form-control {
                 padding-left: 0.6rem;
@@ -38,6 +41,9 @@
         word-break: break-all;
           &:first-child {
               padding-left: 1.5rem !important;
+          }
+          &:last-child {
+              padding-right: 1.5rem !important;
           }
           > div > .form-group > .btn {
               padding: 0;

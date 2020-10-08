@@ -1,4 +1,4 @@
-<div class="form-group row">
+<div class="form-group row row-cols-sm-2">
     @isset($title)
         <label for="{{$id}}" class="col-sm-2 text-wrap mt-2 form-label">
             {{$title}}
@@ -13,7 +13,7 @@
         </label>
     @endisset
 
-    <div class="col" style="max-width: 440px;">
+    <div class="col">
         {{$slot}}
 
         @if($errors->has($oldName))
