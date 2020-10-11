@@ -81,7 +81,7 @@ class Quill extends Field
     {
         $this->addBeforeRender(function () {
             $toolbar = $this->get('toolbar');
-            $value = $this->get('value','');
+            $value = $this->get('value', '');
 
             $this->set('toolbar', json_encode($toolbar));
             $this->set('value', htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
