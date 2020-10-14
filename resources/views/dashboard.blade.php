@@ -66,17 +66,15 @@
             </nav>
         @endif
 
-        <div class="@hasSection('navbar') @else d-none d-md-block @endif layout">
-            <div class="v-md-center">
-                <div class="d-none d-md-block col-xs-12 col-md p-0">
-                    <h1 class="m-0 font-weight-light h3 text-black">@yield('title')</h1>
-                    <small class="text-muted" title="@yield('description')">@yield('description')</small>
-                </div>
-                <div class="col-xs-12 col-md-auto ml-auto p-0">
-                    <ul class="nav command-bar justify-content-sm-end justify-content-start v-center">
-                        @yield('navbar')
-                    </ul>
-                </div>
+        <div class="@hasSection('navbar') @else d-none d-md-block @endif layout v-md-center">
+            <div class="d-none d-md-block col-xs-12 col-md p-0">
+                <h1 class="m-0 font-weight-light h3 text-black">@yield('title')</h1>
+                <small class="text-muted" title="@yield('description')">@yield('description')</small>
+            </div>
+            <div class="col-xs-12 col-md-auto ml-auto p-0">
+                <ul class="nav command-bar justify-content-sm-end justify-content-start v-center">
+                    @yield('navbar')
+                </ul>
             </div>
         </div>
 
