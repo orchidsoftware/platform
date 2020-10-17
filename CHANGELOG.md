@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 9.4.3 - 2020-10-17
+
+### Changed
+- Updated dependencies
+
+### Fixed
+- Fixed filters overlay for table [#1145](https://github.com/orchidsoftware/platform/issues/1145)
+- Fixed `ob_*` behavior when using the Blade in PHPUnit tests
+- Removed optional tags
+- Removed dash when a description is empty
+- Display of pagination for long horizontal tables.
+
 ## 9.4.2 - 2020-10-13
 
 ### Fixed
