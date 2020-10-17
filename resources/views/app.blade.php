@@ -4,7 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title','ORCHID') - @yield('description','Admin')</title>
+    <title>
+            @yield('title','ORCHID')
+                @hasSection('description') - @endif
+            @yield('description','Admin')
+    </title>
     <meta name="csrf_token" content="{{  csrf_token() }}" id="csrf_token" data-turbolinks-permanent>
     <meta name="auth" content="{{  Auth::check() }}" id="auth" data-turbolinks-permanent>
     @if(file_exists(public_path('/css/orchid/orchid.css')))
