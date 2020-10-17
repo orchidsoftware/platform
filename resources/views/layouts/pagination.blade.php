@@ -6,10 +6,11 @@
                         class="btn btn-sm btn-link dropdown-toggle p-0 m-0"
                         data-toggle="dropdown"
                         aria-haspopup="true"
+                        data-boundary="viewport"
                         aria-expanded="false">
                     {{ __('Configure columns') }}
                 </button>
-                <div class="dropdown-menu dropdown-column-menu">
+                <div class="dropdown-menu dropdown-column-menu dropdown-scrollable">
                     @foreach($columns as $column)
                         {!! $column->buildItemMenu() !!}
                     @endforeach
