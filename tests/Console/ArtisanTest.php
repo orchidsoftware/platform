@@ -92,7 +92,6 @@ class ArtisanTest extends TestConsoleCase
             ->expectsQuestion('What is the password?', 'testConsoleCreateUser')
             ->expectsOutput('User exist');
 
-
         $user = User::factory()->make()->fill([
             'permissions' => [],
         ])->save();
