@@ -98,17 +98,11 @@ class User extends Authenticatable implements UserInterface
     {
         throw_if(static::where('email', $email)->exists(), Exception::class, 'User exist');
 
-        $permissions = Dashboard::getPermission()
-            ->collapse()
-            ->reduce(static function (Collection $permissions, array $item) {
-                return $permissions->put($item['slug'], true);
-            }, collect());
-
         static::create([
             'name'        => $name,
             'email'       => $email,
             'password'    => Hash::make($password),
-            'permissions' => $permissions,
+            'permissions' => Dashboard::getAllowAllPermission(),
         ]);
     }
 
