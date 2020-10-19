@@ -93,9 +93,9 @@ class ArtisanTest extends TestConsoleCase
             ->expectsOutput('User exist');
 
 
-        $user = User::factory()->make()->fill([
+        $user = User::factory()->create([
             'permissions' => [],
-        ])->save();
+        ]);
 
         $this->assertEquals([], $user->permissions);
 
