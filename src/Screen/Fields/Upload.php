@@ -81,7 +81,6 @@ class Upload extends Field
         'multiple',
         'placeholder',
         'required',
-        'value',
         'groups',
         'storage',
         'media',
