@@ -284,7 +284,7 @@ class Dashboard
     }
 
     /**
-     * Get all registered permissions with the enabled state
+     * Get all registered permissions with the enabled state.
      *
      * @return Collection
      */
@@ -296,7 +296,6 @@ class Dashboard
                 return $permissions->put($item['slug'], true);
             }, collect());
     }
-
 
     /**
      * @param string $key
