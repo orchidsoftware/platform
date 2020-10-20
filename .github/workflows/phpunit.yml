@@ -1,21 +1,22 @@
-name: Unit tests
+name: Tests
 
 on: [push,pull_request]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  phpunit:
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        php: [7.4, 7.3, 7.2]
-        laravel: [7.*]
+        php: [7.4, 7.3]
+        os: [ubuntu-latest, windows-latest]
+        laravel: [8.*]
         dependency-version: [prefer-lowest, prefer-stable]
         include:
-          - laravel: 7.*
-            testbench: 5.*
+          - laravel: 8.*
+            testbench: 6.*
 
-    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }}
+    name: P${{ matrix.php }} - ${{ matrix.os }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }}
 
     steps:
       - name: Checkout code 🛎️
@@ -41,3 +42,33 @@ jobs:
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit 🧪
         run: vendor/bin/phpunit --coverage-clover=coverage.xml
+
+  dusk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: PHP version
+        run: php -v
+
+      - uses: actions/checkout@v1
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+
+      - name: Make SQLite database
+        run: vendor/orchestra/testbench-dusk/create-sqlite-db
+
+      - name: Update Dusk Chromedriver
+        run: vendor/bin/dusk-updater detect --auto-update
+
+      - name: Execute Unit Tests
+        run: vendor/bin/phpunit --testsuite=Browser
+
+      - name: Upload Failed Screenshots
+        uses: actions/upload-artifact@v2-preview
+        if: failure()
+        with:
+          name: screenshots
+          path: tests/Browser/screenshots/*

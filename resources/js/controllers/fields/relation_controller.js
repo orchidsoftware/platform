@@ -62,6 +62,17 @@ export default class extends Controller {
             placeholder: select.getAttribute('placeholder') || '',
         });
 
+
+        // force change event for https://github.com/select2/select2/issues/1908
+        let forceChange = () => {
+            setTimeout(()=>{
+                select.dispatchEvent(new Event('change'));
+            },100);
+        }
+        $(select).on('select2:select', forceChange);
+        $(select).on('select2:unselect', forceChange);
+        $(select).on('select2:clear', forceChange);
+
         if (!this.data.get('value')) {
             return;
         }
@@ -75,7 +86,7 @@ export default class extends Controller {
         });
 
         document.addEventListener('turbolinks:before-cache', () => {
-            if (typeof $(select) === 'undefined') {
+            if (typeof $(select) !== 'undefined') {
                 $(select).select2('destroy');
             }
         }, { once: true });

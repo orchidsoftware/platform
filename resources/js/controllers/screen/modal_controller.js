@@ -14,16 +14,34 @@ export default class extends Controller {
      *
      */
     connect() {
+
+        $(this.element).on('shown.bs.modal', () => {
+            let autoFocusElement = this.element.querySelector('[autofocus]');
+
+            if(autoFocusElement !== null){
+                autoFocusElement.focus();
+            }
+
+
+            let backdrop = document.querySelector('.modal-backdrop');
+
+            if(backdrop !== null){
+                backdrop.id = 'backdrop';
+                backdrop.dataset.turbolinksPermanent = true;
+            }
+        });
+
+
+        $(this.element).on('hide.bs.modal', () => {
+            if (!this.element.classList.contains('fade')) {
+                this.element.classList.add('fade', 'in');
+            }
+        })
+
         if (this.element.querySelectorAll('.is-invalid').length > 0) {
             this.setFormAction(sessionStorage.getItem('last-open-modal'));
             this.element.classList.remove('fade', 'in');
             $(this.element).modal('show');
-
-            $(this.element).on('hide.bs.modal', () => {
-                if (!this.element.classList.contains('fade')) {
-                    this.element.classList.add('fade', 'in');
-                }
-            })
         }
     }
 
@@ -38,9 +56,10 @@ export default class extends Controller {
 
         this.setFormAction(options.submit);
 
-        if (this.data.get('async')) {
+        if (parseInt(this.data.get('async-enable'))) {
             this.asyncLoadData(JSON.parse(options.params));
         }
+
 
         $(this.element).modal('toggle');
     }
@@ -50,10 +69,7 @@ export default class extends Controller {
      * @param params
      */
     asyncLoadData(params) {
-
-        let name = this.data.get('url') + '/' + this.data.get('slug') + '/' + this.data.get('method');
-
-        axios.post(name, params).then((response) => {
+        axios.post(this.data.get('async-route'), params).then((response) => {
             this.element.querySelector('[data-async]').innerHTML = response.data;
         });
     }

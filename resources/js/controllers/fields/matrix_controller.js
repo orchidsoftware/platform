@@ -24,7 +24,9 @@ export default class extends Controller {
      *
      */
     deleteRow(event) {
-        event.path.forEach((element) => {
+        let path = event.path || (event.composedPath && event.composedPath());
+
+        path.forEach((element) => {
             if(element.tagName !== 'TR'){
                 return;
             }
@@ -40,7 +42,7 @@ export default class extends Controller {
     /**
      *
      */
-    addRow() {
+    addRow(event) {
         this.index++;
 
         let row = this.template.content.querySelector('tr').cloneNode(true);

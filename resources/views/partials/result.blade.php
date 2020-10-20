@@ -1,18 +1,18 @@
 @section('search', $query)
 
 @empty(!$radios)
-    <div class="row border-bottom v-center pl-3 pr-4">
+
         {!! $radios !!}
-    </div>
+
 @endempty
 
-<div class="row">
+<div class="bg-white shadow-sm rounded mb-3">
     @forelse($results as $item)
 
         <a href="{{$item->url()}}" class="block wrapper-sm dropdown-item" style="font-size: 0.85em;">
 
             @empty(!$item->image())
-                <span class="pull-left thumb-xs rounded m-r-sm">
+                <span class="pull-left thumb-xs rounded mr-3">
                   <img src="{{$item->image()}}" alt="{{$item->title()}}">
                 </span>
             @endempty
@@ -26,9 +26,10 @@
         </a>
     @empty
 
-        <div class="text-center bg-white pt-5 pb-5 w-100">
-            <h3 class="font-thin">
-                <i class="icon-magnifier-remove block m-b"></i>
+        <div class="text-center pt-5 pb-5 w-100">
+            <h3 class="font-weight-light">
+                <x-orchid-icon path="magnifier-remove" class="block mb-3 center"/>
+
                 {{ __('Nothing found.') }}
             </h3>
 
@@ -36,10 +37,12 @@
         </div>
     @endforelse
 
-    @includeWhen($results instanceof \Illuminate\Contracts\Pagination\Paginator && $results->isNotEmpty(),
-        'platform::layouts.pagination',
-        ['paginator' => $results]
-      )
-
+    <div class="mt-2">
+        @includeWhen($results instanceof \Illuminate\Contracts\Pagination\Paginator && $results->isNotEmpty(),
+            'platform::layouts.pagination',
+            ['paginator' => $results]
+          )
+    </div>
 </div>
+
 

@@ -13,9 +13,9 @@ use Illuminate\View\View;
 use Orchid\Platform\Http\Layouts\SearchLayout;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Contracts\Searchable;
-use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Layout;
 
 class SearchScreen extends Screen
 {
@@ -82,7 +82,7 @@ class SearchScreen extends Screen
     {
         return [
             Button::make(__('Apply'))
-                ->icon('icon-filter')
+                ->icon('filter')
                 ->canSee(Dashboard::getSearch()->count() > 1)
                 ->method('changeSearchType'),
         ];
@@ -91,7 +91,7 @@ class SearchScreen extends Screen
     /**
      * Views.
      *
-     * @return Layout[]
+     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): array
     {
@@ -104,16 +104,12 @@ class SearchScreen extends Screen
 
     /**
      * @param Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function changeSearchType(Request $request)
     {
         $type = $request->get('type');
 
         $request->session()->put(self::SESSION_NAME, $type);
-
-        return back();
     }
 
     /**
@@ -173,7 +169,7 @@ class SearchScreen extends Screen
     private function getSearchModel(Collection $searchModels)
     {
         $class = get_class($searchModels->first());
-        $type = $this->request->session()->get(self::SESSION_NAME, $class);
+        $type = session()->get(self::SESSION_NAME, $class);
 
         $model = $searchModels->filter(static function ($model) use ($type) {
             return $model instanceof $type;

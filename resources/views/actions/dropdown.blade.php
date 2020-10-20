@@ -1,10 +1,13 @@
 @component($typeForm, get_defined_vars())
     <button
-        @attributes($attributes)
+        {{ $attributes }}
         data-toggle="dropdown"
         aria-expanded="false"
     >
-        <i class="{{ $icon ?? '' }} mr-2"></i>
+        @isset($icon)
+            <x-orchid-icon :path="$icon" class="mr-2"/>
+        @endisset
+
         {{ $name ?? '' }}
     </button>
 

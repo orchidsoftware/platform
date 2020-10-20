@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
 /**
  * Class Metric.
  */
-abstract class Metric extends Base
+abstract class Metric extends Layout
 {
     /**
      * @var string
@@ -23,6 +24,8 @@ abstract class Metric extends Base
     protected $title = 'Example Metric';
 
     /**
+     * Set the labels for each possible field value.
+     *
      * @var array
      */
     protected $labels = [];

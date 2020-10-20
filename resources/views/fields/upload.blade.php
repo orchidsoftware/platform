@@ -26,8 +26,8 @@
                     <div class="bg-light d-flex justify-content-center align-items-center border r-2x"
                          style="min-height: 112px;">
                         <div class="pr-1 pl-1 pt-3 pb-3">
-                            <span class="text-2x icon-cloud-upload"></span>
-                            <small class="text-muted w-b-k text-xs block">{{__('Upload file')}}</small>
+                            <x-orchid-icon path="cloud-upload" class="text-2x"/>
+                            <small class="text-muted w-b-k text-xs d-block">{{__('Upload file')}}</small>
                         </div>
                     </div>
                 </div>
@@ -38,8 +38,9 @@
                         <div class="bg-light d-flex justify-content-center align-items-center border r-2x"
                              style="min-height: 112px;">
                             <div class="pr-1 pl-1 pt-3 pb-3">
-                                <span class="text-2x icon-open"></span>
-                                <small class="text-muted w-b-k text-xs block">{{__('Media catalog')}}</small>
+                                <x-orchid-icon path="open" class="text-2x"/>
+
+                                <small class="text-muted w-b-k text-xs d-block">{{__('Media catalog')}}</small>
                             </div>
                         </div>
                     </div>
@@ -52,12 +53,12 @@
                         <div class="modal-content">
                             <div class="modal-header clearfix">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                    <i class="icon-cross icons" ria-hidden="true"></i>
+                                    <x-orchid-icon path="cross"/>
                                 </button>
                                 <h5>{{__('File Information')}}</h5>
-                                <p class="m-b-md">{{__('Information to display')}}</p>
+                                <p class="mb-3">{{__('Information to display')}}</p>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body px-4">
                                 <div class="form-group">
                                     <label>{{__('System name')}}</label>
                                     <input type="text" class="form-control" data-target="fields--upload.name" readonly
@@ -85,7 +86,11 @@
 
                                 <div class="form-group">
                                     <a href="#" data-action="click->fields--upload#openLink">
-                                        <small><i class="icon-link mr-2"></i>{{ __('Link to file') }}</small>
+                                        <small>
+                                            <x-orchid-icon path="link" class="mr-2"/>
+
+                                            {{ __('Link to file') }}
+                                        </small>
                                     </a>
                                 </div>
 
@@ -117,7 +122,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                                 <h5>{{__('Media Library')}}</h5>
-                                <p class="m-b-md">{{__('Previously uploaded files')}}</p>
+                                <p class="mb-3">{{__('Previously uploaded files')}}</p>
                             </div>
                             <div class="modal-body">
                                 <div class="row justify-content-center">
@@ -146,6 +151,19 @@
                     </div>
                 </div>
             </div>
+
+
+            <template id="dropzone-{{$id}}-remove-button">
+                <a href="javascript:;" class="btn-remove">&times;</a>
+            </template>
+
+            <template id="dropzone-{{$id}}-edit-button">
+                <a href="javascript:;" class="btn-edit">
+                    <x-orchid-icon path="note" class="mb-1"/>
+                </a>
+            </template>
+
+
         </div>
     </div>
 @endcomponent

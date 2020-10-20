@@ -8,6 +8,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
+use Orchid\Screen\Screen;
 
 class Dashboard
 {
@@ -16,7 +17,7 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    public const VERSION = '7.1.3';
+    public const VERSION = '9.4.4';
 
     /**
      * The Dashboard configuration options.
@@ -53,6 +54,11 @@ class Dashboard
      * @var Collection
      */
     private $publicDirectories;
+
+    /**
+     * @var Screen|null
+     */
+    private $currentScreen;
 
     /**
      * Dashboard constructor.
@@ -156,16 +162,6 @@ class Dashboard
     }
 
     /**
-     * Checks if a new and stable version exists.
-     *
-     * @return bool
-     */
-    public static function checkUpdate(): bool
-    {
-        return (new Updates())->check();
-    }
-
-    /**
      * The real path to the package files.
      *
      * @param string $path
@@ -239,7 +235,7 @@ class Dashboard
      */
     public function getResource($key = null)
     {
-        if (is_null($key)) {
+        if ($key === null) {
             return $this->resources;
         }
 
@@ -278,8 +274,8 @@ class Dashboard
 
         return $all->map(static function ($group) use ($removed) {
             foreach ($group[key($group)] as $key => $item) {
-                if ($removed->contains($item['slug'])) {
-                    unset($group[key($group)][$key]);
+                if ($removed->contains($item)) {
+                    unset($group[key($group)]);
                 }
             }
 
@@ -318,5 +314,25 @@ class Dashboard
     public function getPublicDirectory(): Collection
     {
         return $this->publicDirectories;
+    }
+
+    /**
+     * @param Screen $screen
+     *
+     * @return $this
+     */
+    public function setCurrentScreen(Screen $screen): self
+    {
+        $this->currentScreen = $screen;
+
+        return $this;
+    }
+
+    /**
+     * @return Screen|null
+     */
+    public function getCurrentScreen(): ?Screen
+    {
+        return $this->currentScreen;
     }
 }

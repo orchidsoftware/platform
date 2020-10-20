@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Orchid\Screen\Commander;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
 /**
  * Class Modal.
  */
-class Modal extends Base
+class Modal extends Layout
 {
     use Commander;
 
@@ -50,14 +51,19 @@ class Modal extends Base
     public function __construct(string $key, array $layouts = [])
     {
         $this->variables = [
-            'apply'      => __('Apply'),
-            'close'      => __('Close'),
-            'size'       => '',
-            'type'       => self::TYPE_CENTER,
-            'key'        => $key,
-            'title'      => $key,
-            'turbolinks' => true,
-            'commandBar' => [],
+            'apply'              => __('Apply'),
+            'close'              => __('Close'),
+            'size'               => '',
+            'type'               => self::TYPE_CENTER,
+            'key'                => $key,
+            'title'              => $key,
+            'turbolinks'         => true,
+            'commandBar'         => [],
+            'withoutApplyButton' => false,
+            'withoutCloseButton' => false,
+            'open'               => false,
+            'method'             => null,
+            'staticBackdrop'     => false,
         ];
 
         $this->layouts = $layouts;
@@ -70,13 +76,6 @@ class Modal extends Base
      */
     public function build(Repository $repository)
     {
-        /*
-                $this->variables['type'] = $this->type;
-
-                $this->variables['title'] = $this->type;
-                $this->variables['commandBar'] = $this->buildCommandBar($repository);
-        */
-
         return $this->buildAsDeep($repository);
     }
 
@@ -90,6 +89,34 @@ class Modal extends Base
     public function applyButton(string $text): self
     {
         $this->variables['apply'] = $text;
+
+        return $this;
+    }
+
+    /**
+     * Whether to disable the apply button or not.
+     *
+     * @param bool $withoutApplyButton
+     *
+     * @return Modal
+     */
+    public function withoutApplyButton(bool $withoutApplyButton = true): self
+    {
+        $this->variables['withoutApplyButton'] = $withoutApplyButton;
+
+        return $this;
+    }
+
+    /**
+     * Whether to disable the close button or not.
+     *
+     * @param bool $withoutCloseButton
+     *
+     * @return Modal
+     */
+    public function withoutCloseButton(bool $withoutCloseButton = true): self
+    {
+        $this->variables['withoutCloseButton'] = $withoutCloseButton;
 
         return $this;
     }
@@ -158,6 +185,42 @@ class Modal extends Base
     public function rawClick(bool $status = false): self
     {
         $this->variables['turbolinks'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $status
+     *
+     * @return $this
+     */
+    public function open(bool $status = true): self
+    {
+        $this->variables['open'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * @param string $method
+     *
+     * @return $this
+     */
+    public function method(string $method): self
+    {
+        $this->variables['method'] = $method;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $status
+     *
+     * @return $this
+     */
+    public function staticBackdrop(bool $status = true): self
+    {
+        $this->variables['staticBackdrop'] = $status;
 
         return $this;
     }

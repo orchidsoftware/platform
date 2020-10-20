@@ -9,12 +9,6 @@ use Orchid\Screen\Field;
 /**
  * Class Map.
  *
- * @method Map form($value = true)
- * @method Map formaction($value = true)
- * @method Map formenctype($value = true)
- * @method Map formmethod($value = true)
- * @method Map formnovalidate($value = true)
- * @method Map formtarget($value = true)
  * @method Map name(string $value = null)
  * @method Map value($value = true)
  * @method Map help(string $value = null)
@@ -22,6 +16,7 @@ use Orchid\Screen\Field;
  * @method Map zoom($value = true)
  * @method Map height($value = '300px')
  * @method Map title(string $value = null)
+ * @method Map required(bool $value = true)
  */
 class Map extends Field
 {
@@ -46,44 +41,9 @@ class Map extends Field
      * @var array
      */
     protected $inlineAttributes = [
-        'accept',
-        'accesskey',
-        'autocomplete',
-        'autofocus',
-        'checked',
-        'disabled',
-        'form',
-        'formaction',
-        'formenctype',
-        'formmethod',
-        'formnovalidate',
-        'formtarget',
-        'list',
-        'max',
-        'maxlength',
-        'min',
-        'multiple',
         'name',
-        'pattern',
-        'placeholder',
-        'readonly',
         'required',
-        'size',
-        'src',
-        'step',
-        'tabindex',
-        'type',
         'value',
         'height',
     ];
-
-    /**
-     * @param string|null $name
-     *
-     * @return Map
-     */
-    public static function make(string $name = null): self
-    {
-        return (new static())->name($name);
-    }
 }

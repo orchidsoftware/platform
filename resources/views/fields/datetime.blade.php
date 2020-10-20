@@ -1,10 +1,10 @@
 @component($typeForm, get_defined_vars())
     <div data-controller="fields--datetime"
          class="input-group"
-        @attributes($dataAttributes)>
+        {{ $dataAttributes }}>
         <input type="text"
                placeholder="{{$placeholder ?? ''}}"
-               @attributes($attributes)
+               {{ $attributes }}
                autocomplete="off"
                data-target="fields--datetime.instance"
         >
@@ -14,7 +14,7 @@
                 <a class="input-group-text bg-transparent"
                    title="clear"
                    data-action="click->fields--datetime#clear">
-                        <i class="icon-cross"></i>
+                        <x-orchid-icon path="cross"/>
                     </a>
                 </div>
             @endif

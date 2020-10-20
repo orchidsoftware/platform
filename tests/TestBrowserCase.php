@@ -6,6 +6,7 @@ namespace Orchid\Tests;
 
 use Faker\Factory as Faker;
 use Faker\Generator;
+use Orchestra\Testbench\Dusk\Options;
 use Orchestra\Testbench\Dusk\TestCase;
 use Orchid\Platform\Models\User;
 
@@ -44,15 +45,19 @@ abstract class TestBrowserCase extends TestCase
             'prefix'                  => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ]);
+
+        Options::withoutUI();
     }
 
     /**
+     * @param array $attributes
+     *
      * @return User
      */
-    protected function createAdminUser()
+    protected function createAdminUser(array $attributes = []): User
     {
         if ($this->user === null) {
-            $this->user = factory(User::class)->create();
+            $this->user = User::factory()->create($attributes);
         }
 
         return $this->user;
@@ -61,7 +66,7 @@ abstract class TestBrowserCase extends TestCase
     /**
      * @return Generator
      */
-    protected function faker()
+    protected function faker(): Generator
     {
         if ($this->faker === null) {
             $this->faker = Faker::create();

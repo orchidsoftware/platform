@@ -9,17 +9,17 @@ class AjaxRecord
     /**
      * @var null
      */
-    public $query = null;
+    public $query;
 
     /**
      * @var null
      */
-    public $key = null;
+    public $key;
 
     /**
      * @return array
      */
-    public function handler()
+    public function handler(): array
     {
         $data = [
             [
@@ -36,7 +36,7 @@ class AjaxRecord
             ],
         ];
 
-        if (! is_null($this->key)) {
+        if ($this->key !== null) {
             foreach ($data as $key => $result) {
                 if ($result['id'] === (int) $this->key) {
                     return $data[$key];

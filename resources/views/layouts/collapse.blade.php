@@ -1,6 +1,6 @@
-<div class=" pt-0" data-async>
+<div class="pt-0" data-async>
 
-    <p>
+    <p class="pl-4">
         <a data-toggle="collapse"
            href="#collapse-{{ $slug }}"
            role="button"
@@ -9,7 +9,7 @@
            {{ __($label) }}
         </a>
     </p>
-    <div class="collapse" id="collapse-{{ $slug }}">
+    <div class="collapse bg-white rounded shadow-sm mb-3 p-4" id="collapse-{{ $slug }}">
         {!! $form ?? '' !!}
     </div>
 

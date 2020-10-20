@@ -10,5 +10,6 @@ export default class extends Controller {
         });
 
         event.target.setAttribute('checked', 'checked');
+        event.target.dispatchEvent(new Event("change"));
     }
 }

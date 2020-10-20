@@ -1,35 +1,35 @@
 .form-control {
-  background: $brand-white none;
+  background: $white none;
   border: 1px solid $form-control-border-color;
   -webkit-appearance: none;
   -moz-appearance: none;
-  color: $brand-black;
-    outline: 0;
-    height: $form-height;
-    line-height: normal;
-    font-weight: normal;
-    vertical-align: middle;
-    @include transition(all 0.12s ease);
-    @include box-shadow(none);
-    border-radius: 2px;
-    @include placeholder($text-muted);
-    @include transition(background 0.2s linear 0s);
-    max-width: 450px;
+  color: $black;
+  outline: 0;
+  height: $form-height;
+  line-height: normal;
+  font-weight: normal;
+  vertical-align: middle;
+  @include transition(all 0.12s ease);
+  @include box-shadow(none);
+  border-radius: 2px;
+  @include placeholder($text-muted);
+  @include transition(background 0.2s linear 0s);
+  max-width: 600px;
 
     &:focus {
-        border-color: fade-out($brand-black, 0.9);
-        background-color: $brand-grey-light;
+        border-color: fade-out($black, 0.9);
+        background-color: $grey-light;
         outline: 0 !important;
-        color: $brand-black;
+        color: $black;
         @include box-shadow(none);
-        @include placeholder($brand-dark);
+        @include placeholder($dark);
     }
 
     &[disabled],
   &[readonly],
   fieldset[disabled] & {
-    background: mix($brand-grey-light, #fff, 50%);
-    color: fade-out($brand-grey, .77);
+    background: mix($grey-light, #fff, 50%);
+    color: fade-out($grey, .77);
   }
   select {
     -moz-appearance : none;
@@ -39,7 +39,7 @@
 }
 
 .input-group {
-    max-width: 450px;
+    max-width: 600px;
 
     .input-group-btn {
         .btn-default {
@@ -64,6 +64,7 @@ select {
  Icon input
  */
 .input-icon {
+  max-width: 600px;
   position: relative;
 
   .form-control:not(:last-child) {
@@ -105,4 +106,11 @@ select {
   .form-control, .form-control:focus {
     border: 1px solid rgba(233, 236, 239, 0.05);
   }
+}
+
+.form-label {
+    display: block;
+    margin-bottom: .375rem;
+    font-weight: 600;
+    font-size: 0.875rem;
 }

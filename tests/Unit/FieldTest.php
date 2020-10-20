@@ -7,6 +7,7 @@ namespace Orchid\Tests\Unit;
 use Illuminate\Contracts\View\View;
 use Orchid\Screen\Field;
 use Orchid\Screen\Fields\CheckBox;
+use Orchid\Screen\Fields\Code;
 use Orchid\Screen\Fields\Cropper;
 use Orchid\Screen\Fields\DateRange;
 use Orchid\Screen\Fields\DateTimer;
@@ -19,7 +20,6 @@ use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\SimpleMDE;
 use Orchid\Screen\Fields\Switcher;
 use Orchid\Screen\Fields\TextArea;
-use Orchid\Screen\Fields\TinyMCE;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Fields\UTM;
 use Orchid\Tests\TestUnitCase;
@@ -32,7 +32,7 @@ class FieldTest extends TestUnitCase
     /**
      * @return \Generator
      */
-    public function exampleFields()
+    public function exampleFields(): ?\Generator
     {
         yield [Input::class, [
             'name' => 'example',
@@ -70,10 +70,6 @@ class FieldTest extends TestUnitCase
             'name' => 'example',
         ]];
 
-        yield [TinyMCE::class, [
-            'name' => 'example',
-        ]];
-
         yield [SimpleMDE::class, [
             'name' => 'example',
         ]];
@@ -101,6 +97,18 @@ class FieldTest extends TestUnitCase
         yield [Picture::class, [
             'name' => 'example',
         ]];
+
+        yield [Code::class, [
+            'name' => 'example',
+        ]];
+
+        yield [Cropper::class, [
+            'name' => 'example',
+        ]];
+
+        yield [DateTimer::class, [
+            'name' => 'example',
+        ]];
     }
 
     /**
@@ -111,7 +119,7 @@ class FieldTest extends TestUnitCase
      *
      * @throws \Throwable
      */
-    public function testHasCorrectInstance(string $field, $options)
+    public function testHasCorrectInstance(string $field, $options): void
     {
         /** @var \Orchid\Screen\Field $field */
         $field = $field::make();
@@ -126,7 +134,7 @@ class FieldTest extends TestUnitCase
         $this->assertStringContainsString('example', $view->withErrors([])->render());
     }
 
-    public function testUniqueId()
+    public function testUniqueId(): void
     {
         $collect = collect(range(0, 10000));
 

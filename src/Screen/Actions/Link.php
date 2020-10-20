@@ -52,22 +52,6 @@ class Link extends Action
     ];
 
     /**
-     * Create instance of the button.
-     *
-     * @param string $name
-     *
-     * @return self
-     */
-    public static function make(string $name = ''): self
-    {
-        return (new static())
-            ->name($name)
-            ->addBeforeRender(function () use ($name) {
-                $this->set('name', $name);
-            });
-    }
-
-    /**
      * Set the link.
      *
      * @param string $link

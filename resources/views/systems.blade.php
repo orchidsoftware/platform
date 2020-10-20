@@ -12,7 +12,7 @@
                     type="text" class="form-control input-sm bg-light no-border rounded padder"
                     placeholder="{{__('Search...')}}">
             <div class="input-icon-addon">
-                <i class="icon-magnifier"></i>
+                <x-orchid-icon path="magnifier"/>
             </div>
         </div>
     </div>
@@ -20,10 +20,10 @@
 
 @section('content')
 
-    <div class="admin-wrapper py-3">
+    <div class="admin-wrapper bg-white rounded shadow-sm p-4">
         <div class="row">
 
-            @php
+                @php
                     /** @var \Illuminate\Support\Collection $menu */
                     $menu = Dashboard::menu()->build('Systems');
                     $chunk = ceil($menu->count() / 2);

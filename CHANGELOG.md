@@ -4,6 +4,497 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 9.4.4 - 2020-10-19
+
+### Fixed
+- Escape inline attributes [#1313](https://github.com/orchidsoftware/platform/pull/1313)
+
+## 9.4.3 - 2020-10-17
+
+### Changed
+- Updated dependencies
+
+### Fixed
+- Fixed filters overlay for table [#1145](https://github.com/orchidsoftware/platform/issues/1145)
+- Fixed `ob_*` behavior when using the Blade in PHPUnit tests
+- Removed optional tags
+- Removed dash when a description is empty
+- Display of pagination for long horizontal tables.
+
+## 9.4.2 - 2020-10-13
+
+### Fixed
+- Allow passing `null` in Menu permission
+
+## 9.4.1 - 2020-10-11
+
+### Fixed
+- Quotes break the Quill editor [#1292](https://github.com/orchidsoftware/platform/issues/1292)
+- Corrected Users listing heading label. [#1289](https://github.com/orchidsoftware/platform/pull/1289), [#1273](https://github.com/orchidsoftware/platform/issues/1273)
+
+## 9.4.0 - 2020-10-08
+
+### Added
+- Aligns methods for `Group` field
+- Clear method for `Field`
+
+### Changed
+- Betterment UI #1227
+
+### Fixed
+- Not display filters for simple pagination
+- Show empty total row
+- Not load files translation
+
+### Deprecated
+- Methods right/block  for Action
+
+## 9.3.0 - 2020-10-07
+
+### Added
+- Method to automatically open a modal window on page load
+- Method for disable backdrop modals
+
+### Changed
+- Revert change 9.2.0
+
+## 9.2.0 - 2020-10-07
+
+### Added
+- Method to automatically open a modal window on page load
+
+## 9.1.1 - 2020-10-06
+
+### Changed
+- Removed white wrapper for tabs elements
+
+## 9.1.0 - 2020-10-05
+
+### Added
+- Short `selection` layout
+
+### Fixed
+- When generating links to resources, the settings `app.mix_url` and` app.asset_url` must be obeyed [#1267](https://github.com/orchidsoftware/platform/issues/1267)
+- Change the default port for the Dusk test
+
+## 9.0.3 - 2020-10-02
+
+### Fixed
+- Registration of services
+
+## 9.0.2 - 2020-10-02
+
+### Fixed
+- Use route arguments when generating an active link
+- Wait for a call to the breadcrumbs service before your ad.
+
+## 9.0.1 - 2020-10-01
+
+### Changed
+- Redirects when the login form is disabled [#1264](https://github.com/orchidsoftware/platform/pull/1264)
+
+## 9.0.0 - 2020-09-30
+
+### Changed
+- Set  default prefix to `admin` [#1230](https://github.com/orchidsoftware/platform/issues/1230)
+- Betterment UI [#1227](https://github.com/orchidsoftware/platform/issues/1227)
+- Using the breadcrumbs component
+
+### Fixed
+- Show activity of nested menu items [#1249](https://github.com/orchidsoftware/platform/issues/1249)
+
+### Removed
+- Dependency on `laravel/ui` [#1230](https://github.com/orchidsoftware/platform/issues/1230)
+- Dependency on `ralouphie/mimey`
+- Password recovery option [#1230](https://github.com/orchidsoftware/platform/issues/1230)
+- Last login column [#1230](https://github.com/orchidsoftware/platform/issues/1230)
+- Two-factor authentication [#1230](https://github.com/orchidsoftware/platform/issues/1230)
+- UI presets [#1230](https://github.com/orchidsoftware/platform/issues/1230)
+- Rubbers layout
+
+
+
+## 8.5.1 - 2020-09-30
+
+### Fixed
+- Compare operator for hasAttribute [#1258](https://github.com/orchidsoftware/platform/pull/1258)
+
+## 8.5.0 - 2020-09-29
+
+### Added
+- Taggable option for select [#1256](https://github.com/orchidsoftware/platform/pull/1256)
+
+## 8.4.0 - 2020-09-29
+
+### Added
+- Custom controls to Quill toolbar [#1254](https://github.com/orchidsoftware/platform/pull/1254)
+
+## 8.3.1 - 2020-09-26
+
+### Fixed
+- Removed preview display when upload error for `Upload` field
+- Show buttons delete and edit for preview
+
+### Deprecated
+- Rubbers layout
+
+## 8.3.0 - 2020-09-21
+
+### Changed
+- Allow data attributes [1245](https://github.com/orchidsoftware/platform/pull/1245)
+
+### Fixed
+- Disabled export property for `Chart`
+
+## 8.2.2 - 2020-09-20
+
+### Fixed
+- All values converted to 0 in toChart() method. [#1210](https://github.com/orchidsoftware/platform/issues/1210)
+
+## 8.2.1 - 2020-09-19
+
+### Fixed
+- Column name is optional
+- Fixed doc blocks
+
+## 8.2.0 - 2020-09-19
+
+### Added
+- Static backdrop method to `Cropper` field [#1239](https://github.com/orchidsoftware/platform/pull/1239)
+- Command to create a presenter [#1234](https://github.com/orchidsoftware/platform/pull/1234)
+
+### Fixed
+- Definition of icon configuration
+- Assets compilation [#1235](https://github.com/orchidsoftware/platform/pull/1235)
+
+## 8.1.0 - 2020-09-14
+
+### Changed
+- Return `back()` for `Screen` to default [#1221](https://github.com/orchidsoftware/platform/issues/1221)
+
+### Fixed
+- Role selection field and added an example of displaying a value [#1226](https://github.com/orchidsoftware/platform/pull/1226)
+
+## 8.0.2 - 2020-09-14
+
+### Fixed
+- Use strict type casting in `Select` field
+
+## 8.0.1 - 2020-09-12
+
+### Changed
+- Upgrade `laravel/ui` package from `^2.0` to `^3.0`
+
+## 8.0.0 - 2020-09-10
+
+### Added
+- French translation [#1208](https://github.com/orchidsoftware/platform/pull/1208)
+
+### Changed
+- The screen only responds to POST and GET requests. [#1092](https://github.com/orchidsoftware/platform/pull/1092)
+- Replaced a package of davejamesmiller/laravel-breadcrumbs with tabuna/breadcrumbs. [#1073](https://github.com/orchidsoftware/platform/issue/1073)
+- Using SVG icons [#1061](https://github.com/orchidsoftware/platform/issues/1061)
+- Route for *acync* screen methods [#1116](https://github.com/orchidsoftware/platform/issues/1116)
+
+### Fixed
+- Improper behavior when implementing dependency [#1150](https://github.com/orchidsoftware/platform/issues/1150)
+- If the field is a multi-select an array of values is sent to the async method [#1209](https://github.com/orchidsoftware/platform/pull/1209)
+
+### Remove
+- Pending Requests in the screen constructor. [#1092](https://github.com/orchidsoftware/platform/pull/1092)
+- TinyMCE field. [#873](https://github.com/orchidsoftware/platform/issues/873)
+- Settings. [#1087](https://github.com/orchidsoftware/platform/issues/1087)
+- Release Messages [#1217](https://github.com/orchidsoftware/platform/pull/1217)
+
+## 7.18.0 - 2020-08-19
+
+### Added
+- Added a row with totals to the table [#1205](https://github.com/orchidsoftware/platform/issues/1205)
+
+## 7.17.4 - 2020-08-15
+
+### Changed
+- Updated lodash packages to 4.17.20
+- Updated flatpickr packages to 4.6.6
+
+### Fixed
+- Fixed duplicate values in Upload field
+
+## 7.17.3 - 2020-08-12
+
+### Fixed
+- Fixed position class ".table-striped" [#1204](https://github.com/orchidsoftware/platform/pull/1204)
+
+## 7.17.2 - 2020-08-11
+
+### Fixed
+- Fixed index calculation instead of quantity [#1201](https://github.com/orchidsoftware/platform/issues/1201)
+
+## 7.17.1 - 2020-08-07
+
+### Changed
+- Updated phpDoc block in Button class [#1200](https://github.com/orchidsoftware/platform/pull/1200)
+- Updated bootstrap packages to 4.5.2 
+- Updated inputmask packages to 5.0.5
+
+## 7.17.0 - 2020-08-05
+
+### Changed
+- Simplified registration of the menu [#1157](https://github.com/orchidsoftware/platform/pull/1157)
+- Replaced the outdated group definition with the actual
+- Updated NPM packages
+
+### Removed
+- Removed unused constructor code [#1199](https://github.com/orchidsoftware/platform/pull/1199)
+- Removed height declaration from default charts
+
+### Fixed
+- Fixed bugs found by the static analyzer [#1196](https://github.com/orchidsoftware/platform/pull/1196)
+
+## 7.16.0 - 2020-08-03
+
+### Added
+- Method `action` for setting the address of the form action
+
+## 7.15.0 - 2020-07-30
+
+### Added
+- Added `Chartable` trait [#1179](https://github.com/orchidsoftware/platform/issues/1179)
+
+### Deprecated
+- Property `labels` in `Chart` [#1179](https://github.com/orchidsoftware/platform/issues/1179)
+
+## 7.14.1 - 2020-07-27
+
+### Fixed
+- Search Page: label is overlays help text [#1185](https://github.com/orchidsoftware/platform/issues/1185)
+
+## 7.14.0 - 2020-07-17
+
+### Added
+- Attribute `group` for picture field [#118](https://github.com/orchidsoftware/platform/pull/1180)
+
+### Fixed
+- Inputs that in group don't serialize in filter [#1181](https://github.com/orchidsoftware/platform/issues/1181)
+
+## 7.13.0 - 2020-07-11
+
+### Added
+- Configuration option to switch on/off reset password functionality [#1177](https://github.com/orchidsoftware/platform/pull/1177)
+
+### Changed
+- Override `sendResetLinkEmail` method to return success message in all cases [#1176](https://github.com/orchidsoftware/platform/pull/1176)
+
+## 7.12.1 - 2020-07-07
+
+### Fixed
+- Adding the toke to reset password form [#1173](https://github.com/orchidsoftware/platform/pull/1173)
+
+## 7.12.0 - 2020-07-02
+
+### Added
+- Added the ability to specify the colors of characters and background  [#1172](https://github.com/orchidsoftware/platform/pull/1172)
+
+## 7.11.3 - 2020-06-29
+
+### Fixed
+- Adding a name to the reset password route of auth group [#1169](https://github.com/orchidsoftware/platform/pull/1169)
+
+## 7.11.2 - 2020-06-26
+
+### Fixed
+- PHPDoc return type for `Fieldable::get()` [#1156](https://github.com/orchidsoftware/platform/pull/1156)
+- Delete row for Matrix field does not work in Firefox [#1166](https://github.com/orchidsoftware/platform/issues/1166)
+
+## 7.11.1 - 2020-06-21
+
+### Fixed
+- Listener updates after execution.
+- Select2 cache destroy [#1155](https://github.com/orchidsoftware/platform/pull/1155)
+
+## 7.11.0 - 2020-06-16
+
+### Added
+- Method `->fields()` for `Matrix` [#1147](https://github.com/orchidsoftware/platform/pull/1147)
+
+
+## 7.10.3 - 2020-06-15
+
+### Fixed
+- Fixed deleting columns when rolling back
+
+## 7.10.2 - 2020-06-11
+
+### Fixed
+- Syntax error in user model stub
+
+## 7.10.1 - 2020-06-11
+
+### Fixed
+- Error in lang es.json [1142](https://github.com/orchidsoftware/platform/issues/1142)
+
+## 7.10.0 - 2020-06-10
+
+### Added
+- Two-Factor authentication [#1132](https://github.com/orchidsoftware/platform/issues/1132)
+- Support for Portuguese (PT-pt) language [#1136](https://github.com/orchidsoftware/platform/pull/1136)
+
+## 7.9.0 - 2020-06-08
+
+### Added
+- German translation [#1131](https://github.com/orchidsoftware/platform/pull/1131)
+
+### Fixed
+- Default values ​​fixed [#1109](https://github.com/orchidsoftware/platform/pull/1109)
+
+## 7.8.0 - 2020-06-07
+
+### Added
+- Spanish translation [#1130](https://github.com/orchidsoftware/platform/pull/1130)
+
+### Fixed
+- Remove permission [#1119](https://github.com/orchidsoftware/platform/pull/1119)
+
+## 7.7.1 - 2020-06-01
+
+### Changed
+- String `id` for attachment [#1115](https://github.com/orchidsoftware/platform/pull/1115)
+
+## 7.7.0 - 2020-05-30
+
+### Added
+- Group field [#1112](https://github.com/orchidsoftware/platform/pull/1112)
+
+### Deprecated
+- Static method `Field::group` [#1112](https://github.com/orchidsoftware/platform/pull/1112)
+
+## 7.6.2 - 2020-05-29
+
+### Changed
+- Print roles as default user subtitle [#1113](https://github.com/orchidsoftware/platform/pull/1113)
+
+## 7.6.1 - 2020-05-29
+
+### Changed
+- Welcome page
+
+## 7.6.0 - 2020-05-28
+
+### Added
+- Storage to Cropper and Image metadata [#1110](https://github.com/orchidsoftware/platform/pull/1110)
+- Resizing options to Cropper [#1109](https://github.com/orchidsoftware/platform/pull/1109)
+
+### Changed
+- Arrow icons for Accordion [#1107](https://github.com/orchidsoftware/platform/pull/1107)
+
+## 7.5.3 - 2020-05-25
+
+### Removed
+- Cleaning the non-existent methods
+
+## 7.5.2 - 2020-05-24
+
+### Changed
+- Extend examples for install
+
+## 7.5.1 - 2020-05-22
+
+### Changed
+- No more packagist download requests
+- More space between columns [#1104](https://github.com/orchidsoftware/platform/pull/1104)
+
+## 7.5.0 - 2020-05-19
+
+### Added
+- Title property for `Row` layout
+- Request validation for `User` screen
+
+### Changed
+- Increased contrast for label forms
+- Replace `Alert` to `Toast` in Notification screen
+- Use `Persona` layouts for stubs
+- Default avatar user
+
+### Fixed
+- Disable button focus for bootstrap 4.5
+- Disable `Matrix` textarea border
+
+## 7.4.0 - 2020-05-18
+
+### Added
+- The class that contains the strategy for determining attachment [#1100](https://github.com/orchidsoftware/platform/pull/1100)
+
+## 7.3.0 - 2020-05-17
+
+## Added
+- Method `withoutApplyButton` and `withoutCloseButton` to modal based layouts [#1099](https://github.com/orchidsoftware/platform/pull/1099)
+
+## 7.2.9 - 2020-05-17
+
+### Fixed
+- Support for string primary models in relations field [#1098](https://github.com/orchidsoftware/platform/pull/1098), [#1096](https://github.com/orchidsoftware/platform/pull/1096)
+
+
+## 7.2.8 - 2020-05-15
+
+### Fixed
+- `Updates::requestVersion()` cache broken [#1093](https://github.com/orchidsoftware/platform/issues/1093)
+
+
+## 7.2.7 - 2020-05-13
+
+### Changed
+- Update bootstrap to 4.5.0
+
+### Fixed
+- Listener layout not updating with RadioButtons [1090](https://github.com/orchidsoftware/platform/issues/1090)
+
+## 7.2.6 - 2020-05-11
+
+### Fixed
+- Listener layout not updating with RadioButtons or Checkbox [1090](https://github.com/orchidsoftware/platform/issues/1090)
+
+## 7.2.5 - 2020-05-07
+
+### Fixed
+- Empty avatar display
+
+## 7.2.4 - 2020-05-06
+
+### Fixed
+- Missing slash in prefix name
+
+## 7.2.3 - 2020-05-05
+
+### Fixed
+- Jquery < 3.5.0 security vulnerabilities
+
+## 7.2.2 - 2020-05-04
+
+### Deprecated
+- TinyMCE field [#873](https://github.com/orchidsoftware/platform/issues/873)
+- Settings [#1087](https://github.com/orchidsoftware/platform/issues/1087)
+
+
+## 7.2.1 - 2020-05-04
+
+### Fixed
+- Updating the chart when it is in tabs
+
+## 7.2.0 - 2020-05-03
+
+### Added
+- Listener layout [#774](https://github.com/orchidsoftware/platform/issues/774) , [#869](https://github.com/orchidsoftware/platform/issues/869)
+
+### Changed
+- Border type to dashed for picture/cropper
+- Position badge
+
+## 7.1.4 - 2020-04-29
+
+### Fixed
+- Double slash address generation
+
 ## 7.1.3 - 2020-04-26
 
 ### Fixed

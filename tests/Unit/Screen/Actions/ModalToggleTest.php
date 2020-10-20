@@ -12,7 +12,7 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
  */
 class ModalToggleTest extends TestFieldsUnitCase
 {
-    public function testModalToggleInstance()
+    public function testModalToggleInstance(): void
     {
         $modalToggle = ModalToggle::make('About');
         $view = self::renderField($modalToggle);
@@ -20,7 +20,7 @@ class ModalToggleTest extends TestFieldsUnitCase
         $this->assertStringContainsString('About', $view);
     }
 
-    public function testModalToggleTitle()
+    public function testModalToggleTitle(): void
     {
         $modalToggle = ModalToggle::make('About')
             ->title('Title for modal');
@@ -30,7 +30,7 @@ class ModalToggleTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Title for modal', $view);
     }
 
-    public function testModalToggleModalKey()
+    public function testModalToggleModalKey(): void
     {
         $modalToggle = ModalToggle::make('About')
             ->modal('KeyForModal')
@@ -39,17 +39,17 @@ class ModalToggleTest extends TestFieldsUnitCase
         $view = self::renderField($modalToggle);
 
         $this->assertStringContainsString(
-            'data-modal-key="KeyForModal"',
+            'data-screen--modal-toggle-key="KeyForModal"',
             $view
         );
 
         $this->assertStringContainsString(
-            'data-modal-action="http://127.0.0.1:8000/method',
+            'data-screen--modal-toggle-action="http://127.0.0.1:8001/method',
             $view
         );
     }
 
-    public function testModalToggleModalParams()
+    public function testModalToggleModalParams(): void
     {
         $modalToggle = ModalToggle::make('About')
             ->modal('KeyForModal')
@@ -61,7 +61,7 @@ class ModalToggleTest extends TestFieldsUnitCase
         $view = self::renderField($modalToggle);
 
         $this->assertStringContainsString(
-            'data-modal-action="http://127.0.0.1:8000/method?name=Alexandr',
+            'data-screen--modal-toggle-action="http://127.0.0.1:8001/method?name=Alexandr',
             $view
         );
     }

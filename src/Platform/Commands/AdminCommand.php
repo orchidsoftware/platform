@@ -7,7 +7,6 @@ namespace Orchid\Platform\Commands;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Database\QueryException;
-use Illuminate\Support\Collection;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
 
@@ -33,28 +32,9 @@ class AdminCommand extends Command
     protected $description = 'Create user administrator';
 
     /**
-     * Permissions.
-     *
-     * @var Collection
-     */
-    protected $permissions;
-
-    /**
-     * CreateAdminCommand constructor.
-     *
-     * @param Dashboard $dashboard
-     */
-    public function __construct(Dashboard $dashboard)
-    {
-        parent::__construct();
-
-        $this->permissions = $dashboard->getPermission()->collapse();
-    }
-
-    /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle()
     {

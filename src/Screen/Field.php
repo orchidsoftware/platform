@@ -6,12 +6,14 @@ namespace Orchid\Screen;
 
 use Closure;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Support\Collection;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
+use Illuminate\View\ComponentAttributeBag;
 use Illuminate\View\View;
+use Orchid\Screen\Concerns\Makeable;
 use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
+use Orchid\Screen\Fields\Group;
 use Throwable;
 
 /**
@@ -30,7 +32,7 @@ use Throwable;
  */
 class Field implements Fieldable
 {
-    use CanSee;
+    use CanSee, Makeable;
 
     /**
      * A set of closure functions
@@ -104,6 +106,7 @@ class Field implements Fieldable
         'title',
         'xml:lang',
         'autocomplete',
+        'data-*',
     ];
 
     /**
@@ -174,7 +177,7 @@ class Field implements Fieldable
     }
 
     /**
-     *@throws Throwable
+     * @throws Throwable
      *
      * @return Factory|View|mixed
      */
@@ -236,19 +239,25 @@ class Field implements Fieldable
     }
 
     /**
-     * @return Collection
+     * @return ComponentAttributeBag
      */
-    protected function getAllowAttributes(): Collection
+    protected function getAllowAttributes(): ComponentAttributeBag
     {
         $allow = array_merge($this->universalAttributes, $this->inlineAttributes);
 
-        return collect($this->getAttributes())->only($allow);
+        $attributes = collect($this->getAttributes())
+            ->filter(function ($value, $attribute) use ($allow) {
+                return Str::is($allow, $attribute);
+            })->toArray();
+
+        return (new ComponentAttributeBag())
+            ->merge($attributes);
     }
 
     /**
-     * @return Collection
+     * @return ComponentAttributeBag
      */
-    protected function getAllowDataAttributes()
+    protected function getAllowDataAttributes(): ComponentAttributeBag
     {
         return $this->getAllowAttributes()->filter(function (/* @noinspection PhpUnusedParameterInspection */ $value, $key) {
             return Str::startsWith($key, 'data-');
@@ -309,10 +318,9 @@ class Field implements Fieldable
      */
     public function getOldName(): string
     {
-        $name = str_ireplace(['][', '['], '.', $this->get('name'));
-        $name = str_ireplace([']'], '', $name);
-
-        return $name;
+        return (string) Str::of($this->get('name'))
+            ->replace(['][', '['], '.')
+            ->replace([']'], '');
     }
 
     /**
@@ -327,12 +335,6 @@ class Field implements Fieldable
         }
 
         $class = $this->get('class');
-
-        if (is_null($class)) {
-            $this->set('class', ' is-invalid');
-
-            return $this;
-        }
 
         return $this->set('class', $class.' is-invalid');
     }
@@ -384,15 +386,17 @@ class Field implements Fieldable
     }
 
     /**
+     * @deprecated
+     *
      * Create a group of the fields.
      *
      * @param Closure|array $group
      *
-     * @return mixed
+     * @return Group
      */
-    public static function group($group)
+    public static function group($group): Group
     {
-        return is_callable($group) ? $group() : $group;
+        return Group::make(is_callable($group) ? $group() : $group);
     }
 
     /**
@@ -403,6 +407,18 @@ class Field implements Fieldable
     public function vertical(): self
     {
         $this->typeForm = 'platform::partials.fields.vertical';
+
+        return $this;
+    }
+
+    /**
+     * Use clear layout for the field.
+     *
+     * @return static
+     */
+    public function clear(): self
+    {
+        $this->typeForm = 'platform::partials.fields.clear';
 
         return $this;
     }

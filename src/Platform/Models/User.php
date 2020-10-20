@@ -6,6 +6,7 @@ namespace Orchid\Platform\Models;
 
 use App\Orchid\Presenters\UserPresenter;
 use Exception;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
@@ -13,13 +14,13 @@ use Illuminate\Support\Facades\Hash;
 use Orchid\Access\UserAccess;
 use Orchid\Access\UserInterface;
 use Orchid\Filters\Filterable;
-use Orchid\Platform\Notifications\ResetPassword;
+use Orchid\Metrics\Chartable;
 use Orchid\Screen\AsSource;
 use Orchid\Support\Facades\Dashboard;
 
 class User extends Authenticatable implements UserInterface
 {
-    use Notifiable, UserAccess, AsSource, Filterable;
+    use Notifiable, UserAccess, AsSource, Filterable, Chartable, HasFactory;
 
     /**
      * The database table used by the model.
@@ -37,7 +38,6 @@ class User extends Authenticatable implements UserInterface
         'name',
         'email',
         'password',
-        'last_login',
         'permissions',
     ];
 
@@ -49,6 +49,7 @@ class User extends Authenticatable implements UserInterface
     protected $hidden = [
         'password',
         'remember_token',
+        'permissions',
     ];
 
     /**
@@ -57,9 +58,8 @@ class User extends Authenticatable implements UserInterface
      * @var array
      */
     protected $casts = [
-        'permissions'       => 'array',
-        'email_verified_at' => 'datetime',
-        'last_login'        => 'datetime',
+        'permissions'          => 'array',
+        'email_verified_at'    => 'datetime',
     ];
 
     /**
@@ -83,22 +83,9 @@ class User extends Authenticatable implements UserInterface
         'id',
         'name',
         'email',
-        'last_login',
         'updated_at',
         'created_at',
     ];
-
-    /**
-     * Send the password reset notification.
-     *
-     * @param string $token
-     *
-     * @return void
-     */
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new ResetPassword($token));
-    }
 
     /**
      * @param string $name

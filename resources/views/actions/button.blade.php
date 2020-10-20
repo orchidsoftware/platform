@@ -4,8 +4,12 @@
             data-novalidate="{{ var_export($novalidate) }}"
             data-turbolinks="{{ var_export($turbolinks) }}"
             @empty(!$confirm)onclick="return confirm('{{$confirm}}');"@endempty
-        @attributes($attributes)>
-        @isset($icon)<i class="{{ $icon }} mr-2"></i>@endisset
+        {{ $attributes }}>
+
+        @isset($icon)
+            <x-orchid-icon :path="$icon" class="mr-2"/>
+        @endisset
+
         {{ $name ?? '' }}
     </button>
 @endcomponent

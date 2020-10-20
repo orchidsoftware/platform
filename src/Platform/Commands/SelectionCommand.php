@@ -37,7 +37,7 @@ class SelectionCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return Dashboard::path('resources/stubs/selection.stub');
+        return Dashboard::path('stubs/selection.stub');
     }
 
     /**

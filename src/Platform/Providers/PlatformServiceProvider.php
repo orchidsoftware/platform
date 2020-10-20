@@ -7,6 +7,8 @@ namespace Orchid\Platform\Providers;
 use App\Orchid\PlatformProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Orchid\IconPack\Path;
+use Orchid\Icons\IconFinder;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Composers\LockMeComposer;
 use Orchid\Platform\Http\Composers\NotificationsComposer;
@@ -22,14 +24,21 @@ class PlatformServiceProvider extends ServiceProvider
     /**
      * Boot the application events.
      *
-     * @param Dashboard $dashboard
+     * @param Dashboard  $dashboard
+     * @param IconFinder $iconFinder
      */
-    public function boot(Dashboard $dashboard): void
+    public function boot(Dashboard $dashboard, IconFinder $iconFinder): void
     {
         $this->dashboard = $dashboard;
 
         View::composer('platform::auth.login', LockMeComposer::class);
         View::composer('platform::partials.notificationProfile', NotificationsComposer::class);
+
+        $icons = array_merge(['o' => Path::getFolder()], config('platform.icons', []));
+
+        foreach ($icons as $key => $path) {
+            $iconFinder->registerIconDirectory($key, $path);
+        }
 
         $this->app->booted(function () {
             $this->dashboard

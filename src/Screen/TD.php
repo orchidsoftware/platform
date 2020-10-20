@@ -72,6 +72,11 @@ class TD
     protected $align = 'left';
 
     /**
+     * @var int
+     */
+    protected $colspan = 1;
+
+    /**
      * Displays whether the user can hide
      * or show the column in the browser.
      *
@@ -104,7 +109,7 @@ class TD
      *
      * @return TD
      */
-    public static function set(string $name, string $title = null): self
+    public static function set(string $name = '', string $title = null): self
     {
         $td = new static($name);
         $td->column = $name;
@@ -184,6 +189,18 @@ class TD
     }
 
     /**
+     * @param int $colspan
+     *
+     * @return $this
+     */
+    public function colspan(int $colspan): self
+    {
+        $this->colspan = $colspan;
+
+        return $this;
+    }
+
+    /**
      * Builds a column heading.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -217,11 +234,12 @@ class TD
             : $repository->getContent($this->name);
 
         return view('platform::partials.layouts.td', [
-            'align'  => $this->align,
-            'value'  => $value,
-            'render' => $this->render,
-            'slug'   => $this->sluggable(),
-            'width'  => $this->width,
+            'align'   => $this->align,
+            'value'   => $value,
+            'render'  => $this->render,
+            'slug'    => $this->sluggable(),
+            'width'   => $this->width,
+            'colspan' => $this->colspan,
         ]);
     }
 

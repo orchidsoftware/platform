@@ -8,7 +8,8 @@ export default class extends Controller {
      */
     static targets = [
         'password',
-        'icon'
+        'iconShow',
+        'iconLock'
     ];
 
     /**
@@ -17,14 +18,18 @@ export default class extends Controller {
     change() {
         const currentType = this.passwordTarget.type;
         let type = 'password';
-        let icon = 'icon-eye';
+
+        if(currentType === 'text'){
+            this.iconLockTarget.classList.add('none');
+            this.iconShowTarget.classList.remove('none');
+        }
 
         if (currentType === 'password') {
             type = 'text';
-            icon = 'icon-lock';
+            this.iconLockTarget.classList.remove('none');
+            this.iconShowTarget.classList.add('none');
         }
 
         this.passwordTarget.setAttribute('type', type);
-        this.iconTarget.setAttribute('class', icon);
     }
 }

@@ -5,18 +5,21 @@
          data-fields--picture-target="{{ $target }}"
          data-fields--picture-url="{{ $url }}"
          data-fields--picture-max-file-size="{{ $maxFileSize }}"
+         data-fields--picture-groups="{{$attributes['groups'] ?? ''}}"
     >
-        <div class="border text-right p-3 picture-actions">
+        <div class="border-dashed text-right p-3 picture-actions">
 
             <div class="fields-picture-container">
-                <img src="#" class="picture-preview img-fluid img-full m-b-md border" alt="">
+                <img src="#" class="picture-preview img-fluid img-full mb-2 border" alt="">
             </div>
 
             <span class="mt-1 float-left">{{ __('Upload image from your computer:') }}</span>
 
             <div class="btn-group">
-                <label class="btn btn-default m-n">
-                    <i class="icon-cloud-upload mr-2"></i> {{ __('Browse') }}
+                <label class="btn btn-default m-0">
+                    <x-orchid-icon path="cloud-upload" class="mr-2"/>
+
+                    {{ __('Browse') }}
                     <input type="file"
                            accept="image/*"
                            data-target="fields--picture.upload"
@@ -36,7 +39,7 @@
         <input class="picture-path d-none"
                type="text"
                data-target="fields--picture.source"
-            @attributes($attributes)
+               {{ $attributes }}
         >
     </div>
 @endcomponent

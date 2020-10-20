@@ -12,7 +12,7 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
  */
 class LinkTest extends TestFieldsUnitCase
 {
-    public function testLinkInstance()
+    public function testLinkInstance(): void
     {
         $link = Link::make('About');
         $view = self::renderField($link);
@@ -22,7 +22,7 @@ class LinkTest extends TestFieldsUnitCase
         $this->assertStringContainsString('data-turbolinks="true"', $view);
     }
 
-    public function testLinkTarget()
+    public function testLinkTarget(): void
     {
         $link = Link::make('About')
             ->target('_blank');
@@ -32,7 +32,7 @@ class LinkTest extends TestFieldsUnitCase
         $this->assertStringContainsString('target="_blank"', $view);
     }
 
-    public function testLinkDownload()
+    public function testLinkDownload(): void
     {
         $link = Link::make('About')
             ->download();
@@ -42,7 +42,7 @@ class LinkTest extends TestFieldsUnitCase
         $this->assertStringContainsString('download', $view);
     }
 
-    public function testLinkTitle()
+    public function testLinkTitle(): void
     {
         $link = Link::make('About')
             ->title('Please click to download the file.')
@@ -53,7 +53,7 @@ class LinkTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Please click to download the file.', $view);
     }
 
-    public function testLinkHref()
+    public function testLinkHref(): void
     {
         $link = Link::make('About')
             ->href('https://google.com');
@@ -63,7 +63,7 @@ class LinkTest extends TestFieldsUnitCase
         $this->assertStringContainsString('href="https://google.com"', $view);
     }
 
-    public function testLinkDisableTurbolinks()
+    public function testLinkDisableTurbolinks(): void
     {
         $link = Link::make('About')
             ->href('https://google.com')

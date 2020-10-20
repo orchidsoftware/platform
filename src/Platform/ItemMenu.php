@@ -67,7 +67,7 @@ class ItemMenu
     public $active = [];
 
     /**
-     * @var string
+     * @var string|null
      */
     public $permission;
 
@@ -77,11 +77,16 @@ class ItemMenu
     public $hideEmpty = false;
 
     /**
-     * @param string $permission
+     * @var string|null
+     */
+    public $place;
+
+    /**
+     * @param string|null $permission
      *
      * @return ItemMenu
      */
-    public function permission(string $permission): self
+    public function permission(?string $permission): self
     {
         $this->permission = $permission;
 
@@ -178,7 +183,7 @@ class ItemMenu
     {
         $this->route = route($name, $parameters, $absolute);
 
-        $this->active([$name, $this->route.'/*']);
+        $this->active([$this->route, $this->route.'/*']);
 
         return $this;
     }
@@ -246,8 +251,8 @@ class ItemMenu
     }
 
     /**
-     * @param Closure $badge
-     * @param Color   $color
+     * @param Closure    $badge
+     * @param Color|null $color
      *
      * @return ItemMenu
      */
@@ -257,6 +262,18 @@ class ItemMenu
             'class' => $color ?? Color::PRIMARY(),
             'data'  => $badge,
         ];
+
+        return $this;
+    }
+
+    /**
+     * @param string $place
+     *
+     * @return $this
+     */
+    public function place(string $place)
+    {
+        $this->place = $place;
 
         return $this;
     }

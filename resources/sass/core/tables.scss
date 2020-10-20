@@ -5,11 +5,14 @@
         font-weight: 600;
         font-size: 0.9em;
         vertical-align: middle;
-        border-bottom: 1px solid fade-out($brand-light, .3);
+        @extend .border-bottom;
 		border-top: 0;
-        color: fade-out($brand-dark, .65);
+        color: fade-out($dark, .65);
         &:first-child {
-          padding-left: 18px !important;
+          padding-left: 1.5rem !important;
+        }
+        &:last-child {
+            padding-right: 1.5rem !important;
         }
         .form-group.row {
             select.form-control {
@@ -30,12 +33,18 @@
   tbody {
     tr {
       td {
-        border-bottom: 1px solid fade-out($brand-light, .3);
+        border-bottom: 1px solid $light;
         border-top: 0;
-        padding: 15px;
+        padding: 0.8rem 1rem;
         font-size: $font-size-sm;
         vertical-align: middle;
         word-break: break-all;
+          &:first-child {
+              padding-left: 1.5rem !important;
+          }
+          &:last-child {
+              padding-right: 1.5rem !important;
+          }
           > div > .form-group > .btn {
               padding: 0;
               margin: 0;
@@ -43,21 +52,6 @@
               width: auto;
               @extend .btn-sm;
           }
-      }
-      &.selected td {
-        background: $brand-warning;
-      }
-    }
-  }
-  &.table-striped {
-    tbody {
-      tr {
-        td {
-          background: mix($brand-light, #fff, 3%) !important;
-        }
-        &:nth-child(2n+1) td {
-          background: #fff !important;
-        }
       }
     }
   }
@@ -69,6 +63,6 @@
 
 .table-notification {
     .table tbody tr td {
-        padding: 0;
+        padding: 0!important
     }
 }

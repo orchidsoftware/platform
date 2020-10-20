@@ -5,7 +5,7 @@
         data-fields--code-line-numbers="{{$lineNumbers}}"
         data-fields--code-default-Theme="{{$defaultTheme}}"
     >
-        <div class="code border pos-rlt w-100" style="min-height: {{ $attributes['height'] }}"></div>
-        <input type="hidden" @attributes($attributes)>
+        <div class="code border position-relative w-100" style="min-height: {{ $attributes['height'] }}"></div>
+        <input type="hidden" {{ $attributes }}>
     </div>
 @endcomponent

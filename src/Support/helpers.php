@@ -7,7 +7,6 @@ use Orchid\Alert\Alert;
 use Orchid\Filters\HttpFilter;
 use Orchid\Support\Color;
 use Orchid\Support\Facades\Dashboard;
-use Orchid\Support\Facades\Setting;
 use Symfony\Component\Finder\Finder;
 
 if (! function_exists('alert')) {
@@ -15,7 +14,7 @@ if (! function_exists('alert')) {
      * Helper function to send an alert.
      *
      * @param string|null $message
-     * @param string      $level
+     * @param string|null $level
      *
      * @return Alert
      */
@@ -23,28 +22,15 @@ if (! function_exists('alert')) {
     {
         $notifier = app(Alert::class);
 
-        if (! is_null($level)) {
+        if ($level !== null) {
             $level = (string) Color::INFO();
         }
 
-        if (! is_null($message)) {
+        if ($message !== null) {
             return $notifier->message($message, $level);
         }
 
         return $notifier;
-    }
-}
-
-if (! function_exists('setting')) {
-    /**
-     * @param string|array $key
-     * @param null         $default
-     *
-     * @return Setting
-     */
-    function setting($key, $default = null)
-    {
-        return Setting::get($key, $default);
     }
 }
 
@@ -164,8 +150,12 @@ if (! function_exists('orchid_mix')) {
             $mixPath = ltrim($mixPath, '/');
         }
 
+        if ($mixUrl = config('app.mix_url', false)) {
+            return $mixUrl."/resources/$package/$mixPath";
+        }
+
         if (file_exists(public_path('/resources'))) {
-            return url("/resources/$package/$mixPath");
+            return url()->asset("/resources/$package/$mixPath");
         }
 
         return route('platform.resource', [$package, $mixPath]);

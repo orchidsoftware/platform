@@ -26,9 +26,6 @@ class RouteServiceProvider extends ServiceProvider
         ]);
 
         $this->binding();
-
-        require Dashboard::path('routes/breadcrumbs.php');
-
         parent::boot();
     }
 
@@ -37,7 +34,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function binding()
     {
-        Route::bind('roles', static function ($value) {
+        Route::bind('role', static function ($value) {
             $role = Dashboard::modelClass(Role::class);
 
             return is_numeric($value)

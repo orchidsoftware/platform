@@ -10,6 +10,6 @@
        data-delay-show="300"
        data-delay-hide="200"
        data-content="{{ $content }}">
-        <i class="icon-exclamation"></i>
+        <x-orchid-icon path="exclamation"/>
     </a>
 </sup>

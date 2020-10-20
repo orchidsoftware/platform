@@ -6,12 +6,12 @@
     transition: all 340ms !important;
   }
   .modal-content {
-    border-radius: 3px;
+    border-radius: $border-radius;
     box-shadow: none;
   }
   .modal-header {
     border-bottom: 0;
-    padding: 25px 25px 0 25px;
+    padding: 1.5rem 1.5rem 0 1.5rem;
 	display: block;
     p {
       color: #8b91a0;
@@ -23,7 +23,7 @@
   }
   .modal-body {
     box-shadow: none;
-    padding: 0 25px 15px;
+    padding: 0;
     white-space: normal;
 
     .card{
@@ -178,9 +178,13 @@
 
 .modal-backdrop {
   opacity: 0;
-  @include transition(opacity 340ms linear);
+  transition: none;
+  &.fade{
+      @include transition(opacity 340ms linear);
+  }
+
   &.in, &.show {
-    opacity: 0.75;
+    opacity: 0.5;
   }
 }
 

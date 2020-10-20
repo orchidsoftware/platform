@@ -17,7 +17,7 @@ class BuilderTest extends TestUnitCase
     /**
      * @throws \Throwable
      */
-    public function testSimpleBuild()
+    public function testSimpleBuild(): void
     {
         $form = $this->getBuilder(['name' => 'Alexandr'])
             ->generateForm();
@@ -29,7 +29,7 @@ class BuilderTest extends TestUnitCase
     /**
      * @throws \Throwable
      */
-    public function testPrefixBuild()
+    public function testPrefixBuild(): void
     {
         $form = $this->getBuilder(['profile' => ['name' => 'Alexandr']])
             ->setPrefix('profile')
@@ -42,7 +42,7 @@ class BuilderTest extends TestUnitCase
     /**
      * @throws \Throwable
      */
-    public function testLanguageBuild()
+    public function testLanguageBuild(): void
     {
         $form = $this->getBuilder(['en' => ['name' => 'Alexandr']])
             ->setLanguage('en')
@@ -56,7 +56,7 @@ class BuilderTest extends TestUnitCase
     /**
      * @throws \Throwable
      */
-    public function testLanguageAndPrefixBuild()
+    public function testLanguageAndPrefixBuild(): void
     {
         $form = $this->getBuilder([
             'profile' => [
@@ -75,7 +75,7 @@ class BuilderTest extends TestUnitCase
     /**
      * @throws \Throwable
      */
-    public function testPrefixForFields()
+    public function testPrefixForFields(): void
     {
         $fields = [
             Input::make('name')->prefix('one'),
@@ -98,7 +98,7 @@ class BuilderTest extends TestUnitCase
     /**
      * @throws \Throwable
      */
-    public function testPrefixAndLanguageForFields()
+    public function testPrefixAndLanguageForFields(): void
     {
         $fields = [
             Input::make('name')->prefix('one'),
@@ -124,7 +124,7 @@ class BuilderTest extends TestUnitCase
     /**
      * @throws \Throwable
      */
-    public function emptyRepositoryBuilder()
+    public function emptyRepositoryBuilder(): void
     {
         $builder = new Builder([
             Input::make('name'),
@@ -140,7 +140,7 @@ class BuilderTest extends TestUnitCase
      *
      * @return Builder
      */
-    private function getBuilder($value = [])
+    private function getBuilder($value = []): Builder
     {
         $fields = [Input::make('name')];
         $data = new Repository($value);

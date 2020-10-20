@@ -1,6 +1,6 @@
-<div class="form-group row">
+<div class="form-group row row-cols-sm-2">
     @isset($title)
-        <label for="{{$id}}" class="col-sm-2 text-wrap mt-2">
+        <label for="{{$id}}" class="col-sm-2 text-wrap mt-2 form-label">
             {{$title}}
 
             @includeWhen(isset($popover),'platform::partials.fields.popover',[
@@ -13,7 +13,7 @@
         </label>
     @endisset
 
-    <div class="col" style="max-width: 440px;">
+    <div class="col">
         {{$slot}}
 
         @if($errors->has($oldName))
@@ -27,5 +27,5 @@
 </div>
 
 @isset($hr)
-    <div class="line line-dashed border-bottom line-lg"></div>
+    <div class="line line-dashed border-bottom my-3"></div>
 @endisset

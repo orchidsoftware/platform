@@ -10,7 +10,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class AttachmentTest extends TestFeatureCase
 {
-    public function testAttachmentHttpUpload()
+    public function testAttachmentHttpUpload(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())
@@ -27,7 +27,7 @@ class AttachmentTest extends TestFeatureCase
             ]);
     }
 
-    public function testAttachmentHttpMultiUpload()
+    public function testAttachmentHttpMultiUpload(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())
@@ -50,7 +50,7 @@ class AttachmentTest extends TestFeatureCase
             ]);
     }
 
-    public function testAttachmentHttpDestroy()
+    public function testAttachmentHttpDestroy(): void
     {
         /** @var $response \Illuminate\Testing\TestResponse */
         $response = $this
@@ -69,7 +69,7 @@ class AttachmentTest extends TestFeatureCase
         $response->assertOk();
     }
 
-    public function testAttachmentHttpGetFile()
+    public function testAttachmentHttpGetFile(): void
     {
         /** @var $response \Illuminate\Testing\TestResponse */
         $response = $this
@@ -96,7 +96,7 @@ class AttachmentTest extends TestFeatureCase
         */
     }
 
-    public function testAttachmentHttpUpdate()
+    public function testAttachmentHttpUpdate(): void
     {
         /** @var $response \Illuminate\Testing\TestResponse */
         $response = $this
@@ -125,7 +125,7 @@ class AttachmentTest extends TestFeatureCase
             ]);
     }
 
-    public function testAttachmentHttpSort()
+    public function testAttachmentHttpSort(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())
@@ -136,7 +136,7 @@ class AttachmentTest extends TestFeatureCase
                 ],
             ]);
 
-        $attachments = $response->decodeResponseJson();
+        $attachments = $response->decodeResponseJson()->json();
 
         $originalFiles = [];
         $files = [];

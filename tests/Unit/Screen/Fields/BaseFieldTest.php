@@ -42,22 +42,12 @@ class BaseFieldTest extends TestFieldsUnitCase
                 'name',
                 'height',
             ];
-
-            /**
-             * @param string|null $name
-             *
-             * @return self
-             */
-            public static function make(string $name = null): self
-            {
-                return (new static())->name($name);
-            }
         };
 
         $this->field = $field;
     }
 
-    public function testRequredAttributeNameField()
+    public function testRequredAttributeNameField(): void
     {
         $this->expectException(FieldRequiredAttributeException::class);
         $this->expectExceptionMessage('Field must have the following attribute: name');
@@ -65,7 +55,7 @@ class BaseFieldTest extends TestFieldsUnitCase
         $this->field->render();
     }
 
-    public function testRequredAttributeHeightField()
+    public function testRequredAttributeHeightField(): void
     {
         $this->expectException(FieldRequiredAttributeException::class);
         $this->expectExceptionMessage('Field must have the following attribute: height');
@@ -74,7 +64,7 @@ class BaseFieldTest extends TestFieldsUnitCase
         $this->field->render();
     }
 
-    public function testNoDisplay()
+    public function testNoDisplay(): void
     {
         $this->assertNull($this->field->canSee(false)->render());
     }

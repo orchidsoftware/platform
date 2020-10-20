@@ -1,24 +1,24 @@
 @extends('platform::app')
 
-@section('body-left')
-    <div class="hidden-xs v-center h-100 w-100 justify-content-center">
-        <div class="text-center">
-            <a href="{{Dashboard::prefix()}}">
-                @includeFirst([config('platform.template.header'), 'platform::header'])
-            </a>
-        </div>
-    </div>
-
-@endsection
-
 
 @section('body-right')
 
-    <div class="v-center h-100 w-100 justify-content-center">
-        <div class="container">
-            <div class="row">
-                <div class="col mx-auto p-5" style="max-width: 30rem;">
+
+    <div class="form-signin container h-full py-5 my-sm-5">
+
+        <a class="d-flex justify-content-center mb-4" href="{{Dashboard::prefix()}}">
+            @includeFirst([config('platform.template.header'), 'platform::header'])
+        </a>
+
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-lg-5">
+
+                <div class="bg-white p-5 rounded shadow-sm">
                     @yield('content')
+                </div>
+
+                <div class="mt-5 text-center">
+                    @includeFirst([config('platform.template.footer'), 'platform::footer'])
                 </div>
             </div>
         </div>

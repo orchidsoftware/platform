@@ -2,67 +2,83 @@
 
 @section('body-left')
 
-    <div class="d-sm-flex d-md-block p-3 mt-md-4 w-100 v-center">
-        <a href="#" class="header-toggler d-md-none mr-auto order-first"
-           data-toggle="collapse"
-           data-target="#headerMenuCollapse">
-            <span class="header-toggler-icon icon-menu"></span>
-            <span class="ml-2">@yield('title')</span>
-        </a>
+    <div class="aside col-xs-12 col-md-2 col-xl-2 col-xxl-3 bg-dark">
+        <div class="d-md-flex align-items-start flex-column d-sm-block h-full">
 
-        <a class="header-brand order-last" href="{{route('platform.index')}}">
-            @includeFirst([config('platform.template.header'), 'platform::header'])
-        </a>
-    </div>
+            <div class="d-sm-flex d-md-block p-3 mt-md-4 w-100 v-center">
+                <a href="#" class="header-toggler d-md-none mr-auto order-first"
+                   data-toggle="collapse"
+                   data-target="#headerMenuCollapse">
+                    <x-orchid-icon path="menu" class="icon-menu"/>
 
-    <nav class="collapse d-md-block w-100 mb-md-5" id="headerMenuCollapse">
+                    <span class="ml-2">@yield('title')</span>
+                </a>
 
-        @include('platform::partials.search')
+                <a class="header-brand order-last" href="{{route('platform.index')}}">
+                    @includeFirst([config('platform.template.header'), 'platform::header'])
+                </a>
+            </div>
 
-        @includeWhen(Auth::check(), 'platform::partials.profile')
+            <nav class="collapse d-md-block w-100 mb-md-3" id="headerMenuCollapse">
 
-        <ul class="nav flex-column m-b">
-            {!! Dashboard::menu()->render('Main') !!}
-        </ul>
+                @include('platform::partials.search')
 
-    </nav>
+                @includeWhen(Auth::check(), 'platform::partials.profile')
 
-    <div class="h-100 w-100 position-relative to-top cursor mt-md-5 divider"
-         data-action="click->layouts--html-load#goToTop"
-         title="{{ __('Go to top') }}">
-        <div class="bottom-left w-100 mb-2 pl-3">
-            <small><i class="icon-arrow-up mr-2"></i> {{ __('Go to top') }}</small>
+                <ul class="nav flex-column mb-1">
+                    {!! Dashboard::menu()->render('Main') !!}
+                </ul>
+
+            </nav>
+
+            <div class="h-100 w-100 position-relative to-top cursor d-none d-md-block mt-md-5 divider"
+                 data-action="click->layouts--html-load#goToTop"
+                 title="{{ __('Go to top') }}">
+                <div class="bottom-left w-100 mb-2 pl-3">
+                    <small>
+                        <x-orchid-icon path="arrow-up" class="mr-2"/>
+
+                        {{ __('Go to top') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="p-3 mb-2 m-t d-none d-lg-block w-100">
+                @includeFirst([config('platform.template.footer'), 'platform::footer'])
+            </div>
+
         </div>
-    </div>
-
-    <div class="p-3 m-b m-t d-none d-lg-block w-100">
-        @includeFirst([config('platform.template.footer'), 'platform::footer'])
     </div>
 @endsection
 
 @section('body-right')
-    <div class="p-3 mt-md-4 @hasSection('navbar') @else d-none d-md-block @endif">
-        <div class="v-md-center">
-            <div class="d-none d-md-block col-xs-12 col-md no-padder">
-                <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
+
+    <div class="mt-3 mt-md-4">
+
+        @if(Breadcrumbs::has())
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb px-4 m-0">
+                    <x-tabuna-breadcrumbs
+                        class="breadcrumb-item"
+                        active="active"
+                    />
+                </ol>
+            </nav>
+        @endif
+
+        <div class="@hasSection('navbar') @else d-none d-md-block @endif layout v-md-center">
+            <div class="d-none d-md-block col-xs-12 col-md p-0">
+                <h1 class="m-0 font-weight-light h3 text-black">@yield('title')</h1>
                 <small class="text-muted" title="@yield('description')">@yield('description')</small>
             </div>
-            <div class="col-xs-12 col-md-auto ml-auto no-padder">
+            <div class="col-xs-12 col-md-auto ml-auto p-0">
                 <ul class="nav command-bar justify-content-sm-end justify-content-start v-center">
                     @yield('navbar')
                 </ul>
             </div>
         </div>
-    </div>
 
-    @if (Breadcrumbs::exists())
-        {{ Breadcrumbs::view('platform::partials.breadcrumbs') }}
-    @endif
-
-    <div class="d-flex">
-        <div class="app-content-body" id="app-content-body">
-            @include('platform::partials.alert')
-            @yield('content')
-        </div>
+        @include('platform::partials.alert')
+        @yield('content')
     </div>
 @endsection

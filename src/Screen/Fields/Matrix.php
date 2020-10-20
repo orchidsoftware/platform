@@ -12,6 +12,7 @@ use Orchid\Screen\Field;
  * @method Matrix columns(array $columns)
  * @method Matrix keyValue(bool $keyValue)
  * @method Matrix title(string $value = null)
+ * @method Matrix help(string $value = null)
  */
 class Matrix extends Field
 {
@@ -26,8 +27,10 @@ class Matrix extends Field
      * @var array
      */
     protected $attributes = [
+        'index'    => 0,
         'maxRows'  => 0,
         'keyValue' => false,
+        'fields'   => [],
         'columns'  => [
             'key',
             'value',
@@ -35,17 +38,40 @@ class Matrix extends Field
     ];
 
     /**
-     * @param string|null $name
-     *
-     * @return self
+     * Matrix constructor.
      */
-    public static function make(string $name = null): self
+    public function __construct()
     {
-        return (new static())->name($name)->addBeforeRender(function () {
-            if ($this->get('value') === null) {
-                $this->set('value', []);
-            }
-        });
+        $this
+            ->addBeforeRender(function () {
+                if ($this->get('value') === null) {
+                    $this->set('value', []);
+                }
+
+                $value = collect($this->get('value'))
+                    ->sortKeys()
+                    ->toArray();
+
+                $this->set('value', $value);
+                $this->set('index',
+                    empty($value) ? 0 : array_key_last($value)
+                );
+            })
+            ->addBeforeRender(function () {
+                $fields = $this->get('fields');
+
+                foreach ($this->get('columns') as $key => $column) {
+                    if (! isset($fields[$key])) {
+                        $fields[$key] = TextArea::make();
+                    }
+
+                    if (! isset($fields[$column])) {
+                        $fields[$column] = TextArea::make();
+                    }
+                }
+
+                $this->set('fields', $fields);
+            });
     }
 
     /**
@@ -56,5 +82,15 @@ class Matrix extends Field
     public function maxRows(int $count)
     {
         return $this->set('maxRows', $count);
+    }
+
+    /**
+     * @param Field[] $fields
+     *
+     * @return $this
+     */
+    public function fields(array $fields = []): self
+    {
+        return $this->set('fields', $fields);
     }
 }

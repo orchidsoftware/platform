@@ -1,0 +1,27 @@
+<?php
+
+namespace DummyNamespace;
+
+use Orchid\Screen\Layouts\Metric;
+
+class DummyClass extends Metric
+{
+    /**
+     * @var string
+     */
+    protected $title = 'Example Metric';
+
+    /**
+     * Get the labels available for the metric.
+     *
+     * @return array
+     */
+    protected $labels = [];
+
+    /**
+     * The name of the key to fetch it from the query.
+     *
+     * @var string
+     */
+    protected $target = '';
+}

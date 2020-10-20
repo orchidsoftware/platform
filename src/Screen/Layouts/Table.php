@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\TD;
 
 /**
  * Class Table.
  */
-abstract class Table extends Base
+abstract class Table extends Layout
 {
     /**
      * @var string
@@ -50,9 +51,15 @@ abstract class Table extends Base
             return $column->isSee();
         });
 
+        $total = collect($this->total())->filter(static function (TD $column) {
+            return $column->isSee();
+        });
+
         return view($this->template, [
+            'repository'   => $repository,
             'rows'         => $repository->getContent($this->target),
             'columns'      => $columns,
+            'total'        => $total,
             'iconNotFound' => $this->iconNotFound(),
             'textNotFound' => $this->textNotFound(),
             'subNotFound'  => $this->subNotFound(),
@@ -97,4 +104,12 @@ abstract class Table extends Base
      * @return array
      */
     abstract protected function columns(): array;
+
+    /**
+     * @return array
+     */
+    protected function total(): array
+    {
+        return [];
+    }
 }

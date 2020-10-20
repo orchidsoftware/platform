@@ -11,9 +11,9 @@ use Orchid\Platform\Http\Layouts\NotificationTable;
 use Orchid\Platform\Notifications\DashboardMessage;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
-use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Alert;
+use Orchid\Support\Facades\Layout;
+use Orchid\Support\Facades\Toast;
 
 class NotificationScreen extends Screen
 {
@@ -72,12 +72,12 @@ class NotificationScreen extends Screen
     {
         return [
             Button::make(__('Remove all'))
-                ->icon('icon-trash')
+                ->icon('trash')
                 ->method('removeAll')
                 ->canSee($this->isNotEmpty),
 
             Button::make(__('Mark all as read'))
-                ->icon('icon-eye')
+                ->icon('eye')
                 ->method('markAllAsRead')
                 ->canSee($this->isNotEmpty),
         ];
@@ -86,7 +86,7 @@ class NotificationScreen extends Screen
     /**
      * Views.
      *
-     * @return Layout[]
+     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): array
     {
@@ -120,8 +120,6 @@ class NotificationScreen extends Screen
 
     /**
      * @param Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function markAllAsRead(Request $request)
     {
@@ -130,9 +128,7 @@ class NotificationScreen extends Screen
             ->where('type', DashboardMessage::class)
             ->markAsRead();
 
-        Alert::info(__('All messages have been read.'));
-
-        return back();
+        Toast::info(__('All messages have been read.'));
     }
 
     /**
@@ -147,7 +143,7 @@ class NotificationScreen extends Screen
             ->where('type', DashboardMessage::class)
             ->delete();
 
-        Alert::info(__('All messages have been deleted.'));
+        Toast::info(__('All messages have been deleted.'));
 
         return back();
     }

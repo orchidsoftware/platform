@@ -1,7 +1,15 @@
-<fieldset class="py-3" data-async>
-    {{--
-        <legend class="font-thin text-black mb-3">Базовые параметры</legend>
-    --}}
+<fieldset class="mb-3" data-async>
 
-    {!! $form ?? '' !!}
+    @empty(!$title)
+        <div class="col p-0 px-3">
+            <legend class="text-black">
+                <span class="text-muted font-weight-bold">|</span>
+                {{ $title }}
+            </legend>
+        </div>
+    @endempty
+
+    <div class="bg-white rounded shadow-sm p-4 py-4 d-flex flex-column">
+        {!! $form ?? '' !!}
+    </div>
 </fieldset>

@@ -22,10 +22,10 @@ abstract class TestFeatureCase extends TestCase
     /**
      * @return User
      */
-    protected function createAdminUser()
+    protected function createAdminUser(): User
     {
-        if (is_null($this->user)) {
-            $this->user = factory(User::class)->create();
+        if ($this->user === null) {
+            $this->user = User::factory()->create();
         }
 
         return $this->user;

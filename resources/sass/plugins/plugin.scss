@@ -17,7 +17,7 @@
 .select2{
     width: 100% !important;
     min-width: 10em;
-    max-width: 450px;
+    max-width: 600px;
 }
 .select2-container--bootstrap {
 
@@ -27,45 +27,30 @@
   }
 
   .select2-dropdown {
-    border-color : fade-out($brand-black, 0.9);
+    border-color : fade-out($black, 0.9);
     outline      : 0 !important;
     @include box-shadow(none);
     @include placeholder($text-muted);
   }
 
   &.select2-container--focus .select2-selection, &.select2-container--open .select2-selection {
-    border-color     : fade-out($brand-black, 0.9);
-    background-color : $brand-grey-light;
+    border-color     : fade-out($black, 0.9);
+    background-color : $grey-light;
     outline          : 0 !important;
     @include box-shadow(none);
     @include placeholder($text-muted);
   }
 
   .select2-results__option--highlighted[aria-selected]{
-    background-color : $brand-grey-light;
+    background-color : $grey-light;
     color: inherit;
   }
 
 }
-
-.mce-content-body:focus {
-  background-color : $brand-grey-light;
-}
-
-// Tiny MCE Editor
-.mce-content-body {
-  img {
-    max-width  : 100%;
-    object-fit : cover;
-  }
-}
-
-div.mce-fullscreen {
-  z-index: 1050;
-}
-
-.editor-toolbar, .CodeMirror {
-  border-radius: 0;
+.select2-container--bootstrap.select2-container--disabled .select2-selection{
+    background: mix($grey-light, #fff, 50%);
+    color: fade-out($grey, .77);
+    border: 1px solid $form-control-border-color;
 }
 
 // SimpleMDE Markdown Editor
@@ -129,9 +114,9 @@ div.mce-fullscreen {
 
 .simplemde-wrapper{
   .editor-toolbar{
-    border-top: 1px solid $form-control-border-color;
-    border-left: 1px solid $form-control-border-color;
-    border-right: 1px solid $form-control-border-color;
+      @extend .border-top;
+      @extend .border-left;
+      @extend .border-right;
   }
 
   .CodeMirror{
@@ -170,7 +155,7 @@ div.mce-fullscreen {
 .flatpickr-input {
     &.form-control[readonly] {
         background: $white;
-        color: $brand-black;
+        color: $black;
     }
 }
 
@@ -182,7 +167,6 @@ div.mce-fullscreen {
 .admin-wrapper {
   .admin-element {
     box-sizing: border-box;
-    @extend .wrapper;
     display: inline-block;
     vertical-align: top;
     justify-self: center;
@@ -191,15 +175,16 @@ div.mce-fullscreen {
       margin: 0;
       padding-left: 40px;
       position: relative;
-      i {
+      svg {
         @extend .r-3x;
         @extend .text-white;
+        @extend .p-2;
         top: 0;
         left: 0;
         border-radius: 3px;
         height: 28px;
         width: 28px;
-        background: $brand-dark;
+        background: $dark;
         position: absolute;
 
         &:before {
@@ -257,6 +242,29 @@ div.mce-fullscreen {
   }
 }
 
+.ql-picker-label {
+    svg {
+        vertical-align: baseline;
+    }
+}
+
+.ql-color, .ql-background {
+  .ql-picker-options [data-value=custom-color] {
+    background: none !important;
+    width: 100% !important;
+    height: 20px !important;
+    text-align: center;
+
+    &:before {
+      content: 'Custom Color';
+    }
+
+    &:hover {
+      border-color: transparent !important;
+    }
+  }
+}
+
 .ql-toolbar.ql-snow,.ql-container.ql-snow{
   border: 1px solid $form-control-border-color;
 }
@@ -296,4 +304,28 @@ div.mce-fullscreen {
       max-width: 100vw;
     }
   }
+}
+
+.matrix {
+
+    div, span {
+        border: none !important;
+    }
+
+    .form-control, .select2-selection--single {
+        border: none !important;
+        height: 40px !important;
+        font-weight: 400;
+        &:focus{
+            border-radius: 0;
+        }
+    }
+
+    .form-group {
+        margin: 0 !important;
+    }
+
+    .custom-control {
+        margin-left: 1em;
+    }
 }

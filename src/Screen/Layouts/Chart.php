@@ -6,14 +6,18 @@ namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Str;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
 /**
  * Class Chart.
  */
-abstract class Chart extends Base
+abstract class Chart extends Layout
 {
     /**
+     * Main template to display the layer
+     * Represents the view() argument.
+     *
      * @var string
      */
     protected $template = 'platform::layouts.chart';
@@ -40,6 +44,10 @@ abstract class Chart extends Base
     protected $height = 250;
 
     /**
+     * Set the labels for each possible field value.
+     *
+     * @deprecated
+     *
      * @var array
      */
     protected $labels = [];
@@ -123,7 +131,7 @@ abstract class Chart extends Base
      * @var array
      */
     protected $axisOptions = [
-        'xIsSeries'  => false,
+        'xIsSeries'  => true,
         'xAxisMode'  => 'span', //'tick'
     ];
 
@@ -138,13 +146,24 @@ abstract class Chart extends Base
             return;
         }
 
+        $labels = ! empty($this->labels)
+            ? json_encode(collect($this->labels))
+            : collect($repository->getContent($this->target))
+                ->map(function ($item) {
+                    return $item['labels'] ?? [];
+                })
+                ->flatten()
+                ->unique()
+                ->toJson(JSON_NUMERIC_CHECK);
+
         return view($this->template, [
             'title'            => $this->title,
             'slug'             => Str::slug($this->title),
             'type'             => $this->type,
             'height'           => $this->height,
-            'labels'           => json_encode(collect($this->labels)),
-            'data'             => json_encode($repository->getContent($this->target)),
+            'labels'           => $labels,
+            'export'           => $this->export,
+            'data'             => json_encode($repository->getContent($this->target), JSON_NUMERIC_CHECK),
             'colors'           => json_encode($this->colors),
             'maxSlices'        => json_encode($this->maxSlices),
             'valuesOverPoints' => json_encode($this->valuesOverPoints),

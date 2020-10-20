@@ -12,10 +12,10 @@ class InputTest extends TestFieldsUnitCase
     /**
      * @throws \Throwable
      */
-    public function testShowHr()
+    public function testShowHr(): void
     {
         $input = Input::make('inputFieldName');
-        $hr = '<div class="line line-dashed border-bottom line-lg"></div>';
+        $hr = '<div class="line line-dashed border-bottom my-3"></div>';
 
         $this->assertStringNotContainsString($hr, self::renderField($input));
 
@@ -24,7 +24,7 @@ class InputTest extends TestFieldsUnitCase
         $this->assertStringContainsString($hr, self::renderField($input));
     }
 
-    public function testArrayMask()
+    public function testArrayMask(): void
     {
         $input = Input::make('price')
             ->mask([
@@ -39,7 +39,7 @@ class InputTest extends TestFieldsUnitCase
         $this->assertStringContainsString('currency', $view);
     }
 
-    public function testStringMask()
+    public function testStringMask(): void
     {
         $input = Input::make('phone')
             ->mask('(999) 999-9999');
@@ -49,11 +49,37 @@ class InputTest extends TestFieldsUnitCase
         $this->assertStringContainsString('(999) 999-9999', $view);
     }
 
-    public function testObjectToSting()
+    public function testObjectToSting(): void
     {
         $input = Input::make('name')
             ->title('What is your name?');
 
         $this->assertStringContainsString('What is your name?', (string) $input);
+    }
+
+    public function testDataAttributes(): void
+    {
+        $input = (string) Input::make('name')
+            ->set('data-name', 'Alexandr Chernyaev')
+            ->set('data-location', 'Russia')
+            ->set('data-hello', 'world!');
+
+        $this->assertStringContainsString('data-name="Alexandr Chernyaev"', $input);
+        $this->assertStringContainsString('data-location="Russia"', $input);
+        $this->assertStringContainsString('data-hello="world!"', $input);
+    }
+
+    public function testEscapeAttributes(): void
+    {
+        $input = (string) Input::make('name')->value('valueQuote"');
+
+        $this->assertStringContainsString('value="valueQuote&quot;"', $input);
+    }
+
+    public function testRemoveBooleanAttributes(): void
+    {
+        $input = (string) Input::make('name')->required(false);
+
+        $this->assertStringNotContainsString('required', $input);
     }
 }

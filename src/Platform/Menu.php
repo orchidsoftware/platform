@@ -32,35 +32,6 @@ class Menu
     public $container;
 
     /**
-     * Position menu.
-     *
-     * @var string
-     */
-    private $location;
-
-    /**
-     * Arguments menu form
-     * For the transfer of Views.
-     *
-     * @var array|null
-     */
-    private $arg;
-
-    /**
-     * Sort menu item.
-     *
-     * @var int
-     */
-    private $sort;
-
-    /**
-     * Synthesis element.
-     *
-     * @var array
-     */
-    private $item;
-
-    /**
      * DashboardMenu constructor.
      */
     public function __construct()
@@ -84,17 +55,13 @@ class Menu
             return $this;
         }
 
-        $this->location = $place;
-        $this->arg = $arg;
-        $this->sort = $arg['sort'];
+        $slug = $arg['slug'];
 
-        $this->item = [
-            'location' => $this->location,
-            'arg'      => $this->arg,
-            'sort'     => $this->sort,
+        $this->container[$slug] = [
+            'location' => $itemMenu->place ?? $place,
+            'arg'      => $arg,
+            'sort'     => $arg['sort'],
         ];
-
-        $this->container[$this->arg['slug']] = $this->item;
 
         return $this;
     }

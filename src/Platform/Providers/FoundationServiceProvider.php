@@ -5,25 +5,24 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Illuminate\Routing\Router;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
-use Laravel\Ui\UiCommand;
-use Laravel\Ui\UiServiceProvider;
+use Orchid\Icons\IconServiceProvider;
 use Orchid\Platform\Commands\AdminCommand;
 use Orchid\Platform\Commands\ChartCommand;
 use Orchid\Platform\Commands\FilterCommand;
 use Orchid\Platform\Commands\InstallCommand;
 use Orchid\Platform\Commands\LinkCommand;
+use Orchid\Platform\Commands\ListenerCommand;
 use Orchid\Platform\Commands\MetricsCommand;
+use Orchid\Platform\Commands\PresenterCommand;
 use Orchid\Platform\Commands\RowsCommand;
 use Orchid\Platform\Commands\ScreenCommand;
 use Orchid\Platform\Commands\SelectionCommand;
 use Orchid\Platform\Commands\TableCommand;
 use Orchid\Platform\Dashboard;
-use Orchid\Presets\Orchid;
-use Orchid\Presets\Source;
+use Tabuna\Breadcrumbs\BreadcrumbsServiceProvider;
 use Watson\Active\ActiveServiceProvider;
 
 /**
@@ -48,6 +47,8 @@ class FoundationServiceProvider extends ServiceProvider
         ChartCommand::class,
         MetricsCommand::class,
         SelectionCommand::class,
+        ListenerCommand::class,
+        PresenterCommand::class,
     ];
 
     /**
@@ -61,9 +62,7 @@ class FoundationServiceProvider extends ServiceProvider
             ->registerDatabase()
             ->registerConfig()
             ->registerTranslations()
-            ->registerBlade()
-            ->registerViews()
-            ->registerProviders();
+            ->registerViews();
     }
 
     /**
@@ -114,8 +113,8 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerOrchid(): self
     {
         $this->publishes([
-            Dashboard::path('install-stubs/routes/') => base_path('routes'),
-            Dashboard::path('install-stubs/Orchid/') => app_path('Orchid'),
+            Dashboard::path('stubs/app/routes/') => base_path('routes'),
+            Dashboard::path('stubs/app/Orchid/') => app_path('Orchid'),
         ], 'orchid-stubs');
 
         return $this;
@@ -132,41 +131,6 @@ class FoundationServiceProvider extends ServiceProvider
             Dashboard::path('resources/js')   => resource_path('js/orchid'),
             Dashboard::path('resources/sass') => resource_path('sass/orchid'),
         ], 'orchid-assets');
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function registerBlade(): self
-    {
-        Blade::directive('attributes', function (string $attributes) {
-            $part = 'function ($attributes) {
-                foreach ($attributes as $name => $value) {
-                    if (is_null($value)) {
-                        continue;
-                    }
-
-                    if (is_bool($value) && $value === false) {
-                        continue;
-                    }
-                    if (is_bool($value)) {
-                        echo e($name)." ";
-                        continue;
-                    }
-
-                    if (is_array($value)) {
-                        echo json_decode($value)." ";
-                        continue;
-                    }
-
-                    echo e($name) . \'="\' . e($value) . \'"\'." ";
-                }
-            }';
-
-            return "<?php call_user_func($part, $attributes); ?>";
-        });
 
         return $this;
     }
@@ -191,12 +155,16 @@ class FoundationServiceProvider extends ServiceProvider
 
     /**
      * Register provider.
+     *
+     * @return $this
      */
-    public function registerProviders(): void
+    public function registerProviders(): self
     {
         foreach ($this->provides() as $provide) {
             $this->app->register($provide);
         }
+
+        return $this;
     }
 
     /**
@@ -207,9 +175,10 @@ class FoundationServiceProvider extends ServiceProvider
     public function provides(): array
     {
         return [
-            UiServiceProvider::class,
             ScoutServiceProvider::class,
             ActiveServiceProvider::class,
+            IconServiceProvider::class,
+            BreadcrumbsServiceProvider::class,
             RouteServiceProvider::class,
             EventServiceProvider::class,
             PlatformServiceProvider::class,
@@ -221,49 +190,32 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->commands($this->commands);
+        $this
+            ->registerTranslations()
+            ->registerProviders()
+            ->commands($this->commands);
 
         $this->app->singleton(Dashboard::class, static function () {
             return new Dashboard();
         });
 
         if (! Route::hasMacro('screen')) {
-            Route::macro('screen', function ($url, $screen, $name = null) {
+            Route::macro('screen', function ($url, $screen) {
                 /* @var Router $this */
-                return $this->any($url.'/{method?}/{argument?}', [$screen, 'handle'])
-                    ->name($name);
+                $route = $this->any($url.'/{method?}', [$screen, 'handle']);
+
+                $methods = $screen::getAvailableMethods();
+
+                if (! empty($methods)) {
+                    $route->where('method', implode('|', $methods));
+                }
+
+                return $route;
             });
         }
 
         $this->mergeConfigFrom(
             Dashboard::path('config/platform.php'), 'platform'
         );
-
-        /*
-         * Adds Orchid source preset to Laravel's default preset command.
-         */
-
-        UiCommand::macro('orchid-source', static function (UiCommand $command) {
-            $command->call('vendor:publish', [
-                '--provider' => self::class,
-                '--tag'      => 'orchid-assets',
-                '--force'    => true,
-            ]);
-
-            Source::install();
-            $command->warn('Please run "npm install && npm run dev" to compile your fresh scaffolding.');
-            $command->info('Orchid scaffolding installed successfully.');
-        });
-
-        /*
-         * Adds Orchid preset to Laravel's default preset command.
-         */
-        UiCommand::macro('orchid', static function (UiCommand $command) {
-            Orchid::install();
-            $command->warn('Please run "npm install && npm run dev" to compile your fresh scaffolding.');
-            $command->warn("After that, You need to add this line to AppServiceProvider's register method:");
-            $command->warn("app(\Orchid\Platform\Dashboard::class)->registerResource('scripts','/js/dashboard.js');");
-            $command->info('Orchid scaffolding installed successfully.');
-        });
     }
 }

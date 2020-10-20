@@ -9,9 +9,7 @@ namespace Orchid\Screen\Fields;
  *
  * @method Cropper accept($value = true)
  * @method Cropper accesskey($value = true)
- * @method Cropper autocomplete($value = true)
  * @method Cropper autofocus($value = true)
- * @method Cropper checked($value = true)
  * @method Cropper disabled($value = true)
  * @method Cropper form($value = true)
  * @method Cropper formaction($value = true)
@@ -19,21 +17,12 @@ namespace Orchid\Screen\Fields;
  * @method Cropper formmethod($value = true)
  * @method Cropper formnovalidate($value = true)
  * @method Cropper formtarget($value = true)
- * @method Cropper list($value = true)
- * @method Cropper max(int $value)
- * @method Cropper maxlength(int $value)
- * @method Cropper min(int $value)
- * @method Cropper multiple($value = true)
  * @method Cropper name(string $value = null)
- * @method Cropper pattern($value = true)
  * @method Cropper placeholder(string $value = null)
  * @method Cropper readonly($value = true)
  * @method Cropper required(bool $value = true)
- * @method Cropper size($value = true)
- * @method Cropper src($value = true)
  * @method Cropper step($value = true)
  * @method Cropper tabindex($value = true)
- * @method Cropper type($value = true)
  * @method Cropper value($value = true)
  * @method Cropper help(string $value = null)
  * @method Cropper width($value = true)
@@ -41,6 +30,8 @@ namespace Orchid\Screen\Fields;
  * @method Cropper popover(string $value = null)
  * @method Cropper title(string $value = null)
  * @method Cropper maxFileSize($value = true)
+ * @method Cropper storage($value = null)
+ * @method Cropper staticBackdrop($value = false)
  */
 class Cropper extends Picture
 {
@@ -55,12 +46,17 @@ class Cropper extends Picture
      * @var array
      */
     protected $attributes = [
-        'value'       => null,
-        'target'      => 'url',
-        'url'         => null,
-        'width'       => null,
-        'height'      => null,
-        'maxFileSize' => null,
+        'value'         => null,
+        'target'        => 'url',
+        'url'           => null,
+        'width'         => null,
+        'height'        => null,
+        'minWidth'      => 0,
+        'minHeight'     => 0,
+        'maxWidth'      => 'Infinity',
+        'maxHeight'     => 'Infinity',
+        'maxFileSize'   => null,
+        'staticBackdrop'=> false,
     ];
 
     /**
@@ -71,9 +67,7 @@ class Cropper extends Picture
     protected $inlineAttributes = [
         'accept',
         'accesskey',
-        'autocomplete',
         'autofocus',
-        'checked',
         'disabled',
         'form',
         'formaction',
@@ -81,23 +75,100 @@ class Cropper extends Picture
         'formmethod',
         'formnovalidate',
         'formtarget',
-        'list',
-        'max',
-        'maxlength',
-        'min',
-        'multiple',
         'name',
-        'pattern',
         'placeholder',
         'readonly',
         'required',
-        'size',
-        'src',
         'step',
         'tabindex',
-        'type',
         'value',
         'target',
         'url',
     ];
+
+    /**
+     * Set the minimum with of the resized image.
+     *
+     * @param int $width
+     *
+     * @return self
+     */
+    public function minWidth(int $width): self
+    {
+        $this->set('minWidth', $width);
+
+        return $this;
+    }
+
+    /**
+     * Set the minimum height of the resized image.
+     *
+     * @param int $height
+     *
+     * @return self
+     */
+    public function minHeight(int $height): self
+    {
+        $this->set('minHeight', $height);
+
+        return $this;
+    }
+
+    /**
+     * Set the maximum width of the resized image.
+     *
+     * @param int $width
+     *
+     * @return self
+     */
+    public function maxWidth(int $width): self
+    {
+        $this->set('maxWidth', $width);
+
+        return $this;
+    }
+
+    /**
+     * Set the maximum height of the resized image.
+     *
+     * @param int $height
+     *
+     * @return self
+     */
+    public function maxHeight(int $height): self
+    {
+        $this->set('maxHeight', $height);
+
+        return $this;
+    }
+
+    /**
+     * Set the minimum with and height of the resized image.
+     *
+     * @param int $size
+     *
+     * @return self
+     */
+    public function minCanvas(int $size): self
+    {
+        $this->set('minWidth', $size);
+        $this->set('minHeight', $size);
+
+        return $this;
+    }
+
+    /**
+     * Set the maximum with and height of the resized image.
+     *
+     * @param int $size
+     *
+     * @return self
+     */
+    public function maxCanvas(int $size): self
+    {
+        $this->set('maxWidth', $size);
+        $this->set('maxHeight', $size);
+
+        return $this;
+    }
 }

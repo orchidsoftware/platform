@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Layouts;
 
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Label;
 use Orchid\Screen\Fields\Radio;
 use Orchid\Screen\Layouts\Rows;
@@ -39,6 +39,7 @@ class SearchLayout extends Rows
                 $radio = Radio::make('type')
                     ->value(get_class($model))
                     ->horizontal()
+                    ->clear()
                     ->placeholder($model->presenter()->label());
 
                 if ($model instanceof $searchModel) {
@@ -48,10 +49,10 @@ class SearchLayout extends Rows
                 return $radio;
             });
 
-        $layouts->prepend(Label::make('search')->title(__('Choose record type:')));
+        $layouts->prepend(Label::make('search')->clear()->title(__('Choose record type:')));
 
         return [
-            Field::group($layouts->all()),
+            Group::make($layouts->all())->autoWidth(),
         ];
     }
 }

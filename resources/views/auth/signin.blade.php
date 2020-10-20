@@ -1,6 +1,8 @@
 <div class="form-group">
 
-    <label class="form-label">{{__('Email address')}}</label>
+    <label class="form-label">
+        {{__('Email address')}}
+    </label>
 
     {!!  \Orchid\Screen\Fields\Input::make('email')
         ->type('email')
@@ -14,7 +16,6 @@
 <div class="form-group">
     <label class="form-label w-100">
         {{__('Password')}}
-        <a href="{{ route('platform.password.request') }}" class="float-right small">{{__('Forgot your password?')}}</a>
     </label>
 
     {!!  \Orchid\Screen\Fields\Password::make('password')
@@ -35,7 +36,8 @@
     </div>
     <div class="form-group col-md-6 col-xs-12">
         <button id="button-login" type="submit" class="btn btn-default btn-block" tabindex="3">
-            <i class="icon-login text-xs mr-2"></i> {{__('Login')}}
+            <x-orchid-icon path="login" class="text-xs mr-2"/>
+            {{__('Login')}}
         </button>
     </div>
 </div>

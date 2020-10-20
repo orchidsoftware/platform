@@ -1,120 +1,115 @@
-<div class="row admin-wrapper border-top">
-    <div class="wrapper-lg">
-        <div class="mb-5">
-            <h1 class="text-dark font-thin m-b-sm"><i class="icon-directions mr-2"></i> Get Started</h1>
-            <p class="lead m-b-n">Develop corporate web applications faster than ever</p>
+<div class="bg-white rounded-top shadow-sm mb-3">
+
+    <div class="row no-gutters">
+        <div class="col col-lg-7 mt-6 p-4 pr-md-0">
+
+            <h2 class="mt-2 text-dark font-weight-light">
+                Hello, nice to see you!
+            </h2>
+
+            <p>
+                It is a fascinating project, and it’s easy enough to use that you might wish to dive right in.<br>
+                You are minutes away from creativity than ever before. Enjoy!
+            </p>
         </div>
-        <div class="row">
-            <div class="col-md-4 no-padder admin-element-item">
-                <div class="admin-element w-100">
-                    <h3 class="font-thin h3 text-black">
-                        <i class="icon-screen-desktop"></i><a
-                            href="https://orchid.software/en/docs/screens/">Screens</a>
-                    </h3>
-                    <div class="line line-dashed border-bottom mt-3 mb-1"></div>
-                    <div class="list-group no-bg no-borders pull-in auto">
-                        <div class="list-group-item admin-element-item">
-                            <a href="https://orchid.software/en/docs/screens/">
-                                <small class="text-muted">The main element of the platform are the screens described
-                                    by the layout hierarchy, according to which
-                                    Each element has properties that affect its appearance and behavior.<br/>
-                                </small>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 no-padder admin-element-item">
-                <div class="admin-element w-100">
-                    <h3 class="font-thin h3 text-black">
-                        <i class="icon-layers"></i> <a href="https://orchid.software/en/docs/layouts/">Layouts</a>
-                    </h3>
-                    <div class="line line-dashed border-bottom mt-3 mb-1"></div>
-                    <div class="list-group no-bg no-borders pull-in auto">
-                        <div class="list-group-item admin-element-item">
-                            <a href="https://orchid.software/en/docs/layouts/">
-                                <small class="text-muted">One of the elements of the presentation are “Layouts” that can
-                                    be displayed in different variations, if you try to explain briefly, it turns out
-                                    that this is the view on steroids.
-                                </small>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 no-padder admin-element-item">
-                <div class="admin-element w-100">
-                    <h3 class="font-thin h3 text-black">
-                        <i class="icon-list"></i> <a href="https://orchid.software/en/docs/field/">Fields</a>
-                    </h3>
-                    <div class="line line-dashed border-bottom mt-3 mb-1"></div>
-                    <div class="list-group no-bg no-borders pull-in auto">
-                        <div class="list-group-item admin-element-item">
-                            <a href="https://orchid.software/en/docs/field/">
-                                <small class="text-muted">Fields are used to generate the output form template and edit.
-                                    Allows you to create different parts of the interface and provide user interaction.
-                                </small>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="d-none d-lg-block col align-self-center text-right text-muted p-4">
+            <x-orchid-icon path="orchid" width="8em" height="auto"/>
         </div>
-        <div class="row">
-            <div class="col-md-4 no-padder admin-element-item">
-                <div class="admin-element w-100">
-                    <h3 class="font-thin h3 text-black">
-                        <i class="icon-bell"></i> <a href="https://orchid.software/en/docs/alert/">Notifications</a>
-                    </h3>
-                    <div class="line line-dashed border-bottom mt-3 mb-1"></div>
-                    <div class="list-group no-bg no-borders pull-in auto">
-                        <div class="list-group-item admin-element-item">
-                            <a href="https://orchid.software/en/docs/alert/">
-                                <small class="text-muted">A simple way to notify the user about the status of your
-                                    application. For example, they can inform the user about the completion of a lengthy
-                                    process or the arrival of a new message.
-                                </small>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 no-padder admin-element-item">
-                <div class="admin-element w-100">
-                    <h3 class="font-thin h3 text-black">
-                        <i class="icon-fingerprint"></i> <a href="https://orchid.software/en/docs/access/">Access</a>
-                    </h3>
-                    <div class="line line-dashed border-bottom mt-3 mb-1"></div>
-                    <div class="list-group no-bg no-borders pull-in auto">
-                        <div class="list-group-item admin-element-item">
-                            <a href="https://orchid.software/en/docs/access/">
-                                <small class="text-muted">
-                                    In ORCHID permissions can be added for both users and roles. A role is associated
-                                    with a set of permissions, not with a single user.
-                                </small>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 no-padder admin-element-item">
-                <div class="admin-element w-100">
-                    <h3 class="font-thin h3 text-black">
-                        <i class="icon-filter"></i> <a href="https://orchid.software/en/docs/filters/">Filters</a>
-                    </h3>
-                    <div class="line line-dashed border-bottom mt-3 mb-1"></div>
-                    <div class="list-group no-bg no-borders pull-in auto">
-                        <div class="list-group-item admin-element-item">
-                            <a href="https://orchid.software/en/docs/filters/">
-                                <small class="text-muted">Filters are used to simplify the search for records using a
-                                    typical filter. For example, if you want to filter the product catalog by
-                                    attributes, brands and etc.
-                                </small>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+    </div>
+
+    <div class="row bg-light m-0 p-4 border-top rounded-bottom">
+
+        <div class="col-md-6 my-2">
+            <h3 class="text-muted font-weight-light">
+                <x-orchid-icon path="book-open"/>
+
+                <span class="ml-3 text-dark">Explore the documentation</span>
+            </h3>
+            <p class="ml-md-5">
+                The package uses the Laravel framework.
+                If you are new to the framework or have previous experience, we recommend reading the complete
+                <a href="https://laravel.com/docs" target="_blank" class="text-u-l">documentation</a> from start to
+                finish.
+            </p>
+        </div>
+
+        <div class="col-md-6 my-2">
+            <h3 class="text-muted font-weight-light">
+                <x-orchid-icon path="rocket"/>
+
+                <span class="ml-3 text-dark">Quick start guide</span>
+            </h3>
+            <p class="ml-md-5">
+                Are you entirely new to Laravel Orchid? Don't worry, we all were once.
+                For a quick study of the main features,
+                be sure to check out the step-by-step tutorials
+                <a href="https://orchid.software/en/docs/quickstart" target="_blank" class="text-u-l"> see on the
+                    site</a>.
+            </p>
+        </div>
+
+        <div class="col-md-6 my-2">
+            <h3 class="text-muted font-weight-light">
+                <x-orchid-icon path="monitor"/>
+
+                <span class="ml-3 text-dark">The Screens</span>
+            </h3>
+            <p class="ml-md-5">
+                Screen design is hierarchical and declarative, rather than physical and imperative. You specify what
+                data should be displayed, how the controls manage that data are to be configured.
+            </p>
+        </div>
+
+        <div class="col-md-6 my-2">
+            <h3 class="text-muted font-weight-light">
+                <x-orchid-icon path="layers"/>
+
+                <span class="ml-3 text-dark">Layouts</span>
+            </h3>
+            <p class="ml-md-5">
+                It allows you to express many details so that the user interface can be interpreted and generated
+                automatically. But unlike various other tools that do this, the developer can also customize it with
+                custom templates.
+            </p>
+        </div>
+
+        <div class="col-md-6 my-2">
+            <h3 class="text-muted font-weight-light">
+                <x-orchid-icon path="star"/>
+
+                <span class="ml-3 text-dark">And one more thing</span>
+            </h3>
+            <p class="ml-md-5">
+                Control entire screens or user interface behaviors depending on Security permissions.
+
+                Create filters so that users can quickly find different segments of data.
+
+                One-time and personal notifications are a great way to notify what's going on in your app.
+
+                And much more!
+            </p>
+        </div>
+
+        <div class="col-md-6 my-2">
+            <h3 class="text-muted font-weight-light">
+                <x-orchid-icon path="help"/>
+
+                <span class="ml-3 text-dark">Community</span>
+            </h3>
+            <div class="ml-md-5">
+                <p>Stay up to date on the development of Laravel Orchid and reach out to the community with these
+                    helpful
+                    resources.</p>
+                <ul class="pl-4 m-0">
+                    <li>Follow <a href="https://twitter.com/orchid_platform" class="text-u-l">@orchid_platform on
+                            Twitter</a>.
+                    </li>
+                    <li>Join <a href="https://t.me/orchid_community" class="text-u-l">the official Telegram group</a>.
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
+
 </div>
+

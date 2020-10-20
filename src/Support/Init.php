@@ -53,7 +53,7 @@ class Init
     /**
      * The smallest of them, this defines the real limit.
      *
-     * @param string $format
+     * @param string|null $format
      *
      * @return int
      */

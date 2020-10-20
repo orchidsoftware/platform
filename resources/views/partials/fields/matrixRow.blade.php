@@ -1,14 +1,14 @@
 <tr>
     @foreach($columns as $column)
-        <th class="p-0">
-                        <textarea class="form-control border-0 no-resize"
-                                  rows="auto"
-                                  @if($keyValue)
-                                    name="{{$name}}[{{ $column }}]"
-                                  @else
-                                    name="{{$name}}[{{  $key ?? 0 }}][{{ $column }}]"
-                                  @endif
-                        >{{ $row[$column] ?? '' }}</textarea>
+
+        <th class="p-0 align-middle">
+            {!!
+               $fields[$column]
+                    ->value($row[$column] ?? '')
+                    ->prefix($name)
+                    ->id("$column-$key-$column")
+                    ->name($keyValue ? $column : "[$key][$column]")
+            !!}
         </th>
 
         @if ($loop->last)
@@ -17,7 +17,7 @@
                    data-action="fields--matrix#deleteRow"
                    class="text-xs text-muted"
                    title="Remove row">
-                    <i class="icon-trash"></i>
+                    <x-orchid-icon path="trash"/>
                 </a>
             </th>
         @endif

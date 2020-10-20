@@ -29,6 +29,18 @@ class Action extends Field implements Actionable
     ];
 
     /**
+     * @param string|null $name
+     *
+     * @return self
+     */
+    public function name(string $name = null): self
+    {
+        return $this->set('name', $name ?? '');
+    }
+
+    /**
+     * @deprecated
+     *
      * Align button to the right.
      *
      * @return static
@@ -63,13 +75,15 @@ class Action extends Field implements Actionable
     }
 
     /**
+     * @deprecated
+     *
      * Set the button as block.
      *
      * @return static
      */
     public function block(): self
     {
-        $class = $this->get('class').' pull-block';
+        $class = $this->get('class').' btn-block';
 
         $this->set('class', $class);
 
@@ -77,7 +91,7 @@ class Action extends Field implements Actionable
     }
 
     /**
-     * @param Repository $repository
+     * @param Repository|null $repository
      *
      * @throws \Throwable
      *

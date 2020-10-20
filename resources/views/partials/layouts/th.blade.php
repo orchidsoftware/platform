@@ -1,4 +1,4 @@
-<th width="{{$width}}" class="text-{{$align}}" data-column="{{ $slug }}">
+<th @empty(!$width) width="{{$width}}" @endempty class="text-{{$align}}" data-column="{{ $slug }}">
     <div>
         @if($sort)
             <a href="{{ $sortUrl }}"
@@ -6,7 +6,8 @@
                 {{$title}}
 
                 @if(is_sort($column))
-                    <i class="icon-sort-amount-{{get_sort($column)}}"></i>
+                    @php $sortIcon = 'sort-amount-'.get_sort($column); @endphp
+                    <x-orchid-icon :path="$sortIcon"/>
                 @endif
             </a>
         @else

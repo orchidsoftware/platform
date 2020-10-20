@@ -20,7 +20,6 @@ use Orchid\Support\Init;
  * @method Upload formmethod($value = true)
  * @method Upload formnovalidate($value = true)
  * @method Upload formtarget($value = true)
- * @method Upload multiple($value = true)
  * @method Upload name(string $value = null)
  * @method Upload placeholder(string $value = null)
  * @method Upload value($value = true)
@@ -72,48 +71,21 @@ class Upload extends Field
      */
     protected $inlineAttributes = [
         'accept',
-        'accesskey',
-        'autocomplete',
-        'autofocus',
-        'checked',
-        'disabled',
         'form',
         'formaction',
         'formenctype',
         'formmethod',
         'formnovalidate',
         'formtarget',
-        'list',
-        'max',
-        'maxlength',
-        'min',
-        'multiple',
         'name',
-        'pattern',
+        'multiple',
         'placeholder',
-        'readonly',
         'required',
-        'size',
-        'src',
-        'step',
-        'tabindex',
-        'type',
-        'value',
         'groups',
         'storage',
         'media',
         'closeOnAdd',
     ];
-
-    /**
-     * @param string|null $name
-     *
-     * @return self
-     */
-    public static function make(string $name = null): self
-    {
-        return (new static())->name($name);
-    }
 
     /**
      * Upload constructor.

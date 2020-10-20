@@ -17,6 +17,7 @@ use Orchid\Screen\Action;
  * @method Button parameters(array|object $name)
  * @method Button novalidate(bool $novalidate = true)
  * @method Button confirm(string $confirm = true)
+ * @method Button action(string $url)
  */
 class Button extends Action
 {
@@ -43,23 +44,20 @@ class Button extends Action
     ];
 
     /**
-     * Create instance of the button.
-     *
-     * @param string $name
-     *
-     * @return Button $name
+     * Button constructor.
      */
-    public static function make(string $name = ''): self
+    public function __construct()
     {
-        return (new static())
-            ->name($name)
-            ->addBeforeRender(function () use ($name) {
-                $url = url()->current();
-                $query = http_build_query($this->get('parameters'));
+        $this->addBeforeRender(function () {
+            if ($this->get('action') !== null) {
+                return;
+            }
 
-                $action = "{$url}/{$this->get('method')}?{$query}";
-                $this->set('action', $action);
-                $this->set('name', $name);
-            });
+            $url = url()->current();
+            $query = http_build_query($this->get('parameters'));
+
+            $action = rtrim("{$url}/{$this->get('method')}?{$query}", '/?');
+            $this->set('action', $action);
+        });
     }
 }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection as BaseCollection;
@@ -27,25 +26,15 @@ class RelationController extends Controller
             'key'    => $key,
             'scope'  => $scope,
             'append' => $append,
-        ] = collect($request->except(['search']))->map(static function ($item, $key) {
-            if ($item === null) {
-                return;
-            }
-
-            if ($key === 'scope') {
-                return Crypt::decrypt($item);
-            }
-
-            return Crypt::decryptString($item);
+        ] = collect($request->except(['search']))->map(static function ($item) {
+            return $item === null ? null : Crypt::decryptString($item);
         });
 
         /** @var Model $model */
         $model = new $model;
         $search = $request->get('search', '');
 
-        $method = is_a($model, Model::class) ? 'buildersItems' : 'getItems';
-
-        $items = $this->{$method}($model, $name, $key, $search, $scope, $append);
+        $items = $this->buildersItems($model, $name, $key, $search, $scope, $append);
 
         return response()->json($items);
     }
@@ -79,40 +68,5 @@ class RelationController extends Controller
             ->limit(10)
             ->get()
             ->pluck($append ?? $name, $key);
-    }
-
-    /**
-     * @param array|object|Model $model
-     * @param string             $name
-     * @param string             $key
-     * @param string             $search
-     * @param string|null        $scope
-     *
-     * @return Collection|array
-     */
-    private function getItems($model, string $name, string $key, string $search = null, string $scope = null): iterable
-    {
-        if (! is_array($model) && property_exists($model, 'search')) {
-            $model->search = $search;
-        }
-
-        /* Execution branch for source class */
-        if (is_null($scope)) {
-            $model = $model->handler();
-        }
-
-        $items = collect($model);
-
-        if (! is_iterable($model)) {
-            $items = collect($model->get());
-        }
-
-        if (! empty($search)) {
-            $items = $items->filter(static function ($item) use ($name, $search) {
-                return stripos($item[$name], $search) !== false;
-            });
-        }
-
-        return $items->take(10)->pluck($name, $key);
     }
 }

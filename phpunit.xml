@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit backupGlobals="false"
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         backupGlobals="false"
          backupStaticAttributes="false"
          bootstrap="vendor/autoload.php"
          colors="true"
@@ -11,42 +12,43 @@
          stopOnError="false"
          defaultTestSuite="Main"
          verbose="true"
->
-    <testsuites>
-        <testsuite name="Main">
-            <directory suffix="Test.php">./tests/Feature</directory>
-            <directory suffix="Test.php">./tests/Console</directory>
-            <directory suffix="Test.php">./tests/Unit</directory>
-        </testsuite>
-        <testsuite name="Browser">
-            <directory suffix="Test.php">./tests/Browser</directory>
-        </testsuite>
-    </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./src</directory>
-            <exclude>
-                <directory suffix=".blade.php">./src/</directory>
-            </exclude>
-        </whitelist>
-    </filter>
-    <php>
-        <env name="APP_NAME" value="ORCHID"/>
-        <env name="APP_ENV" value="testing"/>
-        <env name="APP_KEY" value="AckfSECXIvnK5r28GVIWUAxmbBSjTsmF"/>
-        <env name="APP_DEBUG" value="true"/>
-        <env name="APP_URL" value="http://127.0.0.1:8000"/>
-        <env name="BCRYPT_ROUNDS" value="4"/>
-        <env name="DASHBOARD_DOMAIN" value="127.0.0.1"/>
-        <env name="DASHBOARD_PREFIX" value="/dashboard"/>
-        <env name="CACHE_DRIVER" value="file"/>
-        <env name="SESSION_DRIVER" value="file"/>
-        <env name="SESSION_LIFETIME" value="120"/>
-        <env name="SCOUT_DRIVER" value="array"/>
-        <env name="SCOUT_QUEUE" value="true"/>
-        <env name="QUEUE_DRIVER" value="sync"/>
-    </php>
-    <logging>
-         <log type="coverage-clover" target="clover.xml"/>
-    </logging>
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage processUncoveredFiles="true">
+    <include>
+      <directory suffix=".php">./src</directory>
+    </include>
+    <exclude>
+      <directory suffix=".blade.php">./src/</directory>
+    </exclude>
+    <report>
+      <clover outputFile="clover.xml"/>
+    </report>
+  </coverage>
+  <testsuites>
+    <testsuite name="Main">
+      <directory suffix="Test.php">./tests/Feature</directory>
+      <directory suffix="Test.php">./tests/Console</directory>
+      <directory suffix="Test.php">./tests/Unit</directory>
+    </testsuite>
+    <testsuite name="Browser">
+      <directory suffix="Test.php">./tests/Browser</directory>
+    </testsuite>
+  </testsuites>
+  <php>
+    <env name="APP_NAME" value="ORCHID"/>
+    <env name="APP_ENV" value="testing"/>
+    <env name="APP_KEY" value="AckfSECXIvnK5r28GVIWUAxmbBSjTsmF"/>
+    <env name="APP_DEBUG" value="true"/>
+    <env name="APP_URL" value="http://127.0.0.1:8001"/>
+    <env name="BCRYPT_ROUNDS" value="4"/>
+    <env name="DASHBOARD_DOMAIN" value="127.0.0.1"/>
+    <env name="DASHBOARD_PREFIX" value="/dashboard"/>
+    <env name="CACHE_DRIVER" value="file"/>
+    <env name="SESSION_DRIVER" value="file"/>
+    <env name="SESSION_LIFETIME" value="120"/>
+    <env name="SCOUT_DRIVER" value="array"/>
+    <env name="SCOUT_QUEUE" value="true"/>
+    <env name="QUEUE_DRIVER" value="sync"/>
+  </php>
+  <logging/>
 </phpunit>

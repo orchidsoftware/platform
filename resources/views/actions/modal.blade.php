@@ -1,12 +1,20 @@
 @component($typeForm, get_defined_vars())
     <button type="button"
-            @attributes($attributes)
-            data-action="screen--base#targetModal"
-            data-modal-title="{{ $modalTitle ?? $title ??  '' }}"
-            data-modal-key="{{ $modal ?? '' }}"
-            data-modal-async="{{ $async }}"
-            data-modal-params='@json($asyncParameters)'
-            data-modal-action="{{ $action }}">
-        <i class="{{ $icon ?? '' }} mr-2"></i>{{ $name ?? '' }}
+            {{ $attributes }}
+            data-controller="screen--modal-toggle"
+            data-action="click->screen--modal-toggle#targetModal"
+            data-screen--modal-toggle-title="{{ $modalTitle ?? $title ??  '' }}"
+            data-screen--modal-toggle-key="{{ $modal ?? '' }}"
+            data-screen--modal-toggle-async="{{ $async }}"
+            data-screen--modal-toggle-params='@json($parameters)'
+            data-screen--modal-toggle-action="{{ $action }}"
+            data-screen--modal-toggle-open="{{ $open }}"
+    >
+
+        @isset($icon)
+            <x-orchid-icon :path="$icon" class="mr-2"/>
+        @endisset
+
+        {{ $name ?? '' }}
     </button>
 @endcomponent

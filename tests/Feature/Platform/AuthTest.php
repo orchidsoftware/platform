@@ -8,90 +8,69 @@ use Orchid\Tests\TestFeatureCase;
 
 class AuthTest extends TestFeatureCase
 {
-    public function testRouteDashboardLogin()
+    public function testRouteDashboardLogin(): void
     {
-        $response = $this->get(route('platform.login'));
-
-        $response
+        $this->get(route('platform.login'))
             ->assertOk()
             ->assertSee('type="email"', false)
             ->assertSee('type="password"', false);
     }
 
-    public function testRouteDashboardLoginAuth()
+    public function testRouteDashboardLoginAuth(): void
     {
-        $response = $this
-            ->actingAs($this->createAdminUser())
-            ->get(route('platform.login'));
-
-        $response
+        $this->actingAs($this->createAdminUser())
+            ->get(route('platform.login'))
             ->assertStatus(302)
             ->assertRedirect('/home');
     }
 
-    public function testRouteDashboardLoginAuthSuccess()
+    public function testRouteDashboardLoginAuthSuccess(): void
     {
-        $response = $this->post(route('platform.login.auth'), [
+        $this->post(route('platform.login.auth'), [
             'email'    => $this->createAdminUser()->email,
-            'password' => 'secret',
+            'password' => 'password',
             'remember' => 'on',
-        ]);
-
-        $response
+        ])
             ->assertStatus(302)
             ->assertRedirect(route(config('platform.index')))
             ->assertCookieNotExpired('lockUser');
     }
 
-    public function testRouteDashboardLoginAuthFail()
+    public function testRouteDashboardLoginAuthFail(): void
     {
-        $response = $this->post(route('platform.login.auth'), [
+        $this->post(route('platform.login.auth'), [
             'email'    => $this->createAdminUser()->email,
             'password' => 'Incorrect password',
-        ]);
-
-        $response
+        ])
             ->assertStatus(302)
             ->assertRedirect('/');
     }
 
-    public function testRouteDashboardPasswordRequest()
+    public function testRouteDashboardGuestLockAuth(): void
     {
-        $response = $this->get(route('platform.password.request'));
-
-        $response->assertOk()
-            ->assertSee('type="email"', false)
-            ->assertDontSee('type="password"', false);
-    }
-
-    public function testRouteDashboardPasswordReset()
-    {
-        $response = $this->get(route('platform.password.reset', '11111'));
-
-        $response->assertOk()
-            ->assertSee('type="email"', false)
-            ->assertSee('type="password"', false)
-            ->assertSee('"password_confirmation"', false);
-    }
-
-    public function testRouteDashboardPasswordResetAuth()
-    {
-        $response = $this->actingAs($this->createAdminUser())
-            ->get(route('platform.password.reset', '11111'));
-
-        $response
-            ->assertStatus(302)
-            ->assertRedirect('/home');
-    }
-
-    public function testRouteDashboardGuestLockAuth()
-    {
-        $response = $this->call('GET', route('platform.login.lock'), $parameters = [], $cookies = [
+        $this->call('GET', route('platform.login.lock'), $parameters = [], $cookies = [
             'lockUser' => 1,
-        ]);
-
-        $response
+        ])
             ->assertRedirect(route('platform.login'))
             ->assertCookieExpired('lockUser');
+    }
+
+    public function testRouteDashboardSwitchLogout(): void
+    {
+        $this
+            ->actingAs($this->createAdminUser())
+            ->post(route('platform.switch.logout'))
+            ->assertRedirect(route(config('platform.index')));
+    }
+
+    public function testRouteDashboardAuthLogout(): void
+    {
+        $auth = $this->actingAs($this->createAdminUser());
+
+        $auth->post(route('platform.logout'))
+            ->assertRedirect('/');
+
+        $auth->get(route('platform.index'))
+            ->assertRedirect(route('platform.login'));
     }
 }

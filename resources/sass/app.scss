@@ -1,5 +1,4 @@
 // Core variables and mixins
-@import "~open-color/open-color";
 @import "theme/variables";
 
 // Vendor
@@ -11,10 +10,9 @@
 @import "~cropperjs/dist/cropper";
 @import "~simplemde/dist/simplemde.min";
 @import "~flatpickr/dist/flatpickr.min";
-@import "~orchid-icons/src/scss/orchid-icons";
 @import "~leaflet/dist/leaflet";
 @import "~quill/dist/quill.snow";
-@import "~frappe-charts/dist/frappe-charts.min.css";
+@import "~frappe-charts/dist/frappe-charts.min";
 
 // App
 @import "core/mixins";
@@ -29,4 +27,4 @@
 @import "core/form";
 @import "plugins/dropzone";
 @import "plugins/load-opacity";
-@import "plugins/accardion";
+@import "plugins/accordion";

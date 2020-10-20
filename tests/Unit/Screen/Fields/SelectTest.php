@@ -24,10 +24,10 @@ class SelectTest extends TestFieldsUnitCase
     {
         parent::setUp();
 
-        $this->roles = factory(Role::class)->times(10)->create();
+        $this->roles = Role::factory()->times(10)->create();
     }
 
-    public function testInstance()
+    public function testInstance(): void
     {
         $select = Select::make('choice')
             ->title('Title About')
@@ -52,7 +52,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Think about what you want to tell', $view);
     }
 
-    public function testNeedRequire()
+    public function testNeedRequire(): void
     {
         $select = Select::make('choice')
             ->options([])
@@ -63,7 +63,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('required', $view);
     }
 
-    public function testSetValue()
+    public function testSetValue(): void
     {
         $select = Select::make('choice')
             ->value('second')
@@ -78,7 +78,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('value="second" selected', $view);
     }
 
-    public function testAutoFocus()
+    public function testAutoFocus(): void
     {
         $select = TextArea::make('about')
             ->autofocus();
@@ -88,7 +88,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('autofocus', $view);
     }
 
-    public function testEmptyForAssociativeArray()
+    public function testEmptyForAssociativeArray(): void
     {
         $options = [
             'first'  => 'First Value',
@@ -111,7 +111,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString($option, $view);
     }
 
-    public function testEmptyForNumericArray()
+    public function testEmptyForNumericArray(): void
     {
         $options = [
             1 => 'First Value',
@@ -134,7 +134,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString($option, $view);
     }
 
-    public function testEmptyFromModel()
+    public function testEmptyFromModel(): void
     {
         $select = Select::make('choice')
             ->empty('empty')
@@ -151,7 +151,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString($option, $view);
     }
 
-    public function testAttributesCanBeUsed()
+    public function testAttributesCanBeUsed(): void
     {
         $select = Select::make('choice')
             ->empty('empty')
@@ -179,5 +179,21 @@ class SelectTest extends TestFieldsUnitCase
         $option = '<option value="%s">%s</option>';
 
         return sprintf($option, $value, $name);
+    }
+
+    public function testStrictTypeCasting(): void
+    {
+        $select = Select::make('choice')
+            ->value('-')
+            ->options([
+                '-' => '-',
+                '0' => '0',
+                '1' => '1',
+            ]);
+
+        $view = self::minifyRenderField($select);
+
+        $this->assertStringContainsString('<option value="-" selected>-</option>', $view);
+        $this->assertStringContainsString('<option value="0">0</option>', $view);
     }
 }

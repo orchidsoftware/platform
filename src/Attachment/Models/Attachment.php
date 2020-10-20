@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
-use Mimey\MimeTypes;
+use Orchid\Attachment\MimeTypes;
 use Orchid\Filters\Filterable;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
@@ -90,7 +90,7 @@ class Attachment extends Model
     /**
      * Return the address by which you can access the file.
      *
-     * @param string $default
+     * @param string|null $default
      *
      * @return string|null
      */

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Fields;
 
 use DateTimeZone;
+use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
 
 /**
@@ -22,6 +23,8 @@ use Orchid\Screen\Field;
  */
 class TimeZone extends Field
 {
+    use Multipliable;
+
     /**
      * @var string
      */
@@ -47,7 +50,6 @@ class TimeZone extends Field
         'autofocus',
         'disabled',
         'form',
-        'multiple',
         'name',
         'required',
         'size',
@@ -55,23 +57,11 @@ class TimeZone extends Field
     ];
 
     /**
-     * @param string|null $name
-     *
-     * @return self
+     * TimeZone constructor.
      */
-    public static function make(string $name = null): self
+    public function __construct()
     {
-        return (new static())->name($name)->listIdentifiers();
-    }
-
-    /**
-     * @return self
-     */
-    public function multiple(): self
-    {
-        $this->attributes['multiple'] = 'multiple';
-
-        return $this;
+        $this->listIdentifiers();
     }
 
     /**
@@ -81,9 +71,10 @@ class TimeZone extends Field
      */
     public function listIdentifiers(int $time = DateTimeZone::ALL): self
     {
-        $timeZone = collect(DateTimeZone::listIdentifiers($time))->mapWithKeys(static function ($timezone) {
-            return [$timezone => $timezone];
-        })->toArray();
+        $timeZone = collect(DateTimeZone::listIdentifiers($time))
+            ->mapWithKeys(static function ($timezone) {
+                return [$timezone => $timezone];
+            })->toArray();
 
         $this->set('options', $timeZone);
 

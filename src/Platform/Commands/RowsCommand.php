@@ -37,7 +37,7 @@ class RowsCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return Dashboard::path('resources/stubs/rows.stub');
+        return Dashboard::path('stubs/rows.stub');
     }
 
     /**

@@ -1,6 +1,6 @@
 <div class="form-group">
     @isset($title)
-        <label for="{{$id}}">{{$title}}
+        <label for="{{$id}}" class="form-label">{{$title}}
             @if(isset($attributes['required']) && $attributes['required'])
                 <sup class="text-danger">*</sup>
             @endif
@@ -20,6 +20,7 @@
         <small class="form-text text-muted">{!!$help!!}</small>
     @endif
 </div>
+
 @isset($hr)
-    <div class="line line-dashed border-bottom line-lg"></div>
+    <div class="line line-dashed border-bottom my-3"></div>
 @endisset

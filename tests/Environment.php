@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
-use DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator;
-use DaveJamesMiller\Breadcrumbs\BreadcrumbsManager;
-use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
-use Orchestra\Testbench\Dusk\Options;
-use Orchid\Database\Seeds\OrchidDatabaseSeeder;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Orchid\Platform\Database\Seeders\OrchidDatabaseSeeder;
 use Orchid\Platform\Models\User;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
 use Orchid\Tests\App\ExemplarServiceProvider;
 use Sti3bas\ScoutArray\ScoutArrayEngineServiceProvider;
+use Tabuna\Breadcrumbs\Breadcrumbs;
+use Tabuna\Breadcrumbs\BreadcrumbsServiceProvider;
 use Watson\Active\Active;
 
 /**
@@ -43,27 +42,21 @@ trait Environment
             $this->loadMigrationsFrom(realpath('./database/migrations'));
         }
 
-        $this->withFactories(Dashboard::path('database/factories'));
+        Factory::guessFactoryNamesUsing(function ($factory) {
+            $factoryBasename = class_basename($factory);
+
+            return "Orchid\Platform\Database\Factories\\$factoryBasename".'Factory';
+        });
 
         $this->artisan('db:seed', [
             '--class' => OrchidDatabaseSeeder::class,
         ]);
-
-        $this->artisan('orchid:admin', [
-            'name'     => 'admin',
-            'email'    => 'admin@admin.com',
-            'password' => 'password',
-        ]);
-
-        if (env('GITHUB_TOKEN') !== null) {
-            Options::withoutUI();
-        }
     }
 
     /**
      * @param \Illuminate\Foundation\Application $app
      */
-    protected function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app): void
     {
         $config = config();
 
@@ -78,16 +71,6 @@ trait Environment
         ]);
         $config->set('scout.driver', 'array');
         $config->set('database.default', 'orchid');
-
-        $config->set('breadcrumbs', [
-            'view'                                     => 'breadcrumbs::bootstrap4',
-            'files'                                    => base_path('routes/breadcrumbs.php'),
-            'unnamed-route-exception'                  => false,
-            'missing-route-bound-breadcrumb-exception' => false,
-            'invalid-named-breadcrumb-exception'       => false,
-            'manager-class'                            => BreadcrumbsManager::class,
-            'generator-class'                          => BreadcrumbsGenerator::class,
-        ]);
     }
 
     /**
@@ -95,9 +78,10 @@ trait Environment
      *
      * @return array
      */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
+            BreadcrumbsServiceProvider::class,
             FoundationServiceProvider::class,
             ExemplarServiceProvider::class,
             ScoutArrayEngineServiceProvider::class,
@@ -109,7 +93,7 @@ trait Environment
      *
      * @return array
      */
-    protected function getPackageAliases($app)
+    protected function getPackageAliases($app): array
     {
         return [
             'Alert'       => Alert::class,

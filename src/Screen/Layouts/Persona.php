@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\View\View;
-use Orchid\Screen\Content;
 use Orchid\Screen\Contracts\Personable;
 
 class Persona extends Content

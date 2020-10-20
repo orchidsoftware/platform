@@ -24,10 +24,10 @@ class RelationTest extends TestFieldsUnitCase
     {
         parent::setUp();
 
-        $this->roles = factory(Role::class)->times(10)->create();
+        $this->roles = Role::factory()->times(10)->create();
     }
 
-    public function testInstance()
+    public function testInstance(): void
     {
         /** @var Role $current */
         $current = $this->roles->random();
@@ -43,7 +43,7 @@ class RelationTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Select role', $view);
     }
 
-    public function testInstanceArray()
+    public function testInstanceArray(): void
     {
         /** @var Role $current */
         $current = $this->roles->random();
@@ -59,7 +59,27 @@ class RelationTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Select roles', $view);
     }
 
-    public function testMultipleInstance()
+    public function testInstanceArrayWithStringPrimary(): void
+    {
+        $stringPrimaryClass = new class extends Role {
+            protected $primaryKey = 'slug';
+        };
+
+        /** @var Role $current */
+        $current = $this->roles->random();
+
+        $select = Relation::make('role')
+            ->title('Select roles')
+            ->fromModel(get_class(new $stringPrimaryClass), 'name')
+            ->value($current->getRoleSlug());
+
+        $view = self::renderField($select);
+
+        $this->assertStringContainsString($current->name, $view);
+        $this->assertStringContainsString('Select roles', $view);
+    }
+
+    public function testMultipleInstance(): void
     {
         /** @var Role $current */
         $current = $this->roles->random(2);
@@ -74,7 +94,7 @@ class RelationTest extends TestFieldsUnitCase
         $this->assertStringContainsString($current[1]->name, $view);
     }
 
-    public function testMultipleInstanceArray()
+    public function testMultipleInstanceArray(): void
     {
         /** @var Role $current */
         $current = $this->roles->random(2);
@@ -92,7 +112,7 @@ class RelationTest extends TestFieldsUnitCase
         $this->assertStringContainsString($current[1]->name, $view);
     }
 
-    public function testAJAXClass()
+    public function testAJAXClass(): void
     {
         $select = Relation::make('role.')
             ->fromClass(AjaxRecord::class, 'text')

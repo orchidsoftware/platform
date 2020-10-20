@@ -7,8 +7,8 @@ namespace Orchid\Tests\App\Screens;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Fields\Input;
-use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
 class ModalValidationScreen extends Screen
@@ -55,9 +55,7 @@ class ModalValidationScreen extends Screen
     /**
      * Views.
      *
-     * @throws \Throwable
-     *
-     * @return array
+     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): array
     {
@@ -66,7 +64,7 @@ class ModalValidationScreen extends Screen
                 Layout::rows([
                     Input::make('message')
                         ->title('Messages to display')
-                        ->placeholder('Hello word!')
+                        ->placeholder('Hello world!')
                         ->required(),
                 ]),
             ])->title('Validation modal message'),
@@ -78,7 +76,7 @@ class ModalValidationScreen extends Screen
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function showMessage(Request $request)
+    public function showMessage(Request $request): \Illuminate\Http\RedirectResponse
     {
         $request->validate([
             'message' => 'required|string|min:10',

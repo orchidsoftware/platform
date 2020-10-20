@@ -6,7 +6,10 @@ namespace Orchid\Platform\Http\Controllers\Auth;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Cookie\CookieJar;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use Orchid\Access\UserSwitch;
@@ -25,8 +28,6 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
-
     /**
      * Create a new controller instance.
      */
@@ -41,6 +42,52 @@ class LoginController extends Controller
     }
 
     /**
+     * Handle a login request to the application.
+     *
+     * @param Request $request
+     *
+     * @throws ValidationException
+     *
+     * @return JsonResponse|RedirectResponse
+     */
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email'    => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        $auth = Auth::guard()->attempt(
+            $request->only(['email', 'password']),
+            $request->filled('remember')
+        );
+
+        if ($auth) {
+            return $this->sendLoginResponse($request);
+        }
+
+        throw ValidationException::withMessages([
+            'email' => __('The details you entered did not match our records. Please double-check and try again.'),
+        ]);
+    }
+
+    /**
+     * Send the response after the user was authenticated.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    protected function sendLoginResponse(Request $request)
+    {
+        $request->session()->regenerate();
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 204)
+            : redirect()->intended(route(config('platform.index')));
+    }
+
+    /**
      * @return Factory|View
      */
     public function showLoginForm()
@@ -49,33 +96,9 @@ class LoginController extends Controller
     }
 
     /**
-     * Where to redirect users after login / registration.
+     * @param CookieJar $cookieJar
      *
-     * @return string
-     */
-    public function redirectTo()
-    {
-        return route(config('platform.index'));
-    }
-
-    /**
-     * Get the failed login response instance.
-     *
-     * @throws ValidationException
-     *
-     * @return void
-     */
-    protected function sendFailedLoginResponse()
-    {
-        throw ValidationException::withMessages([
-            $this->username() => [__('The details you entered did not match our records. Please double-check and try again.')],
-        ]);
-    }
-
-    /**
-     * @param \Illuminate\Cookie\CookieJar $cookieJar
-     *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function resetCookieLockMe(CookieJar $cookieJar)
     {
@@ -85,12 +108,32 @@ class LoginController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function switchLogout()
     {
         UserSwitch::logout();
 
         return redirect()->route(config('platform.index'));
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    public function logout(Request $request)
+    {
+        Auth::guard()->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 204)
+            : redirect('/');
     }
 }
