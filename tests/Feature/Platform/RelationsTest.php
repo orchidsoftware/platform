@@ -86,7 +86,10 @@ class RelationsTest extends TestFeatureCase
             'model' => Crypt::encryptString(EmptyUserModel::class),
             'name'  => Crypt::encryptString('email'),
             'key'   => Crypt::encryptString('id'),
-            'scope' => Crypt::encryptString($scope),
+            'scope' => Crypt::encrypt([
+                'name'       => $scope,
+                'parameters' => [],
+            ]),
         ];
 
         if ($append !== null) {
