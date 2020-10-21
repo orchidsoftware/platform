@@ -140,7 +140,7 @@ class RelationTest extends TestFieldsUnitCase
     {
         $select = Relation::make('users')
             ->fromClass(EmptyUserModel::class, 'name')
-            ->applyScope('exampleScope', 1, 'string' , ['foo', 'bar']);
+            ->applyScope('exampleScope', 1, 'string', ['foo', 'bar']);
 
         $view = self::renderField($select);
 
