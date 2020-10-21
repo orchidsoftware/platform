@@ -7,6 +7,7 @@ namespace App\Orchid\Screens\User;
 use App\Orchid\Layouts\User\UserEditLayout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
@@ -117,7 +118,10 @@ class UserProfileScreen extends Screen
     {
         $request->validate([
             'user.name'  => 'required|string',
-            'user.email' => 'required|unique:users,email,'.$request->user()->id,
+            'role.email' => [
+                'required',
+                Rule::unique(User::class, 'email')->ignore($request->user()),
+            ],
         ]);
 
         $request->user()

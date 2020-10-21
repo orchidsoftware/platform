@@ -7,6 +7,7 @@ namespace App\Orchid\Screens\Role;
 use App\Orchid\Layouts\Role\RoleEditLayout;
 use App\Orchid\Layouts\Role\RolePermissionLayout;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
@@ -97,7 +98,10 @@ class RoleEditScreen extends Screen
     public function save(Role $role, Request $request)
     {
         $request->validate([
-            'role.slug' => 'required|unique:roles,slug,'.$role->id,
+            'role.slug' => [
+                'required',
+                Rule::unique(Role::class, 'slug')->ignore($role),
+            ],
         ]);
 
         $role->fill($request->get('role'));
