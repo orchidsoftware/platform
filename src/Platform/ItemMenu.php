@@ -183,7 +183,11 @@ class ItemMenu
     {
         $this->route = route($name, $parameters, $absolute);
 
-        $this->active([$this->route, $this->route.'/*']);
+        $this->active([
+            $this->route,
+            $this->route.'?*',
+            $this->route.'/*',
+        ]);
 
         return $this;
     }
