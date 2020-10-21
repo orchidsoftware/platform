@@ -284,6 +284,20 @@ class Dashboard
     }
 
     /**
+     * Get all registered permissions with the enabled state.
+     *
+     * @return Collection
+     */
+    public function getAllowAllPermission(): Collection
+    {
+        return $this->getPermission()
+            ->collapse()
+            ->reduce(static function (Collection $permissions, array $item) {
+                return $permissions->put($item['slug'], true);
+            }, collect());
+    }
+
+    /**
      * @param string $key
      *
      * @return $this

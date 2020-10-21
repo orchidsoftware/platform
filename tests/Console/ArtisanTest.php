@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Console;
 
+use Orchid\Platform\Models\User;
+use Orchid\Support\Facades\Dashboard;
 use Orchid\Tests\TestConsoleCase;
 
 class ArtisanTest extends TestConsoleCase
@@ -89,6 +91,19 @@ class ArtisanTest extends TestConsoleCase
             ->expectsQuestion('What is your email?', 'testConsoleCreateUser@console.loc')
             ->expectsQuestion('What is the password?', 'testConsoleCreateUser')
             ->expectsOutput('User exist');
+
+        $user = User::factory()->create([
+            'permissions' => [],
+        ]);
+
+        $this->assertEquals([], $user->permissions);
+
+        $this->artisan('orchid:admin', ['--id' => $user->id])
+            ->expectsOutput('User permissions updated.');
+
+        $user->refresh();
+
+        $this->assertEquals(Dashboard::getAllowAllPermission()->toArray(), $user->permissions);
     }
 
     public function testArtisanOrchidInstall(): void
