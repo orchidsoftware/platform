@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 9.5.0 - 2020-10-21
+
+### Added
+- Relation scope parameters [#1085](https://github.com/orchidsoftware/platform/pull/1085)
+- Option for creating admin command. Changing only the permissions column [#1319](https://github.com/orchidsoftware/platform/pull/1319)
+
+### Changed
+- Automatic array wrapping when using modal
+
+### Fixed
+- Scaling on iOS
+- Btn class not working on Link [#1291](https://github.com/orchidsoftware/platform/pull/1291) [#1276](https://github.com/orchidsoftware/platform/issues/1276)
+- Passing null to postgresql database during validation
+- Do not escaped the value of a geographic map [#1318](https://github.com/orchidsoftware/platform/issues/1318)
+- Escaped textarea value
+- Improved login page padding on mobile devices
+- Display of indents for the icon if there is no text
+- Show active element menu with get parameters
+
 ## 9.4.4 - 2020-10-19
 
 ### Fixed
