@@ -37,11 +37,12 @@ A free [Laravel](https://laravel.com) package that abstracts standard business l
 * [Global Community](https://t.me/orchid_community)
 * [Russia Community](https://t.me/orchid_russian_community)
 
+
 ## Donate & Support
 
-Since a healthy open source ecosystem creates real value for the software industry, 
-I believe it is fair for the developers [to reward their work with real money](https://www.paypal.me/tabuna/10usd). &#x1F60A;
+<a href="https://opencollective.com/orchid#backers" target="_blank"><img src="https://opencollective.com/orchid/backers.svg?width=400&avatarHeight=36"></a>
 
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/orchid#backer)]
 
 ## License
 
