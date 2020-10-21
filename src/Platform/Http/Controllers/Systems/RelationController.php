@@ -28,12 +28,11 @@ class RelationController extends Controller
             'scope'  => $scope,
             'append' => $append,
         ] = collect($request->except(['search']))->map(static function ($item, $key) {
-
             if ($item === null) {
                 return null;
             }
 
-            if($key === 'scope'){
+            if ($key === 'scope') {
                 return  Crypt::decrypt($item);
             }
 

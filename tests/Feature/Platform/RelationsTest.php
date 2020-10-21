@@ -87,7 +87,7 @@ class RelationsTest extends TestFeatureCase
         ]);
 
         $response->assertJson([
-            $user->id => $user->email
+            $user->id => $user->email,
         ]);
     }
 
