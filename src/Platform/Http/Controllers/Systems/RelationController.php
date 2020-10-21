@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection as BaseCollection;
@@ -26,8 +27,17 @@ class RelationController extends Controller
             'key'    => $key,
             'scope'  => $scope,
             'append' => $append,
-        ] = collect($request->except(['search']))->map(static function ($item) {
-            return $item === null ? null : Crypt::decryptString($item);
+        ] = collect($request->except(['search']))->map(static function ($item, $key) {
+
+            if ($item === null) {
+                return null;
+            }
+
+            if($key === 'scope'){
+                return  Crypt::decrypt($item);
+            }
+
+            return Crypt::decryptString($item);
         });
 
         /** @var Model $model */
@@ -44,14 +54,21 @@ class RelationController extends Controller
      * @param string      $name
      * @param string      $key
      * @param string|null $search
-     * @param array       $scope
+     * @param array|null  $scope
      * @param string|null $append
      *
      * @return mixed
      */
-    private function buildersItems(Model $model, string $name, string $key, string $search = null, array $scope = [], string $append = null)
+    private function buildersItems(
+        Model $model,
+        string $name,
+        string $key,
+        string $search = null,
+        ?array $scope = [],
+        ?string $append = null)
     {
         if ($scope !== null) {
+            /** @var Collection|array $model */
             $model = $model->{$scope['name']}(...$scope['parameters']);
         }
 

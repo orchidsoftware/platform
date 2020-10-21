@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Screen\Fields;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Str;
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Fields\Relation;
 use Orchid\Tests\App\AjaxRecord;
+use Orchid\Tests\App\EmptyUserModel;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 /**
@@ -121,5 +124,47 @@ class RelationTest extends TestFieldsUnitCase
         $view = self::renderField($select);
 
         $this->assertStringContainsString('Record 1', $view);
+    }
+
+    public function testNotScope(): void
+    {
+        $select = Relation::make('users')
+            ->fromClass(EmptyUserModel::class, 'name');
+
+        $view = self::renderField($select);
+
+        $this->assertStringContainsString('data-fields--relation-scope=""', $view);
+    }
+
+    public function testScopeWithAttributes(): void
+    {
+        $select = Relation::make('users')
+            ->fromClass(EmptyUserModel::class, 'name')
+            ->applyScope('exampleScope', 1, 'string' , ['foo', 'bar']);
+
+        $view = self::renderField($select);
+
+        $crypt = Str::between($view, 'data-fields--relation-scope="', '=="');
+
+        $this->assertEquals([
+            'name'       => lcfirst('exampleScope'),
+            'parameters' => [1, 'string', ['foo', 'bar']],
+        ], Crypt::decrypt($crypt));
+    }
+
+    public function testScopeWithNotAttributes(): void
+    {
+        $select = Relation::make('users')
+            ->fromClass(EmptyUserModel::class, 'name')
+            ->applyScope('exampleScope');
+
+        $view = self::renderField($select);
+
+        $crypt = Str::between($view, 'data-fields--relation-scope="', '=="');
+
+        $this->assertEquals([
+            'name'       => lcfirst('exampleScope'),
+            'parameters' => [],
+        ], Crypt::decrypt($crypt));
     }
 }

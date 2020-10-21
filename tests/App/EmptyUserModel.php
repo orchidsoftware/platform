@@ -55,4 +55,15 @@ class EmptyUserModel extends Model
     {
         return $this->attributes['name'].' ('.$this->attributes['email'].')';
     }
+
+    /**
+     * @param Builder $query
+     * @param int     $id
+     *
+     * @return Builder
+     */
+    public function scopeAsFilerId(Builder $query, int $id): Collection
+    {
+        return $query->where('id', $id)->get();
+    }
 }

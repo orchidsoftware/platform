@@ -31,20 +31,20 @@ class RelationsTest extends TestFeatureCase
     public function scopeList(): array
     {
         return [
-            ['asBuilder'],
-            ['asCollection'],
-            ['asArray'],
+            [['name' => 'asBuilder', 'parameters' => []]],
+            [['name' => 'asCollection', 'parameters' => []]],
+            [['name' => 'asArray', 'parameters' => []]],
         ];
     }
 
     /**
-     * @param string $scope
+     * @param array $scope
      *
      * @dataProvider scopeList
      *
      * @throws \Throwable
      */
-    public function testScopeModel(string $scope): void
+    public function testScopeModel(array $scope): void
     {
         $response = $this->getScope($scope);
         $json = $this->users->pluck('email', 'id')->toArray();
@@ -53,13 +53,13 @@ class RelationsTest extends TestFeatureCase
     }
 
     /**
-     * @param string $scope
+     * @param array $scope
      *
      * @dataProvider scopeList
      *
      * @throws \Throwable
      */
-    public function testAppendModel(string $scope): void
+    public function testAppendModel(array $scope): void
     {
         $response = $this->getScope($scope, 'full');
 
@@ -75,22 +75,39 @@ class RelationsTest extends TestFeatureCase
     }
 
     /**
-     * @param string      $scope
+     * @throws \Throwable
+     */
+    public function testParamsForScopeModel(): void
+    {
+        $user = $this->users->first();
+
+        $response = $this->getScope([
+            'name'       => 'asFilerId',
+            'parameters' => [$user->id],
+        ]);
+
+        $response->assertJson([
+            $user->id => $user->email
+        ]);
+    }
+
+    /**
+     * @param array|null  $scope
      * @param string|null $append
      *
      * @return TestResponse
      */
-    private function getScope(string $scope, string $append = null): TestResponse
+    private function getScope(array $scope = null, string $append = null): TestResponse
     {
         $params = [
             'model' => Crypt::encryptString(EmptyUserModel::class),
             'name'  => Crypt::encryptString('email'),
             'key'   => Crypt::encryptString('id'),
-            'scope' => Crypt::encrypt([
-                'name'       => $scope,
-                'parameters' => [],
-            ]),
         ];
+
+        if ($scope !== null) {
+            $params['scope'] = Crypt::encrypt($scope);
+        }
 
         if ($append !== null) {
             $params['append'] = Crypt::encryptString($append);
