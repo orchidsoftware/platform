@@ -43,7 +43,6 @@ class Map extends Field
     protected $inlineAttributes = [
         'name',
         'required',
-        'value',
         'height',
     ];
 }
