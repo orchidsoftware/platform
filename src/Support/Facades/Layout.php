@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Support\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use Orchid\Screen\Layout as BaseLayout;
 use Orchid\Screen\LayoutFactory;
 use Orchid\Screen\Layouts\Accordion;
 use Orchid\Screen\Layouts\Blank;
@@ -26,13 +27,13 @@ use Orchid\Screen\Layouts\Wrapper;
  * @method static Component component(string $component)
  * @method static Rows rows(array $fields)
  * @method static Table table(string $target, array $columns)
- * @method static Columns columns(array $layouts)
- * @method static Tabs tabs(array $layouts)
- * @method static Modal modal(string $key, array $layouts)
- * @method static Blank blank(array $layouts)
+ * @method static Columns columns(BaseLayout[] $layouts)
+ * @method static Tabs tabs(BaseLayout[] $layouts)
+ * @method static Modal modal(string $key, BaseLayout[]|BaseLayout $layouts)
+ * @method static Blank blank(BaseLayout[] $layouts)
  * @method static Collapse collapse(array $fields)
  * @method static Wrapper wrapper(string $template, array $layouts)
- * @method static Accordion accordion(array $layouts)
+ * @method static Accordion accordion(BaseLayout[] $layouts)
  * @method static Selection selection(array $filters)
  */
 class Layout extends Facade

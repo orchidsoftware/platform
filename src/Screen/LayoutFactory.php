@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Traits\Macroable;
 use Orchid\Screen\Layouts\Accordion;
 use Orchid\Screen\Layouts\Blank;
@@ -133,13 +134,15 @@ class LayoutFactory
     }
 
     /**
-     * @param string $key
-     * @param array  $layouts
+     * @param string          $key
+     * @param Layout|Layout[] $layouts
      *
      * @return Modal
      */
-    public static function modal(string $key, array $layouts): Modal
+    public static function modal(string $key, $layouts): Modal
     {
+        $layouts = Arr::wrap($layouts);
+
         return new class($key, $layouts) extends Modal {
         };
     }
@@ -205,7 +208,7 @@ class LayoutFactory
     {
         return new class($filters) extends Selection {
             /**
-             * @var sting[]
+             * @var string[]
              */
             protected $filters;
 
