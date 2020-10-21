@@ -67,7 +67,7 @@ class ItemMenu
     public $active = [];
 
     /**
-     * @var string
+     * @var string|null
      */
     public $permission;
 
@@ -82,11 +82,11 @@ class ItemMenu
     public $place;
 
     /**
-     * @param string $permission
+     * @param string|null $permission
      *
      * @return ItemMenu
      */
-    public function permission(string $permission): self
+    public function permission(?string $permission): self
     {
         $this->permission = $permission;
 

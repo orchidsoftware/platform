@@ -154,7 +154,7 @@ class Relation extends Field
                 $class->value = $value;
             }
 
-            $class = $class->{$scope}();
+            $class = $class->{$scope['name']}(...$scope['parameters']);
 
             $item = collect($class)
                 ->whereIn($key, $value)
@@ -176,14 +176,18 @@ class Relation extends Field
 
     /**
      * @param string $scope
+     * @param array  $parameters
      *
      * @return Relation
      */
-    public function applyScope(string $scope): self
+    public function applyScope(string $scope, ...$parameters): self
     {
-        $scope = lcfirst($scope);
-        $this->set('scope', $scope);
-        $this->set('relationScope', Crypt::encryptString($scope));
+        $data = [
+            'name'       => lcfirst($scope),
+            'parameters' => $parameters,
+        ];
+        $this->set('scope', $data);
+        $this->set('relationScope', Crypt::encrypt($data));
 
         return $this;
     }

@@ -4,6 +4,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 9.4.4 - 2020-10-19
+
+### Fixed
+- Escape inline attributes [#1313](https://github.com/orchidsoftware/platform/pull/1313)
+
+## 9.4.3 - 2020-10-17
+
+### Changed
+- Updated dependencies
+
+### Fixed
+- Fixed filters overlay for table [#1145](https://github.com/orchidsoftware/platform/issues/1145)
+- Fixed `ob_*` behavior when using the Blade in PHPUnit tests
+- Removed optional tags
+- Removed dash when a description is empty
+- Display of pagination for long horizontal tables.
+
+## 9.4.2 - 2020-10-13
+
+### Fixed
+- Allow passing `null` in Menu permission
+
+## 9.4.1 - 2020-10-11
+
+### Fixed
+- Quotes break the Quill editor [#1292](https://github.com/orchidsoftware/platform/issues/1292)
+- Corrected Users listing heading label. [#1289](https://github.com/orchidsoftware/platform/pull/1289), [#1273](https://github.com/orchidsoftware/platform/issues/1273)
+
 ## 9.4.0 - 2020-10-08
 
 ### Added

@@ -12,8 +12,7 @@
 
 ## Introduction
 
-It is a package for creating administration-style applications for the [Laravel](https://laravel.com).
-It allows you to abstract the typical patterns of business applications so that developers can quickly implement beautiful and elegant interfaces without much effort. The main places of application are back-office applications, admin panels, content management systems, etc.
+A free [Laravel](https://laravel.com) package that abstracts standard business logic and allows code-driven rapid application development of back office applications like admin panels and dashboards.
 
 <a href="https://raw.githubusercontent.com/orchidsoftware/platform/master/.github/IMAGES/promo-full.png">
 <img src="https://raw.githubusercontent.com/orchidsoftware/platform/master/.github/IMAGES/promo-slim.png" alt="Laravel Orchid Platform" align="right" />

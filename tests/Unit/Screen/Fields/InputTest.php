@@ -68,4 +68,18 @@ class InputTest extends TestFieldsUnitCase
         $this->assertStringContainsString('data-location="Russia"', $input);
         $this->assertStringContainsString('data-hello="world!"', $input);
     }
+
+    public function testEscapeAttributes(): void
+    {
+        $input = (string) Input::make('name')->value('valueQuote"');
+
+        $this->assertStringContainsString('value="valueQuote&quot;"', $input);
+    }
+
+    public function testRemoveBooleanAttributes(): void
+    {
+        $input = (string) Input::make('name')->required(false);
+
+        $this->assertStringNotContainsString('required', $input);
+    }
 }

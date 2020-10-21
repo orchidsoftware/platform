@@ -1,5 +1,9 @@
 <div class="dropdown d-inline-block">
-    <button class="btn btn-sm btn-link dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+    <button class="btn btn-sm btn-link dropdown-toggle"
+            type="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            data-boundary="viewport"
             aria-expanded="false">
         <x-orchid-icon path="filter"/>
     </button>
