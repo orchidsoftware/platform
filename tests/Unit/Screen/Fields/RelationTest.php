@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
 use Orchid\Platform\Models\Role;
+use Orchid\Platform\Models\User;
 use Orchid\Screen\Fields\Relation;
 use Orchid\Tests\App\AjaxRecord;
 use Orchid\Tests\App\EmptyUserModel;
@@ -23,11 +24,17 @@ class RelationTest extends TestFieldsUnitCase
      */
     protected $roles;
 
+    /**
+     * @var Collection|\Illuminate\Database\Eloquent\Model|mixed
+     */
+    protected $users;
+
     public function setUp(): void
     {
         parent::setUp();
 
         $this->roles = Role::factory()->times(10)->create();
+        $this->users = User::factory()->times(10)->create();
     }
 
     public function testInstance(): void
@@ -166,5 +173,27 @@ class RelationTest extends TestFieldsUnitCase
             'name'       => lcfirst('exampleScope'),
             'parameters' => [],
         ], Crypt::decrypt($crypt));
+    }
+
+    public function testScopeWithInstance(): void
+    {
+        /** @var User $current */
+        $current = $this->users->random();
+
+        // With parameters
+        $select = Relation::make('users')
+            ->value($current->id)
+            ->fromClass(EmptyUserModel::class, 'name')
+            ->applyScope('asFilerId', $current->id);
+
+        $this->assertStringContainsString($current->name, self::renderField($select));
+
+        // Invalid parameter
+        $select = Relation::make('users')
+            ->value($current->id)
+            ->fromClass(EmptyUserModel::class, 'name')
+            ->applyScope('asFilerId', 0);
+
+        $this->assertStringNotContainsString($current->name, self::renderField($select));
     }
 }
