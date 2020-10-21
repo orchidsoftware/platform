@@ -1,4 +1,6 @@
-<p align="center"> <a href="https://orchid.software/"><img src="https://orchid.software/assets/img/logo-laravel-style.svg" alt="Laravel Orchid" height="48"></a></p>
+<p align="center"> 
+ <a href="https://orchid.software/"><img src="https://orchid.software/assets/img/logo-laravel-style.svg" alt="Laravel Orchid" height="48"></a>
+</p>
 
 
 <h4 align="center">For the full documentation, visit <a href="http://orchid.software">orchid.software</a>.</h4>
@@ -15,7 +17,7 @@
 A free [Laravel](https://laravel.com) package that abstracts standard business logic and allows code-driven rapid application development of back office applications like admin panels and dashboards.
 
 <a href="https://raw.githubusercontent.com/orchidsoftware/platform/master/.github/IMAGES/promo-full.png">
-<img src="https://raw.githubusercontent.com/orchidsoftware/platform/master/.github/IMAGES/promo-slim.png" alt="Laravel Orchid Platform" align="right" />
+  <img src="https://raw.githubusercontent.com/orchidsoftware/platform/master/.github/IMAGES/promo-full.png" alt="Laravel Orchid Platform" align="center" />
 </a>
 
 
