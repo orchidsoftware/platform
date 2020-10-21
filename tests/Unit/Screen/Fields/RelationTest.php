@@ -122,21 +122,10 @@ class RelationTest extends TestFieldsUnitCase
         $this->assertStringContainsString($current[1]->name, $view);
     }
 
-    public function testAJAXClass(): void
-    {
-        $select = Relation::make('role.')
-            ->fromClass(AjaxRecord::class, 'text')
-            ->value(1);
-
-        $view = self::renderField($select);
-
-        $this->assertStringContainsString('Record 1', $view);
-    }
-
     public function testNotScope(): void
     {
         $select = Relation::make('users')
-            ->fromClass(EmptyUserModel::class, 'name');
+            ->fromModel(EmptyUserModel::class, 'name');
 
         $view = self::renderField($select);
 
@@ -146,7 +135,7 @@ class RelationTest extends TestFieldsUnitCase
     public function testScopeWithAttributes(): void
     {
         $select = Relation::make('users')
-            ->fromClass(EmptyUserModel::class, 'name')
+            ->fromModel(EmptyUserModel::class, 'name')
             ->applyScope('exampleScope', 1, 'string', ['foo', 'bar']);
 
         $view = self::renderField($select);
