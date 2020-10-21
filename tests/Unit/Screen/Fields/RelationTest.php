@@ -10,7 +10,6 @@ use Illuminate\Support\Str;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Fields\Relation;
-use Orchid\Tests\App\AjaxRecord;
 use Orchid\Tests\App\EmptyUserModel;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
