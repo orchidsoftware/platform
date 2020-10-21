@@ -70,21 +70,6 @@ class Quill extends Field
         'required',
         'step',
         'tabindex',
-        'value',
         'height',
     ];
-
-    /**
-     * Quill constructor.
-     */
-    public function __construct()
-    {
-        $this->addBeforeRender(function () {
-            $toolbar = $this->get('toolbar');
-            $value = $this->get('value', '');
-
-            $this->set('toolbar', json_encode($toolbar));
-            $this->set('value', htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
-        });
-    }
 }

@@ -25,9 +25,11 @@ export default class extends Controller {
             this.selectLocalImage();
         });
 
+        let value = JSON.parse(this.data.get("value"))
+
         // set value
         // editor.setText(input.value);
-        this.editor.root.innerHTML = input.value;
+        this.editor.root.innerHTML = input.value = value;
 
         // save value
         this.editor.on('text-change', () => {
