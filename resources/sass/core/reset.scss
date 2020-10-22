@@ -508,42 +508,6 @@ blockquote {
   }
 }
 
-.table-bordered {
-  border-color: $table-border-color;
-  > tbody {
-    > tr {
-      > td {
-        border-color: $table-border-color;
-      }
-    }
-  }
-  > thead > tr > th {
-    border-color: $table-border-color;
-  }
-}
-
-.table-striped {
-  > tbody {
-    > tr {
-      &:nth-child(odd) {
-        > td,
-        > th {
-          background-color: $table-striped-color;
-        }
-      }
-    }
-  }
-  > thead {
-    > th {
-      background-color: $table-striped-color;
-      border-right: 1px solid $table-border-color;
-      &:last-child {
-        border-right: none
-      }
-    }
-  }
-}
-
 .well, pre {
   background-color: $light;
   border-color: $border-color;
