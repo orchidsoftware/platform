@@ -35,8 +35,7 @@ class DateRangeTest extends TestFieldsUnitCase
 
         $view = self::renderField($field);
 
-        $this->assertStringContainsString(sprintf('value="%s"',  $start->toDateTimeString()), $view);
-        $this->assertStringContainsString(sprintf('value="%s"',  $end->toDateTimeString()), $view);
+        $this->assertStringContainsString(sprintf('value="%s"', $start->toDateTimeString()), $view);
+        $this->assertStringContainsString(sprintf('value="%s"', $end->toDateTimeString()), $view);
     }
-
 }
