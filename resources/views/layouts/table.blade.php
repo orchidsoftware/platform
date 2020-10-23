@@ -4,7 +4,7 @@
 >
 
     <div class="table-responsive">
-        <table class="table @if($striped) table-striped @endif">
+        <table class="table @if($striped) table-striped @endif @if($bordered) table-bordered @endif">
             <thead>
                 <tr>
                     @foreach($columns as $column)
