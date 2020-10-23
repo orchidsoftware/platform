@@ -64,6 +64,7 @@ abstract class Table extends Layout
             'textNotFound' => $this->textNotFound(),
             'subNotFound'  => $this->subNotFound(),
             'striped'      => $this->striped(),
+            'bordered'     => $this->bordered(),
             'slug'         => $this->getSlug(),
         ]);
     }
@@ -96,6 +97,14 @@ abstract class Table extends Layout
      * @return bool
      */
     protected function striped(): bool
+    {
+        return false;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function bordered(): bool
     {
         return false;
     }
