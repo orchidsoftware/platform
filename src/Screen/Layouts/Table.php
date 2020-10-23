@@ -94,6 +94,8 @@ abstract class Table extends Layout
     }
 
     /**
+     * Usage for zebra-striping to any table row.
+     *
      * @return bool
      */
     protected function striped(): bool
@@ -102,6 +104,8 @@ abstract class Table extends Layout
     }
 
     /**
+     * Usage for borders on all sides of the table and cells.
+     *
      * @return bool
      */
     protected function bordered(): bool
