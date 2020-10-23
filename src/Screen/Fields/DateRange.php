@@ -31,6 +31,5 @@ class DateRange extends Field
     protected $inlineAttributes = [
         'form',
         'name',
-        'value',
     ];
 }

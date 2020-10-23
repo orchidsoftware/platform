@@ -9,7 +9,7 @@
                        name="{{ $attributes['name'] }}[start]"
                        id='start_{{ $attributes['name'] }}'
                        data-target="fields--datetime.instance"
-                       value="{{ $attributes['value']['start'] ?? null }}"
+                       value="{{ $value['start'] ?? null }}"
                        class="form-control">
             </div>
         </div>
@@ -21,7 +21,7 @@
                        name="{{ $attributes['name'] }}[end]"
                        data-target="fields--datetime.instance"
                        id='end_{{ \Illuminate\Support\Str::slug($attributes['name']) }}'
-                       value="{{ $attributes['value']['end'] ?? null }}"
+                       value="{{ $value['end'] ?? null }}"
                        class="form-control">
             </div>
         </div>
