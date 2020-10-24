@@ -29,6 +29,16 @@ class Action extends Field implements Actionable
     ];
 
     /**
+     * A set of attributes for the assignment
+     * of which will automatically translate them.
+     *
+     * @var array
+     */
+    protected $translations = [
+        'name',
+    ];
+
+    /**
      * @param string|null $name
      *
      * @return self
