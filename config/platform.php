@@ -41,7 +41,9 @@ return [
     |
     | This middleware will be assigned to every route, giving you the
     | chance to add your own middleware to this stack or override any of
-    | the existing middleware. Or, you can just stick with this stack.
+    | the existing middleware. Or, you can stick with this stack.
+    |
+    | You can learn more here: https://laravel.com/docs/middleware
     |
     */
 
@@ -55,10 +57,13 @@ return [
     | Auth Page
     |--------------------------------------------------------------------------
     |
-    | The property controls visibility of Orchid's built-in authentication pages.
+    | The property controls the visibility of Orchid's built-in authentication pages.
     | You can disable this page and use your own set like 'Jetstream'
-    |
     | You can learn more here: https://laravel.com/docs/authentication
+    |
+    | If your application consists entirely of an administration panel and you need
+    | the functions forgot password, two-factor authentication, registration,
+    | then consider using https://github.com/orchidsoftware/fortify
     |
     */
 
@@ -126,9 +131,9 @@ return [
     ],
 
     /*
-    |-----------------------------------------------------------------
+    |--------------------------------------------------------------------------
     | Icons Path
-    |-----------------------------------------------------------------
+    |--------------------------------------------------------------------------
     |
     | Provide the path from your app to your SVG icons directory.
     |
