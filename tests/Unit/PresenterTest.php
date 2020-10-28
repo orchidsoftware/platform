@@ -14,6 +14,7 @@ class PresenterTest extends TestUnitCase
         $presenter = $this->getPresenterClass();
 
         $this->assertFalse($presenter->getStatus());
+        $this->assertFalse($presenter->getStatus);
     }
 
     public function testPresenterProperty(): void
