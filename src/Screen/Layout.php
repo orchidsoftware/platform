@@ -6,6 +6,7 @@ namespace Orchid\Screen;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Str;
 use JsonSerializable;
 use Orchid\Support\Facades\Dashboard;
 
@@ -65,6 +66,10 @@ abstract class Layout implements JsonSerializable
      */
     public function async(string $method): self
     {
+        if (!Str::startsWith($method, 'async')) {
+            $method = Str::start(Str::ucfirst($method), 'async');
+        }
+
         $this->asyncMethod = $method;
 
         return $this;
