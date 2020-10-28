@@ -86,26 +86,24 @@ class UserProfileScreen extends Screen
         return [
             UserEditLayout::class,
 
-            Layout::modal('password', [
-                Layout::rows([
-                    Password::make('old_password')
-                        ->placeholder(__('Enter the current password'))
-                        ->required()
-                        ->title(__('Old password'))
-                        ->help('This is your password set at the moment.'),
+            Layout::modal('password', Layout::rows([
+                Password::make('old_password')
+                    ->placeholder(__('Enter the current password'))
+                    ->required()
+                    ->title(__('Old password'))
+                    ->help('This is your password set at the moment.'),
 
-                    Password::make('password')
-                        ->placeholder(__('Enter the password to be set'))
-                        ->required()
-                        ->title(__('New password')),
+                Password::make('password')
+                    ->placeholder(__('Enter the password to be set'))
+                    ->required()
+                    ->title(__('New password')),
 
-                    Password::make('password_confirmation')
-                        ->placeholder(__('Enter the password to be set'))
-                        ->required()
-                        ->title(__('Confirm new password'))
-                        ->help('A good password is at least 15 characters or at least 8 characters long, including a number and a lowercase letter.'),
-                ]),
-            ])
+                Password::make('password_confirmation')
+                    ->placeholder(__('Enter the password to be set'))
+                    ->required()
+                    ->title(__('Confirm new password'))
+                    ->help('A good password is at least 15 characters or at least 8 characters long, including a number and a lowercase letter.'),
+            ]))
                 ->title(__('Change Password'))
                 ->applyButton('Update password'),
         ];

@@ -163,15 +163,13 @@ class ExampleScreen extends Screen
                 TD::set('created_at', 'Created'),
             ]),
 
-            Layout::modal('exampleModal', [
-                Layout::rows([
-                    Input::make('toast')
-                        ->title('Messages to display')
-                        ->placeholder('Hello world!')
-                        ->help('The entered text will be displayed on the right side as a toast.')
-                        ->required(),
-                ]),
-            ])->title('Create your own toast message'),
+            Layout::modal('exampleModal', Layout::rows([
+                Input::make('toast')
+                    ->title('Messages to display')
+                    ->placeholder('Hello world!')
+                    ->help('The entered text will be displayed on the right side as a toast.')
+                    ->required(),
+            ]))->title('Create your own toast message'),
         ];
     }
 

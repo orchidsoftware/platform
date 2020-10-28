@@ -135,7 +135,7 @@ class LayoutFactory
 
     /**
      * @param string          $key
-     * @param Layout|Layout[] $layouts
+     * @param string|string[] $layouts
      *
      * @return Modal
      */
