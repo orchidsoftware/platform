@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
-use Orchid\Screen\Layouts\Chart;
 use Orchid\Screen\Repository;
 use Orchid\Support\Facades\Layout;
 use Orchid\Tests\TestUnitCase;
@@ -33,7 +32,4 @@ class ModalTest extends TestUnitCase
 
         $this->assertStringNotContainsString('asyncTestMethod', $html);
     }
-
-
-
 }
