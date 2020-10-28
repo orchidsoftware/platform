@@ -66,7 +66,7 @@ abstract class Layout implements JsonSerializable
      */
     public function async(string $method): self
     {
-        if (!Str::startsWith($method, 'async')) {
+        if (! Str::startsWith($method, 'async')) {
             $method = Str::start(Str::ucfirst($method), 'async');
         }
 
