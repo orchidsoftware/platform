@@ -1,6 +1,6 @@
 {
    "\/about":"\/о нас",
-   "A Role defines a set of tasks a user assigned the role is allowed to perform. ":"Un rol define un conjunto de tareas que un usuario asignado al rol tiene permitido realizar.",
+   "A Role defines a set of tasks a user assigned the role is allowed to perform.":"Un rol define un conjunto de tareas que un usuario asignado al rol tiene permitido realizar.",
    "A new stable version of ORCHID is available. Please update to the latest version.":"Una nueva versión estable de ORCHID está disponible. Por favor actualice a la última versión.",
    "About us":"Sobre nosotros",
    "Actual name in the system":"Nombre actual en el sistema",
@@ -162,5 +162,12 @@
    "Configure columns":"Configurar columnas",
    "Details such as name, email and password":"Detalles como el nombre, correo electrónico y contraseña",
    "Manage roles":"Administrar roles",
-   "Specify which groups this account should belong to":"Especificar a qué grupos debería pertenecer esta cuenta"
+   "Specify which groups this account should belong to":"Especificar a qué grupos debería pertenecer esta cuenta",
+
+   "Oops.. You just found an error page..": "Ups... Llegaste a una pagina de error.",
+   "Operation completed successfully.": "Operación completada con exito.",
+   "User role display name": "Nombre de pantalla de rol de usuario",
+   "elements": "elementos",
+   "of": "de",
+   "show": "mostrar"
 }
