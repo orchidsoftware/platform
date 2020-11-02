@@ -36,10 +36,10 @@
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {
-    "eslint": "^7.11.0",
+    "eslint": "^7.12.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.22.1",
-    "resolve-url-loader": "^3.1.1",
+    "resolve-url-loader": "^3.1.2",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.12"
   }
