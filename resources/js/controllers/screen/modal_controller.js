@@ -38,7 +38,11 @@ export default class extends Controller {
             }
         })
 
-        if (this.element.querySelectorAll('.is-invalid').length > 0) {
+        /**
+         * The ".invalid-feedback" class has all fields, which contain
+         * a textual description of the validation error
+         */
+        if (this.element.querySelectorAll('.invalid-feedback').length > 0) {
             this.setFormAction(sessionStorage.getItem('last-open-modal'));
             this.element.classList.remove('fade', 'in');
             $(this.element).modal('show');
