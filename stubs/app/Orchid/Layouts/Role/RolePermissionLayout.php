@@ -8,13 +8,14 @@ use Illuminate\Support\Collection;
 use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Layouts\Rows;
+use Throwable;
 
 class RolePermissionLayout extends Rows
 {
     /**
      * Views.
      *
-     * @throws \Throwable
+     * @throws Throwable
      *
      * @return array
      */
@@ -32,9 +33,18 @@ class RolePermissionLayout extends Rows
     {
         return $permissionsRaw->map(function ($items, $title) {
             return collect($items)
-                ->chunk(3)
-                ->map(function (Collection $chunks) use ($title) {
-                    return Group::make($this->getCheckBoxGroup($chunks, $title))
+                ->map(function (array $chunks) {
+                    return $this->getCheckBoxGroup(collect($chunks));
+                })
+                ->flatten()
+                ->map(function (CheckBox $checkbox, $key) use ($title) {
+                    return $key === 0
+                        ? $checkbox->title($title)
+                        : $checkbox;
+                })
+                ->chunk(4)
+                ->map(function ($items) {
+                    return Group::make($items->toArray())
                         ->alignEnd()
                         ->autoWidth();
                 });
@@ -45,18 +55,14 @@ class RolePermissionLayout extends Rows
 
     /**
      * @param Collection $chunks
-     * @param string     $title
      *
-     * @return array
+     * @return CheckBox
      */
-    private function getCheckBoxGroup(Collection $chunks, string $title): array
+    private function getCheckBoxGroup(Collection $chunks): CheckBox
     {
-        return $chunks->values()->map(function ($permission, $keys) use ($title) {
-            return CheckBox::make('permissions.'.base64_encode($permission['slug']))
-                ->placeholder($permission['description'])
-                ->value($permission['active'])
-                ->title($keys === 0 ? $title : ' ')
-                ->sendTrueOrFalse();
-        })->toArray();
+        return CheckBox::make('permissions.' . base64_encode($chunks->get('slug')))
+            ->placeholder($chunks->get('description'))
+            ->value($chunks->get('active'))
+            ->sendTrueOrFalse();
     }
 }
