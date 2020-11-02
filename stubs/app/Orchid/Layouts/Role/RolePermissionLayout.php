@@ -60,7 +60,7 @@ class RolePermissionLayout extends Rows
      */
     private function getCheckBoxGroup(Collection $chunks): CheckBox
     {
-        return CheckBox::make('permissions.' . base64_encode($chunks->get('slug')))
+        return CheckBox::make('permissions.'.base64_encode($chunks->get('slug')))
             ->placeholder($chunks->get('description'))
             ->value($chunks->get('active'))
             ->sendTrueOrFalse();
