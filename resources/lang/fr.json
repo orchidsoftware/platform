@@ -60,7 +60,7 @@
     "Go to top": "Revenir au début",
     "Important events you follow": "Evénements importants que vous suivez",
     "Information to display": "Informations à afficher",
-    "It is possible that you entered a wrong address or the link you clicked does not work (anymore).": "Il est possible que vous ayez entré une mauvaise adresse ou que le lien ne fonctionne pas.",
+    "You may have' entered an address that doesn't exist or that the link you have requested doesn't work (anymore).": "Il est possible que vous ayez entré une mauvaise adresse ou que le lien ne fonctionne pas.",
     "Last edit": "Dernière modification",
     "Layouts": "Mises en page",
     "Link target": "Cible du lien",
@@ -130,7 +130,7 @@
     "Welcome": "Bienvenue",
     "What to search...": "Que rechercher...",
     "You currently have no notifications, but maybe they will appear later.": "Vous n'avez actuellement aucune notification, mais elles apparaîtront peut-être plus tard.",
-    "You've requested a page that does not exist.": "Vous demandez une page qui n'existe pas.",
+    "You requested a page that doesn't exist.": "Vous demandez une page qui n'existe pas.",
     "elements": "éléments",
     "of": "de",
     "show": "voir"
