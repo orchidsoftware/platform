@@ -5,14 +5,19 @@
                class="@if(!is_sort($column)) text-muted @endif">
                 {{$title}}
 
+                <x-orchid-popover :content="$popover"/>
+
                 @if(is_sort($column))
-                    @php $sortIcon = 'sort-amount-'.get_sort($column); @endphp
+                    @php $sortIcon = 'sort-amount-'.get_sort($column) @endphp
                     <x-orchid-icon :path="$sortIcon"/>
                 @endif
             </a>
         @else
             {{$title}}
+
+            <x-orchid-popover :content="$popover"/>
         @endif
+
 
         @includeWhen(!is_null($filter), "platform::partials.filters.{$filter}", get_defined_vars())
     </div>

@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Closure;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
+use Illuminate\View\View;
 
 class TD
 {
@@ -91,6 +93,11 @@ class TD
      * @var bool
      */
     protected $defaultHidden = false;
+
+    /**
+     * @var string
+     */
+    protected $popover;
 
     /**
      * TD constructor.
@@ -201,9 +208,21 @@ class TD
     }
 
     /**
+     * @param string $text
+     *
+     * @return $this
+     */
+    public function popover(string $text): self
+    {
+        $this->popover = $text;
+
+        return $this;
+    }
+
+    /**
      * Builds a column heading.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function buildTh()
     {
@@ -217,6 +236,7 @@ class TD
             'filter'       => $this->filter,
             'filterString' => get_filter_string($this->column),
             'slug'         => $this->sluggable(),
+            'popover'      => $this->popover,
         ]);
     }
 
@@ -225,7 +245,7 @@ class TD
      *
      * @param Repository|AsSource $repository
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function buildTd($repository)
     {
@@ -254,7 +274,7 @@ class TD
     /**
      * Builds item menu for show/hiden column.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|null
+     * @return Factory|View|null
      */
     public function buildItemMenu()
     {

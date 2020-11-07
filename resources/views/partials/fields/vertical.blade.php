@@ -4,9 +4,8 @@
             @if(isset($attributes['required']) && $attributes['required'])
                 <sup class="text-danger">*</sup>
             @endif
-            @includeWhen(isset($popover),'platform::partials.fields.popover',[
-                'content' => $popover ?? ''
-            ])
+
+            <x-orchid-popover :content="$popover ?? ''"/>
         </label>
     @endisset
 
