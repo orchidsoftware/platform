@@ -12,7 +12,7 @@ use Tabuna\Breadcrumbs\Trail;
 $this->router->get('/', [IndexController::class, 'index'])
     ->name('index')
     ->breadcrumbs(function (Trail $trail) {
-        return $trail->push(__('Main'), route('platform.index'));
+        return $trail->push(__('Home'), route('platform.index'));
     });
 
 $this->router->screen('search/{query}', SearchScreen::class)
