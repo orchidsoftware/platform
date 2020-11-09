@@ -23,7 +23,7 @@ class TDForTableTest extends TestUnitCase
 
         $view = TD::set('name')->width($width)->buildTd(new Repository(['name' => 'value']));
 
-        $this->assertStringContainsString('<div style="width:' . $width . '"', $view);
+        $this->assertStringContainsString('<div style="width:'.$width.'"', $view);
     }
 
     public function testTdWithoutWidth(): void
