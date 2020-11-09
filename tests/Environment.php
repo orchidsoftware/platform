@@ -33,7 +33,7 @@ trait Environment
         /* Install application */
         $this->loadLaravelMigrations();
         $this->loadMigrationsFrom(realpath('./database/migrations'));
-        $this->artisan('orchid:install --examples');
+        $this->artisan('orchid:install', ['--examples']);
 
         /* Refresh application for route/breadcrumbs/orchid provider */
         if (! $this->app['router']->has('platform.main')) {
