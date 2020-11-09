@@ -1,0 +1,17 @@
+
+// Example...
+Route::screen('example', App\Orchid\Screens\Examples\ExampleScreen::class)
+    ->name('platform.example')
+    ->breadcrumbs(function (Trail $trail) {
+        return $trail
+            ->parent('platform.index')
+            ->push(__('Example screen'));
+    });
+
+Route::screen('example-fields', App\Orchid\Screens\Examples\ExampleFieldsScreen::class)->name('platform.example.fields');
+Route::screen('example-layouts', App\Orchid\Screens\Examples\ExampleLayoutsScreen::class)->name('platform.example.layouts');
+Route::screen('example-charts', App\Orchid\Screens\Examples\ExampleChartsScreen::class)->name('platform.example.charts');
+Route::screen('example-editors', App\Orchid\Screens\Examples\ExampleTextEditorsScreen::class)->name('platform.example.editors');
+Route::screen('example-cards', App\Orchid\Screens\Examples\ExampleCardsScreen::class)->name('platform.example.cards');
+Route::screen('example-advanced', App\Orchid\Screens\Examples\ExampleFieldsAdvancedScreen::class)->name('platform.example.advanced');
+

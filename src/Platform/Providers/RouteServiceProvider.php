@@ -95,14 +95,5 @@ class RouteServiceProvider extends ServiceProvider
                 ->middleware(config('platform.middleware.private'))
                 ->group(base_path('routes/platform.php'));
         }
-        /*
-        * Examples
-        */
-        if (file_exists(base_path('routes/example.php'))) {
-            Route::domain((string) config('platform.domain'))
-                ->prefix(Dashboard::prefix('/'))
-                ->middleware(config('platform.middleware.private'))
-                ->group(base_path('routes/example.php'));
-        }
     }
 }
