@@ -232,6 +232,9 @@ class ExampleFieldsAdvancedScreen extends Screen
                     ]),
 
                 Map::make('place')
+                    ->latitude('Latitude')
+                    ->longitude('Longitude')
+                    ->title('Object on the map')
                     ->title('Object on the map')
                     ->help('Enter the coordinates, or use the search'),
 

@@ -10,6 +10,8 @@ use Orchid\Screen\Field;
  * Class Map.
  *
  * @method Map name(string $value = null)
+ * @method Map latitude(string $value = 'Latitude')
+ * @method Map longitude(string $value = 'Longitude')
  * @method Map value($value = true)
  * @method Map help(string $value = null)
  * @method Map popover(string $value = null)
@@ -33,6 +35,8 @@ class Map extends Field
     protected $attributes = [
         'zoom'   => 14,
         'height' => '300px',
+        'latitude' => 'Latitude',
+        'longitude' => 'Longitude',
     ];
 
     /**
