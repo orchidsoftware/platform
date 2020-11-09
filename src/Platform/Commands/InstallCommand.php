@@ -16,7 +16,8 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'orchid:install';
+    protected $signature = 'orchid:install
+                            {--no-examples : Install without example}';
 
     /**
      * The console command description.
@@ -45,6 +46,7 @@ class InstallCommand extends Command
                     'config',
                     'migrations',
                     'orchid-stubs',
+                    $this->option('no-examples')?:'orchid-examples'
                 ],
             ])
             ->executeCommand('migrate')
