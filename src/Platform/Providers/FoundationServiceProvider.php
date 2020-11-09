@@ -123,7 +123,6 @@ class FoundationServiceProvider extends ServiceProvider
         return $this;
     }
 
-
     /**
      * Register examples.
      *
@@ -138,7 +137,6 @@ class FoundationServiceProvider extends ServiceProvider
 
         return $this;
     }
-
 
     /**
      * Register assets.

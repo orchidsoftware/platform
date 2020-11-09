@@ -46,7 +46,7 @@ class InstallCommand extends Command
                     'config',
                     'migrations',
                     'orchid-stubs',
-                    $this->option('no-examples')?:'orchid-examples'
+                    $this->option('no-examples') ?: 'orchid-examples',
                 ],
             ])
             ->executeCommand('migrate')
