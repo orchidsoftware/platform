@@ -83,6 +83,9 @@ export default class extends Controller {
      */
     crop() {
 
+        // TODO: can it be done more elegant?
+        let mimiType = this.cropper.url.split(",")[0].match(/[^:\s*]\w+\/[\w-+\d.]+(?=[;| ])/)[0];
+
         this.cropper.getCroppedCanvas({
             width: this.data.get('width'),
             height: this.data.get('height'),
@@ -113,7 +116,7 @@ export default class extends Controller {
                     window.platform.alert('Validation error', 'File upload error');
                     console.warn(error);
                 });
-        });
+        }, mimiType);
 
     }
 
