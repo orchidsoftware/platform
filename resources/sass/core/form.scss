@@ -114,3 +114,9 @@ select {
     font-weight: 600;
     font-size: 0.875rem;
 }
+
+.picture-preview, .cropper-preview {
+    max-width: 600px;
+    max-height: 600px;
+    object-fit: cover;
+}
