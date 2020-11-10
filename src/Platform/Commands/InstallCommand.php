@@ -95,7 +95,7 @@ class InstallCommand extends Command
             $this->info('Adding examples');
             file_put_contents(
                 base_path('routes/platform.php'),
-                file_get_contents(Dashboard::path('stubs/app/example/routes/example.stub')),
+                file_get_contents(Dashboard::path('stubs/example/routes/example.stub')),
                 FILE_APPEND
             );
         }

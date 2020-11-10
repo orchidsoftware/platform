@@ -131,7 +131,7 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerExamples(): self
     {
         $this->publishes([
-            Dashboard::path('stubs/app/example/Orchid/') => app_path('Orchid'),
+            Dashboard::path('stubs/example/Orchid/') => app_path('Orchid'),
         ], 'orchid-examples');
 
         return $this;
@@ -220,8 +220,7 @@ class FoundationServiceProvider extends ServiceProvider
             Route::macro('screen', function ($url, $screen) {
                 /* @var Router $this */
                 $route = $this->any($url.'/{method?}', [$screen, 'handle']);
-
-                $methods = $screen::getAvailableMethods();
+                $methods = $screen::getAvailableMethods() ?? null;
 
                 if (! empty($methods)) {
                     $route->where('method', implode('|', $methods));

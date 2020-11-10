@@ -81,3 +81,4 @@ Route::screen('roles', RoleListScreen::class)
     });
 
 //Route::screen('idea', 'Idea::class','platform.screens.idea');
+

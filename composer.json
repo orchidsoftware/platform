@@ -70,7 +70,10 @@
       "Orchid\\Platform\\Database\\Factories\\": "database/factories/",
       "Orchid\\Platform\\Database\\Seeders\\": "database/seeders/",
       "Orchid\\Tests\\": "tests/",
-      "App\\": "stubs/app/"
+      "App\\": [
+        "stubs/app/",
+        "stubs/example/"
+      ]
     }
   },
   "extra": {
