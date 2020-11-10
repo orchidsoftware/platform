@@ -25,7 +25,10 @@ class PlatformProvider extends OrchidServiceProvider
      */
     public function registerMainMenu(): array
     {
-        return MainMenu::menu();
+        if (class_exists(MainMenu::class)) {
+            return MainMenu::menu();
+        }
+        return [];
     }
 
     /**
