@@ -10,13 +10,13 @@
             data-fields--upload-parallel-uploads="{{$parallelUploads }}"
             data-fields--upload-max-file-size="{{$maxFileSize }}"
             data-fields--upload-max-files="{{$maxFiles}}"
+            data-fields--upload-timeout="{{$timeOut}}"
             data-fields--upload-accepted-files="{{$acceptedFiles }}"
             data-fields--upload-resize-quality="{{$resizeQuality }}"
             data-fields--upload-resize-width="{{$resizeWidth }}"
             data-fields--upload-is-media-library="{{ $media }}"
             data-fields--upload-close-on-add="{{ $closeOnAdd }}"
             data-fields--upload-resize-height="{{$resizeHeight }}"
-            data-fields--upload-timeout="{{$timeOut}}"
     >
         <div id="dropzone-{{$id}}" class="dropzone-wrapper">
             <div class="fallback">

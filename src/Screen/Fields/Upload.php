@@ -28,6 +28,7 @@ use Orchid\Support\Init;
  * @method Upload parallelUploads($value = true)
  * @method Upload maxFileSize($value = true)
  * @method Upload maxFiles($value = true)
+ * @method Upload timeOut(int $second = null)
  * @method Upload acceptedFiles($value = true)
  * @method Upload resizeQuality($value = true)
  * @method Upload resizeWidth($value = true)
