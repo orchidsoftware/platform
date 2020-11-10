@@ -198,7 +198,6 @@ export default class extends Controller {
         const multiple = !!this.data.get('multiple');
         const isMediaLibrary = this.data.get('is-media-library');
 
-
         const removeButtonTemplate = this.element.querySelector('#'+this.data.get('id') + '-remove-button').innerHTML.trim();
         const editButtonTemplate = this.element.querySelector('#'+this.data.get('id') + '-edit-button').innerHTML.trim();
 
@@ -209,6 +208,7 @@ export default class extends Controller {
             uploadMultiple: true,
             maxFilesize: this.data.get('max-file-size'),
             maxFiles: multiple ? this.data.get('max-files') : 1,
+            timeout: this.data.get('timeout'),
             acceptedFiles: this.data.get('accepted-files'),
             resizeQuality: this.data.get('resize-quality'),
             resizeWidth: this.data.get('resize-width'),

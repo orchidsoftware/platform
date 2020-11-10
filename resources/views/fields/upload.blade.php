@@ -16,6 +16,7 @@
             data-fields--upload-is-media-library="{{ $media }}"
             data-fields--upload-close-on-add="{{ $closeOnAdd }}"
             data-fields--upload-resize-height="{{$resizeHeight }}"
+            data-fields--upload-timeout="{{$timeOut}}"
     >
         <div id="dropzone-{{$id}}" class="dropzone-wrapper">
             <div class="fallback">
