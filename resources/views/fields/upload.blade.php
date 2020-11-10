@@ -10,6 +10,7 @@
             data-fields--upload-parallel-uploads="{{$parallelUploads }}"
             data-fields--upload-max-file-size="{{$maxFileSize }}"
             data-fields--upload-max-files="{{$maxFiles}}"
+            data-fields--upload-timeout="{{$timeOut}}"
             data-fields--upload-accepted-files="{{$acceptedFiles }}"
             data-fields--upload-resize-quality="{{$resizeQuality }}"
             data-fields--upload-resize-width="{{$resizeWidth }}"
