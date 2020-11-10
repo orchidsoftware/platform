@@ -28,6 +28,7 @@ class PlatformProvider extends OrchidServiceProvider
         if (class_exists(MainMenu::class)) {
             return MainMenu::menu();
         }
+
         return [];
     }
 
