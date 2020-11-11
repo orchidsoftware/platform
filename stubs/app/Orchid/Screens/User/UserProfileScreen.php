@@ -105,7 +105,7 @@ class UserProfileScreen extends Screen
                     ->help('A good password is at least 15 characters or at least 8 characters long, including a number and a lowercase letter.'),
             ]))
                 ->title(__('Change Password'))
-                ->applyButton('Update password'),
+                ->applyButton(__('Update password')),
         ];
     }
 
