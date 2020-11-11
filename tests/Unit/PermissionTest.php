@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
+use Exception;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\Models\Role;
@@ -39,6 +40,12 @@ class PermissionTest extends TestUnitCase
 
         // Role permissions
         $this->assertTrue($user->hasAccess('access.roles.to.public.data', false));
+
+        // duplicate
+        $user->clearCachePermission();
+
+        $this->assertTrue($user->hasAccess('access.user.duplicate'));
+        $this->assertTrue($user->hasAccess('access.role.duplicate'));
     }
 
     /**
@@ -53,6 +60,8 @@ class PermissionTest extends TestUnitCase
             'email'       => 'test@test.com',
             'password'    => 'password',
             'permissions' => [
+                'access.user.duplicate' => 1,
+                'access.role.duplicate' => 0,
                 'access.to.public.data' => 1,
                 'access.to.secret.data' => 0,
             ],
@@ -70,6 +79,8 @@ class PermissionTest extends TestUnitCase
             'slug'        => 'admin',
             'name'        => 'admin',
             'permissions' => [
+                'access.user.duplicate'       => 0,
+                'access.role.duplicate'       => 1,
                 'access.roles.to.public.data' => 1,
                 'access.roles.to.secret.data' => 0,
             ],
@@ -114,7 +125,7 @@ class PermissionTest extends TestUnitCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function testDeleteUser(): void
     {

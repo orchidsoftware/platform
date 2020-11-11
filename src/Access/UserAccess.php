@@ -176,4 +176,14 @@ trait UserAccess
 
         return parent::delete();
     }
+
+    /**
+     * @return self
+     */
+    public function clearCachePermission(): self
+    {
+        $this->cachePermissions = null;
+
+        return $this;
+    }
 }
