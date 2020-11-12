@@ -121,7 +121,7 @@ class Input extends Field
         $this->set('datalist', $datalist);
 
         return $this->addBeforeRender(function () {
-            $this->set('list', 'datalist-' . $this->get('name'));
+            $this->set('list', 'datalist-'.$this->get('name'));
         });
     }
 }
