@@ -86,7 +86,7 @@ class InputTest extends TestFieldsUnitCase
 
     public function testDataListAttribute(): void
     {
-        $input = (string)Input::make('browser')->datalist([
+        $input = (string) Input::make('browser')->datalist([
             'Opera', 'Edge', 'Firefox',
             'Chrome', 'Safari',
         ]);
@@ -95,11 +95,9 @@ class InputTest extends TestFieldsUnitCase
         $this->assertStringContainsString('list="datalist-browser"', $input);
         $this->assertStringContainsString('<datalist id="datalist-browser"', $input);
 
-
-        $input = (string)Input::make('browser')->datalist([]);
+        $input = (string) Input::make('browser')->datalist([]);
 
         $this->assertStringNotContainsString('list="datalist-browser"', $input);
         $this->assertStringNotContainsString('<datalist id="datalist-browser"', $input);
-
     }
 }
