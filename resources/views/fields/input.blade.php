@@ -4,4 +4,12 @@
     >
         <input {{ $attributes }}>
     </div>
+
+    @empty(!$datalist)
+        <datalist id="datalist-{{$name}}">
+            @foreach($datalist as $item)
+                <option value="{{ $item }}">
+            @endforeach
+        </datalist>
+    @endempty
 @endcomponent
