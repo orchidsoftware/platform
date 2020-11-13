@@ -18,7 +18,7 @@
     "cross-env": "^7.0.0",
     "dropzone": "^5.7.1",
     "flatpickr": "^4.6.3",
-    "frappe-charts": "^1.5.3",
+    "frappe-charts": "1.5.2",
     "inputmask": "^5.0.3",
     "jquery": "^3.5.1",
     "laravel-mix": "^5.0.9",
