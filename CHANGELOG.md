@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 9.9.0 - 2020-11-13
+
+### Added
+- Method to clear the permission check cache [#1354](https://github.com/orchidsoftware/platform/pull/1354)
+- Added third status for checkbox [#1360](https://github.com/orchidsoftware/platform/pull/1360)
+- Added use of the third status to display available permissions [#1360](https://github.com/orchidsoftware/platform/pull/1360)
+- Added `datalist` for Input field [#1362](https://github.com/orchidsoftware/platform/pull/1362)
+
+### Changed
+- Update Faker [#1353](https://github.com/orchidsoftware/platform/pull/1353)
+
+### Fixed
+- Added missing keys translation [#1355](https://github.com/orchidsoftware/platform/pull/1355), [#1356](https://github.com/orchidsoftware/platform/pull/1356), [#1358](https://github.com/orchidsoftware/platform/pull/1358), 
+- Frozen version of Frappe charts
+
 ## 9.8.2 - 2020-11-10
 
 ### Fixed
