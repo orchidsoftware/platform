@@ -1,11 +1,11 @@
 @if($filters->count() > 0)
-    <div class="row justify-content-start" data-controller="screen--filter">
+    <div class="row no-gutters align-items-center bg-white pt-4 px-4 pb-1 rounded mb-3" data-controller="screen--filter">
         @foreach($filters->where('display', true) as $filter)
             <div class="col-sm-auto align-self-start">
                 {!! $filter->render() !!}
             </div>
         @endforeach
-        <div class="col-sm-auto ml-auto align-self-end text-right">
+        <div class="col-sm-auto ml-auto text-right">
             <div class="form-group">
                 <div class="btn-group" role="group">
                     <button
