@@ -18,7 +18,6 @@ use Orchid\Tests\TestUnitCase;
 
 class FormRequestTest extends TestUnitCase
 {
-
     public function testValidatedMethodReturnsOfPartTheValidatedData()
     {
         $request = $this->createRequest([
@@ -53,7 +52,7 @@ class FormRequestTest extends TestUnitCase
             public function rules()
             {
                 return [
-                   'profile' => ['name' => 'required']
+                    'profile' => ['name' => 'required'],
                 ];
             }
 

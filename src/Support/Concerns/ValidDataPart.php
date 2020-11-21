@@ -11,8 +11,8 @@ trait ValidDataPart
     /**
      * Get the validated data from the request.
      *
-     * @param string|int|null  $key
-     * @param mixed  $default
+     * @param string|int|null $key
+     * @param mixed           $default
      *
      * @return array
      */
