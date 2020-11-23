@@ -4,10 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 9.10.0 - 2020-11-21
+## 9.10.0 - 2020-11-24
 
-### Added
-- Trait for taking a part of valid data
+### Changed
+- Changed the visual appearance of the confirmation window
 
 ## 9.9.2 - 2020-11-20
 
