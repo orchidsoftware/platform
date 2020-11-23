@@ -33,6 +33,7 @@
     >
         {!! $layouts !!}
         @csrf
+        @include('platform::partials.confirm')
     </form>
     <div id="modals-container">
         @stack('modals-container')

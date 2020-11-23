@@ -6,11 +6,12 @@ namespace Orchid\Tests\Browser;
 
 use Laravel\Dusk\Browser;
 use Orchid\Tests\TestBrowserCase;
+use Throwable;
 
 class DependentListenerTest extends TestBrowserCase
 {
     /**
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function testLoadData(): void
     {
@@ -41,7 +42,6 @@ class DependentListenerTest extends TestBrowserCase
                 ->assertInputValue('first', 100)
                 ->assertDontSee('The result of adding the first argument and the second')
                 ->type('second', 200)
-                ->click('.modal-title') // return cursor for run event onchange
                 ->waitForText('The result of adding the first argument and the second')
                 ->assertSee('SUM')
                 ->assertInputValue('sum', 300);
