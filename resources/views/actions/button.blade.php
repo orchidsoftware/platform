@@ -1,9 +1,13 @@
 @component($typeForm, get_defined_vars())
     <button form="post-form"
             formaction="{{ $action }}"
+            data-controller="screen--button"
             data-novalidate="{{ var_export($novalidate) }}"
             data-turbolinks="{{ var_export($turbolinks) }}"
-            @empty(!$confirm)onclick="return confirm('{{$confirm}}');"@endempty
+            @empty(!$confirm)
+                data-action="screen--button#confirm"
+                data-screen--button-confirm="{{ $confirm }}"
+            @endempty
         {{ $attributes }}>
 
         @isset($icon)

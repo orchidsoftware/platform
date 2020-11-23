@@ -6,6 +6,7 @@ namespace Orchid\Tests;
 
 use Faker\Factory as Faker;
 use Faker\Generator;
+use Illuminate\Foundation\Application;
 use Orchestra\Testbench\Dusk\Options;
 use Orchestra\Testbench\Dusk\TestCase;
 use Orchid\Platform\Models\User;
@@ -32,7 +33,7 @@ abstract class TestBrowserCase extends TestCase
     /**
      * Define environment setup.
      *
-     * @param \Illuminate\Foundation\Application $app
+     * @param Application $app
      */
     protected function getEnvironmentSetUp($app)
     {
@@ -46,7 +47,7 @@ abstract class TestBrowserCase extends TestCase
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ]);
 
-        Options::withoutUI();
+        //Options::withoutUI();
     }
 
     /**
