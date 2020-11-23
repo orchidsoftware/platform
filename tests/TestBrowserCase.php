@@ -47,7 +47,7 @@ abstract class TestBrowserCase extends TestCase
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ]);
 
-        //Options::withoutUI();
+        Options::withoutUI();
     }
 
     /**
