@@ -40,7 +40,7 @@ class ConfirmScreen extends Screen
         return [
             Button::make('Submit')
                 ->confirm('Do you want to press the button?')
-                ->method('message')
+                ->method('message'),
         ];
     }
 
@@ -53,12 +53,9 @@ class ConfirmScreen extends Screen
      */
     public function layout(): array
     {
-       return [];
+        return [];
     }
 
-    /**
-     *
-     */
     public function message()
     {
         Alert::info('Action completed');
