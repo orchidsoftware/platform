@@ -25,7 +25,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-link" data-dismiss="modal">
-                    {{__('Сancel')}}
+                    {{__('Cancel')}}
                 </button>
 
                 <div data-target="screen--confirm.button">
