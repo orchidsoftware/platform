@@ -29,6 +29,12 @@
       "role": "Developer"
     }
   ],
+  "funding": [
+      {
+          "type": "opencollective",
+          "url": "https://opencollective.com/orchid"
+      }
+  ],
   "require": {
     "ext-json": "*",
     "orchid/blade-icons": "^1.2.0",
