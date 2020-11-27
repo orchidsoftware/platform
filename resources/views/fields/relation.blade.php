@@ -7,6 +7,7 @@
          data-fields--relation-name="{{ $relationName }}"
          data-fields--relation-key="{{ $relationKey }}"
          data-fields--relation-scope="{{ $relationScope }}"
+         data-fields--relation-columns="{{ $relationColumns }}"
          data-fields--relation-append="{{ $relationAppend }}"
          data-fields--relation-route="{{ route('platform.systems.relation') }}"
     >

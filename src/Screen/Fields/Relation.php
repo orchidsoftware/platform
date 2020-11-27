@@ -46,6 +46,7 @@ class Relation extends Field
         'value'          => [],
         'relationScope'  => null,
         'relationAppend' => null,
+        'relationColumns' => null,
     ];
 
     /**
@@ -58,6 +59,7 @@ class Relation extends Field
         'relationKey',
         'relationScope',
         'relationAppend',
+        'relationColumns',
     ];
 
     /**
@@ -188,6 +190,18 @@ class Relation extends Field
         ];
         $this->set('scope', $data);
         $this->set('relationScope', Crypt::encrypt($data));
+
+        return $this;
+    }
+
+    /**
+     * @param array $columns
+     *
+     * @return $this
+     */
+    public function searchIn(array $columns): self
+    {
+        $this->set('relationColumns', Crypt::encrypt($columns));
 
         return $this;
     }

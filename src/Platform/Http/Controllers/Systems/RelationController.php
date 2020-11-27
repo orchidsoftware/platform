@@ -21,20 +21,23 @@ class RelationController extends Controller
      */
     public function view(RelationRequest $request)
     {
+
         [
             'model'  => $model,
             'name'   => $name,
             'key'    => $key,
             'scope'  => $scope,
             'append' => $append,
+            'columns' => $columns,
         ] = collect($request->except(['search']))->map(static function ($item, $key) {
             if ($item === null) {
                 return null;
             }
 
-            if ($key === 'scope') {
-                return  Crypt::decrypt($item);
+            if ($key === 'scope' || $key === 'columns') {
+                return Crypt::decrypt($item);
             }
+
 
             return Crypt::decryptString($item);
         });
@@ -43,7 +46,7 @@ class RelationController extends Controller
         $model = new $model;
         $search = $request->get('search', '');
 
-        $items = $this->buildersItems($model, $name, $key, $search, $scope, $append);
+        $items = $this->buildersItems($model, $name, $key, $search, $scope, $append, $columns);
 
         return response()->json($items);
     }
@@ -55,6 +58,7 @@ class RelationController extends Controller
      * @param string|null $search
      * @param array|null  $scope
      * @param string|null $append
+     * @param array|null $columns
      *
      * @return mixed
      */
@@ -64,7 +68,8 @@ class RelationController extends Controller
         string $key,
         string $search = null,
         ?array $scope = [],
-        ?string $append = null)
+        ?string $append = null,
+        ?array $columns = null)
     {
         if ($scope !== null) {
             /** @var Collection|array $model */
@@ -79,8 +84,15 @@ class RelationController extends Controller
             return $model->take(10)->pluck($append ?? $name, $key);
         }
 
+        $model->where($name, 'like', '%' . $search . '%');
+
+        if ($columns !== null) {
+            foreach ($columns as $column) {
+                $model->orWhere($column, 'like', '%' . $search . '%');
+            }
+        }
+
         return $model
-            ->where($name, 'like', '%'.$search.'%')
             ->limit(10)
             ->get()
             ->pluck($append ?? $name, $key);
