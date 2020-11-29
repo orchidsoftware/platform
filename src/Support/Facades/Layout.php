@@ -9,6 +9,7 @@ use Orchid\Screen\Layout as BaseLayout;
 use Orchid\Screen\LayoutFactory;
 use Orchid\Screen\Layouts\Accordion;
 use Orchid\Screen\Layouts\Blank;
+use Orchid\Screen\Layouts\Block;
 use Orchid\Screen\Layouts\Collapse;
 use Orchid\Screen\Layouts\Columns;
 use Orchid\Screen\Layouts\Component;
@@ -19,7 +20,6 @@ use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Layouts\View;
 use Orchid\Screen\Layouts\Wrapper;
-use Orchid\Screen\Layouts\Block;
 
 /**
  * Class Layout.

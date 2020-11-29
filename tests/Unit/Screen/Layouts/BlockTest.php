@@ -102,5 +102,4 @@ class BlockTest extends TestUnitCase
 
         $this->assertStringContainsString($view->render(), $html);
     }
-
 }
