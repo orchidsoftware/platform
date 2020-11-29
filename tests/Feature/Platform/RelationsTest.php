@@ -122,13 +122,13 @@ class RelationsTest extends TestFeatureCase
     {
         $user = $this->users->random();
         $params = [
-            'search' => $user->email,
-            'model' => Crypt::encryptString(EmptyUserModel::class),
-            'name'  => Crypt::encryptString('name'),
-            'key'   => Crypt::encryptString('id'),
+            'search'        => $user->email,
+            'model'         => Crypt::encryptString(EmptyUserModel::class),
+            'name'          => Crypt::encryptString('name'),
+            'key'           => Crypt::encryptString('id'),
             'searchColumns' => Crypt::encrypt(['email']),
-            'scope' => null,
-            'append' => Crypt::encryptString('full')
+            'scope'         => null,
+            'append'        => Crypt::encryptString('full'),
         ];
 
         $response = $this
