@@ -2,7 +2,7 @@
     <div class="col p-0 px-3">
         <legend class="text-black">
             <span class="text-muted font-weight-bold">|</span>
-            {!! __($title ?? '') !!}
+            {{ __($title ?? '') }}
 
             <p class="small text-muted mt-2">
                 {!! __($description  ?? '') !!}
