@@ -117,4 +117,26 @@ class RelationsTest extends TestFeatureCase
             ->actingAs($this->createAdminUser())
             ->post(route('platform.systems.relation'), $params);
     }
+
+    public function testSearchColumns()
+    {
+        $user = $this->users->random();
+        $params = [
+            'search' => $user->email,
+            'model' => Crypt::encryptString(EmptyUserModel::class),
+            'name'  => Crypt::encryptString('name'),
+            'key'   => Crypt::encryptString('id'),
+            'searchColumns' => Crypt::encrypt(['email']),
+            'scope' => null,
+            'append' => Crypt::encryptString('full')
+        ];
+
+        $response = $this
+            ->actingAs($this->createAdminUser())
+            ->post(route('platform.systems.relation'), $params);
+
+        $response->assertJson([
+            $user->id => $user->name.' ('.$user->email.')',
+        ]);
+    }
 }

@@ -42,11 +42,11 @@ class Relation extends Field
      * @var array
      */
     protected $attributes = [
-        'class'          => 'form-control',
-        'value'          => [],
-        'relationScope'  => null,
+        'class' => 'form-control',
+        'value' => [],
+        'relationScope' => null,
         'relationAppend' => null,
-        'relationColumns' => null,
+        'relationSearchColumns' => null,
     ];
 
     /**
@@ -59,7 +59,7 @@ class Relation extends Field
         'relationKey',
         'relationScope',
         'relationAppend',
-        'relationColumns',
+        'relationSearchColumns',
     ];
 
     /**
@@ -82,8 +82,8 @@ class Relation extends Field
 
     /**
      * @param string|Model $model
-     * @param string       $name
-     * @param string|null  $key
+     * @param string $name
+     * @param string|null $key
      *
      * @return Relation
      */
@@ -105,18 +105,18 @@ class Relation extends Field
             $text = $append ?? $name;
             $value = $this->get('value');
 
-            if (! is_iterable($value)) {
+            if (!is_iterable($value)) {
                 $value = Arr::wrap($value);
             }
 
-            if (! Assert::isObjectArray($value)) {
+            if (!Assert::isObjectArray($value)) {
                 $value = $model::whereIn($key, $value)->get();
             }
 
             $value = collect($value)
                 ->map(static function ($item) use ($text, $key) {
                     return [
-                        'id'   => $item->$key,
+                        'id' => $item->$key,
                         'text' => $item->$text,
                     ];
                 })->toJson();
@@ -148,7 +148,7 @@ class Relation extends Field
             $scope = $this->get('scope', 'handler');
             $class = app()->make($class);
 
-            if (! is_iterable($value)) {
+            if (!is_iterable($value)) {
                 $value = Arr::wrap($value);
             }
 
@@ -167,7 +167,7 @@ class Relation extends Field
                     $item = is_array($item) ? collect($item) : $item;
 
                     return [
-                        'id'   => $item->get($key),
+                        'id' => $item->get($key),
                         'text' => $item->get($name),
                     ];
                 })->toJson();
@@ -178,14 +178,14 @@ class Relation extends Field
 
     /**
      * @param string $scope
-     * @param array  $parameters
+     * @param array $parameters
      *
      * @return Relation
      */
     public function applyScope(string $scope, ...$parameters): self
     {
         $data = [
-            'name'       => lcfirst($scope),
+            'name' => lcfirst($scope),
             'parameters' => $parameters,
         ];
         $this->set('scope', $data);
@@ -195,13 +195,15 @@ class Relation extends Field
     }
 
     /**
-     * @param array $columns
+     * @param string|array $columns
      *
      * @return $this
      */
-    public function searchIn(array $columns): self
+    public function searchColumns(...$columns): self
     {
-        $this->set('relationColumns', Crypt::encrypt($columns));
+        $columns = Arr::wrap($columns);
+
+        $this->set('relationSearchColumns', Crypt::encrypt($columns));
 
         return $this;
     }
@@ -230,7 +232,7 @@ class Relation extends Field
      */
     public function max(int $number)
     {
-        $this->set('data-maximum-selection-length', (string) $number);
+        $this->set('data-maximum-selection-length', (string)$number);
 
         return $this;
     }

@@ -184,4 +184,17 @@ class RelationTest extends TestFieldsUnitCase
 
         $this->assertStringNotContainsString($current->name, self::renderField($select));
     }
+
+    public function testSearchColumns(): void
+    {
+        $select = Relation::make('users')
+            ->fromModel(EmptyUserModel::class, 'name')
+            ->searchColumns('email','id');
+
+        $view = self::renderField($select);
+
+        $crypt = Str::between($view, 'data-fields--relation-search-columns="', '=="');
+
+        $this->assertEquals(['email','id'], Crypt::decrypt($crypt));
+    }
 }

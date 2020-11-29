@@ -32,7 +32,7 @@ class RelationRequest extends FormRequest
             'name'     => 'string|required',
             'scope'    => 'string|nullable',
             'append'   => 'nullable',
-            'columns'  => 'string|nullable',
+            'searchColumns'  => 'string|nullable',
         ];
     }
 
@@ -45,7 +45,7 @@ class RelationRequest extends FormRequest
     {
         $this->merge([
             'append' => $this->append,
-            'columns' => $this->columns,
+            'searchColumns' => $this->searchColumns,
         ]);
     }
 }

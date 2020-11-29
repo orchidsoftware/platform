@@ -16,7 +16,7 @@ export default class extends Controller {
         const key = this.data.get('key');
         const scope = this.data.get('scope');
         const append = this.data.get('append');
-        const columns = this.data.get('columns');
+        const searchColumns = this.data.get('search-columns');
 
 
         $.ajaxSetup({
@@ -58,7 +58,7 @@ export default class extends Controller {
                     key,
                     scope,
                     append,
-                    columns,
+                    searchColumns,
                 }),
             },
             placeholder: select.getAttribute('placeholder') || '',

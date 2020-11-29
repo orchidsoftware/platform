@@ -28,13 +28,13 @@ class RelationController extends Controller
             'key'    => $key,
             'scope'  => $scope,
             'append' => $append,
-            'columns' => $columns,
+            'searchColumns' => $searchColumns,
         ] = collect($request->except(['search']))->map(static function ($item, $key) {
             if ($item === null) {
                 return null;
             }
 
-            if ($key === 'scope' || $key === 'columns') {
+            if ($key === 'scope' || $key === 'searchColumns') {
                 return Crypt::decrypt($item);
             }
 
@@ -46,7 +46,7 @@ class RelationController extends Controller
         $model = new $model;
         $search = $request->get('search', '');
 
-        $items = $this->buildersItems($model, $name, $key, $search, $scope, $append, $columns);
+        $items = $this->buildersItems($model, $name, $key, $search, $scope, $append, $searchColumns);
 
         return response()->json($items);
     }
@@ -58,7 +58,7 @@ class RelationController extends Controller
      * @param string|null $search
      * @param array|null  $scope
      * @param string|null $append
-     * @param array|null $columns
+     * @param array|null $searchColumns
      *
      * @return mixed
      */
@@ -69,7 +69,7 @@ class RelationController extends Controller
         string $search = null,
         ?array $scope = [],
         ?string $append = null,
-        ?array $columns = null)
+        ?array $searchColumns = null)
     {
         if ($scope !== null) {
             /** @var Collection|array $model */
@@ -84,10 +84,10 @@ class RelationController extends Controller
             return $model->take(10)->pluck($append ?? $name, $key);
         }
 
-        $model->where($name, 'like', '%' . $search . '%');
+        $model = $model->where($name, 'like', '%' . $search . '%');
 
-        if ($columns !== null) {
-            foreach ($columns as $column) {
+        if ($searchColumns !== null) {
+            foreach ($searchColumns as $column) {
                 $model->orWhere($column, 'like', '%' . $search . '%');
             }
         }
