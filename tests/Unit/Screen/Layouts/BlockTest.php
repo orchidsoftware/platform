@@ -2,6 +2,7 @@
 
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
+use Illuminate\View\View;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Input;
@@ -57,22 +58,20 @@ class BlockTest extends TestUnitCase
 
     public function testRenderBlockCommand(): void
     {
-        $repository = new Repository();
-
         $layout = LayoutFactory::block([])
             ->title('Profile Information')
             ->description("Update your account's profile information and email address.")
             ->commands(Button::make('Submit'));
 
-        $html = $layout->build($repository)->withErrors([])->render();
+        $html = $layout->build(new Repository())
+            ->withErrors([])
+            ->render();
 
         $this->assertStringContainsString('Submit', $html);
     }
 
     public function testRenderBlockManyCommand(): void
     {
-        $repository = new Repository();
-
         $layout = LayoutFactory::block([])
             ->title('Profile Information')
             ->description("Update your account's profile information and email address.")
@@ -81,9 +80,26 @@ class BlockTest extends TestUnitCase
                 Link::make('Link to site'),
             ]);
 
-        $html = $layout->build($repository)->withErrors([])->render();
+        $html = $layout->build(new Repository())
+            ->withErrors([])
+            ->render();
 
         $this->assertStringContainsString('Submit', $html);
         $this->assertStringContainsString('Link to site', $html);
+    }
+
+    public function testRenderBlockViewDescription(): void
+    {
+        $view = view('exemplar::dummy.text');
+
+        $layout = LayoutFactory::block([])
+            ->title('Profile Information')
+            ->description($view);
+
+        $html = $layout->build(new Repository())
+            ->withErrors([])
+            ->render();
+
+        $this->assertStringContainsString($view->render(), $html);
     }
 }
