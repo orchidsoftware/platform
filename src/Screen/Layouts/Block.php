@@ -66,7 +66,7 @@ abstract class Block extends Layout
      *
      * @return Block
      */
-    public function title(string $title): Block
+    public function title(string $title): self
     {
         $this->variables['title'] = $title;
 
@@ -80,7 +80,7 @@ abstract class Block extends Layout
      *
      * @return Block
      */
-    public function description(string $description): Block
+    public function description(string $description): self
     {
         $this->variables['description'] = $description;
 
@@ -92,7 +92,7 @@ abstract class Block extends Layout
      *
      * @return Block
      */
-    public function commands($commands): Block
+    public function commands($commands): self
     {
         $this->commandBar = Arr::wrap($commands);
 
