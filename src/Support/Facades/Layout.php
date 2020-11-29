@@ -20,7 +20,6 @@ use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Layouts\View;
 use Orchid\Screen\Layouts\Wrapper;
-use Orchid\Screen\Layouts\Block;
 
 /**
  * Class Layout.
