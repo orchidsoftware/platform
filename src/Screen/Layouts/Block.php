@@ -76,11 +76,11 @@ abstract class Block extends Layout
     /**
      * Used to create the description of a group of form elements.
      *
-     * @param string description
+     * @param string|\Illuminate\View\View description
      *
      * @return Block
      */
-    public function description(string $description): Block
+    public function description($description): Block
     {
         $this->variables['description'] = $description;
 
