@@ -9,6 +9,7 @@ use Orchid\Screen\Layout as BaseLayout;
 use Orchid\Screen\LayoutFactory;
 use Orchid\Screen\Layouts\Accordion;
 use Orchid\Screen\Layouts\Blank;
+use Orchid\Screen\Layouts\Block;
 use Orchid\Screen\Layouts\Collapse;
 use Orchid\Screen\Layouts\Columns;
 use Orchid\Screen\Layouts\Component;
@@ -35,6 +36,7 @@ use Orchid\Screen\Layouts\Wrapper;
  * @method static Wrapper wrapper(string $template, array $layouts)
  * @method static Accordion accordion(BaseLayout[] $layouts)
  * @method static Selection selection(array $filters)
+ * @method static Block block(BaseLayout|string|string[] $layouts)
  */
 class Layout extends Facade
 {

@@ -103,6 +103,10 @@ body {
     .shadow-sm {
         box-shadow: none !important;
     }
+
+    > .mb-3:last-child{
+        @extend .mb-0
+    }
 }
 
 .iframe-error {

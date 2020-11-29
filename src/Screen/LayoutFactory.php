@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Traits\Macroable;
 use Orchid\Screen\Layouts\Accordion;
 use Orchid\Screen\Layouts\Blank;
+use Orchid\Screen\Layouts\Block;
 use Orchid\Screen\Layouts\Collapse;
 use Orchid\Screen\Layouts\Columns;
 use Orchid\Screen\Layouts\Component;
@@ -27,8 +29,8 @@ class LayoutFactory
     use Macroable;
 
     /**
-     * @param string                                        $view
-     * @param \Illuminate\Contracts\Support\Arrayable|array $data
+     * @param string          $view
+     * @param Arrayable|array $data
      *
      * @return View
      */
@@ -229,6 +231,17 @@ class LayoutFactory
             {
                 return $this->filters;
             }
+        };
+    }
+
+    /**
+     * @param Layout|string|string[] $layouts
+     *
+     * @return Block
+     */
+    public static function block($layouts): Block
+    {
+        return new class(Arr::wrap($layouts)) extends Block {
         };
     }
 }
