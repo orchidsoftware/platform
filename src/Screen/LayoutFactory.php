@@ -29,7 +29,7 @@ class LayoutFactory
     use Macroable;
 
     /**
-     * @param string          $view
+     * @param string                                        $view
      * @param Arrayable|array $data
      *
      * @return View
