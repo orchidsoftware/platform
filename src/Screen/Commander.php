@@ -21,7 +21,7 @@ trait Commander
      *
      * @return array
      */
-    private function buildCommandBar(Repository $repository): array
+    protected function buildCommandBar(Repository $repository): array
     {
         return collect($this->commandBar())
             ->map(static function (Actionable $command) use ($repository) {

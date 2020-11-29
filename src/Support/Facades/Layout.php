@@ -19,6 +19,7 @@ use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Layouts\View;
 use Orchid\Screen\Layouts\Wrapper;
+use Orchid\Screen\Layouts\Block;
 
 /**
  * Class Layout.
@@ -35,6 +36,7 @@ use Orchid\Screen\Layouts\Wrapper;
  * @method static Wrapper wrapper(string $template, array $layouts)
  * @method static Accordion accordion(BaseLayout[] $layouts)
  * @method static Selection selection(array $filters)
+ * @method static Block block(BaseLayout|string|string[] $layouts)
  */
 class Layout extends Facade
 {
