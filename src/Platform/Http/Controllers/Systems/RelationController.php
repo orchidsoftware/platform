@@ -21,13 +21,12 @@ class RelationController extends Controller
      */
     public function view(RelationRequest $request)
     {
-
         [
-            'model'  => $model,
-            'name'   => $name,
-            'key'    => $key,
-            'scope'  => $scope,
-            'append' => $append,
+            'model'         => $model,
+            'name'          => $name,
+            'key'           => $key,
+            'scope'         => $scope,
+            'append'        => $append,
             'searchColumns' => $searchColumns,
         ] = collect($request->except(['search']))->map(static function ($item, $key) {
             if ($item === null) {
@@ -37,7 +36,6 @@ class RelationController extends Controller
             if ($key === 'scope' || $key === 'searchColumns') {
                 return Crypt::decrypt($item);
             }
-
 
             return Crypt::decryptString($item);
         });
@@ -58,7 +56,7 @@ class RelationController extends Controller
      * @param string|null $search
      * @param array|null  $scope
      * @param string|null $append
-     * @param array|null $searchColumns
+     * @param array|null  $searchColumns
      *
      * @return mixed
      */
@@ -84,11 +82,11 @@ class RelationController extends Controller
             return $model->take(10)->pluck($append ?? $name, $key);
         }
 
-        $model = $model->where($name, 'like', '%' . $search . '%');
+        $model = $model->where($name, 'like', '%'.$search.'%');
 
         if ($searchColumns !== null) {
             foreach ($searchColumns as $column) {
-                $model->orWhere($column, 'like', '%' . $search . '%');
+                $model->orWhere($column, 'like', '%'.$search.'%');
             }
         }
 

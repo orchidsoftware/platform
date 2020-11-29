@@ -189,12 +189,12 @@ class RelationTest extends TestFieldsUnitCase
     {
         $select = Relation::make('users')
             ->fromModel(EmptyUserModel::class, 'name')
-            ->searchColumns('email','id');
+            ->searchColumns('email', 'id');
 
         $view = self::renderField($select);
 
         $crypt = Str::between($view, 'data-fields--relation-search-columns="', '=="');
 
-        $this->assertEquals(['email','id'], Crypt::decrypt($crypt));
+        $this->assertEquals(['email', 'id'], Crypt::decrypt($crypt));
     }
 }

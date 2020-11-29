@@ -26,12 +26,12 @@ class RelationRequest extends FormRequest
     public function rules()
     {
         return [
-            'search'   => 'string|nullable',
-            'model'    => 'string|required',
-            'key'      => 'string|required',
-            'name'     => 'string|required',
-            'scope'    => 'string|nullable',
-            'append'   => 'nullable',
+            'search'         => 'string|nullable',
+            'model'          => 'string|required',
+            'key'            => 'string|required',
+            'name'           => 'string|required',
+            'scope'          => 'string|nullable',
+            'append'         => 'nullable',
             'searchColumns'  => 'string|nullable',
         ];
     }
@@ -44,7 +44,7 @@ class RelationRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'append' => $this->append,
+            'append'        => $this->append,
             'searchColumns' => $this->searchColumns,
         ]);
     }
