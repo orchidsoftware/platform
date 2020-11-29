@@ -86,5 +86,4 @@ class BlockTest extends TestUnitCase
         $this->assertStringContainsString('Submit', $html);
         $this->assertStringContainsString('Link to site', $html);
     }
-
 }
