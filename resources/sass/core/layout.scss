@@ -95,11 +95,13 @@ body {
     @extend .mb-3;
 }
 
-.layout-wrapper {
+.layout-wrapper-no-padder {
     > .p-4 {
-        padding: 0!important;
+        padding: 0 !important;
     }
+}
 
+.layout-wrapper {
     .shadow-sm {
         box-shadow: none !important;
     }
