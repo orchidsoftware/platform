@@ -82,4 +82,62 @@ class MetricsTest extends TestUnitCase
             'values' => $period->pluck('value')->toArray(),
         ], $period->toChart('Users'));
     }
+
+    public function testValuesPeriod(): void
+    {
+        $current = Carbon::now();
+        $start = (clone $current)->subDays(2);
+        $end = (clone $current)->subDay();
+
+        User::factory()->count(5)->create([
+            'created_at' => $start,
+        ]);
+
+        User::factory()->count(8)->create([
+            'created_at' => $end,
+        ]);
+
+        $period = User::valuesByDays('id', $start, $end);
+
+        $this->assertEquals(1, $period->pluck('value')->first());
+        $this->assertEquals(6, $period->pluck('value')->last());
+
+        $this->assertEquals($start->toDateString(), $period->pluck('label')->first());
+        $this->assertEquals($end->toDateString(), $period->pluck('label')->last());
+
+        $this->assertSame([
+            'name'   => 'Users',
+            'labels' => $period->pluck('label')->toArray(),
+            'values' => $period->pluck('value')->toArray(),
+        ], $period->toChart('Users'));
+    }
+
+    public function testSumPeriod(): void
+    {
+        $current = Carbon::now();
+        $start = (clone $current)->subDays(2);
+        $end = (clone $current)->subDay();
+
+        User::factory()->count(5)->create([
+            'created_at' => $start,
+        ]);
+
+        User::factory()->count(8)->create([
+            'created_at' => $end,
+        ]);
+
+        $period = User::sumByDays('id', $start, $end);
+
+        $this->assertEquals(15, $period->pluck('value')->first());
+        $this->assertEquals(76, $period->pluck('value')->last());
+
+        $this->assertEquals($start->toDateString(), $period->pluck('label')->first());
+        $this->assertEquals($end->toDateString(), $period->pluck('label')->last());
+
+        $this->assertSame([
+            'name'   => 'Users',
+            'labels' => $period->pluck('label')->toArray(),
+            'values' => $period->pluck('value')->toArray(),
+        ], $period->toChart('Users'));
+    }
 }
