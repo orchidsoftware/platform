@@ -100,8 +100,8 @@ class MetricsTest extends TestUnitCase
         $period = User::valuesByDays('id', $start, $end);
 
         // Stitch selection depends on database and driver
-        $this->assertContains($period->pluck('value')->first(), [1, 5]);
-        $this->assertContains($period->pluck('value')->first(), [6, 13]);
+        $this->assertContains($period->pluck('value')->first(), ['1', '5']);
+        $this->assertContains($period->pluck('value')->last(), ['6', '13']);
 
         $this->assertEquals($start->toDateString(), $period->pluck('label')->first());
         $this->assertEquals($end->toDateString(), $period->pluck('label')->last());
