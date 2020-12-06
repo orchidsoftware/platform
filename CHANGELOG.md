@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 9.12.1 - 2020-12-06
+
+### Fixed
+- Filters style [#1387](https://github.com/orchidsoftware/platform/pull/1387)
+
 ## 9.12.0 - 2020-12-05
 
 ### Added
