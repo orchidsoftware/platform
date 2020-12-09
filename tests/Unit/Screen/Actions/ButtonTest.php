@@ -118,7 +118,6 @@ class ButtonTest extends TestFieldsUnitCase
 
         $this->assertStringContainsString('disabled', $view);
 
-
         $button = Button::make('About')
             ->method('test')
             ->when(false, function (Button $button) {
@@ -128,6 +127,5 @@ class ButtonTest extends TestFieldsUnitCase
         $view = self::renderField($button);
 
         $this->assertStringNotContainsString('disabled', $view);
-
     }
 }
