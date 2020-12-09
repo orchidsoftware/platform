@@ -502,4 +502,21 @@ class Field implements Fieldable
 
         return '';
     }
+
+    /**
+     * Apply the callback if the value is truthy.
+     *
+     * @param bool     $value
+     * @param callable $callback
+     *
+     * @return static
+     */
+    public function when(bool $value, callable $callback)
+    {
+        if ($value) {
+            $callback($this);
+        }
+
+        return $this;
+    }
 }
