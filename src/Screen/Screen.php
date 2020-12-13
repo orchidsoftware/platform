@@ -219,7 +219,7 @@ abstract class Screen extends Controller
      */
     private function bind(int $key, ReflectionParameter $parameter, array $httpQueryArguments)
     {
-        $class = $parameter->getType() && !$parameter->getType()->isBuiltin()
+        $class = $parameter->getType() && ! $parameter->getType()->isBuiltin()
            ? $parameter->getType()->getName()
            : null;
 
@@ -271,9 +271,9 @@ abstract class Screen extends Controller
      *
      * @param array $httpQueryArguments
      *
-     * @return Factory|RedirectResponse|\Illuminate\View\View
      *@throws ReflectionException
      *
+     * @return Factory|RedirectResponse|\Illuminate\View\View
      */
     protected function redirectOnGetMethodCallOrShowView(array $httpQueryArguments)
     {
