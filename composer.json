@@ -37,11 +37,11 @@
   ],
   "require": {
     "ext-json": "*",
-    "orchid/blade-icons": "^1.2.0",
+    "orchid/blade-icons": "^1.2",
     "orchid/icons": "^2.0",
-    "tabuna/breadcrumbs": "^2.1",
+    "tabuna/breadcrumbs": "^2.3",
     "laravel/framework": "^8.0",
-    "laravel/scout": "^8.0",
+    "laravel/scout": "^8.5",
     "myclabs/php-enum": "^1.7",
     "watson/active": "^6.0"
   },
@@ -54,7 +54,7 @@
     "orchestra/testbench-dusk": "^6.1",
     "phpunit/php-code-coverage": "^9.0",
     "phpunit/phpunit": "^9.0",
-    "sti3bas/laravel-scout-array-driver": "^2.1"
+    "sti3bas/laravel-scout-array-driver": "^2.2"
   },
   "autoload": {
     "psr-4": {
