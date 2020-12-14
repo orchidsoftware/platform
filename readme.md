@@ -42,9 +42,9 @@ A free [Laravel](https://laravel.com) package that abstracts standard business l
 
 ## Donate & Support
 
-<a href="https://opencollective.com/orchid#backers" target="_blank"><img src="https://opencollective.com/orchid/backers.svg?width=380&avatarHeight=36"></a>
-
 Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/orchid#backer)]
+
+<a href="https://opencollective.com/orchid#backers" target="_blank"><img src="https://opencollective.com/orchid/backers.svg?width=838"></a>
 
 ## License
 
