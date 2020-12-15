@@ -65,9 +65,9 @@ trait Environment
 
         // set up database configuration
         $config->set('database.connections.orchid', [
-            'driver' => 'sqlite',
+            'driver'   => 'sqlite',
             'database' => ':memory:',
-            'prefix' => '',
+            'prefix'   => '',
         ]);
         $config->set('scout.driver', 'array');
         $config->set('database.default', 'orchid');
@@ -96,10 +96,10 @@ trait Environment
     protected function getPackageAliases($app): array
     {
         return [
-            'Alert' => Alert::class,
-            'Active' => Active::class,
+            'Alert'       => Alert::class,
+            'Active'      => Active::class,
             'Breadcrumbs' => Breadcrumbs::class,
-            'Dashboard' => Dashboard::class,
+            'Dashboard'   => Dashboard::class,
         ];
     }
 }
