@@ -43,12 +43,12 @@ class FieldTest extends TestUnitCase
         ]];
 
         yield [Select::class, [
-            'name'    => 'example',
+            'name' => 'example',
             'options' => [],
         ]];
 
         yield [RadioButtons::class, [
-            'name'    => 'example',
+            'name' => 'example',
             'options' => ['value' => 'example'],
         ]];
 
@@ -57,8 +57,8 @@ class FieldTest extends TestUnitCase
         ]];
 
         yield [Cropper::class, [
-            'name'   => 'example',
-            'width'  => '100',
+            'name' => 'example',
+            'width' => '100',
             'height' => '100',
         ]];
 
