@@ -56,16 +56,16 @@ abstract class Table extends Layout
         });
 
         return view($this->template, [
-            'repository' => $repository,
-            'rows' => $repository->getContent($this->target),
-            'columns' => $columns,
-            'total' => $total,
+            'repository'   => $repository,
+            'rows'         => $repository->getContent($this->target),
+            'columns'      => $columns,
+            'total'        => $total,
             'iconNotFound' => $this->iconNotFound(),
             'textNotFound' => $this->textNotFound(),
-            'subNotFound' => $this->subNotFound(),
-            'striped' => $this->striped(),
-            'bordered' => $this->bordered(),
-            'slug' => $this->getSlug(),
+            'subNotFound'  => $this->subNotFound(),
+            'striped'      => $this->striped(),
+            'bordered'     => $this->bordered(),
+            'slug'         => $this->getSlug(),
         ]);
     }
 
