@@ -52,18 +52,18 @@ class Upload extends Field
      * @var array
      */
     protected $attributes = [
-        'value' => null,
-        'multiple' => true,
+        'value'           => null,
+        'multiple'        => true,
         'parallelUploads' => 10,
-        'maxFileSize' => null,
-        'maxFiles' => 9999,
-        'timeOut' => 0,
-        'acceptedFiles' => null,
-        'resizeQuality' => 0.8,
-        'resizeWidth' => null,
-        'resizeHeight' => null,
-        'media' => false,
-        'closeOnAdd' => false,
+        'maxFileSize'     => null,
+        'maxFiles'        => 9999,
+        'timeOut'         => 0,
+        'acceptedFiles'   => null,
+        'resizeQuality'   => 0.8,
+        'resizeWidth'     => null,
+        'resizeHeight'    => null,
+        'media'           => false,
+        'closeOnAdd'      => false,
     ];
 
     /**
