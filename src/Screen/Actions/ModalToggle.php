@@ -32,14 +32,14 @@ class ModalToggle extends Button
      * @var array
      */
     protected $attributes = [
-        'class'      => 'btn btn-link',
-        'modal'      => null,
-        'method'     => null,
+        'class' => 'btn btn-link',
+        'modal' => null,
+        'method' => null,
         'modalTitle' => null,
-        'icon'       => null,
-        'action'     => null,
-        'async'      => false,
-        'open'       => false,
+        'icon' => null,
+        'action' => null,
+        'async' => false,
+        'open' => false,
         'parameters' => [],
     ];
 

@@ -83,8 +83,8 @@ class NotificationTest extends TestFeatureCase
         $response
             ->assertOk()
             ->assertJsonFragment([
-                'type'    => 'info',
-                'title'   => 'Task Completed',
+                'type' => 'info',
+                'title' => 'Task Completed',
                 'message' => 'You have completed work. Well done!',
             ]);
     }
