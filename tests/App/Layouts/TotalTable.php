@@ -57,7 +57,7 @@ class TotalTable extends Table
                 new Repository(['id' => 500, 'price' => 0.15, 'tax' => 0.13]),
             ],
             'total_price' => 600,
-            'total_tax' => 0.2,
+            'total_tax'   => 0.2,
         ]);
     }
 }
