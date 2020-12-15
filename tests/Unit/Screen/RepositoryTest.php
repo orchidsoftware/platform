@@ -25,10 +25,10 @@ class RepositoryTest extends TestUnitCase
     public function setUp(): void
     {
         $this->repository = new Repository($this->config = [
-            'foo'       => 'bar',
-            'bar'       => 'baz',
-            'null'      => null,
-            'numeric'   => 142,
+            'foo' => 'bar',
+            'bar' => 'baz',
+            'null' => null,
+            'numeric' => 142,
             'associate' => [
                 'x' => 'xxx',
                 'y' => 'yyy',
