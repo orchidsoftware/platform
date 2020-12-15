@@ -85,9 +85,9 @@ class File
 
         $attachment = $attachment->replicate()->fill([
             'original_name' => $this->file->getClientOriginalName(),
-            'sort' => 0,
-            'user_id' => Auth::id(),
-            'group' => $this->group,
+            'sort'          => 0,
+            'user_id'       => Auth::id(),
+            'group'         => $this->group,
         ]);
 
         $attachment->save();
@@ -115,16 +115,16 @@ class File
         ]);
 
         $attachment = Dashboard::model(Attachment::class)::create([
-            'name' => $this->engine->name(),
-            'mime' => $this->engine->mime(),
-            'hash' => $this->engine->hash(),
-            'extension' => $this->engine->extension(),
+            'name'          => $this->engine->name(),
+            'mime'          => $this->engine->mime(),
+            'hash'          => $this->engine->hash(),
+            'extension'     => $this->engine->extension(),
             'original_name' => $this->file->getClientOriginalName(),
-            'size' => $this->file->getSize(),
-            'path' => Str::finish($this->engine->path(), '/'),
-            'disk' => $this->disk,
-            'group' => $this->group,
-            'user_id' => Auth::id(),
+            'size'          => $this->file->getSize(),
+            'path'          => Str::finish($this->engine->path(), '/'),
+            'disk'          => $this->disk,
+            'group'         => $this->group,
+            'user_id'       => Auth::id(),
         ]);
 
         event(new UploadFileEvent($attachment, $this->engine->time()));
