@@ -42,14 +42,14 @@ class TableTest extends TestUnitCase
 
         $empty = $layout->build(new Repository([
             'visible' => false,
-            'target'  => [],
+            'target' => [],
         ]));
 
         $this->assertEmpty($empty);
 
         $html = $layout->build(new Repository([
             'visible' => true,
-            'target'  => [],
+            'target' => [],
         ]))->render();
 
         $this->assertNotEmpty($html);
