@@ -33,9 +33,9 @@ class SelectTest extends TestFieldsUnitCase
             ->title('Title About')
             ->help('Think about what you want to tell')
             ->options([
-                'first'  => 'First Value',
+                'first' => 'First Value',
                 'second' => 'Second Value',
-                'third'  => 'Third Value',
+                'third' => 'Third Value',
             ]);
 
         $view = self::renderField($select);
@@ -68,9 +68,9 @@ class SelectTest extends TestFieldsUnitCase
         $select = Select::make('choice')
             ->value('second')
             ->options([
-                'first'  => 'First Value',
+                'first' => 'First Value',
                 'second' => 'Second Value',
-                'third'  => 'Third Value',
+                'third' => 'Third Value',
             ]);
 
         $view = self::minifyRenderField($select);
@@ -91,9 +91,9 @@ class SelectTest extends TestFieldsUnitCase
     public function testEmptyForAssociativeArray(): void
     {
         $options = [
-            'first'  => 'First Value',
+            'first' => 'First Value',
             'second' => 'Second Value',
-            'third'  => 'Third Value',
+            'third' => 'Third Value',
         ];
 
         $select = Select::make('choice')
