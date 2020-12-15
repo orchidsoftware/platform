@@ -56,9 +56,9 @@ class PermissionTest extends TestUnitCase
         return User::firstOrCreate([
             'email' => 'test@test.com',
         ], [
-            'name' => 'test',
-            'email' => 'test@test.com',
-            'password' => 'password',
+            'name'        => 'test',
+            'email'       => 'test@test.com',
+            'password'    => 'password',
             'permissions' => [
                 'access.user.duplicate' => 1,
                 'access.role.duplicate' => 0,
@@ -76,11 +76,11 @@ class PermissionTest extends TestUnitCase
         return Role::firstOrCreate([
             'slug' => 'admin',
         ], [
-            'slug' => 'admin',
-            'name' => 'admin',
+            'slug'        => 'admin',
+            'name'        => 'admin',
             'permissions' => [
-                'access.user.duplicate' => 0,
-                'access.role.duplicate' => 1,
+                'access.user.duplicate'       => 0,
+                'access.role.duplicate'       => 1,
                 'access.roles.to.public.data' => 1,
                 'access.roles.to.secret.data' => 0,
             ],
