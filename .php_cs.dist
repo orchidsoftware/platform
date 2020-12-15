@@ -27,7 +27,7 @@ return PhpCsFixer\Config::create()
         'unary_operator_spaces' => true,
         'binary_operator_spaces' => ['align_double_arrow' => true, 'align_equals' => false],
         'blank_line_before_statement' => [
-            'statements' => ['break', 'continue', 'declare', 'return', 'throw', 'try'],
+            'statements' => ['continue', 'declare', 'return', 'throw', 'try'],
         ],
         'phpdoc_separation' => true,
         'phpdoc_align' => true,
@@ -43,7 +43,6 @@ return PhpCsFixer\Config::create()
         'method_argument_space' => [
             'keep_multiple_spaces_after_comma' => true,
         ],
-        'single_trait_insert_per_statement' => true,
         'trim_array_spaces' => true,
     ])
     ->setFinder($finder);
