@@ -117,10 +117,10 @@ abstract class Layout implements JsonSerializable
             ->all();
 
         $variables = array_merge($this->variables, [
-            'manyForms'    => $build,
+            'manyForms' => $build,
             'templateSlug' => $this->getSlug(),
-            'asyncEnable'  => empty($this->asyncMethod) ? 0 : 1,
-            'asyncRoute'   => $this->asyncRoute(),
+            'asyncEnable' => empty($this->asyncMethod) ? 0 : 1,
+            'asyncRoute' => $this->asyncRoute(),
         ]);
 
         return view($this->async ? 'platform::layouts.blank' : $this->template, $variables);
@@ -140,8 +140,8 @@ abstract class Layout implements JsonSerializable
         }
 
         return route('platform.async', [
-            'screen'   => Crypt::encryptString(get_class($screen)),
-            'method'   => $this->asyncMethod,
+            'screen' => Crypt::encryptString(get_class($screen)),
+            'method' => $this->asyncMethod,
             'template' => $this->getSlug(),
         ]);
     }
