@@ -40,7 +40,7 @@ class Select extends Field
      * @var array
      */
     protected $attributes = [
-        'class' => 'form-control',
+        'class'   => 'form-control',
         'options' => [],
     ];
 
