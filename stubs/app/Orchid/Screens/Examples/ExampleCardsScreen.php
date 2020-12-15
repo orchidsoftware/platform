@@ -92,10 +92,10 @@ class ExampleCardsScreen extends Screen
                 public function description(): string
                 {
                     return new Compendium([
-                        'Type'                               => 'electric stove',
-                        'Model'                              => 'dream 251CH',
-                        'Main color'                         => 'white',
-                        'Complementary color'                => 'none',
+                        'Type' => 'electric stove',
+                        'Model' => 'dream 251CH',
+                        'Main color' => 'white',
+                        'Complementary color' => 'none',
                         'Color declared by the manufacturer' => 'white',
                     ]);
                 }
@@ -124,7 +124,7 @@ class ExampleCardsScreen extends Screen
                     return Color::INFO();
                 }
             },
-            'cardPersona'    => new class implements Cardable {
+            'cardPersona' => new class implements Cardable {
                 /**
                  * @return string
                  */

@@ -18,7 +18,9 @@ class MenuTest extends TestUnitCase
     {
         $menu = (new Dashboard())->menu;
 
-        $menu->add(Menu::MAIN, ItemMenu::label('Main Test')
+        $menu->add(
+            Menu::MAIN,
+            ItemMenu::label('Main Test')
             ->slug('Test')
             ->icon('icon-layers')
             ->childs()
@@ -28,7 +30,9 @@ class MenuTest extends TestUnitCase
         $this->assertNotNull($menu->render('Main'));
         $this->assertEquals(1, $menu->container->count());
 
-        $menu->add('Test', ItemMenu::label('Users')
+        $menu->add(
+            'Test',
+            ItemMenu::label('Users')
             ->slug('users')
             ->icon('icon-user')
             ->childs(false)
@@ -44,14 +48,18 @@ class MenuTest extends TestUnitCase
     {
         $menu = (new Dashboard())->menu;
 
-        $menu->add('CountPlace', ItemMenu::label('Main Test')
+        $menu->add(
+            'CountPlace',
+            ItemMenu::label('Main Test')
             ->slug('CountPlace 1')
             ->icon('icon-layers')
             ->childs()
             ->sort(1000)
         );
 
-        $menu->add('CountPlace', ItemMenu::label('Main Test')
+        $menu->add(
+            'CountPlace',
+            ItemMenu::label('Main Test')
             ->slug('CountPlace 2')
             ->icon('icon-layers')
             ->childs()
@@ -67,7 +75,9 @@ class MenuTest extends TestUnitCase
     {
         $menu = (new Dashboard())->menu;
 
-        $menu->add(Menu::MAIN, ItemMenu::label('No Display')
+        $menu->add(
+            Menu::MAIN,
+            ItemMenu::label('No Display')
             ->childs()
             ->sort(1000)
             ->canSee(false)
@@ -82,7 +92,9 @@ class MenuTest extends TestUnitCase
     {
         $menu = (new Dashboard())->menu;
 
-        $menu->add(Menu::MAIN, ItemMenu::label('Dropdown menu')
+        $menu->add(
+            Menu::MAIN,
+            ItemMenu::label('Dropdown menu')
             ->slug('example-menu')
             ->childs()
             ->hideEmpty()
@@ -101,7 +113,9 @@ class MenuTest extends TestUnitCase
     {
         $menu = (new Dashboard())->menu;
 
-        $menu->add(Menu::MAIN, ItemMenu::label('Dropdown menu')
+        $menu->add(
+            Menu::MAIN,
+            ItemMenu::label('Dropdown menu')
             ->slug('example-menu')
             ->childs()
             ->hideEmpty()
@@ -120,7 +134,9 @@ class MenuTest extends TestUnitCase
     {
         $menu = (new Dashboard())->menu;
 
-        $menu->add(Menu::MAIN, ItemMenu::label('Dropdown menu')
+        $menu->add(
+            Menu::MAIN,
+            ItemMenu::label('Dropdown menu')
             ->slug('example-menu')
             ->childs()
         );

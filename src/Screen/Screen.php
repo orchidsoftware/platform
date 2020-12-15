@@ -134,10 +134,10 @@ abstract class Screen extends Controller
         $commandBar = $this->buildCommandBar($this->source);
 
         return view('platform::layouts.base', [
-            'name'                => $this->name,
-            'description'         => $this->description,
-            'commandBar'          => $commandBar,
-            'layouts'             => $this->build(),
+            'name' => $this->name,
+            'description' => $this->description,
+            'commandBar' => $commandBar,
+            'layouts' => $this->build(),
             'formValidateMessage' => $this->formValidateMessage(),
         ]);
     }
@@ -299,7 +299,8 @@ abstract class Screen extends Controller
      */
     private function callMethod(string $method, array $parameters = [])
     {
-        return call_user_func_array([$this, $method],
+        return call_user_func_array(
+            [$this, $method],
             $this->reflectionParams($method, $parameters)
         );
     }

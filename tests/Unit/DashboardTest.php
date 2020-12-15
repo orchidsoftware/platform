@@ -73,7 +73,7 @@ class DashboardTest extends TestUnitCase
         ], $stylesheets);
 
         $this->assertEquals($dashboard->getResource(), collect([
-            'scripts'     => [
+            'scripts' => [
                 'app.js',
             ],
             'stylesheets' => [

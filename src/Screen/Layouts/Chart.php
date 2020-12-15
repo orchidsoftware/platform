@@ -107,9 +107,9 @@ abstract class Chart extends Layout
      */
     protected $barOptions = [
         'spaceRatio' => 0.5,
-        'stacked'    => 0,
-        'height'     => 20,
-        'depth'      => 2,
+        'stacked' => 0,
+        'height' => 20,
+        'depth' => 2,
     ];
 
     /**
@@ -119,10 +119,10 @@ abstract class Chart extends Layout
      */
     protected $lineOptions = [
         'regionFill' => 0,
-        'hideDots'   => 0,
-        'hideLine'   => 0,
-        'heatline'   => 0,
-        'dotSize'    => 4,
+        'hideDots' => 0,
+        'hideLine' => 0,
+        'heatline' => 0,
+        'dotSize' => 4,
     ];
 
     /**
@@ -131,8 +131,8 @@ abstract class Chart extends Layout
      * @var array
      */
     protected $axisOptions = [
-        'xIsSeries'  => true,
-        'xAxisMode'  => 'span', //'tick'
+        'xIsSeries' => true,
+        'xAxisMode' => 'span', //'tick'
     ];
 
     /**
@@ -157,19 +157,19 @@ abstract class Chart extends Layout
                 ->toJson(JSON_NUMERIC_CHECK);
 
         return view($this->template, [
-            'title'            => $this->title,
-            'slug'             => Str::slug($this->title),
-            'type'             => $this->type,
-            'height'           => $this->height,
-            'labels'           => $labels,
-            'export'           => $this->export,
-            'data'             => json_encode($repository->getContent($this->target), JSON_NUMERIC_CHECK),
-            'colors'           => json_encode($this->colors),
-            'maxSlices'        => json_encode($this->maxSlices),
+            'title' => $this->title,
+            'slug' => Str::slug($this->title),
+            'type' => $this->type,
+            'height' => $this->height,
+            'labels' => $labels,
+            'export' => $this->export,
+            'data' => json_encode($repository->getContent($this->target), JSON_NUMERIC_CHECK),
+            'colors' => json_encode($this->colors),
+            'maxSlices' => json_encode($this->maxSlices),
             'valuesOverPoints' => json_encode($this->valuesOverPoints),
-            'axisOptions'      => json_encode($this->axisOptions),
-            'barOptions'       => json_encode($this->barOptions),
-            'lineOptions'      => json_encode($this->lineOptions),
+            'axisOptions' => json_encode($this->axisOptions),
+            'barOptions' => json_encode($this->barOptions),
+            'lineOptions' => json_encode($this->lineOptions),
         ]);
     }
 }

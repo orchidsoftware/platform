@@ -37,9 +37,9 @@ class Picture extends Field
      * @var array
      */
     protected $attributes = [
-        'value'       => null,
-        'target'      => 'url',
-        'url'         => null,
+        'value' => null,
+        'target' => 'url',
+        'url' => null,
         'maxFileSize' => null,
     ];
 
@@ -86,7 +86,8 @@ class Picture extends Field
             throw_if(
                 $maxFileSize > $serverMaxFileSize,
                 \RuntimeException::class,
-                'Cannot set the desired maximum file size. This contradicts the settings specified in .ini');
+                'Cannot set the desired maximum file size. This contradicts the settings specified in .ini'
+            );
         });
     }
 

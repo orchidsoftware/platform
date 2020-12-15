@@ -27,11 +27,11 @@ class Matrix extends Field
      * @var array
      */
     protected $attributes = [
-        'index'    => 0,
-        'maxRows'  => 0,
+        'index' => 0,
+        'maxRows' => 0,
         'keyValue' => false,
-        'fields'   => [],
-        'columns'  => [
+        'fields' => [],
+        'columns' => [
             'key',
             'value',
         ],
@@ -53,7 +53,8 @@ class Matrix extends Field
                     ->toArray();
 
                 $this->set('value', $value);
-                $this->set('index',
+                $this->set(
+                    'index',
                     empty($value) ? 0 : array_key_last($value)
                 );
             })

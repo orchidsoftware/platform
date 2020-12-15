@@ -130,7 +130,7 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerAssets(): self
     {
         $this->publishes([
-            Dashboard::path('resources/js')   => resource_path('js/orchid'),
+            Dashboard::path('resources/js') => resource_path('js/orchid'),
             Dashboard::path('resources/sass') => resource_path('sass/orchid'),
         ], 'orchid-assets');
 
@@ -217,7 +217,8 @@ class FoundationServiceProvider extends ServiceProvider
         }
 
         $this->mergeConfigFrom(
-            Dashboard::path('config/platform.php'), 'platform'
+            Dashboard::path('config/platform.php'),
+            'platform'
         );
 
         Blade::component('orchid-popover', Popover::class);
