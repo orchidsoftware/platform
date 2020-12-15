@@ -31,7 +31,7 @@ class Map extends Field
      * @var array
      */
     protected $attributes = [
-        'zoom' => 14,
+        'zoom'   => 14,
         'height' => '300px',
     ];
 
