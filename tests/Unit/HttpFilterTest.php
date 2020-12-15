@@ -92,7 +92,7 @@ class HttpFilterTest extends TestUnitCase
     public function testHttpUnknownAttributes(): void
     {
         $request = new Request([
-            'sort' => 'unknown',
+            'sort'   => 'unknown',
             'filter' => [
                 'unknown' => 'not allow',
             ],
