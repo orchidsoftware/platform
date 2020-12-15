@@ -19,7 +19,7 @@ class TimeCollection extends Collection
         };
 
         return [
-            'name' => $name,
+            'name'   => $name,
             'labels' => $this->pluck('label')->map($closure)->toArray(),
             'values' => $this->pluck('value')->toArray(),
         ];
