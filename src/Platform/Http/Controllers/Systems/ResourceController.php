@@ -79,7 +79,7 @@ class ResourceController extends Controller
         $mime = $this->mimeTypes->getMimeType($resource->getExtension());
 
         return response()->file($resource->getRealPath(), [
-            'Content-Type' => $mime ?? 'text/plain',
+            'Content-Type'  => $mime ?? 'text/plain',
             'Cache-Control' => 'public, max-age=31536000',
         ]);
     }
