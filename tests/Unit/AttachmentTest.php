@@ -171,8 +171,8 @@ class AttachmentTest extends TestUnitCase
     {
         $attachment = new Attachment([
             'original_name' => 'photo.jpg',
-            'name' => 'random',
-            'extension' => 'jpg',
+            'name'          => 'random',
+            'extension'     => 'jpg',
         ]);
 
         $this->assertEquals($attachment->original_name, $attachment->getTitleAttribute());
