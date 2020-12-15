@@ -22,8 +22,8 @@ class AttachmentTest extends TestFeatureCase
             ->assertOk()
             ->assertJson([
                 'original_name' => 'avatar.jpg',
-                'disk' => 'public',
-                'group' => null,
+                'disk'          => 'public',
+                'group'         => null,
             ]);
     }
 
@@ -111,17 +111,17 @@ class AttachmentTest extends TestFeatureCase
         $response = $this
             ->actingAs($this->createAdminUser())
             ->put(route('platform.systems.files.update', $upload->id), [
-                'name' => 'New name',
+                'name'        => 'New name',
                 'description' => 'New description',
-                'alt' => 'New alt',
+                'alt'         => 'New alt',
             ]);
 
         $response
             ->assertOk()
             ->assertJson([
-                'name' => 'New name',
+                'name'        => 'New name',
                 'description' => 'New description',
-                'alt' => 'New alt',
+                'alt'         => 'New alt',
             ]);
     }
 
