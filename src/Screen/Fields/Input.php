@@ -53,7 +53,7 @@ class Input extends Field
      * @var array
      */
     protected $attributes = [
-        'class' => 'form-control',
+        'class'    => 'form-control',
         'datalist' => [],
     ];
 
