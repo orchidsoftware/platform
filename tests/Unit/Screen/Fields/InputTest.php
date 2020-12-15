@@ -29,8 +29,8 @@ class InputTest extends TestFieldsUnitCase
     {
         $input = Input::make('price')
             ->mask([
-                'alias' => 'currency',
-                'prefix' => ' ',
+                'alias'          => 'currency',
+                'prefix'         => ' ',
                 'groupSeparator' => ' ',
                 'digitsOptional' => true,
             ]);
