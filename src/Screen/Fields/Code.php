@@ -56,11 +56,11 @@ class Code extends Field
      * @var array
      */
     protected $attributes = [
-        'class'        => 'form-control',
-        'language'     => 'js',
-        'lineNumbers'  => true,
+        'class' => 'form-control',
+        'language' => 'js',
+        'lineNumbers' => true,
         'defaultTheme' => true,
-        'height'       => '300px',
+        'height' => '300px',
     ];
 
     /**
