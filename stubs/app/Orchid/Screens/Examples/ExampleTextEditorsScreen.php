@@ -34,9 +34,9 @@ class ExampleTextEditorsScreen extends Screen
     public function query(): array
     {
         return [
-            'quill'     => 'Hello! We collected all the fields in one place',
+            'quill' => 'Hello! We collected all the fields in one place',
             'simplemde' => '# Big header',
-            'code'      => Str::limit(file_get_contents(__FILE__), 500),
+            'code' => Str::limit(file_get_contents(__FILE__), 500),
         ];
     }
 
