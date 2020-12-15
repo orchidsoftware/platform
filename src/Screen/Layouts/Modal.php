@@ -51,19 +51,19 @@ class Modal extends Layout
     public function __construct(string $key, array $layouts = [])
     {
         $this->variables = [
-            'apply' => __('Apply'),
-            'close' => __('Close'),
-            'size' => '',
-            'type' => self::TYPE_CENTER,
-            'key' => $key,
-            'title' => $key,
-            'turbolinks' => true,
-            'commandBar' => [],
+            'apply'              => __('Apply'),
+            'close'              => __('Close'),
+            'size'               => '',
+            'type'               => self::TYPE_CENTER,
+            'key'                => $key,
+            'title'              => $key,
+            'turbolinks'         => true,
+            'commandBar'         => [],
             'withoutApplyButton' => false,
             'withoutCloseButton' => false,
-            'open' => false,
-            'method' => null,
-            'staticBackdrop' => false,
+            'open'               => false,
+            'method'             => null,
+            'staticBackdrop'     => false,
         ];
 
         $this->layouts = $layouts;
