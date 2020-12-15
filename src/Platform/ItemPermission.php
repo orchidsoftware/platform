@@ -39,7 +39,7 @@ class ItemPermission
     public function addPermission(string $slug, string $name)
     {
         $this->items[] = [
-            'slug'        => $slug,
+            'slug' => $slug,
             'description' => $name,
         ];
 
