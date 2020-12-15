@@ -57,7 +57,7 @@ class User extends Authenticatable implements UserInterface
      * @var array
      */
     protected $casts = [
-        'permissions' => 'array',
+        'permissions'       => 'array',
         'email_verified_at' => 'datetime',
     ];
 
@@ -98,9 +98,9 @@ class User extends Authenticatable implements UserInterface
         throw_if(static::where('email', $email)->exists(), Exception::class, 'User exist');
 
         static::create([
-            'name' => $name,
-            'email' => $email,
-            'password' => Hash::make($password),
+            'name'        => $name,
+            'email'       => $email,
+            'password'    => Hash::make($password),
             'permissions' => Dashboard::getAllowAllPermission(),
         ]);
     }
