@@ -42,10 +42,10 @@ class Relation extends Field
      * @var array
      */
     protected $attributes = [
-        'class'                 => 'form-control',
-        'value'                 => [],
-        'relationScope'         => null,
-        'relationAppend'        => null,
+        'class' => 'form-control',
+        'value' => [],
+        'relationScope' => null,
+        'relationAppend' => null,
         'relationSearchColumns' => null,
     ];
 
@@ -116,7 +116,7 @@ class Relation extends Field
             $value = collect($value)
                 ->map(static function ($item) use ($text, $key) {
                     return [
-                        'id'   => $item->$key,
+                        'id' => $item->$key,
                         'text' => $item->$text,
                     ];
                 })->toJson();
@@ -167,7 +167,7 @@ class Relation extends Field
                     $item = is_array($item) ? collect($item) : $item;
 
                     return [
-                        'id'   => $item->get($key),
+                        'id' => $item->get($key),
                         'text' => $item->get($name),
                     ];
                 })->toJson();
@@ -185,7 +185,7 @@ class Relation extends Field
     public function applyScope(string $scope, ...$parameters): self
     {
         $data = [
-            'name'       => lcfirst($scope),
+            'name' => lcfirst($scope),
             'parameters' => $parameters,
         ];
         $this->set('scope', $data);
