@@ -42,9 +42,9 @@ class Quill extends Field
      * @var array
      */
     protected $attributes = [
-        'value'   => null,
+        'value' => null,
         'toolbar' => ['text', 'color', 'quote', 'header', 'list', 'format', 'media'],
-        'height'  => '300px',
+        'height' => '300px',
     ];
 
     /**
