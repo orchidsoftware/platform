@@ -142,7 +142,7 @@ class RelationTest extends TestFieldsUnitCase
         $crypt = Str::between($view, 'data-fields--relation-scope="', '=="');
 
         $this->assertEquals([
-            'name' => lcfirst('exampleScope'),
+            'name'       => lcfirst('exampleScope'),
             'parameters' => [1, 'string', ['foo', 'bar']],
         ], Crypt::decrypt($crypt));
     }
@@ -158,7 +158,7 @@ class RelationTest extends TestFieldsUnitCase
         $crypt = Str::between($view, 'data-fields--relation-scope="', '=="');
 
         $this->assertEquals([
-            'name' => lcfirst('exampleScope'),
+            'name'       => lcfirst('exampleScope'),
             'parameters' => [],
         ], Crypt::decrypt($crypt));
     }
