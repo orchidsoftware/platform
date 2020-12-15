@@ -40,10 +40,10 @@ abstract class TestBrowserCase extends TestCase
         $this->getEnvSetUp($app);
 
         config()->set('database.connections.orchid', [
-            'driver'                  => 'sqlite',
-            'url'                     => env('DATABASE_URL'),
-            'database'                => env('DB_DATABASE', database_path('database.sqlite')),
-            'prefix'                  => '',
+            'driver' => 'sqlite',
+            'url' => env('DATABASE_URL'),
+            'database' => env('DB_DATABASE', database_path('database.sqlite')),
+            'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ]);
 
