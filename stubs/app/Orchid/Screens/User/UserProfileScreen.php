@@ -115,7 +115,7 @@ class UserProfileScreen extends Screen
     public function save(Request $request)
     {
         $request->validate([
-            'user.name' => 'required|string',
+            'user.name'  => 'required|string',
             'user.email' => [
                 'required',
                 Rule::unique(User::class, 'email')->ignore($request->user()),
@@ -136,7 +136,7 @@ class UserProfileScreen extends Screen
     {
         $request->validate([
             'old_password' => 'required|password:web',
-            'password' => 'required|confirmed',
+            'password'     => 'required|confirmed',
         ]);
 
         tap($request->user(), function ($user) use ($request) {
