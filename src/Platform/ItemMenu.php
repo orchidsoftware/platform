@@ -264,7 +264,7 @@ class ItemMenu
     {
         $this->badge = [
             'class' => $color ?? Color::PRIMARY(),
-            'data' => $badge,
+            'data'  => $badge,
         ];
 
         return $this;
