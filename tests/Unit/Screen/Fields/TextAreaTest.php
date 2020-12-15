@@ -87,7 +87,7 @@ class TextAreaTest extends TestFieldsUnitCase
 
         $this->app['router']->get('TextAreaTestOldValue', [
             'middleware' => 'web',
-            'uses'       => function () use ($textArea, $oldValue, $oldName) {
+            'uses' => function () use ($textArea, $oldValue, $oldName) {
                 request()->merge([
                     $oldName => $oldValue,
                 ])->flash();
