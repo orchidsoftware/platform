@@ -57,8 +57,8 @@ abstract class Collapse extends Layout
         $form = new Builder($this->fields(), $repository);
 
         return view($this->template, [
-            'form' => $form->generateForm(),
-            'slug' => $this->getSlug(),
+            'form'  => $form->generateForm(),
+            'slug'  => $this->getSlug(),
             'label' => $this->label,
         ]);
     }
