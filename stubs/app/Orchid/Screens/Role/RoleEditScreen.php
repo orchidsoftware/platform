@@ -52,7 +52,7 @@ class RoleEditScreen extends Screen
         $this->exist = $role->exists;
 
         return [
-            'role' => $role,
+            'role'       => $role,
             'permission' => $role->getStatusPermission(),
         ];
     }

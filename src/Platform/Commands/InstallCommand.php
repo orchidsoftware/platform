@@ -40,8 +40,8 @@ class InstallCommand extends Command
         $this
             ->executeCommand('vendor:publish', [
                 '--provider' => FoundationServiceProvider::class,
-                '--force' => true,
-                '--tag' => [
+                '--force'    => true,
+                '--tag'      => [
                     'config',
                     'migrations',
                     'orchid-stubs',
