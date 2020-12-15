@@ -68,10 +68,10 @@ class SearchScreen extends Screen
             });
 
         return [
-            'query'   => $query,
-            'model'   => $model,
+            'query' => $query,
+            'model' => $model,
             'results' => $results,
-            'total'   => $results->total(),
+            'total' => $results->total(),
         ];
     }
 
@@ -159,8 +159,8 @@ class SearchScreen extends Screen
 
         return view('platform::partials.result-compact', [
             'results' => $results,
-            'total'   => $this->total,
-            'query'   => $query,
+            'total' => $this->total,
+            'query' => $query,
         ]);
     }
 

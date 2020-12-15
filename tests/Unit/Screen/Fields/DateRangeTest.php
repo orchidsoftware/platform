@@ -30,7 +30,7 @@ class DateRangeTest extends TestFieldsUnitCase
         $field = DateRange::make('date')
             ->value([
                 'start' => $start,
-                'end'   => $end,
+                'end' => $end,
             ]);
 
         $view = self::renderField($field);

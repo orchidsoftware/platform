@@ -67,7 +67,7 @@ class Dashboard
     {
         $this->menu = new Menu();
         $this->permission = collect([
-            'all'     => collect(),
+            'all' => collect(),
             'removed' => collect(),
         ]);
         $this->resources = collect();
