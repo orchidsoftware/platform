@@ -46,16 +46,16 @@ class Cropper extends Picture
      * @var array
      */
     protected $attributes = [
-        'value' => null,
-        'target' => 'url',
-        'url' => null,
-        'width' => null,
-        'height' => null,
-        'minWidth' => 0,
-        'minHeight' => 0,
-        'maxWidth' => 'Infinity',
-        'maxHeight' => 'Infinity',
-        'maxFileSize' => null,
+        'value'          => null,
+        'target'         => 'url',
+        'url'            => null,
+        'width'          => null,
+        'height'         => null,
+        'minWidth'       => 0,
+        'minHeight'      => 0,
+        'maxWidth'       => 'Infinity',
+        'maxHeight'      => 'Infinity',
+        'maxFileSize'    => null,
         'staticBackdrop' => false,
     ];
 
