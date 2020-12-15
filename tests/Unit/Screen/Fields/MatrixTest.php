@@ -31,8 +31,8 @@ class MatrixTest extends TestFieldsUnitCase
         $matrix = Matrix::make('matrix')
             ->columns([
                 'attribute' => 'Attr',
-                'value'     => 'Values',
-                'units'     => 'United',
+                'value' => 'Values',
+                'units' => 'United',
             ]);
 
         $view = self::renderField($matrix);
@@ -52,8 +52,8 @@ class MatrixTest extends TestFieldsUnitCase
             ->value([
                 [
                     'attribute' => 'color',
-                    'value'     => '#ffffff',
-                    'units'     => 'rgb',
+                    'value' => '#ffffff',
+                    'units' => 'rgb',
                 ],
             ]);
 
@@ -78,8 +78,8 @@ class MatrixTest extends TestFieldsUnitCase
             ->value([
                 [
                     'attribute' => 'color',
-                    'value'     => '#ffffff',
-                    'units'     => 'rgb',
+                    'value' => '#ffffff',
+                    'units' => 'rgb',
                 ],
             ]);
 
