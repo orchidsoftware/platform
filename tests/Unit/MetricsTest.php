@@ -77,7 +77,7 @@ class MetricsTest extends TestUnitCase
         $this->assertEquals($end->toDateString(), $period->pluck('label')->last());
 
         $this->assertSame([
-            'name'   => 'Users',
+            'name' => 'Users',
             'labels' => $period->pluck('label')->toArray(),
             'values' => $period->pluck('value')->toArray(),
         ], $period->toChart('Users'));
@@ -107,7 +107,7 @@ class MetricsTest extends TestUnitCase
         $this->assertEquals($end->toDateString(), $period->pluck('label')->last());
 
         $this->assertSame([
-            'name'   => 'Users',
+            'name' => 'Users',
             'labels' => $period->pluck('label')->toArray(),
             'values' => $period->pluck('value')->toArray(),
         ], $period->toChart('Users'));
@@ -136,7 +136,7 @@ class MetricsTest extends TestUnitCase
         $this->assertEquals($end->toDateString(), $period->pluck('label')->last());
 
         $this->assertSame([
-            'name'   => 'Users',
+            'name' => 'Users',
             'labels' => $period->pluck('label')->toArray(),
             'values' => $period->pluck('value')->toArray(),
         ], $period->toChart('Users'));
