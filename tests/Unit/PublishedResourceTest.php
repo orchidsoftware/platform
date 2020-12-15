@@ -25,17 +25,20 @@ class PublishedResourceTest extends TestUnitCase
         $maxJsSize = 2 * 1028 * 1028; // ~2 mb
         $maxVendorSize = 2 * 1028 * 1028; // ~2 mb
 
-        $this->assertLessThan($maxCssSize,
+        $this->assertLessThan(
+            $maxCssSize,
             filesize(Dashboard::path('/public/css/orchid.css')),
             'File orchid.css more '.Formats::formatBytes($maxCssSize)
         );
 
-        $this->assertLessThan($maxJsSize,
+        $this->assertLessThan(
+            $maxJsSize,
             filesize(Dashboard::path('/public/js/orchid.js')),
             'File orchid.js more '.Formats::formatBytes($maxJsSize)
         );
 
-        $this->assertLessThan($maxVendorSize,
+        $this->assertLessThan(
+            $maxVendorSize,
             filesize(Dashboard::path('/public/js/vendor.js')),
             'File vendor.js more '.Formats::formatBytes($maxVendorSize)
         );

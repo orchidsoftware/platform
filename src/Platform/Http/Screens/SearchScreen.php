@@ -68,10 +68,10 @@ class SearchScreen extends Screen
             });
 
         return [
-            'query'   => $query,
-            'model'   => $model,
+            'query' => $query,
+            'model' => $model,
             'results' => $results,
-            'total'   => $results->total(),
+            'total' => $results->total(),
         ];
     }
 
@@ -127,11 +127,14 @@ class SearchScreen extends Screen
                 /** @var Searchable $presenter */
                 $presenter = optional($model)->presenter();
 
-                throw_unless(is_a($presenter, Searchable::class),
-                    new \Exception("
+                throw_unless(
+                    is_a($presenter, Searchable::class),
+                    new \Exception(
+                        "
                         The presenter must have an interface 'Orchid\Screen\Contracts\Searchable'
                         for model ".get_class($model)
-                    ));
+                    )
+                );
 
                 $label = $presenter->label();
 
@@ -156,8 +159,8 @@ class SearchScreen extends Screen
 
         return view('platform::partials.result-compact', [
             'results' => $results,
-            'total'   => $this->total,
-            'query'   => $query,
+            'total' => $this->total,
+            'query' => $query,
         ]);
     }
 

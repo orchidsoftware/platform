@@ -32,7 +32,8 @@ use Throwable;
  */
 class Field implements Fieldable
 {
-    use CanSee, Makeable;
+    use CanSee;
+    use Makeable;
 
     /**
      * A set of closure functions
@@ -201,13 +202,13 @@ class Field implements Fieldable
         $errors = $this->getErrorsMessage();
 
         return view($this->view, array_merge($this->getAttributes(), [
-            'attributes'     => $this->getAllowAttributes(),
+            'attributes' => $this->getAllowAttributes(),
             'dataAttributes' => $this->getAllowDataAttributes(),
-            'id'             => $id,
-            'old'            => $this->getOldValue(),
-            'slug'           => $this->getSlug(),
-            'oldName'        => $this->getOldName(),
-            'typeForm'       => $this->typeForm ?? $this->vertical()->typeForm,
+            'id' => $id,
+            'old' => $this->getOldValue(),
+            'slug' => $this->getSlug(),
+            'oldName' => $this->getOldName(),
+            'typeForm' => $this->typeForm ?? $this->vertical()->typeForm,
         ]))
             ->withErrors($errors);
     }

@@ -49,7 +49,7 @@ class TotalTable extends Table
     public static function getData(): Repository
     {
         return new Repository([
-            'table'       => [
+            'table' => [
                 new Repository(['id' => 100, 'price' => 10.24, 'tax' => 0.13]),
                 new Repository(['id' => 200, 'price' => 65.9, 'tax' => 0.13]),
                 new Repository(['id' => 300, 'price' => 754.2, 'tax' => 0.13]),
@@ -57,7 +57,7 @@ class TotalTable extends Table
                 new Repository(['id' => 500, 'price' => 0.15, 'tax' => 0.13]),
             ],
             'total_price' => 600,
-            'total_tax'   => 0.2,
+            'total_tax' => 0.2,
         ]);
     }
 }

@@ -19,7 +19,12 @@ use Orchid\Support\Facades\Dashboard;
 
 class User extends Authenticatable implements UserInterface
 {
-    use Notifiable, UserAccess, AsSource, Filterable, Chartable, HasFactory;
+    use Notifiable;
+    use UserAccess;
+    use AsSource;
+    use Filterable;
+    use Chartable;
+    use HasFactory;
 
     /**
      * The database table used by the model.
@@ -57,8 +62,8 @@ class User extends Authenticatable implements UserInterface
      * @var array
      */
     protected $casts = [
-        'permissions'          => 'array',
-        'email_verified_at'    => 'datetime',
+        'permissions' => 'array',
+        'email_verified_at' => 'datetime',
     ];
 
     /**
@@ -98,9 +103,9 @@ class User extends Authenticatable implements UserInterface
         throw_if(static::where('email', $email)->exists(), Exception::class, 'User exist');
 
         static::create([
-            'name'        => $name,
-            'email'       => $email,
-            'password'    => Hash::make($password),
+            'name' => $name,
+            'email' => $email,
+            'password' => Hash::make($password),
             'permissions' => Dashboard::getAllowAllPermission(),
         ]);
     }

@@ -35,11 +35,11 @@ class SourceTest extends TestUnitCase
         };
 
         $model->fill([
-            'id'      => 8,
-            'name'    => 'Alexandr Chernyaev',
+            'id' => 8,
+            'name' => 'Alexandr Chernyaev',
             'options' => [
-                'skills'  => [
-                    'php'  => true,
+                'skills' => [
+                    'php' => true,
                 ],
                 'country' => [
                     'Russia',

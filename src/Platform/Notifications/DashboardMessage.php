@@ -16,8 +16,8 @@ class DashboardMessage extends DatabaseMessage
      * @var array
      */
     public $data = [
-        'title'   => '',
-        'action'  => '#',
+        'title' => '',
+        'action' => '#',
         'message' => '',
     ];
 

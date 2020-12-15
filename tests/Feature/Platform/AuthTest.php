@@ -27,7 +27,7 @@ class AuthTest extends TestFeatureCase
     public function testRouteDashboardLoginAuthSuccess(): void
     {
         $this->post(route('platform.login.auth'), [
-            'email'    => $this->createAdminUser()->email,
+            'email' => $this->createAdminUser()->email,
             'password' => 'password',
             'remember' => 'on',
         ])
@@ -39,7 +39,7 @@ class AuthTest extends TestFeatureCase
     public function testRouteDashboardLoginAuthFail(): void
     {
         $this->post(route('platform.login.auth'), [
-            'email'    => $this->createAdminUser()->email,
+            'email' => $this->createAdminUser()->email,
             'password' => 'Incorrect password',
         ])
             ->assertStatus(302)
