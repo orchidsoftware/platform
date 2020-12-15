@@ -20,9 +20,9 @@ class DashboardChannel extends DatabaseChannel
     protected function buildPayload($notifiable, Notification $notification)
     {
         return [
-            'id' => $notification->id,
-            'type' => DashboardMessage::class,
-            'data' => $this->getData($notifiable, $notification),
+            'id'      => $notification->id,
+            'type'    => DashboardMessage::class,
+            'data'    => $this->getData($notifiable, $notification),
             'read_at' => null,
         ];
     }
