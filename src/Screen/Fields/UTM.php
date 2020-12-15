@@ -38,7 +38,7 @@ class UTM extends Field
      * @var array
      */
     protected $attributes = [
-        'type' => 'url',
+        'type'  => 'url',
         'class' => 'form-control',
     ];
 
