@@ -26,7 +26,7 @@ class Compendium extends Content
     public function render(array $list): View
     {
         return view($this->template, [
-            'list' => $list,
+            'list'  => $list,
             'label' => $this->label,
         ]);
     }
