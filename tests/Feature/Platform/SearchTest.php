@@ -21,9 +21,9 @@ class SearchTest extends TestFeatureCase
     public function testSearchCompact(): void
     {
         $user = SearchUser::create([
-            'id'       => 1,
-            'name'     => 'Alexandr Chernyaev',
-            'email'    => 'admin@localhost.com',
+            'id' => 1,
+            'name' => 'Alexandr Chernyaev',
+            'email' => 'admin@localhost.com',
             'password' => 'password',
         ]);
 
@@ -37,9 +37,9 @@ class SearchTest extends TestFeatureCase
     public function testSearchPage(): void
     {
         $user = SearchUser::create([
-            'id'       => 1,
-            'name'     => 'Alexandr Chernyaev',
-            'email'    => 'admin@localhost.com',
+            'id' => 1,
+            'name' => 'Alexandr Chernyaev',
+            'email' => 'admin@localhost.com',
             'password' => 'password',
         ]);
 
