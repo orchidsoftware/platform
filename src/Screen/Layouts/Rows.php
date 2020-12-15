@@ -50,7 +50,7 @@ abstract class Rows extends Layout
         $form = new Builder($this->fields(), $repository);
 
         return view($this->template, [
-            'form' => $form->generateForm(),
+            'form'  => $form->generateForm(),
             'title' => $this->title,
         ]);
     }
