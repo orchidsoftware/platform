@@ -15,7 +15,7 @@ class WrapperTest extends TestUnitCase
     {
         $repository = new Repository([
             'variable' => true,
-            'name' => 'Alexandr Chernyaev',
+            'name'     => 'Alexandr Chernyaev',
         ]);
 
         $layout = LayoutFactory::wrapper('exemplar::layouts.wrapper', []);

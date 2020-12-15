@@ -22,11 +22,11 @@ class RelationController extends Controller
     public function view(RelationRequest $request)
     {
         [
-            'model' => $model,
-            'name' => $name,
-            'key' => $key,
-            'scope' => $scope,
-            'append' => $append,
+            'model'         => $model,
+            'name'          => $name,
+            'key'           => $key,
+            'scope'         => $scope,
+            'append'        => $append,
             'searchColumns' => $searchColumns,
         ] = collect($request->except(['search']))->map(static function ($item, $key) {
             if ($item === null) {
@@ -68,8 +68,7 @@ class RelationController extends Controller
         ?array $scope = [],
         ?string $append = null,
         ?array $searchColumns = null
-    )
-    {
+    ) {
         if ($scope !== null) {
             /** @var Collection|array $model */
             $model = $model->{$scope['name']}(...$scope['parameters']);
