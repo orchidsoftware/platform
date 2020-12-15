@@ -228,16 +228,16 @@ class TD
     public function buildTh()
     {
         return view('platform::partials.layouts.th', [
-            'width'        => $this->width,
-            'align'        => $this->align,
-            'sort'         => $this->sort,
-            'sortUrl'      => $this->buildSortUrl(),
-            'column'       => $this->column,
-            'title'        => $this->title,
-            'filter'       => $this->filter,
+            'width' => $this->width,
+            'align' => $this->align,
+            'sort' => $this->sort,
+            'sortUrl' => $this->buildSortUrl(),
+            'column' => $this->column,
+            'title' => $this->title,
+            'filter' => $this->filter,
             'filterString' => get_filter_string($this->column),
-            'slug'         => $this->sluggable(),
-            'popover'      => $this->popover,
+            'slug' => $this->sluggable(),
+            'popover' => $this->popover,
         ]);
     }
 
@@ -255,11 +255,11 @@ class TD
             : $repository->getContent($this->name);
 
         return view('platform::partials.layouts.td', [
-            'align'   => $this->align,
-            'value'   => $value,
-            'render'  => $this->render,
-            'slug'    => $this->sluggable(),
-            'width'   => $this->width,
+            'align' => $this->align,
+            'value' => $value,
+            'render' => $this->render,
+            'slug' => $this->sluggable(),
+            'width' => $this->width,
             'colspan' => $this->colspan,
         ]);
     }
@@ -284,8 +284,8 @@ class TD
         }
 
         return view('platform::partials.layouts.selectedTd', [
-            'title'         => $this->title,
-            'slug'          => $this->sluggable(),
+            'title' => $this->title,
+            'slug' => $this->sluggable(),
             'defaultHidden' => var_export($this->defaultHidden, true),
         ]);
     }
