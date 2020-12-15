@@ -42,16 +42,16 @@ class DateTimer extends Field
      * @var array
      */
     protected $attributes = [
-        'class'                                  => 'form-control',
-        'data-fields--datetime-enable-time'      => 'false',
-        'data-fields--datetime-time-24hr'        => 'false',
-        'data-fields--datetime-allow-input'      => 'false',
-        'data-fields--datetime-date-format'      => 'Y-m-d H:i:S',
-        'data-fields--datetime-no-calendar'      => 'false',
+        'class' => 'form-control',
+        'data-fields--datetime-enable-time' => 'false',
+        'data-fields--datetime-time-24hr' => 'false',
+        'data-fields--datetime-allow-input' => 'false',
+        'data-fields--datetime-date-format' => 'Y-m-d H:i:S',
+        'data-fields--datetime-no-calendar' => 'false',
         'data-fields--datetime-minute-increment' => 5,
-        'data-fields--datetime-hour-increment'   => 1,
-        'allowEmpty'                             => false,
-        'placeholder'                            => 'Select Date...',
+        'data-fields--datetime-hour-increment' => 1,
+        'allowEmpty' => false,
+        'placeholder' => 'Select Date...',
     ];
 
     /**
