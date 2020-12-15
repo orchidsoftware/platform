@@ -134,10 +134,10 @@ abstract class Screen extends Controller
         $commandBar = $this->buildCommandBar($this->source);
 
         return view('platform::layouts.base', [
-            'name' => $this->name,
-            'description' => $this->description,
-            'commandBar' => $commandBar,
-            'layouts' => $this->build(),
+            'name'                => $this->name,
+            'description'         => $this->description,
+            'commandBar'          => $commandBar,
+            'layouts'             => $this->build(),
             'formValidateMessage' => $this->formValidateMessage(),
         ]);
     }
