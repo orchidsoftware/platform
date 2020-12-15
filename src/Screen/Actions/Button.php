@@ -33,13 +33,13 @@ class Button extends Action
      * @var array
      */
     protected $attributes = [
-        'class'      => 'btn btn-link',
-        'type'       => 'submit',
+        'class' => 'btn btn-link',
+        'type' => 'submit',
         'novalidate' => false,
-        'method'     => null,
-        'icon'       => null,
-        'action'     => null,
-        'confirm'    => null,
+        'method' => null,
+        'icon' => null,
+        'action' => null,
+        'confirm' => null,
         'parameters' => [],
         'turbolinks' => true,
     ];
