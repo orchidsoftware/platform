@@ -20,11 +20,11 @@ class AsyncScreenTest extends TestFeatureCase
         $response = $this
             ->actingAs($this->createAdminUser())
             ->post(route('platform.async', [
-                'screen'   => Crypt::encryptString(DependentListenerScreen::class),
-                'method'   => 'asyncSum',
+                'screen' => Crypt::encryptString(DependentListenerScreen::class),
+                'method' => 'asyncSum',
                 'template' => $layout->getSlug(),
             ]), [
-                'first'  => 2,
+                'first' => 2,
                 'second' => 3,
             ]);
 
@@ -42,11 +42,11 @@ class AsyncScreenTest extends TestFeatureCase
         $response = $this
             ->actingAs($this->createAdminUser())
             ->post(route('platform.async', [
-                'screen'   => Crypt::encryptString(DependentListenerScreen::class),
-                'method'   => Str::random(),
+                'screen' => Crypt::encryptString(DependentListenerScreen::class),
+                'method' => Str::random(),
                 'template' => $layout->getSlug(),
             ]), [
-                'first'  => 2,
+                'first' => 2,
                 'second' => 3,
             ]);
 

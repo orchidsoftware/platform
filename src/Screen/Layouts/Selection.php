@@ -53,7 +53,7 @@ abstract class Selection extends Layout
 
         return view($this->template, [
             'filters' => $filters,
-            'chunk'   => ceil($count / 4),
+            'chunk' => ceil($count / 4),
         ]);
     }
 
