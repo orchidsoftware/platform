@@ -54,9 +54,9 @@ class DependentListenerModalScreen extends Screen
     public function asyncSum(int $first = null, int $second = null): array
     {
         return [
-            'first'  => $first,
+            'first' => $first,
             'second' => $second,
-            'sum'    => $first + $second,
+            'sum' => $first + $second,
         ];
     }
 
