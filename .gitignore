@@ -19,3 +19,4 @@ public/js/vendor.js.map
 tatus
 logs
 .vscode
+.php_cs.cache
