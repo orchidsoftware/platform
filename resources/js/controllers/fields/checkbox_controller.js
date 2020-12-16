@@ -5,7 +5,8 @@ export default class extends Controller {
      *
      */
     connect() {
-        $(this.element.querySelector('input:not([hidden])'))
-            .prop('indeterminate', this.data.get('indeterminate'));
+        this.element
+            .querySelector('input:not([hidden])')
+            .indeterminate = this.data.get('indeterminate');
     }
 }

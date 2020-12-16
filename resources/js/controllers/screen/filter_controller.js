@@ -52,7 +52,11 @@ export default class extends Controller {
         const filters = window.platform.formToObject(formElement);
         filters.sort = this.getUrlParameter('sort');
 
-        const params = $.param(this.removeEmpty(filters));
+        const parameterWithoutEmpty = this.removeEmpty(filters);
+
+        const params = Object.keys(parameterWithoutEmpty).map(function (key) {
+            return encodeURIComponent(key) + '=' + encodeURIComponent(parameterWithoutEmpty[key])
+        }).join('&')
 
         const url = `${window.location.origin + window.location.pathname}?${params}`;
 

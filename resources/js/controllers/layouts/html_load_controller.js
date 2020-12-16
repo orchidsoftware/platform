@@ -92,7 +92,7 @@ export default class extends Controller {
      *
      */
     goToTop() {
-        $('html, body').animate({ scrollTop: 0 }, 'slow');
+        window.scrollTo({top: 0, behavior: 'smooth'});
     }
 
     /**

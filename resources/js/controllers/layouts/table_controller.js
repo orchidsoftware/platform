@@ -19,9 +19,11 @@ export default class extends Controller {
         this.allowDefaultHidden();
         this.renderColumn();
 
-        $('.dropdown-column-menu').click((e) => {
-            e.stopPropagation();
-        });
+
+        this.element.querySelector('.dropdown-column-menu')
+            .addEventListener('click', (e) => {
+                e.stopPropagation();
+            })
     }
 
     /**

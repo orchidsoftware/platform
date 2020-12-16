@@ -93,7 +93,7 @@ export default class extends Controller {
 
                 let items = [];
 
-                $.each(response.data, (key, val) => {
+                response.data.forEach((val) => {
                     let bb = val.boundingbox;
                     let lat = val.lat;
                     let lng = val.lon;
@@ -105,7 +105,7 @@ export default class extends Controller {
 
                 if (items.length !== 0) {
                     $('<ul/>', {
-                        'class': 'padder-v',
+                        'class': 'my-2',
                         html: items.join('')
                     }).appendTo(results);
                     return;

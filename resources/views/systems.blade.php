@@ -2,21 +2,6 @@
 
 @section('title',__('System settings'))
 @section('description', __('Back-end preferences'))
-@section('controller','layouts--systems')
-
-@section('navbar')
-    <div class="float-sm-right">
-        <div class="input-icon w-auto">
-            <input
-                    data-action="keyup->layouts--systems#filter"
-                    type="text" class="form-control input-sm bg-light no-border rounded padder"
-                    placeholder="{{__('Search...')}}">
-            <div class="input-icon-addon">
-                <x-orchid-icon path="magnifier"/>
-            </div>
-        </div>
-    </div>
-@stop
 
 @section('content')
 
