@@ -69,5 +69,5 @@
         </div>
     </div>
 
-    @include('platform::partials.notificationProfile')
+    @includeWhen(config('platform.notifications.enabled', true), 'platform::partials.notificationProfile')
 </div>

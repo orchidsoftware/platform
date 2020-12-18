@@ -142,4 +142,23 @@ return [
 
     'icons' => [],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Notifications
+    |--------------------------------------------------------------------------
+    |
+    | It are a great way to inform your users of things that are happening
+    | in your application. These notifications are viewable by clicking on
+    | the "notification bell" icon in the application's navigation bar.
+    | The notification bell will have an unread count indicator when
+    | there are unread announcements or notifications.
+    |
+    | By default, the interval update for one minute.
+    */
+
+    'notifications' => [
+        'enabled'  => true,
+        'interval' => 60,
+    ],
+
 ];

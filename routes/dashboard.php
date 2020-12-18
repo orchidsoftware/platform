@@ -23,15 +23,20 @@ $this->router->screen('search/{query}', SearchScreen::class)
             ->push($query);
     });
 
-$this->router->screen('notifications/{id?}', NotificationScreen::class)
-    ->name('notifications')
-    ->breadcrumbs(function (Trail $trail) {
-        return $trail->parent('platform.index')
-            ->push(__('Notifications'));
-    });
 
-$this->router->post('api/notifications', [NotificationScreen::class, 'unreadNotification'])
-    ->name('api.notifications');
+$this->router->post('async/{screen}/{method?}/{template?}', [AsyncController::class, 'load'])
+    ->name('async');
 
-$this->router->post('async/{screen}/{method?}/{template?}', [AsyncController::class, 'load'])->name('async');
+if(config('platform.notifications.enabled', true)) {
+    $this->router->screen('notifications/{id?}', NotificationScreen::class)
+        ->name('notifications')
+        ->breadcrumbs(function (Trail $trail) {
+            return $trail->parent('platform.index')
+                ->push(__('Notifications'));
+        });
+
+    $this->router->post('api/notifications', [NotificationScreen::class, 'unreadNotification'])
+        ->name('api.notifications');
+}
+
 $this->router->fallback([IndexController::class, 'fallback']);
