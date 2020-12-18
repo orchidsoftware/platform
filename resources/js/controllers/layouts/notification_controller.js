@@ -70,13 +70,13 @@ export default class extends Controller {
         const method = this.data.get('method') || 'get';
 
         /* Time in seconds */
-        const interval = this.data.get('interval') || 1000;
+        const interval = this.data.get('interval') || 60;
 
          return setInterval(() => {
             axios({method, url}).then((response) => {
                 localStorage.setItem('profile.notifications', response.data.total);
             });
-        }, interval);
+        }, interval * 1000);
     }
 
     /**
