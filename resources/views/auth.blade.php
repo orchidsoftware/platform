@@ -17,7 +17,7 @@
                     @yield('content')
                 </div>
 
-                <div class="mt-5 text-center">
+                <div class="mt-4 text-center">
                     @includeFirst([config('platform.template.footer'), 'platform::footer'])
                 </div>
             </div>
