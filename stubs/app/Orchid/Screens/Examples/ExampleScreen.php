@@ -139,7 +139,7 @@ class ExampleScreen extends Screen
             ChartBarExample::class,
 
             Layout::table('table', [
-                TD::set('id', 'ID')
+                TD::make('id', 'ID')
                     ->width('150')
                     ->render(function (Repository $model) {
                         // Please use view('path')
@@ -149,18 +149,18 @@ class ExampleScreen extends Screen
                             <span class='small text-muted mt-1 mb-0'># {$model->get('id')}</span>";
                     }),
 
-                TD::set('name', 'Name')
+                TD::make('name', 'Name')
                     ->width('450')
                     ->render(function (Repository $model) {
                         return Str::limit($model->get('name'), 200);
                     }),
 
-                TD::set('price', 'Price')
+                TD::make('price', 'Price')
                     ->render(function (Repository $model) {
                         return '$ '.number_format($model->get('price'), 2);
                     }),
 
-                TD::set('created_at', 'Created'),
+                TD::make('created_at', 'Created'),
             ]),
 
             Layout::modal('exampleModal', Layout::rows([

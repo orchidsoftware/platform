@@ -22,7 +22,7 @@ class NotificationTable extends Table
     public function columns(): array
     {
         return [
-            TD::set('Message', __('Messages'))
+            TD::make('Message', __('Messages'))
                 ->cantHide()
                 ->render(static function ($notification) {
                     return view('platform::partials.notification', [

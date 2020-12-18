@@ -26,7 +26,7 @@ class UserListLayout extends Table
     public function columns(): array
     {
         return [
-            TD::set('name', __('Name'))
+            TD::make('name', __('Name'))
                 ->sort()
                 ->cantHide()
                 ->filter(TD::FILTER_TEXT)
@@ -34,7 +34,7 @@ class UserListLayout extends Table
                     return new Persona($user->presenter());
                 }),
 
-            TD::set('email', __('Email'))
+            TD::make('email', __('Email'))
                 ->sort()
                 ->cantHide()
                 ->filter(TD::FILTER_TEXT)
@@ -48,13 +48,13 @@ class UserListLayout extends Table
                         ]);
                 }),
 
-            TD::set('updated_at', __('Last edit'))
+            TD::make('updated_at', __('Last edit'))
                 ->sort()
                 ->render(function (User $user) {
                     return $user->updated_at->toDateTimeString();
                 }),
 
-            TD::set(__('Actions'))
+            TD::make(__('Actions'))
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')
                 ->render(function (User $user) {
