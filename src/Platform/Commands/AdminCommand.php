@@ -51,7 +51,9 @@ class AdminCommand extends Command
 
     protected function createNewUser(): void
     {
-        Dashboard::modelClass(User::class)
+        $userModel = config('platform.models.user', User::class);
+
+        Dashboard::modelClass($userModel)
             ->createAdmin(
                 $this->argument('name') ?? $this->ask('What is your name?', 'admin'),
                 $this->argument('email') ?? $this->ask('What is your email?', 'admin@admin.com'),
@@ -66,7 +68,9 @@ class AdminCommand extends Command
      */
     protected function updateUserPermissions(string $id): void
     {
-        Dashboard::modelClass(User::class)
+        $userModel = config('platform.models.user', User::class);
+
+        Dashboard::modelClass($userModel)
             ->findOrFail($id)
             ->forceFill([
                 'permissions' => Dashboard::getAllowAllPermission(),

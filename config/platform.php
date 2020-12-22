@@ -1,5 +1,8 @@
 <?php
 
+use Orchid\Platform\Models\Role;
+use Orchid\Platform\Models\User;
+
 return [
 
     /*
@@ -50,6 +53,23 @@ return [
     'middleware' => [
         'public'  => ['web'],
         'private' => ['web', 'platform'],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Models
+    |--------------------------------------------------------------------------
+    |
+    | The models array contains the models used for authentication by the
+    | platform. The defaults should work for most installations but if
+    | you need to use custom User or Role class, simply override them here.
+    |
+    |
+    */
+
+    'models' => [
+        'user' => User::class,
+        'role' => Role::class,
     ],
 
     /*
