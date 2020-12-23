@@ -14,7 +14,7 @@ class SelectionTest extends TestUnitCase
     public function testNoDisplayOnlyHiddenFilter()
     {
         $layout = LayoutFactory::selection([
-            HiddenFilter::class
+            HiddenFilter::class,
         ]);
 
         $html = $layout->build(new Repository());
