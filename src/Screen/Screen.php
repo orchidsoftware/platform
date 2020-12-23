@@ -65,9 +65,10 @@ abstract class Screen extends Controller
      *
      * @return Action[]
      */
-     public function commandBar() {
+    public function commandBar()
+    {
         return [];
-     }
+    }
 
     /**
      * Views.
