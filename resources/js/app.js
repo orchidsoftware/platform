@@ -1,3 +1,4 @@
+import Turbo from '@hotwired/turbo';
 import { Application, Controller } from 'stimulus';
 import { definitionsFromContext } from 'stimulus/webpack-helpers';
 import platform from "./platform";

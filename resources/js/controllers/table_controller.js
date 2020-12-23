@@ -20,7 +20,7 @@ export default class extends Controller {
         this.renderColumn();
 
 
-        if (document.querySelector('.dropdown-column-menu') !== null) {
+        if (this.element.querySelector('.dropdown-column-menu') !== null) {
             this.element.querySelector('.dropdown-column-menu')
                 .addEventListener('click', (e) => {
                     e.stopPropagation();

@@ -57,7 +57,7 @@ class PlatformServiceProvider extends ServiceProvider
     {
         return ItemPermission::group(__('Main'))
             ->addPermission('platform.index', __('Main'))
-            ->addPermission('platform.systems.index', __('Systems'));
+            ->addPermission('platform.systems.index', __('System'));
     }
 
     /**
@@ -65,7 +65,7 @@ class PlatformServiceProvider extends ServiceProvider
      */
     protected function registerPermissionsSystems(): ItemPermission
     {
-        return ItemPermission::group(__('Systems'))
+        return ItemPermission::group(__('System'))
             ->addPermission('platform.systems.attachment', __('Attachment'));
     }
 

@@ -374,7 +374,7 @@ export default class extends Controller {
         /** todo: */
         this.mediaList.forEach((element, key) => {
             html += '<div class="col-4 col-sm-3 col-md-2 mb-4 media-item">\n' +
-                '    <div data-action="click->fields--upload#addFile" data-key="' + key + '">\n' +
+                '    <div data-action="click->upload#addFile" data-key="' + key + '">\n' +
                 '        <img src="' + element.url + '"\n' +
                 '             class="rounded mw-100"\n' +
                 '             style="height: 50px;width: 100%;object-fit: cover;">\n' +

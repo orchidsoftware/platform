@@ -5,7 +5,7 @@
         @endisset
         <span class="text-muted">
             @isset($icon)
-                <x-orchid-icon :path="$icon" class="pull-right m-t-sm text-lg"/>
+                <x-orchid-icon :path="$icon" class="pull-right m-t-sm h5"/>
             @endisset
         </span>
         <div class="clear">

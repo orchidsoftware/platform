@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{  app()->getLocale() }}" data-controller="layouts--html-load">
+<html lang="{{  app()->getLocale() }}" data-controller="html-load">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,6 +36,8 @@
     @foreach(Dashboard::getResource('scripts') as $scripts)
         <script src="{{  $scripts }}" defer type="text/javascript"></script>
     @endforeach
+
+    <meta name="turbo-visit-control" content="reload">
 </head>
 
 <body>

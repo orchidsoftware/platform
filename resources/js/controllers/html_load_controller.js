@@ -1,5 +1,4 @@
 import {Controller} from 'stimulus';
-import Turbolinks from 'turbolinks';
 import axios from 'axios';
 
 export default class extends Controller {
@@ -22,6 +21,7 @@ export default class extends Controller {
      * Initialization & configuration Turbolinks
      */
     turbo() {
+        /*
         if (!Turbolinks.supported) {
             console.warn('Turbo links is not supported');
             return;
@@ -30,7 +30,9 @@ export default class extends Controller {
         Turbolinks.start();
         Turbolinks.setProgressBarDelay(100);
 
-        document.addEventListener('turbolinks:load', () => {
+         */
+
+        document.addEventListener('turbo:load', () => {
             this.csrf();
         });
     }
@@ -41,7 +43,7 @@ export default class extends Controller {
     axios() {
         window.axios = axios;
 
-
+/*
         // Add a request interceptor
         window.axios.interceptors.request.use((config) => {
             // Do something before request is sent
@@ -65,6 +67,8 @@ export default class extends Controller {
             this.stopProgressBar();
             return Promise.reject(error);
         });
+        */
+
     }
 
     /**

@@ -32,7 +32,7 @@ export default class extends Controller {
 
 
 
-        document.addEventListener('turbolinks:before-cache', () => {
+        document.addEventListener('turbo:before-cache', () => {
             if (typeof $(select) !== 'undefined') {
                 $(select).select2('destroy');
             }

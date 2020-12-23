@@ -1,5 +1,5 @@
 @isset($title)
-    <div class="hidden-folded padder m-t-xs mb-1 text-muted text-xs ml-3">{{ __($title) }}</div>
+    <div class="hidden-folded padder m-t-xs mb-1 text-muted small ml-3">{{ __($title) }}</div>
 @endisset
 
 <a href="{{$route ?? '#'}}" class="dropdown-item @isset($active) {{active($active)}} @endisset">

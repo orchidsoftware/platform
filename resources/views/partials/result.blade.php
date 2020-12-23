@@ -9,7 +9,7 @@
 <div class="bg-white shadow-sm rounded mb-3">
     @forelse($results as $item)
 
-        <a href="{{$item->url()}}" class="block wrapper-sm dropdown-item" style="font-size: 0.85em;">
+        <a href="{{$item->url()}}" class="block py-2 px-3 dropdown-item" style="font-size: 0.85em;">
 
             @empty(!$item->image())
                 <span class="pull-left thumb-xs rounded mr-3">

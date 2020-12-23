@@ -1,4 +1,4 @@
-<div class="toast-wrapper" data-controller="layouts--toast">
+<div class="toast-wrapper" data-controller="toast">
     <template id="toast">
         <div class="toast"
              role="alert"

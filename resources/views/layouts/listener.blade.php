@@ -1,8 +1,8 @@
-<div data-controller="layouts--listener"
-     data-layouts--listener-targets="{{$targets}}"
-     data-layouts--listener-slug="{{$templateSlug}}"
-     data-layouts--listener-async-enable="{{$asyncEnable}}"
-     data-layouts--listener-async-route="{{$asyncRoute}}"
+<div data-controller="listener"
+     data-listener-targets="{{$targets}}"
+     data-listener-slug="{{$templateSlug}}"
+     data-listener-async-enable="{{$asyncEnable}}"
+     data-listener-async-route="{{$asyncRoute}}"
 >
     <div data-async>
         @foreach($manyForms as $layouts)

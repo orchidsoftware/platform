@@ -14,8 +14,8 @@
         @if ($loop->last)
             <th class="no-border text-center align-middle">
                 <a href="#"
-                   data-action="fields--matrix#deleteRow"
-                   class="text-xs text-muted"
+                   data-action="matrix#deleteRow"
+                   class="small text-muted"
                    title="Remove row">
                     <x-orchid-icon path="trash"/>
                 </a>

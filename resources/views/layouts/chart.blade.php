@@ -1,25 +1,25 @@
 <div
-     data-controller="screen--chart"
-     data-screen--chart-parent="#{{$slug}}"
-     data-screen--chart-title="{{$title}}"
-     data-screen--chart-labels="{{$labels}}"
-     data-screen--chart-datasets="{{$data}}"
-     data-screen--chart-type="{{$type}}"
-     data-screen--chart-height="{{$height}}"
-     data-screen--chart-colors="{{$colors}}"
-     data-screen--chart-max-slices="{{$maxSlices}}"
-     data-screen--chart-values-over-points="{{$valuesOverPoints}}"
-     data-screen--chart-axis-options="{{$axisOptions}}"
-     data-screen--chart-bar-options="{{$barOptions}}"
-     data-screen--chart-line-options="{{$lineOptions}}"
-     data-screen--chart-markers="{{$markers}}"
+     data-controller="chart"
+     data-chart-parent="#{{$slug}}"
+     data-chart-title="{{$title}}"
+     data-chart-labels="{{$labels}}"
+     data-chart-datasets="{{$data}}"
+     data-chart-type="{{$type}}"
+     data-chart-height="{{$height}}"
+     data-chart-colors="{{$colors}}"
+     data-chart-max-slices="{{$maxSlices}}"
+     data-chart-values-over-points="{{$valuesOverPoints}}"
+     data-chart-axis-options="{{$axisOptions}}"
+     data-chart-bar-options="{{$barOptions}}"
+     data-chart-line-options="{{$lineOptions}}"
+     data-chart-markers="{{$markers}}"
 >
     <div class="bg-white rounded shadow-sm mb-3 pt-3">
         <div class="position-relative w-100">
             @if($export)
                 <div class="top-right pt-1 pr-4" style="z-index: 1">
                     <button class="btn btn-sm btn-link"
-                            data-action="screen--chart#export">
+                            data-action="chart#export">
                         {{ __('Export') }}
                     </button>
                 </div>

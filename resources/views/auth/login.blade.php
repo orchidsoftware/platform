@@ -7,10 +7,10 @@
     <form class="m-t-md"
           role="form"
           method="POST"
-          data-controller="layouts--form"
-          data-action="layouts--form#submit"
-          data-layouts--form-button-animate="#button-login"
-          data-layouts--form-button-text="{{ __('Loading...') }}"
+          data-controller="form"
+          data-action="form#submit"
+          data-form-button-animate="#button-login"
+          data-form-button-text="{{ __('Loading...') }}"
           action="{{ route('platform.login.auth') }}">
         @csrf
 
