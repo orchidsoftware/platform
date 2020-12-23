@@ -41,7 +41,7 @@ abstract class Selection extends Layout
         }
 
         $filters = collect($this->filters());
-        $count = $filters->count();
+        $count = $filters->where('display', true)->count();
 
         if ($count === 0) {
             return;
