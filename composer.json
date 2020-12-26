@@ -1,6 +1,5 @@
 {
   "name": "orchid/platform",
-  "type": "library",
   "description": "Platform for back-office applications, admin panel or CMS your Laravel app.",
   "keywords": [
     "framework",
@@ -13,8 +12,15 @@
     "rad",
     "extranet"
   ],
-  "homepage": "https://orchid.software",
+  "type": "library",
   "license": "MIT",
+  "homepage": "https://orchid.software",
+  "support": {
+    "issues": "https://github.com/orchidsoftware/platform/issues",
+    "source": "https://github.com/orchidsoftware/platform",
+    "docs": "https://orchid.software/en/docs",
+    "email": "bliz48rus@gmail.com"
+  },
   "authors": [
     {
       "name": "Alexandr Chernyaev",
@@ -23,14 +29,20 @@
       "role": "Developer"
     }
   ],
+  "funding": [
+      {
+          "type": "opencollective",
+          "url": "https://opencollective.com/orchid"
+      }
+  ],
   "require": {
     "ext-json": "*",
-    "laravel/framework": "^8.0",
-    "laravel/scout": "^8.5",
-    "myclabs/php-enum": "^1.7",
     "orchid/blade-icons": "^1.2",
     "orchid/icons": "^2.0",
     "tabuna/breadcrumbs": "^2.3",
+    "laravel/framework": "^8.0",
+    "laravel/scout": "^8.5",
+    "myclabs/php-enum": "^1.7",
     "watson/active": "^6.0"
   },
   "require-dev": {
@@ -42,22 +54,7 @@
     "orchestra/testbench-dusk": "^6.1",
     "phpunit/php-code-coverage": "^9.0",
     "phpunit/phpunit": "^9.0",
-    "sti3bas/laravel-scout-array-driver": "^2.2",
-    "vimeo/psalm": "^4.3"
-  },
-  "config": {
-    "sort-packages": true
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Orchid\\Platform\\Providers\\FoundationServiceProvider"
-      ],
-      "aliases": {
-        "Alert": "Orchid\\Support\\Facades\\Alert",
-        "Dashboard": "Orchid\\Support\\Facades\\Dashboard"
-      }
-    }
+    "sti3bas/laravel-scout-array-driver": "^2.2"
   },
   "autoload": {
     "psr-4": {
@@ -82,16 +79,18 @@
       "App\\": "stubs/app/"
     }
   },
-  "support": {
-    "email": "bliz48rus@gmail.com",
-    "issues": "https://github.com/orchidsoftware/platform/issues",
-    "source": "https://github.com/orchidsoftware/platform",
-    "docs": "https://orchid.software/en/docs"
-  },
-  "funding": [
-    {
-      "type": "opencollective",
-      "url": "https://opencollective.com/orchid"
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Orchid\\Platform\\Providers\\FoundationServiceProvider"
+      ],
+      "aliases": {
+        "Alert": "Orchid\\Support\\Facades\\Alert",
+        "Dashboard": "Orchid\\Support\\Facades\\Dashboard"
+      }
     }
-  ]
+  },
+  "config": {
+    "sort-packages": true
+  }
 }
