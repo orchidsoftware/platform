@@ -75,7 +75,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
     }
 
     /**
-     * @return Searchable[]
+     * @return string[]
      */
     public function registerSearchModels(): array
     {

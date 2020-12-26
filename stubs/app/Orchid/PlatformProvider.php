@@ -136,7 +136,7 @@ class PlatformProvider extends OrchidServiceProvider
     }
 
     /**
-     * @return Searchable|string[]
+     * @return string[]
      */
     public function registerSearchModels(): array
     {
