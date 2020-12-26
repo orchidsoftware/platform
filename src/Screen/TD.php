@@ -6,6 +6,7 @@ namespace Orchid\Screen;
 
 use Closure;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\View\View;
@@ -175,7 +176,7 @@ class TD
     }
 
     /**
-     * @param Repository|AsSource $source
+     * @param Repository|Model $source
      *
      * @return mixed
      */
@@ -256,7 +257,7 @@ class TD
     /**
      * Builds content for the column.
      *
-     * @param Repository|AsSource $repository
+     * @param Repository|Model $repository
      *
      * @return Factory|View
      */

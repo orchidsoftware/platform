@@ -6,7 +6,6 @@ namespace Orchid\Platform;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Scout\Searchable;
 
 abstract class OrchidServiceProvider extends ServiceProvider
 {
@@ -75,7 +74,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
     }
 
     /**
-     * @return Searchable[]
+     * @return string[]
      */
     public function registerSearchModels(): array
     {

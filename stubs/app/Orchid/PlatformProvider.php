@@ -2,7 +2,6 @@
 
 namespace App\Orchid;
 
-use Laravel\Scout\Searchable;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemMenu;
 use Orchid\Platform\ItemPermission;
@@ -136,7 +135,7 @@ class PlatformProvider extends OrchidServiceProvider
     }
 
     /**
-     * @return Searchable|string[]
+     * @return string[]
      */
     public function registerSearchModels(): array
     {

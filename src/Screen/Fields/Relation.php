@@ -89,7 +89,7 @@ class Relation extends Field
      */
     public function fromModel(string $model, string $name, string $key = null): self
     {
-        $key = $key ?? (new $model())->getModel()->getKeyName();
+        $key = $key ?? app()->make($model)->getModel()->getKeyName();
 
         $this->set('relationModel', Crypt::encryptString($model));
         $this->set('relationName', Crypt::encryptString($name));

@@ -9,6 +9,8 @@ use MyCLabs\Enum\Enum;
 /**
  * Class Color.
  *
+ * @psalm-immutable
+ *
  * All colors available in package,
  * are available as constants
  *
