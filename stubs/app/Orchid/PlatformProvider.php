@@ -2,7 +2,6 @@
 
 namespace App\Orchid;
 
-use Laravel\Scout\Searchable;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemMenu;
 use Orchid\Platform\ItemPermission;
