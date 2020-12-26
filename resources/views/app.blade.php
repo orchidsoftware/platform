@@ -5,9 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>
-            @yield('title','ORCHID')
-                @hasSection('description') - @endif
-            @yield('description','Admin')
+        @yield('title', config('app.name'))
+        @hasSection('title')
+            - {{ config('app.name') }}
+        @endif
     </title>
     <meta name="csrf_token" content="{{  csrf_token() }}" id="csrf_token" data-turbolinks-permanent>
     <meta name="auth" content="{{  Auth::check() }}" id="auth" data-turbolinks-permanent>
