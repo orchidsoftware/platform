@@ -28,4 +28,4 @@ jobs:
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       - name: Run psalm
-        run: ./vendor/bin/psalm --output-format=github
+        run: vendor/bin/psalm --output-format=github
