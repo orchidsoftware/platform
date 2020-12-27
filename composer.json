@@ -54,7 +54,8 @@
     "orchestra/testbench-dusk": "^6.1",
     "phpunit/php-code-coverage": "^9.0",
     "phpunit/phpunit": "^9.0",
-    "sti3bas/laravel-scout-array-driver": "^2.2"
+    "sti3bas/laravel-scout-array-driver": "^2.2",
+    "vimeo/psalm": "^4.3"
   },
   "autoload": {
     "psr-4": {
