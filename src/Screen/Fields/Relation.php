@@ -85,9 +85,10 @@ class Relation extends Field
      * @param string       $name
      * @param string|null  $key
      *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
      * @return Relation
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function fromModel(string $model, string $name, string $key = null): self
     {
