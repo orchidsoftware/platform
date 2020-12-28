@@ -59,7 +59,7 @@ trait Chartable
         )
             ->where($dateColumn, '>=', $startDate)
             ->where($dateColumn, '<=', $stopDate)
-            ->orderBy('label', 'asc')
+            ->orderBy('label')
             ->groupBy('label')
             ->get();
 

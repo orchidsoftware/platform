@@ -86,14 +86,17 @@ class Relation extends Field
      * @param string|null  $key
      *
      * @return Relation
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function fromModel(string $model, string $name, string $key = null): self
     {
         $key = $key ?? app()->make($model)->getModel()->getKeyName();
 
-        $this->set('relationModel', Crypt::encryptString($model));
-        $this->set('relationName', Crypt::encryptString($name));
-        $this->set('relationKey', Crypt::encryptString($key));
+        $this
+            ->set('relationModel', Crypt::encryptString($model))
+            ->set('relationName', Crypt::encryptString($name))
+            ->set('relationKey', Crypt::encryptString($key));
 
         return $this->addBeforeRender(function () use ($model, $name, $key) {
             $append = $this->get('relationAppend');

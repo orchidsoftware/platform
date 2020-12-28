@@ -93,6 +93,12 @@ class LayoutFactory
     public static function table(string $target, array $columns): Table
     {
         return new class($target, $columns) extends Table {
+
+            /**
+             * @var array
+             */
+            protected $columns;
+
             /**
              * @param string $target
              * @param array  $columns

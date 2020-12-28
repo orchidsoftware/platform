@@ -74,7 +74,7 @@ abstract class Filter
      */
     public function display(): array
     {
-        // return any Field
+        return [];
     }
 
     /**

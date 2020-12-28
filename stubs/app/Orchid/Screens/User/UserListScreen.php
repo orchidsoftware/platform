@@ -63,7 +63,7 @@ class UserListScreen extends Screen
     /**
      * Views.
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return string[]|\Orchid\Screen\Layout[]
      */
     public function layout(): array
     {
@@ -91,8 +91,6 @@ class UserListScreen extends Screen
     /**
      * @param User    $user
      * @param Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function saveUser(User $user, Request $request)
     {

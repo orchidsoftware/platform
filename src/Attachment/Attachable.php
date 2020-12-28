@@ -33,6 +33,6 @@ trait Attachable
         }
 
         return $query
-            ->orderBy('sort', 'asc');
+            ->orderBy('sort');
     }
 }

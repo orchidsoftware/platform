@@ -30,7 +30,7 @@ use Orchid\Screen\Layouts\Wrapper;
  * @method static Table table(string $target, array $columns)
  * @method static Columns columns(BaseLayout[] $layouts)
  * @method static Tabs tabs(BaseLayout[] $layouts)
- * @method static Modal modal(string $key, string[]|string $layouts)
+ * @method static Modal modal(string $key, string[]|string|BaseLayout $layouts)
  * @method static Blank blank(BaseLayout[] $layouts)
  * @method static Collapse collapse(array $fields)
  * @method static Wrapper wrapper(string $template, array $layouts)

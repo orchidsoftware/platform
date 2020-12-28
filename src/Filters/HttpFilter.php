@@ -64,7 +64,7 @@ class HttpFilter
     protected function parseHttpValue($query)
     {
         if ($query === null) {
-            return $query;
+            return null;
         }
 
         $item = explode(',', $query);

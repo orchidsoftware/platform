@@ -78,7 +78,7 @@ class UserEditScreen extends Screen
     }
 
     /**
-     * @return \Orchid\Screen\Layout[]
+     * @return string[]|\Orchid\Screen\Layout[]
      */
     public function layout(): array
     {

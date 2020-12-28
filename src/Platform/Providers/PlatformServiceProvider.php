@@ -42,8 +42,8 @@ class PlatformServiceProvider extends ServiceProvider
 
         $this->app->booted(function () {
             $this->dashboard
-                ->registerResource('stylesheets', config('platform.resource.stylesheets', null))
-                ->registerResource('scripts', config('platform.resource.scripts', null))
+                ->registerResource('stylesheets', config('platform.resource.stylesheets'))
+                ->registerResource('scripts', config('platform.resource.scripts'))
                 ->registerPermissions($this->registerPermissionsMain())
                 ->registerPermissions($this->registerPermissionsSystems())
                 ->addPublicDirectory('orchid', Dashboard::path('public/'));

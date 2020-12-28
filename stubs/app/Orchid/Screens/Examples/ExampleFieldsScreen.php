@@ -273,7 +273,7 @@ class ExampleFieldsScreen extends Screen
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     *
      */
     public function buttonClickProcessing()
     {
