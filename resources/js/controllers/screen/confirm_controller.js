@@ -36,6 +36,15 @@ export default class extends Controller {
             .setButton(options.button)
             .setMessage(options.message);
 
+        /**
+         * Added focus button for Mac OS firefox/safari
+         */
+        document.querySelectorAll('button[type=submit]').forEach((button) => {
+            button.addEventListener('click', (event) => {
+                event.target.focus();
+            });
+        });
+
         $(this.element).modal('show');
     }
 }
