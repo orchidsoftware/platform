@@ -152,6 +152,10 @@
   }
 }
 
+.flatpickr-wrapper{
+  width: 100%;
+}
+
 .flatpickr-input {
     &.form-control[readonly] {
         background: $white;
