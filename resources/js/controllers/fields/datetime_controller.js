@@ -15,7 +15,6 @@ export default class extends Flatpickr {
         this.config = {
             locale: document.documentElement.lang,
             plugins,
-            static: true,
         };
     }
 
