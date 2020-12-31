@@ -33,6 +33,7 @@ class TD
     public const FILTER_TEXT = 'text';
     public const FILTER_NUMERIC = 'numeric';
     public const FILTER_DATE = 'date';
+    public const FILTER_DATE_RANGE = 'date_range';
 
     /**
      * @var string

@@ -141,6 +141,11 @@ class HttpFilter
             return $query->where($property, $value);
         }
 
+        // date range
+        if(preg_match_all("/\d{4}-\d{2}-\d{2}/", $value, $match) && strpos($value, ' to ') !== false){
+            return $query->whereBetween($property, [$match[0][0]." 00:00:00"??null, $match[0][1]." 23:59:50"??null]);
+        }
+
         return $query->where($property, 'like', "%$value%");
     }
 
