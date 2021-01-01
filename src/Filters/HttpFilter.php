@@ -133,20 +133,29 @@ class HttpFilter
     {
         $property = self::sanitize($property);
 
-        if (is_array($value)) {
-            return $query->whereIn($property, $value);
+        switch (true) {
+
+            case is_array($value):
+                $query->whereIn($property, $value);
+                break;
+
+            case is_numeric($value):
+                $query->where($property, $value);
+                break;
+
+            // date range - match "YYYY-MM-DD to YYYY-MM-DD"
+            case preg_match("/\d{4}-\d{2}-\d{2} to \d{4}-\d{2}-\d{2}/", $value):
+                // extract dates
+                preg_match_all("/\d{4}-\d{2}-\d{2}/", $value, $match);
+                $query->whereBetween($property, [$match[0][0]." 00:00:00", $match[0][1]." 23:59:50"]);
+                break;
+
+            default:
+                $query->where($property, 'like', "%$value%");
+
         }
 
-        if (is_numeric($value)) {
-            return $query->where($property, $value);
-        }
-
-        // date range
-        if(preg_match_all("/\d{4}-\d{2}-\d{2}/", $value, $match) && strpos($value, ' to ') !== false){
-            return $query->whereBetween($property, [$match[0][0]." 00:00:00"??null, $match[0][1]." 23:59:50"??null]);
-        }
-
-        return $query->where($property, 'like', "%$value%");
+        return $query;
     }
 
     /**
