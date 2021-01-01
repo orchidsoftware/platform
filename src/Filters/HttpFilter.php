@@ -147,7 +147,7 @@ class HttpFilter
             case preg_match("/\d{4}-\d{2}-\d{2} to \d{4}-\d{2}-\d{2}/", $value):
                 // extract dates
                 preg_match_all("/\d{4}-\d{2}-\d{2}/", $value, $match);
-                $query->whereBetween($property, [$match[0][0]." 00:00:00", $match[0][1]." 23:59:50"]);
+                $query->whereBetween($property, [$match[0][0]." 00:00:00", $match[0][1]." 23:59:59"]);
                 break;
 
             default:
