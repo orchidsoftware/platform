@@ -13,7 +13,7 @@
             </p>
         </div>
         <div class="d-none d-lg-block col align-self-center text-right text-muted p-4">
-            <x-orchid-icon path="orchid" width="8em" height="auto"/>
+            <x-orchid-icon path="orchid" width="6em" height="auto"/>
         </div>
     </div>
 

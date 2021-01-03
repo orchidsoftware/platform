@@ -15,7 +15,7 @@
     "Campaign name": "Nome campanha",
     "Campaign term": "Termino da campanha",
     "Cancel": "Сancelar",
-    "Change Password": "Mudar password",
+    "Update Password": "Mudar password",
     "Change a few things up and try submitting again.": "Faça algumas alterações e tente reenviar.",
     "Checking": "Verificar",
     "Class": "Classe",
@@ -44,7 +44,7 @@
     "Link to file": "Link a ficheiro",
     "Link target": "Link \"target\"",
     "Login": "Login",
-    "Login as user": "Login como utilizador",
+    "Impersonate user": "Login como utilizador",
     "Home": "Principal",
     "Mark all as read": "Marcar como lido",
     "Marketing medium: (e.g. cpc, ppc, banner, email)": "Markting medium: (cpc, ppc, banner, email)",
@@ -70,7 +70,6 @@
     "Search": "Pesquisar",
     "Search...": "Pesquisar...",
     "Send": "Enviar",
-    "Settings": "Definições",
     "Access rights": "Direitos de acesso",
     "Sign in to your account": "Login na sua conta",
     "Sign out": "Sair",
@@ -98,6 +97,5 @@
     "Filters": "Filtros",
     "Upload file": "Upload ficheiro",
     "Media catalog": "Catalogo media",
-    "Are you sure you want to delete the user?": "Tem a certeza que deseja apagar o utilizador?",
     "Configure columns": "Configurar colunas"
 }

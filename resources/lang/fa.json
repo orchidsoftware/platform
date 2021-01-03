@@ -15,7 +15,7 @@
     "Campaign name": "نام کمپین",
     "Campaign term": "مدت کمپین",
     "Cancel": "لغو",
-    "Change Password": "تغییر رمز عبور",
+    "Update Password": "تغییر رمز عبور",
     "Change a few things up and try submitting again.": "چند مورد را تغییر دهید و دوباره ارسال کنید.",
     "Checking": "چک کردن",
     "Class": "کلاس",
@@ -45,7 +45,7 @@
     "Link to file": "لینک به فایل",
     "Link target": "هدف لینک",
     "Login": "ورود",
-    "Login as user": "ورود",
+    "Impersonate user": "ورود",
     "Longitude": "طول جغرافیایی",
     "Home": "خانه",
     "Mark all as read": "علامت زدن همه به عنوان خوانده شده",
@@ -72,7 +72,6 @@
     "Search": "جستجو",
     "Search...": "جستجو...",
     "Send": "ارسال",
-    "Settings": "تنظیمات",
     "Access rights": "حق دسترسی",
     "Sign in to your account": "وارد حسابتان شوید",
     "Sign out": "خروج",
@@ -100,6 +99,5 @@
     "Filters": "فیلتر",
     "Upload file": "بارگزاری فایل",
     "Media catalog": "کاتالوگ چند رسانه ای",
-    "Are you sure you want to delete the user?": "مطمعنید که می خواهید کاربر را حذف کنید؟",
     "Configure columns": "ستون ها را تنظیم کنید"
 }

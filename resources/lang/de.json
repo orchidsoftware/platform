@@ -15,7 +15,7 @@
     "Campaign name": "Kampagnen-Name",
     "Campaign term": "Kampagnen-Begriff",
     "Cancel": "Abbrechen",
-    "Change Password": "Passwort ändern",
+    "Update Password": "Passwort ändern",
     "Change a few things up and try submitting again.": "Ändern Sie ein paar Dinge und versuchen Sie erneut zu speichern.",
     "Checking": "Überprüfen",
     "Class": "Klasse",
@@ -45,7 +45,7 @@
     "Link to file": "Link zur Datei",
     "Link target": "Link-Ziel",
     "Login": "Anmelden",
-    "Login as user": "Anmeldung als Benutzer",
+    "Impersonate user": "Anmeldung als Benutzer",
     "Longitude": "Längengrad",
     "Home": "Start",
     "Mark all as read": "Alles als gelesen markieren",
@@ -72,7 +72,6 @@
     "Search": "Suche",
     "Search...": "Suchen...",
     "Send": "Senden",
-    "Settings": "Einstellungen",
     "Access rights": "Zugangsrechte",
     "Sign in to your account": "Melden Sie sich bei Ihrem Konto an",
     "Sign out": "Abmelden",
@@ -100,6 +99,5 @@
     "Filters": "Filter",
     "Upload file": "Datei hochladen",
     "Media catalog": "Medienkatalog",
-    "Are you sure you want to delete the user?": "Sind Sie sicher, dass Sie den Benutzer löschen möchten?",
     "Configure columns": "Konfigurieren von Spalten"
 }

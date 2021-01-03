@@ -15,7 +15,7 @@
     "Campaign name": "Назва кампанії",
     "Campaign term": "Ключові слова",
     "Cancel": "Скасувати",
-    "Change Password": "Зміна пароля",
+    "Update Password": "Зміна пароля",
     "Change a few things up and try submitting again.": "Спробуйте змінити та надіслати повторно.",
     "Checking": "Перевірено",
     "Class": "Класс",
@@ -45,7 +45,7 @@
     "Link to file": "Посилання на файл",
     "Link target": "Опція посилання \"target\"",
     "Login": "Логін",
-    "Login as user": "Увійти як зареестрований користувач",
+    "Impersonate user": "Увійти як зареестрований користувач",
     "Longitude": "Довгота",
     "Main": "Головна",
     "Mark all as read": "Позначити все як прочитане",
@@ -72,7 +72,6 @@
     "Search": "Пошук",
     "Search...": "Пошук...",
     "Send": "Відправити",
-    "Settings": "Параметри",
     "Access rights": "Права доступу",
     "Sign in to your account": "Увійти у свій обліковий запис",
     "Sign out": "Вихід",
@@ -100,6 +99,5 @@
     "Filters": "Фільтри",
     "Upload file": "Завантажити файл",
     "Media catalog": "Медіа каталог",
-    "Are you sure you want to delete the user?": "Вы действительно хотите удалить пользователя?",
     "Configure columns": "Налаштувати колонки"
 }
