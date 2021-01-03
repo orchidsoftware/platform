@@ -53,6 +53,11 @@ class ExampleLayoutsScreen extends Screen
     public function layout(): array
     {
         return [
+
+            Layout::block(Layout::view('platform::dummy.block'))
+                ->title('Block header')
+                ->description('Excellent description that editing or views in block'),
+
             Layout::tabs([
                 'Example Tab 1' => Layout::view('platform::dummy.block'),
                 'Example Tab 2' => Layout::view('platform::dummy.block'),
