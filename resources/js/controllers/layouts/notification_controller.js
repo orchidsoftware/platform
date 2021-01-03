@@ -87,7 +87,7 @@ export default class extends Controller {
 
         let badge =  this.element.querySelector('#notification-circle').innerHTML.trim();
 
-        if (count < 10) {
+        if (count < 100) {
             badge = count;
         }
 
