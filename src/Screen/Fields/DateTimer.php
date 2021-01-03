@@ -50,6 +50,7 @@ class DateTimer extends Field
         'data-fields--datetime-no-calendar'      => 'false',
         'data-fields--datetime-minute-increment' => 5,
         'data-fields--datetime-hour-increment'   => 1,
+        'data-fields--datetime-static'           => 'true',
         'allowEmpty'                             => false,
         'placeholder'                            => 'Select Date...',
     ];
