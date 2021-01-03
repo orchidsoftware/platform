@@ -22,7 +22,7 @@
             @if(Auth::user()->hasAccess('platform.systems.index'))
                 <a href="{{ route('platform.systems.index') }}" class="dropdown-item">
                     <x-orchid-icon path="settings" class="mr-2"/>
-                    <span>{{ __('Systems') }}</span>
+                    <span>{{ __('System') }}</span>
                 </a>
             @endif
 
