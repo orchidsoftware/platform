@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Orchid\Screens\User;
 
 use App\Orchid\Layouts\Role\RolePermissionLayout;
-use App\Orchid\Layouts\User\PasswordLayout;
 use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserRoleLayout;
 use Illuminate\Http\Request;
@@ -14,8 +13,6 @@ use Orchid\Access\UserSwitch;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
-use Orchid\Screen\Actions\DropDown;
-use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Screen;
 use Orchid\Support\Color;
 use Orchid\Support\Facades\Layout;
