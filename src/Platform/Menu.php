@@ -81,7 +81,7 @@ class Menu
         return $this->findAllChildren($location)
             ->sortBy('sort')
             ->filter(function ($value) {
-                if ($value['childs'] && $value['hideEmpty']) {
+                if ($value['withChildren'] && $value['hideEmpty']) {
                     return $this->showCountElement($value['slug']);
                 }
 

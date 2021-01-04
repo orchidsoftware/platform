@@ -6,7 +6,7 @@
 
 <li class="nav-item @isset($active) {{active($active)}} @endisset">
     <a class="nav-link"
-       @if (!empty($childs))
+       @if (!empty($withChildren))
        href="#menu-{{$slug}}" data-toggle="collapse"
        @else
        href="{{$route ?? '#'}}"
@@ -24,7 +24,7 @@
     </a>
 </li>
 
-@if($childs)
+@if($withChildren)
     <div class="collapse sub-menu {{active($active,'show')}}" id="menu-{{$slug}}" data-parent="#headerMenuCollapse">
         {!! Dashboard::menu()->render($slug,'platform::partials.dropdownMenu') !!}
     </div>
