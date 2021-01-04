@@ -19,6 +19,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 - Unused translations
 
+### Deprecated
+- `childs()` for `ItemMenu` usage `withChildren()`
+
 ## 9.14.4 - 2020-12-29
 
 ### Changed
