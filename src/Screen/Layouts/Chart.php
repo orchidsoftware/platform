@@ -157,7 +157,7 @@ abstract class Chart extends Layout
                 ->toJson(JSON_NUMERIC_CHECK);
 
         return view($this->template, [
-            'title'            => $this->title,
+            'title'            => __($this->title),
             'slug'             => Str::slug($this->title),
             'type'             => $this->type,
             'height'           => $this->height,
