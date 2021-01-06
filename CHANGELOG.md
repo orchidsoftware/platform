@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 9.14.6 - 2021-01-06
+
+### Fixed
+- "An invalid form control with name='' is not focusable." For hidden datepicker
+
 ## 9.14.5 - 2021-01-05
 
 ### Changed
