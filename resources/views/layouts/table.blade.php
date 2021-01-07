@@ -6,9 +6,9 @@
     <div class="table-responsive">
         <table class="table
             @if($striped) table-striped @endif
-            @if($bordered) table-bordered @endif"
-            @if($hoverable) table-hover @endif"
-        >
+            @if($bordered) table-bordered @endif
+            @if($hoverable) table-hover @endif
+        ">
             <thead>
                 <tr>
                     @foreach($columns as $column)
