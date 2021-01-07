@@ -74,6 +74,7 @@ $list-group-active-color : $cyan;
 
 $table-border-color : lighten($border-color, 2%);
 $table-striped-color : lighten($light, 4.5%);
+$table-hover-bg: rgba($dark, .045) !default;
 
 $app-aside-min-width : 20em;
 $app-aside-width : 350px;

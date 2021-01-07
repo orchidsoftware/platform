@@ -65,6 +65,7 @@ abstract class Table extends Layout
             'subNotFound'  => $this->subNotFound(),
             'striped'      => $this->striped(),
             'bordered'     => $this->bordered(),
+            'hoverable'    => $this->hoverable(),
             'slug'         => $this->getSlug(),
         ]);
     }
@@ -109,6 +110,16 @@ abstract class Table extends Layout
      * @return bool
      */
     protected function bordered(): bool
+    {
+        return false;
+    }
+
+    /**
+     * Enable a hover state on table rows.
+     *
+     * @return bool
+     */
+    protected function hoverable(): bool
     {
         return false;
     }
