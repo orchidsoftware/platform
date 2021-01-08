@@ -80,7 +80,7 @@ class UserProfileScreen extends Screen
                     Button::make(__('Update password'))
                         ->type(Color::DEFAULT())
                         ->icon('check')
-                        ->method('save')
+                        ->method('changePassword')
                 ),
         ];
     }
