@@ -65,7 +65,7 @@ class UserProfileScreen extends Screen
         return [
             Layout::block(UserEditLayout::class)
                 ->title(__('Profile Information'))
-                ->description(__('Update your account\'s profile information and email address.'))
+                ->description(__("Update your account's profile information and email address."))
                 ->commands(
                     Button::make(__('Save'))
                         ->type(Color::DEFAULT())
