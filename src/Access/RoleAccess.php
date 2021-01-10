@@ -57,7 +57,7 @@ trait RoleAccess
     public function delete(): ?bool
     {
         $isSoftDeleted = array_key_exists(SoftDeletes::class, class_uses($this));
-        if ($this->exists && !$isSoftDeleted) {
+        if ($this->exists && ! $isSoftDeleted) {
             $this->users()->detach();
         }
 

@@ -66,7 +66,7 @@ abstract class Layout implements JsonSerializable
      */
     public function async(string $method): self
     {
-        if (!Str::startsWith($method, 'async')) {
+        if (! Str::startsWith($method, 'async')) {
             $method = Str::start(Str::ucfirst($method), 'async');
         }
 
@@ -102,7 +102,7 @@ abstract class Layout implements JsonSerializable
      */
     protected function buildAsDeep(Repository $repository)
     {
-        if (!$this->checkPermission($this, $repository)) {
+        if (! $this->checkPermission($this, $repository)) {
             return;
         }
 
@@ -135,7 +135,7 @@ abstract class Layout implements JsonSerializable
     {
         $screen = Dashboard::getCurrentScreen();
 
-        if (!$screen) {
+        if (! $screen) {
             return null;
         }
 

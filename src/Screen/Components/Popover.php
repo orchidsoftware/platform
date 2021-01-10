@@ -52,6 +52,6 @@ class Popover extends Component
      */
     public function shouldRender()
     {
-        return !empty($this->content);
+        return ! empty($this->content);
     }
 }

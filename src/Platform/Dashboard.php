@@ -268,7 +268,7 @@ class Dashboard
         $all = $this->permission->get('all');
         $removed = $this->permission->get('removed');
 
-        if (!$removed->count()) {
+        if (! $removed->count()) {
             return $all;
         }
 

@@ -40,7 +40,7 @@ class Assert
             $array = $array->all();
         }
 
-        if (!is_array($array)) {
+        if (! is_array($array)) {
             return false;
         }
 
