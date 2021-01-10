@@ -33,7 +33,7 @@
         {!!
             $paginator->appends(request()
                 ->except(['page','_token']))
-                ->onEachSide($onEachSide)
+                ->onEachSide($onEachSide ?? 3)
                 ->links('platform::partials.pagination')
         !!}
     </div>
