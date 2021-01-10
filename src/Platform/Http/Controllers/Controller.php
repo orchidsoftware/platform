@@ -29,6 +29,6 @@ class Controller extends BaseController
             abort(403);
         });
 
-        abort_if(Auth::user() !== null && ! Auth::user()->hasAccess($permission), 403);
+        abort_if(Auth::user() !== null && !Auth::user()->hasAccess($permission), 403);
     }
 }

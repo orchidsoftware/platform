@@ -36,7 +36,7 @@ trait Environment
         $this->artisan('orchid:install');
 
         /* Refresh application for route/breadcrumbs/orchid provider */
-        if (! $this->app['router']->has('platform.main')) {
+        if (!$this->app['router']->has('platform.main')) {
             $this->refreshApplication();
             $this->loadLaravelMigrations();
             $this->loadMigrationsFrom(realpath('./database/migrations'));

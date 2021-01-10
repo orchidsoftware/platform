@@ -12,7 +12,7 @@ class OrchidMixTest extends TestUnitCase
     {
         parent::setUp();
 
-        if (! file_exists(public_path('/resources'))) {
+        if (!file_exists(public_path('/resources'))) {
             $this->artisan('orchid:link');
         }
     }

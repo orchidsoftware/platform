@@ -42,7 +42,7 @@ class LinkCommand extends Command
             $package = $prefix.'/'.$package;
             $path = rtrim($path, '/');
 
-            if (! $filesystem->exists($package)) {
+            if (!$filesystem->exists($package)) {
                 $filesystem->link($path, $package);
                 $this->line("The [$package] directory has been linked.");
             }

@@ -167,7 +167,7 @@ abstract class Screen extends Controller
         );
 
         $query = request()->query();
-        $query = ! is_array($query) ? [] : $query;
+        $query = !is_array($query) ? [] : $query;
 
         $parameters = array_filter($parameters);
         $parameters = array_merge($query, $parameters);
@@ -189,11 +189,11 @@ abstract class Screen extends Controller
     {
         $class = new ReflectionClass($this);
 
-        if (! is_string($method)) {
+        if (!is_string($method)) {
             return [];
         }
 
-        if (! $class->hasMethod($method)) {
+        if (!$class->hasMethod($method)) {
             return [];
         }
 
@@ -219,7 +219,7 @@ abstract class Screen extends Controller
      */
     private function bind(int $key, ReflectionParameter $parameter, array $httpQueryArguments)
     {
-        $class = $parameter->getType() && ! $parameter->getType()->isBuiltin()
+        $class = $parameter->getType() && !$parameter->getType()->isBuiltin()
            ? $parameter->getType()->getName()
            : null;
 

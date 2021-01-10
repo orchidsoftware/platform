@@ -167,7 +167,7 @@ class Field implements Fieldable
     {
         collect($this->required)
             ->filter(function ($attribute) {
-                return ! array_key_exists($attribute, $this->attributes);
+                return !array_key_exists($attribute, $this->attributes);
             })
             ->each(function ($attribute) {
                 throw new FieldRequiredAttributeException($attribute);
@@ -183,7 +183,7 @@ class Field implements Fieldable
      */
     public function render()
     {
-        if (! $this->isSee()) {
+        if (!$this->isSee()) {
             return;
         }
 
@@ -290,7 +290,7 @@ class Field implements Fieldable
      */
     public function get(string $key, $value = null)
     {
-        if (! isset($this->attributes[$key])) {
+        if (!isset($this->attributes[$key])) {
             return $value;
         }
 
@@ -330,7 +330,7 @@ class Field implements Fieldable
      */
     private function checkError(): self
     {
-        if (! $this->hasError()) {
+        if (!$this->hasError()) {
             return $this;
         }
 

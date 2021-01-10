@@ -18,7 +18,7 @@ class UserSwitch
      */
     public static function loginAs(User $user)
     {
-        if (! session()->has(self::SESSION_NAME)) {
+        if (!session()->has(self::SESSION_NAME)) {
             session()->put(self::SESSION_NAME, Auth::id());
         }
 

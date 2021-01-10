@@ -292,7 +292,7 @@ class TD
      */
     public function buildItemMenu()
     {
-        if (! $this->isAllowUserHidden()) {
+        if (!$this->isAllowUserHidden()) {
             return;
         }
 

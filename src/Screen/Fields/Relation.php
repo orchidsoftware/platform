@@ -109,11 +109,11 @@ class Relation extends Field
             $text = $append ?? $name;
             $value = $this->get('value');
 
-            if (! is_iterable($value)) {
+            if (!is_iterable($value)) {
                 $value = Arr::wrap($value);
             }
 
-            if (! Assert::isObjectArray($value)) {
+            if (!Assert::isObjectArray($value)) {
                 $value = $model::whereIn($key, $value)->get();
             }
 
@@ -152,7 +152,7 @@ class Relation extends Field
             $scope = $this->get('scope', 'handler');
             $class = app()->make($class);
 
-            if (! is_iterable($value)) {
+            if (!is_iterable($value)) {
                 $value = Arr::wrap($value);
             }
 

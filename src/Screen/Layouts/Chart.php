@@ -142,11 +142,11 @@ abstract class Chart extends Layout
      */
     public function build(Repository $repository)
     {
-        if (! $this->checkPermission($this, $repository)) {
+        if (!$this->checkPermission($this, $repository)) {
             return;
         }
 
-        $labels = ! empty($this->labels)
+        $labels = !empty($this->labels)
             ? json_encode(collect($this->labels))
             : collect($repository->getContent($this->target))
                 ->map(function ($item) {

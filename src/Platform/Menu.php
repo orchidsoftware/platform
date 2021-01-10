@@ -51,7 +51,7 @@ class Menu
     {
         $arg = get_object_vars($itemMenu);
 
-        if (array_key_exists('display', $arg) && ! $arg['display']) {
+        if (array_key_exists('display', $arg) && !$arg['display']) {
             return $this;
         }
 
@@ -113,7 +113,7 @@ class Menu
 
         $this->container = $this->container
             ->filter(static function ($item) use ($user) {
-                if (! isset($item['arg']['permission'])) {
+                if (!isset($item['arg']['permission'])) {
                     return true;
                 }
 

@@ -41,7 +41,7 @@ abstract class Table extends Layout
      */
     public function build(Repository $repository)
     {
-        if (! $this->checkPermission($this, $repository)) {
+        if (!$this->checkPermission($this, $repository)) {
             return;
         }
 

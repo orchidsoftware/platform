@@ -69,7 +69,7 @@ trait UserAccess
      */
     public function hasAccess(string $permit, bool $cache = true): bool
     {
-        if (! $cache || $this->cachePermissions === null) {
+        if (!$cache || $this->cachePermissions === null) {
             $this->cachePermissions = $this->roles()
                 ->pluck('permissions')
                 ->prepend($this->permissions)
@@ -170,7 +170,7 @@ trait UserAccess
     {
         $isSoftDeleted = array_key_exists(SoftDeletes::class, class_uses($this));
 
-        if ($this->exists && ! $isSoftDeleted) {
+        if ($this->exists && !$isSoftDeleted) {
             $this->roles()->detach();
         }
 

@@ -9,7 +9,7 @@ use Orchid\Support\Color;
 use Orchid\Support\Facades\Dashboard;
 use Symfony\Component\Finder\Finder;
 
-if (! function_exists('alert')) {
+if (!function_exists('alert')) {
     /**
      * Helper function to send an alert.
      *
@@ -34,7 +34,7 @@ if (! function_exists('alert')) {
     }
 }
 
-if (! function_exists('is_sort')) {
+if (!function_exists('is_sort')) {
 
     /**
      * @param string $property
@@ -49,7 +49,7 @@ if (! function_exists('is_sort')) {
     }
 }
 
-if (! function_exists('get_sort')) {
+if (!function_exists('get_sort')) {
 
     /**
      * @param null|string $property
@@ -64,7 +64,7 @@ if (! function_exists('get_sort')) {
     }
 }
 
-if (! function_exists('get_filter')) {
+if (!function_exists('get_filter')) {
 
     /**
      * @param string $property
@@ -79,7 +79,7 @@ if (! function_exists('get_filter')) {
     }
 }
 
-if (! function_exists('get_filter_string')) {
+if (!function_exists('get_filter_string')) {
 
     /**
      * @param string $property
@@ -98,7 +98,7 @@ if (! function_exists('get_filter_string')) {
     }
 }
 
-if (! function_exists('revert_sort')) {
+if (!function_exists('revert_sort')) {
 
     /**
      * @param string $property
@@ -113,7 +113,7 @@ if (! function_exists('revert_sort')) {
     }
 }
 
-if (! function_exists('orchid_mix')) {
+if (!function_exists('orchid_mix')) {
     /**
      * @param string $file
      * @param string $package

@@ -61,11 +61,11 @@ class Matrix extends Field
                 $fields = $this->get('fields');
 
                 foreach ($this->get('columns') as $key => $column) {
-                    if (! isset($fields[$key])) {
+                    if (!isset($fields[$key])) {
                         $fields[$key] = TextArea::make();
                     }
 
-                    if (! isset($fields[$column])) {
+                    if (!isset($fields[$column])) {
                         $fields[$column] = TextArea::make();
                     }
                 }

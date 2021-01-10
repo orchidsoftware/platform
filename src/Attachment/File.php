@@ -76,7 +76,7 @@ class File
     {
         $attachment = $this->getMatchesHash();
 
-        if (! $this->storage->has($this->engine->path())) {
+        if (!$this->storage->has($this->engine->path())) {
             $this->storage->makeDirectory($this->engine->path());
         }
 

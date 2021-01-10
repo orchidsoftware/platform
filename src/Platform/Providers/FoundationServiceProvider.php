@@ -201,14 +201,14 @@ class FoundationServiceProvider extends ServiceProvider
             return new Dashboard();
         });
 
-        if (! Route::hasMacro('screen')) {
+        if (!Route::hasMacro('screen')) {
             Route::macro('screen', function ($url, $screen) {
                 /* @var Router $this */
                 $route = $this->any($url.'/{method?}', [$screen, 'handle']);
 
                 $methods = $screen::getAvailableMethods();
 
-                if (! empty($methods)) {
+                if (!empty($methods)) {
                     $route->where('method', implode('|', $methods));
                 }
 
