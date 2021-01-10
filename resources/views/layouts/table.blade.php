@@ -56,7 +56,8 @@
     @includeWhen($rows instanceof \Illuminate\Contracts\Pagination\Paginator && $rows->isNotEmpty(),
         'platform::layouts.pagination',[
             'paginator' => $rows,
-            'columns' => $columns
+            'columns' => $columns,
+            'onEachSide' => $onEachSide,
         ])
 </div>
 

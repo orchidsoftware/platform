@@ -67,6 +67,7 @@ abstract class Table extends Layout
             'bordered'     => $this->bordered(),
             'hoverable'    => $this->hoverable(),
             'slug'         => $this->getSlug(),
+            'onEachSide'   => $this->onEachSide(),
         ]);
     }
 
@@ -122,6 +123,16 @@ abstract class Table extends Layout
     protected function hoverable(): bool
     {
         return false;
+    }
+
+    /**
+     * The number of links to display on each side of current page link.
+     *
+     * @return int
+     */
+    protected function onEachSide(): int
+    {
+        return 3;
     }
 
     /**
