@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 9.15.2 - 2021-01-10
+
+### Fixed
+- Display pagination on mobile device
+- Wrong method to process password update form. [#1491](https://github.com/orchidsoftware/platform/pull/1491)
+- Added missing keys in Russian translation for profile page [#1492](https://github.com/orchidsoftware/platform/pull/1492)
+
 ## 9.15.1 - 2021-01-08
 
 ### Fixed
