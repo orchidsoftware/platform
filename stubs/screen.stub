@@ -3,8 +3,6 @@
 namespace DummyNamespace;
 
 use Orchid\Screen\Screen;
-use Orchid\Screen\Action;
-use Orchid\Screen\Layout;
 
 class DummyClass extends Screen
 {
@@ -35,7 +33,7 @@ class DummyClass extends Screen
     /**
      * Button commands.
      *
-     * @return Action[]
+     * @return \Orchid\Screen\Action[]
      */
     public function commandBar(): array
     {
@@ -45,7 +43,7 @@ class DummyClass extends Screen
     /**
      * Views.
      *
-     * @return string[]|Layout[]
+     * @return \Orchid\Screen\Layout[]|string[]
      */
     public function layout(): array
     {
