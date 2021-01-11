@@ -31,6 +31,11 @@ A free [Laravel](https://laravel.com) package that abstracts standard business l
 
 - **Security Permissions** - Can be used to enable or disable whole screens, or user interface behaviors, based on a user’s identity and corresponding role membership. Find out more in the [documentation](https://orchid.software/en/docs/access/).
 
+- **Filtering & Sorting** - There is no need to describe forms of the same type in html. There are many custom fields prepared that are easy to use.
+
+- **Data Search** - Find the information you need from any page. Integrated Laravel Scout takes care of the search results.
+
+- **User Notifications** - One-time and personal notifications will be a great way to notify users about what is happening in your application.
 
  ## Getting started
 
