@@ -14,7 +14,7 @@
 
 ## Introduction
 
-A free [Laravel](https://laravel.com) package that abstracts standard business logic and allows code-driven rapid application development of back office applications like admin panels and dashboards.
+Orchis is a free [Laravel](https://laravel.com) package that abstracts standard business logic and allows code-driven rapid application development of back office applications, admin/user panels and dashboards.
 
 <a href="https://raw.githubusercontent.com/orchidsoftware/platform/master/.github/IMAGES/promo-full.png">
   <img src="https://raw.githubusercontent.com/orchidsoftware/platform/master/.github/IMAGES/promo-full.png" alt="Laravel Orchid Platform" align="center" />
