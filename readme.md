@@ -23,12 +23,15 @@ A free [Laravel](https://laravel.com) package that abstracts standard business l
 
 ###### Some features:
 
-- **Form builder** - no need to describe HTML fields of the same type each time.
-- **Screen** - a comfortable balance between CRUD generation and tedious coding.
-- **Fields** - over 40 varieties.
-- **Permissions** - offers convenient management in development and support.
-- Menus, charts, notifications, etc.
- 
+- **Easy To Get Started** - We are developing in PHP. It is not necessary to use HTML, CSS, or JavaScript. Everything to make applications easy to use. Check it out with a [quick start](https://orchid.software/en/docs/quickstart/).
+
+- **Form builder** - There is no need to describe forms of the same type in html. There are [many custom fields](https://orchid.software/en/docs/field/) prepared that are easy to use.
+
+- **Fast Loading Pages** - A performance like a single page application. Transitions without reloading the page, not writing a single line of code. Thanks to the [Hotwire](https://hotwire.dev/) project, this has become excellent and simple.
+
+- **Security Permissions** - Can be used to enable or disable whole screens, or user interface behaviors, based on a user’s identity and corresponding role membership. Find out more in the [documentation](https://orchid.software/en/docs/access/).
+
+
  ## Getting started
 
 * :globe_with_meridians: To check out the guide, visit [orchid.software](https://orchid.software/en/docs). 
