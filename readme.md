@@ -74,4 +74,4 @@ Voluntary donations allowing us to spend more time improving Orchid for everyone
 
 ## License
 
-Orchid is covered by the MIT License. Please see our [license](LICENSE) for more information.
+Orchid is covered by the MIT license. Check [our license](LICENSE) for further information.
