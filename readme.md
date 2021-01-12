@@ -22,19 +22,19 @@ Orchid is a free [Laravel](https://laravel.com) package that abstracts standard 
 
 ### Interesting Features
 
-- **Rapid Application Development** - Focus to PHP development and don't loose time with HTML, CSS, or JavaScript. Build application logic, not admin panels. Try our [quick start guide](https://orchid.software/en/docs/quickstart/) and kick-start the development of your application.
+- **Rapid Application Development** - Focus to PHP development and don't lose time with HTML, CSS, or JavaScript. Build application logic, not admin panels. Try our [quick start guide](https://orchid.software/en/docs/quickstart/) and kick-start your application's development.
 
-- **Form Builder** - Prevent reinventing the wheel or forms. Orchid supports already [40+ form elements](https://orchid.software/en/docs/field/) "out of the box" and allows you to quickly build all kinds of forms.
+- **Form Builder** - Prevent reinventing the wheel or forms. Orchid supports already [40+ form elements](https://orchid.software/en/docs/field/) "out of the box" and allows you to build all kinds of forms quickly.
 
 - **Fast Loading Times** - Enjoy a SPA like performance! Transitions can be made without reloading a page and require no additional code. Thanks to the [Hotwire](https://hotwire.dev/) project, Orchid makes this a satisfying experience for you and your users.
 
 - **Access Permissions & Roles** - Take advantage of [granular access permissions](https://orchid.software/en/docs/access/), based on a user’s identity and corresponding role membership.
 
-- **Filtering & Sorting** - Offer your users the ability to quickly filter and sort data! Orchid uses an [Eloquent based filtering/sorting approach](https://orchid.software/en/docs/quickstart-sort-filter-table/).
+- **Filtering & Sorting** - Offer your users the ability to filter and sort data quickly! Orchid uses an [Eloquent based filtering/sorting approach](https://orchid.software/en/docs/quickstart-sort-filter-table/).
 
 - **Fast Full-Text Search** - Take advantage of the integrated [Laravel Scout based full-text search](https://orchid.software/en/docs/global-search/), that allows searching through all available content, and displaying search results almost instantly.
 
-- **Multiple Notifcations Types** - Orchid offers [various types of notifications](https://orchid.software/en/docs/alert/) and allows your application to keep your users informed appropriately.
+- **Multiple Notifications Types** - Orchid offers [various types of notifications](https://orchid.software/en/docs/alert/) and allows your application to keep your users informed appropriately.
 
  ### Live Demo
  
@@ -42,10 +42,10 @@ Curious but not (yet) in the mood to read the documentation? Click [here](https:
  
 ## Getting started
 
-### Documentaiton
+### Documentation
 
-* :globe_with_meridians: Check our EN [documentation and quick start guide](https://orchid.software/en/docs).
-* :ru: Чтобы ознакомиться с руководством, посетите сайт [orchid.software](https://orchid.software/ru/docs).
+* 🌍 [Documentation & Quick Start Guide](https://orchid.software/en/docs)
+* 🇷🇺 Чтобы ознакомиться с руководством, посетите сайт [orchid.software](https://orchid.software/ru/docs)
 
 ### Blog
 
@@ -68,7 +68,7 @@ Orchid's [blog](https://blog.orchid.software/) informs about news and announceme
 
 Thanks to our backers 🙏, Orchid is free for private and commercial purposes. 
 
-Voluntary donations are allowing us to spend more time improving Orchid for everyone! 👍🏻
+Voluntary donations are allowing us to spend more time improving Orchid for everyone! 👍
 
 <a href="https://opencollective.com/orchid#backers" target="_blank"><img src="https://opencollective.com/orchid/backers.svg?width=838"></a>
 
