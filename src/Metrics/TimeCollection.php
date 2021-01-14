@@ -2,7 +2,9 @@
 
 namespace Orchid\Metrics;
 
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class TimeCollection extends Collection
 {
@@ -23,5 +25,19 @@ class TimeCollection extends Collection
             'labels' => $this->pluck('label')->map($closure)->toArray(),
             'values' => $this->pluck('value')->toArray(),
         ];
+    }
+
+    /**
+     * @return TimeCollection
+     */
+    public function showDaysOfWeek(): TimeCollection
+    {
+        return $this->transform(function (array $value) {
+            $day = Carbon::parse($value['label'])->dayName;
+
+            $value['label'] = Str::ucfirst($day);
+
+            return $value;
+        });
     }
 }

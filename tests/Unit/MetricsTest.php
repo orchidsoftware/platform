@@ -141,4 +141,43 @@ class MetricsTest extends TestUnitCase
             'values' => $period->pluck('value')->toArray(),
         ], $period->toChart('Users'));
     }
+
+    public function testPeriodShowDaysOfWeek(): void
+    {
+        $current = Carbon::now();
+        $start = (clone $current)->subDays(6);
+
+        User::factory()->count(5)->create();
+
+        $period = User::sumByDays('id', $start)->showDaysOfWeek()->toChart('Users');
+
+        collect([
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+        ])->each(function (string $value) use ($period) {
+            $this->assertContains($value, $period['labels']);
+        });
+
+        /* Carbon Language */
+        \Carbon\Carbon::setLocale('ru');
+
+        $period = User::sumByDays('id', $start)->showDaysOfWeek()->toChart('Users');
+
+        collect([
+            "Понедельник",
+            "Вторник",
+            "Среда",
+            "Четверг",
+            "Пятница",
+            "Суббота",
+            "Воскресенье",
+        ])->each(function (string $value) use ($period) {
+            $this->assertContains($value, $period['labels']);
+        });
+    }
 }
