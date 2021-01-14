@@ -159,8 +159,8 @@ class MetricsTest extends TestUnitCase
             "Friday",
             "Saturday",
             "Sunday",
-        ])->each(function (string $value) use ($period){
-           $this->assertContains($value, $period['labels']);
+        ])->each(function (string $value) use ($period) {
+            $this->assertContains($value, $period['labels']);
         });
 
         /* Carbon Language */
@@ -176,7 +176,7 @@ class MetricsTest extends TestUnitCase
             "Пятница",
             "Суббота",
             "Воскресенье",
-        ])->each(function (string $value) use ($period){
+        ])->each(function (string $value) use ($period) {
             $this->assertContains($value, $period['labels']);
         });
     }

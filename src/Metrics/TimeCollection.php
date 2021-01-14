@@ -17,8 +17,8 @@ class TimeCollection extends Collection
     public function toChart(string $name, \Closure $closure = null): array
     {
         $closure = $closure ?? static function ($label) {
-                return $label;
-            };
+            return $label;
+        };
 
         return [
             'name'   => $name,
@@ -33,7 +33,6 @@ class TimeCollection extends Collection
     public function showDaysOfWeek(): TimeCollection
     {
         return $this->transform(function (array $value) {
-
             $day = Carbon::parse($value['label'])->dayName;
 
             $value['label'] = Str::ucfirst($day);
