@@ -38,7 +38,6 @@ class TDComponentTest extends TestUnitCase
             ->buildTd($this->user);
 
         $this->assertStringContainsString($this->user->email, $view);
-
     }
 
     public function testTdArgumentComponent(): void

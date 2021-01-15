@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Method for display the day of the week in charts
-- Method for using the component in TD
+- Method for using the component in TD [#1489](https://github.com/orchidsoftware/platform/issues/1489)
 
 ## 9.16.1 - 2021-01-11
 
