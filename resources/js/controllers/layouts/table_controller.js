@@ -20,10 +20,12 @@ export default class extends Controller {
         this.renderColumn();
 
 
-        this.element.querySelector('.dropdown-column-menu')
-            .addEventListener('click', (e) => {
-                e.stopPropagation();
-            })
+        if (document.querySelector('.dropdown-column-menu') !== null) {
+            this.element.querySelector('.dropdown-column-menu')
+                .addEventListener('click', (e) => {
+                    e.stopPropagation();
+                })
+        }
     }
 
     /**

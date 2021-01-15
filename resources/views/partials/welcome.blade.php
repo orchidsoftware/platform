@@ -25,7 +25,7 @@
 
                 <span class="ml-3 text-dark">Explore the documentation</span>
             </h3>
-            <p class="ml-md-5">
+            <p class="ml-md-5 pl-md-1">
                 The package uses the Laravel framework.
                 If you are new to the framework or have previous experience, we recommend reading the complete
                 <a href="https://laravel.com/docs" target="_blank" class="text-u-l">documentation</a> from start to
@@ -39,7 +39,7 @@
 
                 <span class="ml-3 text-dark">Quick start guide</span>
             </h3>
-            <p class="ml-md-5">
+            <p class="ml-md-5 pl-md-1">
                 Are you entirely new to Laravel Orchid? Don't worry, we all were once.
                 For a quick study of the main features,
                 be sure to check out the step-by-step tutorials
@@ -54,7 +54,7 @@
 
                 <span class="ml-3 text-dark">The Screens</span>
             </h3>
-            <p class="ml-md-5">
+            <p class="ml-md-5 pl-md-1">
                 Screen design is hierarchical and declarative, rather than physical and imperative. You specify what
                 data should be displayed, how the controls manage that data are to be configured.
             </p>
@@ -66,7 +66,7 @@
 
                 <span class="ml-3 text-dark">Layouts</span>
             </h3>
-            <p class="ml-md-5">
+            <p class="ml-md-5 pl-md-1">
                 It allows you to express many details so that the user interface can be interpreted and generated
                 automatically. But unlike various other tools that do this, the developer can also customize it with
                 custom templates.
@@ -79,7 +79,7 @@
 
                 <span class="ml-3 text-dark">And one more thing</span>
             </h3>
-            <p class="ml-md-5">
+            <p class="ml-md-5 pl-md-1">
                 Control entire screens or user interface behaviors depending on Security permissions.
 
                 Create filters so that users can quickly find different segments of data.
@@ -96,7 +96,7 @@
 
                 <span class="ml-3 text-dark">Community</span>
             </h3>
-            <div class="ml-md-5">
+            <div class="ml-md-5 pl-md-1">
                 <p>Stay up to date on the development of Laravel Orchid and reach out to the community with these
                     helpful
                     resources.</p>

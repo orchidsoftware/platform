@@ -1,6 +1,6 @@
 @isset($title)
     <li class="nav-item mt-3">
-        <p class="hidden-folded my-1 text-muted text-sm ml-4 w-100">{{ __($title) }}</p>
+        <p class="hidden-folded my-1 text-muted small ml-4 w-100">{{ __($title) }}</p>
     </li>
 @endisset
 

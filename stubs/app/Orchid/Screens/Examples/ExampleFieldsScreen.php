@@ -151,7 +151,7 @@ class ExampleFieldsScreen extends Screen
                     TextArea::make('readonly_textarea')
                         ->title('Readonlyd textarea')
                         ->placeholder('Readonlyd textarea')
-                        ->rows(6)
+                        ->rows(7)
                         ->disabled(),
 
                 ])->title('Input States'),
@@ -171,6 +171,7 @@ class ExampleFieldsScreen extends Screen
                     Button::make('Link')->method('buttonClickProcessing')->type(Color::LINK()),
                 ])->autoWidth(),
 
+
                 Button::make('Block level button')
                     ->method('buttonClickProcessing')
                     ->type(Color::DEFAULT())
@@ -180,7 +181,6 @@ class ExampleFieldsScreen extends Screen
                     ->method('buttonClickProcessing')
                     ->type(Color::DEFAULT())
                     ->right(),
-
             ])->title('Buttons'),
 
             Layout::rows([
@@ -208,13 +208,17 @@ class ExampleFieldsScreen extends Screen
                     ->type('url')
                     ->title('Url')
                     ->value('https://getbootstrap.com')
-                    ->horizontal(),
+                    ->horizontal()
+                    ->help('You might use this when asking to input their website address for a business directory'),
 
                 Input::make('tel')
                     ->type('tel')
                     ->title('Telephone')
                     ->value('1-(555)-555-5555')
-                    ->horizontal(),
+                    ->horizontal()
+                    ->help('For example, on iOS, focusing input on a telephone field brings up
+                     a numeric keypad ready for keying in a number. In addition, the device’s autocomplete
+                      mechanisms kick in and suggest phone numbers that can be autofilled with a single tap.'),
 
                 Input::make('password')
                     ->type('password')

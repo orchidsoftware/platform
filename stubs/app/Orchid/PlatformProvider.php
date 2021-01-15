@@ -36,7 +36,7 @@ class PlatformProvider extends OrchidServiceProvider
             ItemMenu::label('Dropdown menu')
                 ->slug('example-menu')
                 ->icon('code')
-                ->childs(),
+                ->withChildren(),
 
             ItemMenu::label('Sub element item 1')
                 ->place('example-menu')

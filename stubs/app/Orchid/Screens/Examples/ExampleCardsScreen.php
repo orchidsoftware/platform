@@ -212,6 +212,8 @@ class ExampleCardsScreen extends Screen
                 ]),
             ]),
 
+            Layout::block(new Card('cardPersona')),
+
             new Card('cardCompendium'),
         ];
     }
