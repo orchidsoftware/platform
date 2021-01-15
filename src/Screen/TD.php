@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\View\View;
+use Orchid\Support\Blade;
 
 class TD
 {
@@ -358,5 +359,25 @@ class TD
         return collect($columns)->filter(function ($column) {
             return $column->isAllowUserHidden();
         })->isNotEmpty();
+    }
+
+    /**
+     * @param string      $component
+     * @param string|null $name
+     * @param array       $params
+     *
+     * @return $this
+     */
+    public function component(string $component, string $name = null, array $params = []): self
+    {
+        return $this->render(function ($value) use ($component, $name, $params) {
+            if ($name === null) {
+                return Blade::renderComponent($component, $value);
+            }
+
+            $params[$name] = $value;
+
+            return Blade::renderComponent($component, $params);
+        });
     }
 }
