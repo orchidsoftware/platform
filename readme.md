@@ -70,6 +70,7 @@ Thanks to our backers 🙏, Orchid is free for private and commercial purposes.
 
 Voluntary donations are allowing us to spend more time improving Orchid for everyone! 👍
 
+<a href="https://opencollective.com/orchid#backers" target="_blank"><img src="https://opencollective.com/orchid/sponsors.svg?width=838"></a>
 <a href="https://opencollective.com/orchid#backers" target="_blank"><img src="https://opencollective.com/orchid/backers.svg?width=838"></a>
 
 ## License
