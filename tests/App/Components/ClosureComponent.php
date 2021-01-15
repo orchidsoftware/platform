@@ -17,7 +17,7 @@ class ClosureComponent extends Component
     /**
      * Create a new component instance.
      *
-     * @param string      $name
+     * @param string $name
      */
     public function __construct(string $name)
     {

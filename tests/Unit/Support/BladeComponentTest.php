@@ -23,7 +23,7 @@ class BladeComponentTest extends TestUnitCase
     public function testHelloComponent(): void
     {
         $view = Blade::renderComponent(Hello::class, [
-            'name' => 'Alexandr'
+            'name' => 'Alexandr',
         ]);
 
         $this->assertStringContainsString('Hello Alexandr', $view);
@@ -33,7 +33,7 @@ class BladeComponentTest extends TestUnitCase
     public function testHelloClosure(): void
     {
         $view = Blade::renderComponent(ClosureComponent::class, [
-            'name' => 'Alexandr'
+            'name' => 'Alexandr',
         ]);
 
         $this->assertStringContainsString('Hello Alexandr', $view);
@@ -45,5 +45,4 @@ class BladeComponentTest extends TestUnitCase
 
         $this->assertStringContainsString('Hello word', $view);
     }
-
 }
