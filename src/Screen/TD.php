@@ -361,7 +361,6 @@ class TD
         })->isNotEmpty();
     }
 
-
     /**
      * @param string      $component
      * @param string|null $name
@@ -372,7 +371,6 @@ class TD
     public function component(string $component, string $name = null, array $params = []): self
     {
         return $this->render(function ($value) use ($component, $name, $params) {
-
             if ($name === null) {
                 return Blade::renderComponent($component, $value);
             }

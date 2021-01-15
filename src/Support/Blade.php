@@ -13,8 +13,9 @@ class Blade
      * @param string $class
      * @param mixed  $data
      *
-     * @return string|null
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
+     * @return string|null
      */
     public static function renderComponent(string $class, $data): ?string
     {
@@ -23,7 +24,7 @@ class Blade
             ? app()->make($class, $data)
             : new $class($data);
 
-        if (!$component->shouldRender()) {
+        if (! $component->shouldRender()) {
             return null;
         }
 
