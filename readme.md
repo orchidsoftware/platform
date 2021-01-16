@@ -53,6 +53,8 @@ Orchid's [blog](https://blog.orchid.software/) informs about news and announceme
 
 ## Feedback/Support
 
+We are continually trying to actively include feedback from the community in the development of Orchid. You help us a lot if you give us well structured and detailed feedback.
+
 ### GitHub
 
 * Create [issues](https://github.com/orchidsoftware/platform/issues) to ask questions or report problems.
@@ -64,9 +66,19 @@ Orchid's [blog](https://blog.orchid.software/) informs about news and announceme
 * [Russian Community](https://t.me/orchid_russian_community)
 * [Spanish Community](https://t.me/esLaravelOrchid)
 
+## Development
+
+### Releasese Strategy
+
+We like to keep things as modern as possible and have a "[release early, release often](https://en.wikipedia.org/wiki/Release_early,_release_often)" approach to major releases. Meaning, we won't wait an arbitrary number of months to accumulate significant changes and release the next major version. By releasing major versions often, new features will be out earlier, and upgrading between versions will be much easier.
+
+### Changelog
+
+We actively and continuously maintain a [changelog](CHANGELOG.md) that informs about Orchid's history of improvements, bug fixes and changes.
+
 ## Support Orchid
 
-Thanks to our backers 🙏, Orchid is free for private and commercial purposes. 
+Thanks to our backers 🙏, Orchid is free for private and commercial purposes. 🎉
 
 Voluntary donations are allowing us to spend more time improving Orchid for everyone! 👍
 
