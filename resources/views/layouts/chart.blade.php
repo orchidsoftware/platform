@@ -12,6 +12,7 @@
      data-screen--chart-axis-options="{{$axisOptions}}"
      data-screen--chart-bar-options="{{$barOptions}}"
      data-screen--chart-line-options="{{$lineOptions}}"
+     data-screen--chart-markers="{{$markers}}"
 >
     <div class="bg-white rounded shadow-sm mb-3 pt-3">
         <div class="position-relative w-100">

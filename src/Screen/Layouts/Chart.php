@@ -136,6 +136,15 @@ abstract class Chart extends Layout
     ];
 
     /**
+     * To highlight certain values on the Y axis, markers can be set.
+     * They will shown as dashed lines on the graph.
+     */
+    protected function markers(): ?array
+    {
+        return null;
+    }
+
+    /**
      * @param Repository $repository
      *
      * @return Factory|\Illuminate\View\View
@@ -170,6 +179,7 @@ abstract class Chart extends Layout
             'axisOptions'      => json_encode($this->axisOptions),
             'barOptions'       => json_encode($this->barOptions),
             'lineOptions'      => json_encode($this->lineOptions),
+            'markers'          => json_encode($this->markers()),
         ]);
     }
 }
