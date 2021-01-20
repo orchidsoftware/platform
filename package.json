@@ -15,7 +15,7 @@
     "@babel/plugin-transform-block-scoping": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "axios": "^0.21.1",
-    "bootstrap": "^4.5.3",
+    "bootstrap": "^4.6.0",
     "codeflask": "^1.4.0",
     "cropperjs": "^1.5.9",
     "cross-env": "^7.0.0",
@@ -44,7 +44,7 @@
     "eslint-plugin-import": "^2.22.1",
     "postcss": "^8.2.4",
     "resolve-url-loader": "^3.1.2",
-    "sass": "^1.32.4",
+    "sass": "^1.32.5",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.12"
   }
