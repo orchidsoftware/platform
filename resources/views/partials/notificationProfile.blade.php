@@ -1,4 +1,4 @@
-<div class="pull-right text-center pl-3" data-turbolinks-permanent>
+<div class="col-auto ml-auto p-0" data-turbolinks-permanent>
     <a href="{{ route('platform.notifications') }}"
        class="nav-link p-0 v-center"
        data-controller="layouts--notification"
