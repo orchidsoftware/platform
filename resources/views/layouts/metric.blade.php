@@ -14,8 +14,8 @@
                             <x-orchid-icon path="arrow-down" class="v-top"/>
                         </small>
                     @elseif((float)$metric['keyDiff'] == 0)
-                        <small class="text-xs text-muted">{{ $metric['keyDiff'] }} %
-                            <x-orchid-icon path="refresh" class="v-top"/>
+                        <small class="text-xs text-muted">
+                            —
                         </small>
                     @else
                         <small class="text-xs text-success">{{ $metric['keyDiff'] }} %
