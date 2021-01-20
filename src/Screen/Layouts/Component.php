@@ -42,7 +42,7 @@ abstract class Component extends Layout
         }
 
         /** @var ViewComponent $component */
-        $component = app()->make($this->component, $repository->toArray());
+        $component = resolve($this->component, $repository->toArray());
 
         if (! $component->shouldRender()) {
             return;

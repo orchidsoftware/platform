@@ -248,7 +248,7 @@ class Dashboard
     public function getSearch(): Collection
     {
         return $this->search->transform(static function ($model) {
-            return is_object($model) ? $model : app()->make($model);
+            return is_object($model) ? $model : resolve($model);
         });
     }
 

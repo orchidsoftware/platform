@@ -92,7 +92,7 @@ class Relation extends Field
      */
     public function fromModel(string $model, string $name, string $key = null): self
     {
-        $key = $key ?? app()->make($model)->getModel()->getKeyName();
+        $key = $key ?? resolve($model)->getModel()->getKeyName();
 
         $this
             ->set('relationModel', Crypt::encryptString($model))
@@ -150,7 +150,7 @@ class Relation extends Field
             }
 
             $scope = $this->get('scope', 'handler');
-            $class = app()->make($class);
+            $class = resolve($class);
 
             if (! is_iterable($value)) {
                 $value = Arr::wrap($value);

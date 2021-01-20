@@ -41,7 +41,7 @@ abstract class Selection extends Layout
         }
 
         $filters = collect($this->filters())->map(static function ($filter) {
-            return is_string($filter) ? app()->make($filter) : $filter;
+            return is_string($filter) ? resolve($filter) : $filter;
         });
 
         $count = $filters->where('display', true)->count();

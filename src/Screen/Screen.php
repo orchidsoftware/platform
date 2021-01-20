@@ -106,7 +106,7 @@ abstract class Screen extends Controller
         /** @var Layout $layout */
         $layout = collect($this->layout())
             ->map(function ($layout) {
-                return is_object($layout) ? $layout : app()->make($layout);
+                return is_object($layout) ? $layout : resolve($layout);
             })
             ->map(function (Layout $layout) use ($slug) {
                 return $layout->findBySlug($slug);
@@ -233,7 +233,7 @@ abstract class Screen extends Controller
             return $original;
         }
 
-        $object = app()->make($class);
+        $object = resolve($class);
 
         if ($original !== null && is_a($object, UrlRoutable::class)) {
             return $object->resolveRouteBinding($original);
