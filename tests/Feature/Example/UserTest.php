@@ -27,7 +27,6 @@ class UserTest extends TestFeatureCase
 
         $response->assertOk()
             ->assertSee('field-user');
-        ;
     }
 
     public function testRouteSystemsUsersEdit(): void
