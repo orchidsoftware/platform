@@ -60,7 +60,7 @@ class UserEditScreen extends Screen
         $user->load(['roles']);
 
         return [
-            'user' => $user,
+            'user'       => $user,
             'permission' => $user->getStatusPermission(),
         ];
     }

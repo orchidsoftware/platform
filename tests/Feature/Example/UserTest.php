@@ -26,7 +26,8 @@ class UserTest extends TestFeatureCase
             ->get(route('platform.systems.users.create'));
 
         $response->assertOk()
-            ->assertSee('field-user');;
+            ->assertSee('field-user');
+        ;
     }
 
     public function testRouteSystemsUsersEdit(): void
