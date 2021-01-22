@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
-use App\Orchid\Layouts\User\PasswordLayout;
+use App\Orchid\Layouts\User\ProfilePasswordLayout;
 use App\Orchid\Layouts\User\UserEditLayout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -73,7 +73,7 @@ class UserProfileScreen extends Screen
                         ->method('save')
                 ),
 
-            Layout::block(PasswordLayout::class)
+            Layout::block(ProfilePasswordLayout::class)
                 ->title(__('Update Password'))
                 ->description(__('Ensure your account is using a long, random password to stay secure.'))
                 ->commands(

@@ -9,6 +9,7 @@ use App\Orchid\Layouts\User\UserFiltersLayout;
 use App\Orchid\Layouts\User\UserListLayout;
 use Illuminate\Http\Request;
 use Orchid\Platform\Models\User;
+use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
@@ -57,7 +58,11 @@ class UserListScreen extends Screen
      */
     public function commandBar(): array
     {
-        return [];
+        return [
+            Link::make(__('Add'))
+                ->icon('plus')
+                ->route('platform.systems.users.create'),
+        ];
     }
 
     /**
