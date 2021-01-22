@@ -104,7 +104,6 @@ class UserListScreen extends Screen
         ]);
 
         $user->fill($request->input('user'))
-            ->replaceRoles($request->input('user.roles'))
             ->save();
 
         Toast::info(__('User was saved.'));
