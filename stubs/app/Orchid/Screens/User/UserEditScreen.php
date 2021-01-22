@@ -171,7 +171,7 @@ class UserEditScreen extends Screen
         }
 
         $user
-            ->fill($request->get('user'))
+            ->fill($userData)
             ->fill([
                 'permissions' => $permissions,
             ])
