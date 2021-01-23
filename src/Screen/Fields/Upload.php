@@ -134,8 +134,9 @@ class Upload extends Field
     /**
      * @param string $storage
      *
-     * @return $this
      * @throws \Throwable
+     *
+     * @return $this
      */
     public function storage(string $storage): self
     {
@@ -151,5 +152,4 @@ class Upload extends Field
             ->set('storage', $storage)
             ->set('visibility', $disk['visibility'] ?? null);
     }
-
 }

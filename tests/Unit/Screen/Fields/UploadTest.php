@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Fields;
 
-use Orchid\Support\Init;
-
 use Orchid\Screen\Fields\Upload;
+
+use Orchid\Support\Init;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 class UploadTest extends TestFieldsUnitCase
