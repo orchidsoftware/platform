@@ -85,6 +85,7 @@
                                 </div>
 
 
+                                @if($visibility === 'public')
                                 <div class="form-group">
                                     <a href="#" data-action="click->fields--upload#openLink">
                                         <small>
@@ -94,6 +95,7 @@
                                         </small>
                                     </a>
                                 </div>
+                                @endif
 
 
                             </div>

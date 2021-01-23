@@ -24,7 +24,6 @@ use Orchid\Support\Init;
  * @method Upload placeholder(string $value = null)
  * @method Upload value($value = true)
  * @method Upload help(string $value = null)
- * @method Upload storage($value = true)
  * @method Upload parallelUploads($value = true)
  * @method Upload maxFileSize($value = true)
  * @method Upload maxFiles($value = true)
@@ -64,6 +63,7 @@ class Upload extends Field
         'resizeHeight'    => null,
         'media'           => false,
         'closeOnAdd'      => false,
+        'visibility'      => 'public',
     ];
 
     /**
@@ -130,4 +130,26 @@ class Upload extends Field
             $this->set('value', $value);
         });
     }
+    
+    /**
+     * @param string $storage
+     *
+     * @return $this
+     * @throws \Throwable
+     */
+    public function storage(string $storage): self
+    {
+        $disk = config("filesystems.disks." . $storage);
+
+        throw_if(
+            $disk === null,
+            \Exception::class,
+            'The selected storage was not found'
+        );
+
+        return $this
+            ->set('storage', $storage)
+            ->set('visibility', $disk['visibility'] ?? null);
+    }
+
 }
