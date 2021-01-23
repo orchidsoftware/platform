@@ -168,7 +168,7 @@ abstract class Layout implements JsonSerializable
     {
         return collect($layouts)
             ->map(function ($layout) {
-                return is_object($layout) ? $layout : app()->make($layout);
+                return is_object($layout) ? $layout : resolve($layout);
             })
             ->filter(function (self $layout) use ($repository) {
                 return $this->checkPermission($layout, $repository);
@@ -211,7 +211,7 @@ abstract class Layout implements JsonSerializable
             ->map(static function ($layout) use ($slug) {
                 $layout = is_object($layout)
                     ? $layout
-                    : app()->make($layout);
+                    : resolve($layout);
 
                 return $layout->findBySlug($slug);
             })

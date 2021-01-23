@@ -19,6 +19,16 @@ class UserTest extends TestFeatureCase
             ->assertSee($this->createAdminUser()->email);
     }
 
+    public function testRouteSystemsUsersCreate(): void
+    {
+        $response = $this
+            ->actingAs($this->createAdminUser())
+            ->get(route('platform.systems.users.create'));
+
+        $response->assertOk()
+            ->assertSee('field-user');
+    }
+
     public function testRouteSystemsUsersEdit(): void
     {
         $response = $this

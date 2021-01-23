@@ -38,6 +38,7 @@
     "Enter your password": "Введите ваш пароль",
     "Enter the current password": "Укажите текущий пароль",
     "Enter the password to be set": "Введите пароль, который нужно установить",
+    "Leave empty to keep current password": "Оставьте поле пустым, если не хотите менять пароль",
     "Example screen": "Пример экрана",
     "Form controls": "Элементы формы",
     "Overview layouts": "Макеты экрана",

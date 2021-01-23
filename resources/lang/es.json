@@ -133,6 +133,7 @@
     "This is your password set at the moment." : "Está es tu contraseña actual.", 
     "New password": "Contraseña nueva",
     "Enter the password to be set": "Ingresa la nueva contraseña",
+    "Leave empty to keep current password": "Dejar vacío para mantener la contraseña actual",
     "Confirm new password": "Confirmar nueva contraseña",
     "A good password is at least 15 characters or at least 8 characters long, including a number and a lowercase letter.": "Una buena contraseña tiene al menos 15 caracteres o al menos 8 caracteres, incluidos un número y una letra minúscula.",
     "Update password": "Actualizar contraseña",

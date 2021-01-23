@@ -21,7 +21,7 @@ class Blade
     {
         /** @var \Illuminate\View\Component $component */
         $component = is_array($data)
-            ? app()->make($class, $data)
+            ? resolve($class, $data)
             : new $class($data);
 
         if (! $component->shouldRender()) {

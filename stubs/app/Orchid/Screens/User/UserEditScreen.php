@@ -6,8 +6,10 @@ namespace App\Orchid\Screens\User;
 
 use App\Orchid\Layouts\Role\RolePermissionLayout;
 use App\Orchid\Layouts\User\UserEditLayout;
+use App\Orchid\Layouts\User\UserPasswordLayout;
 use App\Orchid\Layouts\User\UserRoleLayout;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Orchid\Access\UserSwitch;
 use Orchid\Platform\Models\User;
@@ -82,6 +84,7 @@ class UserEditScreen extends Screen
                 ->method('loginAs')
                 ->canSee($this->user->exists && \request()->user()->id !== $this->user->id);
 
+
         $btnRemove =
             Button::make(__('Remove'))
                 ->icon('trash')
@@ -125,6 +128,16 @@ class UserEditScreen extends Screen
                             ->icon('check')
                             ->method('save')
                         : null
+                ),
+
+            Layout::block(UserPasswordLayout::class)
+                ->title(__('Password'))
+                ->description(__('Ensure your account is using a long, random password to stay secure.'))
+                ->commands(
+                    Button::make(__('Save'))
+                        ->type(Color::DEFAULT())
+                        ->icon('check')
+                        ->method('save')
                 ),
 
             Layout::block(UserRoleLayout::class)
@@ -176,13 +189,22 @@ class UserEditScreen extends Screen
             ->collapse()
             ->toArray();
 
+        $userData = $request->get('user');
+        if ($user->exists && (string)$userData['password'] === '') {
+            // When updating existing user null password means "do not change current password"
+            unset($userData['password']);
+        } else {
+            $userData['password'] = Hash::make($userData['password']);
+        }
+
         $user
-            ->fill($request->get('user'))
-            ->replaceRoles($request->input('user.roles'))
+            ->fill($userData)
             ->fill([
                 'permissions' => $permissions,
             ])
             ->save();
+
+        $user->replaceRoles($request->input('user.roles'));
 
         Toast::info(__('User was saved.'));
 

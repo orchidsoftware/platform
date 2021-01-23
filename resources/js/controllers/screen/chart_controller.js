@@ -12,6 +12,7 @@ export default class extends Controller {
             data: {
                 labels: JSON.parse(this.data.get('labels')),
                 datasets: JSON.parse(this.data.get('datasets')),
+                yMarkers: JSON.parse(this.data.get('markers')),
             },
             type: this.data.get('type'),
             height: this.data.get('height'),

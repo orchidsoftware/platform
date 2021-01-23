@@ -22,7 +22,7 @@ trait Filterable
     {
         return collect($filters)
             ->map(function ($filter) {
-                return is_object($filter) ? $filter : app()->make($filter);
+                return is_object($filter) ? $filter : resolve($filter);
             })
             ->reduce(function (Builder $query, Filter $filter) {
                 return $filter->filter($query);
@@ -42,7 +42,7 @@ trait Filterable
     public function scopeFiltersApplySelection(Builder $query, $selection): Builder
     {
         /** @var Selection $selection */
-        $selection = is_object($selection) ? $selection : app()->make($selection);
+        $selection = is_object($selection) ? $selection : resolve($selection);
 
         $filters = $selection->filters();
 

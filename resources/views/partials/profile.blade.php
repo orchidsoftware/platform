@@ -1,4 +1,4 @@
-<div class="p-3 v-center">
+<div class="row m-0 align-items-center p-3">
     <div class="dropdown col p-0">
         <a href="#" class="nav-link p-0 v-center" data-toggle="dropdown">
             @if($image = Auth::user()->presenter()->image())

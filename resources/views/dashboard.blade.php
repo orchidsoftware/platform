@@ -6,7 +6,7 @@
         <div class="d-md-flex align-items-start flex-column d-sm-block h-full">
 
             <div class="d-sm-flex d-md-block p-3 mt-md-4 w-100 v-center">
-                <a href="#" class="header-toggler d-md-none mr-auto order-first"
+                <a href="#" class="header-toggler d-md-none mr-auto order-first d-flex align-items-center"
                    data-toggle="collapse"
                    data-target="#headerMenuCollapse">
                     <x-orchid-icon path="menu" class="icon-menu"/>
