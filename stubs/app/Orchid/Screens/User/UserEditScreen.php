@@ -47,6 +47,11 @@ class UserEditScreen extends Screen
     private $user;
 
     /**
+     * @var bool
+     */
+    private $editing = true;
+
+    /**
      * Query data.
      *
      * @param User $user
@@ -56,9 +61,9 @@ class UserEditScreen extends Screen
     public function query(User $user): array
     {
         $this->user = $user;
-        $this->exists = $user->exists;
+        $this->editing = ! ($user->exists);
 
-        if (! $this->exists) {
+        if (! $this->editing) {
             $this->name = 'Create User';
         }
 
@@ -82,7 +87,7 @@ class UserEditScreen extends Screen
                 ->icon('login')
                 ->confirm('You can revert to your original state by logging out.')
                 ->method('loginAs')
-                ->canSee($this->user->exists && \request()->user()->id !== $this->user->id);
+                ->canSee($this->editing && \request()->user()->id !== $this->user->id);
 
         $btnRemove =
             Button::make(__('Remove'))
@@ -95,7 +100,7 @@ class UserEditScreen extends Screen
                 ->icon('check')
                 ->method('save');
 
-        return $this->exists ? [$btnLoginAs, $btnRemove, $btnSave] : [$btnSave];
+        return $this->editing ? [$btnLoginAs, $btnRemove, $btnSave] : [$btnSave];
     }
 
     /**
@@ -109,7 +114,7 @@ class UserEditScreen extends Screen
                 ->title(__('Profile Information'))
                 ->description(__('Update your account\'s profile information and email address.'))
                 ->commands(
-                    $this->exists ?
+                    $this->editing ?
                         Button::make(__('Save'))
                             ->type(Color::DEFAULT())
                             ->icon('check')
@@ -121,7 +126,7 @@ class UserEditScreen extends Screen
                 ->title(__('Password'))
                 ->description(__('Ensure your account is using a long, random password to stay secure.'))
                 ->commands(
-                    $this->exists ?
+                    $this->editing ?
                         Button::make(__('Save'))
                             ->type(Color::DEFAULT())
                             ->icon('check')
@@ -133,7 +138,7 @@ class UserEditScreen extends Screen
                 ->title(__('Roles'))
                 ->description(__('A Role defines a set of tasks a user assigned the role is allowed to perform.'))
                 ->commands(
-                    $this->exists ?
+                    $this->editing ?
                         Button::make(__('Save'))
                             ->type(Color::DEFAULT())
                             ->icon('check')
@@ -145,7 +150,7 @@ class UserEditScreen extends Screen
                 ->title(__('Permissions'))
                 ->description(__('Allow the user to perform some actions that are not provided for by his roles'))
                 ->commands(
-                    $this->exists ?
+                    $this->editing ?
                         Button::make(__('Save'))
                             ->type(Color::DEFAULT())
                             ->icon('check')
