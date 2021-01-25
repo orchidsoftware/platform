@@ -27,7 +27,7 @@ class UserEditScreen extends Screen
      *
      * @var string
      */
-    public $name = 'User';
+    public $name = 'Edit User';
 
     /**
      * Display header description.
@@ -47,6 +47,11 @@ class UserEditScreen extends Screen
     private $user;
 
     /**
+     * @var bool
+     */
+    private $editing = true;
+
+    /**
      * Query data.
      *
      * @param User $user
@@ -56,6 +61,11 @@ class UserEditScreen extends Screen
     public function query(User $user): array
     {
         $this->user = $user;
+        $this->editing = $user->exists;
+
+        if (! $this->editing) {
+            $this->name = 'Create User';
+        }
 
         $user->load(['roles']);
 
@@ -72,22 +82,25 @@ class UserEditScreen extends Screen
      */
     public function commandBar(): array
     {
-        return [
+        $btnLoginAs =
             Button::make(__('Impersonate user'))
                 ->icon('login')
                 ->confirm('You can revert to your original state by logging out.')
                 ->method('loginAs')
-                ->canSee($this->user->exists && \request()->user()->id !== $this->user->id),
+                ->canSee($this->editing && \request()->user()->id !== $this->user->id);
 
+        $btnRemove =
             Button::make(__('Remove'))
                 ->icon('trash')
                 ->confirm(__('Once the account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.'))
-                ->method('remove'),
+                ->method('remove');
 
+        $btnSave =
             Button::make(__('Save'))
                 ->icon('check')
-                ->method('save'),
-        ];
+                ->method('save');
+
+        return $this->editing ? [$btnLoginAs, $btnRemove, $btnSave] : [$btnSave];
     }
 
     /**
@@ -101,40 +114,48 @@ class UserEditScreen extends Screen
                 ->title(__('Profile Information'))
                 ->description(__('Update your account\'s profile information and email address.'))
                 ->commands(
-                    Button::make(__('Save'))
-                        ->type(Color::DEFAULT())
-                        ->icon('check')
-                        ->method('save')
+                    $this->editing ?
+                        Button::make(__('Save'))
+                            ->type(Color::DEFAULT())
+                            ->icon('check')
+                            ->method('save')
+                        : null
                 ),
 
             Layout::block(UserPasswordLayout::class)
                 ->title(__('Password'))
                 ->description(__('Ensure your account is using a long, random password to stay secure.'))
                 ->commands(
-                    Button::make(__('Save'))
-                        ->type(Color::DEFAULT())
-                        ->icon('check')
-                        ->method('save')
+                    $this->editing ?
+                        Button::make(__('Save'))
+                            ->type(Color::DEFAULT())
+                            ->icon('check')
+                            ->method('save')
+                        : null
                 ),
 
             Layout::block(UserRoleLayout::class)
                 ->title(__('Roles'))
                 ->description(__('A Role defines a set of tasks a user assigned the role is allowed to perform.'))
                 ->commands(
-                    Button::make(__('Save'))
-                        ->type(Color::DEFAULT())
-                        ->icon('check')
-                        ->method('save')
+                    $this->editing ?
+                        Button::make(__('Save'))
+                            ->type(Color::DEFAULT())
+                            ->icon('check')
+                            ->method('save')
+                        : null
                 ),
 
             Layout::block(RolePermissionLayout::class)
                 ->title(__('Permissions'))
                 ->description(__('Allow the user to perform some actions that are not provided for by his roles'))
                 ->commands(
-                    Button::make(__('Save'))
-                        ->type(Color::DEFAULT())
-                        ->icon('check')
-                        ->method('save')
+                    $this->editing ?
+                        Button::make(__('Save'))
+                            ->type(Color::DEFAULT())
+                            ->icon('check')
+                            ->method('save')
+                        : null
                 ),
 
         ];
