@@ -97,8 +97,7 @@ class UserEditScreen extends Screen
 
             Button::make(__('Save'))
                 ->icon('check')
-                ->method('save')
-                ->canSee($this->editing),
+                ->method('save'),
         ];
     }
 
