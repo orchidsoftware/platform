@@ -27,7 +27,7 @@ class UserEditScreen extends Screen
      *
      * @var string
      */
-    public $name = 'User';
+    public $name = 'Edit User';
 
     /**
      * Display header description.
@@ -57,6 +57,10 @@ class UserEditScreen extends Screen
     {
         $this->user = $user;
 
+        if (! $user->exists) {
+            $this->name = 'Create User';
+        }
+
         $user->load(['roles']);
 
         return [
@@ -82,7 +86,8 @@ class UserEditScreen extends Screen
             Button::make(__('Remove'))
                 ->icon('trash')
                 ->confirm(__('Once the account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.'))
-                ->method('remove'),
+                ->method('remove')
+                ->canSee($this->user->exists),
 
             Button::make(__('Save'))
                 ->icon('check')
@@ -104,6 +109,7 @@ class UserEditScreen extends Screen
                     Button::make(__('Save'))
                         ->type(Color::DEFAULT())
                         ->icon('check')
+                        ->canSee($this->user->exists)
                         ->method('save')
                 ),
 
@@ -114,6 +120,7 @@ class UserEditScreen extends Screen
                     Button::make(__('Save'))
                         ->type(Color::DEFAULT())
                         ->icon('check')
+                        ->canSee($this->user->exists)
                         ->method('save')
                 ),
 
@@ -124,6 +131,7 @@ class UserEditScreen extends Screen
                     Button::make(__('Save'))
                         ->type(Color::DEFAULT())
                         ->icon('check')
+                        ->canSee($this->user->exists)
                         ->method('save')
                 ),
 
@@ -134,6 +142,7 @@ class UserEditScreen extends Screen
                     Button::make(__('Save'))
                         ->type(Color::DEFAULT())
                         ->icon('check')
+                        ->canSee($this->user->exists)
                         ->method('save')
                 ),
 
