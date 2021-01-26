@@ -6,6 +6,7 @@ use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemMenu;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\OrchidServiceProvider;
+use Orchid\Support\Color;
 
 class PlatformProvider extends OrchidServiceProvider
 {
@@ -76,6 +77,13 @@ class PlatformProvider extends OrchidServiceProvider
                 ->title('Docs')
                 ->icon('docs')
                 ->url('https://orchid.software/en/docs'),
+
+            ItemMenu::label('Changelog')
+                ->icon('shuffle')
+                ->url('https://github.com/orchidsoftware/platform/blob/master/CHANGELOG.md')
+                ->badge(function (){
+                    return Dashboard::version();
+                }, Color::DARK()),
         ];
     }
 
