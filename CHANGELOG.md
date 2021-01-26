@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 9.19.3 - 2021-01-26
+
+### Added
+- Added a log of changes to the menu
+
+### Changed
+- Reduced left menu width
+- Allow exit on Impersonation
+
+### Fixed
+- Field name for code
+
 ## 9.19.2 - 2021-01-26
 
 ### Fixed
