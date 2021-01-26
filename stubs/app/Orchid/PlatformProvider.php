@@ -81,7 +81,7 @@ class PlatformProvider extends OrchidServiceProvider
             ItemMenu::label('Changelog')
                 ->icon('shuffle')
                 ->url('https://github.com/orchidsoftware/platform/blob/master/CHANGELOG.md')
-                ->badge(function (){
+                ->badge(function () {
                     return Dashboard::version();
                 }, Color::DARK()),
         ];
