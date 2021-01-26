@@ -57,7 +57,7 @@ class UserEditScreen extends Screen
     {
         $this->user = $user;
 
-        if (!$user->exists) {
+        if (! $user->exists) {
             $this->name = 'Create User';
         }
 
