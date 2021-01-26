@@ -6,7 +6,7 @@
                         <img src="{{$image}}" class="b">
                 </span>
             @endif
-            <span style="width:11em;font-size: 0.85em;">
+            <span style="width:12em;font-size: 0.85em;">
                 <span class="text-ellipsis">{{Auth::user()->presenter()->title()}}</span>
                 <span class="text-muted d-block text-ellipsis">{{Auth::user()->presenter()->subTitle()}}</span>
             </span>
@@ -33,7 +33,7 @@
                    data-action="layouts--form#submitByForm"
                    data-layouts--form-id="return-original-user"
                 >
-                    <x-orchid-icon path="logout" class="mr-2"/>
+                    <x-orchid-icon path="people" class="mr-2"/>
                     <span>{{ __('Back to my account') }}</span>
                 </a>
                 <form id="return-original-user"
@@ -44,28 +44,27 @@
                       method="POST">
                     @csrf
                 </form>
-            @else
-                <a href="{{ route('platform.logout') }}"
-                   class="dropdown-item"
-                   data-controller="layouts--form"
-                   data-action="layouts--form#submitByForm"
-                   data-layouts--form-id="logout-form"
-                   dusk="logout-button">
-                    <x-orchid-icon path="logout" class="mr-2"/>
-
-                    <span>{{ __('Sign out') }}</span>
-                </a>
-                <form id="logout-form"
-                      class="hidden"
-                      action="{{ route('platform.logout') }}"
-                      method="POST"
-                      data-controller="layouts--form"
-                      data-action="layouts--form#submit"
-                >
-                    @csrf
-                </form>
             @endif
 
+            <a href="{{ route('platform.logout') }}"
+               class="dropdown-item"
+               data-controller="layouts--form"
+               data-action="layouts--form#submitByForm"
+               data-layouts--form-id="logout-form"
+               dusk="logout-button">
+                <x-orchid-icon path="logout" class="mr-2"/>
+
+                <span>{{ __('Sign out') }}</span>
+            </a>
+            <form id="logout-form"
+                  class="hidden"
+                  action="{{ route('platform.logout') }}"
+                  method="POST"
+                  data-controller="layouts--form"
+                  data-action="layouts--form#submit"
+            >
+                @csrf
+            </form>
         </div>
     </div>
 
