@@ -44,6 +44,4 @@ class TurboTest extends TestUnitCase
         $this->assertEquals($response->getTargetUrl(), $result->getTargetUrl());
         $this->assertEquals(303, $result->getStatusCode());
     }
-
-
 }
