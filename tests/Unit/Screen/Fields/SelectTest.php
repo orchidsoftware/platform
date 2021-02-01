@@ -220,7 +220,4 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('value="second" selected', $view);
         $this->assertStringNotContainsString('value="third" selected', $view);
     }
-
-
-
 }
