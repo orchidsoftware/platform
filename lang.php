@@ -1,10 +1,15 @@
 <?php
 
-
-require "vendor/autoload.php";
-
-function findTranslations($files)
+# adapted from https://github.com/barryvdh/laravel-translation-manager
+function find_translation_keys(): array
 {
+    $files = glob_recursive("./src", "*");
+    $files = array_merge(glob_recursive("./stubs", "*"), $files);
+    $files = array_merge(glob_recursive("./resources/views", "*"), $files);
+    $files = array_filter($files, function ($f) {
+        return is_file($f);
+    });
+
     $functions = [
         '__',
     ];
@@ -22,7 +27,11 @@ function findTranslations($files)
     $keys = [];
 
     foreach ($files as $file) {
-        if (preg_match_all("/$stringPattern/siU", file_get_contents($file), $matches)) {
+        $content = file_get_contents($file);
+        if (false === $content) {
+            throw new \RuntimeException('Error reading file: '. $file);
+        }
+        if (preg_match_all("/$stringPattern/siU", $content, $matches)) {
             // Get all matches
             foreach ($matches["string"] as $key) {
                 $keys[] = $key;
@@ -36,10 +45,7 @@ function findTranslations($files)
     return $keys;
 }
 
-// $keys = findTranslations();
-// dump($keys);
-
-function glob_recursive($base, $pattern, $flags = 0)
+function glob_recursive($base, $pattern, $flags = 0): array
 {
     if (substr($base, -1) !== DIRECTORY_SEPARATOR) {
         $base .= DIRECTORY_SEPARATOR;
@@ -60,14 +66,47 @@ function glob_recursive($base, $pattern, $flags = 0)
     return $files;
 }
 
-$glob = glob_recursive("./src", "*");
-$glob = array_merge(glob_recursive("./stub", "*"), $glob);
 
-$glob = array_filter($glob, function ($f) {
-    return is_file($f);
-});
+function read_locale_from_resources(): array
+{
+    $json_files = glob('resources/lang/*.json');
+    $locales = [];
+    foreach ($json_files as $json_file) {
+        $locale_name = basename($json_file, '.json');
+        $locales[$locale_name] = json_decode(file_get_contents($json_file), true);
+    }
 
-dump($glob);
+    return $locales;
+}
 
-$keys = findTranslations($glob);
-dump($keys);
+function sync_translations($translations, $keys): array
+{
+    $new_translations = [];
+
+    foreach ($keys as $key) {
+        foreach ($translations as $locale => $translation) {
+            if (array_key_exists($key, $translation)) {
+                $new_translations[$locale][$key] = trim($translation[$key]);
+            } else {
+                $new_translations[$locale][$key] = "[*]".$key;
+            }
+        }
+    }
+
+    return $new_translations;
+}
+
+
+function main()
+{
+    $translations = read_locale_from_resources();
+    $keys = find_translation_keys();
+    $new_translations = sync_translations($translations, $keys);
+
+    foreach ($new_translations as $locale => $translation) {
+        file_put_contents("./resources/lang/".$locale.'.json',
+        json_encode($translation, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    }
+}
+
+main();
