@@ -41,7 +41,7 @@ mix
     })
     .js('resources/js/app.js', 'js/orchid.js')
     .extract([
-        'stimulus', 'stimulus/webpack-helpers',
+        'stimulus', 'stimulus/webpack-helpers', 'turbo',
         'jquery', 'popper.js', 'bootstrap',
         'dropzone', 'select2', 'cropperjs', 'frappe-charts', 'inputmask',
         'simplemde', 'axios', 'leaflet', 'codeflask', 'stimulus-flatpickr',

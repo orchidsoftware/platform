@@ -64,7 +64,7 @@ class ButtonTest extends TestFieldsUnitCase
         $view = self::renderField($button);
 
         $this->assertStringContainsString(
-            'data-turbolinks="false"',
+            'data-turbo="false"',
             $view
         );
     }
@@ -78,7 +78,7 @@ class ButtonTest extends TestFieldsUnitCase
         $view = self::renderField($button);
 
         $this->assertStringContainsString(
-            'data-turbolinks="true"',
+            'data-turbo="true"',
             $view
         );
     }

@@ -19,7 +19,7 @@ class LinkTest extends TestFieldsUnitCase
 
         $this->assertStringContainsString('About', $view);
         $this->assertStringContainsString('href="#!"', $view);
-        $this->assertStringContainsString('data-turbolinks="true"', $view);
+        $this->assertStringContainsString('data-turbo="true"', $view);
     }
 
     public function testLinkTarget(): void
@@ -71,6 +71,6 @@ class LinkTest extends TestFieldsUnitCase
 
         $view = self::renderField($link);
 
-        $this->assertStringContainsString('data-turbolinks="false"', $view);
+        $this->assertStringContainsString('data-turbo="false"', $view);
     }
 }
