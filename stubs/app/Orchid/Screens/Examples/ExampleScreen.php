@@ -107,6 +107,12 @@ class ExampleScreen extends Screen
                 ->method('showToast')
                 ->icon('full-screen'),
 
+            Button::make('Export file')
+                ->method('export')
+                ->icon('cloud-download')
+                ->rawClick()
+                ->novalidate(),
+
             DropDown::make('Dropdown button')
                 ->icon('folder-alt')
                 ->list([
@@ -179,5 +185,30 @@ class ExampleScreen extends Screen
     public function showToast(Request $request)
     {
         Toast::warning($request->get('toast', 'Hello, world! This is a toast message.'));
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     */
+    public function export()
+    {
+        return response()->streamDownload(function () {
+
+            $csv = tap(fopen('php://output', 'wb'), function ($csv) {
+                fputcsv($csv, ['header:col1', 'header:col2', 'header:col3']);
+            });
+
+            collect([
+                ['row1:col1', 'row1:col2', 'row1:col3'],
+                ['row2:col1', 'row2:col2', 'row2:col3'],
+                ['row3:col1', 'row3:col2', 'row3:col3'],
+            ])->each(function (array $row) use ($csv) {
+                fputcsv($csv, $row);
+            });
+
+            return tap($csv, function ($csv) {
+                fclose($csv);
+            });
+        }, 'File-name.csv');
     }
 }
