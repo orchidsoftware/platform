@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Concerns;
 
+use Illuminate\Support\Str;
+
 trait Multipliable
 {
     /**
@@ -14,6 +16,10 @@ trait Multipliable
         $this->set('multiple', 'multiple');
         $this->inlineAttributes[] = 'multiple';
 
-        return $this;
+        return $this->addBeforeRender(function () {
+            $name = $this->get('name');
+
+            $this->set('name', Str::finish($name, '[]'));
+        });
     }
 }

@@ -196,4 +196,31 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('<option value="-" selected>-</option>', $view);
         $this->assertStringContainsString('<option value="0">0</option>', $view);
     }
+
+    public function testMultiple(): void
+    {
+        $select = Select::make('choice')
+            ->multiple()
+            ->value([
+                'first'  => 'First Value',
+                'second' => 'Second Value',
+            ])
+            ->options([
+                'first'  => 'First Value',
+                'second' => 'Second Value',
+                'third'  => 'Third Value',
+            ]);
+
+        $view = self::minifyRenderField($select);
+
+        $this->assertStringContainsString('choice[]', $view);
+        $this->assertStringContainsString('multiple', $view);
+
+        $this->assertStringContainsString('value="first" selected', $view);
+        $this->assertStringContainsString('value="second" selected', $view);
+        $this->assertStringNotContainsString('value="third" selected', $view);
+    }
+
+
+
 }
