@@ -3,7 +3,7 @@
             formaction="{{ $action }}"
             data-controller="button"
             data-novalidate="{{ var_export($novalidate) }}"
-            data-turbolinks="{{ var_export($turbolinks) }}"
+            data-turbo="{{ var_export($turbolinks) }}"
             @empty(!$confirm)
                 data-action="button#confirm"
                 data-button-confirm="{{ $confirm }}"

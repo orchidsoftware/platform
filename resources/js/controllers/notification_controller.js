@@ -1,4 +1,5 @@
 import {Controller} from 'stimulus';
+import * as Turbo from "@hotwired/turbo"
 
 export default class extends Controller {
 
@@ -23,7 +24,7 @@ export default class extends Controller {
      *
      */
     connect() {
-        document.addEventListener("turbolinks:load", () => {
+        document.addEventListener("turbo:load", () => {
             this.render();
         });
 
@@ -55,7 +56,7 @@ export default class extends Controller {
     storageChanged() {
         return (event) => {
             if (event.key === this.storageKey()) {
-                Turbolinks.clearCache();
+                Turbo.clearCache();
                 this.render();
             }
         }

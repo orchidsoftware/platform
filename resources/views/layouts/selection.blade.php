@@ -10,7 +10,7 @@
 
         <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow"
              aria-labelledby="navbarDropdownMenuLink"
-             data-turbolinks-permanent
+             data-turbo-permanent
              data-action="click->filter#onMenuClick"
         >
             @if($filters->where('display', true)->count() >= 2)

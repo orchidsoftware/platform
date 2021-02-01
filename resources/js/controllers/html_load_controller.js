@@ -6,7 +6,6 @@ export default class extends Controller {
      *
      */
     initialize() {
-        this.turbo();
         this.axios();
     }
 
@@ -18,20 +17,9 @@ export default class extends Controller {
     }
 
     /**
-     * Initialization & configuration Turbolinks
+     * Initialization & configuration Turbo
      */
     turbo() {
-        /*
-        if (!Turbolinks.supported) {
-            console.warn('Turbo links is not supported');
-            return;
-        }
-
-        Turbolinks.start();
-        Turbolinks.setProgressBarDelay(100);
-
-         */
-
         document.addEventListener('turbo:load', () => {
             this.csrf();
         });
@@ -42,33 +30,6 @@ export default class extends Controller {
      */
     axios() {
         window.axios = axios;
-
-/*
-        // Add a request interceptor
-        window.axios.interceptors.request.use((config) => {
-            // Do something before request is sent
-
-            this.startProgressBar();
-            return config;
-        }, (error) => {
-
-            this.stopProgressBar();
-            // Do something with request error
-            return Promise.reject(error);
-        });
-
-        // Add a response interceptor
-        window.axios.interceptors.response.use((response) => {
-            // Do something with response data
-            this.stopProgressBar();
-            return response;
-        }, (error) => {
-            // Do something with response error
-            this.stopProgressBar();
-            return Promise.reject(error);
-        });
-        */
-
     }
 
     /**
@@ -97,27 +58,5 @@ export default class extends Controller {
      */
     goToTop() {
         window.scrollTo({top: 0, behavior: 'smooth'});
-    }
-
-    /**
-     *
-     */
-    startProgressBar() {
-        if (!Turbolinks.supported) {
-            return;
-        }
-        Turbolinks.controller.adapter.progressBar.setValue(0);
-        Turbolinks.controller.adapter.progressBar.show();
-    }
-
-    /**
-     *
-     */
-    stopProgressBar() {
-        if (!Turbolinks.supported) {
-            return;
-        }
-        Turbolinks.controller.adapter.progressBar.hide();
-        Turbolinks.controller.adapter.progressBar.setValue(100);
     }
 }

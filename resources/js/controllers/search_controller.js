@@ -1,4 +1,5 @@
 import {Controller} from 'stimulus';
+import * as Turbo from "@hotwired/turbo"
 
 export default class extends Controller {
 
@@ -27,7 +28,7 @@ export default class extends Controller {
         }
 
         if (event.keyCode === 13) {
-            Turbolinks.visit(platform.prefix(`/search/${this.queryTarget.value}`));
+            Turbo.visit(platform.prefix(`/search/${this.queryTarget.value}`));
         }
 
         this.showResultQuery(startQuery);

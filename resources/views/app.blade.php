@@ -10,8 +10,9 @@
             - {{ config('app.name') }}
         @endif
     </title>
-    <meta name="csrf_token" content="{{  csrf_token() }}" id="csrf_token" data-turbolinks-permanent>
-    <meta name="auth" content="{{  Auth::check() }}" id="auth" data-turbolinks-permanent>
+    <meta name="csrf_token" content="{{  csrf_token() }}" id="csrf_token">
+    <meta name="auth" content="{{  Auth::check() }}" id="auth">
+
     @if(file_exists(public_path('/css/orchid/orchid.css')))
         <link rel="stylesheet" type="text/css" href="{{  mix('/css/orchid/orchid.css') }}">
     @else
@@ -20,9 +21,8 @@
 
     @stack('head')
 
-    <meta name="turbolinks-root" content="{{  Dashboard::prefix() }}">
+    <meta name="turbo-root" content="{{  Dashboard::prefix() }}">
     <meta name="dashboard-prefix" content="{{  Dashboard::prefix() }}">
-
     <script src="{{ orchid_mix('/js/manifest.js','orchid') }}" type="text/javascript"></script>
     <script src="{{ orchid_mix('/js/vendor.js','orchid') }}" type="text/javascript"></script>
     <script src="{{ orchid_mix('/js/orchid.js','orchid') }}" type="text/javascript"></script>
@@ -36,8 +36,6 @@
     @foreach(Dashboard::getResource('scripts') as $scripts)
         <script src="{{  $scripts }}" defer type="text/javascript"></script>
     @endforeach
-
-    <meta name="turbo-visit-control" content="reload">
 </head>
 
 <body>
