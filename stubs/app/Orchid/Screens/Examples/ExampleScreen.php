@@ -193,7 +193,6 @@ class ExampleScreen extends Screen
     public function export()
     {
         return response()->streamDownload(function () {
-
             $csv = tap(fopen('php://output', 'wb'), function ($csv) {
                 fputcsv($csv, ['header:col1', 'header:col2', 'header:col3']);
             });
