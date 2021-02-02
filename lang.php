@@ -35,7 +35,7 @@ function find_translation_keys(): array
         "(?P<quote>['\"])".                             // Match " or ' and store in {quote}
         "(?P<string>(?:\\\k{quote}|(?!\k{quote}).)*)".  // Match any string that can be {quote} escaped
         "\k{quote}".                                    // Match " or ' previously matched
-        "[^\w]*;";                                            // End with ";"
+        "[^\w]*;";                                      // End with ";"
 
     $keys = [];
 
@@ -144,6 +144,7 @@ function summary($new_translations, $old_translations)
     }
 }
 
+
 function main()
 {
     $old_translations = read_locale_from_resources();
@@ -157,5 +158,6 @@ function main()
 
     summary($new_translations, $old_translations);
 }
+
 
 main();
