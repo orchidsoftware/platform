@@ -3,9 +3,9 @@
 # adapted from https://github.com/barryvdh/laravel-translation-manager
 function find_translation_keys(): array
 {
-    $files = glob_recursive("./src", "*");
-    $files = array_merge(glob_recursive("./stubs", "*"), $files);
-    $files = array_merge(glob_recursive("./resources/views", "*"), $files);
+    $files = glob_recursive("./src", "*.php");
+    $files = array_merge(glob_recursive("./stubs", "*.php"), $files);
+    $files = array_merge(glob_recursive("./resources/views", "*.php"), $files);
     $files = array_filter($files, function ($f) {
         return is_file($f);
     });
@@ -24,6 +24,19 @@ function find_translation_keys(): array
         "\s*[\),]";                                     // Close parentheses or new parameter
 
 
+    $translatables = [
+        "name",
+        "description",
+    ];
+    $translatablePattern =                              // public $name = "Create User"; $this->name = "Edit User";
+        '(public[^\w]*\$|\$this->)'.                    // public | $this->
+        '('.implode('|', $translatables).')'.           // (name|description)
+        "[^\w]*=[^\w]*".                                // Blank
+        "(?P<quote>['\"])".                             // Match " or ' and store in {quote}
+        "(?P<string>(?:\\\k{quote}|(?!\k{quote}).)*)".  // Match any string that can be {quote} escaped
+        "\k{quote}".                                    // Match " or ' previously matched
+        "[^\w]*;";                                            // End with ";"
+
     $keys = [];
 
     foreach ($files as $file) {
@@ -35,6 +48,14 @@ function find_translation_keys(): array
             // Get all matches
             foreach ($matches["string"] as $key) {
                 $keys[] = $key;
+            }
+        }
+
+        if (str_ends_with(basename($file, ".php"), "Screen")) {
+            if (preg_match_all("/$translatablePattern/siU", $content, $matches)) {
+                foreach ($matches["string"] as $key) {
+                    $keys[] = $key;
+                }
             }
         }
     }
