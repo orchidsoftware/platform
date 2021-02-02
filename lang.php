@@ -138,7 +138,7 @@ function summary($new_translations, $old_translations)
     foreach ($new_translations as $locale => $new_translation) {
         echo "## $locale: ".PHP_EOL;
         foreach (array_diff_key($old_translations[$locale], $new_translation) as $key => $_) {
-            echo "### $key".PHP_EOL;
+            echo "- $key".PHP_EOL;
         }
         echo PHP_EOL;
     }
