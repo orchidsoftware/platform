@@ -45,6 +45,8 @@ function find_translation_keys(): array
     return $keys;
 }
 
+
+# https://gist.github.com/UziTech/3b65b2543cee57cd6d2ecfcccf846f20
 function glob_recursive($base, $pattern, $flags = 0): array
 {
     if (substr($base, -1) !== DIRECTORY_SEPARATOR) {
@@ -79,6 +81,7 @@ function read_locale_from_resources(): array
     return $locales;
 }
 
+
 function sync_translations($translations, $keys): array
 {
     $new_translations = [];
@@ -97,16 +100,41 @@ function sync_translations($translations, $keys): array
 }
 
 
+function summary($new_translations, $old_translations)
+{
+    echo "# Missing keys:".PHP_EOL;
+    foreach ($new_translations as $locale => $new_translation) {
+        echo "## $locale: ".PHP_EOL;
+        foreach (array_diff_key($new_translation, $old_translations[$locale]) as $key => $_) {
+            echo "### $key" . PHP_EOL;
+        }
+        echo PHP_EOL;
+    }
+
+    echo PHP_EOL;
+
+    echo "# Deleted keys:".PHP_EOL;
+    foreach ($new_translations as $locale => $new_translation) {
+        echo "## $locale: ".PHP_EOL;
+        foreach (array_diff_key($old_translations[$locale], $new_translation) as $key => $_) {
+            echo "### $key" . PHP_EOL;
+        }
+        echo PHP_EOL;
+    }
+}
+
 function main()
 {
-    $translations = read_locale_from_resources();
+    $old_translations = read_locale_from_resources();
     $keys = find_translation_keys();
-    $new_translations = sync_translations($translations, $keys);
+    $new_translations = sync_translations($old_translations, $keys);
 
     foreach ($new_translations as $locale => $translation) {
         file_put_contents("./resources/lang/".$locale.'.json',
         json_encode($translation, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     }
+
+    summary($new_translations, $old_translations);
 }
 
 main();
