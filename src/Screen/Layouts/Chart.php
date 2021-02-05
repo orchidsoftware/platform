@@ -44,15 +44,6 @@ abstract class Chart extends Layout
     protected $height = 250;
 
     /**
-     * Set the labels for each possible field value.
-     *
-     * @deprecated
-     *
-     * @var array
-     */
-    protected $labels = [];
-
-    /**
      * Data source.
      *
      * The name of the key to fetch it from the query.
@@ -155,9 +146,7 @@ abstract class Chart extends Layout
             return;
         }
 
-        $labels = ! empty($this->labels)
-            ? json_encode(collect($this->labels))
-            : collect($repository->getContent($this->target))
+        $labels = collect($repository->getContent($this->target))
                 ->map(function ($item) {
                     return $item['labels'] ?? [];
                 })

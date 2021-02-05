@@ -231,18 +231,6 @@ class ItemMenu
     }
 
     /**
-     * @deprecated usage `withChildren` method
-     *
-     * @param bool $children
-     *
-     * @return ItemMenu
-     */
-    public function childs(bool $children = true): self
-    {
-        return $this->withChildren($children);
-    }
-
-    /**
      * @param bool $children
      *
      * @return $this
