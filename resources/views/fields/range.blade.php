@@ -2,7 +2,7 @@
     <div class="row" data-controller="datetime"
          data-datetime-allow-input="true"
          data-datetime-range="#end_{{ \Illuminate\Support\Str::slug($attributes['name']) }}">
-        <div class="col-md-6 pr-1">
+        <div class="col-md-6 pe-1">
             <div class="form-group">
                 <input type="text"
                        @isset($attributes['form']) form="{{ $attributes['form'] ?? null }}" @endisset
@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 pl-1">
+        <div class="col-md-6 ps-1">
             <div class="form-group">
                 <input type="text"
                        @isset($attributes['form']) form="{{ $attributes['form'] ?? null }}" @endisset

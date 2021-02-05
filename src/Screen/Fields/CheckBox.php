@@ -44,7 +44,7 @@ class CheckBox extends Field
      */
     protected $attributes = [
         'type'          => 'checkbox',
-        'class'         => 'custom-control-input',
+        'class'         => 'form-check-input',
         'value'         => false,
         'novalue'       => 0,
         'yesvalue'      => 1,

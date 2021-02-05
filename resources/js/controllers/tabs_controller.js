@@ -1,4 +1,5 @@
 import { Controller } from 'stimulus';
+import { Tab } from 'bootstrap';
 
 export default class extends Controller {
     /**
@@ -11,6 +12,18 @@ export default class extends Controller {
         if (activeId !== null) {
             $(`#${activeId}`).tab('show');
         }
+
+
+        var triggerTabList = [].slice.call(this.element.querySelectorAll('a[id="button-tab*"]'))
+        triggerTabList.forEach(function (triggerEl) {
+            var tabTrigger = new Tab(triggerEl)
+
+            triggerEl.addEventListener('click', function (event) {
+                event.preventDefault()
+                tabTrigger.show()
+            })
+        })
+
     }
 
     /**

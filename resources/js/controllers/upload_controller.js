@@ -1,5 +1,5 @@
 import {Controller} from "stimulus";
-import Dropzone from 'dropzone';
+import { Dropzone } from 'dropzone';
 import Sortable from 'sortablejs';
 import {debounce, has as objHas} from "lodash";
 

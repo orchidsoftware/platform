@@ -566,7 +566,7 @@ blockquote {
     content: '';
   }
 
-  &.dropdown-menu-right {
+  &.dropdown-menu-end {
     &:before,
     &:after {
       left: auto;
@@ -681,10 +681,13 @@ blockquote {
     flex-direction: row;
     text-overflow: ellipsis;
 
+    /*
     @include hover-focus {
         color: $dropdown-link-hover-color;
         @include gradient-bg($dropdown-link-hover-bg);
     }
+
+     */
 
     &.active,
     &:active {

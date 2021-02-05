@@ -7,7 +7,7 @@
          data-picture-max-file-size="{{ $maxFileSize }}"
          data-picture-groups="{{$attributes['groups'] ?? ''}}"
     >
-        <div class="border-dashed text-right p-3 picture-actions">
+        <div class="border-dashed text-end p-3 picture-actions">
 
             <div class="fields-picture-container">
                 <img src="#" class="picture-preview img-fluid img-full mb-2 border" alt="">
@@ -17,7 +17,7 @@
 
             <div class="btn-group">
                 <label class="btn btn-default m-0">
-                    <x-orchid-icon path="cloud-upload" class="mr-2"/>
+                    <x-orchid-icon path="cloud-upload" class="me-2"/>
 
                     {{ __('Browse') }}
                     <input type="file"

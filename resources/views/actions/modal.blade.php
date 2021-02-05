@@ -12,7 +12,7 @@
     >
 
         @isset($icon)
-            <x-orchid-icon :path="$icon" class="{{ empty($name) ?: 'mr-2'}}"/>
+            <x-orchid-icon :path="$icon" class="{{ empty($name) ?: 'me-2'}}"/>
         @endisset
 
         {{ $name ?? '' }}

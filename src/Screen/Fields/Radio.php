@@ -42,7 +42,7 @@ class Radio extends Field
      */
     protected $attributes = [
         'type'   => 'radio',
-        'class'  => 'custom-control-input',
+        'class'  => 'form-check-input',
         'value'  => null,
     ];
 

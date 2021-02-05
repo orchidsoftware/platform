@@ -1,7 +1,7 @@
 <div class="pt-0" data-async>
 
-    <p class="pl-4">
-        <a data-toggle="collapse"
+    <p class="ps-4">
+        <a data-bs-toggle="collapse"
            href="#collapse-{{ $slug }}"
            role="button"
            aria-expanded="false"

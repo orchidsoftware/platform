@@ -1,8 +1,8 @@
 @empty(!$children->count())
     <div class="admin-element w-100 {{$class ?? ''}}">
-        <h3 class="font-weight-light h3 text-black">
+        <h3 class="fw-light h3 text-black">
             @isset($icon)
-                <x-orchid-icon :path="$icon" class="mr-2"/>
+                <x-orchid-icon :path="$icon" class="me-2"/>
             @endisset
 
             {{ __($label)}}

@@ -9,6 +9,6 @@
      data-placement="{{ $placement }}"
      data-delay-show="300"
      data-delay-hide="200"
-     data-content="{{ $content }}">
+     data-bs-content="{{ $content }}">
     <x-orchid-icon path="exclamation"/>
 </sup>

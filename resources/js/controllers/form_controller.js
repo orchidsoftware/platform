@@ -60,56 +60,9 @@ export default class extends Controller {
 
         this.isSubmit = true;
         this.animateButton();
-        //event.preventDefault();
 
         const screenEventSubmit = new Event('orchid:screen-submit');
         event.target.dispatchEvent(screenEventSubmit);
-
-        /*
-        const form = new FormData(event.target);
-
-        axios.post(action, form, {
-            headers: {
-                'X-Requested-With': null,
-                Accept: 'text/html,application/xhtml+xml,application/xml',
-            },
-        })
-            .then((response) => {
-                const url = response.request.responseURL;
-                window.Turbolinks.controller.cache.put(
-                    url,
-                    Turbolinks.Snapshot.wrap(response.data),
-                );
-                this.isSubmit = false;
-                window.Turbolinks.visit(url, {action: 'restore'});
-            })
-            .catch((error) => {
-                this.isSubmit = false;
-                if (error.response) {
-                    window.history.pushState({error: error.response.responseURL}, '', error.request.responseURL);
-                    Turbolinks.clearCache();
-                    const iframe = document.createElement('iframe');
-                    iframe.className = 'iframe-error';
-                    document.body.appendChild(iframe);
-                    iframe.contentWindow.document.write(error.response.data);
-
-                    Array.from(document.body.children).forEach( (element) => {
-                        if(element.nodeName != 'IFRAME'){
-                            element.style.display = "none";
-                        }
-                    });
-
-
-                } else {
-                    // eslint-disable-next-line no-console
-                    window.platform.alert('Server error', 'The application could not process your request.', 'danger');
-                    console.error(`Malformed error ${error}`);
-                }
-            });
-
-        return false;
-
-         */
     }
 
     /**

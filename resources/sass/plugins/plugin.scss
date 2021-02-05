@@ -118,8 +118,8 @@
 .simplemde-wrapper{
   .editor-toolbar{
       @extend .border-top;
-      @extend .border-left;
-      @extend .border-right;
+      @extend .border-start;
+      @extend .border-end;
   }
 
   .CodeMirror{

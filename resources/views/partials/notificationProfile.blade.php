@@ -1,6 +1,6 @@
-<div class="col-auto ml-auto p-0" data-turbolinks-permanent>
+<div class="col-auto ms-auto p-0" data-turbolinks-permanent>
     <a href="{{ route('platform.notifications') }}"
-       class="nav-link p-0 v-center"
+       class="nav-link p-0 d-flex align-items-center"
        data-controller="notification"
        data-notification-count="{{ count($notifications) }}"
        data-notification-url="{{ route('platform.api.notifications') }}"

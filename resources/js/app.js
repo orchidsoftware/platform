@@ -1,12 +1,10 @@
+global.$ = global.jQuery = require('jquery');
 import * as Turbo from "@hotwired/turbo"
+import 'bootstrap';
 import { Application, Controller } from 'stimulus';
 import { definitionsFromContext } from 'stimulus/webpack-helpers';
 import platform from "./platform";
 
-global.$ = global.jQuery = require('jquery');
-
-require('popper.js');
-require('bootstrap');
 require('select2');
 
 window.platform = platform();

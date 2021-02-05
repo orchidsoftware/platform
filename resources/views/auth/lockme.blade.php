@@ -1,5 +1,5 @@
-<div class="form-group v-center">
-    <span class="thumb-sm avatar mr-3">
+<div class="form-group d-flex align-items-center">
+    <span class="thumb-sm avatar me-3">
         <img src="{{ $lockUser->presenter()->image() }}" class="b bg-light" alt="test">
     </span>
     <span style="width:125px;font-size: 0.85em;">
@@ -34,7 +34,7 @@
     </div>
     <div class="form-group col-md-6 col-xs-12">
         <button id="button-login" type="submit" class="btn btn-default btn-block" tabindex="2">
-            <x-orchid-icon path="login" class="small mr-2"/> {{__('Login')}}
+            <x-orchid-icon path="login" class="small me-2"/> {{__('Login')}}
         </button>
     </div>
 </div>

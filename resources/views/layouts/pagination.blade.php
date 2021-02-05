@@ -4,7 +4,7 @@
             <div class="btn-group dropup d-inline-block">
                 <button type="button"
                         class="btn btn-sm btn-link dropdown-toggle p-0 m-0"
-                        data-toggle="dropdown"
+                        data-bs-toggle="dropdown"
                         aria-haspopup="true"
                         data-boundary="viewport"
                         aria-expanded="false">
@@ -29,7 +29,7 @@
         @endif
 
     </div>
-    <div class="col-sm-7 text-right d-flex overflow-auto d-sm-block mt-3 mt-sm-0">
+    <div class="col-sm-7 text-end d-flex overflow-auto d-sm-block mt-3 mt-sm-0">
         {!!
             $paginator->appends(request()
                 ->except(['page','_token']))

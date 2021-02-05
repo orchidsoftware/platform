@@ -87,7 +87,7 @@ class Action extends Field implements Actionable
      */
     public function rawClick(bool $status = false): self
     {
-        $this->set('turbolinks', $status);
+        $this->set('turbo', $status);
 
         return $this;
     }

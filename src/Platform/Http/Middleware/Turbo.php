@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 /**
- * Class TurbolinksLocation.
+ * Class Turbo.
  *
  * @see https://turbo.hotwire.dev
  */

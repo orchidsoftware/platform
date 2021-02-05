@@ -10,8 +10,8 @@
                        data-action="tabs#setActiveTab"
                        data-target="#tab-{{\Illuminate\Support\Str::slug($name)}}"
                        id="button-tab-{{\Illuminate\Support\Str::slug($name)}}"
-                       role="tab"
-                       data-toggle="tab">
+                       role="tablist"
+                       data-bs-toggle="tab">
                         {!! $name !!}
                     </a>
                 </li>

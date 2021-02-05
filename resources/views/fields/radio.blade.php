@@ -1,7 +1,6 @@
 @component($typeForm, get_defined_vars())
-    <div class="custom-control custom-radio v-center">
+    <div class="form-check">
         <input id="{{$id}}" {{ $attributes }}>
-
-        <label class="custom-control-label" for="{{$id}}">{{$placeholder ?? ''}}</label>
+        <label class="form-check-label" for="{{$id}}">{{$placeholder ?? ''}}</label>
     </div>
 @endcomponent

@@ -36,6 +36,7 @@ class RadioButtons extends Field
      */
     protected $attributes = [
         'type' => 'radio',
+        'class' => 'btn-check',
     ];
 
     /**
