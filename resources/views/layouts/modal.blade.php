@@ -21,7 +21,7 @@
                   data-form-button-animate="#submit-modal-{{$key}}"
                   data-form-button-text="{{ __('Loading...') }}"
             >
-                <div class="modal-header d-flex">
+                <div class="modal-header">
                     <h4 class="modal-title text-black fw-light" data-target="modal.title">{{$title}}</h4>
                     <button type="button" class="btn-close" title="Close" data-bs-dismiss="modal" aria-label="Close">
                     </button>

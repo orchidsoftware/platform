@@ -120,3 +120,8 @@ select {
     max-height: 600px;
     object-fit: cover;
 }
+
+
+.form-group:not(:last-child) {
+    margin-bottom: 1em;
+}
