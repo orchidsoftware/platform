@@ -21,7 +21,7 @@ class MenuTest extends TestUnitCase
         $menu->add(Menu::MAIN, ItemMenu::label('Main Test')
             ->slug('Test')
             ->icon('icon-layers')
-            ->childs()
+            ->withChildren()
             ->sort(1000)
         );
 
@@ -31,7 +31,7 @@ class MenuTest extends TestUnitCase
         $menu->add('Test', ItemMenu::label('Users')
             ->slug('users')
             ->icon('icon-user')
-            ->childs(false)
+            ->withChildren(false)
             ->divider(false)
             ->sort(503)
         );
@@ -47,14 +47,14 @@ class MenuTest extends TestUnitCase
         $menu->add('CountPlace', ItemMenu::label('Main Test')
             ->slug('CountPlace 1')
             ->icon('icon-layers')
-            ->childs()
+            ->withChildren()
             ->sort(1000)
         );
 
         $menu->add('CountPlace', ItemMenu::label('Main Test')
             ->slug('CountPlace 2')
             ->icon('icon-layers')
-            ->childs()
+            ->withChildren()
             ->sort(1000)
         );
 
@@ -68,7 +68,7 @@ class MenuTest extends TestUnitCase
         $menu = (new Dashboard())->menu;
 
         $menu->add(Menu::MAIN, ItemMenu::label('No Display')
-            ->childs()
+            ->withChildren()
             ->sort(1000)
             ->canSee(false)
         );
@@ -84,7 +84,7 @@ class MenuTest extends TestUnitCase
 
         $menu->add(Menu::MAIN, ItemMenu::label('Dropdown menu')
             ->slug('example-menu')
-            ->childs()
+            ->withChildren()
             ->hideEmpty()
         )
             ->add('example-menu', ItemMenu::label('Sub element item 1')->canSee(false))
@@ -103,7 +103,7 @@ class MenuTest extends TestUnitCase
 
         $menu->add(Menu::MAIN, ItemMenu::label('Dropdown menu')
             ->slug('example-menu')
-            ->childs()
+            ->withChildren()
             ->hideEmpty()
         )
             ->add('example-menu', ItemMenu::label('Sub element item 1')->canSee(false))
@@ -122,7 +122,7 @@ class MenuTest extends TestUnitCase
 
         $menu->add(Menu::MAIN, ItemMenu::label('Dropdown menu')
             ->slug('example-menu')
-            ->childs()
+            ->withChildren()
         );
 
         $this->assertStringContainsString('Dropdown menu', $menu->render(Menu::MAIN));
