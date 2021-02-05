@@ -23,9 +23,9 @@
     </div>
 
     @if($filterString)
-        <div data-controller="screen--filter">
+        <div data-controller="filter">
             <a href="#"
-               data-action="screen--filter#clearFilter"
+               data-action="filter#clearFilter"
                data-filter="{{$column}}"
                class="badge badge-pill badge-light">
                 {{ $filterString }}

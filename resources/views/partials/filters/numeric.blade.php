@@ -8,7 +8,7 @@
         <x-orchid-icon path="filter"/>
     </button>
     <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow" x-placement="bottom-end">
-        <div class="wrapper-sm">
+        <div class="py-2 px-3">
             <div class="form-group mb-2 no-gutters">
                 <input type="number" name="filter[{{$column}}]"
                        class="form-control form-control-sm"

@@ -6,7 +6,7 @@ export default class extends Controller {
     }
 
     connect() {
-        if (document.documentElement.hasAttribute('data-turbolinks-preview')) {
+        if (document.documentElement.hasAttribute("data-turbo-preview")) {
             return;
         }
 
@@ -87,7 +87,7 @@ export default class extends Controller {
                 .trigger('change');
         });
 
-        document.addEventListener('turbolinks:before-cache', () => {
+        document.addEventListener('turbo:before-cache', () => {
             if (typeof $(select) !== 'undefined') {
                 $(select).select2('destroy');
             }

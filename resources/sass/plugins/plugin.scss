@@ -59,7 +59,8 @@
 }
 .CodeMirror-fullscreen{
   background-color: $body-bg;
-  @extend .wrapper;
+  @extend .py-2;
+  @extend .px-3;
 
   .CodeMirror-code,
   .editor-preview-active,
@@ -72,7 +73,8 @@
 
   .CodeMirror-scroll{
     @extend .card;
-    @extend .wrapper;
+    @extend .py-2;
+    @extend .px-3;
   }
 
   .CodeMirror-sizer {
@@ -93,7 +95,8 @@
     border-left: none !important;
     @extend .border-top;
     @extend .bg-white;
-    @extend .wrapper;
+    @extend .py-2;
+    @extend .px-3;
 }
 
 .editor-toolbar.fullscreen{

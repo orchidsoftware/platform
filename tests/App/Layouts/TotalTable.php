@@ -19,9 +19,9 @@ class TotalTable extends Table
     protected function columns(): array
     {
         return [
-            TD::set('id'),
-            TD::set('price'),
-            TD::set('tax'),
+            TD::make('id'),
+            TD::make('price'),
+            TD::make('tax'),
         ];
     }
 
@@ -31,14 +31,14 @@ class TotalTable extends Table
     public function total(): array
     {
         return [
-            TD::set('total')
+            TD::make('total')
                 ->align(TD::ALIGN_RIGHT)
                 ->colspan(2)
                 ->render(function () {
                     return 'Total:';
                 }),
 
-            TD::set('total_price')
+            TD::make('total_price')
                 ->align(TD::ALIGN_RIGHT),
         ];
     }

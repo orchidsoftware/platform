@@ -1,11 +1,11 @@
 @component($typeForm, get_defined_vars())
-    <div data-controller="fields--picture"
-         data-fields--picture-value="{{ $attributes['value'] }}"
-         data-fields--picture-storage="{{ $storage ?? 'public' }}"
-         data-fields--picture-target="{{ $target }}"
-         data-fields--picture-url="{{ $url }}"
-         data-fields--picture-max-file-size="{{ $maxFileSize }}"
-         data-fields--picture-groups="{{$attributes['groups'] ?? ''}}"
+    <div data-controller="picture"
+         data-picture-value="{{ $attributes['value'] }}"
+         data-picture-storage="{{ $storage ?? 'public' }}"
+         data-picture-target="{{ $target }}"
+         data-picture-url="{{ $url }}"
+         data-picture-max-file-size="{{ $maxFileSize }}"
+         data-picture-groups="{{$attributes['groups'] ?? ''}}"
     >
         <div class="border-dashed text-right p-3 picture-actions">
 
@@ -22,13 +22,13 @@
                     {{ __('Browse') }}
                     <input type="file"
                            accept="image/*"
-                           data-target="fields--picture.upload"
-                           data-action="change->fields--picture#upload"
+                           data-target="picture.upload"
+                           data-action="change->picture#upload"
                            class="d-none">
                 </label>
 
                 <button type="button" class="btn btn-outline-danger picture-remove"
-                        data-action="fields--picture#clear">{{ __('Remove') }}</button>
+                        data-action="picture#clear">{{ __('Remove') }}</button>
             </div>
 
             <input type="file"
@@ -38,7 +38,7 @@
 
         <input class="picture-path d-none"
                type="text"
-               data-target="fields--picture.source"
+               data-target="picture.source"
                {{ $attributes }}
         >
     </div>

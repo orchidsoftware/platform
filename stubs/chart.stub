@@ -23,15 +23,6 @@ class DummyClass extends Chart
     protected $type = 'bar';
 
     /**
-     * Set the labels for each possible field value.
-     *
-     * @deprecated
-     *
-     * @var array
-     */
-    protected $labels = [];
-
-    /**
      * Data source.
      *
      * The name of the key to fetch it from the query.

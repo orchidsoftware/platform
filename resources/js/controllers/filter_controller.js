@@ -1,4 +1,5 @@
 import {Controller} from 'stimulus';
+import * as Turbo from "@hotwired/turbo"
 
 export default class extends Controller {
     static get targets() {
@@ -60,7 +61,7 @@ export default class extends Controller {
 
         const url = `${window.location.origin + window.location.pathname}?${params}`;
 
-        window.Turbolinks.visit(url, {action: 'replace'});
+        Turbo.visit(url, {action: 'replace'});
     }
 
     /**
@@ -92,7 +93,7 @@ export default class extends Controller {
         };
         const url = `${window.location.origin + window.location.pathname}?${params}`;
 
-        window.Turbolinks.visit(url, {action: 'replace'});
+        Turbo.visit(url, {action: 'replace'});
         event.preventDefault();
     }
 

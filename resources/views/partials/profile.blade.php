@@ -38,8 +38,8 @@
                 </a>
                 <form id="return-original-user"
                       class="hidden"
-                      data-controller="layouts--form"
-                      data-action="layouts--form#submit"
+                      data-controller="form"
+                      data-action="form#submit"
                       action="{{ route('platform.switch.logout') }}"
                       method="POST">
                     @csrf
@@ -48,9 +48,9 @@
 
             <a href="{{ route('platform.logout') }}"
                class="dropdown-item"
-               data-controller="layouts--form"
-               data-action="layouts--form#submitByForm"
-               data-layouts--form-id="logout-form"
+               data-controller="form"
+               data-action="form#submitByForm"
+               data-form-id="logout-form"
                dusk="logout-button">
                 <x-orchid-icon path="logout" class="mr-2"/>
 
@@ -60,8 +60,8 @@
                   class="hidden"
                   action="{{ route('platform.logout') }}"
                   method="POST"
-                  data-controller="layouts--form"
-                  data-action="layouts--form#submit"
+                  data-controller="form"
+                  data-action="form#submit"
             >
                 @csrf
             </form>

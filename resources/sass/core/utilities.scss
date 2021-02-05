@@ -85,39 +85,6 @@
   letter-spacing: 3px
 }
 
-
-.text-3x {
-  font-size: 3rem;
-}
-
-.text-2x {
-  font-size: 2rem;
-}
-
-.text-lg {
-  font-size: $font-size-lg;
-}
-
-.text-md {
-  font-size: $font-size-md;
-}
-
-.text-base {
-  font-size: $font-size-base;
-}
-
-.text-sm {
-  font-size: $font-size-sm;
-}
-
-.text-xs {
-  font-size: $font-size-xs;
-}
-
-.text-xxs {
-  text-indent: -9999px
-}
-
 .text-ellipsis {
   display: block;
   white-space: nowrap;
@@ -145,38 +112,10 @@
   display: inline-block !important;
 }
 
-
-
-.wrapper-sm {
-  padding: 10px;
-}
-
-.wrapper {
-  padding: 15px;
-}
-
-.wrapper-md {
-  padding: 20px;
-}
-
-*:not(.no-gutters)>.col .wrapper-md {
-  padding: 20px 5px;
-}
-
-.wrapper-lg {
-  padding: 30px;
-}
-
-.wrapper-xl {
-  padding: 50px;
-}
-
-
 .padder {
   padding-left: 15px;
   padding-right: 15px
 }
-
 
 .b {
   border: 1px solid rgba(0, 0, 0, 0.125)

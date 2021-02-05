@@ -22,8 +22,8 @@ export default function platform() {
          * @param type
          */
         alert(title, message, type = 'warning') {
-          let toastWrapper = document.querySelector('[data-controller="layouts--toast"]');
-          let toastController = application.getControllerForElementAndIdentifier(toastWrapper, 'layouts--toast');
+          let toastWrapper = document.querySelector('[data-controller="toast"]');
+          let toastController = application.getControllerForElementAndIdentifier(toastWrapper, 'toast');
           toastController.alert(title, message, type);
         },
 

@@ -37,7 +37,7 @@ export default class extends Controller {
     submit(event) {
 
         // disable
-        if (this.getActiveElementAttr('data-turbolinks') === 'false') {
+        if (this.getActiveElementAttr('data-turbo') === 'false') {
             return true;
         }
 
@@ -60,11 +60,12 @@ export default class extends Controller {
 
         this.isSubmit = true;
         this.animateButton();
-        event.preventDefault();
+        //event.preventDefault();
 
         const screenEventSubmit = new Event('orchid:screen-submit');
         event.target.dispatchEvent(screenEventSubmit);
 
+        /*
         const form = new FormData(event.target);
 
         axios.post(action, form, {
@@ -107,6 +108,8 @@ export default class extends Controller {
             });
 
         return false;
+
+         */
     }
 
     /**
@@ -123,7 +126,7 @@ export default class extends Controller {
         const buttonElement = document.querySelector(button);
         buttonElement.disabled = true;
         buttonElement.classList.add('cursor-wait');
-        buttonElement.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>'
+        buttonElement.innerHTML = '<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>'
             + `<span class="pl-1">${text}</span>`;
     }
 

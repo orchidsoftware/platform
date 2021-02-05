@@ -27,7 +27,7 @@ export default class extends Controller {
 
             if(backdrop !== null){
                 backdrop.id = 'backdrop';
-                backdrop.dataset.turbolinksPermanent = true;
+                backdrop.dataset.turboPermanent = true;
             }
         });
 

@@ -20,7 +20,7 @@ export default class extends Controller {
      * @returns {*}
      */
     targetModal(event) {
-        this.application.getControllerForElementAndIdentifier(this.modal, 'screen--modal')
+        this.application.getControllerForElementAndIdentifier(this.modal, 'modal')
             .open({
                 title: this.data.get('title') || this.modal.dataset.modalTitle,
                 submit: this.data.get('action'),

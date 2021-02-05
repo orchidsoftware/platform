@@ -13,7 +13,7 @@ export default class extends Controller {
             .replace(/data-action="(.*?)"/g, '');
 
         this.application
-            .getControllerForElementAndIdentifier(this.confirmModal, 'screen--confirm')
+            .getControllerForElementAndIdentifier(this.confirmModal, 'confirm')
             .open({
                 'message': this.data.get('confirm'),
                 'button': button,

@@ -113,19 +113,6 @@ class TD
     }
 
     /**
-     * @deprecated usage `make` method
-     *
-     * @param string      $name
-     * @param string|null $title
-     *
-     * @return TD
-     */
-    public static function set(string $name = '', string $title = null): self
-    {
-        return static::make($name, $title);
-    }
-
-    /**
      * @param string      $name
      * @param string|null $title
      *

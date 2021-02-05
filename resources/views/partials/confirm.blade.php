@@ -1,6 +1,6 @@
 <div class="modal fade"
      id="confirm-dialog"
-     data-controller="screen--confirm"
+     data-controller="confirm"
      tabindex="-1"
      aria-hidden="true">
     <div class="modal-dialog">
@@ -19,7 +19,7 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <div class="p-4" data-target="screen--confirm.message">
+                <div class="p-4" data-target="confirm.message">
 
                 </div>
             </div>
@@ -28,7 +28,7 @@
                     {{__('Cancel')}}
                 </button>
 
-                <div data-target="screen--confirm.button">
+                <div data-target="confirm.button">
 
                 </div>
             </div>

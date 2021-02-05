@@ -1,6 +1,6 @@
 @component($typeForm, get_defined_vars())
-    <div data-controller="fields--checkbox"
-         data-fields--checkbox-indeterminate="{{$indeterminate}}">
+    <div data-controller="checkbox"
+         data-checkbox-indeterminate="{{$indeterminate}}">
         @isset($sendTrueOrFalse)
             <input hidden name="{{$attributes['name']}}" value="{{$attributes['novalue']}}">
             <div class="custom-control custom-checkbox">

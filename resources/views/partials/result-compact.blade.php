@@ -1,11 +1,11 @@
 @forelse($results as $group)
 
 @empty(!$group['label'])
-    <div class="hidden-folded padder m-t-xs mb-1 text-muted text-xs">{{$group['label']}}</div>
+    <div class="hidden-folded padder m-t-xs mb-1 text-muted small">{{$group['label']}}</div>
 @endempty
 
 @foreach($group['result'] as $item)
-    <a href="{{$item->url()}}" class="block wrapper-sm dropdown-item" style="font-size: 0.85em;">
+    <a href="{{$item->url()}}" class="block py-2 px-3 dropdown-item" style="font-size: 0.85em;">
 
         @empty(!$item->image())
             <span class="pull-left thumb-xs rounded mr-3">
@@ -33,7 +33,7 @@
 
 @if($total >= 5)
 
-    <a href="{{ route('platform.search', $query) }}" class="block wrapper-sm dropdown-item border-top pb-1">
+    <a href="{{ route('platform.search', $query) }}" class="block py-2 px-3 dropdown-item border-top pb-1">
         <span class="small pl-1">
             {{ __('See more results.') }}
             <span class="text-muted">({{ $total }})</span>

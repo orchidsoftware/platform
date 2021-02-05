@@ -170,17 +170,6 @@ class ExampleFieldsScreen extends Screen
                     Button::make('Default')->method('buttonClickProcessing')->type(Color::DEFAULT()),
                     Button::make('Link')->method('buttonClickProcessing')->type(Color::LINK()),
                 ])->autoWidth(),
-
-
-                Button::make('Block level button')
-                    ->method('buttonClickProcessing')
-                    ->type(Color::DEFAULT())
-                    ->block(),
-
-                Button::make('Right button')
-                    ->method('buttonClickProcessing')
-                    ->type(Color::DEFAULT())
-                    ->right(),
             ])->title('Buttons'),
 
             Layout::rows([

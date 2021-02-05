@@ -128,7 +128,7 @@ class RelationTest extends TestFieldsUnitCase
 
         $view = self::renderField($select);
 
-        $this->assertStringContainsString('data-fields--relation-scope=""', $view);
+        $this->assertStringContainsString('data-relation-scope=""', $view);
     }
 
     public function testScopeWithAttributes(): void
@@ -139,7 +139,7 @@ class RelationTest extends TestFieldsUnitCase
 
         $view = self::renderField($select);
 
-        $crypt = Str::between($view, 'data-fields--relation-scope="', '=="');
+        $crypt = Str::between($view, 'data-relation-scope="', '=="');
 
         $this->assertEquals([
             'name'       => lcfirst('exampleScope'),
@@ -155,7 +155,7 @@ class RelationTest extends TestFieldsUnitCase
 
         $view = self::renderField($select);
 
-        $crypt = Str::between($view, 'data-fields--relation-scope="', '=="');
+        $crypt = Str::between($view, 'data-relation-scope="', '=="');
 
         $this->assertEquals([
             'name'       => lcfirst('exampleScope'),
@@ -193,7 +193,7 @@ class RelationTest extends TestFieldsUnitCase
 
         $view = self::renderField($select);
 
-        $crypt = Str::between($view, 'data-fields--relation-search-columns="', '=="');
+        $crypt = Str::between($view, 'data-relation-search-columns="', '=="');
 
         $this->assertEquals(['email', 'id'], Crypt::decrypt($crypt));
     }

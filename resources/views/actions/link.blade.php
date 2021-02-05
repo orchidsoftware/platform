@@ -1,6 +1,6 @@
 @component($typeForm, get_defined_vars())
     <a
-        data-turbolinks="{{ var_export($turbolinks) }}"
+        data-turbo="{{ var_export($turbolinks) }}"
         {{ $attributes }}
     >
         @isset($icon)

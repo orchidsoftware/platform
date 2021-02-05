@@ -5,7 +5,7 @@
                class="custom-control-input"
                id="{{ $slug }}"
                form="table-columns-select"
-               data-action="layouts--table#toggleColumn"
+               data-action="table#toggleColumn"
                data-default-hidden="{{ $defaultHidden }}"
                data-column="{{ $slug }}"
         >
