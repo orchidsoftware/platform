@@ -1,7 +1,7 @@
 <li class="list-group-item admin-element-item {{$class ?? ''}}">
     <a href="{{$route}}" class="d-block">
         @isset($badge)
-            <b class="badge bg-{{$badge['class']}} pull-right">{{$badge['data']()}}</b>
+            <b class="badge badge-{{$badge['class']}} pull-right">{{$badge['data']()}}</b>
         @endisset
         <span class="text-muted">
             @isset($icon)
