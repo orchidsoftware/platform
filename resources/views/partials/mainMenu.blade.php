@@ -21,7 +21,7 @@
 
 
         @isset($badge)
-            <b class="badge bg-{{$badge['class']}} col-auto ml-auto">{{$badge['data']()}}</b>
+            <b class="badge badge-{{$badge['class']}} col-auto ml-auto">{{$badge['data']()}}</b>
         @endisset
     </a>
 </li>
