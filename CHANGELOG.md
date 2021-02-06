@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 9.19.5 - 2021-02-06
+
+### Fixed
+- Display of background notifications
+- Removed the default background value for `badge` [#1076](https://github.com/orchidsoftware/platform/issues/1076)
+
 ## 9.19.4 - 2021-01-26
 
 ### Fixed
