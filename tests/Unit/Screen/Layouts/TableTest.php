@@ -34,9 +34,9 @@ class TableTest extends TestUnitCase
                 return [];
             }
 
-            public function canSee(Repository $query): bool
+            public function isSee(): bool
             {
-                return $query->get('visible');
+                return $this->query->get('visible');
             }
         };
 

@@ -49,11 +49,12 @@ abstract class Collapse extends Layout
      */
     public function build(Repository $repository)
     {
-        if (! $this->checkPermission($this, $repository)) {
+        $this->query = $repository;
+
+        if (! $this->isSee()) {
             return;
         }
 
-        $this->query = $repository;
         $form = new Builder($this->fields(), $repository);
 
         return view($this->template, [
