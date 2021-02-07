@@ -18,6 +18,8 @@ trait AsSource
      */
     public function getContent(string $field)
     {
-        return Arr::get($this->toArray(), $field) ?? Arr::get($this->getRelations(), $field);
+        return Arr::get($this->toArray(), $field)
+            ?? Arr::get($this->getRelations(), $field)
+            ?? $this->$field;
     }
 }
