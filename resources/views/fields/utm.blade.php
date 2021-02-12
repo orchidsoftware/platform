@@ -4,8 +4,8 @@
         <div class="input-group mb-3">
             <input {{ $attributes }} data-utm-target="url">
             <div class="input-group-append">
-                <button type="button" class="btn btn-default" data-toggle="modal"
-                        data-target="#utm-{{$id}}">{{__('Generate UTM')}}</button>
+                <button type="button" class="btn btn-default" data-bs-toggle="modal"
+                        data-bs-target="#utm-{{$id}}">{{__('Generate UTM')}}</button>
             </div>
         </div>
 
@@ -14,13 +14,11 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" title="Close" aria-label="Close">
-                            <x-orchid-icon path="cross"/>
-                        </button>
-                        <h4 class="modal-title mb-3 text-black fw-light"
+                        <h4 class="modal-title text-black fw-light"
                             id="exampleModalLabel">{{__('UTM Generator')}}</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body px-3">
+                    <div class="modal-body p-3">
                         <div class="row px-2">
 
                             <div class="col-md-6">
@@ -69,8 +67,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-link" data-dismiss="modal">{{__('Close')}}</button>
-                        <button type="button" data-action="utm#generate" data-dismiss="modal"
+                        <button type="button" class="btn btn-link" data-bs-dismiss="modal">{{__('Close')}}</button>
+                        <button type="button" data-action="utm#generate" data-bs-dismiss="modal"
                                 class="btn btn-default">{{__('Generate URL')}}</button>
                     </div>
                 </div>

@@ -80,7 +80,7 @@ export default class extends Controller {
         buttonElement.disabled = true;
         buttonElement.classList.add('cursor-wait');
         buttonElement.innerHTML = '<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>'
-            + `<span class="pl-1">${text}</span>`;
+            + `<span class="ps-1">${text}</span>`;
     }
 
     /**

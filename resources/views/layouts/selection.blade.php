@@ -1,5 +1,5 @@
 <div class="col-md-12" data-controller="filter">
-    <div class="btn-group" role="group">
+    <div class="btn-group px-4" role="group">
         <button class="btn btn-link dropdown-toggle ps-0"
                 data-bs-toggle="dropdown"
                 aria-haspopup="true"
