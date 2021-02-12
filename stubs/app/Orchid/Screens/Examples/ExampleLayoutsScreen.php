@@ -64,12 +64,6 @@ class ExampleLayoutsScreen extends Screen
                 'Example Tab 3' => Layout::view('platform::dummy.block'),
             ]),
 
-            Layout::collapse([
-                Input::make('collapse-1')->title('First name'),
-                Input::make('collapse-2')->title('Last name'),
-                Input::make('collapse-3')->title('Username'),
-            ])->label('Click for me!'),
-
             Layout::view('platform::dummy.block'),
 
             Layout::columns([

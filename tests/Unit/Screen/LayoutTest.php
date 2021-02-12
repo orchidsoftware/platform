@@ -21,7 +21,7 @@ class LayoutTest extends TestUnitCase
 
         $layout = LayoutFactory::columns([
             LayoutFactory::tabs([
-                'action 1' => LayoutFactory::collapse([$row]),
+                'action 1' => LayoutFactory::accordion([$row]),
                 'action 2' => $row,
             ]),
         ]);

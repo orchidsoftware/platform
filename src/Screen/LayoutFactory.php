@@ -10,7 +10,6 @@ use Illuminate\Support\Traits\Macroable;
 use Orchid\Screen\Layouts\Accordion;
 use Orchid\Screen\Layouts\Blank;
 use Orchid\Screen\Layouts\Block;
-use Orchid\Screen\Layouts\Collapse;
 use Orchid\Screen\Layouts\Columns;
 use Orchid\Screen\Layouts\Component;
 use Orchid\Screen\Layouts\Modal;
@@ -163,24 +162,6 @@ class LayoutFactory
     public static function blank(array $layouts): Blank
     {
         return new class($layouts) extends Blank {
-        };
-    }
-
-    /**
-     * @param array $fields
-     *
-     * @return Collapse
-     */
-    public static function collapse(array $fields): Collapse
-    {
-        return new class($fields) extends Collapse {
-            /**
-             * @return array
-             */
-            public function fields(): array
-            {
-                return $this->layouts;
-            }
         };
     }
 
