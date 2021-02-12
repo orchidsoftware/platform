@@ -28,12 +28,6 @@ abstract class OrchidServiceProvider extends ServiceProvider
             }
         });
 
-        View::composer('platform::systems', function () use ($dashboard) {
-            foreach ($this->registerSystemMenu() as $itemMenu) {
-                $dashboard->menu->add(Menu::SYSTEMS, $itemMenu);
-            }
-        });
-
         foreach ($this->registerPermissions() as $permission) {
             $dashboard->registerPermissions($permission);
         }
@@ -53,14 +47,6 @@ abstract class OrchidServiceProvider extends ServiceProvider
      * @return ItemMenu[]
      */
     public function registerProfileMenu(): array
-    {
-        return [];
-    }
-
-    /**
-     * @return ItemMenu[]
-     */
-    public function registerSystemMenu(): array
     {
         return [];
     }

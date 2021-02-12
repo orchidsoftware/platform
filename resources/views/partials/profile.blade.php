@@ -19,13 +19,6 @@
                 <div class="dropdown-divider"></div>
             @endif
 
-            @if(Auth::user()->hasAccess('platform.systems.index'))
-                <a href="{{ route('platform.systems.index') }}" class="dropdown-item">
-                    <x-orchid-icon path="settings" class="me-2"/>
-                    <span>{{ __('System') }}</span>
-                </a>
-            @endif
-
             @if(\Orchid\Access\UserSwitch::isSwitch())
                 <a href="#"
                    class="dropdown-item"

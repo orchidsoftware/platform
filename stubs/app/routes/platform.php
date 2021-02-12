@@ -60,7 +60,7 @@ Route::screen('users', UserListScreen::class)
     ->name('platform.systems.users')
     ->breadcrumbs(function (Trail $trail) {
         return $trail
-            ->parent('platform.systems.index')
+            ->parent('platform.index')
             ->push(__('Users'), route('platform.systems.users'));
     });
 
@@ -87,7 +87,7 @@ Route::screen('roles', RoleListScreen::class)
     ->name('platform.systems.roles')
     ->breadcrumbs(function (Trail $trail) {
         return $trail
-            ->parent('platform.systems.index')
+            ->parent('platform.index')
             ->push(__('Roles'), route('platform.systems.roles'));
     });
 

@@ -56,8 +56,7 @@ class PlatformServiceProvider extends ServiceProvider
     protected function registerPermissionsMain(): ItemPermission
     {
         return ItemPermission::group(__('Main'))
-            ->addPermission('platform.index', __('Main'))
-            ->addPermission('platform.systems.index', __('System'));
+            ->addPermission('platform.index', __('Main'));
     }
 
     /**
