@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
 use Illuminate\View\View;

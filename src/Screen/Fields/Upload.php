@@ -130,7 +130,7 @@ class Upload extends Field
             $this->set('value', $value);
         });
     }
-    
+
     /**
      * @param string $storage
      *

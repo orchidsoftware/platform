@@ -20,7 +20,7 @@ class SourceTest extends TestUnitCase
 
     protected function setUp(): void
     {
-        $model = new class extends Model {
+        $model = new class() extends Model {
             use AsSource;
 
             protected $fillable = [

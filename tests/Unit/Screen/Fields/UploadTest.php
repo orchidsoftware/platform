@@ -15,16 +15,16 @@ class UploadTest extends TestFieldsUnitCase
     {
         $upload = Upload::make('file');
         $this->assertSame('public', $upload->getAttributes()['visibility']);
-        
+
         $upload = Upload::make('file')->storage('local');
         $this->assertNull($upload->getAttributes()['visibility']);
     }
-    
+
     public function testExceedMaxServerSize()
     {
         $uploadSize = Init::maxFileUpload(Init::MB) + 1;
         $upload = Upload::make('file')->maxFileSize($uploadSize);
-        
+
         $this->expectException(\RuntimeException::class);
         $upload->render();
     }

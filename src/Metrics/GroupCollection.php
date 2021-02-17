@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Metrics;
 
 use Illuminate\Support\Collection;

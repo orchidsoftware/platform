@@ -41,7 +41,7 @@ class RelationController extends Controller
         });
 
         /** @var Model $model */
-        $model = new $model;
+        $model = new $model();
         $search = $request->get('search', '');
 
         $items = $this->buildersItems($model, $name, $key, $search, $scope, $append, $searchColumns);

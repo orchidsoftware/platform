@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
 use Orchid\Screen\Actions\Link;
@@ -34,7 +36,7 @@ class CardTest extends TestUnitCase
      */
     private function getCardClass(): Cardable
     {
-        return new class implements Cardable {
+        return new class() implements Cardable {
             /**
              * @return string
              */

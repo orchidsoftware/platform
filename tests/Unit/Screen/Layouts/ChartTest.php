@@ -12,7 +12,7 @@ class ChartTest extends TestUnitCase
 {
     public function testDisabledExportButton(): void
     {
-        $layout = new class extends Chart {
+        $layout = new class() extends Chart {
             /**
              * @var string
              */
@@ -36,7 +36,7 @@ class ChartTest extends TestUnitCase
 
     public function testEnabledExportButton(): void
     {
-        $layout = new class extends Chart {
+        $layout = new class() extends Chart {
             /**
              * @var string
              */

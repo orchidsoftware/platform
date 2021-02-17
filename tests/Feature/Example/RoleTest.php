@@ -57,7 +57,7 @@ class RoleTest extends TestFeatureCase
 
     public function testCanHaveStringPrimary(): void
     {
-        $StringPrimaryClass = new class extends Role {
+        $StringPrimaryClass = new class() extends Role {
             protected $keyType = 'string';
         };
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Screens\Examples;
 
 use Illuminate\Http\Request;
@@ -32,7 +34,7 @@ class ExampleCardsScreen extends Screen
     public function query(): array
     {
         return [
-            'card' => new class implements Cardable {
+            'card' => new class() implements Cardable {
                 /**
                  * @return string
                  */
@@ -77,7 +79,7 @@ class ExampleCardsScreen extends Screen
                     return Color::INFO();
                 }
             },
-            'cardCompendium' => new class implements Cardable {
+            'cardCompendium' => new class() implements Cardable {
                 /**
                  * @return string
                  */
@@ -124,7 +126,7 @@ class ExampleCardsScreen extends Screen
                     return Color::INFO();
                 }
             },
-            'cardPersona'    => new class implements Cardable {
+            'cardPersona'    => new class() implements Cardable {
                 /**
                  * @return string
                  */

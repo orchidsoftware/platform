@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Tests\App\Layouts;
 
 use Orchid\Screen\Layouts\Table;

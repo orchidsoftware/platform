@@ -30,7 +30,7 @@ class PresenterTest extends TestUnitCase
      */
     protected function getPresenterClass(): Presenter
     {
-        $class = new class {
+        $class = new class() {
             /**
              * @var bool
              */

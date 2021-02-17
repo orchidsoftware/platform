@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Orchid\Tests\App\Components;
 
 use Illuminate\Contracts\Support\Htmlable;

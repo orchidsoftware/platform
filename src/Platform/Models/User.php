@@ -19,7 +19,12 @@ use Orchid\Support\Facades\Dashboard;
 
 class User extends Authenticatable implements UserInterface
 {
-    use Notifiable, UserAccess, AsSource, Filterable, Chartable, HasFactory;
+    use Notifiable;
+    use UserAccess;
+    use AsSource;
+    use Filterable;
+    use Chartable;
+    use HasFactory;
 
     /**
      * The database table used by the model.

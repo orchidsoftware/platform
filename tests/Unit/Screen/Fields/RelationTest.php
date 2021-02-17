@@ -70,7 +70,7 @@ class RelationTest extends TestFieldsUnitCase
 
     public function testInstanceArrayWithStringPrimary(): void
     {
-        $stringPrimaryClass = new class extends Role {
+        $stringPrimaryClass = new class() extends Role {
             protected $primaryKey = 'slug';
         };
 
@@ -79,7 +79,7 @@ class RelationTest extends TestFieldsUnitCase
 
         $select = Relation::make('role')
             ->title('Select roles')
-            ->fromModel(get_class(new $stringPrimaryClass), 'name')
+            ->fromModel(get_class(new $stringPrimaryClass()), 'name')
             ->value($current->getRoleSlug());
 
         $view = self::renderField($select);
