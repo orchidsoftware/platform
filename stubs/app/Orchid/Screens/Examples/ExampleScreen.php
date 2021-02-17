@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Orchid\Screens\Examples;
 
 use App\Orchid\Layouts\Examples\ChartBarExample;

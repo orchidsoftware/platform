@@ -26,7 +26,7 @@ class TableTest extends TestUnitCase
 
     public function testCanSee(): void
     {
-        $layout = new class() extends Table {
+        $layout = new class extends Table {
             protected $target = 'target';
 
             protected function columns(): array
@@ -57,7 +57,7 @@ class TableTest extends TestUnitCase
 
     public function testStriped(): void
     {
-        $layout = new class() extends Table {
+        $layout = new class extends Table {
             protected $target = 'target';
 
             protected function columns(): array
@@ -80,7 +80,7 @@ class TableTest extends TestUnitCase
 
     public function testBordered(): void
     {
-        $layout = new class() extends Table {
+        $layout = new class extends Table {
             protected $target = 'target';
 
             protected function columns(): array
@@ -103,7 +103,7 @@ class TableTest extends TestUnitCase
 
     public function testHoverable(): void
     {
-        $layout = new class() extends Table {
+        $layout = new class extends Table {
             protected $target = 'target';
 
             protected function columns(): array

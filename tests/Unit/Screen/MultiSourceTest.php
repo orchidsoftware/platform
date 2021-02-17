@@ -22,7 +22,7 @@ class MultiSourceTest extends TestUnitCase
     {
         parent::setUp();
 
-        $model = new class() extends Model {
+        $model = new class extends Model {
             use AsMultiSource;
 
             protected $fillable = [

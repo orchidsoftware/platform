@@ -14,8 +14,7 @@ use Orchid\Support\Blade;
 
 class TD
 {
-    use Macroable;
-    use CanSee;
+    use Macroable, CanSee;
 
     /**
      * Align the cell to the left.

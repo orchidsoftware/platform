@@ -14,11 +14,7 @@ use Orchid\Screen\AsSource;
 
 class Role extends Model implements RoleInterface
 {
-    use RoleAccess;
-    use Filterable;
-    use AsSource;
-    use Chartable;
-    use HasFactory;
+    use RoleAccess, Filterable, AsSource, Chartable, HasFactory;
 
     /**
      * @var string

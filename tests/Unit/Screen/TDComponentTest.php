@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Orchid\Tests\Unit\Screen;
 
 use Illuminate\Contracts\View\View;

@@ -178,7 +178,7 @@ class HttpFilterTest extends TestUnitCase
      */
     private function getModelBuilder(HttpFilter $filter): Builder
     {
-        $model = new class() extends Model {
+        $model = new class extends Model {
             use Filterable;
 
             /**

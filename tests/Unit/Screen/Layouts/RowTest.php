@@ -40,7 +40,7 @@ class RowTest extends TestUnitCase
 
     public function testTitleForRow(): void
     {
-        $rows = new class() extends Rows {
+        $rows = new class extends Rows {
             protected $title = 'Profile';
 
             protected function fields(): array

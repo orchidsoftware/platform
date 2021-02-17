@@ -187,7 +187,7 @@ class AttachmentTest extends TestUnitCase
         $file = UploadedFile::fake()->create('relations');
         $upload = (new File($file, $this->disk))->load();
 
-        $model = new class() extends Model {
+        $model = new class extends Model {
             use Attachable;
         };
 

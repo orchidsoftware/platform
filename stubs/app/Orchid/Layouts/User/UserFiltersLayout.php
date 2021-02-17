@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Orchid\Layouts\User;
 
 use App\Orchid\Filters\RoleFilter;

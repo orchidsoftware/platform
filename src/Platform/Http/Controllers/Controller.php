@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Auth;
  */
 class Controller extends BaseController
 {
-    use AuthorizesRequests;
-    use DispatchesJobs;
-    use ValidatesRequests;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     /**
      * @param string $permission

@@ -32,8 +32,7 @@ use Throwable;
  */
 class Field implements Fieldable
 {
-    use CanSee;
-    use Makeable;
+    use CanSee, Makeable;
 
     /**
      * A set of closure functions
