@@ -24,8 +24,7 @@ class MetricsExample extends Metric
     protected $labels = [
         'Sales Today',
         'Visitors Today',
-        'Total Earnings',
         'Pending Orders',
-        'Total Revenue',
+        'Total Earnings',
     ];
 }

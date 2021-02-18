@@ -81,9 +81,8 @@ class ExampleScreen extends Screen
             'metrics' => [
                 ['keyValue' => number_format(6851, 0), 'keyDiff' => 10.08],
                 ['keyValue' => number_format(24668, 0), 'keyDiff' => -30.76],
-                ['keyValue' => number_format(65661, 2), 'keyDiff' => 3.84],
                 ['keyValue' => number_format(10000, 0), 'keyDiff' => 0],
-                ['keyValue' => number_format(1454887.12, 2)],
+                ['keyValue' => number_format(65661, 2), 'keyDiff' => 3.84],
             ],
         ];
     }
