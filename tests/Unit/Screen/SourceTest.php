@@ -32,6 +32,11 @@ class SourceTest extends TestUnitCase
             protected $casts = [
                 'options' => 'array',
             ];
+
+            public function getGreetingAttribute()
+            {
+                return 'Hello ' . $this->name;
+            }
         };
 
         $model->fill([
@@ -83,5 +88,10 @@ class SourceTest extends TestUnitCase
         $this->assertContains('one', $this->model->getContent('many'));
         $this->assertContains('two', $this->model->getContent('many'));
         $this->assertEquals('one', $this->model->getContent('many')[0]);
+    }
+
+    public function testGetAttributeWithAccessor()
+    {
+        $this->assertEquals('Hello Alexandr Chernyaev', $this->model->getContent('greeting'));
     }
 }
