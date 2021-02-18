@@ -62,7 +62,7 @@ class ExampleCardsScreen extends Screen
                 }
 
                 /**
-                 * @return mixed
+                 * @return \Orchid\Support\Color|string
                  */
                 public function color(): ?Color
                 {
@@ -70,7 +70,7 @@ class ExampleCardsScreen extends Screen
                 }
 
                 /**
-                 * {@inheritdoc}
+                 * @return \Orchid\Support\Color|string
                  */
                 public function status(): ?Color
                 {
@@ -221,7 +221,7 @@ class ExampleCardsScreen extends Screen
     /**
      * @param Request $request
      */
-    public function showToast(Request $request)
+    public function showToast(Request $request): void
     {
         Toast::warning($request->get('toast', 'Hello, world! This is a toast message.'));
     }

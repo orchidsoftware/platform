@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\Role;
 
+use Orchid\Screen\Field;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Rows;
 
@@ -12,7 +13,7 @@ class RoleEditLayout extends Rows
     /**
      * Views.
      *
-     * @return array
+     * @return Field[]
      */
     public function fields(): array
     {

@@ -37,8 +37,8 @@ trait Chartable
     /**
      * @param Builder $builder
      * @param string  $value
-     * @param null    $startDate
-     * @param null    $stopDate
+     * @param mixed|null $startDate
+     * @param mixed|null $stopDate
      * @param string  $dateColumn
      *
      * @return TimeCollection

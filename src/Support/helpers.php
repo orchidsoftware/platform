@@ -140,7 +140,7 @@ if (! function_exists('orchid_mix')) {
             $manifest = $resource;
         }
 
-        throw_if($manifest === null, \Exception::class, 'mix-manifest.json file not found');
+        throw_if($manifest === null, 'mix-manifest.json file not found');
 
         $manifest = json_decode($manifest->getContents(), true);
 
