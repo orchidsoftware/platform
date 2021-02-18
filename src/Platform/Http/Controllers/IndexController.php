@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Controllers\Systems;
+namespace Orchid\Platform\Http\Controllers;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
-use Orchid\Platform\Http\Controllers\Controller;
 
 /**
  * Class IndexController.

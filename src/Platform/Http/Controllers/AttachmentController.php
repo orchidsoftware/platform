@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Controllers\Systems;
+namespace Orchid\Platform\Http\Controllers;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -12,7 +12,6 @@ use Illuminate\Http\UploadedFile;
 use Orchid\Attachment\File;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Dashboard;
-use Orchid\Platform\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

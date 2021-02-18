@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Controllers\Systems;
+namespace Orchid\Platform\Http\Controllers;
 
 use Illuminate\Support\Facades\Crypt;
-use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Screen\Screen;
 
 class AsyncController extends Controller

@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Controllers\Systems;
+namespace Orchid\Platform\Http\Controllers;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection as BaseCollection;
 use Illuminate\Support\Facades\Crypt;
-use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Platform\Http\Requests\RelationRequest;
 
 class RelationController extends Controller

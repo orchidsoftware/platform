@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Controllers\Auth;
+namespace Orchid\Platform\Http\Controllers;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Cookie\CookieJar;
@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use Orchid\Access\UserSwitch;
-use Orchid\Platform\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
