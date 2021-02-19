@@ -61,5 +61,5 @@
         </div>
     </div>
 
-    @includeWhen(config('platform.notifications.enabled', true), 'platform::partials.notificationProfile')
+    <x-orchid-notification/>
 </div>

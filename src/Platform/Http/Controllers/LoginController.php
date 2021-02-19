@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers;
 
+use Illuminate\Auth\EloquentUserProvider;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Cookie\CookieJar;
 use Illuminate\Http\JsonResponse;
@@ -87,11 +89,24 @@ class LoginController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @param Guard   $guard
+     *
      * @return Factory|View
      */
-    public function showLoginForm()
+    public function showLoginForm(Request $request, Guard $guard)
     {
-        return view('platform::auth.login');
+        $user = $request->cookie('lockUser');
+
+        /** @var EloquentUserProvider $provider */
+        $provider = $guard->getProvider();
+
+        $model = $provider->createModel()->find($user);
+
+        return view('platform::auth.login', [
+            'isLockUser' => optional($model)->exists ?? false,
+            'lockUser'   => $model,
+        ]);
     }
 
     /**

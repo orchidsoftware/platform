@@ -5,13 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use App\Orchid\PlatformProvider;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Orchid\IconPack\Path;
 use Orchid\Icons\IconFinder;
 use Orchid\Platform\Dashboard;
-use Orchid\Platform\Http\Composers\LockMeComposer;
-use Orchid\Platform\Http\Composers\NotificationsComposer;
 use Orchid\Platform\ItemPermission;
 
 class PlatformServiceProvider extends ServiceProvider
@@ -30,9 +27,6 @@ class PlatformServiceProvider extends ServiceProvider
     public function boot(Dashboard $dashboard, IconFinder $iconFinder): void
     {
         $this->dashboard = $dashboard;
-
-        View::composer('platform::auth.login', LockMeComposer::class);
-        View::composer('platform::partials.notificationProfile', NotificationsComposer::class);
 
         $icons = array_merge(['o' => Path::getFolder()], config('platform.icons', []));
 
