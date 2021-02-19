@@ -1,5 +1,5 @@
 <div class="dropdown-item">
-    <div class="form-check h-auto w-100 d-flex align-items-center">
+    <div class="form-check h-auto w-100 d-flex align-items-center ps-0">
         <input type="checkbox"
                checked
                class="custom-control-input"
