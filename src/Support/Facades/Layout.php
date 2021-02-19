@@ -28,7 +28,7 @@ use Orchid\Screen\Layouts\Wrapper;
  * @method static Component component(string $component)
  * @method static Rows rows(array $fields)
  * @method static Table table(string $target, array $columns)
- * @method static Columns columns(BaseLayout[] $layouts)
+ * @method static Columns columns(BaseLayout[]|string[] $layouts)
  * @method static Tabs tabs(BaseLayout[] $layouts)
  * @method static Modal modal(string $key, string[]|string|BaseLayout $layouts)
  * @method static Blank blank(BaseLayout[] $layouts)
