@@ -5,8 +5,8 @@
                 <option value="{{$key}}"
                         @isset($value)
                         @if (is_array($value) && in_array($key, $value, true)) selected
-                        @elseif (isset($value[$key]) && $value[$key] == $option) selected
-                        @elseif ($key === $value) selected
+                        @elseif (isset($value[$key]) && (string)$value[$key] == (string)$option) selected
+                        @elseif ((string)$key === (string)$value) selected
                         @endif
                         @endisset
                 >{{$option}}</option>
