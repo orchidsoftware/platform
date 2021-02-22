@@ -9,7 +9,7 @@
             <div class="col">
                 <div class="p-4 bg-white rounded shadow-sm">
                     <small class="text-muted d-block mb-1">{{ __($key) }}</small>
-                    <p class="h3 mb-1 text-black fw-light">{{ $metric['keyValue'] }}
+                    <p class="h3 text-black fw-light">{{ $metric['keyValue'] }}
                         @if(isset($metric['keyDiff']) && (float)$metric['keyDiff'] !== 0.0)
                             <small class="small {{ (float)$metric['keyDiff'] < 0 ? 'text-danger': 'text-success' }}">
                                 {{ $metric['keyDiff'] }} %
