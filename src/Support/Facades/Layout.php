@@ -13,6 +13,7 @@ use Orchid\Screen\Layouts\Block;
 use Orchid\Screen\Layouts\Collapse;
 use Orchid\Screen\Layouts\Columns;
 use Orchid\Screen\Layouts\Component;
+use Orchid\Screen\Layouts\Legend;
 use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Layouts\Selection;
@@ -37,6 +38,7 @@ use Orchid\Screen\Layouts\Wrapper;
  * @method static Accordion accordion(BaseLayout[] $layouts)
  * @method static Selection selection(array $filters)
  * @method static Block block(BaseLayout|string|string[] $layouts)
+ * @method static Legend legend(string $target, array $columns)
  */
 class Layout extends Facade
 {

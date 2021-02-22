@@ -12,6 +12,7 @@ use Orchid\Screen\Layouts\Blank;
 use Orchid\Screen\Layouts\Block;
 use Orchid\Screen\Layouts\Columns;
 use Orchid\Screen\Layouts\Component;
+use Orchid\Screen\Layouts\Legend;
 use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Layouts\Selection;
@@ -229,6 +230,41 @@ class LayoutFactory
     public static function block($layouts): Block
     {
         return new class(Arr::wrap($layouts)) extends Block {
+        };
+    }
+
+    /**
+     * @param string $target
+     * @param array  $columns
+     *
+     * @return Legend
+     */
+    public static function legend(string $target, array $columns): Legend
+    {
+        return new class($target, $columns) extends Legend {
+
+            /**
+             * @var array
+             */
+            protected $columns;
+
+            /**
+             * @param string $target
+             * @param array  $columns
+             */
+            public function __construct(string $target, array $columns)
+            {
+                $this->target = $target;
+                $this->columns = $columns;
+            }
+
+            /**
+             * @return array
+             */
+            public function columns(): array
+            {
+                return $this->columns;
+            }
         };
     }
 }
