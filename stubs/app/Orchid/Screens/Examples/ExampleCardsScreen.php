@@ -47,10 +47,11 @@ class ExampleCardsScreen extends Screen
                 public function description(): string
                 {
                     return 'This is a wider card with supporting text below as a natural lead-in to additional content.
-                            This content is a little bit longer. This is a wider card with supporting text below as
-                            a natural lead-in to additional content. This content is a little bit longer.
-                            This is a wider card with supporting text below as a natural lead-in to additional content.
-                            This content is a little bit longer.';
+                            This content is a little bit longer. Mauris a orci congue, placerat lorem ac, aliquet est.
+                            Etiam bibendum, urna et hendrerit molestie, risus est tincidunt lorem, eu suscipit tellus
+                            odio vitae nulla. Sed a cursus ipsum. Maecenas quis finibus libero. Phasellus a nibh rutrum,
+                            molestie orci sit amet, euismod ex. Donec finibus sodales magna, quis fermentum augue
+                            pretium ac.';
                 }
 
                 /**
@@ -71,53 +72,6 @@ class ExampleCardsScreen extends Screen
 
                 /**
                  * @return \Orchid\Support\Color|string
-                 */
-                public function status(): ?Color
-                {
-                    return Color::INFO();
-                }
-            },
-            'cardCompendium' => new class implements Cardable {
-                /**
-                 * @return string
-                 */
-                public function title(): string
-                {
-                    return 'Kenmore 94149 Electric Range';
-                }
-
-                /**
-                 * @return string
-                 */
-                public function description(): string
-                {
-                    return new Compendium([
-                        'Type'                               => 'electric stove',
-                        'Model'                              => 'dream 251CH',
-                        'Main color'                         => 'white',
-                        'Complementary color'                => 'none',
-                        'Color declared by the manufacturer' => 'white',
-                    ]);
-                }
-
-                /**
-                 * @return string
-                 */
-                public function image(): ?string
-                {
-                    return null;
-                }
-
-                /**
-                 * @return mixed
-                 */
-                public function color(): ?Color
-                {
-                    return Color::SUCCESS();
-                }
-
-                /**
-                 * {@inheritdoc}
                  */
                 public function status(): ?Color
                 {
@@ -213,8 +167,6 @@ class ExampleCardsScreen extends Screen
             ]),
 
             Layout::block(new Card('cardPersona')),
-
-            new Card('cardCompendium'),
         ];
     }
 
