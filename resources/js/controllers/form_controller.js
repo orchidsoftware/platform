@@ -1,6 +1,6 @@
-import {Controller} from 'stimulus';
+import ApplicationController from "./application_controller";
 
-export default class extends Controller {
+export default class extends ApplicationController {
 
 
     /**
@@ -97,7 +97,7 @@ export default class extends Controller {
         const message = this.data.get('validation');
 
         if (!event.target.reportValidity()) {
-            window.platform.alert('Validation error', message);
+            this.alert('Validation error', message);
 
             return false;
         }

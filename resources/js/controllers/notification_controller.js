@@ -1,7 +1,7 @@
-import {Controller} from 'stimulus';
+import ApplicationController from "./application_controller";
 import * as Turbo from "@hotwired/turbo"
 
-export default class extends Controller {
+export default class extends ApplicationController {
 
     /**
      *

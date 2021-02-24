@@ -1,7 +1,7 @@
-import {Controller} from 'stimulus';
-import * as Turbo from "@hotwired/turbo"
+import ApplicationController from "./application_controller";
+import * as Turbo from "@hotwired/turbo";
 
-export default class extends Controller {
+export default class extends ApplicationController {
     static get targets() {
         return ['filterItem'];
     }
@@ -50,7 +50,7 @@ export default class extends Controller {
     setAllFilter() {
         const formElement = document.getElementById('filters');
 
-        const filters = window.platform.formToObject(formElement);
+        const filters = this.formToObject(formElement);
         filters.sort = this.getUrlParameter('sort');
 
         const parameterWithoutEmpty = this.removeEmpty(filters);

@@ -1,7 +1,7 @@
-import {Controller} from 'stimulus';
+import ApplicationController from "./application_controller";
 import SimpleMDE from 'simplemde';
 
-export default class extends Controller {
+export default class extends ApplicationController {
     /**
      *
      * @returns {Element}
@@ -149,7 +149,7 @@ export default class extends Controller {
         formData.append('file', file);
 
         axios
-            .post(platform.prefix('/systems/files'), formData)
+            .post(this.prefix('/systems/files'), formData)
             .then((response) => {
                 this.editor.codemirror.replaceSelection(response.data.url);
                 event.target.value = null;

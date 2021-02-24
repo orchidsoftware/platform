@@ -1,7 +1,7 @@
-import {Controller} from 'stimulus';
+import ApplicationController from "./application_controller";
 import Quill from 'quill';
 
-export default class extends Controller {
+export default class extends ApplicationController {
     /**
      *
      */
@@ -100,7 +100,7 @@ export default class extends Controller {
             if (/^image\//.test(file.type)) {
                 this.saveToServer(file);
             } else {
-                window.platform.alert('Validation error', 'You could only upload images.', 'danger');
+                this.alert('Validation error', 'You could only upload images.', 'danger');
                 console.warn('You could only upload images.');
             }
         };
@@ -116,12 +116,12 @@ export default class extends Controller {
         formData.append('image', file);
 
         axios
-            .post(platform.prefix('/systems/files'), formData)
+            .post(this.prefix('/systems/files'), formData)
             .then((response) => {
                 this.insertToEditor(response.data.url);
             })
             .catch((error) => {
-                window.platform.alert('Validation error', 'Quill image upload failed');
+                this.alert('Validation error', 'Quill image upload failed');
                 console.warn('quill image upload failed');
                 console.warn(error);
             });

@@ -1,6 +1,6 @@
-import {Controller} from "stimulus";
+import ApplicationController from "./application_controller";
 
-export default class extends Controller {
+export default class extends ApplicationController {
 
     /**
      * @type {string[]}
@@ -38,7 +38,7 @@ export default class extends Controller {
 
         let maxFileSize = this.data.get('max-file-size');
         if (event.target.files[0].size / 1024 / 1024 > maxFileSize) {
-            window.platform.alert('Validation error', `The download file is too large. Max size: ${maxFileSize} MB`);
+            this.alert('Validation error', `The download file is too large. Max size: ${maxFileSize} MB`);
             event.target.value = null;
             return;
         }
@@ -54,7 +54,7 @@ export default class extends Controller {
             formData.append('group', this.data.get('groups'));
 
             let element = this.element;
-            axios.post(platform.prefix('/systems/files'), formData)
+            axios.post(this.prefix('/systems/files'), formData)
                 .then((response) => {
                     let image = response.data.url;
                     let targetValue = this.data.get('target');
@@ -66,7 +66,7 @@ export default class extends Controller {
                     $(element.querySelector('.modal')).modal('hide');
                 })
                 .catch((error) => {
-                    window.platform.alert('Validation error', 'File upload error');
+                    this.alert('Validation error', 'File upload error');
                     console.warn(error);
                 });
         };

@@ -1,7 +1,7 @@
-import {Controller} from 'stimulus';
+import ApplicationController from "./application_controller";
 import * as Turbo from "@hotwired/turbo"
 
-export default class extends Controller {
+export default class extends ApplicationController {
 
     static targets = [ "query" ];
 
@@ -28,7 +28,7 @@ export default class extends Controller {
         }
 
         if (event.keyCode === 13) {
-            Turbo.visit(platform.prefix(`/search/${this.queryTarget.value}`));
+            Turbo.visit(this.prefix(`/search/${this.queryTarget.value}`));
         }
 
         this.showResultQuery(startQuery);
@@ -72,7 +72,7 @@ export default class extends Controller {
             }
 
             axios
-                .post(platform.prefix(`/search/${query}/compact`))
+                .post(this.prefix(`/search/${query}/compact`))
                 .then((response) => {
                     element.classList.add('show');
                     element.innerHTML = response.data;

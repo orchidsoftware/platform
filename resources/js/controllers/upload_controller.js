@@ -1,9 +1,9 @@
-import {Controller} from "stimulus";
+import ApplicationController from "./application_controller"
 import { Dropzone } from 'dropzone';
 import Sortable from 'sortablejs';
 import {debounce, has as objHas} from "lodash";
 
-export default class extends Controller {
+export default class extends ApplicationController {
 
     /**
      *
@@ -102,7 +102,7 @@ export default class extends Controller {
         }
 
         axios
-            .put(platform.prefix(`/systems/files/post/${attach.id}`), attach)
+            .put(this.prefix(`/systems/files/post/${attach.id}`), attach)
             .then();
     }
 
@@ -147,7 +147,7 @@ export default class extends Controller {
         });
 
         axios
-            .post(platform.prefix('/systems/files/sort'), {
+            .post(this.prefix('/systems/files/sort'), {
                 files: items,
             }, {
                 cancelToken: new CancelToken(function executor(c) {
@@ -203,7 +203,7 @@ export default class extends Controller {
 
 
         this.dropZone = new Dropzone(dropname, {
-            url: platform.prefix('/systems/files'),
+            url: this.prefix('/systems/files'),
             method: 'post',
             uploadMultiple: true,
             maxFilesize: this.data.get('max-file-size'),
@@ -225,7 +225,7 @@ export default class extends Controller {
                     console.log('dropzone.addedfile');
 
                     if (this.files.length > this.options.maxFiles) {
-                        window.platform.alert('Validation error', 'Max files');
+                        this.alert('Validation error', 'Max files');
                         this.removeFile(e);
                     }
 
@@ -248,7 +248,7 @@ export default class extends Controller {
                 });
 
                 this.on("maxfilesexceeded", (file) => {
-                    window.platform.alert('Validation error', 'Max files exceeded');
+                    this.alert('Validation error', 'Max files exceeded');
                     this.removeFile(file);
                 });
 
@@ -262,7 +262,7 @@ export default class extends Controller {
                     if (objHas(file, 'data.id')) {
                         $(`${dropname} .files-${file.data.id}`).remove();
                         !isMediaLibrary && axios
-                            .delete(platform.prefix(`/systems/files/${file.data.id}`), {
+                            .delete(this.prefix(`/systems/files/${file.data.id}`), {
                                 storage: storage,
                             })
                             .then();
@@ -298,7 +298,7 @@ export default class extends Controller {
                 $(`${dropname} .dz-progress`).remove();
             },
             error(file, response) {
-                window.platform.alert('Validation error', 'File upload error');
+                this.alert('Validation error', 'File upload error');
 
                 this.removeFile(file);
 
@@ -349,7 +349,7 @@ export default class extends Controller {
         $(`${this.dropname} .media.modal`).modal('show');
 
         axios
-            .post(platform.prefix('/systems/media'), {
+            .post(this.prefix('/systems/media'), {
                 filter: {
                     disk: this.data.get('storage'),
                     original_name: this.searchTarget.value,
