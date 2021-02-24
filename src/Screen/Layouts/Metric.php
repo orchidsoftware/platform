@@ -19,9 +19,9 @@ abstract class Metric extends Layout
     protected $template = 'platform::layouts.metric';
 
     /**
-     * @var string
+     * @var string|null
      */
-    protected $title = 'Example Metric';
+    protected $title;
 
     /**
      * Set the labels for each possible field value.

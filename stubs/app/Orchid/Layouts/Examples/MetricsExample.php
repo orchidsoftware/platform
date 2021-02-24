@@ -11,11 +11,6 @@ class MetricsExample extends Metric
     /**
      * @var string
      */
-    protected $title = 'Metric Today';
-
-    /**
-     * @var string
-     */
     protected $target = 'metrics';
 
     /**
