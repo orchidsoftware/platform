@@ -3,6 +3,7 @@
 namespace App\Orchid\Screens\Examples;
 
 use App\Orchid\Layouts\Examples\ChartBarExample;
+use App\Orchid\Layouts\Examples\ChartLineExample;
 use App\Orchid\Layouts\Examples\MetricsExample;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -141,7 +142,11 @@ class ExampleScreen extends Screen
     {
         return [
             MetricsExample::class,
-            ChartBarExample::class,
+
+            Layout::columns([
+                ChartLineExample::class,
+                ChartBarExample::class,
+            ]),
 
             Layout::table('table', [
                 TD::make('id', 'ID')

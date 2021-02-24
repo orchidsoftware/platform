@@ -7,6 +7,7 @@ use App\Orchid\Layouts\Examples\ChartLineExample;
 use App\Orchid\Layouts\Examples\ChartPercentageExample;
 use App\Orchid\Layouts\Examples\ChartPieExample;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Layout;
 
 class ExampleChartsScreen extends Screen
 {
@@ -63,17 +64,22 @@ class ExampleChartsScreen extends Screen
     /**
      * Views.
      *
+     * @return string[]|\Orchid\Screen\Layout[]
      * @throws \Throwable
      *
-     * @return string[]|\Orchid\Screen\Layout[]
      */
     public function layout(): array
     {
         return [
-            ChartLineExample::class,
-            ChartBarExample::class,
-            ChartPercentageExample::class,
-            ChartPieExample::class,
+            Layout::columns([
+                ChartLineExample::class,
+                ChartBarExample::class,
+            ]),
+
+            Layout::columns([
+                ChartPercentageExample::class,
+                ChartPieExample::class,
+            ]),
         ];
     }
 }
