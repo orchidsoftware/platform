@@ -22,6 +22,7 @@ use Orchid\Platform\Commands\RowsCommand;
 use Orchid\Platform\Commands\ScreenCommand;
 use Orchid\Platform\Commands\SelectionCommand;
 use Orchid\Platform\Commands\TableCommand;
+use Orchid\Platform\Components\Notification;
 use Orchid\Platform\Dashboard;
 use Orchid\Screen\Components\Popover;
 use Tabuna\Breadcrumbs\BreadcrumbsServiceProvider;
@@ -221,5 +222,6 @@ class FoundationServiceProvider extends ServiceProvider
         );
 
         Blade::component('orchid-popover', Popover::class);
+        Blade::component('orchid-notification', Notification::class);
     }
 }

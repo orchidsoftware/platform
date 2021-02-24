@@ -3,7 +3,7 @@
             formaction="{{ $action }}"
             data-controller="button"
             data-novalidate="{{ var_export($novalidate) }}"
-            data-turbo="{{ var_export($turbolinks) }}"
+            data-turbo="{{ var_export($turbo) }}"
             @empty(!$confirm)
                 data-action="button#confirm"
                 data-button-confirm="{{ $confirm }}"
@@ -11,7 +11,7 @@
         {{ $attributes }}>
 
         @isset($icon)
-            <x-orchid-icon :path="$icon" class="{{ empty($name) ?: 'mr-2'}}"/>
+            <x-orchid-icon :path="$icon" class="{{ empty($name) ?: 'me-2'}}"/>
         @endisset
 
         {{ $name ?? '' }}

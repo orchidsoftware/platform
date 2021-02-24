@@ -97,7 +97,7 @@ class UserListScreen extends Screen
      * @param User    $user
      * @param Request $request
      */
-    public function saveUser(User $user, Request $request)
+    public function saveUser(User $user, Request $request): void
     {
         $request->validate([
             'user.email' => 'required|unique:users,email,'.$user->id,
@@ -112,7 +112,7 @@ class UserListScreen extends Screen
     /**
      * @param Request $request
      */
-    public function remove(Request $request)
+    public function remove(Request $request): void
     {
         User::findOrFail($request->get('id'))
             ->delete();

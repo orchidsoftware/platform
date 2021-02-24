@@ -30,10 +30,10 @@ class Link extends Action
      * @var array
      */
     protected $attributes = [
-        'class'       => 'btn btn-link',
-        'icon'        => null,
-        'href'        => '#!',
-        'turbolinks'  => true,
+        'class' => 'btn btn-link',
+        'icon'  => null,
+        'href'  => '#!',
+        'turbo' => true,
     ];
 
     /**

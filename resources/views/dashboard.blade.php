@@ -5,13 +5,13 @@
     <div class="aside col-xs-12 col-md-2 col-xl-2 col-xxl-3 bg-dark">
         <div class="d-md-flex align-items-start flex-column d-sm-block h-full">
 
-            <div class="d-sm-flex d-md-block p-3 mt-md-4 w-100 v-center">
-                <a href="#" class="header-toggler d-md-none mr-auto order-first d-flex align-items-center"
-                   data-toggle="collapse"
-                   data-target="#headerMenuCollapse">
+            <div class="d-sm-flex d-md-block p-3 mt-md-4 w-100 d-flex align-items-center">
+                <a href="#" class="header-toggler d-md-none me-auto order-first d-flex align-items-center"
+                   data-bs-toggle="collapse"
+                   data-bs-target="#headerMenuCollapse">
                     <x-orchid-icon path="menu" class="icon-menu"/>
 
-                    <span class="ml-2">@yield('title')</span>
+                    <span class="ms-2">@yield('title')</span>
                 </a>
 
                 <a class="header-brand order-last" href="{{route('platform.index')}}">
@@ -34,9 +34,9 @@
             <div class="h-100 w-100 position-relative to-top cursor d-none d-md-block mt-md-5 divider"
                  data-action="click->layouts--html-load#goToTop"
                  title="{{ __('Scroll to top') }}">
-                <div class="bottom-left w-100 mb-2 pl-3">
+                <div class="bottom-left w-100 mb-2 ps-3">
                     <small>
-                        <x-orchid-icon path="arrow-up" class="mr-2"/>
+                        <x-orchid-icon path="arrow-up" class="me-2"/>
 
                         {{ __('Scroll to top') }}
                     </small>
@@ -57,7 +57,7 @@
 
         @if(Breadcrumbs::has())
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb px-4 m-0">
+                <ol class="breadcrumb px-4 mb-2">
                     <x-tabuna-breadcrumbs
                         class="breadcrumb-item"
                         active="active"
@@ -68,11 +68,11 @@
 
         <div class="@hasSection('navbar') @else d-none d-md-block @endif layout v-md-center">
             <div class="d-none d-md-block col-xs-12 col-md p-0">
-                <h1 class="m-0 font-weight-light h3 text-black">@yield('title')</h1>
+                <h1 class="m-0 fw-light h3 text-black">@yield('title')</h1>
                 <small class="text-muted" title="@yield('description')">@yield('description')</small>
             </div>
-            <div class="col-xs-12 col-md-auto ml-auto p-0">
-                <ul class="nav command-bar justify-content-sm-end justify-content-start v-center">
+            <div class="col-xs-12 col-md-auto ms-auto p-0">
+                <ul class="nav command-bar justify-content-sm-end justify-content-start d-flex align-items-center">
                     @yield('navbar')
                 </ul>
             </div>

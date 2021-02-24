@@ -1,7 +1,7 @@
 <div class="col-md-12" data-controller="filter">
-    <div class="btn-group" role="group">
-        <button class="btn btn-link dropdown-toggle pl-0"
-                data-toggle="dropdown"
+    <div class="btn-group ps-4" role="group">
+        <button class="btn btn-link dropdown-toggle ps-0"
+                data-bs-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false">
             <x-orchid-icon path="filter"/>
@@ -52,7 +52,7 @@
     </div>
     @foreach($filters as $filter)
         @if($filter->display && $filter->isApply())
-            <a href="{{ $filter->resetLink() }}" class="badge badge-light mr-1 p-1">
+            <a href="{{ $filter->resetLink() }}" class="badge badge-light me-1 p-1">
                 {{$filter->value()}}
             </a>
         @endif

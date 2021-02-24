@@ -118,8 +118,8 @@
 .simplemde-wrapper{
   .editor-toolbar{
       @extend .border-top;
-      @extend .border-left;
-      @extend .border-right;
+      @extend .border-start;
+      @extend .border-end;
   }
 
   .CodeMirror{
@@ -335,4 +335,15 @@
     .custom-control {
         margin-left: 1em;
     }
+}
+
+// legend
+.d2-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-column: span 2 / span 2;
+}
+
+.d2-grid dd {
+    grid-column: span 2 / span 2;
 }

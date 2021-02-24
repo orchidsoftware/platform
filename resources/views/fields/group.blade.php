@@ -1,6 +1,6 @@
-<div class="row {{ $align }}">
+<div class="row form-group {{ $align }}">
     @foreach($group as $field)
-        <div class="{{ $class }} @if (!$loop->last) pr-0 @endif">
+        <div class="{{ $class }} @if (!$loop->last) pe-0 @endif">
             {!! $field !!}
         </div>
     @endforeach

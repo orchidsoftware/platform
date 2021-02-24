@@ -92,9 +92,12 @@ $menu-bezier : 0.05, 0.74, 0.27, 0.99;
 $menu-light : #fafafa;
 
 //Forms
-$form-height : 35px;
-$form-group-height : 54px;
-$form-control-border-color : fade-out($black, 0.9);
+$form-height: 35px;
+$form-group-height: 54px;
+$form-control-border-color: fade-out($black, 0.9);
+$input-padding-y: .5rem !default;
+$input-padding-x: .75rem !default;
+
 
 $tablet : 768px;
 $desktop : 1280px;

@@ -48,7 +48,7 @@
 
         <div class="col min-vh-100 overflow-hidden">
             <div class="d-flex flex-column-fluid">
-                <div class="container h-full px-0">
+                <div class="container h-full px-0 px-md-5">
                     @yield('body-right')
                 </div>
             </div>

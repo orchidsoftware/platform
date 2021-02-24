@@ -14,7 +14,7 @@
                     <x-orchid-icon path="magnifier"/>
                 </div>
             </div>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow bg-white w-100"
+            <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow bg-white w-100"
                  x-placement="start-left" id="search-result">
             </div>
         </div>

@@ -22,11 +22,9 @@
                   data-form-button-text="{{ __('Loading...') }}"
             >
                 <div class="modal-header">
-                    <button type="button" class="close" title="Close" data-dismiss="modal" aria-label="Close">
-                        <x-orchid-icon path="cross"/>
+                    <h4 class="modal-title text-black fw-light" data-target="modal.title">{{$title}}</h4>
+                    <button type="button" class="btn-close" title="Close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
-
-                    <h4 class="modal-title text-black font-weight-light" data-target="modal.title">{{$title}}</h4>
                 </div>
                 <div class="modal-body layout-wrapper">
                     <div data-async>
@@ -42,7 +40,7 @@
                 <div class="modal-footer">
 
                     @if(!$withoutCloseButton)
-                        <button type="button" class="btn btn-link" data-dismiss="modal">
+                        <button type="button" class="btn btn-link" data-bs-dismiss="modal">
                             {{ $close }}
                         </button>
                     @endif
@@ -51,7 +49,7 @@
                         @if(!$withoutApplyButton)
                             <button type="submit"
                                     id="submit-modal-{{$key}}"
-                                    data-turbo="{{ var_export($turbolinks) }}"
+                                    data-turbo="{{ var_export($turbo) }}"
                                     class="btn btn-default">
                                 {{ $apply }}
                             </button>

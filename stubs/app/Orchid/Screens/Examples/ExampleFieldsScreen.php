@@ -251,6 +251,20 @@ class ExampleFieldsScreen extends Screen
                     ->value('13:45:00')
                     ->horizontal(),
 
+                Input::make('datalist')
+                    ->title('Datalist example')
+                    ->help('While most browsers and operating systems include some support for "datalist"
+                                 elements, their styling is inconsistent at best.')
+                    ->datalist([
+                        'San Francisco',
+                        'New York',
+                        'Seattle',
+                        'Los Angeles',
+                        'Chicago',
+                    ])
+                    ->horizontal(),
+
+
                 Input::make('color')
                     ->type('color')
                     ->title('Color')

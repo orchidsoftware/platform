@@ -88,7 +88,7 @@ class UserProfileScreen extends Screen
     /**
      * @param Request $request
      */
-    public function save(Request $request)
+    public function save(Request $request): void
     {
         $request->validate([
             'user.name'  => 'required|string',
@@ -108,7 +108,7 @@ class UserProfileScreen extends Screen
     /**
      * @param Request $request
      */
-    public function changePassword(Request $request)
+    public function changePassword(Request $request): void
     {
         $request->validate([
             'old_password' => 'required|password:web',

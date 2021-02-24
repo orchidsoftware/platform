@@ -3,7 +3,6 @@
 namespace App\Orchid\Screens\Examples;
 
 use Orchid\Screen\Action;
-use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 
@@ -63,12 +62,6 @@ class ExampleLayoutsScreen extends Screen
                 'Example Tab 2' => Layout::view('platform::dummy.block'),
                 'Example Tab 3' => Layout::view('platform::dummy.block'),
             ]),
-
-            Layout::collapse([
-                Input::make('collapse-1')->title('First name'),
-                Input::make('collapse-2')->title('Last name'),
-                Input::make('collapse-3')->title('Username'),
-            ])->label('Click for me!'),
 
             Layout::view('platform::dummy.block'),
 

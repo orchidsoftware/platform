@@ -40,7 +40,7 @@
 
     @if($rows instanceof \Illuminate\Contracts\Pagination\Paginator && $rows->isEmpty())
         <div class="text-center py-5 w-100">
-            <h3 class="font-weight-light">
+            <h3 class="fw-light">
                 @isset($iconNotFound)
                     <x-orchid-icon :path="$iconNotFound" class="block m-b"/>
                 @endisset

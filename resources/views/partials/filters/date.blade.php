@@ -1,7 +1,7 @@
 <div class="dropdown d-inline-block" data-controller="screen--filter">
     <button class="btn btn-sm btn-link dropdown-toggle"
             type="button"
-            data-toggle="dropdown"
+            data-bs-toggle="dropdown"
             aria-haspopup="true"
             data-boundary="viewport"
             aria-expanded="false">

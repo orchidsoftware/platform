@@ -202,6 +202,17 @@ class ExampleFieldsAdvancedScreen extends Screen
 
             Layout::rows([
 
+                Input::make('raw_file')
+                    ->type('file')
+                    ->title('File input example')
+                    ->horizontal(),
+
+                Input::make('raw_files')
+                    ->type('file')
+                    ->title('Multiple files input example')
+                    ->multiple()
+                    ->horizontal(),
+
                 Picture::make('picture')
                     ->title('Picture')
                     ->horizontal(),

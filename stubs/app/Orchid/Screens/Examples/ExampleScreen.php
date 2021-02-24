@@ -3,6 +3,7 @@
 namespace App\Orchid\Screens\Examples;
 
 use App\Orchid\Layouts\Examples\ChartBarExample;
+use App\Orchid\Layouts\Examples\ChartLineExample;
 use App\Orchid\Layouts\Examples\MetricsExample;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -81,9 +82,8 @@ class ExampleScreen extends Screen
             'metrics' => [
                 ['keyValue' => number_format(6851, 0), 'keyDiff' => 10.08],
                 ['keyValue' => number_format(24668, 0), 'keyDiff' => -30.76],
-                ['keyValue' => number_format(65661, 2), 'keyDiff' => 3.84],
                 ['keyValue' => number_format(10000, 0), 'keyDiff' => 0],
-                ['keyValue' => number_format(1454887.12, 2)],
+                ['keyValue' => number_format(65661, 2), 'keyDiff' => 3.84],
             ],
         ];
     }
@@ -142,7 +142,11 @@ class ExampleScreen extends Screen
     {
         return [
             MetricsExample::class,
-            ChartBarExample::class,
+
+            Layout::columns([
+                ChartLineExample::class,
+                ChartBarExample::class,
+            ]),
 
             Layout::table('table', [
                 TD::make('id', 'ID')
@@ -182,7 +186,7 @@ class ExampleScreen extends Screen
     /**
      * @param Request $request
      */
-    public function showToast(Request $request)
+    public function showToast(Request $request): void
     {
         Toast::warning($request->get('toast', 'Hello, world! This is a toast message.'));
     }

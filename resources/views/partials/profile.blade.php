@@ -1,8 +1,8 @@
 <div class="row m-0 align-items-center p-3">
     <div class="dropdown col p-0">
-        <a href="#" class="nav-link p-0 v-center" data-toggle="dropdown">
+        <a href="#" class="nav-link p-0 d-flex align-items-center" data-bs-toggle="dropdown">
             @if($image = Auth::user()->presenter()->image())
-                <span class="thumb-sm avatar mr-3">
+                <span class="thumb-sm avatar me-3">
                         <img src="{{$image}}" class="b">
                 </span>
             @endif
@@ -19,13 +19,6 @@
                 <div class="dropdown-divider"></div>
             @endif
 
-            @if(Auth::user()->hasAccess('platform.systems.index'))
-                <a href="{{ route('platform.systems.index') }}" class="dropdown-item">
-                    <x-orchid-icon path="settings" class="mr-2"/>
-                    <span>{{ __('System') }}</span>
-                </a>
-            @endif
-
             @if(\Orchid\Access\UserSwitch::isSwitch())
                 <a href="#"
                    class="dropdown-item"
@@ -33,7 +26,7 @@
                    data-action="layouts--form#submitByForm"
                    data-layouts--form-id="return-original-user"
                 >
-                    <x-orchid-icon path="people" class="mr-2"/>
+                    <x-orchid-icon path="people" class="me-2"/>
                     <span>{{ __('Back to my account') }}</span>
                 </a>
                 <form id="return-original-user"
@@ -52,7 +45,7 @@
                data-action="form#submitByForm"
                data-form-id="logout-form"
                dusk="logout-button">
-                <x-orchid-icon path="logout" class="mr-2"/>
+                <x-orchid-icon path="logout" class="me-2"/>
 
                 <span>{{ __('Sign out') }}</span>
             </a>
@@ -68,5 +61,5 @@
         </div>
     </div>
 
-    @includeWhen(config('platform.notifications.enabled', true), 'platform::partials.notificationProfile')
+    <x-orchid-notification/>
 </div>

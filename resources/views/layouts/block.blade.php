@@ -1,4 +1,4 @@
-<fieldset class="row no-gutters mb-3">
+<fieldset class="row g-0 mb-3">
     <div class="col p-0 px-3">
         <legend class="text-black">
             {{ __($title ?? '') }}

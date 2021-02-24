@@ -1,11 +1,14 @@
-import { Controller } from 'stimulus';
+import ApplicationController from "./application_controller";
+import {Popover} from 'bootstrap';
 
-export default class extends Controller {
+export default class extends ApplicationController {
     /**
      *
      */
     connect() {
-        $(this.element.querySelectorAll('a')).popover();
+        this.popover = new Popover(
+            this.element
+        );
     }
 
     /**
@@ -14,6 +17,6 @@ export default class extends Controller {
      */
     trigger(event) {
         event.preventDefault();
-        $(this.element).popover('toggle');
+        this.popover.toggle();
     }
 }

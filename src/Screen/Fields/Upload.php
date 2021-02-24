@@ -109,7 +109,6 @@ class Upload extends Field
 
             throw_if(
                 $maxFileSize > $serverMaxFileSize,
-                \RuntimeException::class,
                 'Cannot set the desired maximum file size. This contradicts the settings specified in .ini'
             );
         });
@@ -130,7 +129,7 @@ class Upload extends Field
             $this->set('value', $value);
         });
     }
-    
+
     /**
      * @param string $storage
      *
@@ -142,11 +141,7 @@ class Upload extends Field
     {
         $disk = config("filesystems.disks." . $storage);
 
-        throw_if(
-            $disk === null,
-            \Exception::class,
-            'The selected storage was not found'
-        );
+        throw_if($disk === null, 'The selected storage was not found');
 
         return $this
             ->set('storage', $storage)

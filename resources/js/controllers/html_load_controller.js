@@ -1,7 +1,8 @@
-import {Controller} from 'stimulus';
+import ApplicationController from "./application_controller";
 import axios from 'axios';
+import {Collapse, Dropdown} from 'bootstrap';
 
-export default class extends Controller {
+export default class extends ApplicationController {
     /**
      *
      */
@@ -14,6 +15,7 @@ export default class extends Controller {
      */
     connect() {
         this.csrf();
+        this.bootstrap();
     }
 
     /**
@@ -58,5 +60,20 @@ export default class extends Controller {
      */
     goToTop() {
         window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    /**
+     *
+     */
+    bootstrap() {
+        let dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
+        let dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+            return new Dropdown(dropdownToggleEl)
+        })
+
+        let collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
+        let collapseList = collapseElementList.map(function (collapseEl) {
+            return new Collapse(collapseEl)
+        })
     }
 }
