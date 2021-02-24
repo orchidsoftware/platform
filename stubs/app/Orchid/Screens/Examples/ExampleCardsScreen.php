@@ -8,7 +8,6 @@ use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Contracts\Cardable;
 use Orchid\Screen\Layouts\Card;
-use Orchid\Screen\Layouts\Compendium;
 use Orchid\Screen\Layouts\Facepile;
 use Orchid\Screen\Screen;
 use Orchid\Support\Color;

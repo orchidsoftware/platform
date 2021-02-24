@@ -64,8 +64,9 @@ class ExampleChartsScreen extends Screen
     /**
      * Views.
      *
-     * @return string[]|\Orchid\Screen\Layout[]
      * @throws \Throwable
+     *
+     * @return string[]|\Orchid\Screen\Layout[]
      *
      */
     public function layout(): array

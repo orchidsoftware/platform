@@ -260,7 +260,7 @@ class ExampleFieldsScreen extends Screen
                         'New York',
                         'Seattle',
                         'Los Angeles',
-                        'Chicago'
+                        'Chicago',
                     ])
                     ->horizontal(),
 

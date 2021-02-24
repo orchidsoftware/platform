@@ -3,7 +3,6 @@
 
 namespace Orchid\Screen;
 
-
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
