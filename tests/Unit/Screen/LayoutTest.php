@@ -37,13 +37,11 @@ class LayoutTest extends TestUnitCase
     {
         $layout = new class() extends Layout {
             /***
-             * @param Repository $query
-             *
              * @return bool
              */
-            public function canSee(Repository $query): bool
+            public function isSee(): bool
             {
-                return $query->get('show');
+                return $this->query->get('show');
             }
 
             /**
@@ -53,7 +51,9 @@ class LayoutTest extends TestUnitCase
              */
             public function build(Repository $repository)
             {
-                if (! $this->checkPermission($this, $repository)) {
+                $this->query = $repository;
+
+                if (! $this->isSee()) {
                     return;
                 }
 

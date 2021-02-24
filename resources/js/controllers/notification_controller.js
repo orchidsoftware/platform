@@ -24,11 +24,6 @@ export default class extends ApplicationController {
      *
      */
     connect() {
-        document.addEventListener("turbo:load", () => {
-            this.render();
-        });
-
-
         this.updateInterval = this.setUpdateInterval();
         this.render();
     }
@@ -76,6 +71,7 @@ export default class extends ApplicationController {
          return setInterval(() => {
             axios({method, url}).then((response) => {
                 localStorage.setItem('profile.notifications', response.data.total);
+                this.render();
             });
         }, interval * 1000);
     }
@@ -88,7 +84,7 @@ export default class extends ApplicationController {
 
         let badge =  this.element.querySelector('#notification-circle').innerHTML.trim();
 
-        if (count < 100) {
+        if (count < 10) {
             badge = count;
         }
 

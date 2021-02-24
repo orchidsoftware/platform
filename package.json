@@ -21,7 +21,7 @@
     "codeflask": "^1.4.0",
     "cropperjs": "^1.5.9",
     "cross-env": "^7.0.0",
-    "dropzone": "^5.7.1",
+    "dropzone": "^5.7.6",
     "flatpickr": "^4.6.3",
     "frappe-charts": "^1.5.6",
     "inputmask": "^5.0.3",
@@ -42,9 +42,9 @@
     "eslint": "^7.18.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
-    "postcss": "^8.2.4",
+    "postcss": "^8.2.5",
     "resolve-url-loader": "^3.1.2",
-    "sass": "^1.32.5",
+    "sass": "^1.32.7",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.12"
   }

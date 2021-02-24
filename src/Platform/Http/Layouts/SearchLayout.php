@@ -20,7 +20,7 @@ class SearchLayout extends Rows
      *
      * @return bool
      */
-    public function canSee(Repository $query): bool
+    public function isSee(): bool
     {
         return Dashboard::getSearch()->isNotEmpty();
     }
