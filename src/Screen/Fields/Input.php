@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
 
 /**
@@ -42,6 +43,8 @@ use Orchid\Screen\Field;
  */
 class Input extends Field
 {
+    use Multipliable;
+
     /**
      * @var string
      */
