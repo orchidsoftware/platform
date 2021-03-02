@@ -37,15 +37,15 @@ abstract class Legend extends Layout
     /**
      * @param Repository $repository
      *
-     * @return Factory|\Illuminate\View\View
+     * @return Factory|\Illuminate\View\View|null
      */
     public function build(Repository $repository)
     {
-        if (! $this->checkPermission($this, $repository)) {
+        $this->query = $repository;
+
+        if (! $this->isSee()) {
             return;
         }
-
-        $this->query = $repository;
 
         $columns = collect($this->columns())->filter(static function (Sight $sight) {
             return $sight->isSee();

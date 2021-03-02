@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Orchid\Screen;
 
@@ -138,9 +139,9 @@ class Sight
      *
      * @param Repository|Model $repository
      *
-     * @return string
+     * @return string|null
      */
-    public function buildDd($repository)
+    public function buildDd($repository): ?string
     {
         $value = $this->render
             ? $this->handler($repository)
