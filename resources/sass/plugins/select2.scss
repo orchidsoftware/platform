@@ -37,7 +37,7 @@ $s2bs-input-bg-disabled: $input-bg-disabled !default;
 $s2bs-input-color: $input-color !default;
 $s2bs-input-color-placeholder: $input-color-placeholder !default;
 $s2bs-input-border: $input-border !default;
-$s2bs-input-border-focus: $input-border-focus !default;
+$s2bs-input-border-focus: $input-border !default;
 $s2bs-input-border-radius: $input-border-radius !default;
 $s2bs-input-height-base: $input-height-base !default;
 $s2bs-input-height-large: $input-height-large !default;
@@ -47,8 +47,6 @@ $s2bs-input-height-small: $input-height-small !default;
 // -------------------------
 
 $s2bs-dropdown-arrow-color: $s2bs-input-color-placeholder !default;
-$s2bs-dropdown-box-shadow: 0 6px 12px rgba(0,0,0,.175) !default;
-$s2bs-dropdown-box-shadow-above: 0px -6px 12px rgba(0,0,0,.175) !default;
 $s2bs-clear-selection-color: $s2bs-dropdown-arrow-color !default;
 $s2bs-clear-selection-hover-color: $s2bs-btn-default-color !default;
 $s2bs-remove-choice-color: $s2bs-input-color-placeholder !default;
@@ -62,12 +60,6 @@ $s2bs-dropdown-header-font-size: $s2bs-font-size-small !default;
 // These should not be overridden.
 // -------------------------
 
-// @see https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_forms.scss#L126
-$s2bs-form-control-default-box-shadow: inset 0 1px 1px rgba(0,0,0,.075) !default;
-
-// @see https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/mixins/_forms.scss#L60
-$s2bs-form-control-focus-box-shadow: $s2bs-form-control-default-box-shadow, 0 0 8px rgba($s2bs-input-border-focus, 0.6) !default;
-
 // @see https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_forms.scss#L127
 $s2bs-form-control-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s !default;
 
@@ -80,9 +72,7 @@ $s2bs-form-control-transition: border-color ease-in-out .15s, box-shadow ease-in
 
 // @see https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_forms.scss#L115
 @mixin bootstrap-input-defaults {
-    @include box-shadow($s2bs-form-control-default-box-shadow);
     background-color: $s2bs-input-bg;
-    border: 1px solid $s2bs-input-border;
     border-radius: $s2bs-input-border-radius;
     color: $s2bs-input-color;
     font-size: $s2bs-font-size-base;
@@ -93,14 +83,12 @@ $s2bs-form-control-transition: border-color ease-in-out .15s, box-shadow ease-in
 @mixin validation-state-focus($color) {
     $shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px lighten($color, 20%);
 
-    .select2-dropdown,
-    .select2-selection {
+    .select2-dropdown{
         border-color: $color;
     }
 
     .select2-container--focus .select2-selection,
     .select2-container--open .select2-selection {
-        @include box-shadow($shadow);
         border-color: darken($color, 10%);
     }
 
@@ -158,7 +146,7 @@ $s2bs-form-control-transition: border-color ease-in-out .15s, box-shadow ease-in
 
     .select2-search--dropdown {
         .select2-search__field {
-            @include bootstrap-input-defaults;
+            @extend .form-control;
         }
     }
 
@@ -283,7 +271,6 @@ $s2bs-form-control-transition: border-color ease-in-out .15s, box-shadow ease-in
     &.select2-container--focus,
     &.select2-container--open {
         .select2-selection {
-            @include box-shadow($s2bs-form-control-focus-box-shadow);
             @include transition($s2bs-form-control-transition);
             border-color: $s2bs-input-border-focus;
         }
@@ -344,7 +331,6 @@ $s2bs-form-control-transition: border-color ease-in-out .15s, box-shadow ease-in
     &.select2-container--disabled {
         .select2-selection {
             border-color: $s2bs-input-border;
-            @include box-shadow(none);
         }
 
         .select2-selection,
@@ -376,13 +362,11 @@ $s2bs-form-control-transition: border-color ease-in-out .15s, box-shadow ease-in
      */
 
     .select2-dropdown {
-        @include box-shadow($s2bs-dropdown-box-shadow);
         border-color: $s2bs-input-border-focus;
         overflow-x: hidden;
         margin-top: -1px;
 
         &--above {
-            @include box-shadow($s2bs-dropdown-box-shadow-above);
             margin-top: 1px;
         }
     }
@@ -483,7 +467,6 @@ $s2bs-form-control-transition: border-color ease-in-out .15s, box-shadow ease-in
         .select2-selection__choice {
             color: $s2bs-input-color;
             background: $s2bs-btn-default-bg;
-            border: 1px solid $s2bs-btn-default-border;
             border-radius: $s2bs-selection-choice-border-radius;
             cursor: default;
             float: left;
