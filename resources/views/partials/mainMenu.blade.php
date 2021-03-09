@@ -1,6 +1,6 @@
 @isset($title)
     <li class="nav-item mt-3 mb-1">
-        <small class="text-muted ms-4 w-100">{{ __($title) }}</small>
+        <small class="text-muted ms-4 w-100 user-select-none">{{ __($title) }}</small>
     </li>
 @endisset
 
@@ -27,7 +27,7 @@
 </li>
 
 @if($withChildren)
-    <div class="collapse sub-menu {{active($active,'show')}}" id="menu-{{$slug}}" data-bs-parent="#headerMenuCollapse">
+    <div class="collapse sub-menu {{active($active, 'show')}}" id="menu-{{$slug}}" data-bs-parent="#headerMenuCollapse">
         {!! Dashboard::menu()->render($slug,'platform::partials.dropdownMenu') !!}
     </div>
 @endif

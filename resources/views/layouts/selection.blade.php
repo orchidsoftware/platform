@@ -52,7 +52,7 @@
     </div>
     @foreach($filters as $filter)
         @if($filter->display && $filter->isApply())
-            <a href="{{ $filter->resetLink() }}" class="badge badge-light me-1 p-1">
+            <a href="{{ $filter->resetLink() }}" class="badge bg-light border me-1 p-1">
                 {{$filter->value()}}
             </a>
         @endif

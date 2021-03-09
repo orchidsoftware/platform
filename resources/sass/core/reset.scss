@@ -307,36 +307,6 @@ blockquote {
           }
       }
   }
-  &.nav-lg {
-    .nav-item .nav-link {
-      padding: 20px 20px;
-    }
-  }
-  &.nav-md {
-    .nav-item .nav-link{
-      padding: 15px 15px;
-    }
-  }
-  &.nav-sm {
-    .nav-item .nav-link {
-      padding: 6px 12px;
-    }
-  }
-  &.nav-xs {
-    .nav-item .nav-link {
-      padding: 4px 10px;
-    }
-  }
-  &.nav-xxs {
-    .nav-item .nav-link {
-      padding: 1px 10px;
-    }
-  }
-  &.nav-rounded {
-     .nav-item .nav-link {
-      border-radius: 20px;
-    }
-  }
   .open {
     .nav-link {
       &,

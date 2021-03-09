@@ -27,7 +27,7 @@
             <a href="#"
                data-action="filter#clearFilter"
                data-filter="{{$column}}"
-               class="badge badge-pill badge-light">
+               class="badge badge-pill bg-light">
                 {{ $filterString }}
             </a>
         </div>
