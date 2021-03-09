@@ -23,6 +23,11 @@
 
     <meta name="turbo-root" content="{{  Dashboard::prefix() }}">
     <meta name="dashboard-prefix" content="{{  Dashboard::prefix() }}">
+
+    @if(!config('platform.turbo.cache', false))
+        <meta name="turbo-cache-control" content="no-cache">
+    @endif
+
     <script src="{{ orchid_mix('/js/manifest.js','orchid') }}" type="text/javascript"></script>
     <script src="{{ orchid_mix('/js/vendor.js','orchid') }}" type="text/javascript"></script>
     <script src="{{ orchid_mix('/js/orchid.js','orchid') }}" type="text/javascript"></script>

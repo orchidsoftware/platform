@@ -161,4 +161,20 @@ return [
         'interval' => 60,
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Hotwire Turbo
+    |--------------------------------------------------------------------------
+    |
+    | Turbo Drive maintains a cache of recently visited pages.
+    | This cache serves two purposes: to display pages without accessing
+    | the network during restoration visits, and to improve perceived
+    | performance by showing temporary previews during application visits.
+    |
+    */
+
+    'turbo' => [
+        'cache' => false
+    ],
+
 ];
