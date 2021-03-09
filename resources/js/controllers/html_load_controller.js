@@ -73,7 +73,9 @@ export default class extends ApplicationController {
 
         let collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
         let collapseList = collapseElementList.map(function (collapseEl) {
-            return new Collapse(collapseEl)
+            return new Collapse(collapseEl, {
+                toggle: false
+            })
         })
     }
 }
