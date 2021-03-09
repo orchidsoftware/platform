@@ -113,6 +113,7 @@ abstract class Chart extends Layout
         'hideLine'   => 0,
         'heatline'   => 0,
         'dotSize'    => 4,
+        'spline'     => 0,
     ];
 
     /**
