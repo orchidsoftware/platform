@@ -8,7 +8,7 @@
                 <li class="nav-item">
                     <a class="nav-link @if ($loop->first) active @endif"
                        data-action="tabs#setActiveTab"
-                       data-target="#tab-{{\Illuminate\Support\Str::slug($name)}}"
+                       data-bs-target="#tab-{{\Illuminate\Support\Str::slug($name)}}"
                        id="button-tab-{{\Illuminate\Support\Str::slug($name)}}"
                        role="tablist"
                        data-bs-toggle="tab">
