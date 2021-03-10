@@ -5,7 +5,7 @@
                 <dt class="text-muted fw-normal">
                     {!! $column->buildDt($repository) !!}
                 </dt>
-                <dd>
+                <dd class="text-black">
                     {!! $column->buildDd($repository) !!}
                 </dd>
             </div>
