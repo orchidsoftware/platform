@@ -21,7 +21,7 @@ class PublishedResourceTest extends TestUnitCase
      */
     public function testFilesAreMinified(): void
     {
-        $maxCssSize = 400 * 1028; //  ~500 kb
+        $maxCssSize = 500 * 1028; //  ~500 kb
         $maxJsSize = 2 * 1028 * 1028; // ~2 mb
         $maxVendorSize = 2 * 1028 * 1028; // ~2 mb
 
