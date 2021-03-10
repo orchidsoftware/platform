@@ -44,16 +44,15 @@ class LegendTest extends TestUnitCase
     public function testBaseUsage(): void
     {
         $layout = Layout::legend('user', [
-            Sight::make('name')
+            Sight::make('name'),
         ]);
 
         $html = $layout->build(new Repository([
             'user' => new Repository([
-                'name' => 'Alexandr Chernyaev'
+                'name' => 'Alexandr Chernyaev',
             ]),
         ]))->render();
 
         $this->assertStringContainsString('Alexandr Chernyaev', $html);
-
     }
 }
