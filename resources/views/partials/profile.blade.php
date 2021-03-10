@@ -22,9 +22,9 @@
             @if(\Orchid\Access\UserSwitch::isSwitch())
                 <a href="#"
                    class="dropdown-item"
-                   data-controller="layouts--form"
-                   data-action="layouts--form#submitByForm"
-                   data-layouts--form-id="return-original-user"
+                   data-controller="form"
+                   data-action="form#submitByForm"
+                   data-form-id="return-original-user"
                 >
                     <x-orchid-icon path="people" class="me-2"/>
                     <span>{{ __('Back to my account') }}</span>

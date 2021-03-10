@@ -32,7 +32,7 @@
             </nav>
 
             <div class="h-100 w-100 position-relative to-top cursor d-none d-md-block mt-md-5 divider"
-                 data-action="click->layouts--html-load#goToTop"
+                 data-action="click->html-load#goToTop"
                  title="{{ __('Scroll to top') }}">
                 <div class="bottom-left w-100 mb-2 ps-3">
                     <small>
