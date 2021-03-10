@@ -34,8 +34,8 @@ class Turbo
     public function handle(Request $request, Closure $next)
     {
         // Fallback header if dd/die/etc functions are encountered during code execution
-        if ($this->turboVisit($request)) {
-            header($_SERVER['SERVER_PROTOCOL'] . ' 303 See Other', true, 303);
+        if ($this->turboVisit($request) && !headers_sent()) {
+            header($request->getProtocolVersion() . ' 303 See Other', true, 303);
         }
 
         $response = $next($request);
