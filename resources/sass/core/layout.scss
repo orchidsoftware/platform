@@ -7,19 +7,6 @@ body {
   overflow-x: hidden;
 }
 
-
-.v-middle {
-  vertical-align: middle !important;
-}
-
-.v-top {
-  vertical-align: top !important;
-}
-
-.v-bottom {
-  vertical-align: bottom !important;
-}
-
 @media (min-width: $tablet) {
     .aside {
         min-width: $app-aside-min-width;

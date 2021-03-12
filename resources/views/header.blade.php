@@ -14,6 +14,6 @@
 
     <span class="ms-3 d-none d-sm-block">
         ORCHID
-    <small class="v-top opacity">Platform</small>
+    <small class="align-top opacity">Platform</small>
     </span>
 </p>
