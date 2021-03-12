@@ -272,8 +272,10 @@
   }
 }
 
-.ql-toolbar.ql-snow,.ql-container.ql-snow{
+.ql-toolbar.ql-snow, .ql-container.ql-snow{
   border: 1px solid $form-control-border-color;
+  font-size: $font-size-base;
+  font-family: $font-family-base;
 }
 
 

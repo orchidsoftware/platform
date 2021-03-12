@@ -13,7 +13,6 @@
   border-radius: 2px;
   @include placeholder($text-muted);
   @include transition(background 0.2s linear 0s);
-  max-width: 600px;
 
     &:focus {
         border-color: fade-out($black, 0.9);
@@ -120,7 +119,10 @@ select {
     object-fit: cover;
 }
 
-
 .form-group:not(:last-child) {
     margin-bottom: 1em;
+}
+
+.form-control, .form-range{
+    max-width: 600px;
 }
