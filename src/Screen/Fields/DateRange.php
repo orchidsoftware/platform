@@ -21,7 +21,7 @@ class DateRange extends Field
     /**
      * @var string
      */
-    protected $view = 'platform::fields.range';
+    protected $view = 'platform::fields.dataRange';
 
     /**
      * Attributes available for a particular tag.
