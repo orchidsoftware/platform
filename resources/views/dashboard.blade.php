@@ -5,7 +5,7 @@
     <div class="aside col-xs-12 col-md-2 col-xl-2 col-xxl-3 bg-dark">
         <div class="d-md-flex align-items-start flex-column d-sm-block h-full">
 
-            <div class="d-sm-flex d-md-block p-3 mt-md-4 w-100 d-flex align-items-center">
+            <header class="d-sm-flex d-md-block p-3 mt-md-4 w-100 d-flex align-items-center">
                 <a href="#" class="header-toggler d-md-none me-auto order-first d-flex align-items-center"
                    data-bs-toggle="collapse"
                    data-bs-target="#headerMenuCollapse">
@@ -17,7 +17,7 @@
                 <a class="header-brand order-last" href="{{route('platform.index')}}">
                     @includeFirst([config('platform.template.header'), 'platform::header'])
                 </a>
-            </div>
+            </header>
 
             <nav class="collapse d-md-block w-100 mb-md-3" id="headerMenuCollapse">
 
@@ -43,9 +43,9 @@
                 </div>
             </div>
 
-            <div class="p-3 mb-2 m-t d-none d-lg-block w-100">
+            <footer class="p-3 mb-2 m-t d-none d-lg-block w-100">
                 @includeFirst([config('platform.template.footer'), 'platform::footer'])
-            </div>
+            </footer>
 
         </div>
     </div>
@@ -67,15 +67,15 @@
         @endif
 
         <div class="@hasSection('navbar') @else d-none d-md-block @endif layout v-md-center">
-            <div class="d-none d-md-block col-xs-12 col-md p-0">
+            <header class="d-none d-md-block col-xs-12 col-md p-0">
                 <h1 class="m-0 fw-light h3 text-black">@yield('title')</h1>
                 <small class="text-muted" title="@yield('description')">@yield('description')</small>
-            </div>
-            <div class="col-xs-12 col-md-auto ms-auto p-0">
+            </header>
+            <nav class="col-xs-12 col-md-auto ms-auto p-0">
                 <ul class="nav command-bar justify-content-sm-end justify-content-start d-flex align-items-center">
                     @yield('navbar')
                 </ul>
-            </div>
+            </nav>
         </div>
 
         @include('platform::partials.alert')
