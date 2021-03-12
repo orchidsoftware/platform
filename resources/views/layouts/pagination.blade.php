@@ -6,7 +6,7 @@
                             class="btn btn-sm btn-link dropdown-toggle p-0 m-0"
                             data-bs-toggle="dropdown"
                             aria-haspopup="true"
-                            data-boundary="viewport"
+                            data-bs-boundary="viewport"
                             aria-expanded="false">
                         {{ __('Configure columns') }}
                     </button>

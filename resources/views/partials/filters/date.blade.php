@@ -3,7 +3,7 @@
             type="button"
             data-bs-toggle="dropdown"
             aria-haspopup="true"
-            data-boundary="viewport"
+            data-bs-boundary="viewport"
             aria-expanded="false">
         <x-orchid-icon path="filter"/>
     </button>
