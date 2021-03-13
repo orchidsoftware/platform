@@ -40,7 +40,7 @@
     "orchid/blade-icons": "^1.2",
     "orchid/icons": "^2.0",
     "tabuna/breadcrumbs": "^2.3",
-    "laravel/framework": "^8.23",
+    "laravel/framework": "^8.32",
     "laravel/scout": "^8.5",
     "myclabs/php-enum": "^1.7",
     "watson/active": "^6.0"
@@ -50,12 +50,15 @@
     "fakerphp/faker": "^1.9.1",
     "guzzlehttp/guzzle": "~6.0",
     "mockery/mockery": "~1.0",
-    "orchestra/testbench": "^6.2",
+    "orchestra/testbench-core": "^6.2",
     "orchestra/testbench-dusk": "^6.1",
     "phpunit/php-code-coverage": "^9.0",
     "phpunit/phpunit": "^9.0",
     "sti3bas/laravel-scout-array-driver": "^2.2",
     "vimeo/psalm": "^4.3"
+  },
+  "conflict": {
+      "laravel/framework": "<8.32.0"
   },
   "autoload": {
     "psr-4": {
