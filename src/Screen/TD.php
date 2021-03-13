@@ -19,7 +19,7 @@ class TD
     /**
      * Align the cell to the left.
      */
-    public const ALIGN_LEFT = 'left';
+    public const ALIGN_LEFT = 'start';
 
     /**
      * Align the cell to the center.
@@ -29,7 +29,7 @@ class TD
     /**
      * Align the cell to the right.
      */
-    public const ALIGN_RIGHT = 'right';
+    public const ALIGN_RIGHT = 'end';
 
     public const FILTER_TEXT = 'text';
     public const FILTER_NUMERIC = 'numeric';
