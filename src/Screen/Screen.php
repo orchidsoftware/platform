@@ -236,7 +236,11 @@ abstract class Screen extends Controller
         $object = resolve($class);
 
         if ($original !== null && is_a($object, UrlRoutable::class)) {
-            return $object->resolveRouteBinding($original);
+            $object_to_return = $object->resolveRouteBinding($original);
+            if (key_exists($parameter->getName(),request()->route()->parameters)){
+                request()->route()->setParameter($parameter->getName(),$object_to_return);
+            }
+            return $object_to_return;
         }
 
         return $object;
