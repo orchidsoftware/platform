@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Orchid\Support\Blade;
-use Closure;
 
 abstract class Cell
 {
