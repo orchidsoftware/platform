@@ -17,7 +17,7 @@ class NotificationsComposer
      */
     public function compose(View $view)
     {
-        $notifications = Auth::user()
+        $notifications = Auth::guard(config('platform.guard'))->user()
             ->unreadNotifications()
             ->where('type', DashboardMessage::class)
             ->limit(15)

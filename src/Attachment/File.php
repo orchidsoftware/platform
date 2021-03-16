@@ -87,7 +87,7 @@ class File
         $attachment = $attachment->replicate()->fill([
             'original_name' => $this->file->getClientOriginalName(),
             'sort'          => 0,
-            'user_id'       => Auth::id(),
+            'user_id'       => Auth::guard(config('platform.guard'))->id(),
             'group'         => $this->group,
         ]);
 
@@ -125,7 +125,7 @@ class File
             'path'          => Str::finish($this->engine->path(), '/'),
             'disk'          => $this->disk,
             'group'         => $this->group,
-            'user_id'       => Auth::id(),
+            'user_id'       => Auth::guard(config('platform.guard'))->id(),
         ]);
 
         event(new UploadFileEvent($attachment, $this->engine->time()));

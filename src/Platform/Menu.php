@@ -109,7 +109,7 @@ class Menu
      */
     private function checkAccess()
     {
-        $user = Auth::user();
+        $user = Auth::guard(config('platform.guard'))->user();
 
         $this->container = $this->container
             ->filter(static function ($item) use ($user) {

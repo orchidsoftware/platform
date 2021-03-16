@@ -11,7 +11,7 @@
         @endif
     </title>
     <meta name="csrf_token" content="{{  csrf_token() }}" id="csrf_token" data-turbolinks-permanent>
-    <meta name="auth" content="{{  Auth::check() }}" id="auth" data-turbolinks-permanent>
+    <meta name="auth" content="{{  Auth::guard(config('platform.guard'))->check() }}" id="auth" data-turbolinks-permanent>
     @if(file_exists(public_path('/css/orchid/orchid.css')))
         <link rel="stylesheet" type="text/css" href="{{  mix('/css/orchid/orchid.css') }}">
     @else

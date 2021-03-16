@@ -19,21 +19,6 @@ use Illuminate\Support\Facades\Route;
 class Access
 {
     /**
-     * @var Guard
-     */
-    protected $auth;
-
-    /**
-     * AccessMiddleware constructor.
-     *
-     * @param Guard $auth
-     */
-    public function __construct(Guard $auth)
-    {
-        $this->auth = $auth;
-    }
-
-    /**
      * @param Request $request
      * @param Closure $next
      * @param string  $permission
@@ -44,11 +29,11 @@ class Access
     {
         Carbon::setLocale(config('app.locale'));
 
-        if ($this->auth->guest()) {
+        if (auth()->guard(config('platform.guard'))->guest()) {
             return $this->redirectToLogin($request);
         }
 
-        if ($this->auth->user()->hasAccess($permission)) {
+        if (auth()->guard(config('platform.guard'))->user()->hasAccess($permission)) {
             return $next($request);
         }
 

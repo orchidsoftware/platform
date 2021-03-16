@@ -57,7 +57,7 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
 
-        $auth = Auth::guard()->attempt(
+        $auth = Auth::guard(config('platform.guard'))->attempt(
             $request->only(['email', 'password']),
             $request->filled('remember')
         );
@@ -126,7 +126,7 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        Auth::guard()->logout();
+        Auth::guard(config('platform.guard'))->logout();
 
         $request->session()->invalidate();
 

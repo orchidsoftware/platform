@@ -1,14 +1,14 @@
 <div class="row m-0 align-items-center p-3">
     <div class="dropdown col p-0">
         <a href="#" class="nav-link p-0 v-center" data-toggle="dropdown">
-            @if($image = Auth::user()->presenter()->image())
+            @if($image = Auth::guard(config('platform.guard'))->user()->presenter()->image())
                 <span class="thumb-sm avatar mr-3">
                         <img src="{{$image}}" class="b">
                 </span>
             @endif
             <span style="width:12em;font-size: 0.85em;">
-                <span class="text-ellipsis">{{Auth::user()->presenter()->title()}}</span>
-                <span class="text-muted d-block text-ellipsis">{{Auth::user()->presenter()->subTitle()}}</span>
+                <span class="text-ellipsis">{{Auth::guard(config('platform.guard'))->user()->presenter()->title()}}</span>
+                <span class="text-muted d-block text-ellipsis">{{Auth::guard(config('platform.guard'))->user()->presenter()->subTitle()}}</span>
             </span>
         </a>
         <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow bg-white">
@@ -19,7 +19,7 @@
                 <div class="dropdown-divider"></div>
             @endif
 
-            @if(Auth::user()->hasAccess('platform.systems.index'))
+            @if(Auth::guard(config('platform.guard'))->user()->hasAccess('platform.systems.index'))
                 <a href="{{ route('platform.systems.index') }}" class="dropdown-item">
                     <x-orchid-icon path="settings" class="mr-2"/>
                     <span>{{ __('System') }}</span>

@@ -249,7 +249,7 @@ abstract class Screen extends Controller
     {
         return collect($this->permission)
             ->map(static function ($item) {
-                return Auth::user()->hasAccess($item);
+                return Auth::guard(config('platform.guard'))->user()->hasAccess($item);
             })
             ->whenEmpty(function (Collection $permission) {
                 return $permission->push(true);
