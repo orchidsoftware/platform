@@ -40,7 +40,8 @@
                         <div class="dropdown-divider"></div>
                         <button type="submit"
                                 form="filters"
-                                class="btn btn-sm btn-default">
+                                class="btn btn-sm btn-default"
+                                data-action="click->filter#submit">
                             {{ __('Apply') }}
                         </button>
                     </div>
