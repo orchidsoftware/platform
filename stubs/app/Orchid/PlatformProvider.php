@@ -6,7 +6,6 @@ use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemMenu;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\OrchidServiceProvider;
-use Orchid\Support\Color;
 
 class PlatformProvider extends OrchidServiceProvider
 {
@@ -25,6 +24,10 @@ class PlatformProvider extends OrchidServiceProvider
      */
     public function registerMainMenu(): array
     {
+        if (class_exists(MainMenu::class)) {
+            return MainMenu::menu();
+        }
+
         return [
             ItemMenu::label(__('Users'))
                 ->icon('user')
