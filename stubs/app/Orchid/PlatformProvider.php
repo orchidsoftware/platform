@@ -6,7 +6,6 @@ use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemMenu;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\OrchidServiceProvider;
-use Orchid\Support\Color;
 
 class PlatformProvider extends OrchidServiceProvider
 {
