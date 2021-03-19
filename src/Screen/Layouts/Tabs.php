@@ -17,14 +17,30 @@ abstract class Tabs extends Layout
      */
     public $template = 'platform::layouts.tabs';
 
+    protected $titles = [];
+
     /**
      * Layout constructor.
      *
      * @param Layout[] $layouts
+     * @param string[] $titles
      */
-    public function __construct(array $layouts = [])
+    public function __construct(array $layouts = [], array $titles = [])
     {
         $this->layouts = $layouts;
+        $this->titles = $titles;
+    }
+
+    /**
+     * @param array $titles
+     *
+     * @return Tabs
+     */
+    public function titles(array $titles = [])
+    {
+        $this->titles = $titles;
+
+        return $this;
     }
 
     /**
@@ -34,6 +50,8 @@ abstract class Tabs extends Layout
      */
     public function build(Repository $repository)
     {
-        return $this->buildAsDeep($repository);
+        return $this->buildAsDeep($repository)->with([
+            'titles' => $this->titles,
+        ]);
     }
 }
