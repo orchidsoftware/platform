@@ -44,7 +44,7 @@ class ItemMenu
     /**
      * @var bool
      */
-    public $childs = false;
+    public $withChildren = false;
 
     /**
      * @var int
@@ -231,13 +231,13 @@ class ItemMenu
     }
 
     /**
-     * @param bool $childs
+     * @param bool $children
      *
-     * @return ItemMenu
+     * @return $this
      */
-    public function childs(bool $childs = true): self
+    public function withChildren(bool $children = true): self
     {
-        $this->childs = $childs;
+        $this->withChildren = $children;
 
         return $this;
     }

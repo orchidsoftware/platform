@@ -3,7 +3,6 @@
     @empty(!$title)
         <div class="col p-0 px-3">
             <legend class="text-black">
-                <span class="text-muted font-weight-bold">|</span>
                 {{ $title }}
             </legend>
         </div>

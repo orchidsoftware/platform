@@ -49,22 +49,6 @@ class Action extends Field implements Actionable
     }
 
     /**
-     * @deprecated
-     *
-     * Align button to the right.
-     *
-     * @return static
-     */
-    public function right(): self
-    {
-        $class = $this->get('class').' pull-right';
-
-        $this->set('class', $class);
-
-        return $this;
-    }
-
-    /**
      * @param Color $visual
      *
      * @return static
@@ -80,22 +64,6 @@ class Action extends Field implements Actionable
         $class = str_replace($colors, '', (string) $this->get('class'));
 
         $this->set('class', $class.' btn-'.$visual);
-
-        return $this;
-    }
-
-    /**
-     * @deprecated
-     *
-     * Set the button as block.
-     *
-     * @return static
-     */
-    public function block(): self
-    {
-        $class = $this->get('class').' btn-block';
-
-        $this->set('class', $class);
 
         return $this;
     }
@@ -119,7 +87,7 @@ class Action extends Field implements Actionable
      */
     public function rawClick(bool $status = false): self
     {
-        $this->set('turbolinks', $status);
+        $this->set('turbo', $status);
 
         return $this;
     }

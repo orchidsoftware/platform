@@ -62,6 +62,7 @@ class File
         $this->disk = $disk ?? config('platform.attachment.disk', 'public');
         $this->storage = Storage::disk($this->disk);
 
+        /** @var string $generator */
         $generator = config('platform.attachment.generator', Generator::class);
 
         $this->engine = new $generator($file);

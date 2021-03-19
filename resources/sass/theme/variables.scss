@@ -24,15 +24,13 @@ $grey:          #495057;
 
 $grey-light : mix($grey, #ffffff, 10%);
 
-$body-bg : #eaf1f7;//lighten($light, 1%);
+$body-bg : #edeef0;//lighten($light, 1%);
 $text-color : #58666e;
 $text-muted : lighten($text-color, 25%);
 
-$font-size-base : 1rem;
-$font-size-lg : 1.23 * $font-size-base;
-$font-size-md : 1.142857 * $font-size-base;
-$font-size-sm : 0.92857 * $font-size-base;
-$font-size-xs : 0.85714 * $font-size-base;
+$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+$font-size-lg: $font-size-base * 1.25 !default;
+$font-size-sm: $font-size-base * .895 !default;
 
 $link-color : darken($text-color, 15%);
 $link-hover-color : darken($text-color, 30%);
@@ -74,9 +72,10 @@ $list-group-active-color : $cyan;
 
 $table-border-color : lighten($border-color, 2%);
 $table-striped-color : lighten($light, 4.5%);
+$table-hover-bg: rgba($dark, .045) !default;
 
 $app-aside-min-width : 20em;
-$app-aside-width : 350px;
+$app-aside-width : 280px;
 $aside-wrap-main-width: 0px;
 $app-aside-nav-height : 40px; //2,857rem;
 $app-aside-folded-width : 60px;
@@ -93,9 +92,13 @@ $menu-bezier : 0.05, 0.74, 0.27, 0.99;
 $menu-light : #fafafa;
 
 //Forms
-$form-height : 35px;
-$form-group-height : 54px;
-$form-control-border-color : fade-out($black, 0.9);
+$form-height: 35px;
+$form-group-height: 54px;
+$form-control-border-color: fade-out($black, 0.9);
+$input-padding-y: .5rem !default;
+$input-padding-x: .75rem !default;
+$form-check-input-width: 1.2em;
+
 
 $tablet : 768px;
 $desktop : 1280px;
@@ -153,3 +156,11 @@ $border-radius-sm:            .3rem;
 
 // Pagination
 $pagination-disabled-color: $text-muted;
+
+
+// Responsive font sizes
+$enable-responsive-font-sizes: true;
+
+
+// Navigation
+$nav-link-padding-y: .625rem;

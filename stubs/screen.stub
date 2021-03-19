@@ -16,7 +16,7 @@ class DummyClass extends Screen
     /**
      * Display header description.
      *
-     * @var string
+     * @var string|null
      */
     public $description = 'DummyClass';
 
@@ -33,7 +33,7 @@ class DummyClass extends Screen
     /**
      * Button commands.
      *
-     * @return Action[]
+     * @return \Orchid\Screen\Action[]
      */
     public function commandBar(): array
     {
@@ -43,7 +43,7 @@ class DummyClass extends Screen
     /**
      * Views.
      *
-     * @return Layout[]
+     * @return \Orchid\Screen\Layout[]|string[]
      */
     public function layout(): array
     {

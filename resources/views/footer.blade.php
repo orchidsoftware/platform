@@ -1,8 +1,8 @@
 @guest
-    <p>Crafted with <span class="mr-1">❤️</span> by Alexandr Chernyaev</p>
+    <p>Crafted with <span class="me-1">❤️</span> by Alexandr Chernyaev</p>
 @else
 
-    <div class="text-center">
+    <div class="text-center user-select-none">
         <p class="small m-0">
             {{ __('The application code is published under the MIT license.') }} 2016 - {{date('Y')}}<br>
             <a href="http://orchid.software" target="_blank" rel="noopener">

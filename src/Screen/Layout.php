@@ -15,6 +15,8 @@ use Orchid\Support\Facades\Dashboard;
  */
 abstract class Layout implements JsonSerializable
 {
+    use CanSee;
+
     /**
      * Main template to display the layer
      * Represents the view() argument.
@@ -53,6 +55,11 @@ abstract class Layout implements JsonSerializable
     protected $variables = [];
 
     /**
+     * @var Repository
+     */
+    protected $query;
+
+    /**
      * @param Repository $repository
      *
      * @return mixed
@@ -86,23 +93,15 @@ abstract class Layout implements JsonSerializable
     }
 
     /**
-     * @param Repository $query
-     *
-     * @return bool
-     */
-    public function canSee(/* @noinspection PhpUnusedParameterInspection */ Repository $query): bool
-    {
-        return true;
-    }
-
-    /**
      * @param Repository $repository
      *
      * @return mixed
      */
     protected function buildAsDeep(Repository $repository)
     {
-        if (! $this->checkPermission($this, $repository)) {
+        $this->query = $repository;
+
+        if (! $this->isSee()) {
             return;
         }
 
@@ -147,17 +146,6 @@ abstract class Layout implements JsonSerializable
     }
 
     /**
-     * @param self       $layout
-     * @param Repository $repository
-     *
-     * @return bool
-     */
-    protected function checkPermission(self $layout, Repository $repository): bool
-    {
-        return method_exists($layout, 'canSee') && $layout->canSee($repository);
-    }
-
-    /**
      * @param array      $layouts
      * @param int|string $key
      * @param Repository $repository
@@ -168,10 +156,10 @@ abstract class Layout implements JsonSerializable
     {
         return collect($layouts)
             ->map(function ($layout) {
-                return is_object($layout) ? $layout : app()->make($layout);
+                return is_object($layout) ? $layout : resolve($layout);
             })
-            ->filter(function (self $layout) use ($repository) {
-                return $this->checkPermission($layout, $repository);
+            ->filter(function () {
+                return $this->isSee();
             })
             ->reduce(function (array $build, self $layout) use ($key, $repository) {
                 $build[$key][] = $layout->build($repository);
@@ -211,7 +199,7 @@ abstract class Layout implements JsonSerializable
             ->map(static function ($layout) use ($slug) {
                 $layout = is_object($layout)
                     ? $layout
-                    : app()->make($layout);
+                    : resolve($layout);
 
                 return $layout->findBySlug($slug);
             })

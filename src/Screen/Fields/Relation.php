@@ -42,10 +42,11 @@ class Relation extends Field
      * @var array
      */
     protected $attributes = [
-        'class'          => 'form-control',
-        'value'          => [],
-        'relationScope'  => null,
-        'relationAppend' => null,
+        'class'                 => 'form-control',
+        'value'                 => [],
+        'relationScope'         => null,
+        'relationAppend'        => null,
+        'relationSearchColumns' => null,
     ];
 
     /**
@@ -58,6 +59,7 @@ class Relation extends Field
         'relationKey',
         'relationScope',
         'relationAppend',
+        'relationSearchColumns',
     ];
 
     /**
@@ -83,15 +85,19 @@ class Relation extends Field
      * @param string       $name
      * @param string|null  $key
      *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
      * @return Relation
+     *
      */
     public function fromModel(string $model, string $name, string $key = null): self
     {
-        $key = $key ?? (new $model())->getModel()->getKeyName();
+        $key = $key ?? resolve($model)->getModel()->getKeyName();
 
-        $this->set('relationModel', Crypt::encryptString($model));
-        $this->set('relationName', Crypt::encryptString($name));
-        $this->set('relationKey', Crypt::encryptString($key));
+        $this
+            ->set('relationModel', Crypt::encryptString($model))
+            ->set('relationName', Crypt::encryptString($name))
+            ->set('relationKey', Crypt::encryptString($key));
 
         return $this->addBeforeRender(function () use ($model, $name, $key) {
             $append = $this->get('relationAppend');
@@ -144,7 +150,7 @@ class Relation extends Field
             }
 
             $scope = $this->get('scope', 'handler');
-            $class = app()->make($class);
+            $class = resolve($class);
 
             if (! is_iterable($value)) {
                 $value = Arr::wrap($value);
@@ -188,6 +194,20 @@ class Relation extends Field
         ];
         $this->set('scope', $data);
         $this->set('relationScope', Crypt::encrypt($data));
+
+        return $this;
+    }
+
+    /**
+     * @param string|array $columns
+     *
+     * @return $this
+     */
+    public function searchColumns(...$columns): self
+    {
+        $columns = Arr::wrap($columns);
+
+        $this->set('relationSearchColumns', Crypt::encrypt($columns));
 
         return $this;
     }

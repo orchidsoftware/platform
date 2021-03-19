@@ -7,19 +7,6 @@ body {
   overflow-x: hidden;
 }
 
-
-.v-middle {
-  vertical-align: middle !important;
-}
-
-.v-top {
-  vertical-align: top !important;
-}
-
-.v-bottom {
-  vertical-align: bottom !important;
-}
-
 @media (min-width: $tablet) {
     .aside {
         min-width: $app-aside-min-width;
@@ -95,13 +82,19 @@ body {
     @extend .mb-3;
 }
 
-.layout-wrapper {
+.layout-wrapper-no-padder {
     > .p-4 {
-        padding: 0!important;
+        padding: 0 !important;
     }
+}
 
+.layout-wrapper {
     .shadow-sm {
         box-shadow: none !important;
+    }
+
+    > .mb-3:last-child{
+        @extend .mb-0
     }
 }
 

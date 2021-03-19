@@ -386,20 +386,6 @@ class Field implements Fieldable
     }
 
     /**
-     * @deprecated
-     *
-     * Create a group of the fields.
-     *
-     * @param Closure|array $group
-     *
-     * @return Group
-     */
-    public static function group($group): Group
-    {
-        return Group::make(is_callable($group) ? $group() : $group);
-    }
-
-    /**
      * Use vertical layout for the field.
      *
      * @return static
@@ -501,5 +487,22 @@ class Field implements Fieldable
         }
 
         return '';
+    }
+
+    /**
+     * Apply the callback if the value is truthy.
+     *
+     * @param bool     $value
+     * @param callable $callback
+     *
+     * @return static
+     */
+    public function when(bool $value, callable $callback)
+    {
+        if ($value) {
+            $callback($this);
+        }
+
+        return $this;
     }
 }

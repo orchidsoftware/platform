@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens;
 
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Orchid\Platform\Http\Layouts\SearchLayout;
@@ -128,10 +128,8 @@ class SearchScreen extends Screen
                 $presenter = optional($model)->presenter();
 
                 throw_unless(is_a($presenter, Searchable::class),
-                    new \Exception("
-                        The presenter must have an interface 'Orchid\Screen\Contracts\Searchable'
-                        for model ".get_class($model)
-                    ));
+                   "The presenter must have an interface 'Orchid\Screen\Contracts\Searchable'
+                        for model ".get_class($model));
 
                 $label = $presenter->label();
 

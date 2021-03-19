@@ -5,13 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use App\Orchid\PlatformProvider;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Orchid\IconPack\Path;
 use Orchid\Icons\IconFinder;
 use Orchid\Platform\Dashboard;
-use Orchid\Platform\Http\Composers\LockMeComposer;
-use Orchid\Platform\Http\Composers\NotificationsComposer;
 use Orchid\Platform\ItemPermission;
 
 class PlatformServiceProvider extends ServiceProvider
@@ -31,9 +28,6 @@ class PlatformServiceProvider extends ServiceProvider
     {
         $this->dashboard = $dashboard;
 
-        View::composer('platform::auth.login', LockMeComposer::class);
-        View::composer('platform::partials.notificationProfile', NotificationsComposer::class);
-
         $icons = array_merge(['o' => Path::getFolder()], config('platform.icons', []));
 
         foreach ($icons as $key => $path) {
@@ -42,8 +36,8 @@ class PlatformServiceProvider extends ServiceProvider
 
         $this->app->booted(function () {
             $this->dashboard
-                ->registerResource('stylesheets', config('platform.resource.stylesheets', null))
-                ->registerResource('scripts', config('platform.resource.scripts', null))
+                ->registerResource('stylesheets', config('platform.resource.stylesheets'))
+                ->registerResource('scripts', config('platform.resource.scripts'))
                 ->registerPermissions($this->registerPermissionsMain())
                 ->registerPermissions($this->registerPermissionsSystems())
                 ->addPublicDirectory('orchid', Dashboard::path('public/'));
@@ -56,8 +50,7 @@ class PlatformServiceProvider extends ServiceProvider
     protected function registerPermissionsMain(): ItemPermission
     {
         return ItemPermission::group(__('Main'))
-            ->addPermission('platform.index', __('Main'))
-            ->addPermission('platform.systems.index', __('Systems'));
+            ->addPermission('platform.index', __('Main'));
     }
 
     /**
@@ -65,7 +58,7 @@ class PlatformServiceProvider extends ServiceProvider
      */
     protected function registerPermissionsSystems(): ItemPermission
     {
-        return ItemPermission::group(__('Systems'))
+        return ItemPermission::group(__('System'))
             ->addPermission('platform.systems.attachment', __('Attachment'));
     }
 

@@ -1,15 +1,15 @@
 <div class="dropdown d-inline-block">
     <button class="btn btn-sm btn-link dropdown-toggle"
             type="button"
-            data-toggle="dropdown"
+            data-bs-toggle="dropdown"
             aria-haspopup="true"
-            data-boundary="viewport"
+            data-bs-boundary="viewport"
             aria-expanded="false">
         <x-orchid-icon path="filter"/>
     </button>
     <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow" x-placement="bottom-end">
-        <div class="wrapper-sm">
-            <div class="form-group mb-2 no-gutters">
+        <div class="py-2 px-3">
+            <div class="form-group mb-2 g-0">
                 <input type="number" name="filter[{{$column}}]"
                        class="form-control form-control-sm"
                        form="filters"

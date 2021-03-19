@@ -9,7 +9,7 @@
 @endsection
 
 @section('controller')
-    screen--base
+    base
 @endsection
 
 @section('navbar')
@@ -25,19 +25,20 @@
           class="mb-md-4"
           method="post"
           enctype="multipart/form-data"
-          data-controller="layouts--form"
-          data-action="keypress->layouts--form#disableKey
-                           layouts--form#submit"
-          data-layouts--form-validation="{{ $formValidateMessage }}"
+          data-controller="form"
+          data-action="keypress->form#disableKey
+                           form#submit"
+          data-form-validation="{{ $formValidateMessage }}"
           novalidate
     >
         {!! $layouts !!}
         @csrf
+        @include('platform::partials.confirm')
     </form>
     <div id="modals-container">
         @stack('modals-container')
     </div>
-    <div data-controller="screen--filter">
-        <form id="filters" autocomplete="off" data-action="screen--filter#submit"></form>
+    <div data-controller="filter">
+        <form id="filters" autocomplete="off" data-action="filter#submit"></form>
     </div>
 @endsection

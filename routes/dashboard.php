@@ -2,20 +2,21 @@
 
 declare(strict_types=1);
 
-use Orchid\Platform\Http\Controllers\Systems\AsyncController;
-use Orchid\Platform\Http\Controllers\Systems\IndexController;
+use Orchid\Platform\Http\Controllers\AsyncController;
+use Orchid\Platform\Http\Controllers\IndexController;
 use Orchid\Platform\Http\Screens\NotificationScreen;
 use Orchid\Platform\Http\Screens\SearchScreen;
 use Tabuna\Breadcrumbs\Trail;
+use Illuminate\Support\Facades\Route;
 
 // Index and default...
-$this->router->get('/', [IndexController::class, 'index'])
+Route::get('/', [IndexController::class, 'index'])
     ->name('index')
     ->breadcrumbs(function (Trail $trail) {
         return $trail->push(__('Home'), route('platform.index'));
     });
 
-$this->router->screen('search/{query}', SearchScreen::class)
+Route::screen('search/{query}', SearchScreen::class)
     ->name('search')
     ->breadcrumbs(function (Trail $trail, string $query) {
         return $trail->parent('platform.index')
@@ -23,15 +24,20 @@ $this->router->screen('search/{query}', SearchScreen::class)
             ->push($query);
     });
 
-$this->router->screen('notifications/{id?}', NotificationScreen::class)
-    ->name('notifications')
-    ->breadcrumbs(function (Trail $trail) {
-        return $trail->parent('platform.index')
-            ->push(__('Notifications'));
-    });
 
-$this->router->post('api/notifications', [NotificationScreen::class, 'unreadNotification'])
-    ->name('api.notifications');
+Route::post('async/{screen}/{method?}/{template?}', [AsyncController::class, 'load'])
+    ->name('async');
 
-$this->router->post('async/{screen}/{method?}/{template?}', [AsyncController::class, 'load'])->name('async');
-$this->router->fallback([IndexController::class, 'fallback']);
+if(config('platform.notifications.enabled', true)) {
+    Route::screen('notifications/{id?}', NotificationScreen::class)
+        ->name('notifications')
+        ->breadcrumbs(function (Trail $trail) {
+            return $trail->parent('platform.index')
+                ->push(__('Notifications'));
+        });
+
+    Route::post('api/notifications', [NotificationScreen::class, 'unreadNotification'])
+        ->name('api.notifications');
+}
+
+Route::fallback([IndexController::class, 'fallback']);

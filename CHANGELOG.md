@@ -4,6 +4,269 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 9.19.8 - 2021-02-19
+
+### Fixed
+- `orchid:admin` command doesn't accept values
+
+## 9.19.7 - 2021-02-10
+
+### Changed
+- Update dependencies
+
+## 9.19.6 - 2021-02-08
+
+### Fixed
+- `AsSource::getContent()` does not return virtual fields defined as Model Accessor [#1558](https://github.com/orchidsoftware/platform/issues/1558)
+
+## 9.19.5 - 2021-02-06
+
+### Fixed
+- Display of background notifications
+- Removed the default background value for `badge` [#1076](https://github.com/orchidsoftware/platform/issues/1076)
+
+## 9.19.4 - 2021-01-26
+
+### Fixed
+- Open link for Safari [#1539](https://github.com/orchidsoftware/platform/issues/1539)
+
+## 9.19.3 - 2021-01-26
+
+### Added
+- Added a log of changes to the menu
+
+### Changed
+- Reduced left menu width
+- Allow exit on Impersonation
+
+### Fixed
+- Field name for code
+
+## 9.19.2 - 2021-01-26
+
+### Fixed
+- Map related User model [#1544](https://github.com/orchidsoftware/platform/pull/1544)
+
+## 9.19.1 - 2021-01-26
+
+### Fixed
+- UserEditScreen stub more reasonable for CREATE [#1541](https://github.com/orchidsoftware/platform/pull/1541)
+
+## 9.19.0 - 2021-01-23
+
+### Added
+- Create new user via `Systems -> Users` screen [#1534](https://github.com/orchidsoftware/platform/pull/1534)
+
+### Changed
+- Use a dash instead of blank percentages with an icon.
+
+### Fixed
+- Hide file download link for non-public storage [#1533](https://github.com/orchidsoftware/platform/pull/1533)
+- Wiping user roles when updating user via oneAsyncModal [#1535](https://github.com/orchidsoftware/platform/pull/1535)
+
+## 9.18.1 - 2021-01-20
+
+### Changed
+- Updated dependencies
+- Increased the size of the icons in the menu
+
+## 9.18.0 - 2021-01-18
+
+### Added
+- Support annotations for Charts [#1526](https://github.com/orchidsoftware/platform/pull/1526)
+- Simplified Chinese translation [#1516](https://github.com/orchidsoftware/platform/pull/1516)
+
+## 9.17.1 - 2021-01-15
+
+### Fixed
+- Table error when pagination is missing
+- Used current methods instead ustaresh
+
+## 9.17.0 - 2021-01-15
+
+### Added
+- Method for display the day of the week in charts
+- Method for using the component in TD [#1489](https://github.com/orchidsoftware/platform/issues/1489)
+
+## 9.16.1 - 2021-01-11
+
+### Added
+- Missing Spanish translation [#1495](https://github.com/orchidsoftware/platform/pull/1495)
+- Corrected/Optimized German translation [#1496](https://github.com/orchidsoftware/platform/pull/1496)
+
+### Fixed
+- Clarification that could confuse new users [#86](https://github.com/orchidsoftware/orchid.software/issues/86)
+
+## 9.16.0 - 2021-01-10
+
+### Added
+- Support method `onEachSide` for Table
+
+## 9.15.2 - 2021-01-10
+
+### Fixed
+- Display pagination on mobile device
+- Wrong method to process password update form. [#1491](https://github.com/orchidsoftware/platform/pull/1491)
+- Added missing keys in Russian translation for profile page [#1492](https://github.com/orchidsoftware/platform/pull/1492)
+
+## 9.15.1 - 2021-01-08
+
+### Fixed
+- Hoverable template
+
+## 9.15.0 - 2021-01-07
+
+### Added
+- Hover rows for table
+
+### Changed
+- Automatic translation of chart titles
+
+## 9.14.6 - 2021-01-06
+
+### Fixed
+- "An invalid form control with name='' is not focusable." For hidden datepicker
+
+## 9.14.5 - 2021-01-05
+
+### Changed
+- Show two-digit numbers of unread notifications
+- Do not use the plural "Systems"
+- Update dependencies
+
+### Fixed
+- Ability to specify the width in percent for columns
+- Usage of notification refresh period
+- Datepicker issue on filter dropdown [#1486](https://github.com/orchidsoftware/platform/pull/1486) [#1386](https://github.com/orchidsoftware/platform/issues/1386)
+
+### Removed
+- Unused translations
+
+### Deprecated
+- `childs()` for `ItemMenu` usage `withChildren()`
+
+## 9.14.4 - 2020-12-29
+
+### Changed
+- Pages are closed from indexing by default
+
+### Fixed
+- Submit confirm button for Safari [#1482](https://github.com/orchidsoftware/platform/issues/1482)
+
+
+## 9.14.3 - 2020-12-26
+
+### Changed
+- Using app name in headers [#1476](https://github.com/orchidsoftware/platform/issues/1476)
+
+## 9.14.2 - 2020-12-23
+
+### Fixed
+- Display only hidden filter
+
+## 9.14.1 - 2020-12-23
+
+### Fixed
+- Display only hidden filter
+
+## 9.14.0 - 2020-12-18
+
+### Added
+- Parameters to the config file to configure notifications
+- `php-cs-fixer` for GitHub Action
+
+### Changed
+- Use seconds instead of microseconds to set the refresh interval for notifications
+- Use one method name to instantiate for code consistency
+- Default background-color
+
+### Deprecated
+- Method `set` for TD. (Usage `make`)
+
+### Removed
+- Decorative elements from headers
+- Some controllers removed the use of jQuery
+
+## 9.13.0 - 2020-12-13
+
+### Added
+- Support PHP 8.0 [#1396](https://github.com/orchidsoftware/platform/pull/1396)
+- Persian Farsi translation. [#1394](https://github.com/orchidsoftware/platform/pull/1394)
+
+## 9.12.1 - 2020-12-06
+
+### Fixed
+- Filters style [#1387](https://github.com/orchidsoftware/platform/pull/1387)
+
+## 9.12.0 - 2020-12-05
+
+### Added
+- Methods `sumByDays` and `valuesByDays` for `Chartable` trait
+
+## 9.11.2 - 2020-12-04
+
+### Fixed
+- Display of the active radio button [#1385](https://github.com/orchidsoftware/platform/pull/1385)
+
+## 9.11.1 - 2020-11-30
+
+### Fixed
+- Padding when using a block/card
+
+## 9.11.0 - 2020-11-29
+
+### Added
+- Block layout [#1380](https://github.com/orchidsoftware/platform/pull/1380)
+- Search columns for Relation field [#1377](https://github.com/orchidsoftware/platform/pull/1377)
+
+## 9.10.1 - 2020-11-26
+
+### Fixed
+- Email profile validation
+- Typo in the first character of the cancel button in confirm view, Russian character instead of English. Added missed key in Russian translation [#1375](https://github.com/orchidsoftware/platform/pull/1375)
+
+## 9.10.0 - 2020-11-24
+
+### Changed
+- Changed the visual appearance of the confirmation window
+
+## 9.9.2 - 2020-11-20
+
+### Fixed
+- The appearance of the horizontal filter
+
+## 9.9.1 - 2020-11-18
+
+### Fixed
+- Removed artificial limitation of filter width
+
+## 9.9.0 - 2020-11-13
+
+### Added
+- Method to clear the permission check cache [#1354](https://github.com/orchidsoftware/platform/pull/1354)
+- Added third status for checkbox [#1360](https://github.com/orchidsoftware/platform/pull/1360)
+- Added use of the third status to display available permissions [#1360](https://github.com/orchidsoftware/platform/pull/1360)
+- Added `datalist` for Input field [#1362](https://github.com/orchidsoftware/platform/pull/1362)
+
+### Changed
+- Update Faker [#1353](https://github.com/orchidsoftware/platform/pull/1353)
+
+### Fixed
+- Added missing keys translation [#1355](https://github.com/orchidsoftware/platform/pull/1355), [#1356](https://github.com/orchidsoftware/platform/pull/1356), [#1358](https://github.com/orchidsoftware/platform/pull/1358), 
+- Frozen version of Frappe charts
+
+## 9.8.2 - 2020-11-10
+
+### Fixed
+- Generate TD CSS width value [#1348](https://github.com/orchidsoftware/platform/pull/1348)
+- Dropzone.js timeout option not set. [#1349](https://github.com/orchidsoftware/platform/issues/1349), [#1350](https://github.com/orchidsoftware/platform/pull/1350)
+
+## 9.8.1 - 2020-11-09
+
+### Fixed
+- Rendering of attribute style in td view [#1347](https://github.com/orchidsoftware/platform/pull/1347)
+- Added maximum width and height for image fields
+
 ## 9.8.0 - 2020-11-07
 
 ### Added

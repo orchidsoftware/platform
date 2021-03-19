@@ -1,5 +1,5 @@
 <div class="d-block bg-white rounded shadow-sm mb-3">
-    <div class="row no-gutters">
+    <div class="row g-0">
 
             @empty(!$image)
                 <div class="col-md-4">
@@ -20,15 +20,15 @@
                         </div>
 
                         @if(count($commandBar) > 0)
-                            <div class="col-auto ml-auto text-right">
+                            <div class="col-auto ms-auto text-end">
                                 <div class="btn-group command-bar">
                                     <button class="btn btn-link btn-sm dropdown-toggle dropdown-item p-2" type="button"
-                                            data-toggle="dropdown"
+                                            data-bs-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">
                                         <x-orchid-icon path="options-vertical"/>
 
                                     </button>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow bg-white"
+                                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow bg-white"
                                          x-placement="bottom-end">
                                         @foreach ($commandBar as $command)
                                             {!! $command !!}
@@ -38,7 +38,7 @@
                             </div>
                         @endif
                     </div>
-                    <div class="card-text layout-wrapper">{!! $description ?? '' !!}</div>
+                    <div class="card-text layout-wrapper layout-wrapper-no-padder">{!! $description ?? '' !!}</div>
                 </div>
             </div>
 

@@ -1,16 +1,17 @@
 @component($typeForm, get_defined_vars())
-    <div data-controller="fields--relation"
-         data-fields--relation-id="{{$id}}"
-         data-fields--relation-placeholder="{{$attributes['placeholder'] ?? ''}}"
-         data-fields--relation-value="{{  $value }}"
-         data-fields--relation-model="{{ $relationModel }}"
-         data-fields--relation-name="{{ $relationName }}"
-         data-fields--relation-key="{{ $relationKey }}"
-         data-fields--relation-scope="{{ $relationScope }}"
-         data-fields--relation-append="{{ $relationAppend }}"
-         data-fields--relation-route="{{ route('platform.systems.relation') }}"
+    <div data-controller="relation"
+         data-relation-id="{{$id}}"
+         data-relation-placeholder="{{$attributes['placeholder'] ?? ''}}"
+         data-relation-value="{{  $value }}"
+         data-relation-model="{{ $relationModel }}"
+         data-relation-name="{{ $relationName }}"
+         data-relation-key="{{ $relationKey }}"
+         data-relation-scope="{{ $relationScope }}"
+         data-relation-search-columns="{{ $relationSearchColumns }}"
+         data-relation-append="{{ $relationAppend }}"
+         data-relation-route="{{ route('platform.systems.relation') }}"
     >
-        <select id="{{$id}}" data-target="fields--relation.select" {{ $attributes }}>
+        <select id="{{$id}}" data-relation-target="select" {{ $attributes }}>
         </select>
     </div>
 @endcomponent

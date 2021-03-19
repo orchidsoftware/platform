@@ -17,12 +17,12 @@ class RoleListLayout extends Table
     public $target = 'roles';
 
     /**
-     * @return array
+     * @return TD[]
      */
     public function columns(): array
     {
         return [
-            TD::set('name', __('Name'))
+            TD::make('name', __('Name'))
                 ->sort()
                 ->cantHide()
                 ->filter(TD::FILTER_TEXT)
@@ -31,12 +31,12 @@ class RoleListLayout extends Table
                         ->route('platform.systems.roles.edit', $role->id);
                 }),
 
-            TD::set('slug', __('Slug'))
+            TD::make('slug', __('Slug'))
                 ->sort()
                 ->cantHide()
                 ->filter(TD::FILTER_TEXT),
 
-            TD::set('created_at', __('Created'))
+            TD::make('created_at', __('Created'))
                 ->sort()
                 ->render(function (Role $role) {
                     return $role->created_at->toDateTimeString();

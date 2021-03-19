@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
+use App\Orchid\Layouts\User\ProfilePasswordLayout;
 use App\Orchid\Layouts\User\UserEditLayout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -11,10 +12,8 @@ use Illuminate\Validation\Rule;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
-use Orchid\Screen\Actions\DropDown;
-use Orchid\Screen\Actions\ModalToggle;
-use Orchid\Screen\Fields\Password;
 use Orchid\Screen\Screen;
+use Orchid\Support\Color;
 use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
@@ -25,19 +24,14 @@ class UserProfileScreen extends Screen
      *
      * @var string
      */
-    public $name = 'Profile';
+    public $name = 'My account';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'Basic information';
-
-    /**
-     * @var User
-     */
-    protected $user;
+    public $description = 'Update your account details such as name, email address and password';
 
     /**
      * Query data.
@@ -48,10 +42,8 @@ class UserProfileScreen extends Screen
      */
     public function query(Request $request): array
     {
-        $this->user = $request->user();
-
         return [
-            'user' => $this->user,
+            'user' => $request->user(),
         ];
     }
 
@@ -62,20 +54,7 @@ class UserProfileScreen extends Screen
      */
     public function commandBar(): array
     {
-        return [
-            DropDown::make(__('Settings'))
-                ->icon('open')
-                ->list([
-                    ModalToggle::make(__('Change Password'))
-                        ->icon('lock-open')
-                        ->method('changePassword')
-                        ->modal('password'),
-                ]),
-
-            Button::make(__('Save'))
-                ->icon('check')
-                ->method('save'),
-        ];
+        return [];
     }
 
     /**
@@ -84,39 +63,36 @@ class UserProfileScreen extends Screen
     public function layout(): array
     {
         return [
-            UserEditLayout::class,
+            Layout::block(UserEditLayout::class)
+                ->title(__('Profile Information'))
+                ->description(__("Update your account's profile information and email address."))
+                ->commands(
+                    Button::make(__('Save'))
+                        ->type(Color::DEFAULT())
+                        ->icon('check')
+                        ->method('save')
+                ),
 
-            Layout::modal('password', Layout::rows([
-                Password::make('old_password')
-                    ->placeholder(__('Enter the current password'))
-                    ->required()
-                    ->title(__('Old password'))
-                    ->help('This is your password set at the moment.'),
-
-                Password::make('password')
-                    ->placeholder(__('Enter the password to be set'))
-                    ->required()
-                    ->title(__('New password')),
-
-                Password::make('password_confirmation')
-                    ->placeholder(__('Enter the password to be set'))
-                    ->required()
-                    ->title(__('Confirm new password'))
-                    ->help('A good password is at least 15 characters or at least 8 characters long, including a number and a lowercase letter.'),
-            ]))
-                ->title(__('Change Password'))
-                ->applyButton('Update password'),
+            Layout::block(ProfilePasswordLayout::class)
+                ->title(__('Update Password'))
+                ->description(__('Ensure your account is using a long, random password to stay secure.'))
+                ->commands(
+                    Button::make(__('Update password'))
+                        ->type(Color::DEFAULT())
+                        ->icon('check')
+                        ->method('changePassword')
+                ),
         ];
     }
 
     /**
      * @param Request $request
      */
-    public function save(Request $request)
+    public function save(Request $request): void
     {
         $request->validate([
             'user.name'  => 'required|string',
-            'role.email' => [
+            'user.email' => [
                 'required',
                 Rule::unique(User::class, 'email')->ignore($request->user()),
             ],
@@ -132,7 +108,7 @@ class UserProfileScreen extends Screen
     /**
      * @param Request $request
      */
-    public function changePassword(Request $request)
+    public function changePassword(Request $request): void
     {
         $request->validate([
             'old_password' => 'required|password:web',

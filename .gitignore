@@ -18,3 +18,5 @@ public/js/manifest.js.map
 public/js/vendor.js.map
 tatus
 logs
+.vscode
+.php_cs.cache

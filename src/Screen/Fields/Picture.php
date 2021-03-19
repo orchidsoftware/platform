@@ -85,7 +85,6 @@ class Picture extends Field
 
             throw_if(
                 $maxFileSize > $serverMaxFileSize,
-                \RuntimeException::class,
                 'Cannot set the desired maximum file size. This contradicts the settings specified in .ini');
         });
     }

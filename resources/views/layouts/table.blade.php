@@ -1,10 +1,14 @@
 <div class="bg-white rounded shadow-sm mb-3"
-     data-controller="layouts--table"
-     data-layouts--table-slug="{{$slug}}"
+     data-controller="table"
+     data-table-slug="{{$slug}}"
 >
 
     <div class="table-responsive">
-        <table class="table @if($striped) table-striped @endif @if($bordered) table-bordered @endif">
+        <table class="table
+            @if($striped) table-striped @endif
+            @if($bordered) table-bordered @endif
+            @if($hoverable) table-hover @endif
+        ">
             <thead>
                 <tr>
                     @foreach($columns as $column)
@@ -36,7 +40,7 @@
 
     @if($rows instanceof \Illuminate\Contracts\Pagination\Paginator && $rows->isEmpty())
         <div class="text-center py-5 w-100">
-            <h3 class="font-weight-light">
+            <h3 class="fw-light">
                 @isset($iconNotFound)
                     <x-orchid-icon :path="$iconNotFound" class="block m-b"/>
                 @endisset
@@ -52,7 +56,8 @@
     @includeWhen($rows instanceof \Illuminate\Contracts\Pagination\Paginator && $rows->isNotEmpty(),
         'platform::layouts.pagination',[
             'paginator' => $rows,
-            'columns' => $columns
+            'columns' => $columns,
+            'onEachSide' => $onEachSide,
         ])
 </div>
 

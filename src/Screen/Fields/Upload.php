@@ -24,10 +24,10 @@ use Orchid\Support\Init;
  * @method Upload placeholder(string $value = null)
  * @method Upload value($value = true)
  * @method Upload help(string $value = null)
- * @method Upload storage($value = true)
  * @method Upload parallelUploads($value = true)
  * @method Upload maxFileSize($value = true)
  * @method Upload maxFiles($value = true)
+ * @method Upload timeOut(int $second = null)
  * @method Upload acceptedFiles($value = true)
  * @method Upload resizeQuality($value = true)
  * @method Upload resizeWidth($value = true)
@@ -56,12 +56,14 @@ class Upload extends Field
         'parallelUploads' => 10,
         'maxFileSize'     => null,
         'maxFiles'        => 9999,
+        'timeOut'         => 0,
         'acceptedFiles'   => null,
         'resizeQuality'   => 0.8,
         'resizeWidth'     => null,
         'resizeHeight'    => null,
         'media'           => false,
         'closeOnAdd'      => false,
+        'visibility'      => 'public',
     ];
 
     /**
@@ -107,8 +109,8 @@ class Upload extends Field
 
             throw_if(
                 $maxFileSize > $serverMaxFileSize,
-                \RuntimeException::class,
-                'Cannot set the desired maximum file size. This contradicts the settings specified in .ini');
+                'Cannot set the desired maximum file size. This contradicts the settings specified in .ini'
+            );
         });
 
         // set load relation attachment
@@ -126,5 +128,23 @@ class Upload extends Field
 
             $this->set('value', $value);
         });
+    }
+
+    /**
+     * @param string $storage
+     *
+     * @throws \Throwable
+     *
+     * @return $this
+     */
+    public function storage(string $storage): self
+    {
+        $disk = config("filesystems.disks." . $storage);
+
+        throw_if($disk === null, 'The selected storage was not found');
+
+        return $this
+            ->set('storage', $storage)
+            ->set('visibility', $disk['visibility'] ?? null);
     }
 }

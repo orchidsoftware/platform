@@ -41,8 +41,10 @@ class Init
         switch ($lastSymbol) {
             case 'g':
                 $value *= 1024;
+                // no break
             case 'm':
                 $value *= 1024;
+                // no break
             case 'k':
                 $value *= 1024;
         }

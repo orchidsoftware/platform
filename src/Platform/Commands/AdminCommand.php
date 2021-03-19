@@ -22,7 +22,7 @@ class AdminCommand extends Command
     /**
      * @var string
      */
-    protected $signature = 'orchid:admin {name?} {email?} {password?} {--id}';
+    protected $signature = 'orchid:admin {name?} {email?} {password?} {--id=}';
 
     /**
      * The console command description.

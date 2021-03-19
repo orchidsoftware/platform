@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -63,7 +65,10 @@ abstract class Screen extends Controller
      *
      * @return Action[]
      */
-    abstract public function commandBar(): array;
+    public function commandBar()
+    {
+        return [];
+    }
 
     /**
      * Views.
@@ -104,7 +109,7 @@ abstract class Screen extends Controller
         /** @var Layout $layout */
         $layout = collect($this->layout())
             ->map(function ($layout) {
-                return is_object($layout) ? $layout : app()->make($layout);
+                return is_object($layout) ? $layout : resolve($layout);
             })
             ->map(function (Layout $layout) use ($slug) {
                 return $layout->findBySlug($slug);
@@ -211,13 +216,16 @@ abstract class Screen extends Controller
      * @param ReflectionParameter $parameter
      * @param array               $httpQueryArguments
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      *
      * @return mixed
      */
     private function bind(int $key, ReflectionParameter $parameter, array $httpQueryArguments)
     {
-        $class = optional($parameter->getClass())->name;
+        $class = $parameter->getType() && ! $parameter->getType()->isBuiltin()
+           ? $parameter->getType()->getName()
+           : null;
+
         $original = array_values($httpQueryArguments)[$key] ?? null;
 
         if ($class === null) {
@@ -228,7 +236,7 @@ abstract class Screen extends Controller
             return $original;
         }
 
-        $object = app()->make($class);
+        $object = resolve($class);
 
         if ($original !== null && is_a($object, UrlRoutable::class)) {
             return $object->resolveRouteBinding($original);
@@ -266,9 +274,9 @@ abstract class Screen extends Controller
      *
      * @param array $httpQueryArguments
      *
-     * @throws ReflectionException
+     *@throws ReflectionException
      *
-     * @return Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @return Factory|RedirectResponse|\Illuminate\View\View
      */
     protected function redirectOnGetMethodCallOrShowView(array $httpQueryArguments)
     {

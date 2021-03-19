@@ -37,12 +37,14 @@ abstract class Component extends Layout
      */
     public function build(Repository $repository)
     {
-        if (! $this->checkPermission($this, $repository)) {
+        $this->query = $repository;
+
+        if (! $this->isSee()) {
             return;
         }
 
         /** @var ViewComponent $component */
-        $component = app()->make($this->component, $repository->toArray());
+        $component = resolve($this->component, $repository->toArray());
 
         if (! $component->shouldRender()) {
             return;

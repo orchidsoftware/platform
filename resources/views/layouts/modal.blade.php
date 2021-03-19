@@ -4,11 +4,11 @@
          role="dialog"
          tabindex="-1"
          aria-labelledby="screen-modal-{{$key}}"
-         data-controller="screen--modal"
-         data-screen--modal-slug="{{$templateSlug}}"
-         data-screen--modal-async-enable="{{$asyncEnable}}"
-         data-screen--modal-async-route="{{$asyncRoute}}"
-         data-screen--modal-open="{{$open}}"
+         data-controller="modal"
+         data-modal-slug="{{$templateSlug}}"
+         data-modal-async-enable="{{$asyncEnable}}"
+         data-modal-async-route="{{$asyncRoute}}"
+         data-modal-open="{{$open}}"
          {{$staticBackdrop ? "data-backdrop=static" : ''}}
     >
         <div class="modal-dialog {{$size}}" role="document" id="screen-modal-type-{{$key}}">
@@ -16,17 +16,15 @@
                   id="screen-modal-form-{{$key}}"
                   method="post"
                   enctype="multipart/form-data"
-                  data-controller="layouts--form"
-                  data-action="layouts--form#submit"
-                  data-layouts--form-button-animate="#submit-modal-{{$key}}"
-                  data-layouts--form-button-text="{{ __('Loading...') }}"
+                  data-controller="form"
+                  data-action="form#submit"
+                  data-form-button-animate="#submit-modal-{{$key}}"
+                  data-form-button-text="{{ __('Loading...') }}"
             >
                 <div class="modal-header">
-                    <button type="button" class="close" title="Close" data-dismiss="modal" aria-label="Close">
-                        <x-orchid-icon path="cross"/>
+                    <h4 class="modal-title text-black fw-light" data-target="modal.title">{{$title}}</h4>
+                    <button type="button" class="btn-close" title="Close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
-
-                    <h4 class="modal-title text-black font-weight-light" data-target="screen--modal.title">{{$title}}</h4>
                 </div>
                 <div class="modal-body layout-wrapper">
                     <div data-async>
@@ -42,7 +40,7 @@
                 <div class="modal-footer">
 
                     @if(!$withoutCloseButton)
-                        <button type="button" class="btn btn-link" data-dismiss="modal">
+                        <button type="button" class="btn btn-link" data-bs-dismiss="modal">
                             {{ $close }}
                         </button>
                     @endif
@@ -51,7 +49,7 @@
                         @if(!$withoutApplyButton)
                             <button type="submit"
                                     id="submit-modal-{{$key}}"
-                                    data-turbolinks="{{ var_export($turbolinks) }}"
+                                    data-turbo="{{ var_export($turbo) }}"
                                     class="btn btn-default">
                                 {{ $apply }}
                             </button>

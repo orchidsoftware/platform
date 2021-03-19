@@ -6,7 +6,6 @@ namespace Orchid\Platform;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Scout\Searchable;
 
 abstract class OrchidServiceProvider extends ServiceProvider
 {
@@ -26,12 +25,6 @@ abstract class OrchidServiceProvider extends ServiceProvider
         View::composer('platform::partials.profile', function () use ($dashboard) {
             foreach ($this->registerProfileMenu() as $itemMenu) {
                 $dashboard->menu->add(Menu::PROFILE, $itemMenu);
-            }
-        });
-
-        View::composer('platform::systems', function () use ($dashboard) {
-            foreach ($this->registerSystemMenu() as $itemMenu) {
-                $dashboard->menu->add(Menu::SYSTEMS, $itemMenu);
             }
         });
 
@@ -59,14 +52,6 @@ abstract class OrchidServiceProvider extends ServiceProvider
     }
 
     /**
-     * @return ItemMenu[]
-     */
-    public function registerSystemMenu(): array
-    {
-        return [];
-    }
-
-    /**
      * @return ItemPermission[]
      */
     public function registerPermissions(): array
@@ -75,7 +60,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
     }
 
     /**
-     * @return Searchable[]
+     * @return string[]
      */
     public function registerSearchModels(): array
     {

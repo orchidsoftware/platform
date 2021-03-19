@@ -34,9 +34,9 @@ class TableTest extends TestUnitCase
                 return [];
             }
 
-            public function canSee(Repository $query): bool
+            public function isSee(): bool
             {
-                return $query->get('visible');
+                return $this->query->get('visible');
             }
         };
 
@@ -99,5 +99,28 @@ class TableTest extends TestUnitCase
             ->render();
 
         $this->assertStringContainsString('table-bordered', $html);
+    }
+
+    public function testHoverable(): void
+    {
+        $layout = new class extends Table {
+            protected $target = 'target';
+
+            protected function columns(): array
+            {
+                return [];
+            }
+
+            protected function hoverable(): bool
+            {
+                return true;
+            }
+        };
+
+        $html = $layout
+            ->build(new Repository(['target' => []]))
+            ->render();
+
+        $this->assertStringContainsString('table-hover', $html);
     }
 }

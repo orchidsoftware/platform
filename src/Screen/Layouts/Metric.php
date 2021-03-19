@@ -19,9 +19,9 @@ abstract class Metric extends Layout
     protected $template = 'platform::layouts.metric';
 
     /**
-     * @var string
+     * @var string|null
      */
-    protected $title = 'Example Metric';
+    protected $title;
 
     /**
      * Set the labels for each possible field value.
@@ -57,7 +57,9 @@ abstract class Metric extends Layout
      */
     public function build(Repository $repository)
     {
-        if (! $this->checkPermission($this, $repository)) {
+        $this->query = $repository;
+
+        if (! $this->isSee()) {
             return;
         }
 

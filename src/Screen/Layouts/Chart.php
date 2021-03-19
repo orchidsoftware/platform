@@ -44,15 +44,6 @@ abstract class Chart extends Layout
     protected $height = 250;
 
     /**
-     * Set the labels for each possible field value.
-     *
-     * @deprecated
-     *
-     * @var array
-     */
-    protected $labels = [];
-
-    /**
      * Data source.
      *
      * The name of the key to fetch it from the query.
@@ -68,11 +59,10 @@ abstract class Chart extends Layout
      * @var array
      */
     protected $colors = [
-        '#2274A5',
-        '#F75C03',
-        '#F1C40F',
-        '#D90368',
-        '#00CC66',
+        '#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#d87a80',
+        '#8d98b3','#e5cf0d','#97b552','#95706d','#dc69aa',
+        '#07a2a4','#9a7fd1','#588dd5','#f5994e','#c05050',
+        '#59678c','#c9ab00','#7eb00a','#6f5553','#c14089',
     ];
 
     /**
@@ -123,6 +113,7 @@ abstract class Chart extends Layout
         'hideLine'   => 0,
         'heatline'   => 0,
         'dotSize'    => 4,
+        'spline'     => 0,
     ];
 
     /**
@@ -136,19 +127,28 @@ abstract class Chart extends Layout
     ];
 
     /**
+     * To highlight certain values on the Y axis, markers can be set.
+     * They will shown as dashed lines on the graph.
+     */
+    protected function markers(): ?array
+    {
+        return null;
+    }
+
+    /**
      * @param Repository $repository
      *
      * @return Factory|\Illuminate\View\View
      */
     public function build(Repository $repository)
     {
-        if (! $this->checkPermission($this, $repository)) {
+        $this->query = $repository;
+
+        if (! $this->isSee()) {
             return;
         }
 
-        $labels = ! empty($this->labels)
-            ? json_encode(collect($this->labels))
-            : collect($repository->getContent($this->target))
+        $labels = collect($repository->getContent($this->target))
                 ->map(function ($item) {
                     return $item['labels'] ?? [];
                 })
@@ -157,7 +157,7 @@ abstract class Chart extends Layout
                 ->toJson(JSON_NUMERIC_CHECK);
 
         return view($this->template, [
-            'title'            => $this->title,
+            'title'            => __($this->title),
             'slug'             => Str::slug($this->title),
             'type'             => $this->type,
             'height'           => $this->height,
@@ -170,6 +170,7 @@ abstract class Chart extends Layout
             'axisOptions'      => json_encode($this->axisOptions),
             'barOptions'       => json_encode($this->barOptions),
             'lineOptions'      => json_encode($this->lineOptions),
+            'markers'          => json_encode($this->markers()),
         ]);
     }
 }

@@ -8,7 +8,6 @@ use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Contracts\Cardable;
 use Orchid\Screen\Layouts\Card;
-use Orchid\Screen\Layouts\Compendium;
 use Orchid\Screen\Layouts\Facepile;
 use Orchid\Screen\Screen;
 use Orchid\Support\Color;
@@ -47,10 +46,11 @@ class ExampleCardsScreen extends Screen
                 public function description(): string
                 {
                     return 'This is a wider card with supporting text below as a natural lead-in to additional content.
-                            This content is a little bit longer. This is a wider card with supporting text below as
-                            a natural lead-in to additional content. This content is a little bit longer.
-                            This is a wider card with supporting text below as a natural lead-in to additional content.
-                            This content is a little bit longer.';
+                            This content is a little bit longer. Mauris a orci congue, placerat lorem ac, aliquet est.
+                            Etiam bibendum, urna et hendrerit molestie, risus est tincidunt lorem, eu suscipit tellus
+                            odio vitae nulla. Sed a cursus ipsum. Maecenas quis finibus libero. Phasellus a nibh rutrum,
+                            molestie orci sit amet, euismod ex. Donec finibus sodales magna, quis fermentum augue
+                            pretium ac.';
                 }
 
                 /**
@@ -62,7 +62,7 @@ class ExampleCardsScreen extends Screen
                 }
 
                 /**
-                 * @return mixed
+                 * @return \Orchid\Support\Color|string
                  */
                 public function color(): ?Color
                 {
@@ -70,54 +70,7 @@ class ExampleCardsScreen extends Screen
                 }
 
                 /**
-                 * {@inheritdoc}
-                 */
-                public function status(): ?Color
-                {
-                    return Color::INFO();
-                }
-            },
-            'cardCompendium' => new class implements Cardable {
-                /**
-                 * @return string
-                 */
-                public function title(): string
-                {
-                    return 'Kenmore 94149 Electric Range';
-                }
-
-                /**
-                 * @return string
-                 */
-                public function description(): string
-                {
-                    return new Compendium([
-                        'Type'                               => 'electric stove',
-                        'Model'                              => 'dream 251CH',
-                        'Main color'                         => 'white',
-                        'Complementary color'                => 'none',
-                        'Color declared by the manufacturer' => 'white',
-                    ]);
-                }
-
-                /**
-                 * @return string
-                 */
-                public function image(): ?string
-                {
-                    return null;
-                }
-
-                /**
-                 * @return mixed
-                 */
-                public function color(): ?Color
-                {
-                    return Color::SUCCESS();
-                }
-
-                /**
-                 * {@inheritdoc}
+                 * @return \Orchid\Support\Color|string
                  */
                 public function status(): ?Color
                 {
@@ -212,14 +165,14 @@ class ExampleCardsScreen extends Screen
                 ]),
             ]),
 
-            new Card('cardCompendium'),
+            Layout::block(new Card('cardPersona')),
         ];
     }
 
     /**
      * @param Request $request
      */
-    public function showToast(Request $request)
+    public function showToast(Request $request): void
     {
         Toast::warning($request->get('toast', 'Hello, world! This is a toast message.'));
     }

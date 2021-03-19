@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Traits\Macroable;
 use Orchid\Screen\Layouts\Accordion;
 use Orchid\Screen\Layouts\Blank;
-use Orchid\Screen\Layouts\Collapse;
+use Orchid\Screen\Layouts\Block;
 use Orchid\Screen\Layouts\Columns;
 use Orchid\Screen\Layouts\Component;
+use Orchid\Screen\Layouts\Legend;
 use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Layouts\Selection;
@@ -27,8 +29,8 @@ class LayoutFactory
     use Macroable;
 
     /**
-     * @param string                                        $view
-     * @param \Illuminate\Contracts\Support\Arrayable|array $data
+     * @param string          $view
+     * @param Arrayable|array $data
      *
      * @return View
      */
@@ -91,6 +93,12 @@ class LayoutFactory
     public static function table(string $target, array $columns): Table
     {
         return new class($target, $columns) extends Table {
+
+            /**
+             * @var array
+             */
+            protected $columns;
+
             /**
              * @param string $target
              * @param array  $columns
@@ -159,24 +167,6 @@ class LayoutFactory
     }
 
     /**
-     * @param array $fields
-     *
-     * @return Collapse
-     */
-    public static function collapse(array $fields): Collapse
-    {
-        return new class($fields) extends Collapse {
-            /**
-             * @return array
-             */
-            public function fields(): array
-            {
-                return $this->layouts;
-            }
-        };
-    }
-
-    /**
      * @param string $template
      * @param array  $layouts
      *
@@ -228,6 +218,52 @@ class LayoutFactory
             public function filters(): array
             {
                 return $this->filters;
+            }
+        };
+    }
+
+    /**
+     * @param Layout|string|string[] $layouts
+     *
+     * @return Block
+     */
+    public static function block($layouts): Block
+    {
+        return new class(Arr::wrap($layouts)) extends Block {
+        };
+    }
+
+    /**
+     * @param string $target
+     * @param array  $columns
+     *
+     * @return Legend
+     */
+    public static function legend(string $target, array $columns): Legend
+    {
+        return new class($target, $columns) extends Legend {
+
+            /**
+             * @var array
+             */
+            protected $columns;
+
+            /**
+             * @param string $target
+             * @param array  $columns
+             */
+            public function __construct(string $target, array $columns)
+            {
+                $this->target = $target;
+                $this->columns = $columns;
+            }
+
+            /**
+             * @return array
+             */
+            public function columns(): array
+            {
+                return $this->columns;
             }
         };
     }

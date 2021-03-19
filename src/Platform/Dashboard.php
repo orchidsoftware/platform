@@ -17,7 +17,7 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    public const VERSION = '9.8.0';
+    public const VERSION = '10.0.0-alpha';
 
     /**
      * The Dashboard configuration options.
@@ -248,7 +248,7 @@ class Dashboard
     public function getSearch(): Collection
     {
         return $this->search->transform(static function ($model) {
-            return is_object($model) ? $model : app()->make($model);
+            return is_object($model) ? $model : resolve($model);
         });
     }
 

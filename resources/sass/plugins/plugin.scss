@@ -59,7 +59,8 @@
 }
 .CodeMirror-fullscreen{
   background-color: $body-bg;
-  @extend .wrapper;
+  @extend .py-2;
+  @extend .px-3;
 
   .CodeMirror-code,
   .editor-preview-active,
@@ -72,7 +73,8 @@
 
   .CodeMirror-scroll{
     @extend .card;
-    @extend .wrapper;
+    @extend .py-2;
+    @extend .px-3;
   }
 
   .CodeMirror-sizer {
@@ -93,7 +95,8 @@
     border-left: none !important;
     @extend .border-top;
     @extend .bg-white;
-    @extend .wrapper;
+    @extend .py-2;
+    @extend .px-3;
 }
 
 .editor-toolbar.fullscreen{
@@ -115,8 +118,8 @@
 .simplemde-wrapper{
   .editor-toolbar{
       @extend .border-top;
-      @extend .border-left;
-      @extend .border-right;
+      @extend .border-start;
+      @extend .border-end;
   }
 
   .CodeMirror{
@@ -150,6 +153,10 @@
   .flatpickr-calendar{
     box-shadow: none;
   }
+}
+
+.flatpickr-wrapper{
+  width: 100%;
 }
 
 .flatpickr-input {
@@ -265,8 +272,10 @@
   }
 }
 
-.ql-toolbar.ql-snow,.ql-container.ql-snow{
+.ql-toolbar.ql-snow, .ql-container.ql-snow{
   border: 1px solid $form-control-border-color;
+  font-size: $font-size-base;
+  font-family: $font-family-base;
 }
 
 
@@ -328,4 +337,15 @@
     .custom-control {
         margin-left: 1em;
     }
+}
+
+// legend
+.d2-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-column: span 2 / span 2;
+}
+
+.d2-grid dd {
+    grid-column: span 2 / span 2;
 }

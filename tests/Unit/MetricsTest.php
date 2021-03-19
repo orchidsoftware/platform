@@ -82,4 +82,102 @@ class MetricsTest extends TestUnitCase
             'values' => $period->pluck('value')->toArray(),
         ], $period->toChart('Users'));
     }
+
+    public function testValuesPeriod(): void
+    {
+        $current = Carbon::now();
+        $start = (clone $current)->subDays(2);
+        $end = (clone $current)->subDay();
+
+        User::factory()->count(5)->create([
+            'created_at' => $start,
+        ]);
+
+        User::factory()->count(8)->create([
+            'created_at' => $end,
+        ]);
+
+        $period = User::valuesByDays('id', $start, $end);
+
+        // Stitch selection depends on database and driver
+        $this->assertContains($period->pluck('value')->first(), ['1', '5']);
+        $this->assertContains($period->pluck('value')->last(), ['6', '13']);
+
+        $this->assertEquals($start->toDateString(), $period->pluck('label')->first());
+        $this->assertEquals($end->toDateString(), $period->pluck('label')->last());
+
+        $this->assertSame([
+            'name'   => 'Users',
+            'labels' => $period->pluck('label')->toArray(),
+            'values' => $period->pluck('value')->toArray(),
+        ], $period->toChart('Users'));
+    }
+
+    public function testSumPeriod(): void
+    {
+        $current = Carbon::now();
+        $start = (clone $current)->subDays(2);
+        $end = (clone $current)->subDay();
+
+        User::factory()->count(5)->create([
+            'created_at' => $start,
+        ]);
+
+        User::factory()->count(8)->create([
+            'created_at' => $end,
+        ]);
+
+        $period = User::sumByDays('id', $start, $end);
+
+        $this->assertEquals(15, $period->pluck('value')->first());
+        $this->assertEquals(76, $period->pluck('value')->last());
+
+        $this->assertEquals($start->toDateString(), $period->pluck('label')->first());
+        $this->assertEquals($end->toDateString(), $period->pluck('label')->last());
+
+        $this->assertSame([
+            'name'   => 'Users',
+            'labels' => $period->pluck('label')->toArray(),
+            'values' => $period->pluck('value')->toArray(),
+        ], $period->toChart('Users'));
+    }
+
+    public function testPeriodShowDaysOfWeek(): void
+    {
+        $current = Carbon::now();
+        $start = (clone $current)->subDays(6);
+
+        User::factory()->count(5)->create();
+
+        $period = User::sumByDays('id', $start)->showDaysOfWeek()->toChart('Users');
+
+        collect([
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+        ])->each(function (string $value) use ($period) {
+            $this->assertContains($value, $period['labels']);
+        });
+
+        /* Carbon Language */
+        \Carbon\Carbon::setLocale('ru');
+
+        $period = User::sumByDays('id', $start)->showDaysOfWeek()->toChart('Users');
+
+        collect([
+            "Понедельник",
+            "Вторник",
+            "Среда",
+            "Четверг",
+            "Пятница",
+            "Суббота",
+            "Воскресенье",
+        ])->each(function (string $value) use ($period) {
+            $this->assertContains($value, $period['labels']);
+        });
+    }
 }

@@ -4,9 +4,8 @@
 // Vendor
 @import "~bootstrap/scss/bootstrap";
 @import "~select2/dist/css/select2.min";
-@import "~select2-bootstrap-theme/src/select2-bootstrap";
-@import "~dropzone/dist/min/basic.min";
-@import "~dropzone/dist/min/dropzone.min";
+@import "~dropzone/dist/basic";
+@import "~dropzone/dist/dropzone";
 @import "~cropperjs/dist/cropper";
 @import "~simplemde/dist/simplemde.min";
 @import "~flatpickr/dist/flatpickr.min";
@@ -28,3 +27,4 @@
 @import "plugins/dropzone";
 @import "plugins/load-opacity";
 @import "plugins/accordion";
+@import "plugins/select2";

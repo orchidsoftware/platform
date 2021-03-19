@@ -57,7 +57,7 @@ class Modal extends Layout
             'type'               => self::TYPE_CENTER,
             'key'                => $key,
             'title'              => $key,
-            'turbolinks'         => true,
+            'turbo'              => true,
             'commandBar'         => [],
             'withoutApplyButton' => false,
             'withoutCloseButton' => false,
@@ -184,7 +184,7 @@ class Modal extends Layout
      */
     public function rawClick(bool $status = false): self
     {
-        $this->variables['turbolinks'] = $status;
+        $this->variables['turbo'] = $status;
 
         return $this;
     }

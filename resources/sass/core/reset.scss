@@ -58,7 +58,6 @@ small, .small {
 }
 
 .badge {
-  background-color: $badge-bg;
   &.up {
     position: relative;
     top: -10px;
@@ -308,36 +307,6 @@ blockquote {
           }
       }
   }
-  &.nav-lg {
-    .nav-item .nav-link {
-      padding: 20px 20px;
-    }
-  }
-  &.nav-md {
-    .nav-item .nav-link{
-      padding: 15px 15px;
-    }
-  }
-  &.nav-sm {
-    .nav-item .nav-link {
-      padding: 6px 12px;
-    }
-  }
-  &.nav-xs {
-    .nav-item .nav-link {
-      padding: 4px 10px;
-    }
-  }
-  &.nav-xxs {
-    .nav-item .nav-link {
-      padding: 1px 10px;
-    }
-  }
-  &.nav-rounded {
-     .nav-item .nav-link {
-      border-radius: 20px;
-    }
-  }
   .open {
     .nav-link {
       &,
@@ -566,7 +535,7 @@ blockquote {
     content: '';
   }
 
-  &.dropdown-menu-right {
+  &.dropdown-menu-end {
     &:before,
     &:after {
       left: auto;
@@ -681,10 +650,13 @@ blockquote {
     flex-direction: row;
     text-overflow: ellipsis;
 
+    /*
     @include hover-focus {
         color: $dropdown-link-hover-color;
         @include gradient-bg($dropdown-link-hover-bg);
     }
+
+     */
 
     &.active,
     &:active {
@@ -716,28 +688,11 @@ blockquote {
     }
 }
 
-dl {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: $border-color;
-    margin: 0.15em 0;
-    padding: 0;
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAABCAAAAAA+i0toAAAAAnRSTlMA/1uRIrUAAAAMSURBVHheY7j1/z8ABY8C2UtBe8oAAAAASUVORK5CYII=) 0 80% repeat-x;
 
-    dt, dd {
-        margin: 0;
-        background-color: $white;
-    }
-
-    dt {
-        padding-right: 1em;
-    }
-
-    dd {
-        padding-left: 1em;
-    }
+dd {
+    margin: 0;
 }
+
 
 .card-text {
     text-overflow: ellipsis;

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
 
 /**
@@ -42,6 +43,8 @@ use Orchid\Screen\Field;
  */
 class Input extends Field
 {
+    use Multipliable;
+
     /**
      * @var string
      */
@@ -53,7 +56,8 @@ class Input extends Field
      * @var array
      */
     protected $attributes = [
-        'class' => 'form-control',
+        'class'    => 'form-control',
+        'datalist' => [],
     ];
 
     /**
@@ -103,6 +107,24 @@ class Input extends Field
             if (is_array($mask)) {
                 $this->set('mask', json_encode($mask));
             }
+        });
+    }
+
+    /**
+     * @param array $datalist
+     *
+     * @return Input
+     */
+    public function datalist(array $datalist = []): self
+    {
+        if (empty($datalist)) {
+            return $this;
+        }
+
+        $this->set('datalist', $datalist);
+
+        return $this->addBeforeRender(function () {
+            $this->set('list', 'datalist-'.$this->get('name'));
         });
     }
 }
