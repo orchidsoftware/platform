@@ -87,7 +87,33 @@ class MatrixTest extends TestFieldsUnitCase
         $input = self::minifyRenderField(
             Input::make('matrix[0][attribute]')
                 ->value('color')
-                ->id('attribute-0-attribute')
+                ->id('matrix-field-matrix-0-attribute')
+        );
+
+        $this->assertStringContainsString($input, $view);
+    }
+
+    public function testCustomIdPrefix(): void
+    {
+        $matrix = Matrix::make('matrix')
+            ->columns([
+                'attribute',
+            ])
+            ->fields([
+                'attribute' => Input::make(),
+            ])
+            ->idPrefix('custom-prefix')
+            ->value([
+                [
+                    'attribute' => 'color',
+                ],
+            ]);
+
+        $view = self::minifyRenderField($matrix);
+        $input = self::minifyRenderField(
+            Input::make('matrix[0][attribute]')
+                ->value('color')
+                ->id('custom-prefix-0-attribute')
         );
 
         $this->assertStringContainsString($input, $view);
