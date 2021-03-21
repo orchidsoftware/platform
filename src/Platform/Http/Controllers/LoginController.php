@@ -11,7 +11,7 @@ use Illuminate\Cookie\CookieJar;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Auth\Factory as Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use Orchid\Access\UserSwitch;
@@ -30,10 +30,19 @@ class LoginController extends Controller
     */
 
     /**
-     * Create a new controller instance.
+     * @var Guard|\Illuminate\Auth\SessionGuard
      */
-    public function __construct()
+    protected $guard;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @param Auth $auth
+     */
+    public function __construct(Auth $auth)
     {
+        $this->guard = $auth->guard(config('platform.guard'));
+
         $this->middleware('guest', [
             'except' => [
                 'logout',
@@ -58,7 +67,7 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
 
-        $auth = Auth::guard()->attempt(
+        $auth = $this->guard->attempt(
             $request->only(['email', 'password']),
             $request->filled('remember')
         );
@@ -94,12 +103,12 @@ class LoginController extends Controller
      *
      * @return Factory|View
      */
-    public function showLoginForm(Request $request, Guard $guard)
+    public function showLoginForm(Request $request)
     {
         $user = $request->cookie('lockUser');
 
         /** @var EloquentUserProvider $provider */
-        $provider = $guard->getProvider();
+        $provider = $this->guard->getProvider();
 
         $model = $provider->createModel()->find($user);
 
@@ -140,7 +149,7 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        Auth::guard()->logout();
+        $this->guard->logout();
 
         $request->session()->invalidate();
 

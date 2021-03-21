@@ -6,6 +6,7 @@ namespace Orchid\Platform\Http\Middleware;
 
 use Carbon\Carbon;
 use Closure;
+use Illuminate\Contracts\Auth\Factory as Auth;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\RedirectResponse;
@@ -21,16 +22,17 @@ class Access
     /**
      * @var Guard
      */
-    protected $auth;
+    protected $guard;
 
     /**
      * AccessMiddleware constructor.
      *
-     * @param Guard $auth
+     * @param Auth $auth
      */
-    public function __construct(Guard $auth)
+    public function __construct(Auth $auth)
     {
-        $this->auth = $auth;
+        $auth->shouldUse(config('platform.guard'));
+        $this->guard = $auth->guard();
     }
 
     /**
@@ -44,11 +46,11 @@ class Access
     {
         Carbon::setLocale(config('app.locale'));
 
-        if ($this->auth->guest()) {
+        if ($this->guard->guest()) {
             return $this->redirectToLogin($request);
         }
 
-        if ($this->auth->user()->hasAccess($permission)) {
+        if ($this->guard->user()->hasAccess($permission)) {
             return $next($request);
         }
 
