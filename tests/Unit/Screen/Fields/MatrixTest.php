@@ -87,7 +87,7 @@ class MatrixTest extends TestFieldsUnitCase
         $input = self::minifyRenderField(
             Input::make('matrix[0][attribute]')
                 ->value('color')
-                ->id('attribute-0-attribute')
+                ->id('matrix-field-matrix-0-attribute')
         );
 
         $this->assertStringContainsString($input, $view);
