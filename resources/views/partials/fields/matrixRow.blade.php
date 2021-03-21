@@ -6,7 +6,7 @@
                $fields[$column]
                     ->value($row[$column] ?? '')
                     ->prefix($name)
-                    ->id("$column-$key-$column")
+                    ->id("$idPrefix-$key-$column")
                     ->name($keyValue ? $column : "[$key][$column]")
             !!}
         </th>
