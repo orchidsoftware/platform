@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Controllers;
 
 use Illuminate\Auth\EloquentUserProvider;
+use Illuminate\Contracts\Auth\Factory as Auth;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Cookie\CookieJar;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Auth\Factory as Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use Orchid\Access\UserSwitch;
