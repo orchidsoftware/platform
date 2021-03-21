@@ -170,4 +170,12 @@ class Group implements Fieldable, Groupable
     {
         return $this->set('align', 'align-items-end');
     }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (string) $this->render();
+    }
 }
