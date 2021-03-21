@@ -16,7 +16,8 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'orchid:install';
+    protected $signature = 'orchid:install
+                            {--examples : Install with examples}';
 
     /**
      * The console command description.
@@ -45,8 +46,10 @@ class InstallCommand extends Command
                     'config',
                     'migrations',
                     'orchid-stubs',
+                    ! $this->option('examples') ?: 'orchid-examples',
                 ],
             ])
+            ->addExamples()
             ->executeCommand('migrate')
             ->executeCommand('storage:link')
             ->changeUserModel();
@@ -81,6 +84,20 @@ class InstallCommand extends Command
             $parameters = http_build_query($parameters, '', ' ');
             $parameters = str_replace('%5C', '/', $parameters);
             $this->alert("An error has occurred. The '{$command} {$parameters}' command was not executed");
+        }
+
+        return $this;
+    }
+
+    private function addExamples()
+    {
+        if ($this->option('examples')) {
+            $this->info('Adding examples');
+            file_put_contents(
+                base_path('routes/platform.php'),
+                file_get_contents(Dashboard::path('stubs/example/routes/example.stub')),
+                FILE_APPEND
+            );
         }
 
         return $this;

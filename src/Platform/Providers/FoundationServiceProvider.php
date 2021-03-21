@@ -61,6 +61,7 @@ class FoundationServiceProvider extends ServiceProvider
     {
         $this
             ->registerOrchid()
+            ->registerExamples()
             ->registerAssets()
             ->registerDatabase()
             ->registerConfig()
@@ -119,6 +120,20 @@ class FoundationServiceProvider extends ServiceProvider
             Dashboard::path('stubs/app/routes/') => base_path('routes'),
             Dashboard::path('stubs/app/Orchid/') => app_path('Orchid'),
         ], 'orchid-stubs');
+
+        return $this;
+    }
+
+    /**
+     * Register examples.
+     *
+     * @return $this
+     */
+    protected function registerExamples(): self
+    {
+        $this->publishes([
+            Dashboard::path('stubs/example/Orchid/') => app_path('Orchid'),
+        ], 'orchid-examples');
 
         return $this;
     }
