@@ -8,6 +8,7 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -239,7 +240,11 @@ abstract class Screen extends Controller
         $object = resolve($class);
 
         if ($original !== null && is_a($object, UrlRoutable::class)) {
-            return $object->resolveRouteBinding($original);
+            if (! ($object = $object->resolveRouteBinding($original)) && ! $parameter->isDefaultValueAvailable()) {
+                throw (new ModelNotFoundException())->setModel($class, [$original]);
+            } else {
+                return $parameter->getDefaultValue();
+            }
         }
 
         return $object;
