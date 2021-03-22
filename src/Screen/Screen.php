@@ -242,8 +242,6 @@ abstract class Screen extends Controller
         if ($original !== null && is_a($object, UrlRoutable::class)) {
             if (! ($object = $object->resolveRouteBinding($original)) && ! $parameter->isDefaultValueAvailable()) {
                 throw (new ModelNotFoundException())->setModel($class, [$original]);
-            } else {
-                return $parameter->getDefaultValue();
             }
         }
 
