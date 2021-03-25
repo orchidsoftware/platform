@@ -1,4 +1,5 @@
 import {Controller} from 'stimulus';
+import qs from 'qs';
 
 export default class extends Controller {
     static get targets() {
@@ -52,11 +53,7 @@ export default class extends Controller {
         const filters = window.platform.formToObject(formElement);
         filters.sort = this.getUrlParameter('sort');
 
-        const parameterWithoutEmpty = this.removeEmpty(filters);
-
-        const params = Object.keys(parameterWithoutEmpty).map(function (key) {
-            return encodeURIComponent(key) + '=' + encodeURIComponent(parameterWithoutEmpty[key])
-        }).join('&')
+        const params = qs.stringify(this.removeEmpty(filters), { encode: false })
 
         const url = `${window.location.origin + window.location.pathname}?${params}`;
 
