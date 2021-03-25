@@ -20,6 +20,13 @@ abstract class Legend extends Layout
     protected $template = 'platform::layouts.legend';
 
     /**
+     * Used to create the title of a group of form elements.
+     *
+     * @var string|null
+     */
+    protected $title;
+
+    /**
      * @var Repository
      */
     protected $query;
@@ -59,6 +66,7 @@ abstract class Legend extends Layout
             'repository' => $repository,
             'columns'    => $columns,
             'slug'       => $this->getSlug(),
+            'title'      => $this->title,
         ]);
     }
 
@@ -66,4 +74,16 @@ abstract class Legend extends Layout
      * @return array
      */
     abstract protected function columns(): array;
+
+    /**
+     * @param string|null $title
+     *
+     * @return Rows
+     */
+    public function title(string $title = null): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
 }
