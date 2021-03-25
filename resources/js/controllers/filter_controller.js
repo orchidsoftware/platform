@@ -1,5 +1,6 @@
 import ApplicationController from "./application_controller";
 import * as Turbo from "@hotwired/turbo";
+import qs from 'qs';
 
 export default class extends ApplicationController {
     static get targets() {
@@ -53,11 +54,7 @@ export default class extends ApplicationController {
         const filters = this.formToObject(formElement);
         filters.sort = this.getUrlParameter('sort');
 
-        const parameterWithoutEmpty = this.removeEmpty(filters);
-
-        const params = Object.keys(parameterWithoutEmpty).map(function (key) {
-            return encodeURIComponent(key) + '=' + encodeURIComponent(parameterWithoutEmpty[key])
-        }).join('&')
+        const params = qs.stringify(this.removeEmpty(filters), { encode: false })
 
         Turbo.visit(this.getUrl(params), {action: 'replace'});
     }
