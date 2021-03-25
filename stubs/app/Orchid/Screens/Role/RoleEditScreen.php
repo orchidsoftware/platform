@@ -12,6 +12,7 @@ use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
 class RoleEditScreen extends Screen
@@ -84,8 +85,19 @@ class RoleEditScreen extends Screen
     public function layout(): array
     {
         return [
-            RoleEditLayout::class,
-            RolePermissionLayout::class,
+            Layout::block([
+                RoleEditLayout::class,
+            ])
+                ->title('Role')
+                ->description('A role is a collection of privileges
+                (of possibly different services like the Users service, Moderator, and so on)
+                 that grants users with that role the ability to perform certain tasks or operations.'),
+
+            Layout::block([
+                RolePermissionLayout::class,
+            ])
+                ->title('Permission/Privilege')
+                ->description('A privilege is necessary to perform certain tasks and operations in an area.'),
         ];
     }
 
