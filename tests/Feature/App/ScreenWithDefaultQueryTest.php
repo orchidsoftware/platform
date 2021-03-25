@@ -13,7 +13,6 @@ use Orchid\Tests\TestFeatureCase;
  */
 class ScreenWithDefaultQueryTest extends TestFeatureCase
 {
-
     public function testWhenNoParameterIsPassed(): void
     {
         $screen = new QueryWithDefaultValueScreen();
@@ -26,7 +25,6 @@ class ScreenWithDefaultQueryTest extends TestFeatureCase
 
         $this->assertInstanceOf(User::class, $data['user']);
     }
-
 
     public function testWhenAParameterIsPassedAndTheModelExists(): void
     {

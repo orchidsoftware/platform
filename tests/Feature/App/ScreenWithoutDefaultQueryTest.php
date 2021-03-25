@@ -14,7 +14,6 @@ use Orchid\Tests\TestFeatureCase;
  */
 class ScreenWithoutDefaultQueryTest extends TestFeatureCase
 {
-
     public function testWhenNoParameterIsPassed(): void
     {
         $screen = new QueryWithoutDefaultValueScreen();
