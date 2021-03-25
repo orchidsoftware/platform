@@ -59,9 +59,7 @@ export default class extends ApplicationController {
             return encodeURIComponent(key) + '=' + encodeURIComponent(parameterWithoutEmpty[key])
         }).join('&')
 
-        const url = `${window.location.origin + window.location.pathname}?${params}`;
-
-        Turbo.visit(url, {action: 'replace'});
+        Turbo.visit(this.getUrl(params), {action: 'replace'});
     }
 
     /**
@@ -91,9 +89,8 @@ export default class extends ApplicationController {
         const params = {
             sort: this.getUrlParameter('sort'),
         };
-        const url = `${window.location.origin + window.location.pathname}?${params}`;
 
-        Turbo.visit(url, {action: 'replace'});
+        Turbo.visit(this.getUrl(params), {action: 'replace'});
         event.preventDefault();
     }
 
@@ -120,5 +117,14 @@ export default class extends ApplicationController {
         const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
         const results = regex.exec(window.location.search);
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    /**
+     *
+     * @param params
+     * @returns {string}
+     */
+    getUrl(params) {
+        return `${window.location.origin + window.location.pathname}?${params}`;
     }
 }

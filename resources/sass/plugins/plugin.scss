@@ -171,47 +171,6 @@
   word-break: break-all;
 }
 
-.admin-wrapper {
-  .admin-element {
-    box-sizing: border-box;
-    display: inline-block;
-    vertical-align: top;
-    justify-self: center;
-
-    h3 {
-      margin: 0;
-      padding-left: 40px;
-      position: relative;
-      svg {
-        @extend .r-3x;
-        @extend .text-white;
-        @extend .p-2;
-        top: 0;
-        left: 0;
-        border-radius: 3px;
-        height: 28px;
-        width: 28px;
-        background: $dark;
-        position: absolute;
-
-        &:before {
-          width: 100%;
-          text-align: center;
-          @extend .v-center;
-          font-size: 14px;
-          position: absolute;
-          left: 25%;
-          top: 0;
-          bottom: 0;
-        }
-
-      }
-
-    }
-  }
-
-}
-
 //codeflask
 .codeflask{
   pre,code {

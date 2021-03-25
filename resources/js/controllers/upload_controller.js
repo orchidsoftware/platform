@@ -201,6 +201,7 @@ export default class extends ApplicationController {
         const removeButtonTemplate = this.element.querySelector('#'+this.data.get('id') + '-remove-button').innerHTML.trim();
         const editButtonTemplate = this.element.querySelector('#'+this.data.get('id') + '-edit-button').innerHTML.trim();
 
+        const controller = this;
 
         this.dropZone = new Dropzone(dropname, {
             url: this.prefix('/systems/files'),
@@ -225,7 +226,7 @@ export default class extends ApplicationController {
                     console.log('dropzone.addedfile');
 
                     if (this.files.length > this.options.maxFiles) {
-                        this.alert('Validation error', 'Max files');
+                        controller.alert('Validation error', 'Max files');
                         this.removeFile(e);
                     }
 
@@ -248,7 +249,7 @@ export default class extends ApplicationController {
                 });
 
                 this.on("maxfilesexceeded", (file) => {
-                    this.alert('Validation error', 'Max files exceeded');
+                    controller.alert('Validation error', 'Max files exceeded');
                     this.removeFile(file);
                 });
 
@@ -298,7 +299,7 @@ export default class extends ApplicationController {
                 $(`${dropname} .dz-progress`).remove();
             },
             error(file, response) {
-                this.alert('Validation error', 'File upload error');
+                controller.alert('Validation error', 'File upload error');
 
                 this.removeFile(file);
 
@@ -411,7 +412,7 @@ export default class extends ApplicationController {
         const maxFiles = multiple ? this.data.get('max-files') : 1;
 
         if (this.dropZone.files.length >= maxFiles) {
-            alert('Max files exceeded');
+            this.alert('Max files exceeded');
             return;
         }
 
