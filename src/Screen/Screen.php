@@ -223,29 +223,32 @@ abstract class Screen extends Controller
      */
     private function bind(int $key, ReflectionParameter $parameter, array $httpQueryArguments)
     {
-        $class = $parameter->getType() && ! $parameter->getType()->isBuiltin()
-           ? $parameter->getType()->getName()
-           : null;
+        $class = $parameter->getType() && !$parameter->getType()->isBuiltin()
+            ? $parameter->getType()->getName()
+            : null;
 
         $original = array_values($httpQueryArguments)[$key] ?? null;
 
-        if ($class === null) {
+        if ($class === null || is_object($original)) {
             return $original;
         }
 
-        if (is_object($original)) {
-            return $original;
+        $instance = resolve($class);
+
+        if ($original === null || !is_a($instance, UrlRoutable::class)) {
+            return $instance;
         }
 
-        $object = resolve($class);
+        $model = $instance->resolveRouteBinding($original);
 
-        if ($original !== null && is_a($object, UrlRoutable::class)) {
-            if (! ($object = $object->resolveRouteBinding($original)) && ! $parameter->isDefaultValueAvailable()) {
-                throw (new ModelNotFoundException())->setModel($class, [$original]);
-            }
-        }
+        throw_if(
+            $model === null && !$parameter->isDefaultValueAvailable(),
+            (new ModelNotFoundException())->setModel($class, [$original])
+        );
 
-        return $object;
+        optional(Route::current())->setParameter($parameter->getName(), $model);
+
+        return $model;
     }
 
     /**
