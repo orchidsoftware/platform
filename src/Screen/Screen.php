@@ -223,7 +223,7 @@ abstract class Screen extends Controller
      */
     private function bind(int $key, ReflectionParameter $parameter, array $httpQueryArguments)
     {
-        $class = $parameter->getType() && !$parameter->getType()->isBuiltin()
+        $class = $parameter->getType() && ! $parameter->getType()->isBuiltin()
             ? $parameter->getType()->getName()
             : null;
 
@@ -235,14 +235,14 @@ abstract class Screen extends Controller
 
         $instance = resolve($class);
 
-        if ($original === null || !is_a($instance, UrlRoutable::class)) {
+        if ($original === null || ! is_a($instance, UrlRoutable::class)) {
             return $instance;
         }
 
         $model = $instance->resolveRouteBinding($original);
 
         throw_if(
-            $model === null && !$parameter->isDefaultValueAvailable(),
+            $model === null && ! $parameter->isDefaultValueAvailable(),
             (new ModelNotFoundException())->setModel($class, [$original])
         );
 
