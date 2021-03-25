@@ -10,6 +10,7 @@ use Orchid\Screen\Contracts\Cardable;
 use Orchid\Screen\Layouts\Card;
 use Orchid\Screen\Layouts\Facepile;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Sight;
 use Orchid\Support\Color;
 use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
@@ -31,6 +32,7 @@ class ExampleCardsScreen extends Screen
     public function query(): array
     {
         return [
+            'user' => User::firstOrFail(),
             'card' => new class implements Cardable {
                 /**
                  * @return string
@@ -143,29 +145,49 @@ class ExampleCardsScreen extends Screen
     public function layout(): array
     {
         return [
-            new Card('card', [
-                Button::make('Example Button')
-                    ->method('showToast')
-                    ->icon('bag'),
-                Button::make('Example Button')
-                    ->method('showToast')
-                    ->icon('bag'),
-            ]),
-
             Layout::columns([
-                new Card('cardPersona'),
-                new Card('cardPersona', [
+                [
+                    new Card('cardPersona'),
+                    new Card('cardPersona', [
+                        Button::make('Example Button')
+                            ->method('showToast')
+                            ->icon('bag'),
+
+                        Button::make('Example Button')
+                            ->method('showToast')
+                            ->icon('bag'),
+                    ]),
+                ],
+                new Card('card', [
                     Button::make('Example Button')
                         ->method('showToast')
                         ->icon('bag'),
-
                     Button::make('Example Button')
                         ->method('showToast')
                         ->icon('bag'),
                 ]),
             ]),
 
-            Layout::block(new Card('cardPersona')),
+            Layout::legend('user', [
+                Sight::make('id'),
+                Sight::make('name'),
+                Sight::make('email'),
+                Sight::make('email_verified_at', 'Email Verified')->render(function (User $user) {
+                    return $user->email_verified_at === null
+                        ? '<i class="text-danger">●</i> False'
+                        : '<i class="text-success">●</i> True';
+                }),
+                Sight::make('created_at', 'Created'),
+                Sight::make('updated_at', 'Updated'),
+                Sight::make('Simple Text')->render(function () {
+                    return 'This is a wider card with supporting text below as a natural lead-in to additional content.
+    This content is a little bit longer. Mauris a orci congue, placerat lorem ac, aliquet est.
+    Etiam bibendum, urna et hendrerit molestie, risus est tincidunt lorem, eu suscipit tellus
+            odio vitae nulla. Sed a cursus ipsum. Maecenas quis finibus libero. Phasellus a nibh rutrum,
+            molestie orci sit amet, euismod ex. Donec finibus sodales magna, quis fermentum augue
+            pretium ac.';
+                }),
+            ])->title('User'),
         ];
     }
 
