@@ -3,29 +3,12 @@ import {Tooltip} from 'bootstrap';
 
 export default class extends ApplicationController {
 
-
     /**
      *
      */
     connect() {
         this.tooltip = new Tooltip(this.element, {
-            trigger : 'manual',
+            boundary: 'window'
         })
-
-        this.element.addListener('mouseOver', () => this.mouseOver())
-        this.element.addListener('mouseOut', () => this.mouseOut())
-    }
-    /**
-     *
-     */
-    mouseOver() {
-        this.tooltip.show();
-    }
-
-    /**
-     *
-     */
-    mouseOut() {
-        this.tooltip.hide();
     }
 }
