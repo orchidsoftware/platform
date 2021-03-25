@@ -28,6 +28,7 @@ class Matrix extends Field
      */
     protected $attributes = [
         'index'    => 0,
+        'idPrefix' => null,
         'maxRows'  => 0,
         'keyValue' => false,
         'fields'   => [],
@@ -71,6 +72,11 @@ class Matrix extends Field
                 }
 
                 $this->set('fields', $fields);
+            })
+            ->addBeforeRender(function () {
+                $idPrefix = $this->getIdPrefix();
+
+                $this->set('idPrefix', $idPrefix);
             });
     }
 
@@ -92,5 +98,21 @@ class Matrix extends Field
     public function fields(array $fields = []): self
     {
         return $this->set('fields', $fields);
+    }
+
+    /**
+     * @return string
+     */
+    protected function getIdPrefix(): string
+    {
+        $idPrefix = $this->get('idPrefix');
+
+        if ($idPrefix !== null) {
+            return (string) $idPrefix;
+        }
+
+        $slug = str_replace('.', '-', $this->getOldName());
+
+        return "matrix-field-$slug";
     }
 }
