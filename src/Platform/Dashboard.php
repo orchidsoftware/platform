@@ -359,7 +359,7 @@ class Dashboard
     /**
      * Adding a new element to the menu.
      *
-     * @param string   $location
+     * @param string                      $location
      * @param \Orchid\Screen\Actions\Menu $menu
      *
      * @return $this
