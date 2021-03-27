@@ -366,8 +366,6 @@ class Dashboard
      */
     public function registerMenuElement(string $location, \Orchid\Screen\Actions\Menu $menu)
     {
-
-
         $this->menu->get($location)->add($menu);
 
         return $this;
@@ -378,8 +376,9 @@ class Dashboard
      *
      * @param string $location
      *
-     * @return string
      * @throws \Throwable
+     *
+     * @return string
      */
     public function renderMenu(string $location): string
     {

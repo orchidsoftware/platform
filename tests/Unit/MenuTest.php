@@ -11,5 +11,4 @@ use Orchid\Tests\TestUnitCase;
  */
 class MenuTest extends TestUnitCase
 {
-
 }
