@@ -26,7 +26,7 @@
                 @includeWhen(Auth::check(), 'platform::partials.profile')
 
                 <ul class="nav flex-column mb-1">
-                    {!! Dashboard::menu()->render('Main') !!}
+                    {!! Dashboard::renderMenu('Main') !!}
                 </ul>
 
             </nav>

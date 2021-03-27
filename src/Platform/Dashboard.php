@@ -20,6 +20,16 @@ class Dashboard
     public const VERSION = '10.0.0-alpha';
 
     /**
+     * Slug for main menu.
+     */
+    public const MENU_MAIN = 'Main';
+
+    /**
+     * Slug for dropdown profile.
+     */
+    public const MENU_PROFILE = 'Profile';
+
+    /**
      * The Dashboard configuration options.
      *
      * @var array
@@ -65,7 +75,11 @@ class Dashboard
      */
     public function __construct()
     {
-        $this->menu = new Menu();
+        $this->menu = collect([
+            self::MENU_MAIN    => collect(),
+            self::MENU_PROFILE => collect(),
+        ]);
+
         $this->permission = collect([
             'all'     => collect(),
             'removed' => collect(),
@@ -253,14 +267,6 @@ class Dashboard
     }
 
     /**
-     * @return Menu
-     */
-    public function menu(): Menu
-    {
-        return $this->menu;
-    }
-
-    /**
      * @return Collection
      */
     public function getPermission(): Collection
@@ -348,5 +354,37 @@ class Dashboard
     public function getCurrentScreen(): ?Screen
     {
         return $this->currentScreen;
+    }
+
+    /**
+     * Adding a new element to the menu.
+     *
+     * @param string   $location
+     * @param ItemMenu $itemMenu
+     *
+     * @return $this
+     */
+    public function registerMenuElement(string $location, \Orchid\Screen\Actions\Menu $menu)
+    {
+
+
+        $this->menu->get($location)->add($menu);
+
+        return $this;
+    }
+
+    /**
+     * Generate on the menu display.
+     *
+     * @param string $location
+     *
+     * @return string
+     * @throws \Throwable
+     */
+    public function renderMenu(string $location): string
+    {
+        return $this->menu->get($location)->map(function (\Orchid\Screen\Actions\Menu $menu) {
+            return (string)$menu->render();
+        })->implode('');
     }
 }

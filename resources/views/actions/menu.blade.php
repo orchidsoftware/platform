@@ -1,0 +1,33 @@
+@isset($title)
+    <li class="nav-item mt-3 mb-1">
+        <div class="text-muted ms-4 w-100 user-select-none">{{ __($title) }}</div>
+    </li>
+@endisset
+
+<li class="nav-item @isset($active) {{active($active)}} @endisset">
+    <a
+        data-turbo="{{ var_export($turbo) }}"
+        {{ $attributes }}
+    >
+        @isset($icon)
+            <x-orchid-icon :path="$icon" class="{{ empty($name) ?: 'me-2'}}"/>
+        @endisset
+
+        {{ $name ?? '' }}
+
+        @isset($badge)
+            <b class="badge bg-{{$badge['class']}} col-auto ms-auto">{{$badge['data']()}}</b>
+        @endisset
+    </a>
+</li>
+
+
+<div class="collapse sub-menu ps-2 {{active($active, 'show')}}" id="menu-{{\Illuminate\Support\Str::slug($name)}}" data-bs-parent="#headerMenuCollapse">
+    @foreach($list as $item)
+        {!!  $item->build($source) !!}
+    @endforeach
+</div>
+
+@if($divider)
+    <li class="divider my-2"></li>
+@endif

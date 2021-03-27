@@ -17,16 +17,15 @@ abstract class OrchidServiceProvider extends ServiceProvider
     public function boot(Dashboard $dashboard): void
     {
         View::composer('platform::dashboard', function () use ($dashboard) {
-            foreach ($this->registerMainMenu() as $itemMenu) {
-                $dashboard->menu->add(Menu::MAIN, $itemMenu);
+            foreach ($this->registerMainMenu() as $element) {
+                $dashboard->registerMenuElement(Dashboard::MENU_MAIN, $element);
+            }
+
+            foreach ($this->registerProfileMenu() as $element) {
+                $dashboard->registerMenuElement(Dashboard::MENU_PROFILE, $element);
             }
         });
 
-        View::composer('platform::partials.profile', function () use ($dashboard) {
-            foreach ($this->registerProfileMenu() as $itemMenu) {
-                $dashboard->menu->add(Menu::PROFILE, $itemMenu);
-            }
-        });
 
         foreach ($this->registerPermissions() as $permission) {
             $dashboard->registerPermissions($permission);
