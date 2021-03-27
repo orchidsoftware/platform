@@ -35,7 +35,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
     }
 
     /**
-     * @return ItemMenu[]
+     * @return \Orchid\Screen\Actions\Menu[]
      */
     public function registerMainMenu(): array
     {
@@ -43,7 +43,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
     }
 
     /**
-     * @return ItemMenu[]
+     * @return \Orchid\Screen\Actions\Menu[]
      */
     public function registerProfileMenu(): array
     {

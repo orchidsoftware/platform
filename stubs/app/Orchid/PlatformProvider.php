@@ -21,7 +21,7 @@ class PlatformProvider extends OrchidServiceProvider
     }
 
     /**
-     * @return ItemMenu[]
+     * @return Menu[]
      */
     public function registerMainMenu(): array
     {
@@ -95,7 +95,7 @@ class PlatformProvider extends OrchidServiceProvider
     }
 
     /**
-     * @return ItemMenu[]
+     * @return Menu[]
      */
     public function registerProfileMenu(): array
     {

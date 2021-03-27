@@ -37,7 +37,7 @@ class Dashboard
     protected static $options = [];
 
     /**
-     * @var Menu
+     * @var Collection
      */
     public $menu;
 
@@ -360,11 +360,11 @@ class Dashboard
      * Adding a new element to the menu.
      *
      * @param string   $location
-     * @param ItemMenu $itemMenu
+     * @param \Orchid\Screen\Actions\Menu $menu
      *
      * @return $this
      */
-    public function registerMenuElement(string $location, \Orchid\Screen\Actions\Menu $menu)
+    public function registerMenuElement(string $location, \Orchid\Screen\Actions\Menu $menu): Dashboard
     {
         $this->menu->get($location)->add($menu);
 
