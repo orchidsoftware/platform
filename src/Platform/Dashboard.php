@@ -8,6 +8,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
+use Orchid\Screen\Actions\Menu;
 use Orchid\Screen\Screen;
 
 class Dashboard
@@ -382,8 +383,13 @@ class Dashboard
      */
     public function renderMenu(string $location): string
     {
-        return $this->menu->get($location)->map(function (\Orchid\Screen\Actions\Menu $menu) {
-            return (string)$menu->render();
-        })->implode('');
+        return $this->menu->get($location)
+            ->sort(function (Menu $menu) {
+                return $menu->get('sort', 0);
+            })
+            ->map(function (Menu $menu) {
+                return (string)$menu->render();
+            })
+            ->implode('');
     }
 }

@@ -20,6 +20,7 @@ use Orchid\Support\Color;
  * @method Menu target(string $target = null)
  * @method Menu download($download = true)
  * @method Menu href(string $url = true)
+ * @method Menu sort(int $weight = 1)
  */
 class Menu extends Link
 {
@@ -49,6 +50,7 @@ class Menu extends Link
         'divider'        => false,
         'active'         => null,
         'data-bs-toggle' => null,
+        'sort'           => 0,
     ];
 
     /**
@@ -103,7 +105,11 @@ class Menu extends Link
      */
     public function list(array $list): self
     {
-        return $this->set('list', $list);
+        $subMenu = collect($list)->sort(function (Menu $menu){
+            return $menu->get('sort', 0);
+        });
+
+        return $this->set('list', $subMenu);
     }
 
     /**
