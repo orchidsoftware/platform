@@ -105,7 +105,7 @@ class Menu extends Link
      */
     public function list(array $list): self
     {
-        $subMenu = collect($list)->sort(function (Menu $menu){
+        $subMenu = collect($list)->sort(function (Menu $menu) {
             return $menu->get('sort', 0);
         });
 
