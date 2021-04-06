@@ -7,16 +7,11 @@ body {
   overflow-x: hidden;
 }
 
-@media (min-width: $tablet) {
+@include media-breakpoint-up(md) {
     .aside {
         min-width: $app-aside-min-width;
+        max-width: $app-aside-width;
     }
-}
-
-@media (min-width: 1900px) {
-  .aside {
-    max-width: $app-aside-width;
-  }
 }
 
 
@@ -32,7 +27,7 @@ body {
 }
 
 
-@include media-breakpoint-down(sm) {
+@include media-breakpoint-down(md) {
     // Styles
 
     .app:before {

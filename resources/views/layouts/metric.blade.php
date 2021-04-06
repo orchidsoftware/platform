@@ -4,10 +4,10 @@
             {{ __($title) }}
         </legend>
     @endisset
-    <div class="row mb-2">
+    <div class="row mb-2 g-3 g-mb-4">
         @foreach($metrics as $key => $metric)
             <div class="col">
-                <div class="p-4 bg-white rounded shadow-sm">
+                <div class="p-4 bg-white rounded shadow-sm h-100">
                     <small class="text-muted d-block mb-1">{{ __($key) }}</small>
                     <p class="h3 text-black fw-light">{{ $metric['keyValue'] }}
                         @if(isset($metric['keyDiff']) && (float)$metric['keyDiff'] !== 0.0)

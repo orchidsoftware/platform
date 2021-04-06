@@ -2,7 +2,7 @@
 
 @section('body-left')
 
-    <div class="aside col-xs-12 col-md-2 col-xl-2 col-xxl-3 bg-dark">
+    <div class="aside col-xs-12 col-md-2 bg-dark">
         <div class="d-md-flex align-items-start flex-column d-sm-block h-full">
 
             <header class="d-sm-flex d-md-block p-3 mt-md-4 w-100 d-flex align-items-center">
