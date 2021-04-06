@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
+use Illuminate\Support\Str;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
+use Orchid\Screen\Actions\Menu;
 use Orchid\Tests\TestUnitCase;
 
 /**
@@ -110,6 +112,34 @@ class DashboardTest extends TestUnitCase
         });
 
         $this->assertEquals(Dashboard::returnNameMacroFunction($name), $name);
+    }
+
+    public function testRegisterMenuElement():void
+    {
+        $dashboard = new Dashboard();
+
+        $view = $dashboard
+            ->registerMenuElement(Dashboard::MENU_MAIN, Menu::make('Item 1')->sort(3))
+            ->registerMenuElement(Dashboard::MENU_MAIN, Menu::make('Item 2')->sort(2))
+            ->renderMenu(Dashboard::MENU_MAIN);
+
+        $this->assertStringContainsString('Item 2', $view);
+        $this->assertStringContainsString('Item 1', $view);
+        $this->assertTrue(Str::of($view)->after('Item 2')->contains('Item 1'));
+    }
+
+    public function testAddMenuSubElements():void
+    {
+        $dashboard = new Dashboard();
+
+        $view = $dashboard
+            ->registerMenuElement(Dashboard::MENU_MAIN, Menu::make('Item 1')->slug('item'))
+            ->addMenuSubElements(Dashboard::MENU_MAIN, 'item', [
+                Menu::make('Sub-element'),
+            ])
+            ->renderMenu(Dashboard::MENU_MAIN);
+
+        $this->assertStringContainsString('Sub-element', $view);
     }
 
     protected function setUp(): void

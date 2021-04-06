@@ -51,6 +51,7 @@ class Menu extends Link
         'active'         => null,
         'data-bs-toggle' => null,
         'sort'           => 0,
+        'slug'           => null,
     ];
 
     /**
@@ -82,9 +83,11 @@ class Menu extends Link
                     return;
                 }
 
+                $slug = $this->get('slug', Str::slug($this->get('name')));
+
                 $this
                     ->set('data-bs-toggle', 'collapse')
-                    ->set('href', '#menu-' . Str::slug($this->get('name')));
+                    ->set('href', '#menu-' . $slug);
             })
             ->addBeforeRender(function () {
                 $href = $this->get('href');
@@ -101,13 +104,18 @@ class Menu extends Link
     /**
      * @param Actionable[] $list
      *
-     * @return DropDown
+     * @return $this
      */
     public function list(array $list): self
     {
-        $subMenu = collect($list)->sort(function (Menu $menu) {
-            return $menu->get('sort', 0);
-        });
+        $default = $this->get('list', []);
+
+        $subMenu = collect()
+            ->merge($default)
+            ->merge($list)
+            ->sort(function (Menu $menu) {
+                return $menu->get('sort', 0);
+            });
 
         return $this->set('list', $subMenu);
     }
@@ -146,9 +154,9 @@ class Menu extends Link
     /**
      * @param string $url
      *
-     * @return Menu|\Orchid\Screen\Field
+     * @return $this
      */
-    public function url(string $url)
+    public function url(string $url): self
     {
         return $this->set('href', $url);
     }
@@ -156,21 +164,21 @@ class Menu extends Link
     /**
      * @param string $permission
      *
-     * @return Menu
+     * @return $this
      */
-    public function permission(?string $permission)
+    public function permission(?string $permission): self
     {
         if ($permission === null) {
             return $this;
         }
 
+        $this->permit = false;
+
         $user = Auth::user();
 
-        if ($user === null) {
-            return $this;
+        if ($user !== null) {
+            $this->permit = $user->hasAccess($permission);
         }
-
-        $this->permit = $user->hasAccess($permission);
 
         return $this;
     }
@@ -186,10 +194,20 @@ class Menu extends Link
     /**
      * @param string|null $title
      *
-     * @return Link
+     * @return $this
      */
-    public function title(?string $title = null): Link
+    public function title(?string $title = null): self
     {
         return $this->set('title', $title);
+    }
+
+    /**
+     * @param string $slug
+     *
+     * @return $this
+     */
+    public function slug(string $slug): self
+    {
+        return $this->set('slug', $slug);
     }
 }

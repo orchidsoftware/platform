@@ -392,4 +392,25 @@ class Dashboard
             })
             ->implode('');
     }
+
+    /**
+     * @param string $location
+     * @param string $slug
+     * @param Menu[] $list
+     *
+     * @return Dashboard
+     */
+    public function addMenuSubElements(string $location, string $slug, array $list): Dashboard
+    {
+        $menu = $this->menu->get($location)
+            ->map(function (Menu $menu) use ($slug, $list) {
+                return $menu->get('slug') === $slug
+                    ? $menu->list($list)
+                    : $menu;
+            });
+
+        $this->menu->put($location, $menu);
+
+        return $this;
+    }
 }
