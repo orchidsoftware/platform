@@ -39,7 +39,6 @@ class TimeCollection extends Collection
         });
     }
 
-
     /**
      * @return TimeCollection
      */
