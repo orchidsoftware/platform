@@ -32,10 +32,35 @@ class TimeCollection extends Collection
      */
     public function showDaysOfWeek(): TimeCollection
     {
-        return $this->transform(function (array $value) {
+        return $this->transformLabel(function (array $value) {
             $day = Carbon::parse($value['label'])->dayName;
 
-            $value['label'] = Str::ucfirst($day);
+            return Str::ucfirst($day);
+        });
+    }
+
+
+    /**
+     * @return TimeCollection
+     */
+    public function showMinDaysOfWeek(): TimeCollection
+    {
+        return $this->transformLabel(function (array $value) {
+            $day = Carbon::parse($value['label'])->minDayName;
+
+            return Str::ucfirst($day);
+        });
+    }
+
+    /**
+     * @param callable $callback
+     *
+     * @return TimeCollection
+     */
+    public function transformLabel(callable $callback)
+    {
+        return $this->transform(function (array $value) use ($callback) {
+            $value['label'] = $callback($value);
 
             return $value;
         });
