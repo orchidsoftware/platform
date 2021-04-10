@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 9.21.0 - 2021-04-10
+
+### Added
+- Translated missing text in Italian [#1653](https://github.com/orchidsoftware/platform/pull/1653)
+- Method `showMinDaysOfWeek` for `TimeCollection`
+
 ## 9.20.1 - 2021-03-25
 
 ### Fixed
