@@ -14,12 +14,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Use a menu item as part of an `Action` [#1637](https://github.com/orchidsoftware/platform/issues/1637)
 - Using `canSee` and `isSee` [#1559](https://github.com/orchidsoftware/platform/issues/1559)
 - Updated `Bootstrap` version to v5.0.0-beta3 [#1152](https://github.com/orchidsoftware/platform/issues/1152)
-- Updated `Stimulus` version to 2.0 [#1389](https://github.com/orchidsoftware/platform/issues/1389) 
+- Updated `Stimulus` version to 2.0 [#1389](https://github.com/orchidsoftware/platform/issues/1389)
 
 ### Removed
-- The `Turbolinks` has been replaced in favor of a `Turbo` 
+- The `Turbolinks` has been replaced in favor of a `Turbo`
 - The `Compendium` class has been removed. Recommend using a newer Legend.
 - The `Collapse` class has been removed.
+
+## 9.21.0 - 2021-04-10
+
+### Added
+- Translated missing text in Italian [#1653](https://github.com/orchidsoftware/platform/pull/1653)
+- Method `showMinDaysOfWeek` for `TimeCollection`
 
 ## 9.20.1 - 2021-03-25
 
