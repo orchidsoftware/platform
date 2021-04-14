@@ -1,6 +1,6 @@
 <div class="mb-3">
     @isset($title)
-        <legend class="text-black px-4">
+        <legend class="text-black px-4 mb-0">
             {{ __($title) }}
         </legend>
     @endisset

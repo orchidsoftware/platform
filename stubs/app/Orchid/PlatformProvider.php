@@ -30,7 +30,6 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('monitor')
                 ->route('platform.example')
                 ->title('Navigation')
-                ->divider()
                 ->badge(function () {
                     return 6;
                 }),
@@ -66,7 +65,8 @@ class PlatformProvider extends OrchidServiceProvider
 
             Menu::make('Cards')
                 ->icon('grid')
-                ->route('platform.example.cards'),
+                ->route('platform.example.cards')
+                ->divider(),
 
             Menu::make('Documentation')
                 ->title('Docs')

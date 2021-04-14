@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.0.0 - 2021-04-14
+
+### Added
+- `Legend` layout and `Sight` class for simple view to display data [#1607](https://github.com/orchidsoftware/platform/issues/1607)
+- Turbo [#1473](https://github.com/orchidsoftware/platform/issues/1473)
+
+### Changed
+- Use a menu item as part of an `Action` [#1637](https://github.com/orchidsoftware/platform/issues/1637)
+- Using `canSee` and `isSee` [#1559](https://github.com/orchidsoftware/platform/issues/1559)
+- Updated `Bootstrap` version to v5.0.0-beta3 [#1152](https://github.com/orchidsoftware/platform/issues/1152)
+- Updated `Stimulus` version to 2.0 [#1389](https://github.com/orchidsoftware/platform/issues/1389) 
+
+### Removed
+- The `Turbolinks` has been replaced in favor of a `Turbo` 
+- The `Compendium` class has been removed. Recommend using a newer Legend.
+- The `Collapse` class has been removed.
+
 ## 9.20.1 - 2021-03-25
 
 ### Fixed

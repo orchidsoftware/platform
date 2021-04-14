@@ -32,6 +32,8 @@ class LocaleTest extends TestUnitCase
             ->map(function (string $file) {
                 $content = file_get_contents($file);
 
+                $this->assertJson($content, "$file is not valid JSON");
+
                 return array_keys(json_decode($content, true));
             })
             ->flatten()

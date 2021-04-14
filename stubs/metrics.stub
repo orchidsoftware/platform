@@ -7,11 +7,6 @@ use Orchid\Screen\Layouts\Metric;
 class DummyClass extends Metric
 {
     /**
-     * @var string
-     */
-    protected $title = 'Example Metric';
-
-    /**
      * Get the labels available for the metric.
      *
      * @return array
