@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Screen\Fields;
 
 use Illuminate\Support\Facades\Auth;
-use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Actions\Menu;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
@@ -107,4 +106,3 @@ class MenuTest extends TestFieldsUnitCase
         $this->assertStringContainsString('#menu-navigation', $view);
     }
 }
-
