@@ -5,8 +5,7 @@
 @endisset
 
 <li class="nav-item @isset($active) {{active($active)}} @endisset">
-    <a
-        data-turbo="{{ var_export($turbo) }}"
+    <a data-turbo="{{ var_export($turbo) }}"
         {{ $attributes }}
     >
         @isset($icon)
@@ -21,12 +20,15 @@
     </a>
 </li>
 
-
-<div class="collapse sub-menu ps-2 {{active($active, 'show')}}" id="menu-{{\Illuminate\Support\Str::slug($name)}}" data-bs-parent="#headerMenuCollapse">
-    @foreach($list as $item)
-        {!!  $item->build($source) !!}
-    @endforeach
-</div>
+@if(!empty($list))
+    <div class="collapse sub-menu ps-2 {{active($active, 'show')}}"
+         id="menu-{{\Illuminate\Support\Str::slug($name)}}"
+         data-bs-parent="#headerMenuCollapse">
+        @foreach($list as $item)
+            {!!  $item->build($source) !!}
+        @endforeach
+    </div>
+@endif
 
 @if($divider)
     <li class="divider my-2"></li>
