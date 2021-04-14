@@ -12,7 +12,7 @@
                        id="button-tab-{{\Illuminate\Support\Str::slug($name)}}"
                        role="tab"
                        data-toggle="tab">
-                        {!! $name !!}
+                        {!! $titles[$loop->index] ?? $name !!}
                     </a>
                 </li>
             @endforeach

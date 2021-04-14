@@ -132,12 +132,13 @@ class LayoutFactory
 
     /**
      * @param array $layouts
+     * @param string[] $titles
      *
      * @return Tabs
      */
-    public static function tabs(array $layouts): Tabs
+    public static function tabs(array $layouts, array $titles = []): Tabs
     {
-        return new class($layouts) extends Tabs {
+        return new class($layouts, $titles) extends Tabs {
         };
     }
 
