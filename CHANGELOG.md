@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 10.0.0 - 2021-04-14
 
 ### Added
+- Multiguard support [#1633](https://github.com/orchidsoftware/platform/pull/1633), [#1614](https://github.com/orchidsoftware/platform/pull/1614)
 - `Legend` layout and `Sight` class for simple view to display data [#1607](https://github.com/orchidsoftware/platform/issues/1607)
 - Turbo [#1473](https://github.com/orchidsoftware/platform/issues/1473)
 
