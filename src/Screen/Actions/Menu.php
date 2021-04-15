@@ -21,6 +21,7 @@ use Orchid\Support\Color;
  * @method Menu download($download = true)
  * @method Menu href(string $url = true)
  * @method Menu sort(int $weight = 1)
+ * @method Menu active(string|array $active = null)
  */
 class Menu extends Link
 {
