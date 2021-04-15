@@ -384,8 +384,8 @@ class Dashboard
     public function renderMenu(string $location): string
     {
         return $this->menu->get($location)
-            ->sort(function (Menu $menu) {
-                return $menu->get('sort', 0);
+            ->sort(function (Menu $current, Menu $next) {
+                return $current->get('sort', 0) <=> $next->get('sort', 0);
             })
             ->map(function (Menu $menu) {
                 return (string)$menu->render();
