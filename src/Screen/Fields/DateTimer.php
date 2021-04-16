@@ -42,17 +42,17 @@ class DateTimer extends Field
      * @var array
      */
     protected $attributes = [
-        'class'                                  => 'form-control',
-        'data-fields--datetime-enable-time'      => 'false',
-        'data-fields--datetime-time-24hr'        => 'false',
-        'data-fields--datetime-allow-input'      => 'false',
-        'data-fields--datetime-date-format'      => 'Y-m-d H:i:S',
-        'data-fields--datetime-no-calendar'      => 'false',
-        'data-fields--datetime-minute-increment' => 5,
-        'data-fields--datetime-hour-increment'   => 1,
-        'data-fields--datetime-static'           => 'false',
-        'allowEmpty'                             => false,
-        'placeholder'                            => 'Select Date...',
+        'class'                          => 'form-control',
+        'data-datetime-enable-time'      => 'false',
+        'data-datetime-time-24hr'        => 'false',
+        'data-datetime-allow-input'      => 'false',
+        'data-datetime-date-format'      => 'Y-m-d H:i:S',
+        'data-datetime-no-calendar'      => 'false',
+        'data-datetime-minute-increment' => 5,
+        'data-datetime-hour-increment'   => 1,
+        'data-datetime-static'           => 'false',
+        'allowEmpty'                     => false,
+        'placeholder'                    => 'Select Date...',
     ];
 
     /**
@@ -79,11 +79,11 @@ class DateTimer extends Field
         'required',
         'tabindex',
         'value',
-        'data-fields--datetime-enable-time',
-        'data-fields--datetime-time-24hr',
-        'data-fields--datetime-allow-input',
-        'data-fields--datetime-date-format',
-        'data-fields--datetime-no-calendar',
+        'data-datetime-enable-time',
+        'data-datetime-time-24hr',
+        'data-datetime-allow-input',
+        'data-datetime-date-format',
+        'data-datetime-no-calendar',
     ];
 
     /**
@@ -95,7 +95,7 @@ class DateTimer extends Field
      */
     public function enableTime(bool $time = true): self
     {
-        $this->set('data-fields--datetime-enable-time', var_export($time, true));
+        $this->set('data-datetime-enable-time', var_export($time, true));
 
         return $this;
     }
@@ -109,7 +109,7 @@ class DateTimer extends Field
      */
     public function format24hr(bool $time = true): self
     {
-        $this->set('data-fields--datetime-time-24hr', var_export($time, true));
+        $this->set('data-datetime-time-24hr', var_export($time, true));
 
         return $this;
     }
@@ -124,7 +124,7 @@ class DateTimer extends Field
      */
     public function allowInput(bool $time = true): self
     {
-        $this->set('data-fields--datetime-allow-input', var_export($time, true));
+        $this->set('data-datetime-allow-input', var_export($time, true));
 
         return $this;
     }
@@ -139,7 +139,7 @@ class DateTimer extends Field
      */
     public function format(string $format): self
     {
-        $this->set('data-fields--datetime-date-format', $format);
+        $this->set('data-datetime-date-format', $format);
 
         return $this;
     }
@@ -154,7 +154,7 @@ class DateTimer extends Field
     public function noCalendar(bool $noCalendar = true): self
     {
         $this->enableTime();
-        $this->set('data-fields--datetime-no-calendar', var_export($noCalendar, true));
+        $this->set('data-datetime-no-calendar', var_export($noCalendar, true));
 
         return $this;
     }
@@ -168,7 +168,7 @@ class DateTimer extends Field
      */
     public function minuteIncrement(int $increment)
     {
-        $this->set('data-fields--datetime-minute-increment', $increment);
+        $this->set('data-datetime-minute-increment', $increment);
 
         return $this;
     }
@@ -182,7 +182,7 @@ class DateTimer extends Field
      */
     public function hourIncrement(int $increment)
     {
-        $this->set('data-fields--datetime-hour-increment', $increment);
+        $this->set('data-datetime-hour-increment', $increment);
 
         return $this;
     }
