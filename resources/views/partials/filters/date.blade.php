@@ -9,13 +9,13 @@
     </button>
     <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow" x-placement="bottom-end">
         <div class="wrapper-sm" data-action="click->screen--filter#onMenuClick">
-            <div data-controller="fields--datetime" class="input-group"
-                data-fields--datetime-inline="true"
-                data-fields--datetime-static="true"
+            <div data-controller="datetime" class="input-group"
+                data-datetime-inline="true"
+                data-datetime-static="true"
               >
               <input class="d-none"
                      name="filter[{{$column}}]"
-                     data-target="fields--datetime.instance"
+                     data-datetime-target="instance"
                      value="{{get_filter_string($column)}}"
                      form="filters"
                      placeholder="{{ __('Filter') }}"
