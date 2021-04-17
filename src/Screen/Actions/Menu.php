@@ -84,7 +84,7 @@ class Menu extends Link
                     return;
                 }
 
-                $slug = $this->get('slug', Str::slug($this->get('name')));
+                $slug = $this->getSlug();
 
                 $this
                     ->set('data-bs-toggle', 'collapse')
@@ -100,6 +100,14 @@ class Menu extends Link
 
                 $this->set('active', $active);
             });
+    }
+    
+    /**
+     * @return string
+     */
+    protected function getSlug(): string
+    {
+        return $this->get('slug', Str::slug($this->get('name')));
     }
 
     /**
@@ -211,4 +219,5 @@ class Menu extends Link
     {
         return $this->set('slug', $slug);
     }
+    
 }
