@@ -219,5 +219,4 @@ class Menu extends Link
     {
         return $this->set('slug', $slug);
     }
-    
 }
