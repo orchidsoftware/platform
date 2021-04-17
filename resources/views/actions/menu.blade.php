@@ -22,7 +22,7 @@
 
 @if(!empty($list))
     <div class="collapse sub-menu ps-2 {{active($active, 'show')}}"
-         id="menu-{{\Illuminate\Support\Str::slug($name)}}"
+         id="menu-{{$slug}}"
          data-bs-parent="#headerMenuCollapse">
         @foreach($list as $item)
             {!!  $item->build($source) !!}
