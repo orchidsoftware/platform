@@ -49,7 +49,6 @@
     <env name="SCOUT_DRIVER" value="array"/>
     <env name="SCOUT_QUEUE" value="true"/>
     <env name="QUEUE_DRIVER" value="sync"/>
-    <env name="XDEBUG_MODE" value="coverage"/>
   </php>
   <logging/>
 </phpunit>
