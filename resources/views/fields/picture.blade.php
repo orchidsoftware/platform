@@ -13,7 +13,7 @@
                 <img src="#" class="picture-preview img-fluid img-full mb-2 border" alt="">
             </div>
 
-            <span class="mt-1 float-left">{{ __('Upload image from your computer:') }}</span>
+            <span class="mt-1 float-start">{{ __('Upload image from your computer:') }}</span>
 
             <div class="btn-group">
                 <label class="btn btn-default m-0">
