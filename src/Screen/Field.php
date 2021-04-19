@@ -10,6 +10,7 @@ use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
 use Illuminate\View\ComponentAttributeBag;
 use Illuminate\View\View;
+use Illuminate\Support\Traits\Macroable;
 use Orchid\Screen\Concerns\Makeable;
 use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
@@ -32,7 +33,9 @@ use Throwable;
  */
 class Field implements Fieldable
 {
-    use CanSee, Makeable;
+    use CanSee, Makeable, Macroable {
+        __call as macroCall;
+    }
 
     /**
      * A set of closure functions
@@ -120,10 +123,14 @@ class Field implements Fieldable
      * @param string $name
      * @param array  $arguments
      *
-     * @return static
+     * @return mixed|static
      */
-    public function __call(string $name, array $arguments): self
+    public function __call(string $name, array $arguments)
     {
+        if (static::hasMacro($name)) {
+            return $this->macroCall($name, $arguments);
+        }
+
         $arguments = collect($arguments)->map(static function ($argument) {
             return $argument instanceof Closure ? $argument() : $argument;
         });
