@@ -1,8 +1,6 @@
 @component($typeForm, get_defined_vars())
-    <button form="post-form"
-            formaction="{{ $action }}"
+    <button
             data-controller="button"
-            data-novalidate="{{ var_export($novalidate) }}"
             data-turbo="{{ var_export($turbo) }}"
             @empty(!$confirm)
                 data-action="button#confirm"

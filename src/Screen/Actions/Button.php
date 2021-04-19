@@ -15,7 +15,6 @@ use Orchid\Screen\Action;
  * @method Button class(string $classes = null)
  * @method Button method(string $methodName = null)
  * @method Button parameters(array|object $name)
- * @method Button novalidate(bool $novalidate = true)
  * @method Button confirm(string $confirm = true)
  * @method Button action(string $url)
  * @method Button disabled(bool $disabled)
@@ -42,6 +41,25 @@ class Button extends Action
         'confirm'    => null,
         'parameters' => [],
         'turbo'      => true,
+        'form'       => 'post-form',
+    ];
+
+    /**
+     * Attributes available for a particular tag.
+     *
+     * @var array
+     */
+    protected $inlineAttributes = [
+        'form',
+        'formaction',
+        'formenctype',
+        'formmetho',
+        'formnovalidate',
+        'formtarget',
+        'type',
+        'autofocus',
+        'disabled',
+        'tabindex',
     ];
 
     /**
@@ -59,6 +77,22 @@ class Button extends Action
 
             $action = rtrim("{$url}/{$this->get('method')}?{$query}", '/?');
             $this->set('action', $action);
+        })->addBeforeRender(function () {
+            $action = $this->get('action');
+
+            if ($action !== null) {
+                $this->set('formaction', $action);
+            }
         });
+    }
+
+    /**
+     * @param bool $novalidate
+     *
+     * @return Button|\Orchid\Screen\Field
+     */
+    public function novalidate(bool $novalidate = true)
+    {
+        return $this->set('formnovalidate', var_export($novalidate, true));
     }
 }
