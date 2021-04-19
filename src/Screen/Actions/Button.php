@@ -53,7 +53,7 @@ class Button extends Action
         'form',
         'formaction',
         'formenctype',
-        'formmetho',
+        'formmethod',
         'formnovalidate',
         'formtarget',
         'type',
