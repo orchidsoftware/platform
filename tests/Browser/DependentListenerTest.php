@@ -42,6 +42,7 @@ class DependentListenerTest extends TestBrowserCase
                 ->assertInputValue('first', 100)
                 ->assertDontSee('The result of adding the first argument and the second')
                 ->type('second', 200)
+                ->doubleClick() // return cursor for run event onchange
                 ->waitForText('The result of adding the first argument and the second')
                 ->assertSee('SUM')
                 ->assertInputValue('sum', 300);
