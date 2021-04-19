@@ -2,7 +2,6 @@
     <div class="modal fade in {{$type}}"
          id="screen-modal-{{$key}}"
          role="dialog"
-         tabindex="-1"
          aria-labelledby="screen-modal-{{$key}}"
          data-controller="modal"
          data-modal-slug="{{$templateSlug}}"
