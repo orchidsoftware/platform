@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.1.0 - 2021-04-19
+
+### Added
+- Missing attributes for Button class
+- Macroable trait to field class [#1678](https://github.com/orchidsoftware/platform/pull/1678)
+
+### Fixed
+-  Change old class selectors for Cropper/Picture
+
 ## 10.0.2 - 2021-04-17
 
 ### Fixed
