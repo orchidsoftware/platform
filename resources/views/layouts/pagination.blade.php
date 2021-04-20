@@ -1,4 +1,4 @@
-<footer class="pb-3 w-100 v-md-center px-4">
+<footer class="pb-3 w-100 v-md-center px-4 d-flex flex-wrap">
         <div class="col-auto me-auto">
             @if(isset($columns) && \Orchid\Screen\TD::isShowVisibleColumns($columns))
                 <div class="btn-group dropup d-inline-block">
@@ -29,7 +29,7 @@
             @endif
 
         </div>
-        <div class="col-auto d-flex overflow-auto d-sm-block mt-3 mt-sm-0">
+        <div class="col-auto overflow-auto flex-shrink-1 mt-3 mt-sm-0">
             {!!
                 $paginator->appends(request()
                     ->except(['page','_token']))
