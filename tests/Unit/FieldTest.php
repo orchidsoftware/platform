@@ -168,23 +168,30 @@ class FieldTest extends TestUnitCase
     public function testOldNameMatchesLaravelRequestOldPrefixWithErrors()
     {
         $field = new Input();
-
         $field->set('name', 'parent[child][grandchild]');
 
         $view = $field->render();
 
-        $this->assertInstanceOf(View::class, $view);
+        $html = $view->withErrors([
+            'parent.child.grandchild' => 'testError'
+        ])->render();
 
-        $this->assertStringContainsString('parent[child][grandchild]', $view->withErrors([])->render());
+        $this->assertInstanceOf(View::class, $view);
+        $this->assertStringContainsString('testError', $html);
+        $this->assertStringContainsString('parent[child][grandchild]', $html);
 
         $field = new Input();
-
         $field->set('name', 'parent[child][grandchild][]');
 
         $view = $field->render();
 
-        $this->assertInstanceOf(View::class, $view);
+        $html = $view->withErrors([
+            'parent.child.grandchild' => 'testError'
+        ])->render();
 
-        $this->assertStringContainsString('parent[child][grandchild][]', $view->withErrors([])->render());
+
+        $this->assertInstanceOf(View::class, $view);
+        $this->assertStringContainsString('testError', $html);
+        $this->assertStringContainsString('parent[child][grandchild][]', $html);
     }
 }
