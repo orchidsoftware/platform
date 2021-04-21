@@ -65,4 +65,21 @@ class DependentListenerTest extends TestBrowserCase
                 ->assertInputValue('sum', 300);
         });
     }
+
+    public function testLoadDataFromNestedTargets(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $browser
+                ->loginAs($this->createAdminUser())
+                ->visitRoute('test.dependent-listener-nested-targets')
+                ->waitForText('Test child Dependent')
+                ->assertInputValue('father[first]', 100)
+                ->assertDontSee('The result of adding the first argument and the second')
+                ->type('father[second]', 200)
+                ->click('h1') // return cursor for run event onchange
+                ->waitForText('The result of adding the first argument and the second')
+                ->assertSee('SUM')
+                ->assertInputValue('sum', 300);
+        });
+    }
 }
