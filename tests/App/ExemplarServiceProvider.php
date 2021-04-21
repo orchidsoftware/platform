@@ -7,12 +7,12 @@ namespace Orchid\Tests\App;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Dashboard;
-use Orchid\Tests\App\Screens\NestedTargetsDependentSumListenerScreen;
 use Orchid\Tests\App\Screens\ConfirmScreen;
 use Orchid\Tests\App\Screens\DependentListenerModalScreen;
 use Orchid\Tests\App\Screens\DependentListenerScreen;
 use Orchid\Tests\App\Screens\MethodsResponseScreen;
 use Orchid\Tests\App\Screens\ModalValidationScreen;
+use Orchid\Tests\App\Screens\NestedTargetsDependentSumListenerScreen;
 
 class ExemplarServiceProvider extends ServiceProvider
 {

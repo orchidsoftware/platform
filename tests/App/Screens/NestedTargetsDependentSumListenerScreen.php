@@ -46,7 +46,7 @@ class NestedTargetsDependentSumListenerScreen extends Screen
 
     public function asyncSum(Request $request): array
     {
-        $first  = (int) $request->input('father.first');
+        $first = (int) $request->input('father.first');
         $second = (int) $request->input('father.second');
 
         return [
