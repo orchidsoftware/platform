@@ -173,7 +173,7 @@ class FieldTest extends TestUnitCase
         $view = $field->render();
 
         $html = $view->withErrors([
-            'parent.child.grandchild' => 'testError'
+            'parent.child.grandchild' => 'testError',
         ])->render();
 
         $this->assertInstanceOf(View::class, $view);
@@ -186,7 +186,7 @@ class FieldTest extends TestUnitCase
         $view = $field->render();
 
         $html = $view->withErrors([
-            'parent.child.grandchild' => 'testError'
+            'parent.child.grandchild' => 'testError',
         ])->render();
 
 
