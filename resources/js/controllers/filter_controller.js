@@ -54,7 +54,7 @@ export default class extends ApplicationController {
         const filters = this.formToObject(formElement);
         filters.sort = this.getUrlParameter('sort');
 
-        const params = qs.stringify(this.removeEmpty(filters), { encode: false })
+        const params = qs.stringify(this.removeEmpty(filters), { encode: false, arrayFormat: 'repeat' })
 
         Turbo.visit(this.getUrl(params), {action: 'replace'});
     }
