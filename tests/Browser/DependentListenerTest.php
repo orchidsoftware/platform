@@ -55,7 +55,7 @@ class DependentListenerTest extends TestBrowserCase
             $browser
                 ->loginAs($this->createAdminUser())
                 ->visitRoute('test.dependent-listener-nested-targets')
-                ->waitForText('Test Dependent')
+                ->waitForText('Test child Dependent')
                 ->assertInputValue('father[first]', 100)
                 ->assertDontSee('The result of adding the first argument and the second')
                 ->type('father[second]', 200)
