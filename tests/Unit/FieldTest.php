@@ -149,4 +149,49 @@ class FieldTest extends TestUnitCase
 
         $this->assertEquals($expected, $actual);
     }
+
+    public function testOldNameMatchesLaravelRequestOldPrefix()
+    {
+        $field = new Field();
+
+        $field->set('name', 'parent[child][grandchild]');
+
+        $this->assertEquals('parent.child.grandchild', $field->getOldName());
+
+        $field = new Field();
+
+        $field->set('name', 'parent[child][grandchild][]');
+
+        $this->assertEquals('parent.child.grandchild', $field->getOldName());
+    }
+
+    public function testOldNameMatchesLaravelRequestOldPrefixWithErrors()
+    {
+        $field = new Input();
+        $field->set('name', 'parent[child][grandchild]');
+
+        $view = $field->render();
+
+        $html = $view->withErrors([
+            'parent.child.grandchild' => 'testError'
+        ])->render();
+
+        $this->assertInstanceOf(View::class, $view);
+        $this->assertStringContainsString('testError', $html);
+        $this->assertStringContainsString('parent[child][grandchild]', $html);
+
+        $field = new Input();
+        $field->set('name', 'parent[child][grandchild][]');
+
+        $view = $field->render();
+
+        $html = $view->withErrors([
+            'parent.child.grandchild' => 'testError'
+        ])->render();
+
+
+        $this->assertInstanceOf(View::class, $view);
+        $this->assertStringContainsString('testError', $html);
+        $this->assertStringContainsString('parent[child][grandchild][]', $html);
+    }
 }

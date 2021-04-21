@@ -327,7 +327,7 @@ class Field implements Fieldable
     {
         return (string) Str::of($this->get('name'))
             ->replace(['][', '['], '.')
-            ->replace([']'], '');
+            ->replace([']'], '')->rtrim('.');
     }
 
     /**
