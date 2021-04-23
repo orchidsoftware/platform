@@ -1,5 +1,5 @@
 @if($filters->count() > 0)
-    <div class="g-0 bg-white pt-4 px-4 pb-1 rounded mb-3">
+    <div class="g-0 bg-white py-4 px-4 rounded mb-3">
         <div class="row align-items-center" data-controller="filter">
             @foreach($filters->where('display', true) as $filter)
                 <div class="col-sm-auto align-self-start">
