@@ -367,6 +367,10 @@ class Dashboard
      */
     public function registerMenuElement(string $location, \Orchid\Screen\Actions\Menu $menu): Dashboard
     {
+        if ($menu->get('sort', 0) === 0) {
+            $menu->sort($this->menu->get($location)->count() + 1);
+        }
+
         $this->menu->get($location)->add($menu);
 
         return $this;

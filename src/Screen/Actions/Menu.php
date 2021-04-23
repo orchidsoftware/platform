@@ -91,17 +91,30 @@ class Menu extends Link
                     ->set('href', '#menu-' . $slug);
             })
             ->addBeforeRender(function () {
-                $href = $this->get('href');
-                $active = $this->get('active', [
-                    $href,
-                    $href . '?*',
-                    $href . '/*',
-                ]);
+                if ($this->get('active') !== null) {
+                    return;
+                }
 
-                $this->set('active', $active);
+                $active = collect([])
+                    ->merge($this->get('list'))
+                    ->map(function (Menu $menu){
+                       return $menu->get('href');
+                    })
+                    ->push($this->get('href'))
+                    ->filter()
+                    ->map(function ($href){
+                        return [
+                            $href,
+                            $href . '?*',
+                            $href . '/*',
+                        ];
+                    })
+                    ->flatten();
+
+                $this->set('active', $active->toArray());
             });
     }
-    
+
     /**
      * @return string
      */
