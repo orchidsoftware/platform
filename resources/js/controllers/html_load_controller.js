@@ -1,6 +1,5 @@
 import ApplicationController from "./application_controller";
 import axios from 'axios';
-import {Collapse, Dropdown} from 'bootstrap';
 
 export default class extends ApplicationController {
     /**
@@ -8,23 +7,23 @@ export default class extends ApplicationController {
      */
     initialize() {
         this.axios();
+        this.turbo();
     }
+
+
 
     /**
      *
      */
     connect() {
         this.csrf();
-        this.bootstrap();
     }
 
     /**
      * Initialization & configuration Turbo
      */
     turbo() {
-        document.addEventListener('turbo:load', () => {
-            this.csrf();
-        });
+
     }
 
     /**
@@ -60,22 +59,5 @@ export default class extends ApplicationController {
      */
     goToTop() {
         window.scrollTo({top: 0, behavior: 'smooth'});
-    }
-
-    /**
-     *
-     */
-    bootstrap() {
-        let dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
-        let dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
-            return new Dropdown(dropdownToggleEl)
-        })
-
-        let collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
-        let collapseList = collapseElementList.map(function (collapseEl) {
-            return new Collapse(collapseEl, {
-                toggle: false
-            })
-        })
     }
 }
