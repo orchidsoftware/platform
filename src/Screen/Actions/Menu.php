@@ -97,12 +97,12 @@ class Menu extends Link
 
                 $active = collect([])
                     ->merge($this->get('list'))
-                    ->map(function (Menu $menu){
-                       return $menu->get('href');
+                    ->map(function (Menu $menu) {
+                        return $menu->get('href');
                     })
                     ->push($this->get('href'))
                     ->filter()
-                    ->map(function ($href){
+                    ->map(function ($href) {
                         return [
                             $href,
                             $href . '?*',
