@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.1.3 - 2021-04-23
+
+### Fixed
+- Old name from request [#1675](https://github.com/orchidsoftware/platform/pull/1675)
+- Pagination responsibility [#1681](https://github.com/orchidsoftware/platform/pull/1681)
+- Send filter multiple array [#1682](https://github.com/orchidsoftware/platform/pull/1682)
+- Color with table-striped [#1680](https://github.com/orchidsoftware/platform/issues/1680)
+- Menu sorting and active sub element
+
 ## 10.1.2 - 2021-04-19
 
 ### Fixed
