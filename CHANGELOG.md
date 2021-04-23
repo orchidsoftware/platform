@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.1.4 - 2021-04-23
+
+### Fixed
+- Add bottom padding for best view [#1688](https://github.com/orchidsoftware/platform/pull/1688)
+- Remove init bootstrap
+
 ## 10.1.3 - 2021-04-23
 
 ### Fixed
