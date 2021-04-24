@@ -1,4 +1,4 @@
-<div class="dropdown d-inline-block">
+<div class="dropdown d-inline-block" data-controller="filter">
     <button class="btn btn-sm btn-link dropdown-toggle"
             type="button"
             data-bs-toggle="dropdown"
@@ -11,6 +11,7 @@
         <div class="py-2 px-3">
             <div class="form-group mb-2">
                 <input type="text"
+                       autofocus
                        name="filter[{{$column}}]"
                        value="{{get_filter_string($column)}}"
                        maxlength="255"

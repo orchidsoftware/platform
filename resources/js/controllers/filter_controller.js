@@ -7,6 +7,15 @@ export default class extends ApplicationController {
         return ['filterItem'];
     }
 
+    connect() {
+        // set focus first element for open dropdown
+        this.element.addEventListener('show.bs.dropdown', () => {
+            setTimeout(()=> {
+                this.element.querySelector('input,textarea,select')?.focus();
+            })
+        })
+    }
+
     /**
      *
      * @param event
