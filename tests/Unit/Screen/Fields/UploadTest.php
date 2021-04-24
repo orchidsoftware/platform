@@ -11,7 +11,6 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 class UploadTest extends TestFieldsUnitCase
 {
-
     public function testStorage(): void
     {
         $upload = Upload::make('file');
