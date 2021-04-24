@@ -7,6 +7,7 @@ namespace Orchid\Attachment\Models;
 use Exception;
 use Illuminate\Contracts\Filesystem\Cloud;
 use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -21,7 +22,7 @@ use Orchid\Platform\Models\User;
  */
 class Attachment extends Model
 {
-    use Filterable;
+    use Filterable, HasFactory;
 
     /**
      * @var array
