@@ -2,6 +2,9 @@ import ApplicationController from "./application_controller";
 import SimpleMDE from 'simplemde';
 
 export default class extends ApplicationController {
+
+    static values = { text: String }
+
     /**
      *
      * @returns {Element}
@@ -117,9 +120,11 @@ export default class extends ApplicationController {
                     title: 'Insert Horizontal Line',
                 },
             ],
+            initialValue: this.decodeHtmlJson(this.textValue),
             placeholder: this.textarea.placeholder,
             spellChecker: false,
         });
+
 
         // Required attribute https://github.com/sparksuite/simplemde-markdown-editor/issues/324
         if (this.textarea.required) {
@@ -129,10 +134,23 @@ export default class extends ApplicationController {
 
     /**
      *
+     * @param json
+     * @returns {string}
+     */
+    decodeHtmlJson(json) {
+        let text = document.createElement("textarea");
+        text.innerHTML = JSON.parse(json);
+
+        return text.value;
+    }
+
+    /**
+     *
      */
     showDialogUpload() {
         this.uploadInput.click();
     }
+
 
     /**
      *
