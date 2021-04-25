@@ -39,7 +39,7 @@ abstract class Table extends Layout
      *
      * The string to be displayed on top of the table.
      *
-     * @var string
+     * @var ?string
      */
     protected $title;
 
