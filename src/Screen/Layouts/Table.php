@@ -35,6 +35,15 @@ abstract class Table extends Layout
     protected $target;
 
     /**
+     * Table title.
+     *
+     * The string to be displayed on top of the table.
+     *
+     * @var string
+     */
+    protected $title;
+
+    /**
      * @param Repository $repository
      *
      * @return Factory|\Illuminate\View\View
@@ -68,7 +77,20 @@ abstract class Table extends Layout
             'hoverable'    => $this->hoverable(),
             'slug'         => $this->getSlug(),
             'onEachSide'   => $this->onEachSide(),
+            'title'        => $this->title,
         ]);
+    }
+
+    /**
+     * @param string|null $title
+     *
+     * @return Table
+     */
+    public function title(string $title = null): self
+    {
+        $this->title = $title;
+
+        return $this;
     }
 
     /**
