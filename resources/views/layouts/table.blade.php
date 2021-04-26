@@ -1,4 +1,4 @@
-<fieldset data-async>
+<fieldset>
     @empty(!$title)
         <div class="col p-0 px-3">
             <legend class="text-black">
