@@ -25,7 +25,7 @@ export default class extends ApplicationController {
 
 
     render() {
-        let params = {};
+        let params = new FormData();
 
         this.targets.forEach(name => document.querySelectorAll(`[name="${name}"]`)
             .forEach((field) => {
@@ -35,11 +35,11 @@ export default class extends ApplicationController {
                 }
 
                 if (field.type === "select-multiple") {
-                    params[name] = Array.from(
+                    params.append(name, Array.from(
                         field.querySelectorAll("option:checked")
-                    ).map(e => e.value);
+                    ).map(e => e.value));
                 } else {
-                    params[name] = field.value;
+                    params.append(name, field.value);
                 }
             }));
 
