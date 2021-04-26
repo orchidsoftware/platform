@@ -1,8 +1,13 @@
-@if($title)
-    <div class="px-3 mb-4 mt-4">
-        <h4>{{$title}}</h4>
-    </div>
-@endif
+<fieldset data-async>
+    @empty(!$title)
+        <div class="col p-0 px-3">
+            <legend class="text-black">
+                {{ $title }}
+            </legend>
+        </div>
+    @endempty
+</fieldset>
+
 <div class="bg-white rounded shadow-sm mb-3"
      data-controller="table"
      data-table-slug="{{$slug}}"

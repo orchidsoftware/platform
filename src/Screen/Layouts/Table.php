@@ -39,7 +39,7 @@ abstract class Table extends Layout
      *
      * The string to be displayed on top of the table.
      *
-     * @var string | null
+     * @var string
      */
     protected $title;
 
@@ -77,16 +77,20 @@ abstract class Table extends Layout
             'hoverable'    => $this->hoverable(),
             'slug'         => $this->getSlug(),
             'onEachSide'   => $this->onEachSide(),
-            'title'        => $this->title(),
+            'title'        => $this->title,
         ]);
     }
 
     /**
-     * @return string
+     * @param string|null $title
+     *
+     * @return Table
      */
-    protected function title(): ?string
+    public function title(string $title = null): self
     {
-        return $this->title;
+        $this->title = $title;
+
+        return $this;
     }
 
     /**
