@@ -128,6 +128,21 @@ class Upload extends Field
 
             $this->set('value', $value);
         });
+
+        // Division into groups
+        $this->addBeforeRender(function () {
+            $group = $this->get('groups');
+
+            if ($group === null) {
+                return;
+            }
+
+            $value = collect($this->get('value', []))
+                ->where('group', $group)
+                ->toArray();
+
+            $this->set('value', $value);
+        });
     }
 
     /**

@@ -4,7 +4,7 @@
     </li>
 @endisset
 
-<li class="nav-item @isset($active) {{active($active)}} @endisset">
+<li class="nav-item {{ active($active) }}">
     <a data-turbo="{{ var_export($turbo) }}"
         {{ $attributes }}
     >
@@ -21,7 +21,7 @@
 </li>
 
 @if(!empty($list))
-    <div class="collapse sub-menu ps-2 {{active($active, 'show')}}"
+    <div class="nav collapse sub-menu ps-2 {{active($active, 'show')}}"
          id="menu-{{$slug}}"
          data-bs-parent="#headerMenuCollapse">
         @foreach($list as $item)
@@ -33,3 +33,4 @@
 @if($divider)
     <li class="divider my-2"></li>
 @endif
+

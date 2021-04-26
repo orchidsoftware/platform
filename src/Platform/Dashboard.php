@@ -18,7 +18,7 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    public const VERSION = '10.1.2';
+    public const VERSION = '10.2.0';
 
     /**
      * Slug for main menu.
@@ -367,6 +367,10 @@ class Dashboard
      */
     public function registerMenuElement(string $location, \Orchid\Screen\Actions\Menu $menu): Dashboard
     {
+        if ($menu->get('sort', 0) === 0) {
+            $menu->sort($this->menu->get($location)->count() + 1);
+        }
+
         $this->menu->get($location)->add($menu);
 
         return $this;

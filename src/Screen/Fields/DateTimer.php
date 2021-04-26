@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Carbon\Carbon;
 use Orchid\Screen\Field;
 
 /**
@@ -142,6 +143,32 @@ class DateTimer extends Field
         $this->set('data-datetime-date-format', $format);
 
         return $this;
+    }
+
+    /**
+     * Sets format for transmission to the front values
+     * If the argument is not passed, then the value specified
+     * in the 'format' method will be taken
+     *
+     * @param string|null $format
+     *
+     * @return $this
+     */
+    public function serverFormat(?string $format = null): self
+    {
+        return $this->addBeforeRender(function () use ($format) {
+            $value = $this->get('value');
+
+            if ($value === null) {
+                return;
+            }
+
+            if ($format === null) {
+                $format = $this->get('data-datetime-date-format');
+            }
+
+            $this->set('value', Carbon::parse($value)->format($format));
+        });
     }
 
     /**

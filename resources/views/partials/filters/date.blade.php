@@ -1,4 +1,4 @@
-<div class="dropdown d-inline-block" data-controller="screen--filter">
+<div class="dropdown d-inline-block" data-controller="filter">
     <button class="btn btn-sm btn-link dropdown-toggle"
             type="button"
             data-bs-toggle="dropdown"
@@ -8,7 +8,7 @@
         <x-orchid-icon path="filter"/>
     </button>
     <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow" x-placement="bottom-end">
-        <div class="wrapper-sm" data-action="click->screen--filter#onMenuClick">
+        <div class="wrapper-sm" data-action="click->filter#onMenuClick">
             <div data-controller="datetime" class="input-group"
                 data-datetime-inline="true"
                 data-datetime-static="true"
@@ -19,6 +19,7 @@
                      value="{{get_filter_string($column)}}"
                      form="filters"
                      placeholder="{{ __('Filter') }}"
+                     autofocus
               >
             </div>
             <div class="line line-dashed border-bottom my-3"></div>
