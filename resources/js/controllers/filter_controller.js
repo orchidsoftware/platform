@@ -92,9 +92,11 @@ export default class extends ApplicationController {
      */
     clear(event) {
 
-        const params = {
+        const filters = {
             sort: this.getUrlParameter('sort'),
         };
+
+        const params = qs.stringify(this.removeEmpty(filters), { encode: false, arrayFormat: 'repeat' })
 
         Turbo.visit(this.getUrl(params), {action: 'replace'});
         event.preventDefault();
