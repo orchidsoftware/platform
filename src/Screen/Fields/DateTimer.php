@@ -43,17 +43,22 @@ class DateTimer extends Field
      * @var array
      */
     protected $attributes = [
-        'class'                          => 'form-control',
-        'data-datetime-enable-time'      => 'false',
-        'data-datetime-time-24hr'        => 'false',
-        'data-datetime-allow-input'      => 'false',
-        'data-datetime-date-format'      => 'Y-m-d H:i:S',
-        'data-datetime-no-calendar'      => 'false',
-        'data-datetime-minute-increment' => 5,
-        'data-datetime-hour-increment'   => 1,
-        'data-datetime-static'           => 'false',
-        'allowEmpty'                     => false,
-        'placeholder'                    => 'Select Date...',
+        'class'                                 => 'form-control',
+        'data-datetime-enable-time'             => 'false',
+        'data-datetime-time-24hr'               => 'false',
+        'data-datetime-allow-input'             => 'false',
+        'data-datetime-date-format'             => 'Y-m-d H:i:S',
+        'data-datetime-no-calendar'             => 'false',
+        'data-datetime-minute-increment'        => 5,
+        'data-datetime-hour-increment'          => 1,
+        'data-datetime-static'                  => 'false',
+        'data-datetime-disable-mobile'          => 'false',
+        'data-datetime-inline'                  => 'false',
+        'data-datetime-position'                => 'auto auto',
+        'data-datetime-shorthand-current-month' => 'false',
+        'data-datetime-show-months'             => 1,
+        'allowEmpty'                            => false,
+        'placeholder'                           => 'Select Date...',
     ];
 
     /**
@@ -85,6 +90,15 @@ class DateTimer extends Field
         'data-datetime-allow-input',
         'data-datetime-date-format',
         'data-datetime-no-calendar',
+        'data-datetime-enable',
+        'data-datetime-disable',
+        'data-datetime-max-date',
+        'data-datetime-min-date',
+        'data-datetime-disable-mobile',
+        'data-datetime-inline',
+        'data-datetime-position',
+        'data-datetime-shorthand-current-month',
+        'data-datetime-show-months',
     ];
 
     /**
@@ -210,6 +224,175 @@ class DateTimer extends Field
     public function hourIncrement(int $increment)
     {
         $this->set('data-datetime-hour-increment', $increment);
+
+        return $this;
+    }
+    
+    /**
+     * Enable specific set of dates for selection
+     * 
+     * ['2021-04-27', '2021-04-20']
+     * 
+     * or ranges
+     * 
+     * [ 
+     *     ['from' => '2021-04-04', 'to' => '2021-04-10'],
+     *     ['from' => '2021-04-25', 'to' => '2021-05-01'],
+     *     
+     * ]
+     *
+     * @param array $dates
+     *
+     * @return $this
+     */
+    public function available(array $dates = []): self
+    {
+        $this->set('data-datetime-enable', json_encode($dates));
+
+        return $this;
+    }
+
+    /**
+     * Disable specific set of dates for selection
+     * 
+     * ['2021-04-27', '2021-04-20']
+     * 
+     * or ranges
+     * 
+     * [ 
+     *     ['from' => '2021-04-04', 'to' => '2021-04-10'],
+     *     ['from' => '2021-04-25', 'to' => '2021-05-01'],
+     *     
+     * ]
+     *
+     * @param array $dates
+     *
+     * @return $this
+     */
+    public function unavailable(array $dates = []): self
+    {
+        $this->set('data-datetime-disable', json_encode($dates));
+
+        return $this;
+    }
+
+    /**
+     * Allow selection of dates on or before specified date
+     * 
+     * @param Carbon $date
+     *
+     * @return $this
+     */
+    public function max(Carbon $date): self
+    {
+        $format = $this->get('data-datetime-date-format');
+        $this->set('data-datetime-max-date', $date->format($format));
+
+        return $this;
+    }
+    
+    /**
+     * Allow selection of dates on or after specified date
+     * 
+     * @param Carbon $date
+     *
+     * @return $this
+     */
+    public function min(Carbon $date): self
+    {
+        $format = $this->get('data-datetime-date-format');
+        $this->set('data-datetime-min-date', $date->format($format));
+
+        return $this;
+    }
+    
+    /**
+     * Show calendar week numbers
+     *
+     * @param bool $show
+     *
+     * @return $this
+     */
+    public function weekNumbers(bool $show = true): self
+    {
+        $this->set('data-datetime-week-numbers', var_export($show, true));
+
+        return $this;
+    }
+    
+    /**
+     * Disable native mobile pickers in favour of calendar
+     * 
+     * @param boolean $disable
+     * 
+     * @return $this
+     */
+    public function disableMobile(bool $disable = true): self
+    {
+        $this->set('data-datetime-disable-mobile', var_export($disable, true));
+
+        return $this;
+    }
+    
+    /**
+     * Disable native mobile pickers in favour of calendar
+     * 
+     * @param boolean $inline
+     * 
+     * @return $this
+     */
+    public function inline(bool $inline = true): self
+    {
+        $this->set('data-datetime-inline', var_export($inline, true));
+
+        return $this;
+    }
+
+    /**
+     * Show the month using the shorthand version (ie, Sep instead of September).
+     * 
+     * @param boolean $short
+     * 
+     * @return $this
+     */
+    public function shorthandCurrentMonth(bool $short = true): self
+    {
+        $this->set('data-datetime-shorthand-current-month', var_export($short, true));
+
+        return $this;
+    }
+    
+    /**
+     * The number of months to be shown at the same time when displaying the calendar.
+     * 
+     * @param integer $count
+     * 
+     * @return $this
+     */
+    public function showMonths(int $count = 1): self
+    {
+        $this->set('data-datetime-show-months', $count);
+
+        return $this;
+    }
+
+    /**
+     * Where the calendar is rendered relative to the input vertically and horizontally. 
+     * In the format of "[vertical] [horizontal]". Vertical can be auto, above or below (required). 
+     * Horizontal can be left, center or right.
+     * 
+     *  e.g. "above" or "auto center"
+     * 
+     * Not used with inline()
+     * 
+     * @param string $vertical
+     * @param string $horizontal
+     * 
+     * @return $this
+     */
+    public function position(string $vertical = 'auto', string $horizontal = 'auto'): self
+    {
+        $this->set('data-datetime-position', $vertical . ' ' . $horizontal);
 
         return $this;
     }
