@@ -35,6 +35,7 @@ $font-size-sm: $font-size-base * .895 !default;
 $link-color : darken($text-color, 15%);
 $link-hover-color : darken($text-color, 30%);
 
+$dropdown-border-radius: 0.35rem;
 $border-radius-base : 2px;
 $border-color : darken($light, 5%);
 
@@ -46,6 +47,7 @@ $btn-default-color : $text-color;
 $btn-default-bg : lighten($light, 5%);
 $btn-default-border : $border-color;
 $btn-border-radius : $border-radius-base;
+$btn-close-focus-shadow: none;
 
 $input-border : darken($border-color, 5%);
 $input-border-focus : $cyan;

@@ -1,5 +1,5 @@
 @push('modals-container')
-    <div class="modal fade in {{$type}}"
+    <div class="modal fade center-scale {{$type}}"
          id="screen-modal-{{$key}}"
          role="dialog"
          aria-labelledby="screen-modal-{{$key}}"

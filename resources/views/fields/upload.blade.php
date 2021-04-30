@@ -48,17 +48,20 @@
                 @endif
             </div>
 
-            <div class="attachment modal fade disable-scroll" tabindex="-1" role="dialog" aria-hidden="false">
-                <div class="modal-dialog slide-up">
+            <div class="attachment modal fade center-scale" tabindex="-1" role="dialog" aria-hidden="false">
+                <div class="modal-dialog ">
                     <div class="modal-content">
-                            <div class="modal-header clearfix">
-                                <button type="button" class="close" title="Close" data-dismiss="modal" aria-label="Close">
-                                    <x-orchid-icon path="cross"/>
+                            <div class="modal-header">
+
+                                <h4 class="modal-title text-black fw-light">
+                                    {{__('File Information')}}
+                                    <small class="text-muted d-block">{{__('Information to display')}}</small>
+                                </h4>
+
+                                <button type="button" class="btn-close" title="Close" data-bs-dismiss="modal" aria-label="Close">
                                 </button>
-                                <h4 class="modal-title text-black fw-light">{{__('File Information')}}</h4>
-                                <p class="mb-3">{{__('Information to display')}}</p>
                             </div>
-                            <div class="modal-body px-4">
+                            <div class="modal-body p-4">
                                 <div class="form-group">
                                     <label>{{__('System name')}}</label>
                                     <input type="text" class="form-control" data-target="upload.name" readonly
@@ -100,7 +103,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button"
-                                        data-dismiss="modal"
+                                        data-bs-dismiss="modal"
                                         class="btn btn-link">
                                     <span>
                                         {{__('Close')}}

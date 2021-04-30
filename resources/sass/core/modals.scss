@@ -15,9 +15,8 @@
     p {
       color: #8b91a0;
     }
-    .close {
-      font-size: 1.2em;
-      padding: .4rem;
+    .btn-close {
+      margin: 0 !important;
     }
   }
   .modal-body {
@@ -76,19 +75,8 @@
       }
     }
     &.center-scale {
-      .modal-dialog {
-        display: table;
-        height: 100%;
-      }
-      .modal-content {
-        display: table-cell;
-        vertical-align: middle;
-        border: 0;
-        background: transparent;
-        .modal-header {
-          border-bottom: 0;
-        }
-      }
+      @include transition(all 150ms cubic-bezier(.4,0,.2,1) !important);
+
       &.in, &.show {
         .modal-dialog {
           opacity: 1;
@@ -97,7 +85,7 @@
       }
       .modal-dialog {
         opacity: 0;
-        @include scale(0.6);
+        @include scale(0.8);
       }
     }
     &.fill-in {
@@ -179,7 +167,7 @@
   opacity: 0;
   transition: none;
   &.fade{
-      @include transition(opacity 340ms linear);
+      @include transition(opacity 200ms ease-in-out);
   }
 
   &.in, &.show {
