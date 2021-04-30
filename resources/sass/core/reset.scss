@@ -485,7 +485,6 @@ blockquote {
 .dropdown-menu {
   display: none;
   min-width: 12rem;
-  border-radius: $border-radius-base;
   @include box-shadow(0 2px 6px rgba(0, 0, 0, 0.1));
   border: 1px solid $border-color;
   &.pull-left {
