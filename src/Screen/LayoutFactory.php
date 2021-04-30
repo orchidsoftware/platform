@@ -10,6 +10,7 @@ use Illuminate\Support\Traits\Macroable;
 use Orchid\Screen\Layouts\Accordion;
 use Orchid\Screen\Layouts\Blank;
 use Orchid\Screen\Layouts\Block;
+use Orchid\Screen\Layouts\Browsing;
 use Orchid\Screen\Layouts\Columns;
 use Orchid\Screen\Layouts\Component;
 use Orchid\Screen\Layouts\Legend;
@@ -266,5 +267,15 @@ class LayoutFactory
                 return $this->columns;
             }
         };
+    }
+
+    /**
+     * @param string $src
+     *
+     * @return Browsing
+     */
+    public static function browsing(string $src): Browsing
+    {
+        return new Browsing($src);
     }
 }
