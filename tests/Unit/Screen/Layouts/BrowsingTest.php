@@ -44,13 +44,13 @@ class BrowsingTest extends TestUnitCase
 
         $iframe = Layout::browsing('https://orchid.software');
 
-        foreach ($attributes as $key => $value){
+        foreach ($attributes as $key => $value) {
             $iframe->$key($value);
         }
 
         $html = $iframe->build(new Repository())->withErrors([])->render();
 
-        foreach ($attributes as $key => $value){
+        foreach ($attributes as $key => $value) {
             $this->assertStringContainsString("$key='$value'", $html);
         }
     }
