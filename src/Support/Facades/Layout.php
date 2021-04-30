@@ -10,7 +10,7 @@ use Orchid\Screen\LayoutFactory;
 use Orchid\Screen\Layouts\Accordion;
 use Orchid\Screen\Layouts\Blank;
 use Orchid\Screen\Layouts\Block;
-use Orchid\Screen\Layouts\Collapse;
+use Orchid\Screen\Layouts\Browsing;
 use Orchid\Screen\Layouts\Columns;
 use Orchid\Screen\Layouts\Component;
 use Orchid\Screen\Layouts\Legend;
@@ -33,12 +33,12 @@ use Orchid\Screen\Layouts\Wrapper;
  * @method static Tabs tabs(BaseLayout[] $layouts)
  * @method static Modal modal(string $key, string[]|string|BaseLayout $layouts)
  * @method static Blank blank(BaseLayout[] $layouts)
- * @method static Collapse collapse(array $fields)
  * @method static Wrapper wrapper(string $template, array $layouts)
  * @method static Accordion accordion(BaseLayout[] $layouts)
  * @method static Selection selection(array $filters)
  * @method static Block block(BaseLayout|string|string[] $layouts)
  * @method static Legend legend(string $target, array $columns)
+ * @method static Browsing browsing(string $src)
  */
 class Layout extends Facade
 {
