@@ -1,12 +1,12 @@
-<fieldset>
-    @empty(!$title)
-        <div class="col p-0 px-3">
-            <legend class="text-black">
-                {{ $title }}
-            </legend>
-        </div>
-    @endempty
-</fieldset>
+@empty(!$title)
+    <fieldset>
+            <div class="col p-0 px-3">
+                <legend class="text-black">
+                    {{ $title }}
+                </legend>
+            </div>
+    </fieldset>
+@endempty
 
 <div class="bg-white rounded shadow-sm mb-3"
      data-controller="table"
