@@ -176,21 +176,21 @@ class ExampleFieldsScreen extends Screen
                 Input::make('test')
                     ->title('Text')
                     ->value('Artisanal kale')
-                    ->help('Elements of type text create basic single-line text fields.')
+                    ->help('Basic single-line text fields.')
                     ->horizontal(),
 
                 Input::make('search')
                     ->type('search')
                     ->title('Search')
                     ->value('How do I shoot web')
-                    ->help('Elements of type search are text fields designed for the user to enter search queries into.')
+                    ->help('Text fields designed for the user to enter search queries into.')
                     ->horizontal(),
 
                 Input::make('email')
                     ->type('email')
                     ->title('Email')
                     ->value('bootstrap@example.com')
-                    ->help('Elements of type email are used to let the user enter and edit an e-mail address')
+                    ->help('Used to let the user enter and edit an e-mail address')
                     ->horizontal(),
 
                 Input::make('url')
@@ -205,9 +205,10 @@ class ExampleFieldsScreen extends Screen
                     ->title('Telephone')
                     ->value('1-(555)-555-5555')
                     ->horizontal()
-                    ->help('For example, on iOS, focusing input on a telephone field brings up
-                     a numeric keypad ready for keying in a number. In addition, the device’s autocomplete
-                      mechanisms kick in and suggest phone numbers that can be autofilled with a single tap.'),
+                    ->popover('The device’s autocomplete mechanisms kick in and suggest
+                        phone numbers that can be autofilled with a single tap.')
+                    ->help('Focusing input on a telephone field brings up
+                        a numeric keypad ready for keying in a number.'),
 
                 Input::make('password')
                     ->type('password')
@@ -253,7 +254,7 @@ class ExampleFieldsScreen extends Screen
 
                 Input::make('datalist')
                     ->title('Datalist example')
-                    ->help('While most browsers and operating systems include some support for "datalist"
+                    ->help('Most browsers include some support for "datalist"
                                  elements, their styling is inconsistent at best.')
                     ->datalist([
                         'San Francisco',
