@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.2.1 - 2021-04-30
+
+### Changed
+- Allow laravel/scout 9.x [#1712](https://github.com/orchidsoftware/platform/pull/1712)
+- Animation for modals
+- Demo screens appearance
+
+### Fixed
+- Show modal for Upload and change animation [#1715](https://github.com/orchidsoftware/platform/issues/1715)
+- Query string for filter clear button [#1704](https://github.com/orchidsoftware/platform/pull/1704)
+
 ## 10.2.0 - 2021-04-24
 
 ### Added
@@ -12,7 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Auto division group for `Upload` field
 
 ### Changed
-- Allowed to send escape characters in the SimpleMDE field
+- Allowed to send escape characters in the `SimpleMDE` field
 
 ## 10.1.4 - 2021-04-23
 
