@@ -27,7 +27,7 @@ return (new PhpCsFixer\Config())
         'unary_operator_spaces' => true,
         'binary_operator_spaces' => [
             'operators' => [
-                '=>' => 'align_single_space_minimal',
+                '=>' => 'align_single_space',
             ],
         ],
         'blank_line_before_statement' => [
