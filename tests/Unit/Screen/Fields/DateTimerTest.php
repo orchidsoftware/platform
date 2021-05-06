@@ -13,6 +13,26 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
  */
 class DateTimerTest extends TestFieldsUnitCase
 {
+    public function testInstance(): void
+    {
+        $field = DateTimer::make('date');
+
+        $view = self::renderField($field);
+
+        $this->assertStringContainsString('name="date"', $view);
+    }
+    
+    public function testValueInstance(): void
+    {
+        $start = now();
+
+        $field = DateTimer::make('date')->value($start);
+
+        $view = self::renderField($field);
+
+        $this->assertStringContainsString(sprintf('value="%s"', $start->toDateTimeString()), $view);
+    }
+    
     public function testServerFormat(): void
     {
         $value = Carbon::createFromFormat('Y-m-d H:i:s.u', '2021-02-01 03:45:27.612584');
