@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.3.0 - 2021-05-07
+
+### Added
+- Browsing layout [#1716](https://github.com/orchidsoftware/platform/pull/1716)
+- Implemented additional flatpickr.js methods for DateTimer field. [#1711](https://github.com/orchidsoftware/platform/pull/1711)
+
+### Changed
+- Update PHP-CS-Fixer [#1721](https://github.com/orchidsoftware/platform/pull/1721)
+
+### Fixed
+- Modals `backdrop` for `Cropper/Picture` fields
+
 ## 10.2.1 - 2021-04-30
 
 ### Changed

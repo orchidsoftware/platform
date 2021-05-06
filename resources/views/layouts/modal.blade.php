@@ -8,7 +8,7 @@
          data-modal-async-enable="{{$asyncEnable}}"
          data-modal-async-route="{{$asyncRoute}}"
          data-modal-open="{{$open}}"
-         {{$staticBackdrop ? "data-backdrop=static" : ''}}
+         {{$staticBackdrop ? "data-bs-backdrop=static" : ''}}
     >
         <div class="modal-dialog {{$size}}" role="document" id="screen-modal-type-{{$key}}">
             <form class="modal-content"
