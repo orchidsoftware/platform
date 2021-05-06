@@ -230,15 +230,15 @@ class DateTimer extends Field
     
     /**
      * Enable specific set of dates for selection
-     * 
+     *
      * ['2021-04-27', '2021-04-20']
-     * 
+     *
      * or ranges
-     * 
-     * [ 
+     *
+     * [
      *     ['from' => '2021-04-04', 'to' => '2021-04-10'],
      *     ['from' => '2021-04-25', 'to' => '2021-05-01'],
-     *     
+     *
      * ]
      *
      * @param array $dates
@@ -254,15 +254,15 @@ class DateTimer extends Field
 
     /**
      * Disable specific set of dates for selection
-     * 
+     *
      * ['2021-04-27', '2021-04-20']
-     * 
+     *
      * or ranges
-     * 
-     * [ 
+     *
+     * [
      *     ['from' => '2021-04-04', 'to' => '2021-04-10'],
      *     ['from' => '2021-04-25', 'to' => '2021-05-01'],
-     *     
+     *
      * ]
      *
      * @param array $dates
@@ -278,7 +278,7 @@ class DateTimer extends Field
 
     /**
      * Allow selection of dates on or before specified date
-     * 
+     *
      * @param Carbon $date
      *
      * @return $this
@@ -293,7 +293,7 @@ class DateTimer extends Field
     
     /**
      * Allow selection of dates on or after specified date
-     * 
+     *
      * @param Carbon $date
      *
      * @return $this
@@ -322,9 +322,9 @@ class DateTimer extends Field
     
     /**
      * Disable native mobile pickers in favour of calendar
-     * 
-     * @param boolean $disable
-     * 
+     *
+     * @param bool $disable
+     *
      * @return $this
      */
     public function disableMobile(bool $disable = true): self
@@ -336,9 +336,9 @@ class DateTimer extends Field
     
     /**
      * Disable native mobile pickers in favour of calendar
-     * 
-     * @param boolean $inline
-     * 
+     *
+     * @param bool $inline
+     *
      * @return $this
      */
     public function inline(bool $inline = true): self
@@ -350,9 +350,9 @@ class DateTimer extends Field
 
     /**
      * Show the month using the shorthand version (ie, Sep instead of September).
-     * 
-     * @param boolean $short
-     * 
+     *
+     * @param bool $short
+     *
      * @return $this
      */
     public function shorthandCurrentMonth(bool $short = true): self
@@ -364,9 +364,9 @@ class DateTimer extends Field
     
     /**
      * The number of months to be shown at the same time when displaying the calendar.
-     * 
-     * @param integer $count
-     * 
+     *
+     * @param int $count
+     *
      * @return $this
      */
     public function showMonths(int $count = 1): self
@@ -377,17 +377,17 @@ class DateTimer extends Field
     }
 
     /**
-     * Where the calendar is rendered relative to the input vertically and horizontally. 
-     * In the format of "[vertical] [horizontal]". Vertical can be auto, above or below (required). 
+     * Where the calendar is rendered relative to the input vertically and horizontally.
+     * In the format of "[vertical] [horizontal]". Vertical can be auto, above or below (required).
      * Horizontal can be left, center or right.
-     * 
+     *
      *  e.g. "above" or "auto center"
-     * 
+     *
      * Not used with inline()
-     * 
+     *
      * @param string $vertical
      * @param string $horizontal
-     * 
+     *
      * @return $this
      */
     public function position(string $vertical = 'auto', string $horizontal = 'auto'): self
