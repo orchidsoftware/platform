@@ -26,7 +26,7 @@
 </div>
 
 <div class="row align-items-center">
-    <div class="mb-3 col-md-6 col-xs-12">
+    <div class="col-md-6 col-xs-12">
         <label class="form-check">
             <input type="hidden" name="remember">
             <input type="checkbox" name="remember" value="true"
@@ -34,7 +34,7 @@
             <span class="form-check-label"> {{__('Remember Me')}}</span>
         </label>
     </div>
-    <div class="mb-3 col-md-6 col-xs-12">
+    <div class="col-md-6 col-xs-12">
         <button id="button-login" type="submit" class="btn btn-default btn-block" tabindex="3">
             <x-orchid-icon path="login" class="small me-2"/>
             {{__('Login')}}

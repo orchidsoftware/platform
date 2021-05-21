@@ -1,4 +1,4 @@
-<div class="col-auto ms-auto p-0" data-turbolinks-permanent>
+<div class="ms-auto" data-turbolinks-permanent>
     <a href="{{ route('platform.notifications') }}"
        class="nav-link p-0 d-flex align-items-center"
        data-controller="notification"
