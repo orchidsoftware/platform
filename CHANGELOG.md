@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.4.1 - 2021-05-21
+
+### Fixed
+- Media Catalog - Selected attachment ID [#1667](https://github.com/orchidsoftware/platform/issues/1667)
+- Dark hover for profile
+
 ## 10.4.0 - 2021-05-20
 
 ### Changed
