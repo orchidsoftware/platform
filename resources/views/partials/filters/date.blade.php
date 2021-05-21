@@ -8,7 +8,7 @@
         <x-orchid-icon path="filter"/>
     </button>
     <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow" x-placement="bottom-end">
-        <div class="wrapper-sm" data-action="click->filter#onMenuClick">
+        <div data-action="click->filter#onMenuClick">
             <div data-controller="datetime" class="input-group"
                 data-datetime-inline="true"
                 data-datetime-static="true"
@@ -22,8 +22,10 @@
                      autofocus
               >
             </div>
-            <div class="line line-dashed border-bottom my-3"></div>
-            <button type="submit" form="filters" class="btn btn-default btn-sm w-100">{{__('Apply')}}</button>
+            <div class="py-2 px-3">
+                <div class="line line-dashed border-bottom my-3"></div>
+                <button type="submit" form="filters" class="btn btn-default btn-sm w-100">{{__('Apply')}}</button>
+            </div>
         </div>
     </div>
 </div>
