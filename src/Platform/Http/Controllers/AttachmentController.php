@@ -119,7 +119,7 @@ class AttachmentController extends Controller
      */
     public function media()
     {
-        $attachments = $this->attachment->filters()->limit(30)->get();
+        $attachments = $this->attachment->filters()->limit(20)->get();
 
         return response()->json($attachments);
     }

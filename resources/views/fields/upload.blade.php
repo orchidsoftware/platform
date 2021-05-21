@@ -49,10 +49,9 @@
             </div>
 
             <div class="attachment modal fade center-scale" tabindex="-1" role="dialog" aria-hidden="false">
-                <div class="modal-dialog ">
+                <div class="modal-dialog">
                     <div class="modal-content">
                             <div class="modal-header">
-
                                 <h4 class="modal-title text-black fw-light">
                                     {{__('File Information')}}
                                     <small class="text-muted d-block">{{__('Information to display')}}</small>
@@ -117,17 +116,18 @@
                 </div>
             </div>
 
-            <div class="media modal fade disable-scroll" tabindex="-1" role="dialog" aria-hidden="false">
-                <div class="modal-dialog modal-xl slide-up">
+            <div class="media modal fade enter-scale disable-scroll" tabindex="-1" role="dialog" aria-hidden="false">
+                <div class="modal-dialog slide-up">
                     <div class="modal-content">
-                            <div class="modal-header clearfix">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                    <span aria-hidden="true">&times;</span>
+                            <div class="modal-header">
+                                <h4 class="modal-title text-black fw-light">
+                                    {{__('Media Library')}}
+                                    <small class="text-muted d-block">{{__('Previously uploaded files')}}</small>
+                                </h4>
+                                <button type="button" class="btn-close" title="Close" data-bs-dismiss="modal" aria-label="Close">
                                 </button>
-                                <h5>{{__('Media Library')}}</h5>
-                                <p class="mb-3">{{__('Previously uploaded files')}}</p>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body p-4">
                                 <div class="row justify-content-center">
 
                                     <div class="col-md-12">
@@ -136,7 +136,7 @@
                                             <input type="search"
                                                    data-target="upload.search"
                                                    data-action="keydown->upload#loadMedia"
-                                                   class="form-control form-control-sm"
+                                                   class="form-control"
                                                    placeholder="{{ __('Search...') }}"
                                             >
                                         </div>
@@ -146,7 +146,7 @@
                                         </div>
 
 
-                                        <div class="row media-results"></div>
+                                        <div class="row media-results m-0"></div>
                                     </div>
                                 </div>
                             </div>

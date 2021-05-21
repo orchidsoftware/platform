@@ -374,7 +374,7 @@ export default class extends ApplicationController {
 
         /** todo: */
         this.mediaList.forEach((element, key) => {
-            html += '<div class="col-4 col-sm-3 col-md-2 mb-4 media-item">\n' +
+            html += '<div class="col-4 col-sm-3 my-3 position-relative media-item">\n' +
                 '    <div data-action="click->upload#addFile" data-key="' + key + '">\n' +
                 '        <img src="' + element.url + '"\n' +
                 '             class="rounded mw-100"\n' +
@@ -431,6 +431,7 @@ export default class extends ApplicationController {
         this.dropZone.emit('thumbnail', file, file.url);
         this.dropZone.emit('complete', file);
         this.dropZone.files.push(file);
+        this.addSortDataAtributes(this.dropname, this.data.get('name'), file);
         this.resortElement();
     }
 }
