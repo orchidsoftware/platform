@@ -399,6 +399,16 @@ class Dashboard
 
     /**
      * @param string $location
+     *
+     * @return bool
+     */
+    public function isEmptyMenu(string $location):bool
+    {
+        return $this->menu->get($location)->isEmpty();
+    }
+
+    /**
+     * @param string $location
      * @param string $slug
      * @param Menu[] $list
      *

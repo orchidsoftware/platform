@@ -13,9 +13,10 @@
         </a>
         <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow bg-white">
 
-            {!! Dashboard::renderMenu('Profile','platform::partials.dropdownMenu') !!}
-
-            <div class="dropdown-divider"></div>
+            @unless(Dashboard::isEmptyMenu(\Orchid\Platform\Dashboard::MENU_PROFILE))
+                {!! Dashboard::renderMenu(\Orchid\Platform\Dashboard::MENU_PROFILE) !!}
+                <div class="dropdown-divider"></div>
+            @endunless
 
             @if(\Orchid\Access\UserSwitch::isSwitch())
                 <a href="#"

@@ -9,11 +9,11 @@
     >
 @endpush
 
-<p class="h2 n-m fw-light d-flex align-items-center">
+<div class="h2 fw-light d-flex align-items-center">
    <x-orchid-icon path="orchid" width="1.2em" height="1.2em"/>
 
-    <span class="ms-3 d-none d-sm-block">
+    <p class="ms-3 my-0 d-none d-sm-block">
         ORCHID
-    <small class="align-top opacity">Platform</small>
-    </span>
-</p>
+        <small class="align-top opacity">Platform</small>
+    </p>
+</div>
