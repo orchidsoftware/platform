@@ -92,7 +92,12 @@ class Relation extends Field
      */
     public function fromModel(string $model, string $name, string $key = null): self
     {
-        $key = $key ?? resolve($model)->getModel()->getKeyName();
+        if (class_exists($model)) {
+            $key = $key ?? resolve($model)->getModel()->getKeyName();
+        } else {
+            $key = app("App\\Models\\{$model}")->getModel()->getKeyName();
+            $model = "App\\Models\\{$model}";
+        }
 
         $this
             ->set('relationModel', Crypt::encryptString($model))
