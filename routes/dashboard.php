@@ -40,6 +40,6 @@ if(config('platform.notifications.enabled', true)) {
         ->name('api.notifications');
 }
 
-if(config('platform.routes.fallback.enabled', true)) {
+if(config('platform.fallback', true)) {
     Route::fallback([IndexController::class, 'fallback']);
 }
