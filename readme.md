@@ -66,6 +66,10 @@ We are continually trying to actively include feedback from the community in the
 * [Russian Community](https://t.me/orchid_russian_community)
 * [Spanish Community](https://t.me/esLaravelOrchid)
 
+### Discord
+ 
+* [Discord](https://discord.gg/NxXhSHa5tq)
+
 ## Development
 
 ### Releasese Strategy
