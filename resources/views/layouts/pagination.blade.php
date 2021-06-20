@@ -30,11 +30,19 @@
 
         </div>
         <div class="col-auto overflow-auto flex-shrink-1 mt-3 mt-sm-0">
-            {!!
-                $paginator->appends(request()
-                    ->except(['page','_token']))
-                    ->onEachSide($onEachSide ?? 3)
-                    ->links('platform::partials.pagination')
-            !!}
+            @if($paginator instanceof \Illuminate\Contracts\Pagination\CursorPaginator)
+                {!!
+                    $paginator->appends(request()
+                        ->except(['page','_token']))
+                        ->links('platform::partials.pagination')
+                !!}
+            @else
+                {!!
+                    $paginator->appends(request()
+                        ->except(['page','_token']))
+                        ->onEachSide($onEachSide ?? 3)
+                        ->links('platform::partials.pagination')
+                !!}
+            @endif
         </div>
 </footer>

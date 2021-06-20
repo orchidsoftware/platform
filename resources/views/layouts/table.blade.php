@@ -48,7 +48,7 @@
         </table>
     </div>
 
-    @if($rows instanceof \Illuminate\Contracts\Pagination\Paginator && $rows->isEmpty())
+    @if(($rows instanceof \Illuminate\Contracts\Pagination\Paginator || $rows instanceof \Illuminate\Contracts\Pagination\CursorPaginator) && $rows->isEmpty())
         <div class="text-center py-5 w-100">
             <h3 class="fw-light">
                 @isset($iconNotFound)
@@ -63,7 +63,7 @@
         </div>
     @endif
 
-    @includeWhen($rows instanceof \Illuminate\Contracts\Pagination\Paginator && $rows->isNotEmpty(),
+    @includeWhen(($rows instanceof \Illuminate\Contracts\Pagination\Paginator || $rows instanceof \Illuminate\Contracts\Pagination\CursorPaginator) && $rows->isNotEmpty(),
         'platform::layouts.pagination',[
             'paginator' => $rows,
             'columns' => $columns,
