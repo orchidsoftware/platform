@@ -14,6 +14,7 @@ export default class extends ApplicationController {
             width: '100%',
             allowClear: !select.hasAttribute('required'),
             placeholder: select.getAttribute('placeholder') || '',
+            maximumSelectionLength: select.getAttribute('maximumSelectionLength') || 0,
             ...select.hasAttribute('tags') ? { tags: true } : '',
             theme: 'bootstrap',
         });

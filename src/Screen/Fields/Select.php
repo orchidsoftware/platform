@@ -24,6 +24,7 @@ use Orchid\Screen\Field;
  * @method Select popover(string $value = null)
  * @method Select options($value = null)
  * @method Select title(string $value = null)
+ * @method Select maximumSelectionLength(int $value = 0)
  */
 class Select extends Field
 {
@@ -59,6 +60,7 @@ class Select extends Field
         'size',
         'tabindex',
         'tags',
+		'maximumSelectionLength',
     ];
 
     /**
