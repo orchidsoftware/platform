@@ -60,7 +60,7 @@ class Select extends Field
         'size',
         'tabindex',
         'tags',
-		'maximumSelectionLength',
+        'maximumSelectionLength',
     ];
 
     /**
