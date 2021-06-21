@@ -17,13 +17,16 @@ export default class extends ApplicationController {
      */
     connect() {
         this.csrf();
+        this.turbo();
     }
 
     /**
      * Initialization & configuration Turbo
      */
     turbo() {
-
+        document.addEventListener("turbo:load", () => {
+            this.csrf();
+        });
     }
 
     /**
@@ -52,6 +55,12 @@ export default class extends ApplicationController {
          */
         window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
         window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+        document.addEventListener("turbo:submit-start", (event) => {
+            var xhr = event.data.xhr
+            xhr.setRequestHeader("X-CSRF-TOKEN", token.content);
+        });
+
     }
 
     /**

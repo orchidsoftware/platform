@@ -98,7 +98,7 @@ export default class extends ApplicationController {
             formData.append('storage', this.data.get('storage'));
 
             let element = this.element;
-            axios.post(this.prefix('/systems/files'), formData)
+             window.axios.post(this.prefix('/systems/files'), formData)
                 .then((response) => {
                     let image = response.data.url;
                     let targetValue = this.data.get('target');
