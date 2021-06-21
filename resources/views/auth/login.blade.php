@@ -9,6 +9,7 @@
           method="POST"
           data-controller="form"
           data-action="form#submit"
+          data-turbo="false"
           data-form-button-animate="#button-login"
           data-form-button-text="{{ __('Loading...') }}"
           action="{{ route('platform.login.auth') }}">
