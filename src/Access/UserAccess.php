@@ -69,7 +69,7 @@ trait UserAccess
      */
     public function hasAccess(string $permit, bool $cache = true): bool
     {
-        if (! $cache || $this->cachePermissions === null) {
+        if (!$cache || $this->cachePermissions === null) {
             $this->cachePermissions = $this->roles()
                 ->pluck('permissions')
                 ->prepend($this->permissions)
@@ -110,21 +110,23 @@ trait UserAccess
     {
         $role = $this->roles()->where('slug', $slug)->first();
 
+        if ($role === null) {
+            return 0;
+        }
+
+        $this->eventRemoveRole($role);
+
         return $this->roles()->detach($role);
     }
 
     /**
      * @param RoleInterface $role
      *
-     * @return int
+     * @return int|null
      */
     public function removeRole(RoleInterface $role): int
     {
-        $result = $this->roles()->where('slug', $role->getRoleSlug())->first();
-
-        $this->eventRemoveRole($role);
-
-        return $this->roles()->detach($result);
+        return $this->removeRoleBySlug($role->getRoleSlug());
     }
 
     /**
@@ -162,15 +164,15 @@ trait UserAccess
     }
 
     /**
+     * @return bool
      * @throws Exception
      *
-     * @return bool
      */
     public function delete(): bool
     {
         $isSoftDeleted = array_key_exists(SoftDeletes::class, class_uses($this));
 
-        if ($this->exists && ! $isSoftDeleted) {
+        if ($this->exists && !$isSoftDeleted) {
             $this->roles()->detach();
         }
 
