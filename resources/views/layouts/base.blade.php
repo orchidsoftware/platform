@@ -21,6 +21,10 @@
 @endsection
 
 @section('content')
+    <div id="modals-container">
+        @stack('modals-container')
+    </div>
+
     <form id="post-form"
           class="mb-md-4"
           method="post"
@@ -35,9 +39,7 @@
         @csrf
         @include('platform::partials.confirm')
     </form>
-    <div id="modals-container">
-        @stack('modals-container')
-    </div>
+
     <div data-controller="filter">
         <form id="filters" autocomplete="off" data-action="filter#submit"></form>
     </div>
