@@ -22,7 +22,7 @@ class UserSwitch
             session()->put(self::SESSION_NAME, Auth::id());
         }
 
-        Auth::login($user);
+        Auth::guard(config('platform.guard'))::login($user);
     }
 
     /**
@@ -31,7 +31,8 @@ class UserSwitch
     public static function logout()
     {
         $id = session()->pull(self::SESSION_NAME);
-        Auth::loginUsingId($id);
+
+        Auth::guard(config('platform.guard'))->loginUsingId($id);
     }
 
     /**
