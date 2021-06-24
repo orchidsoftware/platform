@@ -17,7 +17,6 @@ trait StatusAccess
         $permissions = $this->permissions ?? [];
 
         return Dashboard::getPermission()
-            ->sort()
             ->transform(static function ($group) use ($permissions) {
                 return collect($group)->sortBy('description')
                     ->map(static function ($value) use ($permissions) {
