@@ -8,9 +8,9 @@ use Illuminate\Queue\SerializesModels;
 use Orchid\Attachment\Models\Attachment;
 
 /**
- * Class UploadFileEvent.
+ * Class UploadedFileEvent.
  */
-class UploadFileEvent
+class UploadedFileEvent
 {
     use SerializesModels;
 
@@ -20,19 +20,12 @@ class UploadFileEvent
     public $attachment;
 
     /**
-     * @var int
-     */
-    public $time;
-
-    /**
-     * UploadFileEvent constructor.
+     * UploadedFileEvent constructor.
      *
      * @param Attachment $attachment
-     * @param int        $time
      */
-    public function __construct(Attachment $attachment, int $time)
+    public function __construct(Attachment $attachment)
     {
         $this->attachment = $attachment;
-        $this->time = $time;
     }
 }

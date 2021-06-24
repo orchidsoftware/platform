@@ -12,6 +12,7 @@ use Illuminate\Http\UploadedFile;
 use Orchid\Attachment\File;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\Events\UploadedFileEvent;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -110,6 +111,8 @@ class AttachmentController extends Controller
         ])->load();
 
         $model->url = $model->url();
+
+        event(new UploadedFileEvent($model));
 
         return $model;
     }
