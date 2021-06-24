@@ -56,10 +56,10 @@ export default class extends ApplicationController {
             return;
         }
 
-        axios.post(this.data.get('async-route'), params).then((response) => {
-            this.element.querySelector('[data-async]').innerHTML = response.data;
-            this.addListenerForTargets();
-        });
+         window.axios.post(this.data.get('async-route'), params).then((response) => {
+             this.element.querySelector('[data-async]').innerHTML = response.data;
+             this.addListenerForTargets();
+         });
     }
 
     /**

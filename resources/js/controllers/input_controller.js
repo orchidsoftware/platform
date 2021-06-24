@@ -33,14 +33,13 @@ export default class extends ApplicationController {
             return;
         }
 
-        if (mask.removeMaskOnSubmit) {
-            let form = element.form || this.element.closest('form')
+        let form = element.form || this.element.closest('form')
 
-            form.addEventListener('orchid:screen-submit', () => {
+        form.addEventListener('orchid:screen-submit', () => {
+            if (mask.removeMaskOnSubmit) {
                 element.inputmask.remove();
-            });
-            mask.removeMaskOnSubmit = undefined;
-        }
+            }
+        });
 
         Inputmask(mask).mask(element);
     }

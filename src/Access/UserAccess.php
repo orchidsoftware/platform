@@ -110,21 +110,23 @@ trait UserAccess
     {
         $role = $this->roles()->where('slug', $slug)->first();
 
+        if ($role === null) {
+            return 0;
+        }
+
+        $this->eventRemoveRole($role);
+
         return $this->roles()->detach($role);
     }
 
     /**
      * @param RoleInterface $role
      *
-     * @return int
+     * @return int|null
      */
     public function removeRole(RoleInterface $role): int
     {
-        $result = $this->roles()->where('slug', $role->getRoleSlug())->first();
-
-        $this->eventRemoveRole($role);
-
-        return $this->roles()->detach($result);
+        return $this->removeRoleBySlug($role->getRoleSlug());
     }
 
     /**
@@ -165,6 +167,7 @@ trait UserAccess
      * @throws Exception
      *
      * @return bool
+     *
      */
     public function delete(): bool
     {

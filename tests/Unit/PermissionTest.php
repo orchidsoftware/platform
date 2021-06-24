@@ -160,6 +160,32 @@ class PermissionTest extends TestUnitCase
         $this->assertFalse($user->inRole($role));
     }
 
+    public function testDeleteUnknownRole(): void
+    {
+        $user = $this->createUser();
+
+        $roleUser = Role::factory()->create(['slug' => 'User']);
+        $roleModerator = Role::factory()->create(['slug' => 'Moderator']);
+
+        $user->addRole($roleUser);
+        $user->addRole($roleModerator);
+
+        $this->assertTrue($user->inRole($roleUser));
+        $this->assertTrue($user->inRole($roleModerator));
+
+        $user->removeRoleBySlug('Unknown Role Slug');
+        $user->refresh();
+
+        $this->assertTrue($user->inRole($roleUser));
+        $this->assertTrue($user->inRole($roleModerator));
+
+        $user->removeRoleBySlug('Moderator');
+        $user->refresh();
+
+        $this->assertTrue($user->inRole($roleUser));
+        $this->assertFalse($user->inRole($roleModerator));
+    }
+
     public function testEmptyPermission(): void
     {
         $nullPermission = $this->createUser()

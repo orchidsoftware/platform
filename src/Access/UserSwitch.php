@@ -19,10 +19,10 @@ class UserSwitch
     public static function loginAs(User $user)
     {
         if (! session()->has(self::SESSION_NAME)) {
-            session()->put(self::SESSION_NAME, Auth::id());
+            session()->put(self::SESSION_NAME, self::getAuth()->id());
         }
 
-        Auth::login($user);
+        self::getAuth()->loginUsingId($user->getKey());
     }
 
     /**
@@ -31,7 +31,8 @@ class UserSwitch
     public static function logout()
     {
         $id = session()->pull(self::SESSION_NAME);
-        Auth::loginUsingId($id);
+
+        self::getAuth()->loginUsingId($id);
     }
 
     /**
@@ -40,5 +41,13 @@ class UserSwitch
     public static function isSwitch(): bool
     {
         return session()->has(self::SESSION_NAME);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Auth\Guard|\Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected static function getAuth()
+    {
+        return Auth::guard(config('platform.guard'));
     }
 }

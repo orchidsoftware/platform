@@ -73,9 +73,9 @@ export default class extends ApplicationController {
      * @param params
      */
     asyncLoadData(params) {
-        axios.post(this.data.get('async-route'), params).then((response) => {
-            this.element.querySelector('[data-async]').innerHTML = response.data;
-        });
+         window.axios.post(this.data.get('async-route'), params).then((response) => {
+             this.element.querySelector('[data-async]').innerHTML = response.data;
+         });
     }
 
     /**

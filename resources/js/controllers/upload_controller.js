@@ -198,10 +198,12 @@ export default class extends ApplicationController {
         const multiple = !!this.data.get('multiple');
         const isMediaLibrary = this.data.get('is-media-library');
 
-        const removeButtonTemplate = this.element.querySelector('#'+this.data.get('id') + '-remove-button').innerHTML.trim();
-        const editButtonTemplate = this.element.querySelector('#'+this.data.get('id') + '-edit-button').innerHTML.trim();
+        const removeButtonTemplate = this.element.querySelector('#' + this.data.get('id') + '-remove-button').innerHTML.trim();
+        const editButtonTemplate = this.element.querySelector('#' + this.data.get('id') + '-edit-button').innerHTML.trim();
 
         const controller = this;
+
+        const urlDelete = this.prefix(`/systems/files/`);
 
         this.dropZone = new Dropzone(dropname, {
             url: this.prefix('/systems/files'),
@@ -222,6 +224,7 @@ export default class extends ApplicationController {
             autoDiscover: false,
 
             init: function () {
+
                 this.on('addedfile', (e) => {
                     console.log('dropzone.addedfile');
 
@@ -263,7 +266,7 @@ export default class extends ApplicationController {
                     if (objHas(file, 'data.id')) {
                         $(`${dropname} .files-${file.data.id}`).remove();
                         !isMediaLibrary && axios
-                            .delete(this.prefix(`/systems/files/${file.data.id}`), {
+                            .delete(urlDelete + file.data.id, {
                                 storage: storage,
                             })
                             .then();
