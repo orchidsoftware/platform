@@ -8,13 +8,13 @@ use Closure;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
+use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\View\ComponentAttributeBag;
 use Illuminate\View\View;
 use Orchid\Screen\Concerns\Makeable;
 use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
-use Orchid\Screen\Fields\Group;
 use Throwable;
 
 /**
@@ -33,7 +33,7 @@ use Throwable;
  */
 class Field implements Fieldable
 {
-    use CanSee, Makeable, Macroable {
+    use CanSee, Makeable, Conditionable, Macroable {
         __call as macroCall;
     }
 
