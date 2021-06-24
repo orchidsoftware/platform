@@ -56,9 +56,8 @@ export default class extends ApplicationController {
         window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
         window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-        document.addEventListener("turbo:submit-start", (event) => {
-            var xhr = event.data.xhr
-            xhr.setRequestHeader("X-CSRF-TOKEN", token.content);
+        document.addEventListener("turbo:before-fetch-request", (event) => {
+            event.detail.fetchOptions.headers["X-CSRF-TOKEN"] = token.content;
         });
 
     }
