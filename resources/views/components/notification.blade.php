@@ -5,7 +5,7 @@
        data-notification-count="{{ count($notifications) }}"
        data-notification-url="{{ route('platform.api.notifications') }}"
        data-notification-method="post"
-       data-notification-interval="60"
+       data-notification-interval="{{ config('platform.notifications.interval') }}"
     >
         <x-orchid-icon path="bell"/>
 
