@@ -1,5 +1,5 @@
 import ApplicationController from "./application_controller"
-import { Dropzone } from 'dropzone';
+import {Dropzone} from 'dropzone';
 import Sortable from 'sortablejs';
 import {debounce, has as objHas} from "lodash";
 
@@ -37,7 +37,7 @@ export default class extends ApplicationController {
      * @returns {string}
      */
     get dropname() {
-        return '#' + this.data.get('id');
+        return this.element.querySelector('#' + this.data.get('id'));
     }
 
     /**
@@ -90,7 +90,7 @@ export default class extends ApplicationController {
      */
     save() {
         const attach = this.activeAttachment;
-        $(`${this.dropname} .attachment.modal`).modal('toggle');
+        $(this.dropname).find(`.attachment.modal`).modal('toggle');
 
         const name = attach.name + attach.id;
 
@@ -141,7 +141,7 @@ export default class extends ApplicationController {
             this.cancelRequest();
         }
 
-        $(`${dropname} .file-sort`).each((index, value) => {
+        $(dropname).find(`.file-sort`).each((index, value) => {
             const id = $(value).attr('data-file-id');
             items[id] = index;
         });
@@ -161,7 +161,7 @@ export default class extends ApplicationController {
      *
      */
     initSortable() {
-        new Sortable(document.querySelector(this.dropname + ' .sortable-dropzone'), {
+        new Sortable(this.element.querySelector('.sortable-dropzone'), {
             animation: 150,
             onEnd: () => {
                 this.resortElement();
@@ -176,7 +176,7 @@ export default class extends ApplicationController {
      * @param file
      */
     addSortDataAtributes(dropname, name, file) {
-        $(`${dropname} .dz-complete:last-child`)
+        $(dropname).find(`.dz-complete:last-child`)
             .attr('data-file-id', file.id)
             .addClass('file-sort');
         $(
@@ -205,7 +205,7 @@ export default class extends ApplicationController {
 
         const urlDelete = this.prefix(`/systems/files/`);
 
-        this.dropZone = new Dropzone(dropname, {
+        this.dropZone = new Dropzone(this.element.querySelector('#' + this.data.get('id')), {
             url: this.prefix('/systems/files'),
             method: 'post',
             uploadMultiple: true,
@@ -218,7 +218,7 @@ export default class extends ApplicationController {
             resizeHeight: this.data.get('resize-height'),
             paramName: 'files',
 
-            previewsContainer: `${dropname} .visual-dropzone`,
+            previewsContainer: dropname.querySelector('.visual-dropzone'),
             addRemoveLinks: false,
             dictFileTooBig: 'File is big',
             autoDiscover: false,
@@ -299,7 +299,7 @@ export default class extends ApplicationController {
                     });
                 }
 
-                $(`${dropname} .dz-progress`).remove();
+                $(dropname).find(`.dz-progress`).remove();
             },
             error(file, response) {
                 controller.alert('Validation error', 'File upload error');
@@ -350,7 +350,7 @@ export default class extends ApplicationController {
         if (typeof this.cancelRequest === 'function') {
             this.cancelRequest();
         }
-        $(`${this.dropname} .media.modal`).modal('show');
+        $(this.dropname).find(`.media.modal`).modal('show');
 
         axios
             .post(this.prefix('/systems/media'), {
@@ -387,9 +387,9 @@ export default class extends ApplicationController {
                 '</div>';
         });
 
-        $(`${this.dropname} .media-results`).html(html);
-        $(`${this.dropname} .media-loader`).hide();
-        $(`${this.dropname} .media-results`).show();
+        $(this.dropname).find(`.media-results`).html(html);
+        $(this.dropname).find(`.media-loader`).hide();
+        $(this.dropname).find(`.media-results`).show();
     }
 
     /**
@@ -402,7 +402,7 @@ export default class extends ApplicationController {
         this.addedExistFile(file);
 
         if (this.data.get('close-on-add')) {
-            $(`${this.dropname} .media.modal`).modal('hide');
+            $(this.dropname).find(`.media.modal`).modal('hide');
         }
     }
 
