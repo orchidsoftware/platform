@@ -334,8 +334,8 @@ export default class extends ApplicationController {
      *
      */
     openMedia() {
-        $(`${this.dropname} .media-loader`).show();
-        $(`${this.dropname} .media-results`).hide();
+        $(this.dropname).find('.media-loader').show();
+        $(this.dropname).find('.media-results').hide();
 
         this.loadMedia();
     }
