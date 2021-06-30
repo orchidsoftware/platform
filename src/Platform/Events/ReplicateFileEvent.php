@@ -8,9 +8,9 @@ use Illuminate\Queue\SerializesModels;
 use Orchid\Attachment\Models\Attachment;
 
 /**
- * Class UploadFileEvent.
+ * Class ReplicateFileEvent.
  */
-class UploadFileEvent
+class ReplicateFileEvent
 {
     use SerializesModels;
 
@@ -25,7 +25,7 @@ class UploadFileEvent
     public $time;
 
     /**
-     * UploadFileEvent constructor.
+     * ReplicateFileEvent constructor.
      *
      * @param Attachment $attachment
      * @param int        $time

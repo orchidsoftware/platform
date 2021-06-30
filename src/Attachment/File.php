@@ -15,6 +15,7 @@ use Orchid\Attachment\Engines\Generator;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Events\UploadFileEvent;
+use Orchid\Platform\Events\ReplicateFileEvent;
 
 /**
  * Class File.
@@ -92,6 +93,8 @@ class File
         ]);
 
         $attachment->save();
+
+        event(new ReplicateFileEvent($attachment, $this->engine->time()));
 
         return $attachment;
     }
