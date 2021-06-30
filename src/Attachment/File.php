@@ -14,8 +14,8 @@ use Orchid\Attachment\Contracts\Engine;
 use Orchid\Attachment\Engines\Generator;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Dashboard;
-use Orchid\Platform\Events\UploadFileEvent;
 use Orchid\Platform\Events\ReplicateFileEvent;
+use Orchid\Platform\Events\UploadFileEvent;
 
 /**
  * Class File.
