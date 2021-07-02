@@ -25,6 +25,8 @@ export default class extends ApplicationController {
             },
         });
 
+        let $dropdown = $(select).closest(".dropdown-menu");
+
         $(select).select2({
             theme: 'bootstrap',
             allowClear: !select.hasAttribute('required'),
@@ -62,6 +64,7 @@ export default class extends ApplicationController {
                 }),
             },
             placeholder: select.getAttribute('placeholder') || '',
+            dropdownParent: $dropdown.length ? $dropdown : undefined,
         });
 
 
