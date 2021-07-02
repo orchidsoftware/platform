@@ -30,7 +30,6 @@
 	"Display name": "Nama tampilan",
 	"Edit": "Ubah",
 	"Email address": "Alamat Email",
-	"Enter your username": "Masukkan username Anda",
 	"Enter your email": "Masukkan email Anda",
 	"Enter your password": "Masukkan kata sandi Anda",
 	"Example screen": "Contoh screen",
@@ -39,7 +38,6 @@
 	"Filter": "Filter",
 	"Generate URL": "Generate URL",
 	"Generate UTM": "Generate UTM",
-	"Back-end preferences": "Pengaturan backend",
 	"Information to display": "Informasi untuk ditampilkan",
 	"Latitude": "Latitude",
 	"Last edit": "Terakhir diedit",
@@ -78,7 +76,6 @@
 	"Status": "Status",
 	"System name": "Nama sistem",
 	"System": "Sistem",
-	"System settings": "Pengaturan sistem",
 	"URL": "URL",
 	"UTM Generator": "Generator UTM",
 	"User": "User",
@@ -141,6 +138,5 @@
 	"Nothing found.": "Tidak ditemukan.",
 	"Try changing the query or type.": "Coba query atau tipe lain.",
 	"Add row": "Tambah baris",
-	"Create User": "Buat User",
-	"You can revert to your original state by clicking ": "Anda bisa kembali ke kondisi semula dengan klik "
+	"Create User": "Buat User"
 }
