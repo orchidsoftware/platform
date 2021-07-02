@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.8.0 - 2021-07-02
+
+### Added
+
+- Indonesian translation [#1794](https://github.com/orchidsoftware/platform/pull/1794)
+- New events for uploading files [#1782](https://github.com/orchidsoftware/platform/pull/1782)
+- Implementation cursor pagination [#1775](https://github.com/orchidsoftware/platform/pull/1775)
+
+### Fixed
+
+- Menu state while using `Octane` [#1786](https://github.com/orchidsoftware/platform/pull/1786)
+- Edit/delete for `Upload` field [#1795](https://github.com/orchidsoftware/platform/issues/1795)
+- Dropdown filter hiding when clicking on select2 search-field [#1767](https://github.com/orchidsoftware/platform/issues/1767)
+
 ## 10.7.1 - 2021-06-28
 
 ### Fixed
