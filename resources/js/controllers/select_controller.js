@@ -26,6 +26,15 @@ export default class extends ApplicationController {
             }, 100);
         }
 
+        // if inside bootstrap dropdown,
+        // prevent the dropdown from hiding when clicking on search field
+		// https://github.com/orchidsoftware/platform/issues/1767
+        if ($(select).closest('.dropdown-menu').length) {
+            $(select)
+                .data('select2')
+                .dropdown.$dropdown.find('.select2-search__field').click(e => e.stopPropagation());
+        }
+
         $(select).on('select2:select', forceChange);
         $(select).on('select2:unselect', forceChange);
         $(select).on('select2:clear', forceChange);
