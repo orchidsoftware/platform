@@ -244,7 +244,7 @@ export default class extends ApplicationController {
 
                     editButton.addEventListener('click', () => {
                         loadInfo(e.data);
-                        $(`${dropname} .attachment.modal`).modal('show');
+                        $(dropname).find(`.attachment.modal`).modal('show');
                     });
 
                     e.previewElement.appendChild(removeButton);
@@ -264,7 +264,7 @@ export default class extends ApplicationController {
 
                 this.on('removedfile', file => {
                     if (objHas(file, 'data.id')) {
-                        $(`${dropname} .files-${file.data.id}`).remove();
+                        $(dropname).find(`.files-${file.data.id}`).remove();
                         !isMediaLibrary && axios
                             .delete(urlDelete + file.data.id, {
                                 storage: storage,
