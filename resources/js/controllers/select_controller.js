@@ -10,6 +10,8 @@ export default class extends ApplicationController {
         }
         const select = this.element.querySelector('select');
 
+        let $dropdown = $(select).closest('.dropdown-menu');
+
         $(select).select2({
             width: '100%',
             allowClear: !select.hasAttribute('required'),
@@ -17,6 +19,7 @@ export default class extends ApplicationController {
             maximumSelectionLength: select.getAttribute('maximumSelectionLength') || 0,
             ...select.hasAttribute('tags') ? { tags: true } : '',
             theme: 'bootstrap',
+            dropdownParent: $dropdown.length ? $dropdown : undefined,
         });
 
         // force change event for https://github.com/select2/select2/issues/1908
@@ -24,15 +27,6 @@ export default class extends ApplicationController {
             setTimeout(() => {
                 select.dispatchEvent(new Event('change'));
             }, 100);
-        }
-
-        // if inside bootstrap dropdown,
-        // prevent the dropdown from hiding when clicking on search field
-		// https://github.com/orchidsoftware/platform/issues/1767
-        if ($(select).closest('.dropdown-menu').length) {
-            $(select)
-                .data('select2')
-                .dropdown.$dropdown.find('.select2-search__field').click(e => e.stopPropagation());
         }
 
         $(select).on('select2:select', forceChange);

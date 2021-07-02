@@ -25,6 +25,8 @@ export default class extends ApplicationController {
             },
         });
 
+        let $dropdown = $(select).closest(".dropdown-menu");
+
         $(select).select2({
             theme: 'bootstrap',
             allowClear: !select.hasAttribute('required'),
@@ -62,6 +64,7 @@ export default class extends ApplicationController {
                 }),
             },
             placeholder: select.getAttribute('placeholder') || '',
+            dropdownParent: $dropdown.length ? $dropdown : undefined,
         });
 
 
@@ -74,15 +77,6 @@ export default class extends ApplicationController {
         $(select).on('select2:select', forceChange);
         $(select).on('select2:unselect', forceChange);
         $(select).on('select2:clear', forceChange);
-
-		// if inside bootstrap dropdown,
-        // prevent the dropdown from hiding when clicking on search field
-		// https://github.com/orchidsoftware/platform/issues/1767
-        if ($(select).closest('.dropdown-menu').length) {
-            $(select)
-                .data('select2')
-                .dropdown.$dropdown.find('.select2-search__field').click(e => e.stopPropagation());
-        }
 
         if (!this.data.get('value')) {
             return;
