@@ -34,6 +34,7 @@ export default class extends ApplicationController {
         // save value
         this.editor.on('text-change', () => {
             input.value = this.editor.getText() ? this.editor.root.innerHTML : '';
+            input.dispatchEvent(new Event('change'));
         });
 
         this.editor.getModule('toolbar').addHandler('color', (value) => {
