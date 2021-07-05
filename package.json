@@ -14,7 +14,7 @@
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-transform-block-scoping": "^7.12.1",
       "@babel/preset-env": "^7.13.15",
-      "@hotwired/turbo": "^7.0.0-beta.5",
+      "@hotwired/turbo": "^7.0.0-beta.8",
       "@popperjs/core": "^2.9.2",
       "axios": "^0.21.1",
       "bootstrap": "^5.0.1",
