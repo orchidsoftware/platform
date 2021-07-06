@@ -94,7 +94,7 @@ class InstallCommand extends Command
     {
         $this->info('Attempting to set ORCHID User model as parent to App\User');
 
-        if (!file_exists(app_path($path))) {
+        if (! file_exists(app_path($path))) {
             $this->warn('Unable to locate "app/Models/User.php".  Did you move this file?');
             $this->warn('You will need to update this manually.');
             $this->warn('Change "extends Authenticatable" to "extends \Orchid\Platform\Models\User" in your User model');
@@ -133,7 +133,7 @@ class InstallCommand extends Command
      */
     private function fileGetContent(string $file)
     {
-        if (!is_file($file)) {
+        if (! is_file($file)) {
             return '';
         }
 
@@ -145,7 +145,7 @@ class InstallCommand extends Command
      */
     private function showMeLove(): self
     {
-        if (App::runningUnitTests() || !$this->confirm('Would you like to show a little love by starting with ⭐')) {
+        if (App::runningUnitTests() || ! $this->confirm('Would you like to show a little love by starting with ⭐')) {
             return $this;
         }
 
@@ -169,5 +169,4 @@ class InstallCommand extends Command
 
         return $this;
     }
-
 }
