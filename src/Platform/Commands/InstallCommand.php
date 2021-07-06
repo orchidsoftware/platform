@@ -145,7 +145,7 @@ class InstallCommand extends Command
      */
     private function showMeLove(): self
     {
-        if (App::runningUnitTests() || !$this->confirm('Would you like to show a little love by starting with ⭐ repo?')) {
+        if (App::runningUnitTests() || !$this->confirm('Would you like to show a little love by starting with ⭐')) {
             return $this;
         }
 
@@ -165,7 +165,7 @@ class InstallCommand extends Command
                 $this->line("You can find us at " . $repo);
         }
 
-        $this->line("Thank you! It means a lot to us!");
+        $this->line("Thank you! It means a lot to us! 🙏");
 
         return $this;
     }
