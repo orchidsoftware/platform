@@ -28,6 +28,10 @@ class MenuTest extends TestFieldsUnitCase
         $this->assertNull($link->render());
         $this->assertFalse($link->isSee());
 
+        $link = Menu::make('About')->permission(['unknown', 'known']);
+
+        $this->assertNull($link->render());
+        $this->assertFalse($link->isSee());
 
         // without permission
         $user = User::factory()->create();
@@ -37,6 +41,10 @@ class MenuTest extends TestFieldsUnitCase
         $this->assertNull($link->render());
         $this->assertFalse($link->isSee());
 
+        $link = Menu::make('About')->permission(['unknown', 'known']);
+
+        $this->assertNull($link->render());
+        $this->assertFalse($link->isSee());
 
         // allow permission
         $user = User::factory()->create([
@@ -44,6 +52,11 @@ class MenuTest extends TestFieldsUnitCase
         ]);
         Auth::login($user);
         $link = Menu::make('About')->permission('unknown');
+
+        $this->assertNotNull($link->render());
+        $this->assertTrue($link->isSee());
+
+        $link = Menu::make('About')->permission(['unknown', 'known']);
 
         $this->assertNotNull($link->render());
         $this->assertTrue($link->isSee());
