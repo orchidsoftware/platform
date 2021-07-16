@@ -193,7 +193,7 @@ class Menu extends Link
     {
         $user = Auth::user();
 
-        if (!is_null($permission)) {
+        if (! is_null($permission)) {
             $this->permit = false;
         }
         if (is_null($user)) {
@@ -208,7 +208,7 @@ class Menu extends Link
             })
             ->contains(true);
 
-         return $this;
+        return $this;
     }
 
     /**
