@@ -185,7 +185,7 @@ class Menu extends Link
     }
 
     /**
-     * @param string $permission
+     * @param string|string[] $permission
      *
      * @return $this
      */
@@ -193,12 +193,14 @@ class Menu extends Link
     {
         $user = Auth::user();
 
-        if (! is_null($permission)) {
+        if ($permission !== null) {
             $this->permit = false;
         }
-        if (is_null($user)) {
+
+        if ($user === null) {
             return $this;
         }
+
         $this->permit = collect($permission)
             ->map(static function ($item) use ($user) {
                 return $user->hasAccess($item);
