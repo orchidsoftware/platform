@@ -42,7 +42,7 @@ abstract class SingleFilter extends Layout
             return;
         }
 
-        $filter = $this->filter();
+        $filter = collect($this->filter());
 
         return view($this->template, [
             'filters' => $filter,
