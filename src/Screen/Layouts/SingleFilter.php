@@ -46,7 +46,7 @@ abstract class SingleFilter extends Layout
 
         return view($this->template, [
             'filters' => $filter,
-            'chunk'   => ceil($count / 4),
+            'chunk'   => 1,
         ]);
     }
 
