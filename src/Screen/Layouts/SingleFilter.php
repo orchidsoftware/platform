@@ -43,10 +43,10 @@ abstract class SingleFilter extends Layout
         }
 
         $filter = collect($this->filter());
-        $filter['display'] = true;
+        $filter[0]['display'] = true;
         return view($this->template, [
             'filters' => $filter,
-            //'chunk'   => 1,
+            'chunk'   => 1.0,
         ]);
     }
 
