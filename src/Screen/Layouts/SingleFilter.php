@@ -17,12 +17,12 @@ abstract class SingleFilter extends Layout
     /**
      * Drop down filters.
      */
-    public const TEMPLATE_DROP_DOWN = 'platform::layouts.selection';
+    //ublic const TEMPLATE_DROP_DOWN = 'platform::layouts.selection';
 
     /**
      * Line filters.
      */
-    public const TEMPLATE_LINE = 'platform::layouts.filter';
+    //public const TEMPLATE_LINE = 'platform::layouts.filter';
 
     /**
      * @var string
@@ -43,7 +43,7 @@ abstract class SingleFilter extends Layout
         }
 
         $filter = collect($this->filter());
-
+        $filter['display'] = true;
         return view($this->template, [
             'filters' => $filter,
             'chunk'   => 1,
