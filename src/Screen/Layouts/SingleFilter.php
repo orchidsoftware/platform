@@ -44,12 +44,6 @@ abstract class SingleFilter extends Layout
 
         $filter = $this->filter();
 
-        $count = $filter->where('display', true)->count();
-
-        if ($count === 0) {
-            return;
-        }
-
         return view($this->template, [
             'filters' => $filter,
             'chunk'   => ceil($count / 4),

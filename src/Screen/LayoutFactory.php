@@ -230,11 +230,23 @@ class LayoutFactory
      */
     public static function singleFilter(array $filter): SingleFilter{
         return new class ($filter) extends SingleFilter{
+            /**
+             * @var string[]
+             */
             protected $filter;
 
-            public function __construct(array $filter){
+            /**
+             * Constructor.
+             *
+             * @param string[] $filters
+             */
+            public function __construct(array $filter = []){
                 return $this->filter = $filter;
             }
+
+            /**
+             * @return string[]
+             */
             public function filter(): array
             {
                 return $this->filter;
