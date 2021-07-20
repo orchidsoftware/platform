@@ -46,7 +46,7 @@ abstract class SingleFilter extends Layout
         $filter['display'] = true;
         return view($this->template, [
             'filters' => $filter,
-            'chunk'   => 1,
+            //'chunk'   => 1,
         ]);
     }
 
