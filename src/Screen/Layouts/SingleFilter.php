@@ -46,11 +46,17 @@ abstract class SingleFilter extends Layout
             return is_string($filter) ? resolve($filter) : $filter;
         });
 
-        $filter[0]->display = true;
+        $count = $filter->where('display', true)->count();
+
+        if ($count === 0) {
+            return;
+        }
+
         return view($this->template, [
             'filters' => $filter,
-            'chunk'   => 1.0,
+            'chunk'   => ceil($count / 4),
         ]);
+
     }
 
     /**
