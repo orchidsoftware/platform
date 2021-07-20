@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Orchid\Screen\Layouts\SingleFilter;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Traits\Macroable;
+use Orchid\Filters\Filter;
 use Orchid\Screen\Layouts\Accordion;
 use Orchid\Screen\Layouts\Blank;
 use Orchid\Screen\Layouts\Block;
@@ -222,7 +224,23 @@ class LayoutFactory
             }
         };
     }
+    /**
+     * @param Filter $filters
+     * @return Layout
+     */
+    public static function singleFilter(array $filter): SingleFilter{
+        return new class ($filter) extends SingleFilter{
+            protected $filter;
 
+            public function __construct(array $filter){
+                return $this->filter = $filter;
+            }
+            public function filter(): array
+            {
+                return $this->filter;
+            }
+        };
+    }
     /**
      * @param Layout|string|string[] $layouts
      *
