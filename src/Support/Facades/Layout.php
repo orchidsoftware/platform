@@ -40,7 +40,7 @@ use Orchid\Screen\Layouts\Wrapper;
  * @method static Block block(BaseLayout|string|string[] $layouts)
  * @method static Legend legend(string $target, array $columns)
  * @method static Browsing browsing(string $src)
- * @method static FilterLine filterLine(array $filter)
+ * @method static FilterLine filterLine(array $filters)
  */
 class Layout extends Facade
 {
