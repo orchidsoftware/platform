@@ -17,7 +17,7 @@ use Orchid\Screen\Layouts\Legend;
 use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Layouts\Selection;
-use Orchid\Screen\Layouts\SingleFilter;
+use Orchid\Screen\Layouts\FilterLine;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Layouts\View;
@@ -40,7 +40,7 @@ use Orchid\Screen\Layouts\Wrapper;
  * @method static Block block(BaseLayout|string|string[] $layouts)
  * @method static Legend legend(string $target, array $columns)
  * @method static Browsing browsing(string $src)
- * @method static SingleFilter singleFilter(array $filter)
+ * @method static FilterLine singleFilter(array $filter)
  */
 class Layout extends Facade
 {

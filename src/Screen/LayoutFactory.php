@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Orchid\Screen\Layouts\SingleFilter;
+use Orchid\Screen\Layouts\FilterLine;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Traits\Macroable;
@@ -228,28 +228,28 @@ class LayoutFactory
      * @param Filter $filters
      * @return Layout
      */
-    public static function singleFilter(array $filter): SingleFilter{
-        return new class ($filter) extends SingleFilter{
+    public static function filterLine(array $filters): FilterLine{
+        return new class ($filters) extends FilterLine{
             /**
              * @var string[]
              */
-            protected $filter;
+            protected $filters;
 
             /**
              * Constructor.
              *
              * @param string[] $filters
              */
-            public function __construct(array $filter = []){
-                return $this->filter = $filter;
+            public function __construct(array $filters = []){
+                return $this->filters = $filters;
             }
 
             /**
              * @return string[]
              */
-            public function filter(): array
+            public function filters(): array
             {
-                return $this->filter;
+                return $this->filters;
             }
         };
     }

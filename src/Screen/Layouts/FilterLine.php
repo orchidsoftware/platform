@@ -12,7 +12,7 @@ use Orchid\Screen\Repository;
 /**
  * Class Selection.
  */
-abstract class SingleFilter extends Layout
+abstract class FilterLine extends Layout
 {
     /**
      * Drop down filters.
@@ -42,7 +42,7 @@ abstract class SingleFilter extends Layout
             return;
         }
 
-        $filter = collect($this->filter())->map(static function ($filter) {
+        $filter = collect($this->filters())->map(static function ($filter) {
             return is_string($filter) ? resolve($filter) : $filter;
         });
 
@@ -62,5 +62,5 @@ abstract class SingleFilter extends Layout
     /**
      * @return Filter[]
      */
-    abstract public function filter(): array;
+    abstract public function filters(): array;
 }
