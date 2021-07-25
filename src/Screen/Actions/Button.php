@@ -105,7 +105,7 @@ class Button extends Action
     {
         return $this
             ->set('method', $name)
-            ->when(!empty($parameters), function () use ($parameters) {
+            ->when(! empty($parameters), function () use ($parameters) {
                 $this->set('parameters', $parameters);
             });
     }
