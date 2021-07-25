@@ -128,4 +128,35 @@ class ButtonTest extends TestFieldsUnitCase
 
         $this->assertStringNotContainsString('disabled', $view);
     }
+
+    public function testButtonMethodParameters(): void
+    {
+        $button = Button::make('About')
+            ->method('test', [
+                'id' => 1,
+            ]);
+
+        $view = self::renderField($button);
+
+        $this->assertStringContainsString(
+            'formaction="http://127.0.0.1:8001/test?id=1',
+            $view
+        );
+    }
+
+    public function testButtonMethodParametersOverwrite(): void
+    {
+        $button = Button::make('About')
+            ->parameters([
+                'id' => 1,
+            ])
+            ->method('test');
+
+        $view = self::renderField($button);
+
+        $this->assertStringContainsString(
+            'formaction="http://127.0.0.1:8001/test?id=1',
+            $view
+        );
+    }
 }
