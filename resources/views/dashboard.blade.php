@@ -68,7 +68,7 @@
 
         <div class="@hasSection('navbar') @else d-none d-md-block @endif layout v-md-center">
             <header class="d-none d-md-block col-xs-12 col-md p-0">
-                <h1 class="m-0 fw-light h3 text-black">@yield('title')</h1>
+                <h1 class="m-0 fw-light h3 text-black">@hasSection('screen_title') @yield('screen_title') @else @yield('title') @endif</h1>
                 <small class="text-muted" title="@yield('description')">@yield('description')</small>
             </header>
             <nav class="col-xs-12 col-md-auto ms-auto p-0">
