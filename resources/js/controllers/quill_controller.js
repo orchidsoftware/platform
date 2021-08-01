@@ -1,6 +1,8 @@
 import ApplicationController from "./application_controller";
 import Quill from 'quill';
 
+let videoResponsiveRegistered = false;
+
 export default class extends ApplicationController {
     /**
      *
@@ -8,6 +10,7 @@ export default class extends ApplicationController {
     connect() {
         const selector = this.element.querySelector('.quill').id;
         const input = this.element.querySelector('input');
+        this.videoResponsive();
 
         this.editor = new Quill(`#${selector}`, {
             placeholder: input.placeholder,
@@ -137,5 +140,48 @@ export default class extends ApplicationController {
         // push image url to rich editor.
         const range = this.editor.getSelection();
         this.editor.insertEmbed(range.index, 'image', url);
+    }
+
+    videoResponsive() {
+        if(videoResponsiveRegistered) return;
+
+        const BlockEmbed = Quill.import("blots/block/embed");
+        const Link = Quill.import("formats/link");
+
+        class VideoResponsive extends BlockEmbed {
+
+            static blotName = "video";
+            static tagName = "div";
+
+            static create(value) {
+                const node = super.create(value);
+                node.classList.add("ql-video-wrapper");
+
+                const innerChild = document.createElement("div");
+                innerChild.classList.add("ql-video-inner");
+                node.appendChild(innerChild);
+
+                const child = document.createElement("iframe");
+                child.setAttribute('frameborder', '0');
+                child.setAttribute('allowfullscreen', true);
+                child.setAttribute('src', this.sanitize(value));
+                innerChild.appendChild(child);
+
+                return node;
+            }
+
+            static sanitize(url) {
+                return Link.sanitize(url);
+            }
+
+            static value(domNode) {
+                const iframe = domNode.querySelector('iframe');
+                return iframe.getAttribute('src');
+            }
+        }
+
+        Quill.register(VideoResponsive);
+
+        videoResponsiveRegistered = true;
     }
 }
