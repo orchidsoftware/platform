@@ -3,6 +3,7 @@
          data-quill-toolbar='@json($toolbar)'
          data-quill-value='@json($value)'
          data-theme="{{$theme ?? 'inlite'}}"
+         data-wrap-video="{{ $wrapVideo ?? '0' }}"
     >
         <div id="toolbar"></div>
         <div class="quill p-3 position-relative" id="quill-wrapper-{{$id}}"
