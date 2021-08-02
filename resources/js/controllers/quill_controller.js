@@ -1,7 +1,7 @@
 import ApplicationController from "./application_controller";
 import Quill from 'quill';
 
-let videoResponsiveRegistered = false;
+let currentQuill;
 
 export default class extends ApplicationController {
     /**
@@ -10,7 +10,8 @@ export default class extends ApplicationController {
     connect() {
         const selector = this.element.querySelector('.quill').id;
         const input = this.element.querySelector('input');
-        this.videoResponsive();
+
+        Quill.register(this.videoResponsive());
 
         this.editor = new Quill(`#${selector}`, {
             placeholder: input.placeholder,
@@ -22,6 +23,11 @@ export default class extends ApplicationController {
                 },
             },
         });
+
+        // we can now access the current editor to get dataset
+        setTimeout(() => this.element.getElementsByClassName('ql-editor')[0].addEventListener('focus', () => {
+            currentQuill = this.element;
+        }),0);
 
         // quill editor add image handler
         this.editor.getModule('toolbar').addHandler('image', () => {
@@ -143,8 +149,6 @@ export default class extends ApplicationController {
     }
 
     videoResponsive() {
-        if(videoResponsiveRegistered) return;
-
         const BlockEmbed = Quill.import("blots/block/embed");
         const Link = Quill.import("formats/link");
 
@@ -152,22 +156,41 @@ export default class extends ApplicationController {
 
             static blotName = "video";
             static tagName = "div";
+            static wrapVideo = false;
 
             static create(value) {
+                this.wrapVideo = currentQuill.dataset.wrapVideo === '1';
+
+                console.log(this.wrapVideo);
+
+                if(this.wrapVideo) {
+                    const node = super.create(value);
+                    node.classList.add("ql-video-wrapper");
+
+                    const innerChild = document.createElement("div");
+                    innerChild.classList.add("ql-video-inner");
+                    node.appendChild(innerChild);
+
+                    const child = document.createElement("iframe");
+                    this.setIframe(child, value)
+                    innerChild.appendChild(child);
+
+                    return node;
+                }
+
+                this.tagName = 'iframe';
+
                 const node = super.create(value);
-                node.classList.add("ql-video-wrapper");
-
-                const innerChild = document.createElement("div");
-                innerChild.classList.add("ql-video-inner");
-                node.appendChild(innerChild);
-
-                const child = document.createElement("iframe");
-                child.setAttribute('frameborder', '0');
-                child.setAttribute('allowfullscreen', true);
-                child.setAttribute('src', this.sanitize(value));
-                innerChild.appendChild(child);
+                this.setIframe(node, value);
 
                 return node;
+            }
+
+            static setIframe(iFrame, url) {
+                iFrame.setAttribute('frameborder', '0');
+                iFrame.setAttribute('allowfullscreen', true);
+                iFrame.setAttribute('src', this.sanitize(url));
+                iFrame.classList.add('ql-video');
             }
 
             static sanitize(url) {
@@ -175,13 +198,11 @@ export default class extends ApplicationController {
             }
 
             static value(domNode) {
-                const iframe = domNode.querySelector('iframe');
+                const iframe = this.wrapVideo ? domNode.querySelector('iframe') : domNode;
                 return iframe.getAttribute('src');
             }
         }
 
-        Quill.register(VideoResponsive);
-
-        videoResponsiveRegistered = true;
+        return VideoResponsive;
     }
 }
