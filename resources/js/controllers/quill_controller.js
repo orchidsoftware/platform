@@ -161,8 +161,6 @@ export default class extends ApplicationController {
             static create(value) {
                 this.wrapVideo = currentQuill.dataset.wrapVideo === '1';
 
-                console.log(this.wrapVideo);
-
                 if(this.wrapVideo) {
                     const node = super.create(value);
                     node.classList.add("ql-video-wrapper");
