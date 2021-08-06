@@ -12,7 +12,6 @@ use Orchid\Tests\TestUnitCase;
 
 class FiltersTest extends TestUnitCase
 {
-
     public function testNotParamsFiltersApply(): void
     {
         $sql = User::filtersApply([
@@ -51,7 +50,6 @@ class FiltersTest extends TestUnitCase
 
         $this->assertEquals('select * from "users" where "name" = ? and "email" = ?', $sql);
     }
-
 
     public function testManyParamsFiltersApplyWithHttpAndDefaultSort(): void
     {
