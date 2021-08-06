@@ -14,13 +14,6 @@ class DummyClass extends Screen
     public $name = 'DummyClass';
 
     /**
-     * Display header description.
-     *
-     * @var string|null
-     */
-    public $description = 'DummyClass';
-
-    /**
      * Query data.
      *
      * @return array
