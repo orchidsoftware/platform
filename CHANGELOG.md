@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.12.0 - 2021-08-06
+
+### Added
+
+- Short align methods for TD
+
+### Changed
+
+- Screen template for shortening
+- Updated dependencies
+
+### Fixed
+
+- Tab toggle with leaflet map [#1817](https://github.com/orchidsoftware/platform/pull/1817)
+
 ## 10.11.0 - 2021-07-25
 
 ### Changed
