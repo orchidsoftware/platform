@@ -48,7 +48,7 @@ class TD extends Cell
     /**
      * @var string
      */
-    protected $align = 'left';
+    protected $align = self::ALIGN_LEFT;
 
     /**
      * @var int
@@ -115,6 +115,36 @@ class TD extends Cell
     public function align(string $align): self
     {
         $this->align = $align;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function alignLeft(): self
+    {
+        $this->align = self::ALIGN_LEFT;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function alignRight(): self
+    {
+        $this->align = self::ALIGN_RIGHT;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function alignCenter(): self
+    {
+        $this->align = self::ALIGN_CENTER;
 
         return $this;
     }
