@@ -5,14 +5,10 @@ namespace Orchid\Tests\App\Filters;
 use Illuminate\Database\Eloquent\Builder;
 use Orchid\Filters\Filter;
 use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Input;
 
 class NameFilter extends Filter
 {
-    /**
-     * @var bool
-     */
-    public $display = false;
-
     /**
      * @var array
      */
@@ -25,7 +21,7 @@ class NameFilter extends Filter
      */
     public function name(): string
     {
-        return '';
+        return 'Name';
     }
 
     /**
@@ -43,6 +39,9 @@ class NameFilter extends Filter
      */
     public function display(): array
     {
-        return [];
+        return [
+            Input::make('name')
+                ->value($this->request->get('name')),
+        ];
     }
 }
