@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Actions;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Orchid\Screen\Contracts\Actionable;
@@ -184,23 +185,30 @@ class Menu extends Link
     }
 
     /**
-     * @param string $permission
+     * @param string|string[] $permission
      *
      * @return $this
      */
-    public function permission(?string $permission): self
+    public function permission($permission = null): self
     {
-        if ($permission === null) {
+        $user = Auth::user();
+
+        if ($permission !== null) {
+            $this->permit = false;
+        }
+
+        if ($user === null) {
             return $this;
         }
 
-        $this->permit = false;
-
-        $user = Auth::user();
-
-        if ($user !== null) {
-            $this->permit = $user->hasAccess($permission);
-        }
+        $this->permit = collect($permission)
+            ->map(static function ($item) use ($user) {
+                return $user->hasAccess($item);
+            })
+            ->whenEmpty(static function (Collection $permission) {
+                return $permission->push(true);
+            })
+            ->contains(true);
 
         return $this;
     }
