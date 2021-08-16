@@ -25,8 +25,8 @@ $grey:          #495057;
 $grey-light : mix($grey, #ffffff, 10%);
 
 $body-bg : #edeef0;//lighten($light, 1%);
-$text-color : #58666e;
-$text-muted : lighten($text-color, 25%);
+$text-color : #394247;
+$text-muted : lighten($text-color, 20%);
 
 $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
 $font-size-lg: $font-size-base * 1.25 !default;
