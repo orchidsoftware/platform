@@ -10,7 +10,7 @@ export default class extends ApplicationController {
         }
         const select = this.element.querySelector('select');
 
-        let $dropdown = $(select).closest('.dropdown-menu');
+        const parent = $(select).closest('.dropdown-menu, .modal');
 
         $(select).select2({
             width: '100%',
@@ -19,8 +19,9 @@ export default class extends ApplicationController {
             maximumSelectionLength: select.getAttribute('maximumSelectionLength') || 0,
             ...select.hasAttribute('tags') ? { tags: true } : '',
             theme: 'bootstrap',
-            dropdownParent: $dropdown.length ? $dropdown : undefined,
+            dropdownParent: parent.length ? parent : undefined,
         });
+
 
         // force change event for https://github.com/select2/select2/issues/1908
         let forceChange = () => {
