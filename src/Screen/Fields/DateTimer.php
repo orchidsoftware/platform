@@ -227,7 +227,7 @@ class DateTimer extends Field
 
         return $this;
     }
-    
+
     /**
      * Enable specific set of dates for selection
      *
@@ -290,7 +290,7 @@ class DateTimer extends Field
 
         return $this;
     }
-    
+
     /**
      * Allow selection of dates on or after specified date
      *
@@ -305,7 +305,7 @@ class DateTimer extends Field
 
         return $this;
     }
-    
+
     /**
      * Show calendar week numbers
      *
@@ -319,7 +319,7 @@ class DateTimer extends Field
 
         return $this;
     }
-    
+
     /**
      * Disable native mobile pickers in favour of calendar
      *
@@ -333,7 +333,7 @@ class DateTimer extends Field
 
         return $this;
     }
-    
+
     /**
      * Disable native mobile pickers in favour of calendar
      *
@@ -343,7 +343,20 @@ class DateTimer extends Field
      */
     public function inline(bool $inline = true): self
     {
+        $this->set('class', 'd-none');
         $this->set('data-datetime-inline', var_export($inline, true));
+
+        return $this;
+    }
+
+    /**
+     * @param bool $static
+     *
+     * @return $this
+     */
+    public function static(bool $static = true): self
+    {
+        $this->set('data-datetime-static', var_export($static, true));
 
         return $this;
     }
@@ -361,7 +374,7 @@ class DateTimer extends Field
 
         return $this;
     }
-    
+
     /**
      * The number of months to be shown at the same time when displaying the calendar.
      *
