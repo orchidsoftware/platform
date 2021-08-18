@@ -214,9 +214,8 @@ class TD extends Cell
      */
     protected function detectConstantFilter(string $filter): Field
     {
-        if($filter === self::FILTER_DATE){
+        if ($filter === self::FILTER_DATE) {
             return DateTimer::make()->inline()->format('Y-m-d');
-
         }
 
         return Input::make()->type($filter);
