@@ -170,8 +170,5 @@ abstract class Table extends Layout
     {
         return [];
     }
-
-    protected function dynamicRowClass(): array{
-        return [];
-    }
+    
 }
