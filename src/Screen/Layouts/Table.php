@@ -78,6 +78,7 @@ abstract class Table extends Layout
             'slug'         => $this->getSlug(),
             'onEachSide'   => $this->onEachSide(),
             'title'        => $this->title,
+            'dynamicRowClass'    => $this->dynamicRowClass(),
         ]);
     }
 
@@ -167,6 +168,10 @@ abstract class Table extends Layout
      */
     protected function total(): array
     {
+        return [];
+    }
+
+    protected function dynamicRowClass(): array{
         return [];
     }
 }
