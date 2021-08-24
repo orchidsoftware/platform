@@ -1,5 +1,5 @@
 import ApplicationController from "./application_controller";
-import QuillFormatsVideo from "./quill_formats_video";
+import QuillFormatsVideo from "./../quill_formats_video";
 import Quill from 'quill';
 
 export default class extends ApplicationController {

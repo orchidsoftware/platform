@@ -1,9 +1,4 @@
 import Quill from "quill";
-/**
- * Created by mavsan on 04.08.2021.
- * Author: Maksim Klimenko
- * Email: mavsan@gmail.com
- */
 
 let currentQuill;
 const BlockEmbed = Quill.import("blots/block/embed");
@@ -16,7 +11,7 @@ class VideoResponsive extends BlockEmbed {
 
   static create(value) {
     let node;
-    this.wrapVideo = currentQuill.dataset.wrapVideo === '1';
+    this.wrapVideo = currentQuill.dataset.wrapVideo == '1';
 
     if(this.wrapVideo) {
       node = this.setWrapVideo(value);
