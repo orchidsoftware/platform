@@ -39,6 +39,27 @@ abstract class TableConditional extends Layout{
     protected $title;
 
     /**
+     * Column name to check
+     *
+     * @var string
+     */
+    protected $condition;
+
+    /**
+     * Value of column to NOT apply row class to
+     *
+     * @var string
+     */
+    protected $value;
+
+    /**
+     * Class(es) for invalid rows
+     *
+     * @var string
+     */
+    protected $class;
+
+    /**
      * @param Repository $repository
      *
      * @return Factory|\Illuminate\View\View

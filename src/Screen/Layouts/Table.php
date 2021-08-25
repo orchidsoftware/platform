@@ -43,24 +43,6 @@ abstract class Table extends Layout
      */
     protected $title;
 
-    /**
-     * Column name to check
-     *
-     * @var string
-     */
-    protected string $condition;
-    /**
-     * Value of column to apply row class to
-     *
-     * @var string
-     */
-    protected string $value;
-    /**
-     * Class(es) for row
-     *
-     * @var string
-     */
-    protected string $class;
 
     /**
      * @param Repository $repository
