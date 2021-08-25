@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
@@ -9,15 +7,12 @@ use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\TD;
 
-/**
- * Class Table.
- */
-abstract class Table extends Layout
-{
+abstract class TableConditional extends Layout{
+
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.table';
+    protected $template = 'platform::layouts.table_conditional';
 
     /**
      * @var Repository
@@ -42,25 +37,6 @@ abstract class Table extends Layout
      * @var string
      */
     protected $title;
-
-    /**
-     * Column name to check
-     *
-     * @var string
-     */
-    protected string $condition;
-    /**
-     * Value of column to apply row class to
-     *
-     * @var string
-     */
-    protected string $value;
-    /**
-     * Class(es) for row
-     *
-     * @var string
-     */
-    protected string $class;
 
     /**
      * @param Repository $repository
@@ -97,9 +73,6 @@ abstract class Table extends Layout
             'slug'         => $this->getSlug(),
             'onEachSide'   => $this->onEachSide(),
             'title'        => $this->title,
-            'condition'    => $this->condition,
-            'value'        => $this->value,
-            'class'        => $this->class,
         ]);
     }
 
@@ -191,5 +164,4 @@ abstract class Table extends Layout
     {
         return [];
     }
-
 }
