@@ -73,6 +73,9 @@ abstract class TableConditional extends Layout{
             'slug'         => $this->getSlug(),
             'onEachSide'   => $this->onEachSide(),
             'title'        => $this->title,
+            'condition'    => $this->condition,
+            'value'        => $this->value,
+            'class'        => $this->class,
         ]);
     }
 
