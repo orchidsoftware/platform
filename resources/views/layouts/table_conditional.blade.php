@@ -35,7 +35,7 @@ $rowclass = 'bg-white';
 
             @foreach($rows as $source)
                 @php
-                if($source->$condition &&  $source->$condition != $value){
+                if($source->$condition != $value){
                     $rowclass = 'bg-black-opacity';
                 }
                 @endphp
