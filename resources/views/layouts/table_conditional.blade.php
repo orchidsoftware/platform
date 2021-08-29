@@ -38,6 +38,9 @@ $rowclass = 'bg-white';
                 if($source->$condition != $value){
                     $rowclass = 'bg-black-opacity';
                 }
+                else{
+                    $rowclass = 'bg-white';
+                }
                 @endphp
                 <tr class="{{$rowclass}}">
                     @foreach($columns as $column)
