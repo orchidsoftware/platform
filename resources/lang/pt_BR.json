@@ -33,7 +33,6 @@
     "Enter your email": "Digite seu e-mail",
     "Enter your password": "Digite sua senha",
     "Navigation": "Navegação",
-    "Resources": "Recursos",
     "Example screen": "Tela de exemplo",
     "Form controls": "Controles de formulário",
     "Basic Elements": "Elementos Básicos",
@@ -132,5 +131,4 @@
     "Welcome": "Bem vindo",
     "Export": "Exportar",
     "Sign in with another user.": "Entrar com outro usuário"
-    
 }
