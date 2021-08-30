@@ -150,5 +150,8 @@
     "You are now impersonating this user": "Теперь вы выдаете себя за этого пользователя",
     "You currently have no notifications, but maybe they will appear later.": "В настоящее время у вас нет уведомлений, но, возможно, они появятся позже.",
     "You may have' entered an address that doesn't exist or that the link you have requested doesn't work (anymore).": "Возможно, вы ввели неправильный адрес страницы либо перешли по ссылке, которая никуда не ведет.",
-    "You requested a page that doesn't exist.": "Вы запросили страницу, которая не существует."
+    "You requested a page that doesn't exist.": "Вы запросили страницу, которая не существует.",
+    "A role is a collection of privileges (of possibly different services like the Users service, Moderator, and so on) that grants users with that role the ability to perform certain tasks or operations.": "Роль - это набор привилегий (возможно, различных служб, таких как служба «Пользователи», «Модератор» и т. Д.), Которые предоставляют пользователям с этой ролью возможность выполнять определенные задачи или операции.",
+    "A privilege is necessary to perform certain tasks and operations in an area." : "Привилегия необходима для выполнения определенных задач и операций в области.",
+    "Permission/Privilege": "Разрешения/Привилегии"
 }
