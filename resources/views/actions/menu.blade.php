@@ -4,6 +4,7 @@
     </li>
 @endisset
 
+@if (!empty($name) || isset($icon) || isset($badge))
 <li class="nav-item {{ active($active) }}">
     <a data-turbo="{{ var_export($turbo) }}"
         {{ $attributes }}
@@ -19,6 +20,7 @@
         @endisset
     </a>
 </li>
+@endif
 
 @if(!empty($list))
     <div class="nav collapse sub-menu ps-2 {{active($active, 'show')}}"
