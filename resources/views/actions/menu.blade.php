@@ -4,7 +4,7 @@
     </li>
 @endisset
 
-@if (!empty($name) || isset($icon) || isset($badge))
+@if (!empty($name))
 <li class="nav-item {{ active($active) }}">
     <a data-turbo="{{ var_export($turbo) }}"
         {{ $attributes }}
