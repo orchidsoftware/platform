@@ -58,6 +58,8 @@ abstract class OrchidServiceProvider extends ServiceProvider
     }
 
     /**
+     * @deprecated Use config to define
+     *
      * @return string[]
      */
     public function registerSearchModels(): array
