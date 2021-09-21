@@ -54,7 +54,9 @@
                             </button>
                         @endif
                     @else
-                        {!! $commandBar !!}
+                        @foreach($commandBar as $command)
+                            {!! $command !!}
+                        @endforeach
                     @endempty
 
                 </div>
