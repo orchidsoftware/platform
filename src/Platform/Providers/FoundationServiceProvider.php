@@ -6,6 +6,7 @@ namespace Orchid\Platform\Providers;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
@@ -65,7 +66,8 @@ class FoundationServiceProvider extends ServiceProvider
             ->registerDatabase()
             ->registerConfig()
             ->registerTranslations()
-            ->registerViews();
+            ->registerViews()
+            ->registerOctaneEventsListen();
     }
 
     /**
@@ -168,6 +170,17 @@ class FoundationServiceProvider extends ServiceProvider
         }
 
         return $this;
+    }
+
+    /**
+     * Flush state when using Laravel Octane
+     * https://laravel.com/docs/8.x/octane
+     */
+    public function registerOctaneEventsListen()
+    {
+        Event::listen(function (\Laravel\Octane\Events\RequestReceived $request) {
+            \Orchid\Support\Facades\Dashboard::flushState();
+        });
     }
 
     /**

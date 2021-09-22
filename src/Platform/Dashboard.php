@@ -76,18 +76,17 @@ class Dashboard
      */
     public function __construct()
     {
-        $this->menu = collect([
-            self::MENU_MAIN    => collect(),
-            self::MENU_PROFILE => collect(),
-        ]);
+        $this->publicDirectories = collect();
+        $this->resources = collect();
 
         $this->permission = collect([
             'all'     => collect(),
             'removed' => collect(),
         ]);
-        $this->resources = collect();
+
         $this->search = collect();
-        $this->publicDirectories = collect();
+
+        $this->flushState();
     }
 
     /**
@@ -426,5 +425,20 @@ class Dashboard
         $this->menu->put($location, $menu);
 
         return $this;
+    }
+
+    /**
+     * Flush the persistent Orchid state.
+     *
+     * @return void
+     */
+    public function flushState(): void
+    {
+        $this->menu = collect([
+            self::MENU_MAIN    => collect(),
+            self::MENU_PROFILE => collect(),
+        ]);
+
+        $this->currentScreen = null;
     }
 }
