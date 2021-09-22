@@ -175,12 +175,16 @@ class FoundationServiceProvider extends ServiceProvider
     /**
      * Flush state when using Laravel Octane
      * https://laravel.com/docs/8.x/octane
+     *
+     * @return $this
      */
-    public function registerOctaneEventsListen()
+    public function registerOctaneEventsListen(): self
     {
         Event::listen(function (\Laravel\Octane\Events\RequestReceived $request) {
             \Orchid\Support\Facades\Dashboard::flushState();
         });
+
+        return $this;
     }
 
     /**
