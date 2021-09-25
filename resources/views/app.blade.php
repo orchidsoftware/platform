@@ -43,8 +43,7 @@
     @endforeach
 </head>
 
-<body class="page-{{\Str::slug(\Route::currentRouteName())}}">
-
+<body class="{{ \Orchid\Support\Names::getPageNameClass() }}">
 
 <div class="container-fluid" data-controller="@yield('controller')" @yield('controller-data')>
 
