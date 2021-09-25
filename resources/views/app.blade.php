@@ -43,7 +43,7 @@
     @endforeach
 </head>
 
-<body>
+<body class="page-{{\Str::slug(\Route::currentRouteName())}}">
 
 
 <div class="container-fluid" data-controller="@yield('controller')" @yield('controller-data')>
