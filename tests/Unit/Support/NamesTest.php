@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Tests\Feature\Platform;
 
 use Illuminate\Http\Request;
-use Orchid\Support\Names;
 use Illuminate\Support\Facades\Route;
+use Orchid\Support\Names;
 use Orchid\Tests\TestUnitCase;
 
 class NamesTest extends TestUnitCase
@@ -35,7 +35,6 @@ class NamesTest extends TestUnitCase
     protected function setRouteName(string $name)
     {
         Route::get($name, function () {
-
         })->name($name);
 
         $request = tap(new Request(), function (Request $request) use ($name) {
