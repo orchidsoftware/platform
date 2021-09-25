@@ -12,10 +12,10 @@ export default class extends ApplicationController {
         const plugins = [];
 
         if (this.data.get('range')) {
-            plugins.push(new rangePlugin({input: this.data.get('range')}));
+            plugins.push(new rangePlugin({ input: this.data.get('range') }));
         }
 
-        let configsAttributes = {
+        const configsAttributes = {
             enableTime: 'enable-time',
             time_24hr: 'time-24hr',
             allowInput: 'allow-input',
