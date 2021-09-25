@@ -68,9 +68,8 @@ class ExampleFieldsAdvancedScreen extends Screen
     /**
      * Views.
      *
-     * @throws \Throwable
-     *
      * @return \Orchid\Screen\Layout[]
+     * @throws \Throwable
      */
     public function layout(): array
     {
@@ -139,6 +138,26 @@ class ExampleFieldsAdvancedScreen extends Screen
                     DateTimer::make('enabledTime')
                         ->title('Enabled time')
                         ->enableTime(),
+                ]),
+
+                Group::make([
+                    DateTimer::make('AllowEmpty')
+                        ->title('Allow Empty')
+                        ->allowEmpty(),
+
+                    DateTimer::make('AvailableDates')
+                        ->title('Available Dates')
+                        ->available([
+                            now(),
+                            now()->addDays(2),
+                            now()->addDays(3),
+                        ]),
+
+                    DateTimer::make('AvailableDatesPeriod')
+                        ->title('Available Dates Period')
+                        ->available([
+                            ['from' => now(), 'to' => now()->addWeek()],
+                        ]),
                 ]),
 
                 Group::make([
