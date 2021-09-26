@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid;
 
 use Orchid\Platform\Dashboard;
@@ -115,17 +117,6 @@ class PlatformProvider extends OrchidServiceProvider
             ItemPermission::group(__('System'))
                 ->addPermission('platform.systems.roles', __('Roles'))
                 ->addPermission('platform.systems.users', __('Users')),
-        ];
-    }
-
-    /**
-     * @return string[]
-     */
-    public function registerSearchModels(): array
-    {
-        return [
-            // ...Models
-            // \App\Models\User::class
         ];
     }
 }

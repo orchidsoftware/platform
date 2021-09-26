@@ -13,4 +13,11 @@
             <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>
+    <issueHandlers>
+        <UndefinedClass>
+            <errorLevel type="suppress">
+                <referencedClass name="Laravel\Octane\Events\RequestReceived" />
+            </errorLevel>
+        </UndefinedClass>
+    </issueHandlers>
 </psalm>

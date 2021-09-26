@@ -11,7 +11,7 @@
     <div class="alert alert-danger rounded shadow-sm mb-3 p-3" role="alert">
         <strong>{{  __('Oh snap!') }}</strong>
         {{ __('Change a few things up and try submitting again.') }}
-        <ul class="m-t-xs">
+        <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
