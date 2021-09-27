@@ -100,4 +100,14 @@ class InputTest extends TestFieldsUnitCase
         $this->assertStringNotContainsString('list="datalist-browser"', $input);
         $this->assertStringNotContainsString('<datalist id="datalist-browser"', $input);
     }
+
+    public function testWithoutFormType()
+    {
+        $input = Input::make('inputFieldName')
+            ->title('Lorem ipsum dolor sit amet')
+            ->withoutFormType();
+
+        $this->assertStringContainsString('Lorem ipsum dolor sit amet', self::renderField($input));
+        $this->assertStringNotContainsString('</label>', self::renderField($input));
+    }
 }
