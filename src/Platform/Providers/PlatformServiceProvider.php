@@ -69,7 +69,7 @@ class PlatformServiceProvider extends ServiceProvider
     {
         $provider = config('platform.provider');
 
-        if ($provider && class_exists($provider)) {
+        if ($provider !== null) {
             $this->app->register($provider);
         }
     }
