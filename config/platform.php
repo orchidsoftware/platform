@@ -1,6 +1,20 @@
 <?php
 
 return [
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Service Provider
+    |--------------------------------------------------------------------------
+    |
+    | This value is a class namespace of the platform's servie provider. You
+    | can override it to define a custom namespace. This may be useful if you
+    | want to place Orchid's service provider in a location different to
+    | "app/Orchid".
+    |
+    */
+    
+    'provider' => \App\Orchid\PlatformProvider::class,
 
     /*
     |--------------------------------------------------------------------------
