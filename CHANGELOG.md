@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Title attribute for links [#1850](https://github.com/orchidsoftware/platform/issues/1850)
+- Method `withoutFormType` for Fields [#1850](https://github.com/orchidsoftware/platform/issues/1850)
 
 ## 10.17.0 - 2021-09-27
 
