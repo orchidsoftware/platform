@@ -67,8 +67,8 @@ class PlatformServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $provider = config('platform.provider'
-                          );
+        $provider = config('platform.provider');
+        
         if ($provider !== null) {
             $this->app->register($provider);
         }
