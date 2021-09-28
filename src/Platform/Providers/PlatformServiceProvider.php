@@ -67,9 +67,9 @@ class PlatformServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $provider = config('platform.provider');
+        $provider = config('platform.provider', \App\Orchid\PlatformProvider::class);
 
-        if ($provider !== null) {
+        if ($provider !== null && class_exists($provider)) {
             $this->app->register($provider);
         }
     }
