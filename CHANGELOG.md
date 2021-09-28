@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- Set default provider [#1850](https://github.com/orchidsoftware/platform/issues/1850)
+- Set default provider [#1891](https://github.com/orchidsoftware/platform/issues/1891)
 
 ## 10.18.0 - 2021-09-27
 
