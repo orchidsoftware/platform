@@ -6,14 +6,14 @@
                     {!! $filter->render() !!}
                 </div>
             @endforeach
-            <div class="col-sm-auto ms-auto text-end">
+            <div class="col-sm-auto ms-auto mt-3 text-end">
                 <div class="form-group">
                     <div class="btn-group" role="group">
                         <button data-action="filter#clear" class="btn btn-default">
-                            <x-orchid-icon path="refresh" />
+                            <x-orchid-icon class="me-1" path="refresh" /> {{ __('Refresh') }}
                         </button>
                         <button type="submit" form="filters" class="btn btn-default">
-                            <x-orchid-icon path="filter" />
+                            <x-orchid-icon class="me-1" path="filter" /> {{ __('Apply') }}
                         </button>
                     </div>
                 </div>
