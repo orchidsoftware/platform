@@ -5,6 +5,99 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.18.1 - 2021-09-28
+
+### Fixed
+
+- Set default provider [#1891](https://github.com/orchidsoftware/platform/issues/1891)
+
+## 10.18.0 - 2021-09-27
+
+### Added
+
+- Method `withoutFormType` for Fields [#1850](https://github.com/orchidsoftware/platform/issues/1850)
+
+## 10.17.0 - 2021-09-27
+
+### Added
+
+- Custom service provider config [#1891](https://github.com/orchidsoftware/platform/issues/1891)
+
+## 10.16.0 - 2021-09-26
+
+### Added
+
+- Route prefix class to body [#1858](https://github.com/orchidsoftware/platform/pull/1858)
+
+### Changed
+
+- Way of passing parameters to flatpickr
+- Updated Hotwired versions to 3.0
+
+## 10.15.0 - 2021-09-22
+
+### Added
+
+- Support Laravel Octane [#1722](https://github.com/orchidsoftware/platform/issues/1722)
+
+## 10.14.1 - 2021-09-22
+
+### Changed
+
+- Added config option for "Global Search" [#1838](https://github.com/orchidsoftware/platform/issues/1838)
+
+### Fixed
+
+- Menu showing empty space when name [#1877](https://github.com/orchidsoftware/platform/pull/1877)
+
+## 10.14.0 - 2021-08-29
+
+### Added
+
+- Event for Quill field customization (Plugins)
+
+## 10.13.0 - 2021-08-25
+
+### Added
+
+- Turkish Translation [#1844](https://github.com/orchidsoftware/platform/pull/1844)
+
+### Fixed
+
+- Support collection in target table [#1849](https://github.com/orchidsoftware/platform/pull/1849)
+
+## 10.12.2 - 2021-08-17
+
+### Fixed
+
+- Invalid padding for command-bar buttons in mobile view [#1603](https://github.com/orchidsoftware/platform/issues/1603)
+
+## 10.12.1 - 2021-08-17
+
+### Changed
+
+- Improved text contrast
+
+### Fixed
+
+- Select2 input focus [#1826](https://github.com/orchidsoftware/platform/issues/1826)
+- Modal sizes [#1829](https://github.com/orchidsoftware/platform/issues/1829)
+
+## 10.12.0 - 2021-08-06
+
+### Added
+
+- Short align methods for TD
+
+### Changed
+
+- Screen template for shortening
+- Updated dependencies
+
+### Fixed
+
+- Tab toggle with leaflet map [#1817](https://github.com/orchidsoftware/platform/pull/1817)
+
 ## 10.11.0 - 2021-07-25
 
 ### Changed
