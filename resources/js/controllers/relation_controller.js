@@ -25,7 +25,7 @@ export default class extends ApplicationController {
             },
         });
 
-        let $dropdown = $(select).closest(".dropdown-menu");
+        const parent = $(select).closest(".dropdown-menu, .modal");
 
         $(select).select2({
             theme: 'bootstrap',
@@ -64,16 +64,20 @@ export default class extends ApplicationController {
                 }),
             },
             placeholder: select.getAttribute('placeholder') || '',
-            dropdownParent: $dropdown.length ? $dropdown : undefined,
+            dropdownParent: parent.length ? parent : undefined,
         });
 
+        $(select).on('select2:open', () => {
+            window.setTimeout(function() {
+                $('.select2-container--open .select2-search__field').get(0).focus();
+            }, 200);
+        });
 
         // force change event for https://github.com/select2/select2/issues/1908
-        let forceChange = () => {
-            setTimeout(()=>{
-                select.dispatchEvent(new Event('change'));
-            },100);
-        }
+        let forceChange = () => setTimeout(() => {
+            select.dispatchEvent(new Event('change'));
+        }, 100);
+
         $(select).on('select2:select', forceChange);
         $(select).on('select2:unselect', forceChange);
         $(select).on('select2:clear', forceChange);

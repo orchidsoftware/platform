@@ -142,6 +142,26 @@ class ExampleFieldsAdvancedScreen extends Screen
                 ]),
 
                 Group::make([
+                    DateTimer::make('AllowEmpty')
+                        ->title('Allow Empty')
+                        ->allowEmpty(),
+
+                    DateTimer::make('AvailableDates')
+                        ->title('Available Dates')
+                        ->available([
+                            now(),
+                            now()->addDays(2),
+                            now()->addDays(3),
+                        ]),
+
+                    DateTimer::make('AvailableDatesPeriod')
+                        ->title('Available Dates Period')
+                        ->available([
+                            ['from' => now(), 'to' => now()->addWeek()],
+                        ]),
+                ]),
+
+                Group::make([
                     DateTimer::make('format24hr')
                         ->title('Format 24hr')
                         ->enableTime()
