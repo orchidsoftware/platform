@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
-use Orchid\Screen\Layouts\Role\RolePermissionLayout;
-use Orchid\Screen\Layouts\User\UserEditLayout;
-use Orchid\Screen\Layouts\User\UserPasswordLayout;
-use Orchid\Screen\Layouts\User\UserRoleLayout;
+use App\Orchid\Layouts\Role\RolePermissionLayout;
+use App\Orchid\Layouts\User\UserEditLayout;
+use App\Orchid\Layouts\User\UserPasswordLayout;
+use App\Orchid\Layouts\User\UserRoleLayout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;

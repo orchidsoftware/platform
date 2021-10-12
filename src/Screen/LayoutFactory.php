@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Orchid\Screen\Layouts\FilterLine;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Traits\Macroable;
-use Orchid\Filters\Filter;
 use Orchid\Screen\Layouts\Accordion;
 use Orchid\Screen\Layouts\Blank;
 use Orchid\Screen\Layouts\Block;
@@ -224,35 +222,7 @@ class LayoutFactory
             }
         };
     }
-    /**
-     * @param Filter $filters
-     * @return Layout
-     */
-    public static function filterLine(array $filters): FilterLine{
-        return new class ($filters) extends FilterLine{
-            /**
-             * @var string[]
-             */
-            protected $filters;
 
-            /**
-             * Constructor.
-             *
-             * @param string[] $filters
-             */
-            public function __construct(array $filters = []){
-                return $this->filters = $filters;
-            }
-
-            /**
-             * @return string[]
-             */
-            public function filters(): array
-            {
-                return $this->filters;
-            }
-        };
-    }
     /**
      * @param Layout|string|string[] $layouts
      *

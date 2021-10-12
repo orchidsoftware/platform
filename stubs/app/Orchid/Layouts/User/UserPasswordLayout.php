@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Screen\Layouts\User;
+namespace App\Orchid\Layouts\User;
 
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Field;
