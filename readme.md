@@ -3,7 +3,7 @@
 </p>
 
 
-<h4 align="center">For the entire documentation, visit <a href="http://orchid.software">orchid.software</a>.</h4>
+<h4 align="center">For the full documentation, visit <a href="http://orchid.software">orchid.software</a>.</h4>
 
 <p align="center">
 <a href="https://github.com/orchidsoftware/platform/actions"><img src="https://github.com/orchidsoftware/platform/workflows/Tests/badge.svg"></a>
