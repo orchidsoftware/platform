@@ -43,8 +43,7 @@
     @endforeach
 </head>
 
-<body>
-
+<body class="{{ \Orchid\Support\Names::getPageNameClass() }}">
 
 <div class="container-fluid" data-controller="@yield('controller')" @yield('controller-data')>
 

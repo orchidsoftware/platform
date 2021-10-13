@@ -2,7 +2,6 @@
 
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
-use Illuminate\View\View;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Input;

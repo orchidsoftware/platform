@@ -19,11 +19,11 @@
         @endif
 
 
-        @includeWhen(!is_null($filter), "platform::partials.filters.{$filter}", get_defined_vars())
+            @includeWhen($filter !== null, "platform::partials.layouts.filter", ['filter' => $filter])
     </div>
 
     @if($filterString)
-        <div data-controller="filter">
+        <div data-controller="filter" class="mt-2">
             <a href="#"
                data-action="filter#clearFilter"
                data-filter="{{$column}}"

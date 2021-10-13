@@ -6,10 +6,11 @@ export default class extends ApplicationController {
      *
      */
     connect() {
+        const quill = Quill;
         const selector = this.element.querySelector('.quill').id;
         const input = this.element.querySelector('input');
 
-        this.editor = new Quill(`#${selector}`, {
+        const options = {
             placeholder: input.placeholder,
             readOnly: input.readOnly,
             theme: 'snow',
@@ -18,7 +19,17 @@ export default class extends ApplicationController {
                     container: this.containerToolbar(),
                 },
             },
-        });
+        };
+
+        // Dispatch the event for customization and installation of plugins
+        document.dispatchEvent(new CustomEvent('orchid:quill', {
+            detail: {
+                quill: quill,
+                options: options
+            }
+        }));
+
+        this.editor = new quill(`#${selector}`, options);
 
         // quill editor add image handler
         this.editor.getModule('toolbar').addHandler('image', () => {

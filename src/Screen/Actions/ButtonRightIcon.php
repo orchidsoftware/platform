@@ -9,16 +9,17 @@ use Orchid\Screen\Action;
 /**
  * Class Button.
  *
- * @method Button name(string $name = null)
- * @method Button modal(string $modalName = null)
- * @method Button icon(string $icon = null)
- * @method Button class(string $classes = null)
- * @method Button parameters(array|object $name)
- * @method Button confirm(string $confirm = true)
- * @method Button action(string $url)
- * @method Button disabled(bool $disabled)
+ * @method ButtonRightIcon name(string $name = null)
+ * @method ButtonRightIcon modal(string $modalName = null)
+ * @method ButtonRightIcon icon(string $icon = null)
+ * @method ButtonRightIcon class(string $classes = null)
+ * @method ButtonRightIcon method(string $methodName = null)
+ * @method ButtonRightIcon parameters(array|object $name)
+ * @method ButtonRightIcon confirm(string $confirm = true)
+ * @method ButtonRightIcon action(string $url)
+ * @method ButtonRightIcon disabled(bool $disabled)
  */
-class Button extends Action
+class ButtonRightIcon extends Action
 {
     /**
      * @var string
@@ -31,11 +32,11 @@ class Button extends Action
      * @var array
      */
     protected $attributes = [
-        'class'      => 'btn btn-link',
+        'class'      => 'btn btn-default',
         'type'       => 'submit',
         'novalidate' => false,
         'method'     => null,
-        'icon'       => null,
+        'icon'       => 'arrow-right',
         'action'     => null,
         'confirm'    => null,
         'parameters' => [],
@@ -88,25 +89,10 @@ class Button extends Action
     /**
      * @param bool $novalidate
      *
-     * @return Button|\Orchid\Screen\Field
+     * @return ButtonRightIcon|\Orchid\Screen\Field
      */
     public function novalidate(bool $novalidate = true)
     {
         return $this->set('formnovalidate', var_export($novalidate, true));
-    }
-
-    /**
-     * @param string $name
-     * @param array  $parameters
-     *
-     * @return $this
-     */
-    public function method(string $name, array $parameters = []): self
-    {
-        return $this
-            ->set('method', $name)
-            ->when(! empty($parameters), function () use ($parameters) {
-                $this->set('parameters', $parameters);
-            });
     }
 }
