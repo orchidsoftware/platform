@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Actions;
 
+use Illuminate\Support\Facades\Route;
 use Orchid\Screen\Action;
 
 /**
@@ -71,7 +72,9 @@ class Button extends Action
                 return;
             }
 
-            $url = url()->current();
+            // correct URL for async request
+            $url = request()->header('ORCHID-ASYNC-REFERER', url()->current());
+
             $query = http_build_query($this->get('parameters'));
 
             $action = rtrim("{$url}/{$this->get('method')}?{$query}", '/?');
