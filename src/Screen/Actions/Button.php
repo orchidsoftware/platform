@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Actions;
 
-use Illuminate\Support\Facades\Route;
 use Orchid\Screen\Action;
 
 /**

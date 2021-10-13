@@ -6,8 +6,8 @@ namespace Orchid\Tests\App\Screens;
 
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
-use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Layout;
 use Throwable;
 
 class AsyncHeaderButtonActionScreen extends Screen
@@ -53,7 +53,7 @@ class AsyncHeaderButtonActionScreen extends Screen
                 Button::make('Submit')
                     ->confirm('Do you want to press the button?')
                     ->method('message'),
-            ])
+            ]),
         ];
     }
 }
