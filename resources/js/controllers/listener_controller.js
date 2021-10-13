@@ -56,10 +56,14 @@ export default class extends ApplicationController {
             return;
         }
 
-         window.axios.post(this.data.get('async-route'), params).then((response) => {
-             this.element.querySelector('[data-async]').innerHTML = response.data;
-             this.addListenerForTargets();
-         });
+        window.axios.post(this.data.get('async-route'), params, {
+            headers: {
+                'ORCHID-ASYNC-REFERER': window.location.href,
+            },
+        }).then((response) => {
+            this.element.querySelector('[data-async]').innerHTML = response.data;
+            this.addListenerForTargets();
+        });
     }
 
     /**
