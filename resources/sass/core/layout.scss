@@ -46,19 +46,15 @@ body {
 
         li {
             display: inline-block;
-            button, a {
-                margin-left: 0;
-                padding-left: 0;
-            }
 
             &:last-child{
-                button, a {
+                .btn-link {
                     margin-right: 0;
                     padding-right: 0;
                 }
             }
             &:first-child{
-                button, a {
+                .btn-link {
                     margin-left: 0;
                     padding-left: 0;
                 }

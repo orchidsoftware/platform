@@ -89,9 +89,7 @@ class RoleEditScreen extends Screen
                 RoleEditLayout::class,
             ])
                 ->title('Role')
-                ->description('A role is a collection of privileges
-                (of possibly different services like the Users service, Moderator, and so on)
-                 that grants users with that role the ability to perform certain tasks or operations.'),
+                ->description('A role is a collection of privileges (of possibly different services like the Users service, Moderator, and so on) that grants users with that role the ability to perform certain tasks or operations.'),
 
             Layout::block([
                 RolePermissionLayout::class,

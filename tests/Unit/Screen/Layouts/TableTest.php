@@ -123,4 +123,23 @@ class TableTest extends TestUnitCase
 
         $this->assertStringContainsString('table-hover', $html);
     }
+
+    public function testShowTextNotFoundWhenTargetIsEmptyCollection()
+    {
+        $layout = new class extends Table {
+            protected $target = 'target';
+
+            protected function columns(): array
+            {
+                return [];
+            }
+        };
+
+        $html = $layout->build(new Repository([
+            'target'  => collect([]),
+        ]))->render();
+
+        $this->assertStringContainsString('There are no records in this view', $html);
+        $this->assertNotEmpty($html);
+    }
 }

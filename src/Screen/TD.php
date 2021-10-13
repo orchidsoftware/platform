@@ -8,6 +8,8 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use Orchid\Screen\Fields\DateTimer;
+use Orchid\Screen\Fields\Input;
 
 class TD extends Cell
 {
@@ -27,7 +29,7 @@ class TD extends Cell
     public const ALIGN_RIGHT = 'end';
 
     public const FILTER_TEXT = 'text';
-    public const FILTER_NUMERIC = 'numeric';
+    public const FILTER_NUMERIC = 'number';
     public const FILTER_DATE = 'date';
 
     /**
@@ -48,7 +50,7 @@ class TD extends Cell
     /**
      * @var string
      */
-    protected $align = 'left';
+    protected $align = self::ALIGN_LEFT;
 
     /**
      * @var int
@@ -84,11 +86,11 @@ class TD extends Cell
     }
 
     /**
-     * @param string $filter
+     * @param string|\Orchid\Screen\Field $filter
      *
      * @return TD
      */
-    public function filter(string $filter): self
+    public function filter($filter): self
     {
         $this->filter = $filter;
 
@@ -120,6 +122,36 @@ class TD extends Cell
     }
 
     /**
+     * @return $this
+     */
+    public function alignLeft(): self
+    {
+        $this->align = self::ALIGN_LEFT;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function alignRight(): self
+    {
+        $this->align = self::ALIGN_RIGHT;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function alignCenter(): self
+    {
+        $this->align = self::ALIGN_CENTER;
+
+        return $this;
+    }
+
+    /**
      * @param int $colspan
      *
      * @return $this
@@ -145,11 +177,48 @@ class TD extends Cell
             'sortUrl'      => $this->buildSortUrl(),
             'column'       => $this->column,
             'title'        => $this->title,
-            'filter'       => $this->filter,
+            'filter'       => $this->buildFilter(),
             'filterString' => get_filter_string($this->column),
             'slug'         => $this->sluggable(),
             'popover'      => $this->popover,
         ]);
+    }
+
+    /**
+     * @return \Orchid\Screen\Field|null
+     */
+    protected function buildFilter(): ?Field
+    {
+        /** @var \Orchid\Screen\Field $filter */
+        $filter = $this->filter;
+
+        if ($filter === null) {
+            return null;
+        }
+
+        if (is_string($filter)) {
+            $filter = $this->detectConstantFilter($filter);
+        }
+
+        return $filter->name("filter[$this->column]")
+            ->placeholder(__('Filter'))
+            ->form('filters')
+            ->value(get_filter_string($this->column))
+            ->autofocus();
+    }
+
+    /**
+     * @param string $filter
+     *
+     * @return \Orchid\Screen\Field
+     */
+    protected function detectConstantFilter(string $filter): Field
+    {
+        if ($filter === self::FILTER_DATE) {
+            return DateTimer::make()->inline()->format('Y-m-d');
+        }
+
+        return Input::make()->type($filter);
     }
 
     /**

@@ -3,8 +3,8 @@
 }
 
 @mixin font-variant($bg-color){
-  $font-color: desaturate(lighten($bg-color, 60%), 5%);
-  $link-color:  desaturate(lighten($bg-color, 70%), 5%);
+  $font-color: desaturate(lighten($bg-color, 65%), 5%);
+  $link-color:  desaturate(lighten($bg-color, 80%), 5%);
   $hover-color: #fff;
   color: $font-color;
   a {
@@ -58,7 +58,7 @@
     }
   }
   .text-muted {
-    color: darken($font-color, 10%) !important;
+    color: darken($font-color, 20%) !important;
   }
 }
 

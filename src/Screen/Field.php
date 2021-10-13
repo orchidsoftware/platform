@@ -74,7 +74,7 @@ class Field implements Fieldable
      * Vertical or Horizontal
      * bootstrap forms.
      *
-     * @var string|null
+     * @var Closure|string|null
      */
     protected $typeForm;
 
@@ -424,6 +424,20 @@ class Field implements Fieldable
     public function horizontal(): self
     {
         $this->typeForm = 'platform::partials.fields.horizontal';
+
+        return $this;
+    }
+
+    /**
+     * Displaying an item without titles or additional information.
+     *
+     * @return $this
+     */
+    public function withoutFormType(): self
+    {
+        $this->typeForm = static function (array $attributes) {
+            return $attributes['slot'];
+        };
 
         return $this;
     }
