@@ -2,9 +2,9 @@
 
 namespace App\Orchid\Screens\Examples;
 
-use App\Orchid\Layouts\Examples\ChartBarExample;
-use App\Orchid\Layouts\Examples\ChartLineExample;
-use App\Orchid\Layouts\Examples\MetricsExample;
+use Orchid\Screen\Layouts\Examples\ChartBarExample;
+use Orchid\Screen\Layouts\Examples\ChartLineExample;
+use Orchid\Screen\Layouts\Examples\MetricsExample;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Orchid\Screen\Actions\Button;

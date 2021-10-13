@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Orchid\Layouts\User;
+namespace Orchid\Screen\Layouts\User;
 
 use App\Orchid\Filters\RoleFilter;
 use Orchid\Filters\Filter;
