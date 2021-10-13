@@ -2,10 +2,10 @@
 
 namespace App\Orchid\Screens\Examples;
 
-use Orchid\Screen\Layouts\Examples\ChartBarExample;
-use Orchid\Screen\Layouts\Examples\ChartLineExample;
-use Orchid\Screen\Layouts\Examples\ChartPercentageExample;
-use Orchid\Screen\Layouts\Examples\ChartPieExample;
+use App\Orchid\Layouts\Examples\ChartBarExample;
+use App\Orchid\Layouts\Examples\ChartLineExample;
+use App\Orchid\Layouts\Examples\ChartPercentageExample;
+use App\Orchid\Layouts\Examples\ChartPieExample;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 

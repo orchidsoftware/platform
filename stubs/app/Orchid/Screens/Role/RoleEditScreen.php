@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\Role;
 
-use Orchid\Screen\Layouts\Role\RoleEditLayout;
-use Orchid\Screen\Layouts\Role\RolePermissionLayout;
+use App\Orchid\Layouts\Role\RoleEditLayout;
+use App\Orchid\Layouts\Role\RolePermissionLayout;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Orchid\Platform\Models\Role;
