@@ -7,6 +7,7 @@ namespace Orchid\Tests\App;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Dashboard;
+use Orchid\Tests\App\Screens\AsyncHeaderButtonActionScreen;
 use Orchid\Tests\App\Screens\ConfirmScreen;
 use Orchid\Tests\App\Screens\DependentListenerModalScreen;
 use Orchid\Tests\App\Screens\DependentListenerScreen;
@@ -38,6 +39,7 @@ class ExemplarServiceProvider extends ServiceProvider
                 $route->screen('dependent-listener-modal', DependentListenerModalScreen::class)->name('dependent-listener-modal');
                 $route->screen('methods-response', MethodsResponseScreen::class)->name('methods-response');
                 $route->screen('confirm', ConfirmScreen::class)->name('confirm');
+                $route->screen('async-header-button-action', AsyncHeaderButtonActionScreen::class)->name('async-header-button-action');
             });
     }
 }
