@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.19.1 - 2021-10-14
+
+### Changed
+
+- Improve TEMPLATE_LINE filter [#1911](https://github.com/orchidsoftware/platform/pull/1911)
+
+### Fixed
+
+- Listener for Picture/Cropper [#1917](https://github.com/orchidsoftware/platform/issues/1917)
+
 ## 10.19.0 - 2021-10-13
 
 ### Changed
