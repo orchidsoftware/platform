@@ -59,7 +59,7 @@
 
                             <button type="button"
                                     class="btn btn-link"
-                                    data-dismiss="modal">
+                                    data-bs-dismiss="modal">
                                 {{ __('Close') }}
                             </button>
 
