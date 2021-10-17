@@ -57,7 +57,7 @@ class HttpFilter
     }
 
     /**
-     * @param string|null $query
+     * @param string|null|array $query
      *
      * @return string|array|null
      */
@@ -66,7 +66,9 @@ class HttpFilter
         if ($query === null) {
             return null;
         }
-
+    
+        if(is_array($query)){return $query;}
+    
         $item = explode(',', $query);
 
         if (count($item) > 1) {
@@ -132,15 +134,25 @@ class HttpFilter
     protected function filtersExact(Builder $query, $value, string $property): Builder
     {
         $property = self::sanitize($property);
-
+    
+        if ($query->getModel()->hasCast($property, ['date', 'datetime', 'immutable_date', 'immutable_datetime']) || $property === $query->getModel()->getCreatedAtColumn() || $property === $query->getModel()->getUpdatedAtColumn()) {
+            if (is_array($value) && (isset($value['start']) || isset($value['end']))) {
+                return $query->whereDate($property, '<=', $value['end'] ?? now()->addYears(50))
+                             ->whereDate($property, '>=', $value['start'] ?? now()->subYears(50));
+            }
+        }
+        if (is_array($value) && (isset($value['start']) || isset($value['end']))) {
+            return $query->where($property, '<=', $value['end'] ?? PHP_INT_MAX)
+                         ->where($property, '>=', $value['start'] ?? PHP_INT_MIN);
+        }
         if (is_array($value)) {
             return $query->whereIn($property, $value);
         }
-
+        
         if (is_numeric($value)) {
             return $query->where($property, $value);
         }
-
+    
         return $query->where($property, 'like', "%$value%");
     }
 

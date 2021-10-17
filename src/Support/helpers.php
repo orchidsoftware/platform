@@ -43,7 +43,7 @@ if (! function_exists('is_sort')) {
      */
     function is_sort(string $property): bool
     {
-        $filter = new HttpFilter();
+        $filter = app(HttpFilter::class);
 
         return $filter->isSort($property);
     }
@@ -58,7 +58,7 @@ if (! function_exists('get_sort')) {
      */
     function get_sort(?string $property): string
     {
-        $filter = new HttpFilter();
+        $filter = app(HttpFilter::class);
 
         return $filter->getSort($property);
     }
@@ -73,7 +73,7 @@ if (! function_exists('get_filter')) {
      */
     function get_filter(string $property)
     {
-        $filter = new HttpFilter();
+        $filter = app(HttpFilter::class);
 
         return $filter->getFilter($property);
     }
@@ -107,7 +107,7 @@ if (! function_exists('revert_sort')) {
      */
     function revert_sort(string $property): string
     {
-        $filter = new HttpFilter();
+        $filter = app(HttpFilter::class);
 
         return $filter->revertSort($property);
     }
