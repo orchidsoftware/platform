@@ -18,6 +18,13 @@ abstract class Tabs extends Layout
     public $template = 'platform::layouts.tabs';
 
     /**
+     * @var array
+     */
+    protected $variables = [
+        'activeTab'    => null,
+    ];
+
+    /**
      * Layout constructor.
      *
      * @param Layout[] $layouts
@@ -35,5 +42,11 @@ abstract class Tabs extends Layout
     public function build(Repository $repository)
     {
         return $this->buildAsDeep($repository);
+    }
+
+    public function activeTab(int $key)
+    {
+        $this->variables['activeTab'] = $key;
+        return $this;
     }
 }
