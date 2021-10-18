@@ -8,7 +8,7 @@
             @foreach($manyForms as $name => $tab)
                 <li class="nav-item">
                     <a class="nav-link
-                        @if ($activeTab === $loop->iteration)
+                        @if ($activeTab === $name)
                             active
                         @elseif($loop->first && is_null($activeTab))
                             active

@@ -44,9 +44,13 @@ abstract class Tabs extends Layout
         return $this->buildAsDeep($repository);
     }
 
-    public function activeTab(int $key)
+    /**
+     * @param  string  $name
+     * @return $this
+     */
+    public function activeTab(string $name)
     {
-        $this->variables['activeTab'] = $key;
+        $this->variables['activeTab'] = $name;
         return $this;
     }
 }
