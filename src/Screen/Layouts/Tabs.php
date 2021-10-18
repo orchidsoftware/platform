@@ -45,12 +45,14 @@ abstract class Tabs extends Layout
     }
 
     /**
-     * @param  string  $name
+     * @param string $name
+     *
      * @return $this
      */
     public function activeTab(string $name)
     {
         $this->variables['activeTab'] = $name;
+
         return $this;
     }
 }
