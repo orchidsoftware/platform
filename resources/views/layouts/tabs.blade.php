@@ -1,12 +1,18 @@
 <div
     data-controller="tabs"
     data-tabs-slug="{{$templateSlug}}"
+    data-tabs-active-tab="{{$activeTab}}"
 >
     <div class="nav-tabs-alt">
         <ul class="nav nav-tabs" role="tablist">
             @foreach($manyForms as $name => $tab)
                 <li class="nav-item">
-                    <a class="nav-link @if ($loop->first) active @endif"
+                    <a class="nav-link
+                        @if ($activeTab === $name)
+                            active
+                        @elseif($loop->first && is_null($activeTab))
+                            active
+                        @endif"
                        data-action="tabs#setActiveTab"
                        data-bs-target="#tab-{{\Illuminate\Support\Str::slug($name)}}"
                        id="button-tab-{{\Illuminate\Support\Str::slug($name)}}"
