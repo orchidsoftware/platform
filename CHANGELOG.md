@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.20.0 - 2021-10-19
+
+### Added
+
+- Method `activeTab` in Tabs [#1932](https://github.com/orchidsoftware/platform/pull/1932)
+
+### Changed
+
+- Default arguments for instance [#1936](https://github.com/orchidsoftware/platform/pull/1936)
+- Disabled user-scalable for viewport
+- Update `pt_BR` translation [#1926](https://github.com/orchidsoftware/platform/pull/1926)
+
 ## 10.19.2 - 2021-10-16
 
 ### Fixed
