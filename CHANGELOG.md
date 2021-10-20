@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.20.1 - 2021-10-20
+
+### Fixed
+
+- Fixed show border for table
+- Don't select text for click column filter
+
 ## 10.20.0 - 2021-10-19
 
 ### Added
