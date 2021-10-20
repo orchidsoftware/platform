@@ -97,7 +97,7 @@
   "suggest": {
     "orchid/crud": "Automated CRUD based on your files resources.",
     "orchid/fortify": "Orchid template for Laravel Fortify."
-  },  
+  },
   "config": {
     "sort-packages": true
   }

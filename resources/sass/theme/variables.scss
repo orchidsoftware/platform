@@ -1,97 +1,99 @@
 // Colors
-$orchid-color: #007bff;//#ac5ca0;
+$orchid-color: #007bff; //#ac5ca0;
 
 
-$white : #ffffff;
-$black : #1c2b36;
+$white: #ffffff;
+$black: #1c2b36;
 
-$blue:    #007bff !default;
-$indigo:  #6610f2 !default;
-$purple:  #6f42c1 !default;
-$pink:    #e83e8c !default;
-$red:     #dc3545 !default;
-$orange:  #fd7e14 !default;
-$yellow:  #ffc107 !default;
-$green:   #28a745 !default;
-$teal:    #20c997 !default;
+$blue: #007bff !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #dc3545 !default;
+$orange: #fd7e14 !default;
+$yellow: #ffc107 !default;
+$green: #28a745 !default;
+$teal: #20c997 !default;
 $cyan: #17a2b8 !default;
 
-$primary:       $orchid-color;
-$secondary:     #6c757d !default;
-$light:         #f8f9fa !default;
-$dark:          #212529 !default;
-$grey:          #495057;
+$primary: $orchid-color;
+$secondary: #6c757d !default;
+$light: #f8f9fa !default;
+$dark: #212529 !default;
+$grey: #495057;
 
-$grey-light : mix($grey, #ffffff, 10%);
+$grey-light: mix($grey, #ffffff, 10%);
 
-$body-bg : #edeef0;//lighten($light, 1%);
-$text-color : #394247;
-$text-muted : lighten($text-color, 20%);
+$body-bg: #edeef0; //lighten($light, 1%);
+$text-color: #394247;
+$text-muted: lighten($text-color, 20%);
 
 $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
 $font-size-lg: $font-size-base * 1.25 !default;
 $font-size-sm: $font-size-base * .895 !default;
 
-$link-color : darken($text-color, 15%);
-$link-hover-color : darken($text-color, 30%);
+$link-color: darken($text-color, 15%);
+$link-hover-color: darken($text-color, 30%);
 
 $dropdown-border-radius: 0.35rem;
-$border-radius-base : 2px;
-$border-color : darken($light, 5%);
+$border-radius-base: 2px;
+$border-color: darken($light, 5%);
 
 
 // Buttons
 // -------------------------
 
-$btn-default-color : $text-color;
-$btn-default-bg : lighten($light, 5%);
-$btn-default-border : $border-color;
-$btn-border-radius : $border-radius-base;
+$btn-default-color: $text-color;
+$btn-default-bg: lighten($light, 5%);
+$btn-default-border: $border-color;
+$btn-border-radius: $border-radius-base;
 $btn-close-focus-shadow: none;
 
-$input-border : darken($border-color, 5%);
-$input-border-focus : $cyan;
-$input-border-radius : $border-radius-base;
+$input-border: darken($border-color, 5%);
+$input-border-focus: $cyan;
+$input-border-radius: $border-radius-base;
 $input-group-addon-border-color: $border-color;
 
-$panel-bg : #ffffff;
-$panel-border : $border-color;
-$panel-heading-border : lighten($border-color, 5%);
-$panel-list-group-border : lighten($border-color, 5%);
-$panel-border-radius : $border-radius-base;
-$panel-heading-bg : lighten($light, 3%);
-$panel-footer-bg : #ffffff;
+$panel-bg: #ffffff;
+$panel-border: $border-color;
+$panel-heading-border: lighten($border-color, 5%);
+$panel-list-group-border: lighten($border-color, 5%);
+$panel-border-radius: $border-radius-base;
+$panel-heading-bg: lighten($light, 3%);
+$panel-footer-bg: #ffffff;
 
-$nav-bg : lighten($light, 3%);
-$nav-bg-black : #313d4f;
-$badge-bg : darken($light, 10%);
+$nav-bg: lighten($light, 3%);
+$nav-bg-black: #313d4f;
+$badge-bg: darken($light, 10%);
 
-$list-group-item-border : lighten($border-color, 3%);
-$list-group-item-hover : lighten($light, 3%);
-$list-group-item-focus : darken($light, 3%);
-$list-group-select-color : #dbeef9;
-$list-group-active-color : $cyan;
+$list-group-item-border: lighten($border-color, 3%);
+$list-group-item-hover: lighten($light, 3%);
+$list-group-item-focus: darken($light, 3%);
+$list-group-select-color: #dbeef9;
+$list-group-active-color: $cyan;
 
-$table-border-color : lighten($border-color, 2%);
-$table-striped-color : lighten($dark, 4.5%);
+
+$table-border-color: lighten($border-color, 2%);
+$table-group-separator-color: lighten($border-color, 2%);
+$table-striped-color: lighten($dark, 4.5%);
 $table-hover-bg: rgba($dark, .045) !default;
 
-$app-aside-min-width : 20em;
-$app-aside-width : 280px;
+$app-aside-min-width: 20em;
+$app-aside-width: 280px;
 $aside-wrap-main-width: 0px;
-$app-aside-nav-height : 40px; //2,857rem;
-$app-aside-folded-width : 60px;
-$app-aside-folded-nav-height : 50px; //3.57rem;
-$app-aside-dock-media : 992px;
+$app-aside-nav-height: 40px; //2,857rem;
+$app-aside-folded-width: 60px;
+$app-aside-folded-nav-height: 50px; //3.57rem;
+$app-aside-dock-media: 992px;
 
-$scroll-bar-width : 17px;
-$butterbar-height : 3px;
-$butterbar-time : 0.75s;
+$scroll-bar-width: 17px;
+$butterbar-height: 3px;
+$butterbar-time: 0.75s;
 
-$off-screen-width : 75%;
+$off-screen-width: 75%;
 
-$menu-bezier : 0.05, 0.74, 0.27, 0.99;
-$menu-light : #fafafa;
+$menu-bezier: 0.05, 0.74, 0.27, 0.99;
+$menu-light: #fafafa;
 
 //Forms
 $form-height: 35px;
@@ -102,59 +104,59 @@ $input-padding-x: .75rem !default;
 $form-check-input-width: 1.2em;
 
 
-$tablet : 768px;
-$desktop : 1280px;
-$widescreen : 1600px;
+$tablet: 768px;
+$desktop: 1280px;
+$widescreen: 1600px;
 
 //DateTimePicker
-$btn-primary-color : #ffffff;
-$btn-primary-bg : $primary;
-$border-radius-base : 2px;
-$gray-lighter : #eeeeee;
-$gray-light : #777777;
+$btn-primary-color: #ffffff;
+$btn-primary-bg: $primary;
+$border-radius-base: 2px;
+$gray-lighter: #eeeeee;
+$gray-light: #777777;
 
-$screen-sm-min : 480px;
-$screen-md-min : 768px;
-$screen-lg-min : 1024px;
+$screen-sm-min: 480px;
+$screen-md-min: 768px;
+$screen-lg-min: 1024px;
 
 //Bootstrap
-$enable-caret : false;
+$enable-caret: false;
 
 //Select2-bootstrap.
-$border-radius-large : 6px;
-$border-radius-small : 3px;
-$caret-width-base : 4px;
-$caret-width-large : 5px;
-$cursor-disabled : not-allowed;
-$font-size-large : ceil((14px * 1.25)); // ~18px
-$font-size-small : ceil((14px * 0.85));
-$padding-base-vertical : 6px;
-$padding-base-horizontal : 12px;
-$padding-large-vertical : 10px;
-$padding-large-horizontal : 16px;
-$padding-small-vertical : 5px;
-$padding-small-horizontal : 10px;
-$line-height-large : 1.3333333;
-$line-height-small : 1.5;
-$input-bg : #ffffff;
-$gray-base : #000000;
-$gray : lighten($gray-base, 33.5%);
-$input-bg-disabled : $gray-lighter;
-$input-color : $gray;
-$input-border : #cccccc;
-$input-color-placeholder : #999999;
-$input-height-base : (20px + ($padding-base-vertical * 2) + 2);
-$input-height-large : (ceil($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2);
-$input-height-small : (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2);
-$state-warning-text : #8a6d3b;
-$state-danger-text : #a94442;
-$state-success-text : #3c763d;
+$border-radius-large: 6px;
+$border-radius-small: 3px;
+$caret-width-base: 4px;
+$caret-width-large: 5px;
+$cursor-disabled: not-allowed;
+$font-size-large: ceil((14px * 1.25)); // ~18px
+$font-size-small: ceil((14px * 0.85));
+$padding-base-vertical: 6px;
+$padding-base-horizontal: 12px;
+$padding-large-vertical: 10px;
+$padding-large-horizontal: 16px;
+$padding-small-vertical: 5px;
+$padding-small-horizontal: 10px;
+$line-height-large: 1.3333333;
+$line-height-small: 1.5;
+$input-bg: #ffffff;
+$gray-base: #000000;
+$gray: lighten($gray-base, 33.5%);
+$input-bg-disabled: $gray-lighter;
+$input-color: $gray;
+$input-border: #cccccc;
+$input-color-placeholder: #999999;
+$input-height-base: (20px + ($padding-base-vertical * 2) + 2);
+$input-height-large: (ceil($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2);
+$input-height-small: (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2);
+$state-warning-text: #8a6d3b;
+$state-danger-text: #a94442;
+$state-success-text: #3c763d;
 
 
 //Border
-$border-radius:               .35rem;
-$border-radius-lg:            .4rem;
-$border-radius-sm:            .3rem;
+$border-radius: .35rem;
+$border-radius-lg: .4rem;
+$border-radius-sm: .3rem;
 
 // Pagination
 $pagination-disabled-color: $text-muted;
