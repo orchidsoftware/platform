@@ -110,4 +110,11 @@ class InputTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Lorem ipsum dolor sit amet', self::renderField($input));
         $this->assertStringNotContainsString('</label>', self::renderField($input));
     }
+
+    public function testAddMinLengthAttribute(): void
+    {
+        $input = (string) Input::make('name')->minlength(3);
+
+        $this->assertStringContainsString('minlength="3"', $input);
+    }
 }
