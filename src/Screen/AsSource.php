@@ -18,8 +18,13 @@ trait AsSource
      */
     public function getContent(string $field)
     {
-        return Arr::get($this->toArray(), $field)
-            ?? Arr::get($this->getRelations(), $field)
-            ?? $this->getAttribute($field);
+        if($this->isRelation($field)){
+            if($this->relationLoaded($field)){
+                return $field;
+            }
+            return null;
+        }
+        
+        return $this->getAttribute($field);
     }
 }
