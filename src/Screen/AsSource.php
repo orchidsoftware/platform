@@ -17,13 +17,9 @@ trait AsSource
      */
     public function getContent(string $field)
     {
-        if($this->isRelation($field)){
-            if($this->relationLoaded($field)){
-                return $field;
-            }
+        if ($this->isRelation($field) && !$this->relationLoaded($field)) {
             return null;
         }
-        
         return $this->getAttribute($field);
     }
 }
