@@ -17,7 +17,7 @@ class Group implements Fieldable, Groupable
      */
     protected $attributes = [
         'group' => [],
-        'class' => 'col',
+        'class' => 'col-12 col-md form-group mb-md-0',
         'align' => 'align-items-baseline',
     ];
 

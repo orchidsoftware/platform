@@ -6,7 +6,7 @@
                     {!! $filter->render() !!}
                 </div>
             @endforeach
-            <div class="col-sm-auto ms-auto text-end mb-3">
+            <div class="col-sm-auto ms-auto text-end">
                 <div class="btn-group" role="group">
                     <button data-action="filter#clear" class="btn btn-default">
                         <x-orchid-icon class="me-1" path="refresh"/> {{ __('Reset') }}

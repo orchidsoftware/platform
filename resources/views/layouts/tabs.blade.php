@@ -4,7 +4,7 @@
     data-tabs-active-tab="{{$activeTab}}"
 >
     <div class="nav-tabs-alt">
-        <ul class="nav nav-tabs" role="tablist">
+        <ul class="nav nav-tabs nav-tabs-scroll-bar" role="tablist">
             @foreach($manyForms as $name => $tab)
                 <li class="nav-item">
                     <a class="nav-link

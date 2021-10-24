@@ -26,6 +26,6 @@ trait Commander
         return collect($this->commandBar())
             ->map(static function (Actionable $command) use ($repository) {
                 return $command->build($repository);
-            })->all();
+            })->filter()->all();
     }
 }

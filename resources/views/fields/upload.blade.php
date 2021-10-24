@@ -49,7 +49,7 @@
             </div>
 
             <div class="attachment modal fade center-scale" tabindex="-1" role="dialog" aria-hidden="false">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-fullscreen-md-down">
                     <div class="modal-content">
                             <div class="modal-header">
                                 <h4 class="modal-title text-black fw-light">
@@ -117,7 +117,7 @@
             </div>
 
             <div class="media modal fade enter-scale disable-scroll" tabindex="-1" role="dialog" aria-hidden="false">
-                <div class="modal-dialog slide-up">
+                <div class="modal-dialog modal-fullscreen-md-down slide-up">
                     <div class="modal-content">
                             <div class="modal-header">
                                 <h4 class="modal-title text-black fw-light">
