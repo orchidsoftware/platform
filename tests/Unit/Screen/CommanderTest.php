@@ -15,7 +15,6 @@ use Orchid\Tests\TestUnitCase;
  */
 class CommanderTest extends TestUnitCase
 {
-
     public function getCommandClass(): object
     {
         return new class {
