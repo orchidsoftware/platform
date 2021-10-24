@@ -3,7 +3,7 @@
      data-controller="confirm"
      tabindex="-1"
      aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-fullscreen-md-down">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title text-black fw-light">

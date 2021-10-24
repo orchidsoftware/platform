@@ -48,7 +48,7 @@
         >
 
         <div class="modal" role="dialog" {{$staticBackdrop ? "data-bs-backdrop=static" : ''}}>
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-fullscreen-md-down modal-lg">
                 <div class="modal-content-wrapper">
                     <div class="modal-content">
                         <div class="position-relative">
