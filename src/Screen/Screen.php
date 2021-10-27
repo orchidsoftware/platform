@@ -11,7 +11,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Controllers\Controller;
@@ -256,14 +255,13 @@ abstract class Screen extends Controller
      */
     private function checkAccess(): bool
     {
-        return collect($this->permission)
-            ->map(static function ($item) {
-                return Auth::user()->hasAccess($item);
-            })
-            ->whenEmpty(function (Collection $permission) {
-                return $permission->push(true);
-            })
-            ->contains(true);
+        $user = Auth::user();
+
+        if ($user === null) {
+            return true;
+        }
+
+        return $user->hasAnyAccess($this->permission);
     }
 
     /**

@@ -199,4 +199,36 @@ class PermissionTest extends TestUnitCase
         $this->assertFalse($nullPermission);
         $this->assertFalse($stringPermission);
     }
+
+    public function testHasAnyAccess(): void
+    {
+        $user = $this->createUser();
+
+        // User permissions
+        $this->assertTrue($user->hasAnyAccess('access.to.public.data'));
+        $this->assertFalse($user->hasAnyAccess('access.to.secret.data'));
+
+        $this->assertTrue($user->hasAnyAccess([
+            'access.to.public.data',
+            'access.to.secret.data',
+        ]));
+    }
+
+    public function testHasAnyEmptyAccess(): void
+    {
+        $user = $this->createUser();
+
+        $this->assertTrue($user->hasAnyAccess([]));
+    }
+
+    /**
+     * Permissions can be checked based on wildcards
+     * using the * character to match any of a set of permissions.
+     */
+    public function testWildcardChecksPermission(): void
+    {
+        $permission = $this->createUser()->hasAccess('access.user.*');
+
+        $this->assertTrue($permission);
+    }
 }
