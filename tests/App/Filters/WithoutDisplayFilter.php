@@ -14,6 +14,6 @@ class WithoutDisplayFilter extends Filter
      */
     public function run(Builder $builder): Builder
     {
-       return $builder;
+        return $builder;
     }
 }
