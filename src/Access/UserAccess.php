@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Events\AddRoleEvent;
 use Orchid\Platform\Events\RemoveRoleEvent;
@@ -80,7 +81,47 @@ trait UserAccess
 
         return $this->cachePermissions
             ->filter(function (array $permissions) use ($permit) {
-                return isset($permissions[$permit]) && $permissions[$permit];
+                return $this->filterWildcardAccess($permissions, $permit);
+            })
+            ->isNotEmpty();
+    }
+
+    /**
+     * Permissions can be checked based on wildcards
+     * using the * character to match any of a set of permissions.
+     *
+     * @param array  $permissions
+     * @param string $permit
+     *
+     * @return bool
+     */
+    protected function filterWildcardAccess(array $permissions, string $permit): bool
+    {
+        return collect($permissions)->filter(function (bool $value, $permission) use ($permit) {
+            return Str::is($permit, $permission) && $value;
+        })->isNotEmpty();
+    }
+
+    /**
+     * This method will grant access if any permission passes the check.
+     *
+     * @param string|iterable $permissions
+     * @param bool     $cache
+     *
+     * @return bool
+     */
+    public function hasAnyAccess($permissions, bool $cache = true): bool
+    {
+        if (empty($permissions)) {
+            return true;
+        }
+
+        return collect($permissions)
+            ->map(function (string $permit) use ($cache) {
+                return $this->hasAccess($permit, $cache);
+            })
+            ->filter(function (bool $result) {
+                return $result === true;
             })
             ->isNotEmpty();
     }

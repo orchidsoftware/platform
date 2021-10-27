@@ -201,14 +201,7 @@ class Menu extends Link
             return $this;
         }
 
-        $this->permit = collect($permission)
-            ->map(static function ($item) use ($user) {
-                return $user->hasAccess($item);
-            })
-            ->whenEmpty(static function (Collection $permission) {
-                return $permission->push(true);
-            })
-            ->contains(true);
+        $this->permit = $user->hasAnyAccess($permission);
 
         return $this;
     }

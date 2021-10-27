@@ -256,14 +256,13 @@ abstract class Screen extends Controller
      */
     private function checkAccess(): bool
     {
-        return collect($this->permission)
-            ->map(static function ($item) {
-                return Auth::user()->hasAccess($item);
-            })
-            ->whenEmpty(function (Collection $permission) {
-                return $permission->push(true);
-            })
-            ->contains(true);
+        $user = Auth::user();
+
+        if ($user === null) {
+            return true;
+        }
+
+        return $user->hasAnyAccess($this->permission);
     }
 
     /**
