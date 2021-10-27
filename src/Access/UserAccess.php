@@ -106,7 +106,7 @@ trait UserAccess
      * This method will grant access if any permission passes the check.
      *
      * @param string|iterable $permissions
-     * @param bool     $cache
+     * @param bool            $cache
      *
      * @return bool
      */

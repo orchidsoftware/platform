@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Actions;
 
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Orchid\Screen\Contracts\Actionable;

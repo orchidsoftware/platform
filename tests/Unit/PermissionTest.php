@@ -200,7 +200,6 @@ class PermissionTest extends TestUnitCase
         $this->assertFalse($stringPermission);
     }
 
-
     public function testHasAnyAccess(): void
     {
         $user = $this->createUser();
