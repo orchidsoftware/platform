@@ -163,10 +163,6 @@ export default class extends ApplicationController {
             return true;
         }
 
-        if (event.target.closest('[contenteditable="true"]')) {
-            return true;
-        }
-
         if ((event.keyCode || event.which || event.charCode) !== 13) {
             return true;
         }
