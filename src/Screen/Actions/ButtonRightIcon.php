@@ -25,7 +25,6 @@ class ButtonRightIcon extends Action
      * @var string
      */
     protected $view = 'platform::actions.button-right-icon';
-
     /**
      * Default attributes value.
      *
