@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Orchid\Layouts\Examples;
+namespace Orchid\Screen\Layouts\Examples;
 
 use Orchid\Screen\Layouts\Metric;
 
