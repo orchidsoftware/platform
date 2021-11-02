@@ -9,7 +9,7 @@ export default class extends ApplicationController {
         const tabs = this.tabs();
         const activeId = tabs[window.location.href][this.data.get('slug')];
 
-        if (activeId !== null) {
+        if (activeId !== null && !this.data.get('active-tab')) {
             $(`#${activeId}`).tab('show');
         }
 

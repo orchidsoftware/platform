@@ -107,6 +107,10 @@ export default class extends ApplicationController {
                     element.querySelector('.cropper-preview').classList.remove('none');
                     element.querySelector('.cropper-remove').classList.remove('none');
                     element.querySelector('.cropper-path').value = response.data[targetValue];
+
+                    // add event for listener
+                    element.querySelector('.cropper-path').dispatchEvent(new Event("change"));
+
                     $(element.querySelector('.modal')).modal('hide');
                 })
                 .catch((error) => {
