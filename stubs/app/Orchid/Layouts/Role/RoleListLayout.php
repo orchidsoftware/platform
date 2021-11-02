@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Orchid\Layouts\Role;
+namespace Orchid\Screen\Layouts\Role;
 
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Actions\Link;

@@ -16,13 +16,14 @@ use Orchid\Attachment\MimeTypes;
 use Orchid\Filters\Filterable;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
+use Orchid\Screen\AsSource;
 
 /**
  * Class Attachment.
  */
 class Attachment extends Model
 {
-    use Filterable, HasFactory;
+    use Filterable, AsSource, HasFactory;
 
     /**
      * @var array
