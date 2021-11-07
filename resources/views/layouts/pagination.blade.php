@@ -36,7 +36,7 @@
                         ->except(['page','_token']))
                         ->links('platform::partials.pagination')
                 !!}
-            @else
+            @elseif($paginator instanceof \Illuminate\Contracts\Pagination\Paginator)
                 {!!
                     $paginator->appends(request()
                         ->except(['page','_token']))
