@@ -69,33 +69,6 @@ class AttachmentTest extends TestFeatureCase
         $response->assertOk();
     }
 
-    public function testAttachmentHttpGetFile(): void
-    {
-        /** @var $response \Illuminate\Testing\TestResponse */
-        $response = $this
-            ->actingAs($this->createAdminUser())
-            ->post(route('platform.systems.files.upload'), [
-                'files' => UploadedFile::fake()->image('testAttachmentHttpGetFile.jpg'),
-            ]);
-
-        /** @var $upload \Orchid\Attachment\Models\Attachment */
-        $upload = $response->original;
-
-        $response = $this
-            ->actingAs($this->createAdminUser())
-            ->get(route('platform.systems.files.getFilesByIds', [
-                'files' => $upload->id,
-            ]));
-
-        $response->assertOk();
-        /*TODO
-
-            ->assertJson([
-                'id' => $upload->id,
-            ]);
-        */
-    }
-
     public function testAttachmentHttpUpdate(): void
     {
         /** @var $response \Illuminate\Testing\TestResponse */

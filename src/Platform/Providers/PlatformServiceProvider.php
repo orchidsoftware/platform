@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use App\Orchid\PlatformProvider;
 use Illuminate\Support\ServiceProvider;
 use Orchid\IconPack\Path;
 use Orchid\Icons\IconFinder;
@@ -38,6 +37,7 @@ class PlatformServiceProvider extends ServiceProvider
             $this->dashboard
                 ->registerResource('stylesheets', config('platform.resource.stylesheets'))
                 ->registerResource('scripts', config('platform.resource.scripts'))
+                ->registerSearch(config('platform.search', []))
                 ->registerPermissions($this->registerPermissionsMain())
                 ->registerPermissions($this->registerPermissionsSystems())
                 ->addPublicDirectory('orchid', Dashboard::path('public/'));
@@ -67,8 +67,10 @@ class PlatformServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (class_exists(PlatformProvider::class)) {
-            $this->app->register(PlatformProvider::class);
+        $provider = config('platform.provider', \App\Orchid\PlatformProvider::class);
+
+        if ($provider !== null && class_exists($provider)) {
+            $this->app->register($provider);
         }
     }
 }

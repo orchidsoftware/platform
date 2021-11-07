@@ -1,5 +1,5 @@
 @push('modals-container')
-    <div class="modal fade center-scale {{$type}}"
+    <div class="modal fade center-scale"
          id="screen-modal-{{$key}}"
          role="dialog"
          aria-labelledby="screen-modal-{{$key}}"
@@ -8,9 +8,9 @@
          data-modal-async-enable="{{$asyncEnable}}"
          data-modal-async-route="{{$asyncRoute}}"
          data-modal-open="{{$open}}"
-         {{$staticBackdrop ? "data-bs-backdrop=static" : ''}}
+        {{$staticBackdrop ? "data-bs-backdrop=static" : ''}}
     >
-        <div class="modal-dialog {{$size}}" role="document" id="screen-modal-type-{{$key}}">
+        <div class="modal-dialog modal-fullscreen-md-down {{$size}} {{$type}}" role="document" id="screen-modal-type-{{$key}}">
             <form class="modal-content"
                   id="screen-modal-form-{{$key}}"
                   method="post"

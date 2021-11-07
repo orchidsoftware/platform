@@ -18,9 +18,6 @@ Route::post('files/sort', [AttachmentController::class, 'sort'])
 Route::delete('files/{id}', [AttachmentController::class, 'destroy'])
     ->name('systems.files.destroy');
 
-Route::post('files/get', [AttachmentController::class, 'getFilesByIds'])
-    ->name('systems.files.getFilesByIds');
-
 Route::put('files/post/{id}', [AttachmentController::class, 'update'])
     ->name('systems.files.update');
 

@@ -184,23 +184,23 @@ class Menu extends Link
     }
 
     /**
-     * @param string $permission
+     * @param string|string[] $permission
      *
      * @return $this
      */
-    public function permission(?string $permission): self
+    public function permission($permission = null): self
     {
-        if ($permission === null) {
+        $user = Auth::user();
+
+        if ($permission !== null) {
+            $this->permit = false;
+        }
+
+        if ($user === null) {
             return $this;
         }
 
-        $this->permit = false;
-
-        $user = Auth::user();
-
-        if ($user !== null) {
-            $this->permit = $user->hasAccess($permission);
-        }
+        $this->permit = $user->hasAnyAccess($permission);
 
         return $this;
     }

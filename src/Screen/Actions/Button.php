@@ -13,7 +13,6 @@ use Orchid\Screen\Action;
  * @method Button modal(string $modalName = null)
  * @method Button icon(string $icon = null)
  * @method Button class(string $classes = null)
- * @method Button method(string $methodName = null)
  * @method Button parameters(array|object $name)
  * @method Button confirm(string $confirm = true)
  * @method Button action(string $url)
@@ -72,7 +71,9 @@ class Button extends Action
                 return;
             }
 
-            $url = url()->current();
+            // correct URL for async request
+            $url = request()->header('ORCHID-ASYNC-REFERER', url()->current());
+
             $query = http_build_query($this->get('parameters'));
 
             $action = rtrim("{$url}/{$this->get('method')}?{$query}", '/?');
@@ -94,5 +95,20 @@ class Button extends Action
     public function novalidate(bool $novalidate = true)
     {
         return $this->set('formnovalidate', var_export($novalidate, true));
+    }
+
+    /**
+     * @param string $name
+     * @param array  $parameters
+     *
+     * @return $this
+     */
+    public function method(string $name, array $parameters = []): self
+    {
+        return $this
+            ->set('method', $name)
+            ->when(! empty($parameters), function () use ($parameters) {
+                $this->set('parameters', $parameters);
+            });
     }
 }

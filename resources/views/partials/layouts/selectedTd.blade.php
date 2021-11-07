@@ -9,7 +9,7 @@
                data-default-hidden="{{ $defaultHidden }}"
                data-column="{{ $slug }}"
         >
-        <label class="form-check-label d-block w-100 cursor ms-2" for="{{ $slug }}">
+        <label class="form-check-label d-block w-100 cursor ms-2 user-select-none" for="{{ $slug }}">
             {{ $title }}
         </label>
     </div>

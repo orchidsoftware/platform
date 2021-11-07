@@ -63,7 +63,7 @@ export default class extends ApplicationController {
         /**
          * @see https://stackoverflow.com/questions/36246815/data-toggle-tab-does-not-download-leaflet-map/36257493#36257493
          */
-        $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', () => {
+        $(document).on('shown.bs.tab', 'a[data-bs-toggle="tab"]', () => {
             this.leafletMap.invalidateSize();
         });
     }
