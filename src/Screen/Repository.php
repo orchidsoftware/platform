@@ -18,6 +18,17 @@ class Repository extends \Illuminate\Config\Repository implements Countable
     protected $position = 0;
 
     /**
+     * Create a new configuration repository.
+     *
+     * @param  iterable  $items
+     * @return void
+     */
+    public function __construct(iterable $items = [])
+    {
+        parent::__construct((array) $items);
+    }
+
+    /**
      * @param string     $key
      * @param mixed|null $default
      *
