@@ -29,9 +29,9 @@ class Sight extends Cell
      *
      * @param Repository|Model $repository
      *
-     * @return string|null
+     * @return string|\Illuminate\Contracts\Support\Htmlable|null
      */
-    public function buildDd($repository): ?string
+    public function buildDd($repository)
     {
         $value = $this->render
             ? $this->handler($repository)
