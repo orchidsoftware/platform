@@ -25,22 +25,7 @@ class RouteServiceProvider extends ServiceProvider
             Access::class,
         ]);
 
-        $this->binding();
         parent::boot();
-    }
-
-    /**
-     * Route binding.
-     */
-    public function binding()
-    {
-        Route::bind('role', static function ($value) {
-            $role = Dashboard::modelClass(Role::class);
-
-            return is_numeric($value)
-                ? $role->where('id', $value)->firstOrFail()
-                : $role->where('slug', $value)->firstOrFail();
-        });
     }
 
     /**
