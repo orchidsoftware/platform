@@ -114,7 +114,7 @@ class ArtisanTest extends TestConsoleCase
 
     public function testArtisanOrchidLink(): void
     {
-        $this->artisan('orchid:link')
-            ->expectsOutput('Links have been created.');
+        $this->artisan('orchid:publish')
+            ->assertExitCode(0);
     }
 }

@@ -1,7 +1,7 @@
 @push('head')
     <meta name="robots" content="noindex" />
     <link
-          href="{{ route('platform.resource', ['orchid', 'favicon.svg']) }}"
+          href="{{ asset('/vendor/orchid/favicon.svg') }}"
           sizes="any"
           type="image/svg+xml"
           id="favicon"

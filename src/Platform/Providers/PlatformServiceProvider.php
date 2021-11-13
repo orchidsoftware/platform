@@ -39,8 +39,7 @@ class PlatformServiceProvider extends ServiceProvider
                 ->registerResource('scripts', config('platform.resource.scripts'))
                 ->registerSearch(config('platform.search', []))
                 ->registerPermissions($this->registerPermissionsMain())
-                ->registerPermissions($this->registerPermissionsSystems())
-                ->addPublicDirectory('orchid', Dashboard::path('public/'));
+                ->registerPermissions($this->registerPermissionsSystems());
         });
     }
 

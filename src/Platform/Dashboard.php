@@ -62,11 +62,6 @@ class Dashboard
     private $search;
 
     /**
-     * @var Collection
-     */
-    private $publicDirectories;
-
-    /**
      * @var Screen|null
      */
     private $currentScreen;
@@ -76,7 +71,6 @@ class Dashboard
      */
     public function __construct()
     {
-        $this->publicDirectories = collect();
         $this->resources = collect();
 
         $this->permission = collect([
@@ -313,27 +307,6 @@ class Dashboard
         $this->permission->get('removed')->push($key);
 
         return $this;
-    }
-
-    /**
-     * @param string $package
-     * @param string $path
-     *
-     * @return Dashboard
-     */
-    public function addPublicDirectory(string $package, string $path): self
-    {
-        $this->publicDirectories->put($package, $path);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getPublicDirectory(): Collection
-    {
-        return $this->publicDirectories;
     }
 
     /**
