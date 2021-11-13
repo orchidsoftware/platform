@@ -1,7 +1,6 @@
 import ApplicationController from "./application_controller"
 import {Dropzone} from 'dropzone';
 import Sortable from 'sortablejs';
-import {debounce, has as objHas} from "lodash";
 
 export default class extends ApplicationController {
 
@@ -26,10 +25,6 @@ export default class extends ApplicationController {
         super(props);
         this.attachments = {};
         this.mediaList = {};
-    }
-
-    initialize() {
-        this.loadMedia = debounce(this.loadMedia, 500);
     }
 
     /**
@@ -263,7 +258,7 @@ export default class extends ApplicationController {
                 });
 
                 this.on('removedfile', file => {
-                    if (objHas(file, 'data.id')) {
+                    if (file.hasOwnProperty('data.id')) {
                         $(dropname).find(`.files-${file.data.id}`).remove();
                         !isMediaLibrary && axios
                             .delete(urlDelete + file.data.id, {
