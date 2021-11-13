@@ -155,13 +155,14 @@ abstract class Layout implements JsonSerializable
     protected function buildChild(array $layouts, $key, Repository $repository)
     {
         return collect($layouts)
+            ->flatten()
             ->map(function ($layout) {
                 return is_object($layout) ? $layout : resolve($layout);
             })
             ->filter(function () {
                 return $this->isSee();
             })
-            ->reduce(function (array $build, self $layout) use ($key, $repository) {
+            ->reduce(function ($build, self $layout) use ($key, $repository) {
                 $build[$key][] = $layout->build($repository);
 
                 return $build;
