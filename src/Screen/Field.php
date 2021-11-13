@@ -529,8 +529,9 @@ class Field implements Fieldable, Htmlable
     }
 
     /**
-     * @return string
      * @throws \Throwable
+     *
+     * @return string
      */
     public function toHtml()
     {
