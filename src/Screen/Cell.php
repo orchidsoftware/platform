@@ -6,6 +6,7 @@ namespace Orchid\Screen;
 
 use Closure;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Orchid\Support\Blade;
@@ -102,7 +103,7 @@ abstract class Cell
         $class = new \ReflectionClass($component);
         $parameters = optional($class->getConstructor())->getParameters() ?? [];
 
-        $paramsKeys = \Arr::isAssoc($params) ? array_keys($params) : array_values($params);
+        $paramsKeys = Arr::isAssoc($params) ? array_keys($params) : array_values($params);
 
         return collect($parameters)
             ->filter(function (\ReflectionParameter $parameter) {
