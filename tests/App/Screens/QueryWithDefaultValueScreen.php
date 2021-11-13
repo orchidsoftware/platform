@@ -21,6 +21,8 @@ class QueryWithDefaultValueScreen extends Screen
     /**
      * Query data.
      *
+     * @param  User|null  $user
+     *
      * @return array
      */
     public function query(User $user = null): array
