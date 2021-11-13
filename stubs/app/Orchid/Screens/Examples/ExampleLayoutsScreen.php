@@ -27,7 +27,7 @@ class ExampleLayoutsScreen extends Screen
      *
      * @return array
      */
-    public function query(): array
+    public function query(): iterable
     {
         return [];
     }
@@ -37,7 +37,7 @@ class ExampleLayoutsScreen extends Screen
      *
      * @return Action[]
      */
-    public function commandBar(): array
+    public function commandBar(): iterable
     {
         return [];
     }
@@ -49,7 +49,7 @@ class ExampleLayoutsScreen extends Screen
      *
      * @return \Orchid\Screen\Layout[]
      */
-    public function layout(): array
+    public function layout(): iterable
     {
         return [
 

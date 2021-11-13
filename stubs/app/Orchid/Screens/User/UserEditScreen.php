@@ -53,7 +53,7 @@ class UserEditScreen extends Screen
      *
      * @return array
      */
-    public function query(User $user): array
+    public function query(User $user): iterable
     {
         $this->user = $user;
 
@@ -74,7 +74,7 @@ class UserEditScreen extends Screen
      *
      * @return Action[]
      */
-    public function commandBar(): array
+    public function commandBar(): iterable
     {
         return [
             Button::make(__('Impersonate user'))
@@ -98,7 +98,7 @@ class UserEditScreen extends Screen
     /**
      * @return \Orchid\Screen\Layout[]
      */
-    public function layout(): array
+    public function layout(): iterable
     {
         return [
 

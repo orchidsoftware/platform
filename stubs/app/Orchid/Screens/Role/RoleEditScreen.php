@@ -48,7 +48,7 @@ class RoleEditScreen extends Screen
      *
      * @return array
      */
-    public function query(Role $role): array
+    public function query(Role $role): iterable
     {
         $this->exist = $role->exists;
 
@@ -63,7 +63,7 @@ class RoleEditScreen extends Screen
      *
      * @return Action[]
      */
-    public function commandBar(): array
+    public function commandBar(): iterable
     {
         return [
             Button::make(__('Save'))
@@ -82,7 +82,7 @@ class RoleEditScreen extends Screen
      *
      * @return string[]|\Orchid\Screen\Layout[]
      */
-    public function layout(): array
+    public function layout(): iterable
     {
         return [
             Layout::block([

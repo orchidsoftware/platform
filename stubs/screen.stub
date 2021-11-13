@@ -18,7 +18,7 @@ class DummyClass extends Screen
      *
      * @return array
      */
-    public function query(): array
+    public function query(): iterable
     {
         return [];
     }
@@ -28,7 +28,7 @@ class DummyClass extends Screen
      *
      * @return \Orchid\Screen\Action[]
      */
-    public function commandBar(): array
+    public function commandBar(): iterable
     {
         return [];
     }
@@ -38,7 +38,7 @@ class DummyClass extends Screen
      *
      * @return \Orchid\Screen\Layout[]|string[]
      */
-    public function layout(): array
+    public function layout(): iterable
     {
         return [];
     }

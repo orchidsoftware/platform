@@ -10,7 +10,7 @@ class DummyClass extends Selection
     /**
      * @return Filter[]
      */
-    public function filters(): array
+    public function filters(): iterable
     {
         return [];
     }

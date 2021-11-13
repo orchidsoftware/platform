@@ -19,7 +19,7 @@ class DummyClass extends Rows
      *
      * @return Field[]
      */
-    protected function fields(): array
+    protected function fields(): iterable
     {
         return [];
     }

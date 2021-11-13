@@ -40,7 +40,7 @@ class UserListScreen extends Screen
      *
      * @return array
      */
-    public function query(): array
+    public function query(): iterable
     {
         return [
             'users' => User::with('roles')
@@ -56,7 +56,7 @@ class UserListScreen extends Screen
      *
      * @return \Orchid\Screen\Action[]
      */
-    public function commandBar(): array
+    public function commandBar(): iterable
     {
         return [
             Link::make(__('Add'))
@@ -70,7 +70,7 @@ class UserListScreen extends Screen
      *
      * @return string[]|\Orchid\Screen\Layout[]
      */
-    public function layout(): array
+    public function layout(): iterable
     {
         return [
             UserFiltersLayout::class,
@@ -86,7 +86,7 @@ class UserListScreen extends Screen
      *
      * @return array
      */
-    public function asyncGetUser(User $user): array
+    public function asyncGetUser(User $user): iterable
     {
         return [
             'user' => $user,

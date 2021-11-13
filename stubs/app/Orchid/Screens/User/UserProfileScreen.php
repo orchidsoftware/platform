@@ -40,7 +40,7 @@ class UserProfileScreen extends Screen
      *
      * @return array
      */
-    public function query(Request $request): array
+    public function query(Request $request): iterable
     {
         return [
             'user' => $request->user(),
@@ -52,7 +52,7 @@ class UserProfileScreen extends Screen
      *
      * @return Action[]
      */
-    public function commandBar(): array
+    public function commandBar(): iterable
     {
         return [];
     }
@@ -60,7 +60,7 @@ class UserProfileScreen extends Screen
     /**
      * @return \Orchid\Screen\Layout[]
      */
-    public function layout(): array
+    public function layout(): iterable
     {
         return [
             Layout::block(UserEditLayout::class)

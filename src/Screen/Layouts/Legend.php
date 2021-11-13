@@ -73,7 +73,7 @@ abstract class Legend extends Layout
     /**
      * @return array
      */
-    abstract protected function columns(): array;
+    abstract protected function columns(): iterable;
 
     /**
      * @param string|null $title

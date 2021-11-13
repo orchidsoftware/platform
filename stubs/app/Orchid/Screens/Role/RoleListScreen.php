@@ -36,7 +36,7 @@ class RoleListScreen extends Screen
      *
      * @return array
      */
-    public function query(): array
+    public function query(): iterable
     {
         return [
             'roles' => Role::filters()->defaultSort('id', 'desc')->paginate(),
@@ -48,7 +48,7 @@ class RoleListScreen extends Screen
      *
      * @return Action[]
      */
-    public function commandBar(): array
+    public function commandBar(): iterable
     {
         return [
             Link::make(__('Add'))
@@ -62,7 +62,7 @@ class RoleListScreen extends Screen
      *
      * @return string[]|\Orchid\Screen\Layout[]
      */
-    public function layout(): array
+    public function layout(): iterable
     {
         return [
             RoleListLayout::class,
