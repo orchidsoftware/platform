@@ -31,7 +31,7 @@ class ExampleTextEditorsScreen extends Screen
      *
      * @return array
      */
-    public function query(): array
+    public function query(): iterable
     {
         return [
             'quill'     => 'Hello! We collected all the fields in one place',
@@ -45,7 +45,7 @@ class ExampleTextEditorsScreen extends Screen
      *
      * @return Action[]
      */
-    public function commandBar(): array
+    public function commandBar(): iterable
     {
         return [];
     }
@@ -57,7 +57,7 @@ class ExampleTextEditorsScreen extends Screen
      *
      * @return \Orchid\Screen\Layout[]
      */
-    public function layout(): array
+    public function layout(): iterable
     {
         return [
             Layout::rows([

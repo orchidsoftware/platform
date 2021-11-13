@@ -163,7 +163,7 @@ abstract class Table extends Layout
     /**
      * @return array
      */
-    abstract protected function columns(): array;
+    abstract protected function columns(): iterable;
 
     /**
      * @return array

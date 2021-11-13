@@ -49,7 +49,7 @@ class SearchScreen extends Screen
      *
      * @return array
      */
-    public function query(string $query): array
+    public function query(string $query): iterable
     {
         $this->description = __('On request: :query', [
             'query' => $query,
@@ -78,7 +78,7 @@ class SearchScreen extends Screen
     /**
      * @return array
      */
-    public function commandBar(): array
+    public function commandBar(): iterable
     {
         return [
             Button::make(__('Apply'))
@@ -93,7 +93,7 @@ class SearchScreen extends Screen
      *
      * @return \Orchid\Screen\Layout[]
      */
-    public function layout(): array
+    public function layout(): iterable
     {
         return [
             Layout::wrapper('platform::partials.result', [

@@ -23,7 +23,7 @@ class ExampleChartsScreen extends Screen
      *
      * @return array
      */
-    public function query(): array
+    public function query(): iterable
     {
         return [
             'charts' => [
@@ -56,7 +56,7 @@ class ExampleChartsScreen extends Screen
      *
      * @return \Orchid\Screen\Action[]
      */
-    public function commandBar(): array
+    public function commandBar(): iterable
     {
         return [];
     }
@@ -69,7 +69,7 @@ class ExampleChartsScreen extends Screen
      * @return string[]|\Orchid\Screen\Layout[]
      *
      */
-    public function layout(): array
+    public function layout(): iterable
     {
         return [
             Layout::columns([

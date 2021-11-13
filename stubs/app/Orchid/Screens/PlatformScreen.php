@@ -29,7 +29,7 @@ class PlatformScreen extends Screen
      *
      * @return array
      */
-    public function query(): array
+    public function query(): iterable
     {
         return [];
     }
@@ -39,7 +39,7 @@ class PlatformScreen extends Screen
      *
      * @return \Orchid\Screen\Action[]
      */
-    public function commandBar(): array
+    public function commandBar(): iterable
     {
         return [
             Link::make('Website')
@@ -61,7 +61,7 @@ class PlatformScreen extends Screen
      *
      * @return \Orchid\Screen\Layout[]
      */
-    public function layout(): array
+    public function layout(): iterable
     {
         return [
             Layout::view('platform::partials.welcome'),
