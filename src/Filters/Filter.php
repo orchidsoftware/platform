@@ -11,16 +11,22 @@ use Orchid\Screen\Field;
 abstract class Filter
 {
     /**
+     * The request instance.
+     *
      * @var Request
      */
     public $request;
 
     /**
+     * The array of matched parameters.
+     *
      * @var null|array
      */
     public $parameters;
 
     /**
+     * Sets the value to hide/show the filter in the selection.
+     *
      * @var bool
      */
     public $display = true;
