@@ -69,15 +69,6 @@ class RouteServiceProvider extends ServiceProvider
             ->group(Dashboard::path('routes/auth.php'));
 
         /*
-         * Systems
-         */
-        Route::domain((string) config('platform.domain'))
-            ->prefix(Dashboard::prefix('/systems'))
-            ->as('platform.')
-            ->middleware(config('platform.middleware.private'))
-            ->group(Dashboard::path('routes/systems.php'));
-
-        /*
          * Application
          */
         if (file_exists(base_path('routes/platform.php'))) {
