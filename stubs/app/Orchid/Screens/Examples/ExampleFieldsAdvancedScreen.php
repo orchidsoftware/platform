@@ -263,6 +263,12 @@ class ExampleFieldsAdvancedScreen extends Screen
                     ->title('Upload files')
                     ->horizontal(),
 
+                Upload::make('files_with_catalog')
+                    ->title('Upload with catalog')
+                    ->media()
+                    ->closeOnAdd()
+                    ->horizontal(),
+
             ])->title('File upload'),
 
             Layout::rows([
