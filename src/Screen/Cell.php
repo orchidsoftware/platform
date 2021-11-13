@@ -90,11 +90,12 @@ abstract class Cell
     }
 
     /**
-     * @param  string  $component
-     * @param  array   $params
+     * @param string $component
+     * @param array  $params
+     *
+     * @throws \ReflectionException
      *
      * @return string
-     * @throws \ReflectionException
      */
     protected function getNameParameterExpected(string $component, array $params = []): string
     {
@@ -105,29 +106,30 @@ abstract class Cell
 
         return collect($parameters)
             ->filter(function (\ReflectionParameter $parameter) {
-                return !$parameter->isOptional();
+                return ! $parameter->isOptional();
             })
-            ->whenEmpty(function () use ($parameters){
+            ->whenEmpty(function () use ($parameters) {
                 return collect($parameters);
             })
             ->map(function (\ReflectionParameter $parameter) {
                 return $parameter->getName();
             })
             ->diff($paramsKeys)
-            ->whenEmpty(function () use ($component){
+            ->whenEmpty(function () use ($component) {
                 throw new \RuntimeException("Class $component doesn't expect any value in the constructor");
             })
             ->last();
     }
 
     /**
-     * @param  string  $component
-     * @param          $value
-     * @param  array   $params
+     * @param string $component
+     * @param        $value
+     * @param array  $params
      *
-     * @return string|null
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \ReflectionException
+     *
+     * @return string|null
      */
     protected function renderComponent(string $component, $value, array $params = []): ?string
     {
@@ -159,11 +161,12 @@ abstract class Cell
     /**
      * Pass only the cell value to the component
      *
-     * @param  string       $component
-     * @param  array        $params
+     * @param string $component
+     * @param array  $params
+     *
+     * @throws \ReflectionException
      *
      * @return $this
-     * @throws \ReflectionException
      */
     public function asComponent(string $component, array $params = []): self
     {

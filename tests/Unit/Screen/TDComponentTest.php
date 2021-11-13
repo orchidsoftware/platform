@@ -63,7 +63,7 @@ class TDComponentTest extends TestUnitCase
     }
 
     /**
-     * @param  View  $view
+     * @param View $view
      */
     protected function checkedArgument(View $view)
     {

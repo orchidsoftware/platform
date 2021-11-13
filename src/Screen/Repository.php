@@ -20,7 +20,8 @@ class Repository extends \Illuminate\Config\Repository implements Countable
     /**
      * Create a new configuration repository.
      *
-     * @param  iterable  $items
+     * @param iterable $items
+     *
      * @return void
      */
     public function __construct(iterable $items = [])

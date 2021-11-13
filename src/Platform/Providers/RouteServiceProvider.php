@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Middleware\Access;
 use Orchid\Platform\Http\Middleware\Turbo;
-use Orchid\Platform\Models\Role;
 
 class RouteServiceProvider extends ServiceProvider
 {

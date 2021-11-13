@@ -7,9 +7,6 @@ use Orchid\Platform\Models\User;
 use Orchid\Screen\TD;
 use Orchid\Tests\App\Components\SimpleShowValue;
 use Orchid\Tests\App\Components\SimpleShowValueWithArguments;
-use Orchid\Tests\App\Components\UserTD;
-use Orchid\Tests\App\Components\UserTDArguments;
-use Orchid\Tests\App\Components\UserTDView;
 use Orchid\Tests\TestUnitCase;
 
 class TDComponentAsValueTest extends TestUnitCase
@@ -35,7 +32,6 @@ class TDComponentAsValueTest extends TestUnitCase
         $this->assertStringContainsString($this->user->email, $view);
     }
 
-
     public function testTdWithoutArgumentComponent()
     {
         $view = TD::make('email')
@@ -45,7 +41,6 @@ class TDComponentAsValueTest extends TestUnitCase
         $this->assertStringContainsString("Hello {$this->user->email} from Alexandr", $view);
         $this->assertStringContainsString(app()->version(), $view);
     }
-
 
     public function testTdArgumentComponent(): void
     {
