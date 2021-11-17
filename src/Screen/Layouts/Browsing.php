@@ -26,8 +26,10 @@ class Browsing extends Layout
         'sandbox'        => null,
         'src'            => null,
         'srcdoc'         => null,
-        'height'         => '100%',
-        'width'          => '100%',
+        'style' =>[
+            'height'         => '100%',
+            'width'          => '100%',
+        ]
     ];
 
     /**
@@ -179,7 +181,7 @@ class Browsing extends Layout
      */
     public function height(string $height): Browsing
     {
-        $this->variables['height'] = $height;
+        $this->variables['style']['height'] = $height;
 
         return $this;
     }
