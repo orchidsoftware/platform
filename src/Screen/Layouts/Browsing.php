@@ -26,6 +26,7 @@ class Browsing extends Layout
         'sandbox'        => null,
         'src'            => null,
         'srcdoc'         => null,
+        'height'         => '100%',
         'width'          => '100%',
     ];
 
@@ -165,6 +166,20 @@ class Browsing extends Layout
     public function srcdoc(string $srcdoc): Browsing
     {
         $this->variables['srcdoc'] = $srcdoc;
+
+        return $this;
+    }
+
+    /**
+     * Sets height variable
+     *
+     * @param string $height
+     *
+     * @return $this
+     */
+    public function height(string $height): Browsing
+    {
+        $this->variables['height'] = $height;
 
         return $this;
     }
