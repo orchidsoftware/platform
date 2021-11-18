@@ -26,7 +26,7 @@ class Repository extends \Illuminate\Config\Repository implements Countable
      */
     public function __construct(iterable $items = [])
     {
-        parent::__construct((array) $items);
+        $this->items = collect($items)->all();
     }
 
     /**

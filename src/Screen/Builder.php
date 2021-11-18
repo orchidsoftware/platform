@@ -53,9 +53,9 @@ class Builder
      * @param Fieldable[]     $fields
      * @param Repository|null $data
      */
-    public function __construct(array $fields, Repository $data = null)
+    public function __construct(iterable $fields, Repository $data = null)
     {
-        $this->fields = $fields;
+        $this->fields = collect($fields)->all();
         $this->data = $data ?? new Repository();
     }
 
