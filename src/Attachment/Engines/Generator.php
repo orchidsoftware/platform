@@ -27,6 +27,11 @@ class Generator implements Engine
     protected $mimes;
 
     /**
+     * @var string
+     */
+    protected $uniqueId;
+
+    /**
      * Generator constructor.
      *
      * @param UploadedFile $file
@@ -36,6 +41,7 @@ class Generator implements Engine
         $this->file = $file;
         $this->time = time();
         $this->mimes = new MimeTypes();
+        $this->uniqueId = uniqid('', true);
     }
 
     /**
@@ -46,7 +52,7 @@ class Generator implements Engine
      */
     public function name(): string
     {
-        return sha1($this->time.$this->file->getClientOriginalName());
+        return sha1($this->uniqueId.$this->file->getClientOriginalName());
     }
 
     /**
