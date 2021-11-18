@@ -14,11 +14,11 @@ trait Filterable
      * Apply the filter to the given query.
      *
      * @param Builder $query
-     * @param array   $filters
+     * @param iterable $filters
      *
      * @return Builder
      */
-    public function scopeFiltersApply(Builder $query, array $filters = []): Builder
+    public function scopeFiltersApply(Builder $query, iterable $filters = []): Builder
     {
         return collect($filters)
             ->map(function ($filter) {

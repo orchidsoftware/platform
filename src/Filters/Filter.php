@@ -84,7 +84,7 @@ abstract class Filter
      *
      * @return Field[]
      */
-    public function display(): array
+    public function display(): iterable
     {
         return [];
     }
