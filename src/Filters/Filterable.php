@@ -13,7 +13,7 @@ trait Filterable
     /**
      * Apply the filter to the given query.
      *
-     * @param Builder $query
+     * @param Builder  $query
      * @param iterable $filters
      *
      * @return Builder
