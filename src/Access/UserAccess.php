@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Access;
 
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
@@ -128,37 +128,36 @@ trait UserAccess
     }
 
     /**
-     * 
+     *
      * Query Scope for retreiving users by a certain permission
      * The * character usage is not implemented.
-     * 
+     *
      * @param \Illuminate\Database\Eloquent\Builder $builder
-     * @param string $permitWithoutWildcard
+     * @param string                                $permitWithoutWildcard
      *
      * @return \Illuminate\Database\Eloquent\Builder
-     * 
+     *
      */
     public function scopeByAccess(Builder $builder, string $permitWithoutWildcard): Builder
     {
         return $this->scopeByAnyAccess($builder, $permitWithoutWildcard);
-    } 
+    }
 
     /**
-     * 
+     *
      * Query Scope for retreiving users by any permissions
      * The * character usage is not implemented.
-     * 
+     *
      * @param \Illuminate\Database\Eloquent\Builder $builder
-     * @param string|iterable $permitsWithoutWildcard
+     * @param string|iterable                       $permitsWithoutWildcard
      *
      * @return \Illuminate\Database\Eloquent\Builder
-     * 
+     *
      */
     public function scopeByAnyAccess(Builder $builder, $permitsWithoutWildcard): Builder
     {
         return $builder
-            ->where(function(Builder $builder) use ($permitsWithoutWildcard) {
-
+            ->where(function (Builder $builder) use ($permitsWithoutWildcard) {
                 $permits = collect($permitsWithoutWildcard);
 
                 foreach ($permits as $permit) {
@@ -166,17 +165,12 @@ trait UserAccess
                 }
 
                 $builder->orWhereHas('roles', function (Builder $builder) use ($permits) {
-
-                    $builder->where(function(Builder $builder) use ($permits) {
-
+                    $builder->where(function (Builder $builder) use ($permits) {
                         foreach ($permits as $permit) {
                             $builder->orWhere('permissions->'.$permit, true);
                         }
-
                     });
-
                 });
-
             });
     }
 
