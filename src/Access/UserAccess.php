@@ -140,6 +140,10 @@ trait UserAccess
      */
     public function scopeByAccess(Builder $builder, string $permitWithoutWildcard): Builder
     {
+        if (empty($permitWithoutWildcard)) {
+            return $builder->whereRaw('1=0');
+        }
+
         return $this->scopeByAnyAccess($builder, $permitWithoutWildcard);
     }
 
@@ -156,10 +160,14 @@ trait UserAccess
      */
     public function scopeByAnyAccess(Builder $builder, $permitsWithoutWildcard): Builder
     {
-        return $builder
-            ->where(function (Builder $builder) use ($permitsWithoutWildcard) {
-                $permits = collect($permitsWithoutWildcard);
+        $permits = collect($permitsWithoutWildcard);
 
+        if ($permits->isEmpty()) {
+            return $builder->whereRaw('1=0');
+        }
+
+        return $builder
+            ->where(function (Builder $builder) use ($permits) {
                 foreach ($permits as $permit) {
                     $builder->orWhere('permissions->'.$permit, true);
                 }
