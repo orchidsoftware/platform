@@ -68,11 +68,12 @@ class Generator implements Engine
     /**
      * Returns the relative file path.
      *
+     * @param string|null  $path
      * @return string
      */
-    public function path(): string
+    public function path(string $path = null): string
     {
-        return date('Y/m/d', $this->time());
+        return $path ?? date('Y/m/d', $this->time());
     }
 
     /**
