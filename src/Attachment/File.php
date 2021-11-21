@@ -36,6 +36,11 @@ class File
      * @var string
      */
     protected $disk;
+    
+    /**
+     * @var string
+     */
+    protected $path;
 
     /**
      * @var string|null
@@ -52,14 +57,16 @@ class File
      *
      * @param UploadedFile $file
      * @param string|null  $disk
+     * @param string|null  $path
      * @param string|null  $group
      */
-    public function __construct(UploadedFile $file, string $disk = null, string $group = null)
+    public function __construct(UploadedFile $file, string $disk = null, string $path = null, string $group = null)
     {
         abort_if($file->getSize() === false, 415, 'File failed to load.');
 
         $this->file = $file;
 
+        $this->path = path;
         $this->disk = $disk ?? config('platform.attachment.disk', 'public');
         $this->storage = Storage::disk($this->disk);
 
@@ -77,8 +84,8 @@ class File
     {
         $attachment = $this->getMatchesHash();
 
-        if (! $this->storage->has($this->engine->path())) {
-            $this->storage->makeDirectory($this->engine->path());
+        if (! $this->storage->has($this->engine->path($this->path))) {
+            $this->storage->makeDirectory($this->engine->path($this->path));
         }
 
         if ($attachment === null) {
@@ -114,7 +121,7 @@ class File
      */
     private function save(): Model
     {
-        $this->storage->putFileAs($this->engine->path(), $this->file, $this->engine->fullName(), [
+        $this->storage->putFileAs($this->engine->path($this->path), $this->file, $this->engine->fullName(), [
             'mime_type' => $this->engine->mime(),
         ]);
 
@@ -125,7 +132,7 @@ class File
             'extension'     => $this->engine->extension(),
             'original_name' => $this->file->getClientOriginalName(),
             'size'          => $this->file->getSize(),
-            'path'          => Str::finish($this->engine->path(), '/'),
+            'path'          => Str::finish($this->engine->path($this->path), '/'),
             'disk'          => $this->disk,
             'group'         => $this->group,
             'user_id'       => Auth::id(),
