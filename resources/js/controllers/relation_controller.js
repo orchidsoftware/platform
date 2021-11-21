@@ -25,7 +25,7 @@ export default class extends ApplicationController {
             },
         });
 
-        const parent = $(select).closest(".dropdown-menu, .modal");
+        const parent = $(select).closest(".dropdown-menu, div");
 
         $(select).select2({
             theme: 'bootstrap',
