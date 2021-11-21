@@ -38,9 +38,10 @@ interface Engine
     /**
      * Returns the relative file path.
      *
+     * @param string|null  $path
      * @return string
      */
-    public function path(): string;
+    public function path(string $path = null): string;
 
     /**
      * Returns file hash string that will indicate
