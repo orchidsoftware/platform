@@ -63,10 +63,7 @@
         </div>
     @endif
 
-    @includeWhen(
-        (($rows instanceof \Illuminate\Contracts\Pagination\Paginator || $rows instanceof \Illuminate\Contracts\Pagination\CursorPaginator) && $rows->isNotEmpty()) ||
-        (isset($columns) && \Orchid\Screen\TD::isShowVisibleColumns($columns)
-    ),
+    @includeWhen(($rows instanceof \Illuminate\Contracts\Pagination\Paginator || $rows instanceof \Illuminate\Contracts\Pagination\CursorPaginator) && $rows->isNotEmpty(),
         'platform::layouts.pagination',[
             'paginator' => $rows,
             'columns' => $columns,
