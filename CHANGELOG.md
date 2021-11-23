@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.23.0 - 2021-11-19
+
+## Added
+
+- Close icon for selected filters [#1955](https://github.com/orchidsoftware/platform/pull/1955)
+
 ## 10.22.1 - 2021-10-28
 
 ### Fixed
