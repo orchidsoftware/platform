@@ -8,6 +8,7 @@ use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserFiltersLayout;
 use App\Orchid\Layouts\User\UserListLayout;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
@@ -76,13 +77,13 @@ class UserListScreen extends Screen
             UserFiltersLayout::class,
             UserListLayout::class,
 
-            Layout::modal('oneAsyncModal', UserEditLayout::class)
+            Layout::modal('asyncEditUserModal', UserEditLayout::class)
                 ->async('asyncGetUser'),
         ];
     }
 
     /**
-     * @param User $user
+     * @param  User  $user
      *
      * @return array
      */
@@ -94,28 +95,29 @@ class UserListScreen extends Screen
     }
 
     /**
-     * @param User    $user
-     * @param Request $request
+     * @param  Request  $request
+     * @param  User     $user
      */
-    public function saveUser(User $user, Request $request): void
+    public function saveUser(Request $request, User $user): void
     {
         $request->validate([
-            'user.email' => 'required|unique:users,email,'.$user->id,
+            'user.email' => [
+                'required',
+                Rule::unique(User::class, 'slug')->ignore($user),
+            ],
         ]);
 
-        $user->fill($request->input('user'))
-            ->save();
+        $user->fill($request->input('user'))->save();
 
         Toast::info(__('User was saved.'));
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      */
     public function remove(Request $request): void
     {
-        User::findOrFail($request->get('id'))
-            ->delete();
+        User::findOrFail($request->get('id'))->delete();
 
         Toast::info(__('User was removed'));
     }
