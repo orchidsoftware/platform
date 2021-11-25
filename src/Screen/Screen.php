@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Contracts\Container\BindingResolutionException;
-use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\Routing\ImplicitRouteBinding;
+use Illuminate\Routing\RouteDependencyResolverTrait;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +16,6 @@ use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Support\Facades\Dashboard;
 use ReflectionClass;
 use ReflectionException;
-use ReflectionParameter;
 use Throwable;
 
 /**
@@ -26,7 +23,7 @@ use Throwable;
  */
 abstract class Screen extends Controller
 {
-    use Commander;
+    use Commander, RouteDependencyResolverTrait;
 
     /**
      * The number of predefined arguments in the route.
@@ -147,19 +144,19 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param mixed                    ...$parameters
+     * @param mixed ...$parameters
      *
-     * @throws \ReflectionException
+     * @throws Throwable
+     * @throws ReflectionException
      *
      * @return Factory|View|\Illuminate\View\View|mixed
      */
-    public function handle(Request $request, ...$parameters)
+    public function handle(...$parameters)
     {
         Dashboard::setCurrentScreen($this);
         abort_unless($this->checkAccess(), 403);
 
-        if ($request->isMethod('GET')) {
+        if (request()->isMethod('GET')) {
             return $this->redirectOnGetMethodCallOrShowView($parameters);
         }
 
@@ -170,7 +167,7 @@ abstract class Screen extends Controller
             [$method]
         );
 
-        $query = $request->query();
+        $query = request()->query();
         $query = ! is_array($query) ? [] : $query;
 
         $parameters = array_filter($parameters);
@@ -191,64 +188,46 @@ abstract class Screen extends Controller
      */
     private function reflectionParams(string $method, array $httpQueryArguments = []): array
     {
-        $class = new ReflectionClass($this);
-
         if (! is_string($method)) {
             return [];
         }
 
-        if (! $class->hasMethod($method)) {
+        $class = new ReflectionClass($this);
+
+        if (!$class->hasMethod($method) || !$class->getMethod($method)->isPublic()) {
             return [];
         }
 
-        $parameters = $class->getMethod($method)->getParameters();
+        $this->container = app();
 
-        return collect($parameters)
-            ->map(function ($parameter, $key) use ($httpQueryArguments) {
-                return $this->bind($key, $parameter, $httpQueryArguments);
-            })->all();
-    }
+        $route = Route::current();
 
-    /**
-     * It takes the serial number of the argument and the required parameter.
-     * To convert to object.
-     *
-     * @param int                 $key
-     * @param ReflectionParameter $parameter
-     * @param array               $httpQueryArguments
-     *
-     * @throws BindingResolutionException
-     *
-     * @return mixed
-     */
-    private function bind(int $key, ReflectionParameter $parameter, array $httpQueryArguments)
-    {
-        $class = $parameter->getType() && ! $parameter->getType()->isBuiltin()
-            ? $parameter->getType()->getName()
-            : null;
-
-        $original = array_values($httpQueryArguments)[$key] ?? null;
-
-        if ($class === null || is_object($original)) {
-            return $original;
+        if($route === null){
+            return [];
         }
 
-        $instance = resolve($class);
+        collect($httpQueryArguments)->except([])
+            ->each(function ($value, $key) use ($route) {
+                $route->setParameter($key, $value);
+            });
 
-        if ($original === null || ! is_a($instance, UrlRoutable::class)) {
-            return $instance;
-        }
+        // This is normally handled in the "SubstituteBindings" middleware, but
+        // because that middleware has already ran, we need to run them again.
+        $this->container['router']->substituteImplicitBindings($route);
 
-        $model = $instance->resolveRouteBinding($original);
+        // We'll set the route action to be from the parameter method from the chosen
+        // Screen to get the proper implicit bindings.
+        $route->uses(get_class($this).'@'.$method);
 
-        throw_if(
-            $model === null && ! $parameter->isDefaultValueAvailable(),
-            (new ModelNotFoundException())->setModel($class, [$original])
-        );
+        ImplicitRouteBinding::resolveForRoute($this->container, Route::current());
 
-        optional(Route::current())->setParameter($parameter->getName(), $model);
+        $parameters = $this->resolveClassMethodDependencies($route->parameters, $this, $method);
 
-        return $model;
+        return collect($parameters)->except([
+            'screen',
+            'method',
+            'template',
+        ])->values()->all();
     }
 
     /**

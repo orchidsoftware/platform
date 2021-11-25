@@ -100,12 +100,12 @@ class RoleEditScreen extends Screen
     }
 
     /**
-     * @param Role    $role
-     * @param Request $request
+     * @param  Request  $request
+     * @param  Role     $role
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function save(Role $role, Request $request)
+    public function save(Request $request, Role $role)
     {
         $request->validate([
             'role.slug' => [
