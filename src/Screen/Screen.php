@@ -78,6 +78,16 @@ abstract class Screen extends Controller
     abstract public function layout(): array;
 
     /**
+     * Modal views.
+     *
+     * @return Layout[]
+     */
+    public function modalLayout(): array
+    {
+        return [];
+    }
+
+    /**
      * @throws Throwable
      *
      * @return View
@@ -85,7 +95,7 @@ abstract class Screen extends Controller
     public function build()
     {
         return LayoutFactory::blank([
-            $this->layout(),
+            array_merge($this->layout(), $this->modalLayout()),
         ])->build($this->source);
     }
 
@@ -107,7 +117,7 @@ abstract class Screen extends Controller
         $source = new Repository($query);
 
         /** @var Layout $layout */
-        $layout = collect($this->layout())
+        $layout = collect(array_merge($this->layout(), $this->modalLayout()))
             ->map(function ($layout) {
                 return is_object($layout) ? $layout : resolve($layout);
             })
@@ -170,7 +180,7 @@ abstract class Screen extends Controller
         );
 
         $query = request()->query();
-        $query = ! is_array($query) ? [] : $query;
+        $query = !is_array($query) ? [] : $query;
 
         $parameters = array_filter($parameters);
         $parameters = array_merge($query, $parameters);
@@ -192,11 +202,11 @@ abstract class Screen extends Controller
     {
         $class = new ReflectionClass($this);
 
-        if (! is_string($method)) {
+        if (!is_string($method)) {
             return [];
         }
 
-        if (! $class->hasMethod($method)) {
+        if (!$class->hasMethod($method)) {
             return [];
         }
 
@@ -222,7 +232,7 @@ abstract class Screen extends Controller
      */
     private function bind(int $key, ReflectionParameter $parameter, array $httpQueryArguments)
     {
-        $class = $parameter->getType() && ! $parameter->getType()->isBuiltin()
+        $class = $parameter->getType() && !$parameter->getType()->isBuiltin()
             ? $parameter->getType()->getName()
             : null;
 
@@ -234,14 +244,14 @@ abstract class Screen extends Controller
 
         $instance = resolve($class);
 
-        if ($original === null || ! is_a($instance, UrlRoutable::class)) {
+        if ($original === null || !is_a($instance, UrlRoutable::class)) {
             return $instance;
         }
 
         $model = $instance->resolveRouteBinding($original);
 
         throw_if(
-            $model === null && ! $parameter->isDefaultValueAvailable(),
+            $model === null && !$parameter->isDefaultValueAvailable(),
             (new ModelNotFoundException())->setModel($class, [$original])
         );
 
@@ -306,7 +316,8 @@ abstract class Screen extends Controller
      */
     private function callMethod(string $method, array $parameters = [])
     {
-        return call_user_func_array([$this, $method],
+        return call_user_func_array(
+            [$this, $method],
             $this->reflectionParams($method, $parameters)
         );
     }

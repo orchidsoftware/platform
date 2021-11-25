@@ -34,6 +34,16 @@ class DummyClass extends Screen
     }
 
     /**
+     * Modal views.
+     *
+     * @return \Orchid\Screen\Layout[]|string[]
+     */
+    public function modalLayout(): array
+    {
+        return [];
+    }
+
+    /**
      * Views.
      *
      * @return \Orchid\Screen\Layout[]|string[]
