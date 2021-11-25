@@ -95,7 +95,7 @@ abstract class Screen extends Controller
     public function build()
     {
         return LayoutFactory::blank([
-            array_merge($this->layout(), $this->modalLayout()),
+            array_merge($this->modalLayout(), $this->layout()),
         ])->build($this->source);
     }
 
@@ -117,7 +117,7 @@ abstract class Screen extends Controller
         $source = new Repository($query);
 
         /** @var Layout $layout */
-        $layout = collect(array_merge($this->layout(), $this->modalLayout()))
+        $layout = collect(array_merge($this->modalLayout(), $this->layout()))
             ->map(function ($layout) {
                 return is_object($layout) ? $layout : resolve($layout);
             })
