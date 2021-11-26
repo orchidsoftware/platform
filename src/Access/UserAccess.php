@@ -166,18 +166,19 @@ trait UserAccess
             return $builder->whereRaw('1=0');
         }
 
-        return $builder
-            ->where(function (Builder $builder) use ($permits) {
-                foreach ($permits as $permit) {
-                    $builder->orWhere('permissions->'.$permit, true);
-                }
+        $rule = function (Builder $builder, \Illuminate\Support\Collection $permits) {
+            $permits->each(function ($permit) use ($builder) {
+                $builder->orWhere('permissions->'.$permit, true);
+            });
+        };
 
-                $builder->orWhereHas('roles', function (Builder $builder) use ($permits) {
-                    $builder->where(function (Builder $builder) use ($permits) {
-                        foreach ($permits as $permit) {
-                            $builder->orWhere('permissions->'.$permit, true);
-                        }
-                    });
+        return $builder
+            ->where(function (Builder $builder) use ($permits, $rule) {
+                $rule($builder, $permits);
+            })
+            ->orWhereHas('roles', function (Builder $builder) use ($permits, $rule) {
+                $builder->where(function (Builder $builder) use ($permits, $rule) {
+                    $rule($builder, $permits);
                 });
             });
     }
