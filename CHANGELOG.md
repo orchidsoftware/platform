@@ -5,9 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.24.0 - 2021-11-27
+
+### Added
+
+- User Query Scope by permissions [#1954](https://github.com/orchidsoftware/platform/pull/1954)
+
+### Changed
+
+- Allow show/hide columns for unpaginated tables [#1953](https://github.com/orchidsoftware/platform/pull/1953)
+- Update `Turbo` to 7.1.0
+
+### Fixed
+
+- Attachment generator file name SHA-1 [#1967](https://github.com/orchidsoftware/platform/pull/1967)
+- Position Select/Relation for modals [#1966](https://github.com/orchidsoftware/platform/issues/1966)
+- Listener to trigger event multiple times  [#1974](https://github.com/orchidsoftware/platform/pull/1974)
+
 ## 10.23.0 - 2021-11-19
 
-## Added
+### Added
 
 - Close icon for selected filters [#1955](https://github.com/orchidsoftware/platform/pull/1955)
 
