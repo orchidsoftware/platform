@@ -25,14 +25,14 @@ class BaseScreenTesting extends Screen
     /**
      * Query data.
      *
-     * @param  User|null  $user
+     * @param User|null $user
      *
      * @return array
      */
     public function query(User $user = null): array
     {
         return [
-            'user' => $user
+            'user' => $user,
         ];
     }
 
@@ -58,8 +58,8 @@ class BaseScreenTesting extends Screen
         return [
             Layout::rows([
                 Input::make('user.name')->title('Name'),
-                Input::make('user.email')->title('Email')
-            ])
+                Input::make('user.email')->title('Email'),
+            ]),
         ];
     }
 

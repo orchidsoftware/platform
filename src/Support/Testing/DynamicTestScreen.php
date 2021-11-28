@@ -31,7 +31,7 @@ class DynamicTestScreen
     protected $parameters;
 
     /**
-     * @param  string|null  $name
+     * @param string|null $name
      */
     public function __construct(string $name = null)
     {
@@ -42,9 +42,9 @@ class DynamicTestScreen
     /**
      * Declarate dinamic route
      *
-     * @param  string       $screen
-     * @param  string|null  $route
-     * @param  string       $middleware
+     * @param string      $screen
+     * @param string|null $route
+     * @param string      $middleware
      *
      * @return DynamicTestScreen
      */
@@ -65,7 +65,7 @@ class DynamicTestScreen
     /**
      * Set Route Parameters
      *
-     * @param  mixed  $parameters
+     * @param mixed $parameters
      *
      * @return $this
      */
@@ -77,11 +77,12 @@ class DynamicTestScreen
     }
 
     /**
-     * @param  array  $headers
+     * @param array $headers
      *
-     * @return \Illuminate\Testing\TestResponse|mixed
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
+     *
+     * @return \Illuminate\Testing\TestResponse|mixed
      */
     public function display(array $headers = [])
     {
@@ -91,9 +92,9 @@ class DynamicTestScreen
     /**
      * Call screen method
      *
-     * @param  string  $method
-     * @param  array   $parameters
-     * @param  array   $headers
+     * @param string $method
+     * @param array  $parameters
+     * @param array  $headers
      *
      * @return \Illuminate\Testing\TestResponse
      */
@@ -112,9 +113,9 @@ class DynamicTestScreen
     /**
      * The alias for the "method"
      *
-     * @param  string  $method
-     * @param  array   $parameters
-     * @param  array   $headers
+     * @param string $method
+     * @param array  $parameters
+     * @param array  $headers
      *
      * @return \Illuminate\Testing\TestResponse
      */
@@ -136,8 +137,8 @@ class DynamicTestScreen
     /**
      * Set the currently logged in user for the application.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
-     * @param  string|null                                 $guard
+     * @param \Illuminate\Contracts\Auth\Authenticatable $user
+     * @param string|null                                $guard
      *
      * @return $this
      */
@@ -151,8 +152,8 @@ class DynamicTestScreen
     /**
      * Set the currently logged in user for the application.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
-     * @param  string|null                                 $guard
+     * @param \Illuminate\Contracts\Auth\Authenticatable $user
+     * @param string|null                                $guard
      *
      * @return $this
      */
@@ -164,8 +165,8 @@ class DynamicTestScreen
     }
 
     /**
-     * @param  string  $name
-     * @param  mixed   $arguments
+     * @param string $name
+     * @param mixed  $arguments
      *
      * @return $this
      */
@@ -179,7 +180,7 @@ class DynamicTestScreen
     /**
      * Set the URL of the previous request.
      *
-     * @param  string  $url
+     * @param string $url
      *
      * @return $this
      */

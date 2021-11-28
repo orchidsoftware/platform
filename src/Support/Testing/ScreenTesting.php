@@ -5,7 +5,7 @@ namespace Orchid\Support\Testing;
 trait ScreenTesting
 {
     /**
-     * @param  string  $name
+     * @param string $name
      *
      * @return DynamicTestScreen
      */
