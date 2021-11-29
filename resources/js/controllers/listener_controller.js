@@ -1,6 +1,7 @@
 import ApplicationController from "./application_controller";
 
 export default class extends ApplicationController {
+    listenerEvent = () => this.render();
 
     /**
      *
@@ -16,7 +17,7 @@ export default class extends ApplicationController {
         this.targets.forEach(name => {
             document.querySelectorAll(`[name="${name}"]`)
                 .forEach((field) =>
-                    field.addEventListener('change', () => this.render(), {
+                    field.addEventListener('change', this.listenerEvent, {
                         once: true
                     })
                 );

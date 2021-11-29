@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Access;
 
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -124,6 +125,62 @@ trait UserAccess
                 return $result === true;
             })
             ->isNotEmpty();
+    }
+
+    /**
+     *
+     * Query Scope for retreiving users by a certain permission
+     * The * character usage is not implemented.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param string                                $permitWithoutWildcard
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     *
+     */
+    public function scopeByAccess(Builder $builder, string $permitWithoutWildcard): Builder
+    {
+        if (empty($permitWithoutWildcard)) {
+            return $builder->whereRaw('1=0');
+        }
+
+        return $this->scopeByAnyAccess($builder, $permitWithoutWildcard);
+    }
+
+    /**
+     *
+     * Query Scope for retreiving users by any permissions
+     * The * character usage is not implemented.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param string|iterable                       $permitsWithoutWildcard
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     *
+     */
+    public function scopeByAnyAccess(Builder $builder, $permitsWithoutWildcard): Builder
+    {
+        $permits = collect($permitsWithoutWildcard);
+
+        if ($permits->isEmpty()) {
+            return $builder->whereRaw('1=0');
+        }
+
+        $rule = function (Builder $builder, \Illuminate\Support\Collection $permits) {
+            $permits->each(function ($permit) use ($builder) {
+                $builder->orWhere('permissions->'.$permit, true);
+            });
+        };
+
+        return $builder
+            ->where(function (Builder $builder) use ($permits, $rule) {
+                $rule($builder, $permits);
+            })
+            ->orWhereHas('roles', function (Builder $builder) use ($permits, $rule) {
+                $builder->where(function (Builder $builder) use ($permits, $rule) {
+                    $rule($builder, $permits);
+                });
+            });
     }
 
     /**
