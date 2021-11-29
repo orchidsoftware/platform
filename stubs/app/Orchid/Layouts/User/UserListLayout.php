@@ -9,6 +9,7 @@ use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Actions\ModalToggle;
+use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Persona;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
@@ -29,7 +30,7 @@ class UserListLayout extends Table
             TD::make('name', __('Name'))
                 ->sort()
                 ->cantHide()
-                ->filter(TD::FILTER_TEXT)
+                ->filter(Input::make())
                 ->render(function (User $user) {
                     return new Persona($user->presenter());
                 }),
@@ -37,7 +38,7 @@ class UserListLayout extends Table
             TD::make('email', __('Email'))
                 ->sort()
                 ->cantHide()
-                ->filter(TD::FILTER_TEXT)
+                ->filter(Input::make())
                 ->render(function (User $user) {
                     return ModalToggle::make($user->email)
                         ->modal('oneAsyncModal')

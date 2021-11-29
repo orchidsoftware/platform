@@ -64,7 +64,41 @@ class PermissionTest extends TestUnitCase
                 'access.role.duplicate' => 0,
                 'access.to.public.data' => 1,
                 'access.to.secret.data' => 0,
+                'scoped.by.permission'  => 1,
             ],
+        ]);
+    }
+
+    /**
+     * @return User
+     */
+    private function createAltUser(): User
+    {
+        return User::firstOrCreate([
+            'email' => 'test_alt@test.com',
+        ], [
+            'name'        => 'test alternative user',
+            'email'       => 'test_alt@test.com',
+            'password'    => 'password',
+            'permissions' => [
+                'access.to.public.data'     => 1,
+                'alt.scoped.by.permission'  => 1,
+            ],
+        ]);
+    }
+
+    /**
+     * @return User
+     */
+    private function createNoPermissionsUser(): User
+    {
+        return User::firstOrCreate([
+            'email' => 'no_permissions@test.com',
+        ], [
+            'name'        => 'user without permissions',
+            'email'       => 'no_permissions@test.com',
+            'password'    => 'password',
+            'permissions' => [],
         ]);
     }
 
@@ -198,5 +232,151 @@ class PermissionTest extends TestUnitCase
 
         $this->assertFalse($nullPermission);
         $this->assertFalse($stringPermission);
+    }
+
+    public function testHasAnyAccess(): void
+    {
+        $user = $this->createUser();
+
+        // User permissions
+        $this->assertTrue($user->hasAnyAccess('access.to.public.data'));
+        $this->assertFalse($user->hasAnyAccess('access.to.secret.data'));
+
+        $this->assertTrue($user->hasAnyAccess([
+            'access.to.public.data',
+            'access.to.secret.data',
+        ]));
+    }
+
+    public function testHasAnyEmptyAccess(): void
+    {
+        $user = $this->createUser();
+
+        $this->assertTrue($user->hasAnyAccess([]));
+    }
+
+    /**
+     * Permissions can be checked based on wildcards
+     * using the * character to match any of a set of permissions.
+     */
+    public function testWildcardChecksPermission(): void
+    {
+        $permission = $this->createUser()->hasAccess('access.user.*');
+
+        $this->assertTrue($permission);
+    }
+
+    public function testScopeByAccess(): void
+    {
+        $user = $this->createUser();
+        $userAlt = $this->createAltUser();
+        $this->createNoPermissionsUser();
+
+        $role = $this->createRole();
+        $user->addRole($role);
+
+        // Empty permission, gets no users
+        $this->assertEmpty(User::byAccess('')->get());
+
+        // Unexisting permission
+        $this->assertEmpty(User::byAccess('unexisting.permission')->get());
+
+        // Not allowed permission
+        $this->assertTrue(User::byAccess('access.to.secret.data')->get()->isEmpty());
+
+        // Scope single user by user permission
+        $users = User::byAccess('alt.scoped.by.permission')->get();
+        $this->assertEquals(1, $users->count());
+        $this->assertTrue($users->contains($userAlt));
+
+        // Scope multiple users by user permission
+        $users = User::byAccess('access.to.public.data')->get();
+        $this->assertEquals(2, $users->count());
+        $this->assertTrue($users->contains($user));
+        $this->assertTrue($users->contains($userAlt));
+
+        // Scope single user by role permission
+        $users = User::byAccess('access.roles.to.public.data')->get();
+        $this->assertEquals(1, $users->count());
+        $this->assertTrue($users->contains($user));
+
+        // Scope multiple users by role permission
+
+        $userAlt->addRole($role);
+
+        $users = User::byAccess('access.roles.to.public.data')->get();
+        $this->assertEquals(2, $users->count());
+        $this->assertTrue($users->contains($user));
+        $this->assertTrue($users->contains($userAlt));
+    }
+
+    public function testScopeByAnyAccess(): void
+    {
+        $user = $this->createUser();
+        $userAlt = $this->createAltUser();
+        $this->createNoPermissionsUser();
+
+        $role = $this->createRole();
+        $user->addRole($role);
+
+        // No permission specified, gets no users
+        $this->assertEmpty(User::byAnyAccess([])->get());
+
+        // Empty permissions
+        $this->assertEmpty(User::byAnyAccess([
+                'unexisting.permission',
+                'unexisting.second.permission',
+            ])->get());
+
+        // Not allowed permission
+        $this->assertTrue(User::byAnyAccess([
+                'unexisting.permission',
+                'access.to.secret.data',
+            ])->get()->isEmpty());
+
+        // Scope single user by user permission
+        $users = User::byAnyAccess([
+            'unexisting.permission',
+            'alt.scoped.by.permission',
+        ])->get();
+        $this->assertEquals(1, $users->count());
+        $this->assertTrue($users->contains($userAlt));
+
+        // Scope multiple users by user permissions
+        $users = User::byAnyAccess([
+            'scoped.by.permission',
+            'alt.scoped.by.permission',
+        ])->get();
+        $this->assertEquals(2, $users->count());
+        $this->assertTrue($users->contains($user));
+        $this->assertTrue($users->contains($userAlt));
+
+        // Scope single user by role permission
+        $users = User::byAnyAccess([
+            'unexisting.permission',
+            'access.roles.to.public.data',
+        ])->get();
+        $this->assertEquals(1, $users->count());
+        $this->assertTrue($users->contains($user));
+
+        // Scope single user by user and role permission
+        $users = User::byAnyAccess([
+            'scoped.by.permission',
+            'access.roles.to.public.data',
+        ])->get();
+        $this->assertEquals(1, $users->count());
+        $this->assertTrue($users->contains($user));
+        
+        // Alt user is now admin test role too
+        $userAlt->addRole($role);
+
+        // Scope multiple users by role permission
+        $users = User::byAnyAccess([
+            'unexisting.permission',
+            'access.roles.to.public.data',
+        ])->get();
+        $this->assertEquals(2, $users->count());
+        $this->assertTrue($users->contains($user));
+        $this->assertTrue($users->contains($userAlt));
     }
 }

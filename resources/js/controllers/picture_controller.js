@@ -63,6 +63,10 @@ export default class extends ApplicationController {
                     element.querySelector('.picture-preview').classList.remove('none');
                     element.querySelector('.picture-remove').classList.remove('none');
                     element.querySelector('.picture-path').value = response.data[targetValue];
+
+                    // add event for listener
+                    element.querySelector('.picture-path').dispatchEvent(new Event("change"));
+
                     $(element.querySelector('.modal')).modal('hide');
                 })
                 .catch((error) => {

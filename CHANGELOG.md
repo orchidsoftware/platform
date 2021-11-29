@@ -5,6 +5,105 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.24.0 - 2021-11-27
+
+### Added
+
+- User Query Scope by permissions [#1954](https://github.com/orchidsoftware/platform/pull/1954)
+
+### Changed
+
+- Allow show/hide columns for unpaginated tables [#1953](https://github.com/orchidsoftware/platform/pull/1953)
+- Update `Turbo` to 7.1.0
+
+### Fixed
+
+- Attachment generator file name SHA-1 [#1967](https://github.com/orchidsoftware/platform/pull/1967)
+- Position Select/Relation for modals [#1966](https://github.com/orchidsoftware/platform/issues/1966)
+- Listener to trigger event multiple times  [#1974](https://github.com/orchidsoftware/platform/pull/1974)
+
+## 10.23.0 - 2021-11-19
+
+### Added
+
+- Close icon for selected filters [#1955](https://github.com/orchidsoftware/platform/pull/1955)
+
+## 10.22.1 - 2021-10-28
+
+### Fixed
+
+- Listener for `contenteditable` [#1949](https://github.com/orchidsoftware/platform/pull/1949)
+
+## 10.22.0 - 2021-10-27
+
+### Added
+
+- New method `hasAnyAccess` and support wildcard [#1945](https://github.com/orchidsoftware/platform/pull/1945)
+
+### Changed
+
+- Improved interaction on mobile devices [#1944](https://github.com/orchidsoftware/platform/pull/1944)
+- Allow creating filters without a name [#1946](https://github.com/orchidsoftware/platform/pull/1946)
+
+
+## 10.21.0 - 2021-10-22
+
+### Added
+
+- Method `minlength` for `Input` [#1941](https://github.com/orchidsoftware/platform/pull/1941)
+
+### Fixed
+
+- `AttachmentController::getFilesByIds()` does not exist [#1940](https://github.com/orchidsoftware/platform/issues/1940)
+
+
+## 10.20.1 - 2021-10-20
+
+### Fixed
+
+- Fixed show border for table
+- Don't select text for click column filter
+
+## 10.20.0 - 2021-10-19
+
+### Added
+
+- Method `activeTab` in Tabs [#1932](https://github.com/orchidsoftware/platform/pull/1932)
+
+### Changed
+
+- Default arguments for instance [#1936](https://github.com/orchidsoftware/platform/pull/1936)
+- Disabled user-scalable for viewport
+- Update `pt_BR` translation [#1926](https://github.com/orchidsoftware/platform/pull/1926)
+
+## 10.19.2 - 2021-10-16
+
+### Fixed
+
+- Cropper field [#1924](https://github.com/orchidsoftware/platform/pull/1924)
+
+## 10.19.1 - 2021-10-14
+
+### Changed
+
+- Improve TEMPLATE_LINE filter [#1911](https://github.com/orchidsoftware/platform/pull/1911)
+
+### Fixed
+
+- Listener for Picture/Cropper [#1917](https://github.com/orchidsoftware/platform/issues/1917)
+
+## 10.19.0 - 2021-10-13
+
+### Changed
+
+- Persian translation [#1910](https://github.com/orchidsoftware/platform/pull/1910)
+- Portuguese translation [#1914](https://github.com/orchidsoftware/platform/pull/1914)
+- Missing breadcrumbs by default [#1913](https://github.com/orchidsoftware/platform/pull/1913)
+
+### Fixed
+
+- Listener Created Button Doesn't Work [#1855](https://github.com/orchidsoftware/platform/issues/1855)
+
 ## 10.18.1 - 2021-09-28
 
 ### Fixed
