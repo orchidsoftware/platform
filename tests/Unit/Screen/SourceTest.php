@@ -94,4 +94,11 @@ class SourceTest extends TestUnitCase
     {
         $this->assertEquals('Hello Alexandr Chernyaev', $this->model->getContent('greeting'));
     }
+
+    public function testNoAccessToProperties(): void
+    {
+        $this->assertNull($this->model->getContent('incrementing')); // public
+        $this->assertNull($this->model->getContent('fillable')); // property
+        $this->assertNull($this->model->getContent('connection'));
+    }
 }
