@@ -30,7 +30,12 @@
         <div class="no-border-xs">
             <div class="tab-content">
                 @foreach($manyForms as $name => $forms)
-                    <div role="tabpanel" class="tab-pane @if ($loop->first) active @endif"
+                    <div role="tabpanel" class="tab-pane
+                        @if ($activeTab === $name)
+                            active
+                        @elseif($loop->first && is_null($activeTab))
+                            active
+                        @endif"
                          id="tab-{{\Illuminate\Support\Str::slug($name)}}">
                             @foreach($forms as $form)
                                 {!! $form !!}
