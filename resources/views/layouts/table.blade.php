@@ -49,6 +49,7 @@
     </div>
 
     @if(($rows instanceof \Illuminate\Contracts\Pagination\Paginator || $rows instanceof \Illuminate\Contracts\Pagination\CursorPaginator || $rows instanceof \Illuminate\Support\Collection) && $rows->isEmpty())
+    
         <div class="text-center py-5 w-100">
             <h3 class="fw-light">
                 @isset($iconNotFound)
@@ -61,14 +62,16 @@
 
             {!! $subNotFound !!}
         </div>
-    @endif
+        
+    @else
 
-    @includeWhen($rows->isNotEmpty(),
-        'platform::layouts.pagination',[
-            'paginator' => $rows,
-            'columns' => $columns,
-            'onEachSide' => $onEachSide,
-    ])
+        @include('platform::layouts.pagination',[
+                'paginator' => $rows,
+                'columns' => $columns,
+                'onEachSide' => $onEachSide,
+        ])
+
+    @endif
 </div>
 
 
