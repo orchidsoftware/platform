@@ -2,13 +2,12 @@
 
 namespace Orchid\Tests\Feature\Platform;
 
-
 use Illuminate\Support\Facades\Route;
+use Orchid\Platform\Models\User;
 use Orchid\Support\Testing\DynamicTestScreen;
 use Orchid\Support\Testing\ScreenTesting;
 use Orchid\Tests\App\Screens\BaseScreenTesting;
 use Orchid\Tests\TestUnitCase;
-use Orchid\Platform\Models\User;
 
 class HelperDynamicTestScreenTest extends TestUnitCase
 {

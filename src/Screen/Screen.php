@@ -162,6 +162,7 @@ abstract class Screen extends Controller
 
         if ($request->isMethod('GET')) {
             $request->session()->reflash();
+
             return $this->redirectOnGetMethodCallOrShowView($parameters);
         }
 
