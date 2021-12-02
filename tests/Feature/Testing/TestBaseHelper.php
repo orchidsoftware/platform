@@ -16,7 +16,7 @@ class TestBaseHelper extends TestFeatureCase
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function example()
+    public function testUsageExample(): void
     {
         $screen = $this->screen()
             ->register(BaseScreenTesting::class);
@@ -39,7 +39,7 @@ class TestBaseHelper extends TestFeatureCase
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function exampleWithRouteParams()
+    public function textExampleWithRouteParams(): void
     {
         $user = $this->createAdminUser();
 
