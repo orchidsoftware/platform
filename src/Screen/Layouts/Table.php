@@ -64,9 +64,12 @@ abstract class Table extends Layout
             return $column->isSee();
         });
 
+        $rows = $repository->getContent($this->target);
+        $rows = is_array($rows) ? collect($rows) : $rows;
+
         return view($this->template, [
             'repository'   => $repository,
-            'rows'         => $repository->getContent($this->target),
+            'rows'         => $rows,
             'columns'      => $columns,
             'total'        => $total,
             'iconNotFound' => $this->iconNotFound(),
