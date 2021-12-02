@@ -120,7 +120,7 @@ class Menu extends Link
      */
     protected function getSlug(): string
     {
-        return $this->get('slug', Str::slug($this->get('name')));
+        return $this->get('slug', Str::slug(__($this->get('name'))));
     }
 
     /**
