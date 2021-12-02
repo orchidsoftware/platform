@@ -70,4 +70,14 @@ class BaseScreenTesting extends Screen
     {
         Toast::warning($request->get('toast', 'Hello, world! This is a toast message.'));
     }
+
+    /**
+     * @param Request $request
+     *
+     * @return string
+     */
+    public function getUser(Request $request)
+    {
+        return $request->user()->toJson();
+    }
 }

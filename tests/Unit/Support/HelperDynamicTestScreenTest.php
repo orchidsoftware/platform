@@ -51,7 +51,7 @@ class HelperDynamicTestScreenTest extends TestUnitCase
      */
     public function textExampleWithRouteParams(): void
     {
-        $user = User::factory();
+        $user = User::factory()->make();
 
         $screen = $this->screen()
             ->register(BaseScreenTesting::class, '/_test/users/{user}')
@@ -64,13 +64,26 @@ class HelperDynamicTestScreenTest extends TestUnitCase
             ->assertSee($user->email);
 
         $screen
-            ->method('showToast')
+            ->call('showToast')
             ->assertSee('Hello, world! This is a toast message.');
 
         $screen
-            ->method('showToast', [
+            ->call('showToast', [
                 'toast', 'Custom message',
             ])
             ->assertSee('Custom message');
+    }
+
+    public function textExampleAuth(): void
+    {
+        $user = User::factory()->make();
+
+        $screen = $this->screen()
+            ->register(BaseScreenTesting::class)
+            ->actingAs($user);
+
+        $screen
+            ->call('getUser')
+            ->assertJson($user->toJson());
     }
 }
