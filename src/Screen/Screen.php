@@ -158,7 +158,10 @@ abstract class Screen extends Controller
         Dashboard::setCurrentScreen($this);
         abort_unless($this->checkAccess(), 403);
 
-        if (request()->isMethod('GET')) {
+        $request = request();
+
+        if ($request->isMethod('GET')) {
+            $request->session()->reflash();
             return $this->redirectOnGetMethodCallOrShowView($parameters);
         }
 
@@ -169,7 +172,7 @@ abstract class Screen extends Controller
             [$method]
         );
 
-        $query = request()->query();
+        $query = $request->query();
         $query = ! is_array($query) ? [] : $query;
 
         $parameters = array_filter($parameters);

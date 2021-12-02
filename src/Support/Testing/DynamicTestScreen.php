@@ -26,9 +26,9 @@ class DynamicTestScreen
     /**
      * Route parameters
      *
-     * @var
+     * @var array
      */
-    protected $parameters;
+    protected $parameters = [];
 
     /**
      * @param string|null $name
@@ -42,15 +42,15 @@ class DynamicTestScreen
     /**
      * Declarate dinamic route
      *
-     * @param string      $screen
-     * @param string|null $route
-     * @param string      $middleware
+     * @param string       $screen
+     * @param string|null  $route
+     * @param string|array $middleware
      *
      * @return DynamicTestScreen
      */
     public function register(string $screen, string $route = null, $middleware = 'web')
     {
-        Route::screen('/_test/' . $route ?? $this->name, $screen)
+        Route::screen('/_test/' . ($route ?? $this->name), $screen)
             ->middleware($middleware)
             ->name($this->name);
 
@@ -63,11 +63,11 @@ class DynamicTestScreen
     /**
      * Set Route Parameters
      *
-     * @param mixed $parameters
+     * @param array $parameters
      *
      * @return $this
      */
-    public function parameters($parameters = [])
+    public function parameters(array $parameters = [])
     {
         $this->parameters = $parameters;
 
@@ -98,14 +98,16 @@ class DynamicTestScreen
      */
     public function method(string $method, array $parameters = [], array $headers = []): TestResponse
     {
-        $route = $this->route();
+        $route = $this->route(array_merge(
+            $this->parameters,
+            ['method' => $method,]
+        ));
+
         $this->from($route);
 
         return $this->http
             ->followingRedirects()
-            ->post($route, array_merge($parameters, [
-                'method' => $method,
-            ]), $headers);
+            ->post($route, $parameters, $headers);
     }
 
     /**
@@ -125,11 +127,13 @@ class DynamicTestScreen
     /**
      * Get route URL
      *
+     * @param array|null $parameters
+     *
      * @return string
      */
-    protected function route()
+    protected function route(array $parameters = null): string
     {
-        return route($this->name, $this->parameters);
+        return route($this->name, $parameters ?? $this->parameters);
     }
 
     /**
