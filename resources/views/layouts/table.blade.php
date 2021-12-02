@@ -63,7 +63,7 @@
         </div>
     @endif
 
-    @includeWhen(!empty($rows),
+    @includeWhen($rows->isNotEmpty(),
         'platform::layouts.pagination',[
             'paginator' => $rows,
             'columns' => $columns,
