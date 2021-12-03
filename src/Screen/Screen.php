@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -146,23 +147,18 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param mixed ...$parameters
-     *
-     * @throws Throwable
-     * @throws ReflectionException
+     * @param \Illuminate\Http\Request $request
+     * @param mixed                    ...$parameters
      *
      * @return Factory|View|\Illuminate\View\View|mixed
+     * @throws \ReflectionException
      */
-    public function handle(...$parameters)
+    public function handle(Request $request, ...$parameters)
     {
         Dashboard::setCurrentScreen($this);
         abort_unless($this->checkAccess(), 403);
 
-        $request = request();
-
         if ($request->isMethod('GET')) {
-            $request->session()->reflash();
-
             return $this->redirectOnGetMethodCallOrShowView($parameters);
         }
 
