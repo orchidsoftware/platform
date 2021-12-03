@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.25.1 - 2021-12-03
+
+### Changed
+- Passing rows to array table to collection
+
+### Fixed
+- Menu slug translate [#1996](https://github.com/orchidsoftware/platform/pull/1996)
+- Notice for PHP 8.1 [#1995](https://github.com/orchidsoftware/platform/pull/1995)
+- Quick fix empty collection checking [#1993](https://github.com/orchidsoftware/platform/pull/1993)
+- Start session for test helpers [#1984](https://github.com/orchidsoftware/platform/pull/1984)
+- Usage pass name for route [#1984](https://github.com/orchidsoftware/platform/pull/1984)
+
 ## 10.25.0 - 2021-12-01
 
 ### Added
