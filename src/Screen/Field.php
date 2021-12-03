@@ -266,7 +266,7 @@ class Field implements Fieldable
      */
     protected function getAllowDataAttributes(): ComponentAttributeBag
     {
-        return $this->getAllowAttributes()->filter(function (/* @noinspection PhpUnusedParameterInspection */ $value, $key) {
+        return $this->getAllowAttributes()->filter(function ($value, $key) {
             return Str::startsWith($key, 'data-');
         });
     }
@@ -297,11 +297,7 @@ class Field implements Fieldable
      */
     public function get(string $key, $value = null)
     {
-        if (! isset($this->attributes[$key])) {
-            return $value;
-        }
-
-        return $this->attributes[$key];
+        return $this->attributes[$key] ?? $value;
     }
 
     /**
