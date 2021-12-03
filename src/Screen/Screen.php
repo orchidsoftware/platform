@@ -150,8 +150,9 @@ abstract class Screen extends Controller
      * @param \Illuminate\Http\Request $request
      * @param mixed                    ...$parameters
      *
-     * @return Factory|View|\Illuminate\View\View|mixed
      * @throws \ReflectionException
+     *
+     * @return Factory|View|\Illuminate\View\View|mixed
      */
     public function handle(Request $request, ...$parameters)
     {
