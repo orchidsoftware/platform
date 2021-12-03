@@ -137,7 +137,7 @@ class DynamicTestScreen
     }
 
     /**
-     * Set the currently logged in user for the application.
+     * Set the currently logged-in user for the application.
      *
      * @param \Illuminate\Contracts\Auth\Authenticatable $user
      * @param string|null                                $guard
@@ -152,7 +152,7 @@ class DynamicTestScreen
     }
 
     /**
-     * Set the currently logged in user for the application.
+     * Set the currently logged-in user for the application.
      *
      * @param \Illuminate\Contracts\Auth\Authenticatable $user
      * @param string|null                                $guard
