@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Support\Testing;
 
 use Illuminate\Contracts\Auth\Authenticatable as UserContract;
+use Illuminate\Foundation\Testing\Concerns\InteractsWithSession;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Illuminate\Testing\TestResponse;
@@ -29,6 +30,11 @@ class DynamicTestScreen
      * @var array
      */
     protected $parameters = [];
+
+    /**
+     * @var array
+     */
+    protected $session = [];
 
     /**
      * @param string|null $name
@@ -75,6 +81,19 @@ class DynamicTestScreen
     }
 
     /**
+     * Set the session to the given array.
+     *
+     * @param  array  $data
+     * @return $this
+     */
+    public function session(array $data): DynamicTestScreen
+    {
+        $this->session = $data;
+
+        return $this;
+    }
+
+    /**
      * @param array $headers
      *
      * @throws \Psr\Container\ContainerExceptionInterface
@@ -106,6 +125,7 @@ class DynamicTestScreen
         $this->from($route);
 
         return $this->http
+            ->withSession($this->session)
             ->followingRedirects()
             ->post($route, $parameters, $headers);
     }

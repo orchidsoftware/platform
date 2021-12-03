@@ -25,7 +25,6 @@ class MakesHttpRequestsWrapper
     public function __construct(Application $app)
     {
         $this->app = $app;
-        $this->startSession();
     }
 
     /**
