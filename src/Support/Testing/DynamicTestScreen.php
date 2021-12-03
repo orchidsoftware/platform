@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Support\Testing;
 
 use Illuminate\Contracts\Auth\Authenticatable as UserContract;
-use Illuminate\Foundation\Testing\Concerns\InteractsWithSession;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Illuminate\Testing\TestResponse;
@@ -83,7 +82,8 @@ class DynamicTestScreen
     /**
      * Set the session to the given array.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return $this
      */
     public function session(array $data): DynamicTestScreen
