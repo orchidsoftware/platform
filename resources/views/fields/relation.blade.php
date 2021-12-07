@@ -9,6 +9,7 @@
          data-relation-scope="{{ $relationScope }}"
          data-relation-search-columns="{{ $relationSearchColumns }}"
          data-relation-append="{{ $relationAppend }}"
+         data-relation-chunk="{{ $chunk }}"
          data-relation-route="{{ route('platform.systems.relation') }}"
     >
         <select id="{{$id}}" data-relation-target="select" {{ $attributes }}>
