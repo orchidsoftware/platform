@@ -151,10 +151,6 @@ export default class extends ApplicationController {
      */
     disableKey(event) {
 
-        if (this.element.querySelector('[type=submit]')) {
-            return true;
-        }
-
         if (/textarea/i.test(event.target.tagName)) {
             return true;
         }
