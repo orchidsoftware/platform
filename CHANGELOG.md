@@ -5,11 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.25.3 - 2021-12-07
+
+### Fixed
+- Error disabling notifications in the absence of a trait for the user model [#2000](https://github.com/orchidsoftware/platform/issues/2000)
+
 ## 10.25.2 - 2021-12-07
 
 ### Fixed
 - Prevent form submission by pressing Enter
-
 
 ## 10.25.1 - 2021-12-03
 
