@@ -86,9 +86,10 @@ class Relation extends Field
      * @param string       $name
      * @param string|null  $key
      *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
      * @return Relation
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      *
      */
     public function fromModel(string $model, string $name, string $key = null): self
@@ -110,11 +111,11 @@ class Relation extends Field
             $text = $append ?? $name;
             $value = $this->get('value');
 
-            if (!is_iterable($value)) {
+            if (! is_iterable($value)) {
                 $value = Arr::wrap($value);
             }
 
-            if (!Assert::isObjectArray($value)) {
+            if (! Assert::isObjectArray($value)) {
                 $value = $model::whereIn($key, $value)->get();
             }
 
@@ -153,7 +154,7 @@ class Relation extends Field
             $scope = $this->get('scope', 'handler');
             $class = resolve($class);
 
-            if (!is_iterable($value)) {
+            if (! is_iterable($value)) {
                 $value = Arr::wrap($value);
             }
 
