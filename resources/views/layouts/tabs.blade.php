@@ -1,12 +1,18 @@
 <div
     data-controller="tabs"
     data-tabs-slug="{{$templateSlug}}"
+    data-tabs-active-tab="{{$activeTab}}"
 >
     <div class="nav-tabs-alt">
-        <ul class="nav nav-tabs" role="tablist">
+        <ul class="nav nav-tabs nav-tabs-scroll-bar" role="tablist">
             @foreach($manyForms as $name => $tab)
                 <li class="nav-item">
-                    <a class="nav-link @if ($loop->first) active @endif"
+                    <a class="nav-link
+                        @if ($activeTab === $name)
+                            active
+                        @elseif($loop->first && is_null($activeTab))
+                            active
+                        @endif"
                        data-action="tabs#setActiveTab"
                        data-bs-target="#tab-{{\Illuminate\Support\Str::slug($name)}}"
                        id="button-tab-{{\Illuminate\Support\Str::slug($name)}}"
@@ -24,7 +30,12 @@
         <div class="no-border-xs">
             <div class="tab-content">
                 @foreach($manyForms as $name => $forms)
-                    <div role="tabpanel" class="tab-pane @if ($loop->first) active @endif"
+                    <div role="tabpanel" class="tab-pane
+                        @if ($activeTab === $name)
+                            active
+                        @elseif($loop->first && is_null($activeTab))
+                            active
+                        @endif"
                          id="tab-{{\Illuminate\Support\Str::slug($name)}}">
                             @foreach($forms as $form)
                                 {!! $form !!}

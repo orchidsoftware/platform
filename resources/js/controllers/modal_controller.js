@@ -73,9 +73,13 @@ export default class extends ApplicationController {
      * @param params
      */
     asyncLoadData(params) {
-         window.axios.post(this.data.get('async-route'), params).then((response) => {
-             this.element.querySelector('[data-async]').innerHTML = response.data;
-         });
+        window.axios.post(this.data.get('async-route'), params, {
+            headers: {
+                'ORCHID-ASYNC-REFERER': window.location.href,
+            },
+        }).then((response) => {
+            this.element.querySelector('[data-async]').innerHTML = response.data;
+        });
     }
 
     /**

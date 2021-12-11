@@ -20,6 +20,6 @@ trait AsSource
     {
         return Arr::get($this->toArray(), $field)
             ?? Arr::get($this->getRelations(), $field)
-            ?? $this->$field;
+            ?? $this->getAttribute($field);
     }
 }

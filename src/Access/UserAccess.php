@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Orchid\Access;
 
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Events\AddRoleEvent;
 use Orchid\Platform\Events\RemoveRoleEvent;
@@ -80,9 +82,105 @@ trait UserAccess
 
         return $this->cachePermissions
             ->filter(function (array $permissions) use ($permit) {
-                return isset($permissions[$permit]) && $permissions[$permit];
+                return $this->filterWildcardAccess($permissions, $permit);
             })
             ->isNotEmpty();
+    }
+
+    /**
+     * Permissions can be checked based on wildcards
+     * using the * character to match any of a set of permissions.
+     *
+     * @param array  $permissions
+     * @param string $permit
+     *
+     * @return bool
+     */
+    protected function filterWildcardAccess(array $permissions, string $permit): bool
+    {
+        return collect($permissions)->filter(function (bool $value, $permission) use ($permit) {
+            return Str::is($permit, $permission) && $value;
+        })->isNotEmpty();
+    }
+
+    /**
+     * This method will grant access if any permission passes the check.
+     *
+     * @param string|iterable $permissions
+     * @param bool            $cache
+     *
+     * @return bool
+     */
+    public function hasAnyAccess($permissions, bool $cache = true): bool
+    {
+        if (empty($permissions)) {
+            return true;
+        }
+
+        return collect($permissions)
+            ->map(function (string $permit) use ($cache) {
+                return $this->hasAccess($permit, $cache);
+            })
+            ->filter(function (bool $result) {
+                return $result === true;
+            })
+            ->isNotEmpty();
+    }
+
+    /**
+     *
+     * Query Scope for retreiving users by a certain permission
+     * The * character usage is not implemented.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param string                                $permitWithoutWildcard
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     *
+     */
+    public function scopeByAccess(Builder $builder, string $permitWithoutWildcard): Builder
+    {
+        if (empty($permitWithoutWildcard)) {
+            return $builder->whereRaw('1=0');
+        }
+
+        return $this->scopeByAnyAccess($builder, $permitWithoutWildcard);
+    }
+
+    /**
+     *
+     * Query Scope for retreiving users by any permissions
+     * The * character usage is not implemented.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param string|iterable                       $permitsWithoutWildcard
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     *
+     */
+    public function scopeByAnyAccess(Builder $builder, $permitsWithoutWildcard): Builder
+    {
+        $permits = collect($permitsWithoutWildcard);
+
+        if ($permits->isEmpty()) {
+            return $builder->whereRaw('1=0');
+        }
+
+        $rule = function (Builder $builder, \Illuminate\Support\Collection $permits) {
+            $permits->each(function ($permit) use ($builder) {
+                $builder->orWhere('permissions->'.$permit, true);
+            });
+        };
+
+        return $builder
+            ->where(function (Builder $builder) use ($permits, $rule) {
+                $rule($builder, $permits);
+            })
+            ->orWhereHas('roles', function (Builder $builder) use ($permits, $rule) {
+                $builder->where(function (Builder $builder) use ($permits, $rule) {
+                    $rule($builder, $permits);
+                });
+            });
     }
 
     /**

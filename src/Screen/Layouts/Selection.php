@@ -15,7 +15,7 @@ use Orchid\Screen\Repository;
 abstract class Selection extends Layout
 {
     /**
-     * Drop down filters.
+     * Drop-down filters.
      */
     public const TEMPLATE_DROP_DOWN = 'platform::layouts.selection';
 

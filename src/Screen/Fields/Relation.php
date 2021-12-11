@@ -47,6 +47,7 @@ class Relation extends Field
         'relationScope'         => null,
         'relationAppend'        => null,
         'relationSearchColumns' => null,
+        'chunk'                 => 10,
     ];
 
     /**
@@ -88,6 +89,7 @@ class Relation extends Field
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      *
      * @return Relation
+     *
      *
      */
     public function fromModel(string $model, string $name, string $key = null): self
@@ -239,5 +241,17 @@ class Relation extends Field
         $this->set('data-maximum-selection-length', (string) $number);
 
         return $this;
+    }
+
+    /**
+     * Sets the size of the chunk to be shown to the user.
+     *
+     * @param int $value
+     *
+     * @return $this
+     */
+    public function chunk(int $value)
+    {
+        return $this->set('chunk', $value);
     }
 }

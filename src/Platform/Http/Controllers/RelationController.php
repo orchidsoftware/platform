@@ -27,23 +27,25 @@ class RelationController extends Controller
             'scope'         => $scope,
             'append'        => $append,
             'searchColumns' => $searchColumns,
-        ] = collect($request->except(['search']))->map(static function ($item, $key) {
-            if ($item === null) {
-                return null;
-            }
+        ] = collect($request->all())
+            ->except(['search', 'chunk'])
+            ->map(static function ($item, $key) {
+                if ($item === null) {
+                    return null;
+                }
 
-            if ($key === 'scope' || $key === 'searchColumns') {
-                return Crypt::decrypt($item);
-            }
+                if ($key === 'scope' || $key === 'searchColumns') {
+                    return Crypt::decrypt($item);
+                }
 
-            return Crypt::decryptString($item);
-        });
+                return Crypt::decryptString($item);
+            });
 
         /** @var Model $model */
         $model = new $model;
         $search = $request->get('search', '');
 
-        $items = $this->buildersItems($model, $name, $key, $search, $scope, $append, $searchColumns);
+        $items = $this->buildersItems($model, $name, $key, $search, $scope, $append, $searchColumns, (int) $request->get('chunk', 10));
 
         return response()->json($items);
     }
@@ -56,18 +58,20 @@ class RelationController extends Controller
      * @param array|null  $scope
      * @param string|null $append
      * @param array|null  $searchColumns
+     * @param int|null    $chunk
      *
      * @return mixed
      */
     private function buildersItems(
-        Model $model,
-        string $name,
-        string $key,
-        string $search = null,
-        ?array $scope = [],
+        Model   $model,
+        string  $name,
+        string  $key,
+        string  $search = null,
+        ?array  $scope = [],
         ?string $append = null,
-        ?array $searchColumns = null)
-    {
+        ?array  $searchColumns = null,
+        ?int    $chunk = 10
+    ) {
         if ($scope !== null) {
             /** @var Collection|array $model */
             $model = $model->{$scope['name']}(...$scope['parameters']);
@@ -78,7 +82,7 @@ class RelationController extends Controller
         }
 
         if (is_a($model, BaseCollection::class)) {
-            return $model->take(10)->pluck($append ?? $name, $key);
+            return $model->take($chunk)->pluck($append ?? $name, $key);
         }
 
         $model = $model->where($name, 'like', '%'.$search.'%');
@@ -90,7 +94,7 @@ class RelationController extends Controller
         }
 
         return $model
-            ->limit(10)
+            ->limit($chunk)
             ->get()
             ->pluck($append ?? $name, $key);
     }

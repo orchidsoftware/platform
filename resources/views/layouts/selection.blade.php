@@ -53,8 +53,9 @@
     </div>
     @foreach($filters as $filter)
         @if($filter->display && $filter->isApply())
-            <a href="{{ $filter->resetLink() }}" class="badge bg-light border me-1 p-1">
-                {{$filter->value()}}
+            <a href="{{ $filter->resetLink() }}" class="badge bg-light border me-1 p-1 d-inline-flex align-items-center">
+                <span>{{$filter->value()}}</span>
+                <x-orchid-icon path="cross" class="ms-1"/>
             </a>
         @endif
     @endforeach

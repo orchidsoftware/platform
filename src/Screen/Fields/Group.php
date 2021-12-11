@@ -17,7 +17,7 @@ class Group implements Fieldable, Groupable
      */
     protected $attributes = [
         'group' => [],
-        'class' => 'col',
+        'class' => 'col-12 col-md form-group mb-md-0',
         'align' => 'align-items-baseline',
     ];
 
@@ -110,11 +110,7 @@ class Group implements Fieldable, Groupable
      */
     public function get(string $key, $value = null)
     {
-        if (! isset($this->attributes[$key])) {
-            return $value;
-        }
-
-        return $this->attributes[$key];
+        return $this->attributes[$key] ?? $value;
     }
 
     /**

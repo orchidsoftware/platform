@@ -10,7 +10,7 @@ export default class extends ApplicationController {
         }
         const select = this.element.querySelector('select');
 
-        const parent = $(select).closest('.dropdown-menu, .modal');
+        const parent = $(select).closest('.dropdown-menu, div');
 
         $(select).select2({
             width: '100%',

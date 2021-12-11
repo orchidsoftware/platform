@@ -17,6 +17,7 @@ export default class extends ApplicationController {
         const scope = this.data.get('scope');
         const append = this.data.get('append');
         const searchColumns = this.data.get('search-columns');
+        const chunk = this.data.get('chunk');
 
 
         $.ajaxSetup({
@@ -25,7 +26,7 @@ export default class extends ApplicationController {
             },
         });
 
-        const parent = $(select).closest(".dropdown-menu, .modal");
+        const parent = $(select).closest(".dropdown-menu, div");
 
         $(select).select2({
             theme: 'bootstrap',
@@ -61,6 +62,7 @@ export default class extends ApplicationController {
                     scope,
                     append,
                     searchColumns,
+                    chunk,
                 }),
             },
             placeholder: select.getAttribute('placeholder') || '',

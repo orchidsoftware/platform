@@ -11,7 +11,7 @@
 
         @if(true === $allowEmpty)
             <div class="input-group-append bg-white">
-                <a class="input-group-text bg-transparent"
+                <a class="input-group-text h-100 text-muted"
                    title="clear"
                    data-action="click->datetime#clear">
                         <x-orchid-icon path="cross"/>

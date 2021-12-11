@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Actions;
 
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Orchid\Screen\Contracts\Actionable;
@@ -121,7 +120,7 @@ class Menu extends Link
      */
     protected function getSlug(): string
     {
-        return $this->get('slug', Str::slug($this->get('name')));
+        return $this->get('slug', Str::slug(__($this->get('name'))));
     }
 
     /**
@@ -201,14 +200,7 @@ class Menu extends Link
             return $this;
         }
 
-        $this->permit = collect($permission)
-            ->map(static function ($item) use ($user) {
-                return $user->hasAccess($item);
-            })
-            ->whenEmpty(static function (Collection $permission) {
-                return $permission->push(true);
-            })
-            ->contains(true);
+        $this->permit = $user->hasAnyAccess($permission);
 
         return $this;
     }

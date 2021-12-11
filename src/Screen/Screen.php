@@ -10,8 +10,8 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Controllers\Controller;
@@ -147,19 +147,19 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param mixed ...$parameters
+     * @param \Illuminate\Http\Request $request
+     * @param mixed                    ...$parameters
      *
-     * @throws Throwable
-     * @throws ReflectionException
+     * @throws \ReflectionException
      *
      * @return Factory|View|\Illuminate\View\View|mixed
      */
-    public function handle(...$parameters)
+    public function handle(Request $request, ...$parameters)
     {
         Dashboard::setCurrentScreen($this);
         abort_unless($this->checkAccess(), 403);
 
-        if (request()->isMethod('GET')) {
+        if ($request->isMethod('GET')) {
             return $this->redirectOnGetMethodCallOrShowView($parameters);
         }
 
@@ -170,7 +170,7 @@ abstract class Screen extends Controller
             [$method]
         );
 
-        $query = request()->query();
+        $query = $request->query();
         $query = ! is_array($query) ? [] : $query;
 
         $parameters = array_filter($parameters);
@@ -256,14 +256,13 @@ abstract class Screen extends Controller
      */
     private function checkAccess(): bool
     {
-        return collect($this->permission)
-            ->map(static function ($item) {
-                return Auth::user()->hasAccess($item);
-            })
-            ->whenEmpty(function (Collection $permission) {
-                return $permission->push(true);
-            })
-            ->contains(true);
+        $user = Auth::user();
+
+        if ($user === null) {
+            return true;
+        }
+
+        return $user->hasAnyAccess($this->permission);
     }
 
     /**

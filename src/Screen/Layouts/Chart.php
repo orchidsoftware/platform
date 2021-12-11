@@ -128,7 +128,7 @@ abstract class Chart extends Layout
 
     /**
      * To highlight certain values on the Y axis, markers can be set.
-     * They will shown as dashed lines on the graph.
+     * They will show as dashed lines on the graph.
      */
     protected function markers(): ?array
     {

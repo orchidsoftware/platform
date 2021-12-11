@@ -49,6 +49,8 @@ abstract class Filter
     }
 
     /**
+     * Apply filter if the request parameters were satisfied.
+     *
      * @param Builder $builder
      *
      * @return Builder
@@ -63,6 +65,8 @@ abstract class Filter
     }
 
     /**
+     * Apply to a given Eloquent query builder.
+     *
      * @param Builder $builder
      *
      * @return Builder
@@ -70,6 +74,8 @@ abstract class Filter
     abstract public function run(Builder $builder): Builder;
 
     /**
+     * Get the display fields.
+     *
      * @return Field[]
      */
     public function display(): array
@@ -78,9 +84,14 @@ abstract class Filter
     }
 
     /**
+     * The displayable name of the filter.
+     *
      * @return string
      */
-    abstract public function name(): string;
+    public function name(): string
+    {
+        return class_basename(static::class);
+    }
 
     /**
      * @return string
@@ -109,6 +120,8 @@ abstract class Filter
     }
 
     /**
+     * Value to be displayed
+     *
      * @return string
      */
     public function value(): string
@@ -120,6 +133,8 @@ abstract class Filter
     }
 
     /**
+     * Link without filters applied
+     *
      * @return string
      */
     public function resetLink(): string

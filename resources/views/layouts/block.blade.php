@@ -3,7 +3,7 @@
         <legend class="text-black">
             {{ __($title ?? '') }}
 
-            <p class="small text-muted mt-2">
+            <p class="small text-muted mt-2 mb-0">
                 {!! __($description  ?? '') !!}
             </p>
         </legend>

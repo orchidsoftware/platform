@@ -179,6 +179,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Search
+    |--------------------------------------------------------------------------
+    |
+    | List of models containing Presenter and Scout,
+    | which will appear in search results in the sidebar.
+    |
+    */
+
+    'search' => [
+        // \App\Models\User::class
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Hotwire Turbo
     |--------------------------------------------------------------------------
     |
@@ -206,5 +220,19 @@ return [
     */
 
     'fallback' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Service Provider
+    |--------------------------------------------------------------------------
+    |
+    | This value is a class namespace of the platform's service provider. You
+    | can override it to define a custom namespace. This may be useful if you
+    | want to place Orchid's service provider in a location different to
+    | "app/Orchid".
+    |
+    */
+
+    'provider' => \App\Orchid\PlatformProvider::class,
 
 ];

@@ -58,7 +58,7 @@
     "vimeo/psalm": "^4.3"
   },
   "conflict": {
-      "laravel/framework": "<8.46.0"
+      "laravel/framework": "<8.65.0"
   },
   "autoload": {
     "psr-4": {
@@ -97,7 +97,7 @@
   "suggest": {
     "orchid/crud": "Automated CRUD based on your files resources.",
     "orchid/fortify": "Orchid template for Laravel Fortify."
-  },  
+  },
   "config": {
     "sort-packages": true
   }

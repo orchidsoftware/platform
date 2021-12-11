@@ -4,30 +4,26 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Components;
 
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 use Illuminate\View\Component;
 use Orchid\Platform\Notifications\DashboardMessage;
 
 class Notification extends Component
 {
     /**
-     * @var \Illuminate\Support\Collection
+     * @var \Illuminate\Contracts\Auth\Authenticatable|null
      */
-    public $notifications;
+    public $user;
 
     /**
      * Create a new component instance.
      *
-     * @param Request $request
+     * @param \Illuminate\Contracts\Auth\Guard $guard
      */
-    public function __construct(Request $request)
+    public function __construct(Guard $guard)
     {
-        $this->notifications = $request->user()
-            ->unreadNotifications()
-            ->where('type', DashboardMessage::class)
-            ->limit(15)
-            ->get();
+        $this->user = $guard->user();
     }
 
     /**
@@ -37,7 +33,15 @@ class Notification extends Component
      */
     public function render()
     {
-        return view('platform::components.notification');
+        $notifications = $this->user
+            ->unreadNotifications()
+            ->where('type', DashboardMessage::class)
+            ->limit(15)
+            ->get();
+
+        return view('platform::components.notification', [
+            'notifications' => $notifications,
+        ]);
     }
 
     /**

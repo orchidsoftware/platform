@@ -211,9 +211,9 @@ abstract class Layout implements JsonSerializable
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         $props = collect(get_object_vars($this));
 

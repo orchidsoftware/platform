@@ -14,11 +14,12 @@
 >
 
     <div class="table-responsive">
-        <table class="table
-            @if($striped) table-striped @endif
-            @if($bordered) table-bordered @endif
-            @if($hoverable) table-hover @endif
-        ">
+        <table @class([
+                    'table',
+                    'table-striped'  => $striped,
+                    'table-bordered' => $bordered,
+                    'table-hover'    => $hoverable,
+               ])>
             <thead>
                 <tr>
                     @foreach($columns as $column)
@@ -48,27 +49,27 @@
         </table>
     </div>
 
-    @if(($rows instanceof \Illuminate\Contracts\Pagination\Paginator || $rows instanceof \Illuminate\Contracts\Pagination\CursorPaginator || $rows instanceof \Illuminate\Support\Collection) && $rows->isEmpty())
+    @if($rows->isEmpty())
         <div class="text-center py-5 w-100">
             <h3 class="fw-light">
                 @isset($iconNotFound)
                     <x-orchid-icon :path="$iconNotFound" class="block m-b"/>
                 @endisset
 
-
                 {!!  $textNotFound !!}
             </h3>
 
             {!! $subNotFound !!}
         </div>
-    @endif
+    @else
 
-    @includeWhen(($rows instanceof \Illuminate\Contracts\Pagination\Paginator || $rows instanceof \Illuminate\Contracts\Pagination\CursorPaginator) && $rows->isNotEmpty(),
-        'platform::layouts.pagination',[
-            'paginator' => $rows,
-            'columns' => $columns,
-            'onEachSide' => $onEachSide,
+        @include('platform::layouts.pagination',[
+                'paginator' => $rows,
+                'columns' => $columns,
+                'onEachSide' => $onEachSide,
         ])
+
+    @endif
 </div>
 
 
