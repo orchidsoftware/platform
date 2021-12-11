@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use Orchid\Screen\Concerns\ComplexFieldConcern;
 use Orchid\Screen\Fields\DateRange;
 use Orchid\Screen\Fields\DateTimer;
 use Orchid\Screen\Fields\Input;
@@ -92,7 +93,7 @@ class TD extends Cell
      *
      * @return TD
      */
-    public function filterOptions(array $filterOptions): self
+    public function filterOptions(iterable $filterOptions): self
     {
         $this->filterOptions = $filterOptions;
         
@@ -104,7 +105,7 @@ class TD extends Cell
      *
      * @return TD
      */
-    public function filter($filter = self::FILTER_TEXT, array $options = null): self
+    public function filter($filter = self::FILTER_TEXT, iterable $options = null): self
     {
         if ($options) {
             $this->filterOptions($options);
@@ -360,7 +361,7 @@ class TD extends Cell
      */
     protected function isComplexFieldType(Field $filter): bool
     {
-        return $filter instanceof Select || $filter instanceof NumberRange || $filter instanceof DateRange;
+        return $filter instanceof ComplexFieldConcern;
     }
     
     protected function buildFilterString(): string

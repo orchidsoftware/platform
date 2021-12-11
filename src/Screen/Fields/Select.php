@@ -6,6 +6,7 @@ namespace Orchid\Screen\Fields;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Screen\Concerns\ComplexFieldConcern;
 use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
 
@@ -26,7 +27,7 @@ use Orchid\Screen\Field;
  * @method Select title(string $value = null)
  * @method Select maximumSelectionLength(int $value = 0)
  */
-class Select extends Field
+class Select extends Field implements ComplexFieldConcern
 {
     use Multipliable;
 
