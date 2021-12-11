@@ -364,10 +364,9 @@ class TD extends Cell
         return $filter instanceof ComplexFieldConcern;
     }
     
-    protected function buildFilterString(): string
+    protected function buildFilterString(): ?string
     {
         $filter = get_filter($this->column);
-        
         if (is_array($filter)) {
             if (isset($filter['start']) || isset($filter['end'])) {
                 return ($filter['start'] ?? "") . ' - ' . ($filter['end'] ?? "");
