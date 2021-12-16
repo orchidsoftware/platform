@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\Feature\Platform;
 
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Testing\TestResponse;
 use Orchid\Platform\Models\User;
 use Orchid\Tests\App\EmptyUserModel;
@@ -138,5 +139,37 @@ class RelationsTest extends TestFeatureCase
         $response->assertJson([
             $user->id => $user->name.' ('.$user->email.')',
         ]);
+    }
+
+    public function testSearchColumnsWithScopes()
+    {
+        $user = $this->users->random();
+        $params = [
+            'search'        => $user->email,
+            'model'         => Crypt::encryptString(EmptyUserModel::class),
+            'name'          => Crypt::encryptString('email'),
+            'key'           => Crypt::encryptString('id'),
+            'searchColumns' => Crypt::encrypt(['id']),
+            'scope' => Crypt::encrypt([
+                'name' => 'asBuilder',
+                'parameters' => [],
+            ]),
+            'append'        => Crypt::encryptString('full'),
+        ];
+
+        DB::enableQueryLog();
+
+        $response = $this
+            ->actingAs($this->createAdminUser())
+            ->post(route('platform.systems.relation'), $params);
+
+        $queryLog = DB::getQueryLog();
+        $latest_query = array_pop($queryLog);
+
+        $response->assertJson([
+            $user->id => $user->name.' ('.$user->email.')',
+        ]);
+
+        $this->assertContains('select * from "users" where "name" = ? and ("email" like ? or "id" like ?) limit 10', $latest_query);
     }
 }
