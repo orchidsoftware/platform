@@ -12,6 +12,7 @@ use Orchid\Support\Init;
 /**
  * Class Picture.
  *
+ * @method Picture acceptedFiles(string $value = null)
  * @method Picture name(string $value = null)
  * @method Picture required(bool $value = true)
  * @method Picture size($value = true)
@@ -37,10 +38,11 @@ class Picture extends Field
      * @var array
      */
     protected $attributes = [
-        'value'       => null,
-        'target'      => 'url',
-        'url'         => null,
-        'maxFileSize' => null,
+        'value'         => null,
+        'target'        => 'url',
+        'url'           => null,
+        'maxFileSize'   => null,
+        'acceptedFiles'  => 'image/*',
     ];
 
     /**
