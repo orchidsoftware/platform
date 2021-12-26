@@ -37,6 +37,7 @@ abstract class Block extends Layout
     public function __construct(array $layouts = [])
     {
         $this->layouts = $layouts;
+        $this->variables['vertical'] = false;
     }
 
     /**
@@ -83,6 +84,20 @@ abstract class Block extends Layout
     public function description($description): self
     {
         $this->variables['description'] = $description;
+
+        return $this;
+    }
+    
+    /**
+     * Used to define block orientation.
+     *
+     * @param string|\Illuminate\View\View vertical
+     *
+     * @return Block
+     */
+    public function vertical($vertical = true): self
+    {
+        $this->variables['vertical'] = $vertical;
 
         return $this;
     }
