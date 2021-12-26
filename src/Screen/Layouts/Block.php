@@ -91,11 +91,11 @@ abstract class Block extends Layout
     /**
      * Used to define block orientation.
      *
-     * @param string|\Illuminate\View\View vertical
+     * @param bool|\Illuminate\View\View vertical
      *
      * @return Block
      */
-    public function vertical($vertical = true): self
+    public function vertical($vertical): self
     {
         $this->variables['vertical'] = $vertical;
 
