@@ -8,7 +8,6 @@ namespace Orchid\Screen\Fields;
  * Class Cropper.
  *
  * @method Cropper accept($value = true)
- * @method Picture acceptedFiles(string $value = null)
  * @method Cropper accesskey($value = true)
  * @method Cropper autofocus($value = true)
  * @method Cropper disabled($value = true)
@@ -67,8 +66,7 @@ class Cropper extends Picture
      * @var array
      */
     protected $inlineAttributes = [
-        '
-        @method Picture acceptedFiles(string $value = null)
+        'accept',
         'accesskey',
         'autofocus',
         'disabled',
