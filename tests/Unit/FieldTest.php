@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Session;
 use Orchid\Screen\Field;
 use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Code;
@@ -193,5 +194,31 @@ class FieldTest extends TestUnitCase
         $this->assertInstanceOf(View::class, $view);
         $this->assertStringContainsString('testError', $html);
         $this->assertStringContainsString('parent[child][grandchild][]', $html);
+    }
+
+    public function testIntegerOldName(): void
+    {
+        Session::start();
+
+        Session::put('_old_input', [
+            'numeric' => "1",
+        ]);
+
+        request()->setLaravelSession(session());
+
+        $this->assertSame(1, Input::make('numeric')->getOldValue());
+    }
+
+    public function testFloatOldName(): void
+    {
+        Session::start();
+
+        Session::put('_old_input', [
+            'numeric' => "1.1",
+        ]);
+
+        request()->setLaravelSession(session());
+
+        $this->assertSame(1.1, Input::make('numeric')->getOldValue());
     }
 }
