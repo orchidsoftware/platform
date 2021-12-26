@@ -91,7 +91,7 @@ abstract class Block extends Layout
     /**
      * Used to define block orientation.
      *
-     * @param bool|\Illuminate\View\View vertical
+     * @param bool $vertical
      *
      * @return Block
      */
