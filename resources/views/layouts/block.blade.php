@@ -8,7 +8,7 @@
             </p>
         </legend>
     </div>
-    <div class="col-12 {{$vertical ? 'col-md-12' : 'col-md-7'}} shadow-sm">
+    <div class="col-12 {{!$vertical ? 'col-md-7' : ''}} shadow-sm">
 
         <div class="bg-white d-flex flex-column layout-wrapper {{ empty($commandBar) ? 'rounded' : 'rounded-top' }}">
             @foreach($manyForms as $key => $layouts)
