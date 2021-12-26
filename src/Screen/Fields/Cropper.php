@@ -57,7 +57,7 @@ class Cropper extends Picture
         'maxHeight'      => 'Infinity',
         'maxFileSize'    => null,
         'staticBackdrop' => false,
-        'acceptedFiles'  => null,
+        'acceptedFiles'  => 'image/*',
     ];
 
     /**

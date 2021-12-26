@@ -42,7 +42,7 @@ class Picture extends Field
         'target'        => 'url',
         'url'           => null,
         'maxFileSize'   => null,
-        'acceptedFiles' => null,
+        'acceptedFiles'  => 'image/*',
     ];
 
     /**
