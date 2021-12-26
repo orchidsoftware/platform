@@ -107,8 +107,8 @@ export default class extends ApplicationController {
      * @param event
      */
     clearFilter(event) {
-        const {filter} = event.target.dataset;
-        document.querySelector(`input[name='filter[${filter}]']`).value = '';
+        const {filter} = event.currentTarget.dataset;
+        document.querySelector(`[name='filter[${filter}]']`).value = '';
 
         this.element.remove();
         this.setAllFilter();
