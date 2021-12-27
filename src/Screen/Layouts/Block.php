@@ -22,11 +22,11 @@ abstract class Block extends Layout
      */
     protected $template = 'platform::layouts.block';
     
-     /**
-     * @var false[] 
-     */
+    /**
+    * @var false[]
+    */
     protected $variables = [
-        'vertical' => false
+        'vertical' => false,
     ];
 
     /**
