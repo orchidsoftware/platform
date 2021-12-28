@@ -115,7 +115,8 @@
                         </div>
                 </div>
             </div>
-
+            
+            @if($media)
             <div class="media modal fade enter-scale disable-scroll" tabindex="-1" role="dialog" aria-hidden="false">
                 <div class="modal-dialog modal-fullscreen-md-down slide-up">
                     <div class="modal-content">
@@ -153,6 +154,7 @@
                         </div>
                 </div>
             </div>
+            @endif
 
 
             <template id="dropzone-{{$id}}-remove-button">
