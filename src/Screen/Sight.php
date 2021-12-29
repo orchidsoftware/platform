@@ -31,7 +31,7 @@ class Sight extends Cell
      *
      * @return string|null
      */
-    public function buildDd($repository): ?string
+    public function buildDd($repository)
     {
         $value = $this->render
             ? $this->handler($repository)
