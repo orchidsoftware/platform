@@ -7,15 +7,13 @@ namespace Orchid\Screen;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\ImplicitRouteBinding;
-use Illuminate\Routing\RouteDependencyResolverTrait;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Screen\Resolvers\ScreenDependencyResolver;
 use Orchid\Support\Facades\Dashboard;
-use ReflectionClass;
-use ReflectionException;
 use Throwable;
 
 /**
@@ -23,7 +21,7 @@ use Throwable;
  */
 abstract class Screen extends Controller
 {
-    use Commander, RouteDependencyResolverTrait;
+    use Commander;
 
     /**
      * The number of predefined arguments in the route.
@@ -76,9 +74,9 @@ abstract class Screen extends Controller
     abstract public function layout(): iterable;
 
     /**
+     * @return View
      * @throws Throwable
      *
-     * @return View
      */
     public function build()
     {
@@ -91,9 +89,9 @@ abstract class Screen extends Controller
      * @param string $method
      * @param string $slug
      *
+     * @return View
      * @throws Throwable
      *
-     * @return View
      */
     public function asyncBuild(string $method, string $slug)
     {
@@ -124,9 +122,8 @@ abstract class Screen extends Controller
     /**
      * @param array $httpQueryArguments
      *
-     * @throws ReflectionException
-     *
      * @return Factory|\Illuminate\View\View
+     * @throws \Throwable
      */
     public function view(array $httpQueryArguments = [])
     {
@@ -146,10 +143,9 @@ abstract class Screen extends Controller
     /**
      * @param mixed ...$parameters
      *
-     * @throws Throwable
-     * @throws ReflectionException
-     *
      * @return Factory|View|\Illuminate\View\View|mixed
+     * @throws Throwable
+     *
      */
     public function handle(...$parameters)
     {
@@ -162,72 +158,25 @@ abstract class Screen extends Controller
 
         $method = Route::current()->parameter('method', Arr::last($parameters));
 
-        $parameters = array_diff(
-            $parameters,
-            [$method]
-        );
+        $prepare = collect($parameters)
+            ->merge(request()->query())
+            ->diff($method)
+            ->all();
 
-        $query = request()->query();
-        $query = ! is_array($query) ? [] : $query;
-
-        $parameters = array_filter($parameters);
-        $parameters = array_merge($query, $parameters);
-
-        $response = $this->callMethod($method, $parameters);
-
-        return $response ?? back();
+        return $this->callMethod($method, $prepare) ?? back();
     }
 
     /**
      * @param string $method
      * @param array  $httpQueryArguments
      *
-     * @throws ReflectionException
-     *
      * @return array
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \ReflectionException
      */
-    private function reflectionParams(string $method, array $httpQueryArguments = []): array
+    protected function resolveDependencies(string $method, array $httpQueryArguments = []): array
     {
-        if (! is_string($method)) {
-            return [];
-        }
-
-        $class = new ReflectionClass($this);
-
-        if (!$class->hasMethod($method) || !$class->getMethod($method)->isPublic()) {
-            return [];
-        }
-
-        $this->container = app();
-
-        $route = Route::current();
-
-        if($route === null){
-            return [];
-        }
-
-        collect($httpQueryArguments)->except([])
-            ->each(function ($value, $key) use ($route) {
-                $route->setParameter($key, $value);
-            });
-
-        // This is normally handled in the "SubstituteBindings" middleware, but
-        // because that middleware has already ran, we need to run them again.
-        $this->container['router']->substituteImplicitBindings($route);
-
-        // We'll set the route action to be from the parameter method from the chosen
-        // Screen to get the proper implicit bindings.
-        $route->uses(get_class($this).'@'.$method);
-
-        ImplicitRouteBinding::resolveForRoute($this->container, Route::current());
-
-        $parameters = $this->resolveClassMethodDependencies($route->parameters, $this, $method);
-
-        return collect($parameters)->except([
-            'screen',
-            'method',
-            'template',
-        ])->values()->all();
+        return app()->make(ScreenDependencyResolver::class)->resolveScreen($this, $method, $httpQueryArguments);
     }
 
     /**
@@ -258,9 +207,9 @@ abstract class Screen extends Controller
      *
      * @param array $httpQueryArguments
      *
-     *@throws ReflectionException
-     *
      * @return Factory|RedirectResponse|\Illuminate\View\View
+     * @throws \ReflectionException
+     * @throws \Throwable
      */
     protected function redirectOnGetMethodCallOrShowView(array $httpQueryArguments)
     {
@@ -280,14 +229,12 @@ abstract class Screen extends Controller
      * @param string $method
      * @param array  $parameters
      *
-     * @throws ReflectionException
-     *
      * @return mixed
      */
     private function callMethod(string $method, array $parameters = [])
     {
         return call_user_func_array([$this, $method],
-            $this->reflectionParams($method, $parameters)
+            $this->resolveDependencies($method, $parameters)
         );
     }
 
@@ -295,14 +242,26 @@ abstract class Screen extends Controller
      * Get can transfer to the screen only
      * user-created methods available in it.
      *
-     * @array
+     * @return Collection
      */
-    public static function getAvailableMethods(): array
+    public static function getAvailableMethods(): Collection
     {
-        return array_diff(
-            get_class_methods(static::class), // Custom methods
-            get_class_methods(self::class),   // Basic methods
-            ['query']                                   // Except methods
-        );
+        $class = (new \ReflectionClass(static::class))
+            ->getMethods(\ReflectionMethod::IS_PUBLIC);
+
+        return collect($class)
+            ->mapWithKeys(function (\ReflectionMethod $method) {
+                return [$method->name => $method];
+            })
+            ->except(get_class_methods(Screen::class))
+            ->except(['query'])
+            ->whenEmpty(function () {
+                  /*
+                   * Route filtering requires at least one element to be present.
+                   * We set __invoke by default, since it must be public.
+                   */
+                return collect('__invoke');
+            })
+            ->keys();
     }
 }
