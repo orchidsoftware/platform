@@ -484,7 +484,7 @@ class Field implements Fieldable, Htmlable
     /**
      * @return array
      */
-    private function getErrorsMessage()
+    private function getErrorsMessage(): array
     {
         $errors = session()->get('errors', new MessageBag());
 

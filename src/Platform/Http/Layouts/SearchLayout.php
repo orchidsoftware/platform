@@ -16,8 +16,6 @@ use Throwable;
 class SearchLayout extends Rows
 {
     /**
-     * @param Repository $query
-     *
      * @return bool
      */
     public function isSee(): bool

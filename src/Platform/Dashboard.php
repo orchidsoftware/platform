@@ -114,7 +114,7 @@ class Dashboard
      *
      * @return void
      */
-    public static function configure(array $options)
+    public static function configure(array $options): void
     {
         static::$options = $options;
     }
@@ -164,7 +164,7 @@ class Dashboard
      * @param string $key
      * @param string $custom
      */
-    public static function useModel(string $key, string $custom)
+    public static function useModel(string $key, string $custom): void
     {
         static::$options['models'][$key] = $custom;
     }
