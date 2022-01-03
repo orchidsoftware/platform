@@ -50,9 +50,10 @@ class HttpFilter
     {
         $this->request = $request ?? request();
 
-        $this->filters = collect($this->request->get('filter', []))->map(function ($item) {
+        $this->filters = $this->request->collect('filter')->map(function ($item) {
             return $this->parseHttpValue($item);
         });
+        
         $this->sorts = collect($this->request->get('sort', []));
     }
 

@@ -39,7 +39,7 @@ class AttachmentController extends Controller
      *
      * @return JsonResponse
      */
-    public function upload(Request $request)
+    public function upload(Request $request): JsonResponse
     {
         $attachment = collect($request->allFiles())
             ->flatten()
@@ -55,7 +55,7 @@ class AttachmentController extends Controller
     /**
      * @param Request $request
      */
-    public function sort(Request $request)
+    public function sort(Request $request): void
     {
         collect($request->get('files', []))
             ->each(function ($sort, $id) {
@@ -71,7 +71,7 @@ class AttachmentController extends Controller
      * @param string  $id
      * @param Request $request
      */
-    public function destroy(string $id, Request $request)
+    public function destroy(string $id, Request $request): void
     {
         $storage = $request->get('storage', 'public');
         $this->attachment->findOrFail($id)->delete($storage);
@@ -120,7 +120,7 @@ class AttachmentController extends Controller
     /**
      * @return JsonResponse
      */
-    public function media()
+    public function media(): JsonResponse
     {
         $attachments = $this->attachment->filters()->limit(20)->get();
 

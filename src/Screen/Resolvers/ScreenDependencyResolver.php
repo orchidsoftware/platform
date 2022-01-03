@@ -13,9 +13,9 @@ use ReflectionClass;
 class ScreenDependencyResolver
 {
     /**
-     * @param object $instance
-     * @param string $method
-     * @param array  $httpQueryArguments
+     * @param \Orchid\Screen\Screen $screen
+     * @param string                $method
+     * @param array                 $httpQueryArguments
      *
      * @return array
      * @throws \ReflectionException

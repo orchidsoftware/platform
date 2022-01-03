@@ -146,9 +146,8 @@ abstract class Cell
     /**
      * Pass the entire string to the component
      *
-     * @param string      $component
-     * @param string|null $name
-     * @param array       $params
+     * @param string $component
+     * @param array  $params
      *
      * @return $this
      */
