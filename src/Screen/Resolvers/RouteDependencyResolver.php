@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Resolvers;
 
+use Illuminate\Container\Container;
 use Illuminate\Routing\ImplicitRouteBinding;
 use Illuminate\Routing\RouteDependencyResolverTrait;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Container\Container;
 use Orchid\Screen\Screen;
 
 class RouteDependencyResolver
@@ -81,6 +81,6 @@ class RouteDependencyResolver
     {
         $class = new \ReflectionClass($screen);
 
-        return !$class->hasMethod($method) || !$class->getMethod($method)->isPublic();
+        return ! $class->hasMethod($method) || ! $class->getMethod($method)->isPublic();
     }
 }

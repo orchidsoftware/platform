@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
 use Orchid\Screen\Screen;
-use ReflectionParameter;
 use ReflectionClass;
+use ReflectionParameter;
 
 class ScreenDependencyResolver
 {
@@ -17,8 +17,9 @@ class ScreenDependencyResolver
      * @param string                $method
      * @param array                 $httpQueryArguments
      *
-     * @return array
      * @throws \ReflectionException
+     *
+     * @return array
      */
     public function resolveScreen(Screen $screen, string $method, array $httpQueryArguments = []): array
     {
@@ -33,7 +34,6 @@ class ScreenDependencyResolver
             ->all();
     }
 
-
     /**
      * It takes the serial number of the argument and the required parameter.
      * To convert to object.
@@ -41,12 +41,13 @@ class ScreenDependencyResolver
      * @param ReflectionParameter            $parameter
      * @param \Illuminate\Support\Collection $httpQueryArguments
      *
-     * @return mixed
      * @throws \Throwable
+     *
+     * @return mixed
      */
     private function bind(ReflectionParameter $parameter, Collection $httpQueryArguments)
     {
-        $class = $parameter->getType() && !$parameter->getType()->isBuiltin()
+        $class = $parameter->getType() && ! $parameter->getType()->isBuiltin()
             ? $parameter->getType()->getName()
             : null;
 
@@ -57,7 +58,7 @@ class ScreenDependencyResolver
 
         $instance = resolve($class);
 
-        if (!is_a($instance, UrlRoutable::class)) {
+        if (! is_a($instance, UrlRoutable::class)) {
             return $instance;
         }
 
@@ -70,7 +71,7 @@ class ScreenDependencyResolver
         $model = $instance->resolveRouteBinding($value);
 
         throw_if(
-            $model === null && !$parameter->isDefaultValueAvailable(),
+            $model === null && ! $parameter->isDefaultValueAvailable(),
             (new ModelNotFoundException())->setModel($class, [$value])
         );
 

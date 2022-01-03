@@ -83,7 +83,7 @@ class UserListScreen extends Screen
     }
 
     /**
-     * @param  User  $user
+     * @param User $user
      *
      * @return array
      */
@@ -95,8 +95,8 @@ class UserListScreen extends Screen
     }
 
     /**
-     * @param  Request  $request
-     * @param  User     $user
+     * @param Request $request
+     * @param User    $user
      */
     public function saveUser(Request $request, User $user): void
     {
@@ -113,7 +113,7 @@ class UserListScreen extends Screen
     }
 
     /**
-     * @param  Request  $request
+     * @param Request $request
      */
     public function remove(Request $request): void
     {

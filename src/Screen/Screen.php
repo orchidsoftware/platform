@@ -74,8 +74,9 @@ abstract class Screen extends Controller
     abstract public function layout(): iterable;
 
     /**
-     * @return View
      * @throws Throwable
+     *
+     * @return View
      *
      */
     public function build()
@@ -89,8 +90,9 @@ abstract class Screen extends Controller
      * @param string $method
      * @param string $slug
      *
-     * @return View
      * @throws Throwable
+     *
+     * @return View
      *
      */
     public function asyncBuild(string $method, string $slug)
@@ -122,8 +124,9 @@ abstract class Screen extends Controller
     /**
      * @param array $httpQueryArguments
      *
-     * @return Factory|\Illuminate\View\View
      * @throws \Throwable
+     *
+     * @return Factory|\Illuminate\View\View
      */
     public function view(array $httpQueryArguments = [])
     {
@@ -143,8 +146,9 @@ abstract class Screen extends Controller
     /**
      * @param mixed ...$parameters
      *
-     * @return Factory|View|\Illuminate\View\View|mixed
      * @throws Throwable
+     *
+     * @return Factory|View|\Illuminate\View\View|mixed
      *
      */
     public function handle(...$parameters)
@@ -170,9 +174,10 @@ abstract class Screen extends Controller
      * @param string $method
      * @param array  $httpQueryArguments
      *
-     * @return array
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \ReflectionException
+     *
+     * @return array
      */
     protected function resolveDependencies(string $method, array $httpQueryArguments = []): array
     {
@@ -207,9 +212,10 @@ abstract class Screen extends Controller
      *
      * @param array $httpQueryArguments
      *
-     * @return Factory|RedirectResponse|\Illuminate\View\View
      * @throws \ReflectionException
      * @throws \Throwable
+     *
+     * @return Factory|RedirectResponse|\Illuminate\View\View
      */
     protected function redirectOnGetMethodCallOrShowView(array $httpQueryArguments)
     {
@@ -256,10 +262,10 @@ abstract class Screen extends Controller
             ->except(get_class_methods(Screen::class))
             ->except(['query'])
             ->whenEmpty(function () {
-                  /*
-                   * Route filtering requires at least one element to be present.
-                   * We set __invoke by default, since it must be public.
-                   */
+                /*
+                 * Route filtering requires at least one element to be present.
+                 * We set __invoke by default, since it must be public.
+                 */
                 return collect('__invoke');
             })
             ->keys();
