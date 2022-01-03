@@ -100,8 +100,8 @@ class RoleEditScreen extends Screen
     }
 
     /**
-     * @param  Request  $request
-     * @param  Role     $role
+     * @param Request $request
+     * @param Role    $role
      *
      * @return \Illuminate\Http\RedirectResponse
      */
