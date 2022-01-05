@@ -17,9 +17,12 @@ class ExampleCardsScreen extends Screen
     /**
      * Display header name.
      *
-     * @var string
+     * @return string|null
      */
-    public $name = 'Cards';
+    public function name(): ?string
+    {
+        return 'Cards';
+    }
 
     /**
      * Query data.
@@ -46,10 +49,9 @@ class ExampleCardsScreen extends Screen
     /**
      * Views.
      *
-     * @throws \Throwable
-     *
      * @return array
      *
+     * @throws \Throwable
      */
     public function layout(): iterable
     {

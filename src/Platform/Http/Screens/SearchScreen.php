@@ -24,23 +24,12 @@ class SearchScreen extends Screen
     /**
      * Display header name.
      *
-     * @var string
+     * @return string|null
      */
-    public $name = 'Searching results';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description;
-
-    /**
-     * Count of items found.
-     *
-     * @var int
-     */
-    private $total = 0;
+    public function name(): ?string
+    {
+        return __('Searching results');
+    }
 
     /**
      * Query data.
@@ -119,10 +108,11 @@ class SearchScreen extends Screen
      */
     public function compact(string $query = null)
     {
+        $total = 0;
 
         /** @var Searchable[] $results */
         $results = Dashboard::getSearch()
-            ->transform(function (Model $model) use ($query) {
+            ->transform(function (Model $model) use ($query, &$total) {
 
                 /** @var Searchable $presenter */
                 $presenter = optional($model)->presenter();
@@ -146,7 +136,7 @@ class SearchScreen extends Screen
                     return;
                 }
 
-                $this->total += $result->total();
+                $total += $result->total();
 
                 return compact('label', 'result');
             })
@@ -154,7 +144,7 @@ class SearchScreen extends Screen
 
         return view('platform::partials.result-compact', [
             'results' => $results,
-            'total'   => $this->total,
+            'total'   => $total,
             'query'   => $query,
         ]);
     }
