@@ -33,23 +33,34 @@ abstract class Screen extends Controller
     /**
      * Display header name.
      *
-     * @var string
+     * @return string|null
      */
-    public $name;
+    public function name(): ?string
+    {
+        return $this->name ?? null;
+    }
 
     /**
      * Display header description.
      *
-     * @var string
+     * @return string|null
      */
-    public $description;
+    public function description(): ?string
+    {
+        return $this->description ?? null;
+    }
 
     /**
-     * Permission.
+     * Permission
      *
-     * @var string|array
+     * @return iterable|null
      */
-    public $permission;
+    public function permission(): ?iterable
+    {
+        return isset($this->permission)
+            ? Arr::wrap($this->permission)
+            : null;
+    }
 
     /**
      * @var Repository
@@ -74,16 +85,15 @@ abstract class Screen extends Controller
     abstract public function layout(): iterable;
 
     /**
-     * @throws Throwable
+     * @param \Orchid\Screen\Repository $repository
      *
      * @return View
-     *
      */
-    public function build()
+    public function build(Repository $repository)
     {
         return LayoutFactory::blank([
             $this->layout(),
-        ])->build($this->source);
+        ])->build($repository);
     }
 
     /**
@@ -130,17 +140,48 @@ abstract class Screen extends Controller
      */
     public function view(array $httpQueryArguments = [])
     {
-        $query = $this->callMethod('query', $httpQueryArguments);
-        $this->source = new Repository($query);
-        $commandBar = $this->buildCommandBar($this->source);
+        $repository = $this->buildQueryRepository($httpQueryArguments);
 
         return view('platform::layouts.base', [
-            'name'                => $this->name,
-            'description'         => $this->description,
-            'commandBar'          => $commandBar,
-            'layouts'             => $this->build(),
+            'name'                => $this->name(),
+            'description'         => $this->description(),
+            'commandBar'          => $this->buildCommandBar($repository),
+            'layouts'             => $this->build($repository),
             'formValidateMessage' => $this->formValidateMessage(),
         ]);
+    }
+
+    /**
+     * @param array $httpQueryArguments
+     *
+     * @return \Orchid\Screen\Repository
+     */
+    protected function buildQueryRepository(array $httpQueryArguments = []): Repository
+    {
+        $query = $this->callMethod('query', $httpQueryArguments);
+
+        $this->fillPublicProperty($query);
+
+        return new Repository($query);
+    }
+
+    /**
+     * @param iterable $query
+     *
+     * @return void
+     */
+    protected function fillPublicProperty(iterable $query): void
+    {
+        $reflections = (new \ReflectionClass($this))->getProperties(\ReflectionProperty::IS_PUBLIC);
+
+        $publicProperty = collect($reflections)
+            ->map(function (\ReflectionProperty $property) {
+                return $property->getName();
+            });
+
+        collect($query)->only($publicProperty)->each(function ($value, $key) {
+            $this->$key = $value;
+        });
     }
 
     /**
@@ -149,7 +190,6 @@ abstract class Screen extends Controller
      * @throws Throwable
      *
      * @return Factory|View|\Illuminate\View\View|mixed
-     *
      */
     public function handle(...$parameters)
     {
@@ -195,7 +235,7 @@ abstract class Screen extends Controller
             return true;
         }
 
-        return $user->hasAnyAccess($this->permission);
+        return $user->hasAnyAccess($this->permission());
     }
 
     /**
@@ -236,6 +276,8 @@ abstract class Screen extends Controller
      * @param array  $parameters
      *
      * @return mixed
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \ReflectionException
      */
     private function callMethod(string $method, array $parameters = [])
     {
