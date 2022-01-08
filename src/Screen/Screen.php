@@ -275,9 +275,10 @@ abstract class Screen extends Controller
      * @param string $method
      * @param array  $parameters
      *
-     * @return mixed
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \ReflectionException
+     *
+     * @return mixed
      */
     private function callMethod(string $method, array $parameters = [])
     {
