@@ -20,7 +20,7 @@ class PublishCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Publish all of the Orchid Platform resources';
+    protected $description = 'Publish all of the Orchid resources';
 
     /**
      * Execute the console command.
