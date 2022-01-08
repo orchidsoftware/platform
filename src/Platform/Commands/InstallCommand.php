@@ -29,11 +29,9 @@ class InstallCommand extends Command
     /**
      * Execute the console command.
      *
-     * @param Dashboard $dashboard
-     *
      * @return void
      */
-    public function handle(Dashboard $dashboard)
+    public function handle()
     {
         $this->comment('Installation started. Please wait...');
         $this->info('Version: ' . Dashboard::VERSION);
