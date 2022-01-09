@@ -28,7 +28,7 @@ export default class extends ApplicationController {
         }
 
         if (event.keyCode === 13) {
-            Turbo.visit(this.prefix(`/search/${this.queryTarget.value}`));
+            Turbo.visit(this.prefix(`/search/${encodeURIComponent(this.queryTarget.value)}`));
         }
 
         this.showResultQuery(startQuery);
@@ -72,7 +72,7 @@ export default class extends ApplicationController {
             }
 
             axios
-                .post(this.prefix(`/search/${query}/compact`))
+                .post(this.prefix(`/search/${encodeURIComponent(query)}/compact`))
                 .then((response) => {
                     element.classList.add('show');
                     element.innerHTML = response.data;
