@@ -1,6 +1,5 @@
 {
-
-    "A good password is at least 15 characters or at least 8 characters long, including a number and a lowercase letter.": "تێپەڕەوشەی باش لایەنی کەم ١٥ نوسە یان ١٠ نوسەیە، هەروەها ژمارەو پیتی بچووک لەخۆدەگرێت.",
+  "A good password is at least 15 characters or at least 8 characters long, including a number and a lowercase letter.": "تێپەڕەوشەی باش لایەنی کەم ١٥ نوسە یان ١٠ نوسەیە، هەروەها ژمارەو پیتی بچووک لەخۆدەگرێت.",
   "A privilege is necessary to perform certain tasks and operations in an area.": "دەسەڵاتێک پێویستە بۆ ئەنجامدانی چەند ئەرک و کردارێک لە ناوچەیەکدا.",
   "A Role defines a set of tasks a user assigned the role is allowed to perform.": "ڕۆڵێک پێناسەی کۆمەڵە ئەرکێک دەکات کە بەکارهێنەری دیاری کراوی رۆڵەکە ڕێپێدراوە بۆ ئەنجامدان.",
   "A role is a collection of privileges (of possibly different services like the Users service, Moderator, and so on) that grants users with that role the ability to perform certain tasks or operations.": "ڕۆڵ بریتییە لە کۆکراوەی دەسەڵاتەکان (لە خزمەتگوزاری جیاواز وەک خزمەتگوزاری بەکارهێنەران، بەڕێوەبەر، هیتر) کە بە ڕۆڵانەی بەکارهێنەرەکان دەبەخشرێت کە توانای ئەنجامدانی چەند ئەرکێک یان کردارێکی دیاریکراویان هەیە.",
@@ -170,5 +169,5 @@
   "You are now impersonating this user": "تۆ ئێستا ناسنامەی ئەم بەکارهێنەرە وەردەگریت",
   "You currently have no notifications, but maybe they will appear later.": "تۆ لە ئێستادا هیچ ئاگادارینامەیەکت نیە، بەڵام لەوانەیە دواتر دەربکەون.",
   "You may have' entered an address that doesn't exist or that the link you have requested doesn't work (anymore).": "ممکن است شما آدرسی را وارد کرده اید که دیگر وجود ندارد یا پیوندی که درخواست کرده اید دیگر کار نمی کند.",
-  "You requested a page that doesn't exist.": "لاپەڕەی داواکار بوونی نیە.",
+  "You requested a page that doesn't exist.": "لاپەڕەی داواکار بوونی نیە."
 }
