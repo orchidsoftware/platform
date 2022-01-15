@@ -26,20 +26,6 @@ use Orchid\Support\Facades\Layout;
 class ExampleFieldsAdvancedScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Advanced form controls';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description = 'Examples for creating a wide variety of forms.';
-
-    /**
      * Query data.
      *
      * @return array
@@ -53,6 +39,26 @@ class ExampleFieldsAdvancedScreen extends Screen
                 'lng' => -3.6021993309259415,
             ],
         ];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Advanced form controls';
+    }
+
+    /**
+     * Display header description.
+     *
+     * @return string|null
+     */
+    public function description(): ?string
+    {
+        return 'Examples for creating a wide variety of forms.';
     }
 
     /**

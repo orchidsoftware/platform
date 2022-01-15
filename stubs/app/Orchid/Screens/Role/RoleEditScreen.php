@@ -18,28 +18,9 @@ use Orchid\Support\Facades\Toast;
 class RoleEditScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
+     * @var Role
      */
-    public $name = 'Manage roles';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description = 'Access rights';
-
-    /**
-     * @var string
-     */
-    public $permission = 'platform.systems.roles';
-
-    /**
-     * @var bool
-     */
-    private $exist = false;
+    public $role;
 
     /**
      * Query data.
@@ -50,11 +31,39 @@ class RoleEditScreen extends Screen
      */
     public function query(Role $role): iterable
     {
-        $this->exist = $role->exists;
-
         return [
             'role'       => $role,
             'permission' => $role->getStatusPermission(),
+        ];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Manage roles';
+    }
+
+    /**
+     * Display header description.
+     *
+     * @return string|null
+     */
+    public function description(): ?string
+    {
+        return 'Access rights';
+    }
+
+    /**
+     * @return iterable|null
+     */
+    public function permission(): ?iterable
+    {
+        return [
+            'platform.systems.roles'
         ];
     }
 
@@ -73,7 +82,7 @@ class RoleEditScreen extends Screen
             Button::make(__('Remove'))
                 ->icon('trash')
                 ->method('remove')
-                ->canSee($this->exist),
+                ->canSee($this->role->exists),
         ];
     }
 

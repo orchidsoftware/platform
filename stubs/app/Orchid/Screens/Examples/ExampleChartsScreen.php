@@ -12,13 +12,6 @@ use Orchid\Support\Facades\Layout;
 class ExampleChartsScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Charts';
-
-    /**
      * Query data.
      *
      * @return array
@@ -49,6 +42,16 @@ class ExampleChartsScreen extends Screen
                 ],
             ],
         ];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Charts';
     }
 
     /**

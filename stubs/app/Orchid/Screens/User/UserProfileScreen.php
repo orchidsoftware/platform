@@ -20,20 +20,6 @@ use Orchid\Support\Facades\Toast;
 class UserProfileScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'My account';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description = 'Update your account details such as name, email address and password';
-
-    /**
      * Query data.
      *
      * @param Request $request
@@ -45,6 +31,26 @@ class UserProfileScreen extends Screen
         return [
             'user' => $request->user(),
         ];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'My account';
+    }
+
+    /**
+     * Display header description.
+     *
+     * @return string|null
+     */
+    public function description(): ?string
+    {
+        return 'Update your account details such as name, email address and password';
     }
 
     /**

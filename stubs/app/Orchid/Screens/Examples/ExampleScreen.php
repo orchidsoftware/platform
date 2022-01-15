@@ -28,20 +28,6 @@ class ExampleScreen extends Screen
     erat in luctus.';
 
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Example screen';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description = 'Sample Screen Components';
-
-    /**
      * Query data.
      *
      * @return array
@@ -80,12 +66,32 @@ class ExampleScreen extends Screen
 
             ],
             'metrics' => [
-                ['keyValue' => number_format(6851, 0), 'keyDiff' => 10.08],
-                ['keyValue' => number_format(24668, 0), 'keyDiff' => -30.76],
-                ['keyValue' => number_format(10000, 0), 'keyDiff' => 0],
-                ['keyValue' => number_format(65661, 2), 'keyDiff' => 3.84],
+                'sales'    => ['value' => number_format(6851), 'diff' => 10.08],
+                'visitors' => ['value' => number_format(24668), 'diff' => -30.76],
+                'orders'   => ['value' => number_format(10000), 'diff' => 0],
+                'total'    => number_format(65661),
             ],
         ];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Example screen';
+    }
+
+    /**
+     * Display header description.
+     *
+     * @return string|null
+     */
+    public function description(): ?string
+    {
+        return 'Sample Screen Components';
     }
 
     /**
@@ -141,7 +147,12 @@ class ExampleScreen extends Screen
     public function layout(): iterable
     {
         return [
-            MetricsExample::class,
+            Layout::metrics([
+                'Sales Today'    => 'metrics.sales',
+                'Visitors Today' => 'metrics.visitors',
+                'Pending Orders' => 'metrics.orders',
+                'Total Earnings' => 'metrics.total',
+            ]),
 
             Layout::columns([
                 ChartLineExample::class,

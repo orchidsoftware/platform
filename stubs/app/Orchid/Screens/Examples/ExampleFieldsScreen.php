@@ -20,20 +20,6 @@ use Orchid\Support\Facades\Layout;
 class ExampleFieldsScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Basic form controls';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description = 'Examples for creating a wide variety of forms.';
-
-    /**
      * Query data.
      *
      * @return array
@@ -43,6 +29,26 @@ class ExampleFieldsScreen extends Screen
         return [
             'name' => 'Hello! We collected all the fields in one place',
         ];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Basic form controls';
+    }
+
+    /**
+     * Display header description.
+     *
+     * @return string|null
+     */
+    public function description(): ?string
+    {
+        return 'Examples for creating a wide variety of forms.';
     }
 
     /**
