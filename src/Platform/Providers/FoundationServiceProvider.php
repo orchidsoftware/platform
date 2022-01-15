@@ -49,7 +49,6 @@ class FoundationServiceProvider extends ServiceProvider
         ScreenCommand::class,
         TableCommand::class,
         ChartCommand::class,
-        MetricsCommand::class,
         SelectionCommand::class,
         ListenerCommand::class,
         PresenterCommand::class,

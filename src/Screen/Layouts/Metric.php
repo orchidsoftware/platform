@@ -11,7 +11,7 @@ use Orchid\Screen\Repository;
 /**
  * Class Metric.
  */
-abstract class Metric extends Layout
+class Metric extends Layout
 {
     /**
      * @var string
@@ -24,31 +24,17 @@ abstract class Metric extends Layout
     protected $title;
 
     /**
-     * Set the labels for each possible field value.
-     *
      * @var array
      */
     protected $labels = [];
 
     /**
-     * Data source.
-     *
-     * The name of the key to fetch it from the query.
-     * The results of which will be elements of the metric.
-     *
-     * @var string
+     * @param array $labels
      */
-    protected $target;
-
-    /**
-     * @var string
-     */
-    protected $keyValue = 'value';
-
-    /**
-     * @var string
-     */
-    protected $keyDiff = 'diff';
+    public function __construct(array $labels)
+    {
+        $this->labels = $labels;
+    }
 
     /**
      * @param Repository $repository
@@ -59,18 +45,29 @@ abstract class Metric extends Layout
     {
         $this->query = $repository;
 
-        if (! $this->isSee()) {
+        if (!$this->isSee() || empty($this->labels)) {
             return;
         }
 
-        $data = $repository->getContent($this->target, []);
-        $metrics = array_combine($this->labels, $data);
+        $metrics = collect($this->labels)->map(function (string $value) use ($repository) {
+            return $repository->getContent($value, []);
+        });
 
         return view($this->template, [
-            'title'    => __($this->title),
-            'metrics'  => $metrics,
-            'keyValue' => $this->keyValue,
-            'keyDiff'  => $this->keyDiff,
+            'title'   => $this->title,
+            'metrics' => $metrics,
         ]);
+    }
+
+    /**
+     * @param string $title
+     *
+     * @return $this
+     */
+    public function title(string $title): Metric
+    {
+        $this->title = $title;
+
+        return $this;
     }
 }
