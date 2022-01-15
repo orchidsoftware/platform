@@ -21,6 +21,7 @@ use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Layouts\View;
 use Orchid\Screen\Layouts\Wrapper;
+use Orchid\Screen\Layouts\Metric;
 
 /**
  * Class Layout.
@@ -39,6 +40,7 @@ use Orchid\Screen\Layouts\Wrapper;
  * @method static Block block(BaseLayout|string|string[] $layouts)
  * @method static Legend legend(string $target, array $columns)
  * @method static Browsing browsing(string $src)
+ * @method static Metric metrics(array $labels)
  */
 class Layout extends Facade
 {

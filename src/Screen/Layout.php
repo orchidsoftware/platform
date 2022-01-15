@@ -106,7 +106,6 @@ abstract class Layout implements JsonSerializable
         }
 
         $build = collect($this->layouts)
-            ->flatten()
             ->map(function ($layouts) {
                 return Arr::wrap($layouts);
             })
