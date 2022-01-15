@@ -25,7 +25,7 @@
 
                 @includeWhen(Auth::check(), 'platform::partials.profile')
 
-                <ul class="nav flex-column mb-1">
+                <ul class="nav flex-column mb-1 ps-0">
                     {!! Dashboard::renderMenu(\Orchid\Platform\Dashboard::MENU_MAIN) !!}
                 </ul>
 
