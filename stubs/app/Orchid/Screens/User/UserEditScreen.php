@@ -39,7 +39,7 @@ class UserEditScreen extends Screen
         $user->load(['roles']);
 
         return [
-            'user' => $user,
+            'user'       => $user,
             'permission' => $user->getStatusPermission(),
         ];
     }
@@ -70,7 +70,7 @@ class UserEditScreen extends Screen
     public function permission(): ?iterable
     {
         return [
-            'platform.systems.users'
+            'platform.systems.users',
         ];
     }
 
@@ -201,8 +201,9 @@ class UserEditScreen extends Screen
     /**
      * @param User $user
      *
-     * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
+     *
+     * @return \Illuminate\Http\RedirectResponse
      *
      */
     public function remove(User $user)

@@ -16,7 +16,6 @@ use Orchid\Platform\Commands\ChartCommand;
 use Orchid\Platform\Commands\FilterCommand;
 use Orchid\Platform\Commands\InstallCommand;
 use Orchid\Platform\Commands\ListenerCommand;
-use Orchid\Platform\Commands\MetricsCommand;
 use Orchid\Platform\Commands\PresenterCommand;
 use Orchid\Platform\Commands\PublishCommand;
 use Orchid\Platform\Commands\RowsCommand;

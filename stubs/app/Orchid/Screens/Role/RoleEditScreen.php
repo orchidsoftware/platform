@@ -63,7 +63,7 @@ class RoleEditScreen extends Screen
     public function permission(): ?iterable
     {
         return [
-            'platform.systems.roles'
+            'platform.systems.roles',
         ];
     }
 
