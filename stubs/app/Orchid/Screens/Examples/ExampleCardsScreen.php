@@ -15,16 +15,6 @@ use Orchid\Support\Facades\Toast;
 class ExampleCardsScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @return string|null
-     */
-    public function name(): ?string
-    {
-        return 'Cards';
-    }
-
-    /**
      * Query data.
      *
      * @return array
@@ -34,6 +24,16 @@ class ExampleCardsScreen extends Screen
         return [
             'user' => User::firstOrFail(),
         ];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Cards';
     }
 
     /**

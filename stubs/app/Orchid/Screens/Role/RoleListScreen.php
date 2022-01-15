@@ -13,25 +13,6 @@ use Orchid\Screen\Screen;
 class RoleListScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Manage roles';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description = 'Access rights';
-
-    /**
-     * @var string
-     */
-    public $permission = 'platform.systems.roles';
-
-    /**
      * Query data.
      *
      * @return array
@@ -40,6 +21,36 @@ class RoleListScreen extends Screen
     {
         return [
             'roles' => Role::filters()->defaultSort('id', 'desc')->paginate(),
+        ];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Manage roles';
+    }
+
+    /**
+     * Display header description.
+     *
+     * @return string|null
+     */
+    public function description(): ?string
+    {
+        return 'Access rights';
+    }
+
+    /**
+     * @return iterable|null
+     */
+    public function permission(): ?iterable
+    {
+        return [
+            'platform.systems.roles'
         ];
     }
 

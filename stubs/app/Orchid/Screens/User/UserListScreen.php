@@ -18,25 +18,6 @@ use Orchid\Support\Facades\Toast;
 class UserListScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Users';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description = 'All registered users';
-
-    /**
-     * @var string
-     */
-    public $permission = 'platform.systems.users';
-
-    /**
      * Query data.
      *
      * @return array
@@ -49,6 +30,36 @@ class UserListScreen extends Screen
                 ->filtersApplySelection(UserFiltersLayout::class)
                 ->defaultSort('id', 'desc')
                 ->paginate(),
+        ];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'User';
+    }
+
+    /**
+     * Display header description.
+     *
+     * @return string|null
+     */
+    public function description(): ?string
+    {
+        return 'All registered users';
+    }
+
+    /**
+     * @return iterable|null
+     */
+    public function permission(): ?iterable
+    {
+        return [
+            'platform.systems.users'
         ];
     }
 

@@ -11,20 +11,6 @@ use Orchid\Support\Facades\Layout;
 class PlatformScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Get Started';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description = 'Welcome to your Orchid application.';
-
-    /**
      * Query data.
      *
      * @return array
@@ -32,6 +18,26 @@ class PlatformScreen extends Screen
     public function query(): iterable
     {
         return [];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Get Started';
+    }
+
+    /**
+     * Display header description.
+     *
+     * @return string|null
+     */
+    public function description(): ?string
+    {
+        return 'Welcome to your Orchid application.';
     }
 
     /**

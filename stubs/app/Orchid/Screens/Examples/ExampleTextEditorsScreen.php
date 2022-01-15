@@ -13,20 +13,6 @@ use Orchid\Support\Facades\Layout;
 class ExampleTextEditorsScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Form Text Editors';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description = 'Examples for creating a wide variety of forms.';
-
-    /**
      * Query data.
      *
      * @return array
@@ -38,6 +24,26 @@ class ExampleTextEditorsScreen extends Screen
             'simplemde' => '# Big header',
             'code'      => Str::limit(file_get_contents(__FILE__), 500),
         ];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Form Text Editors';
+    }
+
+    /**
+     * Display header description.
+     *
+     * @return string|null
+     */
+    public function description(): ?string
+    {
+        return 'Examples for creating a wide variety of forms.';
     }
 
     /**
