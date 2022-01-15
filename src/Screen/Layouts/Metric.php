@@ -45,7 +45,7 @@ class Metric extends Layout
     {
         $this->query = $repository;
 
-        if (!$this->isSee() || empty($this->labels)) {
+        if (! $this->isSee() || empty($this->labels)) {
             return;
         }
 
