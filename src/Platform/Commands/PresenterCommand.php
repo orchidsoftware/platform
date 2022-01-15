@@ -21,7 +21,7 @@ class PresenterCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $description = 'Create a new Presenter class';
+    protected $description = 'Create a new presenter class';
 
     /**
      * The type of class being generated.
