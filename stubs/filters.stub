@@ -9,13 +9,6 @@ use Orchid\Screen\Field;
 class DummyClass extends Filter
 {
     /**
-     * The array of matched parameters.
-     *
-     * @var null|array
-     */
-    public $parameters = [];
-
-    /**
      * The displayable name of the filter.
      *
      * @return string
@@ -23,6 +16,16 @@ class DummyClass extends Filter
     public function name(): string
     {
         return '';
+    }
+
+    /**
+     * The array of matched parameters.
+     *
+     * @return array|null
+     */
+    public function parameters(): ?array
+    {
+        return [];
     }
 
     /**
