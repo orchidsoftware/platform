@@ -151,7 +151,7 @@
                                         
                                         <div class="row">
                                             <div class="col-12">
-                                                <button class="btn btn-default"
+                                                <button class="btn btn-default ms-3"
                                                         data-upload-target="loadmore"
                                                         data-action="click->upload#loadMore">Load more</button>
                                             </div>
