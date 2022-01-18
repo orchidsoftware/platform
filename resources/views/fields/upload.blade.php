@@ -153,8 +153,7 @@
                                             <div class="col-12">
                                                 <button class="btn btn-default"
                                                         data-upload-target="loadmore"
-                                                        data-action="click->upload#loadMore"
-                                                        data-index="1">Load more</button>
+                                                        data-action="click->upload#loadMore">Load more</button>
                                             </div>
                                         </div>
                                         
