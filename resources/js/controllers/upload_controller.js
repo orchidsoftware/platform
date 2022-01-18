@@ -16,6 +16,7 @@ export default class extends ApplicationController {
         'alt',
         'description',
         'url',
+        'loadmore',
     ];
 
     /**
@@ -30,6 +31,7 @@ export default class extends ApplicationController {
 
     initialize() {
         this.loadMedia = debounce(this.loadMedia, 500);
+        this.page = 1
     }
 
     /**
@@ -343,7 +345,16 @@ export default class extends ApplicationController {
     /**
      *
      */
-    loadMedia() {
+    loadMore(event) {
+        event.preventDefault();
+        this.page++;
+        this.loadMedia();
+    }
+
+    /**
+     *
+     */
+    loadMedia(event) {
         const self = this;
         const CancelToken = axios.CancelToken;
 
@@ -352,8 +363,16 @@ export default class extends ApplicationController {
         }
         $(this.dropname).find(`.media.modal`).modal('show');
 
+        // If event is undefined then it's clicked loadMore, else it's search
+        let append = false;
+        if (typeof event === 'undefined') {
+            append = true; // Set to append
+        } else {
+            this.page = 1; // Reset page
+        }
+
         axios
-            .post(this.prefix('/systems/media'), {
+            .post(this.prefix(`/systems/media?page=${this.page}`), {
                 filter: {
                     disk: this.data.get('storage'),
                     original_name: this.searchTarget.value,
@@ -364,15 +383,17 @@ export default class extends ApplicationController {
                 }),
             })
             .then((response) => {
-                this.mediaList = response.data;
-                this.renderMedia();
+                this.mediaList = response.data.data;
+                // show/hide load more
+                this.loadmoreTarget.classList.toggle('d-none', response.data.last_page === this.page);
+                this.renderMedia(append);
             });
     }
 
     /**
      *
      */
-    renderMedia() {
+    renderMedia(append = false) {
         let html = '';
 
         /** todo: */
@@ -387,7 +408,10 @@ export default class extends ApplicationController {
                 '</div>';
         });
 
-        $(this.dropname).find(`.media-results`).html(html);
+        // If event is undefined then it's clicked loadMore, else it's search
+        if (append) $(this.dropname).find(`.media-results`).append(html);
+        else $(this.dropname).find(`.media-results`).html(html);
+
         $(this.dropname).find(`.media-loader`).hide();
         $(this.dropname).find(`.media-results`).show();
     }
