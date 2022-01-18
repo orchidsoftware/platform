@@ -365,8 +365,11 @@ export default class extends ApplicationController {
         $(this.dropname).find(`.media.modal`).modal('show');
         
         let append = false;
-        if (typeof event === 'undefined') append = true; // Set to append
-        else this.page = 1; // Reset page
+        if (typeof event === 'undefined') append = true;
+        else {
+            this.allMediaList = {}; // Reset all media list
+            this.page = 1; // Reset page
+        }
 
         axios
             .post(this.prefix(`/systems/media?page=${this.page}`), {
