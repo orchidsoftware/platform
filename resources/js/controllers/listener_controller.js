@@ -46,7 +46,7 @@ export default class extends ApplicationController {
 
         this.asyncLoadData(params).then(() => {
             document.dispatchEvent(
-                new CustomEvent("orchid:listener:post-render", {
+                new CustomEvent("orchid:listener:after-render", {
                     detail: {
                         params: params,
                     },
