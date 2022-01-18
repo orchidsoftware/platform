@@ -363,13 +363,9 @@ export default class extends ApplicationController {
         }
         $(this.dropname).find(`.media.modal`).modal('show');
 
-        // If event is undefined then it's clicked loadMore, else it's search
         let append = false;
-        if (typeof event === 'undefined') {
-            append = true; // Set to append
-        } else {
-            this.page = 1; // Reset page
-        }
+        if (typeof event === 'undefined') append = true; // Set to append
+        else this.page = 1; // Reset page
 
         axios
             .post(this.prefix(`/systems/media?page=${this.page}`), {
@@ -408,7 +404,6 @@ export default class extends ApplicationController {
                 '</div>';
         });
 
-        // If event is undefined then it's clicked loadMore, else it's search
         if (append) $(this.dropname).find(`.media-results`).append(html);
         else $(this.dropname).find(`.media-results`).html(html);
 
