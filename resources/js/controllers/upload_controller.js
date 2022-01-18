@@ -27,6 +27,7 @@ export default class extends ApplicationController {
         super(props);
         this.attachments = {};
         this.mediaList = {};
+        this.allMediaList = {};
     }
 
     initialize() {
@@ -363,9 +364,13 @@ export default class extends ApplicationController {
         }
         $(this.dropname).find(`.media.modal`).modal('show');
 
+        // If event is undefined then it's clicked loadMore, else it's search
         let append = false;
-        if (typeof event === 'undefined') append = true; // Set to append
-        else this.page = 1; // Reset page
+        if (typeof event === 'undefined') {
+            append = true; // Set to append
+        } else {
+            this.page = 1; // Reset page
+        }
 
         axios
             .post(this.prefix(`/systems/media?page=${this.page}`), {
@@ -394,16 +399,20 @@ export default class extends ApplicationController {
 
         /** todo: */
         this.mediaList.forEach((element, key) => {
+            const index = this.page + '-' + key;
             html += '<div class="col-4 col-sm-3 my-3 position-relative media-item">\n' +
-                '    <div data-action="click->upload#addFile" data-key="' + key + '">\n' +
+                '    <div data-action="click->upload#addFile" data-key="' + index + '">\n' +
                 '        <img src="' + element.url + '"\n' +
                 '             class="rounded mw-100"\n' +
                 '             style="height: 50px;width: 100%;object-fit: cover;">\n' +
                 '        <p class="text-ellipsis small text-muted mt-1 mb-0" title="' + element.original_name + '">' + element.original_name + '</p>\n' +
                 '    </div>\n' +
                 '</div>';
+
+            this.allMediaList[index] = element;
         });
 
+        // If event is undefined then it's clicked loadMore, else it's search
         if (append) $(this.dropname).find(`.media-results`).append(html);
         else $(this.dropname).find(`.media-results`).html(html);
 
@@ -416,7 +425,7 @@ export default class extends ApplicationController {
      */
     addFile(event) {
         const key = event.currentTarget.dataset.key;
-        const file = this.mediaList[key];
+        const file = this.allMediaList[key]
 
         this.addedExistFile(file);
 
