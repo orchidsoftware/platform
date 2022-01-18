@@ -148,6 +148,16 @@
 
 
                                         <div class="row media-results m-0"></div>
+                                        
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <button class="btn btn-default"
+                                                        data-upload-target="loadmore"
+                                                        data-action="click->upload#loadMore"
+                                                        data-index="1">Load more</button>
+                                            </div>
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
