@@ -57,7 +57,7 @@ abstract class Table extends Layout
         }
 
         $columns = collect($this->columns())->filter(static function (?TD $column) {
-            return $column?->isSee();
+            return $column ? $column->isSee() : false;
         });
 
         $total = collect($this->total())->filter(static function (TD $column) {
