@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.30.0 - 2022-01-21
+
+### Added
+- Translation into Kurdish [#2062](https://github.com/orchidsoftware/platform/pull/2062), [#2073](https://github.com/orchidsoftware/platform/pull/2073)
+- Custom event orchid:listener:after-render [#2072](https://github.com/orchidsoftware/platform/pull/2072)
+- Compact option to Table layout [#2064](https://github.com/orchidsoftware/platform/pull/2064)
+
+### Fixed
+
+- Added missing keys in Russian translation [#2048](https://github.com/orchidsoftware/platform/pull/2048)
+- Radio buttons id duplicated [#2069](https://github.com/orchidsoftware/platform/pull/2069)
+
 ## 10.29.0 - 2022-01-03
 
 ### Added
