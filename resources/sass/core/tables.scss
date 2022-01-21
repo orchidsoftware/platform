@@ -1,3 +1,5 @@
+@import '~bootstrap/scss/variables';
+
 .table {
   thead {
     tr {
@@ -53,6 +55,13 @@
           }
       }
     }
+  }
+}
+
+.table-compact {
+  // stylelint-disable-next-line selector-max-universal
+  > :not(caption) > * > * {
+    padding: $table-cell-padding-y-sm $table-cell-padding-x-sm !important;
   }
 }
 
