@@ -17,20 +17,6 @@ class ModalScreen extends Screen
     public const CLOSE_BUTTON = 'Test Close Button';
 
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Test Screen Modals';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description = 'Sample Screen Modals';
-
-    /**
      * Query data.
      *
      * @return array
@@ -38,6 +24,26 @@ class ModalScreen extends Screen
     public function query(): array
     {
         return [];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Test Screen Modals';
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function description(): ?string
+    {
+        return 'Sample Screen Modals';
     }
 
     /**
