@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.31.0 - 2022-01-22
+
+### Added
+
+- Allow loading more attachments in upload existing media [#2071](https://github.com/orchidsoftware/platform/pull/2071)
+
 ## 10.30.0 - 2022-01-21
 
 ### Added
