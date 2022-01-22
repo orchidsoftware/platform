@@ -83,7 +83,7 @@ class MetricsTest extends TestUnitCase
         ], $period->toChart('Users'));
     }
 
-    public function testValuesPeriod(): void
+    public function testMaxValuesPeriod(): void
     {
         $current = Carbon::now();
         $start = (clone $current)->subDays(2);
@@ -97,11 +97,41 @@ class MetricsTest extends TestUnitCase
             'created_at' => $end,
         ]);
 
-        $period = User::valuesByDays('id', $start, $end);
+        $period = User::maxByDays('id', $start, $end);
 
         // Stitch selection depends on database and driver
-        $this->assertContains($period->pluck('value')->first(), [1, 5, '1', '5']);
-        $this->assertContains($period->pluck('value')->last(), [6, 13, '6', '13']);
+        $this->assertContains($period->pluck('value')->first(), [5, '5']);
+        $this->assertContains($period->pluck('value')->last(), [13, '13']);
+
+        $this->assertEquals($start->toDateString(), $period->pluck('label')->first());
+        $this->assertEquals($end->toDateString(), $period->pluck('label')->last());
+
+        $this->assertSame([
+            'name'   => 'Users',
+            'labels' => $period->pluck('label')->toArray(),
+            'values' => $period->pluck('value')->toArray(),
+        ], $period->toChart('Users'));
+    }
+
+    public function testMinValuesPeriod(): void
+    {
+        $current = Carbon::now();
+        $start = (clone $current)->subDays(2);
+        $end = (clone $current)->subDay();
+
+        User::factory()->count(5)->create([
+            'created_at' => $start,
+        ]);
+
+        User::factory()->count(8)->create([
+            'created_at' => $end,
+        ]);
+
+        $period = User::minByDays('id', $start, $end);
+
+        // Stitch selection depends on database and driver
+        $this->assertContains($period->pluck('value')->first(), [1, '1',]);
+        $this->assertContains($period->pluck('value')->last(), [6, '6',]);
 
         $this->assertEquals($start->toDateString(), $period->pluck('label')->first());
         $this->assertEquals($end->toDateString(), $period->pluck('label')->last());
@@ -131,6 +161,35 @@ class MetricsTest extends TestUnitCase
 
         $this->assertEquals(15, $period->pluck('value')->first());
         $this->assertEquals(76, $period->pluck('value')->last());
+
+        $this->assertEquals($start->toDateString(), $period->pluck('label')->first());
+        $this->assertEquals($end->toDateString(), $period->pluck('label')->last());
+
+        $this->assertSame([
+            'name'   => 'Users',
+            'labels' => $period->pluck('label')->toArray(),
+            'values' => $period->pluck('value')->toArray(),
+        ], $period->toChart('Users'));
+    }
+
+    public function testAvgPeriod(): void
+    {
+        $current = Carbon::now();
+        $start = (clone $current)->subDays(2);
+        $end = (clone $current)->subDay();
+
+        User::factory()->count(5)->create([
+            'created_at' => $start,
+        ]);
+
+        User::factory()->count(8)->create([
+            'created_at' => $end,
+        ]);
+
+        $period = User::averageByDays('id', $start, $end);
+
+        $this->assertEquals(3.0, $period->pluck('value')->first());
+        $this->assertEquals(9.5, $period->pluck('value')->last());
 
         $this->assertEquals($start->toDateString(), $period->pluck('label')->first());
         $this->assertEquals($end->toDateString(), $period->pluck('label')->last());
