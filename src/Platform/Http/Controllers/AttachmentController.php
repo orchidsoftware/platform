@@ -122,7 +122,7 @@ class AttachmentController extends Controller
      */
     public function media(): JsonResponse
     {
-        $attachments = $this->attachment->filters()->limit(20)->get();
+        $attachments = $this->attachment->filters()->paginate(12);
 
         return response()->json($attachments);
     }

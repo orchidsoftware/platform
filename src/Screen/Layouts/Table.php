@@ -76,6 +76,7 @@ abstract class Table extends Layout
             'textNotFound' => $this->textNotFound(),
             'subNotFound'  => $this->subNotFound(),
             'striped'      => $this->striped(),
+            'compact'      => $this->compact(),
             'bordered'     => $this->bordered(),
             'hoverable'    => $this->hoverable(),
             'slug'         => $this->getSlug(),
@@ -126,6 +127,16 @@ abstract class Table extends Layout
      * @return bool
      */
     protected function striped(): bool
+    {
+        return false;
+    }
+
+    /**
+     * Usage for compact display of table rows.
+     *
+     * @return bool
+     */
+    protected function compact(): bool
     {
         return false;
     }
