@@ -13,13 +13,6 @@ use Orchid\Tests\App\Layouts\DependentSumListener;
 class DependentListenerScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Test Dependent';
-
-    /**
      * Query data.
      *
      * @return array
@@ -29,6 +22,16 @@ class DependentListenerScreen extends Screen
         return [
             'first' => 100,
         ];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Test Dependent';
     }
 
     /**
