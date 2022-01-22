@@ -25,7 +25,7 @@ export default class extends ApplicationController {
     constructor(props) {
         super(props);
         this.attachments = {};
-        this.mediaList = {};
+        this.mediaList = [];
         this.allMediaList = {};
     }
 
