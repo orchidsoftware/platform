@@ -146,7 +146,7 @@
                                         </div>
 
                                         <div class="media-loader spinner-border" role="status">
-                                            <span class="sr-only">{{ __('Loading...') }}</span>
+                                            <span class="visually-hidden">{{ __('Loading...') }}</span>
                                         </div>
 
                                         <div class="row media-results m-0"></div>
