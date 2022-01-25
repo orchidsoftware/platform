@@ -1,6 +1,6 @@
-import ApplicationController from "./application_controller"
-import {Dropzone} from 'dropzone';
-import Sortable from 'sortablejs';
+import ApplicationController     from "./application_controller"
+import {Dropzone}                from 'dropzone';
+import Sortable                  from 'sortablejs';
 import {debounce, has as objHas} from "lodash";
 
 export default class extends ApplicationController {
@@ -183,7 +183,7 @@ export default class extends ApplicationController {
             .attr('data-file-id', file.id)
             .addClass('file-sort');
         $(
-            `<input type='hidden' class='files-${file.id}' name='${name}[]' value='${file.id}'  />`
+            `<input type="hidden" class="files-${file.id}" name="${name}[]" value="${file.id}"  />`
         ).appendTo(dropname);
     }
 
@@ -355,21 +355,25 @@ export default class extends ApplicationController {
     /**
      *
      */
-    loadMedia(event) {
+    resetPage() {
+        this.allMediaList = {}; // Reset all media list
+        this.page = 1; // Reset page
+
+        $(this.dropname).find(`.media-results`).html('');
+    }
+
+    /**
+     *
+     */
+    loadMedia() {
         const self = this;
         const CancelToken = axios.CancelToken;
 
         if (typeof this.cancelRequest === 'function') {
             this.cancelRequest();
         }
+
         $(this.dropname).find(`.media.modal`).modal('show');
-        
-        let append = false;
-        if (typeof event === 'undefined') append = true;
-        else {
-            this.allMediaList = {}; // Reset all media list
-            this.page = 1; // Reset page
-        }
 
         axios
             .post(this.prefix(`/systems/media?page=${this.page}`), {
@@ -386,33 +390,32 @@ export default class extends ApplicationController {
                 this.mediaList = response.data.data;
                 // show/hide load more
                 this.loadmoreTarget.classList.toggle('d-none', response.data.last_page === this.page);
-                this.renderMedia(append);
+                this.renderMedia();
             });
     }
 
     /**
      *
      */
-    renderMedia(append = false) {
-        let html = '';
-
-        /** todo: */
+    renderMedia() {
         this.mediaList.forEach((element, key) => {
             const index = this.page + '-' + key;
-            html += '<div class="col-4 col-sm-3 my-3 position-relative media-item">\n' +
-                '    <div data-action="click->upload#addFile" data-key="' + index + '">\n' +
-                '        <img src="' + element.url + '"\n' +
-                '             class="rounded mw-100"\n' +
-                '             style="height: 50px;width: 100%;object-fit: cover;">\n' +
-                '        <p class="text-ellipsis small text-muted mt-1 mb-0" title="' + element.original_name + '">' + element.original_name + '</p>\n' +
-                '    </div>\n' +
-                '</div>';
 
+            const template = this.element
+                .querySelector('#' + this.data.get('id') + '-media')
+                .content
+                .querySelector('.media-item')
+                .cloneNode(true);
+
+            template.innerHTML = template.innerHTML
+                .replace(/{index}/, index)
+                .replace(/{element.url}/, element.url)
+                .replace(/{element.original_name}/, element.original_name)
+                .replace(/{element.original_name}/, element.original_name);
+
+            $(this.dropname).find(`.media-results`).append(template);
             this.allMediaList[index] = element;
         });
-
-        if (append) $(this.dropname).find(`.media-results`).append(html);
-        else $(this.dropname).find(`.media-results`).html(html);
 
         $(this.dropname).find(`.media-loader`).hide();
         $(this.dropname).find(`.media-results`).show();
