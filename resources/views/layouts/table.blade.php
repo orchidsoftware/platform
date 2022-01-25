@@ -16,6 +16,7 @@
     <div class="table-responsive">
         <table @class([
                     'table',
+                    'table-compact'  => $compact,
                     'table-striped'  => $striped,
                     'table-bordered' => $bordered,
                     'table-hover'    => $hoverable,

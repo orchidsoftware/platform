@@ -156,5 +156,6 @@
     "You are now impersonating this user": "Теперь вы выдаете себя за этого пользователя",
     "You currently have no notifications, but maybe they will appear later.": "В настоящее время у вас нет уведомлений, но, возможно, они появятся позже.",
     "You may have' entered an address that doesn't exist or that the link you have requested doesn't work (anymore).": "Возможно, вы ввели неправильный адрес страницы либо перешли по ссылке, которая никуда не ведет.",
-    "You requested a page that doesn't exist.": "Вы запросили страницу, которая не существует."
+    "You requested a page that doesn't exist.": "Вы запросили страницу, которая не существует.",
+    "Load more": "Загрузить больше"
 }

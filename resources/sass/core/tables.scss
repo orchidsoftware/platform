@@ -56,6 +56,13 @@
   }
 }
 
+.table-compact {
+  // stylelint-disable-next-line selector-max-universal
+  > :not(caption) > * > * {
+    padding: $table-cell-padding-y-sm $table-cell-padding-x-sm !important;
+  }
+}
+
 .fht-table {
   margin-bottom: 0 !important;
 }
