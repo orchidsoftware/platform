@@ -18,24 +18,24 @@ class DateRangeTest extends TestFieldsUnitCase
 
         $view = self::renderField($field);
 
-        $this->assertStringContainsString('name="date[min]"', $view);
-        $this->assertStringContainsString('name="date[max]"', $view);
+        $this->assertStringContainsString('name="date[start]"', $view);
+        $this->assertStringContainsString('name="date[end]"', $view);
     }
 
     public function testValueInstance(): void
     {
-        $min = now()->subMonth();
-        $max = now();
+        $start = now()->subMonth();
+        $end = now();
 
         $field = DateRange::make('date')
             ->value([
-                'min' => $min,
-                'max'   => $max,
+                'start' => $start,
+                'end'   => $end,
             ]);
 
         $view = self::renderField($field);
 
-        $this->assertStringContainsString(sprintf('value="%s"', $min->toDateTimeString()), $view);
-        $this->assertStringContainsString(sprintf('value="%s"', $max->toDateTimeString()), $view);
+        $this->assertStringContainsString(sprintf('value="%s"', $start->toDateTimeString()), $view);
+        $this->assertStringContainsString(sprintf('value="%s"', $end->toDateTimeString()), $view);
     }
 }

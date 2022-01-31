@@ -140,11 +140,11 @@ class HttpFilter
         if ($query->getModel()->hasCast($property, ['date', 'datetime', 'immutable_date', 'immutable_datetime']
             ) || $property === $query->getModel()->getCreatedAtColumn() || $property === $query->getModel()
                                                                                                ->getUpdatedAtColumn()) {
-            $query->when($value['min'] ?? null, function (Builder $query) use ($property, $value) {
-                return $query->whereDate($property, '>=', $value['min']);
+            $query->when($value['start'] ?? null, function (Builder $query) use ($property, $value) {
+                return $query->whereDate($property, '>=', $value['start']);
             });
-            $query->when($value['max'] ?? null, function (Builder $query) use ($property, $value) {
-                return $query->whereDate($property, '<=', $value['max']);
+            $query->when($value['end'] ?? null, function (Builder $query) use ($property, $value) {
+                return $query->whereDate($property, '<=', $value['end']);
             });
             
             return $query;

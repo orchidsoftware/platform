@@ -94,6 +94,9 @@ if (! function_exists('get_filter_string')) {
             if (isset($filter['min']) || isset($filter['max'])) {
                 return ($filter['min'] ?? '') . ' - ' . ($filter['max'] ?? '');
             }
+            if (isset($filter['start']) || isset($filter['end'])) {
+                return ($filter['start'] ?? '') . ' - ' . ($filter['end'] ?? '');
+            }
         
             return implode(', ', $filter);
         }
