@@ -40,7 +40,7 @@ class HttpFilter
      * @var Collection
      */
     protected $options;
-
+    
     /**
      * Filter constructor.
      *
@@ -49,13 +49,13 @@ class HttpFilter
     public function __construct(Request $request = null)
     {
         $this->request = $request ?? request();
-
+        
         $this->filters = collect($this->request->get('filter', []))->map(function ($item) {
             return $this->parseHttpValue($item);
         });
         $this->sorts = collect($this->request->get('sort', []));
     }
-
+    
     /**
      * @param string|null|array $query
      *
@@ -76,10 +76,10 @@ class HttpFilter
         if (count($item) > 1) {
             return $item;
         }
-
+        
         return $query;
     }
-
+    
     /**
      * @param string $column
      *
@@ -88,10 +88,10 @@ class HttpFilter
     public static function sanitize(string $column): string
     {
         abort_unless(preg_match(self::VALID_COLUMN_NAME_REGEX, $column), Response::HTTP_BAD_REQUEST);
-
+        
         return $column;
     }
-
+    
     /**
      * @param Builder $builder
      *
@@ -102,30 +102,30 @@ class HttpFilter
         $this->options = $builder->getModel()->getOptionsFilter();
         $this->addFiltersToQuery($builder);
         $this->addSortsToQuery($builder);
-
+        
         return $builder;
     }
-
+    
     /**
      * @param Builder $builder
      */
     protected function addFiltersToQuery(Builder $builder)
     {
         $allowedFilters = $this->options->get('allowedFilters')->toArray();
-
+        
         $this->filters->each(function ($value, $property) use ($builder, $allowedFilters) {
             $allowProperty = $property;
             if (strpos($property, '.') !== false) {
                 $allowProperty = strstr($property, '.', true);
             }
-
+            
             if (in_array($allowProperty, $allowedFilters, true)) {
                 $property = str_replace('.', '->', $property);
                 $this->filtersExact($builder, $value, $property);
             }
         });
     }
-
+    
     /**
      * @param Builder $query
      * @param mixed   $value
@@ -140,13 +140,22 @@ class HttpFilter
         if ($query->getModel()->hasCast($property, ['date', 'datetime', 'immutable_date', 'immutable_datetime']
             ) || $property === $query->getModel()->getCreatedAtColumn() || $property === $query->getModel()
                                                                                                ->getUpdatedAtColumn()) {
-            $query->when($value['min'] ?? null, fn (Builder $query) => $query->whereDate($property, '>=', $value['min']));
-            $query->when($value['max'] ?? null, fn (Builder $query) => $query->whereDate($property, '<=', $value['max']));
+            $query->when($value['min'] ?? null, function (Builder $query) use ($property, $value) {
+                return $query->whereDate($property, '>=', $value['min']);
+            });
+            $query->when($value['max'] ?? null, function (Builder $query) use ($property, $value) {
+                return $query->whereDate($property, '<=', $value['max']);
+            });
+            
             return $query;
         }
         if (is_array($value) && (isset($value['min']) || isset($value['max']))) {
-            $query->when($value['min'] ?? null, fn (Builder $query) => $query->where($property, '>=', $value['min']));
-            $query->when($value['max'] ?? null, fn (Builder $query) => $query->where($property, '<=', $value['max']));
+            $query->when($value['min'] ?? null, function (Builder $query) use ($property, $value) {
+                return $query->where($property, '>=', $value['min']);
+            });
+            $query->when($value['max'] ?? null, function (Builder $query) use ($property, $value) {
+                return $query->where($property, '<=', $value['max']);
+            });
             
             return $query;
         }
@@ -164,28 +173,28 @@ class HttpFilter
         
         return $query->where($property, 'like', "%$value%");
     }
-
+    
     /**
      * @param Builder $builder
      */
     protected function addSortsToQuery(Builder $builder)
     {
         $allowedSorts = $this->options->get('allowedSorts')->toArray();
-
+        
         $this->sorts
             ->each(function (string $sort) use ($builder, $allowedSorts) {
                 $descending = strpos($sort, '-') === 0;
                 $key = ltrim($sort, '-');
                 $property = Str::before($key, '.');
                 $key = str_replace('.', '->', $key);
-
+                
                 if (in_array($property, $allowedSorts, true)) {
                     $key = $this->sanitize($key);
                     $builder->orderBy($key, $descending ? 'desc' : 'asc');
                 }
             });
     }
-
+    
     /**
      * @param null|string $property
      *
@@ -196,7 +205,7 @@ class HttpFilter
         if ($property === null) {
             return $this->sorts->isEmpty();
         }
-
+        
         if ($this->sorts->search($property, true) !== false) {
             return true;
         }
@@ -207,7 +216,7 @@ class HttpFilter
 
         return false;
     }
-
+    
     /**
      * @param string $property
      *
@@ -231,7 +240,7 @@ class HttpFilter
             ? 'asc'
             : 'desc';
     }
-
+    
     /**
      * @param string $property
      *
