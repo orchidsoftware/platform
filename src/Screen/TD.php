@@ -336,7 +336,7 @@ class TD extends Cell
      */
     public function buildSortUrl(): string
     {
-        $query         = request()->query();
+        $query = request()->query();
         $query['sort'] = revert_sort($this->column);
         
         return url()->current() . '?' . http_build_query($query);

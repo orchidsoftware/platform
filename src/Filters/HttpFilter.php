@@ -66,11 +66,13 @@ class HttpFilter
         if ($query === null) {
             return null;
         }
-    
-        if(is_array($query)){return $query;}
-    
+        
+        if (is_array($query)) {
+            return $query;
+        }
+        
         $item = explode(',', $query);
-
+        
         if (count($item) > 1) {
             return $item;
         }
@@ -134,16 +136,19 @@ class HttpFilter
     protected function filtersExact(Builder $query, $value, string $property): Builder
     {
         $property = self::sanitize($property);
-    
-        if ($query->getModel()->hasCast($property, ['date', 'datetime', 'immutable_date', 'immutable_datetime']) || $property === $query->getModel()->getCreatedAtColumn() || $property === $query->getModel()->getUpdatedAtColumn()) {
-            if (is_array($value) && (isset($value['start']) || isset($value['end']))) {
-                return $query->whereDate($property, '<=', $value['end'] ?? now()->addYears(50))
-                             ->whereDate($property, '>=', $value['start'] ?? now()->subYears(50));
-            }
+        
+        if ($query->getModel()->hasCast($property, ['date', 'datetime', 'immutable_date', 'immutable_datetime']
+            ) || $property === $query->getModel()->getCreatedAtColumn() || $property === $query->getModel()
+                                                                                               ->getUpdatedAtColumn()) {
+            $query->when($value['min'] ?? null, fn (Builder $query) => $query->whereDate($property, '>=', $value['min']));
+            $query->when($value['max'] ?? null, fn (Builder $query) => $query->whereDate($property, '<=', $value['max']));
+            return $query;
         }
-        if (is_array($value) && (isset($value['start']) || isset($value['end']))) {
-            return $query->where($property, '<=', $value['end'] ?? PHP_INT_MAX)
-                         ->where($property, '>=', $value['start'] ?? PHP_INT_MIN);
+        if (is_array($value) && (isset($value['min']) || isset($value['max']))) {
+            $query->when($value['min'] ?? null, fn (Builder $query) => $query->where($property, '>=', $value['min']));
+            $query->when($value['max'] ?? null, fn (Builder $query) => $query->where($property, '<=', $value['max']));
+            
+            return $query;
         }
         if (is_array($value)) {
             return $query->whereIn($property, $value);
