@@ -89,8 +89,12 @@ if (! function_exists('get_filter_string')) {
     function get_filter_string(string $property): ?string
     {
         $filter = get_filter($property);
-
+    
         if (is_array($filter)) {
+            if (isset($filter['min']) || isset($filter['max'])) {
+                return ($filter['min'] ?? '') . ' - ' . ($filter['max'] ?? '');
+            }
+        
             return implode(', ', $filter);
         }
 
