@@ -5,6 +5,69 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 10.31.0 - 2022-01-22
+
+### Added
+
+- Allow loading more attachments in upload existing media [#2071](https://github.com/orchidsoftware/platform/pull/2071)
+
+## 10.30.0 - 2022-01-21
+
+### Added
+- Translation into Kurdish [#2062](https://github.com/orchidsoftware/platform/pull/2062), [#2073](https://github.com/orchidsoftware/platform/pull/2073)
+- Custom event orchid:listener:after-render [#2072](https://github.com/orchidsoftware/platform/pull/2072)
+- Compact option to Table layout [#2064](https://github.com/orchidsoftware/platform/pull/2064)
+
+### Fixed
+
+- Added missing keys in Russian translation [#2048](https://github.com/orchidsoftware/platform/pull/2048)
+- Radio buttons id duplicated [#2069](https://github.com/orchidsoftware/platform/pull/2069)
+
+## 10.29.0 - 2022-01-03
+
+### Added
+
+- Hungarian language [#2044](https://github.com/orchidsoftware/platform/pull/2044)
+
+### Changed
+
+- Better filter layout [#2043](https://github.com/orchidsoftware/platform/pull/2043)
+
+## 10.28.0 - 2021-12-30
+
+### Added
+
+- Variable for vertical orientation in Block class [#2024](https://github.com/orchidsoftware/platform/pull/2024)
+
+### Fixed
+
+- Don't render modal search media when disabled [#2039](https://github.com/orchidsoftware/platform/pull/2039)
+
+## 10.27.2 - 2021-12-27
+
+### Fixed
+
+- Dropdown is closed when click [#2001](https://github.com/orchidsoftware/platform/issues/2001)
+
+## 10.27.1 - 2021-12-27
+
+### Fixed
+
+- Typecast to numeric value in old input [#2019](https://github.com/orchidsoftware/platform/issues/2019)
+
+## 10.27.0 - 2021-12-26
+
+### Added
+
+- Romanian language [#2016](https://github.com/orchidsoftware/platform/pull/2016)
+- Accepted-files to cropper and picture [#2023](https://github.com/orchidsoftware/platform/pull/2023)
+
+## 10.26.1 - 2021-12-16
+
+### Fixed
+
+- Corrected searchColumns grouping [#2007](https://github.com/orchidsoftware/platform/pull/2007)
+
 ## 10.26.0 - 2021-12-08
 
 ### Added

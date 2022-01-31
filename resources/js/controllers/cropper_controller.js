@@ -96,6 +96,7 @@ export default class extends ApplicationController {
 
             formData.append('file', blob);
             formData.append('storage', this.data.get('storage'));
+            formData.append('acceptedFiles', this.data.get('accepted-files'));
 
             let element = this.element;
              window.axios.post(this.prefix('/systems/files'), formData)

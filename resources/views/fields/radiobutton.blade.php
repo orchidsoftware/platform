@@ -6,9 +6,9 @@
                 <label class="btn btn-default @if($active($key, $value)) active @endif"
                        data-action="click->radiobutton#checked"
                 >
-                    <input {{ $attributes }}
+                   <input {{ $attributes->except('id') }}
                            @if($active($key, $value)) checked @endif
-                            value="{{ $key }}"
+                            value="{{ $key }}" id="{{ $key }}-{{$id}}"
                     >{{ $option }}</label>
             @endforeach
         </div>

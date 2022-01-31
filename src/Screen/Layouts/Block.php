@@ -21,6 +21,13 @@ abstract class Block extends Layout
      * @var string
      */
     protected $template = 'platform::layouts.block';
+    
+    /**
+    * @var false[]
+    */
+    protected $variables = [
+        'vertical' => false,
+    ];
 
     /**
      * Button commands.
@@ -83,6 +90,20 @@ abstract class Block extends Layout
     public function description($description): self
     {
         $this->variables['description'] = $description;
+
+        return $this;
+    }
+    
+    /**
+     * Used to define block orientation.
+     *
+     * @param bool $vertical
+     *
+     * @return Block
+     */
+    public function vertical($vertical = true): self
+    {
+        $this->variables['vertical'] = $vertical;
 
         return $this;
     }
