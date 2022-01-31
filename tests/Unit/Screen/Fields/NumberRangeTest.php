@@ -24,18 +24,18 @@ class NumberRangeTest extends TestFieldsUnitCase
     
     public function testValueInstance(): void
     {
-        $start = 3.14;
-        $end = 42;
+        $min = 3.14;
+        $max = 42;
         
         $field = NumberRange::make('num')
                             ->value([
-                                'start' => $start,
-                                'end'   => $end,
+                                'min' => $min,
+                                'max' => $max,
                             ]);
         
         $view = self::renderField($field);
         
-        $this->assertStringContainsString(sprintf('value="%s"', $start), $view);
-        $this->assertStringContainsString(sprintf('value="%s"', $end), $view);
+        $this->assertStringContainsString(sprintf('value="%s"', $min), $view);
+        $this->assertStringContainsString(sprintf('value="%s"', $max), $view);
     }
 }
