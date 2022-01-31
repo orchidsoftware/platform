@@ -154,10 +154,14 @@ class HttpFilter
             return $query->whereIn($property, $value);
         }
         
-        if (is_numeric($value)) {
+        if ($query->getModel()->hasCast($property, ['bool', 'boolean'])) {
+            return $query->where($property, (bool)$value);
+        }
+        
+        if (is_numeric($value) && !$query->getModel()->hasCast($property, ['string'])) {
             return $query->where($property, $value);
         }
-    
+        
         return $query->where($property, 'like', "%$value%");
     }
 
