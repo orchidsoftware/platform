@@ -85,13 +85,14 @@ class RelationController extends Controller
             return $model->take($chunk)->pluck($append ?? $name, $key);
         }
 
-        $model = $model->where($name, 'like', '%'.$search.'%');
-
-        if ($searchColumns !== null) {
-            foreach ($searchColumns as $column) {
-                $model->orWhere($column, 'like', '%'.$search.'%');
+        $model = $model->where(function ($query) use ($name, $search, $searchColumns) {
+            $query->where($name, 'like', '%'.$search.'%');
+            if ($searchColumns !== null) {
+                foreach ($searchColumns as $column) {
+                    $query->orWhere($column, 'like', '%'.$search.'%');
+                }
             }
-        }
+        });
 
         return $model
             ->limit($chunk)

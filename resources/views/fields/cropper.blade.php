@@ -10,6 +10,7 @@
          data-cropper-max-height="{{ $maxHeight }}"
          data-cropper-target="{{ $target }}"
          data-cropper-url="{{ $url }}"
+         data-cropper-accepted-files="{{ $acceptedFiles }}"
          data-cropper-max-file-size="{{ $maxFileSize }}"
     >
         <div class="border-dashed text-end p-3 cropper-actions">

@@ -313,7 +313,11 @@ class Field implements Fieldable
      */
     public function getOldValue()
     {
-        return old($this->getOldName());
+        $value = old($this->getOldName());
+
+        return is_numeric($value)
+            ? $value + 0
+            : $value;
     }
 
     /**
