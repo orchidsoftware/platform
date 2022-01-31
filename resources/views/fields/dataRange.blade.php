@@ -6,10 +6,10 @@
             <div class="form-group">
                 <input type="text"
                        @isset($attributes['form']) form="{{ $attributes['form'] ?? null }}" @endisset
-                       name="{{ $attributes['name'] }}[start]"
-                       id='start_{{ $attributes['name'] }}'
+                       name="{{ $attributes['name'] }}[min]"
+                       id='min_{{ $attributes['name'] }}'
                        data-datetime-target="instance"
-                       value="{{ $value['start'] ?? null }}"
+                       value="{{ $value['min'] ?? null }}"
                        class="form-control">
             </div>
         </div>
@@ -18,10 +18,10 @@
             <div class="form-group">
                 <input type="text"
                        @isset($attributes['form']) form="{{ $attributes['form'] ?? null }}" @endisset
-                       name="{{ $attributes['name'] }}[end]"
+                       name="{{ $attributes['name'] }}[max]"
                        data-datetime-target="instance"
-                       id='end_{{ \Illuminate\Support\Str::slug($attributes['name']) }}'
-                       value="{{ $value['end'] ?? null }}"
+                       id='max_{{ \Illuminate\Support\Str::slug($attributes['name']) }}'
+                       value="{{ $value['max'] ?? null }}"
                        class="form-control">
             </div>
         </div>
