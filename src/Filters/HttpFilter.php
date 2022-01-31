@@ -18,22 +18,18 @@ class HttpFilter
      * underscores (`_`) but can't start with a number.
      */
     private const VALID_COLUMN_NAME_REGEX = '/^(?![\d])[A-Za-z0-9_>-]*$/';
-
     /**
      * @var Request
      */
     protected $request;
-
     /**
      * @var Collection
      */
     protected $filters;
-
     /**
      * @var Collection
      */
     protected $sorts;
-
     /**
      * Model options and allowed params.
      *
@@ -136,42 +132,34 @@ class HttpFilter
     protected function filtersExact(Builder $query, $value, string $property): Builder
     {
         $property = self::sanitize($property);
+        $model = $query->getModel();
         
-        if ($query->getModel()->hasCast($property, ['date', 'datetime', 'immutable_date', 'immutable_datetime']
-            ) || $property === $query->getModel()->getCreatedAtColumn() || $property === $query->getModel()
-                                                                                               ->getUpdatedAtColumn()) {
-            $query->when($value['start'] ?? null, function (Builder $query) use ($property, $value) {
+        if ($model->hasCast($property, ['date', 'datetime', 'immutable_date', 'immutable_datetime'])
+            || $property === $model->getCreatedAtColumn() || $property === $model->getUpdatedAtColumn()) {
+            $query->when($value['start'] ?? null, function(Builder $query) use ($property, $value) {
                 return $query->whereDate($property, '>=', $value['start']);
             });
             $query->when($value['end'] ?? null, function (Builder $query) use ($property, $value) {
                 return $query->whereDate($property, '<=', $value['end']);
             });
-            
-            return $query;
-        }
-        if (is_array($value) && (isset($value['min']) || isset($value['max']))) {
+        } elseif (is_array($value) && (isset($value['min']) || isset($value['max']))) {
             $query->when($value['min'] ?? null, function (Builder $query) use ($property, $value) {
                 return $query->where($property, '>=', $value['min']);
             });
             $query->when($value['max'] ?? null, function (Builder $query) use ($property, $value) {
                 return $query->where($property, '<=', $value['max']);
             });
-            
-            return $query;
+        } elseif (is_array($value)) {
+            $query->whereIn($property, $value);
+        } elseif ($model->hasCast($property, ['bool', 'boolean'])) {
+            $query->where($property, (bool)$value);
+        } elseif (is_numeric($value) && !$model->hasCast($property, ['string'])) {
+            $query->where($property, $value);
+        } else {
+            $query->where($property, 'like', "%$value%");
         }
-        if (is_array($value)) {
-            return $query->whereIn($property, $value);
-        }
-        
-        if ($query->getModel()->hasCast($property, ['bool', 'boolean'])) {
-            return $query->where($property, (bool)$value);
-        }
-        
-        if (is_numeric($value) && !$query->getModel()->hasCast($property, ['string'])) {
-            return $query->where($property, $value);
-        }
-        
-        return $query->where($property, 'like', "%$value%");
+    
+        return $query;
     }
     
     /**
@@ -209,11 +197,11 @@ class HttpFilter
         if ($this->sorts->search($property, true) !== false) {
             return true;
         }
-
-        if ($this->sorts->search('-'.$property, true) !== false) {
+        
+        if ($this->sorts->search('-' . $property, true) !== false) {
             return true;
         }
-
+        
         return false;
     }
     
@@ -225,10 +213,10 @@ class HttpFilter
     public function revertSort(string $property): string
     {
         return $this->getSort($property) === 'asc'
-            ? '-'.$property
+            ? '-' . $property
             : $property;
     }
-
+    
     /**
      * @param string $property
      *
