@@ -96,7 +96,7 @@ class Matrix extends Field
      *
      * @return Field|Matrix
      */
-    public function removableRows(bool $value)
+    public function removableRows(bool $value = true)
     {
         return $this->set('removableRows', $value);
     }
