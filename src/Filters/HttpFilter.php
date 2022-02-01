@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
@@ -60,18 +61,12 @@ class HttpFilter
      */
     protected function parseHttpValue($query)
     {
-        if ($query === null) {
-            return null;
-        }
-        
-        if (is_array($query)) {
-            return $query;
-        }
-        
-        $item = explode(',', $query);
-        
-        if (count($item) > 1) {
-            return $item;
+        if (is_string($query)) {
+            $item = explode(',', $query);
+            
+            if (count($item) > 1) {
+                return $item;
+            }
         }
         
         return $query;
@@ -135,8 +130,7 @@ class HttpFilter
         $property = self::sanitize($property);
         $model = $query->getModel();
         
-        if ($model->hasCast($property, ['date', 'datetime', 'immutable_date', 'immutable_datetime'])
-            || $property === $model->getCreatedAtColumn() || $property === $model->getUpdatedAtColumn()) {
+        if ($this->isDate($model, $property)) {
             $query->when($value['start'] ?? null, function(Builder $query) use ($property, $value) {
                 return $query->whereDate($property, '>=', $value['start']);
             });
@@ -238,5 +232,17 @@ class HttpFilter
     public function getFilter(string $property)
     {
         return Arr::get($this->filters, $property);
+    }
+    
+    /**
+     * @param Model $model
+     * @param string $property
+     *
+     * @return bool
+     */
+    private function isDate(Model $model, string $property): bool
+    {
+        return $model->hasCast($property, ['date', 'datetime', 'immutable_date', 'immutable_datetime'])
+            || in_array($property,[$model->getCreatedAtColumn(),$model->getUpdatedAtColumn()],true);
     }
 }

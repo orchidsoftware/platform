@@ -12,7 +12,6 @@ use Orchid\Screen\Field;
  *
  * @method NumberRange form($value = true)
  * @method NumberRange name(string $value = null)
- * @method NumberRange value($value = true)
  * @method NumberRange help(string $value = null)
  * @method NumberRange popover(string $value = null)
  * @method NumberRange title(string $value = null)

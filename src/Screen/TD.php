@@ -29,12 +29,12 @@ class TD extends Cell
      * Align the cell to the right.
      */
     public const ALIGN_RIGHT = 'end';
-    public const FILTER_TEXT         = 'text';
-    public const FILTER_NUMERIC      = 'number';
-    public const FILTER_DATE         = 'date';
-    public const FILTER_DATE_RANGE   = 'dateRange';
+    public const FILTER_TEXT = 'text';
+    public const FILTER_NUMERIC = 'number';
+    public const FILTER_DATE = 'date';
+    public const FILTER_DATE_RANGE = 'dateRange';
     public const FILTER_NUMBER_RANGE = 'numberRange';
-    public const FILTER_SELECT       = 'select';
+    public const FILTER_SELECT = 'select';
     /**
      * @var string|null|int
      */
@@ -222,7 +222,11 @@ class TD extends Cell
         return $filter->name("filter[$this->column]")
                       ->placeholder(__('Filter'))
                       ->form('filters')
-                      ->value($this->isComplexFieldType($filter) ? get_filter_string($this->column) : get_filter($this->column))
+                      ->value(
+                          $this->isComplexFieldType($filter) ? get_filter_string($this->column) : get_filter(
+                              $this->column
+                          )
+                      )
                       ->autofocus();
     }
     
@@ -233,21 +237,24 @@ class TD extends Cell
      */
     protected function detectConstantFilter(string $filter): Field
     {
-        
-        if ($filter === self::FILTER_DATE_RANGE) {
-            return DateRange::make();
+        switch ($filter) {
+            case self::FILTER_DATE_RANGE:
+                $input = DateRange::make();
+                break;
+            case self::FILTER_NUMBER_RANGE:
+                $input = NumberRange::make();
+                break;
+            case self::FILTER_SELECT:
+                $input = Select::make()->options($this->filterOptions)->multiple();
+                break;
+            case self::FILTER_DATE:
+                $input = DateTimer::make()->inline()->format('Y-m-d');
+                break;
+            default:
+                $input = Input::make()->type($filter);
+                break;
         }
-        if ($filter === self::FILTER_NUMBER_RANGE) {
-            return NumberRange::make();
-        }
-        if ($filter === self::FILTER_SELECT) {
-            return Select::make()->options($this->filterOptions)->multiple();
-        }
-        if ($filter === self::FILTER_DATE) {
-            return DateTimer::make()->inline()->format('Y-m-d');
-        }
-        
-        return Input::make()->type($filter);
+        return $input;
     }
     
     /**
@@ -337,7 +344,7 @@ class TD extends Cell
     public function buildSortUrl(): string
     {
         $query = request()->collect()->put('sort', revert_sort($this->column))->toArray();
-
+        
         return url()->current() . '?' . http_build_query($query);
     }
     
@@ -358,9 +365,9 @@ class TD extends Cell
      *
      * @return bool
      */
-    protected function isComplexFieldType(Field $filter): bool
+    protected function isComplexFieldType(Field $field): bool
     {
-        return $filter instanceof ComplexFieldConcern;
+        return $field instanceof ComplexFieldConcern;
     }
     
     protected function buildFilterString(): ?string

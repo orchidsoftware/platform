@@ -66,7 +66,7 @@ if (! function_exists('get_filter')) {
     /**
      * @param string $property
      *
-     * @return string|array
+     * @return string|array|null
      */
     function get_filter(string $property)
     {
@@ -86,18 +86,15 @@ if (! function_exists('get_filter_string')) {
     function get_filter_string(string $property): ?string
     {
         $filter = get_filter($property);
-    
-        if (is_array($filter)) {
-            if (isset($filter['min']) || isset($filter['max'])) {
-                return ($filter['min'] ?? '') . ' - ' . ($filter['max'] ?? '');
-            }
-            if (isset($filter['start']) || isset($filter['end'])) {
-                return ($filter['start'] ?? '') . ' - ' . ($filter['end'] ?? '');
-            }
         
-            return implode(', ', $filter);
+        if (is_array($filter) && (isset($filter['min']) || isset($filter['max']))) {
+            $filter = ($filter['min'] ?? '') . ' - ' . ($filter['max'] ?? '');
+        } elseif (is_array($filter) && (isset($filter['start']) || isset($filter['end']))) {
+            $filter = ($filter['start'] ?? '') . ' - ' . ($filter['end'] ?? '');
+        } elseif (is_array($filter)) {
+            $filter = implode(', ', $filter);
         }
-
+        
         return $filter;
     }
 }
