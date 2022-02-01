@@ -108,7 +108,8 @@ export default class extends ApplicationController {
      */
     clearFilter(event) {
         const {filter} = event.currentTarget.dataset;
-        document.querySelector(`[name='filter[${filter}]']`).value = '';
+        document.querySelectorAll(`input[name^='filter[${filter}]']`).forEach(function(el){el.value='';});
+        document.querySelectorAll(`select[name^='filter[${filter}]']`).forEach(function(el){el.selectedIndex = -1;});
 
         this.element.remove();
         this.setAllFilter();

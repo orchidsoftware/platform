@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Orchid\Screen\Concerns\ComplexFieldConcern;
 use Orchid\Screen\Field;
 
 /**
@@ -16,7 +17,7 @@ use Orchid\Screen\Field;
  * @method DateRange popover(string $value = null)
  * @method DateRange title(string $value = null)
  */
-class DateRange extends Field
+class DateRange extends Field implements ComplexFieldConcern
 {
     /**
      * @var string

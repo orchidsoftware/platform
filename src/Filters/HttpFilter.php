@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
@@ -18,29 +19,25 @@ class HttpFilter
      * underscores (`_`) but can't start with a number.
      */
     private const VALID_COLUMN_NAME_REGEX = '/^(?![\d])[A-Za-z0-9_>-]*$/';
-
     /**
      * @var Request
      */
     protected $request;
-
     /**
      * @var Collection
      */
     protected $filters;
-
     /**
      * @var Collection
      */
     protected $sorts;
-
     /**
      * Model options and allowed params.
      *
      * @var Collection
      */
     protected $options;
-
+    
     /**
      * Filter constructor.
      *
@@ -56,27 +53,25 @@ class HttpFilter
         
         $this->sorts = collect($this->request->get('sort', []));
     }
-
+    
     /**
-     * @param string|null $query
+     * @param string|null|array $query
      *
      * @return string|array|null
      */
     protected function parseHttpValue($query)
     {
-        if ($query === null) {
-            return null;
+        if (is_string($query)) {
+            $item = explode(',', $query);
+            
+            if (count($item) > 1) {
+                return $item;
+            }
         }
-
-        $item = explode(',', $query);
-
-        if (count($item) > 1) {
-            return $item;
-        }
-
+        
         return $query;
     }
-
+    
     /**
      * @param string $column
      *
@@ -85,10 +80,10 @@ class HttpFilter
     public static function sanitize(string $column): string
     {
         abort_unless(preg_match(self::VALID_COLUMN_NAME_REGEX, $column), Response::HTTP_BAD_REQUEST);
-
+        
         return $column;
     }
-
+    
     /**
      * @param Builder $builder
      *
@@ -99,30 +94,30 @@ class HttpFilter
         $this->options = $builder->getModel()->getOptionsFilter();
         $this->addFiltersToQuery($builder);
         $this->addSortsToQuery($builder);
-
+        
         return $builder;
     }
-
+    
     /**
      * @param Builder $builder
      */
     protected function addFiltersToQuery(Builder $builder)
     {
         $allowedFilters = $this->options->get('allowedFilters')->toArray();
-
+        
         $this->filters->each(function ($value, $property) use ($builder, $allowedFilters) {
             $allowProperty = $property;
             if (strpos($property, '.') !== false) {
                 $allowProperty = strstr($property, '.', true);
             }
-
+            
             if (in_array($allowProperty, $allowedFilters, true)) {
                 $property = str_replace('.', '->', $property);
                 $this->filtersExact($builder, $value, $property);
             }
         });
     }
-
+    
     /**
      * @param Builder $query
      * @param mixed   $value
@@ -133,39 +128,56 @@ class HttpFilter
     protected function filtersExact(Builder $query, $value, string $property): Builder
     {
         $property = self::sanitize($property);
-
-        if (is_array($value)) {
-            return $query->whereIn($property, $value);
+        $model = $query->getModel();
+        
+        if ($this->isDate($model, $property)) {
+            $query->when($value['start'] ?? null, function(Builder $query) use ($property, $value) {
+                return $query->whereDate($property, '>=', $value['start']);
+            });
+            $query->when($value['end'] ?? null, function (Builder $query) use ($property, $value) {
+                return $query->whereDate($property, '<=', $value['end']);
+            });
+        } elseif (is_array($value) && (isset($value['min']) || isset($value['max']))) {
+            $query->when($value['min'] ?? null, function (Builder $query) use ($property, $value) {
+                return $query->where($property, '>=', $value['min']);
+            });
+            $query->when($value['max'] ?? null, function (Builder $query) use ($property, $value) {
+                return $query->where($property, '<=', $value['max']);
+            });
+        } elseif (is_array($value)) {
+            $query->whereIn($property, $value);
+        } elseif ($model->hasCast($property, ['bool', 'boolean'])) {
+            $query->where($property, (bool)$value);
+        } elseif (is_numeric($value) && !$model->hasCast($property, ['string'])) {
+            $query->where($property, $value);
+        } else {
+            $query->where($property, 'like', "%$value%");
         }
-
-        if (is_numeric($value)) {
-            return $query->where($property, $value);
-        }
-
-        return $query->where($property, 'like', "%$value%");
+    
+        return $query;
     }
-
+    
     /**
      * @param Builder $builder
      */
     protected function addSortsToQuery(Builder $builder)
     {
         $allowedSorts = $this->options->get('allowedSorts')->toArray();
-
+        
         $this->sorts
             ->each(function (string $sort) use ($builder, $allowedSorts) {
                 $descending = strpos($sort, '-') === 0;
                 $key = ltrim($sort, '-');
                 $property = Str::before($key, '.');
                 $key = str_replace('.', '->', $key);
-
+                
                 if (in_array($property, $allowedSorts, true)) {
                     $key = $this->sanitize($key);
                     $builder->orderBy($key, $descending ? 'desc' : 'asc');
                 }
             });
     }
-
+    
     /**
      * @param null|string $property
      *
@@ -176,18 +188,18 @@ class HttpFilter
         if ($property === null) {
             return $this->sorts->isEmpty();
         }
-
+        
         if ($this->sorts->search($property, true) !== false) {
             return true;
         }
-
-        if ($this->sorts->search('-'.$property, true) !== false) {
+        
+        if ($this->sorts->search('-' . $property, true) !== false) {
             return true;
         }
-
+        
         return false;
     }
-
+    
     /**
      * @param string $property
      *
@@ -196,10 +208,10 @@ class HttpFilter
     public function revertSort(string $property): string
     {
         return $this->getSort($property) === 'asc'
-            ? '-'.$property
+            ? '-' . $property
             : $property;
     }
-
+    
     /**
      * @param string $property
      *
@@ -211,7 +223,7 @@ class HttpFilter
             ? 'asc'
             : 'desc';
     }
-
+    
     /**
      * @param string $property
      *
@@ -220,5 +232,17 @@ class HttpFilter
     public function getFilter(string $property)
     {
         return Arr::get($this->filters, $property);
+    }
+    
+    /**
+     * @param Model $model
+     * @param string $property
+     *
+     * @return bool
+     */
+    private function isDate(Model $model, string $property): bool
+    {
+        return $model->hasCast($property, ['date', 'datetime', 'immutable_date', 'immutable_datetime'])
+            || in_array($property,[$model->getCreatedAtColumn(),$model->getUpdatedAtColumn()],true);
     }
 }
