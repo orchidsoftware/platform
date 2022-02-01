@@ -131,7 +131,7 @@ class HttpFilter
         $model = $query->getModel();
         
         if ($this->isDate($model, $property)) {
-            $query->when($value['start'] ?? null, function(Builder $query) use ($property, $value) {
+            $query->when($value['start'] ?? null, function (Builder $query) use ($property, $value) {
                 return $query->whereDate($property, '>=', $value['start']);
             });
             $query->when($value['end'] ?? null, function (Builder $query) use ($property, $value) {
@@ -148,7 +148,7 @@ class HttpFilter
             $query->whereIn($property, $value);
         } elseif ($model->hasCast($property, ['bool', 'boolean'])) {
             $query->where($property, (bool)$value);
-        } elseif (is_numeric($value) && !$model->hasCast($property, ['string'])) {
+        } elseif (is_numeric($value) && ! $model->hasCast($property, ['string'])) {
             $query->where($property, $value);
         } else {
             $query->where($property, 'like', "%$value%");
@@ -235,7 +235,7 @@ class HttpFilter
     }
     
     /**
-     * @param Model $model
+     * @param Model  $model
      * @param string $property
      *
      * @return bool
@@ -243,6 +243,6 @@ class HttpFilter
     private function isDate(Model $model, string $property): bool
     {
         return $model->hasCast($property, ['date', 'datetime', 'immutable_date', 'immutable_datetime'])
-            || in_array($property,[$model->getCreatedAtColumn(),$model->getUpdatedAtColumn()],true);
+            || in_array($property, [$model->getCreatedAtColumn(),$model->getUpdatedAtColumn()], true);
     }
 }

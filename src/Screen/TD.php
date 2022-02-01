@@ -254,6 +254,7 @@ class TD extends Cell
                 $input = Input::make()->type($filter);
                 break;
         }
+
         return $input;
     }
     
@@ -293,7 +294,7 @@ class TD extends Cell
      */
     public function buildItemMenu()
     {
-        if (!$this->isAllowUserHidden()) {
+        if (! $this->isAllowUserHidden()) {
             return;
         }
         
@@ -379,7 +380,9 @@ class TD extends Cell
             }
             
             if ($this->filterOptions) {
-                $filter = array_map(function ($val) { return $this->filterOptions[$val] ?? $val; }, $filter);
+                $filter = array_map(function ($val) {
+                    return $this->filterOptions[$val] ?? $val;
+                }, $filter);
             }
             
             return implode(', ', $filter);
