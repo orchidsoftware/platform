@@ -11,7 +11,7 @@
             !!}
         </th>
 
-        @if ($loop->last)
+        @if ($loop->last && $removableRows)
             <th class="no-border text-center align-middle">
                 <a href="#"
                    data-action="matrix#deleteRow"
