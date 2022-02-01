@@ -12,18 +12,11 @@ use Orchid\Support\Facades\Layout;
 class ExampleChartsScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Charts';
-
-    /**
      * Query data.
      *
      * @return array
      */
-    public function query(): array
+    public function query(): iterable
     {
         return [
             'charts' => [
@@ -52,11 +45,21 @@ class ExampleChartsScreen extends Screen
     }
 
     /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Charts';
+    }
+
+    /**
      * Button commands.
      *
      * @return \Orchid\Screen\Action[]
      */
-    public function commandBar(): array
+    public function commandBar(): iterable
     {
         return [];
     }
@@ -69,7 +72,7 @@ class ExampleChartsScreen extends Screen
      * @return string[]|\Orchid\Screen\Layout[]
      *
      */
-    public function layout(): array
+    public function layout(): iterable
     {
         return [
             Layout::columns([

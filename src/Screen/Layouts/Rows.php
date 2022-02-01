@@ -71,5 +71,5 @@ abstract class Rows extends Layout
     /**
      * @return Field[]
      */
-    abstract protected function fields(): array;
+    abstract protected function fields(): iterable;
 }

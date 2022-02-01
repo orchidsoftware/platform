@@ -14,6 +14,7 @@ use Orchid\Tests\App\Screens\DependentListenerScreen;
 use Orchid\Tests\App\Screens\MethodsResponseScreen;
 use Orchid\Tests\App\Screens\ModalValidationScreen;
 use Orchid\Tests\App\Screens\NestedTargetsDependentSumListenerScreen;
+use Orchid\Tests\App\Screens\PropertyAutoWriteScreen;
 
 class ExemplarServiceProvider extends ServiceProvider
 {
@@ -40,6 +41,7 @@ class ExemplarServiceProvider extends ServiceProvider
                 $route->screen('methods-response', MethodsResponseScreen::class)->name('methods-response');
                 $route->screen('confirm', ConfirmScreen::class)->name('confirm');
                 $route->screen('async-header-button-action', AsyncHeaderButtonActionScreen::class)->name('async-header-button-action');
+                $route->screen('write-only-public-property', PropertyAutoWriteScreen::class)->name('write-only-public-property');
             });
     }
 }

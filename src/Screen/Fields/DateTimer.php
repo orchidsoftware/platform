@@ -207,7 +207,7 @@ class DateTimer extends Field
      *
      * @return $this
      */
-    public function minuteIncrement(int $increment)
+    public function minuteIncrement(int $increment): self
     {
         $this->set('data-datetime-minute-increment', $increment);
 
@@ -221,7 +221,7 @@ class DateTimer extends Field
      *
      * @return $this
      */
-    public function hourIncrement(int $increment)
+    public function hourIncrement(int $increment): self
     {
         $this->set('data-datetime-hour-increment', $increment);
 

@@ -11,16 +11,22 @@ use Orchid\Screen\Field;
 abstract class Filter
 {
     /**
+     * The request instance.
+     *
      * @var Request
      */
     public $request;
 
     /**
+     * The array of matched parameters.
+     *
      * @var null|array
      */
     public $parameters;
 
     /**
+     * Sets the value to hide/show the filter in the selection.
+     *
      * @var bool
      */
     public $display = true;
@@ -57,11 +63,21 @@ abstract class Filter
      */
     public function filter(Builder $builder): Builder
     {
-        $when = empty($this->parameters) || $this->request->hasAny($this->parameters);
+        $when = empty($this->parameters()) || $this->request->hasAny($this->parameters());
 
         return $builder->when($when, function (Builder $builder) {
             return $this->run($builder);
         });
+    }
+
+    /**
+     * The array of matched parameters.
+     *
+     * @return array|null
+     */
+    public function parameters(): ?array
+    {
+        return $this->parameters;
     }
 
     /**
@@ -78,7 +94,7 @@ abstract class Filter
      *
      * @return Field[]
      */
-    public function display(): array
+    public function display(): iterable
     {
         return [];
     }
@@ -116,7 +132,7 @@ abstract class Filter
      */
     public function isApply(): bool
     {
-        return count($this->request->only($this->parameters, [])) > 0;
+        return count($this->request->only($this->parameters(), [])) > 0;
     }
 
     /**
@@ -126,7 +142,7 @@ abstract class Filter
      */
     public function value(): string
     {
-        $params = $this->request->only($this->parameters, []);
+        $params = $this->request->only($this->parameters(), []);
         $values = collect($params)->flatten()->implode(static::$delimiter);
 
         return $this->name().': '.$values;
@@ -139,7 +155,7 @@ abstract class Filter
      */
     public function resetLink(): string
     {
-        $params = http_build_query($this->request->except($this->parameters));
+        $params = http_build_query($this->request->except($this->parameters()));
 
         return url($this->request->url().'?'.$params);
     }

@@ -12,13 +12,6 @@ use Orchid\Screen\Screen;
 class QueryWithoutDefaultValueScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Test Query Without Default Value Screen';
-
-    /**
      * Query data.
      *
      * @return array
@@ -28,6 +21,16 @@ class QueryWithoutDefaultValueScreen extends Screen
         return [
             'user' => $user,
         ];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Test Query Without Default Value Screen';
     }
 
     /**

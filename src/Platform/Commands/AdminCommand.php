@@ -36,7 +36,7 @@ class AdminCommand extends Command
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         try {
             $userId = $this->option('id');

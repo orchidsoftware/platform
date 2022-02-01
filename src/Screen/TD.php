@@ -312,7 +312,7 @@ class TD extends Cell
      *
      * @return TD
      */
-    public function cantHide($hidden = false): self
+    public function cantHide(bool $hidden = false): self
     {
         $this->allowUserHidden = $hidden;
         
@@ -324,7 +324,7 @@ class TD extends Cell
      *
      * @return $this
      */
-    public function defaultHidden($hidden = true): self
+    public function defaultHidden(bool $hidden = true): self
     {
         $this->defaultHidden = $hidden;
         
@@ -336,9 +336,8 @@ class TD extends Cell
      */
     public function buildSortUrl(): string
     {
-        $query = request()->query();
-        $query['sort'] = revert_sort($this->column);
-        
+        $query = request()->collect()->put('sort', revert_sort($this->column))->toArray();
+
         return url()->current() . '?' . http_build_query($query);
     }
     

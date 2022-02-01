@@ -45,7 +45,7 @@ abstract class Listener extends Layout
     /**
      * @return array
      */
-    abstract protected function layouts(): array;
+    abstract protected function layouts(): iterable;
 
     /**
      * @param Repository $repository

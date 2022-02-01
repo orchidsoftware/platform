@@ -12,12 +12,7 @@
     </title>
     <meta name="csrf_token" content="{{  csrf_token() }}" id="csrf_token">
     <meta name="auth" content="{{  Auth::check() }}" id="auth">
-
-    @if(file_exists(public_path('/css/orchid/orchid.css')))
-        <link rel="stylesheet" type="text/css" href="{{  mix('/css/orchid/orchid.css') }}">
-    @else
-        <link rel="stylesheet" type="text/css" href="{{  orchid_mix('/css/orchid.css','orchid') }}">
-    @endif
+    <link rel="stylesheet" type="text/css" href="{{  mix('/css/orchid.css','vendor/orchid') }}">
 
     @stack('head')
 
@@ -28,9 +23,9 @@
         <meta name="turbo-cache-control" content="no-cache">
     @endif
 
-    <script src="{{ orchid_mix('/js/manifest.js','orchid') }}" type="text/javascript"></script>
-    <script src="{{ orchid_mix('/js/vendor.js','orchid') }}" type="text/javascript"></script>
-    <script src="{{ orchid_mix('/js/orchid.js','orchid') }}" type="text/javascript"></script>
+    <script src="{{ mix('/js/manifest.js','vendor/orchid') }}" type="text/javascript"></script>
+    <script src="{{ mix('/js/vendor.js','vendor/orchid') }}" type="text/javascript"></script>
+    <script src="{{ mix('/js/orchid.js','vendor/orchid') }}" type="text/javascript"></script>
 
     @foreach(Dashboard::getResource('stylesheets') as $stylesheet)
         <link rel="stylesheet" href="{{  $stylesheet }}">

@@ -15,10 +15,9 @@ use Orchid\Platform\Commands\AdminCommand;
 use Orchid\Platform\Commands\ChartCommand;
 use Orchid\Platform\Commands\FilterCommand;
 use Orchid\Platform\Commands\InstallCommand;
-use Orchid\Platform\Commands\LinkCommand;
 use Orchid\Platform\Commands\ListenerCommand;
-use Orchid\Platform\Commands\MetricsCommand;
 use Orchid\Platform\Commands\PresenterCommand;
+use Orchid\Platform\Commands\PublishCommand;
 use Orchid\Platform\Commands\RowsCommand;
 use Orchid\Platform\Commands\ScreenCommand;
 use Orchid\Platform\Commands\SelectionCommand;
@@ -42,14 +41,13 @@ class FoundationServiceProvider extends ServiceProvider
      */
     protected $commands = [
         InstallCommand::class,
-        LinkCommand::class,
+        PublishCommand::class,
         AdminCommand::class,
         FilterCommand::class,
         RowsCommand::class,
         ScreenCommand::class,
         TableCommand::class,
         ChartCommand::class,
-        MetricsCommand::class,
         SelectionCommand::class,
         ListenerCommand::class,
         PresenterCommand::class,
@@ -120,22 +118,21 @@ class FoundationServiceProvider extends ServiceProvider
         $this->publishes([
             Dashboard::path('stubs/app/routes/') => base_path('routes'),
             Dashboard::path('stubs/app/Orchid/') => app_path('Orchid'),
-        ], 'orchid-stubs');
+        ], 'orchid-app-stubs');
 
         return $this;
     }
 
     /**
-     * Register assets.
+     * Register the asset publishing configuration.
      *
      * @return $this
      */
     protected function registerAssets(): self
     {
         $this->publishes([
-            Dashboard::path('resources/js')   => resource_path('js/orchid'),
-            Dashboard::path('resources/sass') => resource_path('sass/orchid'),
-        ], 'orchid-assets');
+            Dashboard::path('public') => public_path('vendor/orchid'),
+        ], ['orchid-assets', 'laravel-assets']);
 
         return $this;
     }
@@ -222,13 +219,9 @@ class FoundationServiceProvider extends ServiceProvider
         if (! Route::hasMacro('screen')) {
             Route::macro('screen', function ($url, $screen) {
                 /* @var Router $this */
-                $route = $this->any($url.'/{method?}', [$screen, 'handle']);
+                $route = $this->match(['GET', 'HEAD', 'POST'], $url.'/{method?}', [$screen, 'handle']);
 
-                $methods = $screen::getAvailableMethods();
-
-                if (! empty($methods)) {
-                    $route->where('method', implode('|', $methods));
-                }
+                $route->where('method', $screen::getAvailableMethods()->implode('|'));
 
                 return $route;
             });

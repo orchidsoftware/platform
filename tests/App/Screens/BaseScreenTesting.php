@@ -15,13 +15,6 @@ use Orchid\Support\Facades\Toast;
 class BaseScreenTesting extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Base Screen Test';
-
-    /**
      * Query data.
      *
      * @param User|null $user
@@ -33,6 +26,16 @@ class BaseScreenTesting extends Screen
         return [
             'user' => $user,
         ];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Base Screen Test';
     }
 
     /**

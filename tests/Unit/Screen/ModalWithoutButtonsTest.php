@@ -22,8 +22,8 @@ class ModalWithoutButtonsTest extends TestUnitCase
         $screen = new ModalScreenWithoutButtons();
         $html = $screen->view()->withErrors(Validator::make([], []))->render();
 
-        $this->assertStringContainsString($screen->name, $html);
-        $this->assertStringContainsString($screen->description, $html);
+        $this->assertStringContainsString($screen->name(), $html);
+        $this->assertStringContainsString($screen->description(), $html);
         $this->assertStringContainsString(ModalScreenWithoutButtons::TITLE_MODAL, $html);
         $this->assertStringContainsString(Modal::SIZE_LG, $html);
 

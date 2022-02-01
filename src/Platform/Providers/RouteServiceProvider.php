@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Middleware\Access;
 use Orchid\Platform\Http\Middleware\Turbo;
-use Orchid\Platform\Models\Role;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -25,22 +24,7 @@ class RouteServiceProvider extends ServiceProvider
             Access::class,
         ]);
 
-        $this->binding();
         parent::boot();
-    }
-
-    /**
-     * Route binding.
-     */
-    public function binding()
-    {
-        Route::bind('role', static function ($value) {
-            $role = Dashboard::modelClass(Role::class);
-
-            return is_numeric($value)
-                ? $role->where('id', $value)->firstOrFail()
-                : $role->where('slug', $value)->firstOrFail();
-        });
     }
 
     /**
@@ -50,15 +34,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        /*
-         * Public
-         */
-        Route::domain((string) config('platform.domain'))
-            ->prefix(Dashboard::prefix('/'))
-            ->as('platform.')
-            ->middleware(config('platform.middleware.public'))
-            ->group(Dashboard::path('routes/public.php'));
-
         /*
          * Dashboard
          */
@@ -76,15 +51,6 @@ class RouteServiceProvider extends ServiceProvider
             ->as('platform.')
             ->middleware(config('platform.middleware.public'))
             ->group(Dashboard::path('routes/auth.php'));
-
-        /*
-         * Systems
-         */
-        Route::domain((string) config('platform.domain'))
-            ->prefix(Dashboard::prefix('/systems'))
-            ->as('platform.')
-            ->middleware(config('platform.middleware.private'))
-            ->group(Dashboard::path('routes/systems.php'));
 
         /*
          * Application

@@ -20,7 +20,7 @@ class Controller extends BaseController
     /**
      * @param string $permission
      */
-    protected function checkPermission(string $permission)
+    protected function checkPermission(string $permission): void
     {
         $this->middleware(static function ($request, $next) use ($permission) {
             if (Auth::user()->hasAccess($permission)) {

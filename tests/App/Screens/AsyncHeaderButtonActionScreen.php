@@ -13,13 +13,6 @@ use Throwable;
 class AsyncHeaderButtonActionScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Test async button action';
-
-    /**
      * Query data.
      *
      * @return array
@@ -27,6 +20,16 @@ class AsyncHeaderButtonActionScreen extends Screen
     public function query(): array
     {
         return [];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Test async button action';
     }
 
     /**

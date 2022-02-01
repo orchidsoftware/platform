@@ -1,7 +1,6 @@
-import ApplicationController     from "./application_controller"
-import {Dropzone}                from 'dropzone';
-import Sortable                  from 'sortablejs';
-import {debounce, has as objHas} from "lodash";
+import ApplicationController from "./application_controller"
+import {Dropzone} from 'dropzone';
+import Sortable from 'sortablejs';
 
 export default class extends ApplicationController {
 
@@ -26,12 +25,11 @@ export default class extends ApplicationController {
     constructor(props) {
         super(props);
         this.attachments = {};
-        this.mediaList = {};
+        this.mediaList = [];
         this.allMediaList = {};
     }
 
     initialize() {
-        this.loadMedia = debounce(this.loadMedia, 500);
         this.page = 1
     }
 
@@ -183,7 +181,7 @@ export default class extends ApplicationController {
             .attr('data-file-id', file.id)
             .addClass('file-sort');
         $(
-            `<input type="hidden" class="files-${file.id}" name="${name}[]" value="${file.id}"  />`
+            `<input type='hidden' class='files-${file.id}' name='${name}[]' value='${file.id}'  />`
         ).appendTo(dropname);
     }
 
@@ -266,7 +264,7 @@ export default class extends ApplicationController {
                 });
 
                 this.on('removedfile', file => {
-                    if (objHas(file, 'data.id')) {
+                    if (file.hasOwnProperty('data.id')) {
                         $(dropname).find(`.files-${file.data.id}`).remove();
                         !isMediaLibrary && axios
                             .delete(urlDelete + file.data.id, {

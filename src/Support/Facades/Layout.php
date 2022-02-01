@@ -14,6 +14,7 @@ use Orchid\Screen\Layouts\Browsing;
 use Orchid\Screen\Layouts\Columns;
 use Orchid\Screen\Layouts\Component;
 use Orchid\Screen\Layouts\Legend;
+use Orchid\Screen\Layouts\Metric;
 use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Layouts\Selection;
@@ -39,6 +40,7 @@ use Orchid\Screen\Layouts\Wrapper;
  * @method static Block block(BaseLayout|string|string[] $layouts)
  * @method static Legend legend(string $target, array $columns)
  * @method static Browsing browsing(string $src)
+ * @method static Metric metrics(array $labels)
  */
 class Layout extends Facade
 {

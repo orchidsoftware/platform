@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Closure;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
@@ -31,7 +32,7 @@ use Throwable;
  * @method self tabindex($value = true)
  * @method self autocomplete($value = true)
  */
-class Field implements Fieldable
+class Field implements Fieldable, Htmlable
 {
     use CanSee, Makeable, Conditionable, Macroable {
         __call as macroCall;
@@ -483,7 +484,7 @@ class Field implements Fieldable
     /**
      * @return array
      */
-    private function getErrorsMessage()
+    private function getErrorsMessage(): array
     {
         $errors = session()->get('errors', new MessageBag());
 
@@ -525,5 +526,15 @@ class Field implements Fieldable
         }
 
         return $this;
+    }
+
+    /**
+     * @throws \Throwable
+     *
+     * @return string
+     */
+    public function toHtml()
+    {
+        return $this->render()->toHtml();
     }
 }

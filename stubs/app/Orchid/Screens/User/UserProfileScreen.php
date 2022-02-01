@@ -20,27 +20,13 @@ use Orchid\Support\Facades\Toast;
 class UserProfileScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'My account';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description = 'Update your account details such as name, email address and password';
-
-    /**
      * Query data.
      *
      * @param Request $request
      *
      * @return array
      */
-    public function query(Request $request): array
+    public function query(Request $request): iterable
     {
         return [
             'user' => $request->user(),
@@ -48,11 +34,31 @@ class UserProfileScreen extends Screen
     }
 
     /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'My account';
+    }
+
+    /**
+     * Display header description.
+     *
+     * @return string|null
+     */
+    public function description(): ?string
+    {
+        return 'Update your account details such as name, email address and password';
+    }
+
+    /**
      * Button commands.
      *
      * @return Action[]
      */
-    public function commandBar(): array
+    public function commandBar(): iterable
     {
         return [];
     }
@@ -60,7 +66,7 @@ class UserProfileScreen extends Screen
     /**
      * @return \Orchid\Screen\Layout[]
      */
-    public function layout(): array
+    public function layout(): iterable
     {
         return [
             Layout::block(UserEditLayout::class)

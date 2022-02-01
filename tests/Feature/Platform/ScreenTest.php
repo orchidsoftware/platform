@@ -10,12 +10,11 @@ class ScreenTest extends TestFeatureCase
 {
     public function testRedirectForManyParams(): void
     {
-        $response = $this
+        $this
             ->actingAs($this->createAdminUser())
             ->get(route('platform.main', [
                 'method' => 'any',
-            ]));
-
-        $response->assertRedirect(route('platform.main'));
+            ]))
+            ->assertSuccessful();
     }
 }

@@ -43,8 +43,10 @@ trait Chartable
      *
      * @return TimeCollection
      */
-    private function groupByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = 'created_at')
+    private function groupByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = null): TimeCollection
     {
+        $dateColumn = $dateColumn ?? $builder->getModel()->getCreatedAtColumn();
+
         $startDate = empty($startDate)
             ? Carbon::now()->subMonth()
             : Carbon::parse($startDate);
@@ -53,14 +55,11 @@ trait Chartable
             ? Carbon::now()
             : Carbon::parse($stopDate);
 
-        $query = $builder->select(
-            DB::raw("$value as value"),
-            DB::raw("DATE($dateColumn) as label")
-        )
-            ->where($dateColumn, '>=', $startDate)
-            ->where($dateColumn, '<=', $stopDate)
-            ->orderBy('label')
-            ->groupBy('label')
+        $query = $builder
+            ->select(DB::raw("$value as value, DATE($dateColumn) as label"))
+            ->whereBetween($dateColumn, [$startDate, $stopDate])
+            ->groupBy(DB::raw($dateColumn))
+            ->orderBy(DB::raw($dateColumn))
             ->get();
 
         $days = $startDate->diffInDays($stopDate) + 1;
@@ -92,12 +91,78 @@ trait Chartable
      *
      * @return TimeCollection
      */
-    public function scopeCountByDays(Builder $builder, $startDate = null, $stopDate = null, string $dateColumn = 'created_at'): TimeCollection
+    public function scopeCountByDays(Builder $builder, $startDate = null, $stopDate = null, string $dateColumn = null): TimeCollection
     {
         return $this->groupByDays($builder, 'count(*)', $startDate, $stopDate, $dateColumn);
     }
 
     /**
+     * Get average models grouped by `created_at` day.
+     *
+     * @param Builder                       $builder
+     * @param string                        $value
+     * @param string|DateTimeInterface|null $startDate
+     * @param string|DateTimeInterface|null $stopDate
+     * @param string|null                   $dateColumn
+     *
+     * @return TimeCollection
+     */
+    public function scopeAverageByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = null): TimeCollection
+    {
+        return $this->groupByDays($builder, "avg($value)", $startDate, $stopDate, $dateColumn);
+    }
+
+    /**
+     * Get sum models grouped by `created_at` day.
+     *
+     * @param Builder                       $builder
+     * @param string                        $value
+     * @param string|DateTimeInterface|null $startDate
+     * @param string|DateTimeInterface|null $stopDate
+     * @param string|null                   $dateColumn
+     *
+     * @return TimeCollection
+     */
+    public function scopeSumByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = null): TimeCollection
+    {
+        return $this->groupByDays($builder, "sum($value)", $startDate, $stopDate, $dateColumn);
+    }
+
+    /**
+     * Get sum models grouped by `created_at` day.
+     *
+     * @param Builder                       $builder
+     * @param string                        $value
+     * @param string|DateTimeInterface|null $startDate
+     * @param string|DateTimeInterface|null $stopDate
+     * @param string|null                   $dateColumn
+     *
+     * @return TimeCollection
+     */
+    public function scopeMaxByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = null): TimeCollection
+    {
+        return $this->groupByDays($builder, "max($value)", $startDate, $stopDate, $dateColumn);
+    }
+
+    /**
+     * Get min models grouped by `created_at` day.
+     *
+     * @param Builder                       $builder
+     * @param string                        $value
+     * @param string|DateTimeInterface|null $startDate
+     * @param string|DateTimeInterface|null $stopDate
+     * @param string|null                   $dateColumn
+     *
+     * @return TimeCollection
+     */
+    public function scopeMinByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = null): TimeCollection
+    {
+        return $this->groupByDays($builder, "min($value)", $startDate, $stopDate, $dateColumn);
+    }
+
+    /**
+     * @deprecated usage maxByDays or minByDays
+     *
      * Get values models grouped by `created_at` day.
      *
      * @param Builder                       $builder
@@ -111,21 +176,5 @@ trait Chartable
     public function scopeValuesByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = 'created_at'): TimeCollection
     {
         return $this->groupByDays($builder, $value, $startDate, $stopDate, $dateColumn);
-    }
-
-    /**
-     * Get sum values models grouped by `created_at` day.
-     *
-     * @param Builder                       $builder
-     * @param string                        $value
-     * @param string|DateTimeInterface|null $startDate
-     * @param string|DateTimeInterface|null $stopDate
-     * @param string                        $dateColumn
-     *
-     * @return TimeCollection
-     */
-    public function scopeSumByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = 'created_at'): TimeCollection
-    {
-        return $this->groupByDays($builder, "SUM($value)", $startDate, $stopDate, $dateColumn);
     }
 }

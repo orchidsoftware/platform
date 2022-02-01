@@ -24,28 +24,26 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Publish files for ORCHID and install package';
+    protected $description = 'Install all of the Orchid files';
 
     /**
      * Execute the console command.
      *
-     * @param Dashboard $dashboard
-     *
      * @return void
      */
-    public function handle(Dashboard $dashboard)
+    public function handle()
     {
-        $this->info('Installation started. Please wait...');
+        $this->comment('Installation started. Please wait...');
         $this->info('Version: ' . Dashboard::VERSION);
 
         $this
             ->executeCommand('vendor:publish', [
                 '--provider' => FoundationServiceProvider::class,
-                '--force'    => true,
                 '--tag'      => [
                     'config',
                     'migrations',
-                    'orchid-stubs',
+                    'orchid-app-stubs',
+                    'orchid-assets',
                 ],
             ])
             ->executeCommand('migrate')
@@ -70,7 +68,7 @@ class InstallCommand extends Command
     private function executeCommand(string $command, array $parameters = []): self
     {
         try {
-            $result = $this->call($command, $parameters);
+            $result = $this->callSilent($command, $parameters);
         } catch (\Exception $exception) {
             $result = 1;
             $this->alert($exception->getMessage());

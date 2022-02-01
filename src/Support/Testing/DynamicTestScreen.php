@@ -53,7 +53,7 @@ class DynamicTestScreen
      *
      * @return DynamicTestScreen
      */
-    public function register(string $screen, string $route = null, $middleware = 'web')
+    public function register(string $screen, string $route = null, $middleware = 'web'): DynamicTestScreen
     {
         Route::screen('/_test/' . ($route ?? $this->name), $screen)
             ->middleware($middleware)
@@ -72,7 +72,7 @@ class DynamicTestScreen
      *
      * @return $this
      */
-    public function parameters(array $parameters = [])
+    public function parameters(array $parameters = []): self
     {
         $this->parameters = $parameters;
 
@@ -164,7 +164,7 @@ class DynamicTestScreen
      *
      * @return $this
      */
-    public function actingAs(UserContract $user, $guard = null)
+    public function actingAs(UserContract $user, $guard = null): self
     {
         $this->be($user, $guard);
 
@@ -179,7 +179,7 @@ class DynamicTestScreen
      *
      * @return $this
      */
-    public function be(UserContract $user, $guard = null)
+    public function be(UserContract $user, $guard = null): self
     {
         $this->http->be($user, $guard);
 
@@ -206,7 +206,7 @@ class DynamicTestScreen
      *
      * @return $this
      */
-    public function from(string $url)
+    public function from(string $url): self
     {
         $this->http->getAppication()['session']->setPreviousUrl($url);
 

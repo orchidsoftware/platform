@@ -13,18 +13,21 @@ use Orchid\Screen\Fields\Select;
 class RoleFilter extends Filter
 {
     /**
-     * @var array
-     */
-    public $parameters = [
-        'role',
-    ];
-
-    /**
      * @return string
      */
     public function name(): string
     {
         return __('Roles');
+    }
+
+    /**
+     * The array of matched parameters.
+     *
+     * @return array|null
+     */
+    public function parameters(): ?array
+    {
+        return ['role'];
     }
 
     /**
@@ -58,6 +61,6 @@ class RoleFilter extends Filter
      */
     public function value(): string
     {
-        return $this->name().': '.Role::where('slug', $this->request->get('role'))->first()->name;
+        return $this->name() . ': ' . Role::where('slug', $this->request->get('role'))->first()->name;
     }
 }
