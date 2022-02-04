@@ -1,12 +1,12 @@
 <div class="d-flex m-0 align-items-center p-3">
-    <div class="dropdown w-100">
+    <div class="dropdown w-75">
         <a href="#" class="nav-link p-0 d-flex align-items-center" data-bs-toggle="dropdown">
             @if($image = Auth::user()->presenter()->image())
                 <span class="thumb-sm avatar me-3">
                         <img src="{{$image}}" class="b">
                 </span>
             @endif
-            <span class="d-block small w-75">
+            <span class="d-block small" style="max-width: 9.5em;">
                 <span class="text-ellipsis text-white">{{Auth::user()->presenter()->title()}}</span>
                 <span class="text-muted d-block text-ellipsis">{{Auth::user()->presenter()->subTitle()}}</span>
             </span>
