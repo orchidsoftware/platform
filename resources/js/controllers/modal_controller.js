@@ -84,6 +84,10 @@ export default class extends ApplicationController {
     openLastModal() {
         const lastOpenModal = this.lastOpenModal;
 
+        if (this.element.querySelectorAll('.invalid-feedback').length === 0) {
+            return;
+        }
+
         if (typeof lastOpenModal === 'object' && lastOpenModal.slug === this.data.get('slug')) {
             this.element.classList.remove('fade', 'in');
             this.open(lastOpenModal)
