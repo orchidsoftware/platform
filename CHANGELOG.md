@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 11.0.0 - 2022-02-06
+
+## Added 
+
+- Automatic parameter prediction in components [#1961](https://github.com/orchidsoftware/platform/issues/1961)
+- Component value [#1962](https://github.com/orchidsoftware/platform/issues/1962)
+- Autocomplete public properties [#1666](https://github.com/orchidsoftware/platform/discussions/1666)
+
+### Changed
+- Publish assets files [#1965](https://github.com/orchidsoftware/platform/issues/1965)
+- Allow different types of values to be returned [#1963](https://github.com/orchidsoftware/platform/issues/1963)
+
+### Removed
+
+- Command `php artisan orchid:link`
+- Command `php artisan orchid:metrics`
+
+### Fixed
+- Screen reader classes are now visually-hidden by @thewebartisan7 in [#2082](https://github.com/orchidsoftware/platform/pull/2082)
+- Destroy popover on disconnect by @thewebartisan7 in [#2080](https://github.com/orchidsoftware/platform/pull/2080)
+- data-target attribute is deprecated by @swara-mohammed in [#2085](https://github.com/orchidsoftware/platform/pull/2085)
+- Support for complex TD::filters, like daterange, number interval by @lintaba in [#1927](https://github.com/orchidsoftware/platform/pull/1927)
+- Update modal_controller by @Augen2203 in [#2110](https://github.com/orchidsoftware/platform/pull/2110)
+
+
 ## 10.31.0 - 2022-01-22
 
 ### Added
