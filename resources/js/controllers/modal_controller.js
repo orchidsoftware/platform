@@ -10,43 +10,48 @@ export default class extends ApplicationController {
         "title"
     ];
 
+    initialize() {
+        this.show = this.show.bind(this);
+        this.hidden = this.hidden.bind(this);
+    }
+
     /**
      *
      */
     connect() {
+        this.element.addEventListener('shown.bs.modal', this.show);
+        this.element.addEventListener('hide.bs.modal', this.hidden);
+        this.openLastModal();
+    }
 
-        $(this.element).on('shown.bs.modal', () => {
-            let autoFocusElement = this.element.querySelector('[autofocus]');
+    /**
+     * Show EventListener
+     */
+    show(event)
+    {
+        let autoFocusElement = this.element.querySelector('[autofocus]');
 
-            if(autoFocusElement !== null){
-                autoFocusElement.focus();
-            }
-
-
-            let backdrop = document.querySelector('.modal-backdrop');
-
-            if(backdrop !== null){
-                backdrop.id = 'backdrop';
-                backdrop.dataset.turboPermanent = true;
-            }
-        });
-
-
-        $(this.element).on('hide.bs.modal', () => {
-            if (!this.element.classList.contains('fade')) {
-                this.element.classList.add('fade', 'in');
-            }
-        })
-
-        /**
-         * The ".invalid-feedback" class has all fields, which contain
-         * a textual description of the validation error
-         */
-        if (this.element.querySelectorAll('.invalid-feedback').length > 0) {
-            this.setFormAction(sessionStorage.getItem('last-open-modal'));
-            this.element.classList.remove('fade', 'in');
-            $(this.element).modal('show');
+        if(autoFocusElement !== null){
+            autoFocusElement.focus();
         }
+
+        let backdrop = document.querySelector('.modal-backdrop');
+
+        if(backdrop !== null){
+            backdrop.id = 'backdrop';
+            backdrop.dataset.turboPermanent = true;
+        }
+    }
+
+    /**
+     * Hidden EventListener
+     */
+    hidden(event)
+    {
+        if (!this.element.classList.contains('fade')) {
+            this.element.classList.add('fade', 'in');
+        }
+        sessionStorage.removeItem('last-open-modal');
     }
 
     /**
@@ -54,18 +59,35 @@ export default class extends ApplicationController {
      * @param options
      */
     open(options) {
+        options = {... options,
+            slug: this.data.get('slug'),
+            validateError: this.element.querySelectorAll('.invalid-feedback').length > 0
+        };
+
+        this.element.querySelector('form').action = options.submit;
+
         if (typeof options.title !== "undefined") {
             this.titleTarget.textContent = options.title;
         }
 
-        this.setFormAction(options.submit);
-
-        if (parseInt(this.data.get('async-enable'))) {
+        if (parseInt(this.data.get('async-enable')) && !options.validateError) {
             this.asyncLoadData(JSON.parse(options.params));
         }
 
-
+        this.lastOpenModal = options;
         $(this.element).modal('toggle');
+    }
+
+    /**
+     * Open last opened modal
+     */
+    openLastModal() {
+        const lastOpenModal = this.lastOpenModal;
+
+        if (typeof lastOpenModal === 'object' && lastOpenModal.slug === this.data.get('slug')) {
+            this.element.classList.remove('fade', 'in');
+            this.open(lastOpenModal)
+        }
     }
 
     /**
@@ -82,12 +104,11 @@ export default class extends ApplicationController {
         });
     }
 
-    /**
-     *
-     * @param action
-     */
-    setFormAction(action) {
-        this.element.querySelector('form').action = action;
-        sessionStorage.setItem('last-open-modal', action);
+    set lastOpenModal(options) {
+        sessionStorage.setItem('last-open-modal', JSON.stringify(options))
+    }
+
+    get lastOpenModal() {
+        return JSON.parse(sessionStorage.getItem('last-open-modal')) ?? false
     }
 }
