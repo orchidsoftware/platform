@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Automatic parameter prediction in components [#1961](https://github.com/orchidsoftware/platform/issues/1961)
 - Component value [#1962](https://github.com/orchidsoftware/platform/issues/1962)
 - Autocomplete public properties [#1666](https://github.com/orchidsoftware/platform/discussions/1666)
+- Kazakh language added [#2113](https://github.com/orchidsoftware/platform/pull/2113)
 
 ### Changed
 - Publish assets files [#1965](https://github.com/orchidsoftware/platform/issues/1965)
