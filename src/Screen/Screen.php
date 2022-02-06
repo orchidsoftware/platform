@@ -204,7 +204,7 @@ abstract class Screen extends Controller
 
         $prepare = collect($parameters)
             ->merge(request()->query())
-            ->diff($method)
+            ->diffAssoc($method)
             ->all();
 
         return $this->callMethod($method, $prepare) ?? back();
