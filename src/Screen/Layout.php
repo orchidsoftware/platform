@@ -101,28 +101,30 @@ abstract class Layout implements JsonSerializable
     {
         $this->query = $repository;
 
-        if (! $this->isSee()) {
+        if (!$this->isSee()) {
             return;
         }
 
-        $build = collect($this->layouts)
-            ->map(function ($layouts) {
-                return Arr::wrap($layouts);
-            })
-            ->map(function (iterable $layouts, string $key) use ($repository) {
-                return $this->buildChild($layouts, $key, $repository);
-            })
-            ->collapse()
-            ->all();
+        if (!$this->asyncMethod || ($this->asyncMethod && $this->async)) {
+            $build = collect($this->layouts)
+                ->map(function ($layouts) {
+                    return Arr::wrap($layouts);
+                })
+                ->map(function (array $layouts, string $key) use ($repository) {
+                    return $this->buildChild($layouts, $key, $repository);
+                })
+                ->collapse()
+                ->all();
+        }
 
         $variables = array_merge($this->variables, [
-            'manyForms'    => $build,
+            'manyForms'    => isset($build) ? $build : [],
             'templateSlug' => $this->getSlug(),
             'asyncEnable'  => empty($this->asyncMethod) ? 0 : 1,
             'asyncRoute'   => $this->asyncRoute(),
         ]);
 
-        return view($this->async ? 'platform::layouts.blank' : $this->template, $variables);
+        return view($this->async ? 'layouts.blank' : $this->template, $variables);
     }
 
     /**
