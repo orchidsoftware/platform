@@ -150,8 +150,8 @@ class RelationsTest extends TestFeatureCase
             'name'          => Crypt::encryptString('email'),
             'key'           => Crypt::encryptString('id'),
             'searchColumns' => Crypt::encrypt(['id']),
-            'scope' => Crypt::encrypt([
-                'name' => 'asBuilder',
+            'scope'         => Crypt::encrypt([
+                'name'       => 'asBuilder',
                 'parameters' => [],
             ]),
             'append'        => Crypt::encryptString('full'),

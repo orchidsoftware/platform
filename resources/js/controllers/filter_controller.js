@@ -63,7 +63,7 @@ export default class extends ApplicationController {
         const filters = this.formToObject(formElement);
         filters.sort = this.getUrlParameter('sort');
 
-        const params = qs.stringify(this.removeEmpty(filters), { encode: false, arrayFormat: 'repeat' })
+        const params = qs.stringify(this.removeEmpty(filters), { encodeValuesOnly: true, arrayFormat: 'repeat' })
 
         Turbo.visit(this.getUrl(params), {action: 'replace'});
     }
@@ -96,7 +96,7 @@ export default class extends ApplicationController {
             sort: this.getUrlParameter('sort'),
         };
 
-        const params = qs.stringify(this.removeEmpty(filters), { encode: false, arrayFormat: 'repeat' })
+        const params = qs.stringify(this.removeEmpty(filters), { encodeValuesOnly: true, arrayFormat: 'repeat' })
 
         Turbo.visit(this.getUrl(params), {action: 'replace'});
         event.preventDefault();
@@ -107,8 +107,9 @@ export default class extends ApplicationController {
      * @param event
      */
     clearFilter(event) {
-        const {filter} = event.target.dataset;
-        document.querySelector(`input[name='filter[${filter}]']`).value = '';
+        const {filter} = event.currentTarget.dataset;
+        document.querySelectorAll(`input[name^='filter[${filter}]']`).forEach(function(el){el.value='';});
+        document.querySelectorAll(`select[name^='filter[${filter}]']`).forEach(function(el){el.selectedIndex = -1;});
 
         this.element.remove();
         this.setAllFilter();

@@ -6,6 +6,7 @@ namespace Orchid\Screen;
 
 use Closure;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Orchid\Support\Blade;
@@ -90,22 +91,87 @@ abstract class Cell
     }
 
     /**
-     * @param string      $component
-     * @param string|null $name
-     * @param array       $params
+     * @param string $component
+     * @param array  $params
+     *
+     * @throws \ReflectionException
+     *
+     * @return string
+     */
+    protected function getNameParameterExpected(string $component, array $params = []): string
+    {
+        $class = new \ReflectionClass($component);
+        $parameters = optional($class->getConstructor())->getParameters() ?? [];
+
+        $paramsKeys = Arr::isAssoc($params) ? array_keys($params) : array_values($params);
+
+        return collect($parameters)
+            ->filter(function (\ReflectionParameter $parameter) {
+                return ! $parameter->isOptional();
+            })
+            ->whenEmpty(function () use ($parameters) {
+                return collect($parameters);
+            })
+            ->map(function (\ReflectionParameter $parameter) {
+                return $parameter->getName();
+            })
+            ->diff($paramsKeys)
+            ->whenEmpty(function () use ($component) {
+                throw new \RuntimeException("Class $component doesn't expect any value in the constructor");
+            })
+            ->last();
+    }
+
+    /**
+     * @param string $component
+     * @param        $value
+     * @param array  $params
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \ReflectionException
+     *
+     * @return string|null
+     */
+    protected function renderComponent(string $component, $value, array $params = []): ?string
+    {
+        $nameArgument = $this->getNameParameterExpected($component, $params);
+
+        $arguments = array_merge($params, [
+            $nameArgument => $value,
+        ]);
+
+        return Blade::renderComponent($component, $arguments);
+    }
+
+    /**
+     * Pass the entire string to the component
+     *
+     * @param string $component
+     * @param array  $params
      *
      * @return $this
      */
-    public function component(string $component, string $name = null, array $params = []): self
+    public function component(string $component, array $params = []): self
     {
-        return $this->render(function ($value) use ($component, $name, $params) {
-            if ($name === null) {
-                return Blade::renderComponent($component, $value);
-            }
+        return $this->render(function ($value) use ($component, $params) {
+            return $this->renderComponent($component, $value, $params);
+        });
+    }
 
-            $params[$name] = $value;
-
-            return Blade::renderComponent($component, $params);
+    /**
+     * Pass only the cell value to the component
+     *
+     * @param string $component
+     * @param array  $params
+     *
+     * @throws \ReflectionException
+     *
+     * @return $this
+     */
+    public function asComponent(string $component, array $params = []): self
+    {
+        return $this->render(function ($value) use ($component, $params) {
+            return $this->renderComponent($component, $value->getContent($this->name), $params);
         });
     }
 

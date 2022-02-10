@@ -34,7 +34,7 @@ class TDComponentTest extends TestUnitCase
 
 
         $view = TD::make()
-            ->component(UserTD::class, 'user')
+            ->component(UserTD::class)
             ->buildTd($this->user);
 
         $this->assertStringContainsString($this->user->email, $view);
@@ -43,7 +43,7 @@ class TDComponentTest extends TestUnitCase
     public function testTdArgumentComponent(): void
     {
         $view = TD::make()
-            ->component(UserTDArguments::class, 'user', [
+            ->component(UserTDArguments::class, [
                 'from' => 'Sasha',
             ])
             ->buildTd($this->user);
@@ -54,7 +54,7 @@ class TDComponentTest extends TestUnitCase
     public function testTdArgumentView(): void
     {
         $view = TD::make()
-            ->component(UserTDView::class, 'user', [
+            ->component(UserTDView::class, [
                 'from' => 'Sasha',
             ])
             ->buildTd($this->user);

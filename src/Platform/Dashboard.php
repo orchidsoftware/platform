@@ -18,7 +18,7 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    public const VERSION = '10.26.0';
+    public const VERSION = '11.0.0';
 
     /**
      * Slug for main menu.
@@ -62,11 +62,6 @@ class Dashboard
     private $search;
 
     /**
-     * @var Collection
-     */
-    private $publicDirectories;
-
-    /**
      * @var Screen|null
      */
     private $currentScreen;
@@ -76,7 +71,6 @@ class Dashboard
      */
     public function __construct()
     {
-        $this->publicDirectories = collect();
         $this->resources = collect();
 
         $this->permission = collect([
@@ -120,7 +114,7 @@ class Dashboard
      *
      * @return void
      */
-    public static function configure(array $options)
+    public static function configure(array $options): void
     {
         static::$options = $options;
     }
@@ -170,7 +164,7 @@ class Dashboard
      * @param string $key
      * @param string $custom
      */
-    public static function useModel(string $key, string $custom)
+    public static function useModel(string $key, string $custom): void
     {
         static::$options['models'][$key] = $custom;
     }
@@ -313,27 +307,6 @@ class Dashboard
         $this->permission->get('removed')->push($key);
 
         return $this;
-    }
-
-    /**
-     * @param string $package
-     * @param string $path
-     *
-     * @return Dashboard
-     */
-    public function addPublicDirectory(string $package, string $path): self
-    {
-        $this->publicDirectories->put($package, $path);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getPublicDirectory(): Collection
-    {
-        return $this->publicDirectories;
     }
 
     /**

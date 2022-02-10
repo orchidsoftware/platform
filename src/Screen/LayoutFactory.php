@@ -14,6 +14,7 @@ use Orchid\Screen\Layouts\Browsing;
 use Orchid\Screen\Layouts\Columns;
 use Orchid\Screen\Layouts\Component;
 use Orchid\Screen\Layouts\Legend;
+use Orchid\Screen\Layouts\Metric;
 use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Layouts\Selection;
@@ -277,5 +278,15 @@ class LayoutFactory
     public static function browsing(string $src): Browsing
     {
         return new Browsing($src);
+    }
+
+    /**
+     * @param array $labels
+     *
+     * @return Metric
+     */
+    public static function metrics(array $labels): Metric
+    {
+        return new Metric($labels);
     }
 }

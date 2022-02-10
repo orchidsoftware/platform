@@ -9,11 +9,8 @@ use Orchid\Screen\Field;
 class DummyClass extends Filter
 {
     /**
-     * @var array
-     */
-    public $parameters = [];
-
-    /**
+     * The displayable name of the filter.
+     *
      * @return string
      */
     public function name(): string
@@ -22,6 +19,18 @@ class DummyClass extends Filter
     }
 
     /**
+     * The array of matched parameters.
+     *
+     * @return array|null
+     */
+    public function parameters(): ?array
+    {
+        return [];
+    }
+
+    /**
+     * Apply to a given Eloquent query builder.
+     *
      * @param Builder $builder
      *
      * @return Builder
@@ -32,9 +41,11 @@ class DummyClass extends Filter
     }
 
     /**
+     * Get the display fields.
+     *
      * @return Field[]
      */
-    public function display(): array
+    public function display(): iterable
     {
         //
     }

@@ -61,5 +61,5 @@ abstract class Selection extends Layout
     /**
      * @return Filter[]
      */
-    abstract public function filters(): array;
+    abstract public function filters(): iterable;
 }

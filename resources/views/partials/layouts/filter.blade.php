@@ -7,7 +7,7 @@
             aria-expanded="false">
         <x-orchid-icon path="filter"/>
     </button>
-    <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow" x-placement="bottom-end">
+    <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow" data-action="click->filter#onMenuClick" x-placement="bottom-end">
         <div class="py-2 px-3">
 
             {!! $filter !!}

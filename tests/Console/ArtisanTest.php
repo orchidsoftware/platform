@@ -57,13 +57,6 @@ class ArtisanTest extends TestConsoleCase
             ->assertExitCode(0);
     }
 
-    public function testArtisanOrchidMetrics(): void
-    {
-        $this->artisan('orchid:metrics', ['name' => $this->generateNameFromMethod()])
-            ->expectsOutput('Metric created successfully.')
-            ->assertExitCode(0);
-    }
-
     public function testArtisanOrchidListener(): void
     {
         $this->artisan('orchid:listener', ['name' => $this->generateNameFromMethod()])
@@ -114,7 +107,7 @@ class ArtisanTest extends TestConsoleCase
 
     public function testArtisanOrchidLink(): void
     {
-        $this->artisan('orchid:link')
-            ->expectsOutput('Links have been created.');
+        $this->artisan('orchid:publish')
+            ->assertExitCode(0);
     }
 }

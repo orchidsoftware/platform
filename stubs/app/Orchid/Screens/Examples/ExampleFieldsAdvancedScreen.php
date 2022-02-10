@@ -26,25 +26,11 @@ use Orchid\Support\Facades\Layout;
 class ExampleFieldsAdvancedScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Advanced form controls';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description = 'Examples for creating a wide variety of forms.';
-
-    /**
      * Query data.
      *
      * @return array
      */
-    public function query(): array
+    public function query(): iterable
     {
         return [
             'name'  => 'Hello! We collected all the fields in one place',
@@ -56,11 +42,31 @@ class ExampleFieldsAdvancedScreen extends Screen
     }
 
     /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Advanced form controls';
+    }
+
+    /**
+     * Display header description.
+     *
+     * @return string|null
+     */
+    public function description(): ?string
+    {
+        return 'Examples for creating a wide variety of forms.';
+    }
+
+    /**
      * Button commands.
      *
      * @return Action[]
      */
-    public function commandBar(): array
+    public function commandBar(): iterable
     {
         return [];
     }
@@ -72,7 +78,7 @@ class ExampleFieldsAdvancedScreen extends Screen
      *
      * @return \Orchid\Screen\Layout[]
      */
-    public function layout(): array
+    public function layout(): iterable
     {
         return [
 
@@ -261,6 +267,12 @@ class ExampleFieldsAdvancedScreen extends Screen
 
                 Upload::make('files')
                     ->title('Upload files')
+                    ->horizontal(),
+
+                Upload::make('files_with_catalog')
+                    ->title('Upload with catalog')
+                    ->media()
+                    ->closeOnAdd()
                     ->horizontal(),
 
             ])->title('File upload'),

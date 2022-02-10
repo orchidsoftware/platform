@@ -19,4 +19,11 @@ export default class extends ApplicationController {
         event.preventDefault();
         this.popover.toggle();
     }
+    
+    /**
+     * Destroy popover on disconnect
+     */
+    disconnect() {
+        this.popover.dispose();
+    }
 }
