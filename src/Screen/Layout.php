@@ -92,7 +92,7 @@ abstract class Layout implements JsonSerializable
         return $this;
     }
 
-    /**
+        /**
      * @param Repository $repository
      *
      * @return mixed
@@ -105,26 +105,34 @@ abstract class Layout implements JsonSerializable
             return;
         }
 
-        if (!$this->asyncMethod || ($this->asyncMethod && $this->async)) {
-            $build = collect($this->layouts)
-                ->map(function ($layouts) {
-                    return Arr::wrap($layouts);
-                })
-                ->map(function (array $layouts, string $key) use ($repository) {
-                    return $this->buildChild($layouts, $key, $repository);
-                })
-                ->collapse()
-                ->all();
-        }
-
         $variables = array_merge($this->variables, [
-            'manyForms'    => isset($build) ? $build : [],
+            'manyForms'    => $this->reparation(),
             'templateSlug' => $this->getSlug(),
             'asyncEnable'  => empty($this->asyncMethod) ? 0 : 1,
             'asyncRoute'   => $this->asyncRoute(),
         ]);
 
-        return view($this->async ? 'platform::layouts.blank' : $this->template, $variables);
+        return view($this->async ? 'layouts.blank' : $this->template, $variables);
+    }
+
+    /**
+     * @return array
+     */
+    protected function reparation(): array
+    {
+        if ($this->asyncMethod && !$this->async) {
+            return [];
+        }
+
+        return collect($this->layouts)
+            ->map(function ($layouts) {
+                return Arr::wrap($layouts);
+            })
+            ->map(function (array $layouts, string $key) {
+                return $this->buildChild($layouts, $key, $this->query);
+            })
+            ->collapse()
+            ->all();
     }
 
     /**
