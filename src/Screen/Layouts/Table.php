@@ -76,6 +76,7 @@ abstract class Table extends Layout
             'textNotFound' => $this->textNotFound(),
             'subNotFound'  => $this->subNotFound(),
             'striped'      => $this->striped(),
+            'compact'      => $this->compact(),
             'bordered'     => $this->bordered(),
             'hoverable'    => $this->hoverable(),
             'slug'         => $this->getSlug(),
@@ -131,6 +132,16 @@ abstract class Table extends Layout
     }
 
     /**
+     * Usage for compact display of table rows.
+     *
+     * @return bool
+     */
+    protected function compact(): bool
+    {
+        return false;
+    }
+
+    /**
      * Usage for borders on all sides of the table and cells.
      *
      * @return bool
@@ -163,7 +174,7 @@ abstract class Table extends Layout
     /**
      * @return array
      */
-    abstract protected function columns(): array;
+    abstract protected function columns(): iterable;
 
     /**
      * @return array

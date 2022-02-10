@@ -13,25 +13,11 @@ use Orchid\Support\Facades\Layout;
 class ExampleTextEditorsScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Form Text Editors';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description = 'Examples for creating a wide variety of forms.';
-
-    /**
      * Query data.
      *
      * @return array
      */
-    public function query(): array
+    public function query(): iterable
     {
         return [
             'quill'     => 'Hello! We collected all the fields in one place',
@@ -41,11 +27,31 @@ class ExampleTextEditorsScreen extends Screen
     }
 
     /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Form Text Editors';
+    }
+
+    /**
+     * Display header description.
+     *
+     * @return string|null
+     */
+    public function description(): ?string
+    {
+        return 'Examples for creating a wide variety of forms.';
+    }
+
+    /**
      * Button commands.
      *
      * @return Action[]
      */
-    public function commandBar(): array
+    public function commandBar(): iterable
     {
         return [];
     }
@@ -57,7 +63,7 @@ class ExampleTextEditorsScreen extends Screen
      *
      * @return \Orchid\Screen\Layout[]
      */
-    public function layout(): array
+    public function layout(): iterable
     {
         return [
             Layout::rows([

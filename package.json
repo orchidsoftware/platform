@@ -30,7 +30,6 @@
     "jquery": "^3.6.0",
     "laravel-mix": "^6.0.16",
     "leaflet": "^1.7.1",
-    "lodash": "^4.17.21",
     "node-sass": "^6.0.0",
     "quill": "^1.3.7",
     "select2": "^4.0.13",

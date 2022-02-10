@@ -10,13 +10,6 @@ use Orchid\Screen\Screen;
 class MethodsResponseScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'MethodsResponseScreen';
-
-    /**
      * Query data.
      *
      * @return array
@@ -24,6 +17,16 @@ class MethodsResponseScreen extends Screen
     public function query(): array
     {
         return [];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'MethodsResponseScreen';
     }
 
     /**

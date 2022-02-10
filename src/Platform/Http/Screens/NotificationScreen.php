@@ -48,7 +48,7 @@ class NotificationScreen extends Screen
      *
      * @return array
      */
-    public function query(Request $request): array
+    public function query(Request $request): iterable
     {
         /** @var Paginator $notifications */
         $notifications = $request->user()
@@ -68,7 +68,7 @@ class NotificationScreen extends Screen
      *
      * @return Action[]
      */
-    public function commandBar(): array
+    public function commandBar(): iterable
     {
         return [
             Button::make(__('Remove all'))
@@ -88,7 +88,7 @@ class NotificationScreen extends Screen
      *
      * @return \Orchid\Screen\Layout[]
      */
-    public function layout(): array
+    public function layout(): iterable
     {
         return [
             Layout::wrapper('platform::partials.notification-wrap', [

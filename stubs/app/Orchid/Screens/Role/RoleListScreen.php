@@ -13,33 +13,44 @@ use Orchid\Screen\Screen;
 class RoleListScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Manage roles';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description = 'Access rights';
-
-    /**
-     * @var string
-     */
-    public $permission = 'platform.systems.roles';
-
-    /**
      * Query data.
      *
      * @return array
      */
-    public function query(): array
+    public function query(): iterable
     {
         return [
             'roles' => Role::filters()->defaultSort('id', 'desc')->paginate(),
+        ];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Manage roles';
+    }
+
+    /**
+     * Display header description.
+     *
+     * @return string|null
+     */
+    public function description(): ?string
+    {
+        return 'Access rights';
+    }
+
+    /**
+     * @return iterable|null
+     */
+    public function permission(): ?iterable
+    {
+        return [
+            'platform.systems.roles',
         ];
     }
 
@@ -48,7 +59,7 @@ class RoleListScreen extends Screen
      *
      * @return Action[]
      */
-    public function commandBar(): array
+    public function commandBar(): iterable
     {
         return [
             Link::make(__('Add'))
@@ -62,7 +73,7 @@ class RoleListScreen extends Screen
      *
      * @return string[]|\Orchid\Screen\Layout[]
      */
-    public function layout(): array
+    public function layout(): iterable
     {
         return [
             RoleListLayout::class,

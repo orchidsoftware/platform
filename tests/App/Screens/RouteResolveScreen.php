@@ -11,20 +11,6 @@ use Orchid\Tests\App\RouteSolving;
 class RouteResolveScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Route Resolve Screen';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description = 'Test screen';
-
-    /**
      * Query data.
      *
      * @return array
@@ -32,6 +18,26 @@ class RouteResolveScreen extends Screen
     public function query(): array
     {
         return [];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Route Resolve Screen';
+    }
+
+    /**
+     * Display header description.
+     *
+     * @return string|null
+     */
+    public function description(): ?string
+    {
+        return 'Test screen';
     }
 
     /**

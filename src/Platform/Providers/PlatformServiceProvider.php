@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Orchid\IconPack\Path;
 use Orchid\Icons\IconFinder;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemPermission;
@@ -27,9 +26,7 @@ class PlatformServiceProvider extends ServiceProvider
     {
         $this->dashboard = $dashboard;
 
-        $icons = array_merge(['o' => Path::getFolder()], config('platform.icons', []));
-
-        foreach ($icons as $key => $path) {
+        foreach (config('platform.icons', []) as $key => $path) {
             $iconFinder->registerIconDirectory($key, $path);
         }
 
@@ -39,8 +36,7 @@ class PlatformServiceProvider extends ServiceProvider
                 ->registerResource('scripts', config('platform.resource.scripts'))
                 ->registerSearch(config('platform.search', []))
                 ->registerPermissions($this->registerPermissionsMain())
-                ->registerPermissions($this->registerPermissionsSystems())
-                ->addPublicDirectory('orchid', Dashboard::path('public/'));
+                ->registerPermissions($this->registerPermissionsSystems());
         });
     }
 

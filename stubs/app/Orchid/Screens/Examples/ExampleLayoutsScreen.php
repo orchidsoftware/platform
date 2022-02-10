@@ -9,27 +9,33 @@ use Orchid\Support\Facades\Layout;
 class ExampleLayoutsScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Overview layouts';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description = 'Components for laying out your project';
-
-    /**
      * Query data.
      *
      * @return array
      */
-    public function query(): array
+    public function query(): iterable
     {
         return [];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Overview layouts';
+    }
+
+    /**
+     * Display header description.
+     *
+     * @return string|null
+     */
+    public function description(): ?string
+    {
+        return 'Components for laying out your project';
     }
 
     /**
@@ -37,7 +43,7 @@ class ExampleLayoutsScreen extends Screen
      *
      * @return Action[]
      */
-    public function commandBar(): array
+    public function commandBar(): iterable
     {
         return [];
     }
@@ -49,7 +55,7 @@ class ExampleLayoutsScreen extends Screen
      *
      * @return \Orchid\Screen\Layout[]
      */
-    public function layout(): array
+    public function layout(): iterable
     {
         return [
 

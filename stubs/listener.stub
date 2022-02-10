@@ -28,7 +28,7 @@ class DummyClass extends Listener
     /**
      * @return Layout[]
      */
-    protected function layouts(): array
+    protected function layouts(): iterable
     {
         return [];
     }

@@ -22,7 +22,7 @@ class DummyClass extends Table
      *
      * @return TD[]
      */
-    protected function columns(): array
+    protected function columns(): iterable
     {
         return [];
     }

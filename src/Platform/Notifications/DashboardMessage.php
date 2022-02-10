@@ -37,7 +37,7 @@ class DashboardMessage extends DatabaseMessage
      *
      * @return $this
      */
-    public function title(string $title)
+    public function title(string $title): self
     {
         $this->data['title'] = $title;
 
@@ -49,7 +49,7 @@ class DashboardMessage extends DatabaseMessage
      *
      * @return $this
      */
-    public function message(string $title)
+    public function message(string $title): self
     {
         $this->data['message'] = $title;
 
@@ -61,7 +61,7 @@ class DashboardMessage extends DatabaseMessage
      *
      * @return $this
      */
-    public function action(string $action)
+    public function action(string $action): self
     {
         $this->data['action'] = $action;
 
@@ -73,7 +73,7 @@ class DashboardMessage extends DatabaseMessage
      *
      * @return $this
      */
-    public function type(Color $color)
+    public function type(Color $color): self
     {
         $this->data['type'] = (string) $color;
 

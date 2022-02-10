@@ -14,13 +14,6 @@ use Throwable;
 class ConfirmScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Test confirm';
-
-    /**
      * Query data.
      *
      * @return array
@@ -28,6 +21,16 @@ class ConfirmScreen extends Screen
     public function query(): array
     {
         return [];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Test confirm';
     }
 
     /**

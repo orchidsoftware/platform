@@ -18,28 +18,9 @@ use Orchid\Support\Facades\Toast;
 class RoleEditScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
+     * @var Role
      */
-    public $name = 'Manage roles';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description = 'Access rights';
-
-    /**
-     * @var string
-     */
-    public $permission = 'platform.systems.roles';
-
-    /**
-     * @var bool
-     */
-    private $exist = false;
+    public $role;
 
     /**
      * Query data.
@@ -48,13 +29,41 @@ class RoleEditScreen extends Screen
      *
      * @return array
      */
-    public function query(Role $role): array
+    public function query(Role $role): iterable
     {
-        $this->exist = $role->exists;
-
         return [
             'role'       => $role,
             'permission' => $role->getStatusPermission(),
+        ];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Manage roles';
+    }
+
+    /**
+     * Display header description.
+     *
+     * @return string|null
+     */
+    public function description(): ?string
+    {
+        return 'Access rights';
+    }
+
+    /**
+     * @return iterable|null
+     */
+    public function permission(): ?iterable
+    {
+        return [
+            'platform.systems.roles',
         ];
     }
 
@@ -63,7 +72,7 @@ class RoleEditScreen extends Screen
      *
      * @return Action[]
      */
-    public function commandBar(): array
+    public function commandBar(): iterable
     {
         return [
             Button::make(__('Save'))
@@ -73,7 +82,7 @@ class RoleEditScreen extends Screen
             Button::make(__('Remove'))
                 ->icon('trash')
                 ->method('remove')
-                ->canSee($this->exist),
+                ->canSee($this->role->exists),
         ];
     }
 
@@ -82,7 +91,7 @@ class RoleEditScreen extends Screen
      *
      * @return string[]|\Orchid\Screen\Layout[]
      */
-    public function layout(): array
+    public function layout(): iterable
     {
         return [
             Layout::block([
@@ -100,12 +109,12 @@ class RoleEditScreen extends Screen
     }
 
     /**
-     * @param Role    $role
      * @param Request $request
+     * @param Role    $role
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function save(Role $role, Request $request)
+    public function save(Request $request, Role $role)
     {
         $request->validate([
             'role.slug' => [

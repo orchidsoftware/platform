@@ -14,20 +14,6 @@ use Orchid\Support\Facades\Toast;
 class ModalValidationScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Modal Validation';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description = 'Test screen';
-
-    /**
      * Query data.
      *
      * @return array
@@ -35,6 +21,26 @@ class ModalValidationScreen extends Screen
     public function query(): array
     {
         return [];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Modal Validation';
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function description(): ?string
+    {
+        return 'Test screen';
     }
 
     /**

@@ -38,11 +38,11 @@ class Picture extends Field
      * @var array
      */
     protected $attributes = [
-        'value'         => null,
-        'target'        => 'url',
-        'url'           => null,
-        'maxFileSize'   => null,
-        'acceptedFiles' => null,
+        'value'          => null,
+        'target'         => 'url',
+        'url'            => null,
+        'maxFileSize'    => null,
+        'acceptedFiles'  => 'image/*',
     ];
 
     /**

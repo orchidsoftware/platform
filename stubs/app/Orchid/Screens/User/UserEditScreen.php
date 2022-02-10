@@ -23,28 +23,9 @@ use Orchid\Support\Facades\Toast;
 class UserEditScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Edit User';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description = 'Details such as name, email and password';
-
-    /**
-     * @var string
-     */
-    public $permission = 'platform.systems.users';
-
-    /**
      * @var User
      */
-    private $user;
+    public $user;
 
     /**
      * Query data.
@@ -53,14 +34,8 @@ class UserEditScreen extends Screen
      *
      * @return array
      */
-    public function query(User $user): array
+    public function query(User $user): iterable
     {
-        $this->user = $user;
-
-        if (! $user->exists) {
-            $this->name = 'Create User';
-        }
-
         $user->load(['roles']);
 
         return [
@@ -70,11 +45,41 @@ class UserEditScreen extends Screen
     }
 
     /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return $this->user->exists ? 'Edit User' : 'Create User';
+    }
+
+    /**
+     * Display header description.
+     *
+     * @return string|null
+     */
+    public function description(): ?string
+    {
+        return 'Details such as name, email and password';
+    }
+
+    /**
+     * @return iterable|null
+     */
+    public function permission(): ?iterable
+    {
+        return [
+            'platform.systems.users',
+        ];
+    }
+
+    /**
      * Button commands.
      *
      * @return Action[]
      */
-    public function commandBar(): array
+    public function commandBar(): iterable
     {
         return [
             Button::make(__('Impersonate user'))
@@ -98,7 +103,7 @@ class UserEditScreen extends Screen
     /**
      * @return \Orchid\Screen\Layout[]
      */
-    public function layout(): array
+    public function layout(): iterable
     {
         return [
 
@@ -172,7 +177,7 @@ class UserEditScreen extends Screen
             ->toArray();
 
         $userData = $request->get('user');
-        if ($user->exists && (string)$userData['password'] === '') {
+        if ($user->exists && (string) $userData['password'] === '') {
             // When updating existing user null password means "do not change current password"
             unset($userData['password']);
         } else {
@@ -199,6 +204,7 @@ class UserEditScreen extends Screen
      * @throws \Exception
      *
      * @return \Illuminate\Http\RedirectResponse
+     *
      */
     public function remove(User $user)
     {

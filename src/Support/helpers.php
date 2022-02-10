@@ -2,12 +2,9 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Str;
 use Orchid\Alert\Alert;
 use Orchid\Filters\HttpFilter;
 use Orchid\Support\Color;
-use Orchid\Support\Facades\Dashboard;
-use Symfony\Component\Finder\Finder;
 
 if (! function_exists('alert')) {
     /**
@@ -69,7 +66,7 @@ if (! function_exists('get_filter')) {
     /**
      * @param string $property
      *
-     * @return string|array
+     * @return string|array|null
      */
     function get_filter(string $property)
     {
@@ -89,11 +86,15 @@ if (! function_exists('get_filter_string')) {
     function get_filter_string(string $property): ?string
     {
         $filter = get_filter($property);
-
-        if (is_array($filter)) {
-            return implode(', ', $filter);
+        
+        if (is_array($filter) && (isset($filter['min']) || isset($filter['max']))) {
+            $filter = ($filter['min'] ?? '') . ' - ' . ($filter['max'] ?? '');
+        } elseif (is_array($filter) && (isset($filter['start']) || isset($filter['end']))) {
+            $filter = ($filter['start'] ?? '') . ' - ' . ($filter['end'] ?? '');
+        } elseif (is_array($filter)) {
+            $filter = implode(', ', $filter);
         }
-
+        
         return $filter;
     }
 }
@@ -110,54 +111,5 @@ if (! function_exists('revert_sort')) {
         $filter = new HttpFilter();
 
         return $filter->revertSort($property);
-    }
-}
-
-if (! function_exists('orchid_mix')) {
-    /**
-     * @param string $file
-     * @param string $package
-     * @param string $dir
-     *
-     * @throws \Throwable
-     *
-     * @return string
-     */
-    function orchid_mix(string $file, string $package, string $dir = ''): string
-    {
-        $manifest = null;
-
-        $in = Dashboard::getPublicDirectory()
-            ->get($package);
-
-        $resources = (new Finder())
-            ->ignoreUnreadableDirs()
-            ->in($in)
-            ->files()
-            ->path($dir.'mix-manifest.json');
-
-        foreach ($resources as $resource) {
-            $manifest = $resource;
-        }
-
-        throw_if($manifest === null, 'mix-manifest.json file not found');
-
-        $manifest = json_decode($manifest->getContents(), true);
-
-        $mixPath = $manifest[$file];
-
-        if (Str::startsWith($mixPath, '/')) {
-            $mixPath = ltrim($mixPath, '/');
-        }
-
-        if ($mixUrl = config('app.mix_url', false)) {
-            return $mixUrl."/resources/$package/$mixPath";
-        }
-
-        if (file_exists(public_path('/resources'))) {
-            return url()->asset("/resources/$package/$mixPath");
-        }
-
-        return route('platform.resource', [$package, $mixPath]);
     }
 }

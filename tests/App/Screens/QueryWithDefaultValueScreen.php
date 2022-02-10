@@ -12,14 +12,9 @@ use Orchid\Screen\Screen;
 class QueryWithDefaultValueScreen extends Screen
 {
     /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Test Query With Default Value Screen';
-
-    /**
      * Query data.
+     *
+     * @param User|null $user
      *
      * @return array
      */
@@ -28,6 +23,16 @@ class QueryWithDefaultValueScreen extends Screen
         return [
             'user' => $user,
         ];
+    }
+
+    /**
+     * Display header name.
+     *
+     * @return string|null
+     */
+    public function name(): ?string
+    {
+        return 'Test Query With Default Value Screen';
     }
 
     /**

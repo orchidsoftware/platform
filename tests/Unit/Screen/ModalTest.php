@@ -22,8 +22,8 @@ class ModalTest extends TestUnitCase
         $screen = new ModalScreen();
         $html = $screen->view()->withErrors(Validator::make([], []))->render();
 
-        $this->assertStringContainsString($screen->name, $html);
-        $this->assertStringContainsString($screen->description, $html);
+        $this->assertStringContainsString($screen->name(), $html);
+        $this->assertStringContainsString($screen->description(), $html);
 
         $this->assertStringContainsString(ModalScreen::TITLE_MODAL, $html);
         $this->assertStringContainsString(ModalScreen::APPLY_BUTTON, $html);
