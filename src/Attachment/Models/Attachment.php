@@ -101,7 +101,7 @@ class Attachment extends Model
         $disk = Storage::disk($this->getAttribute('disk'));
         $path = $this->physicalPath();
 
-        return $disk->exists($path) && $path !== null
+        return $path !== null && $disk->exists($path)
             ? $disk->url($path)
             : $default;
     }
