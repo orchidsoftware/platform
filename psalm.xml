@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <psalm
-    phpVersion="7.3"
+    phpVersion="8.0"
     errorLevel="7"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
