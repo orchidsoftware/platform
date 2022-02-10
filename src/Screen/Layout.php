@@ -112,7 +112,7 @@ abstract class Layout implements JsonSerializable
             'asyncRoute'   => $this->asyncRoute(),
         ]);
 
-        return view($this->async ? 'layouts.blank' : $this->template, $variables);
+        return view($this->async ? 'platform::layouts.blank' : $this->template, $variables);
     }
 
     /**
