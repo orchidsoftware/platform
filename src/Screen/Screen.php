@@ -35,7 +35,8 @@ abstract class Screen extends Controller
      *
      * @return string
      */
-    protected function screenBaseView(): string{
+    protected function screenBaseView(): string
+    {
         return 'platform::layouts.base';
     }
 
