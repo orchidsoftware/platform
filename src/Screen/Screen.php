@@ -29,6 +29,12 @@ abstract class Screen extends Controller
      * Example: dashboard/my-screen/{method?}
      */
     private const COUNT_ROUTE_VARIABLES = 1;
+    
+    /**
+     * The view that should be rendered
+     *
+     */
+    protected $view = 'platform::layouts.base';
 
     /**
      * Display header name.
@@ -142,7 +148,7 @@ abstract class Screen extends Controller
     {
         $repository = $this->buildQueryRepository($httpQueryArguments);
 
-        return view('platform::layouts.base', [
+        return view($this->view, [
             'name'                => $this->name(),
             'description'         => $this->description(),
             'commandBar'          => $this->buildCommandBar($repository),
