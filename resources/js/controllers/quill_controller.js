@@ -32,9 +32,11 @@ export default class extends ApplicationController {
         this.editor = new quill(`#${selector}`, options);
 
         // quill editor add image handler
-        this.editor.getModule('toolbar').addHandler('image', () => {
-            this.selectLocalImage();
-        });
+        if (this.data.get('base64') === 'false') {
+            this.editor.getModule('toolbar').addHandler('image', () => {
+                this.selectLocalImage();
+            });
+        }
 
         let value = JSON.parse(this.data.get("value"))
 
@@ -94,6 +96,8 @@ export default class extends ApplicationController {
         return JSON.parse(this.data.get("toolbar"))
             .map(tool => controlsGroup[tool]);
     }
+
+
 
     /**
      * Step1. select local image
