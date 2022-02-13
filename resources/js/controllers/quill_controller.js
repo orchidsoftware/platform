@@ -32,9 +32,12 @@ export default class extends ApplicationController {
         this.editor = new quill(`#${selector}`, options);
 
         // quill editor add image handler
-        this.editor.getModule('toolbar').addHandler('image', () => {
-            this.selectLocalImage();
-        });
+        let isBase64Format = JSON.parse(this.data.get('base64'));
+        if (! isBase64Format) {
+            this.editor.getModule('toolbar').addHandler('image', () => {
+                this.selectLocalImage();
+            });
+        }
 
         let value = JSON.parse(this.data.get("value"))
 

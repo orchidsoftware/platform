@@ -1,6 +1,7 @@
 @component($typeForm, get_defined_vars())
     <div data-controller="quill"
          data-quill-toolbar='@json($toolbar)'
+         data-quill-base64='@json($base64)'
          data-quill-value='@json($value)'
          data-theme="{{$theme ?? 'inlite'}}"
     >
