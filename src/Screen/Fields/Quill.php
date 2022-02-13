@@ -46,7 +46,7 @@ class Quill extends Field
         'value'   => null,
         'toolbar' => ['text', 'color', 'quote', 'header', 'list', 'format', 'media'],
         'height'  => '300px',
-        'base64'  => 'false',
+        'base64'  => false,
     ];
 
     /**
