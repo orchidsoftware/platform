@@ -97,8 +97,6 @@ export default class extends ApplicationController {
             .map(tool => controlsGroup[tool]);
     }
 
-
-
     /**
      * Step1. select local image
      *
