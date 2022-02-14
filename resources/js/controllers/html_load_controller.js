@@ -3,28 +3,13 @@ import axios from 'axios';
 
 export default class extends ApplicationController {
     /**
-     *
+     * Initialization & configuration Turbo
      */
     initialize() {
         this.axios();
-        this.turbo();
-    }
-
-
-
-    /**
-     *
-     */
-    connect() {
         this.csrf();
-        this.turbo();
-    }
 
-    /**
-     * Initialization & configuration Turbo
-     */
-    turbo() {
-        document.addEventListener("turbo:load", () => {
+        document.addEventListener('turbo:load', () => {
             this.csrf();
         });
     }
