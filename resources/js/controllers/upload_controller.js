@@ -264,7 +264,7 @@ export default class extends ApplicationController {
                 });
 
                 this.on('removedfile', file => {
-                    if (file.hasOwnProperty('data.id')) {
+                    if (file.hasOwnProperty('data') && file.data.hasOwnProperty('id')) {
                         $(dropname).find(`.files-${file.data.id}`).remove();
                         !isMediaLibrary && axios
                             .delete(urlDelete + file.data.id, {
