@@ -22,9 +22,9 @@ class AdminCommand extends Command
     /**
      * @var string
      */
-    protected $signature = 'orchid:admin {name?} {email?} {password?} {--id=}';
-
-    /**
+    protected $signature = 'orchid:admin {name?} {email?} {password?} {--id=} {--model=}';
+	
+	/**
      * The console command description.
      *
      * @var string
@@ -48,10 +48,14 @@ class AdminCommand extends Command
             $this->error($e->getMessage());
         }
     }
+	
+	private function userModel() {
+		return $this->option('model') ?? User::class;
+	}
 
     protected function createNewUser(): void
     {
-        Dashboard::modelClass(User::class)
+        Dashboard::modelClass($this->userModel())
             ->createAdmin(
                 $this->argument('name') ?? $this->ask('What is your name?', 'admin'),
                 $this->argument('email') ?? $this->ask('What is your email?', 'admin@admin.com'),
@@ -66,7 +70,7 @@ class AdminCommand extends Command
      */
     protected function updateUserPermissions(string $id): void
     {
-        Dashboard::modelClass(User::class)
+        Dashboard::modelClass($this->userModel())
             ->findOrFail($id)
             ->forceFill([
                 'permissions' => Dashboard::getAllowAllPermission(),

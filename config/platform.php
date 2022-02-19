@@ -67,6 +67,7 @@ return [
     */
 
     'guard' => config('auth.defaults.guard', 'web'),
+	'default_guard' => config('auth.defaults.guard', 'web'),
 
     /*
     |--------------------------------------------------------------------------

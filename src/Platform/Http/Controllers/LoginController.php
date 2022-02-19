@@ -43,7 +43,7 @@ class LoginController extends Controller
     {
         $this->guard = $auth->guard(config('platform.guard'));
 
-        $this->middleware('guest', [
+        $this->middleware('guest:' . config('platform.guard'), [
             'except' => [
                 'logout',
                 'switchLogout',

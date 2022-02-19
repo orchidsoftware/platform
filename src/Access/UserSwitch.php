@@ -22,7 +22,7 @@ class UserSwitch
             session()->put(self::SESSION_NAME, self::getAuth()->id());
         }
 
-        self::getAuth()->loginUsingId($user->getKey());
+		Auth::guard(config('platform.default_guard', 'web'))->loginUsingId($user->getKey());
     }
 
     /**
