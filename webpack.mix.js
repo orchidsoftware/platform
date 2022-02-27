@@ -58,6 +58,6 @@ mix
 
 mix
     .postCss('public/css/orchid.css', 'public/css/orchid.rtl.css', [
-        require('rtlcss')
-    ])
+        require('rtlcss'),
+    ]);
 /* Orchid mix config end */
