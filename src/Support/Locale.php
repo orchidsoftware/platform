@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Support;
 
-use Illuminate\Support\Facades\App;
-
 class Locale
 {
     /*
@@ -30,6 +28,6 @@ class Locale
 
     public static function currentDir(): string
     {
-        return in_array(App::currentLocale(),self::RTL) ? "rtl" : "ltr";
+        return in_array(app()->currentLocale(),self::RTL) ? "rtl" : "ltr";
     }
 }
