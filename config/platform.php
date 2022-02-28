@@ -237,16 +237,4 @@ return [
 
     'provider' => \App\Orchid\PlatformProvider::class,
 
-    /*
-    |--------------------------------------------------------------------------
-    | View Direction
-    |--------------------------------------------------------------------------
-    |
-    | Set direction of view. by default: `ltr`
-    | `ltr` means left to right and `rtl` means right to left
-    |
-    */
-
-    // 'view_direction' => 'ltr'
-
 ];
