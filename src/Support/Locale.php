@@ -26,8 +26,8 @@ class Locale
         'yi', //Yiddish
     ];
 
-    public static function currentDir(): string
+    public static function currentDir(string $locale): string
     {
-        return in_array(app()->currentLocale(),self::RTL) ? "rtl" : "ltr";
+        return in_array($locale, self::RTL) ? "rtl" : "ltr";
     }
 }
