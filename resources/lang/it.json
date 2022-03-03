@@ -76,7 +76,7 @@
     "Product, promo code, or slogan (e.g. spring_sale)": "Prodotto, codice promozionale o slogan (ad es. spring_sale)",
     "There are no records in this view": "Nessun record da visualizzare",
     "Profile": "Profilo",
-    "Profile Information": "Informazioni di profilo",
+    "Profile Information": "Informazioni del profilo",
     "This is your password set at the moment.": "Questa è la tua password attuale.",
     "Remember Me": "Ricordami",
     "Remove": "Rimuovi",
@@ -99,7 +99,7 @@
     "URL": "URL",
     "UTM Generator": "Generatore UTM",
     "Systems": "Sistemi",
-    "Update your account's profile information and email address.": "Aggiorna le informazioni di profilo e l'indirizzo email del tuo account",
+    "Update your account's profile information and email address.": "Aggiorna le informazioni del profilo e l'indirizzo email del tuo account",
     "Update password": "Aggiorna password",
     "User": "Utente",
     "User was removed": "L'utente è stato rimosso",
@@ -130,5 +130,6 @@
     "Role display name": "Nome visualizzzato del Ruolo",
     "Documentation": "Documentazione",
     "Regular user": "Utente base",
+    "Sign in with another user.": "Login come altro utente.",
     "Details such as name, email and password": "Dettagli come nome, email e password"
 }
