@@ -116,7 +116,7 @@ class UserProfileScreen extends Screen
      */
     public function changePassword(Request $request): void
     {
-        $guard = config('platform.guard' , 'web');
+        $guard = config('platform.guard', 'web');
         $request->validate([
             'old_password' => 'required|current_password:'.$guard,
             'password'     => 'required|confirmed',
