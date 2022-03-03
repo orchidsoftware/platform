@@ -5,7 +5,6 @@
     "Actions": "Azioni",
     "Ad-specific content used to differentiate ads": "Contenuto specifico dell'annuncio utilizzato per differenziare gli annunci",
     "Add": "Aggiungi",
-    "Address": "Indirizzo",
     "All registered users": "Tutti gli utenti registrati",
     "Alternative text": "Testo alternativo",
     "Apply": "Applica",
@@ -131,5 +130,7 @@
     "Documentation": "Documentazione",
     "Regular user": "Utente base",
     "Sign in with another user.": "Login come altro utente.",
-    "Details such as name, email and password": "Dettagli come nome, email e password"
+    "Details such as name, email and password": "Dettagli come nome, email e password",
+    "You requested a page that doesn't exist.": "La pagina che hai richiesto non esiste.",
+    "You may have' entered an address that doesn't exist or that the link you have requested doesn't work (anymore).": "Potresti aver inserito un indirizzo insesistente o il link che hai richiesto non funziona (ancora)."
 }
