@@ -73,9 +73,9 @@ class File
     /**
      * @return Model|Attachment
      */
-    public function load(): Model
+    public function load(bool $replicate = true): Model
     {
-        $attachment = $this->getMatchesHash();
+        $attachment = $replicate ? $this->getMatchesHash() : null;
 
         if (! $this->storage->has($this->engine->path())) {
             $this->storage->makeDirectory($this->engine->path());
