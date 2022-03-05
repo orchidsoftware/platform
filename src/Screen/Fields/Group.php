@@ -19,7 +19,7 @@ class Group implements Fieldable, Groupable
         'group'       => [],
         'class'       => 'col-12 col-md form-group mb-md-0',
         'align'       => 'align-items-baseline',
-        'itemToEnd' => false,
+        'itemToEnd'   => false,
     ];
 
     /**
