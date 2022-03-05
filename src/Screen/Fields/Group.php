@@ -16,9 +16,10 @@ class Group implements Fieldable, Groupable
      * @var array
      */
     protected $attributes = [
-        'group' => [],
-        'class' => 'col-12 col-md form-group mb-md-0',
-        'align' => 'align-items-baseline',
+        'group'       => [],
+        'class'       => 'col-12 col-md form-group mb-md-0',
+        'align'       => 'align-items-baseline',
+        'itemToEnd' => false,
     ];
 
     /**
@@ -173,5 +174,13 @@ class Group implements Fieldable, Groupable
     public function __toString(): string
     {
         return (string) $this->render();
+    }
+
+    /**
+     * @return $this
+     */
+    public function toEnd(): self
+    {
+        return $this->set('itemToEnd', true);
     }
 }
