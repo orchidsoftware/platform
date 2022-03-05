@@ -39,6 +39,9 @@ mix
     .options({
         processCssUrls: false,
     })
+    .postCss('public/css/orchid.css', 'public/css/orchid.rtl.css', [
+        require('rtlcss'),
+    ])
     .js('resources/js/app.js', 'js/orchid.js')
     .extract([
         'stimulus', 'stimulus/webpack-helpers', 'turbo',
@@ -56,8 +59,4 @@ mix
     .setPublicPath('public')
     .version();
 
-mix
-    .postCss('public/css/orchid.css', 'public/css/orchid.rtl.css', [
-        require('rtlcss'),
-    ]);
 /* Orchid mix config end */
