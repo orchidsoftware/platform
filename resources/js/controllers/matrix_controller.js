@@ -14,7 +14,7 @@ export default class extends ApplicationController {
      *
      */
     connect() {
-        this.template = this.element.querySelector('template');
+        this.template = this.element.querySelector('.matrix-template');
         this.keyValueMode = this.data.get('key-value') === 'true';
 
         this.detectMaxRows();
