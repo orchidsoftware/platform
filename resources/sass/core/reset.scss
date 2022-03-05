@@ -1,7 +1,6 @@
 // reset
 html {
   background-color: $body-bg;
-  font-size: 14px;
 }
 
 body {
@@ -39,7 +38,7 @@ a:focus {
 label {
     color: lighten($black, 20%);
     font-weight: normal;
-    font-size: 13px;
+    font-size: $font-size-sm;
     word-break: normal;
     white-space: nowrap;
 }
