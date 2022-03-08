@@ -58,8 +58,8 @@ trait Chartable
         $query = $builder
             ->select(DB::raw("$value as value, DATE($dateColumn) as label"))
             ->whereBetween($dateColumn, [$startDate, $stopDate])
-            ->groupBy(DB::raw($dateColumn))
-            ->orderBy(DB::raw($dateColumn))
+            ->groupBy('label')
+            ->orderBy('label')
             ->get();
 
         $days = $startDate->diffInDays($stopDate) + 1;
