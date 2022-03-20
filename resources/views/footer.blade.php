@@ -1,5 +1,5 @@
 @guest
-    <p>Crafted with <span class="me-1">❤️</span> by Alexandr Chernyaev</p>
+    <p>Crafted with <span class="text-danger">♥</span> by Alexandr Chernyaev</p>
 @else
 
     <div class="text-center user-select-none">
