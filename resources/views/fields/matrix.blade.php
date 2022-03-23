@@ -30,7 +30,7 @@
             </th>
         </tr>
 
-        <template>
+        <template class="matrix-template">
             @include('platform::partials.fields.matrixRow',['row' => [], 'key' => '{index}'])
         </template>
         </tbody>
