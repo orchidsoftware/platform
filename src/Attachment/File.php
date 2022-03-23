@@ -65,7 +65,7 @@ class File
         abort_if($file->getSize() === false, 415, 'File failed to load.');
 
         $this->file = $file;
-        $this->duplicate = false; 
+        $this->duplicate = false;
         $this->disk = $disk ?? config('platform.attachment.disk', 'public');
         $this->storage = Storage::disk($this->disk);
 
@@ -104,13 +104,17 @@ class File
 
         return $attachment;
     }
+
     /**
      * @return File
      */
-    public function allowDuplicates() {
+    public function allowDuplicates()
+    {
         $this->duplicate = true;
+
         return $this;
     }
+
     /**
      * @return Attachment|null
      */

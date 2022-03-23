@@ -150,6 +150,7 @@ class AttachmentTest extends TestUnitCase
         $upload->delete();
         $this->assertNotNull($clone->url());
     }
+
     public function testeAttachmentUploadAllowingDuplicate(): void
     {
         $file = UploadedFile::fake()->create('duplicate.jpg');
@@ -164,6 +165,7 @@ class AttachmentTest extends TestUnitCase
         $upload->delete();
         $this->assertNotNull($clone->url());
     }
+
     public function testUnknownMimeTypeAttachmentUpload(): void
     {
         $file = UploadedFile::fake()->create('duplicate.gyhkjfewfowejg');
