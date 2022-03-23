@@ -8,6 +8,7 @@ use Laravel\Scout\Builder;
 use Orchid\Screen\Contracts\Personable;
 use Orchid\Screen\Contracts\Searchable;
 use Orchid\Support\Presenter;
+use Illuminate\Support\Str;
 
 class UserPresenter extends Presenter implements Searchable, Personable
 {
@@ -34,9 +35,11 @@ class UserPresenter extends Presenter implements Searchable, Personable
     {
         $roles = $this->entity->roles->pluck('name')->implode(' / ');
 
-        return empty($roles)
-            ? __('Regular user')
-            : $roles;
+        return (string) Str::of($roles)
+            ->limit(20)
+            ->whenEmpty(function () {
+                return __('Regular user');
+            });
     }
 
     /**
