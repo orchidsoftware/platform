@@ -28,9 +28,11 @@ $body-bg: #edeef0; //lighten($light, 1%);
 $text-color: #394247;
 $text-muted: lighten($text-color, 20%);
 
-$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
-$font-size-lg: $font-size-base * 1.25 !default;
-$font-size-sm: $font-size-base * .895 !default;
+$font-size-root:              .925rem;
+$font-size-base:              1rem;
+$font-size-sm:                $font-size-base * .875;
+$font-size-lg:                $font-size-base * 1.25;
+
 
 $link-color: darken($text-color, 15%);
 $link-hover-color: darken($text-color, 30%);
@@ -111,7 +113,6 @@ $widescreen: 1600px;
 //DateTimePicker
 $btn-primary-color: #ffffff;
 $btn-primary-bg: $primary;
-$border-radius-base: 2px;
 $gray-lighter: #eeeeee;
 $gray-light: #777777;
 

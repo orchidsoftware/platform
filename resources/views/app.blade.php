@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{  app()->getLocale() }}" data-controller="html-load" dir="{{ \Orchid\Support\Locale::currentDir(app()->getLocale()) }}">
+<html lang="{{  app()->getLocale() }}" data-controller="html-load" dir="{{ \Orchid\Support\Locale::currentDir() }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,7 +42,7 @@
     @endforeach
 </head>
 
-<body class="{{ \Orchid\Support\Names::getPageNameClass() }}">
+<body class="{{ \Orchid\Support\Names::getPageNameClass() }}" data-controller="pull-to-refresh">
 
 <div class="container-fluid" data-controller="@yield('controller')" @yield('controller-data')>
 

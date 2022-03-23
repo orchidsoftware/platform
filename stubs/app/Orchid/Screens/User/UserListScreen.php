@@ -114,7 +114,7 @@ class UserListScreen extends Screen
         $request->validate([
             'user.email' => [
                 'required',
-                Rule::unique(User::class, 'slug')->ignore($user),
+                Rule::unique(User::class, 'email')->ignore($user),
             ],
         ]);
 

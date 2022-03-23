@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div class="row bg-light m-0 p-4 border-top rounded-bottom">
+    <div class="row bg-light m-0 p-md-4 p-3 border-top rounded-bottom">
 
         <div class="col-md-6 my-2">
             <h3 class="text-muted fw-light">
