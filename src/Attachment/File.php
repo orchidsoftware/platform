@@ -16,7 +16,6 @@ use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Events\ReplicateFileEvent;
 use Orchid\Platform\Events\UploadFileEvent;
-use phpDocumentor\Reflection\Types\Boolean;
 
 /**
  * Class File.
@@ -32,11 +31,6 @@ class File
      * @var Filesystem
      */
     protected $storage;
-
-    /**
-     * @var string
-     */
-    protected $path;
 
     /**
      * @var string
@@ -60,21 +54,19 @@ class File
      * @param string|null  $disk
      * @param string|null  $group
      */
-    public function __construct(UploadedFile $file, string $disk = null, string $path = null, string $group = null)
+    public function __construct(UploadedFile $file, string $disk = null, string $group = null)
     {
         abort_if($file->getSize() === false, 415, 'File failed to load.');
 
         $this->file = $file;
 
-        $this->replicate = true ;
-        $this->path = $path;
         $this->disk = $disk ?? config('platform.attachment.disk', 'public');
         $this->storage = Storage::disk($this->disk);
 
         /** @var string $generator */
         $generator = config('platform.attachment.generator', Generator::class);
 
-        $this->engine = new $generator($file ,$path);
+        $this->engine = new $generator($file);
         $this->group = $group;
     }
 
@@ -143,4 +135,17 @@ class File
 
         return $attachment;
     }
+
+    /**
+     * set a custom Path
+     * @return File
+     */
+
+    public function path(String $path) {
+        $generator = config('platform.attachment.generator', Generator::class);
+        $this->engine = new $generator($this->file, $path);
+        return $this;
+    }
+
+    
 }

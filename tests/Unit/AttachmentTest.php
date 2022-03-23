@@ -86,10 +86,10 @@ class AttachmentTest extends TestUnitCase
     {
 
         $file = UploadedFile::fake()->create('document.xml', 200);
-        $attachment = new File($file, $this->disk, $this->path);
+        $attachment = new File($file, $this->disk);
 
         /** @var Attachment $upload */
-        $upload = $attachment->load();
+        $upload = $attachment->path($this->path)->load();
 
         $this->assertEquals([
             'size' => $file->getSize(),
