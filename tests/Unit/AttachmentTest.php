@@ -151,7 +151,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertNotNull($clone->url());
     }
 
-    public function testeAttachmentUploadAllowingDuplicate(): void
+    public function testAttachmentUploadAllowingDuplicate(): void
     {
         $file = UploadedFile::fake()->create('duplicate.jpg');
         $clone = clone $file;

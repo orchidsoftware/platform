@@ -47,11 +47,10 @@ class File
      */
     protected $engine;
 
-
     /**
      * @var bool
      */
-    protected $duplicate;
+    protected $duplicate = false;
 
     /**
      * File constructor.
@@ -65,7 +64,6 @@ class File
         abort_if($file->getSize() === false, 415, 'File failed to load.');
 
         $this->file = $file;
-        $this->duplicate = false;
         $this->disk = $disk ?? config('platform.attachment.disk', 'public');
         $this->storage = Storage::disk($this->disk);
 
@@ -78,12 +76,13 @@ class File
 
     /**
      * @return Model|Attachment
+     * @throws \League\Flysystem\FilesystemException
      */
     public function load(): Model
     {
-        $attachment = $this->duplicate ? null : $this->getMatchesHash();
+        $attachment = $this->getMatchesHash();
 
-        if (! $this->storage->has($this->engine->path())) {
+        if (!$this->storage->has($this->engine->path())) {
             $this->storage->makeDirectory($this->engine->path());
         }
 
@@ -106,11 +105,13 @@ class File
     }
 
     /**
+     * @param bool $status
+     *
      * @return File
      */
-    public function allowDuplicates()
+    public function allowDuplicates(bool $status = true): self
     {
-        $this->duplicate = true;
+        $this->duplicate = $status;
 
         return $this;
     }
@@ -120,6 +121,10 @@ class File
      */
     private function getMatchesHash()
     {
+        if ($this->duplicate) {
+            return null;
+        }
+
         return Dashboard::model(Attachment::class)::where('hash', $this->engine->hash())
             ->where('disk', $this->disk)
             ->first();
