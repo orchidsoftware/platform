@@ -75,14 +75,15 @@ class File
     }
 
     /**
-     * @return Model|Attachment
      * @throws \League\Flysystem\FilesystemException
+     *
+     * @return Model|Attachment
      */
     public function load(): Model
     {
         $attachment = $this->getMatchesHash();
 
-        if (!$this->storage->has($this->engine->path())) {
+        if (! $this->storage->has($this->engine->path())) {
             $this->storage->makeDirectory($this->engine->path());
         }
 
