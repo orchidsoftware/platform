@@ -47,6 +47,12 @@ class File
      */
     protected $engine;
 
+
+    /**
+     * @var bool
+     */
+    protected $duplicate;
+
     /**
      * File constructor.
      *
@@ -59,7 +65,7 @@ class File
         abort_if($file->getSize() === false, 415, 'File failed to load.');
 
         $this->file = $file;
-
+        $this->duplicate = false; 
         $this->disk = $disk ?? config('platform.attachment.disk', 'public');
         $this->storage = Storage::disk($this->disk);
 
@@ -73,9 +79,9 @@ class File
     /**
      * @return Model|Attachment
      */
-    public function load(bool $replicate = true): Model
+    public function load(): Model
     {
-        $attachment = $replicate ? $this->getMatchesHash() : null;
+        $attachment = $this->duplicate ? null : $this->getMatchesHash();
 
         if (! $this->storage->has($this->engine->path())) {
             $this->storage->makeDirectory($this->engine->path());
@@ -98,7 +104,13 @@ class File
 
         return $attachment;
     }
-
+    /**
+     * @return File
+     */
+    public function allowDuplicates() {
+        $this->duplicate = true;
+        return $this;
+    }
     /**
      * @return Attachment|null
      */
