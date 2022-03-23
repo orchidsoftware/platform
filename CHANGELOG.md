@@ -5,29 +5,53 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 12.2.1 - 2022-03-08
+
+### Fixed
+
+- Using an alias to group and sort for `Chartable`
+
+## 12.2.0 - 2022-03-05
+
+### Added
+
+- Support RTL [#1397](https://github.com/orchidsoftware/platform/issues/1397) [#2155](https://github.com/orchidsoftware/platform/pull/2155)
+- Added toolbar color for iOS
+- Smooth Page Refresh for PWA (Including iOS)
+
+### Changed
+
+- Increasing the font size
+- Added\Edit some missing keys in `it` translation [#2165](https://github.com/orchidsoftware/platform/pull/2165)
+
+### Fixed
+
+- Toast notifications on bootstrap 5
+- Update default validation [#2164](https://github.com/orchidsoftware/platform/pull/2164)
+
 ## 12.1.0 - 2022-02-14
 
-## Added
+### Added
 
 - Traditional Chinese language [#2127](https://github.com/orchidsoftware/platform/pull/2127)
 - Ability to override default view [#2126](https://github.com/orchidsoftware/platform/pull/2126)
 - Allow base64 files for Quill [#2130](https://github.com/orchidsoftware/platform/pull/2130)
 
-## Changed
+### Changed
 
 - Remove single quote in the example route [#2118](https://github.com/orchidsoftware/platform/pull/2118)
 
-## Fixed
+### Fixed
 
 - Method called twice in html_load controller [#2095](https://github.com/orchidsoftware/platform/issues/2095)
 - hasOwnProperty dot path [#2132](https://github.com/orchidsoftware/platform/pull/2132)
 
 ## 12.0.0 - 2022-02-10
 
-## Added
+### Added
 - Support Laravel 9.x
 
-## Removed
+### Removed
 - Support Laravel 8.x
 - Support Laravel Scout 8.x
 
@@ -39,7 +63,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 11.0.0 - 2022-02-06
 
-## Added 
+### Added 
 
 - Automatic parameter prediction in components [#1961](https://github.com/orchidsoftware/platform/issues/1961)
 - Component value [#1962](https://github.com/orchidsoftware/platform/issues/1962)
