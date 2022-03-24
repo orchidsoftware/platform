@@ -32,7 +32,7 @@ class Generator implements Engine
     protected $uniqueId;
 
     /**
-     * @var string
+     * @var ?string
      */
     protected $path;
 
@@ -44,6 +44,7 @@ class Generator implements Engine
     public function __construct(UploadedFile $file)
     {
         $this->file = $file;
+        $this->path = null;
         $this->time = time();
         $this->mimes = new MimeTypes();
         $this->uniqueId = uniqid('', true);
@@ -85,7 +86,7 @@ class Generator implements Engine
      *
      * @return Generator
      */
-    public function setPath(string $path)
+    public function setPath(?string $path = null)
     {
         $this->path = $path;
         return $this;

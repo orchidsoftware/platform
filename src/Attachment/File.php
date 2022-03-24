@@ -141,7 +141,7 @@ class File
      * @return File
      */
 
-    public function path(String $path) {
+    public function path(?string $path = null) {
         $this->engine->setPath($path);
         return $this;
     }
