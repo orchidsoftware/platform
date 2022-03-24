@@ -32,6 +32,11 @@ class Generator implements Engine
     protected $uniqueId;
 
     /**
+     * @var ?string
+     */
+    protected $path;
+
+    /**
      * Generator constructor.
      *
      * @param UploadedFile $file
@@ -39,6 +44,7 @@ class Generator implements Engine
     public function __construct(UploadedFile $file)
     {
         $this->file = $file;
+        $this->path = null;
         $this->time = time();
         $this->mimes = new MimeTypes();
         $this->uniqueId = uniqid('', true);
@@ -72,7 +78,18 @@ class Generator implements Engine
      */
     public function path(): string
     {
-        return date('Y/m/d', $this->time());
+        return $this->path ?? date('Y/m/d', $this->time());
+    }
+    
+    /**
+     * Set a custom path
+     *
+     * @return Generator
+     */
+    public function setPath(?string $path = null)
+    {
+        $this->path = $path;
+        return $this;
     }
 
     /**

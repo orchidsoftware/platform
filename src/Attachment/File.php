@@ -157,4 +157,16 @@ class File
 
         return $attachment;
     }
+
+    /**
+     * set a custom Path
+     * @return File
+     */
+
+    public function path(?string $path = null) {
+        $this->engine->setPath($path);
+        return $this;
+    }
+
+    
 }
