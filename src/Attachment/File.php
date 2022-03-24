@@ -160,13 +160,13 @@ class File
 
     /**
      * set a custom Path
+     *
      * @return File
      */
-
-    public function path(?string $path = null) {
+    public function path(?string $path = null)
+    {
         $this->engine->setPath($path);
+
         return $this;
     }
-
-    
 }

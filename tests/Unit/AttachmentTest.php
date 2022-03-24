@@ -34,7 +34,6 @@ class AttachmentTest extends TestUnitCase
         parent::setUp();
         $this->disk = 'public';
         $this->path = '/test';
-
     }
 
     public function testAttachmentFile(): void
@@ -84,7 +83,6 @@ class AttachmentTest extends TestUnitCase
 
     public function testAttachmentCustomPath(): void
     {
-
         $file = UploadedFile::fake()->create('document.xml', 200);
         $attachment = new File($file, $this->disk);
 
@@ -106,7 +104,6 @@ class AttachmentTest extends TestUnitCase
         $this->assertStringContainsString($path, $upload->physicalPath());
         $this->assertStringContainsString($path, $upload->url());
     }
-
 
     public function testAttachmentImage(): void
     {
