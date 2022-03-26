@@ -120,6 +120,8 @@ abstract class Filter
     }
 
     /**
+     * Count fields in the filter.
+     *
      * @return int
      */
     public function count(): int
@@ -128,6 +130,8 @@ abstract class Filter
     }
 
     /**
+     * Whether there are suitable parameters in the query to apply the filter.
+     *
      * @return bool
      */
     public function isApply(): bool
