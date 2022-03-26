@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 12.3.0 - 2022-03-26
+
+## Added
+
+- Custom storage path feature [#2189](https://github.com/orchidsoftware/platform/pull/2189)
+- Allow duplicate files [#2168](https://github.com/orchidsoftware/platform/pull/2168)
+
+### Fixed
+
+- Long subtitle by default [#2107](https://github.com/orchidsoftware/platform/issues/2107)
+
 ## 12.2.2 - 2022-03-23
 
 ### Fixed
