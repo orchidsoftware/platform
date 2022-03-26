@@ -9,7 +9,7 @@ use Illuminate\Support\Arr;
 trait AsMultiSource
 {
     use AsSource {
-        getContent as getBaseContent;
+        AsSource::getContent as getBaseContent;
     }
     /**
      * Name row localization.

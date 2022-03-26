@@ -35,7 +35,7 @@ use Throwable;
 class Field implements Fieldable, Htmlable
 {
     use CanSee, Makeable, Conditionable, Macroable {
-        __call as macroCall;
+        Macroable::__call as macroCall;
     }
 
     /**
