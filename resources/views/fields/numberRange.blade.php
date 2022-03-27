@@ -6,7 +6,7 @@
                        name="{{ $attributes['name'] }}[min]"
                        id='min_{{ \Illuminate\Support\Str::slug($attributes['name']) }}'
                        value="{{ $value['min'] ?? null }}"
-                       placeholder="Minimum"
+                       placeholder="{{ __('Minimum') }}"
                        {{ $attributes }}
                        >
             </div>
@@ -18,7 +18,7 @@
                        name="{{ $attributes['name'] }}[max]"
                        id='max_{{ \Illuminate\Support\Str::slug($attributes['name']) }}'
                        value="{{ $value['max'] ?? null }}"
-                       placeholder="Maximum"
+                       placeholder="{{ __('Maximum') }}"
                        {{ $attributes }}
                        >
             </div>
