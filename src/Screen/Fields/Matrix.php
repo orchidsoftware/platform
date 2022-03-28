@@ -27,8 +27,8 @@ class Matrix extends Field
      * @var array
      */
     protected $attributes = [
-	'index'         => 0,
-	'removableRows' => true,
+    'index'             => 0,
+    'removableRows'     => true,
         'idPrefix'      => null,
         'maxRows'       => 0,
         'keyValue'      => false,
