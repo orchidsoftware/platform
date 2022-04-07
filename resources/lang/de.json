@@ -27,6 +27,7 @@
     "Delete": "Löschen",
     "Description": "Beschreibung",
     "Display name": "Anzeigename",
+    "Displayed records: :from-:to of :total": "Angezeigte Einträge: :from-:to von :total",
     "Edit": "Bearbeiten",
     "Email": "E-Mail",
     "Email address": "E-Mail-Adresse",
