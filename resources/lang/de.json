@@ -46,6 +46,7 @@
     "Link target": "Linkziel",
     "Login": "Anmelden",
     "Impersonate user": "Benutzer imitieren",
+    "Important events you follow": "Wichtige Ereignisse, die Sie verfolgen",
     "Longitude": "Längengrad",
     "Home": "Startseite",
     "Mark all as read": "Alle als gelesen markieren",
@@ -62,6 +63,7 @@
     "Please check the entered data, it may be necessary to specify in other languages.": "Bitte überprüfen Sie die eingegebenen Daten, ggf. sind Angaben in anderen Sprachen erforderlich.",
     "Product, promo code, or slogan (e.g. spring_sale)": "Produkt, Gutscheincode oder Slogan (z.B. spring_sale)",
     "There are no records in this view": "In dieser Ansicht sind keine Datensätze vorhanden",
+    "Regular user": "Normaler Benutzer",
     "Remember Me": "Erinnere dich an mich",
     "Remove": "Entfernen",
     "Role": "Rolle",
@@ -98,5 +100,7 @@
     "Filters": "Filter",
     "Upload file": "Datei hochladen",
     "Media catalog": "Medienkatalog",
-    "Configure columns": "Spalten konfigurieren"
+    "Messages": "Nachrichten",
+    "Configure columns": "Spalten konfigurieren",
+    "You currently have no notifications, but maybe they will appear later.": "Sie haben derzeit keine Benachrichtigungen, aber vielleicht werden sie später auftauchen."
 }
