@@ -12,6 +12,7 @@
          data-cropper-url="{{ $url }}"
          data-cropper-accepted-files="{{ $acceptedFiles }}"
          data-cropper-max-file-size="{{ $maxFileSize }}"
+         data-cropper-groups="{{ $attributes['groups'] }}"
     >
         <div class="border-dashed text-end p-3 cropper-actions">
 
