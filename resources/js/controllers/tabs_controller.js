@@ -10,7 +10,7 @@ export default class extends ApplicationController {
         const activeId = tabs[window.location.href][this.data.get('slug')];
 
         if (activeId !== null && !this.data.get('active-tab')) {
-            $(`#${activeId}`).tab('show');
+            (new Tab(document.getElementById(activeId))).show();
         }
 
 
@@ -36,7 +36,8 @@ export default class extends ApplicationController {
 
         tabs[window.location.href][this.data.get('slug')] = activeId;
         localStorage.setItem('tabs', JSON.stringify(tabs));
-        $(`#${activeId}`).tab('show');
+
+        (new Tab(document.getElementById(activeId))).show();
 
         return event.preventDefault();
     }

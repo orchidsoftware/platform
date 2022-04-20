@@ -1,4 +1,5 @@
 import ApplicationController from "./application_controller";
+import {Modal} from "bootstrap";
 
 export default class extends ApplicationController {
 
@@ -45,6 +46,6 @@ export default class extends ApplicationController {
             });
         });
 
-        $(this.element).modal('show');
+        (new Modal(this.element)).show();
     }
 }

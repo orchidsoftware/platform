@@ -1,4 +1,5 @@
 import ApplicationController from "./application_controller";
+import {Modal} from "bootstrap";
 
 export default class extends ApplicationController {
 
@@ -75,7 +76,8 @@ export default class extends ApplicationController {
         }
 
         this.lastOpenModal = options;
-        $(this.element).modal('toggle');
+
+        (new Modal(this.element)).toggle();
     }
 
     /**

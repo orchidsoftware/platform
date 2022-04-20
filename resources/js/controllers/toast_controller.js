@@ -1,4 +1,5 @@
 import ApplicationController from "./application_controller";
+import {Toast} from "bootstrap";
 
 export default class extends ApplicationController {
 
@@ -42,8 +43,16 @@ export default class extends ApplicationController {
     }
 
     showAllToasts() {
-        $('.toast').on('hidden.bs.toast', (event) => {
+        const el = this.element.querySelector('.toast');
+
+        if (el === null) {
+            return;
+        }
+
+        el.addEventListener('hidden.bs.toast', (event) => {
             event.target.remove();
-        }).toast('show');
+        });
+
+        (new Toast(el)).show();
     }
 }

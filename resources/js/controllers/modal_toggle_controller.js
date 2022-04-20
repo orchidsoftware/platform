@@ -12,7 +12,7 @@ export default class extends ApplicationController {
             }
             this.modal.classList.remove('fade', 'in');
             this.targetModal();
-        })
+        });
     }
 
     /**

@@ -67,8 +67,6 @@ export default class extends ApplicationController {
 
                     // add event for listener
                     element.querySelector('.picture-path').dispatchEvent(new Event("change"));
-
-                    $(element.querySelector('.modal')).modal('hide');
                 })
                 .catch((error) => {
                     this.alert('Validation error', 'File upload error');
