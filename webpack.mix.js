@@ -39,7 +39,7 @@ mix
     .options({
         processCssUrls: false,
     })
-    .postCss('public/css/orchid.css', 'public/css/orchid.rtl.css', [
+    .postCss('public/css/orchid.css', 'css/orchid.rtl.css', [
         require('rtlcss'),
     ])
     .js('resources/js/app.js', 'js/orchid.js')
