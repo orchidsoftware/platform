@@ -5,9 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 12.3.1 - 2022-04-20
+
+### Changed
+
+- Update German translation [#2196](https://github.com/orchidsoftware/platform/pull/2196) and [#2201](https://github.com/orchidsoftware/platform/pull/2201)
+
+### Fixed
+
+- Group database field not being generated when using Cropper element [#2202](https://github.com/orchidsoftware/platform/pull/2202)
+
 ## 12.3.0 - 2022-03-26
 
-## Added
+### Added
 
 - Custom storage path feature [#2189](https://github.com/orchidsoftware/platform/pull/2189)
 - Allow duplicate files [#2168](https://github.com/orchidsoftware/platform/pull/2168)
