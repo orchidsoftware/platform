@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 12.3.2 - 2022-04-20
+
+### Changed
+
+- Don't create a directory manually [#2193](https://github.com/orchidsoftware/platform/issues/2193)
+- Reduced dependency on third party libraries
+- Position for toast on mobile
+
 ## 12.3.1 - 2022-04-20
 
 ### Changed
