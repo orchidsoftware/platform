@@ -133,6 +133,12 @@ class ExampleScreen extends Screen
                     Button::make('Something else here')
                         ->method('showToast')
                         ->icon('bulb'),
+
+                    Button::make('Confirm button')
+                        ->method('showToast')
+                        ->confirm('If you click you will see a toast message')
+                        ->novalidate()
+                        ->icon('shield'),
                 ]),
 
         ];
