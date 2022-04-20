@@ -47,7 +47,7 @@ mix
         'stimulus', 'stimulus/webpack-helpers', 'turbo',
         'jquery', 'popper.js', 'bootstrap',
         'dropzone', 'select2', 'cropperjs', 'frappe-charts', 'inputmask',
-        'simplemde', 'axios', 'leaflet', 'codeflask', 'stimulus-flatpickr',
+        'simplemde', 'axios', 'leaflet', 'codeflask',
         'flatpickr', 'quill', 'codemirror', 'typo-js', 'sortablejs',
     ])
     .autoload({
