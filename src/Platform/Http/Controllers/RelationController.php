@@ -42,6 +42,7 @@ class RelationController extends Controller
             });
 
         /** @var Model $model */
+        /** @psalm-suppress UndefinedClass */
         $model = new $model;
         $search = $request->get('search', '');
 
