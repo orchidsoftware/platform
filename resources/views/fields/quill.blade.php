@@ -3,6 +3,7 @@
          data-quill-toolbar='@json($toolbar)'
          data-quill-base64='@json($base64)'
          data-quill-value='@json($value)'
+         data-upload-groups="{{$attributes['groups'] ?? ''}}"
          data-theme="{{$theme ?? 'inlite'}}"
     >
         <div id="toolbar"></div>
