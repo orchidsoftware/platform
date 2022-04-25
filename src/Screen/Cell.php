@@ -180,8 +180,10 @@ abstract class Cell
      *
      * @return mixed
      */
-    protected function handler($source)
+    protected function handler($source, ?object $loop = null)
     {
-        return with($source, $this->render);
+        $callback = $this->render;
+
+        return is_null($callback) ? $source : $callback($source, $loop);
     }
 }
