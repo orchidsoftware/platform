@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 12.4.0 - 2022-04-25
+
+### Added
+
+- Second $loop parameter to the closure function [#2211](https://github.com/orchidsoftware/platform/pull/2211)
+- Attribute groups to Quill [#2209](https://github.com/orchidsoftware/platform/pull/2209)
+
 ## 12.3.2 - 2022-04-20
 
 ### Changed
