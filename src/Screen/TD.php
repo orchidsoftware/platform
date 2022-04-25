@@ -219,15 +219,12 @@ class TD extends Cell
             $filter = $this->detectConstantFilter($filter);
         }
 
-        $value = $this->isComplexFieldType($filter)
-            ? get_filter($this->column)
-            : get_filter_string($this->column);
-
-        return $filter
-            ->name("filter[$this->column]")
+        return $filter->name("filter[$this->column]")
             ->placeholder(__('Filter'))
             ->form('filters')
-            ->value($value)
+            ->value(
+                $this->isComplexFieldType($filter) ? get_filter_string($this->column) : get_filter($this->column)
+            )
             ->autofocus();
     }
 
