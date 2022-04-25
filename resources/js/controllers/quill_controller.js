@@ -130,6 +130,10 @@ export default class extends ApplicationController {
         const formData = new FormData();
         formData.append('image', file);
 
+        if (this.data.get('groups')) {
+            formData.append('group', this.data.get('groups'));
+        }
+
         axios
             .post(this.prefix('/systems/files'), formData)
             .then((response) => {

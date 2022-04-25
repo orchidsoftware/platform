@@ -29,6 +29,7 @@ use Orchid\Screen\Field;
  * @method Quill popover(string $value = null)
  * @method Quill toolbar(array $options)
  * @method Quill base64(bool $value = true)
+ * @method Quill groups(string $value = null)
  */
 class Quill extends Field
 {
@@ -73,5 +74,6 @@ class Quill extends Field
         'step',
         'tabindex',
         'height',
+        'groups',
     ];
 }
