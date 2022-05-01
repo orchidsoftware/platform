@@ -365,6 +365,7 @@ $s2bs-form-control-transition: border-color ease-in-out .15s, box-shadow ease-in
         border-color: $s2bs-input-border-focus;
         overflow-x: hidden;
         margin-top: -1px;
+        position: relative;
 
         &--above {
             margin-top: 1px;
