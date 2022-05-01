@@ -27,7 +27,7 @@
   "Campaign name": "ناوی کەمپین",
   "Campaign Source": "سەرچاوەی کەمپین",
   "Campaign term": "زاراوەی کەمپین",
-  "Cancel": "هەڵوەشاندنەوە",
+  "Cancel": "پەشیمانبوونەوە",
   "Cards": "کارتەکان",
   "Change a few things up and try submitting again.": "چەند شتێک بگۆڕەو دووبارە هەوڵبدەرەوە.",
   "Chart tools": "ئامرازەکانی هێڵکاری",
@@ -168,6 +168,6 @@
   "What to search...": "بگەڕێ..",
   "You are now impersonating this user": "تۆ ئێستا ناسنامەی ئەم بەکارهێنەرە وەردەگریت",
   "You currently have no notifications, but maybe they will appear later.": "تۆ لە ئێستادا هیچ ئاگادارینامەیەکت نیە، بەڵام لەوانەیە دواتر دەربکەون.",
-  "You may have' entered an address that doesn't exist or that the link you have requested doesn't work (anymore).": "ممکن است شما آدرسی را وارد کرده اید که دیگر وجود ندارد یا پیوندی که درخواست کرده اید دیگر کار نمی کند.",
+  "You may have' entered an address that doesn't exist or that the link you have requested doesn't work (anymore).": "لەوانەیە ناونیشانێکت داواکردبێت کە چی تر بوونی نییە، یان ئەو بەستەرەی داواتکردووە چیتر کارناکات.",
   "You requested a page that doesn't exist.": "لاپەڕەی داواکار بوونی نیە."
 }
