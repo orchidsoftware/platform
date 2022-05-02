@@ -20,6 +20,7 @@ export default class extends ApplicationController {
             ...select.hasAttribute('tags') ? { tags: true } : '',
             theme: 'bootstrap',
             dropdownParent: parent.length ? parent : undefined,
+            dir: document.documentElement.dir
         });
 
 

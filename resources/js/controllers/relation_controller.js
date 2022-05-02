@@ -67,6 +67,7 @@ export default class extends ApplicationController {
             },
             placeholder: select.getAttribute('placeholder') || '',
             dropdownParent: parent.length ? parent : undefined,
+            dir: document.documentElement.dir
         });
 
         $(select).on('select2:open', () => {
