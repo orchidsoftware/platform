@@ -14,7 +14,7 @@
 
 ## Introduction
 
-Orchid is a free [Laravel](https://laravel.com) package that abstracts standard business logic and allows code-driven rapid application development of back office applications, admin/user panels and dashboards.
+Orchid is a free [Laravel](https://laravel.com) package that abstracts standard business logic and allows code-driven rapid application development of back-office applications, admin/user panels, and dashboards.
 
 <a href="https://raw.githubusercontent.com/orchidsoftware/platform/master/.github/IMAGES/promo-full.png">
   <img src="https://raw.githubusercontent.com/orchidsoftware/platform/master/.github/IMAGES/promo-full.png" alt="Laravel Orchid Platform" align="center" />
@@ -22,7 +22,7 @@ Orchid is a free [Laravel](https://laravel.com) package that abstracts standard 
 
 ### Interesting Features
 
-- **Rapid Application Development** - Focus to PHP development and don't lose time with HTML, CSS, or JavaScript. Build application logic, not admin panels. Try our [quick start guide](https://orchid.software/en/docs/quickstart/) and kick-start your application's development.
+- **Rapid Application Development** - Focus on PHP development and don't lose time with HTML, CSS, or JavaScript. Build application logic, not admin panels. Try our [quick start guide](https://orchid.software/en/docs/quickstart/) and kick-start your application's development.
 
 - **Form Builder** - Prevent reinventing the wheel or forms. Orchid supports already [40+ form elements](https://orchid.software/en/docs/field/) "out of the box" and allows you to build all kinds of forms quickly.
 
@@ -32,7 +32,7 @@ Orchid is a free [Laravel](https://laravel.com) package that abstracts standard 
 
 - **Filtering & Sorting** - Offer your users the ability to filter and sort data quickly! Orchid uses an [Eloquent based filtering/sorting approach](https://orchid.software/en/docs/quickstart-sort-filter-table/).
 
-- **Fast Full-Text Search** - Take advantage of the integrated [Laravel Scout based full-text search](https://orchid.software/en/docs/global-search/), that allows searching through all available content, and displaying search results almost instantly.
+- **Fast Full-Text Search** - Take advantage of the integrated [Laravel Scout based full-text search](https://orchid.software/en/docs/global-search/), which allows searching through all available content, and displaying search results almost instantly.
 
 - **Multiple Notifications Types** - Orchid offers [various types of notifications](https://orchid.software/en/docs/alert/) and allows your application to keep your users informed appropriately.
 
@@ -74,13 +74,13 @@ We are continually trying to actively include feedback from the community in the
 
 ## Development
 
-### Releasese Strategy
+### Release Strategy
 
-We like to keep things as modern as possible and have a "[release early, release often](https://en.wikipedia.org/wiki/Release_early,_release_often)" approach to major releases. Meaning, we won't wait an arbitrary number of months to accumulate significant changes and release the next major version. By releasing major versions often, new features will be out earlier, and upgrading between versions will be much easier.
+We like to keep things as modern as possible and have a "[release early, release often](https://en.wikipedia.org/wiki/Release_early,_release_often)" approach to major releases. This means we won't wait an arbitrary number of months to accumulate significant changes and release the next major version. By releasing major versions often, new features will be out earlier, and upgrading between versions will be much easier.
 
 ### Changelog
 
-We actively and continuously maintain a [changelog](CHANGELOG.md) that informs about Orchid's history of improvements, bug fixes and changes.
+We actively and continuously maintain a [changelog](CHANGELOG.md) that informs about Orchid's history of improvements, bug fixes, and changes.
 
 ## Support Orchid
 
