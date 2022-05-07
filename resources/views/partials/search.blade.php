@@ -4,7 +4,7 @@
             <div class="input-icon">
                 <input
                     data-action="keyup->search#query blur->search#blur focus->search#focus"
-                    data-target="search.query"
+                    data-search-target="query"
                     type="text"
                     value="@yield('search')"
                        class="form-control input-sm padder bg-dark text-white"
