@@ -20,7 +20,7 @@
                         {{ $filter->name() }}
                     </a>
                     <div class="dropdown-menu" data-action="click->filter#onMenuClick"
-                         data-target="filter.filterItem">
+                         data-filter-target="filterItem">
                         <div class="px-3 py-2 w-md">
                             {!! $filter->render() !!}
                             <div class="dropdown-divider"></div>
@@ -34,7 +34,7 @@
                 @endforeach
             @else
                 <div class="dropdown-toggle" data-action="click->filter#onMenuClick"
-                     data-target="filter.filterItem">
+                     data-filter-target="filterItem">
                     <div class="px-3 py-2 w-md">
                         {!! $filters->where('display', true)->first()->render() !!}
                         <div class="dropdown-divider"></div>
