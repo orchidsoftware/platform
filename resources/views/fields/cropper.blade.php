@@ -29,7 +29,7 @@
                     {{ __('Browse') }}
                     <input type="file"
                            accept="image/*"
-                           data-target="cropper.upload"
+                           data-cropper-target="upload"
                            data-action="change->cropper#upload click->cropper#openModal"
                            class="d-none">
                 </label>
