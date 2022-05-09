@@ -23,7 +23,7 @@
                     {{ __('Browse') }}
                     <input type="file"
                            accept="image/*"
-                           data-target="picture.upload"
+                           data-picture-target="upload"
                            data-action="change->picture#upload"
                            class="d-none">
                 </label>
@@ -39,7 +39,7 @@
 
         <input class="picture-path d-none"
                type="text"
-               data-target="picture.source"
+               data-picture-target="source"
                {{ $attributes }}
         >
     </div>
