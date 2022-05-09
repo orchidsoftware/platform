@@ -6,11 +6,11 @@
         <input {{ $attributes }} data-target="password.password">
         <div class="input-icon-addon cursor" data-action="click->password#change">
 
-            <span data-target="password.iconShow">
+            <span data-password-target="iconShow">
                 <x-orchid-icon path="eye" class="small me-2"/>
             </span>
 
-            <span data-target="password.iconLock" class="none">
+            <span data-password-target="iconLock" class="none">
                 <x-orchid-icon path="lock" class="small me-2"/>
             </span>
         </div>
