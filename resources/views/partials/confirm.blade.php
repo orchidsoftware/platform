@@ -13,7 +13,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="p-4" data-target="confirm.message">
+                <div class="p-4" data-confirm-target="message">
 
                 </div>
             </div>
@@ -22,7 +22,7 @@
                     {{__('Cancel')}}
                 </button>
 
-                <div data-target="confirm.button">
+                <div data-confirm-target="button">
 
                 </div>
             </div>
