@@ -184,6 +184,9 @@ class UserEditScreen extends Screen
             $userData['password'] = Hash::make($userData['password']);
         }
 
+        // remove roles array from userData to avoid the fill
+        unset($userData["roles"]);
+
         $user
             ->fill($userData)
             ->fill([
