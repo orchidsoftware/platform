@@ -29,7 +29,7 @@ abstract class Screen extends Controller
      * Example: dashboard/my-screen/{method?}
      */
     private const COUNT_ROUTE_VARIABLES = 1;
-    
+
     /**
      * The view rendered
      *
