@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Screen\Resolvers\ScreenDependencyResolver;
 use Orchid\Support\Facades\Dashboard;
+use Illuminate\Http\Request;
 use Throwable;
 
 /**
@@ -195,25 +196,27 @@ abstract class Screen extends Controller
     }
 
     /**
+     * @param \Illuminate\Http\Request $request
      * @param mixed ...$parameters
      *
      * @throws Throwable
      *
      * @return Factory|View|\Illuminate\View\View|mixed
      */
-    public function handle(...$parameters)
+    public function handle(Request $request, ...$parameters)
     {
         Dashboard::setCurrentScreen($this);
-        abort_unless($this->checkAccess(), 403);
 
-        if (request()->isMethod('GET')) {
+        abort_unless($this->checkAccess($request), 403);
+
+        if ($request->isMethod('GET')) {
             return $this->redirectOnGetMethodCallOrShowView($parameters);
         }
 
         $method = Route::current()->parameter('method', Arr::last($parameters));
 
         $prepare = collect($parameters)
-            ->merge(request()->query())
+            ->merge($request->query())
             ->diffAssoc($method)
             ->all();
 
@@ -235,11 +238,15 @@ abstract class Screen extends Controller
     }
 
     /**
+     * Determine if the user is authorized and has the required rights to complete this request.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
      * @return bool
      */
-    private function checkAccess(): bool
+    protected function checkAccess(Request $request): bool
     {
-        $user = Auth::user();
+        $user = $request->user();
 
         if ($user === null) {
             return true;
