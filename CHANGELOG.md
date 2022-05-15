@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 12.4.4 - 2022-05-15
+
+### Fixed
+
+- Cannot Add a role to a user (new or existing user) [#2235](https://github.com/orchidsoftware/platform/issues/2235)
+
 ## 12.4.3 - 2022-05-15
 
 ### Changed
