@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 12.4.3 - 2022-05-15
+
+### Changed
+
+- Allow `checkAccess` method to be overridden [#2188](https://github.com/orchidsoftware/platform/issues/2188)
+
+### Fixed
+
+- Method `open` for modals [#2240](https://github.com/orchidsoftware/platform/pull/2240)
+
 ## 12.4.2 - 2022-05-15
 
 ### Changed
