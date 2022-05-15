@@ -20,6 +20,10 @@ export default class extends ApplicationController {
      *
      */
     connect() {
+        if (this.data.get('open')) {
+            (new Modal(this.element)).show();
+        }
+
         this.element.addEventListener('shown.bs.modal', this.show);
         this.element.addEventListener('hide.bs.modal', this.hidden);
         this.openLastModal();
