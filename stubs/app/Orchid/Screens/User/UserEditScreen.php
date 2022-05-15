@@ -8,7 +8,9 @@ use App\Orchid\Layouts\Role\RolePermissionLayout;
 use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserPasswordLayout;
 use App\Orchid\Layouts\User\UserRoleLayout;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Orchid\Access\UserSwitch;
@@ -177,18 +179,14 @@ class UserEditScreen extends Screen
             ->toArray();
 
         $userData = $request->get('user');
-        if ($user->exists && (string) $userData['password'] === '') {
-            // When updating existing user null password means "do not change current password"
-            unset($userData['password']);
-        } else {
-            $userData['password'] = Hash::make($userData['password']);
-        }
+
+        $user->when($user->exists && !empty($userData['password']), function (Builder $builder) use ($userData) {
+            $builder->getModel()->password = Hash::make($userData['password']);
+        });
 
         $user
-            ->fill($userData)
-            ->fill([
-                'permissions' => $permissions,
-            ])
+            ->fill(Arr::except($userData, ['password', 'permissions', 'roles']))
+            ->fill(['permissions' => $permissions])
             ->save();
 
         $user->replaceRoles($request->input('user.roles'));
