@@ -69,7 +69,7 @@ class ModalTest extends TestBrowserCase
                 ->loginAs($this->createAdminUser())
                 ->visitRoute('test.modal-open')
                 ->waitForText('Open modal message')
-                ->waitForText('Messages to display');
+                ->assertSee('Messages to display');
         });
     }
 }
