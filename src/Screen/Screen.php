@@ -7,14 +7,13 @@ namespace Orchid\Screen;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Screen\Resolvers\ScreenDependencyResolver;
 use Orchid\Support\Facades\Dashboard;
-use Illuminate\Http\Request;
 use Throwable;
 
 /**
@@ -197,7 +196,7 @@ abstract class Screen extends Controller
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @param mixed ...$parameters
+     * @param mixed                    ...$parameters
      *
      * @throws Throwable
      *
