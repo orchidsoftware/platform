@@ -9,6 +9,7 @@ use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Dashboard;
 use Orchid\Tests\App\Screens\AsyncHeaderButtonActionScreen;
 use Orchid\Tests\App\Screens\ConfirmScreen;
+use Orchid\Tests\App\Screens\ModelAutoOpenScreen;
 use Orchid\Tests\App\Screens\DependentListenerModalScreen;
 use Orchid\Tests\App\Screens\DependentListenerScreen;
 use Orchid\Tests\App\Screens\MethodsResponseScreen;
@@ -35,6 +36,7 @@ class ExemplarServiceProvider extends ServiceProvider
             ->as('test.')
             ->group(function ($route) {
                 $route->screen('modal-validation', ModalValidationScreen::class)->name('modal-validation');
+                $route->screen('modal-open', ModelAutoOpenScreen::class)->name('modal-open');
                 $route->screen('dependent-listener-nested-targets', NestedTargetsDependentSumListenerScreen::class)->name('dependent-listener-nested-targets');
                 $route->screen('dependent-listener', DependentListenerScreen::class)->name('dependent-listener');
                 $route->screen('dependent-listener-modal', DependentListenerModalScreen::class)->name('dependent-listener-modal');

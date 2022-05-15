@@ -7,7 +7,7 @@ namespace Orchid\Tests\Browser;
 use Laravel\Dusk\Browser;
 use Orchid\Tests\TestBrowserCase;
 
-class ModalValidationTest extends TestBrowserCase
+class ModalTest extends TestBrowserCase
 {
     /**
      * @throws \Throwable
@@ -56,6 +56,20 @@ class ModalValidationTest extends TestBrowserCase
                 ->type('message', 'Hello!')
                 ->press('Apply')
                 ->waitForText('The message must be at least 10 characters.');
+        });
+    }
+
+    /**
+     * @throws \Throwable
+     */
+    public function testAutoOpenModal(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $browser
+                ->loginAs($this->createAdminUser())
+                ->visitRoute('test.modal-open')
+                ->waitForText('Open modal message')
+                ->waitForText('Messages to display');
         });
     }
 }
