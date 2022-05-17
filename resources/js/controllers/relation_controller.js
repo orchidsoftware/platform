@@ -38,7 +38,7 @@ export default class extends ApplicationController {
                 url: () => this.data.get('route'),
                 dataType: 'json',
                 processResults: (data) => {
-                    let selectValues = $(select).val();
+                    let selectValues = select.value;
                     selectValues = Array.isArray(selectValues) ? selectValues : [selectValues];
 
                     return {
@@ -72,7 +72,7 @@ export default class extends ApplicationController {
 
         $(select).on('select2:open', () => {
             window.setTimeout(function() {
-                $('.select2-container--open .select2-search__field').get(0).focus();
+                document.querySelector('.select2-container--open .select2-search__field').focus();
             }, 200);
         });
 
@@ -86,15 +86,16 @@ export default class extends ApplicationController {
         $(select).on('select2:clear', forceChange);
 
         if (!this.data.get('value')) {
+            console.log('1');
             return;
         }
 
         const values = JSON.parse(this.data.get('value'));
-
         values.forEach((value) => {
             $(select)
                 .append(new Option(value.text, value.id, true, true))
                 .trigger('change');
+
         });
 
         document.addEventListener('turbo:before-cache', () => {

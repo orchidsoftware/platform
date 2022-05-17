@@ -1,6 +1,7 @@
 import ApplicationController from "./application_controller"
 import {Dropzone} from 'dropzone';
 import Sortable from 'sortablejs';
+import {Modal} from "bootstrap";
 
 export default class extends ApplicationController {
 
@@ -91,7 +92,10 @@ export default class extends ApplicationController {
      */
     save() {
         const attach = this.activeAttachment;
-        $(this.dropname).find(`.attachment.modal`).modal('toggle');
+        const dropname = this.dropname;
+
+        let loadMediaModal = Modal.getOrCreateInstance( dropname.querySelector(`.attachment.modal`));
+        loadMediaModal.toggle();
 
         const name = attach.name + attach.id;
 
@@ -142,9 +146,10 @@ export default class extends ApplicationController {
             this.cancelRequest();
         }
 
-        $(dropname).find(`.file-sort`).each((index, value) => {
-            const id = $(value).attr('data-file-id');
-            items[id] = index;
+        let elements = dropname.querySelectorAll(`:scope .file-sort`);
+        elements.forEach((value, index) => {
+           const id = value.getAttribute('data-file-id');
+           items[id] = index;
         });
 
         axios
@@ -177,12 +182,21 @@ export default class extends ApplicationController {
      * @param file
      */
     addSortDataAtributes(dropname, name, file) {
-        $(dropname).find(`.dz-complete:last-child`)
-            .attr('data-file-id', file.id)
-            .addClass('file-sort');
-        $(
-            `<input type='hidden' class='files-${file.id}' name='${name}[]' value='${file.id}'  />`
-        ).appendTo(dropname);
+
+        const items = dropname.querySelectorAll(' .dz-complete');
+
+        if(items !== null && items.item(items.length -1)!==null){
+            items.item(items.length -1).setAttribute('data-file-id',file.id);
+            items.item(items.length -1).classList.add('file-sort');
+        }
+
+       const node = document.createElement('input');
+        node.setAttribute('type','hidden');
+        node.setAttribute('name', name+ '[]');
+        node.setAttribute('value',file.id);
+        node.classList.add('files-'+file.id);
+        dropname.appendChild(node);
+
     }
 
     /**
@@ -245,7 +259,9 @@ export default class extends ApplicationController {
 
                     editButton.addEventListener('click', () => {
                         loadInfo(e.data);
-                        $(dropname).find(`.attachment.modal`).modal('show');
+
+                        const attachmentModal = Modal.getOrCreateInstance(dropname.querySelector(`.attachment.modal`));
+                        attachmentModal.show();
                     });
 
                     e.previewElement.appendChild(removeButton);
@@ -258,14 +274,18 @@ export default class extends ApplicationController {
                 });
 
                 this.on('sending', (file, xhr, formData) => {
-                    formData.append('_token', $('meta[name=\'csrf_token\']').attr('content'));
+                    let token = document.querySelector('meta[name=\'csrf_token\']').getAttribute('content')
+                    formData.append('_token',token);
                     formData.append('storage', storage);
                     formData.append('group', groups);
                 });
 
                 this.on('removedfile', file => {
                     if (file.hasOwnProperty('data') && file.data.hasOwnProperty('id')) {
-                        $(dropname).find(`.files-${file.data.id}`).remove();
+                        let removeItem = dropname.querySelector(`.files-${file.data.id}`);
+                        if(removeItem!==null && removeItem.parentNode!==null){
+                            removeItem.parentNode.removeChild(removeItem);
+                        }
                         !isMediaLibrary && axios
                             .delete(urlDelete + file.data.id, {
                                 storage: storage,
@@ -300,14 +320,17 @@ export default class extends ApplicationController {
                     });
                 }
 
-                $(dropname).find(`.dz-progress`).remove();
+                let removeItem = dropname.querySelector(`.dz-progress`);
+                if(removeItem!==null && removeItem.parentNode!==null){
+                    removeItem.parentNode.removeChild(removeItem);
+                }
             },
             error(file, response) {
                 controller.alert('Validation error', 'File upload error');
 
                 this.removeFile(file);
 
-                if ($.type(response) === 'string') {
+                if (Object.prototype.toString.call(response).replace(/^\[object (.+)\]$/, '$1').toLowerCase() === 'string') {
                     return response;
                 }
                 return response.message;
@@ -335,9 +358,9 @@ export default class extends ApplicationController {
      *
      */
     openMedia() {
-        $(this.dropname).find('.media-loader').show();
-        $(this.dropname).find('.media-results').hide();
-
+        const dropname = this.dropname;
+        dropname.querySelector('.media-loader').style.display = "";
+        dropname.querySelector('.media-results').style.display = "none";
         this.loadMedia();
     }
 
@@ -357,7 +380,7 @@ export default class extends ApplicationController {
         this.allMediaList = {}; // Reset all media list
         this.page = 1; // Reset page
 
-        $(this.dropname).find(`.media-results`).html('');
+       this.dropname.querySelector(`.media-results`).innerHTML=""
     }
 
     /**
@@ -366,12 +389,14 @@ export default class extends ApplicationController {
     loadMedia() {
         const self = this;
         const CancelToken = axios.CancelToken;
+        const dropname = this.dropname;
 
         if (typeof this.cancelRequest === 'function') {
             this.cancelRequest();
         }
 
-        $(this.dropname).find(`.media.modal`).modal('show');
+        let loadMediaModal = Modal.getOrCreateInstance( dropname.querySelector(`.media.modal`));
+        loadMediaModal.show();
 
         axios
             .post(this.prefix(`/systems/media?page=${this.page}`), {
@@ -411,12 +436,12 @@ export default class extends ApplicationController {
                 .replace(/{element.original_name}/, element.original_name)
                 .replace(/{element.original_name}/, element.original_name);
 
-            $(this.dropname).find(`.media-results`).append(template);
+            this.dropname.querySelector(`.media-results`).appendChild(template);
             this.allMediaList[index] = element;
         });
 
-        $(this.dropname).find(`.media-loader`).hide();
-        $(this.dropname).find(`.media-results`).show();
+        this.dropname.querySelector('.media-loader').style.display = "none";
+        this.dropname.querySelector('.media-results').style.display = "";
     }
 
     /**
@@ -429,7 +454,8 @@ export default class extends ApplicationController {
         this.addedExistFile(file);
 
         if (this.data.get('close-on-add')) {
-            $(this.dropname).find(`.media.modal`).modal('hide');
+            let loadMediaModal = Modal.getOrCreateInstance( this.dropname.querySelector(`.media.modal`));
+            loadMediaModal.hide();
         }
     }
 
