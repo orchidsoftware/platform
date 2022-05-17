@@ -169,10 +169,6 @@
   &.fade{
       @include transition(opacity 200ms ease-in-out);
   }
-
-  &.in, &.show {
-    opacity: 0.5;
-  }
 }
 
 /* Responsive Handlers: Modals

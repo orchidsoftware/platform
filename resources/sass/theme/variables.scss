@@ -155,9 +155,9 @@ $state-success-text: #3c763d;
 
 
 //Border
-$border-radius: .35rem;
-$border-radius-lg: .4rem;
-$border-radius-sm: .3rem;
+$border-radius: .5rem;
+$border-radius-lg: 0.685rem;
+$border-radius-sm: .35rem;
 
 // Pagination
 $pagination-disabled-color: $text-muted;
@@ -169,3 +169,9 @@ $enable-responsive-font-sizes: true;
 
 // Navigation
 $nav-link-padding-y: .625rem;
+
+
+// modals
+
+$modal-backdrop-opacity: .75;
+$modal-content-border-width: 0;
