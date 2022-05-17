@@ -102,7 +102,7 @@ export default class extends ApplicationController {
 
         if (!event.target.reportValidity()) {
             this.alert('Validation error', message);
-
+            event.target.classList.add('was-validated');
             return false;
         }
 
