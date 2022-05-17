@@ -22,7 +22,7 @@ export default class extends ApplicationController {
 
         $.ajaxSetup({
             headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content'),
+                'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf_token"]').content,
             },
         });
 
