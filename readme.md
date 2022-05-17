@@ -16,9 +16,6 @@
 
 Orchid is a free [Laravel](https://laravel.com) package that abstracts standard business logic and allows code-driven rapid application development of back-office applications, admin/user panels, and dashboards.
 
-<a href="https://raw.githubusercontent.com/orchidsoftware/platform/master/.github/IMAGES/promo-full.png">
-  <img src="https://raw.githubusercontent.com/orchidsoftware/platform/master/.github/IMAGES/promo-full.png" alt="Laravel Orchid Platform" align="center" />
-</a>
 
 ### Interesting Features
 
@@ -41,6 +38,9 @@ Orchid is a free [Laravel](https://laravel.com) package that abstracts standard 
  
 Curious but not (yet) in the mood to read the documentation? Click [here](https://demo.orchid.software/login), to experience a live demo of Orchid.
 
+<a href="https://demo.orchid.software/login">
+  <img src="https://raw.githubusercontent.com/orchidsoftware/platform/master/.github/IMAGES/promo-full.png" alt="Laravel Orchid Platform" align="center" />
+</a>
 
 ## Getting started
 
