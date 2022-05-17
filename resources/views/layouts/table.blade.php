@@ -1,7 +1,7 @@
 @empty(!$title)
     <fieldset>
             <div class="col p-0 px-3">
-                <legend class="text-black">
+                <legend class="text-black text-black mt-2 mx-2">
                     {{ $title }}
                 </legend>
             </div>
