@@ -39,6 +39,8 @@ abstract class Chart extends Layout
     protected $type = 'line';
 
     /**
+     * Height of the chart.
+     *
      * @var int
      */
     protected $height = 250;

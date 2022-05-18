@@ -26,4 +26,11 @@ class ChartBarExample extends Chart
      * @var string
      */
     protected $target = 'charts';
+
+    /**
+     * Height of the chart.
+     *
+     * @var int
+     */
+    protected $height = 300;
 }

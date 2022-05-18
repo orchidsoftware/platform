@@ -19,6 +19,13 @@ class ChartLineExample extends Chart
     protected $target = 'charts';
 
     /**
+     * Height of the chart.
+     *
+     * @var int
+     */
+    protected $height = 300;
+
+    /**
      * Configuring line.
      *
      * @var array
