@@ -1,7 +1,7 @@
 <fieldset class="row g-0 mb-3">
     <div class="col p-0 px-3">
         <legend class="text-black px-2 mt-2">
-            {{ __($title ?? '') }} lololo
+            {{ __($title ?? '') }}
 
             <p class="small text-muted mt-2 mb-0">
                 {!! __($description  ?? '') !!}
