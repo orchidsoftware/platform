@@ -80,7 +80,7 @@
                             <div class="form-group">
                                 <label>{{ __('Description') }}</label>
                                 <textarea class="form-control no-resize"
-                                          data-upload-target="upload.description"
+                                          data-upload-target="description"
                                           placeholder="{{ __('Description') }}"
                                           maxlength="255"
                                           rows="3"></textarea>
