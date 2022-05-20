@@ -178,14 +178,12 @@ class UserEditScreen extends Screen
             ->collapse()
             ->toArray();
 
-        $userData = $request->get('user');
-
-        $user->when(! empty($userData['password']), function (Builder $builder) use ($userData) {
-            $builder->getModel()->password = Hash::make($userData['password']);
+        $user->when($request->filled('user.password'), function (Builder $builder) use ($request) {
+            $builder->getModel()->password = Hash::make($request->input('user.password'));
         });
 
         $user
-            ->fill(Arr::except($userData, ['password', 'permissions', 'roles']))
+            ->fill($request->collect('user')->except(['password', 'permissions', 'roles'])->toArray())
             ->fill(['permissions' => $permissions])
             ->save();
 
