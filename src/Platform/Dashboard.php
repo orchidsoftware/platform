@@ -18,7 +18,7 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    public const VERSION = '12.4.5';
+    public const VERSION = '12.5.0';
 
     /**
      * Slug for main menu.

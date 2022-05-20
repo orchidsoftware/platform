@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 12.5.0 - 2022-05-21
+
+### Added
+
+- Turkmen language [#2244](https://github.com/orchidsoftware/platform/pull/2244)
+
+### Changed
+
+- Increase the height of charts in examples
+- Removed jQuery from `map_controller`, `upload_controller` [#2246](https://github.com/orchidsoftware/platform/pull/2246)
+
+### Fixed
+
+- Filling in a password when creating a user [#2249](https://github.com/orchidsoftware/platform/pull/2249)
+- Upload description target [#2248](https://github.com/orchidsoftware/platform/pull/2248)
+
 ## 12.4.5 - 2022-05-19
 
 ### Changed
