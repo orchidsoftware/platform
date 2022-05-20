@@ -25,6 +25,7 @@ export default class extends ApplicationController {
 
 
         // force change event for https://github.com/select2/select2/issues/1908
+
         let forceChange = () => {
             setTimeout(() => {
                 select.dispatchEvent(new Event('change'));
@@ -35,8 +36,9 @@ export default class extends ApplicationController {
         $(select).on('select2:unselect', forceChange);
         $(select).on('select2:clear', forceChange);
 
+
         document.addEventListener('turbo:before-cache', () => {
-            if (typeof $(select) !== 'undefined' && $('select').data('select2')) {
+            if (select !== null && $('select').data('select2')) {
                 $(select).select2('destroy');
             }
         }, { once: true });

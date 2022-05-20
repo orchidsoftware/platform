@@ -63,9 +63,10 @@ export default class extends ApplicationController {
         /**
          * @see https://stackoverflow.com/questions/36246815/data-toggle-tab-does-not-download-leaflet-map/36257493#36257493
          */
-        $(document).on('shown.bs.tab', 'a[data-bs-toggle="tab"]', () => {
-            this.leafletMap.invalidateSize();
-        });
+        let tabEl = document.querySelector('a[data-bs-toggle="tab"]')
+        if(tabEl !== null){
+            tabEl.addEventListener('shown.bs.tab',  () => this.leafletMap.invalidateSize())
+        }
     }
 
     /**
@@ -80,7 +81,6 @@ export default class extends ApplicationController {
      *
      */
     search() {
-
         const results = this.element.querySelector('.marker-results');
 
         if (this.searchTarget.value.length <= 3) {
@@ -104,14 +104,11 @@ export default class extends ApplicationController {
                 results.innerHTML = null;
 
                 if (items.length !== 0) {
-                    $('<ul/>', {
-                        'class': 'my-2',
-                        html: items.join('')
-                    }).appendTo(results);
+                    results.innerHTML = "<ul class='my-2'>"+items.join('')+"</ul>";
                     return;
                 }
 
-                $('<small>', {html: "No results found"}).appendTo(results);
+                results.innerHTML = "<small>No results found</small>";
             });
 
     }
