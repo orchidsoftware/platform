@@ -180,7 +180,7 @@ class UserEditScreen extends Screen
 
         $userData = $request->get('user');
 
-        $user->when($user->exists && ! empty($userData['password']), function (Builder $builder) use ($userData) {
+        $user->when(! empty($userData['password']), function (Builder $builder) use ($userData) {
             $builder->getModel()->password = Hash::make($userData['password']);
         });
 
