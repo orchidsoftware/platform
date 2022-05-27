@@ -261,12 +261,23 @@ class Dashboard
     }
 
     /**
+     * param array $groups
+     *
      * @return Collection
      */
-    public function getPermission(): Collection
+    public function getPermission($groups = []): Collection
     {
         $all = $this->permission->get('all');
         $removed = $this->permission->get('removed');
+        
+        if (!empty($groups)) {
+            $requestedGroups = collect();
+            foreach ($all as $key => $permissions) {
+                if (in_array($key, $groups) || $key == self::MENU_MAIN)
+                    $requestedGroups->put($key, $permissions);
+            }
+            $all = $requestedGroups;
+        }
 
         if (! $removed->count()) {
             return $all;
@@ -286,11 +297,13 @@ class Dashboard
     /**
      * Get all registered permissions with the enabled state.
      *
+     * param array $groups
+     *
      * @return Collection
      */
-    public function getAllowAllPermission(): Collection
+    public function getAllowAllPermission($groups = []): Collection
     {
-        return $this->getPermission()
+        return $this->getPermission($groups)
             ->collapse()
             ->reduce(static function (Collection $permissions, array $item) {
                 return $permissions->put($item['slug'], true);
