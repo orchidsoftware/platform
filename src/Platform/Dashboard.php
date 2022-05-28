@@ -270,11 +270,12 @@ class Dashboard
         $all = $this->permission->get('all');
         $removed = $this->permission->get('removed');
         
-        if (!empty($groups)) {
+        if (! empty($groups)) {
             $requestedGroups = collect();
             foreach ($all as $key => $permissions) {
-                if (in_array($key, $groups) || $key == self::MENU_MAIN)
+                if (in_array($key, $groups) || $key == self::MENU_MAIN) {
                     $requestedGroups->put($key, $permissions);
+                }
             }
             $all = $requestedGroups;
         }

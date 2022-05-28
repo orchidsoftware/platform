@@ -56,15 +56,15 @@ class PermissionTest extends TestUnitCase
         return User::firstOrCreate([
             'email' => 'test@test.com',
         ], [
-            'name' => 'test',
-            'email' => 'test@test.com',
-            'password' => 'password',
+            'name'        => 'test',
+            'email'       => 'test@test.com',
+            'password'    => 'password',
             'permissions' => [
                 'access.user.duplicate' => 1,
                 'access.role.duplicate' => 0,
                 'access.to.public.data' => 1,
                 'access.to.secret.data' => 0,
-                'scoped.by.permission' => 1,
+                'scoped.by.permission'  => 1,
             ],
         ]);
     }
@@ -77,11 +77,11 @@ class PermissionTest extends TestUnitCase
         return User::firstOrCreate([
             'email' => 'test_alt@test.com',
         ], [
-            'name' => 'test alternative user',
-            'email' => 'test_alt@test.com',
-            'password' => 'password',
+            'name'        => 'test alternative user',
+            'email'       => 'test_alt@test.com',
+            'password'    => 'password',
             'permissions' => [
-                'access.to.public.data' => 1,
+                'access.to.public.data'    => 1,
                 'alt.scoped.by.permission' => 1,
             ],
         ]);
@@ -95,9 +95,9 @@ class PermissionTest extends TestUnitCase
         return User::firstOrCreate([
             'email' => 'no_permissions@test.com',
         ], [
-            'name' => 'user without permissions',
-            'email' => 'no_permissions@test.com',
-            'password' => 'password',
+            'name'        => 'user without permissions',
+            'email'       => 'no_permissions@test.com',
+            'password'    => 'password',
             'permissions' => [],
         ]);
     }
@@ -110,11 +110,11 @@ class PermissionTest extends TestUnitCase
         return Role::firstOrCreate([
             'slug' => 'admin',
         ], [
-            'slug' => 'admin',
-            'name' => 'admin',
+            'slug'        => 'admin',
+            'name'        => 'admin',
             'permissions' => [
-                'access.user.duplicate' => 0,
-                'access.role.duplicate' => 1,
+                'access.user.duplicate'       => 0,
+                'access.role.duplicate'       => 1,
                 'access.roles.to.public.data' => 1,
                 'access.roles.to.secret.data' => 0,
             ],
