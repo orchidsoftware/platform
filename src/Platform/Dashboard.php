@@ -261,24 +261,16 @@ class Dashboard
     }
 
     /**
-     * param array $groups
+     * @param string|array $groups
      *
      * @return Collection
      */
     public function getPermission($groups = []): Collection
     {
-        $all = $this->permission->get('all');
+        $all = $this->permission->get('all')
+            ->when(!empty($groups), fn(Collection $collection) => $collection->only($groups));
+
         $removed = $this->permission->get('removed');
-        
-        if (! empty($groups)) {
-            $requestedGroups = collect();
-            foreach ($all as $key => $permissions) {
-                if (in_array($key, $groups) || $key == self::MENU_MAIN) {
-                    $requestedGroups->put($key, $permissions);
-                }
-            }
-            $all = $requestedGroups;
-        }
 
         if (! $removed->count()) {
             return $all;
