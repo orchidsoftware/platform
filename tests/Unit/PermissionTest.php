@@ -56,15 +56,15 @@ class PermissionTest extends TestUnitCase
         return User::firstOrCreate([
             'email' => 'test@test.com',
         ], [
-            'name'        => 'test',
-            'email'       => 'test@test.com',
-            'password'    => 'password',
+            'name' => 'test',
+            'email' => 'test@test.com',
+            'password' => 'password',
             'permissions' => [
                 'access.user.duplicate' => 1,
                 'access.role.duplicate' => 0,
                 'access.to.public.data' => 1,
                 'access.to.secret.data' => 0,
-                'scoped.by.permission'  => 1,
+                'scoped.by.permission' => 1,
             ],
         ]);
     }
@@ -77,12 +77,12 @@ class PermissionTest extends TestUnitCase
         return User::firstOrCreate([
             'email' => 'test_alt@test.com',
         ], [
-            'name'        => 'test alternative user',
-            'email'       => 'test_alt@test.com',
-            'password'    => 'password',
+            'name' => 'test alternative user',
+            'email' => 'test_alt@test.com',
+            'password' => 'password',
             'permissions' => [
-                'access.to.public.data'     => 1,
-                'alt.scoped.by.permission'  => 1,
+                'access.to.public.data' => 1,
+                'alt.scoped.by.permission' => 1,
             ],
         ]);
     }
@@ -95,9 +95,9 @@ class PermissionTest extends TestUnitCase
         return User::firstOrCreate([
             'email' => 'no_permissions@test.com',
         ], [
-            'name'        => 'user without permissions',
-            'email'       => 'no_permissions@test.com',
-            'password'    => 'password',
+            'name' => 'user without permissions',
+            'email' => 'no_permissions@test.com',
+            'password' => 'password',
             'permissions' => [],
         ]);
     }
@@ -110,11 +110,11 @@ class PermissionTest extends TestUnitCase
         return Role::firstOrCreate([
             'slug' => 'admin',
         ], [
-            'slug'        => 'admin',
-            'name'        => 'admin',
+            'slug' => 'admin',
+            'name' => 'admin',
             'permissions' => [
-                'access.user.duplicate'       => 0,
-                'access.role.duplicate'       => 1,
+                'access.user.duplicate' => 0,
+                'access.role.duplicate' => 1,
                 'access.roles.to.public.data' => 1,
                 'access.roles.to.secret.data' => 0,
             ],
@@ -134,6 +134,26 @@ class PermissionTest extends TestUnitCase
         $dashboard->registerPermissions($permission);
 
         $this->assertEquals(1, $dashboard->getPermission()->count());
+    }
+
+    /**
+     * Dashboard registered permission by group.
+     */
+    public function testGetPermissionsByGroup(): void
+    {
+        $dashboard = new Dashboard();
+
+        $permissionA = ItemPermission::group('Test-A')
+            ->addPermission('test_a', 'Test Description A');
+
+        $permissionB = ItemPermission::group('Test-B')
+            ->addPermission('test_b', 'Test Description B');
+
+        $dashboard->registerPermissions($permissionA);
+        $dashboard->registerPermissions($permissionB);
+
+        $this->assertEquals(['Test-A', 'Test-B'], $dashboard->getPermission()->keys()->toArray());
+        $this->assertEquals(['Test-A'], $dashboard->getPermission(['Test-A'])->keys()->toArray());
     }
 
     /**
@@ -324,15 +344,15 @@ class PermissionTest extends TestUnitCase
 
         // Empty permissions
         $this->assertEmpty(User::byAnyAccess([
-                'unexisting.permission',
-                'unexisting.second.permission',
-            ])->get());
+            'unexisting.permission',
+            'unexisting.second.permission',
+        ])->get());
 
         // Not allowed permission
         $this->assertTrue(User::byAnyAccess([
-                'unexisting.permission',
-                'access.to.secret.data',
-            ])->get()->isEmpty());
+            'unexisting.permission',
+            'access.to.secret.data',
+        ])->get()->isEmpty());
 
         // Scope single user by user permission
         $users = User::byAnyAccess([
@@ -366,7 +386,7 @@ class PermissionTest extends TestUnitCase
         ])->get();
         $this->assertEquals(1, $users->count());
         $this->assertTrue($users->contains($user));
-        
+
         // Alt user is now admin test role too
         $userAlt->addRole($role);
 
