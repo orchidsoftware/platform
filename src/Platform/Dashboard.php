@@ -268,7 +268,7 @@ class Dashboard
     public function getPermission($groups = []): Collection
     {
         $all = $this->permission->get('all')
-            ->when(!empty($groups), fn(Collection $collection) => $collection->only($groups));
+            ->when(! empty($groups), fn (Collection $collection) => $collection->only($groups));
 
         $removed = $this->permission->get('removed');
 
