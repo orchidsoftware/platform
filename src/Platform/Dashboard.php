@@ -261,7 +261,7 @@ class Dashboard
     }
 
     /**
-     * @param string|array $groups
+     * @param array|string $groups
      *
      * @return Collection
      */
@@ -290,7 +290,7 @@ class Dashboard
     /**
      * Get all registered permissions with the enabled state.
      *
-     * param array $groups
+     * @param array|string $groups
      *
      * @return Collection
      */
