@@ -110,4 +110,11 @@ class ArtisanTest extends TestConsoleCase
         $this->artisan('orchid:publish')
             ->assertExitCode(0);
     }
+
+    public function testArtisanOrchidTabMenu(): void
+    {
+        $this->artisan('orchid:tab-menu', ['name' => $this->generateNameFromMethod()])
+            ->expectsOutput('TabMenu created successfully.')
+            ->assertExitCode(0);
+    }
 }

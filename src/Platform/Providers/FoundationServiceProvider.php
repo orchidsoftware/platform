@@ -22,6 +22,7 @@ use Orchid\Platform\Commands\RowsCommand;
 use Orchid\Platform\Commands\ScreenCommand;
 use Orchid\Platform\Commands\SelectionCommand;
 use Orchid\Platform\Commands\TableCommand;
+use Orchid\Platform\Commands\TabMenuCommand;
 use Orchid\Platform\Components\Notification;
 use Orchid\Platform\Dashboard;
 use Orchid\Screen\Components\Popover;
@@ -51,6 +52,7 @@ class FoundationServiceProvider extends ServiceProvider
         SelectionCommand::class,
         ListenerCommand::class,
         PresenterCommand::class,
+        TabMenuCommand::class,
     ];
 
     /**

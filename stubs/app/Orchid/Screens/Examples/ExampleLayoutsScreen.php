@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Screens\Examples;
 
+use App\Orchid\Layouts\Examples\TabMenuExample;
 use Orchid\Screen\Action;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
@@ -69,6 +70,7 @@ class ExampleLayoutsScreen extends Screen
                 'Example Tab 3' => Layout::view('platform::dummy.block'),
             ]),
 
+            TabMenuExample::class,
             Layout::view('platform::dummy.block'),
 
             Layout::columns([
