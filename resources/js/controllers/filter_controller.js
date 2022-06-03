@@ -14,6 +14,13 @@ export default class extends ApplicationController {
                 this.element.querySelector('input,textarea,select')?.focus();
             })
         })
+        this.element.querySelectorAll('input,textarea,select').forEach( (element)=>{
+            element.addEventListener('keydown', (e)=>{
+                if (e.keyCode === 13) {
+                    this.element.querySelector('button[type=\'submit\']').click();
+                }
+            })
+        });
     }
 
     /**
