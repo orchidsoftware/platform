@@ -21,7 +21,7 @@
         @empty(!$commandBar)
             <div class="bg-light px-4 py-3 d-flex justify-content-end rounded-bottom">
                 @foreach($commandBar as $command)
-                    <div class="ms-2">
+                    <div class="{{ !$loop->first ? 'ms-2' : ''}}">
                         {!! $command !!}
                     </div>
                 @endforeach
