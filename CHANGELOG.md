@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 12.6.1- 2022-06-09
+
+### Fixed
+
+- Added filter triggering when pressing enter [#2260](https://github.com/orchidsoftware/platform/pull/2260)
+- Add margin to items in command bar [#2262](https://github.com/orchidsoftware/platform/pull/2262)
+
 ## 12.6.0- 2022-06-01
 
 ### Added
