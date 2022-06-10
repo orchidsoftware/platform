@@ -14,7 +14,7 @@
 
 @section('navbar')
     @foreach($commandBar as $command)
-        <li class="ms-2">
+        <li class="{{ !$loop->first ? 'ms-2' : ''}}">
             {!! $command !!}
         </li>
     @endforeach
