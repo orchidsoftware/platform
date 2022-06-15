@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 12.6.2 - 2022-06-16
 
+### Changed
+
+- Add space between commands [#2238](https://github.com/orchidsoftware/platform/pull/2238)
+
 ### Fixed
 
 - Compile resources webpack errors [#2267](https://github.com/orchidsoftware/platform/issues/2267)
