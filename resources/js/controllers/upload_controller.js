@@ -361,6 +361,8 @@ export default class extends ApplicationController {
         const dropname = this.dropname;
         dropname.querySelector('.media-loader').style.display = "";
         dropname.querySelector('.media-results').style.display = "none";
+
+        this.resetPage();
         this.loadMedia();
     }
 
@@ -380,7 +382,7 @@ export default class extends ApplicationController {
         this.allMediaList = {}; // Reset all media list
         this.page = 1; // Reset page
 
-       this.dropname.querySelector(`.media-results`).innerHTML=""
+        this.dropname.querySelector(`.media-results`).innerHTML = "";
     }
 
     /**
