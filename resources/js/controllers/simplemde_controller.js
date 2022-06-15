@@ -1,5 +1,5 @@
 import ApplicationController from "./application_controller";
-import SimpleMDE from 'simplemde';
+import SimpleMDE from 'simplemde/dist/simplemde.min';
 
 export default class extends ApplicationController {
 
