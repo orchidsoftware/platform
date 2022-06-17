@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
-use App\Orchid\Presenters\UserPresenter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -111,6 +110,11 @@ class User extends Authenticatable implements UserInterface
      */
     public function presenter()
     {
-        return new UserPresenter($this);
+        $userPresenterClass = config('platform.user_presenter_class', 'App\Orchid\Presenters\UserPresenter');
+        if (!class_exists($userPresenterClass)) {
+            throw new \Exception('UserPresenter class does not exist. Check config platform.user_presenter_class.');
+        }
+
+        return new $userPresenterClass($this);
     }
 }
