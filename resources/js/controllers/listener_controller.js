@@ -15,7 +15,7 @@ export default class extends ApplicationController {
      */
     addListenerForTargets() {
         this.targets.forEach(name => {
-            document.querySelectorAll(`[name="${name}"]`)
+            document.querySelectorAll(this.selectorFromTarget(name))
                 .forEach((field) =>
                     field.addEventListener('change', this.listenerEvent, {
                         once: true
@@ -24,11 +24,24 @@ export default class extends ApplicationController {
         });
     }
 
+    /**
+     *
+     * @param {string} name
+     * @return {string}
+     */
+    selectorFromTarget(name) {
+        if(name.includes('*')) {
+            return name.split('*').reduce((prev, cur) => prev + `[name*="${cur}"]`, '');
+        }
+        return `[name="${name}"]`;
+
+    }
+
 
     render() {
         let params = new FormData();
 
-        this.targets.forEach(name => document.querySelectorAll(`[name="${name}"]`)
+        this.targets.forEach(name => document.querySelectorAll(this.selectorFromTarget(name))
             .forEach((field) => {
 
                 if ((field.type === 'checkbox' || field.type === 'radio') && !field.checked) {
