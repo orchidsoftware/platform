@@ -4,6 +4,12 @@ export default class extends ApplicationController {
     listenerEvent = () => this.render();
 
     /**
+     * Mutation Observer for matrix.
+     * @type {null|MutationObserver}
+     */
+    observer = null;
+
+    /**
      *
      */
     connect() {
@@ -14,14 +20,30 @@ export default class extends ApplicationController {
      *
      */
     addListenerForTargets() {
+        this.observer.disconnect();
+
         this.targets.forEach(name => {
             document.querySelectorAll(this.selectorFromTarget(name))
-                .forEach((field) =>
-                    field.addEventListener('change', this.listenerEvent, {
-                        once: true
-                    })
+                .forEach((field) => {
+                        field.addEventListener('change', this.listenerEvent, {
+                            once: true
+                        });
+
+                        let matrix = field.closest('table.matrix tbody');
+                        if(!!matrix) this.addListenerToMatrix(matrix);
+                    }
                 );
         });
+    }
+
+    /**
+     *
+     * @param {Element} matrix
+     */
+    addListenerToMatrix(matrix) {
+        let options = { attributes: false, childList: true, subtree: false };
+        this.observer = new MutationObserver(() => this.addListenerForTargets());
+        this.observer.observe(matrix, options);
     }
 
     /**
@@ -30,7 +52,7 @@ export default class extends ApplicationController {
      * @return {string}
      */
     selectorFromTarget(name) {
-        if(name.includes('*')) {
+        if (name.includes('*')) {
             return name.split('*').reduce((prev, cur) => prev + `[name*="${cur}"]`, '');
         }
         return `[name="${name}"]`;
