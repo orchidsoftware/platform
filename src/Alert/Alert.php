@@ -28,6 +28,13 @@ class Alert
     protected $session;
 
     /**
+     * Automatically sent via PHP's htmlspecialchars function to prevent attacks
+     *
+     * @var bool
+     */
+    protected bool $sanitize = true;
+
+    /**
      * Create a new flash notifier instance.
      *
      * @param Store $session
@@ -63,7 +70,7 @@ class Alert
     {
         $level = $level ?? Color::INFO();
 
-        $this->session->flash(static::SESSION_MESSAGE, $message);
+        $this->session->flash(static::SESSION_MESSAGE, $this->sanitize ? e($message) : $message);
         $this->session->flash(static::SESSION_LEVEL, (string) $level);
 
         return $this;
@@ -126,7 +133,20 @@ class Alert
     {
         $message = view($template, $data)->render();
 
+        $this->sanitize = false;
         $this->message($message, $level ?? Color::INFO());
+
+        return $this;
+    }
+
+    /**
+     * If you don't want your data to be escaped, use this method.
+     *
+     * @return $this
+     */
+    public function withoutEscaping(): self
+    {
+        $this->sanitize = false;
 
         return $this;
     }

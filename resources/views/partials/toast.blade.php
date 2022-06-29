@@ -29,7 +29,7 @@
                         <x-orchid-icon path="circle" class="me-2"/>
                     </span>
 
-                    {{ session(\Orchid\Alert\Toast::SESSION_MESSAGE) }}
+                    {!! session(\Orchid\Alert\Toast::SESSION_MESSAGE) !!}
                 </p>
                 <button type="button" class="btn-close ms-auto" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>

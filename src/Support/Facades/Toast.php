@@ -16,6 +16,9 @@ use Orchid\Alert\Toast as ToastClass;
  * @method static ToastClass warning(string $message)
  * @method static ToastClass view(string $template, string $level, array $data)
  * @method static ToastClass check()
+ * @method static ToastClass autoHide(bool $autoHide = true)
+ * @method static ToastClass delay(int $delay = 5000)
+ * @method static ToastClass withoutEscaping()
  *
  * @mixin ToastClass
  */

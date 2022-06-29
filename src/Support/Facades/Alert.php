@@ -18,6 +18,7 @@ use Orchid\Support\Color;
  * @method static AlertClass view(string $template, Color $level, array $data)
  * @method static AlertClass check()
  * @method static AlertClass message(string $message, string $level = null)
+ * @method static AlertClass withoutEscaping()
  */
 class Alert extends Facade
 {
