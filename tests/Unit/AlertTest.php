@@ -14,7 +14,6 @@ use Orchid\Tests\TestUnitCase;
  */
 class AlertTest extends TestUnitCase
 {
-
     public function testHtmlSanitize():void
     {
         Alert::info('<h1>Hello Word</h1>');
