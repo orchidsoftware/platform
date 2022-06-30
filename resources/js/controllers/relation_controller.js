@@ -1,16 +1,49 @@
-import ApplicationController from "./application_controller";
+import TomSelect             from 'tom-select';
+import ApplicationController from './application_controller';
 
 export default class extends ApplicationController {
+
     static get targets() {
         return ['select'];
     }
 
     connect() {
-        if (document.documentElement.hasAttribute("data-turbo-preview")) {
+        if (document.documentElement.hasAttribute('data-turbo-preview')) {
             return;
         }
 
         const select = this.selectTarget;
+        const plugins = ['change_listener'];
+
+        if (select.hasAttribute('multiple')) {
+            plugins.push('remove_button');
+            plugins.push('clear_button');
+        }
+
+        this.choices = new TomSelect(select, {
+            allowEmptyOption: true,
+            placeholder: select.getAttribute('placeholder') === 'false' ? '' : select.getAttribute('placeholder'),
+            preload: true,
+            plugins: plugins,
+            maxOptions: this.data.get('chunk'),
+            maxItems: select.getAttribute('maximumSelectionLength') || select.hasAttribute('multiple') ? null : 1,
+            valueField: 'value',
+            labelField: 'label',
+            searchField: 'label',
+            render: {
+                option_create: (data, escape) => '<div class="create">Ajouter <strong>' + escape(data.input) + '</strong>&hellip;</div>',
+                no_results: (data, escape) => '<div class="no-results">Нет результатов</div>',
+            },
+            load: (query, callback) => this.search(query, callback),
+        });
+    }
+
+    /**
+     *
+     * @param search
+     * @param callback
+     */
+    search(search, callback) {
         const model = this.data.get('model');
         const name = this.data.get('name');
         const key = this.data.get('key');
@@ -19,89 +52,25 @@ export default class extends ApplicationController {
         const searchColumns = this.data.get('search-columns');
         const chunk = this.data.get('chunk');
 
+        axios.post(this.data.get('route'), {
+            search,
+            model,
+            name,
+            key,
+            scope,
+            append,
+            searchColumns,
+            chunk,
+        })
+            .then((response) => {
+                callback(response.data.items);
+            });
+    }
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf_token"]').content,
-            },
-        });
-
-        const parent = $(select).closest(".dropdown-menu, div");
-
-        $(select).select2({
-            theme: 'bootstrap',
-            allowClear: !select.hasAttribute('required'),
-            ajax: {
-                type: 'POST',
-                cache: true,
-                delay: 250,
-                url: () => this.data.get('route'),
-                dataType: 'json',
-                processResults: (data) => {
-                    let selectValues = select.value;
-                    selectValues = Array.isArray(selectValues) ? selectValues : [selectValues];
-
-                    return {
-                        results: Object.keys(data).reduce((res, id) => {
-                            if (selectValues.includes(id.toString())) {
-                                return res;
-                            }
-
-                            return [...res, {
-                                id,
-                                text: data[id],
-                            }];
-                        }, []),
-                    };
-                },
-                data: params => ({
-                    search: params.term,
-                    model,
-                    name,
-                    key,
-                    scope,
-                    append,
-                    searchColumns,
-                    chunk,
-                }),
-            },
-            placeholder: select.getAttribute('placeholder') || '',
-            dropdownParent: parent.length ? parent : undefined,
-            dir: document.documentElement.dir
-        });
-
-        $(select).on('select2:open', () => {
-            window.setTimeout(function() {
-                document.querySelector('.select2-container--open .select2-search__field').focus();
-            }, 200);
-        });
-
-        // force change event for https://github.com/select2/select2/issues/1908
-        let forceChange = () => setTimeout(() => {
-            select.dispatchEvent(new Event('change'));
-        }, 100);
-
-        $(select).on('select2:select', forceChange);
-        $(select).on('select2:unselect', forceChange);
-        $(select).on('select2:clear', forceChange);
-
-        if (!this.data.get('value')) {
-            console.log('1');
-            return;
-        }
-
-        const values = JSON.parse(this.data.get('value'));
-        values.forEach((value) => {
-            $(select)
-                .append(new Option(value.text, value.id, true, true))
-                .trigger('change');
-
-        });
-
-        document.addEventListener('turbo:before-cache', () => {
-            if (typeof $(select) !== 'undefined') {
-                $(select).select2('destroy');
-            }
-        }, { once: true });
+    /**
+     *
+     */
+    disconnect() {
+        this.choices.destroy();
     }
 }

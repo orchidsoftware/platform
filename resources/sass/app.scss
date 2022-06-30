@@ -3,7 +3,6 @@
 
 // Vendor
 @import "~bootstrap/scss/bootstrap";
-@import "~select2/dist/css/select2.min";
 @import "~dropzone/dist/basic";
 @import "~dropzone/dist/dropzone";
 @import "~cropperjs/dist/cropper";
@@ -12,6 +11,7 @@
 @import "~leaflet/dist/leaflet";
 @import "~quill/dist/quill.snow";
 @import "~frappe-charts/src/css/charts";
+@import "~tom-select/dist/scss/tom-select.bootstrap5";
 
 // App
 @import "core/mixins";
@@ -27,4 +27,4 @@
 @import "plugins/dropzone";
 @import "plugins/load-opacity";
 @import "plugins/accordion";
-@import "plugins/select2";
+@import "plugins/tom-select";

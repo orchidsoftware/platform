@@ -27,14 +27,13 @@
     "flatpickr": "^4.6.3",
     "frappe-charts": "^1.6.1",
     "inputmask": "^5.0.6",
-    "jquery": "^3.6.0",
     "laravel-mix": "^6.0.16",
     "leaflet": "^1.7.1",
     "node-sass": "^7.0.0",
     "quill": "^1.3.7",
-    "select2": "^4.0.13",
     "simplemde": "^1.11",
-    "sortablejs": "^1.13.0"
+    "sortablejs": "^1.13.0",
+    "tom-select": "^2.0.3"
   },
   "devDependencies": {
     "eslint": "^8.3.0",

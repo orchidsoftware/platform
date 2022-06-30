@@ -45,17 +45,11 @@ mix
     .js('resources/js/app.js', 'js/orchid.js')
     .extract([
         'stimulus', 'stimulus/webpack-helpers', 'turbo',
-        'jquery', 'popper.js', 'bootstrap',
-        'dropzone', 'select2', 'cropperjs', 'frappe-charts', 'inputmask',
+        'popper.js', 'bootstrap',
+        'dropzone', 'cropperjs', 'tom-select', 'frappe-charts', 'inputmask',
         'simplemde', 'axios', 'leaflet', 'codeflask',
         'flatpickr', 'quill', 'codemirror', 'typo-js', 'sortablejs',
     ])
-    .autoload({
-        jquery: [
-            '$', 'window.jQuery', 'jQuery', 'jquery',
-            'bootstrap', 'select2',
-        ],
-    })
     .setPublicPath('public')
     .version();
 
