@@ -48,16 +48,7 @@ class RelationController extends Controller
 
         $items = $this->buildersItems($model, $name, $key, $search, $scope, $append, $searchColumns, (int) $request->get('chunk', 10));
 
-        $items = $items->map(static function ($item, $key) {
-            return [
-                'label' => $item,
-                'value' => $key,
-            ];
-        })->toArray();
-
-        return response()->json([
-            'items' => $items,
-        ]);
+        return response()->json($items);
     }
 
     /**

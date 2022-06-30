@@ -25,8 +25,8 @@ export default class extends ApplicationController {
             plugins: plugins,
             maxItems: select.getAttribute('maximumSelectionLength') || select.hasAttribute('multiple') ? null : 1,
             render: {
-                option_create: (data, escape) => '<div class="create">Ajouter <strong>' + escape(data.input) + '</strong>&hellip;</div>',
-                no_results: (data, escape) => '<div class="no-results">Нет результатов</div>',
+                option_create: (data, escape) => `<div class="create">${this.data.get('message-add')} <strong>${escape(data.input)}</strong>&hellip;</div>`,
+                no_results: () => `<div class="no-results">${this.data.get('message-notfound')}</div>`,
             },
         });
     }
