@@ -56,7 +56,7 @@ class RelationController extends Controller
         })->toArray();
 
         return response()->json([
-            'items' => $items
+            'items' => $items,
         ]);
     }
 
