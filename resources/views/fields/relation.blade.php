@@ -11,6 +11,8 @@
          data-relation-append="{{ $relationAppend }}"
          data-relation-chunk="{{ $chunk }}"
          data-relation-route="{{ route('platform.systems.relation') }}"
+         data-relation-message-notfound="{{ __('No results found') }}"
+         data-relation-message-add="{{ __('Add') }}"
     >
 
 		@if ($nullable)
