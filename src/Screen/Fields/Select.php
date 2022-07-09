@@ -42,8 +42,9 @@ class Select extends Field implements ComplexFieldConcern
      * @var array
      */
     protected $attributes = [
-        'class'   => 'form-control',
-        'options' => [],
+        'class'    => 'form-control',
+        'options'  => [],
+		'nullable' => 0,
     ];
 
     /**
@@ -147,4 +148,15 @@ class Select extends Field implements ComplexFieldConcern
     {
         return $this->set('tags', true);
     }
+
+    /**
+     * Allow nullable value to be returned
+     *
+     * @param boolean $value
+     * @return $this
+     */
+	public function nullable(bool $value = true)
+	{
+		return $this->set('nullable', $value);
+	}
 }

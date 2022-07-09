@@ -48,6 +48,7 @@ class Relation extends Field
         'relationAppend'        => null,
         'relationSearchColumns' => null,
         'chunk'                 => 10,
+		'nullable'              => 0,
     ];
 
     /**
@@ -254,4 +255,15 @@ class Relation extends Field
     {
         return $this->set('chunk', $value);
     }
+
+    /**
+     * Allow nullable value to be returned
+     *
+     * @param boolean $value
+     * @return $this
+     */
+	public function nullable(bool $value = true)
+	{
+		return $this->set('nullable', $value);
+	}
 }

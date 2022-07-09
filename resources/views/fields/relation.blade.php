@@ -14,6 +14,11 @@
          data-relation-message-notfound="{{ __('No results found') }}"
          data-relation-message-add="{{ __('Add') }}"
     >
+
+		@if ($nullable)
+			<input type="hidden" name="{{ isset($attributes['multiple']) ? Str::substr($attributes['name'], 0, -2) : $attributes['name'] }}" value="">
+		@endif
+
         <select id="{{$id}}" data-relation-target="select" {{ $attributes }}>
         </select>
     </div>
