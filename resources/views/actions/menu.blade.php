@@ -25,7 +25,11 @@
 @if(!empty($list))
     <div class="nav collapse sub-menu ps-2 {{active($active, 'show')}}"
          id="menu-{{$slug}}"
-         data-bs-parent="#headerMenuCollapse">
+         @isset($parent)
+            data-bs-parent="#menu-{{$parent}}">
+         @else
+            data-bs-parent="#headerMenuCollapse">
+         @endisset
         @foreach($list as $item)
             {!!  $item->build($source) !!}
         @endforeach
