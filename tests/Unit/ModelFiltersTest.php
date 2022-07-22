@@ -115,4 +115,30 @@ class ModelFiltersTest extends TestUnitCase
 
         $this->assertSame($sqlApply, $sqlSelection);
     }
+
+    public function testShortFilters(): void
+    {
+        request()->merge([
+            'name'  => 'Alexandr',
+            'email' => 'bliz48rus@gmail.com',
+        ]);
+
+        $sqlApply = User::filtersApply([
+            NameFilter::class,
+            EmailFilter::class,
+        ])->toSql();
+
+        $shortSqlApply = User::filters([
+            NameFilter::class,
+            EmailFilter::class,
+        ])->toSql();
+
+        $this->assertSame($sqlApply, $shortSqlApply);
+
+
+        $sqlSelection = User::filtersApplySelection(GroupNameAndEmail::class)->toSql();
+        $shortSqlSelection = User::filters(GroupNameAndEmail::class)->toSql();
+
+        $this->assertSame($sqlSelection, $shortSqlSelection);
+    }
 }

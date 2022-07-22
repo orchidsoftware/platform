@@ -50,17 +50,24 @@ trait Filterable
     }
 
     /**
-     * @param Builder         $builder
-     * @param HttpFilter|null $httpFilter
+     * @param Builder                   $builder
+     * @param iterable|string|Selection $kit
+     * @param HttpFilter|null           $httpFilter
      *
      * @return Builder
      */
-    public function scopeFilters(Builder $builder, HttpFilter $httpFilter = null): Builder
+    public function scopeFilters(Builder $builder, mixed $kit = null, HttpFilter $httpFilter = null): Builder
     {
         $filter = $httpFilter ?? new HttpFilter();
         $filter->build($builder);
 
-        return $builder;
+        if ($kit === null) {
+            return $builder;
+        }
+
+        return is_iterable($kit)
+            ? $this->filtersApply($kit)
+            : $this->filtersApplySelection($kit);
     }
 
     /**
