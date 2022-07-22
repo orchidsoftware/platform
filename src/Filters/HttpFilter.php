@@ -102,16 +102,17 @@ class HttpFilter
     /**
      * @param Builder $builder
      *
-     * @return mixed
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
+     * @return mixed
      */
     protected function addFiltersToQuery(Builder $builder)
     {
         $this->automaticFiltersExact($builder);
 
         $allowedFilters = $this->options->get('allowedFilters')
-            ->filter(fn($value, $key) => !is_int($key))
-            ->map(fn($filter, string $column) => app()->make($filter, ['column' => $column]));
+            ->filter(fn ($value, $key) => ! is_int($key))
+            ->map(fn ($filter, string $column) => app()->make($filter, ['column' => $column]));
 
         return $builder->filtersApply($allowedFilters->toArray());
     }
@@ -126,7 +127,7 @@ class HttpFilter
     protected function automaticFiltersExact(Builder $builder)
     {
         $allowedAutomaticFilters = $this->options->get('allowedFilters')
-            ->filter(fn($value, $key) => is_int($key));
+            ->filter(fn ($value, $key) => is_int($key));
 
         $this->filters->each(function ($value, $property) use ($builder, $allowedAutomaticFilters) {
             $allowProperty = $property;

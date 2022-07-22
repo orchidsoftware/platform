@@ -118,7 +118,7 @@ class SearchScreen extends Screen
                 $presenter = optional($model)->presenter();
 
                 throw_unless(is_a($presenter, Searchable::class),
-                   "The presenter must have an interface 'Orchid\Screen\Contracts\Searchable'
+                    "The presenter must have an interface 'Orchid\Screen\Contracts\Searchable'
                         for model ".get_class($model));
 
                 $label = $presenter->label();
