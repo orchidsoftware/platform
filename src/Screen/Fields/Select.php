@@ -144,6 +144,9 @@ class Select extends Field implements ComplexFieldConcern
         });
     }
 
+    /**
+     * @return self
+     */
     public function taggable()
     {
         return $this->set('tags', true);
@@ -154,9 +157,9 @@ class Select extends Field implements ComplexFieldConcern
      *
      * @param bool $value
      *
-     * @return $this
+     * @return self
      */
-    public function nullable(bool $value = true)
+    public function nullable(bool $value = true): self
     {
         return $this->set('nullable', $value);
     }

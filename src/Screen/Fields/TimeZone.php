@@ -38,7 +38,7 @@ class TimeZone extends Field
     protected $attributes = [
         'class'    => 'form-control',
         'options'  => [],
-        'nullable' => 0,
+        'nullable' => false,
     ];
 
     /**
