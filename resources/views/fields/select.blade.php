@@ -3,9 +3,8 @@
         data-select-message-notfound="{{ __('No results found') }}"
         data-select-message-add="{{ __('Add') }}"
     >
-
 		@if ($nullable)
-			<input type="hidden" name="{{ isset($attributes['multiple']) ? Str::substr($attributes['name'], 0, -2) : $attributes['name'] }}" value="">
+			<input type="hidden" name="{{ isset($attributes['multiple']) ? \Illuminate\Support\Str::of($attributes['name'])->replaceLast('[]', '') : $attributes['name'] }}" value="">
 		@endif
 
         <select {{ $attributes }}>
