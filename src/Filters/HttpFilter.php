@@ -37,7 +37,7 @@ class HttpFilter
      * @var Collection
      */
     protected $options;
-    
+
     /**
      * Filter constructor.
      *
@@ -50,10 +50,10 @@ class HttpFilter
         $this->filters = $this->request->collect('filter')->map(function ($item) {
             return $this->parseHttpValue($item);
         });
-        
+
         $this->sorts = collect($this->request->get('sort', []));
     }
-    
+
     /**
      * @param string|null|array $query
      *
@@ -63,15 +63,15 @@ class HttpFilter
     {
         if (is_string($query)) {
             $item = explode(',', $query);
-            
+
             if (count($item) > 1) {
                 return $item;
             }
         }
-        
+
         return $query;
     }
-    
+
     /**
      * @param string $column
      *
@@ -80,10 +80,10 @@ class HttpFilter
     public static function sanitize(string $column): string
     {
         abort_unless(preg_match(self::VALID_COLUMN_NAME_REGEX, $column), Response::HTTP_BAD_REQUEST);
-        
+
         return $column;
     }
-    
+
     /**
      * @param Builder $builder
      *
@@ -92,33 +92,59 @@ class HttpFilter
     public function build(Builder $builder): Builder
     {
         $this->options = $builder->getModel()->getOptionsFilter();
+
         $this->addFiltersToQuery($builder);
         $this->addSortsToQuery($builder);
-        
+
         return $builder;
     }
-    
+
     /**
      * @param Builder $builder
+     *
+     * @return mixed
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     protected function addFiltersToQuery(Builder $builder)
     {
-        $allowedFilters = $this->options->get('allowedFilters')->toArray();
-        
-        $this->filters->each(function ($value, $property) use ($builder, $allowedFilters) {
+        $this->automaticFiltersExact($builder);
+
+        $allowedFilters = $this->options->get('allowedFilters')
+            ->filter(fn($value, $key) => !is_int($key))
+            ->map(fn($filter, string $column) => app()->make($filter, ['column' => $column]));
+
+        return $builder->filtersApply($allowedFilters->toArray());
+    }
+
+    /**
+     * @deprecated
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     *
+     * @return void
+     */
+    protected function automaticFiltersExact(Builder $builder)
+    {
+        $allowedAutomaticFilters = $this->options->get('allowedFilters')
+            ->filter(fn($value, $key) => is_int($key));
+
+        $this->filters->each(function ($value, $property) use ($builder, $allowedAutomaticFilters) {
             $allowProperty = $property;
+
             if (strpos($property, '.') !== false) {
                 $allowProperty = strstr($property, '.', true);
             }
-            
-            if (in_array($allowProperty, $allowedFilters, true)) {
+
+            if ($allowedAutomaticFilters->contains($allowProperty)) {
                 $property = str_replace('.', '->', $property);
                 $this->filtersExact($builder, $value, $property);
             }
         });
     }
-    
+
     /**
+     * @deprecated
+     *
      * @param Builder $query
      * @param mixed   $value
      * @param string  $property
@@ -129,7 +155,7 @@ class HttpFilter
     {
         $property = self::sanitize($property);
         $model = $query->getModel();
-        
+
         if ($this->isDate($model, $property)) {
             $query->when($value['start'] ?? null, function (Builder $query) use ($property, $value) {
                 return $query->whereDate($property, '>=', $value['start']);
@@ -153,31 +179,31 @@ class HttpFilter
         } else {
             $query->where($property, 'like', "%$value%");
         }
-    
+
         return $query;
     }
-    
+
     /**
      * @param Builder $builder
      */
     protected function addSortsToQuery(Builder $builder)
     {
-        $allowedSorts = $this->options->get('allowedSorts')->toArray();
-        
+        $allowedSorts = $this->options->get('allowedSorts');
+
         $this->sorts
             ->each(function (string $sort) use ($builder, $allowedSorts) {
                 $descending = strpos($sort, '-') === 0;
                 $key = ltrim($sort, '-');
                 $property = Str::before($key, '.');
                 $key = str_replace('.', '->', $key);
-                
-                if (in_array($property, $allowedSorts, true)) {
+
+                if ($allowedSorts->contains($property)) {
                     $key = $this->sanitize($key);
                     $builder->orderBy($key, $descending ? 'desc' : 'asc');
                 }
             });
     }
-    
+
     /**
      * @param null|string $property
      *
@@ -188,18 +214,18 @@ class HttpFilter
         if ($property === null) {
             return $this->sorts->isEmpty();
         }
-        
+
         if ($this->sorts->search($property, true) !== false) {
             return true;
         }
-        
+
         if ($this->sorts->search('-' . $property, true) !== false) {
             return true;
         }
-        
+
         return false;
     }
-    
+
     /**
      * @param string $property
      *
@@ -211,7 +237,7 @@ class HttpFilter
             ? '-' . $property
             : $property;
     }
-    
+
     /**
      * @param string $property
      *
@@ -223,7 +249,7 @@ class HttpFilter
             ? 'asc'
             : 'desc';
     }
-    
+
     /**
      * @param string $property
      *
@@ -233,7 +259,7 @@ class HttpFilter
     {
         return Arr::get($this->filters, $property);
     }
-    
+
     /**
      * @param Model  $model
      * @param string $property

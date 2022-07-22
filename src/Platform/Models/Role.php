@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Orchid\Access\RoleAccess;
 use Orchid\Access\RoleInterface;
 use Orchid\Filters\Filterable;
+use Orchid\Filters\Types\Like;
 use Orchid\Metrics\Chartable;
 use Orchid\Screen\AsSource;
 
@@ -42,10 +43,10 @@ class Role extends Model implements RoleInterface
      * @var array
      */
     protected $allowedFilters = [
-        'id',
-        'name',
-        'slug',
-        'permissions',
+        'id'          => Like::class,
+        'name'        => Like::class,
+        'slug'        => Like::class,
+        'permissions' => Like::class,
     ];
 
     /**

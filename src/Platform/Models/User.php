@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Orchid\Access\UserAccess;
 use Orchid\Access\UserInterface;
 use Orchid\Filters\Filterable;
+use Orchid\Filters\Types\Like;
+use Orchid\Filters\Types\Where;
 use Orchid\Metrics\Chartable;
 use Orchid\Screen\AsSource;
 use Orchid\Support\Facades\Dashboard;
@@ -66,12 +68,11 @@ class User extends Authenticatable implements UserInterface
      * @var array
      */
     protected $allowedFilters = [
-        'id',
-        'name',
-        'email',
-        'permissions',
-        'updated_at',
-        'created_at',
+        'id'         => Where::class,
+        'name'       => Like::class,
+        'email'      => Like::class,
+        'updated_at' => Like::class,
+        'created_at' => Like::class,
     ];
 
     /**
