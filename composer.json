@@ -40,7 +40,7 @@
       "orchid/blade-icons": "^2.0",
       "orchid/icons": "^2.0",
       "tabuna/breadcrumbs": "^3.0",
-      "laravel/framework": "^9.0",
+      "laravel/framework": "^9.21",
       "laravel/scout": "^9.0",
       "myclabs/php-enum": "^1.7",
       "watson/active": "^6.0"
