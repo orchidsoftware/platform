@@ -1,100 +1,103 @@
 {
-  "name": "orchid/platform",
-  "description": "Platform for back-office applications, admin panel or CMS your Laravel app.",
-  "keywords": [
-    "framework",
-    "laravel",
-    "orchid",
-    "platform",
-    "admin",
-    "cmf",
-    "cms",
-    "rad",
-    "extranet"
-  ],
-  "type": "library",
-  "license": "MIT",
-  "homepage": "https://orchid.software",
-  "support": {
-    "issues": "https://github.com/orchidsoftware/platform/issues",
-    "source": "https://github.com/orchidsoftware/platform",
-    "docs": "https://orchid.software/en/docs",
-    "email": "bliz48rus@gmail.com"
-  },
-  "authors": [
-    {
-      "name": "Alexandr Chernyaev",
-      "email": "bliz48rus@gmail.com",
-      "homepage": "https://tabuna.github.io",
-      "role": "Developer"
-    }
-  ],
-  "funding": [
-      {
-          "type": "opencollective",
-          "url": "https://opencollective.com/orchid"
-      }
-  ],
-  "require": {
-      "ext-json": "*",
-      "orchid/blade-icons": "^2.0",
-      "orchid/icons": "^2.0",
-      "tabuna/breadcrumbs": "^3.0",
-      "laravel/framework": "^9.21",
-      "laravel/scout": "^9.0",
-      "myclabs/php-enum": "^1.7",
-      "watson/active": "^6.0"
-  },
-  "require-dev": {
-    "doctrine/dbal": "^2.10",
-    "fakerphp/faker": "^1.9.1",
-    "mockery/mockery": "~1.0",
-    "orchestra/testbench-core": "^7.0",
-    "orchestra/testbench-dusk": "^7.0",
-    "phpunit/php-code-coverage": "^9.0",
-    "phpunit/phpunit": "^9.0",
-    "sti3bas/laravel-scout-array-driver": "^3.2",
-    "vimeo/psalm": "^4.3"
-  },
-  "autoload": {
-    "psr-4": {
-      "Orchid\\Access\\": "src/Access/",
-      "Orchid\\Alert\\": "src/Alert/",
-      "Orchid\\Attachment\\": "src/Attachment/",
-      "Orchid\\Filters\\": "src/Filters/",
-      "Orchid\\Metrics\\": "src/Metrics/",
-      "Orchid\\Platform\\": "src/Platform/",
-      "Orchid\\Screen\\": "src/Screen/",
-      "Orchid\\Support\\": "src/Support/"
+    "name": "orchid/platform",
+    "description": "Platform for back-office applications, admin panel or CMS your Laravel app.",
+    "keywords": [
+        "framework",
+        "laravel",
+        "orchid",
+        "platform",
+        "admin",
+        "cmf",
+        "cms",
+        "rad",
+        "extranet"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://orchid.software",
+    "support": {
+        "issues": "https://github.com/orchidsoftware/platform/issues",
+        "source": "https://github.com/orchidsoftware/platform",
+        "docs": "https://orchid.software/en/docs",
+        "email": "bliz48rus@gmail.com"
     },
-    "files": [
-      "src/Support/helpers.php"
-    ]
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Orchid\\Platform\\Database\\Factories\\": "database/factories/",
-      "Orchid\\Platform\\Database\\Seeders\\": "database/seeders/",
-      "Orchid\\Tests\\": "tests/",
-      "App\\": "stubs/app/"
+    "authors": [
+        {
+            "name": "Alexandr Chernyaev",
+            "email": "bliz48rus@gmail.com",
+            "homepage": "https://tabuna.github.io",
+            "role": "Developer"
+        }
+    ],
+    "funding": [
+        {
+            "type": "opencollective",
+            "url": "https://opencollective.com/orchid"
+        }
+    ],
+    "require": {
+        "ext-json": "*",
+        "orchid/blade-icons": "^2.0",
+        "orchid/icons": "^2.0",
+        "tabuna/breadcrumbs": "^3.0",
+        "laravel/framework": "^9.21",
+        "laravel/scout": "^9.0",
+        "myclabs/php-enum": "^1.7",
+        "watson/active": "^6.0"
+    },
+    "require-dev": {
+        "doctrine/dbal": "^2.10",
+        "fakerphp/faker": "^1.9.1",
+        "mockery/mockery": "~1.0",
+        "orchestra/testbench-core": "^7.0",
+        "orchestra/testbench-dusk": "^7.0",
+        "phpunit/php-code-coverage": "^9.0",
+        "phpunit/phpunit": "^9.0",
+        "sti3bas/laravel-scout-array-driver": "^3.2",
+        "vimeo/psalm": "^4.3"
+    },
+    "conflict": {
+        "laravel/framework": "<9.2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Orchid\\Access\\": "src/Access/",
+            "Orchid\\Alert\\": "src/Alert/",
+            "Orchid\\Attachment\\": "src/Attachment/",
+            "Orchid\\Filters\\": "src/Filters/",
+            "Orchid\\Metrics\\": "src/Metrics/",
+            "Orchid\\Platform\\": "src/Platform/",
+            "Orchid\\Screen\\": "src/Screen/",
+            "Orchid\\Support\\": "src/Support/"
+        },
+        "files": [
+            "src/Support/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Orchid\\Platform\\Database\\Factories\\": "database/factories/",
+            "Orchid\\Platform\\Database\\Seeders\\": "database/seeders/",
+            "Orchid\\Tests\\": "tests/",
+            "App\\": "stubs/app/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Orchid\\Platform\\Providers\\FoundationServiceProvider"
+            ],
+            "aliases": {
+                "Alert": "Orchid\\Support\\Facades\\Alert",
+                "Dashboard": "Orchid\\Support\\Facades\\Dashboard"
+            }
+        }
+    },
+    "suggest": {
+        "orchid/crud": "Automated CRUD based on your files resources.",
+        "orchid/fortify": "Orchid template for Laravel Fortify."
+    },
+    "config": {
+        "sort-packages": true
     }
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Orchid\\Platform\\Providers\\FoundationServiceProvider"
-      ],
-      "aliases": {
-        "Alert": "Orchid\\Support\\Facades\\Alert",
-        "Dashboard": "Orchid\\Support\\Facades\\Dashboard"
-      }
-    }
-  },
-  "suggest": {
-    "orchid/crud": "Automated CRUD based on your files resources.",
-    "orchid/fortify": "Orchid template for Laravel Fortify."
-  },
-  "config": {
-    "sort-packages": true
-  }
 }
