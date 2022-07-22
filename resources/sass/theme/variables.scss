@@ -101,10 +101,9 @@ $menu-light: #fafafa;
 $form-height: 35px;
 $form-group-height: 54px;
 $form-control-border-color: fade-out($black, 0.9);
-$input-padding-y: .5rem !default;
-$input-padding-x: .75rem !default;
+$input-padding-y: .5rem;
+$input-padding-x: .75rem;
 $form-check-input-width: 1.2em;
-
 
 $tablet: 768px;
 $desktop: 1280px;
@@ -122,37 +121,6 @@ $screen-lg-min: 1024px;
 
 //Bootstrap
 $enable-caret: false;
-
-//Select2-bootstrap.
-$border-radius-large: 6px;
-$border-radius-small: 3px;
-$caret-width-base: 4px;
-$caret-width-large: 5px;
-$cursor-disabled: not-allowed;
-$font-size-large: ceil((14px * 1.25)); // ~18px
-$font-size-small: ceil((14px * 0.85));
-$padding-base-vertical: 6px;
-$padding-base-horizontal: 12px;
-$padding-large-vertical: 10px;
-$padding-large-horizontal: 16px;
-$padding-small-vertical: 5px;
-$padding-small-horizontal: 10px;
-$line-height-large: 1.3333333;
-$line-height-small: 1.5;
-$input-bg: #ffffff;
-$gray-base: #000000;
-$gray: lighten($gray-base, 33.5%);
-$input-bg-disabled: $gray-lighter;
-$input-color: $gray;
-$input-border: #cccccc;
-$input-color-placeholder: #999999;
-$input-height-base: (20px + ($padding-base-vertical * 2) + 2);
-$input-height-large: (ceil($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2);
-$input-height-small: (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2);
-$state-warning-text: #8a6d3b;
-$state-danger-text: #a94442;
-$state-success-text: #3c763d;
-
 
 //Border
 $border-radius: .5rem;
