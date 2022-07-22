@@ -1,11 +1,12 @@
-import * as Turbo from "@hotwired/turbo";
-import 'bootstrap';
+import * as Turbo from '@hotwired/turbo';
+import * as Bootstrap from 'bootstrap';
 
 import { Application } from '@hotwired/stimulus';
 import { definitionsFromContext } from '@hotwired/stimulus-webpack-helpers';
-import ApplicationController from "./controllers/application_controller";
+import ApplicationController from './controllers/application_controller';
 
 window.Turbo = Turbo;
+window.Bootstrap = Bootstrap;
 window.application = Application.start();
 window.Controller = ApplicationController;
 
