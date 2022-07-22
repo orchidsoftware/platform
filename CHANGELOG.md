@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 13.0.0 - 2022-07-22
+
+## Added
+
+- Preset filters
+- Global variable `window.Bootstrap` [#2307](https://github.com/orchidsoftware/platform/issues/2307)
+- Method `withoutEscaping` for `Alert/Toast` [#2290](https://github.com/orchidsoftware/platform/issues/2290)
+
+### Changed
+
+- Allow `html` messages in notifications [#2290](https://github.com/orchidsoftware/platform/issues/2290)
+- Don't use `jQuery` and packages that depend on it. [#2292](https://github.com/orchidsoftware/platform/issues/2292)
+- Change default `platform.php` file to prevent log warnings with `PHP 8.1` [#2305](https://github.com/orchidsoftware/platform/pull/2305)
+- Allow setting `NULL` value for `Select` and `Relation` fields when cleared [#2300](https://github.com/orchidsoftware/platform/pull/2300)
+
+### Removed
+
+- `jQuery` and `Select2` packages [#2292](https://github.com/orchidsoftware/platform/issues/2292)
+
+### Deprecated
+
+- Using automatic filters in a model without specifying its type
+
 ## 12.6.2 - 2022-06-16
 
 ### Changed
