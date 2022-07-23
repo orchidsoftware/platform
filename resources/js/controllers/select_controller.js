@@ -28,7 +28,7 @@ export default class extends ApplicationController {
                 option_create: (data, escape) => `<div class="create">${this.data.get('message-add')} <strong>${escape(data.input)}</strong>&hellip;</div>`,
                 no_results: () => `<div class="no-results">${this.data.get('message-notfound')}</div>`,
             },
-            onDelete: () => this.data.get('allow-empty') === '',
+            onDelete: () => this.data.get('allow-empty') !== '',
         });
     }
 
