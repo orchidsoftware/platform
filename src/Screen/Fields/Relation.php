@@ -48,7 +48,7 @@ class Relation extends Field
         'relationAppend'        => null,
         'relationSearchColumns' => null,
         'chunk'                 => 10,
-        'allowEmpty'            => 1,
+        'allowEmpty'            => 0,
     ];
 
     /**

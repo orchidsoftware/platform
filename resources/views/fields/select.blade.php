@@ -6,9 +6,6 @@
         data-select-message-add="{{ __('Add') }}"
     >
         <select {{ $attributes }}>
-            @if ($allowEmpty)
-                <option value="">{{$attributes['placeholder'] ?? ''}}</option>
-            @endif
             @foreach($options as $key => $option)
                 <option value="{{$key}}"
                         @isset($value)

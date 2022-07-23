@@ -44,7 +44,7 @@ class Select extends Field implements ComplexFieldConcern
     protected $attributes = [
         'class'      => 'form-control',
         'options'    => [],
-        'allowEmpty' => 1,
+        'allowEmpty' => 0,
     ];
 
     /**
@@ -142,6 +142,7 @@ class Select extends Field implements ComplexFieldConcern
             $value = [$key => $name] + $options;
 
             $this->set('options', $value);
+            $this->set('allowEmpty', 1);
         });
     }
 
@@ -151,31 +152,5 @@ class Select extends Field implements ComplexFieldConcern
     public function taggable()
     {
         return $this->set('tags', true);
-    }
-
-    /**
-     * Allow empty value to be set
-     *
-     * @param bool $value
-     *
-     * @return self
-     */
-    public function allowEmpty(bool $value = true): self
-    {
-        return $this->set('allowEmpty', $value);
-    }
-
-    /**
-     * Allow empty value to be set
-     *
-     * @deprecated use `allowEmpty()` instead
-     *
-     * @param bool $value
-     *
-     * @return self
-     */
-    public function nullable(bool $value = true): self
-    {
-        return $this->set('allowEmpty', $value);
     }
 }
