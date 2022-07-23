@@ -44,7 +44,7 @@ class Select extends Field implements ComplexFieldConcern
     protected $attributes = [
         'class'      => 'form-control',
         'options'    => [],
-        'allowEmpty' => 0,
+        'allowEmpty' => '',
     ];
 
     /**
@@ -142,7 +142,7 @@ class Select extends Field implements ComplexFieldConcern
             $value = [$key => $name] + $options;
 
             $this->set('options', $value);
-            $this->set('allowEmpty', 1);
+            $this->set('allowEmpty', '1');
         });
     }
 

@@ -48,7 +48,7 @@ class Relation extends Field
         'relationAppend'        => null,
         'relationSearchColumns' => null,
         'chunk'                 => 10,
-        'allowEmpty'            => 0,
+        'allowEmpty'            => '',
     ];
 
     /**
@@ -126,7 +126,7 @@ class Relation extends Field
                         'id'   => $item->$key,
                         'text' => $item->$text,
                     ];
-                })->toJson();
+                })->toArray();
 
             $this->set('value', $value);
         });
