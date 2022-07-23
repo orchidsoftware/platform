@@ -267,4 +267,18 @@ class Relation extends Field
     {
         return $this->set('allowEmpty', $value);
     }
+
+    /**
+     * Allow empty value to be set
+     *
+     * @deprecated use `allowEmpty()` instead
+     *
+     * @param bool $value
+     *
+     * @return self
+     */
+    public function nullable(bool $value = true): self
+    {
+        return $this->set('allowEmpty', $value);
+    }
 }

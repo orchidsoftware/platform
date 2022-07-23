@@ -59,6 +59,7 @@ class Select extends Field implements ComplexFieldConcern
         'form',
         'name',
         'required',
+        'placeholder',
         'size',
         'tabindex',
         'tags',
@@ -160,6 +161,20 @@ class Select extends Field implements ComplexFieldConcern
      * @return self
      */
     public function allowEmpty(bool $value = true): self
+    {
+        return $this->set('allowEmpty', $value);
+    }
+
+    /**
+     * Allow empty value to be set
+     *
+     * @deprecated use `allowEmpty()` instead
+     *
+     * @param bool $value
+     *
+     * @return self
+     */
+    public function nullable(bool $value = true): self
     {
         return $this->set('allowEmpty', $value);
     }
