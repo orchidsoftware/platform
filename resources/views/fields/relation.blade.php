@@ -2,7 +2,6 @@
     <div data-controller="relation"
          data-relation-id="{{$id}}"
          data-relation-placeholder="{{$attributes['placeholder'] ?? ''}}"
-         data-relation-value="@json($value)"
          data-relation-model="{{ $relationModel }}"
          data-relation-name="{{ $relationName }}"
          data-relation-key="{{ $relationKey }}"
