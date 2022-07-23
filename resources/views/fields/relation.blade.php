@@ -17,7 +17,7 @@
     >
         <select id="{{$id}}" data-relation-target="select" {{ $attributes }}>
             @foreach ($value as $option)
-                <option value="{{ $option['id'] }}">{{ $option['text'] }}</option>
+                <option selected value="{{ $option['id'] }}">{{ $option['text'] }}</option>
             @endforeach
         </select>
     </div>
