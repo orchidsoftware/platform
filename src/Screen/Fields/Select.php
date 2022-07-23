@@ -42,9 +42,9 @@ class Select extends Field implements ComplexFieldConcern
      * @var array
      */
     protected $attributes = [
-        'class'    => 'form-control',
-        'options'  => [],
-        'nullable' => 0,
+        'class'      => 'form-control',
+        'options'    => [],
+        'allowEmpty' => 1,
     ];
 
     /**
@@ -153,14 +153,14 @@ class Select extends Field implements ComplexFieldConcern
     }
 
     /**
-     * Allow nullable value to be returned
+     * Allow empty value to be set
      *
      * @param bool $value
      *
      * @return self
      */
-    public function nullable(bool $value = true): self
+    public function allowEmpty(bool $value = true): self
     {
-        return $this->set('nullable', $value);
+        return $this->set('allowEmpty', $value);
     }
 }
