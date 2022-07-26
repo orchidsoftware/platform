@@ -43,4 +43,20 @@ class CropperTest extends TestFieldsUnitCase
         $this->assertStringContainsString(sprintf('value="%d"', $upload->id), $view);
         $this->assertStringContainsString($upload->url, $view);
     }
+
+    public function testUploadedPath(): void
+    {
+        $file = UploadedFile::fake()->create('document.jpg', 200);
+        $path = 'custom-path';
+        $attachment = new File($file);
+        $upload = $attachment->path($path)->load();
+
+        $picture = Cropper::make('picture')
+            ->path($path);
+
+        $view = self::renderField($picture);
+
+        $this->assertStringContainsString(sprintf('data-cropper-path="%s"', $path), $view);
+        $this->assertSame($upload->path, $path.'/');
+    }
 }
