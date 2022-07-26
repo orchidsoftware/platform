@@ -13,7 +13,7 @@ abstract class BaseFieldScreen extends Screen
     /**
      * @return array
      */
-    abstract function fields(): array;
+    abstract public function fields(): array;
 
     /**
      * @return array
@@ -43,7 +43,7 @@ abstract class BaseFieldScreen extends Screen
         return [
             Button::make('Submit')
                 ->rawClick()
-                ->method('submit')
+                ->method('submit'),
         ];
     }
 
