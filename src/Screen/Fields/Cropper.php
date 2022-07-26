@@ -174,16 +174,4 @@ class Cropper extends Picture
 
         return $this;
     }
-
-    /**
-     * Set custom attachment upload path
-     *
-     * @param string $path
-     *
-     * @return self
-     */
-    public function path(string $path): self
-    {
-        return $this->set('path', $path);
-    }
 }
