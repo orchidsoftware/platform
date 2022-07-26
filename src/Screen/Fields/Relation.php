@@ -48,7 +48,7 @@ class Relation extends Field
         'relationAppend'        => null,
         'relationSearchColumns' => null,
         'chunk'                 => 10,
-        'nullable'              => 0,
+        'allowEmpty'            => '',
     ];
 
     /**
@@ -126,7 +126,7 @@ class Relation extends Field
                         'id'   => $item->$key,
                         'text' => $item->$text,
                     ];
-                })->toJson();
+                })->toArray();
 
             $this->set('value', $value);
         });
@@ -149,7 +149,7 @@ class Relation extends Field
             $value = $this->get('value');
 
             if (empty($value)) {
-                return $this->set('value', json_encode($value));
+                return $this->set('value', $value);
             }
 
             $scope = $this->get('scope', 'handler');
@@ -177,7 +177,7 @@ class Relation extends Field
                         'id'   => $item->get($key),
                         'text' => $item->get($name),
                     ];
-                })->toJson();
+                })->toArray();
 
             $this->set('value', $value);
         });
@@ -257,14 +257,28 @@ class Relation extends Field
     }
 
     /**
-     * Allow nullable value to be returned
+     * Allow empty value to be set
      *
      * @param bool $value
      *
      * @return $this
      */
-    public function nullable(bool $value = true)
+    public function allowEmpty(bool $value = true)
     {
-        return $this->set('nullable', $value);
+        return $this->set('allowEmpty', $value);
+    }
+
+    /**
+     * Allow empty value to be set
+     *
+     * @deprecated use `allowEmpty()` instead
+     *
+     * @param bool $value
+     *
+     * @return self
+     */
+    public function nullable(bool $value = true): self
+    {
+        return $this->set('allowEmpty', $value);
     }
 }

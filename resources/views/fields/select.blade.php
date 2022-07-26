@@ -1,12 +1,10 @@
 @component($typeForm, get_defined_vars())
     <div data-controller="select"
+        data-select-placeholder="{{$attributes['placeholder'] ?? ''}}"
+        data-select-allow-empty="{{ $allowEmpty }}"
         data-select-message-notfound="{{ __('No results found') }}"
         data-select-message-add="{{ __('Add') }}"
     >
-		@if ($nullable)
-			<input type="hidden" name="{{ isset($attributes['multiple']) ? \Illuminate\Support\Str::of($attributes['name'])->replaceLast('[]', '') : $attributes['name'] }}" value="">
-		@endif
-
         <select {{ $attributes }}>
             @foreach($options as $key => $option)
                 <option value="{{$key}}"
