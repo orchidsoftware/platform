@@ -7,6 +7,7 @@ namespace Orchid\Tests\App;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Dashboard;
+use Orchid\Tests\App\Fields\BaseSelectScreen;
 use Orchid\Tests\App\Screens\AsyncHeaderButtonActionScreen;
 use Orchid\Tests\App\Screens\ConfirmScreen;
 use Orchid\Tests\App\Screens\DependentListenerModalScreen;
@@ -44,6 +45,10 @@ class ExemplarServiceProvider extends ServiceProvider
                 $route->screen('confirm', ConfirmScreen::class)->name('confirm');
                 $route->screen('async-header-button-action', AsyncHeaderButtonActionScreen::class)->name('async-header-button-action');
                 $route->screen('write-only-public-property', PropertyAutoWriteScreen::class)->name('write-only-public-property');
+
+
+                // Fields
+                $route->screen('fields/base-select-screen', BaseSelectScreen::class)->name('base-select-screen');
             });
     }
 }
