@@ -51,6 +51,7 @@ class Menu extends Link
         'divider'        => false,
         'active'         => null,
         'data-bs-toggle' => null,
+        'parent'         => null,
         'sort'           => 0,
         'slug'           => null,
     ];
@@ -231,5 +232,15 @@ class Menu extends Link
     public function slug(string $slug): self
     {
         return $this->set('slug', $slug);
+    }
+
+    /**
+     * @param string $parent
+     *
+     * @return $this
+     */
+    public function parent(string $parent): self
+    {
+        return $this->set('parent', $parent);
     }
 }
