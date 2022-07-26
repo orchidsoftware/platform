@@ -66,6 +66,7 @@ class Picture extends Field
         'target',
         'url',
         'groups',
+        'path',
     ];
 
     /**
@@ -141,5 +142,17 @@ class Picture extends Field
         $this->set('target', 'relativeUrl');
 
         return $this;
+    }
+
+    /**
+     * Set custom attachment upload path
+     *
+     * @param string $path
+     *
+     * @return self
+     */
+    public function path(string $path): self
+    {
+        return $this->set('path', $path);
     }
 }

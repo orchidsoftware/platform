@@ -7,6 +7,7 @@
          data-picture-max-file-size="{{ $maxFileSize }}"
          data-picture-accepted-files="{{ $acceptedFiles }}"
          data-picture-groups="{{$attributes['groups'] ?? ''}}"
+         data-picture-path="{{ $attributes['path'] ?? '' }}"
     >
         <div class="border-dashed text-end p-3 picture-actions">
 

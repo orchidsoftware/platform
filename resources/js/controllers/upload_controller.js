@@ -210,6 +210,7 @@ export default class extends ApplicationController {
         const loadInfo = this.loadInfo.bind(this);
         const dropname = this.dropname;
         const groups = this.data.get('groups');
+        const uploadPath = this.data.get('path');
         const multiple = !!this.data.get('multiple');
         const isMediaLibrary = this.data.get('is-media-library');
 
@@ -278,6 +279,7 @@ export default class extends ApplicationController {
                     formData.append('_token',token);
                     formData.append('storage', storage);
                     formData.append('group', groups);
+                    formData.append('path', uploadPath);
                 });
 
                 this.on('removedfile', file => {

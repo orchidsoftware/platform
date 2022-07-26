@@ -104,11 +104,17 @@ class AttachmentController extends Controller
      */
     private function createModel(UploadedFile $file, Request $request)
     {
-        $model = resolve(File::class, [
+        $file = resolve(File::class, [
             'file'  => $file,
             'disk'  => $request->get('storage'),
             'group' => $request->get('group'),
-        ])->load();
+        ]);
+        
+        if ($request->has('path')) {
+            $file->path($request->get('path'));
+        }
+        
+        $model = $file->load();
 
         $model->url = $model->url();
 
