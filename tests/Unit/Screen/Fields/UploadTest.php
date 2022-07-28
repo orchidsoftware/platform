@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Fields;
 
+use Illuminate\Http\UploadedFile;
+use Orchid\Attachment\File;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Support\Init;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
-use Illuminate\Http\UploadedFile;
-use Orchid\Attachment\File;
 
 class UploadTest extends TestFieldsUnitCase
 {
