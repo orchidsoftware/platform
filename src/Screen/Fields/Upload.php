@@ -87,6 +87,7 @@ class Upload extends Field
         'storage',
         'media',
         'closeOnAdd',
+        'path',
     ];
 
     /**
@@ -161,5 +162,17 @@ class Upload extends Field
         return $this
             ->set('storage', $storage)
             ->set('visibility', $disk['visibility'] ?? null);
+    }
+
+    /**
+     * Set custom attachment upload path
+     *
+     * @param string $path
+     *
+     * @return self
+     */
+    public function path(string $path): self
+    {
+        return $this->set('path', $path);
     }
 }

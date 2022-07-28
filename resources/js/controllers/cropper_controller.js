@@ -111,6 +111,7 @@ export default class extends ApplicationController {
             formData.append('file', blob);
             formData.append('storage', this.data.get('storage'));
             formData.append('group', this.data.get('groups'));
+            formData.append('path', this.data.get('path'));
             formData.append('acceptedFiles', this.data.get('accepted-files'));
 
             let element = this.element;

@@ -13,6 +13,7 @@
          data-cropper-accepted-files="{{ $acceptedFiles }}"
          data-cropper-max-file-size="{{ $maxFileSize }}"
          data-cropper-groups="{{ $attributes['groups'] }}"
+         data-cropper-path="{{ $attributes['path'] ?? '' }}"
     >
         <div class="border-dashed text-end p-3 cropper-actions">
 

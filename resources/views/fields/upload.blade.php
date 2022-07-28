@@ -17,6 +17,7 @@
         data-upload-is-media-library="{{ $media }}"
         data-upload-close-on-add="{{ $closeOnAdd }}"
         data-upload-resize-height="{{$resizeHeight }}"
+        data-upload-path="{{ $attributes['path'] ?? '' }}"
     >
         <div id="dropzone-{{$id}}" class="dropzone-wrapper">
             <div class="fallback">
