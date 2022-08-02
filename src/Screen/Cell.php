@@ -98,7 +98,7 @@ abstract class Cell
      *
      * @return string
      */
-    protected function getNameParameterExpected(string $component, array $params = []): string
+    protected function getNameParameterExpected(string $component, array $params = []): ?string
     {
         $class = new \ReflectionClass($component);
         $parameters = optional($class->getConstructor())->getParameters() ?? [];
@@ -116,9 +116,6 @@ abstract class Cell
                 return $parameter->getName();
             })
             ->diff($paramsKeys)
-            ->whenEmpty(function () use ($component) {
-                throw new \RuntimeException("Class $component doesn't expect any value in the constructor");
-            })
             ->last();
     }
 
@@ -134,13 +131,19 @@ abstract class Cell
      */
     protected function renderComponent(string $component, $value, array $params = []): ?string
     {
-        $nameArgument = $this->getNameParameterExpected($component, $params);
+        [$class, $view] = Blade::componentInfo($component);
 
-        $arguments = array_merge($params, [
-            $nameArgument => $value,
-        ]);
+        if ($view === null) {
+            // for class based components try to detect argument name
+            $nameArgument = $this->getNameParameterExpected($class, $params);
+            if ($nameArgument !== null) {
+                $params[$nameArgument] = $value;
+            }
+        }
 
-        return Blade::renderComponent($component, $arguments);
+        $params = array_map(fn ($item) => value($item, $value), $params);
+
+        return Blade::renderComponent($component, $params);
     }
 
     /**
