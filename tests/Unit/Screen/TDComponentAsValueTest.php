@@ -68,7 +68,7 @@ class TDComponentAsValueTest extends TestUnitCase
     {
         $view = TD::make('email')
             ->asComponent(SimpleShowValueWithArguments::class, [
-                'from' => fn() => 'Sasha',
+                'from' => fn () => 'Sasha',
             ])
             ->buildTd($this->user);
 
@@ -79,13 +79,13 @@ class TDComponentAsValueTest extends TestUnitCase
     {
         $view = TD::make('email')
             ->asComponent('exemplar::simple-anonymous-component', [
-                'property1' => fn($email) => $email . '3333',
-                'property2' => fn($email) => $email . '4444',
+                'property1' => fn ($email) => $email . '3333',
+                'property2' => fn ($email) => $email . '4444',
             ])
             ->buildTd($this->user);
 
-        $this->assertStringContainsString($this->user->email . '3333' , $view);
-        $this->assertStringContainsString($this->user->email . '4444' , $view);
+        $this->assertStringContainsString($this->user->email . '3333', $view);
+        $this->assertStringContainsString($this->user->email . '4444', $view);
     }
 
     /**

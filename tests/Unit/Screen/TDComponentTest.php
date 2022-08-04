@@ -61,7 +61,7 @@ class TDComponentTest extends TestUnitCase
         $view = TD::make()
             ->component(Hello::class, [
                 'application' => $this->app,
-                'name' => fn(User $user) => $user->name,
+                'name'        => fn (User $user)        => $user->name,
             ])
             ->buildTd($this->user);
 
@@ -73,8 +73,8 @@ class TDComponentTest extends TestUnitCase
     {
         $view = TD::make()
             ->component('exemplar::simple-anonymous-component', [
-                'property1' => fn($user) => $user->name,
-                'property2' => fn($user) => $user->email,
+                'property1' => fn ($user) => $user->name,
+                'property2' => fn ($user) => $user->email,
             ])
             ->buildTd($this->user);
 

@@ -49,7 +49,7 @@ class BladeComponentTest extends TestUnitCase
     public function testAnonymous(): void
     {
         $view = Blade::renderComponent('exemplar::simple-anonymous-component', [
-            'property1' => 'Hello world'
+            'property1' => 'Hello world',
         ]);
 
         $this->assertStringContainsString('Hello world', $view);
