@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 13.1.0 - 2022-08-05
+
+### Added
+
+- Localization for the notice displayed before impersonating a user [#2318](https://github.com/orchidsoftware/platform/pull/2318)
+- Anonymous components [#2325](https://github.com/orchidsoftware/platform/pull/2325) [#2324](https://github.com/orchidsoftware/platform/issues/2324)
+- Allow customizing path for uploads fields [#2316](https://github.com/orchidsoftware/platform/pull/2316)
+
+### Changed
+
+- Long text metrics view [#2327](https://github.com/orchidsoftware/platform/pull/2327)
+
 ## 13.0.2 - 2022-07-26
 
 ### Fixed
