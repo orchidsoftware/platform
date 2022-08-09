@@ -1,7 +1,7 @@
 @component($typeForm, get_defined_vars())
     <div
         data-controller="upload"
-        data-upload-storage="{{$storage ?? 'public'}}"
+        data-upload-storage="{{$storage ?? config('platform.attachment.disk', 'public')}}"
         data-upload-name="{{$name}}"
         data-upload-id="dropzone-{{$id}}"
         data-upload-data='@json($value)'
