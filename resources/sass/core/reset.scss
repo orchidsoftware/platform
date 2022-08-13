@@ -380,6 +380,11 @@ blockquote {
 
 .tab-container {
   margin-bottom: 15px;
+
+  &.tab-field {
+    margin-top: 15px;
+  }
+
   .tab-content {
     padding: 15px;
     background-color: #fff;

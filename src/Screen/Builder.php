@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use App\Orchid\Core\Contracts\Tabable;
 use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\Contracts\Fieldable;
@@ -93,9 +94,15 @@ class Builder
     public function generateForm(): string
     {
         collect($this->fields)->each(function (Fieldable $field) {
-            $this->form .= is_subclass_of($field, Groupable::class)
-                ? $this->renderGroup($field)
-                : $this->render($field);
+            if (is_subclass_of($field, Groupable::class)) {
+                $render = $this->renderGroup($field);
+            } elseif (is_subclass_of($field, Tabable::class)) {
+                $render = $this->renderTab($field);
+            } else {
+                $render = $this->render($field);
+            }
+
+            $this->form .= $render;
         });
 
         return $this->form;
@@ -117,6 +124,26 @@ class Builder
             ->toArray();
 
         return $group->setGroup($prepare)->render();
+    }
+
+    /**
+     * @param Tabable $tab
+     *
+     * @throws \Throwable
+     *
+     * @return array|string
+     */
+    private function renderTab(Tabable $tab)
+    {
+        $prepare = collect($tab->getTab())->map(function ($fields) {
+            return collect($fields)->map(function ($field) {
+                return $this->render($field);
+            })->toArray();
+        })
+            ->filter()
+            ->toArray();
+
+        return $tab->setTab($prepare)->render();
     }
 
     /**
