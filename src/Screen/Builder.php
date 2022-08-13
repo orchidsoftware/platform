@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use App\Orchid\Core\Contracts\Tabable;
 use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Contracts\Groupable;
+use Orchid\Screen\Contracts\Tabable;
 use Throwable;
 
 class Builder

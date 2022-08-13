@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Orchid\Core\Contracts;
+namespace Orchid\Screen\Contracts;
 
 use Orchid\Screen\Field;
-use Orchid\Screen\Contracts\Fieldable;
 
 interface Tabable extends Fieldable
 {

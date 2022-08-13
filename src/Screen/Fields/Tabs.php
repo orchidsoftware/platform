@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use App\Orchid\Core\Contracts\Tabable;
 use Orchid\Screen\Contracts\Fieldable;
+use Orchid\Screen\Contracts\Tabable;
 use Orchid\Screen\Field;
 
 class Tabs implements Fieldable, Tabable
