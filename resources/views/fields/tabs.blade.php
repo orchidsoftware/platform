@@ -1,5 +1,7 @@
+@php($uniqid = uniqid())
+
 <div
-    data-controller="tabs"
+    data-controller="tabs-{{$uniqid}}"
     data-tabs-slug="{{$templateSlug}}"
     data-tabs-active-tab="{{$activeTab}}"
 >
@@ -14,8 +16,8 @@
                             active
                         @endif"
                        data-action="tabs#setActiveTab"
-                       data-bs-target="#tab-{{\Illuminate\Support\Str::slug($name)}}"
-                       id="button-tab-{{\Illuminate\Support\Str::slug($name)}}"
+                       data-bs-target="#tab-{{$uniqid}}-{{\Illuminate\Support\Str::slug($name)}}"
+                       id="button-tab-{{$uniqid}}-{{\Illuminate\Support\Str::slug($name)}}"
                        role="tablist"
                        data-bs-toggle="tab">
                         {!! $name !!}
@@ -36,7 +38,7 @@
                         @elseif($loop->first && is_null($activeTab))
                             active
                         @endif"
-                         id="tab-{{\Illuminate\Support\Str::slug($name)}}">
+                         id="tab-{{$uniqid}}-{{\Illuminate\Support\Str::slug($name)}}">
                         @foreach($fields as $field)
                             {!! $field !!}
                         @endforeach
