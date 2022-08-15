@@ -26,13 +26,6 @@ class Tabs implements Fieldable, Tabable
     ];
 
     /**
-     * Required Attributes.
-     *
-     * @var array
-     */
-    protected $required = [];
-
-    /**
      * @var string
      */
     protected $view = 'platform::fields.tabs';
