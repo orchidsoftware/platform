@@ -19,6 +19,7 @@ export default class extends ApplicationController {
         }
 
         this.choices = new TomSelect(select, {
+            create: !! this.data.get('allow-add'),
             allowEmptyOption: true,
             placeholder: select.getAttribute('placeholder') === 'false' ? '' : select.getAttribute('placeholder'),
             preload: true,

@@ -3,6 +3,7 @@
         data-select-placeholder="{{$attributes['placeholder'] ?? ''}}"
         data-select-allow-empty="{{ $allowEmpty }}"
         data-select-message-notfound="{{ __('No results found') }}"
+        data-select-allow-add="{{ $allowAdd }}"
         data-select-message-add="{{ __('Add') }}"
     >
         <select {{ $attributes }}>

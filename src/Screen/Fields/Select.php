@@ -45,6 +45,7 @@ class Select extends Field implements ComplexFieldConcern
         'class'      => 'form-control',
         'options'    => [],
         'allowEmpty' => '',
+        'allowAdd'   => false,
     ];
 
     /**
@@ -143,6 +144,18 @@ class Select extends Field implements ComplexFieldConcern
 
             $this->set('options', $value);
             $this->set('allowEmpty', '1');
+        });
+    }
+
+    /**
+     * @param bool $value
+     *
+     * @return self
+     */
+    public function allowAdd(bool $value = true): self
+    {
+        return $this->addBeforeRender(function () use ($value) {
+            $this->set('allowAdd', $value ? '1' : '');
         });
     }
 
