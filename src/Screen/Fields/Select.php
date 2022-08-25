@@ -26,6 +26,7 @@ use Orchid\Screen\Field;
  * @method Select options($value = null)
  * @method Select title(string $value = null)
  * @method Select maximumSelectionLength(int $value = 0)
+ * @method Select allowAdd($value = true)
  */
 class Select extends Field implements ComplexFieldConcern
 {
@@ -144,18 +145,6 @@ class Select extends Field implements ComplexFieldConcern
 
             $this->set('options', $value);
             $this->set('allowEmpty', '1');
-        });
-    }
-
-    /**
-     * @param bool $value
-     *
-     * @return self
-     */
-    public function allowAdd(bool $value = true): self
-    {
-        return $this->addBeforeRender(function () use ($value) {
-            $this->set('allowAdd', $value ? '1' : '');
         });
     }
 
