@@ -382,7 +382,7 @@ class Field implements Fieldable, Htmlable
     /**
      * @return static
      */
-    protected function modifyValue()
+    protected function modifyValue(): self
     {
         $value = $this->getOldValue() ?? $this->get('value');
 
