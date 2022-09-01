@@ -95,7 +95,6 @@ class LayoutFactory
     public static function table(string $target, array $columns): Table
     {
         return new class($target, $columns) extends Table {
-
             /**
              * @var array
              */
@@ -244,7 +243,6 @@ class LayoutFactory
     public static function legend(string $target, array $columns): Legend
     {
         return new class($target, $columns) extends Legend {
-
             /**
              * @var array
              */

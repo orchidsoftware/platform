@@ -26,21 +26,21 @@ use Orchid\Screen\Layouts\Wrapper;
 /**
  * Class Layout.
  *
- * @method static View view(string $view, array $data = [])
+ * @method static View      view(string $view, array $data = [])
  * @method static Component component(string $component)
- * @method static Rows rows(array $fields)
- * @method static Table table(string $target, array $columns)
- * @method static Columns columns(BaseLayout[]|string[] $layouts)
- * @method static Tabs tabs(BaseLayout[] $layouts)
- * @method static Modal modal(string $key, string[]|string|BaseLayout $layouts)
- * @method static Blank blank(BaseLayout[] $layouts)
- * @method static Wrapper wrapper(string $template, array $layouts)
+ * @method static Rows      rows(array $fields)
+ * @method static Table     table(string $target, array $columns)
+ * @method static Columns   columns(BaseLayout[]|string[] $layouts)
+ * @method static Tabs      tabs(BaseLayout[] $layouts)
+ * @method static Modal     modal(string $key, string[]|string|BaseLayout $layouts)
+ * @method static Blank     blank(BaseLayout[] $layouts)
+ * @method static Wrapper   wrapper(string $template, array $layouts)
  * @method static Accordion accordion(BaseLayout[] $layouts)
  * @method static Selection selection(array $filters)
- * @method static Block block(BaseLayout|string|string[] $layouts)
- * @method static Legend legend(string $target, array $columns)
- * @method static Browsing browsing(string $src)
- * @method static Metric metrics(array $labels)
+ * @method static Block     block(BaseLayout|string|string[] $layouts)
+ * @method static Legend    legend(string $target, array $columns)
+ * @method static Browsing  browsing(string $src)
+ * @method static Metric    metrics(array $labels)
  */
 class Layout extends Facade
 {

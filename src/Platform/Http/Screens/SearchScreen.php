@@ -113,7 +113,6 @@ class SearchScreen extends Screen
         /** @var Searchable[] $results */
         $results = Dashboard::getSearch()
             ->transform(function (Model $model) use ($query, &$total) {
-
                 /** @var Searchable $presenter */
                 $presenter = optional($model)->presenter();
 

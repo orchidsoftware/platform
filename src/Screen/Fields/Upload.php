@@ -95,7 +95,6 @@ class Upload extends Field
      */
     public function __construct()
     {
-
         // Set max file size
         $this->addBeforeRender(function () {
             $maxFileSize = $this->get('maxFileSize');
