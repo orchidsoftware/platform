@@ -26,6 +26,7 @@ use Orchid\Screen\Field;
  * @method Select options($value = null)
  * @method Select title(string $value = null)
  * @method Select maximumSelectionLength(int $value = 0)
+ * @method Select allowAdd($value = true)
  */
 class Select extends Field implements ComplexFieldConcern
 {
@@ -45,6 +46,7 @@ class Select extends Field implements ComplexFieldConcern
         'class'      => 'form-control',
         'options'    => [],
         'allowEmpty' => '',
+        'allowAdd'   => false,
     ];
 
     /**
