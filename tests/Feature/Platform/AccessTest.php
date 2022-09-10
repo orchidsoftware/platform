@@ -26,7 +26,7 @@ class AccessTest extends TestFeatureCase
             ->assertStatus(200);
 
         $this->get('/_test/accessMiddlewarePrivateData')
-            ->assertStatus(403);
+            ->assertStatus(config('platform.status', 403));
     }
 
     protected function setUp(): void

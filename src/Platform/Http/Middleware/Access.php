@@ -56,7 +56,7 @@ class Access
 
         // The current user is already signed in.
         // It means that he does not have the privileges to view.
-        abort(403);
+        abort(config('platform.status', 403));
     }
 
     /**

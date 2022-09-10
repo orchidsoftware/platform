@@ -206,7 +206,7 @@ abstract class Screen extends Controller
     {
         Dashboard::setCurrentScreen($this);
 
-        abort_unless($this->checkAccess($request), 403);
+        abort_unless($this->checkAccess($request), config('platform.status', 403));
 
         if ($request->isMethod('GET')) {
             return $this->redirectOnGetMethodCallOrShowView($parameters);

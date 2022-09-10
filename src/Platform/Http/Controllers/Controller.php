@@ -26,9 +26,9 @@ class Controller extends BaseController
             if (Auth::user()->hasAccess($permission)) {
                 return $next($request);
             }
-            abort(403);
+            abort(config('platform.status', 403));
         });
 
-        abort_if(Auth::user() !== null && ! Auth::user()->hasAccess($permission), 403);
+        abort_if(Auth::user() !== null && ! Auth::user()->hasAccess($permission), config('platform.status', 403));
     }
 }

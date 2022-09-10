@@ -237,4 +237,16 @@ return [
 
     'provider' => \App\Orchid\PlatformProvider::class,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Access Denied HTTP Verb
+    |--------------------------------------------------------------------------
+    |
+    | Orchid will return error page if user does not have access to given screen.
+    | You can change the error code (e.g. to 404) if you don't want to expose platform routes to outsiders.
+    |
+     */
+
+    'status' => 403,
+
 ];
