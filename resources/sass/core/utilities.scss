@@ -399,36 +399,43 @@
 
 .thumb-xl {
   width: 128px;
+  min-width: 128px;
   display: inline-block
 }
 
 .thumb-lg {
   width: 96px;
+  min-width: 96px;
   display: inline-block
 }
 
 .thumb-md {
   width: 64px;
+  min-width: 64px;
   display: inline-block
 }
 
 .thumb {
   width: 50px;
+  min-width: 50px;
   display: inline-block
 }
 
 .thumb-sm {
   width: 40px;
+  min-width: 40px;
   display: inline-block
 }
 
 .thumb-xs {
   width: 34px;
+  min-width: 34px;
   display: inline-block
 }
 
 .thumb-xxs {
   width: 30px;
+  min-width: 30px;
   display: inline-block
 }
 
