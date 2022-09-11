@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 13.2.0 - 2022-09-11
+
+### Added
+
+- Select field option that will allow users to add values [#2342](https://github.com/orchidsoftware/platform/pull/2342)
+
+### Changed
+
+- Avatar and cells now have a minimum width
+- Removed authorize method for relation request [#2362](https://github.com/orchidsoftware/platform/issues/2362)
+
+### Fixed
+
+- Using filters with parameters [#2361](https://github.com/orchidsoftware/platform/issues/2361)
+- Set default storage from config [#2330](https://github.com/orchidsoftware/platform/pull/2330)
+- Don't overwrite radio value [#2348](https://github.com/orchidsoftware/platform/pull/2348)
+
 ## 13.1.0 - 2022-08-05
 
 ### Added
