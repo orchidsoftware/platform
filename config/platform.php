@@ -239,7 +239,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Access Denied HTTP Verb
+    | Access Denied HTTP error code
     |--------------------------------------------------------------------------
     |
     | Orchid will return error page if user does not have access to given screen.
