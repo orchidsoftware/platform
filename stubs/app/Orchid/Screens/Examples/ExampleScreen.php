@@ -169,9 +169,9 @@ class ExampleScreen extends Screen
                     ->width('150')
                     ->render(function (Repository $model) {
                         // Please use view('path')
-                        return "<img src='https://picsum.photos/450/200?random={$model->get('id')}'
+                        return "<img src='https://loremflickr.com/500/300?random={$model->get('id')}'
                               alt='sample'
-                              class='mw-100 d-block img-fluid'>
+                              class='mw-100 d-block img-fluid rounded-1 w-100'>
                             <span class='small text-muted mt-1 mb-0'># {$model->get('id')}</span>";
                     }),
 
