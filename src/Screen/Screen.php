@@ -6,8 +6,10 @@ namespace Orchid\Screen;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
@@ -195,6 +197,16 @@ abstract class Screen extends Controller
     }
 
     /**
+     *  Response or HTTP code that will be returned if user does not have access to screen.
+     *
+     * @return int | Response
+     */
+    public static function unaccessed(){
+        return 403;
+    }
+
+
+    /**
      * @param \Illuminate\Http\Request $request
      * @param mixed                    ...$parameters
      *
@@ -206,7 +218,7 @@ abstract class Screen extends Controller
     {
         Dashboard::setCurrentScreen($this);
 
-        abort_unless($this->checkAccess($request), 403);
+        abort_unless($this->checkAccess($request), static::unaccessed());
 
         if ($request->isMethod('GET')) {
             return $this->redirectOnGetMethodCallOrShowView($parameters);
