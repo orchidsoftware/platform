@@ -13,7 +13,7 @@ class UnaccessedScreen extends Screen
     public function permission(): ?iterable
     {
         return [
-            'whose-permission-never-exists'
+            'whose-permission-never-exists',
         ];
     }
 
