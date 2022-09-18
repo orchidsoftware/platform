@@ -39,6 +39,7 @@ class TimeZone extends Field
         'class'      => 'form-control',
         'options'    => [],
         'allowEmpty' => 0,
+        'allowAdd'   => false,
     ];
 
     /**
