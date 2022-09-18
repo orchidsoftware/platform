@@ -6,7 +6,6 @@ namespace Orchid\Screen;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -201,10 +200,10 @@ abstract class Screen extends Controller
      *
      * @return int | Response
      */
-    public static function unaccessed(){
+    public static function unaccessed()
+    {
         return 403;
     }
-
 
     /**
      * @param \Illuminate\Http\Request $request
