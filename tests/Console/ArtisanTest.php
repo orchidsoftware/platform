@@ -103,7 +103,7 @@ class ArtisanTest extends TestConsoleCase
     {
         $this->artisan('orchid:install')
             ->expectsOutputToContain("To start the embedded server, run 'artisan serve'")
-            ->assertOk();
+            ->assertExitCode(0);
     }
 
     public function testArtisanOrchidLink(): void
