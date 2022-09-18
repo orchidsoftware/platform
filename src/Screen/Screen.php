@@ -198,11 +198,11 @@ abstract class Screen extends Controller
     /**
      *  Response or HTTP code that will be returned if user does not have access to screen.
      *
-     * @return int | Response
+     * @return int | \Symfony\Component\HttpFoundation\Response
      */
     public static function unaccessed()
     {
-        return 403;
+        return Response::HTTP_FORBIDDEN;
     }
 
     /**
