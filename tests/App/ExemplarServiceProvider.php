@@ -17,6 +17,7 @@ use Orchid\Tests\App\Screens\ModalValidationScreen;
 use Orchid\Tests\App\Screens\ModelAutoOpenScreen;
 use Orchid\Tests\App\Screens\NestedTargetsDependentSumListenerScreen;
 use Orchid\Tests\App\Screens\PropertyAutoWriteScreen;
+use Orchid\Tests\App\Screens\UnaccessedScreen;
 
 class ExemplarServiceProvider extends ServiceProvider
 {
@@ -45,6 +46,8 @@ class ExemplarServiceProvider extends ServiceProvider
                 $route->screen('confirm', ConfirmScreen::class)->name('confirm');
                 $route->screen('async-header-button-action', AsyncHeaderButtonActionScreen::class)->name('async-header-button-action');
                 $route->screen('write-only-public-property', PropertyAutoWriteScreen::class)->name('write-only-public-property');
+
+                $route->screen('unaccessed', UnaccessedScreen::class)->name('unaccessed');
 
 
                 // Fields
