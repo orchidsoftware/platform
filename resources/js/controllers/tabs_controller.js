@@ -7,7 +7,7 @@ export default class extends ApplicationController {
      */
     connect() {
         const tabs = this.tabs();
-        const activeId = tabs[window.location.href][this.data.get('slug')];
+        const activeId = tabs[window.location.href.split(/[?#]/)[0]][this.data.get('slug')];
 
         if (activeId !== null && !this.data.get('active-tab')) {
             (new Tab(document.getElementById(activeId))).show();
@@ -34,7 +34,7 @@ export default class extends ApplicationController {
         const activeId = event.target.id;
         const tabs = this.tabs();
 
-        tabs[window.location.href][this.data.get('slug')] = activeId;
+        tabs[window.location.href.split(/[?#]/)[0]][this.data.get('slug')] = activeId;
         localStorage.setItem('tabs', JSON.stringify(tabs));
 
         (new Tab(document.getElementById(activeId))).show();
