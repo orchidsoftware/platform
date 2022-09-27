@@ -62,7 +62,7 @@ class RoleTest extends TestFeatureCase
         };
 
         $role = $StringPrimaryClass::make([
-            'id'          => Str::uuid(),
+            'id'          => Str::uuid()->toString(),
             'slug'        => 'uuid-test',
             'name'        => 'UUID',
             'permissions' => [],
