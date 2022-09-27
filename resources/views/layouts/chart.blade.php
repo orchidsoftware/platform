@@ -16,13 +16,15 @@
     <div class="bg-white rounded shadow-sm mb-3 pt-3">
 
         <div class="d-flex px-3 align-items-center">
-            <legend class="text-black px-2 mt-2 mb-0 col-md-12 col-md-10">
+            <legend class="text-black px-2 mt-2 mb-0">
                 <div class="d-flex align-items-center">
                     <small class="d-block">{{ __($title ?? '') }}</small>
 
-                    <a href="#" class="ms-auto px-2 text-muted" data-action="chart#export">
-                        <x-orchid-icon path="cloud-download" height="0.9em" width="0.9em"/>
-                    </a>
+                    @if($export)
+                        <a href="#" class="ms-auto px-2 text-muted" data-action="chart#export" title="{{ __('Export') }}">
+                            <x-orchid-icon path="cloud-download" height="0.9em" width="0.9em"/>
+                        </a>
+                    @endif
                 </div>
 
                 @empty(!$description)
