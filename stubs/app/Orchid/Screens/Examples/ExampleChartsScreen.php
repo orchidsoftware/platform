@@ -75,14 +75,22 @@ class ExampleChartsScreen extends Screen
     public function layout(): iterable
     {
         return [
+            ChartLineExample::make('charts', 'Actions with a tweet')
+                ->description('The total number of interactions a user has with a tweet. This includes all clicks on any links in the tweet (including hashtags, links, avatar, username, and expand button), retweets, replies, likes, and additions to the read list.'),
+
             Layout::columns([
-                ChartLineExample::class,
-                ChartBarExample::class,
+                ChartLineExample::make('charts', 'Line Chart')
+                    ->description('It is simple Line Charts with different colors.'),
+                ChartBarExample::make('charts', 'Bar Chart')
+                    ->description('It is simple Bar Charts with different colors.'),
             ]),
 
             Layout::columns([
-                ChartPercentageExample::class,
-                ChartPieExample::class,
+                ChartPercentageExample::make('charts', 'Percentage Chart')
+                    ->description('Simple, responsive, modern SVG Charts with zero dependencies'),
+
+                ChartPieExample::make('charts', 'Pie Chart')
+                    ->description('Simple, responsive, modern SVG Charts with zero dependencies'),
             ]),
         ];
     }

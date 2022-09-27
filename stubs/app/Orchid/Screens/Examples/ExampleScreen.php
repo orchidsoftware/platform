@@ -160,8 +160,11 @@ class ExampleScreen extends Screen
             ]),
 
             Layout::columns([
-                ChartLineExample::class,
-                ChartBarExample::class,
+                ChartLineExample::make('charts', 'Line Chart')
+                    ->description('It is simple Line Charts with different colors.'),
+
+                ChartBarExample::make('charts', 'Bar Chart')
+                    ->description('It is simple Bar Charts with different colors.'),
             ]),
 
             Layout::table('table', [
@@ -177,14 +180,10 @@ class ExampleScreen extends Screen
 
                 TD::make('name', 'Name')
                     ->width('450')
-                    ->render(function (Repository $model) {
-                        return Str::limit($model->get('name'), 200);
-                    }),
+                    ->render(fn(Repository $model) => Str::limit($model->get('name'), 200)),
 
                 TD::make('price', 'Price')
-                    ->render(function (Repository $model) {
-                        return '$ '.number_format($model->get('price'), 2);
-                    }),
+                    ->render(fn(Repository $model) => '$ ' . number_format($model->get('price'), 2)),
 
                 TD::make('created_at', 'Created'),
             ]),
