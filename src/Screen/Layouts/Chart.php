@@ -27,6 +27,19 @@ abstract class Chart extends Layout
      *
      * @var string
      */
+    protected $name;
+
+    /**
+     * @var string|null
+     */
+    protected $description;
+
+    /**
+     *
+     * Add a title to the Chart.
+     *
+     * @var string
+     */
     protected $title = 'My Chart';
 
     /**
@@ -138,6 +151,73 @@ abstract class Chart extends Layout
     }
 
     /**
+     * Create a new Charts element.
+     *
+     * @param string      $target
+     * @param string|null $title
+     *
+     * @return static
+     */
+    public static function make(string $target, ?string $title = null): self
+    {
+        return (new static)->target($target)->title($title);
+    }
+
+    /**
+     * @param string $target
+     *
+     * @return $this
+     */
+    public function target(string $target): static
+    {
+        $this->target = $target;
+
+        return $this;
+    }
+
+    /**
+     * Set title of the chart.
+     *
+     * @param string|null $title
+     *
+     * @return $this
+     */
+    public function title(?string $title = null): static
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Set description of the chart.
+     *
+     * @param string $description
+     *
+     * @return $this
+     */
+    public function description(string $description):static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Set height of the chart.
+     *
+     * @param int $height
+     *
+     * @return $this
+     */
+    public function height(int $height):static
+    {
+        $this->height = $height;
+
+        return $this;
+    }
+
+    /**
      * @param Repository $repository
      *
      * @return Factory|\Illuminate\View\View
@@ -160,7 +240,8 @@ abstract class Chart extends Layout
 
         return view($this->template, [
             'title'            => __($this->title),
-            'slug'             => Str::slug($this->title),
+            'description'      => __($this->description),
+            'slug'             => Str::slug($this->target.$this->title),
             'type'             => $this->type,
             'height'           => $this->height,
             'labels'           => $labels,

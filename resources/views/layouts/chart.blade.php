@@ -1,7 +1,6 @@
 <div
      data-controller="chart"
      data-chart-parent="#{{$slug}}"
-     data-chart-title="{{$title}}"
      data-chart-labels="{{$labels}}"
      data-chart-datasets="{{$data}}"
      data-chart-type="{{$type}}"
@@ -15,16 +14,28 @@
      data-chart-markers="{{$markers}}"
 >
     <div class="bg-white rounded shadow-sm mb-3 pt-3">
-        <div class="position-relative w-100">
-            @if($export)
-                <div class="top-right pt-1 pe-4" style="z-index: 1">
-                    <button class="btn btn-sm btn-link"
-                            data-action="chart#export">
-                        {{ __('Export') }}
-                    </button>
+
+        <div class="d-flex px-3 align-items-center">
+            <legend class="text-black px-2 mt-2 mb-0 col-md-12 col-md-10">
+                <div class="d-flex align-items-center">
+                    <small class="d-block">{{ __($title ?? '') }}</small>
+
+                    <a href="#" class="ms-auto px-2 text-muted" data-action="chart#export">
+                        <x-orchid-icon path="cloud-download" height="0.9em" width="0.9em"/>
+                    </a>
                 </div>
-            @endif
-            <figure id="{{$slug}}" class="w-100 h-full"></figure>
+
+                @empty(!$description)
+                    <p class="small text-muted mt-2 mb-0 content-read">
+                        {!! __($description  ?? '') !!}
+                    </p>
+                @endempty
+            </legend>
+
+        </div>
+
+        <div class="position-relative w-100">
+            <figure id="{{$slug}}" class="w-100 h-full m-0 p-0 d-flex"></figure>
         </div>
     </div>
 </div>
