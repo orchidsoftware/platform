@@ -13,6 +13,7 @@
                         @if (is_array($value) && in_array($key, $value, true)) selected
                         @elseif (isset($value[$key]) && $value[$key] == $option) selected
                         @elseif ($key === $value) selected
+                        @elseif (strval($key) === strval($value)) selected
                         @endif
                         @endisset
                 >{{$option}}</option>
