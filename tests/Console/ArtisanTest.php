@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Console;
 
+use Generator;
 use Illuminate\Support\Str;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Dashboard;
 use Orchid\Tests\TestConsoleCase;
-use Generator;
 
 class ArtisanTest extends TestConsoleCase
 {
-
     /**
      * @return Generator
      */
