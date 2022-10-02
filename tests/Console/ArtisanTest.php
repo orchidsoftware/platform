@@ -42,7 +42,6 @@ class ArtisanTest extends TestConsoleCase
 
         $this->artisan($command, ['name' => $file])
             ->expectsOutputToContain($name)
-            ->expectsOutputToContain("created successfully.")
             ->assertOk();
 
         $this->assertFileExists(app_path($path.$file.'.php'));
