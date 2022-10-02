@@ -9,6 +9,8 @@
         ->required()
         ->tabindex(1)
         ->autofocus()
+        ->autocomplete('email')
+        ->inputmode('email')
         ->placeholder(__('Enter your email'))
     !!}
 </div>
@@ -20,6 +22,7 @@
 
     {!!  \Orchid\Screen\Fields\Password::make('password')
         ->required()
+        ->autocomplete('current-password')
         ->tabindex(2)
         ->placeholder(__('Enter your password'))
     !!}
