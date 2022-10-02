@@ -18,57 +18,57 @@ class ArtisanTest extends TestConsoleCase
     public function testArtisanOrchidChart(): void
     {
         $this->artisan('orchid:chart', ['name' => $this->generateNameFromMethod()])
-            ->expectsOutputToContain('Chart created successfully.')
-            ->assertExitCode(0);
+            ->expectsOutputToContain('created successfully.')
+            ->assertOk();
     }
 
     public function testArtisanOrchidTable(): void
     {
         $this->artisan('orchid:table', ['name' => $this->generateNameFromMethod()])
-            ->expectsOutputToContain('Table created successfully.')
-            ->assertExitCode(0);
+            ->expectsOutputToContain('created successfully.')
+            ->assertOk();
     }
 
     public function testArtisanOrchidScreen(): void
     {
         $this->artisan('orchid:screen', ['name' => $this->generateNameFromMethod()])
-            ->expectsOutputToContain('Screen created successfully.')
-            ->assertExitCode(0);
+            ->expectsOutputToContain('created successfully.')
+            ->assertOk();
     }
 
     public function testArtisanOrchidRows(): void
     {
         $this->artisan('orchid:rows', ['name' => $this->generateNameFromMethod()])
-            ->expectsOutputToContain('Rows created successfully.')
-            ->assertExitCode(0);
+            ->expectsOutputToContain('created successfully.')
+            ->assertOk();
     }
 
     public function testArtisanOrchidFilter(): void
     {
         $this->artisan('orchid:filter', ['name' => $this->generateNameFromMethod()])
-            ->expectsOutputToContain('Filter created successfully.')
-            ->assertExitCode(0);
+            ->expectsOutputToContain('created successfully.')
+            ->assertOk();
     }
 
     public function testArtisanOrchidSelection(): void
     {
         $this->artisan('orchid:selection', ['name' => $this->generateNameFromMethod()])
-            ->expectsOutputToContain('Selection created successfully.')
-            ->assertExitCode(0);
+            ->expectsOutputToContain('created successfully.')
+            ->assertOk();
     }
 
     public function testArtisanOrchidListener(): void
     {
         $this->artisan('orchid:listener', ['name' => $this->generateNameFromMethod()])
-            ->expectsOutputToContain('Listener created successfully.')
-            ->assertExitCode(0);
+            ->expectsOutputToContain('created successfully.')
+            ->assertOk();
     }
 
     public function testArtisanOrchidPresenter(): void
     {
         $this->artisan('orchid:presenter', ['name' => $this->generateNameFromMethod()])
-            ->expectsOutputToContain('Presenter created successfully.')
-            ->assertExitCode(0);
+            ->expectsOutputToContain('created successfully.')
+            ->assertOk();
     }
 
     public function testArtisanOrchidAdmin(): void
@@ -103,19 +103,19 @@ class ArtisanTest extends TestConsoleCase
     {
         $this->artisan('orchid:install')
             ->expectsOutputToContain("To start the embedded server, run 'artisan serve'")
-            ->assertExitCode(0);
+            ->assertOk();
     }
 
     public function testArtisanOrchidLink(): void
     {
         $this->artisan('orchid:publish')
-            ->assertExitCode(0);
+            ->assertOk();
     }
 
     public function testArtisanOrchidTabMenu(): void
     {
         $this->artisan('orchid:tab-menu', ['name' => $this->generateNameFromMethod()])
-            ->expectsOutputToContain('TabMenu created successfully.')
-            ->assertExitCode(0);
+            ->expectsOutputToContain('created successfully.')
+            ->assertOk();
     }
 }
