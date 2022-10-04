@@ -14,6 +14,12 @@ use Orchid\Screen\Repository;
  */
 abstract class Chart extends Layout
 {
+    public const TYPE_BAR = 'bar';
+    public const TYPE_LINE = 'line';
+    public const TYPE_PIE = 'pie';
+    public const TYPE_PERCENTAGE = 'percentage';
+    public const TYPE_AXIS_MIXED = 'axis-mixed';
+
     /**
      * Main template to display the layer
      * Represents the view() argument.
@@ -49,7 +55,7 @@ abstract class Chart extends Layout
      *
      * @var string
      */
-    protected $type = 'line';
+    protected $type = self::TYPE_LINE;
 
     /**
      * Height of the chart.
