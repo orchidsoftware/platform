@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Fields;
 
+use Illuminate\Support\Facades\Session;
 use Orchid\Screen\Fields\Input;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 use Throwable;
@@ -116,5 +117,35 @@ class InputTest extends TestFieldsUnitCase
         $input = (string) Input::make('name')->minlength(3);
 
         $this->assertStringContainsString('minlength="3"', $input);
+    }
+
+    public function testLongNumericValue(): void
+    {
+        Session::start();
+
+        Session::put('_old_input', [
+            'numeric' => "1234567890123456789012345678901234567890",
+        ]);
+
+        request()->setLaravelSession(session());
+
+        $input = Input::make('numeric')->getOldValue();
+
+        $this->assertEquals('1234567890123456789012345678901234567890', $input);
+    }
+
+    public function testMediumLongNumericValue(): void
+    {
+        Session::start();
+
+        Session::put('_old_input', [
+            'numeric' => "66666666666666666666",
+        ]);
+
+        request()->setLaravelSession(session());
+
+        $input = Input::make('numeric')->getOldValue();
+
+        $this->assertEquals('66666666666666666666', $input);
     }
 }

@@ -43,10 +43,11 @@ class Select extends Field implements ComplexFieldConcern
      * @var array
      */
     protected $attributes = [
-        'class'      => 'form-control',
-        'options'    => [],
-        'allowEmpty' => '',
-        'allowAdd'   => false,
+        'class'        => 'form-control',
+        'options'      => [],
+        'allowEmpty'   => '',
+        'allowAdd'     => false,
+        'isOptionList' => false,
     ];
 
     /**
@@ -67,6 +68,17 @@ class Select extends Field implements ComplexFieldConcern
         'tags',
         'maximumSelectionLength',
     ];
+
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->addBeforeRender(function () {
+            $isOptionList = array_is_list( (array) $this->get('options', []));
+            $this->set('isOptionList', $isOptionList);
+        });
+    }
 
     /**
      * @param string|Model $model

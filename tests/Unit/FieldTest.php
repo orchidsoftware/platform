@@ -196,29 +196,29 @@ class FieldTest extends TestUnitCase
         $this->assertStringContainsString('parent[child][grandchild][]', $html);
     }
 
-    public function testIntegerOldName(): void
+    public function testOldName(): void
     {
         Session::start();
 
         Session::put('_old_input', [
-            'numeric' => "1",
+            'name' => "The heart of Seoul's nightlife",
         ]);
 
         request()->setLaravelSession(session());
 
-        $this->assertSame(1, Input::make('numeric')->getOldValue());
+        $this->assertSame("The heart of Seoul's nightlife", Input::make('name')->getOldValue());
     }
 
-    public function testFloatOldName(): void
+    public function testNumericOldName(): void
     {
         Session::start();
 
         Session::put('_old_input', [
-            'numeric' => "1.1",
+            'numeric' => "3.141",
         ]);
 
         request()->setLaravelSession(session());
 
-        $this->assertSame(1.1, Input::make('numeric')->getOldValue());
+        $this->assertSame("3.141", Input::make('numeric')->getOldValue());
     }
 }

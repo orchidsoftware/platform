@@ -310,15 +310,13 @@ class Field implements Fieldable, Htmlable
     }
 
     /**
-     * @return mixed
+     * Get the old value of the field.
+     *
+     * @return float|int|mixed|string
      */
     public function getOldValue()
     {
-        $value = old($this->getOldName());
-
-        return is_numeric($value)
-            ? $value + 0
-            : $value;
+        return old($this->getOldName());
     }
 
     /**
