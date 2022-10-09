@@ -5,8 +5,10 @@ export default class extends ApplicationController {
      *
      */
     connect() {
-        this.element
-            .querySelector('input:not([hidden])')
-            .indeterminate = this.data.get('indeterminate');
+        const checkbox = this.element.querySelector('input:not([hidden])');
+
+        if (checkbox) {
+            checkbox.indeterminate = this.data.get('indeterminate')
+        }
     }
 }
