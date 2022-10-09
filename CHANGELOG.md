@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 13.6.0 - 2022-10-09
+
+### Added
+
+- Usage Laravel Pint for code style [#2397](https://github.com/orchidsoftware/platform/pull/2397)
+- Hebrew translation [#2393](https://github.com/orchidsoftware/platform/pull/2393)
+
+### Changed
+
+- Value of select to not use a strict type
+- Better example charts [#2379](https://github.com/orchidsoftware/platform/issues/2379)
+
+### Fixed
+
+- Nullable checkbox element [2298](https://github.com/orchidsoftware/platform/issues/2298)
+
 ## 13.5.0 - 2022-10-02
 
 ### Added
