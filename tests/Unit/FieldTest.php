@@ -219,6 +219,6 @@ class FieldTest extends TestUnitCase
 
         request()->setLaravelSession(session());
 
-        $this->assertSame(1.1, Input::make('numeric')->getOldValue());
+        $this->assertSame("1.1", Input::make('numeric')->getOldValue());
     }
 }
