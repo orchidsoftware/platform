@@ -316,7 +316,7 @@ class Field implements Fieldable, Htmlable
     {
         $value = old($this->getOldName());
 
-        return is_numeric($value)
+        return is_numeric($value) && is_int($value + 0)
             ? $value + 0
             : $value;
     }
