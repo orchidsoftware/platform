@@ -34,7 +34,7 @@ class InstallCommand extends Command
     public function handle()
     {
         $this->comment('Installation started. Please wait...');
-        $this->info('Version: ' . Dashboard::VERSION);
+        $this->info('Version: '.Dashboard::VERSION);
 
         $this
             ->executeCommand('vendor:publish', [
@@ -88,7 +88,7 @@ class InstallCommand extends Command
      *
      * @return $this
      */
-    private function changeUserModel(string $path = 'Models/User.php'):self
+    private function changeUserModel(string $path = 'Models/User.php'): self
     {
         $this->info('Attempting to set ORCHID User model as parent to App\User');
 
@@ -118,7 +118,7 @@ class InstallCommand extends Command
         $str = $this->fileGetContent(app_path('../.env'));
 
         if ($str !== false && strpos($str, $constant) === false) {
-            file_put_contents(app_path('../.env'), $str . PHP_EOL . $constant . '=' . $value . PHP_EOL);
+            file_put_contents(app_path('../.env'), $str.PHP_EOL.$constant.'='.$value.PHP_EOL);
         }
 
         return $this;
@@ -151,19 +151,19 @@ class InstallCommand extends Command
 
         switch (PHP_OS_FAMILY) {
             case 'Darwin':
-                exec('open ' . $repo);
+                exec('open '.$repo);
                 break;
             case 'Windows':
-                exec('start ' . $repo);
+                exec('start '.$repo);
                 break;
             case 'Linux':
-                exec('xdg-open ' . $repo);
+                exec('xdg-open '.$repo);
                 break;
             default:
-                $this->line("You can find us at " . $repo);
+                $this->line('You can find us at '.$repo);
         }
 
-        $this->line("Thank you! It means a lot to us! 🙏");
+        $this->line('Thank you! It means a lot to us! 🙏');
 
         return $this;
     }

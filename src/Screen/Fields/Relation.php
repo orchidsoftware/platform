@@ -90,8 +90,6 @@ class Relation extends Field
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      *
      * @return Relation
-     *
-     *
      */
     public function fromModel(string $model, string $name, string $key = null): self
     {

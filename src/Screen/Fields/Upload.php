@@ -154,7 +154,7 @@ class Upload extends Field
      */
     public function storage(string $storage): self
     {
-        $disk = config("filesystems.disks." . $storage);
+        $disk = config('filesystems.disks.'.$storage);
 
         throw_if($disk === null, 'The selected storage was not found');
 

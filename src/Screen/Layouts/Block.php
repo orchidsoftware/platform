@@ -21,10 +21,10 @@ abstract class Block extends Layout
      * @var string
      */
     protected $template = 'platform::layouts.block';
-    
+
     /**
-    * @var false[]
-    */
+     * @var false[]
+     */
     protected $variables = [
         'vertical' => false,
     ];
@@ -93,7 +93,7 @@ abstract class Block extends Layout
 
         return $this;
     }
-    
+
     /**
      * Used to define block orientation.
      *

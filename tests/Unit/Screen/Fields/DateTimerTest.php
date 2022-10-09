@@ -21,7 +21,7 @@ class DateTimerTest extends TestFieldsUnitCase
 
         $this->assertStringContainsString('name="date"', $view);
     }
-    
+
     public function testValueInstance(): void
     {
         $start = now();
@@ -32,7 +32,7 @@ class DateTimerTest extends TestFieldsUnitCase
 
         $this->assertStringContainsString(sprintf('value="%s"', $start->toDateTimeString()), $view);
     }
-    
+
     public function testServerFormat(): void
     {
         $value = Carbon::createFromFormat('Y-m-d H:i:s.u', '2021-02-01 03:45:27.612584');

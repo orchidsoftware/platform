@@ -24,7 +24,7 @@ class FallbackDisabledTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->get(Dashboard::prefix('/error-test/') . Str::random());
+            ->get(Dashboard::prefix('/error-test/').Str::random());
 
         $response
             ->assertDontSee('orchid.software')

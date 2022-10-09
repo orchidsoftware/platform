@@ -174,7 +174,7 @@ class HttpFilter
         } elseif (is_array($value)) {
             $query->whereIn($property, $value);
         } elseif ($model->hasCast($property, ['bool', 'boolean'])) {
-            $query->where($property, (bool)$value);
+            $query->where($property, (bool) $value);
         } elseif (is_numeric($value) && ! $model->hasCast($property, ['string'])) {
             $query->where($property, $value);
         } else {
@@ -220,7 +220,7 @@ class HttpFilter
             return true;
         }
 
-        if ($this->sorts->search('-' . $property, true) !== false) {
+        if ($this->sorts->search('-'.$property, true) !== false) {
             return true;
         }
 
@@ -235,7 +235,7 @@ class HttpFilter
     public function revertSort(string $property): string
     {
         return $this->getSort($property) === 'asc'
-            ? '-' . $property
+            ? '-'.$property
             : $property;
     }
 
@@ -270,6 +270,6 @@ class HttpFilter
     private function isDate(Model $model, string $property): bool
     {
         return $model->hasCast($property, ['date', 'datetime', 'immutable_date', 'immutable_datetime'])
-            || in_array($property, [$model->getCreatedAtColumn(),$model->getUpdatedAtColumn()], true);
+            || in_array($property, [$model->getCreatedAtColumn(), $model->getUpdatedAtColumn()], true);
     }
 }

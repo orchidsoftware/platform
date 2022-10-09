@@ -14,14 +14,14 @@ use Orchid\Tests\TestUnitCase;
  */
 class AlertTest extends TestUnitCase
 {
-    public function testHtmlSanitize():void
+    public function testHtmlSanitize(): void
     {
         Alert::info('<h1>Hello Word</h1>');
 
         self::assertEquals('&lt;h1&gt;Hello Word&lt;/h1&gt;', session('flash_notification.message'));
     }
 
-    public function testWithoutSanitize():void
+    public function testWithoutSanitize(): void
     {
         Alert::withoutEscaping()->info('<h1>Hello Word</h1>');
 

@@ -109,11 +109,11 @@ class AttachmentController extends Controller
             'disk'  => $request->get('storage'),
             'group' => $request->get('group'),
         ]);
-        
+
         if ($request->has('path')) {
             $file->path($request->get('path'));
         }
-        
+
         $model = $file->load();
 
         $model->url = $model->url();

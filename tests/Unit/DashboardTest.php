@@ -114,7 +114,7 @@ class DashboardTest extends TestUnitCase
         $this->assertEquals(Dashboard::returnNameMacroFunction($name), $name);
     }
 
-    public function testRegisterMenuElement():void
+    public function testRegisterMenuElement(): void
     {
         $dashboard = new Dashboard();
 
@@ -128,7 +128,7 @@ class DashboardTest extends TestUnitCase
         $this->assertTrue(Str::of($view)->after('Item 2')->contains('Item 1'));
     }
 
-    public function testAddMenuSubElements():void
+    public function testAddMenuSubElements(): void
     {
         $dashboard = new Dashboard();
 

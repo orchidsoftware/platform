@@ -135,7 +135,6 @@ class ModelFiltersTest extends TestUnitCase
 
         $this->assertSame($sqlApply, $shortSqlApply);
 
-
         $sqlSelection = User::filtersApplySelection(GroupNameAndEmail::class)->toSql();
         $shortSqlSelection = User::filters(GroupNameAndEmail::class)->toSql();
 

@@ -12,7 +12,8 @@ class LegendTest extends TestUnitCase
 {
     public function testCanSee(): void
     {
-        $layout = new class extends Legend {
+        $layout = new class extends Legend
+        {
             protected $target = 'target';
 
             protected function columns(): array

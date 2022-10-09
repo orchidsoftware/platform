@@ -27,7 +27,7 @@ abstract class BaseHttpEloquentFilter extends Filter
      */
     public function parameters(): ?array
     {
-        return ['filter.' . $this->column];
+        return ['filter.'.$this->column];
     }
 
     /**
@@ -35,6 +35,6 @@ abstract class BaseHttpEloquentFilter extends Filter
      */
     public function getHttpValue()
     {
-        return $this->request->input('filter.' . $this->column);
+        return $this->request->input('filter.'.$this->column);
     }
 }

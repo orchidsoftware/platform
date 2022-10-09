@@ -36,7 +36,7 @@ class ArtisanTest extends TestConsoleCase
      *
      * @dataProvider artisanOrchidMake
      */
-    public function testArtisanOrchidMake(string $name, string $command, string $path):void
+    public function testArtisanOrchidMake(string $name, string $command, string $path): void
     {
         $file = Str::random();
 

@@ -51,7 +51,6 @@ class ScreenDependencyResolver
             ? $parameter->getType()->getName()
             : null;
 
-
         if ($class === null) {
             return $httpQueryArguments->shift();
         }

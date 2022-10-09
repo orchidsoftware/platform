@@ -34,7 +34,8 @@ class CardTest extends TestUnitCase
      */
     private function getCardClass(): Cardable
     {
-        return new class implements Cardable {
+        return new class implements Cardable
+        {
             /**
              * @return string
              */

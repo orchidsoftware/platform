@@ -17,8 +17,8 @@ class BaseSelectScreen extends BaseFieldScreen
     public function query(): array
     {
         return [
-           'relationFromModelMultipleWithValue' => 1,
-       ];
+            'relationFromModelMultipleWithValue' => 1,
+        ];
     }
 
     /**

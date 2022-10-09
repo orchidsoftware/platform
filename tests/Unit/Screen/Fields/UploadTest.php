@@ -36,7 +36,6 @@ class UploadTest extends TestFieldsUnitCase
         $imagesGroup = Attachment::factory()->create(['group' => 'images']);
         $docsGroup = Attachment::factory()->create(['group' => 'docs']);
 
-
         $upload = Upload::make('file')->value([
             $docsGroup,
             $imagesGroup,

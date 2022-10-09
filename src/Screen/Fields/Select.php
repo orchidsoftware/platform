@@ -69,9 +69,6 @@ class Select extends Field implements ComplexFieldConcern
         'maximumSelectionLength',
     ];
 
-    /**
-     *
-     */
     public function __construct()
     {
         $this->addBeforeRender(function () {

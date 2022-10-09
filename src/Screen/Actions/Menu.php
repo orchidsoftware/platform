@@ -89,7 +89,7 @@ class Menu extends Link
 
                 $this
                     ->set('data-bs-toggle', 'collapse')
-                    ->set('href', '#menu-' . $slug);
+                    ->set('href', '#menu-'.$slug);
             })
             ->addBeforeRender(function () {
                 if ($this->get('active') !== null) {
@@ -106,8 +106,8 @@ class Menu extends Link
                     ->map(function ($href) {
                         return [
                             $href,
-                            $href . '?*',
-                            $href . '/*',
+                            $href.'?*',
+                            $href.'/*',
                         ];
                     })
                     ->flatten();
@@ -149,7 +149,6 @@ class Menu extends Link
      * @throws \Throwable
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
-     *
      */
     public function build(Repository $repository = null)
     {

@@ -124,7 +124,7 @@ class InputTest extends TestFieldsUnitCase
         Session::start();
 
         Session::put('_old_input', [
-            'numeric' => "1234567890123456789012345678901234567890",
+            'numeric' => '1234567890123456789012345678901234567890',
         ]);
 
         request()->setLaravelSession(session());
@@ -139,7 +139,7 @@ class InputTest extends TestFieldsUnitCase
         Session::start();
 
         Session::put('_old_input', [
-            'numeric' => "66666666666666666666",
+            'numeric' => '66666666666666666666',
         ]);
 
         request()->setLaravelSession(session());

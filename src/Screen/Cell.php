@@ -71,7 +71,7 @@ abstract class Cell
      *
      * @return self
      */
-    public function render(\Closure $closure): self
+    public function render(Closure $closure): self
     {
         $this->render = $closure;
 
