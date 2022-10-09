@@ -1,6 +1,13 @@
 name: Check & fix styling
 
-on: [push]
+on:
+  push: # (or pull requests)
+    paths:
+      - '.github/workflows/**'
+      - '**.php'
+      - 'phpunit.xml'
+      - 'composer.json'
+      - 'composer.lock'
 
 jobs:
   php-cs-fixer:
@@ -8,16 +15,27 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Run PHP CS Fixer
-        uses: docker://oskarstark/php-cs-fixer-ga
+      - name: Setup PHP 🔧
+        uses: shivammathur/setup-php@v2
         with:
-          args: --config=.php_cs.dist.php --allow-risky=yes
+          php-version: 8.1
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
+          coverage: none
+          tools: composer:v2
+        env:
+          COMPOSER_TOKEN: ${{ secrets.TOKEN }}
+
+      - name: Install Dependencies 🔧
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Run Pint
+        run: vendor/bin/pint
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Fix styling
+          commit_message: Fixed code style

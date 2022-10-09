@@ -48,6 +48,7 @@
     "require-dev": {
         "doctrine/dbal": "^2.10",
         "fakerphp/faker": "^1.9.1",
+        "laravel/pint": "^1.2",
         "mockery/mockery": "~1.0",
         "orchestra/testbench-core": "^7.0",
         "orchestra/testbench-dusk": "^7.0",
