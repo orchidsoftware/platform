@@ -199,7 +199,6 @@ class UserEditScreen extends Screen
      * @throws \Exception
      *
      * @return \Illuminate\Http\RedirectResponse
-     *
      */
     public function remove(User $user)
     {

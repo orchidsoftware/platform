@@ -16,14 +16,14 @@ class SelectTest extends TestBrowserCase
     public function testSubmittedData(): void
     {
         $assert = collect([
-            "choiceFromModel"                    => "1",
-            "choiceEmptyOptions"                 => null,
-            "choiceOptions"                      => "1",
-            "choiceAssociativeOptions"           => "red",
-            "choiceOptionsWithEmpty"             => null,
-            "choiceOptionsWithEmptyName"         => null,
-            "relationFromModel"                  => null,
-            "relationFromModelMultipleWithValue" => ["1"],
+            'choiceFromModel'                    => '1',
+            'choiceEmptyOptions'                 => null,
+            'choiceOptions'                      => '1',
+            'choiceAssociativeOptions'           => 'red',
+            'choiceOptionsWithEmpty'             => null,
+            'choiceOptionsWithEmptyName'         => null,
+            'relationFromModel'                  => null,
+            'relationFromModelMultipleWithValue' => ['1'],
         ])->toJson(JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
         $this->browse(function (Browser $browser) use ($assert) {

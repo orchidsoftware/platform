@@ -55,7 +55,7 @@ class DynamicTestScreen
      */
     public function register(string $screen, string $route = null, $middleware = 'web'): DynamicTestScreen
     {
-        Route::screen('/_test/' . ($route ?? $this->name), $screen)
+        Route::screen('/_test/'.($route ?? $this->name), $screen)
             ->middleware($middleware)
             ->name($this->name);
 
@@ -119,7 +119,7 @@ class DynamicTestScreen
     {
         $route = $this->route(array_merge(
             $this->parameters,
-            ['method' => $method,]
+            ['method' => $method]
         ));
 
         $this->from($route);

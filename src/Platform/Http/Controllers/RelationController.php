@@ -64,14 +64,14 @@ class RelationController extends Controller
      * @return mixed
      */
     private function buildersItems(
-        Model   $model,
-        string  $name,
-        string  $key,
-        string  $search = null,
-        ?array  $scope = [],
+        Model $model,
+        string $name,
+        string $key,
+        string $search = null,
+        ?array $scope = [],
         ?string $append = null,
-        ?array  $searchColumns = null,
-        ?int    $chunk = 10
+        ?array $searchColumns = null,
+        ?int $chunk = 10
     ) {
         if ($scope !== null) {
             /** @var Collection|array $model */

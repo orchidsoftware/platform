@@ -38,7 +38,8 @@ class LayoutFactory
      */
     public static function view(string $view, $data = []): View
     {
-        return new class($view, $data) extends View {
+        return new class($view, $data) extends View
+        {
         };
     }
 
@@ -49,7 +50,8 @@ class LayoutFactory
      */
     public static function component(string $component): Component
     {
-        return new class($component) extends Component {
+        return new class($component) extends Component
+        {
         };
     }
 
@@ -60,7 +62,8 @@ class LayoutFactory
      */
     public static function rows(array $fields): Rows
     {
-        return new class($fields) extends Rows {
+        return new class($fields) extends Rows
+        {
             /**
              * @var Field[]
              */
@@ -94,7 +97,8 @@ class LayoutFactory
      */
     public static function table(string $target, array $columns): Table
     {
-        return new class($target, $columns) extends Table {
+        return new class($target, $columns) extends Table
+        {
             /**
              * @var array
              */
@@ -127,7 +131,8 @@ class LayoutFactory
      */
     public static function columns(array $layouts): Columns
     {
-        return new class($layouts) extends Columns {
+        return new class($layouts) extends Columns
+        {
         };
     }
 
@@ -138,7 +143,8 @@ class LayoutFactory
      */
     public static function tabs(array $layouts): Tabs
     {
-        return new class($layouts) extends Tabs {
+        return new class($layouts) extends Tabs
+        {
         };
     }
 
@@ -152,7 +158,8 @@ class LayoutFactory
     {
         $layouts = Arr::wrap($layouts);
 
-        return new class($key, $layouts) extends Modal {
+        return new class($key, $layouts) extends Modal
+        {
         };
     }
 
@@ -163,7 +170,8 @@ class LayoutFactory
      */
     public static function blank(array $layouts): Blank
     {
-        return new class($layouts) extends Blank {
+        return new class($layouts) extends Blank
+        {
         };
     }
 
@@ -175,7 +183,8 @@ class LayoutFactory
      */
     public static function wrapper(string $template, array $layouts): Wrapper
     {
-        return new class($template, $layouts) extends Wrapper {
+        return new class($template, $layouts) extends Wrapper
+        {
         };
     }
 
@@ -186,7 +195,8 @@ class LayoutFactory
      */
     public static function accordion(array $layouts): Accordion
     {
-        return new class($layouts) extends Accordion {
+        return new class($layouts) extends Accordion
+        {
         };
     }
 
@@ -197,7 +207,8 @@ class LayoutFactory
      */
     public static function selection(array $filters): Selection
     {
-        return new class($filters) extends Selection {
+        return new class($filters) extends Selection
+        {
             /**
              * @var string[]
              */
@@ -230,7 +241,8 @@ class LayoutFactory
      */
     public static function block($layouts): Block
     {
-        return new class(Arr::wrap($layouts)) extends Block {
+        return new class(Arr::wrap($layouts)) extends Block
+        {
         };
     }
 
@@ -242,7 +254,8 @@ class LayoutFactory
      */
     public static function legend(string $target, array $columns): Legend
     {
-        return new class($target, $columns) extends Legend {
+        return new class($target, $columns) extends Legend
+        {
             /**
              * @var array
              */

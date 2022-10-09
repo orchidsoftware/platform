@@ -13,7 +13,6 @@ use Illuminate\View\Component as ViewComponent;
 class Blade
 {
     /**
-     *
      * @var array
      */
     private static array $components = [];
@@ -35,7 +34,7 @@ class Blade
      */
     public static function renderComponent(string $class, $data): ?string
     {
-        $component = static::resolveComponent($class, (array)$data);
+        $component = static::resolveComponent($class, (array) $data);
 
         if (! $component->shouldRender()) {
             return null;

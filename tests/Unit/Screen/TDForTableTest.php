@@ -60,25 +60,24 @@ class TDForTableTest extends TestUnitCase
 
         $view = TD::make('name')->width($stringWithFloat)->buildTd(new Repository(['name' => 'value']));
 
-        $this->assertStringContainsString('style="min-width:' . $stringWithFloat . 'px', $view);
+        $this->assertStringContainsString('style="min-width:'.$stringWithFloat.'px', $view);
 
         $stringWithNotOnlyNumeric = '100em';
 
         $view = TD::make('name')->width($stringWithNotOnlyNumeric)->buildTd(new Repository(['name' => 'value']));
 
-        $this->assertStringContainsString('style="min-width:' . $stringWithNotOnlyNumeric, $view);
+        $this->assertStringContainsString('style="min-width:'.$stringWithNotOnlyNumeric, $view);
     }
 
     public function testTdAlight(): void
     {
         $view = TD::make('name')->alignLeft()->buildTd(new Repository(['name' => 'value']));
-        $this->assertStringContainsString('class="text-' . TD::ALIGN_LEFT, $view);
-
+        $this->assertStringContainsString('class="text-'.TD::ALIGN_LEFT, $view);
 
         $view = TD::make('name')->alignRight()->buildTd(new Repository(['name' => 'value']));
-        $this->assertStringContainsString('class="text-' . TD::ALIGN_RIGHT, $view);
+        $this->assertStringContainsString('class="text-'.TD::ALIGN_RIGHT, $view);
 
         $view = TD::make('name')->alignCenter()->buildTd(new Repository(['name' => 'value']));
-        $this->assertStringContainsString('class="text-' . TD::ALIGN_CENTER, $view);
+        $this->assertStringContainsString('class="text-'.TD::ALIGN_CENTER, $view);
     }
 }

@@ -27,7 +27,8 @@ class TableTest extends TestUnitCase
 
     public function testCanSee(): void
     {
-        $layout = new class extends Table {
+        $layout = new class extends Table
+        {
             protected $target = 'target';
 
             protected function columns(): array
@@ -58,7 +59,8 @@ class TableTest extends TestUnitCase
 
     public function testStriped(): void
     {
-        $layout = new class extends Table {
+        $layout = new class extends Table
+        {
             protected $target = 'target';
 
             protected function columns(): array
@@ -81,7 +83,8 @@ class TableTest extends TestUnitCase
 
     public function testBordered(): void
     {
-        $layout = new class extends Table {
+        $layout = new class extends Table
+        {
             protected $target = 'target';
 
             protected function columns(): array
@@ -104,7 +107,8 @@ class TableTest extends TestUnitCase
 
     public function testHoverable(): void
     {
-        $layout = new class extends Table {
+        $layout = new class extends Table
+        {
             protected $target = 'target';
 
             protected function columns(): array
@@ -127,7 +131,8 @@ class TableTest extends TestUnitCase
 
     public function testShowTextNotFoundWhenTargetIsEmptyCollection()
     {
-        $layout = new class extends Table {
+        $layout = new class extends Table
+        {
             protected $target = 'target';
 
             protected function columns(): array
@@ -146,14 +151,15 @@ class TableTest extends TestUnitCase
 
     public function testLoopTable(): void
     {
-        $layout = new class extends Table {
+        $layout = new class extends Table
+        {
             protected $target = 'target';
 
             protected function columns(): array
             {
                 return [
                     TD::make('serial number')->render(function ($item, $loop) {
-                        return 'index:' . $loop->index;
+                        return 'index:'.$loop->index;
                     }),
                 ];
             }
@@ -166,7 +172,7 @@ class TableTest extends TestUnitCase
         ]))->render();
 
         $values->each(function ($item, $key) use ($html) {
-            $this->assertStringContainsString('index:' . $key, $html);
+            $this->assertStringContainsString('index:'.$key, $html);
         });
     }
 }

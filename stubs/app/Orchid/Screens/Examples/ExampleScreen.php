@@ -183,7 +183,7 @@ class ExampleScreen extends Screen
                     ->render(fn (Repository $model) => Str::limit($model->get('name'), 200)),
 
                 TD::make('price', 'Price')
-                    ->render(fn (Repository $model) => '$ ' . number_format($model->get('price'), 2)),
+                    ->render(fn (Repository $model) => '$ '.number_format($model->get('price'), 2)),
 
                 TD::make('created_at', 'Created'),
             ]),

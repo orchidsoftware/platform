@@ -49,7 +49,6 @@ class ExemplarServiceProvider extends ServiceProvider
 
                 $route->screen('unaccessed', UnaccessedScreen::class)->name('unaccessed');
 
-
                 // Fields
                 $route->screen('fields/base-select-screen', BaseSelectScreen::class)->name('base-select-screen');
             });

@@ -128,7 +128,6 @@ trait UserAccess
     }
 
     /**
-     *
      * Query Scope for retreiving users by a certain permission
      * The * character usage is not implemented.
      *
@@ -136,7 +135,6 @@ trait UserAccess
      * @param string                                $permitWithoutWildcard
      *
      * @return \Illuminate\Database\Eloquent\Builder
-     *
      */
     public function scopeByAccess(Builder $builder, string $permitWithoutWildcard): Builder
     {
@@ -148,7 +146,6 @@ trait UserAccess
     }
 
     /**
-     *
      * Query Scope for retreiving users by any permissions
      * The * character usage is not implemented.
      *
@@ -156,7 +153,6 @@ trait UserAccess
      * @param string|iterable                       $permitsWithoutWildcard
      *
      * @return \Illuminate\Database\Eloquent\Builder
-     *
      */
     public function scopeByAnyAccess(Builder $builder, $permitsWithoutWildcard): Builder
     {
@@ -265,7 +261,6 @@ trait UserAccess
      * @throws Exception
      *
      * @return bool
-     *
      */
     public function delete(): bool
     {

@@ -114,7 +114,6 @@ abstract class Screen extends Controller
      * @throws Throwable
      *
      * @return View
-     *
      */
     public function asyncBuild(string $method, string $slug)
     {

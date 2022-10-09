@@ -344,7 +344,7 @@ class TD extends Cell
     {
         $query = request()->collect()->put('sort', revert_sort($this->column))->toArray();
 
-        return url()->current() . '?' . http_build_query($query);
+        return url()->current().'?'.http_build_query($query);
     }
 
     /**
@@ -376,7 +376,7 @@ class TD extends Cell
         $filter = get_filter($this->column);
         if (is_array($filter)) {
             if (isset($filter['start']) || isset($filter['end'])) {
-                return ($filter['start'] ?? "") . ' - ' . ($filter['end'] ?? "");
+                return ($filter['start'] ?? '').' - '.($filter['end'] ?? '');
             }
 
             if ($this->filterOptions) {

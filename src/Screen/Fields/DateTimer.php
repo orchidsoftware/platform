@@ -405,7 +405,7 @@ class DateTimer extends Field
      */
     public function position(string $vertical = 'auto', string $horizontal = 'auto'): self
     {
-        $this->set('data-datetime-position', $vertical . ' ' . $horizontal);
+        $this->set('data-datetime-position', $vertical.' '.$horizontal);
 
         return $this;
     }

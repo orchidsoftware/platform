@@ -35,6 +35,6 @@ class Locale
     {
         $locale = $locale ?? app()->getLocale();
 
-        return in_array($locale, self::RTL) ? "rtl" : "ltr";
+        return in_array($locale, self::RTL) ? 'rtl' : 'ltr';
     }
 }

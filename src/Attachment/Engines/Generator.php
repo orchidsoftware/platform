@@ -80,7 +80,7 @@ class Generator implements Engine
     {
         return $this->path ?? date('Y/m/d', $this->time());
     }
-    
+
     /**
      * Set a custom path
      *

@@ -29,7 +29,7 @@ class BrowsingTest extends TestUnitCase
         $this->assertNull($html);
     }
 
-    public function testAttributes():void
+    public function testAttributes(): void
     {
         $attributes = [
             'allow'          => Str::random(),

@@ -343,7 +343,7 @@ class Dashboard
      *
      * @return $this
      */
-    public function registerMenuElement(string $location, \Orchid\Screen\Actions\Menu $menu): Dashboard
+    public function registerMenuElement(string $location, Menu $menu): Dashboard
     {
         if ($menu->get('sort', 0) === 0) {
             $menu->sort($this->menu->get($location)->count() + 1);
@@ -370,7 +370,7 @@ class Dashboard
                 return $current->get('sort', 0) <=> $next->get('sort', 0);
             })
             ->map(function (Menu $menu) {
-                return (string)$menu->render();
+                return (string) $menu->render();
             })
             ->implode('');
     }
@@ -380,7 +380,7 @@ class Dashboard
      *
      * @return bool
      */
-    public function isEmptyMenu(string $location):bool
+    public function isEmptyMenu(string $location): bool
     {
         return $this->menu->get($location)->isEmpty();
     }

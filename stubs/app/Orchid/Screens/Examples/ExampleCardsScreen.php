@@ -52,7 +52,6 @@ class ExampleCardsScreen extends Screen
      * @throws \Throwable
      *
      * @return array
-     *
      */
     public function layout(): iterable
     {

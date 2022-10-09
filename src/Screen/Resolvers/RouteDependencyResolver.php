@@ -58,7 +58,7 @@ class RouteDependencyResolver
 
         // We'll set the route action to be from the parameter method from the chosen
         // Screen to get the proper implicit bindings.
-        $route->uses(get_class($screen) . '@' . $method);
+        $route->uses(get_class($screen).'@'.$method);
 
         ImplicitRouteBinding::resolveForRoute($this->container, Route::current());
 

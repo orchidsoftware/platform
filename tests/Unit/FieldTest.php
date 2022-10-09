@@ -190,7 +190,6 @@ class FieldTest extends TestUnitCase
             'parent.child.grandchild' => 'testError',
         ])->render();
 
-
         $this->assertInstanceOf(View::class, $view);
         $this->assertStringContainsString('testError', $html);
         $this->assertStringContainsString('parent[child][grandchild][]', $html);
@@ -214,11 +213,11 @@ class FieldTest extends TestUnitCase
         Session::start();
 
         Session::put('_old_input', [
-            'numeric' => "3.141",
+            'numeric' => '3.141',
         ]);
 
         request()->setLaravelSession(session());
 
-        $this->assertSame("3.141", Input::make('numeric')->getOldValue());
+        $this->assertSame('3.141', Input::make('numeric')->getOldValue());
     }
 }

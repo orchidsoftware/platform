@@ -82,15 +82,15 @@ if (! function_exists('get_filter_string')) {
     function get_filter_string(string $property): ?string
     {
         $filter = get_filter($property);
-        
+
         if (is_array($filter) && (isset($filter['min']) || isset($filter['max']))) {
-            $filter = ($filter['min'] ?? '') . ' - ' . ($filter['max'] ?? '');
+            $filter = ($filter['min'] ?? '').' - '.($filter['max'] ?? '');
         } elseif (is_array($filter) && (isset($filter['start']) || isset($filter['end']))) {
-            $filter = ($filter['start'] ?? '') . ' - ' . ($filter['end'] ?? '');
+            $filter = ($filter['start'] ?? '').' - '.($filter['end'] ?? '');
         } elseif (is_array($filter)) {
             $filter = implode(', ', $filter);
         }
-        
+
         return $filter;
     }
 }

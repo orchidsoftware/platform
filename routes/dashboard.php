@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Controllers\AsyncController;
+use Orchid\Platform\Http\Controllers\AttachmentController;
 use Orchid\Platform\Http\Controllers\IndexController;
+use Orchid\Platform\Http\Controllers\RelationController;
 use Orchid\Platform\Http\Screens\NotificationScreen;
 use Orchid\Platform\Http\Screens\SearchScreen;
-use Orchid\Platform\Http\Controllers\AttachmentController;
-use Orchid\Platform\Http\Controllers\RelationController;
 use Tabuna\Breadcrumbs\Trail;
-use Illuminate\Support\Facades\Route;
 
 // Index and default...
 Route::get('/', [IndexController::class, 'index'])
@@ -49,7 +49,6 @@ Route::prefix('systems')->group(function () {
     Route::post('relation', [RelationController::class, 'view'])
         ->name('systems.relation');
 });
-
 
 if (config('platform.notifications.enabled', true)) {
     Route::screen('notifications/{id?}', NotificationScreen::class)

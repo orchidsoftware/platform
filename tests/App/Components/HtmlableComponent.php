@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Orchid\Tests\App\Components;
 
 use Illuminate\Contracts\Support\Htmlable;
@@ -17,7 +16,8 @@ class HtmlableComponent extends Component
      */
     public function render()
     {
-        return new class() implements Htmlable {
+        return new class() implements Htmlable
+        {
             public function toHtml()
             {
                 return 'Hello word';

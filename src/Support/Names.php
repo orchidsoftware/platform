@@ -18,7 +18,7 @@ class Names
     public static function getPageNameClass(string $prefix = 'page', string $separator = '-'): string
     {
         return Route::currentRouteName()
-            ? (string) Str::of($prefix . $separator . Route::currentRouteName())->replace('.', $separator)->slug()
+            ? (string) Str::of($prefix.$separator.Route::currentRouteName())->replace('.', $separator)->slug()
             : $prefix;
     }
 }

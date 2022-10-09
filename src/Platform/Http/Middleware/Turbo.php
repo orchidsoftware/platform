@@ -35,7 +35,7 @@ class Turbo
     {
         // Fallback header if dd/die/etc. functions are encountered during code execution
         if ($this->turboVisit($request) && ! headers_sent()) {
-            header($request->getProtocolVersion() . ' 303 See Other', true, 303);
+            header($request->getProtocolVersion().' 303 See Other', true, 303);
         }
 
         $response = $next($request);

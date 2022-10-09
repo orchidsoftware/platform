@@ -99,7 +99,7 @@ class AttachmentTest extends TestUnitCase
 
         $this->assertTrue(Storage::disk($this->disk)->exists($upload->physicalPath()));
 
-        $path = $this->path . "/" . $upload->name.'.xml';
+        $path = $this->path.'/'.$upload->name.'.xml';
 
         $this->assertStringContainsString($path, $upload->physicalPath());
         $this->assertStringContainsString($path, $upload->url());
@@ -232,7 +232,8 @@ class AttachmentTest extends TestUnitCase
         $file = UploadedFile::fake()->create('relations');
         $upload = (new File($file, $this->disk))->load();
 
-        $model = new class extends Model {
+        $model = new class extends Model
+        {
             use Attachable;
         };
 

@@ -15,9 +15,9 @@ class RouteResolveScreenTest extends TestFeatureCase
         Route::screen('route-resolve/{resolve}', RouteResolveScreen::class)->name('route-resolve');
 
         $this->post(route('route-resolve', [
-                'method'  => 'resolveModel',
-                'resolve' => 'test',
-            ]))
+            'method'  => 'resolveModel',
+            'resolve' => 'test',
+        ]))
             ->assertOk()
             ->assertDontSee('test')
             ->assertSee('Hello Word');

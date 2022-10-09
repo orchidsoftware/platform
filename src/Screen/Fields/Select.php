@@ -69,13 +69,10 @@ class Select extends Field implements ComplexFieldConcern
         'maximumSelectionLength',
     ];
 
-    /**
-     *
-     */
     public function __construct()
     {
         $this->addBeforeRender(function () {
-            $isOptionList = array_is_list( (array) $this->get('options', []));
+            $isOptionList = array_is_list((array) $this->get('options', []));
             $this->set('isOptionList', $isOptionList);
         });
     }
