@@ -46,7 +46,7 @@
         "watson/active": "^6.0"
     },
     "require-dev": {
-        "doctrine/dbal": "^2.10",
+        "doctrine/dbal": "^2.10 || ^3.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.2",
         "mockery/mockery": "~1.0",
