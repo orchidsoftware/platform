@@ -27,9 +27,7 @@ export default class extends ApplicationController {
 
     render() {
         let params = new FormData();
-        let targets = this.extraVars.concat(
-            this.targets.filter(item => this.extraVars.indexOf(item) < 0)
-        );
+        let targets = this.extraVars.concat(this.targets.filter(item => this.extraVars.indexOf(item) < 0));
 
         targets.forEach(name => document.querySelectorAll(`[name="${name}"]`)
             .forEach((field) => {
