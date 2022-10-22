@@ -1,5 +1,6 @@
 <div data-controller="listener"
      data-listener-targets="{{$targets}}"
+     data-listener-extra-vars="{{$extraVars}}"
      data-listener-slug="{{$templateSlug}}"
      data-listener-async-enable="{{$asyncEnable}}"
      data-listener-async-route="{{$asyncRoute}}"

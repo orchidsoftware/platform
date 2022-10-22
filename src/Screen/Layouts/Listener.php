@@ -14,6 +14,13 @@ abstract class Listener extends Layout
     protected $template = 'platform::layouts.listener';
 
     /**
+     * List of field names for which values will be joined with targets' upon trigger.
+     *
+     * @var string[]
+     */
+    protected $extraVars = [];
+
+    /**
      * List of field names for which values will be listened.
      *
      * @var string[]
@@ -60,6 +67,10 @@ abstract class Listener extends Layout
 
         $this->query = $repository;
         $this->layouts = $this->layouts();
+
+        $this->variables['extraVars'] = collect($this->extraVars)->map(function ($target) {
+            return Builder::convertDotToArray($target);
+        })->toJson();
         $this->variables['targets'] = collect($this->targets)->map(function ($target) {
             return Builder::convertDotToArray($target);
         })->toJson();
