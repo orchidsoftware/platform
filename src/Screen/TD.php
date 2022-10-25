@@ -354,7 +354,7 @@ class TD extends Cell
      */
     public static function isShowVisibleColumns($columns): bool
     {
-        return collect($columns)->filter(fn($column) => $column->isAllowUserHidden())->isNotEmpty();
+        return collect($columns)->filter(fn ($column) => $column->isAllowUserHidden())->isNotEmpty();
     }
 
     /**
@@ -378,7 +378,7 @@ class TD extends Cell
             }
 
             if ($this->filterOptions) {
-                $filter = array_map(fn($val) => $this->filterOptions[$val] ?? $val, $filter);
+                $filter = array_map(fn ($val) => $this->filterOptions[$val] ?? $val, $filter);
             }
 
             return implode(', ', $filter);

@@ -106,8 +106,8 @@ abstract class Layout implements JsonSerializable
         }
 
         $build = collect($this->layouts)
-            ->map(fn($layouts) => Arr::wrap($layouts))
-            ->map(fn(iterable $layouts, string $key) => $this->buildChild($layouts, $key, $repository))
+            ->map(fn ($layouts) => Arr::wrap($layouts))
+            ->map(fn (iterable $layouts, string $key) => $this->buildChild($layouts, $key, $repository))
             ->collapse()
             ->all();
 
@@ -152,8 +152,8 @@ abstract class Layout implements JsonSerializable
     {
         return collect($layouts)
             ->flatten()
-            ->map(fn($layout) => is_object($layout) ? $layout : resolve($layout))
-            ->filter(fn() => $this->isSee())
+            ->map(fn ($layout) => is_object($layout) ? $layout : resolve($layout))
+            ->filter(fn () => $this->isSee())
             ->reduce(function ($build, self $layout) use ($key, $repository) {
                 $build[$key][] = $layout->build($repository);
 
@@ -197,7 +197,7 @@ abstract class Layout implements JsonSerializable
                 return $layout->findBySlug($slug);
             })
             ->filter()
-            ->filter(static fn($layout) => $layout->getSlug() === $slug)
+            ->filter(static fn ($layout) => $layout->getSlug() === $slug)
             ->first();
     }
 

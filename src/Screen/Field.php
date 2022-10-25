@@ -132,7 +132,7 @@ class Field implements Fieldable, Htmlable
             return $this->macroCall($name, $arguments);
         }
 
-        $arguments = collect($arguments)->map(static fn($argument) => $argument instanceof Closure ? $argument() : $argument);
+        $arguments = collect($arguments)->map(static fn ($argument) => $argument instanceof Closure ? $argument() : $argument);
 
         if (method_exists($this, $name)) {
             $this->$name($arguments);
@@ -172,7 +172,7 @@ class Field implements Fieldable, Htmlable
     protected function checkRequired(): self
     {
         collect($this->required)
-            ->filter(fn($attribute) => ! array_key_exists($attribute, $this->attributes))
+            ->filter(fn ($attribute) => ! array_key_exists($attribute, $this->attributes))
             ->each(function ($attribute) {
                 throw new FieldRequiredAttributeException($attribute);
             });
@@ -250,7 +250,7 @@ class Field implements Fieldable, Htmlable
         $allow = array_merge($this->universalAttributes, $this->inlineAttributes);
 
         $attributes = collect($this->getAttributes())
-            ->filter(fn($value, $attribute) => Str::is($allow, $attribute))
+            ->filter(fn ($value, $attribute) => Str::is($allow, $attribute))
             ->toArray();
 
         return (new ComponentAttributeBag())
@@ -262,7 +262,7 @@ class Field implements Fieldable, Htmlable
      */
     protected function getAllowDataAttributes(): ComponentAttributeBag
     {
-        return $this->getAllowAttributes()->filter(fn($value, $key) => Str::startsWith($key, 'data-'));
+        return $this->getAllowAttributes()->filter(fn ($value, $key) => Str::startsWith($key, 'data-'));
     }
 
     /**
@@ -427,7 +427,7 @@ class Field implements Fieldable, Htmlable
      */
     public function withoutFormType(): self
     {
-        $this->typeForm = static fn(array $attributes) => $attributes['slot'];
+        $this->typeForm = static fn (array $attributes) => $attributes['slot'];
 
         return $this;
     }

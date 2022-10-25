@@ -47,7 +47,7 @@ class HttpFilter
     {
         $this->request = $request ?? request();
 
-        $this->filters = $this->request->collect('filter')->map(fn($item) => $this->parseHttpValue($item));
+        $this->filters = $this->request->collect('filter')->map(fn ($item) => $this->parseHttpValue($item));
 
         $this->sorts = collect($this->request->get('sort', []));
     }
@@ -156,11 +156,11 @@ class HttpFilter
         $model = $query->getModel();
 
         if ($this->isDate($model, $property)) {
-            $query->when($value['start'] ?? null, fn(Builder $query) => $query->whereDate($property, '>=', $value['start']));
-            $query->when($value['end'] ?? null, fn(Builder $query) => $query->whereDate($property, '<=', $value['end']));
+            $query->when($value['start'] ?? null, fn (Builder $query) => $query->whereDate($property, '>=', $value['start']));
+            $query->when($value['end'] ?? null, fn (Builder $query) => $query->whereDate($property, '<=', $value['end']));
         } elseif (is_array($value) && (isset($value['min']) || isset($value['max']))) {
-            $query->when($value['min'] ?? null, fn(Builder $query) => $query->where($property, '>=', $value['min']));
-            $query->when($value['max'] ?? null, fn(Builder $query) => $query->where($property, '<=', $value['max']));
+            $query->when($value['min'] ?? null, fn (Builder $query) => $query->where($property, '>=', $value['min']));
+            $query->when($value['max'] ?? null, fn (Builder $query) => $query->where($property, '<=', $value['max']));
         } elseif (is_array($value)) {
             $query->whereIn($property, $value);
         } elseif ($model->hasCast($property, ['bool', 'boolean'])) {

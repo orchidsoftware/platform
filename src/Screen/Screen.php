@@ -126,8 +126,8 @@ abstract class Screen extends Controller
 
         /** @var Layout $layout */
         $layout = collect($this->layout())
-            ->map(fn($layout) => is_object($layout) ? $layout : resolve($layout))
-            ->map(fn(Layout $layout) => $layout->findBySlug($slug))
+            ->map(fn ($layout) => is_object($layout) ? $layout : resolve($layout))
+            ->map(fn (Layout $layout) => $layout->findBySlug($slug))
             ->filter()
             ->whenEmpty(function () use ($slug) {
                 abort(404, "Async template: {$slug} not found");
@@ -181,7 +181,7 @@ abstract class Screen extends Controller
         $reflections = (new \ReflectionClass($this))->getProperties(\ReflectionProperty::IS_PUBLIC);
 
         $publicProperty = collect($reflections)
-            ->map(fn(\ReflectionProperty $property) => $property->getName());
+            ->map(fn (\ReflectionProperty $property) => $property->getName());
 
         collect($query)->only($publicProperty)->each(function ($value, $key) {
             $this->$key = $value;
@@ -319,14 +319,14 @@ abstract class Screen extends Controller
             ->getMethods(\ReflectionMethod::IS_PUBLIC);
 
         return collect($class)
-            ->mapWithKeys(fn(\ReflectionMethod $method) => [$method->name => $method])
+            ->mapWithKeys(fn (\ReflectionMethod $method) => [$method->name => $method])
             ->except(get_class_methods(Screen::class))
             ->except(['query'])
             /*
              * Route filtering requires at least one element to be present.
              * We set __invoke by default, since it must be public.
              */
-            ->whenEmpty(fn() => collect('__invoke'))
+            ->whenEmpty(fn () => collect('__invoke'))
             ->keys();
     }
 }

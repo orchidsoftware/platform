@@ -158,7 +158,7 @@ class TableTest extends TestUnitCase
             protected function columns(): array
             {
                 return [
-                    TD::make('serial number')->render(fn($item, $loop) => 'index:'.$loop->index),
+                    TD::make('serial number')->render(fn ($item, $loop) => 'index:'.$loop->index),
                 ];
             }
         };

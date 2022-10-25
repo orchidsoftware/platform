@@ -18,7 +18,7 @@ class TurboTest extends TestUnitCase
             'Accept' => 'text/html;',
         ]);
         $response = new RedirectResponse('/destination');
-        $next = fn() => $response;
+        $next = fn () => $response;
 
         $result = (new Turbo())->handle($request, $next);
 
@@ -33,7 +33,7 @@ class TurboTest extends TestUnitCase
             'Accept' => sprintf('%s, text/html, application/xhtml+xml', Turbo::TURBO_STREAM_FORMAT),
         ]);
         $response = new RedirectResponse('/destination');
-        $next = fn() => $response;
+        $next = fn () => $response;
 
         $result = (new Turbo())->handle($request, $next);
 

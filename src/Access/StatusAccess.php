@@ -17,7 +17,7 @@ trait StatusAccess
         $permissions = $this->permissions ?? [];
 
         return Dashboard::getPermission()
-            ->transform(static fn($group) => collect($group)->sortBy('description')
+            ->transform(static fn ($group) => collect($group)->sortBy('description')
                 ->map(static function ($value) use ($permissions) {
                     $slug = $value['slug'];
                     $value['active'] = array_key_exists($slug, $permissions) && (bool) $permissions[$slug];

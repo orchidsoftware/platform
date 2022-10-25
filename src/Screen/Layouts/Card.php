@@ -56,6 +56,6 @@ class Card extends Content
     private function buildCommandBar(): array
     {
         return collect($this->commandBar)
-            ->map(fn(Actionable $command) => $command->build($this->query))->all();
+            ->map(fn (Actionable $command) => $command->build($this->query))->all();
     }
 }

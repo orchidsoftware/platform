@@ -14,7 +14,7 @@ class FieldMarcoTest extends TestUnitCase
      */
     public function testMacroField($name = 'customMarcoName'): void
     {
-        Field::macro('returnNameMacroFunction', fn() => /** @var Field $this */
+        Field::macro('returnNameMacroFunction', fn () => /** @var Field $this */
 $this->get('name'));
 
         $field = Field::make($name);
@@ -24,7 +24,7 @@ $this->get('name'));
 
     public function testMacroFieldSelfReturn(): void
     {
-        Field::macro('retrunSelf', fn() => /** @var Field $this */
+        Field::macro('retrunSelf', fn () => /** @var Field $this */
 $this);
 
         $field = Field::make();

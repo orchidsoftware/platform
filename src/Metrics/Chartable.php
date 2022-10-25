@@ -24,7 +24,7 @@ trait Chartable
             ->groupBy($groupColumn)
             ->orderBy('value', 'desc')
             ->get()
-            ->map(fn(Model $model) => $model->forceFill([
+            ->map(fn (Model $model) => $model->forceFill([
                 'label' => (string) $model->label,
                 'value' => (int) $model->value,
             ]));

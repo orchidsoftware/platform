@@ -34,7 +34,7 @@ class TotalTable extends Table
             TD::make('total')
                 ->align(TD::ALIGN_RIGHT)
                 ->colspan(2)
-                ->render(fn() => 'Total:'),
+                ->render(fn () => 'Total:'),
 
             TD::make('total_price')
                 ->align(TD::ALIGN_RIGHT),

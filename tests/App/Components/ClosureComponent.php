@@ -30,6 +30,6 @@ class ClosureComponent extends Component
      */
     public function render()
     {
-        return static fn(array $data) => 'Hello '.$data['name'];
+        return static fn (array $data) => 'Hello '.$data['name'];
     }
 }

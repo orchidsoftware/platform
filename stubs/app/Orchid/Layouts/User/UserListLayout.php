@@ -31,13 +31,13 @@ class UserListLayout extends Table
                 ->sort()
                 ->cantHide()
                 ->filter(Input::make())
-                ->render(fn(User $user) => new Persona($user->presenter())),
+                ->render(fn (User $user) => new Persona($user->presenter())),
 
             TD::make('email', __('Email'))
                 ->sort()
                 ->cantHide()
                 ->filter(Input::make())
-                ->render(fn(User $user) => ModalToggle::make($user->email)
+                ->render(fn (User $user) => ModalToggle::make($user->email)
                     ->modal('asyncEditUserModal')
                     ->modalTitle($user->presenter()->title())
                     ->method('saveUser')
@@ -47,12 +47,12 @@ class UserListLayout extends Table
 
             TD::make('updated_at', __('Last edit'))
                 ->sort()
-                ->render(fn(User $user) => $user->updated_at->toDateTimeString()),
+                ->render(fn (User $user) => $user->updated_at->toDateTimeString()),
 
             TD::make(__('Actions'))
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')
-                ->render(fn(User $user) => DropDown::make()
+                ->render(fn (User $user) => DropDown::make()
                     ->icon('options-vertical')
                     ->list([
 

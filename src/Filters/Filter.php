@@ -65,7 +65,7 @@ abstract class Filter
     {
         $when = empty($this->parameters()) || $this->request->hasAny($this->parameters());
 
-        return $builder->when($when, fn(Builder $builder) => $this->run($builder));
+        return $builder->when($when, fn (Builder $builder) => $this->run($builder));
     }
 
     /**
@@ -112,7 +112,7 @@ abstract class Filter
      */
     public function render(): string
     {
-        return collect($this->display())->reduce(static fn($html, Field $field) => $html.$field->form('filters')->render());
+        return collect($this->display())->reduce(static fn ($html, Field $field) => $html.$field->form('filters')->render());
     }
 
     /**

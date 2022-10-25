@@ -52,7 +52,7 @@ class SearchScreen extends Screen
         $results = $model->presenter()->searchQuery($query)->paginate();
 
         $results->getCollection()
-            ->transform(static fn(Model $model) => $model->presenter());
+            ->transform(static fn (Model $model) => $model->presenter());
 
         return [
             'query'   => $query,
@@ -125,7 +125,7 @@ class SearchScreen extends Screen
                     ->paginate($presenter->perSearchShow());
 
                 $result->getCollection()
-                    ->transform(static fn(Model $model) => $model->presenter());
+                    ->transform(static fn (Model $model) => $model->presenter());
 
                 if ($result->isEmpty()) {
                     return;
@@ -154,7 +154,7 @@ class SearchScreen extends Screen
         $class = get_class($searchModels->first());
         $type = session()->get(self::SESSION_NAME, $class);
 
-        $model = $searchModels->filter(static fn($model) => $model instanceof $type)->first();
+        $model = $searchModels->filter(static fn ($model) => $model instanceof $type)->first();
 
         abort_if($model === null, 404, 'Required search type not found');
 

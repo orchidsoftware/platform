@@ -75,11 +75,11 @@ trait UserAccess
             $this->cachePermissions = $this->roles()
                 ->pluck('permissions')
                 ->prepend($this->permissions)
-                ->filter(fn($permission) => is_array($permission));
+                ->filter(fn ($permission) => is_array($permission));
         }
 
         return $this->cachePermissions
-            ->filter(fn(array $permissions) => $this->filterWildcardAccess($permissions, $permit))
+            ->filter(fn (array $permissions) => $this->filterWildcardAccess($permissions, $permit))
             ->isNotEmpty();
     }
 
@@ -95,7 +95,7 @@ trait UserAccess
     protected function filterWildcardAccess(array $permissions, string $permit): bool
     {
         return collect($permissions)
-            ->filter(fn(bool $value, $permission) => Str::is($permit, $permission) && $value)
+            ->filter(fn (bool $value, $permission) => Str::is($permit, $permission) && $value)
             ->isNotEmpty();
     }
 
@@ -114,8 +114,8 @@ trait UserAccess
         }
 
         return collect($permissions)
-            ->map(fn(string $permit) => $this->hasAccess($permit, $cache))
-            ->filter(fn(bool $result) => $result === true)
+            ->map(fn (string $permit) => $this->hasAccess($permit, $cache))
+            ->filter(fn (bool $result) => $result === true)
             ->isNotEmpty();
     }
 

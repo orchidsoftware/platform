@@ -80,7 +80,7 @@ class TimeZone extends Field
     public function listIdentifiers(int $time = DateTimeZone::ALL): self
     {
         $timeZone = collect(DateTimeZone::listIdentifiers($time))
-            ->mapWithKeys(static fn($timezone) => [$timezone => $timezone])->toArray();
+            ->mapWithKeys(static fn ($timezone) => [$timezone => $timezone])->toArray();
 
         $this->set('options', $timeZone);
 

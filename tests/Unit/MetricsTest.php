@@ -38,7 +38,7 @@ class MetricsTest extends TestUnitCase
             ],
         ], $group->toChart());
 
-        $namedLabel = $group->toChart(static fn(bool $title) => $title ? 'Enabled' : 'Disabled');
+        $namedLabel = $group->toChart(static fn (bool $title) => $title ? 'Enabled' : 'Disabled');
 
         $this->assertSame([
             [

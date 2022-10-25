@@ -236,7 +236,7 @@ abstract class Chart extends Layout
         }
 
         $labels = collect($repository->getContent($this->target))
-                ->map(fn($item) => $item['labels'] ?? [])
+                ->map(fn ($item) => $item['labels'] ?? [])
                 ->flatten()
                 ->unique()
                 ->toJson(JSON_NUMERIC_CHECK);

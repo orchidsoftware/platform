@@ -106,9 +106,9 @@ abstract class Cell
         $paramsKeys = Arr::isAssoc($params) ? array_keys($params) : array_values($params);
 
         return collect($parameters)
-            ->filter(fn(\ReflectionParameter $parameter) => ! $parameter->isOptional())
-            ->whenEmpty(fn() => collect($parameters))
-            ->map(fn(\ReflectionParameter $parameter) => $parameter->getName())
+            ->filter(fn (\ReflectionParameter $parameter) => ! $parameter->isOptional())
+            ->whenEmpty(fn () => collect($parameters))
+            ->map(fn (\ReflectionParameter $parameter) => $parameter->getName())
             ->diff($paramsKeys)
             ->last();
     }
@@ -150,7 +150,7 @@ abstract class Cell
      */
     public function component(string $component, array $params = []): self
     {
-        return $this->render(fn($value) => $this->renderComponent($component, $value, $params));
+        return $this->render(fn ($value) => $this->renderComponent($component, $value, $params));
     }
 
     /**
@@ -165,7 +165,7 @@ abstract class Cell
      */
     public function asComponent(string $component, array $params = []): self
     {
-        return $this->render(fn($value) => $this->renderComponent($component, $value->getContent($this->name), $params));
+        return $this->render(fn ($value) => $this->renderComponent($component, $value->getContent($this->name), $params));
     }
 
     /**
