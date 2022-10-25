@@ -27,10 +27,8 @@ class RoleListLayout extends Table
                 ->sort()
                 ->cantHide()
                 ->filter(Input::make())
-                ->render(function (Role $role) {
-                    return Link::make($role->name)
-                        ->route('platform.systems.roles.edit', $role->id);
-                }),
+                ->render(fn (Role $role) => Link::make($role->name)
+                    ->route('platform.systems.roles.edit', $role->id)),
 
             TD::make('slug', __('Slug'))
                 ->sort()
@@ -39,9 +37,7 @@ class RoleListLayout extends Table
 
             TD::make('created_at', __('Created'))
                 ->sort()
-                ->render(function (Role $role) {
-                    return $role->created_at->toDateTimeString();
-                }),
+                ->render(fn (Role $role) => $role->created_at->toDateTimeString()),
         ];
     }
 }

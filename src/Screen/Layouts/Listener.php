@@ -68,12 +68,8 @@ abstract class Listener extends Layout
         $this->query = $repository;
         $this->layouts = $this->layouts();
 
-        $this->variables['extraVars'] = collect($this->extraVars)->map(function ($target) {
-            return Builder::convertDotToArray($target);
-        })->toJson();
-        $this->variables['targets'] = collect($this->targets)->map(function ($target) {
-            return Builder::convertDotToArray($target);
-        })->toJson();
+        $this->variables['targets'] = collect($this->targets)->map(fn ($target) => Builder::convertDotToArray($target))->toJson();
+        $this->variables['extraVars'] = collect($this->extraVars)->map(fn ($extraVars) => Builder::convertDotToArray($extraVars))->toJson();
 
         return $this->buildAsDeep($repository);
     }

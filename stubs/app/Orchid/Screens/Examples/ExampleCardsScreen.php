@@ -60,21 +60,15 @@ class ExampleCardsScreen extends Screen
                 Sight::make('id')->popover('Identifier, a symbol which uniquely identifies an object or record'),
                 Sight::make('name'),
                 Sight::make('email'),
-                Sight::make('email_verified_at', 'Email Verified')->render(function (User $user) {
-                    return $user->email_verified_at === null
-                        ? '<i class="text-danger">●</i> False'
-                        : '<i class="text-success">●</i> True';
-                }),
+                Sight::make('email_verified_at', 'Email Verified')->render(fn (User $user) => $user->email_verified_at === null
+                    ? '<i class="text-danger">●</i> False'
+                    : '<i class="text-success">●</i> True'),
                 Sight::make('created_at', 'Created'),
                 Sight::make('updated_at', 'Updated'),
-                Sight::make('Simple Text')->render(function () {
-                    return 'This is a wider card with supporting text below as a natural lead-in to additional content.';
-                }),
-                Sight::make('Action')->render(function () {
-                    return Button::make('Show toast')
-                        ->type(Color::DEFAULT())
-                        ->method('showToast');
-                }),
+                Sight::make('Simple Text')->render(fn () => 'This is a wider card with supporting text below as a natural lead-in to additional content.'),
+                Sight::make('Action')->render(fn () => Button::make('Show toast')
+                    ->type(Color::DEFAULT())
+                    ->method('showToast')),
             ])->title('User'),
         ];
     }

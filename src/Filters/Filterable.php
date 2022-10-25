@@ -21,12 +21,8 @@ trait Filterable
     public function scopeFiltersApply(Builder $query, iterable $filters = []): Builder
     {
         return collect($filters)
-            ->map(function ($filter) {
-                return is_object($filter) ? $filter : resolve($filter);
-            })
-            ->reduce(function (Builder $query, Filter $filter) {
-                return $filter->filter($query);
-            }, $query);
+            ->map(fn ($filter) => is_object($filter) ? $filter : resolve($filter))
+            ->reduce(fn (Builder $query, Filter $filter) => $filter->filter($query), $query);
     }
 
     /**

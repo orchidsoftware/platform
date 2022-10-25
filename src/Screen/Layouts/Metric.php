@@ -49,9 +49,7 @@ class Metric extends Layout
             return;
         }
 
-        $metrics = collect($this->labels)->map(function (string $value) use ($repository) {
-            return $repository->getContent($value, []);
-        });
+        $metrics = collect($this->labels)->map(fn (string $value) => $repository->getContent($value, []));
 
         return view($this->template, [
             'title'   => $this->title,

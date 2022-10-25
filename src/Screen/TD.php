@@ -235,23 +235,13 @@ class TD extends Cell
      */
     protected function detectConstantFilter(string $filter): Field
     {
-        switch ($filter) {
-            case self::FILTER_DATE_RANGE:
-                $input = DateRange::make();
-                break;
-            case self::FILTER_NUMBER_RANGE:
-                $input = NumberRange::make();
-                break;
-            case self::FILTER_SELECT:
-                $input = Select::make()->options($this->filterOptions)->multiple();
-                break;
-            case self::FILTER_DATE:
-                $input = DateTimer::make()->inline()->format('Y-m-d');
-                break;
-            default:
-                $input = Input::make()->type($filter);
-                break;
-        }
+        $input = match ($filter) {
+            self::FILTER_DATE_RANGE   => DateRange::make(),
+            self::FILTER_NUMBER_RANGE => NumberRange::make(),
+            self::FILTER_SELECT       => Select::make()->options($this->filterOptions)->multiple(),
+            self::FILTER_DATE         => DateTimer::make()->inline()->format('Y-m-d'),
+            default                   => Input::make()->type($filter),
+        };
 
         return $input;
     }
@@ -354,9 +344,7 @@ class TD extends Cell
      */
     public static function isShowVisibleColumns($columns): bool
     {
-        return collect($columns)->filter(function ($column) {
-            return $column->isAllowUserHidden();
-        })->isNotEmpty();
+        return collect($columns)->filter(fn ($column) => $column->isAllowUserHidden())->isNotEmpty();
     }
 
     /**
@@ -380,9 +368,7 @@ class TD extends Cell
             }
 
             if ($this->filterOptions) {
-                $filter = array_map(function ($val) {
-                    return $this->filterOptions[$val] ?? $val;
-                }, $filter);
+                $filter = array_map(fn ($val) => $this->filterOptions[$val] ?? $val, $filter);
             }
 
             return implode(', ', $filter);

@@ -67,9 +67,7 @@ class Init
             'memory_limit',
         ];
 
-        $ini = array_map(function ($item) {
-            return self::toBytes(ini_get($item));
-        }, $ini);
+        $ini = array_map(fn ($item) => self::toBytes(ini_get($item)), $ini);
 
         $value = min($ini);
 

@@ -98,18 +98,14 @@ class Menu extends Link
 
                 $active = collect([])
                     ->merge($this->get('list'))
-                    ->map(function (Menu $menu) {
-                        return $menu->get('href');
-                    })
+                    ->map(fn (Menu $menu) => $menu->get('href'))
                     ->push($this->get('href'))
                     ->filter()
-                    ->map(function ($href) {
-                        return [
-                            $href,
-                            $href.'?*',
-                            $href.'/*',
-                        ];
-                    })
+                    ->map(fn ($href) => [
+                        $href,
+                        $href.'?*',
+                        $href.'/*',
+                    ])
                     ->flatten();
 
                 $this->set('active', $active->toArray());
@@ -136,9 +132,7 @@ class Menu extends Link
         $subMenu = collect()
             ->merge($default)
             ->merge($list)
-            ->sort(function (Menu $menu) {
-                return $menu->get('sort', 0);
-            });
+            ->sort(fn (Menu $menu) => $menu->get('sort', 0));
 
         return $this->set('list', $subMenu);
     }
