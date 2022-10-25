@@ -54,9 +54,7 @@ abstract class Legend extends Layout
             return;
         }
 
-        $columns = collect($this->columns())->filter(static function (Sight $sight) {
-            return $sight->isSee();
-        });
+        $columns = collect($this->columns())->filter(static fn (Sight $sight) => $sight->isSee());
 
         $repository = $this->target
             ? $repository->getContent($this->target)

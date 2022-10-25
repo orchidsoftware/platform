@@ -57,9 +57,7 @@ class Action extends Field implements Actionable
     {
         $reflectionClass = new \ReflectionClass(Color::class);
 
-        $colors = array_map(static function (string $color) {
-            return 'btn-'.$color;
-        }, $reflectionClass->getConstants());
+        $colors = array_map(static fn (string $color) => 'btn-'.$color, $reflectionClass->getConstants());
 
         $class = str_replace($colors, '', (string) $this->get('class'));
 

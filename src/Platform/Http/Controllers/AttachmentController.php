@@ -43,9 +43,7 @@ class AttachmentController extends Controller
     {
         $attachment = collect($request->allFiles())
             ->flatten()
-            ->map(function (UploadedFile $file) use ($request) {
-                return $this->createModel($file, $request);
-            });
+            ->map(fn (UploadedFile $file) => $this->createModel($file, $request));
 
         $response = $attachment->count() > 1 ? $attachment : $attachment->first();
 

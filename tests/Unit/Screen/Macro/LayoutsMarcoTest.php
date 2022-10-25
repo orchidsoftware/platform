@@ -15,9 +15,7 @@ class LayoutsMarcoTest extends TestUnitCase
      */
     public function testMacroLayout($name = 'customMarcoName'): void
     {
-        LayoutFactory::macro('returnNameMacroFunction', function (string $test) {
-            return $test;
-        });
+        LayoutFactory::macro('returnNameMacroFunction', fn (string $test) => $test);
 
         $this->assertEquals(LayoutFactory::returnNameMacroFunction($name), $name);
     }
@@ -27,9 +25,7 @@ class LayoutsMarcoTest extends TestUnitCase
      */
     public function testMacroLayoutFacade($name = 'customMarcoNameFacade'): void
     {
-        LayoutFactory::macro('returnNameMacroFunctionFacade', function (string $test) {
-            return $test;
-        });
+        LayoutFactory::macro('returnNameMacroFunctionFacade', fn (string $test) => $test);
 
         $this->assertEquals(Layout::returnNameMacroFunctionFacade($name), $name);
     }

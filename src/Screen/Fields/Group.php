@@ -129,9 +129,7 @@ class Group implements Fieldable, Groupable
      */
     public function form(string $name): self
     {
-        $group = array_map(function ($field) use ($name) {
-            return $field->form($name);
-        }, $this->getGroup());
+        $group = array_map(fn ($field) => $field->form($name), $this->getGroup());
 
         return $this->setGroup($group);
     }

@@ -27,9 +27,7 @@ class TabMenuExample extends TabMenu
             Menu::make('Example screen')
                 ->icon('monitor')
                 ->route('platform.example')
-                ->badge(function () {
-                    return 6;
-                }),
+                ->badge(fn () => 6),
         ];
     }
 }

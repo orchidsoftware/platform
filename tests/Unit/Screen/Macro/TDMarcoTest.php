@@ -14,10 +14,8 @@ class TDMarcoTest extends TestUnitCase
      */
     public function testMacroTD($name = 'customMarcoName'): void
     {
-        TD::macro('returnNameMacroFunction', function () {
-            /* @var TD $this */
-            return $this->name;
-        });
+        TD::macro('returnNameMacroFunction', fn () => /* @var TD $this */
+$this->name);
 
         $td = new TD($name);
 
