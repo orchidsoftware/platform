@@ -235,23 +235,13 @@ class TD extends Cell
      */
     protected function detectConstantFilter(string $filter): Field
     {
-        switch ($filter) {
-            case self::FILTER_DATE_RANGE:
-                $input = DateRange::make();
-                break;
-            case self::FILTER_NUMBER_RANGE:
-                $input = NumberRange::make();
-                break;
-            case self::FILTER_SELECT:
-                $input = Select::make()->options($this->filterOptions)->multiple();
-                break;
-            case self::FILTER_DATE:
-                $input = DateTimer::make()->inline()->format('Y-m-d');
-                break;
-            default:
-                $input = Input::make()->type($filter);
-                break;
-        }
+        $input = match ($filter) {
+            self::FILTER_DATE_RANGE => DateRange::make(),
+            self::FILTER_NUMBER_RANGE => NumberRange::make(),
+            self::FILTER_SELECT => Select::make()->options($this->filterOptions)->multiple(),
+            self::FILTER_DATE => DateTimer::make()->inline()->format('Y-m-d'),
+            default => Input::make()->type($filter),
+        };
 
         return $input;
     }

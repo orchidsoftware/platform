@@ -130,7 +130,7 @@ class HttpFilter
         $this->filters->each(function ($value, $property) use ($builder, $allowedAutomaticFilters) {
             $allowProperty = $property;
 
-            if (strpos($property, '.') !== false) {
+            if (str_contains($property, '.')) {
                 $allowProperty = strstr($property, '.', true);
             }
 
@@ -183,7 +183,7 @@ class HttpFilter
 
         $this->sorts
             ->each(function (string $sort) use ($builder, $allowedSorts) {
-                $descending = strpos($sort, '-') === 0;
+                $descending = str_starts_with($sort, '-');
                 $key = ltrim($sort, '-');
                 $property = Str::before($key, '.');
                 $key = str_replace('.', '->', $key);
