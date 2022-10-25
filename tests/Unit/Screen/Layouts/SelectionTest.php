@@ -31,9 +31,7 @@ class SelectionTest extends TestUnitCase
         $html = $layout->build(new Repository());
 
         collect($layout->filters())
-            ->map(function (string $filter) {
-                return resolve($filter);
-            })->each(function (Filter $filter) use ($html) {
+            ->map(fn(string $filter) => resolve($filter))->each(function (Filter $filter) use ($html) {
                 $this->assertStringContainsString($filter->render(), (string) $html);
             });
     }

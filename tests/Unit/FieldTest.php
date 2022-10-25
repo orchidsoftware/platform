@@ -139,9 +139,7 @@ class FieldTest extends TestUnitCase
     {
         $collect = collect(range(0, 10000));
 
-        $fields = $collect->map(function ($value) {
-            return (new Field())->set('value', $value)->getId();
-        })->unique();
+        $fields = $collect->map(fn($value) => (new Field())->set('value', $value)->getId())->unique();
 
         $this->assertEquals($fields->count(), $collect->count());
 

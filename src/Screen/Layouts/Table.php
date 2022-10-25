@@ -56,13 +56,9 @@ abstract class Table extends Layout
             return;
         }
 
-        $columns = collect($this->columns())->filter(static function (TD $column) {
-            return $column->isSee();
-        });
+        $columns = collect($this->columns())->filter(static fn(TD $column) => $column->isSee());
 
-        $total = collect($this->total())->filter(static function (TD $column) {
-            return $column->isSee();
-        });
+        $total = collect($this->total())->filter(static fn(TD $column) => $column->isSee());
 
         $rows = $repository->getContent($this->target);
         $rows = is_array($rows) ? collect($rows) : $rows;

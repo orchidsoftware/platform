@@ -126,9 +126,7 @@ class RoleEditScreen extends Screen
         $role->fill($request->get('role'));
 
         $role->permissions = collect($request->get('permissions'))
-            ->map(function ($value, $key) {
-                return [base64_decode($key) => $value];
-            })
+            ->map(fn($value, $key) => [base64_decode($key) => $value])
             ->collapse()
             ->toArray();
 

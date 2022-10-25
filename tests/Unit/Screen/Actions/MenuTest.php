@@ -80,9 +80,7 @@ class MenuTest extends TestFieldsUnitCase
 
     public function testMenuBadge(): void
     {
-        $link = Menu::make('About')->badge(function () {
-            return 'Badge text';
-        });
+        $link = Menu::make('About')->badge(fn() => 'Badge text');
         $view = self::renderField($link);
 
         $this->assertStringContainsString('Badge text', $view);

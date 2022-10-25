@@ -43,9 +43,7 @@ class RolePermissionLayout extends Rows
     private function generatedPermissionFields(Collection $permissionsRaw): array
     {
         return $permissionsRaw
-            ->map(function (Collection $permissions, $title) {
-                return $this->makeCheckBoxGroup($permissions, $title);
-            })
+            ->map(fn(Collection $permissions, $title) => $this->makeCheckBoxGroup($permissions, $title))
             ->flatten()
             ->toArray();
     }
@@ -59,21 +57,15 @@ class RolePermissionLayout extends Rows
     private function makeCheckBoxGroup(Collection $permissions, string $title): Collection
     {
         return $permissions
-            ->map(function (array $chunks) {
-                return $this->makeCheckBox(collect($chunks));
-            })
+            ->map(fn(array $chunks) => $this->makeCheckBox(collect($chunks)))
             ->flatten()
-            ->map(function (CheckBox $checkbox, $key) use ($title) {
-                return $key === 0
-                    ? $checkbox->title($title)
-                    : $checkbox;
-            })
+            ->map(fn(CheckBox $checkbox, $key) => $key === 0
+                ? $checkbox->title($title)
+                : $checkbox)
             ->chunk(4)
-            ->map(function (Collection $checkboxes) {
-                return Group::make($checkboxes->toArray())
-                    ->alignEnd()
-                    ->autoWidth();
-            });
+            ->map(fn(Collection $checkboxes) => Group::make($checkboxes->toArray())
+                ->alignEnd()
+                ->autoWidth());
     }
 
     /**
