@@ -28,7 +28,7 @@ class TDFilterTest extends TestUnitCase
         ]);
 
         $view = TD::make('number')
-            ->filter(Input::make(), fn(?string $value): string => $value * 2)
+            ->filter(Input::make(), fn (?string $value): string => $value * 2)
             ->buildTh();
 
         $this->assertStringContainsString('4044', $view);
@@ -42,7 +42,7 @@ class TDFilterTest extends TestUnitCase
 
         $view = TD::make('number')
             ->filter()
-            ->filterValue(fn(?string $value): string => $value * 2)
+            ->filterValue(fn (?string $value): string => $value * 2)
             ->buildTh();
 
         $this->assertStringContainsString('4044', $view);

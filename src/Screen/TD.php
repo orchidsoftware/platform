@@ -120,8 +120,8 @@ class TD extends Cell
     }
 
     /**
-     * @param string $filter
-     * @param iterable|callable|null   $options
+     * @param string                 $filter
+     * @param iterable|callable|null $options
      *
      * @return TD
      */
