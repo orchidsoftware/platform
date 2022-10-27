@@ -75,7 +75,14 @@ class TD extends Cell
      * @var array
      */
     protected $filterOptions = [];
-
+    
+     /**
+     * callable return filter value in column
+     *
+     * @var callable
+     */
+    private $callbackFilterValue = null;
+    
     /**
      * @param string|int $width
      *
@@ -99,7 +106,18 @@ class TD extends Cell
 
         return $this;
     }
+    
+    /**
+     * @param callable $callable
+     * @return void
+     */
+    public function filterValue(callable $callable): self
+    {
+        $this->callbackFilterValue = $callable;
 
+        return $this;
+    }
+    
     /**
      * @param string|\Orchid\Screen\Field $filter
      *
@@ -361,6 +379,10 @@ class TD extends Cell
 
     protected function buildFilterString(): ?string
     {
+        if ($this->callbackFilterValue !== null) {
+            return call_user_func($this->callbackFilterValue, get_filter($this->column));
+        }
+        
         $filter = get_filter($this->column);
         if (is_array($filter)) {
             if (isset($filter['start']) || isset($filter['end'])) {
