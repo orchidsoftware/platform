@@ -77,6 +77,13 @@ class TD extends Cell
     protected $filterOptions = [];
 
     /**
+     * callable return filter value in column
+     *
+     * @var callable
+     */
+    private $callbackFilterValue = null;
+
+    /**
      * @param string|int $width
      *
      * @return TD
@@ -96,6 +103,18 @@ class TD extends Cell
     public function filterOptions(iterable $filterOptions): self
     {
         $this->filterOptions = $filterOptions;
+
+        return $this;
+    }
+
+    /**
+     * @param callable $callable
+     *
+     * @return void
+     */
+    public function filterValue(callable $callable): self
+    {
+        $this->callbackFilterValue = $callable;
 
         return $this;
     }
@@ -361,6 +380,10 @@ class TD extends Cell
 
     protected function buildFilterString(): ?string
     {
+        if ($this->callbackFilterValue !== null) {
+            return call_user_func($this->callbackFilterValue, get_filter($this->column));
+        }
+
         $filter = get_filter($this->column);
         if (is_array($filter)) {
             if (isset($filter['start']) || isset($filter['end'])) {
