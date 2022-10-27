@@ -77,11 +77,11 @@ class TD extends Cell
     protected $filterOptions = [];
 
     /**
-     * callable return filter value in column
+     * Callable return filter value in column
      *
      * @var callable
      */
-    private $callbackFilterValue = null;
+    protected $callbackFilterValue;
 
     /**
      * @param string|int $width
@@ -120,14 +120,19 @@ class TD extends Cell
     }
 
     /**
-     * @param string|\Orchid\Screen\Field $filter
+     * @param string $filter
+     * @param iterable|callable|null   $options
      *
      * @return TD
      */
-    public function filter($filter = self::FILTER_TEXT, iterable $options = null): self
+    public function filter($filter = self::FILTER_TEXT, $options = null): self
     {
-        if ($options) {
+        if (is_iterable($options)) {
             $this->filterOptions($options);
+        }
+
+        if (is_callable($options)) {
+            $this->callbackFilterValue = $options;
         }
 
         $this->filter = $filter;
@@ -380,11 +385,12 @@ class TD extends Cell
 
     protected function buildFilterString(): ?string
     {
+        $filter = get_filter($this->column);
+
         if ($this->callbackFilterValue !== null) {
-            return call_user_func($this->callbackFilterValue, get_filter($this->column));
+            return call_user_func($this->callbackFilterValue, $filter);
         }
 
-        $filter = get_filter($this->column);
         if (is_array($filter)) {
             if (isset($filter['start']) || isset($filter['end'])) {
                 return ($filter['start'] ?? '').' - '.($filter['end'] ?? '');
