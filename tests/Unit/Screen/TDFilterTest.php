@@ -56,7 +56,7 @@ class TDFilterTest extends TestUnitCase
 
         $view = TD::make()
             ->filter()
-            ->filterValue(fn(string $value): string => $value * 2)
+            ->filterValue(fn (string $value): string => $value * 2)
             ->buildTh();
 
         $this->assertNotNull($view);
