@@ -387,6 +387,10 @@ class TD extends Cell
     {
         $filter = get_filter($this->column);
 
+        if ($filter === null) {
+            return null;
+        }
+
         if ($this->callbackFilterValue !== null) {
             return call_user_func($this->callbackFilterValue, $filter);
         }
