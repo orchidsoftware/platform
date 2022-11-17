@@ -36,7 +36,7 @@
     "tom-select": "2.2.2",
     "postcss": "^8.2.10",
     "resolve-url-loader": "^5.0.0",
-    "rtlcss": "^3.5.0",
+    "rtlcss": "^4.0.0",
     "sass": "^1.32.8",
     "sass-loader": "^13.0.2",
     "vue-template-compiler": "^2.6.12"
