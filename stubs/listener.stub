@@ -8,6 +8,13 @@ use Orchid\Screen\Layouts\Listener;
 class DummyClass extends Listener
 {
     /**
+     * List of field names for which values will be joined with targets' upon trigger.
+     *
+     * @var string[]
+     */
+    protected $extraVars = [];
+
+    /**
      * List of field names for which values will be listened.
      *
      * @var string[]

@@ -27,8 +27,9 @@ export default class extends ApplicationController {
 
     render() {
         let params = new FormData();
+        let targets = this.extraVars.concat(this.targets.filter(item => this.extraVars.indexOf(item) < 0));
 
-        this.targets.forEach(name => document.querySelectorAll(`[name="${name}"]`)
+        targets.forEach(name => document.querySelectorAll(`[name="${name}"]`)
             .forEach((field) => {
 
                 if ((field.type === 'checkbox' || field.type === 'radio') && !field.checked) {
@@ -81,5 +82,13 @@ export default class extends ApplicationController {
      */
     get targets() {
         return JSON.parse(this.data.get('targets'));
+    }
+
+    /**
+     *
+     * @returns {any}
+     */
+     get extraVars() {
+        return JSON.parse(this.data.get('extra-vars'));
     }
 }
