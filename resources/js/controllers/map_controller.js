@@ -75,6 +75,9 @@ export default class extends ApplicationController {
     updateCoords() {
         this.latTarget.value = this.leafletMarker.getLatLng().lat;
         this.lngTarget.value  = this.leafletMarker.getLatLng().lng;
+
+        this.latTarget.dispatchEvent(new Event('change'));
+        this.lngTarget.dispatchEvent(new Event('change'));
     }
 
     /**
