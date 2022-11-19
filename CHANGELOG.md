@@ -5,12 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 13.8.0 - 2022-11-19
+
+## Added
+
+- Send non-target extra variables to Listener's asyncMethod [#2412](https://github.com/orchidsoftware/platform/pull/2412)
+
+## Fixed
+
+- Update and fix French translation file [#2440](https://github.com/orchidsoftware/platform/pull/2440)
+- Map field The map does not send a change event
+
 ## 13.7.1 - 2022-10-31
 
 ### Fixed
 
 - Do not process the visual value of the filter when the parameter is missing
-
 
 ## 13.7.0 - 2022-10-27
 
