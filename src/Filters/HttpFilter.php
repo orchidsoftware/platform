@@ -51,7 +51,6 @@ class HttpFilter
             ->map(fn ($item) => $this->parseHttpValue($item))
             ->filter(fn ($item) => $item !== null);
 
-
         $this->sorts = collect($this->request->get('sort', []));
     }
 

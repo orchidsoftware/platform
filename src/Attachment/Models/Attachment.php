@@ -67,7 +67,7 @@ class Attachment extends Model
         'mime',
         'extension',
         'disk',
-        'group'
+        'group',
     ];
 
     /**
