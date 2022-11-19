@@ -120,23 +120,24 @@ class AttachmentController extends Controller
 
         return $model;
     }
-	
-		/**
-		 * @param Request $request
-		 * @return JsonResponse
-		 */
-		public function media(Request $request): JsonResponse
-	{
-		$groups = $request->post('filter')['groups'] ?? null;
-		
-		$attachments = $this->attachment
-			->when($groups, function ($query, $groups) {
-				foreach (explode(',', $groups) as $group) {
-					$query->orWhere('group', $group);
-				}
-			})
-			->filters()->paginate(12);
-		
-		return response()->json($attachments);
-	}
+
+        /**
+         * @param Request $request
+         *
+         * @return JsonResponse
+         */
+        public function media(Request $request): JsonResponse
+        {
+            $groups = $request->post('filter')['groups'] ?? null;
+
+            $attachments = $this->attachment
+                ->when($groups, function ($query, $groups) {
+                    foreach (explode(',', $groups) as $group) {
+                        $query->orWhere('group', $group);
+                    }
+                })
+                ->filters()->paginate(12);
+
+            return response()->json($attachments);
+        }
 }
