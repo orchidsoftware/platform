@@ -210,6 +210,23 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringContainsString("json_extract(\"content\", '$.\"ru\".\"name\"') like ?", $sql);
     }
 
+    public function testNullableFilter(): void
+    {
+        $request = new Request([
+            'filter' => [
+                'float'  => null,
+            ],
+        ]);
+
+        $filter = new HttpFilter($request);
+
+        $this->assertNull($filter->getFilter('float'));
+
+        $sql = $this->getModelBuilderWithAutocast($filter)->toSql();
+
+        $this->assertStringNotContainsString('"float"', $sql);
+    }
+
     public function testHttpJSONSort(): void
     {
         $request = new Request([

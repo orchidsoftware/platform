@@ -43,7 +43,7 @@ class AttachmentController extends Controller
     {
         $attachment = collect($request->allFiles())
             ->flatten()
-            ->map(fn (UploadedFile $file) => $this->createModel($file, $request));
+            ->map(fn(UploadedFile $file) => $this->createModel($file, $request));
 
         $response = $attachment->count() > 1 ? $attachment : $attachment->first();
 
@@ -96,9 +96,9 @@ class AttachmentController extends Controller
      * @param UploadedFile $file
      * @param Request      $request
      *
+     * @return mixed
      * @throws BindingResolutionException
      *
-     * @return mixed
      */
     private function createModel(UploadedFile $file, Request $request)
     {
@@ -121,23 +121,13 @@ class AttachmentController extends Controller
         return $model;
     }
 
-        /**
-         * @param Request $request
-         *
-         * @return JsonResponse
-         */
-        public function media(Request $request): JsonResponse
-        {
-            $groups = $request->post('filter')['groups'] ?? null;
+    /**
+     * @return JsonResponse
+     */
+    public function media(): JsonResponse
+    {
+        $attachments = $this->attachment->filters()->paginate(12);
 
-            $attachments = $this->attachment
-                ->when($groups, function ($query, $groups) {
-                    foreach (explode(',', $groups) as $group) {
-                        $query->orWhere('group', $group);
-                    }
-                })
-                ->filters()->paginate(12);
-
-            return response()->json($attachments);
-        }
+        return response()->json($attachments);
+    }
 }
