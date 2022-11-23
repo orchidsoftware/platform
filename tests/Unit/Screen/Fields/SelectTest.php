@@ -20,7 +20,7 @@ class SelectTest extends TestFieldsUnitCase
      */
     protected $roles;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 

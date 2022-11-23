@@ -22,7 +22,7 @@ class RepositoryTest extends TestUnitCase
      */
     protected $config;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->repository = new Repository($this->config = [
             'foo'       => 'bar',
