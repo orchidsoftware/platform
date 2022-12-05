@@ -55,7 +55,7 @@
         "phpunit/php-code-coverage": "^9.0",
         "phpunit/phpunit": "^9.0",
         "sti3bas/laravel-scout-array-driver": "^3.2",
-        "vimeo/psalm": "^4.3"
+        "vimeo/psalm": "^4.3 || ^5.0"
     },
     "conflict": {
         "laravel/framework": "<9.32.0"
