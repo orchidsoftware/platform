@@ -44,7 +44,7 @@ class AdminCommand extends Command
             empty($userId)
                 ? $this->createNewUser()
                 : $this->updateUserPermissions((string) $userId);
-        } catch (Exception | QueryException $e) {
+        } catch (Exception|QueryException $e) {
             $this->error($e->getMessage());
         }
     }
