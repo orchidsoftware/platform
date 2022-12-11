@@ -13,7 +13,7 @@ use Orchid\Support\Facades\Layout;
 class ExampleTextEditorsScreen extends Screen
 {
     /**
-     * Query data.
+     * Fetch data to be displayed on the screen.
      *
      * @return array
      */
@@ -27,7 +27,7 @@ class ExampleTextEditorsScreen extends Screen
     }
 
     /**
-     * Display header name.
+     * The name of the screen displayed in the header.
      *
      * @return string|null
      */
@@ -47,7 +47,7 @@ class ExampleTextEditorsScreen extends Screen
     }
 
     /**
-     * Button commands.
+     * The screen's action buttons.
      *
      * @return Action[]
      */
@@ -57,7 +57,7 @@ class ExampleTextEditorsScreen extends Screen
     }
 
     /**
-     * Views.
+     * The screen's layout elements.
      *
      * @throws \Throwable
      *

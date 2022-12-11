@@ -27,7 +27,7 @@ class ExampleScreen extends Screen
     erat in luctus.';
 
     /**
-     * Query data.
+     * Fetch data to be displayed on the screen.
      *
      * @return array
      */
@@ -74,7 +74,7 @@ class ExampleScreen extends Screen
     }
 
     /**
-     * Display header name.
+     * The name of the screen displayed in the header.
      *
      * @return string|null
      */
@@ -94,7 +94,7 @@ class ExampleScreen extends Screen
     }
 
     /**
-     * Button commands.
+     * The screen's action buttons.
      *
      * @return \Orchid\Screen\Action[]
      */
@@ -145,7 +145,7 @@ class ExampleScreen extends Screen
     }
 
     /**
-     * Views.
+     * The screen's layout elements.
      *
      * @return string[]|\Orchid\Screen\Layout[]
      */

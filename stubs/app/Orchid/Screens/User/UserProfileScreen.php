@@ -20,7 +20,7 @@ use Orchid\Support\Facades\Toast;
 class UserProfileScreen extends Screen
 {
     /**
-     * Query data.
+     * Fetch data to be displayed on the screen.
      *
      * @param Request $request
      *
@@ -34,7 +34,7 @@ class UserProfileScreen extends Screen
     }
 
     /**
-     * Display header name.
+     * The name of the screen displayed in the header.
      *
      * @return string|null
      */
@@ -54,7 +54,7 @@ class UserProfileScreen extends Screen
     }
 
     /**
-     * Button commands.
+     * The screen's action buttons.
      *
      * @return Action[]
      */

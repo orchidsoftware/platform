@@ -29,7 +29,7 @@ class UserEditScreen extends Screen
     public $user;
 
     /**
-     * Query data.
+     * Fetch data to be displayed on the screen.
      *
      * @param User $user
      *
@@ -46,7 +46,7 @@ class UserEditScreen extends Screen
     }
 
     /**
-     * Display header name.
+     * The name of the screen displayed in the header.
      *
      * @return string|null
      */
@@ -76,7 +76,7 @@ class UserEditScreen extends Screen
     }
 
     /**
-     * Button commands.
+     * The screen's action buttons.
      *
      * @return Action[]
      */

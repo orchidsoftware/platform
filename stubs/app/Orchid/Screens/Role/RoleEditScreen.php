@@ -23,7 +23,7 @@ class RoleEditScreen extends Screen
     public $role;
 
     /**
-     * Query data.
+     * Fetch data to be displayed on the screen.
      *
      * @param Role $role
      *
@@ -38,7 +38,7 @@ class RoleEditScreen extends Screen
     }
 
     /**
-     * Display header name.
+     * The name of the screen displayed in the header.
      *
      * @return string|null
      */
@@ -68,7 +68,7 @@ class RoleEditScreen extends Screen
     }
 
     /**
-     * Button commands.
+     * The screen's action buttons.
      *
      * @return Action[]
      */
@@ -87,7 +87,7 @@ class RoleEditScreen extends Screen
     }
 
     /**
-     * Views.
+     * The screen's layout elements.
      *
      * @return string[]|\Orchid\Screen\Layout[]
      */

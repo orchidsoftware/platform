@@ -20,7 +20,7 @@ class RolePermissionLayout extends Rows
     private $user;
 
     /**
-     * Views.
+     * The screen's layout elements.
      *
      * @throws Throwable
      *
