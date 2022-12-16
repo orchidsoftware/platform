@@ -98,9 +98,9 @@ class Dashboard
     /**
      * Determine published assets are up-to-date.
      *
-     * @return bool
-     *
      * @throws \RuntimeException
+     *
+     * @return bool
      */
     public static function assetsAreCurrent()
     {
