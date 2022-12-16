@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 13.9.0 - 2022-12-16
+
+### Added
+
+- Method for determine published assets are up-to-date
+
+### Changed
+
+- Comments for `stubs` class
+- Available to filter attachments in media by group [#2451](https://github.com/orchidsoftware/platform/pull/2451)
+
+### Fixed
+
+- Pagination in tabs [#2444](https://github.com/orchidsoftware/platform/pull/2444)
+- Padding for start `Alerts` message
+- Eager loading for the Relation field [#2475](https://github.com/orchidsoftware/platform/issues/2475)
+
+@tabuna
+
+
 ## 13.8.0 - 2022-11-19
 
 ## Added
