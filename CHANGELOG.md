@@ -22,9 +22,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Padding for start `Alerts` message
 - Eager loading for the Relation field [#2475](https://github.com/orchidsoftware/platform/issues/2475)
 
-@tabuna
-
-
 ## 13.8.0 - 2022-11-19
 
 ## Added
