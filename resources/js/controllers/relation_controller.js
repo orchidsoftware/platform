@@ -22,7 +22,7 @@ export default class extends ApplicationController {
         this.choices = new TomSelect(select, {
             allowEmptyOption: true,
             placeholder: select.getAttribute('placeholder') === 'false' ? '' : select.getAttribute('placeholder'),
-            preload: true,
+            preload: 'focus',
             plugins,
             maxOptions: this.data.get('chunk'),
             maxItems: select.getAttribute('maximumSelectionLength') || select.hasAttribute('multiple') ? null : 1,
