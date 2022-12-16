@@ -6,10 +6,12 @@ namespace Orchid\Platform;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Orchid\Screen\Actions\Menu;
 use Orchid\Screen\Screen;
+use RuntimeException;
 
 class Dashboard
 {
@@ -91,6 +93,22 @@ class Dashboard
     public static function version(): string
     {
         return static::VERSION;
+    }
+
+    /**
+     * Determine published assets are up-to-date.
+     *
+     * @return bool
+     *
+     * @throws \RuntimeException
+     */
+    public static function assetsAreCurrent()
+    {
+        $publishedPath = public_path('vendor/orchid/mix-manifest.json');
+
+        throw_unless(File::exists($publishedPath), new RuntimeException('Orchid assets are not published. Please run: `php artisan orchid:publish`'));
+
+        return File::get($publishedPath) === File::get(__DIR__.'/../../public/mix-manifest.json');
     }
 
     /**
