@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 13.9.1 - 2022-12-25
+
+### Changed
+
+- Arabic translation [#2477](https://github.com/orchidsoftware/platform/pull/2477)
+- Max options for `Select` [#2478](https://github.com/orchidsoftware/platform/pull/2477)
+
 ## 13.9.0 - 2022-12-16
 
 ### Added
