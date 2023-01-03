@@ -17,7 +17,7 @@ return [
     |
     */
 
-    'domain' => env('DASHBOARD_DOMAIN', null),
+    'domain'        => env('DASHBOARD_DOMAIN', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -32,7 +32,7 @@ return [
     |
     */
 
-    'prefix' => env('DASHBOARD_PREFIX', '/admin'),
+    'prefix'        => env('DASHBOARD_PREFIX', '/admin'),
 
     /*
     |--------------------------------------------------------------------------
@@ -47,7 +47,7 @@ return [
     |
     */
 
-    'middleware' => [
+    'middleware'    => [
         'public'  => ['web'],
         'private' => ['web', 'platform'],
     ],
@@ -66,7 +66,7 @@ return [
     |
     */
 
-    'guard' => config('auth.defaults.guard', 'web'),
+    'guard'         => config('auth.defaults.guard', 'web'),
 
     /*
     |--------------------------------------------------------------------------
@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'auth'  => true,
+    'auth'          => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -95,7 +95,7 @@ return [
     |
     */
 
-    'index' => 'platform.main',
+    'index'         => 'platform.main',
 
     /*
     |--------------------------------------------------------------------------
@@ -108,7 +108,7 @@ return [
     |
     */
 
-    'resource' => [
+    'resource'      => [
         'stylesheets' => [],
         'scripts'     => [],
     ],
@@ -127,7 +127,7 @@ return [
     |
     */
 
-    'template' => [
+    'template'      => [
         'header' => '',
         'footer' => '',
     ],
@@ -141,7 +141,7 @@ return [
     |
     */
 
-    'attachment' => [
+    'attachment'    => [
         'disk'      => env('FILESYSTEM_DISK', 'public'),
         'generator' => \Orchid\Attachment\Engines\Generator::class,
     ],
@@ -156,7 +156,7 @@ return [
     | Example: [ 'fa' => storage_path('app/fontawesome') ]
     */
 
-    'icons' => [
+    'icons'         => [
         'orc' => \Orchid\IconPack\Path::getFolder(),
     ],
 
@@ -189,7 +189,7 @@ return [
     |
     */
 
-    'search' => [
+    'search'        => [
         // \App\Models\User::class
     ],
 
@@ -205,7 +205,7 @@ return [
     |
     */
 
-    'turbo' => [
+    'turbo'         => [
         'cache' => false,
     ],
 
@@ -221,7 +221,7 @@ return [
     |
     */
 
-    'fallback' => true,
+    'fallback'      => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -235,6 +235,6 @@ return [
     |
     */
 
-    'provider' => \App\Orchid\PlatformProvider::class,
+    'provider'      => \App\Orchid\PlatformProvider::class,
 
 ];

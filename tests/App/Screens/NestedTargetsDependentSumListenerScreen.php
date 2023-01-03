@@ -57,7 +57,7 @@ class NestedTargetsDependentSumListenerScreen extends Screen
                 'first'  => $first,
                 'second' => $second,
             ],
-            'sum' => $first + $second,
+            'sum'    => $first + $second,
         ];
     }
 
