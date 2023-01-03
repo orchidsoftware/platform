@@ -44,6 +44,7 @@
 
 <body class="{{ \Orchid\Support\Names::getPageNameClass() }}" data-controller="pull-to-refresh">
 
+{{--
 <div class="container-fluid" data-controller="@yield('controller')" @yield('controller-data')>
 
     <div class="row">
@@ -61,6 +62,73 @@
 
     @include('platform::partials.toast')
 </div>
+--}}
+
+<header class="mb-5 border-bottom bg-dark shadow-sm">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+            <a class="header-brand order-first" href="{{route('platform.index')}}">
+                @includeFirst([config('platform.template.header'), 'platform::header'])
+            </a>
+
+            <ul class="nav col-12 col-lg-auto m-lg-auto justify-content-center mb-md-0">
+                {!! Dashboard::renderMenu(\Orchid\Platform\Dashboard::MENU_MAIN) !!}
+            </ul>
+
+            <div class="">
+                @includeWhen(Auth::check(), 'platform::partials.profile')
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container-fluid" data-controller="@yield('controller')" @yield('controller-data')>
+
+    <div class="row">
+
+
+
+        <div class="col overflow-hidden">
+
+
+            <div class="d-flex flex-column-fluid">
+
+                <div class="container">
+                    <div class="col-md-8 mx-auto">
+
+                        <div class="mx-5">
+                            <div class="mx-5 bg-white rounded-top shadow-sm border-bottom" style="background-color: rgb(255 255 255 / 90%)!important">
+                            @if(Breadcrumbs::has())
+                                <nav class="d-flex" aria-label="breadcrumb">
+                                    <ol class="breadcrumb mb-0 p-3 mx-auto">
+                                        <x-tabuna-breadcrumbs
+                                            class="breadcrumb-item"
+                                            active="active"
+                                        />
+                                    </ol>
+                                </nav>
+                            @endif
+
+                        </div>
+                        </div>
+
+                        <div class="bg-white rounded-top shadow-sm min-vh-100">
+                            @yield('body-right')
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @include('platform::partials.toast')
+</div>
+
+
 
 @stack('scripts')
 

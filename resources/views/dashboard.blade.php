@@ -53,20 +53,30 @@
 
 @section('body-right')
 
-    <div class="mt-3 mt-md-4">
+    <style>
+        .test .shadow-sm {
+            box-shadow: none!important;
+            //border: 1px solid #e9ecef;
+        }
+        .test .layout-wrapper {
+            background-color: #edeef05c!important;
+            //border: none!important;
+        }
 
-        @if(Breadcrumbs::has())
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb px-4 mb-2">
-                    <x-tabuna-breadcrumbs
-                        class="breadcrumb-item"
-                        active="active"
-                    />
-                </ol>
-            </nav>
-        @endif
+        .test .rounded{
+            //margin: 0 1em!important;
+        }
 
-        <div class="@hasSection('navbar') @else d-none d-md-block @endif layout v-md-center">
+        .test .bg-white.shadow-sm{
+            //background-color: #edeef05c!important
+        }
+
+        </style>
+
+
+    <div class="d-flex flex-column">
+
+        <div class="@hasSection('navbar') @else d-none d-md-block @endif p-4 bg-white border-bottom v-md-center rounded-top mb-2">
             <header class="d-none d-md-block col-xs-12 col-md p-0">
                 <h1 class="m-0 fw-light h3 text-black">@yield('title')</h1>
                 <small class="text-muted" title="@yield('description')">@yield('description')</small>
@@ -79,6 +89,9 @@
         </div>
 
         @include('platform::partials.alert')
-        @yield('content')
+
+        <div class="test">
+            @yield('content')
+        </div>
     </div>
 @endsection

@@ -26,7 +26,6 @@
     </div>
 
     <form id="post-form"
-          class="mb-md-4"
           method="post"
           enctype="multipart/form-data"
           data-controller="form"
