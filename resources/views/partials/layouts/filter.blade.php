@@ -1,4 +1,4 @@
-<div class="dropdown d-inline-block" data-controller="filter">
+<div class="dropdown d-inline-block" data-controller="filter" data-action="click->filter#onMenuClick">
     <button class="btn btn-sm btn-link dropdown-toggle"
             type="button"
             data-bs-toggle="dropdown"
@@ -7,7 +7,7 @@
             aria-expanded="false">
         <x-orchid-icon path="filter"/>
     </button>
-    <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow" data-action="click->filter#onMenuClick" x-placement="bottom-end">
+    <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow" x-placement="bottom-end">
         <div class="py-2 px-3">
 
             {!! $filter !!}
