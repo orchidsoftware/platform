@@ -169,7 +169,7 @@ abstract class Layout implements JsonSerializable
      */
     public function getSlug(): string
     {
-        return sha1(json_encode($this));
+        return sha1(static::class);
     }
 
     /**
@@ -183,11 +183,8 @@ abstract class Layout implements JsonSerializable
             return $this;
         }
 
-        $layouts = method_exists($this, 'layouts')
-            ? $this->layouts()
-            : $this->layouts;
-
-        return collect($layouts)
+        // Trying to find the right layer inside
+        return collect($this->layouts)
             ->flatten()
             ->map(static function ($layout) use ($slug) {
                 $layout = is_object($layout)
