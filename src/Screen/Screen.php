@@ -19,6 +19,9 @@ use Throwable;
 
 /**
  * Class Screen.
+ *
+ * This is the main class for creating screens in the Orchid. A screen is a web page
+ * that displays content and allows for user interaction.
  */
 abstract class Screen extends Controller
 {
@@ -32,7 +35,7 @@ abstract class Screen extends Controller
     private const COUNT_ROUTE_VARIABLES = 1;
 
     /**
-     * The view rendered
+     * The base view that will be rendered.
      *
      * @return string
      */
@@ -42,7 +45,7 @@ abstract class Screen extends Controller
     }
 
     /**
-     * Display header name.
+     * The name of the screen to be displayed in the header.
      *
      * @return string|null
      */
@@ -52,7 +55,7 @@ abstract class Screen extends Controller
     }
 
     /**
-     * Display header description.
+     * A description of the screen to be displayed in the header.
      *
      * @return string|null
      */
@@ -62,7 +65,7 @@ abstract class Screen extends Controller
     }
 
     /**
-     * Permission
+     * The permissions required to access this screen.
      *
      * @return iterable|null
      */
@@ -79,7 +82,7 @@ abstract class Screen extends Controller
     private $source;
 
     /**
-     * Button commands.
+     * The command buttons for this screen.
      *
      * @return Action[]
      */
@@ -89,13 +92,15 @@ abstract class Screen extends Controller
     }
 
     /**
-     * Views.
+     * The layout for this screen, consisting of a collection of views.
      *
      * @return Layout[]
      */
     abstract public function layout(): iterable;
 
     /**
+     * Builds the screen using the given data repository.
+     *
      * @param \Orchid\Screen\Repository $repository
      *
      * @return View
@@ -108,6 +113,8 @@ abstract class Screen extends Controller
     }
 
     /**
+     * Builds the screen asynchronously using the given method and template slug.
+     *
      * @param string $method
      * @param string $slug
      *
@@ -189,7 +196,7 @@ abstract class Screen extends Controller
     }
 
     /**
-     *  Response or HTTP code that will be returned if user does not have access to screen.
+     * Response or HTTP code that will be returned if user does not have access to screen.
      *
      * @return int | \Symfony\Component\HttpFoundation\Response
      */
