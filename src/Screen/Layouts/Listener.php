@@ -38,13 +38,6 @@ abstract class Listener extends Layout
     protected $asyncMethod;
 
     /**
-     * The following request must be asynchronous.
-     *
-     * @var bool
-     */
-    protected $asyncNext = true;
-
-    /**
      * @var Repository
      */
     public $query;
