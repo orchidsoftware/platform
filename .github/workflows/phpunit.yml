@@ -68,7 +68,7 @@ jobs:
         run: vendor/bin/phpunit --testsuite=Browser
 
       - name: Upload Failed Screenshots
-        uses: actions/upload-artifact@v3.1.1
+        uses: actions/upload-artifact@v3.1.2
         if: failure()
         with:
           name: screenshots
