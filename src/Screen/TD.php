@@ -110,7 +110,7 @@ class TD extends Cell
     /**
      * @param callable $callable
      *
-     * @return void
+     * @return self
      */
     public function filterValue(callable $callable): self
     {
@@ -246,9 +246,7 @@ class TD extends Cell
         return $filter->name("filter[$this->column]")
             ->placeholder(__('Filter'))
             ->form('filters')
-            ->value(
-                $this->isComplexFieldType($filter) ? get_filter_string($this->column) : get_filter($this->column)
-            )
+            ->value(get_filter($this->column))
             ->autofocus();
     }
 
