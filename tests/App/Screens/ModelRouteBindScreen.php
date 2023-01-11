@@ -19,7 +19,7 @@ class ModelRouteBindScreen extends Screen
     public function query(User $user = null): array
     {
         return [
-            'user' => $user
+            'user' => $user,
         ];
     }
 
@@ -54,7 +54,7 @@ class ModelRouteBindScreen extends Screen
             Layout::rows([
                 Input::make('user.id')->title('User ID'),
                 Input::make('user.email')->title('User Name'),
-            ])
+            ]),
         ];
     }
 }
