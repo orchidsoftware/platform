@@ -69,7 +69,7 @@ class FindBySlugLayoutScreen extends Screen
     /**
      * @return array
      */
-    public function asyncStub():array
+    public function asyncStub(): array
     {
         return [];
     }

@@ -23,7 +23,7 @@ class AsyncTest extends TestUnitCase
             'tab-1',
             'tab-2',
         ])
-            ->map(fn(string $slug) => $screen->asyncBuild('asyncStub', $slug))
-            ->each(fn($layout) => $this->assertNotNull($layout));
+            ->map(fn (string $slug) => $screen->asyncBuild('asyncStub', $slug))
+            ->each(fn ($layout) => $this->assertNotNull($layout));
     }
 }
