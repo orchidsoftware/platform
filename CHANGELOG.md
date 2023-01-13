@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 13.9.4 - 2023-01-13
+
+### Fixed 
+
+- Find duplicate for layouts [#2500](https://github.com/orchidsoftware/platform/issues/2500)
+
+
 ## 13.9.3 - 2023-01-11
 
 ### Fixed
