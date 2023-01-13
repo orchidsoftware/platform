@@ -26,9 +26,9 @@ class AsyncTest extends TestUnitCase
             new DependentSumListener('tab-1'),
             new DependentSumListener('tab-2'),
         ])
-            ->map(fn(Listener $listener) => $listener->getSlug())
-            ->map(fn(string $slug) => $screen->asyncBuild('asyncStub', $slug))
-            ->each(fn($layout) => $this->assertNotNull($layout));
+            ->map(fn (Listener $listener) => $listener->getSlug())
+            ->map(fn (string $slug) => $screen->asyncBuild('asyncStub', $slug))
+            ->each(fn ($layout) => $this->assertNotNull($layout));
     }
 
     public function testSlugLayout(): void
@@ -43,7 +43,6 @@ class AsyncTest extends TestUnitCase
     {
         $first = new DependentSumListener('modal-1');
         $second = new DependentSumListener('modal-2');
-
 
         $modalFirst = Layout::modal('modal-1', $first);
         $modalSecond = Layout::modal('modal-2', $second);
