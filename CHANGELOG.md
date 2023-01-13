@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 13.9.4 - 2023-01-13
 
 ### Fixed 
-
+- Implicit model binding with Screen query type hinting fails [#2472](https://github.com/orchidsoftware/platform/issues/2472), [#2339](https://github.com/orchidsoftware/platform/pull/2339)
 - Find duplicate for layouts [#2500](https://github.com/orchidsoftware/platform/issues/2500)
 
 
