@@ -40,12 +40,12 @@ Route::screen('profile', UserProfileScreen::class)
         ->parent('platform.index')
         ->push(__('Profile'), route('platform.profile')));
 
-// Platform > System > Users
+// Platform > System > Users > User
 Route::screen('users/{user}/edit', UserEditScreen::class)
     ->name('platform.systems.users.edit')
     ->breadcrumbs(fn (Trail $trail, $user) => $trail
         ->parent('platform.systems.users')
-        ->push(__('User'), route('platform.systems.users.edit', $user)));
+        ->push($user->name, route('platform.systems.users.edit', $user)));
 
 // Platform > System > Users > Create
 Route::screen('users/create', UserEditScreen::class)
@@ -54,7 +54,7 @@ Route::screen('users/create', UserEditScreen::class)
         ->parent('platform.systems.users')
         ->push(__('Create'), route('platform.systems.users.create')));
 
-// Platform > System > Users > User
+// Platform > System > Users
 Route::screen('users', UserListScreen::class)
     ->name('platform.systems.users')
     ->breadcrumbs(fn (Trail $trail) => $trail
@@ -66,7 +66,7 @@ Route::screen('roles/{role}/edit', RoleEditScreen::class)
     ->name('platform.systems.roles.edit')
     ->breadcrumbs(fn (Trail $trail, $role) => $trail
         ->parent('platform.systems.roles')
-        ->push(__('Role'), route('platform.systems.roles.edit', $role)));
+        ->push($role->name, route('platform.systems.roles.edit', $role)));
 
 // Platform > System > Roles > Create
 Route::screen('roles/create', RoleEditScreen::class)
