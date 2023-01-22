@@ -26,10 +26,9 @@
                 <span class="ms-3 text-dark">Explore the documentation</span>
             </h3>
             <p class="ms-md-5 ps-md-1">
-                The package uses the Laravel framework.
-                If you are new to the framework or have previous experience, we recommend reading the complete
-                <a href="https://laravel.com/docs" target="_blank" class="text-u-l">documentation</a> from start to
-                finish.
+                Ready to unleash your coding potential? Our platform built on the Laravel framework is user-friendly and
+                perfect for developers of all levels to create innovative solutions. Dive in and experience the power of
+                limitless creativity with our comprehensive <a href="https://orchid.software/en/docs" target="_blank" class="text-u-l">documentation</a>.
             </p>
         </div>
 
@@ -40,11 +39,8 @@
                 <span class="ms-3 text-dark">Quick start guide</span>
             </h3>
             <p class="ms-md-5 ps-md-1">
-                Are you entirely new to Laravel Orchid? Don't worry, we all were once.
-                For a quick study of the main features,
-                be sure to check out the step-by-step tutorials
-                <a href="https://orchid.software/en/docs/quickstart" target="_blank" class="text-u-l"> see on the
-                    site</a>.
+                Are you entirely new to Laravel Orchid? Don't worry, we all were once. For a quick study of the main
+                features, be sure to <a href="https://orchid.software/en/docs/quickstart" target="_blank" class="text-u-l">check out the step-by-step tutorials</a> see on the site.
             </p>
         </div>
 
@@ -56,7 +52,8 @@
             </h3>
             <p class="ms-md-5 ps-md-1">
                 Screen design is hierarchical and declarative, rather than physical and imperative. You specify what
-                data should be displayed, how the controls manage that data are to be configured.
+                data should be displayed, how the controls manage that data are to be configured. Experience the power
+                of a declarative design approach with our platform.
             </p>
         </div>
 
@@ -69,7 +66,7 @@
             <p class="ms-md-5 ps-md-1">
                 It allows you to express many details so that the user interface can be interpreted and generated
                 automatically. But unlike various other tools that do this, the developer can also customize it with
-                custom templates.
+                custom templates. Create visually stunning and unique layouts with our system.
             </p>
         </div>
 
@@ -80,13 +77,10 @@
                 <span class="ms-3 text-dark">And one more thing</span>
             </h3>
             <p class="ms-md-5 ps-md-1">
-                Control entire screens or user interface behaviors depending on Security permissions.
-
-                Create filters so that users can quickly find different segments of data.
-
-                One-time and personal notifications are a great way to notify what's going on in your app.
-
-                And much more!
+                Laravel Orchid offers a wide range of features to enhance your user interface and improve data
+                management. Control entire screens or behaviors based on security permissions, easily filter data for
+                users, and utilize one-time and personal notifications to keep users informed. The possibilities are
+                endless with our platform, discover all it has to offer and take your development to the next level.
             </p>
         </div>
 
@@ -94,19 +88,14 @@
             <h3 class="text-muted fw-light">
                 <x-orchid-icon path="help"/>
 
-                <span class="ms-3 text-dark">Community</span>
+                <span class="ms-3 text-dark">Connect with the community</span>
             </h3>
             <div class="ms-md-5 ps-md-1">
-                <p>Stay up to date on the development of Laravel Orchid and reach out to the community with these
-                    helpful
-                    resources.</p>
-                <ul class="ps-4 m-0">
-                    <li>Follow <a href="https://twitter.com/orchid_platform" class="text-u-l">@orchid_platform on
-                            Twitter</a>.
-                    </li>
-                    <li>Join <a href="https://t.me/orchid_community" class="text-u-l">the official Telegram group</a>.
-                    </li>
-                </ul>
+                <p>
+                    Connect with the Laravel Orchid community by following <a href="https://twitter.com/orchid_platform" class="text-u-l">@orchid_platform</a> on Twitter and joining the
+                    official <a href="https://t.me/orchid_community" class="text-u-l">Telegram group</a> for updates, news, and support from the community. Stay informed and be a
+                    part of the development process.
+                </p>
             </div>
         </div>
     </div>
