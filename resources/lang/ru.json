@@ -155,7 +155,12 @@
     "What to search...": "Что искать...",
     "You are now impersonating this user": "Теперь вы выдаете себя за этого пользователя",
     "You currently have no notifications, but maybe they will appear later.": "В настоящее время у вас нет уведомлений, но, возможно, они появятся позже.",
-    "You may have' entered an address that doesn't exist or that the link you have requested doesn't work (anymore).": "Возможно, вы ввели неправильный адрес страницы либо перешли по ссылке, которая никуда не ведет.",
+    "Sorry, we don't have anything to show you on this page": "Извините, нам нечего показать вам на этой странице.",
+    "This could be because:": "Это может быть связано с тем, что:",
+    "The item you're looking for has been deleted": "То что вы ищете было удалено",
+    "You don't have access to it": "У вас нет доступа к ней",
+    "You clicked a broken link": "Вы нажали на неработающую ссылку",
+    "If you think you should have access to this page, ask the person who manages the project (or the account) to add you to it.": "Если вы считаете, что должны иметь доступ к этой странице, попросите человека, управляющего проектом (или аккаунтом), добавить вас на нее.",
     "You requested a page that doesn't exist.": "Вы запросили страницу, которая не существует.",
     "Load more": "Загрузить больше"
 }

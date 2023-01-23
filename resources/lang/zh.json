@@ -88,7 +88,7 @@
     "What to search...": "想要搜索...",
     "Display": "显示",
     "You requested a page that doesn't exist.": "访问的页面不存在",
-    "You may have' entered an address that doesn't exist or that the link you have requested doesn't work (anymore).": "输入的地址或链接不存在",
+    "Sorry, we don't have anything to show you on this page": "输入的地址或链接不存在",
     "The details you entered did not match our records. Please double-check and try again.": "无法找到您输入的数据，请重新确认",
     "Dashboard": "仪表盘",
     "There are no records in this view.": "没有相关数据",
