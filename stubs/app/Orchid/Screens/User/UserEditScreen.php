@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
-use Orchid\Access\UserSwitch;
+use Orchid\Access\Impersonation;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
@@ -214,7 +214,7 @@ class UserEditScreen extends Screen
      */
     public function loginAs(User $user)
     {
-        UserSwitch::loginAs($user);
+        Impersonation::loginAs($user);
 
         Toast::info(__('You are now impersonating this user'));
 

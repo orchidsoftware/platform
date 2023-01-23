@@ -14,7 +14,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
-use Orchid\Access\UserSwitch;
+use Orchid\Access\Impersonation;
 
 class LoginController extends Controller
 {
@@ -135,7 +135,7 @@ class LoginController extends Controller
      */
     public function switchLogout()
     {
-        UserSwitch::logout();
+        Impersonation::logout();
 
         return redirect()->route(config('platform.index'));
     }
