@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Added
+- Implemented a new page when you introduce yourself as a user who has no permission
+- Added view for indicator need update assets 
+
+### Changed
+
+- The class `UserSwitch` has been declared obsolete and the preference is to use `Impersonation` instead.
+- 
+
 ## 13.9.4 - 2023-01-13
 
 ### Fixed 
