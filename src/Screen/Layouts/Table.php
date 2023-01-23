@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Collection;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
@@ -190,7 +190,7 @@ abstract class Table extends Layout
             return false;
         }
 
-        return !empty(request()->query()) || $row->isNotEmpty();
+        return ! empty(request()->query()) || $row->isNotEmpty();
     }
 
     /**
