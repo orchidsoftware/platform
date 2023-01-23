@@ -1,5 +1,8 @@
 <th @empty(!$width) width="{{$width}}" @endempty class="text-{{$align}}" data-column="{{ $slug }}">
-    <div>
+    <div class="d-flex align-items-center">
+
+        @includeWhen($filter !== null, "platform::partials.layouts.filter", ['filter' => $filter])
+
         @if($sort)
             <a href="{{ $sortUrl }}"
                class="@if(!is_sort($column)) text-muted @endif">
@@ -17,9 +20,6 @@
 
             <x-orchid-popover :content="$popover"/>
         @endif
-
-
-            @includeWhen($filter !== null, "platform::partials.layouts.filter", ['filter' => $filter])
     </div>
 
     @if($filterString)

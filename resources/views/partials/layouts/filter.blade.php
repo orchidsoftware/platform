@@ -1,5 +1,5 @@
 <div class="dropdown d-inline-block" data-controller="filter" data-action="click->filter#onMenuClick">
-    <button class="btn btn-sm btn-link dropdown-toggle"
+    <button class="btn btn-sm btn-link dropdown-toggle p-0 me-1"
             type="button"
             data-bs-toggle="dropdown"
             aria-haspopup="true"
