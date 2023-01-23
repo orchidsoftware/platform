@@ -40,7 +40,7 @@ class Impersonation
      */
     public static function isSwitch(): bool
     {
-        if (!session()->isStarted()) {
+        if (! session()->isStarted()) {
             session()->start();
         }
 

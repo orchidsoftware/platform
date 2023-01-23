@@ -80,7 +80,6 @@ class UserTest extends TestUnitCase
             ->get(route('platform.main'))
             ->assertStatus(403);
 
-
         Impersonation::loginAs($userSwitch);
 
         $this->assertTrue(Impersonation::isSwitch());
