@@ -21,7 +21,7 @@
 
         <div class="col-md-6 my-2">
             <h3 class="text-muted fw-light">
-                <x-orchid-icon path="book-open"/>
+                <x-orchid-icon path="bs.book"/>
 
                 <span class="ms-3 text-dark">Explore the documentation</span>
             </h3>
@@ -34,7 +34,7 @@
 
         <div class="col-md-6 my-2">
             <h3 class="text-muted fw-light">
-                <x-orchid-icon path="rocket"/>
+                <x-orchid-icon path="bs.rocket"/>
 
                 <span class="ms-3 text-dark">Quick start guide</span>
             </h3>
@@ -46,7 +46,7 @@
 
         <div class="col-md-6 my-2">
             <h3 class="text-muted fw-light">
-                <x-orchid-icon path="monitor"/>
+                <x-orchid-icon path="bs.collection"/>
 
                 <span class="ms-3 text-dark">The Screens</span>
             </h3>
@@ -59,7 +59,7 @@
 
         <div class="col-md-6 my-2">
             <h3 class="text-muted fw-light">
-                <x-orchid-icon path="layers"/>
+                <x-orchid-icon path="bs.columns-gap"/>
 
                 <span class="ms-3 text-dark">Layouts</span>
             </h3>
@@ -72,7 +72,7 @@
 
         <div class="col-md-6 my-2">
             <h3 class="text-muted fw-light">
-                <x-orchid-icon path="star"/>
+                <x-orchid-icon path="bs.star"/>
 
                 <span class="ms-3 text-dark">And one more thing</span>
             </h3>
@@ -86,7 +86,7 @@
 
         <div class="col-md-6 my-2">
             <h3 class="text-muted fw-light">
-                <x-orchid-icon path="help"/>
+                <x-orchid-icon path="bs.life-preserver"/>
 
                 <span class="ms-3 text-dark">Connect with the community</span>
             </h3>

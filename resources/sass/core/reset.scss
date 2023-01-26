@@ -65,28 +65,6 @@ small, .small {
   }
 }
 
-.badge-sm {
-  font-size: 85%;
-  padding: 2px 5px !important;
-}
-
-.label-sm {
-  padding-top: 0;
-  padding-bottom: 1px;
-}
-
-.badge-white {
-  background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  padding: 2px 6px;
-}
-
-.badge-empty {
-  background-color: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  color: inherit;
-}
-
 blockquote {
   border-color: $border-color;
 }

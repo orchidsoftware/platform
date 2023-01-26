@@ -21,6 +21,8 @@ export default class extends ApplicationController {
      *
      */
     submitByForm(event) {
+        console.log('SUBMIN!!!@@@')
+
         const formId = this.data.get('id');
         const formElem = document.getElementById(formId);
         formElem.submit();
@@ -36,50 +38,55 @@ export default class extends ApplicationController {
      */
     submit(event) {
 
+        console.log('SUBMIN!!!')
+
         // disable
         if (this.getActiveElementAttr('data-turbo') === 'false') {
             return true;
         }
 
         if (!this.validateForm(event)) {
+            console.log('validate?')
             event.preventDefault();
             return false;
         }
 
-        if (this.isSubmit) {
-            event.preventDefault();
-            return false;
-        }
+        //if (this.isSubmit) {
+        //    event.preventDefault();
+        //    return false;
+        //}
 
-        const action = this.loadFormAction();
+        const action = this.loadFormAction(event);
 
         if (action === null) {
             event.preventDefault();
             return false;
         }
 
-        this.isSubmit = true;
-        this.animateButton();
+        //this.isSubmit = true;
+        this.animateButton(event);
 
         const screenEventSubmit = new Event('orchid:screen-submit');
         event.target.dispatchEvent(screenEventSubmit);
+
+        return true;
     }
 
     /**
      *
      */
-    animateButton() {
-        const button = this.data.get('button-animate');
+    animateButton(event) {
+        const button = this.data.get('button-animate') ? document.querySelector(this.data.get('button-animate')) : event.target;
         const text = this.data.get('button-text') || '';
 
-        if (!button || !document.querySelector(button)) {
+        if (button.tagName !== 'BUTTON') {
+            console.log(button)
             return;
         }
 
-        const buttonElement = document.querySelector(button);
-        buttonElement.disabled = true;
-        buttonElement.classList.add('cursor-wait');
-        buttonElement.innerHTML = '<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>'
+        button.disabled = true;
+        button.classList.add('cursor-wait');
+        button.innerHTML = '<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>'
             + `<span class="ps-1">${text}</span>`;
     }
 
@@ -105,6 +112,8 @@ export default class extends ApplicationController {
             event.target.classList.add('was-validated');
             return false;
         }
+
+        event.target.classList.remove('was-validated');
 
         return true;
     }
@@ -141,11 +150,12 @@ export default class extends ApplicationController {
      *
      * @returns {string}
      */
-    loadFormAction() {
+    loadFormAction(event) {
         const formAction = this.element.getAttribute('action');
         const activeElementAction = this.getActiveElementAttr('formaction');
+        const submitterAction = event.submitter.formAction;
 
-        return activeElementAction || formAction;
+        return activeElementAction || formAction || submitterAction;
     }
 
     /**

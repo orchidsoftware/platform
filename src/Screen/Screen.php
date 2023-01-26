@@ -141,6 +141,12 @@ abstract class Screen extends Controller
             })
             ->first();
 
+        return response()->view('platform::turbo.stream', [
+            'template' => $layout->build($source),//$layout->currentAsync()->build($source),
+            'target'   => $slug,
+            'action'   => 'replace',
+        ])->header('Content-Type', 'text/vnd.turbo-stream.html');
+
         return $layout->currentAsync()->build($source);
     }
 

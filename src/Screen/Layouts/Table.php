@@ -101,7 +101,7 @@ abstract class Table extends Layout
      */
     protected function iconNotFound(): string
     {
-        return 'table';
+        return 'bs.journal-x';
     }
 
     /**

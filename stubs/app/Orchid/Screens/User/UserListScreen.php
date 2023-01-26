@@ -71,7 +71,7 @@ class UserListScreen extends Screen
     {
         return [
             Link::make(__('Add'))
-                ->icon('plus')
+                ->icon('bs.plus-circle')
                 ->route('platform.systems.users.create'),
         ];
     }

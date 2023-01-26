@@ -1,15 +1,17 @@
 <div data-controller="listener"
      data-listener-targets="{{$targets}}"
      data-listener-extra-vars="{{$extraVars}}"
-     data-listener-slug="{{$templateSlug}}"
-     data-listener-async-enable="{{$asyncEnable}}"
+     id="{{$templateSlug}}"
      data-listener-async-route="{{$asyncRoute}}"
+
+     {{--
+          data-listener-slug="{{$templateSlug}}"
+     data-listener-async-enable="{{$asyncEnable}}"
+     --}}
 >
-    <div data-async>
         @foreach($manyForms as $layouts)
             @foreach($layouts as $layout)
                 {!! $layout ?? '' !!}
             @endforeach
         @endforeach
-    </div>
 </div>

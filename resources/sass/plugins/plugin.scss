@@ -304,3 +304,13 @@
 .d2-grid dd {
     grid-column: span 2 / span 2;
 }
+
+// Scroll to top
+.scroll-to-top {
+    opacity: 0;
+    transition: all 340ms;
+
+    &.show {
+        opacity: 1;
+    }
+}

@@ -23,7 +23,7 @@
 @endif
 
 @if(!empty($list))
-    <div class="nav collapse sub-menu ps-2 {{active($active, 'show')}}"
+    <div class="nav collapse sub-menu ps-3 {{active($active, 'show')}}"
          id="menu-{{$slug}}"
          @isset($parent)
             data-bs-parent="#menu-{{$parent}}">

@@ -10,5 +10,5 @@
      data-delay-show="300"
      data-delay-hide="200"
      data-bs-content="{{ $content }}">
-    <x-orchid-icon path="exclamation"/>
+    <x-orchid-icon path="bs.question-lg" width="1em" height="1em"/>
 </sup>

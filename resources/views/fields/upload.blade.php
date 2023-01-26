@@ -27,9 +27,9 @@
                 <div class="dz-message dz-preview dz-processing dz-image-preview">
                     <div class="bg-light d-flex justify-content-center align-items-center border r-2x"
                          style="min-height: 112px;">
-                        <div class="pe-1 ps-1 pt-3 pb-3">
-                            <x-orchid-icon path="cloud-upload" class="h3"/>
-                            <small class="text-muted w-b-k d-block">{{__('Upload file')}}</small>
+                        <div class="px-2 py-4">
+                            <x-orchid-icon path="bs.cloud-arrow-up" class="h3"/>
+                            <small class="text-muted d-block mt-1">{{__('Upload file')}}</small>
                         </div>
                     </div>
                 </div>
@@ -39,10 +39,10 @@
                          data-action="click->upload#openMedia">
                         <div class="bg-light d-flex justify-content-center align-items-center border r-2x"
                              style="min-height: 112px;">
-                            <div class="pe-1 ps-1 pt-3 pb-3">
-                                <x-orchid-icon path="open" class="h3"/>
+                            <div class="px-2 py-4">
+                                <x-orchid-icon path="bs.collection" class="h3"/>
 
-                                <small class="text-muted w-b-k d-block">{{__('Media catalog')}}</small>
+                                <small class="text-muted d-block mt-1">{{__('Media catalog')}}</small>
                             </div>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                                 <div class="form-group">
                                     <a href="#" data-action="click->upload#openLink">
                                         <small>
-                                            <x-orchid-icon path="link" class="me-2"/>
+                                            <x-orchid-icon path="bs.share" class="me-2"/>
 
                                             {{ __('Link to file') }}
                                         </small>
@@ -182,7 +182,7 @@
 
             <template id="dropzone-{{$id}}-edit-button">
                 <a href="javascript:;" class="btn-edit">
-                    <x-orchid-icon path="note" class="mb-1"/>
+                    <x-orchid-icon path="bs.card-text" class="mb-1"/>
                 </a>
             </template>
 

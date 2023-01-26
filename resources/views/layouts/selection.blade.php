@@ -4,7 +4,7 @@
                 data-bs-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false">
-            <x-orchid-icon path="filter"/>
+            <x-orchid-icon path="bs.funnel"/>
             <span class="ms-1">{{__('Filters')}}</span>
         </button>
 
@@ -55,7 +55,7 @@
         @if($filter->display && $filter->isApply())
             <a href="{{ $filter->resetLink() }}" class="badge bg-light border me-1 p-1 d-inline-flex align-items-center">
                 <span>{{$filter->value()}}</span>
-                <x-orchid-icon path="cross" class="ms-1"/>
+                <x-orchid-icon path="bs.x-lg" class="ms-1"/>
             </a>
         @endif
     @endforeach

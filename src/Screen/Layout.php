@@ -42,14 +42,6 @@ abstract class Layout implements JsonSerializable
     protected $asyncMethod;
 
     /**
-     * The call is asynchronous and should return
-     * only the template of the specific layer.
-     *
-     * @var bool
-     */
-    protected $async = false;
-
-    /**
      * @var array
      */
     protected $variables = [];
@@ -83,16 +75,6 @@ abstract class Layout implements JsonSerializable
     }
 
     /**
-     * @return Layout
-     */
-    public function currentAsync(): self
-    {
-        $this->async = true;
-
-        return $this;
-    }
-
-    /**
      * @param Repository $repository
      *
      * @return mixed
@@ -118,7 +100,7 @@ abstract class Layout implements JsonSerializable
             'asyncRoute'   => $this->asyncRoute(),
         ]);
 
-        return view($this->async ? 'platform::layouts.blank' : $this->template, $variables);
+        return view($this->template, $variables);
     }
 
     /**
