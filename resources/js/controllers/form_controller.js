@@ -21,8 +21,6 @@ export default class extends ApplicationController {
      *
      */
     submitByForm(event) {
-        console.log('SUBMIN!!!@@@')
-
         const formId = this.data.get('id');
         const formElem = document.getElementById(formId);
         formElem.submit();
@@ -37,16 +35,12 @@ export default class extends ApplicationController {
      * @returns {boolean}
      */
     submit(event) {
-
-        console.log('SUBMIN!!!')
-
         // disable
         if (this.getActiveElementAttr('data-turbo') === 'false') {
             return true;
         }
 
         if (!this.validateForm(event)) {
-            console.log('validate?')
             event.preventDefault();
             return false;
         }
@@ -80,7 +74,6 @@ export default class extends ApplicationController {
         const text = this.data.get('button-text') || '';
 
         if (button.tagName !== 'BUTTON') {
-            console.log(button)
             return;
         }
 
