@@ -7,9 +7,8 @@
     <form role="form"
           method="POST"
           data-controller="form"
+          data-form-need-prevents-form-abandonment-value="false"
           data-action="form#submit"
-          data-form-button-animate="#button-login"
-          data-form-button-text="{{ __('Loading...') }}"
           action="{{ route('platform.switch.logout') }}">
         @csrf
 

@@ -1,7 +1,13 @@
 import ApplicationController from "./application_controller";
 
 export default class extends ApplicationController {
-
+    static values = {
+        needPreventsFormAbandonment: {type: Boolean, default: true},
+        hasBeenChanged: {type: Boolean, default: false},
+        failedValidationMessage: {type: String, default: "Something went wrong."},
+        submitLoadingMessage: {type: String, default: "Loading..."},
+        confirmCancelMessage: { type: String, default: "Do you really want to leave? You have unsaved changes." }
+    }
 
     /**
      * Connect Form
@@ -70,8 +76,7 @@ export default class extends ApplicationController {
      *
      */
     animateButton(event) {
-        const button = this.data.get('button-animate') ? document.querySelector(this.data.get('button-animate')) : event.target;
-        const text = this.data.get('button-text') || '';
+        const button = event.submitter;
 
         if (button.tagName !== 'BUTTON') {
             return;
@@ -79,8 +84,9 @@ export default class extends ApplicationController {
 
         button.disabled = true;
         button.classList.add('cursor-wait');
+
         button.innerHTML = '<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>'
-            + `<span class="ps-1">${text}</span>`;
+            + `<span class="ps-1">${this.submitLoadingMessageValue}</span>`;
     }
 
     /**
@@ -98,10 +104,8 @@ export default class extends ApplicationController {
             return true;
         }
 
-        const message = this.data.get('validation');
-
         if (!event.target.reportValidity()) {
-            this.alert('Validation error', message);
+            this.toast(this.failedValidationMessageValue);
             event.target.classList.add('was-validated');
             return false;
         }
@@ -172,5 +176,31 @@ export default class extends ApplicationController {
 
         event.preventDefault();
         return false;
+    }
+
+    /**
+     * Trigger for form has been changed
+     */
+    changed() {
+        this.hasBeenChangedValue = true;
+    }
+
+    /**
+     *
+     * @param event
+     */
+    async confirmCancel(event) {
+        if (this.needPreventsFormAbandonmentValue === true && this.hasBeenChangedValue === true) {
+            event.preventDefault();
+
+            if(event.type === 'beforeunload'){
+                event.returnValue = this.confirmCancelMessageValue; //Gecko + IE
+                return this.confirmCancelMessageValue; //Gecko + Webkit, Safari, Chrome etc.
+            }
+
+            if (window.confirm(this.confirmCancelMessageValue)) {
+                event.detail.resume()
+            }
+        }
     }
 }

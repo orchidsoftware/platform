@@ -162,11 +162,13 @@ abstract class Screen extends Controller
         $repository = $this->buildQueryRepository($httpQueryArguments);
 
         return view($this->screenBaseView(), [
-            'name'                => $this->name(),
-            'description'         => $this->description(),
-            'commandBar'          => $this->buildCommandBar($repository),
-            'layouts'             => $this->build($repository),
-            'formValidateMessage' => $this->formValidateMessage(),
+            'name'                    => $this->name(),
+            'description'             => $this->description(),
+            'commandBar'              => $this->buildCommandBar($repository),
+            'layouts'                 => $this->build($repository),
+            'formValidateMessage'     => $this->formValidateMessage(),
+            'formSubmitMessage'       => $this->formSubmitMessage(),
+            'needPreventsAbandonment' => $this->needPreventsAbandonment(),
         ]);
     }
 
@@ -272,11 +274,34 @@ abstract class Screen extends Controller
     }
 
     /**
+     * This method returns a localized string message indicating that the user should check the entered data,
+     * and that it may be necessary to specify the data in other languages.
+     *
      * @return string
      */
     public function formValidateMessage(): string
     {
         return __('Please check the entered data, it may be necessary to specify in other languages.');
+    }
+
+    /**
+     * This method returns a boolean value indicating whether or not the form should prevent abandonment.
+     *
+     * @return bool
+     */
+    public function formSubmitMessage():string
+    {
+        return __('Loading...');
+    }
+
+    /**
+     * The boolean value returned is true, indicating that the form is preventing abandonment.
+     *
+     * @return bool
+     */
+    public function needPreventsAbandonment(): bool
+    {
+        return true;
     }
 
     /**

@@ -30,6 +30,17 @@ export default class ApplicationController extends Controller {
 
     /**
      *
+     * @param message
+     * @param type
+     */
+    toast(message, type = 'warning') {
+        let toastWrapper = document.querySelector('[data-controller="toast"]');
+        let toastController = application.getControllerForElementAndIdentifier(toastWrapper, 'toast');
+        toastController.toast(message, type);
+    }
+
+    /**
+     *
      * @param elem
      */
     formToObject(elem) {
