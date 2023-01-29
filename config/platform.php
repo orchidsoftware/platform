@@ -253,6 +253,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Workspace
+    |--------------------------------------------------------------------------
+    | The workspace option sets the template that wraps the content of the screens.
+    | It determines whether the entire user screen will be used or whether
+    | the content will be compressed to a fixed width.
+    |
+    | Options: 'platform::workspace.compact', 'platform::workspace.full'
+    | TODO: Make sure to...
+    */
+
+    'workspace' => 'platform::workspace.compact',
+
+    /*
+    |--------------------------------------------------------------------------
     | Service Provider
     |--------------------------------------------------------------------------
     |

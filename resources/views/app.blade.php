@@ -47,12 +47,10 @@
 <div class="container-fluid" data-controller="@yield('controller')" @yield('controller-data')>
 
     <div class="row">
-        @yield('body-left')
+        @yield('aside')
 
         <div class="col">
-            <div class="container-md p-0">
-                @yield('body-right')
-            </div>
+            @yield('body')
         </div>
     </div>
 
