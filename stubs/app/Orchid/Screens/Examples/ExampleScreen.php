@@ -114,7 +114,7 @@ class ExampleScreen extends Screen
 
             Button::make('Export file')
                 ->method('export', [
-                    'name' => "Any name for file",
+                    'name' => 'Any name for file',
                 ])
                 ->icon('bs.cloud-arrow-down')
                 ->rawClick()

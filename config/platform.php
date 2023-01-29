@@ -177,7 +177,7 @@ return [
 
     'icons'         => [
         'orc' => \Orchid\IconPack\Path::getFolder(),
-        'bs' => \Orchid\Support\BootstrapIconsPath::getFolder(),
+        'bs'  => \Orchid\Support\BootstrapIconsPath::getFolder(),
     ],
 
     /*
@@ -263,7 +263,7 @@ return [
     | TODO: Make sure to...
     */
 
-    'workspace' => 'platform::workspace.compact',
+    'workspace'     => 'platform::workspace.compact',
 
     /*
     |--------------------------------------------------------------------------

@@ -66,7 +66,6 @@ abstract class Layout implements JsonSerializable
      */
     abstract public function build(Repository $repository);
 
-
     /**
      * @return Layout
      */

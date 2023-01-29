@@ -81,7 +81,6 @@ class ExampleActionsScreen extends Screen
                 ])->autoWidth(),
             ]),
 
-
             Layout::block(Layout::rows([
                 Group::make([
                     DropDown::make('Dropdown for Buttons')
@@ -121,7 +120,6 @@ class ExampleActionsScreen extends Screen
                 ->title('Confirm Dialog')
                 ->description('Confirm Dialog is a modal Dialog used to confirm user actions.'),
 
-
             Layout::block(Layout::rows([
                 Button::make('Download')
                     ->icon('bs.box-arrow-up-right')
@@ -139,14 +137,12 @@ class ExampleActionsScreen extends Screen
                 ->title('Download Button')
                 ->description('To download a file, not to open it as page content'),
 
-
             Layout::block(Layout::rows([
                 Button::make('Google')
                     ->action('https://google.com'),
             ]))
                 ->title('Custom Route')
                 ->description('The form is always sent by POST request, but the endpoint can be defined'),
-
 
         ];
     }

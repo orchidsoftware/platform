@@ -174,7 +174,7 @@ class ExampleFieldsScreen extends Screen
                     ->method('buttonClickProcessing')
                     ->type(Color::DEFAULT()),
 
-            ]),//->title('Textual HTML5 Inputs'),
+            ]), //->title('Textual HTML5 Inputs'),
 
             Layout::columns([
                 Layout::rows([

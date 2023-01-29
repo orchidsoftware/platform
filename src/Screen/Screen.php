@@ -142,7 +142,7 @@ abstract class Screen extends Controller
             ->first();
 
         return response()->view('platform::turbo.stream', [
-            'template' => $layout->currentAsync()->build($repository),//$layout->currentAsync()->build($source),
+            'template' => $layout->currentAsync()->build($repository), //$layout->currentAsync()->build($source),
             'target'   => $slug,
             'action'   => 'replace',
         ])->header('Content-Type', 'text/vnd.turbo-stream.html');
@@ -287,7 +287,7 @@ abstract class Screen extends Controller
      *
      * @return bool
      */
-    public function formSubmitMessage():string
+    public function formSubmitMessage(): string
     {
         return __('Loading...');
     }
