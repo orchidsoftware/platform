@@ -162,5 +162,6 @@
     "You clicked a broken link": "Вы нажали на неработающую ссылку",
     "If you think you should have access to this page, ask the person who manages the project (or the account) to add you to it.": "Если вы считаете, что должны иметь доступ к этой странице, попросите человека, управляющего проектом (или аккаунтом), добавить вас на нее.",
     "You requested a page that doesn't exist.": "Вы запросили страницу, которая не существует.",
-    "Load more": "Загрузить больше"
+    "Load more": "Загрузить больше",
+    "After deleting notifications, this action cannot be undone and all associated data will be permanently lost.": "После удаления уведомлений это действие нельзя отменить, и все связанные с ними данные будут безвозвратно утеряны."
 }

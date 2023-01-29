@@ -74,6 +74,7 @@ class NotificationScreen extends Screen
             Button::make(__('Remove all'))
                 ->icon('trash')
                 ->method('removeAll')
+                ->confirm(__('After deleting notifications, this action cannot be undone and all associated data will be permanently lost.'))
                 ->canSee($this->isNotEmpty),
 
             Button::make(__('Mark all as read'))
