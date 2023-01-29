@@ -339,8 +339,9 @@ blockquote {
         display: inline-block !important;
         list-style: none;
         margin: 0;
-        padding: 0;
+        padding: 0 0 1px 0;
         overflow-x: auto;
+        overflow-y: hidden;
         white-space: nowrap;
         width: 100%;
         position: initial;
