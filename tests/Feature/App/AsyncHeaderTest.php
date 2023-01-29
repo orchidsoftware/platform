@@ -21,7 +21,7 @@ class AsyncHeaderTest extends TestFeatureCase
         $this
             ->actingAs($this->createAdminUser())
             ->get(route('test.async-header-button-action'), [
-                'ORCHID-ASYNC-REFERER' => 'http://127.0.0.1:8001/screen/async/header',
+                'referrer' => 'http://127.0.0.1:8001/screen/async/header',
             ])
             ->assertDontSee(route('test.async-header-button-action', ['method' => 'message']))
             ->assertSee('http://127.0.0.1:8001/screen/async/header/message');
