@@ -66,6 +66,8 @@ export default class extends ApplicationController {
         //this.isSubmit = true;
         this.animateButton(event);
 
+        this.needPreventsFormAbandonmentValue = false;
+
         const screenEventSubmit = new Event('orchid:screen-submit');
         event.target.dispatchEvent(screenEventSubmit);
 
@@ -181,8 +183,10 @@ export default class extends ApplicationController {
     /**
      * Trigger for form has been changed
      */
-    changed() {
-        this.hasBeenChangedValue = true;
+    changed(event) {
+        if(this.element === event.target.form) {
+            this.hasBeenChangedValue = true;
+        }
     }
 
     /**

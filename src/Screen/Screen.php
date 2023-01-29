@@ -129,7 +129,7 @@ abstract class Screen extends Controller
         abort_unless(method_exists($this, $method), 404, "Async method: {$method} not found");
 
         $query = $this->callMethod($method, request()->all());
-        $source = new Repository($query);
+        $repository = new Repository($query);
 
         /** @var Layout $layout */
         $layout = collect($this->layout())
@@ -142,12 +142,10 @@ abstract class Screen extends Controller
             ->first();
 
         return response()->view('platform::turbo.stream', [
-            'template' => $layout->build($source),//$layout->currentAsync()->build($source),
+            'template' => $layout->currentAsync()->build($repository),//$layout->currentAsync()->build($source),
             'target'   => $slug,
             'action'   => 'replace',
         ])->header('Content-Type', 'text/vnd.turbo-stream.html');
-
-        return $layout->currentAsync()->build($source);
     }
 
     /**

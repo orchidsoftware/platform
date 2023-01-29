@@ -46,6 +46,9 @@
     </form>
 
     <div data-controller="filter">
-        <form id="filters" autocomplete="off" data-action="filter#submit"></form>
+        <form id="filters" autocomplete="off"
+              data-action="filter#submit"
+              data-form-need-prevents-form-abandonment-value="false"
+        ></form>
     </div>
 @endsection

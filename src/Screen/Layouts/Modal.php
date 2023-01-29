@@ -70,6 +70,14 @@ class Modal extends Layout
     }
 
     /**
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return $this->variables['key'];
+    }
+
+    /**
      * @param Repository $repository
      *
      * @return mixed
