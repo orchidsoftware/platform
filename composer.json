@@ -40,22 +40,22 @@
         "orchid/blade-icons": "^2.0|^3.0",
         "orchid/icons": "^2.0",
         "tabuna/breadcrumbs": "^3.0",
-        "laravel/framework": "^9.21",
-        "laravel/scout": "^9.0",
-        "myclabs/php-enum": "^1.7",
+        "laravel/framework": "^10.0",
+        "laravel/scout": "^9.8",
+        "myclabs/php-enum": "^1.8",
         "watson/active": "^6.0"
     },
     "require-dev": {
-        "doctrine/dbal": "^2.10 || ^3.0",
+        "doctrine/dbal": "^3.5",
         "fakerphp/faker": "^1.9.1",
-        "laravel/pint": "^1.2",
-        "mockery/mockery": "~1.0",
-        "orchestra/testbench-core": "^7.0",
-        "orchestra/testbench-dusk": "^7.0",
-        "phpunit/php-code-coverage": "^9.0",
-        "phpunit/phpunit": "^9.0",
+        "laravel/pint": "^1.4",
+        "mockery/mockery": "^1.4.4",
+        "orchestra/testbench-core": "^7.20",
+        "orchestra/testbench-dusk": "^7.20",
+        "phpunit/php-code-coverage": "^9.2",
+        "phpunit/phpunit": "^9.5.10",
         "sti3bas/laravel-scout-array-driver": "^3.2",
-        "vimeo/psalm": "^4.3 || ^5.0"
+        "vimeo/psalm": "^5.6"
     },
     "conflict": {
         "laravel/framework": "<9.32.0"
