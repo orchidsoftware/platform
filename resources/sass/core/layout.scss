@@ -1,11 +1,13 @@
 html, body {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
+    overscroll-behavior-y: none;
 }
 
 body {
   overflow-x: hidden;
 }
+
 
 @include media-breakpoint-up(md) {
     .aside {
@@ -14,6 +16,17 @@ body {
 
         nav {
             height: 100%;
+        }
+    }
+}
+
+@include media-breakpoint-down(md) {
+    body.menu-open {
+        .aside {
+            min-height: 100vh;
+        }
+        .workspace {
+            display: none!important;
         }
     }
 }
@@ -80,10 +93,12 @@ body {
         width: 100%;
         position: initial;
         vertical-align: middle;
+        text-align: center;
 
         li {
             display: inline-block;
 
+            /*
             &:last-child{
                 .btn-link {
                     margin-right: 0;
@@ -96,6 +111,7 @@ body {
                     padding-left: 0;
                 }
             }
+             */
 
         }
     }
@@ -141,4 +157,16 @@ body {
 
 .workspace {
     max-width: calc(1120px + #{$spacer});
+    overscroll-behavior-y: none;
+}
+
+
+.command-bar-wrapper {
+    position: sticky;
+    bottom: 0;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    z-index: 5;
+    left: 0;
+    right: 0;
 }
