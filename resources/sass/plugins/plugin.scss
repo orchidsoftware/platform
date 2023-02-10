@@ -309,9 +309,21 @@
 // Scroll to top
 .scroll-to-top {
     opacity: 0;
-    transition: all 340ms;
+    /*transition: all 340ms;*/
 
     &.show {
         opacity: 1;
+    }
+}
+
+
+.profile-container {
+    background: rgb(19, 20, 21);
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+
+    a, svg, span {
+        line-height: normal;
     }
 }

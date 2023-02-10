@@ -46,7 +46,7 @@
 
 <div class="container-fluid" data-controller="@yield('controller')" @yield('controller-data')>
 
-    <div class="row">
+    <div class="row d-md-flex h-100">
         @yield('aside')
 
         <div class="col">

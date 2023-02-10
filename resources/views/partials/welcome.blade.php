@@ -1,4 +1,4 @@
-<div class="bg-white rounded-top shadow-sm mb-3">
+<div class="bg-white rounded-top shadow-sm mb-3 rounded-bottom">
 
     <div class="row g-0">
         <div class="col col-lg-7 mt-6 p-4">

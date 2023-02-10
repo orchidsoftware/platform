@@ -31,7 +31,7 @@ class RoleListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Manage roles';
+        return 'Role Management';
     }
 
     /**
@@ -41,7 +41,7 @@ class RoleListScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'Access rights';
+        return 'A comprehensive list of all roles, including their permissions and associated users.';
     }
 
     /**

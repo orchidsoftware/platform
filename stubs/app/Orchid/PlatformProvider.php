@@ -25,82 +25,61 @@ class PlatformProvider extends OrchidServiceProvider
     /**
      * @return Menu[]
      */
-    public function registerMainMenu(): array
+    public function registerMenu(): array
     {
         return [
-            Menu::make('Example screen')
-                ->icon('monitor')
-                ->route('platform.example')
+            Menu::make('Get Started')
+                ->icon('bs.book')
                 ->title('Navigation')
-                ->badge(fn () => 6),
+                ->route(config('platform.index')),
 
-            Menu::make('Dropdown menu')
-                ->icon('code')
-                ->list([
-                    Menu::make('Sub element item 1')->icon('bag'),
-                    Menu::make('Sub element item 2')->icon('heart'),
-                ]),
+            Menu::make('Example screen')
+                ->icon('bs.collection')
+                ->route('platform.example')
+                ->badge(fn() => 6),
 
-            Menu::make('Basic Elements')
-                ->title('Form controls')
-                ->icon('note')
-                ->route('platform.example.fields'),
+            Menu::make('Form Elements')
+                ->icon('bs.journal')
+                ->route('platform.example.fields')
+                ->active('*/form/examples/*'),
 
-            Menu::make('Advanced Elements')
-                ->icon('briefcase')
-                ->route('platform.example.advanced'),
+            Menu::make('Overview Layouts')
+                ->icon('bs.columns-gap')
+                ->route('platform.example.layouts')
+                ->active('*/layout/examples/*'),
 
-            Menu::make('Text Editors')
-                ->icon('list')
-                ->route('platform.example.editors'),
-
-            Menu::make('Overview layouts')
-                ->title('Layouts')
-                ->icon('layers')
-                ->route('platform.example.layouts'),
-
-            Menu::make('Chart tools')
-                ->icon('bar-chart')
+            Menu::make('Charts')
+                ->icon('bs.bar-chart')
                 ->route('platform.example.charts'),
 
             Menu::make('Cards')
-                ->icon('grid')
+                ->icon('bs.card-text')
                 ->route('platform.example.cards')
+                ->divider(),
+
+            Menu::make(__('Users'))
+                ->icon('bs.people')
+                ->route('platform.systems.users')
+                ->permission('platform.systems.users')
+                ->title(__('Access Controls')),
+
+            Menu::make(__('Roles'))
+                ->icon('bs.lock')
+                ->route('platform.systems.roles')
+                ->permission('platform.systems.roles')
                 ->divider(),
 
             Menu::make('Documentation')
                 ->title('Docs')
-                ->icon('docs')
-                ->url('https://orchid.software/en/docs'),
+                ->icon('bs.box-arrow-up-right')
+                ->url('https://orchid.software/en/docs')
+                ->target('_blank'),
 
             Menu::make('Changelog')
-                ->icon('shuffle')
+                ->icon('bs.box-arrow-up-right')
                 ->url('https://github.com/orchidsoftware/platform/blob/master/CHANGELOG.md')
                 ->target('_blank')
-                ->badge(fn () => Dashboard::version(), Color::DARK()),
-
-            Menu::make(__('Users'))
-                ->icon('user')
-                ->route('platform.systems.users')
-                ->permission('platform.systems.users')
-                ->title(__('Access rights')),
-
-            Menu::make(__('Roles'))
-                ->icon('lock')
-                ->route('platform.systems.roles')
-                ->permission('platform.systems.roles'),
-        ];
-    }
-
-    /**
-     * @return Menu[]
-     */
-    public function registerProfileMenu(): array
-    {
-        return [
-            Menu::make(__('Profile'))
-                ->route('platform.profile')
-                ->icon('user'),
+                ->badge(fn() => Dashboard::version(), Color::DARK()),
         ];
     }
 

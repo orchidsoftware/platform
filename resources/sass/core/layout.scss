@@ -13,6 +13,7 @@ body {
     .aside {
         min-width: $app-aside-min-width;
         max-width: $app-aside-width;
+        min-height: 100vh;
 
         nav {
             height: 100%;
@@ -21,12 +22,22 @@ body {
 }
 
 @include media-breakpoint-down(md) {
+
+    .aside-collapse {
+        height: calc(100vh - 3.5rem);
+    }
+
     body.menu-open {
+        .aside-collapse {
+            display: flex !important;
+        }
+
         .aside {
             min-height: 100vh;
         }
+
         .workspace {
-            display: none!important;
+            display: none !important;
         }
     }
 }

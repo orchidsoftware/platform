@@ -162,10 +162,10 @@ class ExampleScreen extends Screen
 
             Layout::columns([
                 ChartLineExample::make('charts', 'Line Chart')
-                    ->description('It is simple Line Charts with different colors.'),
+                    ->description('Visualize data trends with multi-colored line graphs.'),
 
                 ChartBarExample::make('charts', 'Bar Chart')
-                    ->description('It is simple Bar Charts with different colors.'),
+                    ->description('Compare data sets with colorful bar graphs.'),
             ]),
 
             Layout::table('table', [

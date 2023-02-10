@@ -1,5 +1,6 @@
 @push('head')
-    <meta name="robots" content="noindex" />
+    <meta name="robots" content="noindex"/>
+    <meta name="google" content="notranslate">
     <link
           href="{{ asset('/vendor/orchid/favicon.svg') }}"
           sizes="any"
@@ -13,9 +14,11 @@
 @endpush
 
 <div class="h2 d-flex align-items-center">
-   <x-orchid-icon path="bs.house" class="d-inline d-sm-none"/>
+    @auth
+        <x-orchid-icon path="bs.house" class="d-inline d-sm-none"/>
+    @endauth
 
-    <p class="my-0 d-none d-sm-block">
+    <p class="my-0 {{ auth()->check() ? 'd-none d-sm-block' : '' }}">
         {{ config('app.name') }}
         <small class="align-top opacity">Orchid</small>
     </p>

@@ -38,7 +38,7 @@ class ExampleFieldsScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Basic form controls';
+        return 'Form Controls';
     }
 
     /**
@@ -48,7 +48,7 @@ class ExampleFieldsScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'Examples for creating a wide variety of forms.';
+        return 'A comprehensive guide to basic form controls, including input fields, buttons, checkboxes, and radio buttons.';
     }
 
     /**

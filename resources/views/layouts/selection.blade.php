@@ -1,6 +1,6 @@
 <div class="col-md-12" data-controller="filter">
     <div class="btn-group ps-4" role="group">
-        <button class="btn btn-link dropdown-toggle ps-0 d-flex align-items-center"
+        <button class="btn btn-link dropdown-toggle ps-0 d-flex align-items-center text-decoration-none"
                 data-bs-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false">

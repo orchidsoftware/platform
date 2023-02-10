@@ -44,7 +44,7 @@ class RoleEditScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Manage roles';
+        return 'Edit Role';
     }
 
     /**
@@ -54,7 +54,7 @@ class RoleEditScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'Access rights';
+        return 'Modify the privileges and permissions associated with a specific role.';
     }
 
     /**

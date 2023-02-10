@@ -62,7 +62,7 @@ class UserEditScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'Details such as name, email and password';
+        return 'User profile and privileges, including their associated role.';
     }
 
     /**
