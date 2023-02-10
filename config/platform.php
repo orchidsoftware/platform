@@ -103,6 +103,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | User Profile Route
+    |--------------------------------------------------------------------------
+    |
+    | The route to access the user profile page is recorded as the name of the route,
+    | it will be opened by users when they want to view or edit their profile information.
+    |
+    */
+
+    'profile' => 'platform.profile',
+
+    /*
+    |--------------------------------------------------------------------------
     | Dashboard Resource
     |--------------------------------------------------------------------------
     |
