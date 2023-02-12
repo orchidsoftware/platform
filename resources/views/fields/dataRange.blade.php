@@ -1,7 +1,8 @@
 @component($typeForm, get_defined_vars())
     <div class="row" data-controller="datetime"
          data-datetime-allow-input="true"
-         data-datetime-range="#end_{{ $attributes['id'] }}">
+         data-datetime-range="#end_{{ $attributes['id'] }}"
+         {{ $dataAttributes }}>
         <div class="col-md-6 pe-auto pe-md-1">
             <div class="form-group">
                 <input type="text"
