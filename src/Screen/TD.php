@@ -258,7 +258,7 @@ class TD extends Cell
     protected function detectConstantFilter(string $filter): Field
     {
         $input = match ($filter) {
-            self::FILTER_DATE_RANGE   => DateRange::make(),
+            self::FILTER_DATE_RANGE   => DateRange::make()->disableMobile(),
             self::FILTER_NUMBER_RANGE => NumberRange::make(),
             self::FILTER_SELECT       => Select::make()->options($this->filterOptions)->multiple(),
             self::FILTER_DATE         => DateTimer::make()->inline()->format('Y-m-d'),
