@@ -31,6 +31,11 @@ export default class extends ApplicationController {
 
         targets.forEach(name => document.querySelectorAll(`[name="${name}"]`)
             .forEach((field) => {
+                let fieldIndex = targets.findIndex(i => i === field.name);
+
+                if (fieldIndex > -1) {
+                    targets.splice(fieldIndex, 1);
+                }
 
                 if ((field.type === 'checkbox' || field.type === 'radio') && !field.checked) {
                     return;
@@ -43,7 +48,10 @@ export default class extends ApplicationController {
                 } else {
                     params.append(name, field.value);
                 }
-            }));
+            })
+        );
+
+        targets.forEach(name => document.querySelectorAll(`[id^="matrix-field-${name}"]`).forEach(e => params.append(e.name, e.value)));
 
         this.asyncLoadData(params).then(() => {
             document.dispatchEvent(
