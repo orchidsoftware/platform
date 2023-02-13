@@ -49,4 +49,12 @@ class SearchTest extends TestFeatureCase
             ->assertOk()
             ->assertSee($user->name);
     }
+    
+    public function testSearchPageNotFound(): void
+    {
+        $this
+            ->actingAs($this->createAdminUser())
+            ->get(route('platform.search', 'search@localhost.com',))
+            ->assertNotFound();
+    }
 }
