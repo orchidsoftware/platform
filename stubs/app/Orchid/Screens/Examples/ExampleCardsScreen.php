@@ -37,6 +37,16 @@ class ExampleCardsScreen extends Screen
     }
 
     /**
+     * Display header description.
+     *
+     * @return string|null
+     */
+    public function description(): ?string
+    {
+        return 'A comprehensive guide to the design and implementation of cards, including basic and advanced features.';
+    }
+
+    /**
      * The screen's action buttons.
      *
      * @return Action[]

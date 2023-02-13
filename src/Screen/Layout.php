@@ -67,6 +67,16 @@ abstract class Layout implements JsonSerializable
     abstract public function build(Repository $repository);
 
     /**
+     * @return Layout
+     */
+    public function currentAsync(): self
+    {
+        $this->async = true;
+
+        return $this;
+    }
+
+    /**
      * @param string $method
      *
      * @return self
@@ -78,16 +88,6 @@ abstract class Layout implements JsonSerializable
         }
 
         $this->asyncMethod = $method;
-
-        return $this;
-    }
-
-    /**
-     * @return Layout
-     */
-    public function currentAsync(): self
-    {
-        $this->async = true;
 
         return $this;
     }

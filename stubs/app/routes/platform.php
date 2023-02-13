@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Orchid\Screens\Examples\ExampleActionsScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
 use App\Orchid\Screens\Examples\ExampleFieldsAdvancedScreen;
@@ -89,11 +90,13 @@ Route::screen('example', ExampleScreen::class)
         ->parent('platform.index')
         ->push('Example screen'));
 
-Route::screen('example-fields', ExampleFieldsScreen::class)->name('platform.example.fields');
-Route::screen('example-layouts', ExampleLayoutsScreen::class)->name('platform.example.layouts');
-Route::screen('example-charts', ExampleChartsScreen::class)->name('platform.example.charts');
-Route::screen('example-editors', ExampleTextEditorsScreen::class)->name('platform.example.editors');
-Route::screen('example-cards', ExampleCardsScreen::class)->name('platform.example.cards');
-Route::screen('example-advanced', ExampleFieldsAdvancedScreen::class)->name('platform.example.advanced');
+Route::screen('/form/examples/fields', ExampleFieldsScreen::class)->name('platform.example.fields');
+Route::screen('/form/examples/advanced', ExampleFieldsAdvancedScreen::class)->name('platform.example.advanced');
+Route::screen('/form/examples/editors', ExampleTextEditorsScreen::class)->name('platform.example.editors');
+Route::screen('/form/examples/actions', ExampleActionsScreen::class)->name('platform.example.actions');
+
+Route::screen('/layout/examples/layouts', ExampleLayoutsScreen::class)->name('platform.example.layouts');
+Route::screen('/charts/examples/charts', ExampleChartsScreen::class)->name('platform.example.charts');
+Route::screen('/cards/examples/cards', ExampleCardsScreen::class)->name('platform.example.cards');
 
 //Route::screen('idea', Idea::class, 'platform.screens.idea');

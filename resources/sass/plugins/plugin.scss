@@ -249,8 +249,8 @@
 // toast
 .toast-wrapper {
   position: fixed;
-  top: 2em;
-  right: 2em;
+  top: 1.5em;
+  right: 1.5em;
   z-index: $zindex-fixed;
   width: 20em;
 }
@@ -264,6 +264,7 @@
     overflow: hidden;
 
     .toast {
+      backdrop-filter: blur(1em);
       max-width: 100vw;
       margin: 0 auto;
     }
@@ -303,4 +304,26 @@
 
 .d2-grid dd {
     grid-column: span 2 / span 2;
+}
+
+// Scroll to top
+.scroll-to-top {
+    opacity: 0;
+    /*transition: all 340ms;*/
+
+    &.show {
+        opacity: 1;
+    }
+}
+
+
+.profile-container {
+    background: rgb(19, 20, 21);
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+
+    a, svg, span {
+        line-height: normal;
+    }
 }

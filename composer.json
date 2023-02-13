@@ -37,13 +37,14 @@
     ],
     "require": {
         "ext-json": "*",
-        "orchid/blade-icons": "^2.0|^3.0",
+        "orchid/blade-icons": "^3.0",
         "orchid/icons": "^2.0",
         "tabuna/breadcrumbs": "^3.0",
         "laravel/framework": "^9.21",
         "laravel/scout": "^9.0",
         "myclabs/php-enum": "^1.7",
-        "watson/active": "^6.0"
+        "watson/active": "^6.0",
+        "twbs/bootstrap-icons": "^1.10"
     },
     "require-dev": {
         "doctrine/dbal": "^2.10 || ^3.0",

@@ -2,10 +2,10 @@
 
 namespace App\Orchid\Screens\Examples;
 
+use App\Orchid\Layouts\Examples\ExampleElements;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Fields\CheckBox;
-use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Label;
 use Orchid\Screen\Fields\Password;
@@ -38,7 +38,7 @@ class ExampleFieldsScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Basic form controls';
+        return 'Form Controls';
     }
 
     /**
@@ -48,7 +48,7 @@ class ExampleFieldsScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'Examples for creating a wide variety of forms.';
+        return 'A comprehensive guide to basic form controls, including input fields, buttons, checkboxes, and radio buttons.';
     }
 
     /**
@@ -69,115 +69,8 @@ class ExampleFieldsScreen extends Screen
     public function layout(): iterable
     {
         return [
-            Layout::columns([
-                Layout::rows([
 
-                    Input::make('name')
-                        ->title('Full Name:')
-                        ->placeholder('Enter full name')
-                        ->required()
-                        ->help('Please enter your full name'),
-
-                    Input::make('email')
-                        ->title('Email address')
-                        ->placeholder('Email address')
-                        ->help("We'll never share your email with anyone else.")
-                        ->popover('Tooltip - hint that user opens himself.'),
-
-                    Password::make('password')
-                        ->title('Password')
-                        ->placeholder('Password'),
-
-                    Label::make('static')
-                        ->title('Static:')
-                        ->value('email@example.com'),
-
-                    Select::make('select')
-                        ->title('Select')
-                        ->options([1, 2]),
-
-                    CheckBox::make('checkbox')
-                        ->title('Checkbox')
-                        ->placeholder('Remember me'),
-
-                    Radio::make('radio')
-                        ->placeholder('Yes')
-                        ->value(1)
-                        ->title('Radio'),
-
-                    Radio::make('radio')
-                        ->placeholder('No')
-                        ->value(0),
-
-                    TextArea::make('textarea')
-                        ->title('Example textarea')
-                        ->rows(6),
-
-                ])->title('Base Controls'),
-                Layout::rows([
-                    Input::make('disabled_input')
-                        ->title('Disabled Input')
-                        ->placeholder('Disabled Input')
-                        ->help('A disabled input element is unusable and un-clickable.')
-                        ->disabled(),
-
-                    Select::make('disabled_select')
-                        ->title('Disabled select')
-                        ->options([1, 2])
-                        ->value(0)
-                        ->disabled(),
-
-                    TextArea::make('disabled_textarea')
-                        ->title('Disabled textarea')
-                        ->placeholder('Disabled textarea')
-                        ->rows(6)
-                        ->disabled(),
-
-                    Input::make('readonly_input')
-                        ->title('Readonly Input')
-                        ->placeholder('Readonly Input')
-                        ->readonly(),
-
-                    CheckBox::make('readonly_checkbox')
-                        ->title('Readonly Checkbox')
-                        ->placeholder('Remember me')
-                        ->disabled(),
-
-                    Radio::make('radio')
-                        ->placeholder('Yes')
-                        ->value(1)
-                        ->title('Radio')
-                        ->disabled(),
-
-                    Radio::make('radio')
-                        ->placeholder('No')
-                        ->value(0)
-                        ->disabled(),
-
-                    TextArea::make('readonly_textarea')
-                        ->title('Readonlyd textarea')
-                        ->placeholder('Readonlyd textarea')
-                        ->rows(7)
-                        ->disabled(),
-
-                ])->title('Input States'),
-            ]),
-
-            Layout::rows([
-                Group::make([
-                    Button::make('Primary')->method('buttonClickProcessing')->type(Color::PRIMARY()),
-                    Button::make('Secondary')->method('buttonClickProcessing')->type(Color::SECONDARY()),
-                    Button::make('Success')->method('buttonClickProcessing')->type(Color::SUCCESS()),
-                    Button::make('Danger')->method('buttonClickProcessing')->type(Color::DANGER()),
-                    Button::make('Warning')->method('buttonClickProcessing')->type(Color::WARNING()),
-                    Button::make('Info')->method('buttonClickProcessing')->type(Color::INFO()),
-                    Button::make('Light')->method('buttonClickProcessing')->type(Color::LIGHT()),
-                    Button::make('Dark')->method('buttonClickProcessing')->type(Color::DARK()),
-                    Button::make('Default')->method('buttonClickProcessing')->type(Color::DEFAULT()),
-                    Button::make('Link')->method('buttonClickProcessing')->type(Color::LINK()),
-                ])->autoWidth(),
-            ])->title('Buttons'),
-
+            ExampleElements::class,
             Layout::rows([
                 Input::make('test')
                     ->title('Text')
@@ -281,7 +174,101 @@ class ExampleFieldsScreen extends Screen
                     ->method('buttonClickProcessing')
                     ->type(Color::DEFAULT()),
 
-            ])->title('Textual HTML5 Inputs'),
+            ]), //->title('Textual HTML5 Inputs'),
+
+            Layout::columns([
+                Layout::rows([
+
+                    Input::make('name')
+                        ->title('Full Name:')
+                        ->placeholder('Enter full name')
+                        ->required()
+                        ->help('Please enter your full name'),
+
+                    Input::make('email')
+                        ->title('Email address')
+                        ->placeholder('Email address')
+                        ->help("We'll never share your email with anyone else.")
+                        ->popover('Tooltip - hint that user opens himself.'),
+
+                    Password::make('password')
+                        ->title('Password')
+                        ->placeholder('Password'),
+
+                    Label::make('static')
+                        ->title('Static:')
+                        ->value('email@example.com'),
+
+                    Select::make('select')
+                        ->title('Select')
+                        ->options([1, 2]),
+
+                    CheckBox::make('checkbox')
+                        ->title('Checkbox')
+                        ->placeholder('Remember me'),
+
+                    Radio::make('radio')
+                        ->placeholder('Yes')
+                        ->value(1)
+                        ->title('Radio'),
+
+                    Radio::make('radio')
+                        ->placeholder('No')
+                        ->value(0),
+
+                    TextArea::make('textarea')
+                        ->title('Example textarea')
+                        ->rows(6),
+
+                ])->title('Base Controls'),
+                Layout::rows([
+                    Input::make('disabled_input')
+                        ->title('Disabled Input')
+                        ->placeholder('Disabled Input')
+                        ->help('A disabled input element is unusable and un-clickable.')
+                        ->disabled(),
+
+                    Select::make('disabled_select')
+                        ->title('Disabled select')
+                        ->options([1, 2])
+                        ->value(0)
+                        ->disabled(),
+
+                    TextArea::make('disabled_textarea')
+                        ->title('Disabled textarea')
+                        ->placeholder('Disabled textarea')
+                        ->rows(6)
+                        ->disabled(),
+
+                    Input::make('readonly_input')
+                        ->title('Readonly Input')
+                        ->placeholder('Readonly Input')
+                        ->readonly(),
+
+                    CheckBox::make('readonly_checkbox')
+                        ->title('Readonly Checkbox')
+                        ->placeholder('Remember me')
+                        ->disabled(),
+
+                    Radio::make('radio')
+                        ->placeholder('Yes')
+                        ->value(1)
+                        ->title('Radio')
+                        ->disabled(),
+
+                    Radio::make('radio')
+                        ->placeholder('No')
+                        ->value(0)
+                        ->disabled(),
+
+                    TextArea::make('readonly_textarea')
+                        ->title('Readonlyd textarea')
+                        ->placeholder('Readonlyd textarea')
+                        ->rows(7)
+                        ->disabled(),
+
+                ])->title('Input States'),
+            ]),
         ];
     }
 

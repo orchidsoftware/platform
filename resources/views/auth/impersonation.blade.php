@@ -7,9 +7,8 @@
     <form role="form"
           method="POST"
           data-controller="form"
+          data-form-need-prevents-form-abandonment-value="false"
           data-action="form#submit"
-          data-form-button-animate="#button-login"
-          data-form-button-text="{{ __('Loading...') }}"
           action="{{ route('platform.switch.logout') }}">
         @csrf
 
@@ -18,7 +17,7 @@
         </p>
 
         <button id="button-login" type="submit" class="btn btn-default btn-block" tabindex="2">
-            <x-orchid-icon path="login" class="small me-2"/> {{__('Switch to My Account')}}
+            <x-orchid-icon path="bs.box-arrow-in-right" class="small me-2"/> {{__('Switch to My Account')}}
         </button>
 
     </form>

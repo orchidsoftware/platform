@@ -8,7 +8,9 @@ body {
   font-size: $font-size-base;
   color: $text-color;
   background-color: transparent;
+  font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   line-height: $line-height-base;
 }
 
@@ -63,28 +65,6 @@ small, .small {
     padding: 3px 6px;
     margin-left: -10px;
   }
-}
-
-.badge-sm {
-  font-size: 85%;
-  padding: 2px 5px !important;
-}
-
-.label-sm {
-  padding-top: 0;
-  padding-bottom: 1px;
-}
-
-.badge-white {
-  background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  padding: 2px 6px;
-}
-
-.badge-empty {
-  background-color: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  color: inherit;
 }
 
 blockquote {
@@ -361,8 +341,9 @@ blockquote {
         display: inline-block !important;
         list-style: none;
         margin: 0;
-        padding: 0;
+        padding: 0 0 1px 0;
         overflow-x: auto;
+        overflow-y: hidden;
         white-space: nowrap;
         width: 100%;
         position: initial;

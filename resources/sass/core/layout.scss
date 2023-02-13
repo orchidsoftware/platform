@@ -1,16 +1,44 @@
 html, body {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
+    overscroll-behavior-y: none;
 }
 
 body {
   overflow-x: hidden;
 }
 
+
 @include media-breakpoint-up(md) {
     .aside {
         min-width: $app-aside-min-width;
         max-width: $app-aside-width;
+        min-height: 100vh;
+
+        nav {
+            height: 100%;
+        }
+    }
+}
+
+@include media-breakpoint-down(md) {
+
+    .aside-collapse {
+        height: calc(100vh - 3.5rem);
+    }
+
+    body.menu-open {
+        .aside-collapse {
+            display: flex !important;
+        }
+
+        .aside {
+            min-height: 100vh;
+        }
+
+        .workspace {
+            display: none !important;
+        }
     }
 }
 
@@ -20,7 +48,39 @@ body {
   overflow: auto;
 }
 
-.command-bar, .table td{
+
+.command-bar {
+    --#{$prefix}dropdown-item-padding-x: 1rem;
+    --#{$prefix}dropdown-item-padding-y: .25rem;
+}
+
+.table td {
+    --#{$prefix}dropdown-item-padding-x: 0.5rem;
+    --#{$prefix}dropdown-item-padding-y: .25rem;
+}
+
+.command-bar, .table td, {
+    --#{$prefix}dropdown-spacer: #{$dropdown-spacer};
+    --#{$prefix}dropdown-color: #{$dropdown-color};
+    --#{$prefix}dropdown-bg: #{$dropdown-bg};
+    --#{$prefix}dropdown-border-color: #{$dropdown-border-color};
+    --#{$prefix}dropdown-border-radius: #{$dropdown-border-radius};
+    --#{$prefix}dropdown-border-width: #{$dropdown-border-width};
+    --#{$prefix}dropdown-inner-border-radius: #{$btn-border-radius};
+
+    --#{$prefix}dropdown-link-color: #{$dropdown-link-color};
+    --#{$prefix}dropdown-link-hover-color: #{$dropdown-link-hover-color};
+    --#{$prefix}dropdown-link-hover-bg: #{$dropdown-link-hover-bg};
+    --#{$prefix}dropdown-link-active-color: #{$dropdown-link-active-color};
+    --#{$prefix}dropdown-link-active-bg: #{$dropdown-link-active-bg};
+    --#{$prefix}dropdown-link-disabled-color: #{$dropdown-link-disabled-color};
+
+    .btn {
+        @extend .dropdown-item;
+    }
+}
+
+.dropdown-menu{
     .btn {
         @extend .dropdown-item;
     }
@@ -44,10 +104,12 @@ body {
         width: 100%;
         position: initial;
         vertical-align: middle;
+        text-align: center;
 
         li {
             display: inline-block;
 
+            /*
             &:last-child{
                 .btn-link {
                     margin-right: 0;
@@ -60,6 +122,7 @@ body {
                     padding-left: 0;
                 }
             }
+             */
 
         }
     }
@@ -100,4 +163,21 @@ body {
     overflow: hidden;
     outline: 0;
     border: none;
+}
+
+
+.workspace {
+    max-width: calc(1120px + #{$spacer});
+    overscroll-behavior-y: none;
+}
+
+
+.command-bar-wrapper {
+    position: sticky;
+    bottom: 0;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    z-index: 5;
+    left: 0;
+    right: 0;
 }

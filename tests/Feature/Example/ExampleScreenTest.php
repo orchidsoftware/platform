@@ -26,7 +26,7 @@ class ExampleScreenTest extends TestFeatureCase
             ->get(route('platform.example.fields'));
 
         $response->assertOk()
-            ->assertSee('Form controls');
+            ->assertSee('Form Controls');
     }
 
     public function testRoutePlatformExampleLayouts(): void
@@ -36,6 +36,6 @@ class ExampleScreenTest extends TestFeatureCase
             ->get(route('platform.example.layouts'));
 
         $response->assertOk()
-            ->assertSee('Overview layouts');
+            ->assertSee('Layout Overview');
     }
 }

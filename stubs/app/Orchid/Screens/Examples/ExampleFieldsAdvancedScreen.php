@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Screens\Examples;
 
+use App\Orchid\Layouts\Examples\ExampleElements;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Action;
 use Orchid\Screen\Fields\CheckBox;
@@ -81,6 +82,26 @@ class ExampleFieldsAdvancedScreen extends Screen
     public function layout(): iterable
     {
         return [
+
+            ExampleElements::class,
+            Layout::rows([
+
+                UTM::make('link')
+                    ->title('UTM link')
+                    ->help('Generated UTM link'),
+
+                Matrix::make('matrix')
+                    ->columns([
+                        'Attribute',
+                        'Value',
+                        'Units',
+                    ]),
+
+                Map::make('place')
+                    ->title('Object on the map')
+                    ->help('Enter the coordinates, or use the search'),
+
+            ]),
 
             Layout::rows([
 
@@ -277,24 +298,6 @@ class ExampleFieldsAdvancedScreen extends Screen
 
             ])->title('File upload'),
 
-            Layout::rows([
-
-                UTM::make('link')
-                    ->title('UTM link')
-                    ->help('Generated UTM link'),
-
-                Matrix::make('matrix')
-                    ->columns([
-                        'Attribute',
-                        'Value',
-                        'Units',
-                    ]),
-
-                Map::make('place')
-                    ->title('Object on the map')
-                    ->help('Enter the coordinates, or use the search'),
-
-            ])->title('Advanced'),
         ];
     }
 }

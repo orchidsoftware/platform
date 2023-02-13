@@ -30,9 +30,14 @@
           method="post"
           enctype="multipart/form-data"
           data-controller="form"
+          data-form-need-prevents-form-abandonment-value="{{ $needPreventsAbandonment }}"
+          data-form-submit-loading-message-value="{{ $formSubmitMessage }}"
+          data-form-failed-validation-message-value="{{ $formValidateMessage }}"
           data-action="keypress->form#disableKey
-                           form#submit"
-          data-form-validation="{{ $formValidateMessage }}"
+                      turbo:before-fetch-request@document->form#confirmCancel
+                      beforeunload@window->form#confirmCancel
+                      change->form#changed
+                      form#submit"
           novalidate
     >
         {!! $layouts !!}
@@ -41,6 +46,9 @@
     </form>
 
     <div data-controller="filter">
-        <form id="filters" autocomplete="off" data-action="filter#submit"></form>
+        <form id="filters" autocomplete="off"
+              data-action="filter#submit"
+              data-form-need-prevents-form-abandonment-value="false"
+        ></form>
     </div>
 @endsection

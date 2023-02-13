@@ -1,7 +1,13 @@
 import ApplicationController from "./application_controller";
 
 export default class extends ApplicationController {
-
+    static values = {
+        needPreventsFormAbandonment: {type: Boolean, default: true},
+        hasBeenChanged: {type: Boolean, default: false},
+        failedValidationMessage: {type: String, default: "Something went wrong."},
+        submitLoadingMessage: {type: String, default: "Loading..."},
+        confirmCancelMessage: { type: String, default: "Do you really want to leave? You have unsaved changes." }
+    }
 
     /**
      * Connect Form
@@ -35,7 +41,6 @@ export default class extends ApplicationController {
      * @returns {boolean}
      */
     submit(event) {
-
         // disable
         if (this.getActiveElementAttr('data-turbo') === 'false') {
             return true;
@@ -46,41 +51,44 @@ export default class extends ApplicationController {
             return false;
         }
 
-        if (this.isSubmit) {
-            event.preventDefault();
-            return false;
-        }
+        //if (this.isSubmit) {
+        //    event.preventDefault();
+        //    return false;
+        //}
 
-        const action = this.loadFormAction();
+        const action = this.loadFormAction(event);
 
         if (action === null) {
             event.preventDefault();
             return false;
         }
 
-        this.isSubmit = true;
-        this.animateButton();
+        //this.isSubmit = true;
+        this.animateButton(event);
+
+        this.needPreventsFormAbandonmentValue = false;
 
         const screenEventSubmit = new Event('orchid:screen-submit');
         event.target.dispatchEvent(screenEventSubmit);
+
+        return true;
     }
 
     /**
      *
      */
-    animateButton() {
-        const button = this.data.get('button-animate');
-        const text = this.data.get('button-text') || '';
+    animateButton(event) {
+        const button = event.submitter;
 
-        if (!button || !document.querySelector(button)) {
+        if (button.tagName !== 'BUTTON') {
             return;
         }
 
-        const buttonElement = document.querySelector(button);
-        buttonElement.disabled = true;
-        buttonElement.classList.add('cursor-wait');
-        buttonElement.innerHTML = '<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>'
-            + `<span class="ps-1">${text}</span>`;
+        button.disabled = true;
+        button.classList.add('cursor-wait');
+
+        button.innerHTML = '<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>'
+            + `<span class="ps-1">${this.submitLoadingMessageValue}</span>`;
     }
 
     /**
@@ -98,13 +106,13 @@ export default class extends ApplicationController {
             return true;
         }
 
-        const message = this.data.get('validation');
-
         if (!event.target.reportValidity()) {
-            this.alert('Validation error', message);
+            this.toast(this.failedValidationMessageValue);
             event.target.classList.add('was-validated');
             return false;
         }
+
+        event.target.classList.remove('was-validated');
 
         return true;
     }
@@ -141,11 +149,12 @@ export default class extends ApplicationController {
      *
      * @returns {string}
      */
-    loadFormAction() {
+    loadFormAction(event) {
         const formAction = this.element.getAttribute('action');
         const activeElementAction = this.getActiveElementAttr('formaction');
+        const submitterAction = event.submitter.formAction;
 
-        return activeElementAction || formAction;
+        return activeElementAction || formAction || submitterAction;
     }
 
     /**
@@ -169,5 +178,33 @@ export default class extends ApplicationController {
 
         event.preventDefault();
         return false;
+    }
+
+    /**
+     * Trigger for form has been changed
+     */
+    changed(event) {
+        if(this.element === event.target.form) {
+            this.hasBeenChangedValue = true;
+        }
+    }
+
+    /**
+     *
+     * @param event
+     */
+    async confirmCancel(event) {
+        if (this.needPreventsFormAbandonmentValue === true && this.hasBeenChangedValue === true) {
+            event.preventDefault();
+
+            if(event.type === 'beforeunload'){
+                event.returnValue = this.confirmCancelMessageValue; //Gecko + IE
+                return this.confirmCancelMessageValue; //Gecko + Webkit, Safari, Chrome etc.
+            }
+
+            if (window.confirm(this.confirmCancelMessageValue)) {
+                event.detail.resume()
+            }
+        }
     }
 }

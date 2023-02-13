@@ -1,5 +1,5 @@
 <th @empty(!$width) width="{{$width}}" @endempty class="text-{{$align}}" data-column="{{ $slug }}">
-    <div class="d-flex align-items-center">
+    <div class="d-inline-flex align-items-center">
 
         @includeWhen($filter !== null, "platform::partials.layouts.filter", ['filter' => $filter])
 
@@ -11,7 +11,7 @@
                 <x-orchid-popover :content="$popover"/>
 
                 @if(is_sort($column))
-                    @php $sortIcon = 'sort-amount-'.get_sort($column) @endphp
+                    @php $sortIcon = get_sort($column) === 'desc' ? 'bs.sort-down' : 'bs.sort-up' @endphp
                     <x-orchid-icon :path="$sortIcon"/>
                 @endif
             </a>
@@ -29,8 +29,10 @@
                data-filter="{{$column}}"
                class="badge bg-light border d-inline-flex align-items-center">
                 <span>{{ $filterString }}</span>
-                <x-orchid-icon path="cross" class="ms-1"/>
+                <x-orchid-icon path="bs.x-lg" class="ms-1"/>
             </a>
         </div>
     @endif
 </th>
+
+

@@ -1,7 +1,7 @@
 @if(!\Orchid\Platform\Dashboard::assetsAreCurrent())
     <div class="alert alert-warning rounded shadow-sm mb-3 p-4">
         <div class="d-flex align-items-center mb-2 text-black">
-            <x-orchid-icon path="exclamation" width="1.5em" height="1.5em" class="me-2"/>
+            <x-orchid-icon path="bs.exclamation-triangle" width="2em" height="2em" class="me-2"/>
             <h4 class="mb-0 fw-light">{{ __("Complete the update.") }}</h4>
         </div>
 

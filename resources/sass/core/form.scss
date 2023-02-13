@@ -10,7 +10,7 @@
   vertical-align: middle;
   @include transition(all 0.12s ease);
   @include box-shadow(none);
-  border-radius: 2px;
+  border-radius: 0.125rem;
   @include placeholder($text-muted);
   @include transition(background 0.2s linear 0s);
 

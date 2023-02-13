@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Actions;
 
+use Illuminate\Support\Str;
+use Orchid\Platform\Http\Middleware\Turbo;
 use Orchid\Screen\Action;
 
 /**
@@ -16,7 +18,7 @@ use Orchid\Screen\Action;
  * @method Button parameters(array|object $name)
  * @method Button confirm(string $confirm = true)
  * @method Button action(string $url)
- * @method Button disabled(bool $disabled)
+ * @method Button disabled(bool $disabled = true)
  */
 class Button extends Action
 {
@@ -72,7 +74,9 @@ class Button extends Action
             }
 
             // correct URL for async request
-            $url = request()->header('ORCHID-ASYNC-REFERER', url()->current());
+            $url = Str::contains(request()->header('Accept', ''), Turbo::TURBO_STREAM_FORMAT)
+                ? url()->previous()
+                : url()->current();
 
             $query = http_build_query($this->get('parameters'));
 
@@ -110,5 +114,17 @@ class Button extends Action
             ->when(! empty($parameters), function () use ($parameters) {
                 $this->set('parameters', $parameters);
             });
+    }
+
+    /**
+     * @param array|string $name
+     * @param mixed        $parameters
+     * @param bool         $absolute
+     *
+     * @return $this
+     */
+    public function route($name, $parameters = [], $absolute = true): self
+    {
+        return $this->action(route($name, $parameters, $absolute));
     }
 }

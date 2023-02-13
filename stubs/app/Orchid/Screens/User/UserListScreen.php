@@ -39,7 +39,7 @@ class UserListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'User';
+        return 'User Management';
     }
 
     /**
@@ -49,7 +49,7 @@ class UserListScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'All registered users';
+        return 'A comprehensive list of all registered users, including their profiles and privileges.';
     }
 
     /**
@@ -71,7 +71,7 @@ class UserListScreen extends Screen
     {
         return [
             Link::make(__('Add'))
-                ->icon('plus')
+                ->icon('bs.plus-circle')
                 ->route('platform.systems.users.create'),
         ];
     }

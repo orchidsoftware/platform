@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Screens\Examples;
 
+use App\Orchid\Layouts\Examples\ExampleElements;
 use Illuminate\Support\Str;
 use Orchid\Screen\Action;
 use Orchid\Screen\Fields\Code;
@@ -66,6 +67,9 @@ class ExampleTextEditorsScreen extends Screen
     public function layout(): iterable
     {
         return [
+
+            ExampleElements::class,
+
             Layout::rows([
                 SimpleMDE::make('simplemde')
                     ->title('SimpleMDE')

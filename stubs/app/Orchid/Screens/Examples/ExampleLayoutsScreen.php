@@ -26,7 +26,7 @@ class ExampleLayoutsScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Overview layouts';
+        return 'Layout Overview';
     }
 
     /**
@@ -36,7 +36,7 @@ class ExampleLayoutsScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'Components for laying out your project';
+        return 'A comprehensive guide to the different layout options available.';
     }
 
     /**

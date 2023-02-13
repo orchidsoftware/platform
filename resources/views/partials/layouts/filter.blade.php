@@ -5,7 +5,7 @@
             aria-haspopup="true"
             data-bs-boundary="viewport"
             aria-expanded="false">
-        <x-orchid-icon path="filter"/>
+        <x-orchid-icon path="bs.funnel"/>
     </button>
     <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow" x-placement="bottom-end">
         <div class="py-2 px-3">
