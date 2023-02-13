@@ -16,10 +16,7 @@ export default class extends Controller {
     // Private
     processIntersectionEntries(entries) {
         entries.forEach((entry) => {
-
-            console.log(entry);
-
-            this.element.classList.toggle(this.data.get('class'), entry.isIntersecting);
+            this.element.classList.toggle(this.data.get('class'), entry.isIntersecting && window.document.body.scrollHeight > window.document.body.clientHeight + 400);
         });
     }
 }
