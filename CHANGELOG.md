@@ -5,16 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## 13.10.0 - 2023-02-14
 
 ### Added
+
 - Implemented a new page when you introduce yourself as a user who has no permission
 - Added view for indicator need update assets 
+- Added `disableMobile()` for DateRange [#2522](https://github.com/orchidsoftware/platform/pull/2522)
 
 ### Changed
 
 - The class `UserSwitch` has been declared obsolete and the preference is to use `Impersonation` instead.
-- 
+- Vertical align for column titles
+
+### Fixed
+
+- Disable client-side filtering [#2512](https://github.com/orchidsoftware/platform/issues/2512)
+- Show icons for Notification/Table
 
 ## 13.9.4 - 2023-01-13
 

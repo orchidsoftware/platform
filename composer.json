@@ -59,7 +59,8 @@
         "vimeo/psalm": "^4.3 || ^5.0"
     },
     "conflict": {
-        "laravel/framework": "<9.32.0"
+        "laravel/framework": "<9.32.0",
+        "nesbot/carbon": "<2.66.0"
     },
     "autoload": {
         "psr-4": {
