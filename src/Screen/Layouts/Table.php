@@ -125,7 +125,7 @@ abstract class Table extends Layout
             return __('Try adjusting your filter settings or removing it altogether to see more data');
         }
 
-        return 'Import or create objects, or check back later for updates';
+        return __('Import or create objects, or check back later for updates');
     }
 
     /**
