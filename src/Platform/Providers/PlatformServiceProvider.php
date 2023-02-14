@@ -34,6 +34,8 @@ class PlatformServiceProvider extends ServiceProvider
             $this->dashboard
                 ->registerResource('stylesheets', config('platform.resource.stylesheets'))
                 ->registerResource('scripts', config('platform.resource.scripts'))
+                ->registerResource('modules', config('platform.resource.modules'))
+                ->registerResource('vite', config('platform.resource.vite'))
                 ->registerSearch(config('platform.search', []))
                 ->registerPermissions($this->registerPermissionsMain())
                 ->registerPermissions($this->registerPermissionsSystems());

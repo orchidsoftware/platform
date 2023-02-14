@@ -268,6 +268,10 @@ class Dashboard
         return $this->resources->get($key);
     }
 
+    public function hasResource($key):bool {
+        return $this->resources->has($key);
+    }
+
     /**
      * @return Collection
      */

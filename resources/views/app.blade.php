@@ -40,6 +40,14 @@
     @foreach(Dashboard::getResource('scripts') as $scripts)
         <script src="{{  $scripts }}" defer type="text/javascript"></script>
     @endforeach
+
+    @foreach(Dashboard::getResource('modules') as $scripts)
+        <script src="{{  $scripts }}" defer type="module"></script>
+    @endforeach
+
+    @if(Dashboard::hasRessource('vite'))
+        @vite(Dashboard::hasRessource('vite'))
+    @endif
 </head>
 
 <body class="{{ \Orchid\Support\Names::getPageNameClass() }}" data-controller="pull-to-refresh">
