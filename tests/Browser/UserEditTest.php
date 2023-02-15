@@ -41,8 +41,8 @@ class UserEditTest extends TestBrowserCase
                 ->loginAs($user, 'web')
                 ->assertAuthenticatedAs($user)
                 ->visitRoute('platform.systems.users')
-                ->assertSee('User')
-                ->assertSee('All registered users');
+                ->assertSee('User Management')
+                ->assertSee('A comprehensive list of all registered users, including their profiles and privileges');
         });
     }
 
