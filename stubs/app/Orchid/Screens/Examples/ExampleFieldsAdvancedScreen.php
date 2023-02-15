@@ -49,7 +49,7 @@ class ExampleFieldsAdvancedScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Advanced form controls';
+        return 'Advanced Form Controls';
     }
 
     /**

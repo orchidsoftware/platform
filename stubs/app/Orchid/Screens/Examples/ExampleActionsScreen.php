@@ -30,7 +30,7 @@ class ExampleActionsScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Actions form controls';
+        return 'Actions Form Controls';
     }
 
     /**

@@ -84,7 +84,7 @@ class ExampleChartsScreen extends Screen
     public function layout(): iterable
     {
         return [
-            ChartLineExample::make('charts', 'Actions with a tweet')
+            ChartLineExample::make('charts', 'Actions with a Tweet')
                 ->description('The total number of interactions a user has with a tweet. This includes all clicks on any links in the tweet (including hashtags, links, avatar, username, and expand button), retweets, replies, likes, and additions to the read list.'),
 
             Layout::columns([
