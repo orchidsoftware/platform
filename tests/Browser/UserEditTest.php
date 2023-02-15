@@ -56,11 +56,11 @@ class UserEditTest extends TestBrowserCase
                 ->loginAs($user)
                 ->visitRoute('platform.systems.users')
                 ->pressAndWaitFor($user->email)
-                ->pause(5000)
+                ->pause(10000)
                 ->type('user[name]', $string)
                 ->press('Apply')
                 ->waitForText('User was saved.', 10)
-                ->waitForText($string, 10)
+                ->pause(10000)
                 ->assertSee($string);
         });
     }
