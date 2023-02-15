@@ -9,11 +9,6 @@ use Orchid\Filters\BaseHttpEloquentFilter;
 
 class Where extends BaseHttpEloquentFilter
 {
-    /**
-     * @param Builder $builder
-     *
-     * @return Builder
-     */
     public function run(Builder $builder): Builder
     {
         return $builder->where($this->column, $this->getHttpValue());

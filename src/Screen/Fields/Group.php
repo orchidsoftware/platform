@@ -35,8 +35,6 @@ class Group implements Fieldable, Groupable
     protected $view = 'platform::fields.group';
 
     /**
-     * @param array $group
-     *
      * @return static
      */
     public static function make(array $group = [])
@@ -53,8 +51,6 @@ class Group implements Fieldable, Groupable
     }
 
     /**
-     * @param array $group
-     *
      * @return $this
      */
     public function setGroup(array $group = []): Groupable
@@ -72,8 +68,6 @@ class Group implements Fieldable, Groupable
 
     /**
      * Columns only take up as much space as needed.
-     *
-     * @return self
      */
     public function autoWidth(): self
     {
@@ -82,8 +76,6 @@ class Group implements Fieldable, Groupable
 
     /**
      * Columns occupy the entire width of the screen.
-     *
-     * @return self
      */
     public function fullWidth(): self
     {
@@ -91,8 +83,7 @@ class Group implements Fieldable, Groupable
     }
 
     /**
-     * @param string $key
-     * @param mixed  $value
+     * @param mixed $value
      *
      * @return static
      */
@@ -104,7 +95,6 @@ class Group implements Fieldable, Groupable
     }
 
     /**
-     * @param string     $key
      * @param mixed|null $value
      *
      * @return static|mixed|null
@@ -114,17 +104,12 @@ class Group implements Fieldable, Groupable
         return $this->attributes[$key] ?? $value;
     }
 
-    /**
-     * @return array
-     */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
 
     /**
-     * @param string $name
-     *
      * @return $this
      */
     public function form(string $name): self
@@ -166,9 +151,6 @@ class Group implements Fieldable, Groupable
         return $this->set('align', 'align-items-end');
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return (string) $this->render();

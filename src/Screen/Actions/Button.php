@@ -92,8 +92,6 @@ class Button extends Action
     }
 
     /**
-     * @param bool $novalidate
-     *
      * @return Button|\Orchid\Screen\Field
      */
     public function novalidate(bool $novalidate = true)
@@ -102,9 +100,6 @@ class Button extends Action
     }
 
     /**
-     * @param string $name
-     * @param array  $parameters
-     *
      * @return $this
      */
     public function method(string $name, array $parameters = []): self

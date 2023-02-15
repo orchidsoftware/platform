@@ -48,9 +48,6 @@ class PermissionTest extends TestUnitCase
         $this->assertTrue($user->hasAccess('access.role.duplicate'));
     }
 
-    /**
-     * @return User
-     */
     private function createUser(): User
     {
         return User::firstOrCreate([
@@ -69,9 +66,6 @@ class PermissionTest extends TestUnitCase
         ]);
     }
 
-    /**
-     * @return User
-     */
     private function createAltUser(): User
     {
         return User::firstOrCreate([
@@ -87,9 +81,6 @@ class PermissionTest extends TestUnitCase
         ]);
     }
 
-    /**
-     * @return User
-     */
     private function createNoPermissionsUser(): User
     {
         return User::firstOrCreate([
@@ -102,9 +93,6 @@ class PermissionTest extends TestUnitCase
         ]);
     }
 
-    /**
-     * @return Role
-     */
     private function createRole(): Role
     {
         return Role::firstOrCreate([

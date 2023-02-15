@@ -33,8 +33,6 @@ class AdminCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return void
      */
     public function handle(): void
     {
@@ -61,9 +59,6 @@ class AdminCommand extends Command
         $this->info('User created successfully.');
     }
 
-    /**
-     * @param string $id
-     */
     protected function updateUserPermissions(string $id): void
     {
         Dashboard::modelClass(User::class)

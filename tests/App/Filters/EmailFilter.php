@@ -16,19 +16,11 @@ class EmailFilter extends Filter
         'email',
     ];
 
-    /**
-     * @return string
-     */
     public function name(): string
     {
         return 'Email';
     }
 
-    /**
-     * @param Builder $builder
-     *
-     * @return Builder
-     */
     public function run(Builder $builder): Builder
     {
         return $builder->where('email', $this->request->get('email'));

@@ -12,11 +12,6 @@ trait Chartable
 {
     /**
      * Counts the values for model at the range and previous range.
-     *
-     * @param Builder $builder
-     * @param string  $groupColumn
-     *
-     * @return GroupCollection
      */
     public function scopeCountForGroup(Builder $builder, string $groupColumn): GroupCollection
     {
@@ -33,13 +28,9 @@ trait Chartable
     }
 
     /**
-     * @param Builder    $builder
-     * @param string     $value
      * @param mixed|null $startDate
      * @param mixed|null $stopDate
      * @param string     $dateColumn
-     *
-     * @return TimeCollection
      */
     private function groupByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = null): TimeCollection
     {
@@ -82,12 +73,9 @@ trait Chartable
     /**
      * Get total models grouped by `created_at` day.
      *
-     * @param Builder                       $builder
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
      * @param string                        $dateColumn
-     *
-     * @return TimeCollection
      */
     public function scopeCountByDays(Builder $builder, $startDate = null, $stopDate = null, string $dateColumn = null): TimeCollection
     {
@@ -97,13 +85,8 @@ trait Chartable
     /**
      * Get average models grouped by `created_at` day.
      *
-     * @param Builder                       $builder
-     * @param string                        $value
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
-     * @param string|null                   $dateColumn
-     *
-     * @return TimeCollection
      */
     public function scopeAverageByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = null): TimeCollection
     {
@@ -113,13 +96,8 @@ trait Chartable
     /**
      * Get sum models grouped by `created_at` day.
      *
-     * @param Builder                       $builder
-     * @param string                        $value
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
-     * @param string|null                   $dateColumn
-     *
-     * @return TimeCollection
      */
     public function scopeSumByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = null): TimeCollection
     {
@@ -129,13 +107,8 @@ trait Chartable
     /**
      * Get sum models grouped by `created_at` day.
      *
-     * @param Builder                       $builder
-     * @param string                        $value
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
-     * @param string|null                   $dateColumn
-     *
-     * @return TimeCollection
      */
     public function scopeMaxByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = null): TimeCollection
     {
@@ -145,13 +118,8 @@ trait Chartable
     /**
      * Get min models grouped by `created_at` day.
      *
-     * @param Builder                       $builder
-     * @param string                        $value
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
-     * @param string|null                   $dateColumn
-     *
-     * @return TimeCollection
      */
     public function scopeMinByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = null): TimeCollection
     {
@@ -163,13 +131,8 @@ trait Chartable
      *
      * Get values models grouped by `created_at` day.
      *
-     * @param Builder                       $builder
-     * @param string                        $value
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
-     * @param string                        $dateColumn
-     *
-     * @return TimeCollection
      */
     public function scopeValuesByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = 'created_at'): TimeCollection
     {

@@ -88,9 +88,6 @@ class TDComponentAsValueTest extends TestUnitCase
         $this->assertStringContainsString($this->user->email.'4444', $view);
     }
 
-    /**
-     * @param View $view
-     */
     protected function checkedArgument(View $view)
     {
         $this->assertStringContainsString("Hello {$this->user->email} from Sasha", $view);

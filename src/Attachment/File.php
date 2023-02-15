@@ -54,10 +54,6 @@ class File
 
     /**
      * File constructor.
-     *
-     * @param UploadedFile $file
-     * @param string|null  $disk
-     * @param string|null  $group
      */
     public function __construct(UploadedFile $file, string $disk = null, string $group = null)
     {
@@ -101,11 +97,6 @@ class File
         return $attachment;
     }
 
-    /**
-     * @param bool $status
-     *
-     * @return File
-     */
     public function allowDuplicates(bool $status = true): self
     {
         $this->duplicate = $status;

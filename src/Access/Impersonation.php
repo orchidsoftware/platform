@@ -13,8 +13,6 @@ class Impersonation
 
     /**
      * Changes the current authorization to the required.
-     *
-     * @param User $user
      */
     public static function loginAs(User $user)
     {
@@ -35,9 +33,6 @@ class Impersonation
         self::getAuth()->loginUsingId($id);
     }
 
-    /**
-     * @return bool
-     */
     public static function isSwitch(): bool
     {
         if (! session()->isStarted()) {

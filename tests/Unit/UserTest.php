@@ -28,8 +28,6 @@ class UserTest extends TestUnitCase
 
     /**
      * @param array|null $attributes
-     *
-     * @return \Orchid\Platform\Models\User
      */
     private function createUser(array $attributes = []): User
     {

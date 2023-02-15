@@ -92,9 +92,6 @@ class TDComponentTest extends TestUnitCase
         $this->assertStringContainsString('property2: default value', $view);
     }
 
-    /**
-     * @param View $view
-     */
     protected function checkedArgument(View $view)
     {
         $this->assertStringContainsString("Hello {$this->user->email} from Sasha", $view);

@@ -9,7 +9,6 @@ trait Makeable
     /**
      * Create a new Field element.
      *
-     * @param string|null $name
      *
      * @return static
      */

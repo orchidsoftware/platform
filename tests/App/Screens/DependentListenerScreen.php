@@ -14,8 +14,6 @@ class DependentListenerScreen extends Screen
 {
     /**
      * Query data.
-     *
-     * @return array
      */
     public function query(): array
     {
@@ -26,8 +24,6 @@ class DependentListenerScreen extends Screen
 
     /**
      * Display header name.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -45,9 +41,6 @@ class DependentListenerScreen extends Screen
     }
 
     /**
-     * @param int|null $first
-     * @param int|null $second
-     *
      * @return int[]
      */
     public function asyncSum(int $first = null, int $second = null): array

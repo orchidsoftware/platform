@@ -6,11 +6,6 @@ use Illuminate\Support\Collection;
 
 class GroupCollection extends Collection
 {
-    /**
-     * @param \Closure|null $closure
-     *
-     * @return array
-     */
     public function toChart(\Closure $closure = null): array
     {
         $closure = $closure ?? static fn ($label) => $label;
@@ -25,11 +20,6 @@ class GroupCollection extends Collection
             ->toArray();
     }
 
-    /**
-     * @param string $name
-     *
-     * @return array
-     */
     private function getChartsValues(string $name): array
     {
         return $this

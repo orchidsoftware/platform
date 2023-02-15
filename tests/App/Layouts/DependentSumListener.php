@@ -8,9 +8,6 @@ use Orchid\Support\Facades\Layout;
 
 class DependentSumListener extends Listener
 {
-    /**
-     * @var string|null
-     */
     protected ?string $slug;
 
     /**
@@ -32,17 +29,11 @@ class DependentSumListener extends Listener
      */
     protected $asyncMethod = 'asyncSum';
 
-    /**
-     * @param string|null $slug
-     */
     public function __construct(string $slug = null)
     {
         $this->slug = $slug;
     }
 
-    /**
-     * @return string
-     */
     public function getSlug(): string
     {
         return $this->slug ?? parent::getSlug();

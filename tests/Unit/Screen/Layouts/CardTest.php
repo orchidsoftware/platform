@@ -29,24 +29,15 @@ class CardTest extends TestUnitCase
         $this->assertStringContainsString('href="https://orchid.software"', $html);
     }
 
-    /**
-     * @return Cardable
-     */
     private function getCardClass(): Cardable
     {
         return new class implements Cardable
         {
-            /**
-             * @return string
-             */
             public function title(): string
             {
                 return 'Title of a longer featured blog post';
             }
 
-            /**
-             * @return string
-             */
             public function description(): string
             {
                 return 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a

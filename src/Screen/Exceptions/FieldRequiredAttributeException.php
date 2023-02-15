@@ -14,10 +14,6 @@ class FieldRequiredAttributeException extends Exception
 {
     /**
      * FieldRequiredAttributeException constructor.
-     *
-     * @param string         $attribute
-     * @param int            $code
-     * @param Throwable|null $previous
      */
     public function __construct(string $attribute = '', int $code = 0, Throwable $previous = null)
     {

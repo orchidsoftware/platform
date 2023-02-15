@@ -103,10 +103,6 @@ class DateTimer extends Field
 
     /**
      * Enables time picker.
-     *
-     * @param bool $time
-     *
-     * @return self
      */
     public function enableTime(bool $time = true): self
     {
@@ -117,10 +113,6 @@ class DateTimer extends Field
 
     /**
      * Displays time picker in 24 hour mode without AM/PM selection when enabled.
-     *
-     * @param bool $time
-     *
-     * @return self
      */
     public function format24hr(bool $time = true): self
     {
@@ -132,10 +124,6 @@ class DateTimer extends Field
     /**
      * Allows the user to enter a date directly input the input field.
      * By default, direct entry is disabled.
-     *
-     * @param bool $time
-     *
-     * @return self
      */
     public function allowInput(bool $time = true): self
     {
@@ -147,10 +135,6 @@ class DateTimer extends Field
     /**
      * A string of characters which are used
      * to define how the date will be displayed in the input box.
-     *
-     * @param string $format
-     *
-     * @return DateTimer
      */
     public function format(string $format): self
     {
@@ -164,7 +148,6 @@ class DateTimer extends Field
      * If the argument is not passed, then the value specified
      * in the 'format' method will be taken
      *
-     * @param string|null $format
      *
      * @return $this
      */
@@ -188,7 +171,6 @@ class DateTimer extends Field
     /**
      * Disable calendar for the field and show only time.
      *
-     * @param bool $noCalendar
      *
      * @return $this
      */
@@ -203,7 +185,6 @@ class DateTimer extends Field
     /**
      * Adjusts the step for the minute input (incl. scrolling).
      *
-     * @param int $increment
      *
      * @return $this
      */
@@ -217,7 +198,6 @@ class DateTimer extends Field
     /**
      * Adjusts the step for the hour input (incl. scrolling).
      *
-     * @param int $increment
      *
      * @return $this
      */
@@ -241,7 +221,6 @@ class DateTimer extends Field
      *
      * ]
      *
-     * @param array $dates
      *
      * @return $this
      */
@@ -265,7 +244,6 @@ class DateTimer extends Field
      *
      * ]
      *
-     * @param array $dates
      *
      * @return $this
      */
@@ -279,7 +257,6 @@ class DateTimer extends Field
     /**
      * Allow selection of dates on or before specified date
      *
-     * @param Carbon $date
      *
      * @return $this
      */
@@ -294,7 +271,6 @@ class DateTimer extends Field
     /**
      * Allow selection of dates on or after specified date
      *
-     * @param Carbon $date
      *
      * @return $this
      */
@@ -309,7 +285,6 @@ class DateTimer extends Field
     /**
      * Show calendar week numbers
      *
-     * @param bool $show
      *
      * @return $this
      */
@@ -323,7 +298,6 @@ class DateTimer extends Field
     /**
      * Disable native mobile pickers in favour of calendar
      *
-     * @param bool $disable
      *
      * @return $this
      */
@@ -337,7 +311,6 @@ class DateTimer extends Field
     /**
      * Disable native mobile pickers in favour of calendar
      *
-     * @param bool $inline
      *
      * @return $this
      */
@@ -350,8 +323,6 @@ class DateTimer extends Field
     }
 
     /**
-     * @param bool $static
-     *
      * @return $this
      */
     public function static(bool $static = true): self
@@ -364,7 +335,6 @@ class DateTimer extends Field
     /**
      * Show the month using the shorthand version (ie, Sep instead of September).
      *
-     * @param bool $short
      *
      * @return $this
      */
@@ -378,7 +348,6 @@ class DateTimer extends Field
     /**
      * The number of months to be shown at the same time when displaying the calendar.
      *
-     * @param int $count
      *
      * @return $this
      */
@@ -398,8 +367,6 @@ class DateTimer extends Field
      *
      * Not used with inline()
      *
-     * @param string $vertical
-     * @param string $horizontal
      *
      * @return $this
      */

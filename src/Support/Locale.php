@@ -26,11 +26,6 @@ class Locale
         'yi', //Yiddish
     ];
 
-    /**
-     * @param string|null $locale
-     *
-     * @return string
-     */
     public static function currentDir(string $locale = null): string
     {
         $locale = $locale ?? app()->getLocale();

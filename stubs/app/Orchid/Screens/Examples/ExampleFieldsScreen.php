@@ -33,8 +33,6 @@ class ExampleFieldsScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -43,8 +41,6 @@ class ExampleFieldsScreen extends Screen
 
     /**
      * Display header description.
-     *
-     * @return string|null
      */
     public function description(): ?string
     {

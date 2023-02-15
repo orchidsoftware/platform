@@ -28,8 +28,6 @@ abstract class Columns extends Layout
     }
 
     /**
-     * @param Repository $repository
-     *
      * @return mixed
      */
     public function build(Repository $repository)

@@ -36,8 +36,6 @@ class LoginController extends Controller
 
     /**
      * Create a new controller instance.
-     *
-     * @param Auth $auth
      */
     public function __construct(Auth $auth)
     {
@@ -54,7 +52,6 @@ class LoginController extends Controller
     /**
      * Handle a login request to the application.
      *
-     * @param Request $request
      *
      * @throws ValidationException
      *
@@ -84,7 +81,6 @@ class LoginController extends Controller
     /**
      * Send the response after the user was authenticated.
      *
-     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
@@ -98,8 +94,7 @@ class LoginController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Guard   $guard
+     * @param Guard $guard
      *
      * @return Factory|View
      */
@@ -119,8 +114,6 @@ class LoginController extends Controller
     }
 
     /**
-     * @param CookieJar $cookieJar
-     *
      * @return RedirectResponse
      */
     public function resetCookieLockMe(CookieJar $cookieJar)
@@ -143,7 +136,6 @@ class LoginController extends Controller
     /**
      * Log the user out of the application.
      *
-     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */

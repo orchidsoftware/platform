@@ -23,8 +23,6 @@ class BaseSelectScreen extends BaseFieldScreen
 
     /**
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     *
-     * @return array
      */
     public function fields(): array
     {

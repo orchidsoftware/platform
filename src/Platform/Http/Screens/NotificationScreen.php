@@ -44,7 +44,6 @@ class NotificationScreen extends Screen
     /**
      * Query data.
      *
-     * @param Request $request
      *
      * @return array
      */
@@ -99,9 +98,6 @@ class NotificationScreen extends Screen
     }
 
     /**
-     * @param string  $id
-     * @param Request $request
-     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function maskNotification(string $id, Request $request)
@@ -119,9 +115,6 @@ class NotificationScreen extends Screen
         return redirect($url);
     }
 
-    /**
-     * @param Request $request
-     */
     public function markAllAsRead(Request $request)
     {
         $request->user()
@@ -133,8 +126,6 @@ class NotificationScreen extends Screen
     }
 
     /**
-     * @param Request $request
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function removeAll(Request $request)
@@ -150,8 +141,6 @@ class NotificationScreen extends Screen
     }
 
     /**
-     * @param Request $request
-     *
      * @return LengthAwarePaginator
      */
     public function unreadNotification(Request $request)

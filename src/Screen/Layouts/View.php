@@ -20,7 +20,6 @@ abstract class View extends Layout
     /**
      * View constructor.
      *
-     * @param string                                        $template
      * @param \Illuminate\Contracts\Support\Arrayable|array $data
      */
     public function __construct(string $template, $data = [])
@@ -30,8 +29,6 @@ abstract class View extends Layout
     }
 
     /**
-     * @param Repository $repository
-     *
      * @return mixed
      */
     public function build(Repository $repository)

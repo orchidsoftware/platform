@@ -46,8 +46,6 @@ class ExampleChartsScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -56,8 +54,6 @@ class ExampleChartsScreen extends Screen
 
     /**
      * Display header description.
-     *
-     * @return string|null
      */
     public function description(): ?string
     {

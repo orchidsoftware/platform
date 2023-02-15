@@ -266,11 +266,6 @@ class HttpFilterTest extends TestUnitCase
         HttpFilter::sanitize('email->"%27))%23injectedSQL');
     }
 
-    /**
-     * @param HttpFilter $filter
-     *
-     * @return Builder
-     */
     private function getModelBuilder(HttpFilter $filter): Builder
     {
         $model = new class extends Model
@@ -312,11 +307,6 @@ class HttpFilterTest extends TestUnitCase
         return $model->filters(null, $filter);
     }
 
-    /**
-     * @param HttpFilter $filter
-     *
-     * @return Builder
-     */
     private function getModelBuilderWithAutocast(HttpFilter $filter): Builder
     {
         $model = new class extends Model

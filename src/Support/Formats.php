@@ -8,11 +8,6 @@ use Carbon\Carbon;
 
 class Formats
 {
-    /**
-     * @param int $time
-     *
-     * @return string
-     */
     public static function toDateTimeString(int $time): string
     {
         return Carbon::createFromTimestamp($time)->toDateTimeString();
@@ -20,11 +15,6 @@ class Formats
 
     /**
      * Format bytes to kb, mb, gb, tb.
-     *
-     * @param int $size
-     * @param int $precision
-     *
-     * @return string
      */
     public static function formatBytes(int $size, int $precision = 2): string
     {

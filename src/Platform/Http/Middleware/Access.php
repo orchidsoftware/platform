@@ -28,8 +28,6 @@ class Access
 
     /**
      * AccessMiddleware constructor.
-     *
-     * @param Auth $auth
      */
     public function __construct(Auth $auth)
     {
@@ -38,10 +36,6 @@ class Access
     }
 
     /**
-     * @param Request $request
-     * @param Closure $next
-     * @param string  $permission
-     *
      * @return ResponseFactory|RedirectResponse|Response|mixed
      */
     public function handle(Request $request, Closure $next, string $permission = 'platform.index')
@@ -68,7 +62,6 @@ class Access
     /**
      * Redirect on the application login form.
      *
-     * @param Request $request
      *
      * @return \Illuminate\Contracts\Foundation\Application|ResponseFactory|RedirectResponse|Response
      */

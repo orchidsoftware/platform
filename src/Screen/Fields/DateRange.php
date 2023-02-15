@@ -37,7 +37,6 @@ class DateRange extends Field implements ComplexFieldConcern
     /**
      * Disable native mobile pickers in favour of calendar
      *
-     * @param bool $disable
      *
      * @return $this
      */

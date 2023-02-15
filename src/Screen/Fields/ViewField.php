@@ -14,11 +14,6 @@ use Orchid\Screen\Field;
  */
 class ViewField extends Field
 {
-    /**
-     * @param string $view
-     *
-     * @return ViewField
-     */
     public function view(string $view): self
     {
         $this->view = $view;

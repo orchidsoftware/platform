@@ -8,12 +8,6 @@ use Illuminate\Support\Str;
 
 class TimeCollection extends Collection
 {
-    /**
-     * @param string        $name
-     * @param \Closure|null $closure
-     *
-     * @return array
-     */
     public function toChart(string $name, \Closure $closure = null): array
     {
         $closure = $closure ?? static fn ($label) => $label;
@@ -25,9 +19,6 @@ class TimeCollection extends Collection
         ];
     }
 
-    /**
-     * @return TimeCollection
-     */
     public function showDaysOfWeek(): TimeCollection
     {
         return $this->transformLabel(function (array $value) {
@@ -37,9 +28,6 @@ class TimeCollection extends Collection
         });
     }
 
-    /**
-     * @return TimeCollection
-     */
     public function showMinDaysOfWeek(): TimeCollection
     {
         return $this->transformLabel(function (array $value) {
@@ -50,8 +38,6 @@ class TimeCollection extends Collection
     }
 
     /**
-     * @param callable $callback
-     *
      * @return TimeCollection
      */
     public function transformLabel(callable $callback)

@@ -13,8 +13,6 @@ class ModelRouteBindScreen extends Screen
      * Query data.
      *
      * @param \Orchid\Platform\Models\User $user
-     *
-     * @return array
      */
     public function query(User $user = null): array
     {
@@ -25,8 +23,6 @@ class ModelRouteBindScreen extends Screen
 
     /**
      * Display header name.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {

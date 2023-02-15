@@ -38,19 +38,12 @@ class Action extends Field implements Actionable
         'name',
     ];
 
-    /**
-     * @param string|null $name
-     *
-     * @return self
-     */
     public function name(string $name = null): self
     {
         return $this->set('name', $name ?? '');
     }
 
     /**
-     * @param Color $visual
-     *
      * @return static
      */
     public function type(Color $visual): self
@@ -67,8 +60,6 @@ class Action extends Field implements Actionable
     }
 
     /**
-     * @param Repository|null $repository
-     *
      * @throws \Throwable
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
@@ -79,8 +70,6 @@ class Action extends Field implements Actionable
     }
 
     /**
-     * @param bool $status
-     *
      * @return static
      */
     public function rawClick(bool $status = false): self

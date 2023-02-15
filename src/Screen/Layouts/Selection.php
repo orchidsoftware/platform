@@ -30,8 +30,6 @@ abstract class Selection extends Layout
     public $template = self::TEMPLATE_DROP_DOWN;
 
     /**
-     * @param Repository $repository
-     *
      * @return Factory|\Illuminate\View\View|mixed
      */
     public function build(Repository $repository)

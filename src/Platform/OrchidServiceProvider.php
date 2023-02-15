@@ -11,8 +11,6 @@ abstract class OrchidServiceProvider extends ServiceProvider
 {
     /**
      * Boot the application events.
-     *
-     * @param Dashboard $dashboard
      */
     public function boot(Dashboard $dashboard): void
     {

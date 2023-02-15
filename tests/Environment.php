@@ -75,8 +75,6 @@ trait Environment
 
     /**
      * @param \Illuminate\Foundation\Application $app
-     *
-     * @return array
      */
     protected function getPackageProviders($app): array
     {
@@ -90,8 +88,6 @@ trait Environment
 
     /**
      * @param \Illuminate\Foundation\Application $app
-     *
-     * @return array
      */
     protected function getPackageAliases($app): array
     {

@@ -16,8 +16,6 @@ class LockUserForLogin
 
     /**
      * LogSuccessfulLogin constructor.
-     *
-     * @param \Illuminate\Cookie\CookieJar $cookieJar
      */
     public function __construct(CookieJar $cookieJar)
     {
@@ -27,7 +25,6 @@ class LockUserForLogin
     /**
      * Handle the event.
      *
-     * @param Login $event
      *
      * @return void
      */

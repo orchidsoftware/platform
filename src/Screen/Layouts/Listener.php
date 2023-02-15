@@ -48,8 +48,6 @@ abstract class Listener extends Layout
     abstract protected function layouts(): iterable;
 
     /**
-     * @param Repository $repository
-     *
      * @return mixed|void
      */
     public function build(Repository $repository)
@@ -70,8 +68,6 @@ abstract class Listener extends Layout
     /**
      * Returns the system layer name.
      * Required to define an asynchronous layer.
-     *
-     * @return string
      */
     public function getSlug(): string
     {

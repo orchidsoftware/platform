@@ -40,8 +40,6 @@ class HttpFilter
 
     /**
      * Filter constructor.
-     *
-     * @param Request|null $request
      */
     public function __construct(Request $request = null)
     {
@@ -72,11 +70,6 @@ class HttpFilter
         return $query;
     }
 
-    /**
-     * @param string $column
-     *
-     * @return string
-     */
     public static function sanitize(string $column): string
     {
         abort_unless(preg_match(self::VALID_COLUMN_NAME_REGEX, $column), Response::HTTP_BAD_REQUEST);
@@ -84,11 +77,6 @@ class HttpFilter
         return $column;
     }
 
-    /**
-     * @param Builder $builder
-     *
-     * @return Builder
-     */
     public function build(Builder $builder): Builder
     {
         $this->options = $builder->getModel()->getOptionsFilter();
@@ -100,8 +88,6 @@ class HttpFilter
     }
 
     /**
-     * @param Builder $builder
-     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      *
      * @return mixed
@@ -119,8 +105,6 @@ class HttpFilter
 
     /**
      * @deprecated
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $builder
      *
      * @return void
      */
@@ -146,11 +130,7 @@ class HttpFilter
     /**
      * @deprecated
      *
-     * @param Builder $query
-     * @param mixed   $value
-     * @param string  $property
-     *
-     * @return Builder
+     * @param mixed $value
      */
     protected function filtersExact(Builder $query, $value, string $property): Builder
     {
@@ -176,9 +156,6 @@ class HttpFilter
         return $query;
     }
 
-    /**
-     * @param Builder $builder
-     */
     protected function addSortsToQuery(Builder $builder)
     {
         $allowedSorts = $this->options->get('allowedSorts');
@@ -197,11 +174,6 @@ class HttpFilter
             });
     }
 
-    /**
-     * @param null|string $property
-     *
-     * @return bool
-     */
     public function isSort(string $property = null): bool
     {
         if ($property === null) {
@@ -219,11 +191,6 @@ class HttpFilter
         return false;
     }
 
-    /**
-     * @param string $property
-     *
-     * @return string
-     */
     public function revertSort(string $property): string
     {
         return $this->getSort($property) === 'asc'
@@ -231,11 +198,6 @@ class HttpFilter
             : $property;
     }
 
-    /**
-     * @param string $property
-     *
-     * @return string
-     */
     public function getSort(string $property): string
     {
         return $this->sorts->search($property, true) !== false
@@ -244,8 +206,6 @@ class HttpFilter
     }
 
     /**
-     * @param string $property
-     *
      * @return mixed
      */
     public function getFilter(string $property)
@@ -253,12 +213,6 @@ class HttpFilter
         return Arr::get($this->filters, $property);
     }
 
-    /**
-     * @param Model  $model
-     * @param string $property
-     *
-     * @return bool
-     */
     private function isDate(Model $model, string $property): bool
     {
         return $model->hasCast($property, ['date', 'datetime', 'immutable_date', 'immutable_datetime'])

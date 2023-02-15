@@ -15,8 +15,6 @@ class NestedTargetsDependentSumListenerScreen extends Screen
 {
     /**
      * Query data.
-     *
-     * @return array
      */
     public function query(): array
     {
@@ -29,8 +27,6 @@ class NestedTargetsDependentSumListenerScreen extends Screen
 
     /**
      * Display header name.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {

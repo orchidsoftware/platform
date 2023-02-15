@@ -36,8 +36,6 @@ abstract class Screen extends Controller
 
     /**
      * The base view that will be rendered.
-     *
-     * @return string
      */
     protected function screenBaseView(): string
     {
@@ -46,8 +44,6 @@ abstract class Screen extends Controller
 
     /**
      * The name of the screen to be displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -56,8 +52,6 @@ abstract class Screen extends Controller
 
     /**
      * A description of the screen to be displayed in the header.
-     *
-     * @return string|null
      */
     public function description(): ?string
     {
@@ -66,8 +60,6 @@ abstract class Screen extends Controller
 
     /**
      * The permissions required to access this screen.
-     *
-     * @return iterable|null
      */
     public function permission(): ?iterable
     {
@@ -115,8 +107,6 @@ abstract class Screen extends Controller
     /**
      * Builds the screen asynchronously using the given method and template slug.
      *
-     * @param string $method
-     * @param string $slug
      *
      * @throws Throwable
      *
@@ -149,8 +139,6 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param array $httpQueryArguments
-     *
      * @throws \Throwable
      *
      * @return Factory|\Illuminate\View\View
@@ -171,8 +159,6 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param array $httpQueryArguments
-     *
      * @return \Orchid\Screen\Repository
      */
     protected function buildQueryRepository(array $httpQueryArguments = []): Repository
@@ -184,11 +170,6 @@ abstract class Screen extends Controller
         return new Repository($query);
     }
 
-    /**
-     * @param iterable $query
-     *
-     * @return void
-     */
     protected function fillPublicProperty(iterable $query): void
     {
         $reflections = (new \ReflectionClass($this))->getProperties(\ReflectionProperty::IS_PUBLIC);
@@ -212,8 +193,7 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param mixed                    ...$parameters
+     * @param mixed ...$parameters
      *
      * @throws Throwable
      *
@@ -240,13 +220,8 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param string $method
-     * @param array  $httpQueryArguments
-     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \ReflectionException
-     *
-     * @return array
      */
     protected function resolveDependencies(string $method, array $httpQueryArguments = []): array
     {
@@ -255,10 +230,6 @@ abstract class Screen extends Controller
 
     /**
      * Determine if the user is authorized and has the required rights to complete this request.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return bool
      */
     protected function checkAccess(Request $request): bool
     {
@@ -274,8 +245,6 @@ abstract class Screen extends Controller
     /**
      * This method returns a localized string message indicating that the user should check the entered data,
      * and that it may be necessary to specify the data in other languages.
-     *
-     * @return string
      */
     public function formValidateMessage(): string
     {
@@ -294,8 +263,6 @@ abstract class Screen extends Controller
 
     /**
      * The boolean value returned is true, indicating that the form is preventing abandonment.
-     *
-     * @return bool
      */
     public function needPreventsAbandonment(): bool
     {
@@ -306,7 +273,6 @@ abstract class Screen extends Controller
      * Defines the URL to represent
      * the page based on the calculation of link arguments.
      *
-     * @param array $httpQueryArguments
      *
      * @throws \ReflectionException
      * @throws \Throwable
@@ -328,9 +294,6 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param string $method
-     * @param array  $parameters
-     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \ReflectionException
      *
@@ -346,8 +309,6 @@ abstract class Screen extends Controller
     /**
      * Get can transfer to the screen only
      * user-created methods available in it.
-     *
-     * @return Collection
      */
     public static function getAvailableMethods(): Collection
     {

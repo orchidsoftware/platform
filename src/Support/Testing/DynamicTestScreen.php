@@ -35,9 +35,6 @@ class DynamicTestScreen
      */
     protected $session = [];
 
-    /**
-     * @param string|null $name
-     */
     public function __construct(string $name = null)
     {
         $this->http = app(MakesHttpRequestsWrapper::class);
@@ -47,11 +44,7 @@ class DynamicTestScreen
     /**
      * Declarate dinamic route
      *
-     * @param string       $screen
-     * @param string|null  $route
      * @param string|array $middleware
-     *
-     * @return DynamicTestScreen
      */
     public function register(string $screen, string $route = null, $middleware = 'web'): DynamicTestScreen
     {
@@ -68,7 +61,6 @@ class DynamicTestScreen
     /**
      * Set Route Parameters
      *
-     * @param array $parameters
      *
      * @return $this
      */
@@ -82,7 +74,6 @@ class DynamicTestScreen
     /**
      * Set the session to the given array.
      *
-     * @param array $data
      *
      * @return $this
      */
@@ -94,8 +85,6 @@ class DynamicTestScreen
     }
 
     /**
-     * @param array $headers
-     *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      *
@@ -108,12 +97,6 @@ class DynamicTestScreen
 
     /**
      * Call screen method
-     *
-     * @param string $method
-     * @param array  $parameters
-     * @param array  $headers
-     *
-     * @return \Illuminate\Testing\TestResponse
      */
     public function method(string $method, array $parameters = [], array $headers = []): TestResponse
     {
@@ -132,12 +115,6 @@ class DynamicTestScreen
 
     /**
      * The alias for the "method"
-     *
-     * @param string $method
-     * @param array  $parameters
-     * @param array  $headers
-     *
-     * @return \Illuminate\Testing\TestResponse
      */
     public function call(string $method, array $parameters = [], array $headers = []): TestResponse
     {
@@ -146,10 +123,6 @@ class DynamicTestScreen
 
     /**
      * Get route URL
-     *
-     * @param array|null $parameters
-     *
-     * @return string
      */
     protected function route(array $parameters = null): string
     {
@@ -159,8 +132,7 @@ class DynamicTestScreen
     /**
      * Set the currently logged-in user for the application.
      *
-     * @param \Illuminate\Contracts\Auth\Authenticatable $user
-     * @param string|null                                $guard
+     * @param string|null $guard
      *
      * @return $this
      */
@@ -174,8 +146,7 @@ class DynamicTestScreen
     /**
      * Set the currently logged-in user for the application.
      *
-     * @param \Illuminate\Contracts\Auth\Authenticatable $user
-     * @param string|null                                $guard
+     * @param string|null $guard
      *
      * @return $this
      */
@@ -187,8 +158,7 @@ class DynamicTestScreen
     }
 
     /**
-     * @param string $name
-     * @param mixed  $arguments
+     * @param mixed $arguments
      *
      * @return $this
      */
@@ -202,7 +172,6 @@ class DynamicTestScreen
     /**
      * Set the URL of the previous request.
      *
-     * @param string $url
      *
      * @return $this
      */

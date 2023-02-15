@@ -12,25 +12,17 @@ use Illuminate\View\Component as ViewComponent;
 
 class Blade
 {
-    /**
-     * @var array
-     */
     private static array $components = [];
 
     /**
      * The component tag compiler instance.
-     *
-     * @var ComponentTagCompiler
      */
     private static ComponentTagCompiler $compiler;
 
     /**
-     * @param string $class
-     * @param mixed  $data
+     * @param mixed $data
      *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     *
-     * @return string|null
      */
     public static function renderComponent(string $class, $data): ?string
     {
@@ -76,10 +68,6 @@ class Blade
      * Response is array with two elements:
      *  0 - class name of component
      *  1 - view used only for anonymous components
-     *
-     * @param string $component
-     *
-     * @return array
      */
     public static function componentInfo(string $component): array
     {
@@ -99,8 +87,6 @@ class Blade
 
     /**
      * Get an instance of the Blade tag compiler.
-     *
-     * @return ComponentTagCompiler
      */
     private static function compiler(): ComponentTagCompiler
     {

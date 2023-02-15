@@ -53,9 +53,6 @@ class ChartTest extends TestUnitCase
         $this->assertStringContainsString('Export', $html);
     }
 
-    /**
-     * @return Repository
-     */
     protected function getRepository(): Repository
     {
         return new Repository([

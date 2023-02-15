@@ -60,15 +60,10 @@ abstract class Layout implements JsonSerializable
     protected $query;
 
     /**
-     * @param Repository $repository
-     *
      * @return mixed
      */
     abstract public function build(Repository $repository);
 
-    /**
-     * @return Layout
-     */
     public function currentAsync(): self
     {
         $this->async = true;
@@ -76,11 +71,6 @@ abstract class Layout implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @param string $method
-     *
-     * @return self
-     */
     public function async(string $method): self
     {
         if (! Str::startsWith($method, 'async')) {
@@ -93,8 +83,6 @@ abstract class Layout implements JsonSerializable
     }
 
     /**
-     * @param Repository $repository
-     *
      * @return mixed
      */
     protected function buildAsDeep(Repository $repository)
@@ -123,8 +111,6 @@ abstract class Layout implements JsonSerializable
 
     /**
      * Return URL for screen template requests from browser.
-     *
-     * @return string|null
      */
     private function asyncRoute(): ?string
     {
@@ -144,7 +130,6 @@ abstract class Layout implements JsonSerializable
     /**
      * @param array      $layouts
      * @param int|string $key
-     * @param Repository $repository
      *
      * @return array
      */
@@ -164,8 +149,6 @@ abstract class Layout implements JsonSerializable
     /**
      * Returns the system layer name.
      * Required to define an asynchronous layer.
-     *
-     * @return string
      */
     public function getSlug(): string
     {
@@ -173,8 +156,6 @@ abstract class Layout implements JsonSerializable
     }
 
     /**
-     * @param string $slug
-     *
      * @return Layout|null
      */
     public function findBySlug(string $slug)
@@ -198,9 +179,6 @@ abstract class Layout implements JsonSerializable
             ->first();
     }
 
-    /**
-     * @return array
-     */
     public function jsonSerialize(): array
     {
         $props = collect(get_object_vars($this));

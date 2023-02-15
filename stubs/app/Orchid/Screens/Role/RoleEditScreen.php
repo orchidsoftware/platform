@@ -25,7 +25,6 @@ class RoleEditScreen extends Screen
     /**
      * Fetch data to be displayed on the screen.
      *
-     * @param Role $role
      *
      * @return array
      */
@@ -39,8 +38,6 @@ class RoleEditScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -49,17 +46,12 @@ class RoleEditScreen extends Screen
 
     /**
      * Display header description.
-     *
-     * @return string|null
      */
     public function description(): ?string
     {
         return 'Modify the privileges and permissions associated with a specific role.';
     }
 
-    /**
-     * @return iterable|null
-     */
     public function permission(): ?iterable
     {
         return [
@@ -109,9 +101,6 @@ class RoleEditScreen extends Screen
     }
 
     /**
-     * @param Request $request
-     * @param Role    $role
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function save(Request $request, Role $role)
@@ -138,8 +127,6 @@ class RoleEditScreen extends Screen
     }
 
     /**
-     * @param Role $role
-     *
      * @throws \Exception
      *
      * @return \Illuminate\Http\RedirectResponse

@@ -13,15 +13,6 @@ use Orchid\Tests\TestUnitCase;
  */
 class TestFieldsUnitCase extends TestUnitCase
 {
-    /**
-     * @param \Orchid\Screen\Field $field
-     * @param array                $data
-     * @param array                $rules
-     * @param array                $messages
-     * @param array                $customAttributes
-     *
-     * @return string
-     */
     public static function renderField(Field $field, array $data = [], array $rules = [], array $messages = [], array $customAttributes = []): string
     {
         try {
@@ -34,8 +25,6 @@ class TestFieldsUnitCase extends TestUnitCase
     }
 
     /**
-     * @param string $view
-     *
      * @return string|string[]|null
      */
     public static function minifyOutput(string $view)
@@ -61,15 +50,6 @@ class TestFieldsUnitCase extends TestUnitCase
         return preg_replace($search, $replace, $view);
     }
 
-    /**
-     * @param \Orchid\Screen\Field $field
-     * @param array                $data
-     * @param array                $rules
-     * @param array                $messages
-     * @param array                $customAttributes
-     *
-     * @return string
-     */
     public static function minifyRenderField(Field $field, array $data = [], array $rules = [], array $messages = [], array $customAttributes = []): string
     {
         $view = self::renderField($field, $data, $rules, $messages, $customAttributes);

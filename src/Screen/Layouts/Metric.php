@@ -28,17 +28,12 @@ class Metric extends Layout
      */
     protected $labels = [];
 
-    /**
-     * @param array $labels
-     */
     public function __construct(array $labels)
     {
         $this->labels = $labels;
     }
 
     /**
-     * @param Repository $repository
-     *
      * @return Factory|\Illuminate\View\View
      */
     public function build(Repository $repository)
@@ -58,8 +53,6 @@ class Metric extends Layout
     }
 
     /**
-     * @param string $title
-     *
      * @return $this
      */
     public function title(string $title): Metric

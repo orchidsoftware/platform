@@ -46,8 +46,6 @@ class LayoutTest extends TestUnitCase
             }
 
             /**
-             * @param Repository $repository
-             *
              * @return mixed
              */
             public function build(Repository $repository)

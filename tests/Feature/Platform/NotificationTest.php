@@ -89,9 +89,6 @@ class NotificationTest extends TestFeatureCase
             ]);
     }
 
-    /**
-     * @return User
-     */
     private function createNotifyUser(): User
     {
         $user = $this->createAdminUser();

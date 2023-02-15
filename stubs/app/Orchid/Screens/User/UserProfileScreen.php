@@ -23,7 +23,6 @@ class UserProfileScreen extends Screen
     /**
      * Fetch data to be displayed on the screen.
      *
-     * @param Request $request
      *
      * @return array
      */
@@ -36,8 +35,6 @@ class UserProfileScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -46,8 +43,6 @@ class UserProfileScreen extends Screen
 
     /**
      * Display header description.
-     *
-     * @return string|null
      */
     public function description(): ?string
     {
@@ -101,9 +96,6 @@ class UserProfileScreen extends Screen
         ];
     }
 
-    /**
-     * @param Request $request
-     */
     public function save(Request $request): void
     {
         $request->validate([
@@ -121,9 +113,6 @@ class UserProfileScreen extends Screen
         Toast::info(__('Profile updated.'));
     }
 
-    /**
-     * @param Request $request
-     */
     public function changePassword(Request $request): void
     {
         $guard = config('platform.guard', 'web');

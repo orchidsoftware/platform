@@ -27,10 +27,6 @@ class UserTDArguments extends Component
 
     /**
      * Create a new component instance.
-     *
-     * @param Application $application
-     * @param User        $user
-     * @param string      $from
      */
     public function __construct(Application $application, User $user, string $from = 'Alexandr')
     {

@@ -21,8 +21,6 @@ class UploadedFileEvent
 
     /**
      * UploadedFileEvent constructor.
-     *
-     * @param Attachment $attachment
      */
     public function __construct(Attachment $attachment)
     {

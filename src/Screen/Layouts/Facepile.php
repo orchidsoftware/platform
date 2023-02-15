@@ -17,8 +17,6 @@ class Facepile extends Content
 
     /**
      * @param Personable[] $users
-     *
-     * @return View
      */
     public function render(ArrayAccess $users): View
     {

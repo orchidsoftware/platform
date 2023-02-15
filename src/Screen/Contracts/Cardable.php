@@ -8,14 +8,8 @@ use Orchid\Support\Color;
 
 interface Cardable
 {
-    /**
-     * @return string
-     */
     public function title(): string;
 
-    /**
-     * @return string
-     */
     public function description(): string;
 
     /**

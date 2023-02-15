@@ -44,9 +44,6 @@ class Modal extends Layout
 
     /**
      * Modal constructor.
-     *
-     * @param string $key
-     * @param array  $layouts
      */
     public function __construct(string $key, array $layouts = [])
     {
@@ -69,17 +66,12 @@ class Modal extends Layout
         $this->layouts = $layouts;
     }
 
-    /**
-     * @return string
-     */
     public function getSlug(): string
     {
         return $this->variables['key'];
     }
 
     /**
-     * @param Repository $repository
-     *
      * @return mixed
      */
     public function build(Repository $repository)
@@ -89,10 +81,6 @@ class Modal extends Layout
 
     /**
      * Set text button for apply action.
-     *
-     * @param string $text
-     *
-     * @return Modal
      */
     public function applyButton(string $text): self
     {
@@ -103,10 +91,6 @@ class Modal extends Layout
 
     /**
      * Whether to disable the apply button or not.
-     *
-     * @param bool $withoutApplyButton
-     *
-     * @return Modal
      */
     public function withoutApplyButton(bool $withoutApplyButton = true): self
     {
@@ -117,10 +101,6 @@ class Modal extends Layout
 
     /**
      * Whether to disable the close button or not.
-     *
-     * @param bool $withoutCloseButton
-     *
-     * @return Modal
      */
     public function withoutCloseButton(bool $withoutCloseButton = true): self
     {
@@ -131,10 +111,6 @@ class Modal extends Layout
 
     /**
      * Set text button for cancel action.
-     *
-     * @param string $text
-     *
-     * @return Modal
      */
     public function closeButton(string $text): self
     {
@@ -145,10 +121,6 @@ class Modal extends Layout
 
     /**
      * Set CSS class for size modal.
-     *
-     * @param string $class
-     *
-     * @return Modal
      */
     public function size(string $class): self
     {
@@ -159,10 +131,6 @@ class Modal extends Layout
 
     /**
      * Set CSS class for type modal.
-     *
-     * @param string $class
-     *
-     * @return Modal
      */
     public function type(string $class): self
     {
@@ -173,10 +141,6 @@ class Modal extends Layout
 
     /**
      * Set title for header modal.
-     *
-     * @param string $title
-     *
-     * @return Modal
      */
     public function title(string $title): self
     {
@@ -186,8 +150,6 @@ class Modal extends Layout
     }
 
     /**
-     * @param bool $status
-     *
      * @return static
      */
     public function rawClick(bool $status = false): self
@@ -198,8 +160,6 @@ class Modal extends Layout
     }
 
     /**
-     * @param bool $status
-     *
      * @return $this
      */
     public function open(bool $status = true): self
@@ -210,8 +170,6 @@ class Modal extends Layout
     }
 
     /**
-     * @param string $method
-     *
      * @return $this
      */
     public function method(string $method): self
@@ -222,8 +180,6 @@ class Modal extends Layout
     }
 
     /**
-     * @param bool $status
-     *
      * @return $this
      */
     public function staticBackdrop(bool $status = true): self

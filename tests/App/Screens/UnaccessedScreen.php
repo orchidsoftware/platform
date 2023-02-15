@@ -7,9 +7,6 @@ use Orchid\Screen\Screen;
 
 class UnaccessedScreen extends Screen
 {
-    /**
-     * @return iterable|null
-     */
     public function permission(): ?iterable
     {
         return [
@@ -19,8 +16,6 @@ class UnaccessedScreen extends Screen
 
     /**
      * Query data.
-     *
-     * @return array
      */
     public function query(): array
     {
@@ -29,8 +24,6 @@ class UnaccessedScreen extends Screen
 
     /**
      * Display header name.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -57,9 +50,6 @@ class UnaccessedScreen extends Screen
         return [];
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public static function unaccessed(): RedirectResponse
     {
         return redirect('/other-screen');

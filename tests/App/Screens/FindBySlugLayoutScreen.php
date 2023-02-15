@@ -11,8 +11,6 @@ class FindBySlugLayoutScreen extends Screen
 {
     /**
      * Query data.
-     *
-     * @return array
      */
     public function query(): array
     {
@@ -21,8 +19,6 @@ class FindBySlugLayoutScreen extends Screen
 
     /**
      * Display header name.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -66,9 +62,6 @@ class FindBySlugLayoutScreen extends Screen
         ];
     }
 
-    /**
-     * @return array
-     */
     public function asyncStub(): array
     {
         return [];

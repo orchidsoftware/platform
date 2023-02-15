@@ -75,8 +75,6 @@ class ExampleScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -85,8 +83,6 @@ class ExampleScreen extends Screen
 
     /**
      * Display header description.
-     *
-     * @return string|null
      */
     public function description(): ?string
     {
@@ -197,9 +193,6 @@ class ExampleScreen extends Screen
         ];
     }
 
-    /**
-     * @param Request $request
-     */
     public function showToast(Request $request): void
     {
         Toast::warning($request->get('toast', 'Hello, world! This is a toast message.'));

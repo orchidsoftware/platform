@@ -42,8 +42,6 @@ abstract class Cell
 
     /**
      * Cell constructor.
-     *
-     * @param string $name
      */
     public function __construct(string $name)
     {
@@ -52,9 +50,6 @@ abstract class Cell
     }
 
     /**
-     * @param string      $name
-     * @param string|null $title
-     *
      * @return static
      */
     public static function make(string $name = '', string $title = null): self
@@ -66,11 +61,6 @@ abstract class Cell
         return $td;
     }
 
-    /**
-     * @param Closure $closure
-     *
-     * @return self
-     */
     public function render(Closure $closure): self
     {
         $this->render = $closure;
@@ -78,11 +68,6 @@ abstract class Cell
         return $this;
     }
 
-    /**
-     * @param string $text
-     *
-     * @return self
-     */
     public function popover(string $text): self
     {
         $this->popover = $text;
@@ -91,9 +76,6 @@ abstract class Cell
     }
 
     /**
-     * @param string $component
-     * @param array  $params
-     *
      * @throws \ReflectionException
      *
      * @return string
@@ -114,14 +96,8 @@ abstract class Cell
     }
 
     /**
-     * @param string $component
-     * @param        $value
-     * @param array  $params
-     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \ReflectionException
-     *
-     * @return string|null
      */
     protected function renderComponent(string $component, $value, array $params = []): ?string
     {
@@ -143,8 +119,6 @@ abstract class Cell
     /**
      * Pass the entire string to the component
      *
-     * @param string $component
-     * @param array  $params
      *
      * @return $this
      */
@@ -156,8 +130,6 @@ abstract class Cell
     /**
      * Pass only the cell value to the component
      *
-     * @param string $component
-     * @param array  $params
      *
      * @throws \ReflectionException
      *

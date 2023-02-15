@@ -16,11 +16,6 @@ trait Commander
         return [];
     }
 
-    /**
-     * @param Repository $repository
-     *
-     * @return array
-     */
     protected function buildCommandBar(Repository $repository): array
     {
         return collect($this->commandBar())

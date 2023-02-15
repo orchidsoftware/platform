@@ -33,8 +33,6 @@ class DashboardMessage extends DatabaseMessage
     }
 
     /**
-     * @param string $title
-     *
      * @return $this
      */
     public function title(string $title): self
@@ -45,8 +43,6 @@ class DashboardMessage extends DatabaseMessage
     }
 
     /**
-     * @param string $title
-     *
      * @return $this
      */
     public function message(string $title): self
@@ -57,8 +53,6 @@ class DashboardMessage extends DatabaseMessage
     }
 
     /**
-     * @param string $action
-     *
      * @return $this
      */
     public function action(string $action): self
@@ -69,8 +63,6 @@ class DashboardMessage extends DatabaseMessage
     }
 
     /**
-     * @param Color $color
-     *
      * @return $this
      */
     public function type(Color $color): self
