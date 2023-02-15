@@ -55,8 +55,8 @@ class UserEditTest extends TestBrowserCase
             $browser
                 ->loginAs($user)
                 ->visitRoute('platform.systems.users')
-                ->press($user->email)
-                ->pause(1500)
+                ->pressAndWaitFor($user->email)
+                ->pause(5000)
                 ->type('user[name]', $string)
                 ->press('Apply')
                 ->waitForText('User was saved.', 10)
