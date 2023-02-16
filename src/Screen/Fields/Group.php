@@ -148,7 +148,7 @@ class Group implements Fieldable, Groupable
      */
     public function alignStart(): self
     {
-        return $this->set('align', 'align-items-end');
+        return $this->set('align', 'align-items-start');
     }
 
     public function __toString(): string
