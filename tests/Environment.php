@@ -80,7 +80,7 @@ trait Environment
         return [
             BreadcrumbsServiceProvider::class,
             FoundationServiceProvider::class,
-            ExemplarServiceProvider::class
+            ExemplarServiceProvider::class,
         ];
     }
 
