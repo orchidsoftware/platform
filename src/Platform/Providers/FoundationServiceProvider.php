@@ -103,7 +103,7 @@ class FoundationServiceProvider extends ServiceProvider
             Dashboard::path('resources/lang') => lang_path('vendor/platform'),
         ], 'orchid-lang');
 
-        $this->loadTranslationsFrom(Dashboard::path('resources/lang/'), 'platform');
+        $this->loadJsonTranslationsFrom(Dashboard::path('resources/lang/'));
 
         return $this;
     }
