@@ -174,7 +174,7 @@ class Modal extends Layout
      */
     public function method(string $method): self
     {
-        $this->variables['method'] = url()->current() . '/' . $method;
+        $this->variables['method'] = url()->current().'/'.$method;
 
         return $this;
     }

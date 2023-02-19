@@ -52,7 +52,7 @@ class Action extends Field implements Actionable
 
         $class = str_replace($colors, '', (string) $this->get('class'));
 
-        $this->set('class', $class . ' btn-' . $visual->name());
+        $this->set('class', $class.' btn-'.$visual->name());
 
         return $this;
     }

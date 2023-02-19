@@ -14,7 +14,6 @@ if (! function_exists('alert')) {
     {
         $notifier = app(Alert::class);
 
-
         if ($message !== null) {
             return $notifier->message($message, $color);
         }

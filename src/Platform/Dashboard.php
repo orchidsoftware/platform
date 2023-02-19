@@ -227,14 +227,11 @@ class Dashboard
         return $this->resources->get($key);
     }
 
-    /**
-     * @return \Illuminate\Support\Collection
-     */
     public function getSearch(): Collection
     {
         return collect(static::$options['search'])
             ->unique()
-            ->transform(static fn($model) => is_object($model) ? $model : resolve($model));
+            ->transform(static fn ($model) => is_object($model) ? $model : resolve($model));
     }
 
     /**
