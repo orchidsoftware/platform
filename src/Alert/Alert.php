@@ -53,12 +53,10 @@ class Alert
     /**
      * Flash a general message.
      */
-    public function message(string $message, Color $level = null): self
+    public function message(string $message, Color $color = Color::INFO): self
     {
-        $level = $level ?? Color::INFO();
-
         $this->session->flash(static::SESSION_MESSAGE, $this->sanitize ? e($message) : $message);
-        $this->session->flash(static::SESSION_LEVEL, (string) $level);
+        $this->session->flash(static::SESSION_LEVEL, $color->name());
 
         return $this;
     }
@@ -68,7 +66,7 @@ class Alert
      */
     public function success(string $message): self
     {
-        $this->message($message, Color::SUCCESS());
+        $this->message($message, Color::SUCCESS);
 
         return $this;
     }
@@ -78,7 +76,7 @@ class Alert
      */
     public function error(string $message): self
     {
-        $this->message($message, Color::ERROR());
+        $this->message($message, Color::ERROR);
 
         return $this;
     }
@@ -88,7 +86,7 @@ class Alert
      */
     public function warning(string $message): self
     {
-        $this->message($message, Color::WARNING());
+        $this->message($message, Color::WARNING);
 
         return $this;
     }
@@ -99,12 +97,12 @@ class Alert
      *
      * @throws \Throwable
      */
-    public function view(string $template, Color $level = null, array $data = []): self
+    public function view(string $template, Color $color = Color::INFO, array $data = []): self
     {
         $message = view($template, $data)->render();
 
         $this->sanitize = false;
-        $this->message($message, $level ?? Color::INFO());
+        $this->message($message, $color);
 
         return $this;
     }

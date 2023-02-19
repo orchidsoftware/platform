@@ -48,13 +48,11 @@ class Action extends Field implements Actionable
      */
     public function type(Color $visual): self
     {
-        $reflectionClass = new \ReflectionClass(Color::class);
-
-        $colors = array_map(static fn (string $color) => 'btn-'.$color, $reflectionClass->getConstants());
+        $colors = array_map(static fn (Color $color) => 'btn-'.$color->name(), Color::cases());
 
         $class = str_replace($colors, '', (string) $this->get('class'));
 
-        $this->set('class', $class.' btn-'.$visual);
+        $this->set('class', $class . ' btn-' . $visual->name());
 
         return $this;
     }

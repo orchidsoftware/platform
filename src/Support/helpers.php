@@ -10,16 +10,13 @@ if (! function_exists('alert')) {
     /**
      * Helper function to send an alert.
      */
-    function alert(string $message = null, string $level = null): Alert
+    function alert(string $message = null, Color $color = Color::INFO): Alert
     {
         $notifier = app(Alert::class);
 
-        if ($level !== null) {
-            $level = (string) Color::INFO();
-        }
 
         if ($message !== null) {
-            return $notifier->message($message, $level);
+            return $notifier->message($message, $color);
         }
 
         return $notifier;

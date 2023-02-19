@@ -28,7 +28,7 @@ class DashboardMessage extends DatabaseMessage
         $this->data['time'] = Carbon::now();
 
         if (empty($this->data['type'])) {
-            $this->data['type'] = Color::INFO();
+            $this->data['type'] = Color::INFO;
         }
     }
 
@@ -67,7 +67,7 @@ class DashboardMessage extends DatabaseMessage
      */
     public function type(Color $color): self
     {
-        $this->data['type'] = (string) $color;
+        $this->data['type'] = $color->name();
 
         return $this;
     }

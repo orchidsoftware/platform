@@ -149,10 +149,10 @@ class Menu extends Link
     /**
      * @return $this
      */
-    public function badge(\Closure $badge, Color $color = null): self
+    public function badge(\Closure $badge, Color $color = Color::PRIMARY): self
     {
         $this->set('badge', [
-            'class' => $color ?? Color::PRIMARY(),
+            'class' => $color->name(),
             'data'  => $badge,
         ]);
 
