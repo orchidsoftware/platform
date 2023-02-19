@@ -20,7 +20,7 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    public const VERSION = '13.10.0';
+    public const VERSION = '14.0.0-alpha';
 
     /**
      * Slug for main menu.
@@ -28,16 +28,14 @@ class Dashboard
     public const MENU_MAIN = 'Main';
 
     /**
-     * Slug for dropdown profile.
-     */
-    public const MENU_PROFILE = 'Profile';
-
-    /**
      * The Dashboard configuration options.
      *
      * @var array
      */
-    protected static $options = [];
+    protected static $options = [
+        'search' => [],
+        'models' => [],
+    ];
 
     /**
      * @var Collection
@@ -59,11 +57,6 @@ class Dashboard
     private $permission;
 
     /**
-     * @var Collection
-     */
-    private $search;
-
-    /**
      * @var Screen|null
      */
     private $currentScreen;
@@ -79,8 +72,6 @@ class Dashboard
             'all'     => collect(),
             'removed' => collect(),
         ]);
-
-        $this->search = collect();
 
         $this->flushState();
     }
@@ -199,12 +190,11 @@ class Dashboard
     /**
      * Registers a set of models for which full-text search is required.
      *
-     *
      * @return $this
      */
-    public function registerSearch(array $model): self
+    public function registerSearch(array $models): self
     {
-        $this->search = $this->search->merge($model);
+        static::$options['search'] = array_merge($models, static::$options['search'] ?? []);
 
         return $this;
     }
@@ -237,9 +227,14 @@ class Dashboard
         return $this->resources->get($key);
     }
 
+    /**
+     * @return \Illuminate\Support\Collection
+     */
     public function getSearch(): Collection
     {
-        return $this->search->transform(static fn ($model) => is_object($model) ? $model : resolve($model));
+        return collect(static::$options['search'])
+            ->unique()
+            ->transform(static fn($model) => is_object($model) ? $model : resolve($model));
     }
 
     /**
@@ -362,7 +357,6 @@ class Dashboard
     {
         $this->menu = collect([
             self::MENU_MAIN    => collect(),
-            self::MENU_PROFILE => collect(),
         ]);
 
         $this->currentScreen = null;
