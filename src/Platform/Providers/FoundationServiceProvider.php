@@ -28,6 +28,7 @@ use Orchid\Platform\Dashboard;
 use Orchid\Screen\Components\Popover;
 use Tabuna\Breadcrumbs\BreadcrumbsServiceProvider;
 use Watson\Active\ActiveServiceProvider;
+use Illuminate\Foundation\Console\AboutCommand;
 
 /**
  * Class FoundationServiceProvider.
@@ -60,6 +61,13 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        AboutCommand::add('Orchid Platform', fn () => [
+            'Version'       => Dashboard::version(),
+            'Domain'        => config('platform.domain'),
+            'Prefix'        => config('platform.prefix'),
+            'Assets Status' => Dashboard::assetsAreCurrent() ? '<fg=green;options=bold>CURRENT</>' : '<fg=yellow;options=bold>OUTDATED</>',
+        ]);
+
         $this
             ->registerOrchid()
             ->registerAssets()
@@ -79,7 +87,7 @@ class FoundationServiceProvider extends ServiceProvider
     {
         $this->publishes([
             Dashboard::path('database/migrations') => database_path('migrations'),
-        ], 'migrations');
+        ], 'orchid-migrations');
 
         return $this;
     }
@@ -91,7 +99,11 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerTranslations(): self
     {
-        $this->loadJsonTranslationsFrom(Dashboard::path('resources/lang/'));
+        $this->publishes([
+            Dashboard::path('resources/lang') => lang_path('vendor/platform'),
+        ], 'orchid-lang');
+
+        $this->loadTranslationsFrom(Dashboard::path('resources/lang/'), 'platform');
 
         return $this;
     }
@@ -105,7 +117,7 @@ class FoundationServiceProvider extends ServiceProvider
     {
         $this->publishes([
             Dashboard::path('config/platform.php') => config_path('platform.php'),
-        ], 'config');
+        ], 'orchid-config');
 
         return $this;
     }
@@ -152,7 +164,7 @@ class FoundationServiceProvider extends ServiceProvider
 
         $this->publishes([
             $path => resource_path('views/vendor/platform'),
-        ], 'views');
+        ], 'orchid-views');
 
         return $this;
     }
