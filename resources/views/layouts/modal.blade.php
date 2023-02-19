@@ -12,6 +12,7 @@
     >
         <div class="modal-dialog modal-fullscreen-md-down {{$size}} {{$type}}" role="document" id="screen-modal-type-{{$key}}">
             <form class="modal-content"
+                  action="{{ $method }}"
                   id="screen-modal-form-{{$key}}"
                   method="post"
                   enctype="multipart/form-data"
