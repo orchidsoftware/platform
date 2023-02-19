@@ -73,7 +73,7 @@ class AlertTest extends TestUnitCase
 
     public function testShouldFlashViewAlert(): void
     {
-        Alert::view('exemplar::alert', Color::INFO(), [
+        Alert::view('exemplar::alert', Color::INFO, [
             'name' => 'Alexandr',
         ]);
 

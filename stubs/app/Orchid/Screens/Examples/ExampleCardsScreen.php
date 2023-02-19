@@ -73,7 +73,7 @@ class ExampleCardsScreen extends Screen
                 Sight::make('updated_at', 'Updated'),
                 Sight::make('Simple Text')->render(fn () => 'This is a wider card with supporting text below as a natural lead-in to additional content.'),
                 Sight::make('Action')->render(fn () => Button::make('Show toast')
-                    ->type(Color::DEFAULT())
+                    ->type(Color::BASIC)
                     ->method('showToast')),
             ])->title('User'),
         ];

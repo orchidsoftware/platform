@@ -105,7 +105,7 @@ class UserEditScreen extends Screen
                 ->description(__('Update your account\'s profile information and email address.'))
                 ->commands(
                     Button::make(__('Save'))
-                        ->type(Color::DEFAULT())
+                        ->type(Color::BASIC)
                          ->icon('bs.check-circle')
                         ->canSee($this->user->exists)
                         ->method('save')
@@ -116,7 +116,7 @@ class UserEditScreen extends Screen
                 ->description(__('Ensure your account is using a long, random password to stay secure.'))
                 ->commands(
                     Button::make(__('Save'))
-                        ->type(Color::DEFAULT())
+                        ->type(Color::BASIC)
                          ->icon('bs.check-circle')
                         ->canSee($this->user->exists)
                         ->method('save')
@@ -127,7 +127,7 @@ class UserEditScreen extends Screen
                 ->description(__('A Role defines a set of tasks a user assigned the role is allowed to perform.'))
                 ->commands(
                     Button::make(__('Save'))
-                        ->type(Color::DEFAULT())
+                        ->type(Color::BASIC)
                          ->icon('bs.check-circle')
                         ->canSee($this->user->exists)
                         ->method('save')
@@ -138,7 +138,7 @@ class UserEditScreen extends Screen
                 ->description(__('Allow the user to perform some actions that are not provided for by his roles'))
                 ->commands(
                     Button::make(__('Save'))
-                        ->type(Color::DEFAULT())
+                        ->type(Color::BASIC)
                          ->icon('bs.check-circle')
                         ->canSee($this->user->exists)
                         ->method('save')

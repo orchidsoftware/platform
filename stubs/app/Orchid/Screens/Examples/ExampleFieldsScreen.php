@@ -168,7 +168,7 @@ class ExampleFieldsScreen extends Screen
 
                 Button::make('Submit')
                     ->method('buttonClickProcessing')
-                    ->type(Color::DEFAULT()),
+                    ->type(Color::BASIC),
 
             ]), //->title('Textual HTML5 Inputs'),
 

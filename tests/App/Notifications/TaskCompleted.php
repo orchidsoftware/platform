@@ -29,7 +29,7 @@ class TaskCompleted extends Notification
         return (new DashboardMessage())
             ->title('Task Completed')
             ->message('You have completed work. Well done!')
-            ->type(Color::INFO())
+            ->type(Color::INFO)
             ->action(url('/'));
     }
 

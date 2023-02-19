@@ -59,7 +59,7 @@ class CardTest extends TestUnitCase
              */
             public function color(): ?Color
             {
-                return Color::INFO();
+                return Color::INFO;
             }
         };
     }

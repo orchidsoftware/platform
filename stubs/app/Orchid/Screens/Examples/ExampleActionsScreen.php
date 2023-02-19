@@ -57,16 +57,16 @@ class ExampleActionsScreen extends Screen
             ExampleElements::class,
             Layout::rows([
                 Group::make([
-                    Button::make('Primary')->method('buttonClickProcessing')->type(Color::PRIMARY()),
-                    Button::make('Secondary')->method('buttonClickProcessing')->type(Color::SECONDARY()),
-                    Button::make('Success')->method('buttonClickProcessing')->type(Color::SUCCESS()),
-                    Button::make('Danger')->method('buttonClickProcessing')->type(Color::DANGER()),
-                    Button::make('Warning')->method('buttonClickProcessing')->type(Color::WARNING()),
-                    Button::make('Info')->method('buttonClickProcessing')->type(Color::INFO()),
-                    Button::make('Light')->method('buttonClickProcessing')->type(Color::LIGHT()),
-                    Button::make('Dark')->method('buttonClickProcessing')->type(Color::DARK()),
-                    Button::make('Default')->method('buttonClickProcessing')->type(Color::DEFAULT()),
-                    Button::make('Link')->method('buttonClickProcessing')->type(Color::LINK()),
+                    Button::make('Primary')->method('buttonClickProcessing')->type(Color::PRIMARY),
+                    Button::make('Secondary')->method('buttonClickProcessing')->type(Color::SECONDARY),
+                    Button::make('Success')->method('buttonClickProcessing')->type(Color::SUCCESS),
+                    Button::make('Danger')->method('buttonClickProcessing')->type(Color::DANGER),
+                    Button::make('Warning')->method('buttonClickProcessing')->type(Color::WARNING),
+                    Button::make('Info')->method('buttonClickProcessing')->type(Color::INFO),
+                    Button::make('Light')->method('buttonClickProcessing')->type(Color::LIGHT),
+                    Button::make('Dark')->method('buttonClickProcessing')->type(Color::DARK),
+                    Button::make('Default')->method('buttonClickProcessing')->type(Color::BASIC),
+                    Button::make('Link')->method('buttonClickProcessing')->type(Color::LINK),
                 ])->autoWidth(),
 
                 Group::make([
@@ -100,7 +100,7 @@ class ExampleActionsScreen extends Screen
 
             Layout::block(Layout::rows([
                 Group::make([
-                    Button::make('Submit')->type(Color::PRIMARY())->disabled(),
+                    Button::make('Submit')->type(Color::PRIMARY)->disabled(),
                     Button::make('Submit')->disabled(),
                 ])->autoWidth(),
             ]))
