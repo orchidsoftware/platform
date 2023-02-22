@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Orchid\Attachment\MimeTypes;
 use Orchid\Filters\Filterable;
 use Orchid\Platform\Dashboard;
@@ -172,4 +173,20 @@ class Attachment extends Model
 
         return $type ?? 'unknown';
     }
+
+    public function isMime(string $type) {
+
+        return Str::of($this->mime)->is($type);
+    }
+
+    public function isPhysicalExists()
+    {
+        return Storage::disk($this->disk)->exists($this->physicalPath());
+    }
+
+    public function download(array $headers = [])
+    {
+        return Storage::disk($this->disk)->download($this->physicalPath(), $this->original_name, $headers);
+    }
+
 }
