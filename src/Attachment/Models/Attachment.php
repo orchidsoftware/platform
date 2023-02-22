@@ -174,8 +174,8 @@ class Attachment extends Model
         return $type ?? 'unknown';
     }
 
-    public function isMime(string $type) {
-
+    public function isMime(string $type)
+    {
         return Str::of($this->mime)->is($type);
     }
 
@@ -188,5 +188,4 @@ class Attachment extends Model
     {
         return Storage::disk($this->disk)->download($this->physicalPath(), $this->original_name, $headers);
     }
-
 }

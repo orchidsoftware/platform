@@ -264,7 +264,6 @@ class AttachmentTest extends TestUnitCase
         $this->assertFalse($upload->isMime('image/png'));
     }
 
-
     public function testIsPhysicalExistAttachment()
     {
         $file = UploadedFile::fake()->create('isPhysical.jpg');
@@ -273,14 +272,12 @@ class AttachmentTest extends TestUnitCase
 
         $this->assertTrue($upload->isPhysicalExists());
 
-
-
         $attachment = new Attachment([
             'original_name' => 'photo.jpg',
             'name'          => 'random',
             'extension'     => 'jpg',
-            'disk'          =>  'public',
-            'path'          =>  '2023/02/'
+            'disk'          => 'public',
+            'path'          => '2023/02/',
         ]);
 
         $this->assertFalse($attachment->isPhysicalExists());
@@ -293,7 +290,5 @@ class AttachmentTest extends TestUnitCase
         $upload = $attachment->load();
 
         $this->assertTrue($upload->download() instanceof StreamedResponse);
-
     }
-
 }
