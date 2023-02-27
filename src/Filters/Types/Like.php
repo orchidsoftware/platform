@@ -11,6 +11,6 @@ class Like extends BaseHttpEloquentFilter
 {
     public function run(Builder $builder): Builder
     {
-        return $builder->where($this->column, 'like', $this->getHttpValue());
+        return $builder->where($this->column, 'like', '%'.$this->getHttpValue().'%');
     }
 }
