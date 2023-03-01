@@ -5,7 +5,8 @@ export default class extends ApplicationController {
     /**
      *
      */
-    toggle() {
+    toggle(event) {
         document.body.classList.toggle('menu-open');
+        event.preventDefault();
     }
 }

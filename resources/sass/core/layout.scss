@@ -9,7 +9,7 @@ body {
 }
 
 
-@include media-breakpoint-up(md) {
+@include media-breakpoint-up(xl) {
     .aside {
         min-width: $app-aside-min-width;
         max-width: $app-aside-width;
@@ -21,18 +21,29 @@ body {
     }
 }
 
-@include media-breakpoint-down(md) {
+@include media-breakpoint-down(xl) {
 
     .aside-collapse {
-        height: calc(100vh - 3.5rem);
+        min-height: calc(100vh - 4rem);
+        visibility: hidden;
+        opacity: 0;
+        transition: all 1ms ease!important;
+    }
+
+    .aside {
+        height: 60px;
+        transition: all 300ms ease;
     }
 
     body.menu-open {
         .aside-collapse {
             display: flex !important;
+            visibility: visible;
+            opacity: 1;
         }
 
         .aside {
+            height: auto!important;
             min-height: 100vh;
         }
 
@@ -181,3 +192,42 @@ body {
     left: 0;
     right: 0;
 }
+
+
+@include media-breakpoint-down(md) {
+    .command-bar-wrapper {
+        .layout {
+            //background-color: $dark !important;
+            padding: 1.5em 0 !important;
+            margin-top: 0.3em;
+            border-top: 1px solid $border-color;
+        }
+
+        /*
+        .command-bar {
+            .btn {
+                //color: $white!important;
+                display: flex !important;
+                flex-direction: column !important;
+                //font-size: 0.875rem;
+                //padding-top: 0.8em;
+                padding: 0.7em;
+                border-radius: 0.5rem;
+
+                svg {
+                    height: 1.5em;
+                    width: 1.5em;
+                    margin: 0 !important;
+                    //margin: 0 0 0.3rem 0 !important;
+                }
+
+                span {
+                    display: none;
+                }
+            }
+        }
+
+         */
+    }
+}
+
