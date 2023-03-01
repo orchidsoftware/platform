@@ -9,7 +9,7 @@
             <x-orchid-icon :path="$icon" class="{{ empty($name) ?: 'me-2'}}"/>
         @endisset
 
-        {{ $name ?? '' }}
+        <span>{{ $name ?? '' }}</span>
     </button>
 
     <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow bg-white"

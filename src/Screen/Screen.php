@@ -107,10 +107,12 @@ abstract class Screen extends Controller
     /**
      * Builds the screen asynchronously using the given method and template slug.
      *
+     * @param string $method
+     * @param string $slug
      *
-     * @throws Throwable
-     *
-     * @return View
+     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \ReflectionException
      */
     public function asyncBuild(string $method, string $slug)
     {
@@ -153,7 +155,6 @@ abstract class Screen extends Controller
             'commandBar'              => $this->buildCommandBar($repository),
             'layouts'                 => $this->build($repository),
             'formValidateMessage'     => $this->formValidateMessage(),
-            'formSubmitMessage'       => $this->formSubmitMessage(),
             'needPreventsAbandonment' => $this->needPreventsAbandonment(),
         ]);
     }
@@ -249,16 +250,6 @@ abstract class Screen extends Controller
     public function formValidateMessage(): string
     {
         return __('Please check the entered data, it may be necessary to specify in other languages.');
-    }
-
-    /**
-     * This method returns a boolean value indicating whether or not the form should prevent abandonment.
-     *
-     * @return bool
-     */
-    public function formSubmitMessage(): string
-    {
-        return __('Loading...');
     }
 
     /**
