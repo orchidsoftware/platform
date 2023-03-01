@@ -30,7 +30,7 @@ class PlatformProvider extends OrchidServiceProvider
                 ->title('Navigation')
                 ->route(config('platform.index')),
 
-            Menu::make('Example screen')
+            Menu::make('Example Screen')
                 ->icon('bs.collection')
                 ->route('platform.example')
                 ->badge(fn () => 6),

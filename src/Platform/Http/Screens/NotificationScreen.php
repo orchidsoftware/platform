@@ -70,13 +70,13 @@ class NotificationScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Button::make(__('Remove all'))
+            Button::make(__('Remove All'))
                 ->icon('trash')
                 ->method('removeAll')
                 ->confirm(__('After deleting notifications, this action cannot be undone and all associated data will be permanently lost.'))
                 ->canSee($this->isNotEmpty),
 
-            Button::make(__('Mark all as read'))
+            Button::make(__('Mark All As Read'))
                 ->icon('eye')
                 ->method('markAllAsRead')
                 ->canSee($this->isNotEmpty),

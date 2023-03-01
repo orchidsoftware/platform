@@ -15,7 +15,7 @@ class ExampleScreenTest extends TestFeatureCase
             ->get(route('platform.example'));
 
         $response->assertOk()
-            ->assertSee('Example screen')
+            ->assertSee('Example Screen')
             ->assertSee('Sample Screen Components');
     }
 

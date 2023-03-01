@@ -78,7 +78,7 @@ class ExampleScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Example screen';
+        return 'Example Screen';
     }
 
     /**
