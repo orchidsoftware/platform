@@ -132,7 +132,7 @@ class HttpFilterTest extends TestUnitCase
         request()->merge([
             'filter' => [
                 'Where'  => '42',
-                'Like' => '42',
+                'Like'   => '42',
             ],
         ]);
 
@@ -164,7 +164,6 @@ class HttpFilterTest extends TestUnitCase
         ]));
 
         $this->assertEquals('asc', $filter->getSort('foobar'));
-
 
         $filter = new HttpFilter(new Request([
             'sort' => '-foobar',
@@ -220,7 +219,6 @@ class HttpFilterTest extends TestUnitCase
         $sql = $this->getModelBuilder()->toSql();
 
         $this->assertStringContainsString("order by json_extract(\"foobar\", '$.\"ru\".\"name\"') desc", $sql);
-
     }
 
     public function testHttpSanitize(): void
@@ -243,14 +241,14 @@ class HttpFilterTest extends TestUnitCase
             use Filterable;
 
             protected $allowedFilters = [
-                'WhereIn' => WhereIn::class,
-                'Like'    => Like::class,
-                'Where'   => Where::class,
-                'WhereBetween' => WhereBetween::class
+                'WhereIn'      => WhereIn::class,
+                'Like'         => Like::class,
+                'Where'        => Where::class,
+                'WhereBetween' => WhereBetween::class,
             ];
 
             protected $allowedSorts = [
-                'foobar'
+                'foobar',
             ];
         };
 

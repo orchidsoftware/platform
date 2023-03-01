@@ -49,9 +49,8 @@ class HttpFilter
     {
         $this->request = $request ?? request();
 
-        $this->filters = $this->request->collect('filter')->filter(fn($item) => $item !== null);
+        $this->filters = $this->request->collect('filter')->filter(fn ($item) => $item !== null);
         $this->sorts = collect($this->request->collect('sort'));
-
     }
 
     public function build(Builder $builder): Builder

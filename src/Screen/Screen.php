@@ -107,12 +107,11 @@ abstract class Screen extends Controller
     /**
      * Builds the screen asynchronously using the given method and template slug.
      *
-     * @param string $method
-     * @param string $slug
      *
-     * @return \Illuminate\Http\Response
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \ReflectionException
+     *
+     * @return \Illuminate\Http\Response
      */
     public function asyncBuild(string $method, string $slug)
     {

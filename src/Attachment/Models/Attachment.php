@@ -174,27 +174,17 @@ class Attachment extends Model
         return $type ?? 'unknown';
     }
 
-    /**
-     * @param string $type
-     *
-     * @return bool
-     */
     public function isMime(string $type): bool
     {
         return Str::of($this->mime)->is($type);
     }
 
-    /**
-     * @return bool
-     */
     public function isPhysicalExists(): bool
     {
         return Storage::disk($this->disk)->exists($this->physicalPath());
     }
 
     /**
-     * @param array $headers
-     *
      * @return mixed
      */
     public function download(array $headers = [])
