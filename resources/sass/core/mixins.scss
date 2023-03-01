@@ -32,7 +32,7 @@
         }
       }
       > a {
-        color: darken($link-color, 5%);
+        color: darken($link-color, 3%);
         &:hover,
         &:focus {
           @include color-schema($bg-color, 3%, 2.5%);
