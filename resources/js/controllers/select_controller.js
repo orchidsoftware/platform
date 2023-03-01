@@ -38,6 +38,6 @@ export default class extends ApplicationController {
      *
      */
     disconnect() {
-        this.choices.destroy();
+        this.choices?.destroy();
     }
 }
