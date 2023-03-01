@@ -31,7 +31,6 @@
           enctype="multipart/form-data"
           data-controller="form"
           data-form-need-prevents-form-abandonment-value="{{ $needPreventsAbandonment }}"
-          data-form-submit-loading-message-value="{{ $formSubmitMessage }}"
           data-form-failed-validation-message-value="{{ $formValidateMessage }}"
           data-action="keypress->form#disableKey
                       turbo:before-fetch-request@document->form#confirmCancel
