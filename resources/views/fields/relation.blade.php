@@ -13,6 +13,7 @@
          data-relation-route="{{ route('platform.systems.relation') }}"
          data-relation-message-notfound="{{ __('No results found') }}"
          data-relation-message-add="{{ __('Add') }}"
+         data-relation-allow-add="{{ var_export($allowAdd, true) }}"
     >
         <select id="{{$id}}" data-relation-target="select" {{ $attributes }}>
             @foreach ($value as $option)
