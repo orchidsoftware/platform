@@ -26,7 +26,7 @@ use Orchid\Support\Assert;
  * @method Relation placeholder(string $placeholder = null)
  * @method Relation popover(string $value = null)
  * @method Relation title(string $value = null)
- * @method Relation allowAdd($value = true)
+ * @method Relation allowAdd($value = false)
  */
 class Relation extends Field
 {
@@ -50,7 +50,7 @@ class Relation extends Field
         'relationSearchColumns' => null,
         'chunk'                 => 10,
         'allowEmpty'            => '',
-        'allowAdd'              => true,
+        'allowAdd'              => false,
     ];
 
     /**
