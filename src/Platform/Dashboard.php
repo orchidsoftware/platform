@@ -93,11 +93,11 @@ class Dashboard
      */
     public static function assetsAreCurrent()
     {
-        $publishedPath = public_path('vendor/orchid/mix-manifest.json');
+        $publishedPath = public_path('vendor/orchid/build/manifest.json');
 
         throw_unless(File::exists($publishedPath), new RuntimeException('Orchid assets are not published. Please run: `php artisan orchid:publish`'));
 
-        return File::get($publishedPath) === File::get(__DIR__.'/../../public/mix-manifest.json');
+        return File::get($publishedPath) === File::get(__DIR__.'/../../public/build/manifest.json');
     }
 
     /**
