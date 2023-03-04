@@ -1,14 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "dev": "npm run development",
-    "development": "mix",
-    "watch": "mix watch",
-    "watch-poll": "mix watch -- --watch-options-poll=1000",
-    "hot": "mix watch --hot",
-    "prod": "npm run production",
-    "production": "mix --production",
-    "eslint": "./node_modules/.bin/eslint resources/js/ --fix"
+    "dev": "vite",
+    "build": "vite build"
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.13.0",
@@ -27,7 +21,9 @@
     "flatpickr": "^4.6.3",
     "frappe-charts": "^1.6.1",
     "inputmask": "^5.0.6",
-    "laravel-mix": "^6.0.16",
+    "stimulus-vite-helpers": "^3.0.1",
+    "laravel-vite-plugin": "^0.7.4",
+    "vite": "^4.1.4",
     "leaflet": "^1.7.1",
     "node-sass": "^8.0.0",
     "quill": "^1.3.7",
