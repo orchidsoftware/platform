@@ -22,7 +22,7 @@
         <meta name="turbo-cache-control" content="no-cache">
     @endif
 
-    @vite(['resources/js/app.js'])
+    @vite('resources/js/app.js','vendor/orchid/build')
 
     @foreach(Dashboard::getResource('stylesheets') as $stylesheet)
         <link rel="stylesheet" href="{{  $stylesheet }}">
