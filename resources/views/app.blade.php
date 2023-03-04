@@ -12,11 +12,6 @@
     </title>
     <meta name="csrf_token" content="{{  csrf_token() }}" id="csrf_token">
     <meta name="auth" content="{{  Auth::check() }}" id="auth">
-    @if(\Orchid\Support\Locale::currentDir(app()->getLocale()) == "rtl")
-        <link rel="stylesheet" type="text/css" href="{{  mix('/css/orchid.rtl.css','vendor/orchid') }}">
-    @else
-        <link rel="stylesheet" type="text/css" href="{{  mix('/css/orchid.css','vendor/orchid') }}">
-    @endif
 
     @stack('head')
 
@@ -27,9 +22,7 @@
         <meta name="turbo-cache-control" content="no-cache">
     @endif
 
-    <script src="{{ mix('/js/manifest.js','vendor/orchid') }}" type="text/javascript"></script>
-    <script src="{{ mix('/js/vendor.js','vendor/orchid') }}" type="text/javascript"></script>
-    <script src="{{ mix('/js/orchid.js','vendor/orchid') }}" type="text/javascript"></script>
+    @vite(['resources/js/app.js'])
 
     @foreach(Dashboard::getResource('stylesheets') as $stylesheet)
         <link rel="stylesheet" href="{{  $stylesheet }}">

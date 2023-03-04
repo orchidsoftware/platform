@@ -4,6 +4,7 @@ import * as Bootstrap from 'bootstrap';
 import { Application } from '@hotwired/stimulus';
 import { registerControllers } from 'stimulus-vite-helpers'
 import ApplicationController from './controllers/application_controller';
+import '../sass/app.scss'
 
 window.Turbo = Turbo;
 window.Bootstrap = Bootstrap;
