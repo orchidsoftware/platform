@@ -27,9 +27,7 @@ class SimpleShowValueWithArguments extends Component
     /**
      * Create a new component instance.
      *
-     * @param Application $application
-     * @param mixed       $value
-     * @param string      $from
+     * @param mixed $value
      */
     public function __construct(Application $application, $value, string $from = 'Alexandr')
     {

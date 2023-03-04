@@ -42,8 +42,6 @@ abstract class Legend extends Layout
     protected $target;
 
     /**
-     * @param Repository $repository
-     *
      * @return Factory|\Illuminate\View\View|null
      */
     public function build(Repository $repository)
@@ -74,8 +72,6 @@ abstract class Legend extends Layout
     abstract protected function columns(): iterable;
 
     /**
-     * @param string|null $title
-     *
      * @return Rows
      */
     public function title(string $title = null): self

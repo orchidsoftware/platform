@@ -34,11 +34,6 @@ class Card extends Content
         $this->commandBar = $commandBar;
     }
 
-    /**
-     * @param Cardable $card
-     *
-     * @return View
-     */
     public function render(Cardable $card): View
     {
         return view($this->template, [
@@ -46,13 +41,10 @@ class Card extends Content
             'description' => $card->description(),
             'image'       => $card->image(),
             'commandBar'  => $this->buildCommandBar(),
-            'color'       => $card->color(),
+            'color'       => $card->color()?->name(),
         ]);
     }
 
-    /**
-     * @return array
-     */
     private function buildCommandBar(): array
     {
         return collect($this->commandBar)

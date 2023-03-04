@@ -18,8 +18,6 @@ class Notification extends Component
 
     /**
      * Create a new component instance.
-     *
-     * @param \Illuminate\Contracts\Auth\Guard $guard
      */
     public function __construct(Guard $guard)
     {

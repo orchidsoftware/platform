@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Orchid\Attachment\MimeTypes;
 use Orchid\Filters\Filterable;
 use Orchid\Platform\Dashboard;
@@ -82,9 +83,6 @@ class Attachment extends Model
         'group',
     ];
 
-    /**
-     * @return BelongsTo
-     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(Dashboard::model(User::class));
@@ -92,10 +90,6 @@ class Attachment extends Model
 
     /**
      * Return the address by which you can access the file.
-     *
-     * @param string|null $default
-     *
-     * @return string|null
      */
     public function url(string $default = null): ?string
     {
@@ -108,17 +102,11 @@ class Attachment extends Model
             : $default;
     }
 
-    /**
-     * @return string|null
-     */
     public function getUrlAttribute(): ?string
     {
         return $this->url();
     }
 
-    /**
-     * @return string|null
-     */
     public function getRelativeUrlAttribute(): ?string
     {
         $url = $this->url();
@@ -130,9 +118,6 @@ class Attachment extends Model
         return parse_url($url, PHP_URL_PATH);
     }
 
-    /**
-     * @return string|null
-     */
     public function getTitleAttribute(): ?string
     {
         if ($this->original_name !== 'blob') {
@@ -142,9 +127,6 @@ class Attachment extends Model
         return $this->name.'.'.$this->extension;
     }
 
-    /**
-     * @return string|null
-     */
     public function physicalPath(): ?string
     {
         if ($this->path === null || $this->name === null) {
@@ -192,5 +174,31 @@ class Attachment extends Model
         $type = $mimes->getMimeType($this->getAttribute('extension'));
 
         return $type ?? 'unknown';
+    }
+
+    /**
+     * @param string $type
+     *
+     * @return bool
+     */
+    public function isMime(string $type): bool
+    {
+        return Str::of($this->mime)->is($type);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPhysicalExists(): bool
+    {
+        return Storage::disk($this->disk)->exists($this->physicalPath());
+    }
+
+    /**
+     * @return mixed
+     */
+    public function download(array $headers = [])
+    {
+        return Storage::disk($this->disk)->download($this->physicalPath(), $this->original_name, $headers);
     }
 }

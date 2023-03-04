@@ -22,8 +22,6 @@ abstract class TabMenu extends Layout
     protected $template = 'platform::layouts.tabMenu';
 
     /**
-     * @param Repository $repository
-     *
      * @throws Throwable
      *
      * @return Factory|\Illuminate\View\View

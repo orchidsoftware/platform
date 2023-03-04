@@ -40,6 +40,7 @@ export default class extends ApplicationController {
         const config = {
             locale: document.documentElement.lang,
             plugins,
+            appendTo: this.element.closest('.dropdown') || undefined,
         };
 
         Object.entries(configsAttributes).forEach(([key, value]) => {

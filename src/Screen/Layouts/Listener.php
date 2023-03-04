@@ -38,13 +38,6 @@ abstract class Listener extends Layout
     protected $asyncMethod;
 
     /**
-     * The following request must be asynchronous.
-     *
-     * @var bool
-     */
-    protected $asyncNext = true;
-
-    /**
      * @var Repository
      */
     public $query;
@@ -55,8 +48,6 @@ abstract class Listener extends Layout
     abstract protected function layouts(): iterable;
 
     /**
-     * @param Repository $repository
-     *
      * @return mixed|void
      */
     public function build(Repository $repository)
@@ -77,8 +68,6 @@ abstract class Listener extends Layout
     /**
      * Returns the system layer name.
      * Required to define an asynchronous layer.
-     *
-     * @return string
      */
     public function getSlug(): string
     {

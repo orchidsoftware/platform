@@ -60,9 +60,6 @@ class InstallCommand extends Command
     }
 
     /**
-     * @param string $command
-     * @param array  $parameters
-     *
      * @return $this
      */
     private function executeCommand(string $command, array $parameters = []): self
@@ -84,8 +81,6 @@ class InstallCommand extends Command
     }
 
     /**
-     * @param string $path
-     *
      * @return $this
      */
     private function changeUserModel(string $path = 'Models/User.php'): self
@@ -107,12 +102,6 @@ class InstallCommand extends Command
         return $this;
     }
 
-    /**
-     * @param string $constant
-     * @param string $value
-     *
-     * @return InstallCommand
-     */
     private function setValueEnv(string $constant, string $value = 'null'): self
     {
         $str = $this->fileGetContent(app_path('../.env'));
@@ -125,8 +114,6 @@ class InstallCommand extends Command
     }
 
     /**
-     * @param string $file
-     *
      * @return false|string
      */
     private function fileGetContent(string $file)

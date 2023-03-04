@@ -26,6 +26,7 @@ use Orchid\Support\Assert;
  * @method Relation placeholder(string $placeholder = null)
  * @method Relation popover(string $value = null)
  * @method Relation title(string $value = null)
+ * @method Relation allowAdd($value = false)
  */
 class Relation extends Field
 {
@@ -49,6 +50,7 @@ class Relation extends Field
         'relationSearchColumns' => null,
         'chunk'                 => 10,
         'allowEmpty'            => '',
+        'allowAdd'              => false,
     ];
 
     /**
@@ -84,12 +86,8 @@ class Relation extends Field
 
     /**
      * @param string|Model $model
-     * @param string       $name
-     * @param string|null  $key
      *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     *
-     * @return Relation
      */
     public function fromModel(string $model, string $name, string $key = null): self
     {
@@ -128,13 +126,6 @@ class Relation extends Field
         });
     }
 
-    /**
-     * @param string $class
-     * @param string $name
-     * @param string $key
-     *
-     * @return Relation
-     */
     public function fromClass(string $class, string $name, string $key = 'id'): self
     {
         $this->set('relationModel', Crypt::encryptString($class));
@@ -180,10 +171,7 @@ class Relation extends Field
     }
 
     /**
-     * @param string $scope
-     * @param array  $parameters
-     *
-     * @return Relation
+     * @param array $parameters
      */
     public function applyScope(string $scope, ...$parameters): self
     {
@@ -214,10 +202,6 @@ class Relation extends Field
     /**
      * Displays the calculated model
      * field in the selection field.
-     *
-     * @param string $append
-     *
-     * @return Relation
      */
     public function displayAppend(string $append): self
     {
@@ -229,7 +213,6 @@ class Relation extends Field
     /**
      * Set the maximum number of items that may be selected.
      *
-     * @param int $number
      *
      * @return $this
      */
@@ -243,7 +226,6 @@ class Relation extends Field
     /**
      * Sets the size of the chunk to be shown to the user.
      *
-     * @param int $value
      *
      * @return $this
      */
@@ -255,7 +237,6 @@ class Relation extends Field
     /**
      * Allow empty value to be set
      *
-     * @param bool $value
      *
      * @return $this
      */
@@ -268,10 +249,6 @@ class Relation extends Field
      * Allow empty value to be set
      *
      * @deprecated use `allowEmpty()` instead
-     *
-     * @param bool $value
-     *
-     * @return self
      */
     public function nullable(bool $value = true): self
     {

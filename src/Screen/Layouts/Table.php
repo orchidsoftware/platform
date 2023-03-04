@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Support\Collection;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\TD;
@@ -44,8 +46,6 @@ abstract class Table extends Layout
     protected $title;
 
     /**
-     * @param Repository $repository
-     *
      * @return Factory|\Illuminate\View\View
      */
     public function build(Repository $repository)
@@ -77,15 +77,11 @@ abstract class Table extends Layout
             'hoverable'    => $this->hoverable(),
             'slug'         => $this->getSlug(),
             'onEachSide'   => $this->onEachSide(),
+            'showHeader'   => $this->hasHeader($columns, $rows),
             'title'        => $this->title,
         ]);
     }
 
-    /**
-     * @param string|null $title
-     *
-     * @return Table
-     */
     public function title(string $title = null): self
     {
         $this->title = $title;
@@ -93,34 +89,31 @@ abstract class Table extends Layout
         return $this;
     }
 
-    /**
-     * @return string
-     */
     protected function iconNotFound(): string
     {
-        return 'icon-table';
+        return 'bs.journal-x';
     }
 
-    /**
-     * @return string
-     */
     protected function textNotFound(): string
     {
-        return __('There are no records in this view');
+        if (count(request()->query()) !== 0) {
+            return __('No results found for your current filters');
+        }
+
+        return __('There are no objects currently displayed');
     }
 
-    /**
-     * @return string
-     */
     protected function subNotFound(): string
     {
-        return '';
+        if (count(request()->query()) !== 0) {
+            return __('Try adjusting your filter settings or removing it altogether to see more data');
+        }
+
+        return __('Import or create objects, or check back later for updates');
     }
 
     /**
      * Usage for zebra-striping to any table row.
-     *
-     * @return bool
      */
     protected function striped(): bool
     {
@@ -129,8 +122,6 @@ abstract class Table extends Layout
 
     /**
      * Usage for compact display of table rows.
-     *
-     * @return bool
      */
     protected function compact(): bool
     {
@@ -139,8 +130,6 @@ abstract class Table extends Layout
 
     /**
      * Usage for borders on all sides of the table and cells.
-     *
-     * @return bool
      */
     protected function bordered(): bool
     {
@@ -149,8 +138,6 @@ abstract class Table extends Layout
 
     /**
      * Enable a hover state on table rows.
-     *
-     * @return bool
      */
     protected function hoverable(): bool
     {
@@ -159,8 +146,6 @@ abstract class Table extends Layout
 
     /**
      * The number of links to display on each side of current page link.
-     *
-     * @return int
      */
     protected function onEachSide(): int
     {
@@ -168,13 +153,22 @@ abstract class Table extends Layout
     }
 
     /**
-     * @return array
+     * @param \Illuminate\Support\Collection|\Illuminate\Pagination\Paginator $row
      */
-    abstract protected function columns(): iterable;
+    protected function hasHeader(Collection $columns, Collection|Paginator $row): bool
+    {
+        if ($columns->count() < 2) {
+            return false;
+        }
+
+        return ! empty(request()->query()) || $row->isNotEmpty();
+    }
 
     /**
      * @return array
      */
+    abstract protected function columns(): iterable;
+
     protected function total(): array
     {
         return [];

@@ -8,6 +8,8 @@ use Orchid\Support\Facades\Layout;
 
 class DependentSumListener extends Listener
 {
+    protected ?string $slug;
+
     /**
      * The name of the key to fetch it from the query.
      * The results of which will be elements of the table.
@@ -26,6 +28,16 @@ class DependentSumListener extends Listener
      * @var string
      */
     protected $asyncMethod = 'asyncSum';
+
+    public function __construct(string $slug = null)
+    {
+        $this->slug = $slug;
+    }
+
+    public function getSlug(): string
+    {
+        return $this->slug ?? parent::getSlug();
+    }
 
     /**
      * @return \Orchid\Screen\Layout[]

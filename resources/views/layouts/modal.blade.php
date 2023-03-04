@@ -12,13 +12,12 @@
     >
         <div class="modal-dialog modal-fullscreen-md-down {{$size}} {{$type}}" role="document" id="screen-modal-type-{{$key}}">
             <form class="modal-content"
+                  action="{{ $method }}"
                   id="screen-modal-form-{{$key}}"
                   method="post"
                   enctype="multipart/form-data"
                   data-controller="form"
                   data-action="form#submit"
-                  data-form-button-animate="#submit-modal-{{$key}}"
-                  data-form-button-text="{{ __('Loading...') }}"
             >
                 <div class="modal-header">
                     <h4 class="modal-title text-black fw-light" data-modal-target="title">{{$title}}</h4>
@@ -26,7 +25,7 @@
                     </button>
                 </div>
                 <div class="modal-body layout-wrapper">
-                    <div data-async>
+                    <div id="{{ $templateSlug }}">
                         @foreach($manyForms as $formKey => $modal)
                             @foreach($modal as $item)
                                 {!! $item ?? '' !!}

@@ -22,7 +22,7 @@
 
                     @if($export)
                         <a href="#" class="ms-auto px-2 text-muted" data-action="chart#export" title="{{ __('Export') }}">
-                            <x-orchid-icon path="cloud-download" height="0.9em" width="0.9em"/>
+                            <x-orchid-icon path="bs.cloud-arrow-down"/>
                         </a>
                     @endif
                 </div>

@@ -21,11 +21,6 @@ class Init
      */
     public const GB = 'GB';
 
-    /**
-     * @param string $string
-     *
-     * @return int
-     */
     public static function toBytes(string $string): int
     {
         $string = trim($string);
@@ -54,10 +49,6 @@ class Init
 
     /**
      * The smallest of them, this defines the real limit.
-     *
-     * @param string|null $format
-     *
-     * @return int
      */
     public static function maxFileUpload(string $format = null): int
     {
@@ -79,9 +70,7 @@ class Init
     }
 
     /**
-     * @param string $to
-     * @param        $bytes
-     * @param int    $point
+     * @param int $point
      *
      * @return int|float|mixed
      */

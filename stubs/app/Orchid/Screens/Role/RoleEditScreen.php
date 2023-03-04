@@ -23,9 +23,8 @@ class RoleEditScreen extends Screen
     public $role;
 
     /**
-     * Query data.
+     * Fetch data to be displayed on the screen.
      *
-     * @param Role $role
      *
      * @return array
      */
@@ -38,28 +37,21 @@ class RoleEditScreen extends Screen
     }
 
     /**
-     * Display header name.
-     *
-     * @return string|null
+     * The name of the screen displayed in the header.
      */
     public function name(): ?string
     {
-        return 'Manage roles';
+        return 'Edit Role';
     }
 
     /**
      * Display header description.
-     *
-     * @return string|null
      */
     public function description(): ?string
     {
-        return 'Access rights';
+        return 'Modify the privileges and permissions associated with a specific role.';
     }
 
-    /**
-     * @return iterable|null
-     */
     public function permission(): ?iterable
     {
         return [
@@ -68,7 +60,7 @@ class RoleEditScreen extends Screen
     }
 
     /**
-     * Button commands.
+     * The screen's action buttons.
      *
      * @return Action[]
      */
@@ -76,18 +68,18 @@ class RoleEditScreen extends Screen
     {
         return [
             Button::make(__('Save'))
-                ->icon('check')
+                 ->icon('bs.check-circle')
                 ->method('save'),
 
             Button::make(__('Remove'))
-                ->icon('trash')
+                 ->icon('bs.trash3')
                 ->method('remove')
                 ->canSee($this->role->exists),
         ];
     }
 
     /**
-     * Views.
+     * The screen's layout elements.
      *
      * @return string[]|\Orchid\Screen\Layout[]
      */
@@ -109,9 +101,6 @@ class RoleEditScreen extends Screen
     }
 
     /**
-     * @param Request $request
-     * @param Role    $role
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function save(Request $request, Role $role)
@@ -138,8 +127,6 @@ class RoleEditScreen extends Screen
     }
 
     /**
-     * @param Role $role
-     *
      * @throws \Exception
      *
      * @return \Illuminate\Http\RedirectResponse

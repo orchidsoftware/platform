@@ -89,10 +89,6 @@ class User extends Authenticatable implements UserInterface
     ];
 
     /**
-     * @param string $name
-     * @param string $email
-     * @param string $password
-     *
      * @throws \Throwable
      */
     public static function createAdmin(string $name, string $email, string $password)

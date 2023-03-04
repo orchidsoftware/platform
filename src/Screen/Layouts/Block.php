@@ -55,8 +55,6 @@ abstract class Block extends Layout
     }
 
     /**
-     * @param Repository $repository
-     *
      * @return mixed
      */
     public function build(Repository $repository)
@@ -68,10 +66,6 @@ abstract class Block extends Layout
 
     /**
      * Used to create the title of a group of form elements.
-     *
-     * @param string $title
-     *
-     * @return Block
      */
     public function title(string $title): self
     {
@@ -84,8 +78,6 @@ abstract class Block extends Layout
      * Used to create the description of a group of form elements.
      *
      * @param string|\Illuminate\View\View description
-     *
-     * @return Block
      */
     public function description($description): self
     {
@@ -98,8 +90,6 @@ abstract class Block extends Layout
      * Used to define block orientation.
      *
      * @param bool $vertical
-     *
-     * @return Block
      */
     public function vertical($vertical = true): self
     {
@@ -110,8 +100,6 @@ abstract class Block extends Layout
 
     /**
      * @param Action|Action[] description
-     *
-     * @return Block
      */
     public function commands($commands): self
     {

@@ -16,10 +16,6 @@ class BaseScreenTesting extends Screen
 {
     /**
      * Query data.
-     *
-     * @param User|null $user
-     *
-     * @return array
      */
     public function query(User $user = null): array
     {
@@ -30,8 +26,6 @@ class BaseScreenTesting extends Screen
 
     /**
      * Display header name.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -63,17 +57,12 @@ class BaseScreenTesting extends Screen
         ];
     }
 
-    /**
-     * @param Request $request
-     */
     public function showToast(Request $request): void
     {
         Toast::warning($request->get('toast', 'Hello, world! This is a toast message.'));
     }
 
     /**
-     * @param Request $request
-     *
      * @return string
      */
     public function getUser(Request $request)

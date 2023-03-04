@@ -10,10 +10,6 @@ use Orchid\Screen\Screen;
 class AsyncController extends Controller
 {
     /**
-     * @param string $screen
-     * @param string $method
-     * @param string $layout
-     *
      * @throws \Throwable
      *
      * @return mixed

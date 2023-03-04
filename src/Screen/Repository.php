@@ -20,7 +20,6 @@ class Repository extends \Illuminate\Config\Repository implements Countable
     /**
      * Create a new configuration repository.
      *
-     * @param iterable $items
      *
      * @return void
      */
@@ -30,7 +29,6 @@ class Repository extends \Illuminate\Config\Repository implements Countable
     }
 
     /**
-     * @param string     $key
      * @param mixed|null $default
      *
      * @return mixed
@@ -40,17 +38,11 @@ class Repository extends \Illuminate\Config\Repository implements Countable
         return Arr::get($this->items, $key, $default);
     }
 
-    /**
-     * @return array
-     */
     public function toArray(): array
     {
         return $this->items;
     }
 
-    /**
-     * @return int
-     */
     public function count(): int
     {
         return count($this->items);

@@ -13,9 +13,6 @@ use Illuminate\View\View;
  */
 class IndexController extends Controller
 {
-    /**
-     * @return RedirectResponse
-     */
     public function index(): RedirectResponse
     {
         return redirect()->route(config('platform.index'));

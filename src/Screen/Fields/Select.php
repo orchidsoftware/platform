@@ -79,10 +79,6 @@ class Select extends Field implements ComplexFieldConcern
 
     /**
      * @param string|Model $model
-     * @param string       $name
-     * @param string|null  $key
-     *
-     * @return self
      */
     public function fromModel($model, string $name, string $key = null): self
     {
@@ -95,10 +91,6 @@ class Select extends Field implements ComplexFieldConcern
 
     /**
      * @param Builder|Model $model
-     * @param string        $name
-     * @param string        $key
-     *
-     * @return self
      */
     private function setFromEloquent($model, string $name, string $key): self
     {
@@ -121,13 +113,6 @@ class Select extends Field implements ComplexFieldConcern
         });
     }
 
-    /**
-     * @param Builder     $builder
-     * @param string      $name
-     * @param string|null $key
-     *
-     * @return self
-     */
     public function fromQuery(Builder $builder, string $name, string $key = null): self
     {
         $key = $key ?? $builder->getModel()->getKeyName();
@@ -135,12 +120,6 @@ class Select extends Field implements ComplexFieldConcern
         return $this->setFromEloquent($builder->get(), $name, $key);
     }
 
-    /**
-     * @param string $name
-     * @param string $key
-     *
-     * @return self
-     */
     public function empty(string $name = '', string $key = ''): self
     {
         return $this->addBeforeRender(function () use ($name, $key) {

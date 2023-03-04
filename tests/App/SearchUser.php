@@ -14,8 +14,6 @@ class SearchUser extends Authenticatable
 
     /**
      * Get the indexable data array for the model.
-     *
-     * @return array
      */
     public function toSearchableArray(): array
     {
@@ -26,9 +24,6 @@ class SearchUser extends Authenticatable
         ]);
     }
 
-    /**
-     * @return UserPresenter
-     */
     public function presenter(): UserPresenter
     {
         return new UserPresenter($this);

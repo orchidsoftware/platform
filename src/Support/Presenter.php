@@ -11,9 +11,6 @@ abstract class Presenter
      */
     protected $entity;
 
-    /**
-     * @param object $entity
-     */
     public function __construct(object $entity)
     {
         $this->entity = $entity;
@@ -22,7 +19,6 @@ abstract class Presenter
     /**
      * Allow for property-style retrieval.
      *
-     * @param $property
      *
      * @return mixed
      */
@@ -38,7 +34,6 @@ abstract class Presenter
     /**
      * Provide compatibility for the checking.
      *
-     * @param $property
      *
      * @return bool
      */

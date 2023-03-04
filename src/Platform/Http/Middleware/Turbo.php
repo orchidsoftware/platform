@@ -26,9 +26,6 @@ class Turbo
     public const TURBO_STREAM_FORMAT = 'text/vnd.turbo-stream.html';
 
     /**
-     * @param Request $request
-     * @param Closure $next
-     *
      * @return mixed
      */
     public function handle(Request $request, Closure $next)

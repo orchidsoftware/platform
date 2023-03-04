@@ -17,8 +17,6 @@ class PropertyAutoWriteScreen extends Screen
 
     /**
      * Query data.
-     *
-     * @return array
      */
     public function query(): array
     {
@@ -31,8 +29,6 @@ class PropertyAutoWriteScreen extends Screen
 
     /**
      * Display header name.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {

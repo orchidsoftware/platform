@@ -31,10 +31,7 @@ class LayoutFactory
     use Macroable;
 
     /**
-     * @param string          $view
      * @param Arrayable|array $data
-     *
-     * @return View
      */
     public static function view(string $view, $data = []): View
     {
@@ -43,11 +40,6 @@ class LayoutFactory
         };
     }
 
-    /**
-     * @param string $component
-     *
-     * @return Component
-     */
     public static function component(string $component): Component
     {
         return new class($component) extends Component
@@ -55,11 +47,6 @@ class LayoutFactory
         };
     }
 
-    /**
-     * @param array $fields
-     *
-     * @return Rows
-     */
     public static function rows(array $fields): Rows
     {
         return new class($fields) extends Rows
@@ -71,17 +58,12 @@ class LayoutFactory
 
             /**
              *  constructor.
-             *
-             * @param array $fields
              */
             public function __construct(array $fields = [])
             {
                 $this->fields = $fields;
             }
 
-            /**
-             * @return array
-             */
             public function fields(): array
             {
                 return $this->fields;
@@ -89,12 +71,6 @@ class LayoutFactory
         };
     }
 
-    /**
-     * @param string $target
-     * @param array  $columns
-     *
-     * @return Table
-     */
     public static function table(string $target, array $columns): Table
     {
         return new class($target, $columns) extends Table
@@ -104,19 +80,12 @@ class LayoutFactory
              */
             protected $columns;
 
-            /**
-             * @param string $target
-             * @param array  $columns
-             */
             public function __construct(string $target, array $columns)
             {
                 $this->target = $target;
                 $this->columns = $columns;
             }
 
-            /**
-             * @return array
-             */
             public function columns(): array
             {
                 return $this->columns;
@@ -124,11 +93,6 @@ class LayoutFactory
         };
     }
 
-    /**
-     * @param array $layouts
-     *
-     * @return Columns
-     */
     public static function columns(array $layouts): Columns
     {
         return new class($layouts) extends Columns
@@ -136,11 +100,6 @@ class LayoutFactory
         };
     }
 
-    /**
-     * @param array $layouts
-     *
-     * @return Tabs
-     */
     public static function tabs(array $layouts): Tabs
     {
         return new class($layouts) extends Tabs
@@ -149,10 +108,7 @@ class LayoutFactory
     }
 
     /**
-     * @param string          $key
      * @param string|string[] $layouts
-     *
-     * @return Modal
      */
     public static function modal(string $key, $layouts): Modal
     {
@@ -163,11 +119,6 @@ class LayoutFactory
         };
     }
 
-    /**
-     * @param array $layouts
-     *
-     * @return Blank
-     */
     public static function blank(array $layouts): Blank
     {
         return new class($layouts) extends Blank
@@ -175,12 +126,6 @@ class LayoutFactory
         };
     }
 
-    /**
-     * @param string $template
-     * @param array  $layouts
-     *
-     * @return Wrapper
-     */
     public static function wrapper(string $template, array $layouts): Wrapper
     {
         return new class($template, $layouts) extends Wrapper
@@ -188,11 +133,6 @@ class LayoutFactory
         };
     }
 
-    /**
-     * @param array $layouts
-     *
-     * @return Accordion
-     */
     public static function accordion(array $layouts): Accordion
     {
         return new class($layouts) extends Accordion
@@ -202,8 +142,6 @@ class LayoutFactory
 
     /**
      * @param string[] $filters
-     *
-     * @return Selection
      */
     public static function selection(array $filters): Selection
     {
@@ -236,8 +174,6 @@ class LayoutFactory
 
     /**
      * @param Layout|string|string[] $layouts
-     *
-     * @return Block
      */
     public static function block($layouts): Block
     {
@@ -246,12 +182,6 @@ class LayoutFactory
         };
     }
 
-    /**
-     * @param string $target
-     * @param array  $columns
-     *
-     * @return Legend
-     */
     public static function legend(string $target, array $columns): Legend
     {
         return new class($target, $columns) extends Legend
@@ -261,19 +191,12 @@ class LayoutFactory
              */
             protected $columns;
 
-            /**
-             * @param string $target
-             * @param array  $columns
-             */
             public function __construct(string $target, array $columns)
             {
                 $this->target = $target;
                 $this->columns = $columns;
             }
 
-            /**
-             * @return array
-             */
             public function columns(): array
             {
                 return $this->columns;
@@ -281,21 +204,11 @@ class LayoutFactory
         };
     }
 
-    /**
-     * @param string $src
-     *
-     * @return Browsing
-     */
     public static function browsing(string $src): Browsing
     {
         return new Browsing($src);
     }
 
-    /**
-     * @param array $labels
-     *
-     * @return Metric
-     */
     public static function metrics(array $labels): Metric
     {
         return new Metric($labels);

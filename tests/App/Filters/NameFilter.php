@@ -16,19 +16,11 @@ class NameFilter extends Filter
         'name',
     ];
 
-    /**
-     * @return string
-     */
     public function name(): string
     {
         return 'Name';
     }
 
-    /**
-     * @param Builder $builder
-     *
-     * @return Builder
-     */
     public function run(Builder $builder): Builder
     {
         return $builder->where('name', $this->request->get('name'));

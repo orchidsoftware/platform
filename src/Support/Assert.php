@@ -10,8 +10,6 @@ class Assert
 {
     /**
      * @param mixed $array
-     *
-     * @return bool
      */
     public static function isIntArray($array): bool
     {
@@ -20,8 +18,6 @@ class Assert
 
     /**
      * @param mixed $array
-     *
-     * @return bool
      */
     public static function isObjectArray($array): bool
     {
@@ -31,8 +27,6 @@ class Assert
     /**
      * @param mixed           $array
      * @param string|\Closure $callback
-     *
-     * @return bool
      */
     public static function isArrayClosure($array, $callback): bool
     {

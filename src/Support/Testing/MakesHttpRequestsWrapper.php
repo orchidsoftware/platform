@@ -19,17 +19,11 @@ class MakesHttpRequestsWrapper
      */
     protected $app;
 
-    /**
-     * @param Application $app
-     */
     public function __construct(Application $app)
     {
         $this->app = $app;
     }
 
-    /**
-     * @return Application
-     */
     public function getAppication(): Application
     {
         return $this->app;

@@ -19,6 +19,9 @@ use Throwable;
 
 /**
  * Class Screen.
+ *
+ * This is the main class for creating screens in the Orchid. A screen is a web page
+ * that displays content and allows for user interaction.
  */
 abstract class Screen extends Controller
 {
@@ -32,9 +35,7 @@ abstract class Screen extends Controller
     private const COUNT_ROUTE_VARIABLES = 1;
 
     /**
-     * The view rendered
-     *
-     * @return string
+     * The base view that will be rendered.
      */
     protected function screenBaseView(): string
     {
@@ -42,9 +43,7 @@ abstract class Screen extends Controller
     }
 
     /**
-     * Display header name.
-     *
-     * @return string|null
+     * The name of the screen to be displayed in the header.
      */
     public function name(): ?string
     {
@@ -52,9 +51,7 @@ abstract class Screen extends Controller
     }
 
     /**
-     * Display header description.
-     *
-     * @return string|null
+     * A description of the screen to be displayed in the header.
      */
     public function description(): ?string
     {
@@ -62,9 +59,7 @@ abstract class Screen extends Controller
     }
 
     /**
-     * Permission
-     *
-     * @return iterable|null
+     * The permissions required to access this screen.
      */
     public function permission(): ?iterable
     {
@@ -79,7 +74,7 @@ abstract class Screen extends Controller
     private $source;
 
     /**
-     * Button commands.
+     * The command buttons for this screen.
      *
      * @return Action[]
      */
@@ -89,13 +84,15 @@ abstract class Screen extends Controller
     }
 
     /**
-     * Views.
+     * The layout for this screen, consisting of a collection of views.
      *
      * @return Layout[]
      */
     abstract public function layout(): iterable;
 
     /**
+     * Builds the screen using the given data repository.
+     *
      * @param \Orchid\Screen\Repository $repository
      *
      * @return View
@@ -108,12 +105,13 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param string $method
-     * @param string $slug
+     * Builds the screen asynchronously using the given method and template slug.
      *
-     * @throws Throwable
      *
-     * @return View
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \ReflectionException
+     *
+     * @return \Illuminate\Http\Response
      */
     public function asyncBuild(string $method, string $slug)
     {
@@ -122,7 +120,7 @@ abstract class Screen extends Controller
         abort_unless(method_exists($this, $method), 404, "Async method: {$method} not found");
 
         $query = $this->callMethod($method, request()->all());
-        $source = new Repository($query);
+        $repository = new Repository($query);
 
         /** @var Layout $layout */
         $layout = collect($this->layout())
@@ -134,12 +132,14 @@ abstract class Screen extends Controller
             })
             ->first();
 
-        return $layout->currentAsync()->build($source);
+        return response()->view('platform::turbo.stream', [
+            'template' => $layout->currentAsync()->build($repository), //$layout->currentAsync()->build($source),
+            'target'   => $slug,
+            'action'   => 'replace',
+        ])->header('Content-Type', 'text/vnd.turbo-stream.html');
     }
 
     /**
-     * @param array $httpQueryArguments
-     *
      * @throws \Throwable
      *
      * @return Factory|\Illuminate\View\View
@@ -149,17 +149,16 @@ abstract class Screen extends Controller
         $repository = $this->buildQueryRepository($httpQueryArguments);
 
         return view($this->screenBaseView(), [
-            'name'                => $this->name(),
-            'description'         => $this->description(),
-            'commandBar'          => $this->buildCommandBar($repository),
-            'layouts'             => $this->build($repository),
-            'formValidateMessage' => $this->formValidateMessage(),
+            'name'                    => $this->name(),
+            'description'             => $this->description(),
+            'commandBar'              => $this->buildCommandBar($repository),
+            'layouts'                 => $this->build($repository),
+            'formValidateMessage'     => $this->formValidateMessage(),
+            'needPreventsAbandonment' => $this->needPreventsAbandonment(),
         ]);
     }
 
     /**
-     * @param array $httpQueryArguments
-     *
      * @return \Orchid\Screen\Repository
      */
     protected function buildQueryRepository(array $httpQueryArguments = []): Repository
@@ -171,11 +170,6 @@ abstract class Screen extends Controller
         return new Repository($query);
     }
 
-    /**
-     * @param iterable $query
-     *
-     * @return void
-     */
     protected function fillPublicProperty(iterable $query): void
     {
         $reflections = (new \ReflectionClass($this))->getProperties(\ReflectionProperty::IS_PUBLIC);
@@ -189,7 +183,7 @@ abstract class Screen extends Controller
     }
 
     /**
-     *  Response or HTTP code that will be returned if user does not have access to screen.
+     * Response or HTTP code that will be returned if user does not have access to screen.
      *
      * @return int | \Symfony\Component\HttpFoundation\Response
      */
@@ -199,8 +193,7 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param mixed                    ...$parameters
+     * @param mixed ...$parameters
      *
      * @throws Throwable
      *
@@ -227,13 +220,8 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param string $method
-     * @param array  $httpQueryArguments
-     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \ReflectionException
-     *
-     * @return array
      */
     protected function resolveDependencies(string $method, array $httpQueryArguments = []): array
     {
@@ -242,10 +230,6 @@ abstract class Screen extends Controller
 
     /**
      * Determine if the user is authorized and has the required rights to complete this request.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return bool
      */
     protected function checkAccess(Request $request): bool
     {
@@ -259,7 +243,8 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @return string
+     * This method returns a localized string message indicating that the user should check the entered data,
+     * and that it may be necessary to specify the data in other languages.
      */
     public function formValidateMessage(): string
     {
@@ -267,10 +252,17 @@ abstract class Screen extends Controller
     }
 
     /**
+     * The boolean value returned is true, indicating that the form is preventing abandonment.
+     */
+    public function needPreventsAbandonment(): bool
+    {
+        return true;
+    }
+
+    /**
      * Defines the URL to represent
      * the page based on the calculation of link arguments.
      *
-     * @param array $httpQueryArguments
      *
      * @throws \ReflectionException
      * @throws \Throwable
@@ -292,9 +284,6 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param string $method
-     * @param array  $parameters
-     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \ReflectionException
      *
@@ -310,8 +299,6 @@ abstract class Screen extends Controller
     /**
      * Get can transfer to the screen only
      * user-created methods available in it.
-     *
-     * @return Collection
      */
     public static function getAvailableMethods(): Collection
     {

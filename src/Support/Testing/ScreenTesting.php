@@ -6,8 +6,6 @@ trait ScreenTesting
 {
     /**
      * @param string $name
-     *
-     * @return DynamicTestScreen
      */
     public function screen(string $name = null): DynamicTestScreen
     {

@@ -12,7 +12,7 @@ use Orchid\Screen\Layouts\Rows;
 class UserPasswordLayout extends Rows
 {
     /**
-     * Views.
+     * The screen's layout elements.
      *
      * @return Field[]
      */

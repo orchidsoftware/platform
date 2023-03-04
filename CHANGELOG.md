@@ -5,6 +5,68 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 13.10.0 - 2023-02-14
+
+### Added
+
+- Implemented a new page when you introduce yourself as a user who has no permission
+- Added view for indicator need update assets 
+- Added `disableMobile()` for DateRange [#2522](https://github.com/orchidsoftware/platform/pull/2522)
+
+### Changed
+
+- The class `UserSwitch` has been declared obsolete and the preference is to use `Impersonation` instead.
+- Vertical align for column titles
+
+### Fixed
+
+- Disable client-side filtering [#2512](https://github.com/orchidsoftware/platform/issues/2512)
+- Show icons for Notification/Table
+
+## 13.9.4 - 2023-01-13
+
+### Fixed 
+- Implicit model binding with Screen query type hinting fails [#2472](https://github.com/orchidsoftware/platform/issues/2472), [#2339](https://github.com/orchidsoftware/platform/pull/2339)
+- Find duplicate for layouts [#2500](https://github.com/orchidsoftware/platform/issues/2500)
+
+
+## 13.9.3 - 2023-01-11
+
+### Fixed
+
+- Error when including more than one listener in the same screen [#2489](https://github.com/orchidsoftware/platform/issues/2489)
+
+## 13.9.2 - 2023-01-11
+
+### Fixed
+
+- Both filter date range and input not working [#2473](https://github.com/orchidsoftware/platform/issues/2473)
+- Hidden calendar popover when open in dropdown
+
+## 13.9.1 - 2022-12-25
+
+### Changed
+
+- Arabic translation [#2477](https://github.com/orchidsoftware/platform/pull/2477)
+- Max options for `Select` [#2478](https://github.com/orchidsoftware/platform/pull/2477)
+
+## 13.9.0 - 2022-12-16
+
+### Added
+
+- Method for determine published assets are up-to-date
+
+### Changed
+
+- Comments for `stubs` class
+- Available to filter attachments in media by group [#2451](https://github.com/orchidsoftware/platform/pull/2451)
+
+### Fixed
+
+- Pagination in tabs [#2444](https://github.com/orchidsoftware/platform/pull/2444)
+- Padding for start `Alerts` message
+- Eager loading for the Relation field [#2475](https://github.com/orchidsoftware/platform/issues/2475)
+
 ## 13.8.0 - 2022-11-19
 
 ## Added

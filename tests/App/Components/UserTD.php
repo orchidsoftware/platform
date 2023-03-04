@@ -16,8 +16,6 @@ class UserTD extends Component
 
     /**
      * Create a new component instance.
-     *
-     * @param User $user
      */
     public function __construct(User $user)
     {

@@ -72,11 +72,6 @@ class TimeZone extends Field
         });
     }
 
-    /**
-     * @param int $time
-     *
-     * @return self
-     */
     public function listIdentifiers(int $time = DateTimeZone::ALL): self
     {
         $timeZone = collect(DateTimeZone::listIdentifiers($time))

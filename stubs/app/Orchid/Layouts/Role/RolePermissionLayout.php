@@ -20,7 +20,7 @@ class RolePermissionLayout extends Rows
     private $user;
 
     /**
-     * Views.
+     * The screen's layout elements.
      *
      * @throws Throwable
      *
@@ -35,11 +35,6 @@ class RolePermissionLayout extends Rows
         );
     }
 
-    /**
-     * @param Collection $permissionsRaw
-     *
-     * @return array
-     */
     private function generatedPermissionFields(Collection $permissionsRaw): array
     {
         return $permissionsRaw
@@ -48,12 +43,6 @@ class RolePermissionLayout extends Rows
             ->toArray();
     }
 
-    /**
-     * @param Collection $permissions
-     * @param string     $title
-     *
-     * @return Collection
-     */
     private function makeCheckBoxGroup(Collection $permissions, string $title): Collection
     {
         return $permissions
@@ -68,11 +57,6 @@ class RolePermissionLayout extends Rows
                 ->autoWidth());
     }
 
-    /**
-     * @param Collection $chunks
-     *
-     * @return CheckBox
-     */
     private function makeCheckBox(Collection $chunks): CheckBox
     {
         return CheckBox::make('permissions.'.base64_encode($chunks->get('slug')))
@@ -85,12 +69,6 @@ class RolePermissionLayout extends Rows
             ));
     }
 
-    /**
-     * @param $slug
-     * @param $value
-     *
-     * @return bool
-     */
     private function getIndeterminateStatus($slug, $value): bool
     {
         return optional($this->user)->hasAccess($slug) === true && $value === false;

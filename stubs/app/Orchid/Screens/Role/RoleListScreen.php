@@ -13,7 +13,7 @@ use Orchid\Screen\Screen;
 class RoleListScreen extends Screen
 {
     /**
-     * Query data.
+     * Fetch data to be displayed on the screen.
      *
      * @return array
      */
@@ -25,28 +25,21 @@ class RoleListScreen extends Screen
     }
 
     /**
-     * Display header name.
-     *
-     * @return string|null
+     * The name of the screen displayed in the header.
      */
     public function name(): ?string
     {
-        return 'Manage roles';
+        return 'Role Management';
     }
 
     /**
      * Display header description.
-     *
-     * @return string|null
      */
     public function description(): ?string
     {
-        return 'Access rights';
+        return 'A comprehensive list of all roles, including their permissions and associated users.';
     }
 
-    /**
-     * @return iterable|null
-     */
     public function permission(): ?iterable
     {
         return [
@@ -55,7 +48,7 @@ class RoleListScreen extends Screen
     }
 
     /**
-     * Button commands.
+     * The screen's action buttons.
      *
      * @return Action[]
      */
@@ -63,13 +56,13 @@ class RoleListScreen extends Screen
     {
         return [
             Link::make(__('Add'))
-                ->icon('plus')
+                 ->icon('bs.plus-circle')
                 ->href(route('platform.systems.roles.create')),
         ];
     }
 
     /**
-     * Views.
+     * The screen's layout elements.
      *
      * @return string[]|\Orchid\Screen\Layout[]
      */

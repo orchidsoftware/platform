@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace Orchid\Filters\Types;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 use Orchid\Filters\BaseHttpEloquentFilter;
 
 class WhereIn extends BaseHttpEloquentFilter
 {
-    /**
-     * @param Builder $builder
-     *
-     * @return Builder
-     */
     public function run(Builder $builder): Builder
     {
-        return $builder->whereIn($this->column, $this->getHttpValue());
+        $query = $this->getHttpValue();
+
+        $value = is_array($query) ? $query : Str::of($query)->explode(',');
+
+        return $builder->whereIn($this->column, $value);
     }
 }

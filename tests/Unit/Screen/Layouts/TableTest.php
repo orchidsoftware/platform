@@ -145,7 +145,7 @@ class TableTest extends TestUnitCase
             'target'  => collect([]),
         ]))->render();
 
-        $this->assertStringContainsString('There are no records in this view', $html);
+        $this->assertStringContainsString('There are no objects currently displayed', $html);
         $this->assertNotEmpty($html);
     }
 

@@ -34,11 +34,6 @@ class AttachmentController extends Controller
         $this->attachment = Dashboard::modelClass(Attachment::class);
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return JsonResponse
-     */
     public function upload(Request $request): JsonResponse
     {
         $attachment = collect($request->allFiles())
@@ -50,9 +45,6 @@ class AttachmentController extends Controller
         return response()->json($response);
     }
 
-    /**
-     * @param Request $request
-     */
     public function sort(Request $request): void
     {
         collect($request->get('files', []))
@@ -65,9 +57,6 @@ class AttachmentController extends Controller
 
     /**
      * Delete files.
-     *
-     * @param string  $id
-     * @param Request $request
      */
     public function destroy(string $id, Request $request): void
     {
@@ -76,9 +65,6 @@ class AttachmentController extends Controller
     }
 
     /**
-     * @param string  $id
-     * @param Request $request
-     *
      * @return ResponseFactory|Response
      */
     public function update(string $id, Request $request)
@@ -93,9 +79,6 @@ class AttachmentController extends Controller
     }
 
     /**
-     * @param UploadedFile $file
-     * @param Request      $request
-     *
      * @throws BindingResolutionException
      *
      * @return mixed
@@ -121,9 +104,6 @@ class AttachmentController extends Controller
         return $model;
     }
 
-    /**
-     * @return JsonResponse
-     */
     public function media(): JsonResponse
     {
         $attachments = $this->attachment->filters()->paginate(12);

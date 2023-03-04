@@ -146,8 +146,6 @@ class Upload extends Field
     }
 
     /**
-     * @param string $storage
-     *
      * @throws \Throwable
      *
      * @return $this
@@ -165,10 +163,6 @@ class Upload extends Field
 
     /**
      * Set custom attachment upload path
-     *
-     * @param string $path
-     *
-     * @return self
      */
     public function path(string $path): self
     {

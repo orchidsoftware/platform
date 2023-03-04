@@ -12,9 +12,6 @@ use Orchid\Tests\TestConsoleCase;
 
 class ArtisanTest extends TestConsoleCase
 {
-    /**
-     * @return Generator
-     */
     public function artisanOrchidMake(): Generator
     {
         yield ['Chart', 'orchid:chart', 'Orchid/Layouts/'];
@@ -30,10 +27,6 @@ class ArtisanTest extends TestConsoleCase
     }
 
     /**
-     * @param string $name
-     * @param string $command
-     * @param string $path
-     *
      * @dataProvider artisanOrchidMake
      */
     public function testArtisanOrchidMake(string $name, string $command, string $path): void

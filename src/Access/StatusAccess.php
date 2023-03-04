@@ -9,9 +9,6 @@ use Orchid\Support\Facades\Dashboard;
 
 trait StatusAccess
 {
-    /**
-     * @return Collection
-     */
     public function getStatusPermission(): Collection
     {
         $permissions = $this->permissions ?? [];

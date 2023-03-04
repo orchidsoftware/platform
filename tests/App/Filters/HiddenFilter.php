@@ -18,19 +18,11 @@ class HiddenFilter extends Filter
      */
     public $parameters = [];
 
-    /**
-     * @return string
-     */
     public function name(): string
     {
         return '';
     }
 
-    /**
-     * @param Builder $builder
-     *
-     * @return Builder
-     */
     public function run(Builder $builder): Builder
     {
         return $builder;

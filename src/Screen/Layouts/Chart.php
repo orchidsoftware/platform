@@ -158,8 +158,6 @@ abstract class Chart extends Layout
     /**
      * Create a new Charts element.
      *
-     * @param string      $target
-     * @param string|null $title
      *
      * @return static
      */
@@ -169,8 +167,6 @@ abstract class Chart extends Layout
     }
 
     /**
-     * @param string $target
-     *
      * @return $this
      */
     public function target(string $target): static
@@ -183,7 +179,6 @@ abstract class Chart extends Layout
     /**
      * Set title of the chart.
      *
-     * @param string|null $title
      *
      * @return $this
      */
@@ -197,7 +192,6 @@ abstract class Chart extends Layout
     /**
      * Set description of the chart.
      *
-     * @param string $description
      *
      * @return $this
      */
@@ -211,7 +205,6 @@ abstract class Chart extends Layout
     /**
      * Set height of the chart.
      *
-     * @param int $height
      *
      * @return $this
      */
@@ -223,8 +216,6 @@ abstract class Chart extends Layout
     }
 
     /**
-     * @param Repository $repository
-     *
      * @return Factory|\Illuminate\View\View
      */
     public function build(Repository $repository)

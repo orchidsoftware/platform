@@ -26,9 +26,6 @@ class UploadFileEvent
 
     /**
      * UploadFileEvent constructor.
-     *
-     * @param Attachment $attachment
-     * @param int        $time
      */
     public function __construct(Attachment $attachment, int $time)
     {

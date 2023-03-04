@@ -24,7 +24,7 @@ class TabMenuExample extends TabMenu
             Menu::make('Documentation')
                 ->url('https://orchid.software/en/docs'),
 
-            Menu::make('Example screen')
+            Menu::make('Example Screen')
                 ->icon('monitor')
                 ->route('platform.example')
                 ->badge(fn () => 6),

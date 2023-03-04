@@ -9,22 +9,13 @@ use Orchid\Support\Color;
 if (! function_exists('alert')) {
     /**
      * Helper function to send an alert.
-     *
-     * @param string|null $message
-     * @param string|null $level
-     *
-     * @return Alert
      */
-    function alert(string $message = null, string $level = null): Alert
+    function alert(string $message = null, Color $color = Color::INFO): Alert
     {
         $notifier = app(Alert::class);
 
-        if ($level !== null) {
-            $level = (string) Color::INFO();
-        }
-
         if ($message !== null) {
-            return $notifier->message($message, $level);
+            return $notifier->message($message, $color);
         }
 
         return $notifier;
@@ -32,11 +23,6 @@ if (! function_exists('alert')) {
 }
 
 if (! function_exists('is_sort')) {
-    /**
-     * @param string $property
-     *
-     * @return bool
-     */
     function is_sort(string $property): bool
     {
         $filter = new HttpFilter();
@@ -46,11 +32,6 @@ if (! function_exists('is_sort')) {
 }
 
 if (! function_exists('get_sort')) {
-    /**
-     * @param null|string $property
-     *
-     * @return string
-     */
     function get_sort(?string $property): string
     {
         $filter = new HttpFilter();
@@ -61,8 +42,6 @@ if (! function_exists('get_sort')) {
 
 if (! function_exists('get_filter')) {
     /**
-     * @param string $property
-     *
      * @return string|array|null
      */
     function get_filter(string $property)
@@ -75,8 +54,6 @@ if (! function_exists('get_filter')) {
 
 if (! function_exists('get_filter_string')) {
     /**
-     * @param string $property
-     *
      * @return string
      */
     function get_filter_string(string $property): ?string
@@ -96,11 +73,6 @@ if (! function_exists('get_filter_string')) {
 }
 
 if (! function_exists('revert_sort')) {
-    /**
-     * @param string $property
-     *
-     * @return string
-     */
     function revert_sort(string $property): string
     {
         $filter = new HttpFilter();

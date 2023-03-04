@@ -15,7 +15,7 @@ use Orchid\Support\Facades\Toast;
 class ExampleCardsScreen extends Screen
 {
     /**
-     * Query data.
+     * Fetch data to be displayed on the screen.
      *
      * @return array
      */
@@ -27,9 +27,7 @@ class ExampleCardsScreen extends Screen
     }
 
     /**
-     * Display header name.
-     *
-     * @return string|null
+     * The name of the screen displayed in the header.
      */
     public function name(): ?string
     {
@@ -37,7 +35,15 @@ class ExampleCardsScreen extends Screen
     }
 
     /**
-     * Button commands.
+     * Display header description.
+     */
+    public function description(): ?string
+    {
+        return 'A comprehensive guide to the design and implementation of cards, including basic and advanced features.';
+    }
+
+    /**
+     * The screen's action buttons.
      *
      * @return Action[]
      */
@@ -47,7 +53,7 @@ class ExampleCardsScreen extends Screen
     }
 
     /**
-     * Views.
+     * The screen's layout elements.
      *
      * @throws \Throwable
      *
@@ -67,15 +73,12 @@ class ExampleCardsScreen extends Screen
                 Sight::make('updated_at', 'Updated'),
                 Sight::make('Simple Text')->render(fn () => 'This is a wider card with supporting text below as a natural lead-in to additional content.'),
                 Sight::make('Action')->render(fn () => Button::make('Show toast')
-                    ->type(Color::DEFAULT())
+                    ->type(Color::BASIC)
                     ->method('showToast')),
             ])->title('User'),
         ];
     }
 
-    /**
-     * @param Request $request
-     */
     public function showToast(Request $request): void
     {
         Toast::warning($request->get('toast', 'Hello, world! This is a toast message.'));

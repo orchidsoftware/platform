@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Screens\Examples;
 
+use App\Orchid\Layouts\Examples\ExampleElements;
 use Illuminate\Support\Str;
 use Orchid\Screen\Action;
 use Orchid\Screen\Fields\Code;
@@ -13,7 +14,7 @@ use Orchid\Support\Facades\Layout;
 class ExampleTextEditorsScreen extends Screen
 {
     /**
-     * Query data.
+     * Fetch data to be displayed on the screen.
      *
      * @return array
      */
@@ -27,9 +28,7 @@ class ExampleTextEditorsScreen extends Screen
     }
 
     /**
-     * Display header name.
-     *
-     * @return string|null
+     * The name of the screen displayed in the header.
      */
     public function name(): ?string
     {
@@ -38,8 +37,6 @@ class ExampleTextEditorsScreen extends Screen
 
     /**
      * Display header description.
-     *
-     * @return string|null
      */
     public function description(): ?string
     {
@@ -47,7 +44,7 @@ class ExampleTextEditorsScreen extends Screen
     }
 
     /**
-     * Button commands.
+     * The screen's action buttons.
      *
      * @return Action[]
      */
@@ -57,7 +54,7 @@ class ExampleTextEditorsScreen extends Screen
     }
 
     /**
-     * Views.
+     * The screen's layout elements.
      *
      * @throws \Throwable
      *
@@ -66,6 +63,9 @@ class ExampleTextEditorsScreen extends Screen
     public function layout(): iterable
     {
         return [
+
+            ExampleElements::class,
+
             Layout::rows([
                 SimpleMDE::make('simplemde')
                     ->title('SimpleMDE')

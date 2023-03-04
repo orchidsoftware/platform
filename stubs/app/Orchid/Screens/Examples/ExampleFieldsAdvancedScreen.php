@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Screens\Examples;
 
+use App\Orchid\Layouts\Examples\ExampleElements;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Action;
 use Orchid\Screen\Fields\CheckBox;
@@ -26,7 +27,7 @@ use Orchid\Support\Facades\Layout;
 class ExampleFieldsAdvancedScreen extends Screen
 {
     /**
-     * Query data.
+     * Fetch data to be displayed on the screen.
      *
      * @return array
      */
@@ -42,19 +43,15 @@ class ExampleFieldsAdvancedScreen extends Screen
     }
 
     /**
-     * Display header name.
-     *
-     * @return string|null
+     * The name of the screen displayed in the header.
      */
     public function name(): ?string
     {
-        return 'Advanced form controls';
+        return 'Advanced Form Controls';
     }
 
     /**
      * Display header description.
-     *
-     * @return string|null
      */
     public function description(): ?string
     {
@@ -62,7 +59,7 @@ class ExampleFieldsAdvancedScreen extends Screen
     }
 
     /**
-     * Button commands.
+     * The screen's action buttons.
      *
      * @return Action[]
      */
@@ -72,7 +69,7 @@ class ExampleFieldsAdvancedScreen extends Screen
     }
 
     /**
-     * Views.
+     * The screen's layout elements.
      *
      * @throws \Throwable
      *
@@ -81,6 +78,26 @@ class ExampleFieldsAdvancedScreen extends Screen
     public function layout(): iterable
     {
         return [
+
+            ExampleElements::class,
+            Layout::rows([
+
+                UTM::make('link')
+                    ->title('UTM link')
+                    ->help('Generated UTM link'),
+
+                Matrix::make('matrix')
+                    ->columns([
+                        'Attribute',
+                        'Value',
+                        'Units',
+                    ]),
+
+                Map::make('place')
+                    ->title('Object on the map')
+                    ->help('Enter the coordinates, or use the search'),
+
+            ]),
 
             Layout::rows([
 
@@ -277,24 +294,6 @@ class ExampleFieldsAdvancedScreen extends Screen
 
             ])->title('File upload'),
 
-            Layout::rows([
-
-                UTM::make('link')
-                    ->title('UTM link')
-                    ->help('Generated UTM link'),
-
-                Matrix::make('matrix')
-                    ->columns([
-                        'Attribute',
-                        'Value',
-                        'Units',
-                    ]),
-
-                Map::make('place')
-                    ->title('Object on the map')
-                    ->help('Enter the coordinates, or use the search'),
-
-            ])->title('Advanced'),
         ];
     }
 }

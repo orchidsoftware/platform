@@ -13,11 +13,6 @@ use Orchid\Platform\Dashboard;
  */
 trait Attachable
 {
-    /**
-     * @param string|null $group
-     *
-     * @return MorphToMany
-     */
     public function attachment(string $group = null): MorphToMany
     {
         $query = $this->morphToMany(

@@ -13,9 +13,6 @@ class TotalTable extends Table
      */
     protected $target = 'table';
 
-    /**
-     * @return array
-     */
     protected function columns(): array
     {
         return [
@@ -25,9 +22,6 @@ class TotalTable extends Table
         ];
     }
 
-    /**
-     * @return array
-     */
     public function total(): array
     {
         return [
@@ -41,9 +35,6 @@ class TotalTable extends Table
         ];
     }
 
-    /**
-     * @return Repository
-     */
     public static function getData(): Repository
     {
         return new Repository([

@@ -20,7 +20,7 @@ class SelectTest extends TestFieldsUnitCase
      */
     protected $roles;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -169,10 +169,7 @@ class SelectTest extends TestFieldsUnitCase
     }
 
     /**
-     * @param        $name
      * @param string $value
-     *
-     * @return string
      */
     private function stringOption($name, $value = ''): string
     {

@@ -27,7 +27,7 @@ class ExampleScreen extends Screen
     erat in luctus.';
 
     /**
-     * Query data.
+     * Fetch data to be displayed on the screen.
      *
      * @return array
      */
@@ -74,19 +74,15 @@ class ExampleScreen extends Screen
     }
 
     /**
-     * Display header name.
-     *
-     * @return string|null
+     * The name of the screen displayed in the header.
      */
     public function name(): ?string
     {
-        return 'Example screen';
+        return 'Example Screen';
     }
 
     /**
      * Display header description.
-     *
-     * @return string|null
      */
     public function description(): ?string
     {
@@ -94,7 +90,7 @@ class ExampleScreen extends Screen
     }
 
     /**
-     * Button commands.
+     * The screen's action buttons.
      *
      * @return \Orchid\Screen\Action[]
      */
@@ -105,23 +101,24 @@ class ExampleScreen extends Screen
             Button::make('Show toast')
                 ->method('showToast')
                 ->novalidate()
-                ->icon('bag'),
+                ->icon('bs.chat-square-dots'),
 
             ModalToggle::make('Launch demo modal')
                 ->modal('exampleModal')
                 ->method('showToast')
-                ->icon('full-screen'),
+                ->icon('bs.window'),
 
             Button::make('Export file')
-                ->method('export')
-                ->icon('cloud-download')
+                ->method('export', [
+                    'name' => 'Any name for file',
+                ])
+                ->icon('bs.cloud-arrow-down')
                 ->rawClick()
                 ->novalidate(),
 
             DropDown::make('Dropdown button')
-                ->icon('folder-alt')
+                ->icon('bs.folder')
                 ->list([
-
                     Button::make('Action')
                         ->method('showToast')
                         ->icon('bag'),
@@ -145,7 +142,7 @@ class ExampleScreen extends Screen
     }
 
     /**
-     * Views.
+     * The screen's layout elements.
      *
      * @return string[]|\Orchid\Screen\Layout[]
      */
@@ -161,10 +158,10 @@ class ExampleScreen extends Screen
 
             Layout::columns([
                 ChartLineExample::make('charts', 'Line Chart')
-                    ->description('It is simple Line Charts with different colors.'),
+                    ->description('Visualize data trends with multi-colored line graphs.'),
 
                 ChartBarExample::make('charts', 'Bar Chart')
-                    ->description('It is simple Bar Charts with different colors.'),
+                    ->description('Compare data sets with colorful bar graphs.'),
             ]),
 
             Layout::table('table', [
@@ -196,9 +193,6 @@ class ExampleScreen extends Screen
         ];
     }
 
-    /**
-     * @param Request $request
-     */
     public function showToast(Request $request): void
     {
         Toast::warning($request->get('toast', 'Hello, world! This is a toast message.'));

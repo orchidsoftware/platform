@@ -9,10 +9,10 @@
             <div class="col-sm-auto ms-auto text-end">
                 <div class="btn-group" role="group">
                     <button data-action="filter#clear" class="btn btn-default">
-                        <x-orchid-icon class="me-1" path="refresh" /> {{ __('Reset') }}
+                        <x-orchid-icon class="me-1" path="bs.arrow-repeat" /> {{ __('Reset') }}
                     </button>
                     <button type="submit" form="filters" class="btn btn-default">
-                        <x-orchid-icon class="me-1" path="filter" /> {{ __('Apply') }}
+                        <x-orchid-icon class="me-1" path="bs.funnel" /> {{ __('Apply') }}
                     </button>
                 </div>
             </div>

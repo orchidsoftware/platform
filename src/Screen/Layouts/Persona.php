@@ -14,11 +14,6 @@ class Persona extends Content
      */
     protected $template = 'platform::layouts.persona';
 
-    /**
-     * @param Personable $user
-     *
-     * @return View
-     */
     public function render(Personable $user): View
     {
         return view($this->template, [

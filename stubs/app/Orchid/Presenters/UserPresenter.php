@@ -12,37 +12,25 @@ use Orchid\Support\Presenter;
 
 class UserPresenter extends Presenter implements Searchable, Personable
 {
-    /**
-     * @return string
-     */
     public function label(): string
     {
         return 'Users';
     }
 
-    /**
-     * @return string
-     */
     public function title(): string
     {
         return $this->entity->name;
     }
 
-    /**
-     * @return string
-     */
     public function subTitle(): string
     {
         $roles = $this->entity->roles->pluck('name')->implode(' / ');
 
         return (string) Str::of($roles)
             ->limit(20)
-            ->whenEmpty(fn () => __('Regular user'));
+            ->whenEmpty(fn () => __('Regular User'));
     }
 
-    /**
-     * @return string
-     */
     public function url(): string
     {
         return route('platform.systems.users.edit', $this->entity);
@@ -55,24 +43,19 @@ class UserPresenter extends Presenter implements Searchable, Personable
     {
         $hash = md5(strtolower(trim($this->entity->email)));
 
-        return "https://www.gravatar.com/avatar/$hash?d=mp";
+        $default = urlencode('https://raw.githubusercontent.com/orchidsoftware/.github/main/web/avatars/gravatar.png');
+
+        return "https://www.gravatar.com/avatar/$hash?d=$default";
     }
 
     /**
      * The number of models to return for show compact search result.
-     *
-     * @return int
      */
     public function perSearchShow(): int
     {
         return 3;
     }
 
-    /**
-     * @param string|null $query
-     *
-     * @return Builder
-     */
     public function searchQuery(string $query = null): Builder
     {
         return $this->entity->search($query);

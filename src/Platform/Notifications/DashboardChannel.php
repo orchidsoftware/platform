@@ -12,8 +12,7 @@ class DashboardChannel extends DatabaseChannel
     /**
      * Build an array payload for the DatabaseNotification Model.
      *
-     * @param mixed        $notifiable
-     * @param Notification $notification
+     * @param mixed $notifiable
      *
      * @return array
      */
@@ -30,8 +29,7 @@ class DashboardChannel extends DatabaseChannel
     /**
      * Get the data for the notification.
      *
-     * @param mixed        $notifiable
-     * @param Notification $notification
+     * @param mixed $notifiable
      *
      * @throws \RuntimeException
      *

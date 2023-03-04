@@ -38,37 +38,26 @@ class Action extends Field implements Actionable
         'name',
     ];
 
-    /**
-     * @param string|null $name
-     *
-     * @return self
-     */
     public function name(string $name = null): self
     {
         return $this->set('name', $name ?? '');
     }
 
     /**
-     * @param Color $visual
-     *
      * @return static
      */
     public function type(Color $visual): self
     {
-        $reflectionClass = new \ReflectionClass(Color::class);
-
-        $colors = array_map(static fn (string $color) => 'btn-'.$color, $reflectionClass->getConstants());
+        $colors = array_map(static fn (Color $color) => 'btn-'.$color->name(), Color::cases());
 
         $class = str_replace($colors, '', (string) $this->get('class'));
 
-        $this->set('class', $class.' btn-'.$visual);
+        $this->set('class', $class.' btn-'.$visual->name());
 
         return $this;
     }
 
     /**
-     * @param Repository|null $repository
-     *
      * @throws \Throwable
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
@@ -79,8 +68,6 @@ class Action extends Field implements Actionable
     }
 
     /**
-     * @param bool $status
-     *
      * @return static
      */
     public function rawClick(bool $status = false): self

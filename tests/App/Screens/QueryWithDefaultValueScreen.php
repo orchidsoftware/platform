@@ -13,10 +13,6 @@ class QueryWithDefaultValueScreen extends Screen
 {
     /**
      * Query data.
-     *
-     * @param User|null $user
-     *
-     * @return array
      */
     public function query(User $user = null): array
     {
@@ -27,8 +23,6 @@ class QueryWithDefaultValueScreen extends Screen
 
     /**
      * Display header name.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {

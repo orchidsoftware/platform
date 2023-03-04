@@ -23,9 +23,6 @@ trait RoleAccess
         return $this->getKey();
     }
 
-    /**
-     * @return string
-     */
     public function getRoleSlug(): string
     {
         return $this->getAttribute('slug');
@@ -41,8 +38,6 @@ trait RoleAccess
 
     /**
      * The Users relationship.
-     *
-     * @return BelongsToMany
      */
     public function users(): BelongsToMany
     {
@@ -51,8 +46,6 @@ trait RoleAccess
 
     /**
      * @throws Exception
-     *
-     * @return bool|null
      */
     public function delete(): ?bool
     {

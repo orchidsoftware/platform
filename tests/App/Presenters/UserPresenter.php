@@ -11,33 +11,21 @@ use Orchid\Support\Presenter;
 
 class UserPresenter extends Presenter implements Searchable, Personable
 {
-    /**
-     * @return string
-     */
     public function label(): string
     {
         return 'Users';
     }
 
-    /**
-     * @return string
-     */
     public function title(): string
     {
         return $this->entity->name;
     }
 
-    /**
-     * @return string
-     */
     public function subTitle(): string
     {
         return 'Administrator';
     }
 
-    /**
-     * @return string
-     */
     public function url(): string
     {
         return route('platform.systems.users.edit', $this->entity);

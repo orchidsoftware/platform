@@ -26,9 +26,6 @@ class RelationsTest extends TestFeatureCase
         ]);
     }
 
-    /**
-     * @return array
-     */
     public function scopeList(): array
     {
         return [
@@ -39,8 +36,6 @@ class RelationsTest extends TestFeatureCase
     }
 
     /**
-     * @param array $scope
-     *
      * @dataProvider scopeList
      *
      * @throws \Throwable
@@ -54,8 +49,6 @@ class RelationsTest extends TestFeatureCase
     }
 
     /**
-     * @param array $scope
-     *
      * @dataProvider scopeList
      *
      * @throws \Throwable
@@ -92,12 +85,6 @@ class RelationsTest extends TestFeatureCase
         ]);
     }
 
-    /**
-     * @param array|null  $scope
-     * @param string|null $append
-     *
-     * @return TestResponse
-     */
     private function getScope(array $scope = null, string $append = null): TestResponse
     {
         $params = [

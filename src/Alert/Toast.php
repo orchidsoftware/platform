@@ -33,8 +33,6 @@ class Toast extends Alert
 
     /**
      * Create a new flash notifier instance.
-     *
-     * @param Store $session
      */
     public function __construct(Store $session)
     {
@@ -44,8 +42,6 @@ class Toast extends Alert
     }
 
     /**
-     * @param bool $autoHide
-     *
      * @return $this
      */
     public function autoHide(bool $autoHide = true): self
@@ -56,8 +52,6 @@ class Toast extends Alert
     }
 
     /**
-     * @param int $delay
-     *
      * @return $this
      */
     public function delay(int $delay = 5000): self

@@ -23,18 +23,15 @@ class DashboardMessage extends DatabaseMessage
 
     public function __construct(array $data = [])
     {
-        parent::__construct($data);
+        $default = [
+            'time' => Carbon::now(),
+            'type' => Color::INFO->name(),
+        ];
 
-        $this->data['time'] = Carbon::now();
-
-        if (empty($this->data['type'])) {
-            $this->data['type'] = Color::INFO();
-        }
+        parent::__construct(array_merge($default, $data));
     }
 
     /**
-     * @param string $title
-     *
      * @return $this
      */
     public function title(string $title): self
@@ -45,8 +42,6 @@ class DashboardMessage extends DatabaseMessage
     }
 
     /**
-     * @param string $title
-     *
      * @return $this
      */
     public function message(string $title): self
@@ -57,8 +52,6 @@ class DashboardMessage extends DatabaseMessage
     }
 
     /**
-     * @param string $action
-     *
      * @return $this
      */
     public function action(string $action): self
@@ -69,13 +62,11 @@ class DashboardMessage extends DatabaseMessage
     }
 
     /**
-     * @param Color $color
-     *
      * @return $this
      */
     public function type(Color $color): self
     {
-        $this->data['type'] = (string) $color;
+        $this->data['type'] = $color->name();
 
         return $this;
     }

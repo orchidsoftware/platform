@@ -23,22 +23,13 @@ class MimeTypes
     }
 
     /**
-     * @param string     $mimeType
      * @param mixed|null $default
-     *
-     * @return string|null
      */
     public function getExtension(string $mimeType, string $default = null): ?string
     {
         return Arr::first($this->mime->getExtensions($mimeType), null, $default);
     }
 
-    /**
-     * @param string      $ext
-     * @param string|null $default
-     *
-     * @return string|null
-     */
     public function getMimeType(string $ext, string $default = null): ?string
     {
         return Arr::first($this->mime->getMimeTypes($ext), null, $default);

@@ -13,13 +13,7 @@ use ReflectionParameter;
 class ScreenDependencyResolver
 {
     /**
-     * @param \Orchid\Screen\Screen $screen
-     * @param string                $method
-     * @param array                 $httpQueryArguments
-     *
      * @throws \ReflectionException
-     *
-     * @return array
      */
     public function resolveScreen(Screen $screen, string $method, array $httpQueryArguments = []): array
     {
@@ -38,8 +32,6 @@ class ScreenDependencyResolver
      * It takes the serial number of the argument and the required parameter.
      * To convert to object.
      *
-     * @param ReflectionParameter            $parameter
-     * @param \Illuminate\Support\Collection $httpQueryArguments
      *
      * @throws \Throwable
      *
@@ -67,7 +59,7 @@ class ScreenDependencyResolver
             return $instance;
         }
 
-        $model = $instance->resolveRouteBinding($value);
+        $model = is_a($value, $class) ? $value : $instance->resolveRouteBinding($value);
 
         throw_if(
             $model === null && ! $parameter->isDefaultValueAvailable(),

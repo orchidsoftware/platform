@@ -4,42 +4,50 @@ declare(strict_types=1);
 
 namespace Orchid\Support;
 
-use MyCLabs\Enum\Enum;
-
-/**
- * Class Color.
- *
- * @psalm-immutable
- *
- * All colors available in package,
- * are available as constants
- *
- * @method static string|Color INFO()
- * @method static string|Color SUCCESS()
- * @method static string|Color WARNING()
- * @method static string|Color DEFAULT()
- * @method static string|Color DANGER()
- * @method static string|Color PRIMARY()
- * @method static string|Color SECONDARY()
- * @method static string|Color LIGHT()
- * @method static string|Color DARK()
- * @method static string|Color LINK()
- * @method static string|Color ERROR()
- */
-class Color extends Enum
+enum Color
 {
     /**
      * Visual style.
      */
-    private const INFO = 'info';
-    private const SUCCESS = 'success';
-    private const WARNING = 'warning';
-    private const DEFAULT = 'default';
-    private const DANGER = 'danger';
-    private const PRIMARY = 'primary';
-    private const SECONDARY = 'secondary';
-    private const LIGHT = 'light';
-    private const DARK = 'dark';
-    private const LINK = 'link';
-    private const ERROR = self::DANGER;
+    case INFO;
+    case SUCCESS;
+    case WARNING;
+    case BASIC;
+    case DEFAULT;
+    case DANGER;
+    case PRIMARY;
+    case SECONDARY;
+    case LIGHT;
+    case DARK;
+    case LINK;
+    case ERROR;
+
+    public function name(): string
+    {
+        return match ($this) {
+            Color::INFO    => 'info',
+            Color::SUCCESS => 'success',
+            Color::WARNING => 'warning',
+            Color::BASIC, Color::DEFAULT => 'default',
+            Color::DANGER, Color::ERROR => 'danger',
+            Color::PRIMARY   => 'primary',
+            Color::SECONDARY => 'secondary',
+            Color::LIGHT     => 'light',
+            Color::DARK      => 'dark',
+            Color::LINK      => 'link',
+        };
+    }
+
+    /**
+     * To temporarily maintain backwards compatibility to 13.0
+     *
+     *
+     * @return \Closure|\Orchid\Support\Color
+     */
+    public static function __callStatic($name, $arguments)
+    {
+        return collect(Color::cases())
+            ->filter(fn (Color $color) => $color->name === $name)
+            ->first() ?? Color::BASIC;
+    }
 }

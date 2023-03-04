@@ -12,7 +12,7 @@ use Orchid\Support\Facades\Layout;
 class ExampleChartsScreen extends Screen
 {
     /**
-     * Query data.
+     * Fetch data to be displayed on the screen.
      *
      * @return array
      */
@@ -45,9 +45,7 @@ class ExampleChartsScreen extends Screen
     }
 
     /**
-     * Display header name.
-     *
-     * @return string|null
+     * The name of the screen displayed in the header.
      */
     public function name(): ?string
     {
@@ -55,7 +53,15 @@ class ExampleChartsScreen extends Screen
     }
 
     /**
-     * Button commands.
+     * Display header description.
+     */
+    public function description(): ?string
+    {
+        return 'A comprehensive guide to creating and customizing various types of charts, including bar, line, and pie charts.';
+    }
+
+    /**
+     * The screen's action buttons.
      *
      * @return \Orchid\Screen\Action[]
      */
@@ -65,7 +71,7 @@ class ExampleChartsScreen extends Screen
     }
 
     /**
-     * Views.
+     * The screen's layout elements.
      *
      * @throws \Throwable
      *
@@ -74,22 +80,22 @@ class ExampleChartsScreen extends Screen
     public function layout(): iterable
     {
         return [
-            ChartLineExample::make('charts', 'Actions with a tweet')
+            ChartLineExample::make('charts', 'Actions with a Tweet')
                 ->description('The total number of interactions a user has with a tweet. This includes all clicks on any links in the tweet (including hashtags, links, avatar, username, and expand button), retweets, replies, likes, and additions to the read list.'),
 
             Layout::columns([
                 ChartLineExample::make('charts', 'Line Chart')
-                    ->description('It is simple Line Charts with different colors.'),
+                    ->description('Visualize data trends with multi-colored line graphs.'),
                 ChartBarExample::make('charts', 'Bar Chart')
-                    ->description('It is simple Bar Charts with different colors.'),
+                    ->description('Compare data sets with colorful bar graphs.'),
             ]),
 
             Layout::columns([
                 ChartPercentageExample::make('charts', 'Percentage Chart')
-                    ->description('Simple, responsive, modern SVG Charts with zero dependencies'),
+                    ->description('Display data as visually appealing and modern percentage graphs.'),
 
                 ChartPieExample::make('charts', 'Pie Chart')
-                    ->description('Simple, responsive, modern SVG Charts with zero dependencies'),
+                    ->description('Break down data into easy-to-understand pie graphs with modern design.'),
             ]),
         ];
     }

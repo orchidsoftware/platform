@@ -11,7 +11,7 @@ use Orchid\Support\Facades\Layout;
 class PlatformScreen extends Screen
 {
     /**
-     * Query data.
+     * Fetch data to be displayed on the screen.
      *
      * @return array
      */
@@ -21,9 +21,7 @@ class PlatformScreen extends Screen
     }
 
     /**
-     * Display header name.
-     *
-     * @return string|null
+     * The name of the screen displayed in the header.
      */
     public function name(): ?string
     {
@@ -32,8 +30,6 @@ class PlatformScreen extends Screen
 
     /**
      * Display header description.
-     *
-     * @return string|null
      */
     public function description(): ?string
     {
@@ -41,7 +37,7 @@ class PlatformScreen extends Screen
     }
 
     /**
-     * Button commands.
+     * The screen's action buttons.
      *
      * @return \Orchid\Screen\Action[]
      */
@@ -63,13 +59,14 @@ class PlatformScreen extends Screen
     }
 
     /**
-     * Views.
+     * The screen's layout elements.
      *
      * @return \Orchid\Screen\Layout[]
      */
     public function layout(): iterable
     {
         return [
+            Layout::view('platform::partials.update-assets'),
             Layout::view('platform::partials.welcome'),
         ];
     }

@@ -16,11 +16,6 @@ class ItemPermission
      */
     public $items = [];
 
-    /**
-     * @param string $group
-     *
-     * @return ItemPermission
-     */
     public static function group(string $group): self
     {
         $item = new self();
@@ -31,9 +26,6 @@ class ItemPermission
     }
 
     /**
-     * @param string $slug
-     * @param string $name
-     *
      * @return $this
      */
     public function addPermission(string $slug, string $name)

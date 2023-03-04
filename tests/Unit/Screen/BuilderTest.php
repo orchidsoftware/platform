@@ -137,8 +137,6 @@ class BuilderTest extends TestUnitCase
 
     /**
      * @param array $value
-     *
-     * @return Builder
      */
     private function getBuilder($value = []): Builder
     {

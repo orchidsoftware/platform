@@ -113,8 +113,7 @@ class FieldTest extends TestUnitCase
     }
 
     /**
-     * @param string $field
-     * @param mixed  $options
+     * @param mixed $options
      *
      * @dataProvider exampleFields
      *

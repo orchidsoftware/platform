@@ -14,7 +14,7 @@
                 <a class="input-group-text h-100 text-muted"
                    title="clear"
                    data-action="click->datetime#clear">
-                        <x-orchid-icon path="cross" class="m-0 p-0"/>
+                        <x-orchid-icon path="bs.x-lg" class="m-0 p-0"/>
                     </a>
                 </div>
             @endif
