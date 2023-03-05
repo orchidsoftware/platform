@@ -31,7 +31,7 @@ class LoginTest extends TestBrowserCase
                 ->type('password', 'password')
                 ->press('Login')
                 ->waitForLocation('/dashboard/main')
-                ->assertSee('Example Screen');
+                ->waitForText('Example Screen');
 
             //Redirect to home
             $browser
