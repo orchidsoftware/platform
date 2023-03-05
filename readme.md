@@ -62,28 +62,18 @@ We are continually trying to actively include feedback from the community in the
 
 ### GitHub
 
-* Create [issues](https://github.com/orchidsoftware/platform/issues) to ask questions or report problems.
-* Participate in [discussions](https://github.com/orchidsoftware/platform/discussions) about Orchid and share your ideas/opinions.
+Create [issues](https://github.com/orchidsoftware/platform/issues) to report problems, or participate in [discussions](https://github.com/orchidsoftware/platform/discussions) to share your ask questions, ideas and opinions.
 
 ### Telegram User Groups
 
-* [Global Community](https://t.me/orchid_community)
-* [Russian Community](https://t.me/orchid_russian_community)
-* [Spanish Community](https://t.me/esLaravelOrchid)
+Join our [Global Community](https://t.me/orchid_community), [Russian Community](https://t.me/orchid_russian_community), or [Spanish Community](https://t.me/esLaravelOrchid) on Telegram.
 
 ### Discord
+
+Join our [Discord](https://discord.gg/NxXhSHa5tq) server to chat with other Orchid users and the development team.
  
-* [Discord](https://discord.gg/NxXhSHa5tq)
 
-<!--
-## Development
-
-### Release Strategy
-
-We like to keep things as modern as possible and have a "[release early, release often](https://en.wikipedia.org/wiki/Release_early,_release_often)" approach to major releases. This means we won't wait an arbitrary number of months to accumulate significant changes and release the next major version. By releasing major versions often, new features will be out earlier, and upgrading between versions will be much easier.
--->
-
-### Changelog
+## Changelog
 
 We actively and continuously maintain a [changelog](CHANGELOG.md) that informs about Orchid's history of improvements, bug fixes, and changes.
 
