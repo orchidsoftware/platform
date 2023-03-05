@@ -56,9 +56,9 @@ abstract class Split extends Layout
      *
      * @param string $ratio The width ratio in the format 'X/Y'.
      *
-     * @return $this This instance of the Split class.
-     *
      * @throws \InvalidArgumentException if the specified ratio is not valid.
+     *
+     * @return $this This instance of the Split class.
      */
     public function ratio(string $ratio): self
     {
@@ -94,5 +94,4 @@ abstract class Split extends Layout
 
         return $this;
     }
-
 }

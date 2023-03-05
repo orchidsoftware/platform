@@ -2,13 +2,9 @@
 
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
-use Orchid\Screen\Actions\Link;
-use Orchid\Screen\Contracts\Cardable;
 use Orchid\Screen\Fields\Input;
-use Orchid\Screen\Layouts\Card;
 use Orchid\Screen\Layouts\Split;
 use Orchid\Screen\Repository;
-use Orchid\Support\Color;
 use Orchid\Support\Facades\Layout;
 use Orchid\Tests\TestUnitCase;
 
@@ -72,7 +68,8 @@ class SplitTest extends TestUnitCase
      */
     private function getSplitClass($layouts): Split
     {
-        return new class($layouts) extends Split {
+        return new class($layouts) extends Split
+        {
         };
     }
 }
