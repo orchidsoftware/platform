@@ -30,9 +30,9 @@ Curious but not (yet) in the mood to read the documentation? Click [here](https:
 
 - **Rapid Application Development** - Focus on PHP development and don't lose time with HTML, CSS, or JavaScript. Build application logic, not admin panels. Try our [quick start guide](https://orchid.software/en/docs/quickstart/) and kick-start your application's development.
 
-- **Form Builder** - Prevent reinventing the wheel or forms. Orchid supports already [40+ form elements](https://orchid.software/en/docs/field/) "out of the box" and allows you to build all kinds of forms quickly.
+- **Form Builder** - Prevent reinventing the wheel or forms. Orchid already supports many [form elements](https://orchid.software/en/docs/field/) "out of the box" and allows you to build all kinds of forms quickly.
 
-- **Fast Loading Times** - Enjoy a SPA like performance! Transitions can be made without reloading a page and require no additional code. Thanks to the [Hotwire](https://hotwire.dev/) project, Orchid makes this a satisfying experience for you and your users.
+- **Fast Loading Times** - Enjoy an SPA like performance! Transitions can be made without reloading a page and require no additional code. Thanks to the [Hotwire](https://hotwire.dev/) project, Orchid makes this a satisfying experience for you and your users.
 
 - **Access Permissions & Roles** - Take advantage of [granular access permissions](https://orchid.software/en/docs/access/), based on a user’s identity and corresponding role membership.
 
@@ -50,18 +50,20 @@ Curious but not (yet) in the mood to read the documentation? Click [here](https:
 * 🌍 [Documentation & Quick Start Guide](https://orchid.software/en/docs)
 * 🇷🇺 Чтобы ознакомиться с руководством, посетите сайт [orchid.software](https://orchid.software/ru/docs)
 
+<!--
 ### Blog
 
 Orchid's [blog](https://blog.orchid.software/) informs about news and announcements around Laravel Orchid, including related projects.
+-->
 
-## Feedback/Support
+## Community
 
-We are continually trying to actively include feedback from the community in the development of Orchid. You help us a lot if you give us well structured and detailed feedback.
+We are continually trying to actively include feedback from the community in the development of Orchid. You help us a lot if you give us well-structured and detailed feedback.
 
 ### GitHub
 
 * Create [issues](https://github.com/orchidsoftware/platform/issues) to ask questions or report problems.
-* Participate in [disccussions](https://github.com/orchidsoftware/platform/discussions) around Orchid and share your ideas/opinions.
+* Participate in [discussions](https://github.com/orchidsoftware/platform/discussions) about Orchid and share your ideas/opinions.
 
 ### Telegram User Groups
 
@@ -73,11 +75,13 @@ We are continually trying to actively include feedback from the community in the
  
 * [Discord](https://discord.gg/NxXhSHa5tq)
 
+<!--
 ## Development
 
 ### Release Strategy
 
 We like to keep things as modern as possible and have a "[release early, release often](https://en.wikipedia.org/wiki/Release_early,_release_often)" approach to major releases. This means we won't wait an arbitrary number of months to accumulate significant changes and release the next major version. By releasing major versions often, new features will be out earlier, and upgrading between versions will be much easier.
+-->
 
 ### Changelog
 
