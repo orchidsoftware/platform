@@ -41,7 +41,7 @@
         "orchid/icons": "^2.0",
         "tabuna/breadcrumbs": "^3.0",
         "laravel/framework": "^9.21",
-        "laravel/scout": "^9.0",
+        "laravel/scout": "^9.0 || ^10.0",
         "watson/active": "^6.0",
         "twbs/bootstrap-icons": "^1.10"
     },
