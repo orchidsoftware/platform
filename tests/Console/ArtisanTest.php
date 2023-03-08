@@ -12,7 +12,7 @@ use Orchid\Tests\TestConsoleCase;
 
 class ArtisanTest extends TestConsoleCase
 {
-    public function artisanOrchidMake(): Generator
+    public static function artisanOrchidMake(): Generator
     {
         yield ['Chart', 'orchid:chart', 'Orchid/Layouts/'];
         yield ['Table', 'orchid:table', 'Orchid/Layouts/'];

@@ -93,7 +93,7 @@ class AlertTest extends TestUnitCase
     /**
      * Array of keys and css classes.
      */
-    public function getLevels(): array
+    public static function getLevels(): array
     {
         return [
             [

@@ -33,7 +33,7 @@ class FieldTest extends TestUnitCase
     /**
      * @return \Generator
      */
-    public function exampleFields(): ?\Generator
+    public static function exampleFields(): ?\Generator
     {
         yield [Input::class, [
             'name' => 'example',
