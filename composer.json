@@ -37,23 +37,23 @@
     ],
     "require": {
         "ext-json": "*",
-        "orchid/blade-icons": "^3.0",
+        "orchid/blade-icons": "^3.0|^4.0",
         "orchid/icons": "^2.0",
-        "tabuna/breadcrumbs": "^3.0",
-        "laravel/framework": "^9.21",
+        "tabuna/breadcrumbs": "^3.0|^4.0",
+        "laravel/framework": "^10.0",
         "laravel/scout": "^9.0 || ^10.0",
-        "watson/active": "^6.0",
+        "watson/active": "^7.0",
         "twbs/bootstrap-icons": "^1.10"
     },
     "require-dev": {
-        "doctrine/dbal": "^2.10 || ^3.0",
+        "doctrine/dbal": "^3.5",
         "fakerphp/faker": "^1.9.1",
-        "laravel/pint": "^1.2",
-        "orchestra/testbench-core": "^7.0",
-        "orchestra/testbench-dusk": "^7.0",
-        "phpunit/php-code-coverage": "^9.0",
-        "phpunit/phpunit": "^9.0",
-        "vimeo/psalm": "^4.3 || ^5.0"
+        "laravel/pint": "^1.4",
+        "orchestra/testbench-core": "^8.0.4",
+        "orchestra/testbench-dusk": "^8.1.1",
+        "phpunit/php-code-coverage": "^9.2",
+        "phpunit/phpunit": "^9.5.10",
+        "vimeo/psalm": "^5.6"
     },
     "conflict": {
         "laravel/framework": "<9.32.0",
