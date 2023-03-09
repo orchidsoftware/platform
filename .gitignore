@@ -1,6 +1,7 @@
 .idea
 .phpstorm.meta.php
 .phpunit.result.cache
+.phpunit.cache
 clover.xml
 coverage.xml
 _ide_helper.php
