@@ -13,6 +13,7 @@ use Orchid\Tests\TestUnitCase;
 class UserTest extends TestUnitCase
 {
     use RefreshDatabase;
+
     public function testHasCorrectInstance(): void
     {
         $user = User::factory()->create();
