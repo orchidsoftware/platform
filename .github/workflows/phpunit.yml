@@ -65,7 +65,7 @@ jobs:
         run: vendor/bin/dusk-updater detect --auto-update
 
       - name: Execute Unit Tests
-        run: vendor/bin/phpunit --testsuite=Browser
+        run: vendor/bin/phpunit --testsuite=Browser  --no-coverage --disable-coverage-ignore
         env:
           RUNNING_IN_CI: true
 
