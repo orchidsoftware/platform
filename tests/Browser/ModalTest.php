@@ -23,8 +23,8 @@ class ModalTest extends TestBrowserCase
                 ->waitForText('Validation modal message')
                 ->type('message', 'Hello')
                 ->press('Apply')
-                ->waitForText('The message must be at least 10 characters.', 30)
-                ->assertSee('The message must be at least 10 characters.')
+                ->waitForText('The message field must be at least 10 characters.', 30)
+                ->assertSee('The message field must be at least 10 characters.')
                 ->assertInputValue('message', 'Hello')
                 ->waitForText('Validation modal message', 2500)
                 ->type('message', 'Hello World!')
@@ -49,13 +49,13 @@ class ModalTest extends TestBrowserCase
                 ->waitForText('Validation modal message')
                 ->type('message', 'Hello')
                 ->press('Apply')
-                ->waitForText('The message must be at least 10 characters.', 30)
-                ->assertSee('The message must be at least 10 characters.')
+                ->waitForText('The message field must be at least 10 characters.', 30)
+                ->assertSee('The message field must be at least 10 characters.')
                 ->assertInputValue('message', 'Hello')
                 ->waitForText('Validation modal message', 2500)
                 ->type('message', 'Hello!')
                 ->press('Apply')
-                ->waitForText('The message must be at least 10 characters.');
+                ->waitForText('The message field must be at least 10 characters.');
         });
     }
 
