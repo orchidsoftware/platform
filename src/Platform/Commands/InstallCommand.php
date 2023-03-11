@@ -44,6 +44,7 @@ class InstallCommand extends Command
                     'migrations',
                     'orchid-app-stubs',
                     'orchid-assets',
+                    'orchid-config',
                 ],
             ])
             ->executeCommand('migrate')
