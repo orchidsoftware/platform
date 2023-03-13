@@ -42,6 +42,11 @@ class NotificationScreen extends Screen
     private $isNotEmpty = false;
 
     /**
+     * @var bool
+     */
+    private $hasUnread = false;
+    
+    /**
      * Query data.
      *
      *
@@ -56,6 +61,9 @@ class NotificationScreen extends Screen
             ->paginate(10);
 
         $this->isNotEmpty = $notifications->isNotEmpty();
+        
+        $unreadNotifications = $request->user()->unreadNotifications;
+        $this->hasUnread = boolval(count($unreadNotifications));
 
         return [
             'notifications' => $notifications,
@@ -79,6 +87,7 @@ class NotificationScreen extends Screen
             Button::make(__('Mark All As Read'))
                 ->icon('eye')
                 ->method('markAllAsRead')
+                ->disabled(!$this->hasUnread)
                 ->canSee($this->isNotEmpty),
         ];
     }
