@@ -45,10 +45,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $allowedFilters = [
-        'id',
-        'name',
-        'email',
-        'permissions',
+           'id'         => Where::class,
+           'name'       => Like::class,
+           'email'      => Like::class,
+           'updated_at' => WhereDateStartEnd::class,
+           'created_at' => WhereDateStartEnd::class,
     ];
 
     /**

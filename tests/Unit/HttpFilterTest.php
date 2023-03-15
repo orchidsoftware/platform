@@ -12,7 +12,10 @@ use Orchid\Filters\HttpFilter;
 use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
 use Orchid\Filters\Types\WhereBetween;
+use Orchid\Filters\Types\WhereDate;
+use Orchid\Filters\Types\WhereDateStartEnd;
 use Orchid\Filters\Types\WhereIn;
+use Orchid\Filters\Types\WhereMaxMin;
 use Orchid\Tests\TestUnitCase;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -84,48 +87,57 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringContainsString('"WhereBetween" between ? and ?', $sql);
     }
 
-/*
-    public function testHttpFilterRange(): void
+    public function testFilterRange(): void
     {
-        $request = new Request([
+        request()->merge([
             'filter' => [
-                'WhereIn' => ['min' => 1, 'max' => 5],
+                'WhereMaxMin' => ['min' => 1, 'max' => 5],
             ],
         ]);
 
-        $filter = new HttpFilter($request);
+        $sql = $this->getModelBuilder()->toSql();
 
-        $this->assertEquals([
-            'min' => 1,
-            'max' => 5,
-        ], $filter->getFilter('WhereIn'));
-
-        $sql = $this->getModelBuilder($filter)->toSql();
-
-        $this->assertStringContainsString('"WhereIn" >= ? and "WhereIn" <= ?', $sql);
+        $this->assertStringContainsString('"WhereMaxMin" >= ? and "WhereMaxMin" <= ?', $sql);
     }
-*/
 
-    /*
-    public function testHttpFilterRangePartial(): void
+    public function testFilterRangePartial(): void
     {
-        $request = new Request([
+        request()->merge([
             'filter' => [
-                'WhereIn' => ['min' => 1],
+                'WhereMaxMin' => ['min' => 1],
             ],
         ]);
 
-        $filter = new HttpFilter($request);
+        $sql = $this->getModelBuilder()->toSql();
 
-        $this->assertEquals([
-            'min' => 1,
-        ], $filter->getFilter('WhereIn'));
-
-        $sql = $this->getModelBuilder($filter)->toSql();
-
-        $this->assertStringContainsString('"WhereIn" >= ?', $sql);
+        $this->assertStringContainsString('"WhereMaxMin" >= ?', $sql);
     }
-    */
+
+    public function testFilterDateRange(): void
+    {
+        request()->merge([
+            'filter' => [
+                'WhereDateStartEnd' => ['start' => '2023-01-01', 'end' => '2023-02-01'],
+            ],
+        ]);
+
+        $sql = $this->getModelBuilder()->toSql();
+
+        $this->assertStringContainsString('strftime(\'%Y-%m-%d\', "WhereDateStartEnd") >= cast(? as text) and strftime(\'%Y-%m-%d\', "WhereDateStartEnd") <= cast(? as text)', $sql);
+    }
+
+    public function testFilterDateRangePartial(): void
+    {
+        request()->merge([
+            'filter' => [
+                'WhereDateStartEnd' => ['start' => '2023-01-01'],
+            ],
+        ]);
+
+        $sql = $this->getModelBuilder()->toSql();
+
+        $this->assertStringContainsString('where strftime(\'%Y-%m-%d\', "WhereDateStartEnd") >= cast(? as text)', $sql);
+    }
 
     public function testMultiple(): void
     {
@@ -241,10 +253,13 @@ class HttpFilterTest extends TestUnitCase
             use Filterable;
 
             protected $allowedFilters = [
-                'WhereIn'      => WhereIn::class,
-                'Like'         => Like::class,
-                'Where'        => Where::class,
-                'WhereBetween' => WhereBetween::class,
+                'WhereIn'           => WhereIn::class,
+                'Like'              => Like::class,
+                'Where'             => Where::class,
+                'WhereBetween'      => WhereBetween::class,
+                'WhereMaxMin'       => WhereMaxMin::class,
+                'WhereDate'         => WhereDate::class,
+                'WhereDateStartEnd' => WhereDateStartEnd::class,
             ];
 
             protected $allowedSorts = [
