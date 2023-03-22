@@ -64,6 +64,25 @@ class UserTest extends TestUnitCase
         $this->assertEquals($user->id, Auth::id());
     }
 
+    public function testImpersonator(): void
+    {
+        $user = $this->createUser();
+        $userSwitch = $this->createUser();
+
+        $this->actingAs($user);
+        $this->assertEquals($user->id, Auth::id());
+
+        $this->assertEquals(null, Impersonation::impersonator());
+
+        Impersonation::loginAs($userSwitch);
+
+        $this->assertEquals($user->id, Impersonation::impersonator()->id);
+
+        Impersonation::logout();
+
+        $this->assertEquals(null, Impersonation::impersonator());
+    }
+
     public function testLoginAsLimit(): void
     {
         $user = $this->createUser([

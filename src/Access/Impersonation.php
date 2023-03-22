@@ -6,6 +6,7 @@ namespace Orchid\Access;
 
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class Impersonation
 {
@@ -48,5 +49,17 @@ class Impersonation
     protected static function getAuth()
     {
         return Auth::guard(config('platform.guard'));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Auth\Authenticatable|null
+     */
+    public static function impersonator(): Authenticatable|null {
+        if(self::isSwitch()) {
+            $id = session()->get(self::SESSION_NAME);
+            return self::getAuth()->getProvider()->retrieveById($id);
+        }
+
+        return null;
     }
 }
