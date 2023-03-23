@@ -42,6 +42,8 @@
         {!! $layouts !!}
         @csrf
         @include('platform::partials.confirm')
+
+        <input type="hidden" name="_state" id="screen-state" value="{{ $state }}">
     </form>
 
     <div data-controller="filter">

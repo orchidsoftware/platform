@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Container\Container;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -13,9 +14,12 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Resolvers\ScreenDependencyResolver;
 use Orchid\Support\Facades\Dashboard;
 use Throwable;
+use Illuminate\Support\Facades\Crypt;
+use Laravel\SerializableClosure\SerializableClosure;
 
 /**
  * Class Screen.
@@ -119,8 +123,15 @@ abstract class Screen extends Controller
 
         abort_unless(method_exists($this, $method), 404, "Async method: {$method} not found");
 
-        $query = $this->callMethod($method, request()->all());
-        $repository = new Repository($query);
+        $parameters = request()->collect()->merge([
+            'state'   => $this->extractState(),
+        ])->toArray();
+
+        $repository = $this->callMethod($method, $parameters);
+
+        if (is_array($repository)) {
+            $repository = new Repository($repository);
+        }
 
         /** @var Layout $layout */
         $layout = collect($this->layout())
@@ -132,11 +143,46 @@ abstract class Screen extends Controller
             })
             ->first();
 
+        $template = is_a($layout, Modal::class)
+            ? $layout->currentAsync()->build($repository)
+            : $layout->build($repository);
+
+        $state = is_a($layout, Modal::class)
+            ? null
+            : $this->serializableState($repository);
+
         return response()->view('platform::turbo.stream', [
-            'template' => $layout->currentAsync()->build($repository), //$layout->currentAsync()->build($source),
+            'template' => $template,
+            'state'    => $state,
             'target'   => $slug,
             'action'   => 'replace',
-        ])->header('Content-Type', 'text/vnd.turbo-stream.html');
+        ])
+            ->header('Content-Type', 'text/vnd.turbo-stream.html');
+    }
+
+    /**
+     * This method extracts the state from a request parameter.
+     * If the '_state' parameter is missing, an empty Repository object is returned.
+     * Otherwise, the state is extracted from the encrypted '_state' parameter, deserialized and returned.
+     *
+     * @return \Orchid\Screen\Repository - The extracted state.
+     *
+     * @throws \Psr\Container\ContainerExceptionInterface - If the container cannot provide the dependency injection for a class.
+     * @throws \Psr\Container\NotFoundExceptionInterface - If the container cannot find a required dependency injection for a class.
+     */
+    protected function extractState(): Repository
+    {
+        // Check if the '_state' parameter is missing
+        if (request()->missing('_state')) {
+            // Return an empty Repository object
+            return new Repository();
+        }
+
+        // Extract the encrypted state from the '_state' parameter, and deserialize it
+        $state = unserialize(Crypt::decryptString(request()->get('_state')));
+
+        // Return the deserialized state
+        return $state();
     }
 
     /**
@@ -155,7 +201,22 @@ abstract class Screen extends Controller
             'layouts'                 => $this->build($repository),
             'formValidateMessage'     => $this->formValidateMessage(),
             'needPreventsAbandonment' => $this->needPreventsAbandonment(),
+            'state'                   => $this->serializableState($repository),
         ]);
+    }
+
+
+    /**
+     * @param $values
+     *
+     * @return string
+     * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
+     */
+    protected function serializableState($values): string
+    {
+        $state = serialize(new SerializableClosure(fn() => $values));
+
+        return Crypt::encryptString($state);
     }
 
     /**

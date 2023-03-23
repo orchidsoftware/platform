@@ -10,7 +10,8 @@
          data-modal-open="{{$open}}"
         {{$staticBackdrop ? "data-bs-backdrop=static" : ''}}
     >
-        <div class="modal-dialog modal-fullscreen-md-down {{$size}} {{$type}}" role="document" id="screen-modal-type-{{$key}}">
+        <div class="modal-dialog modal-fullscreen-md-down {{$size}} {{$type}}" role="document"
+             id="screen-modal-type-{{$key}}">
             <form class="modal-content"
                   action="{{ $method }}"
                   id="screen-modal-form-{{$key}}"
