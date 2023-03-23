@@ -12,14 +12,14 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
+use Laravel\SerializableClosure\SerializableClosure;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Resolvers\ScreenDependencyResolver;
 use Orchid\Support\Facades\Dashboard;
 use Throwable;
-use Illuminate\Support\Facades\Crypt;
-use Laravel\SerializableClosure\SerializableClosure;
 
 /**
  * Class Screen.
@@ -165,10 +165,10 @@ abstract class Screen extends Controller
      * If the '_state' parameter is missing, an empty Repository object is returned.
      * Otherwise, the state is extracted from the encrypted '_state' parameter, deserialized and returned.
      *
-     * @return \Orchid\Screen\Repository - The extracted state.
-     *
      * @throws \Psr\Container\ContainerExceptionInterface - If the container cannot provide the dependency injection for a class.
-     * @throws \Psr\Container\NotFoundExceptionInterface - If the container cannot find a required dependency injection for a class.
+     * @throws \Psr\Container\NotFoundExceptionInterface  - If the container cannot find a required dependency injection for a class.
+     *
+     * @return \Orchid\Screen\Repository - The extracted state.
      */
     protected function extractState(): Repository
     {
@@ -205,16 +205,16 @@ abstract class Screen extends Controller
         ]);
     }
 
-
     /**
      * @param $values
      *
-     * @return string
      * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
+     *
+     * @return string
      */
     protected function serializableState($values): string
     {
-        $state = serialize(new SerializableClosure(fn() => $values));
+        $state = serialize(new SerializableClosure(fn () => $values));
 
         return Crypt::encryptString($state);
     }

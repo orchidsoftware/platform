@@ -66,9 +66,10 @@ class HttpFilter
      * Builds the query based on the filters and sorts extracted from the request.
      *
      * @param Builder $builder The builder to add the filters and sorts to.
-     * @return Builder The builder with the filters and sorts added.
      *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
+     * @return Builder The builder with the filters and sorts added.
      */
     public function build(Builder $builder): Builder
     {
@@ -85,9 +86,10 @@ class HttpFilter
      * Sanitizes a column name to ensure that it's valid.
      *
      * @param string $column The column name to sanitize.
-     * @return string The sanitized column name.
      *
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
+     *
+     * @return string The sanitized column name.
      */
     public static function sanitize(string $column): string
     {
@@ -100,9 +102,10 @@ class HttpFilter
      * Adds filters to the query.
      *
      * @param Builder $builder The builder to add the filters to.
-     * @return HttpFilter This HttpFilter instance.
      *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
+     * @return HttpFilter This HttpFilter instance.
      */
     protected function addFiltersToQuery(Builder $builder)
     {
@@ -118,6 +121,7 @@ class HttpFilter
      * Applies the sorts to the Eloquent query builder.
      *
      * @param Builder $builder The Eloquent query builder to apply sorts to.
+     *
      * @return HttpFilter This HttpFilter instance.
      */
     protected function addSortsToQuery(Builder $builder)

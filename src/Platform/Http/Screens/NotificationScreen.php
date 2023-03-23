@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Screens;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\Request;
 use Orchid\Platform\Http\Layouts\NotificationTable;
 use Orchid\Platform\Notifications\DashboardMessage;
@@ -74,12 +73,12 @@ class NotificationScreen extends Screen
                 ->icon('bs.trash')
                 ->method('removeAll')
                 ->confirm(__('After deleting notifications, this action cannot be undone and all associated data will be permanently lost.'))
-                ->disabled(!$this->isNotEmpty),
+                ->disabled(! $this->isNotEmpty),
 
             Button::make(__('Mark All As Read'))
                 ->icon('bs.eye')
                 ->method('markAllAsRead')
-                ->disabled(!$this->hasUnread),
+                ->disabled(! $this->hasUnread),
         ];
     }
 
