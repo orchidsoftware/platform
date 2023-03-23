@@ -47,4 +47,17 @@ class Repository extends \Illuminate\Config\Repository implements Countable
     {
         return count($this->items);
     }
+
+    /**
+     * @param $key
+     * @param $value
+     *
+     * @return $this|void
+     */
+    public function set($key, $value = null)
+    {
+        parent::set($key, $value);
+
+        return $this;
+    }
 }
