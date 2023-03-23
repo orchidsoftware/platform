@@ -7,10 +7,10 @@ namespace Orchid\Filters\Types;
 use Illuminate\Database\Eloquent\Builder;
 use Orchid\Filters\BaseHttpEloquentFilter;
 
-class Like extends BaseHttpEloquentFilter
+class WhereDate extends BaseHttpEloquentFilter
 {
     public function run(Builder $builder): Builder
     {
-        return $builder->where($this->column, 'like', '%'.$this->getHttpValue().'%');
+        return $builder->whereDate($this->column, $this->getHttpValue());
     }
 }

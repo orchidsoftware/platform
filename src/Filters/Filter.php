@@ -32,13 +32,6 @@ abstract class Filter
     public $display = true;
 
     /**
-     * Current app language.
-     *
-     * @var string
-     */
-    public $lang;
-
-    /**
      * The value delimiter.
      *
      * @var string
@@ -51,7 +44,6 @@ abstract class Filter
     public function __construct()
     {
         $this->request = request();
-        $this->lang = app()->getLocale();
     }
 
     /**

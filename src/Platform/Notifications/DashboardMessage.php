@@ -23,13 +23,12 @@ class DashboardMessage extends DatabaseMessage
 
     public function __construct(array $data = [])
     {
-        parent::__construct($data);
+        $default = [
+            'time' => Carbon::now(),
+            'type' => Color::INFO->name(),
+        ];
 
-        $this->data['time'] = Carbon::now();
-
-        if (empty($this->data['type'])) {
-            $this->data['type'] = Color::INFO->name;
-        }
+        parent::__construct(array_merge($default, $data));
     }
 
     /**

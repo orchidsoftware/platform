@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\App\Screens;
 
+use Illuminate\Http\Request;
 use Orchid\Screen\Action;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Repository;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 use Orchid\Tests\App\Layouts\DependentSumListener;
@@ -41,15 +43,17 @@ class DependentListenerScreen extends Screen
     }
 
     /**
-     * @return int[]
+     * @param \Orchid\Screen\Repository $state
+     * @param \Illuminate\Http\Request  $request
+     *
+     * @return \Orchid\Screen\Repository
      */
-    public function asyncSum(int $first = null, int $second = null): array
+    public function asyncSum(Repository $state, Request $request): Repository
     {
-        return [
-            'first'  => $first,
-            'second' => $second,
-            'sum'    => $first + $second,
-        ];
+        return $state
+            ->set('first', $request->get('first'))
+            ->set('second', $request->get('second'))
+            ->set('sum', $request->get('first') + $request->get('second'));
     }
 
     /**

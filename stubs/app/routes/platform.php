@@ -88,7 +88,7 @@ Route::screen('example', ExampleScreen::class)
     ->name('platform.example')
     ->breadcrumbs(fn (Trail $trail) => $trail
         ->parent('platform.index')
-        ->push('Example screen'));
+        ->push('Example Screen'));
 
 Route::screen('/form/examples/fields', ExampleFieldsScreen::class)->name('platform.example.fields');
 Route::screen('/form/examples/advanced', ExampleFieldsAdvancedScreen::class)->name('platform.example.advanced');

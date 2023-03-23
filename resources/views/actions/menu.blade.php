@@ -16,7 +16,7 @@
         <span class="me-2">{{ $name ?? '' }}</span>
 
         @isset($badge)
-            <b class="badge bg-{{$badge['class']}} col-auto ms-auto">{{$badge['data']()}}</b>
+            <b class="badge rounded-pill bg-{{$badge['class']}} col-auto ms-auto">{{$badge['data']()}}</b>
         @endisset
     </a>
 </li>

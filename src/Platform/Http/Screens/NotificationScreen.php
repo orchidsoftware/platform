@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Screens;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\Request;
 use Orchid\Platform\Http\Layouts\NotificationTable;
 use Orchid\Platform\Notifications\DashboardMessage;
@@ -39,26 +38,26 @@ class NotificationScreen extends Screen
     /**
      * @var bool
      */
-    private $isNotEmpty = false;
+    public $isNotEmpty = false;
+
+    /**
+     * @var bool
+     */
+    public $hasUnread = false;
 
     /**
      * Query data.
-     *
      *
      * @return array
      */
     public function query(Request $request): iterable
     {
-        /** @var Paginator $notifications */
-        $notifications = $request->user()
-            ->notifications()
-            ->where('type', DashboardMessage::class)
-            ->paginate(10);
-
-        $this->isNotEmpty = $notifications->isNotEmpty();
+        $user = $request->user();
 
         return [
-            'notifications' => $notifications,
+            'isNotEmpty'    => $this->prepareUserNotificationRelation($user)->exists(),
+            'hasUnread'     => $this->prepareUserNotificationRelation($user)->unread()->exists(),
+            'notifications' => $this->prepareUserNotificationRelation($user)->paginate(10),
         ];
     }
 
@@ -70,16 +69,16 @@ class NotificationScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Button::make(__('Remove all'))
-                ->icon('trash')
+            Button::make(__('Remove All'))
+                ->icon('bs.trash')
                 ->method('removeAll')
                 ->confirm(__('After deleting notifications, this action cannot be undone and all associated data will be permanently lost.'))
-                ->canSee($this->isNotEmpty),
+                ->disabled(! $this->isNotEmpty),
 
-            Button::make(__('Mark all as read'))
-                ->icon('eye')
+            Button::make(__('Mark All As Read'))
+                ->icon('bs.eye')
                 ->method('markAllAsRead')
-                ->canSee($this->isNotEmpty),
+                ->disabled(! $this->hasUnread),
         ];
     }
 
@@ -98,13 +97,21 @@ class NotificationScreen extends Screen
     }
 
     /**
+     * @param mixed $user
+     *
+     * @return mixed
+     */
+    private function prepareUserNotificationRelation(mixed $user)
+    {
+        return $user->notifications()->where('type', DashboardMessage::class);
+    }
+
+    /**
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function maskNotification(string $id, Request $request)
     {
-        $notification = $request->user()
-            ->notifications()
-            ->where('type', DashboardMessage::class)
+        $notification = $this->prepareUserNotificationRelation($request->user())
             ->where('id', $id)
             ->firstOrFail();
 
@@ -130,10 +137,7 @@ class NotificationScreen extends Screen
      */
     public function removeAll(Request $request)
     {
-        $request->user()
-            ->notifications()
-            ->where('type', DashboardMessage::class)
-            ->delete();
+        $this->prepareUserNotificationRelation($request->user())->delete();
 
         Toast::info(__('All messages have been deleted.'));
 

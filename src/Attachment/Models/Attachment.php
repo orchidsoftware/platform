@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Orchid\Attachment\MimeTypes;
 use Orchid\Filters\Filterable;
 use Orchid\Platform\Dashboard;
@@ -163,6 +164,8 @@ class Attachment extends Model
 
     /**
      * Get MIME type for file.
+     *
+     * @return string
      */
     public function getMimeType(): string
     {
@@ -171,5 +174,31 @@ class Attachment extends Model
         $type = $mimes->getMimeType($this->getAttribute('extension'));
 
         return $type ?? 'unknown';
+    }
+
+    /**
+     * @param string $type
+     *
+     * @return bool
+     */
+    public function isMime(string $type): bool
+    {
+        return Str::of($this->mime)->is($type);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPhysicalExists(): bool
+    {
+        return Storage::disk($this->disk)->exists($this->physicalPath());
+    }
+
+    /**
+     * @return mixed
+     */
+    public function download(array $headers = [])
+    {
+        return Storage::disk($this->disk)->download($this->physicalPath(), $this->original_name, $headers);
     }
 }

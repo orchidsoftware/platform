@@ -3,7 +3,7 @@ $orchid-color: #007bff; //#ac5ca0;
 
 
 $white: #ffffff;
-$black: #1c2b36;
+$black: #15141a;
 
 $blue: #007bff !default;
 $indigo: #6610f2 !default;
@@ -19,7 +19,7 @@ $cyan: #17a2b8 !default;
 $primary: $orchid-color;
 $secondary: #6c757d !default;
 $light: #f8f9fa !default;
-$dark: #212529 !default;
+$dark: #1c1b22;
 $grey: #495057;
 
 $grey-light: mix($grey, #ffffff, 10%);
@@ -38,7 +38,7 @@ $link-color: darken($text-color, 15%);
 $link-hover-color: darken($text-color, 30%);
 
 $dropdown-border-radius: 0.35rem;
-$border-radius-base: 0.125rem;
+$border-radius-base: 0.2rem;
 $border-color: darken($light, 5%);
 
 
@@ -138,6 +138,8 @@ $enable-responsive-font-sizes: true;
 // Navigation
 $nav-link-padding-y: .625rem;
 
+// Breadcrumbs
+$breadcrumb-active-color: #495057;
 
 // modals
 

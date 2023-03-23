@@ -28,7 +28,7 @@
                 </div>
 
                 @empty(!$description)
-                    <p class="small text-muted mt-2 mb-0 content-read">
+                    <p class="small text-muted mb-0 content-read">
                         {!! __($description  ?? '') !!}
                     </p>
                 @endempty

@@ -3,6 +3,7 @@
 namespace Orchid\Tests\App\Screens;
 
 use Orchid\Screen\Action;
+use Orchid\Screen\Repository;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 use Orchid\Tests\App\Layouts\DependentSumListener;
@@ -62,8 +63,13 @@ class FindBySlugLayoutScreen extends Screen
         ];
     }
 
-    public function asyncStub(): array
+    /**
+     * @param \Orchid\Screen\Repository $state
+     *
+     * @return \Orchid\Screen\Repository
+     */
+    public function asyncStub(Repository $state): Repository
     {
-        return [];
+        return $state;
     }
 }

@@ -86,9 +86,9 @@ export default class extends ApplicationController {
 
         button.disabled = true;
         button.classList.add('cursor-wait');
+        button.classList.add('btn-loading');
 
-        button.innerHTML = '<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>'
-            + `<span class="ps-1">${this.submitLoadingMessageValue}</span>`;
+        button.innerHTML += '<span class="spinner-loading position-absolute top-50 start-50 translate-middle"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></span>';
     }
 
     /**

@@ -18,6 +18,7 @@ use Orchid\Screen\Layouts\Metric;
 use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Layouts\Selection;
+use Orchid\Screen\Layouts\Split;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Layouts\View;
@@ -96,6 +97,13 @@ class LayoutFactory
     public static function columns(array $layouts): Columns
     {
         return new class($layouts) extends Columns
+        {
+        };
+    }
+
+    public static function split(array $layouts): Split
+    {
+        return new class($layouts) extends Split
         {
         };
     }

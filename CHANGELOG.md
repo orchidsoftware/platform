@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Implemented a new page when you introduce yourself as a user who has no permission
 - Added view for indicator need update assets 
 - Added `disableMobile()` for DateRange [#2522](https://github.com/orchidsoftware/platform/pull/2522)
+- Added `Split` layout
+- Added animation for button indicator loading
 
 ### Changed
 
@@ -2136,7 +2138,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Support for embedding dependencies in layouts [#986](https://github.com/orchidsoftware/platform/issues/986)
 - Toast notifications [#998](https://github.com/orchidsoftware/platform/issues/998)
 - Forced conversion of an object to a string [#997](https://github.com/orchidsoftware/platform/issues/997)
-- Extended example screens
+- Extended Example Screens
 
 ### Changed
 - Action optional name [#996](https://github.com/orchidsoftware/platform/issues/996)

@@ -196,3 +196,16 @@ button.close {
     }
   }
 }
+
+
+.btn-loading {
+    position: relative;
+
+    span:not(.spinner-loading):not(.spinner-border) {
+        opacity: 0;
+    }
+
+    svg:not(.spinner-loading) {
+        opacity: 0;
+    }
+}

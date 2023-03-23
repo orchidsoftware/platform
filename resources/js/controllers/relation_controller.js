@@ -20,6 +20,7 @@ export default class extends ApplicationController {
         }
 
         this.choices = new TomSelect(select, {
+            create: this.data.get('allow-add') === 'true',
             allowEmptyOption: true,
             placeholder: select.getAttribute('placeholder') === 'false' ? '' : select.getAttribute('placeholder'),
             preload: 'focus',
@@ -81,6 +82,6 @@ export default class extends ApplicationController {
      *
      */
     disconnect() {
-        this.choices.destroy();
+        this.choices?.destroy();
     }
 }

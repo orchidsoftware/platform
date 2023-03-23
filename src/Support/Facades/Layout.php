@@ -18,6 +18,7 @@ use Orchid\Screen\Layouts\Metric;
 use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Layouts\Selection;
+use Orchid\Screen\Layouts\Split;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Layouts\View;
@@ -25,6 +26,10 @@ use Orchid\Screen\Layouts\Wrapper;
 
 /**
  * Class Layout.
+ *
+ * This class provides a static interface for creating layouts.
+ * Are defined as classes within the Orchid\Screen\Layouts namespace.
+ *
  *
  * @method static View      view(string $view, array $data = [])
  * @method static Component component(string $component)
@@ -41,6 +46,7 @@ use Orchid\Screen\Layouts\Wrapper;
  * @method static Legend    legend(string $target, array $columns)
  * @method static Browsing  browsing(string $src)
  * @method static Metric    metrics(array $labels)
+ * @method static Split     split(array $layouts)
  */
 class Layout extends Facade
 {

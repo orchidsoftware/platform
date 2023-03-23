@@ -11,26 +11,34 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Illuminate\Support\Stringable;
 
 class HttpFilter
 {
     /**
-     * Column names are alphanumeric strings that can contain
-     * underscores (`_`) but can't start with a number.
+     * Regular expression to validate column names. Column names can contain
+     * alphanumeric characters and underscores (`_`), but can't start with a number.
      */
     private const VALID_COLUMN_NAME_REGEX = '/^(?![\d])[A-Za-z0-9_>-]*$/';
     /**
      * @var Request
      */
     protected $request;
+
     /**
+     * Collection of filters extracted from the request.
+     *
      * @var Collection
      */
     protected $filters;
+
     /**
+     * Collection of sorts extracted from the request.
+     *
      * @var Collection
      */
     protected $sorts;
+
     /**
      * Model options and allowed params.
      *
@@ -39,37 +47,50 @@ class HttpFilter
     protected $options;
 
     /**
-     * Filter constructor.
+     * HttpFilter constructor.
+     *
+     * @param Request|null $request The request object to use. If null, use the default request object.
      */
     public function __construct(Request $request = null)
     {
         $this->request = $request ?? request();
 
-        $this->filters = $this->request->collect('filter')
-            ->map(fn ($item) => $this->parseHttpValue($item))
-            ->filter(fn ($item) => $item !== null);
+        // Extract filters from the request
+        $this->filters = $this->request->collect('filter')->filter(fn ($item) => $item !== null);
 
-        $this->sorts = collect($this->request->get('sort', []));
+        // Extract sorts from the request
+        $this->sorts = collect($this->request->collect('sort'));
     }
 
     /**
-     * @param string|null|array $query
+     * Builds the query based on the filters and sorts extracted from the request.
      *
-     * @return string|array|null
+     * @param Builder $builder The builder to add the filters and sorts to.
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
+     * @return Builder The builder with the filters and sorts added.
      */
-    protected function parseHttpValue($query)
+    public function build(Builder $builder): Builder
     {
-        if (is_string($query)) {
-            $item = explode(',', $query);
+        $this->options = $builder->getModel()->getOptionsFilter();
 
-            if (count($item) > 1) {
-                return $item;
-            }
-        }
+        $this
+            ->addFiltersToQuery($builder)
+            ->addSortsToQuery($builder);
 
-        return $query;
+        return $builder;
     }
 
+    /**
+     * Sanitizes a column name to ensure that it's valid.
+     *
+     * @param string $column The column name to sanitize.
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
+     *
+     * @return string The sanitized column name.
+     */
     public static function sanitize(string $column): string
     {
         abort_unless(preg_match(self::VALID_COLUMN_NAME_REGEX, $column), Response::HTTP_BAD_REQUEST);
@@ -77,101 +98,53 @@ class HttpFilter
         return $column;
     }
 
-    public function build(Builder $builder): Builder
-    {
-        $this->options = $builder->getModel()->getOptionsFilter();
-
-        $this->addFiltersToQuery($builder);
-        $this->addSortsToQuery($builder);
-
-        return $builder;
-    }
-
     /**
+     * Adds filters to the query.
+     *
+     * @param Builder $builder The builder to add the filters to.
+     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      *
-     * @return mixed
+     * @return HttpFilter This HttpFilter instance.
      */
     protected function addFiltersToQuery(Builder $builder)
     {
-        $this->automaticFiltersExact($builder);
-
-        $allowedFilters = $this->options->get('allowedFilters')
-            ->filter(fn ($value, $key) => ! is_int($key))
+        $filters = $this->options->get('allowedFilters')
             ->map(fn ($filter, string $column) => app()->make($filter, ['column' => $column]));
 
-        return $builder->filtersApply($allowedFilters->toArray());
+        $builder->filtersApply($filters);
+
+        return $this;
     }
 
     /**
-     * @deprecated
+     * Applies the sorts to the Eloquent query builder.
      *
-     * @return void
-     */
-    protected function automaticFiltersExact(Builder $builder)
-    {
-        $allowedAutomaticFilters = $this->options->get('allowedFilters')
-            ->filter(fn ($value, $key) => is_int($key));
-
-        $this->filters->each(function ($value, $property) use ($builder, $allowedAutomaticFilters) {
-            $allowProperty = $property;
-
-            if (str_contains($property, '.')) {
-                $allowProperty = strstr($property, '.', true);
-            }
-
-            if ($allowedAutomaticFilters->contains($allowProperty)) {
-                $property = str_replace('.', '->', $property);
-                $this->filtersExact($builder, $value, $property);
-            }
-        });
-    }
-
-    /**
-     * @deprecated
+     * @param Builder $builder The Eloquent query builder to apply sorts to.
      *
-     * @param mixed $value
+     * @return HttpFilter This HttpFilter instance.
      */
-    protected function filtersExact(Builder $query, $value, string $property): Builder
-    {
-        $property = self::sanitize($property);
-        $model = $query->getModel();
-
-        if ($this->isDate($model, $property)) {
-            $query->when($value['start'] ?? null, fn (Builder $query) => $query->whereDate($property, '>=', $value['start']));
-            $query->when($value['end'] ?? null, fn (Builder $query) => $query->whereDate($property, '<=', $value['end']));
-        } elseif (is_array($value) && (isset($value['min']) || isset($value['max']))) {
-            $query->when($value['min'] ?? null, fn (Builder $query) => $query->where($property, '>=', $value['min']));
-            $query->when($value['max'] ?? null, fn (Builder $query) => $query->where($property, '<=', $value['max']));
-        } elseif (is_array($value)) {
-            $query->whereIn($property, $value);
-        } elseif ($model->hasCast($property, ['bool', 'boolean'])) {
-            $query->where($property, (bool) $value);
-        } elseif (is_numeric($value) && ! $model->hasCast($property, ['string'])) {
-            $query->where($property, $value);
-        } else {
-            $query->where($property, 'like', "%$value%");
-        }
-
-        return $query;
-    }
-
     protected function addSortsToQuery(Builder $builder)
     {
+        /** @var Collection $allowedSorts */
         $allowedSorts = $this->options->get('allowedSorts');
 
         $this->sorts
-            ->each(function (string $sort) use ($builder, $allowedSorts) {
-                $descending = str_starts_with($sort, '-');
-                $key = ltrim($sort, '-');
-                $property = Str::before($key, '.');
-                $key = str_replace('.', '->', $key);
+            ->map(fn (string $sort) => Str::of($sort))
+            ->each(function (Stringable $sort) use ($builder, $allowedSorts) {
+                $descending = $sort->startsWith('-') ? 'desc' : 'asc';
 
-                if ($allowedSorts->contains($property)) {
-                    $key = $this->sanitize($key);
-                    $builder->orderBy($key, $descending ? 'desc' : 'asc');
+                $column = Str::of($sort)->ltrim('-')->replace('.', '->');
+                $key = $column->before('->');
+
+                if ($allowedSorts->containsStrict($key->toString())) {
+                    $safe = $this->sanitize($column->toString());
+
+                    $builder->orderBy($safe, $descending);
                 }
             });
+
+        return $this;
     }
 
     public function isSort(string $property = null): bool
@@ -211,11 +184,5 @@ class HttpFilter
     public function getFilter(string $property)
     {
         return Arr::get($this->filters, $property);
-    }
-
-    private function isDate(Model $model, string $property): bool
-    {
-        return $model->hasCast($property, ['date', 'datetime', 'immutable_date', 'immutable_datetime'])
-            || in_array($property, [$model->getCreatedAtColumn(), $model->getUpdatedAtColumn()], true);
     }
 }
