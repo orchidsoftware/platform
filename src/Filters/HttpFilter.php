@@ -16,8 +16,8 @@ use Illuminate\Support\Stringable;
 class HttpFilter
 {
     /**
-     * Column names are alphanumeric strings that can contain
-     * underscores (`_`) but can't start with a number.
+     * Regular expression to validate column names. Column names can contain
+     * alphanumeric characters and underscores (`_`), but can't start with a number.
      */
     private const VALID_COLUMN_NAME_REGEX = '/^(?![\d])[A-Za-z0-9_>-]*$/';
     /**
@@ -26,11 +26,15 @@ class HttpFilter
     protected $request;
 
     /**
+     * Collection of filters extracted from the request.
+     *
      * @var Collection
      */
     protected $filters;
 
     /**
+     * Collection of sorts extracted from the request.
+     *
      * @var Collection
      */
     protected $sorts;
@@ -43,16 +47,29 @@ class HttpFilter
     protected $options;
 
     /**
-     * Filter constructor.
+     * HttpFilter constructor.
+     *
+     * @param Request|null $request The request object to use. If null, use the default request object.
      */
     public function __construct(Request $request = null)
     {
         $this->request = $request ?? request();
 
+        // Extract filters from the request
         $this->filters = $this->request->collect('filter')->filter(fn ($item) => $item !== null);
+
+        // Extract sorts from the request
         $this->sorts = collect($this->request->collect('sort'));
     }
 
+    /**
+     * Builds the query based on the filters and sorts extracted from the request.
+     *
+     * @param Builder $builder The builder to add the filters and sorts to.
+     * @return Builder The builder with the filters and sorts added.
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
     public function build(Builder $builder): Builder
     {
         $this->options = $builder->getModel()->getOptionsFilter();
@@ -64,6 +81,14 @@ class HttpFilter
         return $builder;
     }
 
+    /**
+     * Sanitizes a column name to ensure that it's valid.
+     *
+     * @param string $column The column name to sanitize.
+     * @return string The sanitized column name.
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
+     */
     public static function sanitize(string $column): string
     {
         abort_unless(preg_match(self::VALID_COLUMN_NAME_REGEX, $column), Response::HTTP_BAD_REQUEST);
@@ -72,9 +97,12 @@ class HttpFilter
     }
 
     /**
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * Adds filters to the query.
      *
-     * @return mixed
+     * @param Builder $builder The builder to add the filters to.
+     * @return HttpFilter This HttpFilter instance.
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     protected function addFiltersToQuery(Builder $builder)
     {
@@ -86,6 +114,12 @@ class HttpFilter
         return $this;
     }
 
+    /**
+     * Applies the sorts to the Eloquent query builder.
+     *
+     * @param Builder $builder The Eloquent query builder to apply sorts to.
+     * @return HttpFilter This HttpFilter instance.
+     */
     protected function addSortsToQuery(Builder $builder)
     {
         /** @var Collection $allowedSorts */

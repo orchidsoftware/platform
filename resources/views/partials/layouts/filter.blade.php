@@ -7,13 +7,15 @@
             aria-expanded="false">
         <x-orchid-icon path="bs.funnel"/>
     </button>
-    <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow" x-placement="bottom-end">
-        <div class="py-2 px-3">
-
+    <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow py-0" x-placement="bottom-end">
+        <div class="p-3">
             {!! $filter !!}
+        </div>
 
-            <div class="line line-dashed border-bottom my-3"></div>
-            <button type="submit" form="filters" class="btn btn-default btn-sm w-100">{{__('Apply')}}</button>
+        <div class="bg-light p-3">
+            <button type="submit" form="filters" class="btn btn-link btn-sm w-100 border">
+                <span class="w-100 text-center">{{__('Apply')}}</span>
+            </button>
         </div>
     </div>
 </div>
