@@ -14,7 +14,6 @@ use Orchid\Support\Facades\Toast;
 
 class ItemAddChildScreen extends Screen
 {
-
     public $parent_id;
     public $item;
 
@@ -27,7 +26,6 @@ class ItemAddChildScreen extends Screen
      */
     public function query(int $parent_id): iterable
     {
-
         return [
             'parent_id'       => $parent_id,
         ];
@@ -52,7 +50,6 @@ class ItemAddChildScreen extends Screen
     {
         return '';
     }
-
 
     /**
      * The screen's action buttons.
@@ -85,11 +82,8 @@ class ItemAddChildScreen extends Screen
 
             ]),
 
-
         ];
     }
-
-
 
     public function addChild(Request $request, int $parent_id)
     {
@@ -103,8 +97,4 @@ class ItemAddChildScreen extends Screen
 
         return redirect()->route('test.items');
     }
-
-
-
-
 }

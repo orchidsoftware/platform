@@ -10,7 +10,6 @@ use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Fields\Input;
-use Orchid\Screen\Fields\Relation;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Screen;
 use Orchid\Screen\TD;
@@ -85,7 +84,6 @@ class ItemListScreen extends Screen
                 TD::make('name'),
                 TD::make('parent_id'),
 
-
                 TD::make('Actions')
                     ->alignRight()
                     ->render(fn (Repository $model) => DropDown::make()
@@ -121,7 +119,6 @@ class ItemListScreen extends Screen
         ]);
 
         Toast::info(__('Added Item'));
-
     }
 
     /**

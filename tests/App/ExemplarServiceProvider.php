@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\App;
 
-
-use Orchid\Tests\App\Screens\ItemAddChildScreen;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Dashboard;
@@ -14,6 +12,7 @@ use Orchid\Tests\App\Screens\AsyncHeaderButtonActionScreen;
 use Orchid\Tests\App\Screens\ConfirmScreen;
 use Orchid\Tests\App\Screens\DependentListenerModalScreen;
 use Orchid\Tests\App\Screens\DependentListenerScreen;
+use Orchid\Tests\App\Screens\ItemAddChildScreen;
 use Orchid\Tests\App\Screens\ItemListScreen;
 use Orchid\Tests\App\Screens\MethodsResponseScreen;
 use Orchid\Tests\App\Screens\ModalValidationScreen;

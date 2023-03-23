@@ -14,7 +14,7 @@ class Issue2517Test extends TestBrowserCase
         $this->browse(function (Browser $browser) {
             $user = $this->createAdminUser();
 
-           //check that the first screen is working
+            //check that the first screen is working
             $browser
                 ->loginAs($user)
                 ->visitRoute('test.items')
@@ -23,16 +23,15 @@ class Issue2517Test extends TestBrowserCase
 
             $browser->whenAvailable('.modal', function (Browser $modal) {
                 $modal->assertSee('Create Item')
-                    ->type('item[name]','name 7')
+                    ->type('item[name]', 'name 7')
                     ->press('Add Item');
             });
             $browser->waitForText('Added Item');
 
-
             //perform actions in the second
-            $browser->visitRoute('test.item.addchild',1)
+            $browser->visitRoute('test.item.addchild', 1)
                 ->waitForText('Add child')
-                ->type('item[name]','name 7')
+                ->type('item[name]', 'name 7')
                 ->press('Save')
 
                 ->waitForRoute('test.items')
@@ -44,15 +43,13 @@ class Issue2517Test extends TestBrowserCase
                 //check that the first screen is still working
                 ->press('Add Item');
 
-                $browser->whenAvailable('.modal', function (Browser $modal) {
-                    $modal->assertSee('Create Item')
-                        ->type('item[name]','name 7')
-                        ->press('Add Item');
-                });
+            $browser->whenAvailable('.modal', function (Browser $modal) {
+                $modal->assertSee('Create Item')
+                    ->type('item[name]', 'name 7')
+                    ->press('Add Item');
+            });
 
             $browser->waitForText('Added Item');
-
-
         });
     }
 }
