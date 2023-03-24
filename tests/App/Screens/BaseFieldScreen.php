@@ -53,6 +53,6 @@ abstract class BaseFieldScreen extends Screen
 
     public function submit(Request $request): string
     {
-        return $request->collect()->except(['_token'])->toJson(JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        return $request->collect()->except(['_token','_state'])->toJson(JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
 }
