@@ -40,11 +40,10 @@ class InstallCommand extends Command
             ->executeCommand('vendor:publish', [
                 '--provider' => FoundationServiceProvider::class,
                 '--tag'      => [
-                    'config',
-                    'migrations',
+                    'orchid-config',
+                    'orchid-migrations',
                     'orchid-app-stubs',
                     'orchid-assets',
-                    'orchid-config',
                 ],
             ])
             ->executeCommand('migrate')
