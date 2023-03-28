@@ -31,7 +31,7 @@ trait Environment
 
         /* Refresh application for route/breadcrumbs/orchid provider */
         if (! $this->app['router']->has('platform.main')) {
-            $this->refreshApplication();
+            $this->defineDatabaseMigrations();
         }
 
         Factory::guessFactoryNamesUsing(function ($factory) {
