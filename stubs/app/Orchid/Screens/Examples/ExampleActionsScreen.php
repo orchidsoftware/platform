@@ -10,6 +10,7 @@ use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Screen;
 use Orchid\Support\Color;
 use Orchid\Support\Facades\Layout;
+use Orchid\Support\Facades\Toast;
 
 class ExampleActionsScreen extends Screen
 {
@@ -25,12 +26,17 @@ class ExampleActionsScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
+     *
+     * @return string|null
      */
     public function name(): ?string
     {
         return 'Actions Form Controls';
     }
 
+    /**
+     * @return string|null
+     */
     public function description(): ?string
     {
         return 'Examples for creating a wide variety of forms.';
@@ -116,21 +122,21 @@ class ExampleActionsScreen extends Screen
                 ->description('Confirm Dialog is a modal Dialog used to confirm user actions.'),
 
             Layout::block(Layout::rows([
-                Button::make('Download')
+                Button::make('Button')
                     ->icon('bs.box-arrow-up-right')
                     ->method('buttonClickProcessing'),
             ]))
                 ->title('Icons Button')
-                ->description('Confirm Dialog is a modal Dialog used to confirm user actions.'),
+                ->description('This type of button is often used to save space on a user interface and make the action more visually appealing.'),
 
             Layout::block(Layout::rows([
                 Button::make('Download')
                     ->icon('bs.download')
-                    ->method('buttonClickProcessing')
+                    ->method('export')
                     ->rawClick(),
             ]))
                 ->title('Download Button')
-                ->description('To download a file, not to open it as page content'),
+                ->description('This button is typically used when a user wants to download a file, such as a document or an image, to their local device.'),
 
             Layout::block(Layout::rows([
                 Button::make('Google')
@@ -140,5 +146,37 @@ class ExampleActionsScreen extends Screen
                 ->description('The form is always sent by POST request, but the endpoint can be defined'),
 
         ];
+    }
+
+    /**
+     * @return void
+     */
+    public function buttonClickProcessing(): void
+    {
+        Toast::warning('Click Processing');
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     */
+    public function export()
+    {
+        return response()->streamDownload(function () {
+            $csv = tap(fopen('php://output', 'wb'), function ($csv) {
+                fputcsv($csv, ['header:col1', 'header:col2', 'header:col3']);
+            });
+
+            collect([
+                ['row1:col1', 'row1:col2', 'row1:col3'],
+                ['row2:col1', 'row2:col2', 'row2:col3'],
+                ['row3:col1', 'row3:col2', 'row3:col3'],
+            ])->each(function (array $row) use ($csv) {
+                fputcsv($csv, $row);
+            });
+
+            return tap($csv, function ($csv) {
+                fclose($csv);
+            });
+        }, 'File-name.csv');
     }
 }
