@@ -92,7 +92,7 @@ trait Environment
     /**
      * Define routes setup.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param \Illuminate\Routing\Router $router
      *
      * @return void
      */
