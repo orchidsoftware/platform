@@ -246,7 +246,8 @@ return [
     */
 
     'turbo'         => [
-        'cache' => false,
+        'enabled' => true,
+        'cache'   => false,
     ],
 
     /*
