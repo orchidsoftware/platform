@@ -191,9 +191,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerOctaneEventsListen(): self
     {
-        Event::listen(function (\Laravel\Octane\Events\RequestReceived $request) {
-            \Orchid\Support\Facades\Dashboard::flushState();
-        });
+        Event::listen(fn (\Laravel\Octane\Events\RequestReceived $request) => \Orchid\Support\Facades\Dashboard::flushState());
 
         return $this;
     }
