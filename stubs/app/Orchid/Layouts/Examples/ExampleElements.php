@@ -15,25 +15,16 @@ class ExampleElements extends TabMenu
     protected function navigations(): iterable
     {
         return [
-            /*
-            Menu::make('Get Started')
-                ->route('platform.main'),
-            */
-
             Menu::make('Basic Elements')
-                //->icon('bs.journal')
                 ->route('platform.example.fields'),
 
             Menu::make('Advanced Elements')
-                //->icon('bs.briefcase')
                 ->route('platform.example.advanced'),
 
             Menu::make('Text Editors')
-               // ->icon('bs.list')
                 ->route('platform.example.editors'),
 
             Menu::make('Run Actions')
-                //->icon('bs.list')
                 ->route('platform.example.actions'),
         ];
     }
