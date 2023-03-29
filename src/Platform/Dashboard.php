@@ -62,6 +62,15 @@ class Dashboard
     private $currentScreen;
 
     /**
+     * Determines whether the current request is a partial request or not.
+     * A partial request is a request that only loads a specific part of the page, such as a modal window or a section of content,
+     * instead of loading the entire page.
+     *
+     * @var bool $partialRequest Set to true if the current request is a partial request, false otherwise.
+     */
+    private bool $partialRequest = false;
+
+    /**
      * Dashboard constructor.
      */
     public function __construct()
@@ -284,9 +293,10 @@ class Dashboard
     /**
      * @return $this
      */
-    public function setCurrentScreen(Screen $screen): self
+    public function setCurrentScreen(Screen $screen, bool $partialRequest = false): self
     {
         $this->currentScreen = $screen;
+        $this->partialRequest = $partialRequest;
 
         return $this;
     }
@@ -294,6 +304,20 @@ class Dashboard
     public function getCurrentScreen(): ?Screen
     {
         return $this->currentScreen;
+    }
+
+    /**
+     * Determines whether the current request is a partial request or not.
+     *
+     * A partial request is a request that only loads a specific part of the page, such as a modal window or a section of content,
+     * instead of loading the entire page. This method returns a boolean value indicating whether the current request is a partial
+     * request or not, based on the value of the $partialRequest property.
+     *
+     * @return bool True if the current request is a partial request, false otherwise.
+     */
+    public function isPartialRequest(): bool
+    {
+        return $this->partialRequest;
     }
 
     /**
@@ -357,5 +381,6 @@ class Dashboard
         ]);
 
         $this->currentScreen = null;
+        $this->partialRequest = false;
     }
 }

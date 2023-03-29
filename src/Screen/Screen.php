@@ -119,7 +119,7 @@ abstract class Screen extends Controller
      */
     public function asyncBuild(string $method, string $slug)
     {
-        Dashboard::setCurrentScreen($this);
+        Dashboard::setCurrentScreen($this, true);
 
         abort_unless(method_exists($this, $method), 404, "Async method: {$method} not found");
 

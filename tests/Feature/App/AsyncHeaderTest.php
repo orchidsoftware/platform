@@ -22,7 +22,7 @@ class AsyncHeaderTest extends TestFeatureCase
         $this
             ->actingAs($this->createAdminUser())
             ->from('http://127.0.0.1:8001/screen/async/header')
-            ->get(route('test.async-header-button-action'), [
+            ->post(route('test.async-header-button-action'), [
                 'Accept' => Turbo::TURBO_STREAM_FORMAT,
             ])
             ->assertDontSee(route('test.async-header-button-action', ['method' => 'message']))
