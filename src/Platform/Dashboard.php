@@ -66,7 +66,7 @@ class Dashboard
      * A partial request is a request that only loads a specific part of the page, such as a modal window or a section of content,
      * instead of loading the entire page.
      *
-     * @var bool $partialRequest Set to true if the current request is a partial request, false otherwise.
+     * @var bool Set to true if the current request is a partial request, false otherwise.
      */
     private bool $partialRequest = false;
 
