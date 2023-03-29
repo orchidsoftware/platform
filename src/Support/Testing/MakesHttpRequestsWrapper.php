@@ -24,7 +24,7 @@ class MakesHttpRequestsWrapper
         $this->app = $app;
     }
 
-    public function getAppication(): Application
+    public function getApplication(): Application
     {
         return $this->app;
     }

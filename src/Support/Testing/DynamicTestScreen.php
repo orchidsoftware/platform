@@ -42,7 +42,7 @@ class DynamicTestScreen
     }
 
     /**
-     * Declarate dinamic route
+     * Declarate dynamic route
      *
      * @param string|array $middleware
      */
@@ -61,7 +61,6 @@ class DynamicTestScreen
     /**
      * Set Route Parameters
      *
-     *
      * @return $this
      */
     public function parameters(array $parameters = []): self
@@ -73,7 +72,6 @@ class DynamicTestScreen
 
     /**
      * Set the session to the given array.
-     *
      *
      * @return $this
      */
@@ -177,7 +175,7 @@ class DynamicTestScreen
      */
     public function from(string $url): self
     {
-        $this->http->getAppication()['session']->setPreviousUrl($url);
+        $this->http->getApplication()['session']->setPreviousUrl($url);
 
         return $this;
     }
