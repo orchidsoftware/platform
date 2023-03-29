@@ -38,6 +38,7 @@ abstract class Layout implements JsonSerializable
      * as a source for an asynchronous request.
      *
      * @var string
+     *
      * @deprecated usage `method` property
      */
     protected $asyncMethod;

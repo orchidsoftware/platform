@@ -64,7 +64,7 @@ class Toast extends Alert
      */
     public function disableAutoHide(bool $disable = true): self
     {
-        return $this->autoHide(!$disable);
+        return $this->autoHide(! $disable);
     }
 
     /**
