@@ -42,6 +42,10 @@ class Toast extends Alert
     }
 
     /**
+     * Set the auto hide option for the toast notification.
+     *
+     * @param bool $autoHide
+     *
      * @return $this
      */
     public function autoHide(bool $autoHide = true): self
@@ -52,6 +56,22 @@ class Toast extends Alert
     }
 
     /**
+     * Disable the auto hide option for the toast notification.
+     *
+     * @param bool $disable
+     *
+     * @return $this
+     */
+    public function disableAutoHide(bool $disable = true): self
+    {
+        return $this->autoHide(!$disable);
+    }
+
+    /**
+     * Set the delay option for the toast notification.
+     *
+     * @param int $delay
+     *
      * @return $this
      */
     public function delay(int $delay = 5000): self
