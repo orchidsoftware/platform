@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Support;
 
+/**
+ * This presenter class provides methods for presenting data from the Eloquent model.
+ *
+ * A presenter is responsible for encapsulating the logic for presenting data in a particular format.
+ * By using a presenter, you can keep your model and view logic separate and maintainable.
+ */
 abstract class Presenter
 {
     /**
@@ -19,7 +25,6 @@ abstract class Presenter
     /**
      * Allow for property-style retrieval.
      *
-     *
      * @return mixed
      */
     public function __get(string $property)
@@ -33,7 +38,6 @@ abstract class Presenter
 
     /**
      * Provide compatibility for the checking.
-     *
      *
      * @return bool
      */
