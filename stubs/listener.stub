@@ -2,18 +2,10 @@
 
 namespace DummyNamespace;
 
-use Orchid\Screen\Layout;
 use Orchid\Screen\Layouts\Listener;
 
 class DummyClass extends Listener
 {
-    /**
-     * List of field names for which values will be joined with targets' upon trigger.
-     *
-     * @var string[]
-     */
-    protected $extraVars = [];
-
     /**
      * List of field names for which values will be listened.
      *
@@ -30,10 +22,12 @@ class DummyClass extends Listener
      *
      * @var string
      */
-    protected $asyncMethod = '';
+    protected $method = '';
 
     /**
-     * @return Layout[]
+     * The screen's layout elements.
+     *
+     * @return \Orchid\Screen\Layout[]|string[]
      */
     protected function layouts(): iterable
     {

@@ -38,8 +38,17 @@ abstract class Layout implements JsonSerializable
      * as a source for an asynchronous request.
      *
      * @var string
+     * @deprecated usage `method` property
      */
     protected $asyncMethod;
+
+    /**
+     * What screen method should be called
+     * as a source for an asynchronous request.
+     *
+     * @var string
+     */
+    protected $method;
 
     /**
      * The call is asynchronous and should return
@@ -78,6 +87,7 @@ abstract class Layout implements JsonSerializable
         }
 
         $this->asyncMethod = $method;
+        $this->method = $method;
 
         return $this;
     }
@@ -102,7 +112,7 @@ abstract class Layout implements JsonSerializable
         $variables = array_merge($this->variables, [
             'manyForms'    => $build,
             'templateSlug' => $this->getSlug(),
-            'asyncEnable'  => empty($this->asyncMethod) ? 0 : 1,
+            'asyncEnable'  => empty($this->method ?? $this->asyncMethod) ? 0 : 1,
             'asyncRoute'   => $this->asyncRoute(),
         ]);
 
@@ -122,7 +132,7 @@ abstract class Layout implements JsonSerializable
 
         return route('platform.async', [
             'screen'   => Crypt::encryptString(get_class($screen)),
-            'method'   => $this->asyncMethod,
+            'method'   => $this->method ?? $this->asyncMethod,
             'template' => $this->getSlug(),
         ]);
     }

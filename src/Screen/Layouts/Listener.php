@@ -14,33 +14,11 @@ abstract class Listener extends Layout
     protected $template = 'platform::layouts.listener';
 
     /**
-     * List of field names for which values will be joined with targets' upon trigger.
-     *
-     * @var string[]
-     */
-    protected $extraVars = [];
-
-    /**
      * List of field names for which values will be listened.
      *
      * @var string[]
      */
-    protected $targets = [
-        'name',
-    ];
-
-    /**
-     * What screen method should be called
-     * as a source for an asynchronous request.
-     *
-     * @var string
-     */
-    protected $asyncMethod;
-
-    /**
-     * @var Repository
-     */
-    public $query;
+    protected $targets = [];
 
     /**
      * @return array
@@ -60,7 +38,7 @@ abstract class Listener extends Layout
         $this->layouts = $this->layouts();
 
         $this->variables['targets'] = collect($this->targets)->map(fn ($target) => Builder::convertDotToArray($target))->toJson();
-        $this->variables['extraVars'] = collect($this->extraVars)->map(fn ($extraVars) => Builder::convertDotToArray($extraVars))->toJson();
+        $this->variables['extraVars'] = json_encode([]);
 
         return $this->buildAsDeep($repository);
     }
