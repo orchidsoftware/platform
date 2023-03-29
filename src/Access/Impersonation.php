@@ -13,7 +13,7 @@ class Impersonation
     public const SESSION_NAME = 'orchid:impersonation_original_user';
 
     /**
-     * Changes the current authorization to the required.
+     * Changes the current authorization to the required user.
      */
     public static function loginAs(User $user)
     {
@@ -25,7 +25,7 @@ class Impersonation
     }
 
     /**
-     * Returns the previous session, before the user changes.
+     * Restores the previous session, before the user was changed.
      */
     public static function logout()
     {
@@ -34,6 +34,11 @@ class Impersonation
         self::getAuth()->loginUsingId($id);
     }
 
+    /**
+     * Checks if there has been a user switch.
+     *
+     * @return bool
+     */
     public static function isSwitch(): bool
     {
         if (! session()->isStarted()) {
@@ -44,6 +49,8 @@ class Impersonation
     }
 
     /**
+     * Returns the authentication guard.
+     *
      * @return \Illuminate\Contracts\Auth\Guard|\Illuminate\Contracts\Auth\StatefulGuard
      */
     protected static function getAuth()
@@ -52,6 +59,8 @@ class Impersonation
     }
 
     /**
+     * Returns the impersonator, if there has been a user switch.
+     *
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */
     public static function impersonator(): Authenticatable|null
