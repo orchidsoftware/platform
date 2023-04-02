@@ -118,7 +118,7 @@ class UserProfileScreen extends Screen
         $guard = config('platform.guard', 'web');
         $request->validate([
             'old_password' => 'required|current_password:'.$guard,
-            'password'     => 'required|confirmed',
+            'password'     => 'required|confirmed|different:old_password',
         ]);
 
         tap($request->user(), function ($user) use ($request) {
