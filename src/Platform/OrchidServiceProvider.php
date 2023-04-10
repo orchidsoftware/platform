@@ -15,7 +15,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
     public function boot(Dashboard $dashboard): void
     {
         View::composer('platform::dashboard', function () use ($dashboard) {
-            foreach ([...$this->menu(), ...$this->registerMenu(), ...$this->registerMainMenu(), ...$this->registerProfileMenu(),] as $element) {
+            foreach ([...$this->menu(), ...$this->registerMenu(), ...$this->registerMainMenu(), ...$this->registerProfileMenu()] as $element) {
                 $dashboard->registerMenuElement(Dashboard::MENU_MAIN, $element);
             }
         });
@@ -78,7 +78,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
     /**
      * @return ItemPermission[]
      */
-    public function permissions():array
+    public function permissions(): array
     {
         return [];
     }

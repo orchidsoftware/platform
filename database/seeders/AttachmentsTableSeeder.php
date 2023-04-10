@@ -1,6 +1,6 @@
 <?php
 
-namespace  Orchid\Platform\Database\Seeders;
+namespace Orchid\Platform\Database\Seeders;
 
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;

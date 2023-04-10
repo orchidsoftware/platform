@@ -1,6 +1,6 @@
 <?php
 
-namespace  Orchid\Platform\Database\Factories;
+namespace Orchid\Platform\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchid\Platform\Models\Role;

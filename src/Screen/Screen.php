@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
 use Laravel\SerializableClosure\SerializableClosure;
 use Orchid\Platform\Http\Controllers\Controller;
-use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Resolvers\ScreenDependencyResolver;
 use Orchid\Support\Facades\Dashboard;
 use Throwable;

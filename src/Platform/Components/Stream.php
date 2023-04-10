@@ -9,7 +9,6 @@ use Illuminate\View\Component;
 
 class Stream extends Component
 {
-
     /**
      * Get the view / contents that represent the component.
      *

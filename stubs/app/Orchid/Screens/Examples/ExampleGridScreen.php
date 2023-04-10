@@ -51,9 +51,9 @@ class ExampleGridScreen extends Screen
     /**
      * The screen's layout elements.
      *
-     * @return array
      * @throws \Throwable
      *
+     * @return array
      */
     public function layout(): iterable
     {
