@@ -31,7 +31,7 @@ class PlatformProvider extends OrchidServiceProvider
      *
      * @return Menu[]
      */
-    public function registerMenu(): array
+    public function menu(): array
     {
         return [
             Menu::make('Get Started')
@@ -94,7 +94,7 @@ class PlatformProvider extends OrchidServiceProvider
      *
      * @return ItemPermission[]
      */
-    public function registerPermissions(): array
+    public function permissions(): array
     {
         return [
             ItemPermission::group(__('System'))

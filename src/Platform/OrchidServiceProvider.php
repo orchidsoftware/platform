@@ -15,20 +15,12 @@ abstract class OrchidServiceProvider extends ServiceProvider
     public function boot(Dashboard $dashboard): void
     {
         View::composer('platform::dashboard', function () use ($dashboard) {
-            foreach ($this->registerMenu() as $element) {
-                $dashboard->registerMenuElement(Dashboard::MENU_MAIN, $element);
-            }
-
-            foreach ($this->registerMainMenu() as $element) {
-                $dashboard->registerMenuElement(Dashboard::MENU_MAIN, $element);
-            }
-
-            foreach ($this->registerProfileMenu() as $element) {
+            foreach ([...$this->menu(), ...$this->registerMenu(), ...$this->registerMainMenu(), ...$this->registerProfileMenu(),] as $element) {
                 $dashboard->registerMenuElement(Dashboard::MENU_MAIN, $element);
             }
         });
 
-        foreach ($this->registerPermissions() as $permission) {
+        foreach ([...$this->permissions(), ...$this->registerPermissions()] as $permission) {
             $dashboard->registerPermissions($permission);
         }
 
@@ -38,13 +30,23 @@ abstract class OrchidServiceProvider extends ServiceProvider
     /**
      * @return \Orchid\Screen\Actions\Menu[]
      */
+    public function menu(): array
+    {
+        return [];
+    }
+
+    /**
+     * @deprecated Usage method `menu`
+     *
+     * @return \Orchid\Screen\Actions\Menu[]
+     */
     public function registerMenu(): array
     {
         return [];
     }
 
     /**
-     * @deprecated Usage method `registerMenu`
+     * @deprecated Usage method `menu`
      *
      * @return \Orchid\Screen\Actions\Menu[]
      */
@@ -54,7 +56,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
     }
 
     /**
-     * @deprecated Usage method `registerMenu`
+     * @deprecated Usage method `menu`
      *
      * @return \Orchid\Screen\Actions\Menu[]
      */
@@ -64,9 +66,19 @@ abstract class OrchidServiceProvider extends ServiceProvider
     }
 
     /**
+     * @deprecated Usage method `permissions`
+     *
      * @return ItemPermission[]
      */
     public function registerPermissions(): array
+    {
+        return [];
+    }
+
+    /**
+     * @return ItemPermission[]
+     */
+    public function permissions():array
     {
         return [];
     }
