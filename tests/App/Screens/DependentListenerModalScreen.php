@@ -24,7 +24,7 @@ class DependentListenerModalScreen extends Screen
     public function query(): array
     {
         return [
-            'name' => 'Test Dependent in Modal',
+            'name'  => 'Test Dependent in Modal',
             'first' => 100,
         ];
     }

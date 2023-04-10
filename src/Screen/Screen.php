@@ -205,15 +205,16 @@ abstract class Screen extends Controller
     /**
      * @param array $httpQueryArguments
      *
-     * @return \Orchid\Screen\Repository
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \ReflectionException
+     *
+     * @return \Orchid\Screen\Repository
      */
     protected function buildQueryRepository(array $httpQueryArguments = []): Repository
     {
         $query = $this->callMethod('query', $httpQueryArguments);
 
-        return tap(new Repository($query), fn(Repository $repository) =>  $this->fillPublicProperty($repository));
+        return tap(new Repository($query), fn (Repository $repository) =>  $this->fillPublicProperty($repository));
     }
 
     /**
