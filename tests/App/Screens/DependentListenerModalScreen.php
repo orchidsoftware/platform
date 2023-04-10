@@ -14,11 +14,17 @@ use Orchid\Tests\App\Layouts\DependentSumListener;
 class DependentListenerModalScreen extends Screen
 {
     /**
+     * @var string
+     */
+    public $name;
+
+    /**
      * Query data.
      */
     public function query(): array
     {
         return [
+            'name' => 'Test Dependent in Modal',
             'first' => 100,
         ];
     }
@@ -26,9 +32,9 @@ class DependentListenerModalScreen extends Screen
     /**
      * Display header name.
      */
-    public function name(): ?string
+    public function name(): string
     {
-        return 'Test Dependent in Modal';
+        return $this->name;
     }
 
     /**

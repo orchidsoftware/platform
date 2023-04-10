@@ -121,8 +121,12 @@ abstract class Screen extends Controller
 
         abort_unless(method_exists($this, $method), 404, "Async method: {$method} not found");
 
+        $state = $this->extractState();
+
+        $this->fillPublicProperty($state);
+
         $parameters = request()->collect()->merge([
-            'state'   => $this->extractState(),
+            'state'   => $state,
         ])->toArray();
 
         $repository = $this->callMethod($method, $parameters);
@@ -199,27 +203,31 @@ abstract class Screen extends Controller
     }
 
     /**
+     * @param array $httpQueryArguments
+     *
      * @return \Orchid\Screen\Repository
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \ReflectionException
      */
     protected function buildQueryRepository(array $httpQueryArguments = []): Repository
     {
         $query = $this->callMethod('query', $httpQueryArguments);
 
-        $this->fillPublicProperty($query);
-
-        return new Repository($query);
+        return tap(new Repository($query), fn(Repository $repository) =>  $this->fillPublicProperty($repository));
     }
 
-    protected function fillPublicProperty(iterable $query): void
+    /**
+     * @param \Orchid\Screen\Repository $repository
+     *
+     * @return void
+     */
+    protected function fillPublicProperty(Repository $repository): void
     {
         $reflections = (new \ReflectionClass($this))->getProperties(\ReflectionProperty::IS_PUBLIC);
 
-        $publicProperty = collect($reflections)
-            ->map(fn (\ReflectionProperty $property) => $property->getName());
-
-        collect($query)->only($publicProperty)->each(function ($value, $key) {
-            $this->$key = $value;
-        });
+        collect($reflections)
+            ->map(fn (\ReflectionProperty $property) => $property->getName())
+            ->each(fn (string $key) => $this->$key = $repository->get($key));
     }
 
     /**
