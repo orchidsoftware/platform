@@ -1,9 +1,5 @@
-<div id="{{ $templateSlug }}">
-    @stack('modals-container')
-
-    @foreach($manyForms as $key => $column)
-        @foreach(\Illuminate\Support\Arr::wrap($column) as $item)
-            {!! $item ?? '' !!}
-        @endforeach
+@foreach($manyForms as $key => $column)
+    @foreach(\Illuminate\Support\Arr::wrap($column) as $item)
+        {!! $item ?? '' !!}
     @endforeach
-</div>
+@endforeach

@@ -111,7 +111,6 @@ abstract class Screen extends Controller
     /**
      * Builds the screen asynchronously using the given method and template slug.
      *
-     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \ReflectionException
      *
@@ -133,30 +132,9 @@ abstract class Screen extends Controller
             $repository = new Repository($repository);
         }
 
-        /** @var Layout $layout */
-        $layout = collect($this->layout())
-            ->map(fn ($layout) => is_object($layout) ? $layout : resolve($layout))
-            ->map(fn (Layout $layout) => $layout->findBySlug($slug))
-            ->filter()
-            ->whenEmpty(function () use ($slug) {
-                abort(404, "Async template: {$slug} not found");
-            })
-            ->first();
+        $view = $this->view($repository)->fragments(collect($slug)->push('screen-state')->toArray());
 
-        $template = is_a($layout, Modal::class)
-            ? $layout->currentAsync()->build($repository)
-            : $layout->build($repository);
-
-        $state = is_a($layout, Modal::class)
-            ? null
-            : $this->serializableState($repository);
-
-        return response()->view('platform::turbo.stream', [
-            'template' => $template,
-            'state'    => $state,
-            'target'   => $slug,
-            'action'   => 'replace',
-        ])
+        return response($view)
             ->header('Content-Type', 'text/vnd.turbo-stream.html');
     }
 
@@ -190,9 +168,11 @@ abstract class Screen extends Controller
      *
      * @return Factory|\Illuminate\View\View
      */
-    public function view(array $httpQueryArguments = [])
+    public function view(array|Repository $httpQueryArguments = [])
     {
-        $repository = $this->buildQueryRepository($httpQueryArguments);
+        $repository = is_a($httpQueryArguments, Repository::class)
+            ? $httpQueryArguments
+            : $this->buildQueryRepository($httpQueryArguments);
 
         return view($this->screenBaseView(), [
             'name'                    => $this->name(),

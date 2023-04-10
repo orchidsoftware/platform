@@ -10,8 +10,10 @@
          data-modal-open="{{$open}}"
         {{$staticBackdrop ? "data-bs-backdrop=static" : ''}}
     >
-        <div class="modal-dialog modal-fullscreen-md-down {{$size}} {{$type}}" role="document"
-             id="screen-modal-type-{{$key}}">
+        <div class="modal-dialog modal-fullscreen-md-down {{$size}} {{$type}}"
+             role="document"
+             id="screen-modal-type-{{$key}}"
+        >
             <form class="modal-content"
                   action="{{ $method }}"
                   id="screen-modal-form-{{$key}}"
@@ -22,22 +24,23 @@
             >
                 <div class="modal-header">
                     <h4 class="modal-title text-black fw-light" data-modal-target="title">{{$title}}</h4>
-                    <button type="button" class="btn-close" title="Close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn-close" title="Close" data-bs-dismiss="modal"
+                            aria-label="Close">
                     </button>
                 </div>
                 <div class="modal-body layout-wrapper">
-                    <div id="{{ $templateSlug }}">
-                        @foreach($manyForms as $formKey => $modal)
-                            @foreach($modal as $item)
-                                {!! $item ?? '' !!}
+                    <x-orchid-stream target="{{$templateSlug}}">
+                        <div id="{{ $templateSlug }}">
+                            @foreach($manyForms as $formKey => $modal)
+                                @foreach($modal as $item)
+                                    {!! $item ?? '' !!}
+                                @endforeach
                             @endforeach
-                        @endforeach
-                    </div>
-
-                    @csrf
+                            @csrf
+                        </div>
+                    </x-orchid-stream>
                 </div>
                 <div class="modal-footer">
-
                     @if(!$withoutCloseButton)
                         <button type="button" class="btn btn-link" data-bs-dismiss="modal">
                             {{ $close }}
@@ -56,7 +59,6 @@
                     @else
                         {!! $commandBar !!}
                     @endempty
-
                 </div>
             </form>
         </div>

@@ -1,16 +1,8 @@
 @extends('platform::dashboard')
 
-@section('title')
-    {{ __($name) }}
-@endsection
-
-@section('description')
-    {{ __($description) }}
-@endsection
-
-@section('controller')
-    base
-@endsection
+@section('title', e(__($name)))
+@section('description', e(__($description)))
+@section('controller', 'base')
 
 @section('navbar')
     @foreach($commandBar as $command)
@@ -43,7 +35,7 @@
         @csrf
         @include('platform::partials.confirm')
 
-        <input type="hidden" name="_state" id="screen-state" value="{{ $state }}">
+        @includeWhen(isset($state), 'platform::partials.state')
     </form>
 
     <div data-controller="filter">
