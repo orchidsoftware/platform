@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Container\Container;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -12,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
 use Laravel\SerializableClosure\SerializableClosure;
@@ -121,6 +121,8 @@ abstract class Screen extends Controller
 
         abort_unless(method_exists($this, $method), 404, "Async method: {$method} not found");
 
+        abort_unless($this->checkAccess(request()), static::unaccessed());
+
         $state = $this->extractState();
 
         $this->fillPublicProperty($state);
@@ -160,7 +162,11 @@ abstract class Screen extends Controller
         }
 
         // Extract the encrypted state from the '_state' parameter, and deserialize it
-        $state = unserialize(Crypt::decryptString(request()->get('_state')));
+        $data = config('platform.state.crypt', false) === true
+            ? Crypt::decryptString(request()->get('_state'))
+            : base64_decode(request()->get('_state'));
+
+        $state = unserialize($data);
 
         // Return the deserialized state
         return $state();
@@ -199,7 +205,9 @@ abstract class Screen extends Controller
     {
         $state = serialize(new SerializableClosure(fn () => $values));
 
-        return Crypt::encryptString($state);
+        return config('platform.state.crypt', false) === true
+            ? Crypt::encryptString($state)
+            : base64_encode($state);
     }
 
     /**
@@ -228,7 +236,7 @@ abstract class Screen extends Controller
 
         collect($reflections)
             ->map(fn (\ReflectionProperty $property) => $property->getName())
-            ->each(fn (string $key) => $this->$key = $repository->get($key));
+            ->each(fn (string $key) => $this->$key = $repository->get($key, $this->$key));
     }
 
     /**
@@ -340,9 +348,29 @@ abstract class Screen extends Controller
      */
     private function callMethod(string $method, array $parameters = [])
     {
-        return call_user_func_array([$this, $method],
-            $this->resolveDependencies($method, $parameters)
-        );
+        if (Dashboard::isPartialRequest()) {
+            $parameters = $this->resolveDependencies($method, $parameters);
+
+            return call_user_func_array([$this, $method],
+                $this->resolveDependencies($method, $parameters)
+            );
+        }
+
+
+        $uses = static::class.'@'.$method;
+
+
+        $route = request()->route();
+
+        if ($route !== null) {
+            $route = $route->uses($uses);
+            Route::substituteBindings($route);
+            Route::substituteImplicitBindings($route);
+
+            $parameters = $route->parameters();
+        }
+
+        return App::call(static::class.'@'.$method, $parameters);
     }
 
     /**
