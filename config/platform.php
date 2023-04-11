@@ -45,8 +45,8 @@ return [
     |
     */
     'middleware'    => [
-        'public'  => ['web'],
-        'private' => ['web', 'platform'],
+        'public'  => ['web', 'cache.headers:private;must_revalidate;etag'],
+        'private' => ['web', 'platform', 'cache.headers:private;must_revalidate;etag'],
     ],
 
     /*
@@ -247,7 +247,7 @@ return [
 
     'turbo'         => [
         'enabled' => true,
-        'cache'   => false,
+        'cache'   => true,
     ],
 
     /*
