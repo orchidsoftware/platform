@@ -356,9 +356,7 @@ abstract class Screen extends Controller
             );
         }
 
-
         $uses = static::class.'@'.$method;
-
 
         $route = request()->route();
 
