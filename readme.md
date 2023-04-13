@@ -1,5 +1,5 @@
 <p align="center"> 
- <a href="https://orchid.software/"><img src="https://orchid.software/img/logo-laravel-style.svg" alt="Laravel Orchid" height="48"></a>
+ <a href="https://orchid.software/"><img src="https://raw.githubusercontent.com/orchidsoftware/.github/e23597cffa8cbf24d47913ce903fcc7aa4a59335/web/avatars/orchid-github-splash.svg" alt="Laravel Orchid"></a>
 </p>
 
 
