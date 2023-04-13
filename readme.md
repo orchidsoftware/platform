@@ -41,7 +41,7 @@ Orchid is a free [Laravel](https://laravel.com) package that abstracts standard 
 
 Curious but not (yet) in the mood to read the documentation? Click [here](https://demo.orchid.software/login), to experience a live demo of Orchid.
 
-
+<!--
 ## Getting started
 
 ### Documentation
@@ -49,7 +49,7 @@ Curious but not (yet) in the mood to read the documentation? Click [here](https:
 * 🌍 [Documentation & Quick Start Guide](https://orchid.software/en/docs)
 * 🇷🇺 Чтобы ознакомиться с руководством, посетите сайт [orchid.software](https://orchid.software/ru/docs)
 
-<!--
+
 ### Blog
 
 Orchid's [blog](https://blog.orchid.software/) informs about news and announcements around Laravel Orchid, including related projects.
