@@ -1,9 +1,11 @@
 <p align="center"> 
- <a href="https://orchid.software/"><img src="https://orchid.software/img/logo-laravel-style.svg" alt="Laravel Orchid" height="48"></a>
+ <a href="https://orchid.software/"><img src="https://raw.githubusercontent.com/orchidsoftware/.github/e23597cffa8cbf24d47913ce903fcc7aa4a59335/web/avatars/orchid-github-splash.svg" alt="Laravel Orchid"></a>
 </p>
 
 
 <h4 align="center">For the full documentation, visit <a href="http://orchid.software">orchid.software</a>.</h4>
+
+Orchid is a free [Laravel](https://laravel.com) package that abstracts standard business logic and allows code-driven rapid application development of back-office applications, admin/user panels, and dashboards.
 
 <p align="center">
 <a href="https://github.com/orchidsoftware/platform/actions"><img src="https://github.com/orchidsoftware/platform/workflows/Tests/badge.svg"></a>
@@ -11,19 +13,6 @@
 <a href="https://packagist.org/packages/orchid/platform"><img alt="Packagist" src="https://img.shields.io/packagist/dt/orchid/platform.svg"></a>
 <a href="https://opencollective.com/orchid"><img src="https://img.shields.io/opencollective/all/orchid" alt="Open Collective backers and sponsors"></a>
 </p>
-
-## Introduction
-
-Orchid is a free [Laravel](https://laravel.com) package that abstracts standard business logic and allows code-driven rapid application development of back-office applications, admin/user panels, and dashboards.
-
-
- ### Live Demo
- 
-<a href="https://demo.orchid.software/login">
-  <img src="https://raw.githubusercontent.com/orchidsoftware/platform/master/.github/IMAGES/promo-full.png" alt="Laravel Orchid Platform" align="center" />
-</a>
-
-Curious but not (yet) in the mood to read the documentation? Click [here](https://demo.orchid.software/login), to experience a live demo of Orchid.
 
 
 ### Interesting Features
@@ -43,6 +32,16 @@ Curious but not (yet) in the mood to read the documentation? Click [here](https:
 - **Multiple Notifications Types** - Orchid offers [various types of notifications](https://orchid.software/en/docs/alert/) and allows your application to keep your users informed appropriately.
 
 
+
+### Live Demo
+ 
+<a href="https://demo.orchid.software/login">
+  <img src="https://raw.githubusercontent.com/orchidsoftware/platform/master/.github/IMAGES/promo-full.png" alt="Laravel Orchid Platform" align="center" />
+</a>
+
+Curious but not (yet) in the mood to read the documentation? Click [here](https://demo.orchid.software/login), to experience a live demo of Orchid.
+
+<!--
 ## Getting started
 
 ### Documentation
@@ -50,7 +49,7 @@ Curious but not (yet) in the mood to read the documentation? Click [here](https:
 * 🌍 [Documentation & Quick Start Guide](https://orchid.software/en/docs)
 * 🇷🇺 Чтобы ознакомиться с руководством, посетите сайт [orchid.software](https://orchid.software/ru/docs)
 
-<!--
+
 ### Blog
 
 Orchid's [blog](https://blog.orchid.software/) informs about news and announcements around Laravel Orchid, including related projects.
@@ -72,10 +71,11 @@ Join our [Global Community](https://t.me/orchid_community), [Russian Community](
 
 Join our [Discord](https://discord.gg/NxXhSHa5tq) server to chat with other Orchid users and the development team.
  
-
+<!--
 ## Changelog
 
 We actively and continuously maintain a [changelog](CHANGELOG.md) that informs about Orchid's history of improvements, bug fixes, and changes.
+-->
 
 ## Support Orchid
 
