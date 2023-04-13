@@ -4,6 +4,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | UserPresenter classname
+    |--------------------------------------------------------------------------
+    |
+    | This value is the classname of UserPresenter inside your app root namespace.
+    | You should change this value to your own classname if you have changed app
+    | root namespace via `php artisan app:name` command.
+    |
+    */
+
+    'user_presenter_class' => 'App\Orchid\Presenters\UserPresenter',
+
+    /*
+    |--------------------------------------------------------------------------
     | Sub-Domain Routing
     |--------------------------------------------------------------------------
     |
