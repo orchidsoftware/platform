@@ -14,8 +14,6 @@ Orchid is a free [Laravel](https://laravel.com) package that abstracts standard 
 <a href="https://opencollective.com/orchid"><img src="https://img.shields.io/opencollective/all/orchid" alt="Open Collective backers and sponsors"></a>
 </p>
 
-Curious but not (yet) in the mood to read the documentation? Click [here](https://demo.orchid.software/login), to experience a live demo of Orchid.
-
 
 ### Interesting Features
 
@@ -40,6 +38,9 @@ Curious but not (yet) in the mood to read the documentation? Click [here](https:
 <a href="https://demo.orchid.software/login">
   <img src="https://raw.githubusercontent.com/orchidsoftware/platform/master/.github/IMAGES/promo-full.png" alt="Laravel Orchid Platform" align="center" />
 </a>
+
+Curious but not (yet) in the mood to read the documentation? Click [here](https://demo.orchid.software/login), to experience a live demo of Orchid.
+
 
 ## Getting started
 
