@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Actions;
 
+use Illuminate\Support\Facades\Route;
 use Orchid\Screen\Action;
 use Orchid\Support\Facades\Dashboard;
 
@@ -72,14 +73,14 @@ class Button extends Action
                 return;
             }
 
-            // correct URL for async request
-            $url = Dashboard::isPartialRequest()
-                ? url()->previous()
-                : url()->current();
 
-            $query = http_build_query($this->get('parameters'));
+            $action = route('platform.action', [
+                'screen' => Dashboard::getCurrentScreen()?->routeName() ?? '#',
+                'method' => $this->get('method', '#'),
+                ...Route::current()?->parameters() ?? [],
+                ...$this->get('parameters', []),
+            ]);
 
-            $action = rtrim("{$url}/{$this->get('method')}?{$query}", '/?');
             $this->set('action', $action);
         })->addBeforeRender(function () {
             $action = $this->get('action');

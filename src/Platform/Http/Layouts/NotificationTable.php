@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Layouts;
 
+use Orchid\Platform\Http\Screens\NotificationScreen;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
@@ -26,6 +27,11 @@ class NotificationTable extends Table
                 ->cantHide()
                 ->render(static fn ($notification) => view('platform::partials.notification', [
                     'notification' => $notification,
+                    'action' => route('platform.action', [
+                        'screen'       => NotificationScreen::routeName(),
+                        'method'       => 'maskNotification',
+                        'notification' => $notification,
+                    ])
                 ])),
         ];
     }

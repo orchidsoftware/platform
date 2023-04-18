@@ -7,6 +7,7 @@ use Orchid\Platform\Http\Controllers\AsyncController;
 use Orchid\Platform\Http\Controllers\AttachmentController;
 use Orchid\Platform\Http\Controllers\IndexController;
 use Orchid\Platform\Http\Controllers\RelationController;
+use Orchid\Platform\Http\Controllers\ActionController;
 use Orchid\Platform\Http\Screens\NotificationScreen;
 use Orchid\Platform\Http\Screens\SearchScreen;
 use Tabuna\Breadcrumbs\Trail;
@@ -24,6 +25,9 @@ Route::screen('search/{query}', SearchScreen::class)
 
 Route::post('async/{screen}/{method?}/{template?}', [AsyncController::class, 'load'])
     ->name('async');
+
+Route::post('action/{screen}/{method}', ActionController::class)
+    ->name('action');
 
 // TODO: Remove group
 Route::prefix('systems')->group(function () {

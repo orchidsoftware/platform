@@ -6,7 +6,6 @@ namespace Orchid\Screen;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
@@ -29,13 +28,6 @@ use Throwable;
 abstract class Screen extends Controller
 {
     use Commander;
-
-    /**
-     * The number of predefined arguments in the route.
-     *
-     * Example: dashboard/my-screen/{method?}
-     */
-    private const COUNT_ROUTE_VARIABLES = 1;
 
     /**
      * The base view that will be rendered.
@@ -72,11 +64,6 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @var Repository
-     */
-    private $source;
-
-    /**
      * The command buttons for this screen.
      *
      * @return Action[]
@@ -92,6 +79,17 @@ abstract class Screen extends Controller
      * @return Layout[]
      */
     abstract public function layout(): iterable;
+
+    /**
+     * @param ...$parameters
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse|\Illuminate\View\View|mixed
+     * @throws \Throwable
+     */
+    public function __invoke(...$parameters)
+    {
+        return $this->handle($parameters);
+    }
 
     /**
      * Builds the screen using the given data repository.
@@ -110,17 +108,16 @@ abstract class Screen extends Controller
     /**
      * Builds the screen asynchronously using the given method and template slug.
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @return \Illuminate\Http\Response
      * @throws \ReflectionException
      *
-     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function asyncBuild(string $method, string $slug)
     {
         Dashboard::setCurrentScreen($this, true);
 
-        abort_unless(method_exists($this, $method), 404, "Async method: {$method} not found");
-
+        abort_unless(static::isMethodAvailable($method), 404, "Async method: {$method} not found");
         abort_unless($this->checkAccess(request()), static::unaccessed());
 
         $state = $this->extractState();
@@ -128,16 +125,19 @@ abstract class Screen extends Controller
         $this->fillPublicProperty($state);
 
         $parameters = request()->collect()->merge([
-            'state'   => $state,
+            'state' => $state,
         ])->toArray();
 
-        $repository = $this->callMethod($method, $parameters);
+        $repository = call_user_func_array([$this, $method],
+            $this->resolveDependencies($method, $parameters)
+        );
 
         if (is_array($repository)) {
             $repository = new Repository($repository);
         }
 
-        $view = $this->view($repository)->fragments(collect($slug)->push('screen-state')->toArray());
+        $view = $this->view($repository)
+            ->fragments(collect($slug)->push('screen-state')->toArray());
 
         return response($view)
             ->header('Content-Type', 'text/vnd.turbo-stream.html');
@@ -148,10 +148,10 @@ abstract class Screen extends Controller
      * If the '_state' parameter is missing, an empty Repository object is returned.
      * Otherwise, the state is extracted from the encrypted '_state' parameter, deserialized and returned.
      *
-     * @throws \Psr\Container\ContainerExceptionInterface - If the container cannot provide the dependency injection for a class.
+     * @return \Orchid\Screen\Repository - The extracted state.
      * @throws \Psr\Container\NotFoundExceptionInterface  - If the container cannot find a required dependency injection for a class.
      *
-     * @return \Orchid\Screen\Repository - The extracted state.
+     * @throws \Psr\Container\ContainerExceptionInterface - If the container cannot provide the dependency injection for a class.
      */
     protected function extractState(): Repository
     {
@@ -173,16 +173,13 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @throws \Throwable
+     * @param \Orchid\Screen\Repository $repository
      *
-     * @return Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\View
+     * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
      */
-    public function view(array|Repository $httpQueryArguments = [])
+    public function view(Repository $repository): View
     {
-        $repository = is_a($httpQueryArguments, Repository::class)
-            ? $httpQueryArguments
-            : $this->buildQueryRepository($httpQueryArguments);
-
         return view($this->screenBaseView(), [
             'name'                    => $this->name(),
             'description'             => $this->description(),
@@ -197,32 +194,17 @@ abstract class Screen extends Controller
     /**
      * @param $values
      *
+     * @return string
      * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
      *
-     * @return string
      */
     protected function serializableState($values): string
     {
-        $state = serialize(new SerializableClosure(fn () => $values));
+        $state = serialize(new SerializableClosure(fn() => $values));
 
         return config('platform.state.crypt', false) === true
             ? Crypt::encryptString($state)
             : base64_encode($state);
-    }
-
-    /**
-     * @param array $httpQueryArguments
-     *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     * @throws \ReflectionException
-     *
-     * @return \Orchid\Screen\Repository
-     */
-    protected function buildQueryRepository(array $httpQueryArguments = []): Repository
-    {
-        $query = $this->callMethod('query', $httpQueryArguments);
-
-        return tap(new Repository($query), fn (Repository $repository) =>  $this->fillPublicProperty($repository));
     }
 
     /**
@@ -235,8 +217,8 @@ abstract class Screen extends Controller
         $reflections = (new \ReflectionClass($this))->getProperties(\ReflectionProperty::IS_PUBLIC);
 
         collect($reflections)
-            ->map(fn (\ReflectionProperty $property) => $property->getName())
-            ->each(fn (string $key) => $this->$key = $repository->get($key, $this->$key));
+            ->map(fn(\ReflectionProperty $property) => $property->getName())
+            ->each(fn(string $key) => $this->$key = $repository->get($key, $this->$key));
     }
 
     /**
@@ -252,28 +234,17 @@ abstract class Screen extends Controller
     /**
      * @param mixed ...$parameters
      *
+     * @return Factory|View|\Illuminate\View\View|mixed
      * @throws Throwable
      *
-     * @return Factory|View|\Illuminate\View\View|mixed
      */
-    public function handle(Request $request, ...$parameters)
+    public function handle(...$parameters)
     {
-        Dashboard::setCurrentScreen($this);
+        $state = new Repository($this->callMethod('query', $parameters));
 
-        abort_unless($this->checkAccess($request), static::unaccessed());
+        $this->fillPublicProperty($state);
 
-        if ($request->isMethod('GET')) {
-            return $this->redirectOnGetMethodCallOrShowView($parameters);
-        }
-
-        $method = Route::current()->parameter('method', Arr::last($parameters));
-
-        $prepare = collect($parameters)
-            ->merge($request->query())
-            ->diffAssoc($method)
-            ->all();
-
-        return $this->callMethod($method, $prepare) ?? back();
+        return $this->view($state);
     }
 
     /**
@@ -317,46 +288,22 @@ abstract class Screen extends Controller
     }
 
     /**
-     * Defines the URL to represent
-     * the page based on the calculation of link arguments.
-     *
-     *
-     * @throws \ReflectionException
-     * @throws \Throwable
-     *
-     * @return Factory|RedirectResponse|\Illuminate\View\View
-     */
-    protected function redirectOnGetMethodCallOrShowView(array $httpQueryArguments)
-    {
-        $expectedArg = count(Route::current()->getCompiled()->getVariables()) - self::COUNT_ROUTE_VARIABLES;
-        $realArg = count($httpQueryArguments);
-
-        if ($realArg <= $expectedArg) {
-            return $this->view($httpQueryArguments);
-        }
-
-        array_pop($httpQueryArguments);
-
-        return redirect()->action([static::class, 'handle'], $httpQueryArguments);
-    }
-
-    /**
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     * @throws \ReflectionException
-     *
      * @return mixed
+     * @throws \ReflectionException
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    private function callMethod(string $method, array $parameters = [])
+    public function callMethod(string $method, array $parameters = [])
     {
-        if (Dashboard::isPartialRequest()) {
-            $parameters = $this->resolveDependencies($method, $parameters);
+        Dashboard::setCurrentScreen($this);
 
-            return call_user_func_array([$this, $method],
-                $this->resolveDependencies($method, $parameters)
-            );
-        }
+        $state = $this->extractState();
+        $this->fillPublicProperty($state);
 
-        $uses = static::class.'@'.$method;
+        abort_unless($this->checkAccess(\request()), static::unaccessed());
+
+
+        $uses = static::class . '@' . $method;
 
         $route = request()->route();
 
@@ -365,10 +312,18 @@ abstract class Screen extends Controller
             Route::substituteBindings($route);
             Route::substituteImplicitBindings($route);
 
-            $parameters = $route->parameters();
+            $parameters = array_merge($parameters, $route->parameters());
         }
 
-        return App::call(static::class.'@'.$method, $parameters);
+        if(\request()->isMethodSafe()){
+            return App::call(static::class . '@' . $method, $parameters) ?? back();
+        }
+
+        return call_user_func_array([$this, $method],
+            $this->resolveDependencies($method, $parameters)
+        ) ?? back();
+
+        return App::call(static::class . '@' . $method, $parameters) ?? back();
     }
 
     /**
@@ -381,14 +336,34 @@ abstract class Screen extends Controller
             ->getMethods(\ReflectionMethod::IS_PUBLIC);
 
         return collect($class)
-            ->mapWithKeys(fn (\ReflectionMethod $method) => [$method->name => $method])
+            ->mapWithKeys(fn(\ReflectionMethod $method) => [$method->name => $method])
             ->except(get_class_methods(Screen::class))
             ->except(['query'])
             /*
              * Route filtering requires at least one element to be present.
              * We set __invoke by default, since it must be public.
              */
-            ->whenEmpty(fn () => collect('__invoke'))
+            ->whenEmpty(fn() => collect('__invoke'))
             ->keys();
+    }
+
+    /**
+     * @param string $method
+     *
+     * @return bool
+     */
+    public static function isMethodAvailable(string $method): bool
+    {
+        return static::getAvailableMethods()->contains($method);
+    }
+
+    /**
+     * @return string
+     */
+    public static function routeName(): string
+    {
+        return config('platform.state.crypt', false) === true
+            ? Crypt::encryptString(static::class)
+            : base64_encode(static::class);
     }
 }

@@ -32,7 +32,6 @@ class SearchScreen extends Screen
     /**
      * Query data.
      *
-     *
      * @return array
      */
     public function query(string $query): iterable

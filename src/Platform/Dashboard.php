@@ -6,6 +6,7 @@ namespace Orchid\Platform;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
@@ -297,6 +298,9 @@ class Dashboard
     {
         $this->currentScreen = $screen;
         $this->partialRequest = $partialRequest;
+
+        App::singleton($screen::class, static fn() => $screen);
+        App::rebinding($screen::class, static fn() => app($screen::class));
 
         return $this;
     }

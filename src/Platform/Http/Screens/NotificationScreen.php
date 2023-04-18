@@ -109,10 +109,10 @@ class NotificationScreen extends Screen
     /**
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function maskNotification(string $id, Request $request)
+    public function maskNotification(string $notification, Request $request)
     {
         $notification = $this->prepareUserNotificationRelation($request->user())
-            ->where('id', $id)
+            ->where('id', $notification)
             ->firstOrFail();
 
         $notification->markAsRead();

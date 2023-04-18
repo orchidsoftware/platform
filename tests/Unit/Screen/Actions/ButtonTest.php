@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Fields;
 
+use App\Orchid\Screens\PlatformScreen;
 use Orchid\Screen\Actions\Button;
+use Orchid\Support\Facades\Dashboard;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 /**
@@ -14,8 +16,7 @@ class ButtonTest extends TestFieldsUnitCase
 {
     public function testButtonInstance(): void
     {
-        $button = Button::make('About')
-            ->method('test');
+        $button = Button::make('About')->action('http://127.0.0.1:8001/test');
 
         $view = self::renderField($button);
 
@@ -28,7 +29,7 @@ class ButtonTest extends TestFieldsUnitCase
     public function testButtonParams(): void
     {
         $button = Button::make('About')
-            ->method('test')
+            ->action('http://127.0.0.1:8001/test')
             ->parameters([
                 'name' => 'Alexandr',
             ]);
@@ -44,7 +45,7 @@ class ButtonTest extends TestFieldsUnitCase
     public function testButtonTitle(): void
     {
         $button = Button::make('About')
-            ->method('test')
+            ->action('http://127.0.0.1:8001/test')
             ->title('Submit form');
 
         $view = self::renderField($button);
@@ -58,7 +59,7 @@ class ButtonTest extends TestFieldsUnitCase
     public function testButtonDisableTurbolinks(): void
     {
         $button = Button::make('About')
-            ->method('test')
+            ->action('http://127.0.0.1:8001/test')
             ->rawClick();
 
         $view = self::renderField($button);
@@ -72,7 +73,7 @@ class ButtonTest extends TestFieldsUnitCase
     public function testButtonEnabledTurbolinks(): void
     {
         $button = Button::make('About')
-            ->method('test')
+            ->action('http://127.0.0.1:8001/test')
             ->rawClick(true);
 
         $view = self::renderField($button);
@@ -109,7 +110,7 @@ class ButtonTest extends TestFieldsUnitCase
     public function testButtonWhenDisable()
     {
         $button = Button::make('About')
-            ->method('test')
+            ->action('http://127.0.0.1:8001/test')
             ->when(true, function (Button $button) {
                 $button->disabled(true);
             });
@@ -119,7 +120,7 @@ class ButtonTest extends TestFieldsUnitCase
         $this->assertStringContainsString('disabled', $view);
 
         $button = Button::make('About')
-            ->method('test')
+            ->action('http://127.0.0.1:8001/test')
             ->when(false, function (Button $button) {
                 $button->disabled(true);
             });
@@ -131,6 +132,8 @@ class ButtonTest extends TestFieldsUnitCase
 
     public function testButtonMethodParameters(): void
     {
+        Dashboard::setCurrentScreen(new PlatformScreen());
+
         $button = Button::make('About')
             ->method('test', [
                 'id' => 1,
@@ -139,13 +142,15 @@ class ButtonTest extends TestFieldsUnitCase
         $view = self::renderField($button);
 
         $this->assertStringContainsString(
-            'formaction="http://127.0.0.1:8001/test?id=1',
+            'http://127.0.0.1:8001/dashboard/action/QXBwXE9yY2hpZFxTY3JlZW5zXFBsYXRmb3JtU2NyZWVu/test?id=1',
             $view
         );
     }
 
     public function testButtonMethodParametersOverwrite(): void
     {
+        Dashboard::setCurrentScreen(new PlatformScreen());
+
         $button = Button::make('About')
             ->parameters([
                 'id' => 1,
@@ -155,7 +160,7 @@ class ButtonTest extends TestFieldsUnitCase
         $view = self::renderField($button);
 
         $this->assertStringContainsString(
-            'formaction="http://127.0.0.1:8001/test?id=1',
+            'http://127.0.0.1:8001/dashboard/action/QXBwXE9yY2hpZFxTY3JlZW5zXFBsYXRmb3JtU2NyZWVu/test?id=1',
             $view
         );
     }

@@ -97,6 +97,8 @@ class UserListScreen extends Screen
 
     public function saveUser(Request $request, User $user): void
     {
+        dd('test');
+
         $request->validate([
             'user.email' => [
                 'required',

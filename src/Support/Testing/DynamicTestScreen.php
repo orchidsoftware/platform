@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\Authenticatable as UserContract;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Illuminate\Testing\TestResponse;
+use Orchid\Support\Facades\Dashboard;
 
 class DynamicTestScreen
 {
@@ -55,6 +56,8 @@ class DynamicTestScreen
         Route::getRoutes()->refreshNameLookups();
         Route::getRoutes()->refreshActionLookups();
 
+        Dashboard::setCurrentScreen(app($screen));
+
         return $this;
     }
 
@@ -98,17 +101,20 @@ class DynamicTestScreen
      */
     public function method(string $method, array $parameters = [], array $headers = []): TestResponse
     {
-        $route = $this->route(array_merge(
-            $this->parameters,
-            ['method' => $method]
-        ));
+        $action = route('platform.action', [
+            'screen' => Dashboard::getCurrentScreen()->routeName(),
+            'method' => $method,
+            ...$this->parameters,
+        ]);
+
+        $route = $this->route($this->parameters);
 
         $this->from($route);
 
         return $this->http
             ->withSession($this->session)
             ->followingRedirects()
-            ->post($route, $parameters, $headers);
+            ->post($action, $parameters, $headers);
     }
 
     /**

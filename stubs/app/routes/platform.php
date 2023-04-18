@@ -15,6 +15,7 @@ use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
+use App\Orchid\Screens\Examples\ExampleGridScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
@@ -96,6 +97,7 @@ Route::screen('/form/examples/editors', ExampleTextEditorsScreen::class)->name('
 Route::screen('/form/examples/actions', ExampleActionsScreen::class)->name('platform.example.actions');
 
 Route::screen('/layout/examples/layouts', ExampleLayoutsScreen::class)->name('platform.example.layouts');
+Route::screen('/layout/examples/grid', ExampleGridScreen::class)->name('platform.example.grid');
 Route::screen('/charts/examples/charts', ExampleChartsScreen::class)->name('platform.example.charts');
 Route::screen('/cards/examples/cards', ExampleCardsScreen::class)->name('platform.example.cards');
 

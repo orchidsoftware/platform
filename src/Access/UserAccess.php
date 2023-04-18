@@ -212,7 +212,7 @@ trait UserAccess
     /**
      * @throws Exception
      */
-    public function delete(): bool
+    public function delete(): ?bool
     {
         $isSoftDeleted = array_key_exists(SoftDeletes::class, class_uses($this));
 

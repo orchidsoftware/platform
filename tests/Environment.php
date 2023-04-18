@@ -11,6 +11,19 @@ use Orchid\Platform\Providers\FoundationServiceProvider;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
 use Orchid\Tests\App\ExemplarServiceProvider;
+use Orchid\Tests\App\Fields\BaseSelectScreen;
+use Orchid\Tests\App\Screens\AsyncHeaderButtonActionScreen;
+use Orchid\Tests\App\Screens\ConfirmScreen;
+use Orchid\Tests\App\Screens\DependentListenerModalScreen;
+use Orchid\Tests\App\Screens\DependentListenerScreen;
+use Orchid\Tests\App\Screens\ItemAddChildScreen;
+use Orchid\Tests\App\Screens\ItemListScreen;
+use Orchid\Tests\App\Screens\MethodsResponseScreen;
+use Orchid\Tests\App\Screens\ModalValidationScreen;
+use Orchid\Tests\App\Screens\ModelAutoOpenScreen;
+use Orchid\Tests\App\Screens\NestedTargetsDependentSumListenerScreen;
+use Orchid\Tests\App\Screens\PropertyAutoWriteScreen;
+use Orchid\Tests\App\Screens\UnaccessedScreen;
 use Tabuna\Breadcrumbs\Breadcrumbs;
 use Tabuna\Breadcrumbs\BreadcrumbsServiceProvider;
 use Watson\Active\Active;
@@ -67,6 +80,7 @@ trait Environment
 
         $config->set('app.debug', true);
         $config->set('auth.providers.users.model', User::class);
+        $config->set('platform.state.crypt', false);
 
         // set up database configuration
         $config->set('database.connections.orchid', [
@@ -99,7 +113,30 @@ trait Environment
      */
     protected function defineRoutes($router)
     {
-        // Define routes.
+        $router->domain((string) config('platform.domain'))
+            ->prefix(\Orchid\Platform\Dashboard::prefix('/'))
+            ->middleware(config('platform.middleware.private'))
+            ->as('test.')
+            ->group(function ($route) {
+                $route->screen('modal-validation', ModalValidationScreen::class)->name('modal-validation');
+                $route->screen('modal-open', ModelAutoOpenScreen::class)->name('modal-open');
+                $route->screen('dependent-listener-nested-targets', NestedTargetsDependentSumListenerScreen::class)->name('dependent-listener-nested-targets');
+                $route->screen('dependent-listener', DependentListenerScreen::class)->name('dependent-listener');
+                $route->screen('dependent-listener-modal', DependentListenerModalScreen::class)->name('dependent-listener-modal');
+                $route->screen('methods-response', MethodsResponseScreen::class)->name('methods-response');
+                $route->screen('confirm', ConfirmScreen::class)->name('confirm');
+                $route->screen('async-header-button-action', AsyncHeaderButtonActionScreen::class)->name('async-header-button-action');
+                $route->screen('write-only-public-property', PropertyAutoWriteScreen::class)->name('write-only-public-property');
+
+                $route->screen('unaccessed', UnaccessedScreen::class)->name('unaccessed');
+
+                // Fields
+                $route->screen('fields/base-select-screen', BaseSelectScreen::class)->name('base-select-screen');
+
+                //issue 2517
+                $route->screen('item/{parentId}/addChild', ItemAddChildScreen::class)->name('item.addchild');
+                $route->screen('items', ItemListScreen::class)->name('items');
+            });
     }
 
     /**

@@ -1,4 +1,4 @@
-<button formaction="{{ url()->current() }}/{{ $notification->id }}/maskNotification"
+<button formaction="{{ $action }}"
         type="submit"
         class="btn btn-link text-start p-4 d-flex align-items-baseline">
 

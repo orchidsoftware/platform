@@ -226,14 +226,7 @@ class FoundationServiceProvider extends ServiceProvider
         $this->app->singleton(Dashboard::class, static fn () => new Dashboard());
 
         if (! Route::hasMacro('screen')) {
-            Route::macro('screen', function ($url, $screen) {
-                /* @var Router $this */
-                $route = $this->match(['GET', 'HEAD', 'POST'], $url.'/{method?}', [$screen, 'handle']);
-
-                $route->where('method', $screen::getAvailableMethods()->implode('|'));
-
-                return $route;
-            });
+            Route::macro('screen', fn ($url, $screen) => $this->get($url, $screen));
         }
 
         $this->mergeConfigFrom(
