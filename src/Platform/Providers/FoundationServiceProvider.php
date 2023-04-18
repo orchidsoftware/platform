@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Illuminate\Foundation\Console\AboutCommand;
-use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;

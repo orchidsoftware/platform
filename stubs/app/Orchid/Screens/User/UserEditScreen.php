@@ -81,7 +81,7 @@ class UserEditScreen extends Screen
                 ->canSee($this->user->exists && \request()->user()->id !== $this->user->id),
 
             Button::make(__('Remove'))
-                 ->icon('bs.trash3')
+                ->icon('bs.trash3')
                 ->confirm(__('Once the account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.'))
                 ->method('remove')
                 ->canSee($this->user->exists),
@@ -105,7 +105,7 @@ class UserEditScreen extends Screen
                 ->commands(
                     Button::make(__('Save'))
                         ->type(Color::BASIC)
-                         ->icon('bs.check-circle')
+                        ->icon('bs.check-circle')
                         ->canSee($this->user->exists)
                         ->method('save')
                 ),
@@ -116,7 +116,7 @@ class UserEditScreen extends Screen
                 ->commands(
                     Button::make(__('Save'))
                         ->type(Color::BASIC)
-                         ->icon('bs.check-circle')
+                        ->icon('bs.check-circle')
                         ->canSee($this->user->exists)
                         ->method('save')
                 ),
@@ -127,7 +127,7 @@ class UserEditScreen extends Screen
                 ->commands(
                     Button::make(__('Save'))
                         ->type(Color::BASIC)
-                         ->icon('bs.check-circle')
+                        ->icon('bs.check-circle')
                         ->canSee($this->user->exists)
                         ->method('save')
                 ),
@@ -138,7 +138,7 @@ class UserEditScreen extends Screen
                 ->commands(
                     Button::make(__('Save'))
                         ->type(Color::BASIC)
-                         ->icon('bs.check-circle')
+                        ->icon('bs.check-circle')
                         ->canSee($this->user->exists)
                         ->method('save')
                 ),

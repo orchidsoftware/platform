@@ -27,11 +27,11 @@ class NotificationTable extends Table
                 ->cantHide()
                 ->render(static fn ($notification) => view('platform::partials.notification', [
                     'notification' => $notification,
-                    'action' => route('platform.action', [
+                    'action'       => route('platform.action', [
                         'screen'       => NotificationScreen::routeName(),
                         'method'       => 'maskNotification',
                         'notification' => $notification,
-                    ])
+                    ]),
                 ])),
         ];
     }

@@ -83,8 +83,9 @@ abstract class Screen extends Controller
     /**
      * @param ...$parameters
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse|\Illuminate\View\View|mixed
      * @throws \Throwable
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse|\Illuminate\View\View|mixed
      */
     public function __invoke(...$parameters)
     {
@@ -108,10 +109,10 @@ abstract class Screen extends Controller
     /**
      * Builds the screen asynchronously using the given method and template slug.
      *
-     * @return \Illuminate\Http\Response
      * @throws \ReflectionException
-     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
+     * @return \Illuminate\Http\Response
      */
     public function asyncBuild(string $method, string $slug)
     {
@@ -148,10 +149,10 @@ abstract class Screen extends Controller
      * If the '_state' parameter is missing, an empty Repository object is returned.
      * Otherwise, the state is extracted from the encrypted '_state' parameter, deserialized and returned.
      *
-     * @return \Orchid\Screen\Repository - The extracted state.
      * @throws \Psr\Container\NotFoundExceptionInterface  - If the container cannot find a required dependency injection for a class.
-     *
      * @throws \Psr\Container\ContainerExceptionInterface - If the container cannot provide the dependency injection for a class.
+     *
+     * @return \Orchid\Screen\Repository - The extracted state.
      */
     protected function extractState(): Repository
     {
@@ -175,8 +176,9 @@ abstract class Screen extends Controller
     /**
      * @param \Orchid\Screen\Repository $repository
      *
-     * @return \Illuminate\Contracts\View\View
      * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
+     *
+     * @return \Illuminate\Contracts\View\View
      */
     public function view(Repository $repository): View
     {
@@ -194,13 +196,13 @@ abstract class Screen extends Controller
     /**
      * @param $values
      *
-     * @return string
      * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
      *
+     * @return string
      */
     protected function serializableState($values): string
     {
-        $state = serialize(new SerializableClosure(fn() => $values));
+        $state = serialize(new SerializableClosure(fn () => $values));
 
         return config('platform.state.crypt', false) === true
             ? Crypt::encryptString($state)
@@ -217,8 +219,8 @@ abstract class Screen extends Controller
         $reflections = (new \ReflectionClass($this))->getProperties(\ReflectionProperty::IS_PUBLIC);
 
         collect($reflections)
-            ->map(fn(\ReflectionProperty $property) => $property->getName())
-            ->each(fn(string $key) => $this->$key = $repository->get($key, $this->$key));
+            ->map(fn (\ReflectionProperty $property) => $property->getName())
+            ->each(fn (string $key) => $this->$key = $repository->get($key, $this->$key));
     }
 
     /**
@@ -234,9 +236,9 @@ abstract class Screen extends Controller
     /**
      * @param mixed ...$parameters
      *
-     * @return Factory|View|\Illuminate\View\View|mixed
      * @throws Throwable
      *
+     * @return Factory|View|\Illuminate\View\View|mixed
      */
     public function handle(...$parameters)
     {
@@ -288,10 +290,10 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @return mixed
      * @throws \ReflectionException
-     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
+     * @return mixed
      */
     public function callMethod(string $method, array $parameters = [])
     {
@@ -302,8 +304,7 @@ abstract class Screen extends Controller
 
         abort_unless($this->checkAccess(\request()), static::unaccessed());
 
-
-        $uses = static::class . '@' . $method;
+        $uses = static::class.'@'.$method;
 
         $route = request()->route();
 
@@ -315,15 +316,15 @@ abstract class Screen extends Controller
             $parameters = array_merge($parameters, $route->parameters());
         }
 
-        if(\request()->isMethodSafe()){
-            return App::call(static::class . '@' . $method, $parameters) ?? back();
+        if (\request()->isMethodSafe()) {
+            return App::call(static::class.'@'.$method, $parameters) ?? back();
         }
 
         return call_user_func_array([$this, $method],
             $this->resolveDependencies($method, $parameters)
         ) ?? back();
 
-        return App::call(static::class . '@' . $method, $parameters) ?? back();
+        return App::call(static::class.'@'.$method, $parameters) ?? back();
     }
 
     /**
@@ -336,14 +337,14 @@ abstract class Screen extends Controller
             ->getMethods(\ReflectionMethod::IS_PUBLIC);
 
         return collect($class)
-            ->mapWithKeys(fn(\ReflectionMethod $method) => [$method->name => $method])
+            ->mapWithKeys(fn (\ReflectionMethod $method) => [$method->name => $method])
             ->except(get_class_methods(Screen::class))
             ->except(['query'])
             /*
              * Route filtering requires at least one element to be present.
              * We set __invoke by default, since it must be public.
              */
-            ->whenEmpty(fn() => collect('__invoke'))
+            ->whenEmpty(fn () => collect('__invoke'))
             ->keys();
     }
 

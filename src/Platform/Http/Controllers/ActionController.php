@@ -14,9 +14,10 @@ class ActionController extends Controller
      * @param string $screen
      * @param string $method
      *
-     * @return mixed
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \ReflectionException
+     *
+     * @return mixed
      */
     public function __invoke(string $screen, string $method)
     {

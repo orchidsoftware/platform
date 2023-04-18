@@ -73,7 +73,6 @@ class Button extends Action
                 return;
             }
 
-
             $action = route('platform.action', [
                 'screen' => Dashboard::getCurrentScreen()?->routeName() ?? '#',
                 'method' => $this->get('method', '#'),
