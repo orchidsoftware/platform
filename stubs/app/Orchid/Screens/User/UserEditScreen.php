@@ -75,7 +75,7 @@ class UserEditScreen extends Screen
     {
         return [
             Button::make(__('Impersonate user'))
-                ->icon('login')
+                ->icon('bg.box-arrow-in-right')
                 ->confirm(__('You can revert to your original state by logging out.'))
                 ->method('loginAs')
                 ->canSee($this->user->exists && \request()->user()->id !== $this->user->id),

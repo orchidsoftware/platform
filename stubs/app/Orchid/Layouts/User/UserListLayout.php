@@ -53,7 +53,7 @@ class UserListLayout extends Table
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')
                 ->render(fn (User $user) => DropDown::make()
-                    ->icon('options-vertical')
+                    ->icon('bs.three-dots-vertical')
                     ->list([
 
                         Link::make(__('Edit'))

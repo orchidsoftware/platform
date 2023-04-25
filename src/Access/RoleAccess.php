@@ -45,6 +45,14 @@ trait RoleAccess
     }
 
     /**
+     * @return int
+     */
+    public function getCountPermissions(): int
+    {
+        return collect($this->permissions)->filter(fn(int $value) => $value)->count();
+    }
+
+    /**
      * @throws Exception
      */
     public function delete(): ?bool

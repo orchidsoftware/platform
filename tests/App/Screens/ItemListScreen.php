@@ -87,7 +87,7 @@ class ItemListScreen extends Screen
                 TD::make('Actions')
                     ->alignRight()
                     ->render(fn (Repository $model) => DropDown::make()
-                        ->icon('options-vertical')
+                        ->icon('bs.three-dots-vertical')
                         ->list([
 
                             Button::make('Delete Task')
