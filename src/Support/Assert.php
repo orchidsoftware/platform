@@ -31,7 +31,7 @@ class Assert
     /**
      * Check if the given array passes the callback test.
      *
-     * @param mixed $array
+     * @param mixed           $array
      * @param string|\Closure $callback
      */
     public static function isArrayClosure($array, $callback): bool

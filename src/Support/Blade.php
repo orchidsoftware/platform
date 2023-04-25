@@ -23,7 +23,7 @@ class Blade
      * Used to render a Blade component from a class and an array of data
      *
      * @param string $class
-     * @param mixed $data
+     * @param mixed  $data
      *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
@@ -58,10 +58,11 @@ class Blade
      * Get instance of the ViewComponent based on the provided class and data
      *
      * @param string $component
-     * @param mixed $data
-     * @return ViewComponent
+     * @param mixed  $data
      *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
+     * @return ViewComponent
      */
     public static function resolveComponent(string $component, $data): ViewComponent
     {

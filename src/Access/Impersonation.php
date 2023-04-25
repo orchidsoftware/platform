@@ -23,7 +23,7 @@ class Impersonation
     public static function loginAs(User $user): void
     {
         // Store the original authenticated user ID in the session if it's not already there
-        if (!session()->has(self::SESSION_NAME)) {
+        if (! session()->has(self::SESSION_NAME)) {
             session()->put(self::SESSION_NAME, self::getAuth()->id());
         }
 
@@ -51,7 +51,7 @@ class Impersonation
     public static function isSwitch(): bool
     {
         // Start the session if it hasn't been started yet
-        if (!session()->isStarted()) {
+        if (! session()->isStarted()) {
             session()->start();
         }
 
@@ -78,7 +78,7 @@ class Impersonation
     public static function impersonator(): Authenticatable|null
     {
         // Check if there has been a user switch
-        if (!self::isSwitch()) {
+        if (! self::isSwitch()) {
             return null;
         }
 

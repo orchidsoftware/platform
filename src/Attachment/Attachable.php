@@ -17,6 +17,7 @@ trait Attachable
      * Get all of the attachments associated with the given model.
      *
      * @param string|null $group
+     *
      * @return MorphToMany
      */
     public function attachment(string $group = null): MorphToMany

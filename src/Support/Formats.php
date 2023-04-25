@@ -11,8 +11,9 @@ class Formats
     /**
      * Convert a UNIX timestamp to a formatted datetime string.
      *
-     * @param  int  $time  UNIX timestamp
-     * @return string      Formatted Datetime string
+     * @param int $time UNIX timestamp
+     *
+     * @return string Formatted Datetime string
      */
     public static function toDateTimeString(int $time): string
     {

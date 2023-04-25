@@ -33,6 +33,7 @@ abstract class Presenter
      * Allow for property-style retrieval by calling a corresponding method if exists, or just returning the entity property.
      *
      * @param string $property
+     *
      * @return mixed
      */
     public function __get(string $property)
@@ -48,6 +49,7 @@ abstract class Presenter
      * Determine if a property exists on the presenter or the entity.
      *
      * @param string $property
+     *
      * @return bool
      */
     public function __isset(string $property): bool

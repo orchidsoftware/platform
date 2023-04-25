@@ -16,7 +16,6 @@ use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests;
  * This trait contains some helper methods to provide additional functionality
  * to the middleware. Specifically, it provides various HTTP helper methods to
  * simulate basic HTTP requests to endpoints.
- *
  */
 class MakesHttpRequestsWrapper
 {

@@ -33,8 +33,9 @@ class DashboardChannel extends DatabaseChannel
      * @param mixed                                  $notifiable   The notifiable entity instance
      * @param \Illuminate\Notifications\Notification $notification The notification object instance
      *
-     * @return array
      * @throws \RuntimeException
+     *
+     * @return array
      */
     protected function getData($notifiable, Notification $notification): array
     {

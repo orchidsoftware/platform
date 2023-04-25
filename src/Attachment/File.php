@@ -55,9 +55,9 @@ class File
     /**
      * Class constructor
      *
-     * @param UploadedFile $file - the uploaded file object to store
-     * @param string $disk - the disk to use for storage (defaults to the 'public' disk from the config)
-     * @param string $group - the group to associate the file with
+     * @param UploadedFile $file  - the uploaded file object to store
+     * @param string       $disk  - the disk to use for storage (defaults to the 'public' disk from the config)
+     * @param string       $group - the group to associate the file with
      */
     public function __construct(UploadedFile $file, string $disk = null, string $group = null)
     {

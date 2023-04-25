@@ -58,7 +58,7 @@ class Alert
      * Flash a general message.
      *
      * @param string $message The message to flash.
-     * @param Color $color The color of the message (default: Color::INFO).
+     * @param Color  $color   The color of the message (default: Color::INFO).
      *
      * @return $this
      */
@@ -116,12 +116,12 @@ class Alert
      * Flash a view message.
      *
      * @param string $template The name of the view to flash.
-     * @param Color $color The color of the message (default: Color::INFO).
-     * @param array $data The data to pass to the view.
-     *
-     * @return $this
+     * @param Color  $color    The color of the message (default: Color::INFO).
+     * @param array  $data     The data to pass to the view.
      *
      * @throws \Throwable
+     *
+     * @return $this
      */
     public function view(string $template, Color $color = Color::INFO, array $data = []): self
     {

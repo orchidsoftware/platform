@@ -68,7 +68,7 @@ class Generator implements Engine
      */
     public function name(): string
     {
-        return sha1($this->uniqueId . $this->file->getClientOriginalName());
+        return sha1($this->uniqueId.$this->file->getClientOriginalName());
     }
 
     /**
@@ -76,7 +76,7 @@ class Generator implements Engine
      */
     public function fullName(): string
     {
-        return Str::finish($this->name(), '.') . $this->extension();
+        return Str::finish($this->name(), '.').$this->extension();
     }
 
     /**

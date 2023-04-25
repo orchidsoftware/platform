@@ -49,7 +49,8 @@ enum Color
      * It is used to maintain backwards compatibility to 13.0.
      *
      * @param string $name
-     * @param array $arguments
+     * @param array  $arguments
+     *
      * @return \Closure|\Orchid\Support\Color
      */
     public static function __callStatic($name, $arguments)

@@ -57,7 +57,7 @@ class DynamicTestScreen
      */
     public function register(string $screen, string $route = null, $middleware = 'web'): DynamicTestScreen
     {
-        Route::screen('/_test/' . ($route ?? $this->name), $screen)
+        Route::screen('/_test/'.($route ?? $this->name), $screen)
             ->middleware($middleware)
             ->name($this->name);
 
@@ -100,9 +100,10 @@ class DynamicTestScreen
      *
      * @param array $headers Headers to be used
      *
-     * @return \Illuminate\Testing\TestResponse|mixed
      * @throws \Psr\Container\NotFoundExceptionInterface
      * @throws \Psr\Container\ContainerExceptionInterface
+     *
+     * @return \Illuminate\Testing\TestResponse|mixed
      */
     public function display(array $headers = [])
     {

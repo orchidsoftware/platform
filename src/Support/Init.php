@@ -24,9 +24,9 @@ class Init
     /**
      * Converts the size string into bytes.
      *
-     * @param  string  $string  The size string
+     * @param string $string The size string
      *
-     * @return int  The size in bytes
+     * @return int The size in bytes
      */
     public static function toBytes(string $string): int
     {
@@ -59,9 +59,9 @@ class Init
      * Returns the maximum file upload size in bytes or
      * formatted to the provided unit.
      *
-     * @param  string|null  $format  The unit format
+     * @param string|null $format The unit format
      *
-     * @return int|float  The maximum file upload size
+     * @return int|float The maximum file upload size
      */
     public static function maxFileUpload(string $format = null): int
     {
@@ -85,11 +85,11 @@ class Init
     /**
      * Converts the bytes value to the specified unit.
      *
-     * @param  string  $to  The unit to convert to
-     * @param  int|float  $bytes  The size in bytes
-     * @param  int  $point  The decimal point
+     * @param string    $to    The unit to convert to
+     * @param int|float $bytes The size in bytes
+     * @param int       $point The decimal point
      *
-     * @return int|float  The value in the specified unit
+     * @return int|float The value in the specified unit
      */
     public static function convertBytesTo(string $to, $bytes, $point = 0)
     {
