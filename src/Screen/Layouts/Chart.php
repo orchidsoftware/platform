@@ -227,10 +227,10 @@ abstract class Chart extends Layout
         }
 
         $labels = collect($repository->getContent($this->target))
-                ->map(fn ($item) => $item['labels'] ?? [])
-                ->flatten()
-                ->unique()
-                ->toJson(JSON_NUMERIC_CHECK);
+            ->map(fn ($item) => $item['labels'] ?? [])
+            ->flatten()
+            ->unique()
+            ->toJson(JSON_NUMERIC_CHECK);
 
         return view($this->template, [
             'title'            => __($this->title),

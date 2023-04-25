@@ -17,9 +17,9 @@ class CropperTest extends TestFieldsUnitCase
     public function testInstance(): void
     {
         $picture = Cropper::make('picture')
-                ->width(1920)
-                ->height(1020)
-                ->value('https://example.com/img.jpg');
+            ->width(1920)
+            ->height(1020)
+            ->value('https://example.com/img.jpg');
 
         $view = self::renderField($picture);
 

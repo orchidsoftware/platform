@@ -49,7 +49,7 @@ trait RoleAccess
      */
     public function getCountPermissions(): int
     {
-        return collect($this->permissions)->filter(fn(int $value) => $value)->count();
+        return collect($this->permissions)->filter(fn (int $value) => $value)->count();
     }
 
     /**
