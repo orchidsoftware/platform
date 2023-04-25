@@ -12,7 +12,7 @@ class MimeTypes
     /**
      * The instance of Symfony's MimeTypes class.
      *
-     * @var Mime
+     * @var MimeTypes Holds the instance of MimeTypes Symfony's class
      */
     protected $mime;
 

@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Support;
 
+/**
+ * This class represents a list of colors.
+ */
 enum Color
 {
-    /**
-     * Visual style.
-     */
+    // All available colors
     case INFO;
     case SUCCESS;
     case WARNING;
@@ -22,6 +23,11 @@ enum Color
     case LINK;
     case ERROR;
 
+    /**
+     * This method returns the name of the given color.
+     *
+     * @return string
+     */
     public function name(): string
     {
         return match ($this) {
@@ -39,9 +45,11 @@ enum Color
     }
 
     /**
-     * To temporarily maintain backwards compatibility to 13.0
+     * This method returns the color based on the given name.
+     * It is used to maintain backwards compatibility to 13.0.
      *
-     *
+     * @param string $name
+     * @param array $arguments
      * @return \Closure|\Orchid\Support\Color
      */
     public static function __callStatic($name, $arguments)

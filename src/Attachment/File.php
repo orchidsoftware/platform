@@ -18,7 +18,7 @@ use Orchid\Platform\Events\ReplicateFileEvent;
 use Orchid\Platform\Events\UploadFileEvent;
 
 /**
- * Class File.
+ * This class represents an uploaded file that can be saved to the disk
  */
 class File
 {
@@ -53,24 +53,33 @@ class File
     protected $duplicate = false;
 
     /**
-     * File constructor.
+     * Class constructor
+     *
+     * @param UploadedFile $file - the uploaded file object to store
+     * @param string $disk - the disk to use for storage (defaults to the 'public' disk from the config)
+     * @param string $group - the group to associate the file with
      */
     public function __construct(UploadedFile $file, string $disk = null, string $group = null)
     {
+        // Abort the process if the file does not have an observable size
         abort_if($file->getSize() === false, 415, 'File failed to load.');
 
         $this->file = $file;
-        $this->disk = $disk ?? config('platform.attachment.disk', 'public');
+        $this->disk = $disk ?? config('platform.attachment.disk', 'public'); // get the disk to use from the config or use the default 'public' disk
         $this->storage = Storage::disk($this->disk);
 
         /** @var string $generator */
         $generator = config('platform.attachment.generator', Generator::class);
 
+        // Create a new engine class instance to manage the file's associations
         $this->engine = new $generator($file);
         $this->group = $group;
     }
 
     /**
+     * Load the file and either create a new entry or retrieve
+     * an already stored entry matching the hash of the file
+     *
      * @throws \League\Flysystem\FilesystemException
      *
      * @return Model|Attachment
@@ -97,6 +106,13 @@ class File
         return $attachment;
     }
 
+    /**
+     * Allow duplicates of the file
+     *
+     * @param bool $status - The status to allow/disable the duplicates
+     *
+     * @return $this
+     */
     public function allowDuplicates(bool $status = true): self
     {
         $this->duplicate = $status;
@@ -105,6 +121,8 @@ class File
     }
 
     /**
+     * Retrieve an already stored entry matching the hash of the file
+     *
      * @return Attachment|null
      */
     private function getMatchesHash()
@@ -119,6 +137,8 @@ class File
     }
 
     /**
+     * Save the file to disk and create an attachment entry in the db
+     *
      * @return Model|Attachment
      */
     private function save(): Model
@@ -146,7 +166,9 @@ class File
     }
 
     /**
-     * set a custom Path
+     * Set a custom path for the file
+     *
+     * @param string|null $path - The custom path to use for this file
      *
      * @return File
      */

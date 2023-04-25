@@ -8,32 +8,32 @@ use Illuminate\Session\Store;
 use Orchid\Support\Color;
 
 /**
- * Class Alert.
+ * Flash notifier class that shows different types of alert messages.
  */
 class Alert
 {
     /**
-     * @var string
+     * Session key for the message.
      */
     public const SESSION_MESSAGE = 'flash_notification.message';
 
     /**
-     * @var string
+     * Session key for the level.
      */
     public const SESSION_LEVEL = 'flash_notification.level';
 
     /**
-     * @var Store
+     * Store instance for session.
      */
     protected $session;
 
     /**
-     * Automatically sent via PHP's htmlspecialchars function to prevent attacks
+     * Whether or not to run PHP's htmlspecialchars function to prevent attacks against scripts.
      */
     protected bool $sanitize = true;
 
     /**
-     * Create a new flash notifier instance.
+     * Instantiate the flash notifier with session.
      */
     public function __construct(Store $session)
     {
@@ -42,6 +42,10 @@ class Alert
 
     /**
      * Flash an information message.
+     *
+     * @param string $message The message to flash.
+     *
+     * @return $this
      */
     public function info(string $message): self
     {
@@ -52,6 +56,11 @@ class Alert
 
     /**
      * Flash a general message.
+     *
+     * @param string $message The message to flash.
+     * @param Color $color The color of the message (default: Color::INFO).
+     *
+     * @return $this
      */
     public function message(string $message, Color $color = Color::INFO): self
     {
@@ -63,6 +72,10 @@ class Alert
 
     /**
      * Flash a success message.
+     *
+     * @param string $message The message to flash.
+     *
+     * @return $this
      */
     public function success(string $message): self
     {
@@ -73,6 +86,10 @@ class Alert
 
     /**
      * Flash an error message.
+     *
+     * @param string $message The message to flash.
+     *
+     * @return $this
      */
     public function error(string $message): self
     {
@@ -83,6 +100,10 @@ class Alert
 
     /**
      * Flash a warning message.
+     *
+     * @param string $message The message to flash.
+     *
+     * @return $this
      */
     public function warning(string $message): self
     {
@@ -94,6 +115,11 @@ class Alert
     /**
      * Flash a view message.
      *
+     * @param string $template The name of the view to flash.
+     * @param Color $color The color of the message (default: Color::INFO).
+     * @param array $data The data to pass to the view.
+     *
+     * @return $this
      *
      * @throws \Throwable
      */
@@ -108,7 +134,7 @@ class Alert
     }
 
     /**
-     * If you don't want your data to be escaped, use this method.
+     * Set the $sanitize property to false to prevent escaping data.
      *
      * @return $this
      */
@@ -120,7 +146,9 @@ class Alert
     }
 
     /**
-     * Checks if a message has been set before.
+     * Check if a message has been set before.
+     *
+     * @return bool
      */
     public function check(): bool
     {

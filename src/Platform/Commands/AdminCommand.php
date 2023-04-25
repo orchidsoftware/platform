@@ -29,7 +29,7 @@ class AdminCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Create user administrator';
+    protected $description = 'Create or update admin user';
 
     /**
      * Execute the console command.
@@ -47,6 +47,11 @@ class AdminCommand extends Command
         }
     }
 
+    /**
+     * Create a new user administrator.
+     *
+     * @return void
+     */
     protected function createNewUser(): void
     {
         Dashboard::modelClass(User::class)
@@ -59,6 +64,13 @@ class AdminCommand extends Command
         $this->info('User created successfully.');
     }
 
+    /**
+     * Update the permissions of an existing user.
+     *
+     * @param string $id
+     *
+     * @return void
+     */
     protected function updateUserPermissions(string $id): void
     {
         Dashboard::modelClass(User::class)

@@ -9,51 +9,54 @@ use Illuminate\Http\UploadedFile;
 interface Engine
 {
     /**
-     * Engine constructor.
+     * Create a new instance of the engine.
+     *
+     * @param UploadedFile $file
      */
     public function __construct(UploadedFile $file);
 
     /**
-     * Returns name to create a real file on disk and write to the database.
-     * Specified any string without extension.
-     * Please note that some characters are prohibited on different operating systems.
+     * Get name of the file without extension.
+     * Some characters are prohibited on different operating systems.
      *
-     * For example "calc"
+     * For example, "calc"
+     *
+     * @return string
      */
     public function name(): string;
 
     /**
-     * Returns name to create a file with extension.
+     * Get name of the file with extension.
      *
      * For example "calc.exe"
      */
     public function fullName(): string;
 
     /**
-     * Returns the relative file path.
+     * Get the relative file path.
      */
     public function path(): string;
 
     /**
-     * Returns file hash string that will indicate
-     * that the same file has already been downloaded.
+     * Get the file hash string that will indicate
+     * if the same file has already been downloaded.
      */
     public function hash(): string;
 
     /**
-     * Return a Unix file upload timestamp.
+     * Get the Unix timestamp of file upload.
      */
     public function time(): int;
 
     /**
-     * Returns file extension.
+     * Get the file extension.
      *
-     * For example `jpg`
+     * For example, `jpg`
      */
     public function extension(): string;
 
     /**
-     * Returns the file mime type.
+     * Get the file mime type.
      */
     public function mime(): string;
 }

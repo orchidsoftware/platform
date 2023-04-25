@@ -8,7 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Orchid\Attachment\Models\Attachment;
 
 /**
- * Class UploadedFileEvent.
+ * This class represents the event that fires after a file is uploaded.
  */
 class UploadedFileEvent
 {

@@ -90,11 +90,13 @@ class User extends Authenticatable implements UserInterface
     ];
 
     /**
+     * Throw an exception if email already exists, create admin user.
+     *
      * @throws \Throwable
      */
-    public static function createAdmin(string $name, string $email, string $password)
+    public static function createAdmin(string $name, string $email, string $password): void
     {
-        throw_if(static::where('email', $email)->exists(), 'User exist');
+        throw_if(static::where('email', $email)->exists(), 'User exists');
 
         static::create([
             'name'        => $name,

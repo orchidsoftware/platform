@@ -20,6 +20,9 @@ class Blade
     private static ComponentTagCompiler $compiler;
 
     /**
+     * Used to render a Blade component from a class and an array of data
+     *
+     * @param string $class
      * @param mixed $data
      *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
@@ -51,6 +54,15 @@ class Blade
         return view($view)->with($component->data())->render();
     }
 
+    /**
+     * Get instance of the ViewComponent based on the provided class and data
+     *
+     * @param string $component
+     * @param mixed $data
+     * @return ViewComponent
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
     public static function resolveComponent(string $component, $data): ViewComponent
     {
         [$class, $view] = static::componentInfo($component);

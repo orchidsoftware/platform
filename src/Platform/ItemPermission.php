@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform;
 
+/**
+ * This class represents a permission group that can be used to store collections of permissions.
+ */
 class ItemPermission
 {
     /**
@@ -44,7 +47,7 @@ class ItemPermission
      *
      * @return $this The current permission group instance.
      */
-    public function addPermission(string $slug, string $name)
+    public function addPermission(string $slug, string $name): self
     {
         $this->items[] = [
             'slug'        => $slug,

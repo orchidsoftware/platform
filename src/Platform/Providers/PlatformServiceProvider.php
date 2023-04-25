@@ -50,7 +50,7 @@ class PlatformServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register provider.
+     * Register any application services.
      */
     public function register()
     {
