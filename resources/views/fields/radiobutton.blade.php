@@ -3,7 +3,7 @@
         <div class="btn-group btn-group-toggle p-0" data-toggle="buttons">
 
             @foreach($options as $key => $option)
-                <label @class(['btn btn-outline-primary', 'active' => is_object($value) ? $active($key, $value->value) : $active($key, $value) ])
+                <label @class(['btn btn-default', 'active' => is_object($value) ? $active($key, $value->value) : $active($key, $value) ])
                        data-action="click->radiobutton#checked"
                 >
                    <input {{ $attributes->except('id') }}
