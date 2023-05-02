@@ -34,8 +34,6 @@
         {!! $layouts !!}
         @csrf
         @include('platform::partials.confirm')
-
-        @includeWhen(isset($state), 'platform::partials.state')
     </form>
 
     <div data-controller="filter">
@@ -44,4 +42,6 @@
               data-form-need-prevents-form-abandonment-value="false"
         ></form>
     </div>
+
+    @includeWhen(isset($state), 'platform::partials.state')
 @endsection

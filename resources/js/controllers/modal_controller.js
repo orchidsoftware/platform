@@ -105,13 +105,15 @@ export default class extends ApplicationController {
      * @param params
      */
     asyncLoadData(params) {
-        window.axios.post(this.data.get('async-route'), params, {
+        let query = new URLSearchParams(params).toString()
+
+        window.axios.post(`${this.data.get('async-route')}?${query}`, null, {
             headers: {
-                'ORCHID-ASYNC-REFERER': window.location.href,
+                Accept: "text/vnd.turbo-stream.html",
             },
-        }).then((response) => {
-            this.element.querySelector('[data-async]').innerHTML = response.data;
-        });
+        })
+            .then(response => response.data)
+            .then(html => Turbo.renderStreamMessage(html))
     }
 
     set lastOpenModal(options) {

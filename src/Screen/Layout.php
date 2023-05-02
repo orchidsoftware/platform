@@ -123,7 +123,7 @@ abstract class Layout implements JsonSerializable
     /**
      * Return URL for screen template requests from browser.
      */
-    private function asyncRoute(): ?string
+    protected function asyncRoute(): ?string
     {
         $screen = Dashboard::getCurrentScreen();
 

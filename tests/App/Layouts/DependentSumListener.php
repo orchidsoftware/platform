@@ -2,8 +2,10 @@
 
 namespace Orchid\Tests\App\Layouts;
 
+use Illuminate\Http\Request;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Listener;
+use Orchid\Screen\Repository;
 use Orchid\Support\Facades\Layout;
 
 class DependentSumListener extends Listener
@@ -22,24 +24,6 @@ class DependentSumListener extends Listener
     ];
 
     /**
-     * What screen method should be called
-     * as a source for an asynchronous request.
-     *
-     * @var string
-     */
-    protected $asyncMethod = 'asyncSum';
-
-    public function __construct(string $slug = null)
-    {
-        $this->slug = $slug;
-    }
-
-    public function getSlug(): string
-    {
-        return $this->slug ?? parent::getSlug();
-    }
-
-    /**
      * @return \Orchid\Screen\Layout[]
      */
     protected function layouts(): array
@@ -55,5 +39,16 @@ class DependentSumListener extends Listener
                     ),
             ]),
         ];
+    }
+
+    /**
+     * @param \Orchid\Screen\Repository $repository
+     * @param \Illuminate\Http\Request  $request
+     *
+     * @return \Orchid\Screen\Repository
+     */
+    public function handle(Repository $repository, Request $request): Repository
+    {
+        return $repository->set('sum', $repository->get('first') + $repository->get('second'));
     }
 }

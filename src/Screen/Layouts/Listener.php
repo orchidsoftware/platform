@@ -2,9 +2,12 @@
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Orchid\Screen\Builder;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
+use Orchid\Support\Facades\Dashboard;
 
 abstract class Listener extends Layout
 {
@@ -24,6 +27,14 @@ abstract class Listener extends Layout
      * @return array
      */
     abstract protected function layouts(): iterable;
+
+    /**
+     * @param \Orchid\Screen\Repository $repository
+     * @param \Illuminate\Http\Request  $request
+     *
+     * @return \Orchid\Screen\Repository
+     */
+    abstract function handle(Repository $repository, Request $request): Repository;
 
     /**
      * @return mixed|void
@@ -50,5 +61,22 @@ abstract class Listener extends Layout
     public function getSlug(): string
     {
         return sha1(static::class);
+    }
+
+    /**
+     * Return URL for screen template requests from browser.
+     */
+    protected function asyncRoute(): ?string
+    {
+        $screen = Dashboard::getCurrentScreen();
+
+        if (! $screen) {
+            return null;
+        }
+
+        return route('platform.async.listener', [
+            'screen'   => Crypt::encryptString(get_class($screen)),
+            'layout' => Crypt::encryptString(static::class),
+        ]);
     }
 }

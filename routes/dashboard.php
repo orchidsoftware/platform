@@ -25,6 +25,9 @@ Route::screen('search/{query}', SearchScreen::class)
 Route::post('async/{screen}/{method?}/{template?}', [AsyncController::class, 'load'])
     ->name('async');
 
+Route::post('listener/{screen}/{layout}', [AsyncController::class, 'listener'])
+    ->name('async.listener');
+
 // TODO: Remove group
 Route::prefix('systems')->group(function () {
     Route::post('files', [AttachmentController::class, 'upload'])
