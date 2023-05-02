@@ -58,7 +58,7 @@ class RouteResolveScreenTest extends TestFeatureCase
             ->assertSee('User Name');
     }
 
-    public function testCustomizingKey():void
+    public function testCustomizingKey(): void
     {
         Route::screen('bind/users/{user:email}', ModelRouteBindScreen::class)
             ->middleware(config('platform.middleware.private'))

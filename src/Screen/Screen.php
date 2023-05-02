@@ -307,7 +307,7 @@ abstract class Screen extends Controller
 
         $method = $request->route()->parameter('method', 'view');
 
-        if (!$request->isMethodSafe()) {
+        if (! $request->isMethodSafe()) {
             $method = Arr::last($request->route()->parameters(), null, 'view');
         }
 
@@ -321,7 +321,6 @@ abstract class Screen extends Controller
         if ($request->isMethodSafe() && $method !== 'view') {
             return redirect()->action([static::class], $request->all());
         }
-
 
         return $this->callMethod($method, $arguments) ?? back();  //back(fallback: route(config('platform.index')));
     }
