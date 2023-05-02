@@ -16,7 +16,7 @@ class TimeCollection extends Collection
      */
     public function makeFromKeyValue($values, string $format = 'Y-m-d'): TimeCollection
     {
-        $prepare = collect($values)->map(fn($value, $key) => [
+        $prepare = collect($values)->map(fn ($value, $key) => [
             'label' => Carbon::parse($key)->format($format),
             'value' => round($value),
         ]);

@@ -30,9 +30,10 @@ class AsyncController extends Controller
      * @param string                   $screen
      * @param string                   $layout
      *
-     * @return mixed
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \ReflectionException
+     *
+     * @return mixed
      */
     public function listener(Request $request, string $screen, string $layout)
     {

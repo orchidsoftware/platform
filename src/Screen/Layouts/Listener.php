@@ -34,7 +34,7 @@ abstract class Listener extends Layout
      *
      * @return \Orchid\Screen\Repository
      */
-    abstract function handle(Repository $repository, Request $request): Repository;
+    abstract public function handle(Repository $repository, Request $request): Repository;
 
     /**
      * @return mixed|void
@@ -76,7 +76,7 @@ abstract class Listener extends Layout
 
         return route('platform.async.listener', [
             'screen'   => Crypt::encryptString(get_class($screen)),
-            'layout' => Crypt::encryptString(static::class),
+            'layout'   => Crypt::encryptString(static::class),
         ]);
     }
 }

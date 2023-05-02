@@ -31,9 +31,11 @@ abstract class Screen extends Controller
      * @param \Illuminate\Http\Request $request
      * @param mixed                    ...$arguments
      *
-     * @return mixed
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \ReflectionException
+     *
+     * @return mixed
+     *
      * @see static::handle()
      */
     public function __invoke(Request $request, ...$arguments)
@@ -172,9 +174,9 @@ abstract class Screen extends Controller
 
         $repository = $layout->handle($state, $request);
 
-        $view = $layout->build($repository) . view('platform::partials.state', [
-                'state' => $this->serializableState($state),
-            ]);
+        $view = $layout->build($repository).view('platform::partials.state', [
+            'state' => $this->serializableState($state),
+        ]);
 
         return response($view)
             ->header('Content-Type', 'text/vnd.turbo-stream.html');
@@ -292,11 +294,12 @@ abstract class Screen extends Controller
      * @param \Illuminate\Http\Request $request
      * @param                          ...$arguments
      *
-     * @return \Illuminate\Http\RedirectResponse|mixed
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      * @throws \ReflectionException
+     *
+     * @return \Illuminate\Http\RedirectResponse|mixed
      */
     public function handle(Request $request, ...$arguments)
     {
@@ -359,7 +362,7 @@ abstract class Screen extends Controller
 
         $route = request()->route();
 
-        collect(\request()->query())->each(function ($value, string $key) use ($route){
+        collect(\request()->query())->each(function ($value, string $key) use ($route) {
             $route->setParameter($key, $value);
         });
 
@@ -398,8 +401,9 @@ abstract class Screen extends Controller
     /**
      * @param array $data
      *
-     * @return \Illuminate\Http\RedirectResponse
      * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function backWith(array $data)
     {

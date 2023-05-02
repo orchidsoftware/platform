@@ -299,8 +299,8 @@ class Dashboard
         $this->currentScreen = $screen;
         $this->partialRequest = $partialRequest;
 
-        App::singleton($screen::class, static fn() => $screen);
-        App::rebinding($screen::class, static fn() => app($screen::class));
+        App::singleton($screen::class, static fn () => $screen);
+        App::rebinding($screen::class, static fn () => app($screen::class));
 
         return $this;
     }
