@@ -13,8 +13,8 @@ class Ilike extends BaseHttpEloquentFilter
     {
         return $builder->where(
             $this->column,
-            "ILIKE",
-            "%" . $this->getHttpValue() . "%"
+            'ILIKE',
+            '%'.$this->getHttpValue().'%'
         );
     }
 }
