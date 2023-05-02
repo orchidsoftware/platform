@@ -195,12 +195,12 @@ abstract class Screen extends Controller
     protected function extractState(): Repository
     {
         // Check if the '_state' parameter is missing
-        if (request()->missing('_state') && request()->session()->missing('_state')) {
+        if (request()->missing('_state') && session()->missing('_state')) {
             // Return an empty Repository object
             return new Repository();
         }
 
-        $raw = request()->get('_state') ?? request()->session()->get('_state');
+        $raw = request()->get('_state') ?? session()->get('_state');
 
         // Extract the encrypted state from the '_state' parameter, and deserialize it
         $data = config('platform.state.crypt', false) === true
@@ -307,6 +307,10 @@ abstract class Screen extends Controller
 
         $method = $request->route()->parameter('method', 'view');
 
+        if (!$request->isMethodSafe()) {
+            $method = Arr::last($request->route()->parameters(), null, 'view');
+        }
+
         $state = $this->extractState();
         $this->fillPublicProperty($state);
 
@@ -314,9 +318,12 @@ abstract class Screen extends Controller
         abort_unless($this->checkAccess($request), static::unaccessed());
 
         // Redirect for correct residual behavior
-        abort_if($request->isMethodSafe() && $method !== 'view', redirect()->action([static::class], $request->all()));
+        if ($request->isMethodSafe() && $method !== 'view') {
+            return redirect()->action([static::class], $request->all());
+        }
 
-        return $this->callMethod($method, $arguments) ?? back();
+
+        return $this->callMethod($method, $arguments) ?? back();  //back(fallback: route(config('platform.index')));
     }
 
     /**
@@ -368,7 +375,7 @@ abstract class Screen extends Controller
 
         if ($route !== null) {
             $route = $route->uses($uses);
-            Route::substituteBindings($route);
+            //Route::substituteBindings($route);
             Route::substituteImplicitBindings($route);
 
             $parameters = $route->parameters();

@@ -14,7 +14,8 @@ class RouteResolveScreenTest extends TestFeatureCase
 {
     public function testResolveModel(): void
     {
-        Route::screen('route-resolve/{resolve}', RouteResolveScreen::class)->name('route-resolve');
+        Route::screen('route-resolve/{resolve}', RouteResolveScreen::class)
+            ->name('route-resolve');
 
         $this->post(route('route-resolve', [
             'method'  => 'resolveModel',
@@ -43,7 +44,7 @@ class RouteResolveScreenTest extends TestFeatureCase
 
     public function testImplicitBindingWhenAllowNull(): void
     {
-        Route::screen('bind/users/{user}', ModelRouteBindScreen::class)
+        Route::screen('bind/users/{user?}', ModelRouteBindScreen::class)
             ->middleware(config('platform.middleware.private'))
             ->name('bind.implicit-binding');
 
@@ -51,15 +52,12 @@ class RouteResolveScreenTest extends TestFeatureCase
 
         $this
             ->actingAs($user)
-            ->get(route('bind.implicit-binding', 0))
+            ->get(route('bind.implicit-binding'))
             ->assertOk()
             ->assertSee('User ID')
             ->assertSee('User Name');
     }
 
-    /*
-     * TODO: Support
-     *
     public function testCustomizingKey():void
     {
         Route::screen('bind/users/{user:email}', ModelRouteBindScreen::class)
@@ -75,7 +73,6 @@ class RouteResolveScreenTest extends TestFeatureCase
             ->assertSee($user->id)
             ->assertSee($user->email);
     }
-    */
 
     public function testExplicitBinding(): void
     {
