@@ -9,6 +9,22 @@ use Illuminate\Support\Str;
 class TimeCollection extends Collection
 {
     /**
+     * @param        $values
+     * @param string $format
+     *
+     * @return \Orchid\Metrics\TimeCollection
+     */
+    public function makeFromKeyValue($values, string $format = 'Y-m-d'): TimeCollection
+    {
+        $prepare = collect($values)->map(fn($value, $key) => [
+            'label' => Carbon::parse($key)->format($format),
+            'value' => round($value),
+        ]);
+
+        return static::make($prepare);
+    }
+
+    /**
      * Convert to a format suitable for a chart
      *
      * @param string   $name
