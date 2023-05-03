@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\HttpFilter;
+use Orchid\Filters\Types\Ilike;
 use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
 use Orchid\Filters\Types\WhereBetween;
@@ -49,6 +50,19 @@ class HttpFilterTest extends TestUnitCase
         $sql = $this->getModelBuilder()->toSql();
 
         $this->assertStringContainsString('"Like" like ?', $sql);
+    }
+
+    public function testIlike(): void
+    {
+        request()->merge([
+            'filter' => [
+                'Ilike' => 'qux',
+            ],
+        ]);
+
+        $sql = $this->getModelBuilder()->toSql();
+
+        $this->assertStringContainsString('"Ilike" ILIKE ?', $sql);
     }
 
     public function testWhereIn(): void
@@ -255,6 +269,7 @@ class HttpFilterTest extends TestUnitCase
             protected $allowedFilters = [
                 'WhereIn'           => WhereIn::class,
                 'Like'              => Like::class,
+                'Ilike'             => Ilike::class,
                 'Where'             => Where::class,
                 'WhereBetween'      => WhereBetween::class,
                 'WhereMaxMin'       => WhereMaxMin::class,
