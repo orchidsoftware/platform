@@ -24,6 +24,16 @@ class DependentSumListener extends Listener
     ];
 
     /**
+     * @param string|null $slug
+     *
+     * @return void
+     */
+    public function __construct(string $slug = null)
+    {
+        $this->slug = $slug ?? static::class;
+    }
+
+    /**
      * @return \Orchid\Screen\Layout[]
      */
     protected function layouts(): array
@@ -39,6 +49,15 @@ class DependentSumListener extends Listener
                     ),
             ]),
         ];
+    }
+
+    /**
+     * Returns the system layer name.
+     * Required to define an asynchronous layer.
+     */
+    public function getSlug(): string
+    {
+        return sha1($this->slug);
     }
 
     /**

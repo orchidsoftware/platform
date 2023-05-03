@@ -7,6 +7,7 @@ namespace Orchid\Tests\Feature\App;
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Models\User;
 use Orchid\Tests\App\Screens\ModelRouteBindScreen;
+use Orchid\Tests\App\Screens\ModelRouteParamBindScreen;
 use Orchid\Tests\App\Screens\RouteResolveScreen;
 use Orchid\Tests\TestFeatureCase;
 
@@ -76,9 +77,9 @@ class RouteResolveScreenTest extends TestFeatureCase
 
     public function testExplicitBinding(): void
     {
-        Route::model('model', User::class);
+        Route::model('bind', User::class);
 
-        Route::screen('bind/users/{model}', ModelRouteBindScreen::class)
+        Route::screen('bind/users/{bind}', ModelRouteParamBindScreen::class)
             ->middleware(config('platform.middleware.private'))
             ->name('bind.explicit-binding');
 
@@ -94,11 +95,11 @@ class RouteResolveScreenTest extends TestFeatureCase
 
     public function testResolutionLogic(): void
     {
-        Route::bind('bind', function ($value) {
+        Route::bind('user', function ($value) {
             return User::where('email', $value)->firstOrFail();
         });
 
-        Route::screen('bind/users/{bind}', ModelRouteBindScreen::class)
+        Route::screen('bind/users/{user}', ModelRouteBindScreen::class)
             ->middleware(config('platform.middleware.private'))
             ->name('bind.resolution-logic');
 

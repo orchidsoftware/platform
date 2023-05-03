@@ -24,10 +24,10 @@ class ItemAddChildScreen extends Screen
      *
      * @return array
      */
-    public function query(int $parent_id): iterable
+    public function query(int $parentId): iterable
     {
         return [
-            'parent_id'       => $parent_id,
+            'parent_id' => $parentId,
         ];
     }
 
@@ -85,7 +85,7 @@ class ItemAddChildScreen extends Screen
         ];
     }
 
-    public function addChild(Request $request, int $parent_id)
+    public function addChild(Request $request, int $parentId)
     {
         // Validate form data, save task to database, etc.
 
@@ -93,7 +93,7 @@ class ItemAddChildScreen extends Screen
             'item.name' => 'required|max:255',
         ]);
 
-        Toast::info('Item with paretn_id='.$parent_id.' saved');
+        Toast::info('Item with paretn_id=' . $parentId . ' saved');
 
         return redirect()->route('test.items');
     }
