@@ -236,6 +236,16 @@
 // frappe-chart chart
 .graph-svg-tip {
   @extend .bg-dark;
+  @extend .rounded;
+}
+
+.chart-container .axis, .chart-container .chart-label {
+    color: $text-muted !important;
+}
+
+.legend-dataset-text {
+    color: $text-muted !important;
+    font-weight: 500 !important;
 }
 
 
