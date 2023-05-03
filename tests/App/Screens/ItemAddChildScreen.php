@@ -93,7 +93,7 @@ class ItemAddChildScreen extends Screen
             'item.name' => 'required|max:255',
         ]);
 
-        Toast::info('Item with paretn_id=' . $parentId . ' saved');
+        Toast::info('Item with paretn_id='.$parentId.' saved');
 
         return redirect()->route('test.items');
     }
