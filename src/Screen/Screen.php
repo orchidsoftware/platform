@@ -365,7 +365,6 @@ abstract class Screen extends Controller
             $route->setParameter($key, $value);
         });
 
-
         if ($route !== null && $method) {
             $original = $route->action['uses'];
 
