@@ -1,7 +1,6 @@
 <x-orchid-stream :target="$templateSlug">
     <div data-controller="listener"
          data-listener-targets="{{$targets}}"
-         data-listener-extra-vars="{{$extraVars}}"
          id="{{$templateSlug}}"
          data-listener-async-route="{{$asyncRoute}}"
 
