@@ -1,6 +1,7 @@
-@props(['target', 'action', 'push'])
+@props(['target', 'action', 'push', 'rule' => \Orchid\Support\Facades\Dashboard::isPartialRequest()])
 
-@if(\Orchid\Support\Facades\Dashboard::isPartialRequest())
+
+@if(filter_var($rule, FILTER_VALIDATE_BOOLEAN))
     @fragment($target)
         <turbo-stream target="{{ $target }}" action="{{ $action ?? 'replace' }}">
             <template>
