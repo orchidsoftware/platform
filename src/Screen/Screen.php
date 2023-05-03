@@ -44,13 +44,6 @@ abstract class Screen extends Controller
     }
 
     /**
-     * The number of predefined arguments in the route.
-     *
-     * Example: dashboard/my-screen/{method?}
-     */
-    private const COUNT_ROUTE_VARIABLES = 1;
-
-    /**
      * The base view that will be rendered.
      */
     protected function screenBaseView(): string
@@ -372,12 +365,17 @@ abstract class Screen extends Controller
             $route->setParameter($key, $value);
         });
 
-        if ($route !== null) {
+
+        if ($route !== null && $method) {
+            $original = $route->action['uses'];
+
             $route = $route->uses($uses);
             //Route::substituteBindings($route);
             Route::substituteImplicitBindings($route);
 
             $parameters = $route->parameters();
+
+            $route->uses($original);
         }
 
         return App::call(static::class.'@'.$method, $parameters);
