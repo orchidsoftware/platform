@@ -9,6 +9,12 @@
          defaultTestSuite="Main"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd">
     <coverage>
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+        <exclude>
+            <directory suffix=".blade.php">./src/</directory>
+        </exclude>
         <report>
             <clover outputFile="clover.xml"/>
         </report>
@@ -40,12 +46,4 @@
         <env name="QUEUE_DRIVER" value="sync"/>
     </php>
     <logging/>
-    <source>
-        <include>
-            <directory suffix=".php">./src</directory>
-        </include>
-        <exclude>
-            <directory suffix=".blade.php">./src/</directory>
-        </exclude>
-    </source>
 </phpunit>
