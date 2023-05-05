@@ -92,7 +92,6 @@ class Modal extends Layout
             'asyncRoute'  => $this->asyncRoute(),
         ]);
 
-
         return $this->buildAsDeep($repository);
     }
 
@@ -191,7 +190,7 @@ class Modal extends Layout
      */
     public function method(string $method): self
     {
-        $this->variables['method'] = url()->current() . '/' . $method;
+        $this->variables['method'] = url()->current().'/'.$method;
 
         return $this;
     }
@@ -213,7 +212,7 @@ class Modal extends Layout
      */
     public function async(string $method): self
     {
-        if (!Str::startsWith($method, 'async')) {
+        if (! Str::startsWith($method, 'async')) {
             $method = Str::start(Str::ucfirst($method), 'async');
         }
 
@@ -229,7 +228,7 @@ class Modal extends Layout
     {
         $screen = Dashboard::getCurrentScreen();
 
-        if (!$screen) {
+        if (! $screen) {
             return null;
         }
 
