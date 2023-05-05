@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Str;
 use Orchid\Screen\Commander;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
+use Orchid\Support\Facades\Dashboard;
 
 /**
  * Class Modal.
@@ -36,6 +39,14 @@ class Modal extends Layout
      * @var string
      */
     protected $size;
+
+    /**
+     * What screen method should be called
+     * as a source for an asynchronous request.
+     *
+     * @var string
+     */
+    protected $method;
 
     /**
      * @var string
@@ -76,6 +87,12 @@ class Modal extends Layout
      */
     public function build(Repository $repository)
     {
+        $this->variables = array_merge($this->variables, [
+            'asyncEnable' => empty($this->method) ? 0 : 1,
+            'asyncRoute'  => $this->asyncRoute(),
+        ]);
+
+
         return $this->buildAsDeep($repository);
     }
 
@@ -174,7 +191,7 @@ class Modal extends Layout
      */
     public function method(string $method): self
     {
-        $this->variables['method'] = url()->current().'/'.$method;
+        $this->variables['method'] = url()->current() . '/' . $method;
 
         return $this;
     }
@@ -187,5 +204,39 @@ class Modal extends Layout
         $this->variables['staticBackdrop'] = $status;
 
         return $this;
+    }
+
+    /**
+     * @param string $method
+     *
+     * @return $this
+     */
+    public function async(string $method): self
+    {
+        if (!Str::startsWith($method, 'async')) {
+            $method = Str::start(Str::ucfirst($method), 'async');
+        }
+
+        $this->method = $method;
+
+        return $this;
+    }
+
+    /**
+     * Return URL for screen template requests from browser.
+     */
+    protected function asyncRoute(): ?string
+    {
+        $screen = Dashboard::getCurrentScreen();
+
+        if (!$screen) {
+            return null;
+        }
+
+        return route('platform.async', [
+            'screen'   => Crypt::encryptString(get_class($screen)),
+            'method'   => $this->method,
+            'template' => $this->getSlug(),
+        ]);
     }
 }

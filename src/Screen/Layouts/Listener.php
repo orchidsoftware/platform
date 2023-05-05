@@ -41,14 +41,17 @@ abstract class Listener extends Layout
      */
     public function build(Repository $repository)
     {
-        if (! $this->isSee()) {
+        if (!$this->isSee()) {
             return;
         }
 
         $this->query = $repository;
         $this->layouts = $this->layouts();
 
-        $this->variables['targets'] = collect($this->targets)->map(fn ($target) => Builder::convertDotToArray($target))->toJson();
+        $this->variables = array_merge($this->variables, [
+            'targets'    => collect($this->targets)->map(fn($target) => Builder::convertDotToArray($target))->toJson(),
+            'asyncRoute' => $this->asyncRoute(),
+        ]);
 
         return $this->buildAsDeep($repository);
     }
@@ -69,13 +72,13 @@ abstract class Listener extends Layout
     {
         $screen = Dashboard::getCurrentScreen();
 
-        if (! $screen) {
+        if (!$screen) {
             return null;
         }
 
         return route('platform.async.listener', [
-            'screen'   => Crypt::encryptString(get_class($screen)),
-            'layout'   => Crypt::encryptString(static::class),
+            'screen' => Crypt::encryptString(get_class($screen)),
+            'layout' => Crypt::encryptString(static::class),
         ]);
     }
 }

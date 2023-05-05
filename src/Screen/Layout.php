@@ -5,10 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Str;
 use JsonSerializable;
-use Orchid\Support\Facades\Dashboard;
 
 /**
  * Class Layout.
@@ -34,32 +31,6 @@ abstract class Layout implements JsonSerializable
     protected $layouts = [];
 
     /**
-     * What screen method should be called
-     * as a source for an asynchronous request.
-     *
-     * @var string
-     *
-     * @deprecated usage `method` property
-     */
-    protected $asyncMethod;
-
-    /**
-     * What screen method should be called
-     * as a source for an asynchronous request.
-     *
-     * @var string
-     */
-    protected $method;
-
-    /**
-     * The call is asynchronous and should return
-     * only the template of the specific layer.
-     *
-     * @var bool
-     */
-    protected $async = false;
-
-    /**
      * @var array
      */
     protected $variables = [];
@@ -74,25 +45,6 @@ abstract class Layout implements JsonSerializable
      */
     abstract public function build(Repository $repository);
 
-    public function currentAsync(): self
-    {
-        $this->async = true;
-
-        return $this;
-    }
-
-    public function async(string $method): self
-    {
-        if (! Str::startsWith($method, 'async')) {
-            $method = Str::start(Str::ucfirst($method), 'async');
-        }
-
-        $this->asyncMethod = $method;
-        $this->method = $method;
-
-        return $this;
-    }
-
     /**
      * @return mixed
      */
@@ -100,42 +52,22 @@ abstract class Layout implements JsonSerializable
     {
         $this->query = $repository;
 
-        if (! $this->isSee()) {
+        if (!$this->isSee()) {
             return;
         }
 
         $build = collect($this->layouts)
-            ->map(fn ($layouts) => Arr::wrap($layouts))
-            ->map(fn (iterable $layouts, string $key) => $this->buildChild($layouts, $key, $repository))
+            ->map(fn($layouts) => Arr::wrap($layouts))
+            ->map(fn(iterable $layouts, string $key) => $this->buildChild($layouts, $key, $repository))
             ->collapse()
             ->all();
 
         $variables = array_merge($this->variables, [
-            'manyForms'    => $build,
             'templateSlug' => $this->getSlug(),
-            'asyncEnable'  => empty($this->method ?? $this->asyncMethod) ? 0 : 1,
-            'asyncRoute'   => $this->asyncRoute(),
+            'manyForms'    => $build,
         ]);
 
-        return view($this->async ? 'platform::layouts.blank' : $this->template, $variables);
-    }
-
-    /**
-     * Return URL for screen template requests from browser.
-     */
-    protected function asyncRoute(): ?string
-    {
-        $screen = Dashboard::getCurrentScreen();
-
-        if (! $screen) {
-            return null;
-        }
-
-        return route('platform.async', [
-            'screen'   => Crypt::encryptString(get_class($screen)),
-            'method'   => $this->method ?? $this->asyncMethod,
-            'template' => $this->getSlug(),
-        ]);
+        return view($this->template, $variables);
     }
 
     /**
@@ -148,8 +80,8 @@ abstract class Layout implements JsonSerializable
     {
         return collect($layouts)
             ->flatten()
-            ->map(fn ($layout) => is_object($layout) ? $layout : resolve($layout))
-            ->filter(fn () => $this->isSee())
+            ->map(fn($layout) => is_object($layout) ? $layout : resolve($layout))
+            ->filter(fn() => $this->isSee())
             ->reduce(function ($build, self $layout) use ($key, $repository) {
                 $build[$key][] = $layout->build($repository);
 
@@ -186,7 +118,7 @@ abstract class Layout implements JsonSerializable
                 return $layout->findBySlug($slug);
             })
             ->filter()
-            ->filter(static fn ($layout) => $layout->getSlug() === $slug)
+            ->filter(static fn($layout) => $layout->getSlug() === $slug)
             ->first();
     }
 
