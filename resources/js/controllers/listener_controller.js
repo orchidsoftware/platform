@@ -1,31 +1,25 @@
 import ApplicationController from "./application_controller";
 
 export default class extends ApplicationController {
-    listenerEvent = () => this.submitButton.click();
-
     /**
      *
      */
     connect() {
-        this.addListenerForTargets();
-
-        this.submitButton =  document.createElement('button');
-        this.submitButton.classList.add('d-none')
-        this.submitButton.type = 'submit';
-        this.submitButton.formAction = this.data.get('async-route');
-        this.element.appendChild(this.submitButton);
+        this.targets.forEach(name => {
+            document.querySelectorAll(`[name="${name}"]`)
+                .forEach((field) =>
+                    field.addEventListener('change',  () => this.asyncLoadData())
+                );
+        });
     }
 
     /**
      *
      */
-    addListenerForTargets() {
-        this.targets.forEach(name => {
-            document.querySelectorAll(`[name="${name}"]`)
-                .forEach((field) =>
-                    field.addEventListener('change', this.listenerEvent)
-                );
-        });
+    asyncLoadData() {
+        const data = new FormData(this.element.closest('form'));
+
+        this.loadStream(this.data.get('async-route'), data);
     }
 
     /**

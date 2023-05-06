@@ -65,4 +65,19 @@ export default class ApplicationController extends Controller {
 
         return output;
     }
+
+    /**
+     *
+     * @param url
+     * @param data
+     */
+    loadStream(url, data) {
+        window.axios.post(url, data, {
+            headers: {
+                Accept: "text/vnd.turbo-stream.html",
+            },
+        })
+            .then(response => response.data)
+            .then(html => Turbo.renderStreamMessage(html))
+    }
 }

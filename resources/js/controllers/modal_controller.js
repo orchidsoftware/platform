@@ -102,18 +102,11 @@ export default class extends ApplicationController {
 
     /**
      *
-     * @param params
      */
     asyncLoadData(params) {
         let query = new URLSearchParams(params).toString()
 
-        window.axios.post(`${this.data.get('async-route')}?${query}`, null, {
-            headers: {
-                Accept: "text/vnd.turbo-stream.html",
-            },
-        })
-            .then(response => response.data)
-            .then(html => Turbo.renderStreamMessage(html))
+        this.loadStream(`${this.data.get('async-route')}?${query}`);
     }
 
     set lastOpenModal(options) {
