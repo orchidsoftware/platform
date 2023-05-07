@@ -2,7 +2,6 @@
 
 namespace App\Orchid\Screens\Examples;
 
-
 use Orchid\Screen\Screen;
 
 class TestBaseScreen extends Screen
@@ -62,5 +61,4 @@ class TestBaseScreen extends Screen
     {
         return false;
     }
-
 }
