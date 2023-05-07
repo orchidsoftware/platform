@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\App\Screens;
 
-use Illuminate\Http\Request;
 use Orchid\Screen\Action;
 use Orchid\Screen\Fields\Input;
-use Orchid\Screen\Repository;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 use Orchid\Tests\App\Layouts\DependentSumListener;
