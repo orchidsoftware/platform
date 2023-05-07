@@ -247,7 +247,6 @@ return [
      */
 
     'turbo' => [
-        'enabled' => true,
         'cache'   => true,
     ],
 
@@ -279,6 +278,18 @@ return [
     */
 
     'workspace' => 'platform::workspace.compact',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Prevents Abandonment
+    |--------------------------------------------------------------------------
+    |
+    | This option determines whether the Prevents Abandonment feature is enabled
+    | or disabled for the application.
+    |
+    */
+
+    'prevents_abandonment' => true,
 
     /*
      |--------------------------------------------------------------------------

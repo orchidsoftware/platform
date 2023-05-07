@@ -346,7 +346,7 @@ abstract class Screen extends Controller
      */
     public function needPreventsAbandonment(): bool
     {
-        return true;
+        return config('platform.prevents_abandonment', true);
     }
 
     /**

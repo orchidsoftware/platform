@@ -47,6 +47,8 @@ abstract class TestBrowserCase extends TestCase
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ]);
 
+        config()->set('platform.prevents_abandonment', false);
+
         if (isset($_SERVER['CI'])) {
             Options::withoutUI();
         }
