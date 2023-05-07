@@ -51,20 +51,6 @@ class DependentListenerModalScreen extends Screen
     }
 
     /**
-     * @param int $first
-     *
-     * @return int[]
-     */
-    public function asyncSum(int $first = null, int $second = null): array
-    {
-        return [
-            'first'  => $first,
-            'second' => $second,
-            'sum'    => $first + $second,
-        ];
-    }
-
-    /**
      * Views.
      *
      * @throws \Throwable

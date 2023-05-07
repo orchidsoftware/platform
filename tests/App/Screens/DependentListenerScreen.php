@@ -43,20 +43,6 @@ class DependentListenerScreen extends Screen
     }
 
     /**
-     * @param \Orchid\Screen\Repository $state
-     * @param \Illuminate\Http\Request  $request
-     *
-     * @return \Orchid\Screen\Repository
-     */
-    public function asyncSum(Repository $state, Request $request): Repository
-    {
-        return $state
-            ->set('first', $request->get('first'))
-            ->set('second', $request->get('second'))
-            ->set('sum', $request->get('first') + $request->get('second'));
-    }
-
-    /**
      * Views.
      *
      * @throws \Throwable

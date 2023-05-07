@@ -68,6 +68,9 @@ class DependentSumListener extends Listener
      */
     public function handle(Repository $repository, Request $request): Repository
     {
-        return $repository->set('sum', $repository->get('first') + $repository->get('second'));
+        return $repository
+            ->set('first', $request->get('first'))
+            ->set('second', $request->get('second'))
+            ->set('sum', $request->get('first') + $request->get('second'));
     }
 }
