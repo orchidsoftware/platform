@@ -11,7 +11,7 @@ use Orchid\Screen\Fields\SimpleMDE;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 
-class ExampleTextEditorsScreen extends Screen
+class ExampleTextEditorsScreen extends TestBaseScreen
 {
     /**
      * Fetch data to be displayed on the screen.

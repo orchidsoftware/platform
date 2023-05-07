@@ -9,7 +9,7 @@ use App\Orchid\Layouts\Examples\ChartPieExample;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 
-class ExampleChartsScreen extends Screen
+class ExampleChartsScreen extends TestBaseScreen
 {
     /**
      * Fetch data to be displayed on the screen.

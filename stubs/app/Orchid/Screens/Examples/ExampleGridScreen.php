@@ -6,7 +6,7 @@ use Orchid\Screen\Action;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 
-class ExampleGridScreen extends Screen
+class ExampleGridScreen extends TestBaseScreen
 {
     /**
      * Fetch data to be displayed on the screen.

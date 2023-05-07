@@ -15,7 +15,7 @@ use Orchid\Screen\TD;
 use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
-class ExampleScreen extends Screen
+class ExampleScreen extends TestBaseScreen
 {
     /**
      * Fish text for the table.
