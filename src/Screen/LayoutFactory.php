@@ -231,7 +231,9 @@ class LayoutFactory
      */
     public static function chart(string $target, string $title = null): Chart
     {
-        $chart = new class() extends Chart {};
+        $chart = new class() extends Chart
+        {
+        };
 
         return $chart
             ->target($target)
