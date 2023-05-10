@@ -90,7 +90,7 @@ abstract class Chart extends Layout
      *
      * @var bool
      */
-    protected $export = true;
+    protected $export = false;
 
     /**
      * Limiting the slices.
@@ -158,7 +158,6 @@ abstract class Chart extends Layout
     /**
      * Create a new Charts element.
      *
-     *
      * @return static
      */
     public static function make(string $target, ?string $title = null): self
@@ -179,7 +178,6 @@ abstract class Chart extends Layout
     /**
      * Set title of the chart.
      *
-     *
      * @return $this
      */
     public function title(?string $title = null): static
@@ -191,7 +189,6 @@ abstract class Chart extends Layout
 
     /**
      * Set description of the chart.
-     *
      *
      * @return $this
      */
@@ -205,12 +202,35 @@ abstract class Chart extends Layout
     /**
      * Set height of the chart.
      *
-     *
      * @return $this
      */
     public function height(int $height): static
     {
         $this->height = $height;
+
+        return $this;
+    }
+
+    /**
+     * @param string $type
+     *
+     * @return $this
+     */
+    public function type(string $type): static
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $export
+     *
+     * @return $this
+     */
+    public function export(bool $export = true): static
+    {
+        $this->export = $export;
 
         return $this;
     }

@@ -2,7 +2,9 @@
 
 namespace DummyNamespace;
 
+use Illuminate\Http\Request;
 use Orchid\Screen\Layouts\Listener;
+use Orchid\Screen\Repository;
 
 class DummyClass extends Listener
 {
@@ -14,17 +16,6 @@ class DummyClass extends Listener
     protected $targets = [];
 
     /**
-     * What screen method should be called
-     * as a source for an asynchronous request.
-     *
-     * The name of the method must
-     * begin with the prefix "async"
-     *
-     * @var string
-     */
-    protected $method = '';
-
-    /**
      * The screen's layout elements.
      *
      * @return \Orchid\Screen\Layout[]|string[]
@@ -32,5 +23,18 @@ class DummyClass extends Listener
     protected function layouts(): iterable
     {
         return [];
+    }
+
+    /**
+     * Update state
+     *
+     * @param \Orchid\Screen\Repository $repository
+     * @param \Illuminate\Http\Request  $request
+     *
+     * @return \Orchid\Screen\Repository
+     */
+    public function handle(Repository $repository, Request $request): Repository
+    {
+        return $repository;
     }
 }

@@ -11,6 +11,7 @@ use Orchid\Screen\Layouts\Accordion;
 use Orchid\Screen\Layouts\Blank;
 use Orchid\Screen\Layouts\Block;
 use Orchid\Screen\Layouts\Browsing;
+use Orchid\Screen\Layouts\Chart;
 use Orchid\Screen\Layouts\Columns;
 use Orchid\Screen\Layouts\Component;
 use Orchid\Screen\Layouts\Legend;
@@ -220,5 +221,20 @@ class LayoutFactory
     public static function metrics(array $labels): Metric
     {
         return new Metric($labels);
+    }
+
+    /**
+     * @param string      $target
+     * @param string|null $title
+     *
+     * @return \Orchid\Screen\Layouts\Chart
+     */
+    public static function chart(string $target, string $title = null): Chart
+    {
+        $chart = new class() extends Chart {};
+
+        return $chart
+            ->target($target)
+            ->title($title);
     }
 }
