@@ -18,16 +18,10 @@ class ChartTest extends TestUnitCase
              * @var string
              */
             protected $target = 'charts';
-
-            /**
-             * Determines whether to display the export button.
-             *
-             * @var bool
-             */
-            protected $export = false;
         };
 
         $html = $layout
+            ->export(false)
             ->build($this->getRepository())
             ->withErrors([])
             ->render();
@@ -46,6 +40,7 @@ class ChartTest extends TestUnitCase
         };
 
         $html = $layout
+            ->export()
             ->build($this->getRepository())
             ->withErrors([])
             ->render();
