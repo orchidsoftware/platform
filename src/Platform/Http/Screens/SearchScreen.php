@@ -66,7 +66,7 @@ class SearchScreen extends Screen
     {
         return [
             Button::make(__('Apply'))
-                ->icon('filter')
+                ->icon('bs.funnel')
                 ->canSee(Dashboard::getSearch()->count() > 1)
                 ->method('changeSearchType'),
         ];

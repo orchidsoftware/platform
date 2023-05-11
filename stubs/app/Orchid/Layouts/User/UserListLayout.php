@@ -58,10 +58,10 @@ class UserListLayout extends Table
 
                         Link::make(__('Edit'))
                             ->route('platform.systems.users.edit', $user->id)
-                            ->icon('pencil'),
+                            ->icon('bs.pencil'),
 
                         Button::make(__('Delete'))
-                            ->icon('trash')
+                            ->icon('bs.trash3')
                             ->confirm(__('Once the account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.'))
                             ->method('remove', [
                                 'id' => $user->id,

@@ -65,8 +65,7 @@ class ItemListScreen extends Screen
         return [
             ModalToggle::make('Add Item')
                 ->modal('itemModal')
-                ->method('create')
-                ->icon('plus'),
+                ->method('create'),
 
         ];
     }
@@ -94,8 +93,7 @@ class ItemListScreen extends Screen
                                 ->confirm('After deleting, the task will be gone forever.')
                                 ->method('delete', ['item' => $model->get('id')]),
                             Link::make(__('Add child'))
-                                ->route('test.item.addchild', $model->get('id'))
-                                ->icon('pencil'),
+                                ->route('test.item.addchild', $model->get('id')),
                         ])),
             ]),
             Layout::modal('itemModal', Layout::rows([

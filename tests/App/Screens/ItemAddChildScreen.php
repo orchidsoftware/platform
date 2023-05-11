@@ -61,7 +61,6 @@ class ItemAddChildScreen extends Screen
         return [
 
             Button::make(__('Save'))
-                ->icon('check')
                 ->method('addChild'),
         ];
     }
