@@ -2,7 +2,7 @@
 
 @section('body')
 
-    <div class="mt-3 mt-md-4">
+    <div class="mt-3 mt-md-4 workspace">
         @yield('workspace')
     </div>
 
