@@ -121,21 +121,24 @@ class Field implements Fieldable, Htmlable
     protected $inlineAttributes = [];
 
     /**
-     * @return mixed|static
+     * @param string $method
+     * @param array  $parameters
+     *
+     * @return $this|mixed|static|\Orchid\Screen\Field
      */
-    public function __call(string $name, array $arguments)
+    public function __call(string $method, array $parameters)
     {
-        if (static::hasMacro($name)) {
-            return $this->macroCall($name, $arguments);
+        if (static::hasMacro($method)) {
+            return $this->macroCall($method, $parameters);
         }
 
-        $arguments = collect($arguments)->map(static fn ($argument) => $argument instanceof Closure ? $argument() : $argument);
+        $arguments = collect($parameters)->map(static fn ($argument) => $argument instanceof Closure ? $argument() : $argument);
 
-        if (method_exists($this, $name)) {
-            $this->$name($arguments);
+        if (method_exists($this, $method)) {
+            $this->$method($arguments);
         }
 
-        return $this->set($name, $arguments->first() ?? true);
+        return $this->set($method, $arguments->first() ?? true);
     }
 
     /**
@@ -474,12 +477,14 @@ class Field implements Fieldable, Htmlable
     /**
      * Apply the callback if the value is truthy.
      *
+     * @param bool     $condition
+     * @param callable $callback
      *
-     * @return static
+     * @return $this
      */
-    public function when(bool $value, callable $callback)
+    public function when(bool $condition, callable $callback)
     {
-        if ($value) {
+        if ($condition) {
             $callback($this);
         }
 

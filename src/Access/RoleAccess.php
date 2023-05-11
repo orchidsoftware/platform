@@ -66,7 +66,7 @@ trait RoleAccess
     }
 
     /**
-     * Override the delete method to detach the users assigned to the role
+     * Override the deleted method to detach the users assigned to the role
      * before deleting the role
      *
      * @throws Exception

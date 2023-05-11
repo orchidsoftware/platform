@@ -32,7 +32,7 @@ class Init
     {
         $string = trim($string);
 
-        // Handles special case when "-1" is given, which leads to PHP_INT_MAX value
+        // Handles a special case when "-1" is given, which leads to PHP_INT_MAX value
         if ($string === '-1') {
             return PHP_INT_MAX;
         }
@@ -83,7 +83,7 @@ class Init
     }
 
     /**
-     * Converts the bytes value to the specified unit.
+     * Converts the bytes' value to the specified unit.
      *
      * @param string    $to    The unit to convert to
      * @param int|float $bytes The size in bytes

@@ -14,7 +14,7 @@ use Orchid\Platform\Dashboard;
 trait Attachable
 {
     /**
-     * Get all of the attachments associated with the given model.
+     * Get all the attachments associated with the given model.
      *
      * @param string|null $group
      *

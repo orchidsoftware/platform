@@ -64,7 +64,7 @@ class Generator implements Engine
 
     /**
      * Get the file name to create a real file on disk and write to the database.
-     * Use any string without extension.
+     * Use any string without an extension.
      */
     public function name(): string
     {

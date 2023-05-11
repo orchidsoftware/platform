@@ -9,7 +9,7 @@ use IteratorAggregate;
 interface RoleInterface
 {
     /**
-     * Returns all users belonging to the role.
+     * Return all users belonging to the role.
      *
      * @return IteratorAggregate
      */

@@ -9,7 +9,7 @@ use Laravel\Scout\Builder;
 interface Searchable
 {
     /**
-     * The number of models to return for show compact search result.
+     * The number of models to return for a show compact search result.
      */
     public function perSearchShow(): int;
 

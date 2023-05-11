@@ -76,7 +76,7 @@ class Blade
     }
 
     /**
-     * Get information about component
+     * Get information about a component
      *
      * Response is array with two elements:
      *  0 - class name of component

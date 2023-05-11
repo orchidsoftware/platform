@@ -274,7 +274,7 @@ abstract class Screen extends Controller
     }
 
     /**
-     * Response or HTTP code that will be returned if user does not have access to screen.
+     * Response or HTTP code that will be returned if user does not have access to the screen.
      *
      * @return int | \Symfony\Component\HttpFoundation\Response
      */

@@ -96,7 +96,7 @@ class Modal extends Layout
     }
 
     /**
-     * Set text button for apply action.
+     * Set the text button for apply action.
      */
     public function applyButton(string $text): self
     {
@@ -106,7 +106,7 @@ class Modal extends Layout
     }
 
     /**
-     * Whether to disable the apply button or not.
+     * Whether to disable the applied button or not.
      */
     public function withoutApplyButton(bool $withoutApplyButton = true): self
     {
@@ -126,7 +126,7 @@ class Modal extends Layout
     }
 
     /**
-     * Set text button for cancel action.
+     * Set the text button for cancel action.
      */
     public function closeButton(string $text): self
     {
@@ -222,7 +222,7 @@ class Modal extends Layout
     }
 
     /**
-     * Return URL for screen template requests from browser.
+     * Return URL for screen template requests from the browser.
      */
     protected function asyncRoute(): ?string
     {

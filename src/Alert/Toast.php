@@ -12,7 +12,7 @@ use Illuminate\Session\Store;
 class Toast extends Alert
 {
     /**
-     * @var string The session key for message.
+     * @var string The session key for a message.
      */
     public const SESSION_MESSAGE = 'toast_notification.message';
 

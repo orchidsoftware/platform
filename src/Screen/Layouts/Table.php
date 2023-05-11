@@ -146,7 +146,7 @@ abstract class Table extends Layout
     }
 
     /**
-     * The number of links to display on each side of current page link.
+     * The number of links to display on each side of the current page link.
      */
     protected function onEachSide(): int
     {

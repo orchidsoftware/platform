@@ -15,7 +15,7 @@ abstract class Layout implements JsonSerializable
     use CanSee;
 
     /**
-     * Main template to display the layer
+     * The Main template to display the layer
      * Represents the view() argument.
      *
      * @var string

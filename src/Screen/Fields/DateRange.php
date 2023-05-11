@@ -35,7 +35,7 @@ class DateRange extends Field implements ComplexFieldConcern
     ];
 
     /**
-     * Disable native mobile pickers in favour of calendar
+     * Disable native mobile pickers in favor of calendar
      *
      *
      * @return $this

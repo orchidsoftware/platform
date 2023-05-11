@@ -16,7 +16,7 @@ interface Engine
     public function __construct(UploadedFile $file);
 
     /**
-     * Get name of the file without extension.
+     * Get the name of the file without extension.
      * Some characters are prohibited on different operating systems.
      *
      * For example, "calc"
@@ -26,9 +26,9 @@ interface Engine
     public function name(): string;
 
     /**
-     * Get name of the file with extension.
+     * Get the name of the file with extension.
      *
-     * For example "calc.exe"
+     * For example, "calc.exe"
      */
     public function fullName(): string;
 

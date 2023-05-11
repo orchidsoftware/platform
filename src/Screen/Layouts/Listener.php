@@ -66,7 +66,7 @@ abstract class Listener extends Layout
     }
 
     /**
-     * Return URL for screen template requests from browser.
+     * Return URL for screen template requests from the browser.
      */
     protected function asyncRoute(): ?string
     {

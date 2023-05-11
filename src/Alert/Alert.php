@@ -28,7 +28,7 @@ class Alert
     protected $session;
 
     /**
-     * Whether or not to run PHP's htmlspecialchars function to prevent attacks against scripts.
+     * Whether to run PHP's htmlspecialchars function to prevent attacks against scripts.
      */
     protected bool $sanitize = true;
 
@@ -134,7 +134,7 @@ class Alert
     }
 
     /**
-     * Set the $sanitize property to false to prevent escaping data.
+     * Set the $sanitize property too false to prevent escaping data.
      *
      * @return $this
      */

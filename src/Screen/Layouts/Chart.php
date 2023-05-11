@@ -21,7 +21,7 @@ abstract class Chart extends Layout
     public const TYPE_AXIS_MIXED = 'axis-mixed';
 
     /**
-     * Main template to display the layer
+     * The Main template to display the layer
      * Represents the view() argument.
      *
      * @var string
@@ -200,7 +200,7 @@ abstract class Chart extends Layout
     }
 
     /**
-     * Set height of the chart.
+     * Set the height of the chart.
      *
      * @return $this
      */

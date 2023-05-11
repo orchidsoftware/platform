@@ -33,7 +33,7 @@ use Watson\Active\ActiveServiceProvider;
 
 /**
  * Class FoundationServiceProvider.
- * After update run:  php artisan vendor:publish --provider="Orchid\Platform\Providers\FoundationServiceProvider".
+ * After update run: php artisan vendor:publish --provider="Orchid\Platform\Providers\FoundationServiceProvider".
  */
 class FoundationServiceProvider extends ServiceProvider
 {
