@@ -24,6 +24,8 @@ class Dashboard
     public const VERSION = '14.0.0-alpha7';
 
     /**
+     * @deprecated
+     *
      * Slug for main menu.
      */
     public const MENU_MAIN = 'Main';
@@ -330,13 +332,13 @@ class Dashboard
      *
      * @return $this
      */
-    public function registerMenuElement(string $location, Menu $menu): Dashboard
+    public function registerMenuElement(Menu $menu): Dashboard
     {
         if ($menu->get('sort', 0) === 0) {
-            $menu->sort($this->menu->get($location)->count() + 1);
+            $menu->sort($this->menu->get(self::MENU_MAIN)->count() + 1);
         }
 
-        $this->menu->get($location)->add($menu);
+        $this->menu->get(self::MENU_MAIN)->add($menu);
 
         return $this;
     }
@@ -347,30 +349,30 @@ class Dashboard
      *
      * @throws \Throwable
      */
-    public function renderMenu(string $location): string
+    public function renderMenu(): string
     {
-        return $this->menu->get($location)
+        return $this->menu->get(self::MENU_MAIN)
             ->sort(fn (Menu $current, Menu $next) => $current->get('sort', 0) <=> $next->get('sort', 0))
             ->map(fn (Menu $menu) => (string) $menu->render())
             ->implode('');
     }
 
-    public function isEmptyMenu(string $location): bool
+    public function isEmptyMenu(): bool
     {
-        return $this->menu->get($location)->isEmpty();
+        return $this->menu->get(self::MENU_MAIN)->isEmpty();
     }
 
     /**
      * @param Menu[] $list
      */
-    public function addMenuSubElements(string $location, string $slug, array $list): Dashboard
+    public function addMenuSubElements(string $slug, array $list): Dashboard
     {
-        $menu = $this->menu->get($location)
+        $menu = $this->menu->get(self::MENU_MAIN)
             ->map(fn (Menu $menu) => $menu->get('slug') === $slug
                 ? $menu->list($list)
                 : $menu);
 
-        $this->menu->put($location, $menu);
+        $this->menu->put(self::MENU_MAIN, $menu);
 
         return $this;
     }

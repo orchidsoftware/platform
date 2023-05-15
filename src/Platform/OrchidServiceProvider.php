@@ -21,7 +21,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
         // Register the menu items
         View::composer('platform::dashboard', function () use ($dashboard) {
             foreach ([...$this->menu(), ...$this->registerMenu(), ...$this->registerMainMenu(), ...$this->registerProfileMenu()] as $element) {
-                $dashboard->registerMenuElement(Dashboard::MENU_MAIN, $element);
+                $dashboard->registerMenuElement($element);
             }
         });
 
