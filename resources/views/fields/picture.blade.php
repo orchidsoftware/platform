@@ -23,7 +23,7 @@
 
                     {{ __('Browse') }}
                     <input type="file"
-                           accept="image/*"
+                           accept="{{ $acceptedFiles }}"
                            data-picture-target="upload"
                            data-action="change->picture#upload"
                            class="d-none">
