@@ -46,7 +46,7 @@ abstract class Screen extends Controller
     /**
      * The base view that will be rendered.
      */
-    protected function screenBaseView(): string
+    public function screenBaseView(): string
     {
         return 'platform::layouts.base';
     }
