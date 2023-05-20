@@ -37,61 +37,18 @@ use Watson\Active\ActiveServiceProvider;
  */
 class FoundationServiceProvider extends ServiceProvider
 {
-    /**
-     * The available command shortname.
-     *
-     * @var array
-     */
-    protected $commands = [
-        InstallCommand::class,
-        PublishCommand::class,
-        AdminCommand::class,
-        FilterCommand::class,
-        RowsCommand::class,
-        ScreenCommand::class,
-        TableCommand::class,
-        ChartCommand::class,
-        SelectionCommand::class,
-        ListenerCommand::class,
-        PresenterCommand::class,
-        TabMenuCommand::class,
-    ];
 
     /**
      * Boot the application events.
      */
     public function boot(): void
     {
-        AboutCommand::add('Orchid Platform', fn () => [
-            'Version'       => Dashboard::version(),
-            'Domain'        => config('platform.domain'),
-            'Prefix'        => config('platform.prefix'),
-            'Assets Status' => Dashboard::assetsAreCurrent() ? '<fg=green;options=bold>CURRENT</>' : '<fg=yellow;options=bold>OUTDATED</>',
-        ]);
-
         $this
-            ->registerOrchid()
-            ->registerAssets()
-            ->registerDatabase()
-            ->registerConfig()
             ->registerTranslations()
             ->registerViews()
             ->registerOctaneEventsListen();
     }
 
-    /**
-     * Register migrate.
-     *
-     * @return $this
-     */
-    protected function registerDatabase(): self
-    {
-        $this->publishes([
-            Dashboard::path('database/migrations') => database_path('migrations'),
-        ], 'orchid-migrations');
-
-        return $this;
-    }
 
     /**
      * Register translations.
@@ -100,57 +57,11 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerTranslations(): self
     {
-        $this->publishes([
-            Dashboard::path('resources/lang') => lang_path('vendor/platform'),
-        ], 'orchid-lang');
-
         $this->loadJsonTranslationsFrom(Dashboard::path('resources/lang/'));
 
         return $this;
     }
 
-    /**
-     * Register config.
-     *
-     * @return $this
-     */
-    protected function registerConfig(): self
-    {
-        $this->publishes([
-            Dashboard::path('config/platform.php') => config_path('platform.php'),
-        ], 'orchid-config');
-
-        return $this;
-    }
-
-    /**
-     * Register orchid.
-     *
-     * @return $this
-     */
-    protected function registerOrchid(): self
-    {
-        $this->publishes([
-            Dashboard::path('stubs/app/routes/') => base_path('routes'),
-            Dashboard::path('stubs/app/Orchid/') => app_path('Orchid'),
-        ], 'orchid-app-stubs');
-
-        return $this;
-    }
-
-    /**
-     * Register the asset publishing configuration.
-     *
-     * @return $this
-     */
-    protected function registerAssets(): self
-    {
-        $this->publishes([
-            Dashboard::path('public') => public_path('vendor/orchid'),
-        ], ['orchid-assets', 'laravel-assets']);
-
-        return $this;
-    }
 
     /**
      * Register views & Publish views.
@@ -159,13 +70,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerViews(): self
     {
-        $path = Dashboard::path('resources/views');
-
-        $this->loadViewsFrom($path, 'platform');
-
-        $this->publishes([
-            $path => resource_path('views/vendor/platform'),
-        ], 'orchid-views');
+        $this->loadViewsFrom(Dashboard::path('resources/views'), 'platform');
 
         return $this;
     }
@@ -179,6 +84,10 @@ class FoundationServiceProvider extends ServiceProvider
     {
         foreach ($this->provides() as $provide) {
             $this->app->register($provide);
+        }
+
+        if ($this->app->runningInConsole()) {
+            $this->app->register(ConsoleServiceProvider::class);
         }
 
         return $this;
@@ -218,10 +127,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this
-            ->registerTranslations()
-            ->registerProviders()
-            ->commands($this->commands);
+        $this->registerProviders();
 
         $this->app->singleton(Dashboard::class, static fn () => new Dashboard());
 
