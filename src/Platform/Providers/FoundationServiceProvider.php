@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
@@ -12,18 +11,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
 use Orchid\Icons\IconServiceProvider;
-use Orchid\Platform\Commands\AdminCommand;
-use Orchid\Platform\Commands\ChartCommand;
-use Orchid\Platform\Commands\FilterCommand;
-use Orchid\Platform\Commands\InstallCommand;
-use Orchid\Platform\Commands\ListenerCommand;
-use Orchid\Platform\Commands\PresenterCommand;
-use Orchid\Platform\Commands\PublishCommand;
-use Orchid\Platform\Commands\RowsCommand;
-use Orchid\Platform\Commands\ScreenCommand;
-use Orchid\Platform\Commands\SelectionCommand;
-use Orchid\Platform\Commands\TableCommand;
-use Orchid\Platform\Commands\TabMenuCommand;
 use Orchid\Platform\Components\Notification;
 use Orchid\Platform\Components\Stream;
 use Orchid\Platform\Dashboard;
