@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
@@ -41,7 +42,10 @@ class ConsoleServiceProvider extends ServiceProvider
         TabMenuCommand::class,
     ];
 
-    public function boot(): void
+    /**
+     * Register bindings the service provider.
+     */
+    public function register(): void
     {
         AboutCommand::add('Orchid Platform', fn() => [
             'Version' => Dashboard::version(),
