@@ -42,10 +42,7 @@ class ConsoleServiceProvider extends ServiceProvider
         TabMenuCommand::class,
     ];
 
-    /**
-     * Register bindings the service provider.
-     */
-    public function register(): void
+    public function boot(): void
     {
         AboutCommand::add('Orchid Platform', fn () => [
             'Version'       => Dashboard::version(),
@@ -54,15 +51,14 @@ class ConsoleServiceProvider extends ServiceProvider
             'Assets Status' => Dashboard::assetsAreCurrent() ? '<fg=green;options=bold>CURRENT</>' : '<fg=yellow;options=bold>OUTDATED</>',
         ]);
 
-        $this->commands($this->commands);
-
         $this
             ->registerMigrationsPublisher()
             ->registerTranslationsPublisher()
             ->registerConfigPublisher()
             ->registerOrchidPublisher()
             ->registerViewsPublisher()
-            ->registerAssetsPublisher();
+            ->registerAssetsPublisher()
+            ->commands($this->commands);
     }
 
     /**

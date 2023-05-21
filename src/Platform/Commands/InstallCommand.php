@@ -8,7 +8,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Events\InstallEvent;
-use Orchid\Platform\Providers\FoundationServiceProvider;
+use Orchid\Platform\Providers\ConsoleServiceProvider;
 
 class InstallCommand extends Command
 {
@@ -38,7 +38,7 @@ class InstallCommand extends Command
 
         $this
             ->executeCommand('vendor:publish', [
-                '--provider' => FoundationServiceProvider::class,
+                '--provider' => ConsoleServiceProvider::class,
                 '--tag'      => [
                     'orchid-config',
                     'orchid-migrations',
