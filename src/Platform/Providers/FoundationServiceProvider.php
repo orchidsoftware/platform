@@ -24,7 +24,6 @@ use Watson\Active\ActiveServiceProvider;
  */
 class FoundationServiceProvider extends ServiceProvider
 {
-
     /**
      * Boot the application events.
      */
@@ -35,7 +34,6 @@ class FoundationServiceProvider extends ServiceProvider
             ->registerViews()
             ->registerOctaneEventsListen();
     }
-
 
     /**
      * Register translations.
@@ -48,7 +46,6 @@ class FoundationServiceProvider extends ServiceProvider
 
         return $this;
     }
-
 
     /**
      * Register views & Publish views.

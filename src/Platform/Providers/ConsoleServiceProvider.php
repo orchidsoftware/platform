@@ -47,10 +47,10 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        AboutCommand::add('Orchid Platform', fn() => [
-            'Version' => Dashboard::version(),
-            'Domain' => config('platform.domain'),
-            'Prefix' => config('platform.prefix'),
+        AboutCommand::add('Orchid Platform', fn () => [
+            'Version'       => Dashboard::version(),
+            'Domain'        => config('platform.domain'),
+            'Prefix'        => config('platform.prefix'),
             'Assets Status' => Dashboard::assetsAreCurrent() ? '<fg=green;options=bold>CURRENT</>' : '<fg=yellow;options=bold>OUTDATED</>',
         ]);
 
@@ -135,7 +135,6 @@ class ConsoleServiceProvider extends ServiceProvider
 
         return $this;
     }
-
 
     /**
      * Register the asset publishing configuration.
