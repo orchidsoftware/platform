@@ -269,6 +269,7 @@ abstract class Screen extends Controller
         $reflections = (new \ReflectionClass($this))->getProperties(\ReflectionProperty::IS_PUBLIC);
 
         collect($reflections)
+            ->filter(fn (\ReflectionProperty $property) => !$property->isStatic())
             ->map(fn (\ReflectionProperty $property) => $property->getName())
             ->each(fn (string $key) => $this->$key = $repository->get($key, $this->$key));
     }
