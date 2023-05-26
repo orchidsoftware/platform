@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.0.1 - 2023-05-26
+
+### Fixed
+* Override footer in compact/full workspace template [#2615](https://github.com/orchidsoftware/platform/pull/2615) [#2616](https://github.com/orchidsoftware/platform/pull/2616)
+* Filter static properties in Screen  [#2617](https://github.com/orchidsoftware/platform/pull/2617)
+
 ## 14.0.0 - 2023-05-22
 
 ### Added
