@@ -30,7 +30,6 @@ class FoundationServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this
-            ->registerTranslations()
             ->registerViews()
             ->registerOctaneEventsListen();
     }
@@ -111,7 +110,9 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->registerProviders();
+        $this
+            ->registerTranslations()
+            ->registerProviders();
 
         $this->app->singleton(Dashboard::class, static fn () => new Dashboard());
 
