@@ -12,12 +12,12 @@ use Illuminate\Testing\TestResponse;
 class DynamicTestScreen
 {
     /**
-     * @var MakesHttpRequestsWrapper
+     * @var MakesHttpRequestsWrapper Wrapper for HTTP requests
      */
     protected $http;
 
     /**
-     * Route name
+     * Name of the route
      *
      * @var string
      */
@@ -31,10 +31,17 @@ class DynamicTestScreen
     protected $parameters = [];
 
     /**
+     * Session data
+     *
      * @var array
      */
     protected $session = [];
 
+    /**
+     * Create a new DynamicTestScreen instance.
+     *
+     * @param string|null $name Route name
+     */
     public function __construct(string $name = null)
     {
         $this->http = app(MakesHttpRequestsWrapper::class);
@@ -42,9 +49,11 @@ class DynamicTestScreen
     }
 
     /**
-     * Declarate dinamic route
+     * Register a dynamic screen
      *
-     * @param string|array $middleware
+     * @param string       $screen     Screen name
+     * @param string|null  $route      Route name
+     * @param array|string $middleware Middleware to be used
      */
     public function register(string $screen, string $route = null, $middleware = 'web'): DynamicTestScreen
     {
@@ -59,8 +68,9 @@ class DynamicTestScreen
     }
 
     /**
-     * Set Route Parameters
+     * Set route parameters
      *
+     * @param array $parameters Route parameters
      *
      * @return $this
      */
@@ -72,8 +82,9 @@ class DynamicTestScreen
     }
 
     /**
-     * Set the session to the given array.
+     * Set session data
      *
+     * @param array $data Session data
      *
      * @return $this
      */
@@ -85,8 +96,12 @@ class DynamicTestScreen
     }
 
     /**
-     * @throws \Psr\Container\ContainerExceptionInterface
+     * Get the test response for the screen.
+     *
+     * @param array $headers Headers to be used
+     *
      * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws \Psr\Container\ContainerExceptionInterface
      *
      * @return \Illuminate\Testing\TestResponse|mixed
      */
@@ -96,7 +111,13 @@ class DynamicTestScreen
     }
 
     /**
-     * Call screen method
+     * Call the specified screen method
+     *
+     * @param string $method     Method to call
+     * @param array  $parameters Parameters to be used
+     * @param array  $headers    Headers to be used
+     *
+     * @return \Illuminate\Testing\TestResponse
      */
     public function method(string $method, array $parameters = [], array $headers = []): TestResponse
     {
@@ -114,7 +135,7 @@ class DynamicTestScreen
     }
 
     /**
-     * The alias for the "method"
+     * Call the specified screen method using alias
      */
     public function call(string $method, array $parameters = [], array $headers = []): TestResponse
     {
@@ -122,7 +143,7 @@ class DynamicTestScreen
     }
 
     /**
-     * Get route URL
+     * Get the route URL
      */
     protected function route(array $parameters = null): string
     {
@@ -132,9 +153,8 @@ class DynamicTestScreen
     /**
      * Set the currently logged-in user for the application.
      *
-     * @param string|null $guard
-     *
-     * @return $this
+     * @param UserContract $user  User to act as
+     * @param string|null  $guard Guard name
      */
     public function actingAs(UserContract $user, $guard = null): self
     {
@@ -146,9 +166,8 @@ class DynamicTestScreen
     /**
      * Set the currently logged-in user for the application.
      *
-     * @param string|null $guard
-     *
-     * @return $this
+     * @param UserContract $user  User to act as
+     * @param string|null  $guard Guard name
      */
     public function be(UserContract $user, $guard = null): self
     {
@@ -158,7 +177,10 @@ class DynamicTestScreen
     }
 
     /**
-     * @param mixed $arguments
+     * Dynamically pass all other methods to Http calls
+     *
+     * @param string $name      Name of the method to call
+     * @param mixed  $arguments Arguments to be passed
      *
      * @return $this
      */
@@ -172,12 +194,11 @@ class DynamicTestScreen
     /**
      * Set the URL of the previous request.
      *
-     *
-     * @return $this
+     * @param string $url URL of the previous request
      */
     public function from(string $url): self
     {
-        $this->http->getAppication()['session']->setPreviousUrl($url);
+        $this->http->getApplication()['session']->setPreviousUrl($url);
 
         return $this;
     }

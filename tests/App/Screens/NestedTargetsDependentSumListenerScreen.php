@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\App\Screens;
 
-use Illuminate\Http\Request;
 use Orchid\Screen\Action;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Screen;
@@ -41,20 +40,6 @@ class NestedTargetsDependentSumListenerScreen extends Screen
     public function commandBar(): array
     {
         return [];
-    }
-
-    public function asyncSum(Request $request): array
-    {
-        $first = (int) $request->input('father.first');
-        $second = (int) $request->input('father.second');
-
-        return [
-            'father' => [
-                'first'  => $first,
-                'second' => $second,
-            ],
-            'sum'    => $first + $second,
-        ];
     }
 
     /**

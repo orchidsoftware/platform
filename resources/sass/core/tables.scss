@@ -47,7 +47,7 @@
               padding-right: 1.5rem !important;
           }
           > div > .form-group > .btn {
-              display: inline;
+              display: inline-flex;
               width: auto;
               @extend .btn-sm;
           }

@@ -28,7 +28,7 @@
 
         <div class="text-center pt-5 pb-5 w-100">
             <h3 class="fw-light">
-                <x-orchid-icon path="magnifier-remove" class="block mb-3 center"/>
+                <x-orchid-icon path="bs.funnel" class="block mb-3 center"/>
 
                 {{ __('Nothing found.') }}
             </h3>

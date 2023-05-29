@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 use Orchid\Platform\Models\User;
 
 /**
- * Class AddRoleEvent.
+ * This event is triggered when a role is added to a user.
  */
 class AddRoleEvent
 {
@@ -23,7 +23,7 @@ class AddRoleEvent
     public $user;
 
     /**
-     * Roles.
+     * The role(s) that were added to the user.
      *
      * @var Collection
      */
@@ -32,8 +32,8 @@ class AddRoleEvent
     /**
      * Create a new event instance.
      *
-     * @param mixed $user
-     * @param mixed $role
+     * @param mixed $user The user to whom the role(s) is added
+     * @param mixed $role The role(s) to be added
      */
     public function __construct($user, $role)
     {

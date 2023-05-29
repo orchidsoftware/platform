@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Actions;
 
-use Illuminate\Support\Str;
-use Orchid\Platform\Http\Middleware\Turbo;
 use Orchid\Screen\Action;
+use Orchid\Support\Facades\Dashboard;
 
 /**
  * Class Button.
@@ -74,7 +73,7 @@ class Button extends Action
             }
 
             // correct URL for async request
-            $url = Str::contains(request()->header('Accept', ''), Turbo::TURBO_STREAM_FORMAT)
+            $url = Dashboard::isPartialRequest()
                 ? url()->previous()
                 : url()->current();
 

@@ -20,7 +20,7 @@ class RemoveRoleEvent
     public $user;
 
     /**
-     * Roles.
+     * Roles that will be removed.
      *
      * @var Collection
      */
@@ -29,8 +29,8 @@ class RemoveRoleEvent
     /**
      * Create a new event instance.
      *
-     * @param mixed $user
-     * @param mixed $role
+     * @param mixed $user The user object this event relates to.
+     * @param mixed $role The role(s) to remove. Can accept either a Collection or an array.
      */
     public function __construct($user, $role)
     {

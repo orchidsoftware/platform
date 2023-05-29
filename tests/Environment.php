@@ -29,16 +29,10 @@ trait Environment
     {
         parent::setUp();
 
-        /* Install application */
-        $this->loadLaravelMigrations();
-        $this->loadMigrationsFrom(realpath('./database/migrations'));
-        $this->artisan('orchid:install');
-
         /* Refresh application for route/breadcrumbs/orchid provider */
         if (! $this->app['router']->has('platform.main')) {
             $this->refreshApplication();
-            $this->loadLaravelMigrations();
-            $this->loadMigrationsFrom(realpath('./database/migrations'));
+            $this->defineDatabaseMigrations();
         }
 
         Factory::guessFactoryNamesUsing(function ($factory) {
@@ -50,6 +44,18 @@ trait Environment
         $this->artisan('db:seed', [
             '--class' => OrchidDatabaseSeeder::class,
         ]);
+    }
+
+    /**
+     * Define database migrations.
+     *
+     * @return void
+     */
+    protected function defineDatabaseMigrations()
+    {
+        $this->loadLaravelMigrations();
+        $this->loadMigrationsFrom(realpath('./database/migrations'));
+        $this->artisan('orchid:install');
     }
 
     /**
@@ -82,6 +88,18 @@ trait Environment
             FoundationServiceProvider::class,
             ExemplarServiceProvider::class,
         ];
+    }
+
+    /**
+     * Define routes setup.
+     *
+     * @param \Illuminate\Routing\Router $router
+     *
+     * @return void
+     */
+    protected function defineRoutes($router)
+    {
+        // Define routes.
     }
 
     /**

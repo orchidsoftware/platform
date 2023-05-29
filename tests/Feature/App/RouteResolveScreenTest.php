@@ -7,6 +7,7 @@ namespace Orchid\Tests\Feature\App;
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Models\User;
 use Orchid\Tests\App\Screens\ModelRouteBindScreen;
+use Orchid\Tests\App\Screens\ModelRouteParamBindScreen;
 use Orchid\Tests\App\Screens\RouteResolveScreen;
 use Orchid\Tests\TestFeatureCase;
 
@@ -14,7 +15,8 @@ class RouteResolveScreenTest extends TestFeatureCase
 {
     public function testResolveModel(): void
     {
-        Route::screen('route-resolve/{resolve}', RouteResolveScreen::class)->name('route-resolve');
+        Route::screen('route-resolve/{resolve}', RouteResolveScreen::class)
+            ->name('route-resolve');
 
         $this->post(route('route-resolve', [
             'method'  => 'resolveModel',
@@ -43,7 +45,7 @@ class RouteResolveScreenTest extends TestFeatureCase
 
     public function testImplicitBindingWhenAllowNull(): void
     {
-        Route::screen('bind/users/{user}', ModelRouteBindScreen::class)
+        Route::screen('bind/users/{user?}', ModelRouteBindScreen::class)
             ->middleware(config('platform.middleware.private'))
             ->name('bind.implicit-binding');
 
@@ -51,16 +53,13 @@ class RouteResolveScreenTest extends TestFeatureCase
 
         $this
             ->actingAs($user)
-            ->get(route('bind.implicit-binding', 0))
+            ->get(route('bind.implicit-binding'))
             ->assertOk()
             ->assertSee('User ID')
             ->assertSee('User Name');
     }
 
-    /*
-     * TODO: Support
-     *
-    public function testCustomizingKey():void
+    public function testCustomizingKey(): void
     {
         Route::screen('bind/users/{user:email}', ModelRouteBindScreen::class)
             ->middleware(config('platform.middleware.private'))
@@ -75,13 +74,12 @@ class RouteResolveScreenTest extends TestFeatureCase
             ->assertSee($user->id)
             ->assertSee($user->email);
     }
-    */
 
     public function testExplicitBinding(): void
     {
-        Route::model('model', User::class);
+        Route::model('bind', User::class);
 
-        Route::screen('bind/users/{model}', ModelRouteBindScreen::class)
+        Route::screen('bind/users/{bind}', ModelRouteParamBindScreen::class)
             ->middleware(config('platform.middleware.private'))
             ->name('bind.explicit-binding');
 
@@ -97,11 +95,11 @@ class RouteResolveScreenTest extends TestFeatureCase
 
     public function testResolutionLogic(): void
     {
-        Route::bind('bind', function ($value) {
+        Route::bind('user', function ($value) {
             return User::where('email', $value)->firstOrFail();
         });
 
-        Route::screen('bind/users/{bind}', ModelRouteBindScreen::class)
+        Route::screen('bind/users/{user}', ModelRouteBindScreen::class)
             ->middleware(config('platform.middleware.private'))
             ->name('bind.resolution-logic');
 

@@ -5,7 +5,11 @@ namespace Orchid\Support\Testing;
 trait ScreenTesting
 {
     /**
-     * @param string $name
+     * Get a DynamicTestScreen object.
+     *
+     * @param string|null $name Name of the screen
+     *
+     * @return \Orchid\Support\Testing\DynamicTestScreen
      */
     public function screen(string $name = null): DynamicTestScreen
     {

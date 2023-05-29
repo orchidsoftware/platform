@@ -46,7 +46,7 @@ abstract class Table extends Layout
     protected $title;
 
     /**
-     * @return Factory|\Illuminate\View\View
+     * @return Factory|\Illuminate\View\View|void
      */
     public function build(Repository $repository)
     {
@@ -60,8 +60,9 @@ abstract class Table extends Layout
 
         $total = collect($this->total())->filter(static fn (TD $column) => $column->isSee());
 
-        $rows = $repository->getContent($this->target);
-        $rows = is_array($rows) ? collect($rows) : $rows;
+        $content = $repository->getContent($this->target);
+
+        $rows = is_a($content, \Illuminate\Contracts\Pagination\Paginator::class) ? $content : collect()->merge($content);
 
         return view($this->template, [
             'repository'   => $repository,
@@ -145,7 +146,7 @@ abstract class Table extends Layout
     }
 
     /**
-     * The number of links to display on each side of current page link.
+     * The number of links to display on each side of the current page link.
      */
     protected function onEachSide(): int
     {

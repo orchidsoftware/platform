@@ -68,11 +68,11 @@ class RoleEditScreen extends Screen
     {
         return [
             Button::make(__('Save'))
-                 ->icon('bs.check-circle')
+                ->icon('bs.check-circle')
                 ->method('save'),
 
             Button::make(__('Remove'))
-                 ->icon('bs.trash3')
+                ->icon('bs.trash3')
                 ->method('remove')
                 ->canSee($this->role->exists),
         ];

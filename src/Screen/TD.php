@@ -70,7 +70,7 @@ class TD extends Cell
      */
     protected $defaultHidden = false;
     /**
-     * Possible options for filters if it's a select
+     * Possible options for filters if it's select
      *
      * @var array
      */
@@ -273,7 +273,7 @@ class TD extends Cell
     }
 
     /**
-     * Builds item menu for show/hiden column.
+     * Builds an item menu for show/hiden column.
      *
      * @return Factory|View|null
      */
@@ -331,7 +331,7 @@ class TD extends Cell
     }
 
     /**
-     * Decides whether a filter can be provided with complex (array-like) value, or it needs a scalar one.
+     * Decides whether a filter can be provided with a complex (array-like) value, or it needs a scalar one.
      *
      * @param \Orchid\Screen\Field $field
      */

@@ -11,6 +11,7 @@ use Orchid\Screen\Layouts\Accordion;
 use Orchid\Screen\Layouts\Blank;
 use Orchid\Screen\Layouts\Block;
 use Orchid\Screen\Layouts\Browsing;
+use Orchid\Screen\Layouts\Chart;
 use Orchid\Screen\Layouts\Columns;
 use Orchid\Screen\Layouts\Component;
 use Orchid\Screen\Layouts\Legend;
@@ -18,6 +19,7 @@ use Orchid\Screen\Layouts\Metric;
 use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Layouts\Selection;
+use Orchid\Screen\Layouts\Split;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Layouts\View;
@@ -96,6 +98,13 @@ class LayoutFactory
     public static function columns(array $layouts): Columns
     {
         return new class($layouts) extends Columns
+        {
+        };
+    }
+
+    public static function split(array $layouts): Split
+    {
+        return new class($layouts) extends Split
         {
         };
     }
@@ -212,5 +221,22 @@ class LayoutFactory
     public static function metrics(array $labels): Metric
     {
         return new Metric($labels);
+    }
+
+    /**
+     * @param string      $target
+     * @param string|null $title
+     *
+     * @return \Orchid\Screen\Layouts\Chart
+     */
+    public static function chart(string $target, string $title = null): Chart
+    {
+        $chart = new class() extends Chart
+        {
+        };
+
+        return $chart
+            ->target($target)
+            ->title($title);
     }
 }

@@ -67,7 +67,7 @@ class Access
      */
     protected function redirectToLogin(Request $request)
     {
-        if ($request->ajax() || $request->wantsJson()) {
+        if ($request->expectsJson()) {
             return response('Unauthorized.', 401);
         }
 

@@ -24,7 +24,7 @@ use Orchid\Screen\Fields\UTM;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 
-class ExampleFieldsAdvancedScreen extends Screen
+class ExampleFieldsAdvancedScreen extends TestBaseScreen
 {
     /**
      * Fetch data to be displayed on the screen.

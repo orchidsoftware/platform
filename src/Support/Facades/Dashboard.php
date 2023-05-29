@@ -23,8 +23,9 @@ use Orchid\Screen\Screen;
  * @method        static      model(string $key, string $default = null)
  * @method        static      useModel(string $key, string $custom)
  * @method static bool        checkUpdate()
- * @method        static      setCurrentScreen(Screen $screen)
+ * @method        static      setCurrentScreen(Screen $screen, bool $partialRequest = false)
  * @method static Screen|null getCurrentScreen()
+ * @method static bool        isPartialRequest()
  */
 class Dashboard extends Facade
 {

@@ -102,16 +102,11 @@ export default class extends ApplicationController {
 
     /**
      *
-     * @param params
      */
     asyncLoadData(params) {
-        window.axios.post(this.data.get('async-route'), params, {
-            headers: {
-                'ORCHID-ASYNC-REFERER': window.location.href,
-            },
-        }).then((response) => {
-            this.element.querySelector('[data-async]').innerHTML = response.data;
-        });
+        let query = new URLSearchParams(params).toString()
+
+        this.loadStream(`${this.data.get('async-route')}?${query}`);
     }
 
     set lastOpenModal(options) {

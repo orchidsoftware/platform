@@ -56,7 +56,7 @@ class Browsing extends Layout
     /**
      * Specifies a feature policy for the <iframe>.
      * The policy defines what features are available to the <iframe> based on the origin of the request
-     * (e.g. access to the microphone, camera, battery, web-share API, etc.).
+     * (e.g., access to the microphone, camera, battery, web-share API, etc.).
      */
     public function allow(string $allow = null): Browsing
     {

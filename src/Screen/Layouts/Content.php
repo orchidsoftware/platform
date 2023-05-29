@@ -15,7 +15,7 @@ abstract class Content extends Layout
     protected $query;
 
     /**
-     * Key property for query.
+     * Key property for a query.
      *
      * @var mixed
      */

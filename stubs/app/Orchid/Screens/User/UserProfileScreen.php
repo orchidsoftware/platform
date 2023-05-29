@@ -80,7 +80,7 @@ class UserProfileScreen extends Screen
                 ->commands(
                     Button::make(__('Save'))
                         ->type(Color::BASIC())
-                         ->icon('bs.check-circle')
+                        ->icon('bs.check-circle')
                         ->method('save')
                 ),
 
@@ -90,7 +90,7 @@ class UserProfileScreen extends Screen
                 ->commands(
                     Button::make(__('Update password'))
                         ->type(Color::BASIC())
-                         ->icon('bs.check-circle')
+                        ->icon('bs.check-circle')
                         ->method('changePassword')
                 ),
         ];
@@ -118,7 +118,7 @@ class UserProfileScreen extends Screen
         $guard = config('platform.guard', 'web');
         $request->validate([
             'old_password' => 'required|current_password:'.$guard,
-            'password'     => 'required|confirmed',
+            'password'     => 'required|confirmed|different:old_password',
         ]);
 
         tap($request->user(), function ($user) use ($request) {

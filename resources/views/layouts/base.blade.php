@@ -1,16 +1,8 @@
 @extends('platform::dashboard')
 
-@section('title')
-    {{ __($name) }}
-@endsection
-
-@section('description')
-    {{ __($description) }}
-@endsection
-
-@section('controller')
-    base
-@endsection
+@section('title', e(__($name)))
+@section('description', e(__($description)))
+@section('controller', 'base')
 
 @section('navbar')
     @foreach($commandBar as $command)
@@ -26,11 +18,11 @@
     </div>
 
     <form id="post-form"
-          class="mb-md-4"
+          class="mb-md-4 overflow-hidden"
           method="post"
           enctype="multipart/form-data"
           data-controller="form"
-          data-form-need-prevents-form-abandonment-value="{{ $needPreventsAbandonment }}"
+          data-form-need-prevents-form-abandonment-value="{{ var_export($needPreventsAbandonment) }}"
           data-form-failed-validation-message-value="{{ $formValidateMessage }}"
           data-action="keypress->form#disableKey
                       turbo:before-fetch-request@document->form#confirmCancel
@@ -50,4 +42,6 @@
               data-form-need-prevents-form-abandonment-value="false"
         ></form>
     </div>
+
+    @includeWhen(isset($state), 'platform::partials.state')
 @endsection

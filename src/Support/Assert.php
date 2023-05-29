@@ -9,6 +9,8 @@ use Illuminate\Support\Collection;
 class Assert
 {
     /**
+     * Check if the given array is a numeric array.
+     *
      * @param mixed $array
      */
     public static function isIntArray($array): bool
@@ -17,6 +19,8 @@ class Assert
     }
 
     /**
+     * Check if the given array is an object array.
+     *
      * @param mixed $array
      */
     public static function isObjectArray($array): bool
@@ -25,6 +29,8 @@ class Assert
     }
 
     /**
+     * Check if the given array passes the callback test.
+     *
      * @param mixed           $array
      * @param string|\Closure $callback
      */

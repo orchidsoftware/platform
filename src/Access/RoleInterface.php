@@ -9,16 +9,23 @@ use IteratorAggregate;
 interface RoleInterface
 {
     /**
-     * Returns all users for the role.
+     * Return all users belonging to the role.
      *
      * @return IteratorAggregate
      */
     public function getUsers();
 
     /**
-     * @return int
+     * Returns the ID of the role.
+     *
+     * @return mixed
      */
     public function getRoleId();
 
+    /**
+     * Returns the slug of the role.
+     *
+     * @return string
+     */
     public function getRoleSlug(): string;
 }

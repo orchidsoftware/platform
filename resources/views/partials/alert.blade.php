@@ -1,5 +1,5 @@
 @if (session()->has(\Orchid\Alert\Alert::SESSION_MESSAGE))
-    <div class="alert alert-{{ session(\Orchid\Alert\Alert::SESSION_LEVEL) }} rounded shadow-sm mb-3 p-4 d-flex">
+    <div class="alert alert-{{ session(\Orchid\Alert\Alert::SESSION_LEVEL) }} rounded shadow-sm mb-3 p-4 d-flex" data-turbo-temporary>
         {!! session(\Orchid\Alert\Alert::SESSION_MESSAGE) !!}
 
         @yield('flash_notification.sub_message')

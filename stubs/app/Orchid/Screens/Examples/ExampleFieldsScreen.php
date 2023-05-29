@@ -17,7 +17,7 @@ use Orchid\Support\Color;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
 
-class ExampleFieldsScreen extends Screen
+class ExampleFieldsScreen extends TestBaseScreen
 {
     /**
      * Fetch data to be displayed on the screen.

@@ -5,10 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Str;
 use JsonSerializable;
-use Orchid\Support\Facades\Dashboard;
 
 /**
  * Class Layout.
@@ -18,7 +15,7 @@ abstract class Layout implements JsonSerializable
     use CanSee;
 
     /**
-     * Main template to display the layer
+     * The Main template to display the layer
      * Represents the view() argument.
      *
      * @var string
@@ -34,22 +31,6 @@ abstract class Layout implements JsonSerializable
     protected $layouts = [];
 
     /**
-     * What screen method should be called
-     * as a source for an asynchronous request.
-     *
-     * @var string
-     */
-    protected $asyncMethod;
-
-    /**
-     * The call is asynchronous and should return
-     * only the template of the specific layer.
-     *
-     * @var bool
-     */
-    protected $async = false;
-
-    /**
      * @var array
      */
     protected $variables = [];
@@ -63,24 +44,6 @@ abstract class Layout implements JsonSerializable
      * @return mixed
      */
     abstract public function build(Repository $repository);
-
-    public function currentAsync(): self
-    {
-        $this->async = true;
-
-        return $this;
-    }
-
-    public function async(string $method): self
-    {
-        if (! Str::startsWith($method, 'async')) {
-            $method = Str::start(Str::ucfirst($method), 'async');
-        }
-
-        $this->asyncMethod = $method;
-
-        return $this;
-    }
 
     /**
      * @return mixed
@@ -100,31 +63,11 @@ abstract class Layout implements JsonSerializable
             ->all();
 
         $variables = array_merge($this->variables, [
-            'manyForms'    => $build,
             'templateSlug' => $this->getSlug(),
-            'asyncEnable'  => empty($this->asyncMethod) ? 0 : 1,
-            'asyncRoute'   => $this->asyncRoute(),
+            'manyForms'    => $build,
         ]);
 
-        return view($this->async ? 'platform::layouts.blank' : $this->template, $variables);
-    }
-
-    /**
-     * Return URL for screen template requests from browser.
-     */
-    private function asyncRoute(): ?string
-    {
-        $screen = Dashboard::getCurrentScreen();
-
-        if (! $screen) {
-            return null;
-        }
-
-        return route('platform.async', [
-            'screen'   => Crypt::encryptString(get_class($screen)),
-            'method'   => $this->asyncMethod,
-            'template' => $this->getSlug(),
-        ]);
+        return view($this->template, $variables);
     }
 
     /**

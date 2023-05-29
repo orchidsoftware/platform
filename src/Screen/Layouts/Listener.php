@@ -2,9 +2,12 @@
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Orchid\Screen\Builder;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
+use Orchid\Support\Facades\Dashboard;
 
 abstract class Listener extends Layout
 {
@@ -14,38 +17,24 @@ abstract class Listener extends Layout
     protected $template = 'platform::layouts.listener';
 
     /**
-     * List of field names for which values will be joined with targets' upon trigger.
-     *
-     * @var string[]
-     */
-    protected $extraVars = [];
-
-    /**
      * List of field names for which values will be listened.
      *
      * @var string[]
      */
-    protected $targets = [
-        'name',
-    ];
-
-    /**
-     * What screen method should be called
-     * as a source for an asynchronous request.
-     *
-     * @var string
-     */
-    protected $asyncMethod;
-
-    /**
-     * @var Repository
-     */
-    public $query;
+    protected $targets = [];
 
     /**
      * @return array
      */
     abstract protected function layouts(): iterable;
+
+    /**
+     * @param \Orchid\Screen\Repository $repository
+     * @param \Illuminate\Http\Request  $request
+     *
+     * @return \Orchid\Screen\Repository
+     */
+    abstract public function handle(Repository $repository, Request $request): Repository;
 
     /**
      * @return mixed|void
@@ -59,8 +48,10 @@ abstract class Listener extends Layout
         $this->query = $repository;
         $this->layouts = $this->layouts();
 
-        $this->variables['targets'] = collect($this->targets)->map(fn ($target) => Builder::convertDotToArray($target))->toJson();
-        $this->variables['extraVars'] = collect($this->extraVars)->map(fn ($extraVars) => Builder::convertDotToArray($extraVars))->toJson();
+        $this->variables = array_merge($this->variables, [
+            'targets'    => collect($this->targets)->map(fn ($target) => Builder::convertDotToArray($target))->toJson(),
+            'asyncRoute' => $this->asyncRoute(),
+        ]);
 
         return $this->buildAsDeep($repository);
     }
@@ -72,5 +63,22 @@ abstract class Listener extends Layout
     public function getSlug(): string
     {
         return sha1(static::class);
+    }
+
+    /**
+     * Return URL for screen template requests from the browser.
+     */
+    protected function asyncRoute(): ?string
+    {
+        $screen = Dashboard::getCurrentScreen();
+
+        if (! $screen) {
+            return null;
+        }
+
+        return route('platform.async.listener', [
+            'screen' => Crypt::encryptString(get_class($screen)),
+            'layout' => Crypt::encryptString(static::class),
+        ]);
     }
 }

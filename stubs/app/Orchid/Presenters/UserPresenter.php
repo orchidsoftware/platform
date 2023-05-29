@@ -12,16 +12,25 @@ use Orchid\Support\Presenter;
 
 class UserPresenter extends Presenter implements Searchable, Personable
 {
+    /**
+     * Returns the label for this presenter, which is used in the UI to identify it.
+     */
     public function label(): string
     {
         return 'Users';
     }
 
+    /**
+     * Returns the title for this presenter, which is displayed in the UI as the main heading.
+     */
     public function title(): string
     {
         return $this->entity->name;
     }
 
+    /**
+     * Returns the subtitle for this presenter, which provides additional context about the user.
+     */
     public function subTitle(): string
     {
         $roles = $this->entity->roles->pluck('name')->implode(' / ');
@@ -31,13 +40,16 @@ class UserPresenter extends Presenter implements Searchable, Personable
             ->whenEmpty(fn () => __('Regular User'));
     }
 
+    /**
+     * Returns the URL for this presenter, which is used to link to the user's edit page.
+     */
     public function url(): string
     {
         return route('platform.systems.users.edit', $this->entity);
     }
 
     /**
-     * @return string
+     * Returns the URL for the user's Gravatar image, or a default image if one is not found.
      */
     public function image(): ?string
     {
@@ -49,13 +61,18 @@ class UserPresenter extends Presenter implements Searchable, Personable
     }
 
     /**
-     * The number of models to return for show compact search result.
+     * Returns the number of models to return for a compact search result.
+     * This method is used by the search functionality to display a list of matching results.
      */
     public function perSearchShow(): int
     {
         return 3;
     }
 
+    /**
+     * Returns a Laravel Scout builder object that can be used to search for matching users.
+     * This method is used by the search functionality to retrieve a list of matching results.
+     */
     public function searchQuery(string $query = null): Builder
     {
         return $this->entity->search($query);

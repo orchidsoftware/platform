@@ -18,6 +18,7 @@ use Orchid\Screen\Layouts\Metric;
 use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Layouts\Selection;
+use Orchid\Screen\Layouts\Split;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Layouts\View;
@@ -26,28 +27,32 @@ use Orchid\Screen\Layouts\Wrapper;
 /**
  * Class Layout.
  *
- * @method static View      view(string $view, array $data = [])
- * @method static Component component(string $component)
- * @method static Rows      rows(array $fields)
- * @method static Table     table(string $target, array $columns)
- * @method static Columns   columns(BaseLayout[]|string[] $layouts)
- * @method static Tabs      tabs(BaseLayout[] $layouts)
- * @method static Modal     modal(string $key, string[]|string|BaseLayout $layouts)
- * @method static Blank     blank(BaseLayout[] $layouts)
- * @method static Wrapper   wrapper(string $template, array $layouts)
- * @method static Accordion accordion(BaseLayout[] $layouts)
- * @method static Selection selection(array $filters)
- * @method static Block     block(BaseLayout|string|string[] $layouts)
- * @method static Legend    legend(string $target, array $columns)
- * @method static Browsing  browsing(string $src)
- * @method static Metric    metrics(array $labels)
+ * This class provides a static interface for creating layouts.
+ * Are defined as classes within the Orchid\Screen\Layouts namespace.
+ *
+ * @method static View      view(string $view, array $data = [])                    Creates a new view layout with the given data.
+ * @method static Component component(string $component)                            Creates a new component layout with the given component.
+ * @method static Rows      rows(array $fields)                                     Creates a new rows layout with the given fields.
+ * @method static Table     table(string $target, array $columns)                   Creates a new table layout with the given target and columns.
+ * @method static Columns   columns(BaseLayout[]|string[] $layouts)                 Creates a new columns layout with the given layout data.
+ * @method static Tabs      tabs(BaseLayout[] $layouts)                             Creates a new tabs layout with the given layout data.
+ * @method static Modal     modal(string $key, string[]|string|BaseLayout $layouts) Creates a new modal layout with the given key and layout data.
+ * @method static Blank     blank(BaseLayout[] $layouts)                            Creates a new blank layout with the given layout data.
+ * @method static Wrapper   wrapper(string $template, array $layouts)               Creates a new wrapper layout with the given template and layout data.
+ * @method static Accordion accordion(BaseLayout[] $layouts)                        Creates a new accordion layout with the given layout data.
+ * @method static Selection selection(array $filters)                               Creates a new selection layout with the given filters.
+ * @method static Block     block(BaseLayout|string|string[] $layouts)              Creates a new block layout with the given layout data.
+ * @method static Legend    legend(string $target, array $columns)                  Creates a new legend layout with the given target and columns.
+ * @method static Browsing  browsing(string $src)                                   Creates a new browsing layout with the given src.
+ * @method static Metric    metrics(array $labels)                                  Creates a new metrics layout with the given labels.
+ * @method static Split     split(array $layouts)                                   Creates a new split layout with the given layout data.
  */
 class Layout extends Facade
 {
     /**
-     * Initiate a mock expectation on the facade.
+     * Get the registered name of the component.
      *
-     * @return mixed
+     * @return string
      */
     protected static function getFacadeAccessor()
     {

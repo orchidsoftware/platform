@@ -14,15 +14,11 @@ class AsyncScreenTest extends TestFeatureCase
 {
     public function testAsyncDependentListenerScreen(): void
     {
-        /** @var DependentSumListener $layout */
-        $layout = $this->app->make(DependentSumListener::class);
-
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->post(route('platform.async', [
-                'screen'   => Crypt::encryptString(DependentListenerScreen::class),
-                'method'   => 'asyncSum',
-                'template' => $layout->getSlug(),
+            ->post(route('platform.async.listener', [
+                'screen' => Crypt::encryptString(DependentListenerScreen::class),
+                'layout' => Crypt::encryptString(DependentSumListener::class),
             ]), [
                 'first'  => 2,
                 'second' => 3,

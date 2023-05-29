@@ -21,7 +21,7 @@ abstract class Chart extends Layout
     public const TYPE_AXIS_MIXED = 'axis-mixed';
 
     /**
-     * Main template to display the layer
+     * The Main template to display the layer
      * Represents the view() argument.
      *
      * @var string
@@ -90,7 +90,7 @@ abstract class Chart extends Layout
      *
      * @var bool
      */
-    protected $export = true;
+    protected $export = false;
 
     /**
      * Limiting the slices.
@@ -158,7 +158,6 @@ abstract class Chart extends Layout
     /**
      * Create a new Charts element.
      *
-     *
      * @return static
      */
     public static function make(string $target, ?string $title = null): self
@@ -179,7 +178,6 @@ abstract class Chart extends Layout
     /**
      * Set title of the chart.
      *
-     *
      * @return $this
      */
     public function title(?string $title = null): static
@@ -192,7 +190,6 @@ abstract class Chart extends Layout
     /**
      * Set description of the chart.
      *
-     *
      * @return $this
      */
     public function description(string $description): static
@@ -203,14 +200,37 @@ abstract class Chart extends Layout
     }
 
     /**
-     * Set height of the chart.
-     *
+     * Set the height of the chart.
      *
      * @return $this
      */
     public function height(int $height): static
     {
         $this->height = $height;
+
+        return $this;
+    }
+
+    /**
+     * @param string $type
+     *
+     * @return $this
+     */
+    public function type(string $type): static
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $export
+     *
+     * @return $this
+     */
+    public function export(bool $export = true): static
+    {
+        $this->export = $export;
 
         return $this;
     }
@@ -227,10 +247,10 @@ abstract class Chart extends Layout
         }
 
         $labels = collect($repository->getContent($this->target))
-                ->map(fn ($item) => $item['labels'] ?? [])
-                ->flatten()
-                ->unique()
-                ->toJson(JSON_NUMERIC_CHECK);
+            ->map(fn ($item) => $item['labels'] ?? [])
+            ->flatten()
+            ->unique()
+            ->toJson(JSON_NUMERIC_CHECK);
 
         return view($this->template, [
             'title'            => __($this->title),

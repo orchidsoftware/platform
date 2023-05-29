@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Access\Impersonation;
 use Orchid\Platform\Models\User;
@@ -11,6 +12,8 @@ use Orchid\Tests\TestUnitCase;
 
 class UserTest extends TestUnitCase
 {
+    use RefreshDatabase;
+
     public function testHasCorrectInstance(): void
     {
         $user = User::factory()->create();
@@ -59,6 +62,25 @@ class UserTest extends TestUnitCase
         Impersonation::logout();
 
         $this->assertEquals($user->id, Auth::id());
+    }
+
+    public function testImpersonator(): void
+    {
+        $user = $this->createUser();
+        $userSwitch = $this->createUser();
+
+        $this->actingAs($user);
+        $this->assertEquals($user->id, Auth::id());
+
+        $this->assertEquals(null, Impersonation::impersonator());
+
+        Impersonation::loginAs($userSwitch);
+
+        $this->assertEquals($user->id, Impersonation::impersonator()->id);
+
+        Impersonation::logout();
+
+        $this->assertEquals(null, Impersonation::impersonator());
     }
 
     public function testLoginAsLimit(): void

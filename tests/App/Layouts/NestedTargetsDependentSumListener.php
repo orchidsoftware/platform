@@ -2,8 +2,10 @@
 
 namespace Orchid\Tests\App\Layouts;
 
+use Illuminate\Http\Request;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Listener;
+use Orchid\Screen\Repository;
 use Orchid\Support\Facades\Layout;
 
 class NestedTargetsDependentSumListener extends Listener
@@ -18,14 +20,6 @@ class NestedTargetsDependentSumListener extends Listener
         'father.first',
         'father.second',
     ];
-
-    /**
-     * What screen method should be called
-     * as a source for an asynchronous request.
-     *
-     * @var string
-     */
-    protected $asyncMethod = 'asyncSum';
 
     /**
      * @return \Orchid\Screen\Layout[]
@@ -43,5 +37,19 @@ class NestedTargetsDependentSumListener extends Listener
                     ),
             ]),
         ];
+    }
+
+    public function handle(Repository $repository, Request $request): Repository
+    {
+        $first = (int) $request->input('father.first');
+        $second = (int) $request->input('father.second');
+
+        return new Repository([
+            'father' => [
+                'first'  => $first,
+                'second' => $second,
+            ],
+            'sum'    => $first + $second,
+        ]);
     }
 }

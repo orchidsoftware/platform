@@ -117,9 +117,9 @@ class DashboardTest extends TestUnitCase
         $dashboard = new Dashboard();
 
         $view = $dashboard
-            ->registerMenuElement(Dashboard::MENU_MAIN, Menu::make('Item 1')->sort(3))
-            ->registerMenuElement(Dashboard::MENU_MAIN, Menu::make('Item 2')->sort(2))
-            ->renderMenu(Dashboard::MENU_MAIN);
+            ->registerMenuElement(Menu::make('Item 1')->sort(3))
+            ->registerMenuElement(Menu::make('Item 2')->sort(2))
+            ->renderMenu();
 
         $this->assertStringContainsString('Item 2', $view);
         $this->assertStringContainsString('Item 1', $view);
@@ -131,11 +131,11 @@ class DashboardTest extends TestUnitCase
         $dashboard = new Dashboard();
 
         $view = $dashboard
-            ->registerMenuElement(Dashboard::MENU_MAIN, Menu::make('Item 1')->slug('item'))
-            ->addMenuSubElements(Dashboard::MENU_MAIN, 'item', [
+            ->registerMenuElement(Menu::make('Item 1')->slug('item'))
+            ->addMenuSubElements('item', [
                 Menu::make('Sub-element'),
             ])
-            ->renderMenu(Dashboard::MENU_MAIN);
+            ->renderMenu();
 
         $this->assertStringContainsString('Sub-element', $view);
     }

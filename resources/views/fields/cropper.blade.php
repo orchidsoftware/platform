@@ -40,7 +40,7 @@
             </div>
 
             <input type="file"
-                   accept="image/*"
+                   accept="{{ $acceptedFiles }}"
                    class="d-none">
         </div>
 

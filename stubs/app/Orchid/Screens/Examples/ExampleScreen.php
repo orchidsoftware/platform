@@ -7,7 +7,6 @@ use App\Orchid\Layouts\Examples\ChartLineExample;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Orchid\Screen\Actions\Button;
-use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Repository;
@@ -16,7 +15,7 @@ use Orchid\Screen\TD;
 use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
-class ExampleScreen extends Screen
+class ExampleScreen extends TestBaseScreen
 {
     /**
      * Fish text for the table.
@@ -97,7 +96,6 @@ class ExampleScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-
             Button::make('Show toast')
                 ->method('showToast')
                 ->novalidate()
@@ -107,37 +105,6 @@ class ExampleScreen extends Screen
                 ->modal('exampleModal')
                 ->method('showToast')
                 ->icon('bs.window'),
-
-            Button::make('Export file')
-                ->method('export', [
-                    'name' => 'Any name for file',
-                ])
-                ->icon('bs.cloud-arrow-down')
-                ->rawClick()
-                ->novalidate(),
-
-            DropDown::make('Dropdown button')
-                ->icon('bs.folder')
-                ->list([
-                    Button::make('Action')
-                        ->method('showToast')
-                        ->icon('bag'),
-
-                    Button::make('Another action')
-                        ->method('showToast')
-                        ->icon('bubbles'),
-
-                    Button::make('Something else here')
-                        ->method('showToast')
-                        ->icon('bulb'),
-
-                    Button::make('Confirm button')
-                        ->method('showToast')
-                        ->confirm('If you click you will see a toast message')
-                        ->novalidate()
-                        ->icon('shield'),
-                ]),
-
         ];
     }
 
@@ -196,29 +163,5 @@ class ExampleScreen extends Screen
     public function showToast(Request $request): void
     {
         Toast::warning($request->get('toast', 'Hello, world! This is a toast message.'));
-    }
-
-    /**
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
-     */
-    public function export()
-    {
-        return response()->streamDownload(function () {
-            $csv = tap(fopen('php://output', 'wb'), function ($csv) {
-                fputcsv($csv, ['header:col1', 'header:col2', 'header:col3']);
-            });
-
-            collect([
-                ['row1:col1', 'row1:col2', 'row1:col3'],
-                ['row2:col1', 'row2:col2', 'row2:col3'],
-                ['row3:col1', 'row3:col2', 'row3:col3'],
-            ])->each(function (array $row) use ($csv) {
-                fputcsv($csv, $row);
-            });
-
-            return tap($csv, function ($csv) {
-                fclose($csv);
-            });
-        }, 'File-name.csv');
     }
 }

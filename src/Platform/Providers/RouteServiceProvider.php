@@ -35,7 +35,12 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         /*
-         * Dashboard
+         * Dashboard routes.
+         *
+         * The dashboard routes have a subdomain of the platform.domain config value,
+         * a prefix consisting of the Dashboard::prefix() method return value,
+         * an alias of 'platform.', middleware from the platform.middleware.private config value,
+         * and are defined in the Dashboard::path('routes/dashboard.php') file.
          */
         Route::domain((string) config('platform.domain'))
             ->prefix(Dashboard::prefix('/'))
@@ -44,7 +49,12 @@ class RouteServiceProvider extends ServiceProvider
             ->group(Dashboard::path('routes/dashboard.php'));
 
         /*
-         * Auth
+         * Auth routes.
+         *
+         * The auth routes have a subdomain of the platform.domain config value,
+         * a prefix consisting of the Dashboard::prefix() method return value,
+         * an alias of 'platform.', middleware from the platform.middleware.public config value,
+         * and are defined in the Dashboard::path('routes/auth.php') file.
          */
         Route::domain((string) config('platform.domain'))
             ->prefix(Dashboard::prefix('/'))
@@ -53,7 +63,11 @@ class RouteServiceProvider extends ServiceProvider
             ->group(Dashboard::path('routes/auth.php'));
 
         /*
-         * Application
+         * Application routes.
+         *
+         * If the 'routes/platform.php' file exists, its routes have a subdomain of the platform.domain config value,
+         * a prefix consisting of the Dashboard::prefix() method return value,
+         * and middleware from the platform.middleware.private config value.
          */
         if (file_exists(base_path('routes/platform.php'))) {
             Route::domain((string) config('platform.domain'))

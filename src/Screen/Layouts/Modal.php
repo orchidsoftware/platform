@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Str;
 use Orchid\Screen\Commander;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
+use Orchid\Support\Facades\Dashboard;
 
 /**
  * Class Modal.
@@ -36,6 +39,14 @@ class Modal extends Layout
      * @var string
      */
     protected $size;
+
+    /**
+     * What screen method should be called
+     * as a source for an asynchronous request.
+     *
+     * @var string
+     */
+    protected $method;
 
     /**
      * @var string
@@ -76,11 +87,16 @@ class Modal extends Layout
      */
     public function build(Repository $repository)
     {
+        $this->variables = array_merge($this->variables, [
+            'asyncEnable' => empty($this->method) ? 0 : 1,
+            'asyncRoute'  => $this->asyncRoute(),
+        ]);
+
         return $this->buildAsDeep($repository);
     }
 
     /**
-     * Set text button for apply action.
+     * Set the text button for apply action.
      */
     public function applyButton(string $text): self
     {
@@ -90,7 +106,7 @@ class Modal extends Layout
     }
 
     /**
-     * Whether to disable the apply button or not.
+     * Whether to disable the applied button or not.
      */
     public function withoutApplyButton(bool $withoutApplyButton = true): self
     {
@@ -110,7 +126,7 @@ class Modal extends Layout
     }
 
     /**
-     * Set text button for cancel action.
+     * Set the text button for cancel action.
      */
     public function closeButton(string $text): self
     {
@@ -187,5 +203,39 @@ class Modal extends Layout
         $this->variables['staticBackdrop'] = $status;
 
         return $this;
+    }
+
+    /**
+     * @param string $method
+     *
+     * @return $this
+     */
+    public function async(string $method): self
+    {
+        if (! Str::startsWith($method, 'async')) {
+            $method = Str::start(Str::ucfirst($method), 'async');
+        }
+
+        $this->method = $method;
+
+        return $this;
+    }
+
+    /**
+     * Return URL for screen template requests from the browser.
+     */
+    protected function asyncRoute(): ?string
+    {
+        $screen = Dashboard::getCurrentScreen();
+
+        if (! $screen) {
+            return null;
+        }
+
+        return route('platform.async', [
+            'screen'   => Crypt::encryptString(get_class($screen)),
+            'method'   => $this->method,
+            'template' => $this->getSlug(),
+        ]);
     }
 }

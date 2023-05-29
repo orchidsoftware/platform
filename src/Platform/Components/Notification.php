@@ -47,7 +47,7 @@ class Notification extends Component
      *
      * @return bool
      */
-    public function shouldRender()
+    public function shouldRender(): bool
     {
         return config('platform.notifications.enabled', true);
     }

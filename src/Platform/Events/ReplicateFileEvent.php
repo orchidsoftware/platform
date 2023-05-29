@@ -20,6 +20,8 @@ class ReplicateFileEvent
     public $attachment;
 
     /**
+     * The timestamp when the event occurred.
+     *
      * @var int
      */
     public $time;

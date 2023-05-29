@@ -47,8 +47,7 @@ class ModalValidationScreen extends Screen
         return [
             ModalToggle::make('Show modal')
                 ->modal('validationModal')
-                ->method('showMessage')
-                ->icon('icon-full-screen'),
+                ->method('showMessage'),
         ];
     }
 

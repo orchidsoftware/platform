@@ -6,6 +6,7 @@ namespace Orchid\Platform;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
@@ -20,9 +21,11 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    public const VERSION = '14.0.0-alpha';
+    public const VERSION = '14.0.2';
 
     /**
+     * @deprecated
+     *
      * Slug for main menu.
      */
     public const MENU_MAIN = 'Main';
@@ -60,6 +63,15 @@ class Dashboard
      * @var Screen|null
      */
     private $currentScreen;
+
+    /**
+     * Determines whether the current request is a partial request or not.
+     * A partial request is a request that only loads a specific part of the page, such as a modal window or a section of content,
+     * instead of loading the entire page.
+     *
+     * @var bool Set to true if the current request is a partial request, false otherwise.
+     */
+    private bool $partialRequest = false;
 
     /**
      * Dashboard constructor.
@@ -284,9 +296,13 @@ class Dashboard
     /**
      * @return $this
      */
-    public function setCurrentScreen(Screen $screen): self
+    public function setCurrentScreen(Screen $screen, bool $partialRequest = false): self
     {
         $this->currentScreen = $screen;
+        $this->partialRequest = $partialRequest;
+
+        App::singleton($screen::class, static fn () => $screen);
+        App::rebinding($screen::class, static fn () => app($screen::class));
 
         return $this;
     }
@@ -297,18 +313,32 @@ class Dashboard
     }
 
     /**
+     * Determines whether the current request is a partial request or not.
+     *
+     * A partial request is a request that only loads a specific part of the page, such as a modal window or a section of content,
+     * instead of loading the entire page. This method returns a boolean value indicating whether the current request is a partial
+     * request or not, based on the value of the $partialRequest property.
+     *
+     * @return bool True if the current request is a partial request, false otherwise.
+     */
+    public function isPartialRequest(): bool
+    {
+        return $this->partialRequest;
+    }
+
+    /**
      * Adding a new element to the menu.
      *
      *
      * @return $this
      */
-    public function registerMenuElement(string $location, Menu $menu): Dashboard
+    public function registerMenuElement(Menu $menu): Dashboard
     {
         if ($menu->get('sort', 0) === 0) {
-            $menu->sort($this->menu->get($location)->count() + 1);
+            $menu->sort($this->menu->get(self::MENU_MAIN)->count() + 1);
         }
 
-        $this->menu->get($location)->add($menu);
+        $this->menu->get(self::MENU_MAIN)->add($menu);
 
         return $this;
     }
@@ -319,30 +349,30 @@ class Dashboard
      *
      * @throws \Throwable
      */
-    public function renderMenu(string $location): string
+    public function renderMenu(): string
     {
-        return $this->menu->get($location)
+        return $this->menu->get(self::MENU_MAIN)
             ->sort(fn (Menu $current, Menu $next) => $current->get('sort', 0) <=> $next->get('sort', 0))
             ->map(fn (Menu $menu) => (string) $menu->render())
             ->implode('');
     }
 
-    public function isEmptyMenu(string $location): bool
+    public function isEmptyMenu(): bool
     {
-        return $this->menu->get($location)->isEmpty();
+        return $this->menu->get(self::MENU_MAIN)->isEmpty();
     }
 
     /**
      * @param Menu[] $list
      */
-    public function addMenuSubElements(string $location, string $slug, array $list): Dashboard
+    public function addMenuSubElements(string $slug, array $list): Dashboard
     {
-        $menu = $this->menu->get($location)
+        $menu = $this->menu->get(self::MENU_MAIN)
             ->map(fn (Menu $menu) => $menu->get('slug') === $slug
                 ? $menu->list($list)
                 : $menu);
 
-        $this->menu->put($location, $menu);
+        $this->menu->put(self::MENU_MAIN, $menu);
 
         return $this;
     }
@@ -357,5 +387,6 @@ class Dashboard
         ]);
 
         $this->currentScreen = null;
+        $this->partialRequest = false;
     }
 }

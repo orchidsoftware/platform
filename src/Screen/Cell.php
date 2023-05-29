@@ -104,7 +104,7 @@ abstract class Cell
         [$class, $view] = Blade::componentInfo($component);
 
         if ($view === null) {
-            // for class based components try to detect argument name
+            // for class based components, try to detect argument name
             $nameArgument = $this->getNameParameterExpected($class, $params);
             if ($nameArgument !== null) {
                 $params[$nameArgument] = $value;

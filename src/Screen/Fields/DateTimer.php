@@ -112,7 +112,7 @@ class DateTimer extends Field
     }
 
     /**
-     * Displays time picker in 24 hour mode without AM/PM selection when enabled.
+     * Displays time picker in 24-hour mode without AM/PM selection when enabled.
      */
     public function format24hr(bool $time = true): self
     {
@@ -169,7 +169,7 @@ class DateTimer extends Field
     }
 
     /**
-     * Disable calendar for the field and show only time.
+     * Disable the calendar for the field and show only time.
      *
      *
      * @return $this
@@ -209,7 +209,7 @@ class DateTimer extends Field
     }
 
     /**
-     * Enable specific set of dates for selection
+     * Enable a specific set of dates for selection
      *
      * ['2021-04-27', '2021-04-20']
      *
@@ -255,7 +255,7 @@ class DateTimer extends Field
     }
 
     /**
-     * Allow selection of dates on or before specified date
+     * Allow selection of dates on or before the specified date
      *
      *
      * @return $this
@@ -269,7 +269,7 @@ class DateTimer extends Field
     }
 
     /**
-     * Allow selection of dates on or after specified date
+     * Allow selection of dates on or after the specified date
      *
      *
      * @return $this
@@ -296,7 +296,7 @@ class DateTimer extends Field
     }
 
     /**
-     * Disable native mobile pickers in favour of calendar
+     * Disable native mobile pickers in favor of calendar
      *
      *
      * @return $this
@@ -309,7 +309,7 @@ class DateTimer extends Field
     }
 
     /**
-     * Disable native mobile pickers in favour of calendar
+     * Disable native mobile pickers in favor of calendar
      *
      *
      * @return $this
@@ -363,7 +363,7 @@ class DateTimer extends Field
      * In the format of "[vertical] [horizontal]". Vertical can be auto, above or below (required).
      * Horizontal can be left, center or right.
      *
-     *  e.g. "above" or "auto center"
+     *  E.g. "above" or "auto center"
      *
      * Not used with inline()
      *
