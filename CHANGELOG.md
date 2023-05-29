@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.0.3 - 2023-05-30
+
+### Fixed
+- Fluent method return types in Orchid\Screen\Cell [#2625](https://github.com/orchidsoftware/platform/pull/2625)
+- Adding Russian localization [#2626](https://github.com/orchidsoftware/platform/pull/2626)
+
 ## 14.0.2 - 2023-05-28
 
 ### Fixed
