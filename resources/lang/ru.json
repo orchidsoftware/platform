@@ -163,5 +163,16 @@
     "If you think you should have access to this page, ask the person who manages the project (or the account) to add you to it.": "Если вы считаете, что должны иметь доступ к этой странице, попросите человека, управляющего проектом (или аккаунтом), добавить вас на нее.",
     "You requested a page that doesn't exist.": "Вы запросили страницу, которая не существует.",
     "Load more": "Загрузить больше",
-    "After deleting notifications, this action cannot be undone and all associated data will be permanently lost.": "После удаления уведомлений это действие нельзя отменить, и все связанные с ними данные будут безвозвратно утеряны."
+    "After deleting notifications, this action cannot be undone and all associated data will be permanently lost.": "После удаления уведомлений это действие нельзя отменить, и все связанные с ними данные будут безвозвратно утеряны.",
+    "You are currently viewing this page on behalf of a user who does not have access to it. To return to viewing as yourself, please click the 'Switch to My Account' button. It's possible that the page may be displayed correctly when viewed from your own account.": "В настоящее время вы просматриваете эту страницу от имени пользователя, который не имеет к ней доступа. Чтобы вернуться к просмотру от своего имени, нажмите кнопку \"Переключиться на свою учетную запись\". Возможно, страница будет отображаться корректно при просмотре из вашей собственной учетной записи.",
+    "Switch to My Account": "Переключиться на свою учетную запись",
+    "Minimum": "Минимум",
+    "Maximum": "Максимум",
+    "Reset": "Сбросить",
+    "Complete the update.": "Завершить обновление.",
+    "The published Orchid assets are not up-to-date with the installed version. To update, run:": "Опубликованные ресурсы Orchid не соответствуют установленной версии. Для обновления выполните:",
+    "No results found for your current filters": "Для ваших текущих фильтров не найдено результатов",
+    "There are no objects currently displayed": "В настоящее время нет отображаемых объектов",
+    "Try adjusting your filter settings or removing it altogether to see more data": "Попробуйте изменить настройки фильтра или удалить их совсем, чтобы увидеть больше данных",
+    "Import or create objects, or check back later for updates": "Импортируйте или создайте объекты, или проверьте обновления позже"
 }
