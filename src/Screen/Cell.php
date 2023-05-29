@@ -52,7 +52,7 @@ abstract class Cell
     /**
      * @return static
      */
-    public static function make(string $name = '', string $title = null): self
+    public static function make(string $name = '', string $title = null): static
     {
         $td = new static($name);
         $td->column = $name;
@@ -61,14 +61,14 @@ abstract class Cell
         return $td;
     }
 
-    public function render(Closure $closure): self
+    public function render(Closure $closure): static
     {
         $this->render = $closure;
 
         return $this;
     }
 
-    public function popover(string $text): self
+    public function popover(string $text): static
     {
         $this->popover = $text;
 
@@ -122,7 +122,7 @@ abstract class Cell
      *
      * @return $this
      */
-    public function component(string $component, array $params = []): self
+    public function component(string $component, array $params = []): static
     {
         return $this->render(fn ($value) => $this->renderComponent($component, $value, $params));
     }
@@ -135,7 +135,7 @@ abstract class Cell
      *
      * @return $this
      */
-    public function asComponent(string $component, array $params = []): self
+    public function asComponent(string $component, array $params = []): static
     {
         return $this->render(fn ($value) => $this->renderComponent($component, $value->getContent($this->name), $params));
     }
