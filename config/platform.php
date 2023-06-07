@@ -132,6 +132,20 @@ return [
 
     /*
      |--------------------------------------------------------------------------
+     | Vite Resource
+     |--------------------------------------------------------------------------
+     |
+     | Within the 'vite' associative array, specify input files to be parsed by
+     | Vite by providing specific paths to JS and CSS assets. Here is an example:
+     |
+     | Example: ['resources/css/app.css', 'resources/js/app.js']
+     |
+     */
+
+    'vite' => [],
+
+    /*
+     |--------------------------------------------------------------------------
      | Template View
      |--------------------------------------------------------------------------
      |
