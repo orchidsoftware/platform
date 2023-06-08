@@ -194,6 +194,11 @@ export default class extends ApplicationController {
      * @param event
      */
     async confirmCancel(event) {
+
+        if (event.target?.activeElement?.type === 'submit') {
+            return;
+        }
+
         if (this.needPreventsFormAbandonmentValue === true && this.hasBeenChangedValue === true) {
             event.preventDefault();
 
