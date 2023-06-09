@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Collection;
@@ -62,7 +63,7 @@ abstract class Table extends Layout
 
         $content = $repository->getContent($this->target);
 
-        $rows = is_a($content, \Illuminate\Contracts\Pagination\Paginator::class) ? $content : collect()->merge($content);
+        $rows = is_a($content, Paginator::class) || is_a($content, CursorPaginator::class) ? $content : collect()->merge($content);
 
         return view($this->template, [
             'repository'   => $repository,
@@ -154,9 +155,9 @@ abstract class Table extends Layout
     }
 
     /**
-     * @param \Illuminate\Support\Collection|\Illuminate\Pagination\Paginator $row
+     * @param \Illuminate\Support\Collection|Illuminate\Contracts\Pagination\Paginator|Illuminate\Contracts\Pagination\CursorPaginator $row
      */
-    protected function hasHeader(Collection $columns, Collection|Paginator $row): bool
+    protected function hasHeader(Collection $columns, Collection|Paginator|CursorPaginator $row): bool
     {
         if ($columns->count() < 2) {
             return false;
