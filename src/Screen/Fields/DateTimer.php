@@ -29,6 +29,7 @@ use Orchid\Screen\Field;
  * @method DateTimer popover(string $value = null)
  * @method DateTimer allowEmpty(bool $enabled = true)
  * @method DateTimer title(string $value = null)
+ * @method DateTimer lang(string $value = null)
  */
 class DateTimer extends Field
 {

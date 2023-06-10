@@ -38,7 +38,7 @@ export default class extends ApplicationController {
         };
 
         const config = {
-            locale: document.documentElement.lang,
+            locale: this.data.get('lang') ?? document.documentElement.lang,
             plugins,
             appendTo: this.element.closest('.dropdown') || undefined,
         };
