@@ -11,11 +11,11 @@
            by Alexandr Chernyaev</p>
     </div>
 
-    <p class="small mt-auto text-center mb-1 px-5">
+    <p class="small text-center mb-1 px-5">
         {{ __('The application code is published under the MIT license.') }}
     </p>
 
-    <ul class="nav justify-content-center mb-3">
+    <ul class="nav justify-content-center mb-5">
         <li class="nav-item"><a href="https://orchid.software" class="nav-link px-2 text-muted">Documentation</a></li>
         <li class="nav-item"><a href="https://github.com/orchidsoftware/platform/discussions" target="_blank" class="nav-link px-2 text-muted">Discussions</a></li>
         <li class="nav-item"><a href="https://opencollective.com/orchid" target="_blank" class="nav-link px-2 text-muted">Donation</a></li>
