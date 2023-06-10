@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Support `CursorPaginator` for Table Layout [#2636](https://github.com/orchidsoftware/platform/pull/2636)
 
 ### Fixed
-- Auth template more universal without footer [#2632](https://github.com/orchidsoftware/platform/pull/2632)
+- Auth template is more universal without footer [#2632](https://github.com/orchidsoftware/platform/pull/2632)
 
 ## 14.1.1 - 2023-06-09
 
