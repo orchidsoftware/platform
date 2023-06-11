@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Orchid\Attachment\MimeTypes;
 use Orchid\Filters\Filterable;
+use Orchid\Filters\Types\Like;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
 
@@ -63,12 +64,12 @@ class Attachment extends Model
      * @var array
      */
     protected $allowedFilters = [
-        'name',
-        'original_name',
-        'mime',
-        'extension',
-        'disk',
-        'group',
+        'name'          => Like::class,
+        'original_name' => Like::class,
+        'mime'          => Like::class,
+        'extension'     => Like::class,
+        'disk'          => Like::class,
+        'group'         => Like::class,
     ];
 
     /**
