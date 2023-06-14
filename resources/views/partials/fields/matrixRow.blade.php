@@ -16,7 +16,7 @@
                 <a href="#"
                    data-action="matrix#deleteRow"
                    class="small text-muted"
-                   title="Remove row">
+                   title="{{ __('Remove row') }}">
                     <x-orchid-icon path="bs.trash3"/>
                 </a>
             </th>
