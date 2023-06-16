@@ -51,6 +51,14 @@ body {
             display: none !important;
         }
     }
+
+    body:not(.menu-open) {
+        .aside-collapse{
+            .sub-menu {
+                visibility: hidden !important;
+            }
+        }
+    }
 }
 
 
