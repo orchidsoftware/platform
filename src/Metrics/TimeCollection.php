@@ -86,4 +86,16 @@ class TimeCollection extends Collection
             return $value;
         });
     }
+
+    /**
+     * Delete segment if at least one of the values is missing.
+     *
+     * @return TimeCollection
+     */
+    public function withoutZeroValues(): TimeCollection
+    {
+        return $this->filter(function (array $item) {
+            return $item['value'] !== 0;
+        });
+    }
 }
