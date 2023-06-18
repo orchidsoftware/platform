@@ -168,7 +168,7 @@ abstract class Screen extends Controller
         $repository = $layout->handle($state, $request);
 
         $view = $layout->build($repository).view('platform::partials.state', [
-            'state' => $this->serializableState($state),
+            'state' => $this->serializeStateWithPublicProperties($state),
         ]);
 
         return response($view)
@@ -224,7 +224,7 @@ abstract class Screen extends Controller
             'layouts'                 => $this->build($repository),
             'formValidateMessage'     => $this->formValidateMessage(),
             'needPreventsAbandonment' => $this->needPreventsAbandonment(),
-            'state'                   => $this->serializableState($repository),
+            'state'                   => $this->serializeStateWithPublicProperties($repository),
         ]);
     }
 
@@ -260,18 +260,43 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param \Orchid\Screen\Repository $repository
+     * Serializes the state of the object using the public properties specified in the given repository.
      *
+     * @param \Orchid\Screen\Repository $repository The repository containing the public properties to be serialized.
+     * @return string The serialized state of the object.
+     * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
+     */
+    public function serializeStateWithPublicProperties(Repository $repository): string
+    {
+        $propertiesToSerialize = $repository->getMany($this->getPublicPropertyNames()->toArray());
+
+        return $this->serializableState(new Repository($propertiesToSerialize));
+    }
+
+    /**
+     * Fills the public properties of the object with values from the given repository.
+     *
+     * @param \Orchid\Screen\Repository $repository The repository containing the values to fill the properties with.
      * @return void
      */
     protected function fillPublicProperty(Repository $repository): void
     {
+        $this->getPublicPropertyNames()
+            ->each(fn(string $property) => $this->$property = $repository->get($property, $this->$property));
+    }
+
+    /**
+     * Retrieves the names of all public properties of the object.
+     *
+     * @return \Illuminate\Support\Collection The names of the public properties.
+     */
+    protected function getPublicPropertyNames(): Collection
+    {
         $reflections = (new \ReflectionClass($this))->getProperties(\ReflectionProperty::IS_PUBLIC);
 
-        collect($reflections)
-            ->filter(fn (\ReflectionProperty $property) => ! $property->isStatic())
-            ->map(fn (\ReflectionProperty $property) => $property->getName())
-            ->each(fn (string $key) => $this->$key = $repository->get($key, $this->$key));
+        return collect($reflections)
+            ->filter(fn(\ReflectionProperty $property) => !$property->isStatic())
+            ->map(fn(\ReflectionProperty $property) => $property->getName());
     }
 
     /**
