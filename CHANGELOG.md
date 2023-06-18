@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.3.0 - 2023-06-19
+
+### Added
+- Translation of the delete row button in the "matrix" field [#2641](https://github.com/orchidsoftware/platform/pull/2641)
+
+### Changed
+- Passing values to the state when unpacking only for public properties [#2642](https://github.com/orchidsoftware/platform/issues/2642)
+
+### Fixed
+- Overview hidden filter [#2639](https://github.com/orchidsoftware/platform/issues/2639)
+
 ## 14.2.1 - 2023-06-12
 
 ### Fixed
