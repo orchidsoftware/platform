@@ -263,8 +263,10 @@ abstract class Screen extends Controller
      * Serializes the state of the object using the public properties specified in the given repository.
      *
      * @param \Orchid\Screen\Repository $repository The repository containing the public properties to be serialized.
-     * @return string The serialized state of the object.
+     *
      * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
+     *
+     * @return string The serialized state of the object.
      */
     public function serializeStateWithPublicProperties(Repository $repository): string
     {
@@ -277,12 +279,13 @@ abstract class Screen extends Controller
      * Fills the public properties of the object with values from the given repository.
      *
      * @param \Orchid\Screen\Repository $repository The repository containing the values to fill the properties with.
+     *
      * @return void
      */
     protected function fillPublicProperty(Repository $repository): void
     {
         $this->getPublicPropertyNames()
-            ->each(fn(string $property) => $this->$property = $repository->get($property, $this->$property));
+            ->each(fn (string $property) => $this->$property = $repository->get($property, $this->$property));
     }
 
     /**
@@ -295,8 +298,8 @@ abstract class Screen extends Controller
         $reflections = (new \ReflectionClass($this))->getProperties(\ReflectionProperty::IS_PUBLIC);
 
         return collect($reflections)
-            ->filter(fn(\ReflectionProperty $property) => !$property->isStatic())
-            ->map(fn(\ReflectionProperty $property) => $property->getName());
+            ->filter(fn (\ReflectionProperty $property) => ! $property->isStatic())
+            ->map(fn (\ReflectionProperty $property) => $property->getName());
     }
 
     /**
