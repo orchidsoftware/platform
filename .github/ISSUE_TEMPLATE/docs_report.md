@@ -1,5 +1,5 @@
 ---
-name: Docs report
+name: Documentation issue
 about: Create a report to help us improve documentation
 title: ''
 labels: Docs
