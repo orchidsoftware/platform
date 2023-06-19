@@ -388,7 +388,7 @@ abstract class Screen extends Controller
      */
     public function isScreenFullStatePreserved(): bool
     {
-        return config('screen.full_state', true);
+        return config('platform.full_state', true);
     }
 
     /**
