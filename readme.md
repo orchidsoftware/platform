@@ -32,7 +32,8 @@ Orchid is a free [Laravel](https://laravel.com) package that abstracts standard 
 - **Multiple Notifications Types** - Orchid offers [various types of notifications](https://orchid.software/en/docs/alert/) and allows your application to keep your users informed appropriately.
 
 
-
+<!--
+https://github.com/orgs/orchidsoftware/discussions/2649
 ### Live Demo
  
 <a href="https://demo.orchid.software/login">
@@ -40,6 +41,8 @@ Orchid is a free [Laravel](https://laravel.com) package that abstracts standard 
 </a>
 
 Curious but not (yet) in the mood to read the documentation? Click [here](https://demo.orchid.software/login), to experience a live demo of Orchid.
+
+-->
 
 <!--
 ## Getting started
