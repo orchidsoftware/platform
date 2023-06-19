@@ -305,6 +305,20 @@ return [
     'prevents_abandonment' => true,
 
     /*
+    |--------------------------------------------------------------------------
+    | Preserve Entire Screen State
+    |--------------------------------------------------------------------------
+    |
+    | This option determines whether the entire screen state should be preserved
+    | between requests. Enabling this option allows for the full state of the screen
+    | to be retained, including private fields, which can be useful for listeners.
+    | Disabling this option will only retain public properties.
+    |
+    */
+
+    'full_state' => true,
+
+    /*
      |--------------------------------------------------------------------------
      | Service Provider
      |--------------------------------------------------------------------------

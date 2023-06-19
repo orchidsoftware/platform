@@ -270,6 +270,10 @@ abstract class Screen extends Controller
      */
     public function serializeStateWithPublicProperties(Repository $repository): string
     {
+        if ($this->isScreenFullStatePreserved()) {
+            return $this->serializableState($repository);
+        }
+
         $propertiesToSerialize = $repository->getMany($this->getPublicPropertyNames()->toArray());
 
         return $this->serializableState(new Repository($propertiesToSerialize));
@@ -376,6 +380,15 @@ abstract class Screen extends Controller
     public function needPreventsAbandonment(): bool
     {
         return config('platform.prevents_abandonment', true);
+    }
+
+    /**
+     * Check if the screen state preservation feature is enabled.
+     * Returns true if enabled, false otherwise.
+     */
+    public function isScreenFullStatePreserved(): bool
+    {
+        return config('screen.full_state', true);
     }
 
     /**
