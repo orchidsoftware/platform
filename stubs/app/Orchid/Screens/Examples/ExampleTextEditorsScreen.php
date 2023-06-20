@@ -8,7 +8,6 @@ use Orchid\Screen\Action;
 use Orchid\Screen\Fields\Code;
 use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\SimpleMDE;
-use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 
 class ExampleTextEditorsScreen extends TestBaseScreen

@@ -21,7 +21,6 @@ use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\Switcher;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Fields\UTM;
-use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 
 class ExampleFieldsAdvancedScreen extends TestBaseScreen

@@ -2,9 +2,7 @@
 
 namespace Orchid\Tests\App\Screens;
 
-use App\Models\Task;
 use Illuminate\Http\Request;
-use Orchid\Platform\Models\User;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;

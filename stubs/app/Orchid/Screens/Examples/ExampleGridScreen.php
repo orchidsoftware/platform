@@ -3,7 +3,6 @@
 namespace App\Orchid\Screens\Examples;
 
 use Orchid\Screen\Action;
-use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 
 class ExampleGridScreen extends TestBaseScreen
