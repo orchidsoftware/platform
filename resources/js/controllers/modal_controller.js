@@ -104,9 +104,12 @@ export default class extends ApplicationController {
      *
      */
     asyncLoadData(params) {
+        this.element.classList.add('modal-loading');
+
         let query = new URLSearchParams(params).toString()
 
-        this.loadStream(`${this.data.get('async-route')}?${query}`);
+        this.loadStream(`${this.data.get('async-route')}?${query}`)
+            .then(() => this.element.classList.remove('modal-loading'));
     }
 
     set lastOpenModal(options) {
