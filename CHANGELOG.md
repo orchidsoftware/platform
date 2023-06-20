@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.4.0 - 2023-06-21
+
+### Added
+- Show placeholder when loading request for modal
+
+### Fixed 
+- Overview hidden filter when usage full workspace [#2639](https://github.com/orchidsoftware/platform/issues/2639)
+- Mobile menu when not open [#2646](https://github.com/orchidsoftware/platform/pull/2646)
+
 ## 14.3.0 - 2023-06-19
 
 ### Added
