@@ -14,6 +14,13 @@ use Orchid\Filters\Types\Where;
 use Orchid\Metrics\Chartable;
 use Orchid\Screen\AsSource;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $slug
+ * @property ?array<string, int> $permissions
+ * @property null|User[]|Collection<User> $users
+ */
 class Role extends Model implements RoleInterface
 {
     use RoleAccess, Filterable, AsSource, Chartable, HasFactory;
