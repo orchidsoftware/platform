@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace Orchid\Platform\Models;
 
 use App\Orchid\Presenters\UserPresenter;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use Orchid\Access\UserAccess;
 use Orchid\Access\UserInterface;
@@ -19,6 +22,22 @@ use Orchid\Metrics\Chartable;
 use Orchid\Screen\AsSource;
 use Orchid\Support\Facades\Dashboard;
 
+/**
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property ?Carbon$email_verified_at
+ * @property string $password
+ * @property ?string $remember_token
+ * @property ?Carbon $created_at
+ * @property ?Carbon $updated_at
+ * @property ?array<string, int> $permissions
+ * @property null|Role[]|Collection<Role> $roles
+ * @method Builder byAccess(string $permitWithoutWildcard)
+ * @method Builder byAnyAccess(iterable|string $permitWithoutWildcard)
+ *
+ */
 class User extends Authenticatable implements UserInterface
 {
     use Notifiable, UserAccess, AsSource, Filterable, Chartable, HasFactory;
