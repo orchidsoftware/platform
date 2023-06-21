@@ -6,6 +6,7 @@ namespace Orchid\Platform\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Orchid\Access\RoleAccess;
 use Orchid\Access\RoleInterface;
 use Orchid\Filters\Filterable;

@@ -27,7 +27,7 @@ use Orchid\Support\Facades\Dashboard;
  * @property int $id
  * @property string $name
  * @property string $email
- * @property ?Carbon$email_verified_at
+ * @property ?Carbon $email_verified_at
  * @property string $password
  * @property ?string $remember_token
  * @property ?Carbon $created_at

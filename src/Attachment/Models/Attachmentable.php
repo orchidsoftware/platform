@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * This class represents the relation between attachments and any model that can have them.
  *
  * @property string $attachmentable_type
- * @property int attachmentable_id
+ * @property int $attachmentable_id
  * @property int $attachment_id
  *
  */
