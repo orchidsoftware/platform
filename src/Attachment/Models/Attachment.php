@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Orchid\Attachment\MimeTypes;
@@ -21,6 +23,29 @@ use Orchid\Platform\Models\User;
 
 /**
  * Class Attachment.
+ *
+ * @property int $id;
+ * @property string $name
+ * @property string $original_name
+ * @property string $mime
+ * @property ?string $extension
+ * @property int $size
+ * @property int $sort
+ * @property int $path
+ * @property ?string $description
+ * @property ?string $alt
+ * @property ?string $hash
+ * @property string $disk
+ * @property ?int $user_id
+ * @property ?string $group
+ * @property ?Carbon $created_at
+ * @property ?Carbon $updated_at
+ * @property ?User $user
+ * @property null|Attachmentable[]|Collection<Attachmentable> $relationships
+ * @property-read ?string $url
+ * @property-read ?string $relative_url
+ * @property-read ?string $title
+ *
  */
 class Attachment extends Model
 {
