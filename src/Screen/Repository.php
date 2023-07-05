@@ -60,4 +60,12 @@ class Repository extends \Illuminate\Config\Repository implements Countable
 
         return $this;
     }
+
+    /**
+     * @return bool
+     */
+    public function isEmpty(): bool
+    {
+        return $this->count() === 0;
+    }
 }

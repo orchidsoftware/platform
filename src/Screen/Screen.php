@@ -13,8 +13,8 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
-use Laravel\SerializableClosure\SerializableClosure;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Screen\Layouts\Listener;
 use Orchid\Support\Facades\Dashboard;
 
 /**
@@ -188,22 +188,15 @@ abstract class Screen extends Controller
     protected function extractState(): Repository
     {
         // Check if the '_state' parameter is missing
-        if (request()->missing('_state') && session()->missing('_state')) {
+        if (!request()->request->has('_state') && session()->missing('_state')) {
             // Return an empty Repository object
             return new Repository();
         }
 
-        $raw = request()->get('_state') ?? session()->get('_state');
-
         // Extract the encrypted state from the '_state' parameter, and deserialize it
-        $data = config('platform.state.crypt', false) === true
-            ? Crypt::decryptString($raw)
-            : base64_decode($raw);
+        $raw = request()->post('_state') ?? session()->get('_state');
 
-        $state = unserialize($data);
-
-        // Return the deserialized state
-        return $state();
+        return Crypt::decrypt($raw);
     }
 
     /**
@@ -229,19 +222,19 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param $values
+     * @param $repository
      *
      * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
      *
      * @return string
      */
-    protected function serializableState($values): string
+    protected function serializableState(Repository $repository): string
     {
-        $state = serialize(new SerializableClosure(fn () => $values));
+        if ($repository->isEmpty()) {
+            return '';
+        }
 
-        return config('platform.state.crypt', false) === true
-            ? Crypt::encryptString($state)
-            : base64_encode($state);
+        return Crypt::encrypt($repository);
     }
 
     /**
@@ -388,7 +381,14 @@ abstract class Screen extends Controller
      */
     public function isScreenFullStatePreserved(): bool
     {
-        return config('platform.full_state', true);
+        /** @var Layout $layout */
+        $existListenerLayout = collect($this->layout())
+            ->map(fn ($layout) => is_object($layout) ? $layout : resolve($layout))
+            ->map(fn (Layout $layout) => $layout->findByType(Listener::class))
+            ->filter()
+            ->isNotEmpty();
+
+        return config('platform.full_state', $existListenerLayout);
     }
 
     /**

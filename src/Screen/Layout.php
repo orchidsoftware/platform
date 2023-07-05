@@ -122,6 +122,24 @@ abstract class Layout implements JsonSerializable
             ->first();
     }
 
+    /**
+     * @return Layout|null
+     */
+    public function findByType(string $type)
+    {
+        if (is_subclass_of($this, $type)) {
+            return $this;
+        }
+
+        // Trying to find the right layer inside
+        return collect($this->layouts)
+            ->flatten()
+            ->map(fn ($layout) => is_object($layout) ? $layout : resolve($layout))
+            ->map(fn (Layout $layout) => $layout->findByType($type))
+            ->filter()
+            ->first();
+    }
+
     public function jsonSerialize(): array
     {
         $props = collect(get_object_vars($this));
