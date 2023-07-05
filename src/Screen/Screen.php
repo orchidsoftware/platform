@@ -188,7 +188,7 @@ abstract class Screen extends Controller
     protected function extractState(): Repository
     {
         // Check if the '_state' parameter is missing
-        if (!request()->request->has('_state') && session()->missing('_state')) {
+        if (! request()->request->has('_state') && session()->missing('_state')) {
             // Return an empty Repository object
             return new Repository();
         }
