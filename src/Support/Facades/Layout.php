@@ -23,6 +23,7 @@ use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Layouts\View;
 use Orchid\Screen\Layouts\Wrapper;
+use Orchid\Screen\Layouts\Chart;
 
 /**
  * Class Layout.
@@ -46,6 +47,7 @@ use Orchid\Screen\Layouts\Wrapper;
  * @method static Browsing  browsing(string $src)                                   Creates a new browsing layout with the given src.
  * @method static Metric    metrics(array $labels)                                  Creates a new metrics layout with the given labels.
  * @method static Split     split(array $layouts)                                   Creates a new split layout with the given layout data.
+ * @method static Chart     chart(string $target, string $title = null)             Creates a new chart layout with the given title.
  */
 class Layout extends Facade
 {
