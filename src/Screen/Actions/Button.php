@@ -111,6 +111,14 @@ class Button extends Action
     }
 
     /**
+     * Method download serves as an alias for the rawClick method.
+     */
+    public function download(bool $status = false): self
+    {
+        return $this->rawClick($status);
+    }
+
+    /**
      * @param array|string $name
      * @param mixed        $parameters
      * @param bool         $absolute
