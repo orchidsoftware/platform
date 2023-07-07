@@ -2,7 +2,7 @@
 
 @section('aside')
     <div class="aside col-xs-12 col-xxl-2 bg-dark d-flex flex-column" data-controller="menu">
-        <header class="d-xl-block p-3 mt-xl-4 w-100 d-flex align-items-baseline">
+        <header class="d-xl-block p-3 mt-xl-4 w-100 d-flex align-items-center">
             <a href="#" class="header-toggler d-xl-none me-auto order-first d-flex align-items-center lh-1"
                data-action="click->menu#toggle">
                 <x-orchid-icon path="bs.three-dots-vertical" class="icon-menu"/>
