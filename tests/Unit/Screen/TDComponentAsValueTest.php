@@ -64,6 +64,15 @@ class TDComponentAsValueTest extends TestUnitCase
         $this->checkedArgument($view);
     }
 
+    public function testTdArgumentViewUsingComponent(): void
+    {
+        $view = TD::make('email')
+            ->usingComponent(SimpleShowValueWithArguments::class, from: 'Sasha')
+            ->buildTd($this->user);
+
+        $this->checkedArgument($view);
+    }
+
     public function testTdArgumentViewWithClosureArgument(): void
     {
         $view = TD::make('email')

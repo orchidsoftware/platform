@@ -130,7 +130,6 @@ abstract class Cell
     /**
      * Pass only the cell value to the component
      *
-     *
      * @throws \ReflectionException
      *
      * @return $this
@@ -138,6 +137,18 @@ abstract class Cell
     public function asComponent(string $component, array $params = []): static
     {
         return $this->render(fn ($value) => $this->renderComponent($component, $value->getContent($this->name), $params));
+    }
+
+    /**
+     * Pass only the cell value to the component
+     *
+     * @throws \ReflectionException
+     *
+     * @return $this
+     */
+    public function usingComponent(string $component, ...$params): static
+    {
+        return $this->asComponent($component, $params);
     }
 
     /**
