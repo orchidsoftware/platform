@@ -58,11 +58,13 @@ class UserProfileScreen extends Screen
     {
         return [
             Button::make('Back to my account')
+                ->novalidate()
                 ->canSee(Impersonation::isSwitch())
                 ->icon('bs.people')
                 ->route('platform.switch.logout'),
 
             Button::make('Sign out')
+                ->novalidate()
                 ->icon('bs.box-arrow-left')
                 ->route('platform.logout'),
         ];
