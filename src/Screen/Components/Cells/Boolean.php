@@ -37,6 +37,6 @@ class Boolean extends Component
         $class = $this->value ? 'text-success' : 'text-danger';
         $label = $this->value ? $this->true : $this->false;
 
-        return "<span class='$class'>●</span>" . $label;
+        return "<span class='$class'>●</span>".$label;
     }
 }

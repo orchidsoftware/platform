@@ -18,14 +18,13 @@ class Currency extends Component
      * @param string|null $after
      */
     public function __construct(
-        protected float   $value,
-        protected int     $decimals = 2,
-        protected ?string $decimal_separator = ".",
-        protected ?string $thousands_separator = ",",
-        protected ?string $before = "",
-        protected ?string $after = "",
-    )
-    {
+        protected float $value,
+        protected int $decimals = 2,
+        protected ?string $decimal_separator = '.',
+        protected ?string $thousands_separator = ',',
+        protected ?string $before = '',
+        protected ?string $after = '',
+    ) {
     }
 
     /**
@@ -38,8 +37,8 @@ class Currency extends Component
         $value = number_format($this->value, $this->decimals, $this->decimal_separator, $this->thousands_separator);
 
         return Str::of($value)
-            ->prepend($this->before . ' ')
-            ->append(' ' . $this->after)
+            ->prepend($this->before.' ')
+            ->append(' '.$this->after)
             ->trim()
             ->toString();
     }

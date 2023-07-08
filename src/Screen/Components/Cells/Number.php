@@ -15,12 +15,11 @@ class Number extends Component
      * @param string|null $thousands_separator
      */
     public function __construct(
-        protected float   $value,
-        protected int     $decimals = 0,
-        protected ?string $decimal_separator = ".",
-        protected ?string $thousands_separator = ","
-    )
-    {
+        protected float $value,
+        protected int $decimals = 0,
+        protected ?string $decimal_separator = '.',
+        protected ?string $thousands_separator = ','
+    ) {
     }
 
     /**

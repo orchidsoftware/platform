@@ -2,9 +2,9 @@
 
 namespace Orchid\Screen\Components\Cells;
 
+use DateTimeZone;
 use Illuminate\Support\Carbon;
 use Illuminate\View\Component;
-use DateTimeZone;
 
 class Time extends Component
 {
@@ -16,11 +16,10 @@ class Time extends Component
      * @param string                    $unitPrecision
      */
     public function __construct(
-        protected mixed                    $value,
+        protected mixed $value,
         protected DateTimeZone|null|string $tz = null,
-        protected string                   $unitPrecision = 'minute'
-    )
-    {
+        protected string $unitPrecision = 'minute'
+    ) {
     }
 
     /**

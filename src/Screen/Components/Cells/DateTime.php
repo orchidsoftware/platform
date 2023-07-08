@@ -2,13 +2,12 @@
 
 namespace Orchid\Screen\Components\Cells;
 
+use DateTimeZone;
 use Illuminate\Support\Carbon;
 use Illuminate\View\Component;
-use DateTimeZone;
 
 class DateTime extends Component
 {
-
     /**
      * Create a new component instance.
      *
@@ -17,11 +16,10 @@ class DateTime extends Component
      * @param string                    $unitPrecision
      */
     public function __construct(
-        protected mixed                    $value,
+        protected mixed $value,
         protected DateTimeZone|null|string $tz = null,
-        protected string                   $unitPrecision = 'minute'
-    )
-    {
+        protected string $unitPrecision = 'minute'
+    ) {
     }
 
     /**
@@ -31,6 +29,6 @@ class DateTime extends Component
      */
     public function render()
     {
-        return  Carbon::parse($this->value, $this->tz)->toDateTimeString($this->unitPrecision);
+        return Carbon::parse($this->value, $this->tz)->toDateTimeString($this->unitPrecision);
     }
 }

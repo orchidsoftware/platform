@@ -7,7 +7,6 @@ namespace Orchid\Tests\Unit\Cells;
 use Orchid\Screen\Components\Cells\DateTime;
 use Orchid\Tests\TestUnitCase;
 
-
 class DateTimeTest extends TestUnitCase
 {
     public function testRenderTimeComponent(): void

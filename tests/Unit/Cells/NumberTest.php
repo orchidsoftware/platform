@@ -9,7 +9,6 @@ use Orchid\Tests\TestUnitCase;
 
 class NumberTest extends TestUnitCase
 {
-
     public function testRenderNumberComponent(): void
     {
         $value = 4;

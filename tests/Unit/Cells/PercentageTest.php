@@ -7,7 +7,6 @@ namespace Orchid\Tests\Unit\Cells;
 use Orchid\Screen\Components\Cells\Percentage;
 use Orchid\Tests\TestUnitCase;
 
-
 class PercentageTest extends TestUnitCase
 {
     public function testRenderPercentageComponent(): void

@@ -7,7 +7,6 @@ namespace Orchid\Tests\Unit\Cells;
 use Orchid\Screen\Components\Cells\Time;
 use Orchid\Tests\TestUnitCase;
 
-
 class TimeTest extends TestUnitCase
 {
     public function testRenderTimeComponent(): void
@@ -27,5 +26,4 @@ class TimeTest extends TestUnitCase
 
         $this->assertEquals('12:34:56', $component->render());
     }
-
 }

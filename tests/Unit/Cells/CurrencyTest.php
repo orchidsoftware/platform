@@ -7,8 +7,8 @@ namespace Orchid\Tests\Unit\Cells;
 use Orchid\Screen\Components\Cells\Currency;
 use Orchid\Tests\TestUnitCase;
 
-class CurrencyTest extends TestUnitCase {
-
+class CurrencyTest extends TestUnitCase
+{
     public function testRenderCurrencyComponent(): void
     {
         $value = 4;
