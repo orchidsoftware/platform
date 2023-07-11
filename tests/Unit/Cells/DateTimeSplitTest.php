@@ -19,7 +19,6 @@ class DateTimeSplitTest extends TestUnitCase
         $this->assertEquals('<time class="mb-0 text-capitalize">Jan 1, 2022<span class="text-muted d-block">Sat, 12:34</span></time>', $component->render());
     }
 
-
     public function testRenderTimeWithFormatComponent(): void
     {
         $time = '2022-01-01 12:34:56';
@@ -29,7 +28,6 @@ class DateTimeSplitTest extends TestUnitCase
         $this->assertEquals('<time class="mb-0 text-capitalize">2022-01-01<span class="text-muted d-block">12:34:56.000000+00:00</span></time>', $component->render());
     }
 
-
     public function testRenderTimeWithTimeZoneComponent(): void
     {
         $time = Carbon::parse('2022-01-01 12:34:56', 'Europe/Moscow');
@@ -38,5 +36,4 @@ class DateTimeSplitTest extends TestUnitCase
 
         $this->assertEquals('<time class="mb-0 text-capitalize">Jan 1, 2022<span class="text-muted d-block">12:34:56.000000+03:00</span></time>', $component->render());
     }
-
 }
