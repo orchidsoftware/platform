@@ -82,6 +82,7 @@ export default class extends ApplicationController {
      */
     clear() {
         this.element.querySelector('.picture-path').value = '';
+        this.element.querySelector('.picture-input').value = '';
         this.element.querySelector('.picture-preview').src = '';
         this.element.querySelector('.picture-preview').classList.add('none');
         this.element.querySelector('.picture-remove').classList.add('none');
