@@ -6,18 +6,20 @@ use DateTimeZone;
 use Illuminate\Support\Carbon;
 use Illuminate\View\Component;
 
-class DateTime extends Component
+class DateTimeSplit extends Component
 {
     /**
      * Create a new component instance.
      *
      * @param float                     $value
-     * @param string                    $format
+     * @param string                    $upperFormat
+     * @param string                    $lowerFormat
      * @param \DateTimeZone|string|null $tz
      */
     public function __construct(
         protected mixed $value,
-        protected string $format = 'Y-m-d H:i',
+        protected string $upperFormat = 'M j, Y',
+        protected string $lowerFormat = 'D, h:i',
         protected DateTimeZone|null|string $tz = null,
     ) {
     }
@@ -29,6 +31,11 @@ class DateTime extends Component
      */
     public function render()
     {
-        return Carbon::parse($this->value, $this->tz)->translatedFormat($this->format);
+        $date = Carbon::parse($this->value, $this->tz);
+
+        return sprintf('<time class="mb-0 text-capitalize">%s<span class="text-muted d-block">%s</span></time>',
+            $date->translatedFormat($this->upperFormat),
+            $date->translatedFormat($this->lowerFormat),
+        );
     }
 }
