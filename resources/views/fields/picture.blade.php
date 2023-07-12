@@ -26,7 +26,7 @@
                            accept="{{ $acceptedFiles }}"
                            data-picture-target="upload"
                            data-action="change->picture#upload"
-                           class="d-none">
+                           class="picture-input d-none">
                 </label>
 
                 <button type="button" class="btn btn-outline-danger picture-remove"
