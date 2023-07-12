@@ -9,9 +9,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added 
 - Extend cell types [#2129](https://github.com/orchidsoftware/platform/issues/2129)
+- Added 'download' method as alias for 'rawClick' method for Button
+- Added 'usingComponent' method that allows you to pass a cell value to a component
 
 ### Fixed 
 - Can't upload the same image twice [#2664](https://github.com/orchidsoftware/platform/issues/2664) [#2666](https://github.com/orchidsoftware/platform/pull/2666)
+- Align for `Impersonate` page error
+- Form validate on profile stub
+- Mobile view header title align
 
 ## 14.5.0 - 2023-07-05
 
