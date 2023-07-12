@@ -145,8 +145,9 @@ abstract class Cell
      * @param string $component
      * @param mixed  ...$params
      *
-     * @return $this
      * @throws \ReflectionException
+     *
+     * @return $this
      */
     public function usingComponent(string $component, ...$params): static
     {
@@ -158,7 +159,7 @@ abstract class Cell
      *
      * @return mixed
      */
-    protected function handler($source, ?object $loop = null)
+    protected function handler($source, object $loop = null)
     {
         $callback = $this->render;
 

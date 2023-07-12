@@ -197,7 +197,7 @@ class Menu extends Link
     /**
      * @return $this
      */
-    public function title(?string $title = null): self
+    public function title(string $title = null): self
     {
         return $this->set('title', $title);
     }

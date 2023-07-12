@@ -151,7 +151,7 @@ class DateTimer extends Field
      *
      * @return $this
      */
-    public function serverFormat(?string $format = null): self
+    public function serverFormat(string $format = null): self
     {
         return $this->addBeforeRender(function () use ($format) {
             $value = $this->get('value');

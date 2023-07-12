@@ -75,7 +75,7 @@ class Impersonation
      *
      * @return \Illuminate\Contracts\Auth\Authenticatable|null The impersonator or null if there has been no user switch
      */
-    public static function impersonator(): Authenticatable|null
+    public static function impersonator(): ?Authenticatable
     {
         // Check if there has been a user switch
         if (! self::isSwitch()) {

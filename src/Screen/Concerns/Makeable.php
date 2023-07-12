@@ -12,7 +12,7 @@ trait Makeable
      *
      * @return static
      */
-    public static function make(?string $name = null): self
+    public static function make(string $name = null): self
     {
         return (new static)->name($name);
     }
