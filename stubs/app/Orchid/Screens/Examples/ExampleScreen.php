@@ -155,7 +155,7 @@ class ExampleScreen extends Screen
                 TD::make('created_at', 'Created')
                     ->width('100')
                     ->usingComponent(DateTimeSplit::class)
-                    ->align(TD::ALIGN_RIGHT)
+                    ->align(TD::ALIGN_RIGHT),
             ]),
 
             Layout::modal('exampleModal', Layout::rows([
