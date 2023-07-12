@@ -28,10 +28,10 @@ class NumberRangeTest extends TestFieldsUnitCase
         $max = 42;
 
         $field = NumberRange::make('num')
-                            ->value([
-                                'min' => $min,
-                                'max' => $max,
-                            ]);
+            ->value([
+                'min' => $min,
+                'max' => $max,
+            ]);
 
         $view = self::renderField($field);
 

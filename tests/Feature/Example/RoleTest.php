@@ -50,9 +50,9 @@ class RoleTest extends TestFeatureCase
             ->get(route('platform.systems.roles.edit', $this->role->id));
 
         $response->assertOk()
-        ->assertSee('field-roles')
-        ->assertSee($this->role->name)
-        ->assertSee($this->role->slug);
+            ->assertSee('field-roles')
+            ->assertSee($this->role->name)
+            ->assertSee($this->role->slug);
     }
 
     public function testCanHaveStringPrimary(): void

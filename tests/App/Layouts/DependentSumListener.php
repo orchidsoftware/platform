@@ -2,12 +2,16 @@
 
 namespace Orchid\Tests\App\Layouts;
 
+use Illuminate\Http\Request;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Listener;
+use Orchid\Screen\Repository;
 use Orchid\Support\Facades\Layout;
 
 class DependentSumListener extends Listener
 {
+    protected ?string $slug;
+
     /**
      * The name of the key to fetch it from the query.
      * The results of which will be elements of the table.
@@ -20,12 +24,14 @@ class DependentSumListener extends Listener
     ];
 
     /**
-     * What screen method should be called
-     * as a source for an asynchronous request.
+     * @param string|null $slug
      *
-     * @var string
+     * @return void
      */
-    protected $asyncMethod = 'asyncSum';
+    public function __construct(string $slug = null)
+    {
+        $this->slug = $slug ?? static::class;
+    }
 
     /**
      * @return \Orchid\Screen\Layout[]
@@ -43,5 +49,28 @@ class DependentSumListener extends Listener
                     ),
             ]),
         ];
+    }
+
+    /**
+     * Returns the system layer name.
+     * Required to define an asynchronous layer.
+     */
+    public function getSlug(): string
+    {
+        return sha1($this->slug);
+    }
+
+    /**
+     * @param \Orchid\Screen\Repository $repository
+     * @param \Illuminate\Http\Request  $request
+     *
+     * @return \Orchid\Screen\Repository
+     */
+    public function handle(Repository $repository, Request $request): Repository
+    {
+        return $repository
+            ->set('first', $request->get('first'))
+            ->set('second', $request->get('second'))
+            ->set('sum', $request->get('first') + $request->get('second'));
     }
 }

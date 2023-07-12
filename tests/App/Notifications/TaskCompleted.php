@@ -18,8 +18,6 @@ class TaskCompleted extends Notification
      * Get the notification's delivery channels.
      *
      * @param mixed $notifiable
-     *
-     * @return array
      */
     public function via($notifiable): array
     {
@@ -31,7 +29,7 @@ class TaskCompleted extends Notification
         return (new DashboardMessage())
             ->title('Task Completed')
             ->message('You have completed work. Well done!')
-            ->type(Color::INFO())
+            ->type(Color::INFO)
             ->action(url('/'));
     }
 
@@ -39,8 +37,6 @@ class TaskCompleted extends Notification
      * Get the array representation of the notification.
      *
      * @param mixed $notifiable
-     *
-     * @return array
      */
     public function toArray($notifiable): array
     {

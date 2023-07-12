@@ -47,6 +47,6 @@ class DummyClass extends Filter
      */
     public function display(): iterable
     {
-        //
+        return [];
     }
 }

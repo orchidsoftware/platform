@@ -112,9 +112,6 @@ class Menu extends Link
             });
     }
 
-    /**
-     * @return string
-     */
     protected function getSlug(): string
     {
         return $this->get('slug', Str::slug(__($this->get('name'))));
@@ -138,8 +135,6 @@ class Menu extends Link
     }
 
     /**
-     * @param Repository|null $repository
-     *
      * @throws \Throwable
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
@@ -152,15 +147,12 @@ class Menu extends Link
     }
 
     /**
-     * @param \Closure   $badge
-     * @param Color|null $color
-     *
      * @return $this
      */
-    public function badge(\Closure $badge, Color $color = null): self
+    public function badge(\Closure $badge, Color $color = Color::PRIMARY): self
     {
         $this->set('badge', [
-            'class' => $color ?? Color::PRIMARY(),
+            'class' => $color->name(),
             'data'  => $badge,
         ]);
 
@@ -168,8 +160,6 @@ class Menu extends Link
     }
 
     /**
-     * @param string $url
-     *
      * @return $this
      */
     public function url(string $url): self
@@ -199,27 +189,20 @@ class Menu extends Link
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isSee(): bool
     {
         return parent::isSee() && $this->permit;
     }
 
     /**
-     * @param string|null $title
-     *
      * @return $this
      */
-    public function title(?string $title = null): self
+    public function title(string $title = null): self
     {
         return $this->set('title', $title);
     }
 
     /**
-     * @param string $slug
-     *
      * @return $this
      */
     public function slug(string $slug): self
@@ -228,8 +211,6 @@ class Menu extends Link
     }
 
     /**
-     * @param string $parent
-     *
      * @return $this
      */
     public function parent(string $parent): self

@@ -14,9 +14,6 @@ use Throwable;
 
 class SearchLayout extends Rows
 {
-    /**
-     * @return bool
-     */
     public function isSee(): bool
     {
         return Dashboard::getSearch()->isNotEmpty();
@@ -24,8 +21,6 @@ class SearchLayout extends Rows
 
     /**
      * @throws Throwable
-     *
-     * @return array
      */
     public function fields(): array
     {

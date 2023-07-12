@@ -9,9 +9,11 @@ use Carbon\Carbon;
 class Formats
 {
     /**
-     * @param int $time
+     * Convert a UNIX timestamp to a formatted datetime string.
      *
-     * @return string
+     * @param int $time UNIX timestamp
+     *
+     * @return string Formatted Datetime string
      */
     public static function toDateTimeString(int $time): string
     {
@@ -19,12 +21,7 @@ class Formats
     }
 
     /**
-     * Format bytes to kb, mb, gb, tb.
-     *
-     * @param int $size
-     * @param int $precision
-     *
-     * @return string
+     * Format bytes to KB, MB, GB, TB.
      */
     public static function formatBytes(int $size, int $precision = 2): string
     {

@@ -30,6 +30,17 @@ export default class ApplicationController extends Controller {
 
     /**
      *
+     * @param message
+     * @param type
+     */
+    toast(message, type = 'warning') {
+        let toastWrapper = document.querySelector('[data-controller="toast"]');
+        let toastController = application.getControllerForElementAndIdentifier(toastWrapper, 'toast');
+        toastController.toast(message, type);
+    }
+
+    /**
+     *
      * @param elem
      */
     formToObject(elem) {
@@ -53,5 +64,20 @@ export default class ApplicationController extends Controller {
         );
 
         return output;
+    }
+
+    /**
+     *
+     * @param url
+     * @param data
+     */
+    loadStream(url, data) {
+       return window.axios.post(url, data, {
+            headers: {
+                Accept: "text/vnd.turbo-stream.html",
+            },
+        })
+            .then(response => response.data)
+            .then(html => Turbo.renderStreamMessage(html))
     }
 }

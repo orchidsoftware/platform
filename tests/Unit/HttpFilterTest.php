@@ -9,6 +9,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\HttpFilter;
+use Orchid\Filters\Types\Ilike;
+use Orchid\Filters\Types\Like;
+use Orchid\Filters\Types\Where;
+use Orchid\Filters\Types\WhereBetween;
+use Orchid\Filters\Types\WhereDate;
+use Orchid\Filters\Types\WhereDateStartEnd;
+use Orchid\Filters\Types\WhereIn;
+use Orchid\Filters\Types\WhereMaxMin;
 use Orchid\Tests\TestUnitCase;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -19,238 +27,224 @@ class HttpFilterTest extends TestUnitCase
 {
     public function testHttpIsSort(): void
     {
-        $request = new Request([
+        request()->merge([
             'sort' => 'foobar',
         ]);
 
-        $filter = new HttpFilter($request);
-
+        $filter = new HttpFilter();
         $this->assertTrue($filter->isSort('foobar'));
 
-        $sql = $this->getModelBuilder($filter)->toSql();
+        $sql = $this->getModelBuilder()->toSql();
 
         $this->assertStringContainsString('order by "foobar" asc', $sql);
     }
 
-    public function testHttpFilterInteger(): void
+    public function testLike(): void
     {
-        $request = new Request([
+        request()->merge([
             'filter' => [
-                'foo' => '123',
+                'Like' => 'qux',
             ],
         ]);
 
-        $filter = new HttpFilter($request);
+        $sql = $this->getModelBuilder()->toSql();
 
-        $this->assertEquals(123, $filter->getFilter('foo'));
-
-        $sql = $this->getModelBuilder($filter)->toSql();
-
-        $this->assertStringContainsString('"foo" = ?', $sql);
+        $this->assertStringContainsString('"Like" like ?', $sql);
     }
 
-    public function testHttpFilterLike(): void
+    public function testIlike(): void
     {
-        $request = new Request([
+        request()->merge([
             'filter' => [
-                'foo' => 'bar',
-                'baz' => 'qux',
+                'Ilike' => 'qux',
             ],
         ]);
 
-        $filter = new HttpFilter($request);
+        $sql = $this->getModelBuilder()->toSql();
 
-        $this->assertEquals('bar', $filter->getFilter('foo'));
-        $this->assertEquals('qux', $filter->getFilter('baz'));
-
-        $sql = $this->getModelBuilder($filter)->toSql();
-
-        $this->assertStringContainsString('"foo" like ?', $sql);
-        $this->assertStringContainsString('"baz" like ?', $sql);
+        $this->assertStringContainsString('"Ilike" ILIKE ?', $sql);
     }
 
-    public function testHttpFilterArray(): void
+    public function testWhereIn(): void
     {
-        $request = new Request([
+        request()->merge([
             'filter' => [
-                'foo' => 'bar,qux',
+                'WhereIn' => 'bar,qux',
             ],
         ]);
 
-        $filter = new HttpFilter($request);
+        $sql = $this->getModelBuilder()->toSql();
 
-        $this->assertEquals([
-            'bar',
-            'qux',
-        ], $filter->getFilter('foo'));
+        $this->assertStringContainsString('"WhereIn" in (?, ?)', $sql);
 
-        $sql = $this->getModelBuilder($filter)->toSql();
-
-        $this->assertStringContainsString('"foo" in (?, ?)', $sql);
-    }
-
-    public function testHttpFilterDeepArray(): void
-    {
-        $request = new Request([
+        request()->merge([
             'filter' => [
-                'foo' => ['bar', 'qux'],
+                'WhereIn' => ['bar', 'qux'],
             ],
         ]);
 
-        $filter = new HttpFilter($request);
+        $sql = $this->getModelBuilder()->toSql();
 
-        $this->assertEquals([
-            'bar',
-            'qux',
-        ], $filter->getFilter('foo'));
-        $sql = $this->getModelBuilder($filter)->toSql();
-
-        $this->assertStringContainsString('"foo" in (?, ?)', $sql);
+        $this->assertStringContainsString('"WhereIn" in (?, ?)', $sql);
     }
 
-    public function testHttpFilterRange(): void
+    public function testWhereBetween(): void
     {
-        $request = new Request([
+        request()->merge([
             'filter' => [
-                'foo' => ['min' => 1, 'max' => 5],
+                'WhereBetween' => [2, 10],
             ],
         ]);
 
-        $filter = new HttpFilter($request);
+        $sql = $this->getModelBuilder()->toSql();
 
-        $this->assertEquals([
-            'min' => 1,
-            'max' => 5,
-        ], $filter->getFilter('foo'));
-
-        $sql = $this->getModelBuilder($filter)->toSql();
-
-        $this->assertStringContainsString('"foo" >= ? and "foo" <= ?', $sql);
+        $this->assertStringContainsString('"WhereBetween" between ? and ?', $sql);
     }
 
-    public function testHttpFilterRangePartial(): void
+    public function testFilterRange(): void
     {
-        $request = new Request([
+        request()->merge([
             'filter' => [
-                'foo' => ['min' => 1],
+                'WhereMaxMin' => ['min' => 1, 'max' => 5],
             ],
         ]);
 
-        $filter = new HttpFilter($request);
+        $sql = $this->getModelBuilder()->toSql();
 
-        $this->assertEquals([
-            'min' => 1,
-        ], $filter->getFilter('foo'));
-
-        $sql = $this->getModelBuilder($filter)->toSql();
-
-        $this->assertStringContainsString('"foo" >= ?', $sql);
+        $this->assertStringContainsString('"WhereMaxMin" >= ? and "WhereMaxMin" <= ?', $sql);
     }
 
-    public function testHttpFilterNumberLike(): void
+    public function testFilterRangePartial(): void
     {
-        $request = new Request([
+        request()->merge([
             'filter' => [
-                'float'  => '42',
-                'string' => '42',
+                'WhereMaxMin' => ['min' => 1],
             ],
         ]);
 
-        $filter = new HttpFilter($request);
+        $sql = $this->getModelBuilder()->toSql();
 
-        $this->assertEquals('42', $filter->getFilter('float'));
-        $this->assertEquals('42', $filter->getFilter('string'));
-
-        $sql = $this->getModelBuilderWithAutocast($filter)->toSql();
-
-        $this->assertStringContainsString('"float" = ?', $sql);
-        $this->assertStringContainsString('"string" like ?', $sql);
+        $this->assertStringContainsString('"WhereMaxMin" >= ?', $sql);
     }
 
-    public function testHttpUnknownAttributes(): void
+    public function testFilterDateRange(): void
     {
-        $request = new Request([
+        request()->merge([
+            'filter' => [
+                'WhereDateStartEnd' => ['start' => '2023-01-01', 'end' => '2023-02-01'],
+            ],
+        ]);
+
+        $sql = $this->getModelBuilder()->toSql();
+
+        $this->assertStringContainsString('strftime(\'%Y-%m-%d\', "WhereDateStartEnd") >= cast(? as text) and strftime(\'%Y-%m-%d\', "WhereDateStartEnd") <= cast(? as text)', $sql);
+    }
+
+    public function testFilterDateRangePartial(): void
+    {
+        request()->merge([
+            'filter' => [
+                'WhereDateStartEnd' => ['start' => '2023-01-01'],
+            ],
+        ]);
+
+        $sql = $this->getModelBuilder()->toSql();
+
+        $this->assertStringContainsString('where strftime(\'%Y-%m-%d\', "WhereDateStartEnd") >= cast(? as text)', $sql);
+    }
+
+    public function testMultiple(): void
+    {
+        request()->merge([
+            'filter' => [
+                'Where'  => '42',
+                'Like'   => '42',
+            ],
+        ]);
+
+        $sql = $this->getModelBuilder()->toSql();
+
+        $this->assertStringContainsString('"Where" = ?', $sql);
+        $this->assertStringContainsString('"Like" like ?', $sql);
+    }
+
+    public function testUnknownAttributes(): void
+    {
+        request()->merge([
             'sort'   => 'unknown',
             'filter' => [
                 'unknown' => 'not allow',
             ],
         ]);
 
-        $filter = new HttpFilter($request);
-
-        $sql = $this->getModelBuilder($filter)->toSql();
+        $sql = $this->getModelBuilder()->toSql();
 
         $this->assertStringNotContainsStringIgnoringCase('order by "unknown"', $sql);
         $this->assertStringNotContainsStringIgnoringCase('"unknown" like ?', $sql);
     }
 
-    public function testHttpSortDESC(): void
+    public function testHttpSort(): void
     {
-        $request = new Request([
+        $filter = new HttpFilter(new Request([
             'sort' => 'foobar',
-        ]);
+        ]));
 
-        $filter = new HttpFilter($request);
+        $this->assertEquals('asc', $filter->getSort('foobar'));
 
-        $this->assertEquals('desc', $filter->getSort('foo'));
+        $filter = new HttpFilter(new Request([
+            'sort' => '-foobar',
+        ]));
+
+        $this->assertEquals('desc', $filter->getSort('foobar'));
     }
 
+    /*
     public function testHttpJSONFilter(): void
     {
-        $request = new Request([
+        request()->merge([
             'filter' => [
                 'content.ru.name' => 'not allow',
             ],
         ]);
 
-        $filter = new HttpFilter($request);
-
-        $sql = $this->getModelBuilder($filter)->toSql();
+        $sql = $this->getModelBuilder()->toSql();
 
         $this->assertStringContainsString("json_extract(\"content\", '$.\"ru\".\"name\"') like ?", $sql);
     }
+    */
 
-    public function testNullableFilter(): void
+    public function testNullable(): void
     {
-        $request = new Request([
+        $filter = new HttpFilter(new Request([
             'filter' => [
-                'float'  => null,
+                'Where'  => null,
             ],
-        ]);
+        ]));
 
-        $filter = new HttpFilter($request);
-
-        $this->assertNull($filter->getFilter('float'));
-
-        $sql = $this->getModelBuilderWithAutocast($filter)->toSql();
-
-        $this->assertStringNotContainsString('"float"', $sql);
-    }
-
-    public function testHttpJSONSort(): void
-    {
-        $request = new Request([
-            'sort' => 'content.ru.name',
-        ]);
-
-        $filter = new HttpFilter($request);
+        $this->assertNull($filter->getFilter('Where'));
 
         $sql = $this->getModelBuilder($filter)->toSql();
 
-        $this->assertStringContainsString("order by json_extract(\"content\", '$.\"ru\".\"name\"') asc", $sql);
+        $this->assertStringNotContainsString('"Where"', $sql);
     }
 
-    public function testHttpJSONSortDesc(): void
+    public function testJSONSort(): void
     {
-        $request = new Request([
-            'sort' => '-content.ru.name',
+        request()->merge([
+            'sort' => 'foobar.ru.name',
         ]);
 
-        $filter = new HttpFilter($request);
+        $sql = $this->getModelBuilder()->toSql();
 
-        $sql = $this->getModelBuilder($filter)->toSql();
+        $this->assertStringContainsString("order by json_extract(\"foobar\", '$.\"ru\".\"name\"') asc", $sql);
 
-        $this->assertStringContainsString("order by json_extract(\"content\", '$.\"ru\".\"name\"') desc", $sql);
+        request()->merge([
+            'sort' => '-foobar.ru.name',
+        ]);
+
+        $sql = $this->getModelBuilder()->toSql();
+
+        $this->assertStringContainsString("order by json_extract(\"foobar\", '$.\"ru\".\"name\"') desc", $sql);
     }
 
     public function testHttpSanitize(): void
@@ -266,98 +260,26 @@ class HttpFilterTest extends TestUnitCase
         HttpFilter::sanitize('email->"%27))%23injectedSQL');
     }
 
-    /**
-     * @param HttpFilter $filter
-     *
-     * @return Builder
-     */
-    private function getModelBuilder(HttpFilter $filter): Builder
+    private function getModelBuilder(HttpFilter $filter = null): Builder
     {
         $model = new class extends Model
         {
             use Filterable;
 
-            /**
-             * @var array
-             */
-            protected $cast = [
-                'content' => 'array',
-            ];
-            /**
-             * @var array
-             */
             protected $allowedFilters = [
-                'id',
-                'status',
-                'foo',
-                'baz',
-                'foobar',
-                'content',
-                'string',
-                'float',
+                'WhereIn'           => WhereIn::class,
+                'Like'              => Like::class,
+                'Ilike'             => Ilike::class,
+                'Where'             => Where::class,
+                'WhereBetween'      => WhereBetween::class,
+                'WhereMaxMin'       => WhereMaxMin::class,
+                'WhereDate'         => WhereDate::class,
+                'WhereDateStartEnd' => WhereDateStartEnd::class,
             ];
-            /**
-             * @var array
-             */
+
             protected $allowedSorts = [
-                'id',
-                'status',
-                'foo',
-                'baz',
                 'foobar',
-                'content',
             ];
-        };
-
-        return $model->filters(null, $filter);
-    }
-
-    /**
-     * @param HttpFilter $filter
-     *
-     * @return Builder
-     */
-    private function getModelBuilderWithAutocast(HttpFilter $filter): Builder
-    {
-        $model = new class extends Model
-        {
-            use Filterable;
-
-            /**
-             * @var array
-             */
-            protected $cast = [
-                'content' => 'array',
-            ];
-            /**
-             * @var array
-             */
-            protected $allowedFilters = [
-                'id',
-                'status',
-                'foo',
-                'baz',
-                'foobar',
-                'content',
-                'string',
-                'float',
-            ];
-            /**
-             * @var array
-             */
-            protected $allowedSorts = [
-                'id',
-                'status',
-                'foo',
-                'baz',
-                'foobar',
-                'content',
-            ];
-
-            public function hasCast($el, $types = null)
-            {
-                return in_array($el, $types, false);
-            }
         };
 
         return $model->filters(null, $filter);

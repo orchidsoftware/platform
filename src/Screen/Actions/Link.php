@@ -54,7 +54,6 @@ class Link extends Action
     /**
      * Set the link.
      *
-     * @param string $link
      *
      * @return $this
      */
@@ -66,9 +65,8 @@ class Link extends Action
     }
 
     /**
-     * @param string $name
-     * @param array  $parameters
-     * @param bool   $absolute
+     * @param array $parameters
+     * @param bool  $absolute
      *
      * @return $this
      */

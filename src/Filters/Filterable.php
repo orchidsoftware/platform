@@ -12,11 +12,6 @@ trait Filterable
 {
     /**
      * Apply the filter to the given query.
-     *
-     * @param Builder  $query
-     * @param iterable $filters
-     *
-     * @return Builder
      */
     public function scopeFiltersApply(Builder $query, iterable $filters = []): Builder
     {
@@ -28,10 +23,7 @@ trait Filterable
     /**
      * Apply the filter to the given selection.
      *
-     * @param Builder          $query
      * @param string|Selection $class
-     *
-     * @return Builder
      */
     public function scopeFiltersApplySelection(Builder $query, $class): Builder
     {
@@ -44,11 +36,7 @@ trait Filterable
     }
 
     /**
-     * @param Builder                   $builder
      * @param iterable|string|Selection $kit
-     * @param HttpFilter|null           $httpFilter
-     *
-     * @return Builder
      */
     public function scopeFilters(Builder $builder, mixed $kit = null, HttpFilter $httpFilter = null): Builder
     {
@@ -65,10 +53,6 @@ trait Filterable
     }
 
     /**
-     * @param Builder $builder
-     * @param string  $column
-     * @param string  $direction
-     *
      * @return Builder
      */
     public function scopeDefaultSort(Builder $builder, string $column, string $direction = 'asc')
@@ -80,9 +64,6 @@ trait Filterable
         return $builder;
     }
 
-    /**
-     * @return Collection
-     */
     public function getOptionsFilter(): Collection
     {
         return collect([

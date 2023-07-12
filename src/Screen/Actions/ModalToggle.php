@@ -44,8 +44,6 @@ class ModalToggle extends Button
 
     /**
      * @param int|string|array $options
-     *
-     * @return ModalToggle
      */
     public function asyncParameters($options = []): self
     {

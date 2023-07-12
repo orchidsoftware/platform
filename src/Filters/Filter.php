@@ -32,13 +32,6 @@ abstract class Filter
     public $display = true;
 
     /**
-     * Current app language.
-     *
-     * @var string
-     */
-    public $lang;
-
-    /**
      * The value delimiter.
      *
      * @var string
@@ -51,15 +44,10 @@ abstract class Filter
     public function __construct()
     {
         $this->request = request();
-        $this->lang = app()->getLocale();
     }
 
     /**
      * Apply filter if the request parameters were satisfied.
-     *
-     * @param Builder $builder
-     *
-     * @return Builder
      */
     public function filter(Builder $builder): Builder
     {
@@ -70,8 +58,6 @@ abstract class Filter
 
     /**
      * The array of matched parameters.
-     *
-     * @return array|null
      */
     public function parameters(): ?array
     {
@@ -80,10 +66,6 @@ abstract class Filter
 
     /**
      * Apply to a given Eloquent query builder.
-     *
-     * @param Builder $builder
-     *
-     * @return Builder
      */
     abstract public function run(Builder $builder): Builder;
 
@@ -99,17 +81,12 @@ abstract class Filter
 
     /**
      * The displayable name of the filter.
-     *
-     * @return string
      */
     public function name(): string
     {
         return class_basename(static::class);
     }
 
-    /**
-     * @return string
-     */
     public function render(): string
     {
         return collect($this->display())->reduce(static fn ($html, Field $field) => $html.$field->form('filters')->render());
@@ -117,8 +94,6 @@ abstract class Filter
 
     /**
      * Count fields in the filter.
-     *
-     * @return int
      */
     public function count(): int
     {
@@ -127,8 +102,6 @@ abstract class Filter
 
     /**
      * Whether there are suitable parameters in the query to apply the filter.
-     *
-     * @return bool
      */
     public function isApply(): bool
     {
@@ -137,8 +110,6 @@ abstract class Filter
 
     /**
      * Value to be displayed
-     *
-     * @return string
      */
     public function value(): string
     {
@@ -150,8 +121,6 @@ abstract class Filter
 
     /**
      * Link without filters applied
-     *
-     * @return string
      */
     public function resetLink(): string
     {

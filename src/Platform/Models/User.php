@@ -14,6 +14,7 @@ use Orchid\Access\UserInterface;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
+use Orchid\Filters\Types\WhereDateStartEnd;
 use Orchid\Metrics\Chartable;
 use Orchid\Screen\AsSource;
 use Orchid\Support\Facades\Dashboard;
@@ -71,8 +72,8 @@ class User extends Authenticatable implements UserInterface
         'id'         => Where::class,
         'name'       => Like::class,
         'email'      => Like::class,
-        'updated_at' => Like::class,
-        'created_at' => Like::class,
+        'updated_at' => WhereDateStartEnd::class,
+        'created_at' => WhereDateStartEnd::class,
     ];
 
     /**
@@ -89,15 +90,13 @@ class User extends Authenticatable implements UserInterface
     ];
 
     /**
-     * @param string $name
-     * @param string $email
-     * @param string $password
+     * Throw an exception if email already exists, create admin user.
      *
      * @throws \Throwable
      */
-    public static function createAdmin(string $name, string $email, string $password)
+    public static function createAdmin(string $name, string $email, string $password): void
     {
-        throw_if(static::where('email', $email)->exists(), 'User exist');
+        throw_if(static::where('email', $email)->exists(), 'User exists');
 
         static::create([
             'name'        => $name,

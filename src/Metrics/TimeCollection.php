@@ -9,8 +9,26 @@ use Illuminate\Support\Str;
 class TimeCollection extends Collection
 {
     /**
-     * @param string        $name
-     * @param \Closure|null $closure
+     * @param        $values
+     * @param string $format
+     *
+     * @return \Orchid\Metrics\TimeCollection
+     */
+    public function makeFromKeyValue($values, string $format = 'Y-m-d'): TimeCollection
+    {
+        $prepare = collect($values)->map(fn ($value, $key) => [
+            'label' => Carbon::parse($key)->format($format),
+            'value' => round($value),
+        ]);
+
+        return static::make($prepare);
+    }
+
+    /**
+     * Convert to a format suitable for a chart
+     *
+     * @param string   $name
+     * @param \Closure $closure
      *
      * @return array
      */
@@ -26,6 +44,8 @@ class TimeCollection extends Collection
     }
 
     /**
+     * Convert collection data to day names
+     *
      * @return TimeCollection
      */
     public function showDaysOfWeek(): TimeCollection
@@ -38,6 +58,8 @@ class TimeCollection extends Collection
     }
 
     /**
+     * Convert collection data to abbreviated day names
+     *
      * @return TimeCollection
      */
     public function showMinDaysOfWeek(): TimeCollection
@@ -50,16 +72,30 @@ class TimeCollection extends Collection
     }
 
     /**
+     * Transform the labels using the provided callback
+     *
      * @param callable $callback
      *
      * @return TimeCollection
      */
-    public function transformLabel(callable $callback)
+    public function transformLabel(callable $callback): TimeCollection
     {
         return $this->transform(function (array $value) use ($callback) {
             $value['label'] = $callback($value);
 
             return $value;
+        });
+    }
+
+    /**
+     * Delete segment if at least one of the values is missing.
+     *
+     * @return TimeCollection
+     */
+    public function withoutZeroValues(): TimeCollection
+    {
+        return $this->filter(function (array $item) {
+            return $item['value'] !== 0;
         });
     }
 }

@@ -46,9 +46,6 @@ class LocaleTest extends TestUnitCase
             });
     }
 
-    /**
-     * @return Collection
-     */
     protected function getTranslationFiles(): Collection
     {
         $patternPath = Dashboard::path('resources/lang').'/*.json';
@@ -62,10 +59,6 @@ class LocaleTest extends TestUnitCase
      * She can only say that there is definitely no word.
      * Will give positive results on popular words that
      * can be used to name variables, properties, classes.
-     *
-     * @param string $string
-     *
-     * @return bool
      */
     protected function checkUsageTranslateStringInProject(string $string): bool
     {

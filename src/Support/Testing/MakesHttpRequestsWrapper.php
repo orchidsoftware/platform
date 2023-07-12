@@ -10,16 +10,27 @@ use Illuminate\Foundation\Testing\Concerns\InteractsWithExceptionHandling;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithSession;
 use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests;
 
+/**
+ * Trait MakesHttpRequestsWrapper
+ *
+ * This trait contains some helper methods to provide additional functionality
+ * to the middleware. Specifically, it provides various HTTP helper methods to
+ * simulate basic HTTP requests to endpoints.
+ */
 class MakesHttpRequestsWrapper
 {
     use MakesHttpRequests, InteractsWithExceptionHandling, InteractsWithAuthentication, InteractsWithSession;
 
     /**
+     * The application instance
+     *
      * @var Application
      */
     protected $app;
 
     /**
+     * Creates a new wrapper instance.
+     *
      * @param Application $app
      */
     public function __construct(Application $app)
@@ -28,9 +39,11 @@ class MakesHttpRequestsWrapper
     }
 
     /**
+     * Get the instance of the application
+     *
      * @return Application
      */
-    public function getAppication(): Application
+    public function getApplication(): Application
     {
         return $this->app;
     }

@@ -47,14 +47,13 @@ abstract class TestBrowserCase extends TestCase
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ]);
 
-        Options::withoutUI();
+        config()->set('platform.prevents_abandonment', false);
+
+        if (isset($_SERVER['CI'])) {
+            Options::withoutUI();
+        }
     }
 
-    /**
-     * @param array $attributes
-     *
-     * @return User
-     */
     protected function createAdminUser(array $attributes = []): User
     {
         if ($this->user === null) {
@@ -64,9 +63,6 @@ abstract class TestBrowserCase extends TestCase
         return $this->user;
     }
 
-    /**
-     * @return Generator
-     */
     protected function faker(): Generator
     {
         if ($this->faker === null) {

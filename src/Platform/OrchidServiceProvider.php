@@ -7,33 +7,60 @@ namespace Orchid\Platform;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
+/*
+ * This class represents the Orchid Service Provider.
+ * It is used to register the menus, permissions and search models to the dashboard.
+ */
 abstract class OrchidServiceProvider extends ServiceProvider
 {
     /**
      * Boot the application events.
-     *
-     * @param Dashboard $dashboard
      */
     public function boot(Dashboard $dashboard): void
     {
+        // Register the menu items
         View::composer('platform::dashboard', function () use ($dashboard) {
-            foreach ($this->registerMainMenu() as $element) {
-                $dashboard->registerMenuElement(Dashboard::MENU_MAIN, $element);
-            }
-
-            foreach ($this->registerProfileMenu() as $element) {
-                $dashboard->registerMenuElement(Dashboard::MENU_PROFILE, $element);
+            foreach ([...$this->menu(), ...$this->registerMenu(), ...$this->registerMainMenu(), ...$this->registerProfileMenu()] as $element) {
+                $dashboard->registerMenuElement($element);
             }
         });
 
-        foreach ($this->registerPermissions() as $permission) {
+        // Register the permissions
+        foreach ([...$this->permissions(), ...$this->registerPermissions()] as $permission) {
             $dashboard->registerPermissions($permission);
         }
 
+        // Register the search models
         $dashboard->registerSearch($this->registerSearchModels());
     }
 
     /**
+     * Returns an array of menu items.
+     *
+     * @return \Orchid\Screen\Actions\Menu[]
+     */
+    public function menu(): array
+    {
+        return [];
+    }
+
+    /**
+     * @deprecated Use the `menu` method instead
+     *
+     * Returns an array of menu items.
+     *
+     * @return \Orchid\Screen\Actions\Menu[]
+     */
+    public function registerMenu(): array
+    {
+        return [];
+    }
+
+    /**
+     * @deprecated Use the `menu` method instead
+     *
+     * Returns an array of menu items.
+     *
      * @return \Orchid\Screen\Actions\Menu[]
      */
     public function registerMainMenu(): array
@@ -42,6 +69,10 @@ abstract class OrchidServiceProvider extends ServiceProvider
     }
 
     /**
+     * @deprecated Use the `menu` method instead
+     *
+     * Returns an array of menu items.
+     *
      * @return \Orchid\Screen\Actions\Menu[]
      */
     public function registerProfileMenu(): array
@@ -50,6 +81,10 @@ abstract class OrchidServiceProvider extends ServiceProvider
     }
 
     /**
+     * @deprecated Use config instead
+     *
+     * Returns an array of permissions.
+     *
      * @return ItemPermission[]
      */
     public function registerPermissions(): array
@@ -58,7 +93,19 @@ abstract class OrchidServiceProvider extends ServiceProvider
     }
 
     /**
-     * @deprecated Use config to define
+     * Returns an array of permissions.
+     *
+     * @return ItemPermission[]
+     */
+    public function permissions(): array
+    {
+        return [];
+    }
+
+    /**
+     * @deprecated Use config instead
+     *
+     * Returns an array of search models.
      *
      * @return string[]
      */

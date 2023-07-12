@@ -20,15 +20,14 @@ class ReplicateFileEvent
     public $attachment;
 
     /**
+     * The timestamp when the event occurred.
+     *
      * @var int
      */
     public $time;
 
     /**
      * ReplicateFileEvent constructor.
-     *
-     * @param Attachment $attachment
-     * @param int        $time
      */
     public function __construct(Attachment $attachment, int $time)
     {

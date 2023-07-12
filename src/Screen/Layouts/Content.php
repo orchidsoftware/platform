@@ -15,7 +15,7 @@ abstract class Content extends Layout
     protected $query;
 
     /**
-     * Key property for query.
+     * Key property for a query.
      *
      * @var mixed
      */
@@ -31,11 +31,6 @@ abstract class Content extends Layout
         $this->target = $target;
     }
 
-    /**
-     * @param Repository $repository
-     *
-     * @return string
-     */
     public function build(Repository $repository): string
     {
         $this->query = $repository;
@@ -47,9 +42,6 @@ abstract class Content extends Layout
         return (string) $this;
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return (string) $this->render($this->target);

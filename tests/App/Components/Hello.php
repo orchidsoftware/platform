@@ -21,9 +21,6 @@ class Hello extends Component
 
     /**
      * Create a new component instance.
-     *
-     * @param Application $application
-     * @param string      $name
      */
     public function __construct(Application $application, string $name)
     {

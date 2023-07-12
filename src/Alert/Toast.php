@@ -7,34 +7,32 @@ namespace Orchid\Alert;
 use Illuminate\Session\Store;
 
 /**
- * Class Toast.
+ * Class Toast
  */
 class Toast extends Alert
 {
     /**
-     * @var string
+     * @var string The session key for a message.
      */
     public const SESSION_MESSAGE = 'toast_notification.message';
 
     /**
-     * @var string
+     * @var string The session key for level.
      */
     public const SESSION_LEVEL = 'toast_notification.level';
 
     /**
-     * @var string
+     * @var string The session key for auto hide.
      */
     public const SESSION_AUTO_HIDE = 'toast_notification.auto_hide';
 
     /**
-     * @var string
+     * @var string The session key for delay.
      */
     public const SESSION_DELAY = 'toast_notification.delay';
 
     /**
      * Create a new flash notifier instance.
-     *
-     * @param Store $session
      */
     public function __construct(Store $session)
     {
@@ -44,6 +42,8 @@ class Toast extends Alert
     }
 
     /**
+     * Set the auto hide option for the toast notification.
+     *
      * @param bool $autoHide
      *
      * @return $this
@@ -56,7 +56,21 @@ class Toast extends Alert
     }
 
     /**
-     * @param int $delay
+     * Disable the auto hide option for the toast notification.
+     *
+     * @param bool $disable
+     *
+     * @return $this
+     */
+    public function disableAutoHide(bool $disable = true): self
+    {
+        return $this->autoHide(! $disable);
+    }
+
+    /**
+     * Set the delay option for the toast notification.
+     *
+     * @param int $delay The delay in seconds
      *
      * @return $this
      */

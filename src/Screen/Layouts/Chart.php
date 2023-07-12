@@ -21,7 +21,7 @@ abstract class Chart extends Layout
     public const TYPE_AXIS_MIXED = 'axis-mixed';
 
     /**
-     * Main template to display the layer
+     * The Main template to display the layer
      * Represents the view() argument.
      *
      * @var string
@@ -90,7 +90,7 @@ abstract class Chart extends Layout
      *
      * @var bool
      */
-    protected $export = true;
+    protected $export = false;
 
     /**
      * Limiting the slices.
@@ -158,19 +158,14 @@ abstract class Chart extends Layout
     /**
      * Create a new Charts element.
      *
-     * @param string      $target
-     * @param string|null $title
-     *
      * @return static
      */
-    public static function make(string $target, ?string $title = null): self
+    public static function make(string $target, string $title = null): self
     {
         return (new static)->target($target)->title($title);
     }
 
     /**
-     * @param string $target
-     *
      * @return $this
      */
     public function target(string $target): static
@@ -183,11 +178,9 @@ abstract class Chart extends Layout
     /**
      * Set title of the chart.
      *
-     * @param string|null $title
-     *
      * @return $this
      */
-    public function title(?string $title = null): static
+    public function title(string $title = null): static
     {
         $this->title = $title;
 
@@ -196,8 +189,6 @@ abstract class Chart extends Layout
 
     /**
      * Set description of the chart.
-     *
-     * @param string $description
      *
      * @return $this
      */
@@ -209,9 +200,7 @@ abstract class Chart extends Layout
     }
 
     /**
-     * Set height of the chart.
-     *
-     * @param int $height
+     * Set the height of the chart.
      *
      * @return $this
      */
@@ -223,8 +212,30 @@ abstract class Chart extends Layout
     }
 
     /**
-     * @param Repository $repository
+     * @param string $type
      *
+     * @return $this
+     */
+    public function type(string $type): static
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $export
+     *
+     * @return $this
+     */
+    public function export(bool $export = true): static
+    {
+        $this->export = $export;
+
+        return $this;
+    }
+
+    /**
      * @return Factory|\Illuminate\View\View
      */
     public function build(Repository $repository)
@@ -236,10 +247,10 @@ abstract class Chart extends Layout
         }
 
         $labels = collect($repository->getContent($this->target))
-                ->map(fn ($item) => $item['labels'] ?? [])
-                ->flatten()
-                ->unique()
-                ->toJson(JSON_NUMERIC_CHECK);
+            ->map(fn ($item) => $item['labels'] ?? [])
+            ->flatten()
+            ->unique()
+            ->toJson(JSON_NUMERIC_CHECK);
 
         return view($this->template, [
             'title'            => __($this->title),

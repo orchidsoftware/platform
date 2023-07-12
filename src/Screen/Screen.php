@@ -6,45 +6,53 @@ namespace Orchid\Screen;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Controllers\Controller;
-use Orchid\Screen\Resolvers\ScreenDependencyResolver;
+use Orchid\Screen\Layouts\Listener;
 use Orchid\Support\Facades\Dashboard;
-use Throwable;
 
 /**
  * Class Screen.
+ *
+ * This is the main class for creating screens in the Orchid. A screen is a web page
+ * that displays content and allows for user interaction.
  */
 abstract class Screen extends Controller
 {
     use Commander;
 
     /**
-     * The number of predefined arguments in the route.
+     * @param \Illuminate\Http\Request $request
+     * @param mixed                    ...$arguments
      *
-     * Example: dashboard/my-screen/{method?}
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \ReflectionException
+     *
+     * @return mixed
+     *
+     * @see static::handle()
      */
-    private const COUNT_ROUTE_VARIABLES = 1;
+    public function __invoke(Request $request, ...$arguments)
+    {
+        return $this->handle($request, ...$arguments);
+    }
 
     /**
-     * The view rendered
-     *
-     * @return string
+     * The base view that will be rendered.
      */
-    protected function screenBaseView(): string
+    public function screenBaseView(): string
     {
         return 'platform::layouts.base';
     }
 
     /**
-     * Display header name.
-     *
-     * @return string|null
+     * The name of the screen to be displayed in the header.
      */
     public function name(): ?string
     {
@@ -52,9 +60,7 @@ abstract class Screen extends Controller
     }
 
     /**
-     * Display header description.
-     *
-     * @return string|null
+     * A description of the screen to be displayed in the header.
      */
     public function description(): ?string
     {
@@ -62,9 +68,7 @@ abstract class Screen extends Controller
     }
 
     /**
-     * Permission
-     *
-     * @return iterable|null
+     * The permissions required to access this screen.
      */
     public function permission(): ?iterable
     {
@@ -79,7 +83,7 @@ abstract class Screen extends Controller
     private $source;
 
     /**
-     * Button commands.
+     * The command buttons for this screen.
      *
      * @return Action[]
      */
@@ -89,13 +93,15 @@ abstract class Screen extends Controller
     }
 
     /**
-     * Views.
+     * The layout for this screen, consisting of a collection of views.
      *
      * @return Layout[]
      */
     abstract public function layout(): iterable;
 
     /**
+     * Builds the screen using the given data repository.
+     *
      * @param \Orchid\Screen\Repository $repository
      *
      * @return View
@@ -108,57 +114,134 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param string $method
-     * @param string $slug
+     * Builds the screen asynchronously using the given method and template slug.
      *
-     * @throws Throwable
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \ReflectionException
      *
-     * @return View
+     * @return \Illuminate\Http\Response
      */
     public function asyncBuild(string $method, string $slug)
     {
-        Dashboard::setCurrentScreen($this);
+        Dashboard::setCurrentScreen($this, true);
 
         abort_unless(method_exists($this, $method), 404, "Async method: {$method} not found");
 
-        $query = $this->callMethod($method, request()->all());
-        $source = new Repository($query);
+        abort_unless($this->checkAccess(request()), static::unaccessed());
 
-        /** @var Layout $layout */
-        $layout = collect($this->layout())
-            ->map(fn ($layout) => is_object($layout) ? $layout : resolve($layout))
-            ->map(fn (Layout $layout) => $layout->findBySlug($slug))
-            ->filter()
-            ->whenEmpty(function () use ($slug) {
-                abort(404, "Async template: {$slug} not found");
-            })
-            ->first();
+        $state = $this->extractState();
 
-        return $layout->currentAsync()->build($source);
+        $this->fillPublicProperty($state);
+
+        $parameters = request()->collect()->merge([
+            'state'   => $state,
+        ])->toArray();
+
+        $repository = $this->callMethod($method, $parameters);
+
+        if (is_array($repository)) {
+            $repository = new Repository($repository);
+        }
+
+        $view = $this->view($repository)->fragments(collect($slug)->push('screen-state')->toArray());
+
+        return response($view)
+            ->header('Content-Type', 'text/vnd.turbo-stream.html');
     }
 
     /**
-     * @param array $httpQueryArguments
+     * Builds the screen asynchronously using listeners
      *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \ReflectionException
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function asyncParticalLayout(Layout $layout, Request $request)
+    {
+        Dashboard::setCurrentScreen($this, true);
+
+        abort_unless($this->checkAccess(request()), static::unaccessed());
+
+        $state = $this->extractState();
+
+        $repository = $layout->handle($state, $request);
+
+        $view = $layout->build($repository).view('platform::partials.state', [
+            'state' => $this->serializeStateWithPublicProperties($state),
+        ]);
+
+        return response($view)
+            ->header('Content-Type', 'text/vnd.turbo-stream.html');
+    }
+
+    /**
+     * This method extracts the state from a request parameter.
+     * If the '_state' parameter is missing, an empty Repository object is returned.
+     * Otherwise, the state is extracted from the encrypted '_state' parameter, deserialized and returned.
+     *
+     * @throws \Psr\Container\ContainerExceptionInterface - If the container cannot provide the dependency injection for a class.
+     * @throws \Psr\Container\NotFoundExceptionInterface  - If the container cannot find a required dependency injection for a class.
+     *
+     * @return \Orchid\Screen\Repository - The extracted state.
+     */
+    protected function extractState(): Repository
+    {
+        // Check if the '_state' parameter is missing
+        if (! request()->request->has('_state') && session()->missing('_state')) {
+            // Return an empty Repository object
+            return new Repository();
+        }
+
+        // Extract the encrypted state from the '_state' parameter, and deserialize it
+        $raw = request()->post('_state') ?? session()->get('_state');
+
+        return Crypt::decrypt($raw);
+    }
+
+    /**
      * @throws \Throwable
      *
      * @return Factory|\Illuminate\View\View
      */
-    public function view(array $httpQueryArguments = [])
+    public function view(array|Repository $httpQueryArguments = [])
     {
-        $repository = $this->buildQueryRepository($httpQueryArguments);
+        $repository = is_a($httpQueryArguments, Repository::class)
+            ? $httpQueryArguments
+            : $this->buildQueryRepository($httpQueryArguments);
 
         return view($this->screenBaseView(), [
-            'name'                => $this->name(),
-            'description'         => $this->description(),
-            'commandBar'          => $this->buildCommandBar($repository),
-            'layouts'             => $this->build($repository),
-            'formValidateMessage' => $this->formValidateMessage(),
+            'name'                    => $this->name(),
+            'description'             => $this->description(),
+            'commandBar'              => $this->buildCommandBar($repository),
+            'layouts'                 => $this->build($repository),
+            'formValidateMessage'     => $this->formValidateMessage(),
+            'needPreventsAbandonment' => $this->needPreventsAbandonment(),
+            'state'                   => $this->serializeStateWithPublicProperties($repository),
         ]);
     }
 
     /**
+     * @param $repository
+     *
+     * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
+     *
+     * @return string
+     */
+    protected function serializableState(Repository $repository): string
+    {
+        if ($repository->isEmpty()) {
+            return '';
+        }
+
+        return Crypt::encrypt($repository);
+    }
+
+    /**
      * @param array $httpQueryArguments
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \ReflectionException
      *
      * @return \Orchid\Screen\Repository
      */
@@ -166,30 +249,58 @@ abstract class Screen extends Controller
     {
         $query = $this->callMethod('query', $httpQueryArguments);
 
-        $this->fillPublicProperty($query);
-
-        return new Repository($query);
+        return tap(new Repository($query), fn (Repository $repository) =>  $this->fillPublicProperty($repository));
     }
 
     /**
-     * @param iterable $query
+     * Serializes the state of the object using the public properties specified in the given repository.
+     *
+     * @param \Orchid\Screen\Repository $repository The repository containing the public properties to be serialized.
+     *
+     * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
+     *
+     * @return string The serialized state of the object.
+     */
+    public function serializeStateWithPublicProperties(Repository $repository): string
+    {
+        if ($this->isScreenFullStatePreserved()) {
+            return $this->serializableState($repository);
+        }
+
+        $propertiesToSerialize = $repository->getMany($this->getPublicPropertyNames()->toArray());
+
+        return $this->serializableState(new Repository($propertiesToSerialize));
+    }
+
+    /**
+     * Fills the public properties of the object with values from the given repository.
+     *
+     * @param \Orchid\Screen\Repository $repository The repository containing the values to fill the properties with.
      *
      * @return void
      */
-    protected function fillPublicProperty(iterable $query): void
+    protected function fillPublicProperty(Repository $repository): void
     {
-        $reflections = (new \ReflectionClass($this))->getProperties(\ReflectionProperty::IS_PUBLIC);
-
-        $publicProperty = collect($reflections)
-            ->map(fn (\ReflectionProperty $property) => $property->getName());
-
-        collect($query)->only($publicProperty)->each(function ($value, $key) {
-            $this->$key = $value;
-        });
+        $this->getPublicPropertyNames()
+            ->each(fn (string $property) => $this->$property = $repository->get($property, $this->$property));
     }
 
     /**
-     *  Response or HTTP code that will be returned if user does not have access to screen.
+     * Retrieves the names of all public properties of the object.
+     *
+     * @return \Illuminate\Support\Collection The names of the public properties.
+     */
+    protected function getPublicPropertyNames(): Collection
+    {
+        $reflections = (new \ReflectionClass($this))->getProperties(\ReflectionProperty::IS_PUBLIC);
+
+        return collect($reflections)
+            ->filter(fn (\ReflectionProperty $property) => ! $property->isStatic())
+            ->map(fn (\ReflectionProperty $property) => $property->getName());
+    }
+
+    /**
+     * Response or HTTP code that will be returned if user does not have access to the screen.
      *
      * @return int | \Symfony\Component\HttpFoundation\Response
      */
@@ -200,52 +311,41 @@ abstract class Screen extends Controller
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @param mixed                    ...$parameters
+     * @param                          ...$arguments
      *
-     * @throws Throwable
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws \ReflectionException
      *
-     * @return Factory|View|\Illuminate\View\View|mixed
+     * @return \Illuminate\Http\RedirectResponse|mixed
      */
-    public function handle(Request $request, ...$parameters)
+    public function handle(Request $request, ...$arguments)
     {
         Dashboard::setCurrentScreen($this);
 
-        abort_unless($this->checkAccess($request), static::unaccessed());
+        $method = $request->route()->parameter('method', 'view');
 
-        if ($request->isMethod('GET')) {
-            return $this->redirectOnGetMethodCallOrShowView($parameters);
+        if (! $request->isMethodSafe()) {
+            $method = Arr::last($request->route()->parameters(), null, 'view');
         }
 
-        $method = Route::current()->parameter('method', Arr::last($parameters));
+        $state = $this->extractState();
+        $this->fillPublicProperty($state);
 
-        $prepare = collect($parameters)
-            ->merge($request->query())
-            ->diffAssoc($method)
-            ->all();
+        // Deny access without rights
+        abort_unless($this->checkAccess($request), static::unaccessed());
 
-        return $this->callMethod($method, $prepare) ?? back();
-    }
+        // Redirect for correct residual behavior
+        if ($request->isMethodSafe() && $method !== 'view') {
+            return redirect()->action([static::class], $request->all());
+        }
 
-    /**
-     * @param string $method
-     * @param array  $httpQueryArguments
-     *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     * @throws \ReflectionException
-     *
-     * @return array
-     */
-    protected function resolveDependencies(string $method, array $httpQueryArguments = []): array
-    {
-        return app()->make(ScreenDependencyResolver::class)->resolveScreen($this, $method, $httpQueryArguments);
+        return $this->callMethod($method, $arguments) ?? back();  //back(fallback: route(config('platform.index')));
     }
 
     /**
      * Determine if the user is authorized and has the required rights to complete this request.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return bool
      */
     protected function checkAccess(Request $request): bool
     {
@@ -259,7 +359,8 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @return string
+     * This method returns a localized string message indicating that the user should check the entered data,
+     * and that it may be necessary to specify the data in other languages.
      */
     public function formValidateMessage(): string
     {
@@ -267,34 +368,30 @@ abstract class Screen extends Controller
     }
 
     /**
-     * Defines the URL to represent
-     * the page based on the calculation of link arguments.
-     *
-     * @param array $httpQueryArguments
-     *
-     * @throws \ReflectionException
-     * @throws \Throwable
-     *
-     * @return Factory|RedirectResponse|\Illuminate\View\View
+     * The boolean value returned is true, indicating that the form is preventing abandonment.
      */
-    protected function redirectOnGetMethodCallOrShowView(array $httpQueryArguments)
+    public function needPreventsAbandonment(): bool
     {
-        $expectedArg = count(Route::current()->getCompiled()->getVariables()) - self::COUNT_ROUTE_VARIABLES;
-        $realArg = count($httpQueryArguments);
-
-        if ($realArg <= $expectedArg) {
-            return $this->view($httpQueryArguments);
-        }
-
-        array_pop($httpQueryArguments);
-
-        return redirect()->action([static::class, 'handle'], $httpQueryArguments);
+        return config('platform.prevents_abandonment', true);
     }
 
     /**
-     * @param string $method
-     * @param array  $parameters
-     *
+     * Check if the screen state preservation feature is enabled.
+     * Returns true if enabled, false otherwise.
+     */
+    public function isScreenFullStatePreserved(): bool
+    {
+        /** @var Layout $layout */
+        $existListenerLayout = collect($this->layout())
+            ->map(fn ($layout) => is_object($layout) ? $layout : resolve($layout))
+            ->map(fn (Layout $layout) => $layout->findByType(Listener::class))
+            ->filter()
+            ->isNotEmpty();
+
+        return config('platform.full_state', $existListenerLayout);
+    }
+
+    /**
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \ReflectionException
      *
@@ -302,16 +399,32 @@ abstract class Screen extends Controller
      */
     private function callMethod(string $method, array $parameters = [])
     {
-        return call_user_func_array([$this, $method],
-            $this->resolveDependencies($method, $parameters)
-        );
+        $uses = static::class.'@'.$method;
+
+        $route = request()->route();
+
+        collect(\request()->query())->each(function ($value, string $key) use ($route) {
+            $route->setParameter($key, $value);
+        });
+
+        if ($route !== null && $method) {
+            $original = $route->action['uses'];
+
+            $route = $route->uses($uses);
+            //Route::substituteBindings($route);
+            Route::substituteImplicitBindings($route);
+
+            $parameters = $route->parameters();
+
+            $route->uses($original);
+        }
+
+        return App::call(static::class.'@'.$method, $parameters);
     }
 
     /**
      * Get can transfer to the screen only
      * user-created methods available in it.
-     *
-     * @return Collection
      */
     public static function getAvailableMethods(): Collection
     {
@@ -328,5 +441,19 @@ abstract class Screen extends Controller
              */
             ->whenEmpty(fn () => collect('__invoke'))
             ->keys();
+    }
+
+    /**
+     * @param array $data
+     *
+     * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function backWith(array $data)
+    {
+        $repository = new Repository($data);
+
+        return back()->with('_state', $this->serializableState($repository));
     }
 }

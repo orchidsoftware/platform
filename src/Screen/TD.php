@@ -70,7 +70,7 @@ class TD extends Cell
      */
     protected $defaultHidden = false;
     /**
-     * Possible options for filters if it's a select
+     * Possible options for filters if it's select
      *
      * @var array
      */
@@ -85,8 +85,6 @@ class TD extends Cell
 
     /**
      * @param string|int $width
-     *
-     * @return TD
      */
     public function width($width): self
     {
@@ -97,8 +95,6 @@ class TD extends Cell
 
     /**
      * @param string|\Orchid\Screen\Field $filter
-     *
-     * @return TD
      */
     public function filterOptions(iterable $filterOptions): self
     {
@@ -107,11 +103,6 @@ class TD extends Cell
         return $this;
     }
 
-    /**
-     * @param callable $callable
-     *
-     * @return void
-     */
     public function filterValue(callable $callable): self
     {
         $this->callbackFilterValue = $callable;
@@ -122,8 +113,6 @@ class TD extends Cell
     /**
      * @param string                 $filter
      * @param iterable|callable|null $options
-     *
-     * @return TD
      */
     public function filter($filter = self::FILTER_TEXT, $options = null): self
     {
@@ -140,11 +129,6 @@ class TD extends Cell
         return $this;
     }
 
-    /**
-     * @param bool $sort
-     *
-     * @return TD
-     */
     public function sort(bool $sort = true): self
     {
         $this->sort = $sort;
@@ -153,8 +137,6 @@ class TD extends Cell
     }
 
     /**
-     * @param string $align
-     *
      * @return $this
      */
     public function align(string $align): self
@@ -195,8 +177,6 @@ class TD extends Cell
     }
 
     /**
-     * @param int $colspan
-     *
      * @return $this
      */
     public function colspan(int $colspan): self
@@ -246,21 +226,17 @@ class TD extends Cell
         return $filter->name("filter[$this->column]")
             ->placeholder(__('Filter'))
             ->form('filters')
-            ->value(
-                $this->isComplexFieldType($filter) ? get_filter_string($this->column) : get_filter($this->column)
-            )
+            ->value(get_filter($this->column))
             ->autofocus();
     }
 
     /**
-     * @param string $filter
-     *
      * @return \Orchid\Screen\Field
      */
     protected function detectConstantFilter(string $filter): Field
     {
         $input = match ($filter) {
-            self::FILTER_DATE_RANGE   => DateRange::make(),
+            self::FILTER_DATE_RANGE   => DateRange::make()->disableMobile(),
             self::FILTER_NUMBER_RANGE => NumberRange::make(),
             self::FILTER_SELECT       => Select::make()->options($this->filterOptions)->multiple(),
             self::FILTER_DATE         => DateTimer::make()->inline()->format('Y-m-d'),
@@ -277,7 +253,7 @@ class TD extends Cell
      *
      * @return Factory|View
      */
-    public function buildTd($repository, ?object $loop = null)
+    public function buildTd($repository, object $loop = null)
     {
         $value = $this->render ? $this->handler($repository, $loop) : $repository->getContent($this->name);
 
@@ -291,16 +267,13 @@ class TD extends Cell
         ]);
     }
 
-    /**
-     * @return bool
-     */
     public function isAllowUserHidden(): bool
     {
         return $this->allowUserHidden;
     }
 
     /**
-     * Builds item menu for show/hiden column.
+     * Builds an item menu for show/hiden column.
      *
      * @return Factory|View|null
      */
@@ -317,9 +290,6 @@ class TD extends Cell
         ]);
     }
 
-    /**
-     * @return string
-     */
     protected function sluggable(): string
     {
         return Str::slug($this->name);
@@ -327,10 +297,6 @@ class TD extends Cell
 
     /**
      * Prevents the user from hiding a column in the interface.
-     *
-     * @param bool $hidden
-     *
-     * @return TD
      */
     public function cantHide(bool $hidden = false): self
     {
@@ -340,8 +306,6 @@ class TD extends Cell
     }
 
     /**
-     * @param bool $hidden
-     *
      * @return $this
      */
     public function defaultHidden(bool $hidden = true): self
@@ -351,9 +315,6 @@ class TD extends Cell
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function buildSortUrl(): string
     {
         $query = request()->collect()->put('sort', revert_sort($this->column))->toArray();
@@ -363,8 +324,6 @@ class TD extends Cell
 
     /**
      * @param TD[] $columns
-     *
-     * @return bool
      */
     public static function isShowVisibleColumns($columns): bool
     {
@@ -372,11 +331,9 @@ class TD extends Cell
     }
 
     /**
-     * Decides whether a filter can be provided with complex (array-like) value, or it needs a scalar one.
+     * Decides whether a filter can be provided with a complex (array-like) value, or it needs a scalar one.
      *
      * @param \Orchid\Screen\Field $field
-     *
-     * @return bool
      */
     protected function isComplexFieldType(Field $field): bool
     {

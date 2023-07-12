@@ -40,21 +40,21 @@
     @foreach(Dashboard::getResource('scripts') as $scripts)
         <script src="{{  $scripts }}" defer type="text/javascript"></script>
     @endforeach
+
+    @if(!empty(config('platform.vite', [])))
+        @vite(config('platform.vite'))
+    @endif
 </head>
 
 <body class="{{ \Orchid\Support\Names::getPageNameClass() }}" data-controller="pull-to-refresh">
 
 <div class="container-fluid" data-controller="@yield('controller')" @yield('controller-data')>
 
-    <div class="row">
-        @yield('body-left')
+    <div class="row d-md-flex h-100">
+        @yield('aside')
 
-        <div class="col min-vh-100 overflow-hidden">
-            <div class="d-flex flex-column-fluid">
-                <div class="container-md h-full px-0 px-md-5">
-                    @yield('body-right')
-                </div>
-            </div>
+        <div class="col-xxl col-xl-9 col-12">
+            @yield('body')
         </div>
     </div>
 

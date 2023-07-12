@@ -18,8 +18,6 @@ class Notification extends Component
 
     /**
      * Create a new component instance.
-     *
-     * @param \Illuminate\Contracts\Auth\Guard $guard
      */
     public function __construct(Guard $guard)
     {
@@ -49,7 +47,7 @@ class Notification extends Component
      *
      * @return bool
      */
-    public function shouldRender()
+    public function shouldRender(): bool
     {
         return config('platform.notifications.enabled', true);
     }

@@ -31,6 +31,8 @@ export default class extends ApplicationController {
             this.chart.draw();
         }, 100);
 
+        window.addEventListener("resize", this.drawEvent);
+
         document.querySelectorAll('a[data-bs-toggle="tab"]')
             .forEach((tabElm) => { tabElm.addEventListener('shown.bs.tab', this.drawEvent); });
     }
@@ -48,6 +50,8 @@ export default class extends ApplicationController {
      */
     disconnect() {
         this.chart.destroy();
+
+        window.removeEventListener("resize", this.drawEvent);
 
         document.querySelectorAll('a[data-bs-toggle="tab"]')
             .forEach((tabElm) => { tabElm.removeEventListener('shown.bs.tab', this.drawEvent); });

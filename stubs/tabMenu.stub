@@ -15,8 +15,8 @@ class DummyClass extends TabMenu
     protected function navigations(): iterable
     {
         return [
-            Menu::make('Get Started')
-                ->route('platform.main'),
+            Menu::make('Home')
+                ->route(config('platform.index')),
         ];
     }
 }

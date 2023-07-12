@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
-use Orchid\Access\UserSwitch;
+use Orchid\Access\Impersonation;
 use Orchid\Platform\Models\User;
 use Orchid\Tests\TestUnitCase;
 
 class UserTest extends TestUnitCase
 {
+    use RefreshDatabase;
+
     public function testHasCorrectInstance(): void
     {
         $user = User::factory()->create();
@@ -27,18 +30,18 @@ class UserTest extends TestUnitCase
     }
 
     /**
-     * @return User
+     * @param array|null $attributes
      */
-    private function createUser(): User
+    private function createUser(array $attributes = []): User
     {
-        return User::factory()->create();
+        return User::factory()->create($attributes);
     }
 
     public function testCanGetSubTitle(): void
     {
         $user = $this->createUser();
 
-        $this->assertEquals('Regular user', $user->presenter()->subTitle());
+        $this->assertEquals('Regular User', $user->presenter()->subTitle());
     }
 
     public function testLoginAs(): void
@@ -46,18 +49,64 @@ class UserTest extends TestUnitCase
         $user = $this->createUser();
         $userSwitch = $this->createUser();
 
-        $this->assertFalse(UserSwitch::isSwitch());
+        $this->assertFalse(Impersonation::isSwitch());
 
         $this->actingAs($user);
         $this->assertEquals($user->id, Auth::id());
 
-        UserSwitch::loginAs($userSwitch);
+        Impersonation::loginAs($userSwitch);
 
-        $this->assertTrue(UserSwitch::isSwitch());
+        $this->assertTrue(Impersonation::isSwitch());
         $this->assertEquals($userSwitch->id, Auth::id());
 
-        UserSwitch::logout();
+        Impersonation::logout();
 
         $this->assertEquals($user->id, Auth::id());
+    }
+
+    public function testImpersonator(): void
+    {
+        $user = $this->createUser();
+        $userSwitch = $this->createUser();
+
+        $this->actingAs($user);
+        $this->assertEquals($user->id, Auth::id());
+
+        $this->assertEquals(null, Impersonation::impersonator());
+
+        Impersonation::loginAs($userSwitch);
+
+        $this->assertEquals($user->id, Impersonation::impersonator()->id);
+
+        Impersonation::logout();
+
+        $this->assertEquals(null, Impersonation::impersonator());
+    }
+
+    public function testLoginAsLimit(): void
+    {
+        $user = $this->createUser([
+            'permissions' => [],
+        ]);
+
+        $userSwitch = $this->createUser([
+            'permissions' => [],
+        ]);
+
+        $this->assertFalse(Impersonation::isSwitch());
+        $this->actingAs($user);
+
+        $this
+            ->get(route('platform.main'))
+            ->assertStatus(403);
+
+        Impersonation::loginAs($userSwitch);
+
+        $this->assertTrue(Impersonation::isSwitch());
+
+        $this
+            ->get(route('platform.main'))
+            ->assertStatus(200)
+            ->assertSee('Limited Access');
     }
 }

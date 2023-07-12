@@ -35,8 +35,6 @@ abstract class Tabs extends Layout
     }
 
     /**
-     * @param Repository $repository
-     *
      * @return mixed
      */
     public function build(Repository $repository)
@@ -45,8 +43,6 @@ abstract class Tabs extends Layout
     }
 
     /**
-     * @param string $name
-     *
      * @return $this
      */
     public function activeTab(string $name)

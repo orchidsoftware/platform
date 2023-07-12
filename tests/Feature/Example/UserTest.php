@@ -31,13 +31,13 @@ class UserTest extends TestFeatureCase
 
     public function testRouteSystemsUsersEdit(): void
     {
-        $response = $this
-            ->actingAs($this->createAdminUser())
-            ->get(route('platform.systems.users.edit', $this->createAdminUser()->id));
+        $user = $this->createAdminUser();
 
-        $response->assertOk()
-            ->assertSee($this->createAdminUser()->name)
-            ->assertSee($this->createAdminUser()->email);
+        $this
+            ->actingAs($user)
+            ->get(route('platform.systems.users.edit', $user->id))
+            ->assertSee($user->name)
+            ->assertSee($user->email);
     }
 
     public function testRouteSystemsUsersEditRemove(): void

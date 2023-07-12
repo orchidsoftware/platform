@@ -114,11 +114,6 @@ class Input extends Field
         });
     }
 
-    /**
-     * @param array $datalist
-     *
-     * @return Input
-     */
     public function datalist(array $datalist = []): self
     {
         if (empty($datalist)) {

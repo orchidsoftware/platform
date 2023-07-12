@@ -1,22 +1,18 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Orchid\Tests\App\Screens;
 
 use Orchid\Platform\Models\User;
-use Orchid\Screen\Action;
-use Orchid\Screen\Layout;
+use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Layout;
 
-class QueryWithDefaultValueScreen extends Screen
+class ModelRouteBindScreen extends Screen
 {
     /**
      * Query data.
      *
-     * @param User|null $user
-     *
-     * @return array
+     * @param \Orchid\Platform\Models\User $user
      */
     public function query(User $user = null): array
     {
@@ -27,18 +23,16 @@ class QueryWithDefaultValueScreen extends Screen
 
     /**
      * Display header name.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
-        return 'Test Query With Default Value Screen';
+        return 'ModelRouteBindScreen';
     }
 
     /**
      * Button commands.
      *
-     * @return Action[]
+     * @return \Orchid\Screen\Action[]
      */
     public function commandBar(): array
     {
@@ -48,10 +42,15 @@ class QueryWithDefaultValueScreen extends Screen
     /**
      * Views.
      *
-     * @return Layout[]
+     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): array
     {
-        return [];
+        return [
+            Layout::rows([
+                Input::make('user.id')->title('User ID'),
+                Input::make('user.email')->title('User Name'),
+            ]),
+        ];
     }
 }

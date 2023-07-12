@@ -9,11 +9,6 @@ use Orchid\Filters\BaseHttpEloquentFilter;
 
 class WhereBetween extends BaseHttpEloquentFilter
 {
-    /**
-     * @param Builder $builder
-     *
-     * @return Builder
-     */
     public function run(Builder $builder): Builder
     {
         return $builder->whereBetween($this->column, $this->getHttpValue());

@@ -11,9 +11,6 @@ abstract class BaseHttpEloquentFilter extends Filter
      */
     protected $column;
 
-    /**
-     * @param string $column
-     */
     public function __construct(string $column)
     {
         parent::__construct();
@@ -22,8 +19,6 @@ abstract class BaseHttpEloquentFilter extends Filter
 
     /**
      * The array of matched parameters.
-     *
-     * @return array|null
      */
     public function parameters(): ?array
     {

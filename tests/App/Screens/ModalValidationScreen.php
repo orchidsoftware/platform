@@ -15,8 +15,6 @@ class ModalValidationScreen extends Screen
 {
     /**
      * Query data.
-     *
-     * @return array
      */
     public function query(): array
     {
@@ -25,8 +23,6 @@ class ModalValidationScreen extends Screen
 
     /**
      * Display header name.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -35,8 +31,6 @@ class ModalValidationScreen extends Screen
 
     /**
      * Display header name.
-     *
-     * @return string|null
      */
     public function description(): ?string
     {
@@ -53,8 +47,7 @@ class ModalValidationScreen extends Screen
         return [
             ModalToggle::make('Show modal')
                 ->modal('validationModal')
-                ->method('showMessage')
-                ->icon('icon-full-screen'),
+                ->method('showMessage'),
         ];
     }
 
@@ -77,11 +70,6 @@ class ModalValidationScreen extends Screen
         ];
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function showMessage(Request $request): \Illuminate\Http\RedirectResponse
     {
         $request->validate([

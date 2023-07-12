@@ -18,9 +18,9 @@ class Sight extends Cell
     public function buildDt()
     {
         return view('platform::partials.layouts.dt', [
-            'column'       => $this->column,
-            'title'        => $this->title,
-            'popover'      => $this->popover,
+            'column'  => $this->column,
+            'title'   => $this->title,
+            'popover' => $this->popover,
         ]);
     }
 

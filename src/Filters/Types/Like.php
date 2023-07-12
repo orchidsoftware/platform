@@ -9,13 +9,8 @@ use Orchid\Filters\BaseHttpEloquentFilter;
 
 class Like extends BaseHttpEloquentFilter
 {
-    /**
-     * @param Builder $builder
-     *
-     * @return Builder
-     */
     public function run(Builder $builder): Builder
     {
-        return $builder->where($this->column, 'like', $this->getHttpValue());
+        return $builder->where($this->column, 'like', '%'.$this->getHttpValue().'%');
     }
 }

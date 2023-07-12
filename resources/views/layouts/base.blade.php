@@ -1,16 +1,8 @@
 @extends('platform::dashboard')
 
-@section('title')
-    {{ __($name) }}
-@endsection
-
-@section('description')
-    {{ __($description) }}
-@endsection
-
-@section('controller')
-    base
-@endsection
+@section('title', e(__($name)))
+@section('description', e(__($description)))
+@section('controller', 'base')
 
 @section('navbar')
     @foreach($commandBar as $command)
@@ -26,13 +18,17 @@
     </div>
 
     <form id="post-form"
-          class="mb-md-4"
+          class="mb-md-4 overflow-hidden h-100"
           method="post"
           enctype="multipart/form-data"
           data-controller="form"
+          data-form-need-prevents-form-abandonment-value="{{ var_export($needPreventsAbandonment) }}"
+          data-form-failed-validation-message-value="{{ $formValidateMessage }}"
           data-action="keypress->form#disableKey
-                           form#submit"
-          data-form-validation="{{ $formValidateMessage }}"
+                      turbo:before-fetch-request@document->form#confirmCancel
+                      beforeunload@window->form#confirmCancel
+                      change->form#changed
+                      form#submit"
           novalidate
     >
         {!! $layouts !!}
@@ -41,6 +37,11 @@
     </form>
 
     <div data-controller="filter">
-        <form id="filters" autocomplete="off" data-action="filter#submit"></form>
+        <form id="filters" autocomplete="off"
+              data-action="filter#submit"
+              data-form-need-prevents-form-abandonment-value="false"
+        ></form>
     </div>
+
+    @includeWhen(isset($state), 'platform::partials.state')
 @endsection

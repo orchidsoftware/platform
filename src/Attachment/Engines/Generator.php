@@ -12,34 +12,46 @@ use Orchid\Attachment\MimeTypes;
 class Generator implements Engine
 {
     /**
+     * The uploaded file instance.
+     *
      * @var UploadedFile
      */
     protected $file;
 
     /**
+     * The Unix timestamp indicating the time when the file was created
+     *
      * @var int
      */
     protected $time;
 
     /**
-     * @var MimeTypes
-     */
-    protected $mimes;
-
-    /**
+     * The generated unique identifier
+     *
      * @var string
      */
     protected $uniqueId;
 
     /**
+     * The mime types instance.
+     *
+     * @var MimeTypes
+     */
+    protected $mimes;
+
+    /**
+     * The file path.
+     *
      * @var ?string
      */
     protected $path;
 
     /**
-     * Generator constructor.
+     * Create a new Generator instance.
      *
-     * @param UploadedFile $file
+     * @param \Illuminate\Http\UploadedFile $file
+     *
+     * @return void
      */
     public function __construct(UploadedFile $file)
     {
@@ -51,10 +63,8 @@ class Generator implements Engine
     }
 
     /**
-     * Returns name to create a real file on disk and write to the database.
-     * Specified any string without extension.
-     *
-     * @return string
+     * Get the file name to create a real file on disk and write to the database.
+     * Use any string without an extension.
      */
     public function name(): string
     {
@@ -62,9 +72,7 @@ class Generator implements Engine
     }
 
     /**
-     * Returns name to create a file with extension.
-     *
-     * @return string
+     * Get the file name to create a file with extension.
      */
     public function fullName(): string
     {
@@ -72,9 +80,7 @@ class Generator implements Engine
     }
 
     /**
-     * Returns the relative file path.
-     *
-     * @return string
+     * Get the relative file path.
      */
     public function path(): string
     {
@@ -82,11 +88,11 @@ class Generator implements Engine
     }
 
     /**
-     * Set a custom path
+     * Set the custom file path.
      *
      * @return Generator
      */
-    public function setPath(?string $path = null)
+    public function setPath(string $path = null)
     {
         $this->path = $path;
 
@@ -94,10 +100,7 @@ class Generator implements Engine
     }
 
     /**
-     * Returns file hash string that will indicate
-     * that the same file has already been downloaded.
-     *
-     * @return string
+     * Get the file hash that indicates that the same file has already been downloaded.
      */
     public function hash(): string
     {
@@ -105,9 +108,7 @@ class Generator implements Engine
     }
 
     /**
-     * Return a Unix file upload timestamp.
-     *
-     * @return int
+     * Get the Unix file upload timestamp.
      */
     public function time(): int
     {
@@ -115,9 +116,7 @@ class Generator implements Engine
     }
 
     /**
-     * Returns file extension.
-     *
-     * @return string
+     * Get the file extension.
      */
     public function extension(): string
     {
@@ -129,9 +128,7 @@ class Generator implements Engine
     }
 
     /**
-     * Returns the file mime type.
-     *
-     * @return string
+     * Get the file mime type.
      */
     public function mime(): string
     {

@@ -17,9 +17,6 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    /**
-     * @param string $permission
-     */
     protected function checkPermission(string $permission): void
     {
         $this->middleware(static function ($request, $next) use ($permission) {

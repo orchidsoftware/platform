@@ -18,9 +18,6 @@ class PlatformServiceProvider extends ServiceProvider
 
     /**
      * Boot the application events.
-     *
-     * @param Dashboard  $dashboard
-     * @param IconFinder $iconFinder
      */
     public function boot(Dashboard $dashboard, IconFinder $iconFinder): void
     {
@@ -40,18 +37,12 @@ class PlatformServiceProvider extends ServiceProvider
         });
     }
 
-    /**
-     * @return ItemPermission
-     */
     protected function registerPermissionsMain(): ItemPermission
     {
         return ItemPermission::group(__('Main'))
             ->addPermission('platform.index', __('Main'));
     }
 
-    /**
-     * @return ItemPermission
-     */
     protected function registerPermissionsSystems(): ItemPermission
     {
         return ItemPermission::group(__('System'))
@@ -59,7 +50,7 @@ class PlatformServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register provider.
+     * Register any application services.
      */
     public function register()
     {

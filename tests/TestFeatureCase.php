@@ -19,9 +19,6 @@ abstract class TestFeatureCase extends TestCase
      */
     private $user;
 
-    /**
-     * @return User
-     */
     protected function createAdminUser(): User
     {
         if ($this->user === null) {
@@ -34,7 +31,6 @@ abstract class TestFeatureCase extends TestCase
     /**
      * Set the URL of the previous request.
      *
-     * @param string $url
      *
      * @return $this
      */

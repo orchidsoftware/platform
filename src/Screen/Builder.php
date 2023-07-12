@@ -50,8 +50,7 @@ class Builder
     /**
      * Builder constructor.
      *
-     * @param Fieldable[]     $fields
-     * @param Repository|null $data
+     * @param Fieldable[] $fields
      */
     public function __construct(iterable $fields, Repository $data = null)
     {
@@ -60,8 +59,6 @@ class Builder
     }
 
     /**
-     * @param string|null $language
-     *
      * @return $this
      */
     public function setLanguage(string $language = null): self
@@ -72,8 +69,6 @@ class Builder
     }
 
     /**
-     * @param string|null $prefix
-     *
      * @return $this
      */
     public function setPrefix(string $prefix = null): self
@@ -87,8 +82,6 @@ class Builder
      * Generate a ready-made html form for display to the user.
      *
      * @throws Throwable
-     *
-     * @return string
      */
     public function generateForm(): string
     {
@@ -102,8 +95,6 @@ class Builder
     }
 
     /**
-     * @param Groupable $group
-     *
      * @throws \Throwable
      *
      * @return array|string
@@ -121,7 +112,6 @@ class Builder
     /**
      * Render field for forms.
      *
-     * @param Fieldable $field
      *
      * @throws Throwable
      *
@@ -139,21 +129,11 @@ class Builder
         return $field->render();
     }
 
-    /**
-     * @param Fieldable $field
-     *
-     * @return string|null
-     */
     private function buildPrefix(Fieldable $field): ?string
     {
         return $field->get('prefix', $this->prefix);
     }
 
-    /**
-     * @param array $attributes
-     *
-     * @return array
-     */
     private function fill(array $attributes): array
     {
         $name = $attributes['name'];
@@ -174,7 +154,6 @@ class Builder
     /**
      * Gets value of Repository.
      *
-     * @param string     $key
      * @param mixed|null $value
      *
      * @return mixed
@@ -203,11 +182,6 @@ class Builder
         return $data;
     }
 
-    /**
-     * @param string $string
-     *
-     * @return string
-     */
     public static function convertDotToArray(string $string): string
     {
         $name = '';

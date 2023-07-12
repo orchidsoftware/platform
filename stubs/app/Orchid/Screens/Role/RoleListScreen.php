@@ -26,27 +26,20 @@ class RoleListScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
-        return 'Manage roles';
+        return 'Role Management';
     }
 
     /**
      * Display header description.
-     *
-     * @return string|null
      */
     public function description(): ?string
     {
-        return 'Access rights';
+        return 'A comprehensive list of all roles, including their permissions and associated users.';
     }
 
-    /**
-     * @return iterable|null
-     */
     public function permission(): ?iterable
     {
         return [
@@ -63,7 +56,7 @@ class RoleListScreen extends Screen
     {
         return [
             Link::make(__('Add'))
-                ->icon('plus')
+                ->icon('bs.plus-circle')
                 ->href(route('platform.systems.roles.create')),
         ];
     }

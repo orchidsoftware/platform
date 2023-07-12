@@ -28,11 +28,6 @@ class MethodsResponseScreenTest extends TestFeatureCase
             ->assertRedirect(back()->getTargetUrl());
     }
 
-    /**
-     * @param string $method
-     *
-     * @return TestResponse
-     */
     private function callMethod(string $method): TestResponse
     {
         return $this

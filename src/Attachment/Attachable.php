@@ -9,11 +9,13 @@ use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Dashboard;
 
 /**
- * Trait Attachable.
+ * This trait is used to relate or attach multiple files with Eloquent models.
  */
 trait Attachable
 {
     /**
+     * Get all the attachments associated with the given model.
+     *
      * @param string|null $group
      *
      * @return MorphToMany

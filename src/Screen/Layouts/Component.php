@@ -22,8 +22,6 @@ abstract class Component extends Layout
 
     /**
      * Component constructor.
-     *
-     * @param string $component
      */
     public function __construct(string $component)
     {
@@ -31,8 +29,6 @@ abstract class Component extends Layout
     }
 
     /**
-     * @param Repository $repository
-     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      *
      * @return mixed

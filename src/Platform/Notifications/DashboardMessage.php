@@ -17,23 +17,29 @@ class DashboardMessage extends DatabaseMessage
      */
     public $data = [
         'title'   => '',
-        'action'  => '#',
+        'action'  => '#', // URL for the "View" button
         'message' => '',
     ];
 
+    /**
+     * Create a new instance of DashboardMessage with the given data.
+     *
+     * @param array $data An array of data to be merged with default message data.
+     */
     public function __construct(array $data = [])
     {
-        parent::__construct($data);
+        $default = [
+            'time' => Carbon::now(), // The timestamp this message was created.
+            'type' => Color::INFO->name(), // The type of message (INFO, WARNING, SUCCESS, or ERROR).
+        ];
 
-        $this->data['time'] = Carbon::now();
-
-        if (empty($this->data['type'])) {
-            $this->data['type'] = Color::INFO();
-        }
+        parent::__construct(array_merge($default, $data));
     }
 
     /**
-     * @param string $title
+     * Set the title of the message.
+     *
+     * @param string $title The title to be set.
      *
      * @return $this
      */
@@ -45,19 +51,24 @@ class DashboardMessage extends DatabaseMessage
     }
 
     /**
-     * @param string $title
+     * Set the message content.
+     *
+     * @param string $message The message text to be set.
      *
      * @return $this
      */
-    public function message(string $title): self
+    public function message(string $message): self
     {
-        $this->data['message'] = $title;
+        $this->data['message'] = $message;
 
         return $this;
     }
 
     /**
-     * @param string $action
+     * Set the URL for the "View" button. This is the URL that the user will be redirected to
+     * when they click the "View" button on this notification in the dashboard.
+     *
+     * @param string $action The URL to be set.
      *
      * @return $this
      */
@@ -69,13 +80,15 @@ class DashboardMessage extends DatabaseMessage
     }
 
     /**
-     * @param Color $color
+     * Set the type of the message.
+     *
+     * @param Color $color The color representing the new type of the message.
      *
      * @return $this
      */
     public function type(Color $color): self
     {
-        $this->data['type'] = (string) $color;
+        $this->data['type'] = $color->name();
 
         return $this;
     }

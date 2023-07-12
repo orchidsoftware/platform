@@ -16,7 +16,9 @@ trait RoleAccess
     use StatusAccess;
 
     /**
-     * @return int
+     * Get the primary key for the role
+     *
+     * @return int|string|null
      */
     public function getRoleId()
     {
@@ -24,6 +26,8 @@ trait RoleAccess
     }
 
     /**
+     * Get the slug of the role
+     *
      * @return string
      */
     public function getRoleSlug(): string
@@ -32,15 +36,17 @@ trait RoleAccess
     }
 
     /**
+     * Get the users assigned to the role
+     *
      * @return Collection
      */
-    public function getUsers()
+    public function getUsers(): Collection
     {
         return $this->users()->get();
     }
 
     /**
-     * The Users relationship.
+     * Define the relationship with the users assigned to the role
      *
      * @return BelongsToMany
      */
@@ -50,13 +56,25 @@ trait RoleAccess
     }
 
     /**
-     * @throws Exception
+     * Get the number of permissions assigned to the role
      *
-     * @return bool|null
+     * @return int
+     */
+    public function getCountPermissions(): int
+    {
+        return collect($this->permissions)->filter(fn (int $value) => $value)->count();
+    }
+
+    /**
+     * Override the deleted method to detach the users assigned to the role
+     * before deleting the role
+     *
+     * @throws Exception
      */
     public function delete(): ?bool
     {
         $isSoftDeleted = array_key_exists(SoftDeletes::class, class_uses($this));
+
         if ($this->exists && ! $isSoftDeleted) {
             $this->users()->detach();
         }

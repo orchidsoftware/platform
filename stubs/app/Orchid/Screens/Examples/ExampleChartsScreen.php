@@ -46,12 +46,18 @@ class ExampleChartsScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
         return 'Charts';
+    }
+
+    /**
+     * Display header description.
+     */
+    public function description(): ?string
+    {
+        return 'A comprehensive guide to creating and customizing various types of charts, including bar, line, and pie charts.';
     }
 
     /**
@@ -74,22 +80,22 @@ class ExampleChartsScreen extends Screen
     public function layout(): iterable
     {
         return [
-            ChartLineExample::make('charts', 'Actions with a tweet')
+            ChartLineExample::make('charts', 'Actions with a Tweet')
                 ->description('The total number of interactions a user has with a tweet. This includes all clicks on any links in the tweet (including hashtags, links, avatar, username, and expand button), retweets, replies, likes, and additions to the read list.'),
 
             Layout::columns([
                 ChartLineExample::make('charts', 'Line Chart')
-                    ->description('It is simple Line Charts with different colors.'),
+                    ->description('Visualize data trends with multi-colored line graphs.'),
                 ChartBarExample::make('charts', 'Bar Chart')
-                    ->description('It is simple Bar Charts with different colors.'),
+                    ->description('Compare data sets with colorful bar graphs.'),
             ]),
 
             Layout::columns([
                 ChartPercentageExample::make('charts', 'Percentage Chart')
-                    ->description('Simple, responsive, modern SVG Charts with zero dependencies'),
+                    ->description('Display data as visually appealing and modern percentage graphs.'),
 
                 ChartPieExample::make('charts', 'Pie Chart')
-                    ->description('Simple, responsive, modern SVG Charts with zero dependencies'),
+                    ->description('Break down data into easy-to-understand pie graphs with modern design.'),
             ]),
         ];
     }

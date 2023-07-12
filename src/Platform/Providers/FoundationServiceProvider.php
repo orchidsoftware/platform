@@ -11,19 +11,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
 use Orchid\Icons\IconServiceProvider;
-use Orchid\Platform\Commands\AdminCommand;
-use Orchid\Platform\Commands\ChartCommand;
-use Orchid\Platform\Commands\FilterCommand;
-use Orchid\Platform\Commands\InstallCommand;
-use Orchid\Platform\Commands\ListenerCommand;
-use Orchid\Platform\Commands\PresenterCommand;
-use Orchid\Platform\Commands\PublishCommand;
-use Orchid\Platform\Commands\RowsCommand;
-use Orchid\Platform\Commands\ScreenCommand;
-use Orchid\Platform\Commands\SelectionCommand;
-use Orchid\Platform\Commands\TableCommand;
-use Orchid\Platform\Commands\TabMenuCommand;
 use Orchid\Platform\Components\Notification;
+use Orchid\Platform\Components\Stream;
 use Orchid\Platform\Dashboard;
 use Orchid\Screen\Components\Popover;
 use Tabuna\Breadcrumbs\BreadcrumbsServiceProvider;
@@ -31,57 +20,18 @@ use Watson\Active\ActiveServiceProvider;
 
 /**
  * Class FoundationServiceProvider.
- * After update run:  php artisan vendor:publish --provider="Orchid\Platform\Providers\FoundationServiceProvider".
+ * After update run: php artisan vendor:publish --provider="Orchid\Platform\Providers\FoundationServiceProvider".
  */
 class FoundationServiceProvider extends ServiceProvider
 {
-    /**
-     * The available command shortname.
-     *
-     * @var array
-     */
-    protected $commands = [
-        InstallCommand::class,
-        PublishCommand::class,
-        AdminCommand::class,
-        FilterCommand::class,
-        RowsCommand::class,
-        ScreenCommand::class,
-        TableCommand::class,
-        ChartCommand::class,
-        SelectionCommand::class,
-        ListenerCommand::class,
-        PresenterCommand::class,
-        TabMenuCommand::class,
-    ];
-
     /**
      * Boot the application events.
      */
     public function boot(): void
     {
         $this
-            ->registerOrchid()
-            ->registerAssets()
-            ->registerDatabase()
-            ->registerConfig()
-            ->registerTranslations()
             ->registerViews()
             ->registerOctaneEventsListen();
-    }
-
-    /**
-     * Register migrate.
-     *
-     * @return $this
-     */
-    protected function registerDatabase(): self
-    {
-        $this->publishes([
-            Dashboard::path('database/migrations') => database_path('migrations'),
-        ], 'migrations');
-
-        return $this;
     }
 
     /**
@@ -97,62 +47,13 @@ class FoundationServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register config.
-     *
-     * @return $this
-     */
-    protected function registerConfig(): self
-    {
-        $this->publishes([
-            Dashboard::path('config/platform.php') => config_path('platform.php'),
-        ], 'config');
-
-        return $this;
-    }
-
-    /**
-     * Register orchid.
-     *
-     * @return $this
-     */
-    protected function registerOrchid(): self
-    {
-        $this->publishes([
-            Dashboard::path('stubs/app/routes/') => base_path('routes'),
-            Dashboard::path('stubs/app/Orchid/') => app_path('Orchid'),
-        ], 'orchid-app-stubs');
-
-        return $this;
-    }
-
-    /**
-     * Register the asset publishing configuration.
-     *
-     * @return $this
-     */
-    protected function registerAssets(): self
-    {
-        $this->publishes([
-            Dashboard::path('public') => public_path('vendor/orchid'),
-        ], ['orchid-assets', 'laravel-assets']);
-
-        return $this;
-    }
-
-    /**
      * Register views & Publish views.
      *
      * @return $this
      */
     public function registerViews(): self
     {
-        $path = Dashboard::path('resources/views');
-
-        $this->loadViewsFrom($path, 'platform');
-
-        $this->publishes([
-            $path => resource_path('views/vendor/platform'),
-        ], 'views');
+        $this->loadViewsFrom(Dashboard::path('resources/views'), 'platform');
 
         return $this;
     }
@@ -168,6 +69,10 @@ class FoundationServiceProvider extends ServiceProvider
             $this->app->register($provide);
         }
 
+        if ($this->app->runningInConsole()) {
+            $this->app->register(ConsoleServiceProvider::class);
+        }
+
         return $this;
     }
 
@@ -179,17 +84,13 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerOctaneEventsListen(): self
     {
-        Event::listen(function (\Laravel\Octane\Events\RequestReceived $request) {
-            \Orchid\Support\Facades\Dashboard::flushState();
-        });
+        Event::listen(fn (\Laravel\Octane\Events\RequestReceived $request) => \Orchid\Support\Facades\Dashboard::flushState());
 
         return $this;
     }
 
     /**
      * Get the services provided by the provider.
-     *
-     * @return array
      */
     public function provides(): array
     {
@@ -211,15 +112,14 @@ class FoundationServiceProvider extends ServiceProvider
     {
         $this
             ->registerTranslations()
-            ->registerProviders()
-            ->commands($this->commands);
+            ->registerProviders();
 
         $this->app->singleton(Dashboard::class, static fn () => new Dashboard());
 
         if (! Route::hasMacro('screen')) {
             Route::macro('screen', function ($url, $screen) {
                 /* @var Router $this */
-                $route = $this->match(['GET', 'HEAD', 'POST'], $url.'/{method?}', [$screen, 'handle']);
+                $route = $this->match(['GET', 'HEAD', 'POST'], $url.'/{method?}', $screen);
 
                 $route->where('method', $screen::getAvailableMethods()->implode('|'));
 
@@ -233,5 +133,6 @@ class FoundationServiceProvider extends ServiceProvider
 
         Blade::component('orchid-popover', Popover::class);
         Blade::component('orchid-notification', Notification::class);
+        Blade::component('orchid-stream', Stream::class);
     }
 }

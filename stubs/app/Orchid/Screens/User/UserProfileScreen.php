@@ -9,6 +9,7 @@ use App\Orchid\Layouts\User\UserEditLayout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Orchid\Access\Impersonation;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
@@ -22,7 +23,6 @@ class UserProfileScreen extends Screen
     /**
      * Fetch data to be displayed on the screen.
      *
-     * @param Request $request
      *
      * @return array
      */
@@ -35,18 +35,14 @@ class UserProfileScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
-        return 'My account';
+        return 'My Account';
     }
 
     /**
      * Display header description.
-     *
-     * @return string|null
      */
     public function description(): ?string
     {
@@ -60,7 +56,18 @@ class UserProfileScreen extends Screen
      */
     public function commandBar(): iterable
     {
-        return [];
+        return [
+            Button::make('Back to my account')
+                ->novalidate()
+                ->canSee(Impersonation::isSwitch())
+                ->icon('bs.people')
+                ->route('platform.switch.logout'),
+
+            Button::make('Sign out')
+                ->novalidate()
+                ->icon('bs.box-arrow-left')
+                ->route('platform.logout'),
+        ];
     }
 
     /**
@@ -74,8 +81,8 @@ class UserProfileScreen extends Screen
                 ->description(__("Update your account's profile information and email address."))
                 ->commands(
                     Button::make(__('Save'))
-                        ->type(Color::DEFAULT())
-                        ->icon('check')
+                        ->type(Color::BASIC())
+                        ->icon('bs.check-circle')
                         ->method('save')
                 ),
 
@@ -84,16 +91,13 @@ class UserProfileScreen extends Screen
                 ->description(__('Ensure your account is using a long, random password to stay secure.'))
                 ->commands(
                     Button::make(__('Update password'))
-                        ->type(Color::DEFAULT())
-                        ->icon('check')
+                        ->type(Color::BASIC())
+                        ->icon('bs.check-circle')
                         ->method('changePassword')
                 ),
         ];
     }
 
-    /**
-     * @param Request $request
-     */
     public function save(Request $request): void
     {
         $request->validate([
@@ -111,15 +115,12 @@ class UserProfileScreen extends Screen
         Toast::info(__('Profile updated.'));
     }
 
-    /**
-     * @param Request $request
-     */
     public function changePassword(Request $request): void
     {
         $guard = config('platform.guard', 'web');
         $request->validate([
             'old_password' => 'required|current_password:'.$guard,
-            'password'     => 'required|confirmed',
+            'password'     => 'required|confirmed|different:old_password',
         ]);
 
         tap($request->user(), function ($user) use ($request) {

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Actions;
 
 use Orchid\Screen\Action;
+use Orchid\Support\Facades\Dashboard;
 
 /**
  * Class Button.
@@ -16,7 +17,7 @@ use Orchid\Screen\Action;
  * @method Button parameters(array|object $name)
  * @method Button confirm(string $confirm = true)
  * @method Button action(string $url)
- * @method Button disabled(bool $disabled)
+ * @method Button disabled(bool $disabled = true)
  */
 class Button extends Action
 {
@@ -72,7 +73,9 @@ class Button extends Action
             }
 
             // correct URL for async request
-            $url = request()->header('ORCHID-ASYNC-REFERER', url()->current());
+            $url = Dashboard::isPartialRequest()
+                ? url()->previous()
+                : url()->current();
 
             $query = http_build_query($this->get('parameters'));
 
@@ -88,8 +91,6 @@ class Button extends Action
     }
 
     /**
-     * @param bool $novalidate
-     *
      * @return Button|\Orchid\Screen\Field
      */
     public function novalidate(bool $novalidate = true)
@@ -98,9 +99,6 @@ class Button extends Action
     }
 
     /**
-     * @param string $name
-     * @param array  $parameters
-     *
      * @return $this
      */
     public function method(string $name, array $parameters = []): self
@@ -110,5 +108,25 @@ class Button extends Action
             ->when(! empty($parameters), function () use ($parameters) {
                 $this->set('parameters', $parameters);
             });
+    }
+
+    /**
+     * Method download serves as an alias for the rawClick method.
+     */
+    public function download(bool $status = false): self
+    {
+        return $this->rawClick($status);
+    }
+
+    /**
+     * @param array|string $name
+     * @param mixed        $parameters
+     * @param bool         $absolute
+     *
+     * @return $this
+     */
+    public function route($name, $parameters = [], $absolute = true): self
+    {
+        return $this->action(route($name, $parameters, $absolute));
     }
 }

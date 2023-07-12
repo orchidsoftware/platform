@@ -87,7 +87,7 @@ class UploadTest extends TestFieldsUnitCase
         $upload = $attachment->path($path)->load();
 
         $uploader = Upload::make('file')
-                    ->path($path);
+            ->path($path);
 
         $view = self::renderField($uploader);
 

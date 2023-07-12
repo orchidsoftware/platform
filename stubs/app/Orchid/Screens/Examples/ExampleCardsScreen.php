@@ -28,12 +28,18 @@ class ExampleCardsScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
         return 'Cards';
+    }
+
+    /**
+     * Display header description.
+     */
+    public function description(): ?string
+    {
+        return 'A comprehensive guide to the design and implementation of cards, including basic and advanced features.';
     }
 
     /**
@@ -67,15 +73,12 @@ class ExampleCardsScreen extends Screen
                 Sight::make('updated_at', 'Updated'),
                 Sight::make('Simple Text')->render(fn () => 'This is a wider card with supporting text below as a natural lead-in to additional content.'),
                 Sight::make('Action')->render(fn () => Button::make('Show toast')
-                    ->type(Color::DEFAULT())
+                    ->type(Color::BASIC)
                     ->method('showToast')),
             ])->title('User'),
         ];
     }
 
-    /**
-     * @param Request $request
-     */
     public function showToast(Request $request): void
     {
         Toast::warning($request->get('toast', 'Hello, world! This is a toast message.'));

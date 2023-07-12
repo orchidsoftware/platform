@@ -11,7 +11,6 @@ use Orchid\Platform\Providers\FoundationServiceProvider;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
 use Orchid\Tests\App\ExemplarServiceProvider;
-use Sti3bas\ScoutArray\ScoutArrayEngineServiceProvider;
 use Tabuna\Breadcrumbs\Breadcrumbs;
 use Tabuna\Breadcrumbs\BreadcrumbsServiceProvider;
 use Watson\Active\Active;
@@ -30,16 +29,10 @@ trait Environment
     {
         parent::setUp();
 
-        /* Install application */
-        $this->loadLaravelMigrations();
-        $this->loadMigrationsFrom(realpath('./database/migrations'));
-        $this->artisan('orchid:install');
-
         /* Refresh application for route/breadcrumbs/orchid provider */
         if (! $this->app['router']->has('platform.main')) {
             $this->refreshApplication();
-            $this->loadLaravelMigrations();
-            $this->loadMigrationsFrom(realpath('./database/migrations'));
+            $this->defineDatabaseMigrations();
         }
 
         Factory::guessFactoryNamesUsing(function ($factory) {
@@ -51,6 +44,18 @@ trait Environment
         $this->artisan('db:seed', [
             '--class' => OrchidDatabaseSeeder::class,
         ]);
+    }
+
+    /**
+     * Define database migrations.
+     *
+     * @return void
+     */
+    protected function defineDatabaseMigrations()
+    {
+        $this->loadLaravelMigrations();
+        $this->loadMigrationsFrom(realpath('./database/migrations'));
+        $this->artisan('orchid:install');
     }
 
     /**
@@ -69,14 +74,12 @@ trait Environment
             'database' => ':memory:',
             'prefix'   => '',
         ]);
-        $config->set('scout.driver', 'array');
+        $config->set('scout.driver', 'collection');
         $config->set('database.default', 'orchid');
     }
 
     /**
      * @param \Illuminate\Foundation\Application $app
-     *
-     * @return array
      */
     protected function getPackageProviders($app): array
     {
@@ -84,14 +87,23 @@ trait Environment
             BreadcrumbsServiceProvider::class,
             FoundationServiceProvider::class,
             ExemplarServiceProvider::class,
-            ScoutArrayEngineServiceProvider::class,
         ];
     }
 
     /**
-     * @param \Illuminate\Foundation\Application $app
+     * Define routes setup.
      *
-     * @return array
+     * @param \Illuminate\Routing\Router $router
+     *
+     * @return void
+     */
+    protected function defineRoutes($router)
+    {
+        // Define routes.
+    }
+
+    /**
+     * @param \Illuminate\Foundation\Application $app
      */
     protected function getPackageAliases($app): array
     {

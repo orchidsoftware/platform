@@ -25,9 +25,6 @@ class PresenterTest extends TestUnitCase
         $this->assertFalse($presenter->status);
     }
 
-    /**
-     * @return Presenter
-     */
     protected function getPresenterClass(): Presenter
     {
         $class = new class
@@ -40,9 +37,6 @@ class PresenterTest extends TestUnitCase
 
         return new class($class) extends Presenter
         {
-            /**
-             * @return bool
-             */
             public function getStatus(): bool
             {
                 return $this->entity->status;

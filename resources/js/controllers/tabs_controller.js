@@ -10,21 +10,18 @@ export default class extends ApplicationController {
         const location = window.location.href.split(/[?#]/)[0];
         const activeId = tabs[location][this.data.get('slug')];
 
-        if (activeId !== null && !this.data.get('active-tab')) {
-            (new Tab(document.getElementById(activeId))).show();
-        }
+        [].slice.call(this.element.querySelectorAll('a[role="tablist"]')).forEach(function (element) {
+            let tab = Tab.getOrCreateInstance(element)
 
-
-        var triggerTabList = [].slice.call(this.element.querySelectorAll('a[id="button-tab*"]'))
-        triggerTabList.forEach(function (triggerEl) {
-            var tabTrigger = new Tab(triggerEl)
-
-            triggerEl.addEventListener('click', function (event) {
+            element.addEventListener('click', (event) => {
                 event.preventDefault()
-                tabTrigger.show()
+                tab.show()
             })
         })
 
+        if (activeId !== null && !this.data.get('active-tab')) {
+            Tab.getOrCreateInstance(document.getElementById(activeId)).show();
+        }
     }
 
     /**
@@ -39,7 +36,7 @@ export default class extends ApplicationController {
         tabs[location][this.data.get('slug')] = activeId;
         localStorage.setItem('tabs', JSON.stringify(tabs));
 
-        (new Tab(document.getElementById(activeId))).show();
+        Tab.getOrCreateInstance(document.getElementById(activeId)).show();
 
         return event.preventDefault();
     }

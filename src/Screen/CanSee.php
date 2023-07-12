@@ -18,8 +18,6 @@ trait CanSee
     private $display = true;
 
     /**
-     * @param bool $value
-     *
      * @return $this
      */
     public function canSee(bool $value): self
@@ -29,9 +27,6 @@ trait CanSee
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isSee(): bool
     {
         return $this->display;

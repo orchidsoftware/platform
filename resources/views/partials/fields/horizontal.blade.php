@@ -1,6 +1,6 @@
 <div class="form-group row row-cols-sm-2">
     @isset($title)
-        <label for="{{$id}}" class="col-sm-2 text-wrap mt-2 form-label">
+        <label for="{{$id}}" class="col-sm-3 text-wrap mt-2 form-label">
             {{$title}}
 
             <x-orchid-popover :content="$popover ?? ''"/>
@@ -11,7 +11,7 @@
         </label>
     @endisset
 
-    <div class="col">
+    <div class="col col-md-8">
         {{$slot}}
 
         @if($errors->has($oldName))

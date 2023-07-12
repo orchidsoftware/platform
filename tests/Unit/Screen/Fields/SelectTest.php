@@ -169,10 +169,7 @@ class SelectTest extends TestFieldsUnitCase
     }
 
     /**
-     * @param        $name
      * @param string $value
-     *
-     * @return string
      */
     private function stringOption($name, $value = ''): string
     {

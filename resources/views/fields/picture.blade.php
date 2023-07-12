@@ -19,14 +19,14 @@
 
             <div class="btn-group">
                 <label class="btn btn-default m-0">
-                    <x-orchid-icon path="cloud-upload" class="me-2"/>
+                    <x-orchid-icon path="bs.cloud-arrow-up" class="me-2"/>
 
                     {{ __('Browse') }}
                     <input type="file"
-                           accept="image/*"
+                           accept="{{ $acceptedFiles }}"
                            data-picture-target="upload"
                            data-action="change->picture#upload"
-                           class="d-none">
+                           class="picture-input d-none">
                 </label>
 
                 <button type="button" class="btn btn-outline-danger picture-remove"

@@ -16,7 +16,6 @@ abstract class Wrapper extends Layout
     /**
      * Wrapper constructor.
      *
-     * @param string   $template
      * @param Layout[] $layouts
      */
     public function __construct(string $template, array $layouts = [])
@@ -26,8 +25,6 @@ abstract class Wrapper extends Layout
     }
 
     /**
-     * @param Repository $repository
-     *
      * @return \Illuminate\Contracts\View\View|void
      */
     public function build(Repository $repository)

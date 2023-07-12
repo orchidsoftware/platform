@@ -64,6 +64,15 @@ class TDComponentAsValueTest extends TestUnitCase
         $this->checkedArgument($view);
     }
 
+    public function testTdArgumentViewUsingComponent(): void
+    {
+        $view = TD::make('email')
+            ->usingComponent(SimpleShowValueWithArguments::class, from: 'Sasha')
+            ->buildTd($this->user);
+
+        $this->checkedArgument($view);
+    }
+
     public function testTdArgumentViewWithClosureArgument(): void
     {
         $view = TD::make('email')
@@ -88,9 +97,6 @@ class TDComponentAsValueTest extends TestUnitCase
         $this->assertStringContainsString($this->user->email.'4444', $view);
     }
 
-    /**
-     * @param View $view
-     */
     protected function checkedArgument(View $view)
     {
         $this->assertStringContainsString("Hello {$this->user->email} from Sasha", $view);

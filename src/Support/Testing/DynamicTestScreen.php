@@ -12,12 +12,12 @@ use Illuminate\Testing\TestResponse;
 class DynamicTestScreen
 {
     /**
-     * @var MakesHttpRequestsWrapper
+     * @var MakesHttpRequestsWrapper Wrapper for HTTP requests
      */
     protected $http;
 
     /**
-     * Route name
+     * Name of the route
      *
      * @var string
      */
@@ -31,12 +31,16 @@ class DynamicTestScreen
     protected $parameters = [];
 
     /**
+     * Session data
+     *
      * @var array
      */
     protected $session = [];
 
     /**
-     * @param string|null $name
+     * Create a new DynamicTestScreen instance.
+     *
+     * @param string|null $name Route name
      */
     public function __construct(string $name = null)
     {
@@ -45,13 +49,11 @@ class DynamicTestScreen
     }
 
     /**
-     * Declarate dinamic route
+     * Register a dynamic screen
      *
-     * @param string       $screen
-     * @param string|null  $route
-     * @param string|array $middleware
-     *
-     * @return DynamicTestScreen
+     * @param string       $screen     Screen name
+     * @param string|null  $route      Route name
+     * @param array|string $middleware Middleware to be used
      */
     public function register(string $screen, string $route = null, $middleware = 'web'): DynamicTestScreen
     {
@@ -66,9 +68,9 @@ class DynamicTestScreen
     }
 
     /**
-     * Set Route Parameters
+     * Set route parameters
      *
-     * @param array $parameters
+     * @param array $parameters Route parameters
      *
      * @return $this
      */
@@ -80,9 +82,9 @@ class DynamicTestScreen
     }
 
     /**
-     * Set the session to the given array.
+     * Set session data
      *
-     * @param array $data
+     * @param array $data Session data
      *
      * @return $this
      */
@@ -94,10 +96,12 @@ class DynamicTestScreen
     }
 
     /**
-     * @param array $headers
+     * Get the test response for the screen.
      *
-     * @throws \Psr\Container\ContainerExceptionInterface
+     * @param array $headers Headers to be used
+     *
      * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws \Psr\Container\ContainerExceptionInterface
      *
      * @return \Illuminate\Testing\TestResponse|mixed
      */
@@ -107,11 +111,11 @@ class DynamicTestScreen
     }
 
     /**
-     * Call screen method
+     * Call the specified screen method
      *
-     * @param string $method
-     * @param array  $parameters
-     * @param array  $headers
+     * @param string $method     Method to call
+     * @param array  $parameters Parameters to be used
+     * @param array  $headers    Headers to be used
      *
      * @return \Illuminate\Testing\TestResponse
      */
@@ -131,13 +135,7 @@ class DynamicTestScreen
     }
 
     /**
-     * The alias for the "method"
-     *
-     * @param string $method
-     * @param array  $parameters
-     * @param array  $headers
-     *
-     * @return \Illuminate\Testing\TestResponse
+     * Call the specified screen method using alias
      */
     public function call(string $method, array $parameters = [], array $headers = []): TestResponse
     {
@@ -145,11 +143,7 @@ class DynamicTestScreen
     }
 
     /**
-     * Get route URL
-     *
-     * @param array|null $parameters
-     *
-     * @return string
+     * Get the route URL
      */
     protected function route(array $parameters = null): string
     {
@@ -159,10 +153,8 @@ class DynamicTestScreen
     /**
      * Set the currently logged-in user for the application.
      *
-     * @param \Illuminate\Contracts\Auth\Authenticatable $user
-     * @param string|null                                $guard
-     *
-     * @return $this
+     * @param UserContract $user  User to act as
+     * @param string|null  $guard Guard name
      */
     public function actingAs(UserContract $user, $guard = null): self
     {
@@ -174,10 +166,8 @@ class DynamicTestScreen
     /**
      * Set the currently logged-in user for the application.
      *
-     * @param \Illuminate\Contracts\Auth\Authenticatable $user
-     * @param string|null                                $guard
-     *
-     * @return $this
+     * @param UserContract $user  User to act as
+     * @param string|null  $guard Guard name
      */
     public function be(UserContract $user, $guard = null): self
     {
@@ -187,8 +177,10 @@ class DynamicTestScreen
     }
 
     /**
-     * @param string $name
-     * @param mixed  $arguments
+     * Dynamically pass all other methods to Http calls
+     *
+     * @param string $name      Name of the method to call
+     * @param mixed  $arguments Arguments to be passed
      *
      * @return $this
      */
@@ -202,13 +194,11 @@ class DynamicTestScreen
     /**
      * Set the URL of the previous request.
      *
-     * @param string $url
-     *
-     * @return $this
+     * @param string $url URL of the previous request
      */
     public function from(string $url): self
     {
-        $this->http->getAppication()['session']->setPreviousUrl($url);
+        $this->http->getApplication()['session']->setPreviousUrl($url);
 
         return $this;
     }

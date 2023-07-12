@@ -23,8 +23,6 @@ class SearchScreen extends Screen
 
     /**
      * Display header name.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -34,7 +32,6 @@ class SearchScreen extends Screen
     /**
      * Query data.
      *
-     * @param string $query
      *
      * @return array
      */
@@ -69,7 +66,7 @@ class SearchScreen extends Screen
     {
         return [
             Button::make(__('Apply'))
-                ->icon('filter')
+                ->icon('bs.funnel')
                 ->canSee(Dashboard::getSearch()->count() > 1)
                 ->method('changeSearchType'),
         ];
@@ -89,9 +86,6 @@ class SearchScreen extends Screen
         ];
     }
 
-    /**
-     * @param Request $request
-     */
     public function changeSearchType(Request $request)
     {
         $type = $request->get('type');
@@ -100,8 +94,6 @@ class SearchScreen extends Screen
     }
 
     /**
-     * @param string|null $query
-     *
      * @return Factory|View
      */
     public function compact(string $query = null)
@@ -145,8 +137,6 @@ class SearchScreen extends Screen
     }
 
     /**
-     * @param Collection $searchModels
-     *
      * @return mixed
      */
     private function getSearchModel(Collection $searchModels)

@@ -10,14 +10,14 @@ use Illuminate\Notifications\Notification;
 class DashboardChannel extends DatabaseChannel
 {
     /**
-     * Build an array payload for the DatabaseNotification Model.
+     * Build an array payload for the DatabaseNotification model.
      *
-     * @param mixed        $notifiable
-     * @param Notification $notification
+     * @param mixed                                  $notifiable   The notifiable entity instance
+     * @param \Illuminate\Notifications\Notification $notification The notification object instance
      *
      * @return array
      */
-    protected function buildPayload($notifiable, Notification $notification)
+    protected function buildPayload($notifiable, Notification $notification): array
     {
         return [
             'id'      => $notification->id,
@@ -30,14 +30,14 @@ class DashboardChannel extends DatabaseChannel
     /**
      * Get the data for the notification.
      *
-     * @param mixed        $notifiable
-     * @param Notification $notification
+     * @param mixed                                  $notifiable   The notifiable entity instance
+     * @param \Illuminate\Notifications\Notification $notification The notification object instance
      *
      * @throws \RuntimeException
      *
      * @return array
      */
-    protected function getData($notifiable, Notification $notification)
+    protected function getData($notifiable, Notification $notification): array
     {
         if (method_exists($notification, 'toDashboard')) {
             return is_array($data = $notification->toDashboard($notifiable))

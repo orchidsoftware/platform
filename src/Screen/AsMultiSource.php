@@ -19,8 +19,7 @@ trait AsMultiSource
     public $jsonColumnName = 'content';
 
     /**
-     * @param string $field
-     * @param null   $locale
+     * @param null $locale
      *
      * @return mixed|null
      */
@@ -30,8 +29,7 @@ trait AsMultiSource
     }
 
     /**
-     * @param string $field
-     * @param null   $locale
+     * @param null $locale
      *
      * @return mixed
      */

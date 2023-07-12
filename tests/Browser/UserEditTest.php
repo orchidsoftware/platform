@@ -41,8 +41,8 @@ class UserEditTest extends TestBrowserCase
                 ->loginAs($user, 'web')
                 ->assertAuthenticatedAs($user)
                 ->visitRoute('platform.systems.users')
-                ->assertSee('User')
-                ->assertSee('All registered users');
+                ->assertSee('User Management')
+                ->assertSee('A comprehensive list of all registered users, including their profiles and privileges');
         });
     }
 
@@ -55,12 +55,12 @@ class UserEditTest extends TestBrowserCase
             $browser
                 ->loginAs($user)
                 ->visitRoute('platform.systems.users')
-                ->press($user->email)
-                ->pause(1500)
+                ->pressAndWaitFor($user->email)
+                ->pause(10000)
                 ->type('user[name]', $string)
                 ->press('Apply')
                 ->waitForText('User was saved.', 10)
-                ->waitForText($string, 10)
+                ->pause(10000)
                 ->assertSee($string);
         });
     }

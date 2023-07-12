@@ -30,25 +30,16 @@ class NotificationTable extends Table
         ];
     }
 
-    /**
-     * @return string
-     */
     public function textNotFound(): string
     {
         return __('No notifications');
     }
 
-    /**
-     * @return string
-     */
     public function iconNotFound(): string
     {
-        return 'icon-bell';
+        return 'bell';
     }
 
-    /**
-     * @return string
-     */
     public function subNotFound(): string
     {
         return __('You currently have no notifications, but maybe they will appear later.');

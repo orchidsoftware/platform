@@ -36,6 +36,7 @@
         "phpdoc_order": true,
         "phpdoc_single_line_var_spacing": true,
         "phpdoc_var_without_name": true,
+        "no_superfluous_phpdoc_tags": false,
         "class_attributes_separation": {
             "elements": {
                 "method": "one"

@@ -28,9 +28,7 @@ abstract class Blank extends Layout
     }
 
     /**
-     * @param Repository $repository
-     *
-     * @return mixed
+     * @return \Illuminate\View\View|mixed
      */
     public function build(Repository $repository)
     {

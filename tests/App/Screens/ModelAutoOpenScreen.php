@@ -12,8 +12,6 @@ class ModelAutoOpenScreen extends Screen
 {
     /**
      * Query data.
-     *
-     * @return array
      */
     public function query(): array
     {
@@ -22,8 +20,6 @@ class ModelAutoOpenScreen extends Screen
 
     /**
      * Display header name.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -32,8 +28,6 @@ class ModelAutoOpenScreen extends Screen
 
     /**
      * Display header name.
-     *
-     * @return string|null
      */
     public function description(): ?string
     {

@@ -237,4 +237,29 @@ class MetricsTest extends TestUnitCase
             $this->assertContains($value, $period['labels']);
         });
     }
+
+    public function testPeriodWithoutZero(): void
+    {
+        $current = Carbon::now();
+        $start = (clone $current)->subDays(2);
+        $end = (clone $current)->subDay();
+
+        User::factory()->count(5)->create([
+            'created_at' => $start,
+        ]);
+
+        User::factory()->count(8)->create([
+            'created_at' => $end,
+        ]);
+
+        $period = User::countByDays()->withoutZeroValues();
+
+        $this->assertCount(2, $period);
+
+        $this->assertSame([
+            'name'   => 'Users',
+            'labels' => $period->pluck('label')->toArray(),
+            'values' => $period->pluck('value')->toArray(),
+        ], $period->toChart('Users'));
+    }
 }

@@ -12,8 +12,6 @@ class RouteResolveScreen extends Screen
 {
     /**
      * Query data.
-     *
-     * @return array
      */
     public function query(): array
     {
@@ -22,8 +20,6 @@ class RouteResolveScreen extends Screen
 
     /**
      * Display header name.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -32,8 +28,6 @@ class RouteResolveScreen extends Screen
 
     /**
      * Display header description.
-     *
-     * @return string|null
      */
     public function description(): ?string
     {
@@ -61,9 +55,6 @@ class RouteResolveScreen extends Screen
     }
 
     /**
-     * @param RouteSolving $resolve
-     * @param Request      $request
-     *
      * @return \Illuminate\Routing\Route|object|string|null
      */
     public function resolveModel(RouteSolving $resolve, Request $request)

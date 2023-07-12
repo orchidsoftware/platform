@@ -11,7 +11,7 @@
                        placeholder="{{ __('What to search...') }}"
                 >
                 <div class="input-icon-addon">
-                    <x-orchid-icon path="magnifier"/>
+                    <x-orchid-icon path="bs.search"/>
                 </div>
             </div>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow bg-white w-100"
@@ -19,4 +19,7 @@
             </div>
         </div>
     </div>
+
+@else
+    <div class="divider my-2"></div>
 @endempty

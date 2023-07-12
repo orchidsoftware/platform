@@ -6,7 +6,7 @@
     <div class="nav-tabs-alt">
         <ul class="nav nav-tabs nav-tabs-scroll-bar" role="tablist">
             @foreach($manyForms as $name => $tab)
-                <li class="nav-item">
+                <li class="nav-item" role="presentation">
                     <a class="nav-link
                         @if ($activeTab === $name)
                             active
@@ -16,7 +16,8 @@
                        data-action="tabs#setActiveTab"
                        data-bs-target="#tab-{{\Illuminate\Support\Str::slug($name)}}"
                        id="button-tab-{{\Illuminate\Support\Str::slug($name)}}"
-                       role="tablist"
+                       aria-selected="false"
+                       role="tab"
                        data-bs-toggle="tab">
                         {!! $name !!}
                     </a>

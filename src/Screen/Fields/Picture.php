@@ -95,8 +95,6 @@ class Picture extends Field
     /**
      * The stored value will be in the form
      * of id attachment.
-     *
-     * @return self
      */
     public function targetId(): self
     {
@@ -121,8 +119,6 @@ class Picture extends Field
     /**
      * The saved value will be in the form
      * of a full address before the file.
-     *
-     * @return self
      */
     public function targetUrl(): self
     {
@@ -134,8 +130,6 @@ class Picture extends Field
     /**
      * The saved value will be in the form
      * of a relative address before the file.
-     *
-     * @return self
      */
     public function targetRelativeUrl(): self
     {
@@ -146,10 +140,6 @@ class Picture extends Field
 
     /**
      * Set custom attachment upload path
-     *
-     * @param string $path
-     *
-     * @return self
      */
     public function path(string $path): self
     {

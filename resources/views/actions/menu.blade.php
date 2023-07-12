@@ -16,14 +16,14 @@
         <span class="me-2">{{ $name ?? '' }}</span>
 
         @isset($badge)
-            <b class="badge bg-{{$badge['class']}} col-auto ms-auto">{{$badge['data']()}}</b>
+            <b class="badge rounded-pill bg-{{$badge['class']}} col-auto ms-auto">{{$badge['data']()}}</b>
         @endisset
     </a>
 </li>
 @endif
 
 @if(!empty($list))
-    <div class="nav collapse sub-menu ps-2 {{active($active, 'show')}}"
+    <div class="nav collapse sub-menu ps-3 {{active($active, 'show')}}"
          id="menu-{{$slug}}"
          @isset($parent)
             data-bs-parent="#menu-{{$parent}}">

@@ -10,14 +10,8 @@ use Orchid\Support\Facades\Layout;
 
 abstract class BaseFieldScreen extends Screen
 {
-    /**
-     * @return array
-     */
     abstract public function fields(): array;
 
-    /**
-     * @return array
-     */
     public function query(): array
     {
         return [];
@@ -25,8 +19,6 @@ abstract class BaseFieldScreen extends Screen
 
     /**
      * Display header name.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -59,13 +51,8 @@ abstract class BaseFieldScreen extends Screen
         ];
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return string
-     */
     public function submit(Request $request): string
     {
-        return $request->collect()->except(['_token'])->toJson(JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        return $request->collect()->except(['_token', '_state'])->toJson(JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
 }

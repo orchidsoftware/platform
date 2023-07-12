@@ -5,6 +5,143 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.6.0 - 2023-07-12
+
+### Added 
+- Extend cell types [#2129](https://github.com/orchidsoftware/platform/issues/2129)
+- Added 'download' method as alias for 'rawClick' method for Button
+- Added 'usingComponent' method that allows you to pass a cell value to a component
+
+### Fixed 
+- Can't upload the same image twice [#2664](https://github.com/orchidsoftware/platform/issues/2664) [#2666](https://github.com/orchidsoftware/platform/pull/2666)
+- Align for `Impersonate` page error
+- Form validate on profile stub
+- Mobile view header title align
+
+## 14.5.0 - 2023-07-05
+
+### Changed
+- Automatic detection of the need to transmission state
+
+## 14.4.0 - 2023-06-21
+
+### Added
+- Show placeholder when loading request for modal
+
+### Fixed 
+- Overview hidden filter when usage full workspace [#2639](https://github.com/orchidsoftware/platform/issues/2639)
+- Mobile menu when not open [#2646](https://github.com/orchidsoftware/platform/pull/2646)
+
+## 14.3.0 - 2023-06-19
+
+### Added
+- Translation of the delete row button in the "matrix" field [#2641](https://github.com/orchidsoftware/platform/pull/2641)
+
+### Changed
+- Passing values to the state when unpacking only for public properties [#2642](https://github.com/orchidsoftware/platform/issues/2642)
+
+### Fixed
+- Overview hidden filter [#2639](https://github.com/orchidsoftware/platform/issues/2639)
+
+## 14.2.1 - 2023-06-12
+
+### Fixed
+- Default filtration for Attachment model
+
+## 14.2.0 - 2023-06-10
+
+### Added 
+- Support `CursorPaginator` for Table Layout [#2636](https://github.com/orchidsoftware/platform/pull/2636)
+
+### Fixed
+- Auth template is more universal without footer [#2632](https://github.com/orchidsoftware/platform/pull/2632)
+
+## 14.1.1 - 2023-06-09
+
+### Fixed
+- Prevents abandonment with `->rawClick()` submit method
+
+## 14.1.0 - 2023-06-08
+
+### Added
+- Support Laravel Vite Plugin
+
+## 14.0.3 - 2023-05-30
+
+### Fixed
+- Fluent method return types in Orchid\Screen\Cell [#2625](https://github.com/orchidsoftware/platform/pull/2625)
+- Adding Russian localization [#2626](https://github.com/orchidsoftware/platform/pull/2626)
+
+## 14.0.2 - 2023-05-28
+
+### Fixed
+- Translation registration [#2623](https://github.com/orchidsoftware/platform/pull/2623) [#2620](https://github.com/orgs/orchidsoftware/discussions/2620)
+
+## 14.0.1 - 2023-05-26
+
+### Fixed
+- Override footer in compact/full workspace template [#2615](https://github.com/orchidsoftware/platform/pull/2615) [#2616](https://github.com/orchidsoftware/platform/pull/2616)
+- Filter static properties in Screen  [#2617](https://github.com/orchidsoftware/platform/pull/2617)
+
+## 14.0.0 - 2023-05-22
+
+### Added
+- Preserving State
+- Support Laravel 10
+
+### Changed
+- Laravel Route Binding
+- Syntax Listener
+- Automatic HTTP Filtering and Sorting
+- Logout and Quit Impersonation
+
+## 13.10.0 - 2023-02-14
+
+### Added
+
+- Implemented a new page when you introduce yourself as a user who has no permission
+- Added view for indicator need update assets 
+- Added `disableMobile()` for DateRange [#2522](https://github.com/orchidsoftware/platform/pull/2522)
+- Added `Split` layout
+- Added animation for button indicator loading
+
+### Changed
+
+- The class `UserSwitch` has been declared obsolete and the preference is to use `Impersonation` instead.
+- Vertical align for column titles
+
+### Fixed
+
+- Disable client-side filtering [#2512](https://github.com/orchidsoftware/platform/issues/2512)
+- Show icons for Notification/Table
+
+## 13.9.4 - 2023-01-13
+
+### Fixed 
+- Implicit model binding with Screen query type hinting fails [#2472](https://github.com/orchidsoftware/platform/issues/2472), [#2339](https://github.com/orchidsoftware/platform/pull/2339)
+- Find duplicate for layouts [#2500](https://github.com/orchidsoftware/platform/issues/2500)
+
+
+## 13.9.3 - 2023-01-11
+
+### Fixed
+
+- Error when including more than one listener in the same screen [#2489](https://github.com/orchidsoftware/platform/issues/2489)
+
+## 13.9.2 - 2023-01-11
+
+### Fixed
+
+- Both filter date range and input not working [#2473](https://github.com/orchidsoftware/platform/issues/2473)
+- Hidden calendar popover when open in dropdown
+
+## 13.9.1 - 2022-12-25
+
+### Changed
+
+- Arabic translation [#2477](https://github.com/orchidsoftware/platform/pull/2477)
+- Max options for `Select` [#2478](https://github.com/orchidsoftware/platform/pull/2477)
+
 ## 13.9.0 - 2022-12-16
 
 ### Added
@@ -2091,7 +2228,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Support for embedding dependencies in layouts [#986](https://github.com/orchidsoftware/platform/issues/986)
 - Toast notifications [#998](https://github.com/orchidsoftware/platform/issues/998)
 - Forced conversion of an object to a string [#997](https://github.com/orchidsoftware/platform/issues/997)
-- Extended example screens
+- Extended Example Screens
 
 ### Changed
 - Action optional name [#996](https://github.com/orchidsoftware/platform/issues/996)

@@ -21,22 +21,18 @@ class ExampleLayoutsScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
-        return 'Overview layouts';
+        return 'Layout Overview';
     }
 
     /**
      * Display header description.
-     *
-     * @return string|null
      */
     public function description(): ?string
     {
-        return 'Components for laying out your project';
+        return 'A comprehensive guide to the different layout options available.';
     }
 
     /**
