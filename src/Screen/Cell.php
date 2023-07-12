@@ -142,9 +142,11 @@ abstract class Cell
     /**
      * Pass only the cell value to the component
      *
-     * @throws \ReflectionException
+     * @param string $component
+     * @param mixed  ...$params
      *
      * @return $this
+     * @throws \ReflectionException
      */
     public function usingComponent(string $component, ...$params): static
     {
