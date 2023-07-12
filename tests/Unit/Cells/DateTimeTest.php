@@ -10,7 +10,7 @@ use Orchid\Tests\TestUnitCase;
 
 class DateTimeTest extends TestUnitCase
 {
-    public function testRenderTimeComponent(): void
+    public function testRenderDateTimeComponent(): void
     {
         $time = '2022-01-01 12:34:56';
 
@@ -19,7 +19,7 @@ class DateTimeTest extends TestUnitCase
         $this->assertEquals('2022-01-01 12:34', $component->render());
     }
 
-    public function testRenderTimeWithFormatComponent(): void
+    public function testRenderDateTimeWithFormatComponent(): void
     {
         $time = '2022-01-01 12:34:56';
 
@@ -28,7 +28,7 @@ class DateTimeTest extends TestUnitCase
         $this->assertEquals('2022-01-01T12:34:56.000000+00:00', $component->render());
     }
 
-    public function testRenderTimeWithTimeZoneComponent(): void
+    public function testRenderDateTimeWithTimeZoneComponent(): void
     {
         $time = Carbon::parse('2022-01-01 12:34:56', 'Europe/Moscow');
 
