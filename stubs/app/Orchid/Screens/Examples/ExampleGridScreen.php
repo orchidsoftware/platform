@@ -3,9 +3,10 @@
 namespace App\Orchid\Screens\Examples;
 
 use Orchid\Screen\Action;
+use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 
-class ExampleGridScreen extends TestBaseScreen
+class ExampleGridScreen extends Screen
 {
     /**
      * Fetch data to be displayed on the screen.

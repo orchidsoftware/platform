@@ -7,11 +7,12 @@ use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Group;
+use Orchid\Screen\Screen;
 use Orchid\Support\Color;
 use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
-class ExampleActionsScreen extends TestBaseScreen
+class ExampleActionsScreen extends Screen
 {
     /**
      * Fetch data to be displayed on the screen.

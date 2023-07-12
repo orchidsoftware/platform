@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Screen;
 use Orchid\Screen\Sight;
 use Orchid\Support\Color;
 use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
-class ExampleCardsScreen extends TestBaseScreen
+class ExampleCardsScreen extends Screen
 {
     /**
      * Fetch data to be displayed on the screen.

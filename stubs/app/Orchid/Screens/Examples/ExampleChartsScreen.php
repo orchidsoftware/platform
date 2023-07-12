@@ -6,9 +6,10 @@ use App\Orchid\Layouts\Examples\ChartBarExample;
 use App\Orchid\Layouts\Examples\ChartLineExample;
 use App\Orchid\Layouts\Examples\ChartPercentageExample;
 use App\Orchid\Layouts\Examples\ChartPieExample;
+use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 
-class ExampleChartsScreen extends TestBaseScreen
+class ExampleChartsScreen extends Screen
 {
     /**
      * Fetch data to be displayed on the screen.

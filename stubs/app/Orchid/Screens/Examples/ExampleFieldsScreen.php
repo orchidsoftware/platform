@@ -12,11 +12,12 @@ use Orchid\Screen\Fields\Password;
 use Orchid\Screen\Fields\Radio;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\TextArea;
+use Orchid\Screen\Screen;
 use Orchid\Support\Color;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
 
-class ExampleFieldsScreen extends TestBaseScreen
+class ExampleFieldsScreen extends Screen
 {
     /**
      * Fetch data to be displayed on the screen.

@@ -8,13 +8,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\ModalToggle;
+use Orchid\Screen\Components\Cells\Currency;
+use Orchid\Screen\Components\Cells\DateTimeSplit;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Repository;
+use Orchid\Screen\Screen;
 use Orchid\Screen\TD;
 use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
-class ExampleScreen extends TestBaseScreen
+class ExampleScreen extends Screen
 {
     /**
      * Fish text for the table.
@@ -132,9 +135,9 @@ class ExampleScreen extends TestBaseScreen
 
             Layout::table('table', [
                 TD::make('id', 'ID')
-                    ->width('150')
+                    ->width('100')
                     ->render(fn (Repository $model) => // Please use view('path')
-"<img src='https://loremflickr.com/500/300?random={$model->get('id')}'
+                    "<img src='https://loremflickr.com/500/300?random={$model->get('id')}'
                               alt='sample'
                               class='mw-100 d-block img-fluid rounded-1 w-100'>
                             <span class='small text-muted mt-1 mb-0'># {$model->get('id')}</span>"),
@@ -144,9 +147,15 @@ class ExampleScreen extends TestBaseScreen
                     ->render(fn (Repository $model) => Str::limit($model->get('name'), 200)),
 
                 TD::make('price', 'Price')
-                    ->render(fn (Repository $model) => '$ '.number_format($model->get('price'), 2)),
+                    ->width('100')
+                    ->usingComponent(Currency::class, before: '$')
+                    ->align(TD::ALIGN_RIGHT)
+                    ->sort(),
 
-                TD::make('created_at', 'Created'),
+                TD::make('created_at', 'Created')
+                    ->width('100')
+                    ->usingComponent(DateTimeSplit::class)
+                    ->align(TD::ALIGN_RIGHT)
             ]),
 
             Layout::modal('exampleModal', Layout::rows([

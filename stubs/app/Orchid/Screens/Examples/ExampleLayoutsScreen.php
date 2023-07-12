@@ -4,9 +4,10 @@ namespace App\Orchid\Screens\Examples;
 
 use App\Orchid\Layouts\Examples\TabMenuExample;
 use Orchid\Screen\Action;
+use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 
-class ExampleLayoutsScreen extends TestBaseScreen
+class ExampleLayoutsScreen extends Screen
 {
     /**
      * Fetch data to be displayed on the screen.
