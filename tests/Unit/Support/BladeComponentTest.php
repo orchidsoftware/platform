@@ -65,7 +65,7 @@ class BladeComponentTest extends TestUnitCase
         $this->assertStringContainsString('data-bs-placement="auto"', $view);
 
         $view = Blade::renderComponent('orchid-popover', [
-            'content' => 'Hello world',
+            'content'   => 'Hello world',
             'placement' => 'right',
         ]);
 
