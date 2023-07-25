@@ -17,19 +17,19 @@ Orchid is a free [Laravel](https://laravel.com) package that abstracts standard 
 
 ### Interesting Features
 
-- **Rapid Application Development** - Focus on PHP development and don't lose time with HTML, CSS, or JavaScript. Build application logic, not admin panels. Try our [quick start guide](https://orchid.software/en/docs/quickstart/) and kick-start your application's development.
+- **Rapid Application Development** - Focus on PHP development and don't lose time with HTML, CSS, or JavaScript. Build application logic, not admin panels. Try the [quick start guide](https://orchid.software/en/docs/quickstart/) and kick-start the application's development.
 
-- **Form Builder** - Prevent reinventing the wheel or forms. Orchid already supports many [form elements](https://orchid.software/en/docs/field/) "out of the box" and allows you to build all kinds of forms quickly.
+- **Form Builder** - Prevent reinventing the wheel or forms. Orchid already supports many [form elements](https://orchid.software/en/docs/field/) "out of the box" and allows building all kinds of forms quickly.
 
-- **Fast Loading Times** - Enjoy an SPA like performance! Transitions can be made without reloading a page and require no additional code. Thanks to the [Hotwire](https://hotwire.dev/) project, Orchid makes this a satisfying experience for you and your users.
+- **Fast Loading Times** - Enjoy an SPA like performance! Transitions can be made without reloading a page and require no additional code. Thanks to the [Hotwire](https://hotwire.dev/) project, Orchid makes this a satisfying experience for both users and developers.
 
 - **Access Permissions & Roles** - Take advantage of [granular access permissions](https://orchid.software/en/docs/access/), based on a user’s identity and corresponding role membership.
 
-- **Filtering & Sorting** - Offer your users the ability to filter and sort data quickly! Orchid uses an [Eloquent based filtering/sorting approach](https://orchid.software/en/docs/quickstart-sort-filter-table/).
+- **Filtering & Sorting** - Offer users the ability to filter and sort data quickly! Orchid uses an [Eloquent based filtering/sorting approach](https://orchid.software/en/docs/quickstart-sort-filter-table/).
 
-- **Fast Full-Text Search** - Take advantage of the integrated [Laravel Scout based full-text search](https://orchid.software/en/docs/global-search/), which allows searching through all available content, and displaying search results almost instantly.
+- **Fast Full-Text Search** - Take advantage of the integrated [Laravel Scout based full-text search](https://orchid.software/en/docs/global-search/), which allows searching through all available content and displaying search results almost instantly.
 
-- **Multiple Notifications Types** - Orchid offers [various types of notifications](https://orchid.software/en/docs/alert/) and allows your application to keep your users informed appropriately.
+- **Multiple Notifications Types** - Orchid offers [various types of notifications](https://orchid.software/en/docs/alert/) and allows the application to keep users informed appropriately.
 
 
 <!--
@@ -60,35 +60,29 @@ Orchid's [blog](https://blog.orchid.software/) informs about news and announceme
 
 ## Community
 
-We are continually trying to actively include feedback from the community in the development of Orchid. You help us a lot if you give us well-structured and detailed feedback.
+Continually striving to actively include feedback from the community in the development of Orchid greatly benefits its progress.
+Support from the community is invaluable when providing well-structured and detailed feedback.
 
 ### GitHub
 
-Create [issues](https://github.com/orchidsoftware/platform/issues) to report problems, or participate in [discussions](https://github.com/orchidsoftware/platform/discussions) to share your ask questions, ideas and opinions.
+Create [issues](https://github.com/orchidsoftware/platform/issues) to report problems or participate in [discussions](https://github.com/orchidsoftware/platform/discussions) to ask questions, share ideas, and give opinions.
 
 ### Telegram User Groups
 
-Join our [Global Community](https://t.me/orchid_community), [Russian Community](https://t.me/orchid_russian_community), or [Spanish Community](https://t.me/esLaravelOrchid) on Telegram.
+Join the [Global Community](https://t.me/orchid_community), [Russian Community](https://t.me/orchid_russian_community), or [Spanish Community](https://t.me/esLaravelOrchid) on Telegram.
 
 ### Discord
 
-Join our [Discord](https://discord.gg/NxXhSHa5tq) server to chat with other Orchid users and the development team.
- 
-<!--
-## Changelog
-
-We actively and continuously maintain a [changelog](CHANGELOG.md) that informs about Orchid's history of improvements, bug fixes, and changes.
--->
+Join the [Discord](https://discord.gg/NxXhSHa5tq) server to chat with other Orchid users and the development team.
 
 ## Support Orchid
 
-Thanks to our backers 🙏, Orchid is free for private and commercial purposes. 🎉
-
-Voluntary donations are allowing us to spend more time improving Orchid for everyone! 👍
+Thanks to the support of backers 🙏, Orchid is now available for both private and commercial purposes, free of charge. 🎉
+Voluntary donations enable the team to allocate more time towards improving Orchid for the benefit of all users! 👍
 
 <a href="https://opencollective.com/orchid#backers" target="_blank"><img src="https://opencollective.com/orchid/sponsors.svg?width=838"></a>
 <a href="https://opencollective.com/orchid#backers" target="_blank"><img src="https://opencollective.com/orchid/backers.svg?width=838"></a>
 
 ## License
 
-Orchid is covered by the MIT license. Check [our license](LICENSE) for further information.
+Orchid is covered by the MIT license. Check [the license](LICENSE) for further information.
