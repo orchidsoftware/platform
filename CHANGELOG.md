@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.7.0 - 2023-07-28
+
+### Added
+- Added japanese translation
+
+### Changed
+- Update arabic translation
+
+### Fixed
+- Display of markdown editor in tabs
+
 ## 14.6.0 - 2023-07-12
 
 ### Added 
