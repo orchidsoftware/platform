@@ -20,11 +20,34 @@ export default class extends ApplicationController {
         return this.element.querySelector('.upload');
     }
 
+    initialize() {
+
+        this.intersectionObserver = new IntersectionObserver((entries) => this.processIntersectionEntries(entries));
+        this.intersectionObserver.observe(this.element);
+    }
+
+    processIntersectionEntries(entries) {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+                return;
+            }
+
+            this.intersectionObserver.unobserve(this.element);
+            this.editor = this.initEditor();
+
+        });
+    }
+
+
+
+
+
+
     /**
      *
      */
-    connect() {
-        this.editor = new SimpleMDE({
+    initEditor() {
+        const editor = new SimpleMDE({
             // Defaults to undefined, which will intelligently check whether
             // Font Awesome has already been included, then download accordingly.
             autoDownloadFontAwesome: undefined,
@@ -130,6 +153,8 @@ export default class extends ApplicationController {
         if (this.textarea.required) {
             this.element.querySelector('.CodeMirror textarea').required = true;
         }
+
+        return editor;
     }
 
     /**
