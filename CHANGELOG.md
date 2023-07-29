@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.8.0 - 2023-07-29
+
+### Added
+- Make accordion items stay open when another item is opened. [#2677](https://github.com/orchidsoftware/platform/pull/2677)
+
+### Changed
+- Improving Filter and support pattern parameters [#2684](https://github.com/orchidsoftware/platform/pull/2684)
+
+### Fixed
+- Missing `bs` in popover data attributes [#2667](https://github.com/orchidsoftware/platform/pull/2667)
+
 ## 14.7.0 - 2023-07-28
 
 ### Added
