@@ -18,15 +18,19 @@ abstract class Accordion extends Layout
     protected $template = 'platform::layouts.accordion';
 
     /**
+     * @var array
+     */
+    protected $variables = [
+        'stayOpen' => false,
+    ];
+
+    /**
      * Layout constructor.
      *
      * @param Layout[] $layouts
      */
     public function __construct(array $layouts = [])
     {
-        $this->variables = [
-            'stayOpen' => false,
-        ];
         $this->layouts = $layouts;
     }
 
