@@ -14,7 +14,7 @@
         <div id="collapse-{{\Illuminate\Support\Str::slug($name)}}"
              class="mt-2 collapse @if (!$loop->index) show @endif"
              aria-labelledby="heading-{{\Illuminate\Support\Str::slug($name)}}"
-             data-bs-parent="#accordion-{{$templateSlug}}">
+             @if (!$stayOpen) data-bs-parent="#accordion-{{$templateSlug}} @endif">
                 @foreach($forms as $form)
                     {!! $form !!}
                 @endforeach

@@ -24,6 +24,9 @@ abstract class Accordion extends Layout
      */
     public function __construct(array $layouts = [])
     {
+        $this->variables = [
+            'stayOpen' => false,
+        ];
         $this->layouts = $layouts;
     }
 
@@ -33,5 +36,16 @@ abstract class Accordion extends Layout
     public function build(Repository $repository)
     {
         return $this->buildAsDeep($repository);
+    }
+
+    /**
+     * Make accordion items stay open when another item is opened.
+     * @param bool $stayOpen
+     * @return $this
+     */
+    public function stayOpen(bool $stayOpen = true): self
+    {
+        $this->variables['stayOpen'] = $stayOpen;
+        return $this;
     }
 }
