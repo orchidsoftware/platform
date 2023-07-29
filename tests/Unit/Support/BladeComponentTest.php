@@ -54,4 +54,22 @@ class BladeComponentTest extends TestUnitCase
 
         $this->assertStringContainsString('Hello world', $view);
     }
+
+    public function testPopoverComponent(): void
+    {
+        $view = Blade::renderComponent('orchid-popover', [
+            'content' => 'Hello world',
+        ]);
+
+        $this->assertStringContainsString('data-bs-content="Hello world"', $view);
+        $this->assertStringContainsString('data-bs-placement="auto"', $view);
+
+        $view = Blade::renderComponent('orchid-popover', [
+            'content'   => 'Hello world',
+            'placement' => 'right',
+        ]);
+
+        $this->assertStringContainsString('data-bs-content="Hello world"', $view);
+        $this->assertStringContainsString('data-bs-placement="right"', $view);
+    }
 }
