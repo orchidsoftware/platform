@@ -42,7 +42,7 @@ abstract class Selection extends Layout
 
         $filters = collect($this->filters())
             ->map(static fn ($filter) => is_string($filter) ? resolve($filter) : $filter)
-            ->filter(fn(Filter $filter) => $filter->isDisplay());
+            ->filter(fn (Filter $filter) => $filter->isDisplay());
 
         if ($filters->isEmpty()) {
             return;

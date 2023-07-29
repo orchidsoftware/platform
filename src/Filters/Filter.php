@@ -6,8 +6,8 @@ namespace Orchid\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Orchid\Screen\Field;
 use Illuminate\Support\Str;
+use Orchid\Screen\Field;
 
 abstract class Filter
 {
@@ -101,7 +101,7 @@ abstract class Filter
 
         $when = empty($parameters)
             || $this->request->hasAny($parameters)
-            || $this->request->collect()->dot()->keys()->filter(fn(string $name) => Str::of($name)->is($parameters))->isNotEmpty();
+            || $this->request->collect()->dot()->keys()->filter(fn (string $name) => Str::of($name)->is($parameters))->isNotEmpty();
 
         return $when;
     }
@@ -113,7 +113,7 @@ abstract class Filter
      */
     public function isDisplay(): bool
     {
-        return !empty($this->display());
+        return ! empty($this->display());
     }
 
     /**
