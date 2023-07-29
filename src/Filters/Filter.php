@@ -7,6 +7,7 @@ namespace Orchid\Filters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Orchid\Screen\Field;
+use Illuminate\Support\Str;
 
 abstract class Filter
 {
@@ -23,13 +24,6 @@ abstract class Filter
      * @var null|array
      */
     public $parameters;
-
-    /**
-     * Sets the value to hide/show the filter in the selection.
-     *
-     * @var bool
-     */
-    public $display = true;
 
     /**
      * The value delimiter.
@@ -51,9 +45,7 @@ abstract class Filter
      */
     public function filter(Builder $builder): Builder
     {
-        $when = empty($this->parameters()) || $this->request->hasAny($this->parameters());
-
-        return $builder->when($when, fn (Builder $builder) => $this->run($builder));
+        return $builder->when($this->isApply(), fn (Builder $builder) => $this->run($builder));
     }
 
     /**
@@ -105,7 +97,23 @@ abstract class Filter
      */
     public function isApply(): bool
     {
-        return count($this->request->only($this->parameters(), [])) > 0;
+        $parameters = $this->parameters();
+
+        $when = empty($parameters)
+            || $this->request->hasAny($parameters)
+            || $this->request->collect()->dot()->keys()->filter(fn(string $name) => Str::of($name)->is($parameters))->isNotEmpty();
+
+        return $when;
+    }
+
+    /**
+     * Hide/show the filter in the selection
+     *
+     * @return bool
+     */
+    public function isDisplay(): bool
+    {
+        return !empty($this->display());
     }
 
     /**

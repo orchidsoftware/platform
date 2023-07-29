@@ -40,17 +40,17 @@ abstract class Selection extends Layout
             return;
         }
 
-        $filters = collect($this->filters())->map(static fn ($filter) => is_string($filter) ? resolve($filter) : $filter);
+        $filters = collect($this->filters())
+            ->map(static fn ($filter) => is_string($filter) ? resolve($filter) : $filter)
+            ->filter(fn(Filter $filter) => $filter->isDisplay());
 
-        $count = $filters->where('display', true)->count();
-
-        if ($count === 0) {
+        if ($filters->isEmpty()) {
             return;
         }
 
         return view($this->template, [
             'filters' => $filters,
-            'chunk'   => ceil($count / 4),
+            'chunk'   => ceil($filters->count() / 4),
         ]);
     }
 
