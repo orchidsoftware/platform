@@ -155,6 +155,21 @@
       }
     }
   }
+
+  .modal-placeholder {
+    display: none;
+  }
+
+  &.modal-loading {
+    .modal-placeholder{
+      display: block;
+      opacity: 1;
+    }
+
+    .modal-header, .modal-body, .modal-footer {
+      display: none;
+    }
+  }
 }
 
 .fill-in-modal {
@@ -215,19 +230,4 @@
 		width: auto;
 		margin: 30px auto;
 	}
-
-    .modal-placeholder {
-        display: none;
-    }
-
-    &.modal-loading {
-         .modal-placeholder{
-           display: block;
-           opacity: 1;
-         }
-
-        .modal-header, .modal-body, .modal-footer {
-            display: none;
-        }
-    }
 }
