@@ -20,7 +20,7 @@ class RelationRequest extends FormRequest
             'model'          => 'string|required',
             'key'            => 'string|required',
             'name'           => 'string|required',
-            'scope'          => 'string|nullable',
+            'scopes'          => 'array|nullable',
             'append'         => 'nullable',
             'searchColumns'  => 'string|nullable',
         ];

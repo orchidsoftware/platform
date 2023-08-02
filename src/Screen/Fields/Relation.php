@@ -45,7 +45,7 @@ class Relation extends Field
     protected $attributes = [
         'class'                 => 'form-control',
         'value'                 => [],
-        'relationScope'         => null,
+        'relationScopes'         => null,
         'relationAppend'        => null,
         'relationSearchColumns' => null,
         'chunk'                 => 10,
@@ -61,7 +61,7 @@ class Relation extends Field
         'relationModel',
         'relationName',
         'relationKey',
-        'relationScope',
+        'relationScopes',
         'relationAppend',
         'relationSearchColumns',
     ];
@@ -139,7 +139,7 @@ class Relation extends Field
                 return $this->set('value', $value);
             }
 
-            $scope = $this->get('scope', 'handler');
+            $scopes = $this->get('scopes', 'handler');
             $class = resolve($class);
 
             if (! is_iterable($value)) {
@@ -150,7 +150,10 @@ class Relation extends Field
                 $class->value = $value;
             }
 
-            $class = $class->{$scope['name']}(...$scope['parameters']);
+            foreach ($scopes as $scope) {
+                $class = $class->{$scope['name']}(...$scope['parameters']);
+            }
+
 
             $item = collect($class)
                 ->whereIn($key, $value)
@@ -179,8 +182,8 @@ class Relation extends Field
             'name'       => lcfirst($scope),
             'parameters' => $parameters,
         ];
-        $this->set('scope', $data);
-        $this->set('relationScope', Crypt::encrypt($data));
+        $this->add('scopes', $data);
+        $this->add('relationScopes', Crypt::encrypt($data));
 
         return $this;
     }

@@ -22,7 +22,7 @@ class RelationController extends Controller
             'model'         => $model,
             'name'          => $name,
             'key'           => $key,
-            'scope'         => $scope,
+            'scopes'         => $scopes,
             'append'        => $append,
             'searchColumns' => $searchColumns,
         ] = collect($request->all())
@@ -32,8 +32,14 @@ class RelationController extends Controller
                     return null;
                 }
 
-                if ($key === 'scope' || $key === 'searchColumns') {
+                if ($key === 'searchColumns') {
                     return Crypt::decrypt($item);
+                }
+
+                if ($key === 'scopes') {
+                    return array_map(function ($scope) {
+                        return Crypt::decrypt($scope);
+                    }, $item);
                 }
 
                 return Crypt::decryptString($item);
@@ -44,7 +50,7 @@ class RelationController extends Controller
         $model = new $model;
         $search = $request->get('search', '');
 
-        $items = $this->buildersItems($model, $name, $key, $search, $scope, $append, $searchColumns, (int) $request->get('chunk', 10));
+        $items = $this->buildersItems($model, $name, $key, $search, $scopes, $append, $searchColumns, (int) $request->get('chunk', 10));
 
         return response()->json($items);
     }
@@ -53,18 +59,20 @@ class RelationController extends Controller
      * @return mixed
      */
     private function buildersItems(
-        Model $model,
+        Model  $model,
         string $name,
         string $key,
         string $search = null,
-        ?array $scope = [],
+        ?array $scopes = [],
         string $append = null,
-        array $searchColumns = null,
-        ?int $chunk = 10
+        array  $searchColumns = null,
+        ?int   $chunk = 10
     ) {
-        if ($scope !== null) {
+        if ($scopes !== null) {
             /** @var Collection|array $model */
-            $model = $model->{$scope['name']}(...$scope['parameters']);
+            foreach ($scopes as $scope) {
+                $model = $model->{$scope['name']}(...$scope['parameters']);
+            }
         }
 
         if (is_array($model)) {

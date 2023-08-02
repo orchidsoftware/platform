@@ -49,7 +49,7 @@ export default class extends ApplicationController {
         const model = this.data.get('model');
         const name = this.data.get('name');
         const key = this.data.get('key');
-        const scope = this.data.get('scope');
+        const scopes = this.data.get('scopes');
         const append = this.data.get('append');
         const searchColumns = this.data.get('search-columns');
         const chunk = this.data.get('chunk');
@@ -59,7 +59,7 @@ export default class extends ApplicationController {
             model,
             name,
             key,
-            scope,
+            scopes: JSON.parse(scopes),
             append,
             searchColumns,
             chunk,

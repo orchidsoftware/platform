@@ -94,7 +94,7 @@ class RelationsTest extends TestFeatureCase
         ];
 
         if ($scope !== null) {
-            $params['scope'] = Crypt::encrypt($scope);
+            $params['scopes'] = [Crypt::encrypt($scope)];
         }
 
         if ($append !== null) {
@@ -115,7 +115,7 @@ class RelationsTest extends TestFeatureCase
             'name'          => Crypt::encryptString('name'),
             'key'           => Crypt::encryptString('id'),
             'searchColumns' => Crypt::encrypt(['email']),
-            'scope'         => null,
+            'scopes'         => null,
             'append'        => Crypt::encryptString('full'),
         ];
 
@@ -137,10 +137,12 @@ class RelationsTest extends TestFeatureCase
             'name'          => Crypt::encryptString('email'),
             'key'           => Crypt::encryptString('id'),
             'searchColumns' => Crypt::encrypt(['id']),
-            'scope'         => Crypt::encrypt([
+            'scopes'         => [
+                Crypt::encrypt([
                 'name'       => 'asBuilder',
                 'parameters' => [],
-            ]),
+                ])
+            ],
             'append'        => Crypt::encryptString('full'),
         ];
 

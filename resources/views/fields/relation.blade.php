@@ -5,7 +5,7 @@
          data-relation-model="{{ $relationModel }}"
          data-relation-name="{{ $relationName }}"
          data-relation-key="{{ $relationKey }}"
-         data-relation-scope="{{ $relationScope }}"
+         data-relation-scopes="{{ json_encode($relationScopes) ?? '' }}"
          data-relation-search-columns="{{ $relationSearchColumns }}"
          data-relation-append="{{ $relationAppend }}"
          data-relation-chunk="{{ $chunk }}"

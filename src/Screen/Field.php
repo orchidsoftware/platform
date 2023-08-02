@@ -164,6 +164,18 @@ class Field implements Fieldable, Htmlable
     }
 
     /**
+     * @param mixed $value
+     *
+     * @return static
+     */
+    public function add(string $key, $value = true): self
+    {
+        $this->attributes[$key][] = $value;
+
+        return $this;
+    }
+
+    /**
      * @throws Throwable
      *
      * @return static
