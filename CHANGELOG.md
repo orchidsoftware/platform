@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.8.1 - 2023-08-04
+
+### Changed
+- Removed `null` parameters from `Actions`
+
+### Fixed
+- Hiding modal placeholder on screen size <768px [#2686](https://github.com/orchidsoftware/platform/pull/2686)
+
+
 ## 14.8.0 - 2023-07-29
 
 ### Added
