@@ -41,7 +41,7 @@ class ButtonTest extends TestFieldsUnitCase
         );
     }
 
-    public function testButtonWithNullParameters():void
+    public function testButtonWithNullParameters(): void
     {
         $button = Button::make('About')
             ->method('test', [
