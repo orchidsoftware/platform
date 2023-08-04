@@ -14,7 +14,6 @@ use Orchid\Support\Facades\Dashboard;
  * @method Button modal(string $modalName = null)
  * @method Button icon(string $icon = null)
  * @method Button class(string $classes = null)
- * @method Button parameters(array|object $name)
  * @method Button confirm(string $confirm = true)
  * @method Button action(string $url)
  * @method Button disabled(bool $disabled = true)
@@ -105,9 +104,23 @@ class Button extends Action
     {
         return $this
             ->set('method', $name)
-            ->when(! empty($parameters), function () use ($parameters) {
-                $this->set('parameters', $parameters);
-            });
+            ->when(!empty($parameters), fn() => $this->parameters($parameters));
+    }
+
+    /**
+     * Sets the parameters for the action.
+     *
+     * @param array|object $parameters The array or object containing the parameters.
+     *
+     * @return $this
+     */
+    public function parameters(array|object $parameters): self
+    {
+        $parameters = is_array($parameters)
+            ? collect($parameters)->filter()->all()
+            : $parameters;
+
+        return $this->set('parameters', $parameters);
     }
 
     /**

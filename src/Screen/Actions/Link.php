@@ -12,7 +12,6 @@ use Orchid\Screen\Action;
  * @method Link name(string $name = null)
  * @method Link icon(string $icon = null)
  * @method Link class(string $classes = null)
- * @method Link parameters(array|object $name)
  * @method Link target(string $target = null)
  * @method Link title(string $title = null)
  * @method Link download($download = true)

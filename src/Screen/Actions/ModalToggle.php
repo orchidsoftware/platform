@@ -13,7 +13,6 @@ use Illuminate\Support\Arr;
  * @method ModalToggle modal(string $modalName = null)
  * @method ModalToggle icon(string $icon = null)
  * @method ModalToggle class(string $classes = null)
- * @method ModalToggle parameters(array $name)
  * @method ModalToggle modalTitle(string $title)
  * @method ModalToggle async(bool $enabled = true)
  * @method ModalToggle open(bool $status = true)
@@ -48,7 +47,7 @@ class ModalToggle extends Button
     public function asyncParameters($options = []): self
     {
         return $this
-            ->set('parameters', Arr::wrap($options))
+            ->parameters(Arr::wrap($options))
             ->set('async', 'true');
     }
 }

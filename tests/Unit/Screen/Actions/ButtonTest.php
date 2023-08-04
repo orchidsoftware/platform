@@ -41,6 +41,22 @@ class ButtonTest extends TestFieldsUnitCase
         );
     }
 
+    public function testButtonWithNullParameters():void
+    {
+        $button = Button::make('About')
+            ->method('test', [
+                'id'   => null,
+                'name' => 'Alexandr',
+            ]);
+
+        $view = self::renderField($button);
+
+        $this->assertStringContainsString(
+            'formaction="http://127.0.0.1:8001/test?name=Alexandr',
+            $view
+        );
+    }
+
     public function testButtonTitle(): void
     {
         $button = Button::make('About')
