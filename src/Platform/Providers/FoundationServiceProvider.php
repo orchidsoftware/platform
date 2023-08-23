@@ -121,7 +121,10 @@ class FoundationServiceProvider extends ServiceProvider
             Route::macro('screen', function ($url, $screen) {
                 /* @var Router $this */
                 $route = $this->match(['GET', 'HEAD', 'POST'], $url.'/{method?}', $screen)
-                    ->middleware(ScreenSubstituteImplicitBindings::class);
+                    ->middleware([
+                        \Illuminate\Routing\Middleware\SubstituteBindings::class,
+                        ScreenSubstituteImplicitBindings::class
+                    ]);
 
                 $route->where('method', $screen::getAvailableMethods()->implode('|'));
 
