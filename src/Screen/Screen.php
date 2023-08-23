@@ -403,11 +403,9 @@ abstract class Screen extends Controller
 
         $route = request()->route();
 
-        collect(\request()->query())->each(function ($value, string $key) use ($route) {
-            $route->setParameter($key, $value);
-        });
+        if ($route !== null) {
+            collect(\request()->query())->each(fn ($value, string $key) => $route->setParameter($key, $value));
 
-        if ($route !== null && $method) {
             $original = $route->action['uses'];
 
             $route = $route->uses($uses);

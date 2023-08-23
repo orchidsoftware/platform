@@ -14,6 +14,7 @@ use Orchid\Icons\IconServiceProvider;
 use Orchid\Platform\Components\Notification;
 use Orchid\Platform\Components\Stream;
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\Http\Middleware\ScreenSubstituteImplicitBindings;
 use Orchid\Screen\Components\Popover;
 use Tabuna\Breadcrumbs\BreadcrumbsServiceProvider;
 use Watson\Active\ActiveServiceProvider;
@@ -119,7 +120,8 @@ class FoundationServiceProvider extends ServiceProvider
         if (! Route::hasMacro('screen')) {
             Route::macro('screen', function ($url, $screen) {
                 /* @var Router $this */
-                $route = $this->match(['GET', 'HEAD', 'POST'], $url.'/{method?}', $screen);
+                $route = $this->match(['GET', 'HEAD', 'POST'], $url.'/{method?}', $screen)
+                    ->middleware(ScreenSubstituteImplicitBindings::class);
 
                 $route->where('method', $screen::getAvailableMethods()->implode('|'));
 
