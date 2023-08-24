@@ -103,10 +103,14 @@ class Select extends Field implements ComplexFieldConcern
             $options[$key] = __($item->name);
         }
         $this->set('options',$options);
-        return $this->addBeforeRender(function ()use($reflection){
+        return $this->addBeforeRender(function ()use($reflection, $enum){
             $value = [];
-            collect($this->get('value'))->each(static function ($item) use (&$value, $reflection) {
-                $value[] = $reflection->isBacked()?$item->value:$item->name;
+            collect($this->get('value'))->each(static function ($item) use (&$value, $reflection, $enum) {
+                if($item instanceof $enum){
+                    $value[] = $reflection->isBacked()?$item->value:$item->name;
+                } else {
+                    $value[] = $item;
+                }
             });
             $this->set('value', $value);
         });
