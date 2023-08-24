@@ -90,6 +90,29 @@ class Select extends Field implements ComplexFieldConcern
     }
 
     /**
+     * @param string $enum
+     * @return self
+     * @throws \ReflectionException
+     */
+    public function fromEnum(string $enum): self
+    {
+        $reflection = new \ReflectionEnum($enum);
+        $options = [];
+        foreach ($enum::cases() as $item) {
+            $key = $reflection->isBacked()?$item->value:$item->name;
+            $options[$key] = __($item->name);
+        }
+        $this->set('options',$options);
+        return $this->addBeforeRender(function ()use($reflection){
+            $value = [];
+            collect($this->get('value'))->each(static function ($item) use (&$value, $reflection) {
+                $value[] = $reflection->isBacked()?$item->value:$item->name;
+            });
+            $this->set('value', $value);
+        });
+    }
+
+    /**
      * @param Builder|Model $model
      */
     private function setFromEloquent($model, string $name, string $key): self
