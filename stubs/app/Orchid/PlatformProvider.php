@@ -39,20 +39,23 @@ class PlatformProvider extends OrchidServiceProvider
                 ->title('Navigation')
                 ->route(config('platform.index')),
 
-            Menu::make('Example Screen')
+            Menu::make('Sample Screen')
                 ->icon('bs.collection')
                 ->route('platform.example')
                 ->badge(fn () => 6),
 
             Menu::make('Form Elements')
-                ->icon('bs.journal')
+                ->icon('bs.card-list')
                 ->route('platform.example.fields')
-                ->active('*/form/examples/*'),
+                ->active('*/examples/form/*'),
 
             Menu::make('Overview Layouts')
+                ->icon('bs.window-sidebar')
+                ->route('platform.example.layouts'),
+
+            Menu::make('Grid System')
                 ->icon('bs.columns-gap')
-                ->route('platform.example.layouts')
-                ->active('*/layout/examples/*'),
+                ->route('platform.example.grid'),
 
             Menu::make('Charts')
                 ->icon('bs.bar-chart')
@@ -70,7 +73,7 @@ class PlatformProvider extends OrchidServiceProvider
                 ->title(__('Access Controls')),
 
             Menu::make(__('Roles'))
-                ->icon('bs.lock')
+                ->icon('bs.shield')
                 ->route('platform.systems.roles')
                 ->permission('platform.systems.roles')
                 ->divider(),

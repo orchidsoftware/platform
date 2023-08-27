@@ -62,7 +62,7 @@
 
         <div class="col-md-6 my-2">
             <h3 class="text-muted fw-light lh-lg d-flex align-items-center ms-1">
-                <x-orchid-icon path="bs.columns-gap"/>
+                <x-orchid-icon path="bs.window-sidebar"/>
 
                 <span class="ms-3 text-dark">Layouts</span>
             </h3>
