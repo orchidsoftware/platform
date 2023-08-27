@@ -115,8 +115,8 @@ select {
 }
 
 .picture-preview, .cropper-preview {
-    max-width: 600px;
-    max-height: 600px;
+    max-width: calc(var(--cropper-width, 600) * 1px);
+    max-height: calc(var(--cropper-height, 600) * 1px);
     object-fit: cover;
 }
 
