@@ -96,7 +96,6 @@ Route::screen('/examples/form/advanced', ExampleFieldsAdvancedScreen::class)->na
 Route::screen('/examples/form/editors', ExampleTextEditorsScreen::class)->name('platform.example.editors');
 Route::screen('/examples/form/actions', ExampleActionsScreen::class)->name('platform.example.actions');
 
-
 Route::screen('/examples/layouts', ExampleLayoutsScreen::class)->name('platform.example.layouts');
 Route::screen('/examples/grid', ExampleGridScreen::class)->name('platform.example.grid');
 Route::screen('/examples/charts', ExampleChartsScreen::class)->name('platform.example.charts');
