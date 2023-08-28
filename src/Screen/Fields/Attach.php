@@ -10,13 +10,13 @@ use Orchid\Screen\Field;
 /**
  * Class Attach.
  *
- * @method Attach accept(string $value)
- * @method Attach required($value = true)
- * @method Attach multiple($value = true)
- * @method Attach maxSize(int $value)
- * @method Attach placeholder(string $value)
- * @method Attach errorMaxSizeMessage(string $value)
- * @method Attach errorTypeMessage(string $value)
+ * @method Attach   accept(string $value)
+ * @method Attach   required($value = true)
+ * @method Attach   multiple($value = true)
+ * @method Attach   maxSize(int $value)
+ * @method Attach   placeholder(string $value)
+ * @method Attach   errorMaxSizeMessage(string $value)
+ * @method Attach   errorTypeMessage(string $value)
  * @method CheckBox help(string $value = null)
  * @method CheckBox title(string $value = null)
  */
