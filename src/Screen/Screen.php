@@ -401,23 +401,41 @@ abstract class Screen extends Controller
     {
         $uses = static::class.'@'.$method;
 
+        $preparedParameters = self::prepareForExecuteMethod($uses);
+
+        return App::call($uses, $preparedParameters ?? $parameters);
+    }
+
+    /**
+     * Prepare the method execution by binding route parameters and substituting implicit bindings.
+     *
+     * @param string $uses
+     *
+     * @return array|null
+     */
+    public static function prepareForExecuteMethod(string $uses): ?array
+    {
         $route = request()->route();
 
-        if ($route !== null) {
-            collect(\request()->query())->each(fn ($value, string $key) => $route->setParameter($key, $value));
-
-            $original = $route->action['uses'];
-
-            $route = $route->uses($uses);
-            //Route::substituteBindings($route);
-            Route::substituteImplicitBindings($route);
-
-            $parameters = $route->parameters();
-
-            $route->uses($original);
+        if ($route === null) {
+            return null;
         }
 
-        return App::call(static::class.'@'.$method, $parameters);
+        collect(request()->query())->each(function ($value, string $key) use ($route) {
+            $route->setParameter($key, $value);
+        });
+
+        $original = $route->action['uses'];
+
+        $route = $route->uses($uses);
+
+        Route::substituteImplicitBindings($route);
+
+        $parameters = $route->parameters();
+
+        $route->uses($original);
+
+        return $parameters;
     }
 
     /**
