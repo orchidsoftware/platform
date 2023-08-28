@@ -4,7 +4,6 @@ namespace Orchid\Platform\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Orchid\Screen\Screen;
 
@@ -24,7 +23,9 @@ class ScreenSubstituteImplicitBindings
 
         $method = $route->parameter('method', 'query');
 
-        $uses = Str::of($route->action['uses'])->replace('__invoke', $method)->toString();
+        $uses = Str::of($route->action['uses'])
+            ->replace('__invoke', $method)
+            ->toString();
 
         Screen::prepareForExecuteMethod($uses);
 
