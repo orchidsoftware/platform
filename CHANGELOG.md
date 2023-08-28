@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+
+### 14.9.0 - 2023-08-29
+
+#### Added
+- Early implementation of `Attach` field.
+
+#### Changed
+- Renamed translation from `zh` to `zh_CN` to improve consistency. ([#2692](https://github.com/orchidsoftware/platform/pull/2692))
+- Updated configuration to address the image display issue. ([#2701](https://github.com/orchidsoftware/platform/issues/2701))
+
+#### Fixed
+- Resolved the shadow issue in the `Block` layout.
+
 ## 14.8.1 - 2023-08-04
 
 ### Changed
