@@ -38,6 +38,13 @@ class DynamicTestScreen
     protected $session = [];
 
     /**
+     * Indicates whether redirects should be followed.
+     *
+     * @var bool
+     */
+    protected bool $followRedirects = true;
+
+    /**
      * Create a new DynamicTestScreen instance.
      *
      * @param string|null $name Route name
@@ -128,10 +135,13 @@ class DynamicTestScreen
 
         $this->from($route);
 
-        return $this->http
-            ->withSession($this->session)
-            ->followingRedirects()
-            ->post($route, $parameters, $headers);
+        $http = $this->http->withSession($this->session);
+
+        if ($this->followRedirects) {
+            $http->followingRedirects();
+        }
+
+        return $http->post($route, $parameters, $headers);
     }
 
     /**
@@ -199,6 +209,31 @@ class DynamicTestScreen
     public function from(string $url): self
     {
         $this->http->getApplication()['session']->setPreviousUrl($url);
+
+        return $this;
+    }
+
+
+    /**
+     * Automatically follow any redirects returned from the response.
+     *
+     * @return $this
+     */
+    public function followingRedirects(): self
+    {
+        $this->followRedirects = true;
+
+        return $this;
+    }
+
+    /**
+     * Disable automatic following of redirects returned from the response.
+     *
+     * @return $this
+     */
+    public function withoutFollowingRedirects(): self
+    {
+        $this->followRedirects = false;
 
         return $this;
     }

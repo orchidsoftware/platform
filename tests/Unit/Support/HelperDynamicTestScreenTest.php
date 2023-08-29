@@ -86,4 +86,28 @@ class HelperDynamicTestScreenTest extends TestUnitCase
             ->call('getUser')
             ->assertJson($user->toJson());
     }
+
+    public function testFollowingAndWithoutFollowingRedirects(): void
+    {
+        $user = User::factory()->make();
+
+        $screen = $this->screen()
+            ->register(BaseScreenTesting::class)
+            ->actingAs($user);
+
+        // Test with following redirects enabled
+        $screen
+            ->followingRedirects()
+            ->call('methodWithValidation')
+            ->assertOk()
+            ->assertSee('Base Screen Test')
+            ->assertDontSee('Validation Success');
+
+        // Test with following redirects disabled
+        $screen
+            ->withoutFollowingRedirects()
+            ->call('methodWithValidation')
+            ->assertRedirect()
+            ->assertInvalid(['title', 'body']);
+    }
 }

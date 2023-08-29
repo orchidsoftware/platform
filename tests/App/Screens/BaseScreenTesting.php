@@ -69,4 +69,19 @@ class BaseScreenTesting extends Screen
     {
         return $request->user()->toJson();
     }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return void
+     */
+    public function methodWithValidation(Request $request): void
+    {
+        $request->validate([
+            'title' => 'required|max:255',
+            'body'  => 'required',
+        ]);
+
+        Toast::warning('Validation Success');
+    }
 }
