@@ -213,7 +213,6 @@ class DynamicTestScreen
         return $this;
     }
 
-
     /**
      * Automatically follow any redirects returned from the response.
      *
