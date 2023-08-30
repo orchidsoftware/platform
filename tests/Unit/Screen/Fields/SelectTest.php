@@ -219,16 +219,15 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringNotContainsString('value="third" selected', $view);
     }
 
-
     public function testMultipleFromEnum(): void
     {
         $select = Select::make('choice')
             ->multiple()
             ->value([
                 Color::INFO,
-                Color::BASIC
+                Color::BASIC,
             ])
-        ->fromEnum(Color::class);
+            ->fromEnum(Color::class);
 
         $view = self::minifyRenderField($select);
 

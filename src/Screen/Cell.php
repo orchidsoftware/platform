@@ -13,7 +13,7 @@ use Orchid\Support\Blade;
 
 abstract class Cell
 {
-    use Macroable, CanSee;
+    use CanSee, Macroable;
 
     /**
      * @var string

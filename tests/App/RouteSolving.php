@@ -5,7 +5,7 @@ namespace Orchid\Tests\App;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Stringable;
 
-class RouteSolving implements UrlRoutable, Stringable
+class RouteSolving implements Stringable, UrlRoutable
 {
     public function resolveRouteBinding($value, $field = null)
     {

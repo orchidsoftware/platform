@@ -19,7 +19,7 @@ use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests;
  */
 class MakesHttpRequestsWrapper
 {
-    use MakesHttpRequests, InteractsWithExceptionHandling, InteractsWithAuthentication, InteractsWithSession;
+    use InteractsWithAuthentication, InteractsWithExceptionHandling, InteractsWithSession, MakesHttpRequests;
 
     /**
      * The application instance
