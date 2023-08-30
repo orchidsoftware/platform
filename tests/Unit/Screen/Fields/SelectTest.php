@@ -7,6 +7,7 @@ namespace Orchid\Tests\Unit\Screen\Fields;
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\TextArea;
+use Orchid\Support\Color;
 use Orchid\Tests\App\EmptyUserModel;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
@@ -216,5 +217,27 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('value="first" selected', $view);
         $this->assertStringContainsString('value="second" selected', $view);
         $this->assertStringNotContainsString('value="third" selected', $view);
+    }
+
+
+    public function testMultipleFromEnum(): void
+    {
+        $select = Select::make('choice')
+            ->multiple()
+            ->value([
+                Color::INFO,
+                Color::BASIC
+            ])
+        ->fromEnum(Color::class);
+
+        $view = self::minifyRenderField($select);
+
+        $this->assertStringContainsString('choice[]', $view);
+        $this->assertStringContainsString('multiple', $view);
+
+        $this->assertStringContainsString('value="'.Color::BASIC->name.'" selected', $view);
+        $this->assertStringContainsString('value="'.Color::INFO->name.'" selected', $view);
+        $this->assertStringContainsString('value="'.Color::DARK->name.'"', $view);
+        $this->assertStringNotContainsString('value="'.Color::DANGER->name.'" selected', $view);
     }
 }
