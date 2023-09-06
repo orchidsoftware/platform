@@ -103,7 +103,7 @@ abstract class Layout implements JsonSerializable
      */
     public function findBySlug(string $slug)
     {
-        if ($this->getSlug() === $slug) {
+        if ($slug === $this->getSlug()) {
             return $this;
         }
 
@@ -118,7 +118,7 @@ abstract class Layout implements JsonSerializable
                 return $layout->findBySlug($slug);
             })
             ->filter()
-            ->filter(static fn ($layout) => $layout->getSlug() === $slug)
+            ->filter(static fn ($layout) => $slug === $layout->getSlug())
             ->first();
     }
 

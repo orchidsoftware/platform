@@ -368,7 +368,7 @@ class Dashboard
     public function addMenuSubElements(string $slug, array $list): Dashboard
     {
         $menu = $this->menu->get(self::MENU_MAIN)
-            ->map(fn (Menu $menu) => $menu->get('slug') === $slug
+            ->map(fn (Menu $menu) => $slug === $menu->get('slug')
                 ? $menu->list($list)
                 : $menu);
 

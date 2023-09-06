@@ -48,7 +48,7 @@ trait UserAccess
             if ($role instanceof RoleInterface) {
                 return $instance->getRoleId() === $role->getRoleId();
             }
-            if ($instance->getRoleId() === $role || $instance->getRoleSlug() === $role) {
+            if ($role === $instance->getRoleId() || $role === $instance->getRoleSlug()) {
                 return true;
             }
 
