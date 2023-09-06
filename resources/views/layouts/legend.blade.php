@@ -12,7 +12,7 @@
         <dl class="d-block m-0">
             @foreach($columns as $column)
                 <div class="d2-grid py-3 {{ $loop->first ? '' : 'border-top' }}">
-                    <dt class="text-muted fw-normal">
+                    <dt class="text-muted fw-normal me-3">
                         {!! $column->buildDt($repository) !!}
                     </dt>
                     <dd class="text-black">
