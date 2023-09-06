@@ -18,7 +18,7 @@
     </div>
 
     <form id="post-form"
-          class="mb-md-4 overflow-hidden h-100"
+          class="mb-md-4 h-100"
           method="post"
           enctype="multipart/form-data"
           data-controller="form"
