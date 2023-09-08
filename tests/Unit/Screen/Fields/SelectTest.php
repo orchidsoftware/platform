@@ -6,7 +6,6 @@ namespace Orchid\Tests\Unit\Screen\Fields;
 
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Fields\Select;
-use Orchid\Screen\Fields\TextArea;
 use Orchid\Support\Color;
 use Orchid\Tests\App\EmptyUserModel;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
@@ -81,7 +80,7 @@ class SelectTest extends TestFieldsUnitCase
 
     public function testAutoFocus(): void
     {
-        $select = TextArea::make('about')
+        $select = Select::make('about')
             ->autofocus();
 
         $view = self::renderField($select);
