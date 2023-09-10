@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.11.0 - 2023-09-10
+
+### Added
+- Translation Polish language [#2708](https://github.com/orchidsoftware/platform/pull/2708)
+
+### Fixed
+- Remove "\r\n" `Quill` editor when usage code block
+
 ## 14.10.0 - 2023-09-06
 
 ### Added
