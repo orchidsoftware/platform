@@ -8,11 +8,11 @@ export default class extends ApplicationController {
     connect() {
         const quill = Quill;
         const selector = this.element.querySelector('.quill').id;
-        const input = this.element.querySelector('input');
+        const textarea = this.element.querySelector('textarea');
 
         const options = {
-            placeholder: input.placeholder,
-            readOnly: input.readOnly,
+            placeholder: textarea.placeholder,
+            readOnly: textarea.readOnly,
             theme: 'snow',
             modules: {
                 toolbar: {
@@ -42,13 +42,13 @@ export default class extends ApplicationController {
         let value = JSON.parse(this.data.get("value"))
 
         // set value
-        // editor.setText(input.value);
-        this.editor.root.innerHTML = input.value = value;
+        this.editor.root.innerHTML = textarea.value = value;
 
         // save value
         this.editor.on('text-change', () => {
-            input.value = this.editor.getText() ? this.editor.root.innerHTML : '';
-            input.dispatchEvent(new Event('change'));
+            // When usage this.editor.root.innerHtml "/n/r" has been lost
+            textarea.value = this.element.querySelector('.ql-editor').innerHTML || "";
+            textarea.dispatchEvent(new Event('change'));
         });
 
         this.editor.getModule('toolbar').addHandler('color', (value) => {
