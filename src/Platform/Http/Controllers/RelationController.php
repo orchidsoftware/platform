@@ -87,6 +87,19 @@ class RelationController extends Controller
         return $model
             ->limit($chunk)
             ->get()
-            ->pluck($append ?? $name, $key);
+            ->mapWithKeys(function ($item) use ($append, $key, $name) {
+                $resultKey = $item->$key;
+
+                $value = $item->$append ?? $item->$name;
+
+                if ($resultKey instanceof \UnitEnum) {
+                    $resultKey = $resultKey->value;
+                }
+                if ($value instanceof \UnitEnum) {
+                    $value = $value->value;
+                }
+
+                return [$resultKey => $value];
+            });
     }
 }
