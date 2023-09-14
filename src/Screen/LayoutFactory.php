@@ -19,6 +19,7 @@ use Orchid\Screen\Layouts\Metric;
 use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Layouts\Selection;
+use Orchid\Screen\Layouts\Sortable;
 use Orchid\Screen\Layouts\Split;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Layouts\Tabs;
@@ -238,5 +239,33 @@ class LayoutFactory
         return $chart
             ->target($target)
             ->title($title);
+    }
+
+    /**
+     * @param string $target
+     * @param array  $columns
+     *
+     * @return \Orchid\Screen\Layouts\Sortable
+     */
+    public static function sortable(string $target, array $columns): Sortable
+    {
+        return new class($target, $columns) extends Sortable
+        {
+            /**
+             * @var array
+             */
+            protected $columns;
+
+            public function __construct(string $target, array $columns)
+            {
+                $this->target = $target;
+                $this->columns = $columns;
+            }
+
+            public function columns(): iterable
+            {
+                return $this->columns;
+            }
+        };
     }
 }

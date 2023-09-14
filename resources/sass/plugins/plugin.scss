@@ -6,6 +6,10 @@
   margin-bottom : 5px
 }
 
+.reorder-drag {
+    opacity: 0;
+}
+
 // input
 .chosen-choices, .chosen-single, .bootstrap-tagsinput {
   @extend .form-control;

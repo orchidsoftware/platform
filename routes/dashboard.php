@@ -8,6 +8,7 @@ use Orchid\Platform\Http\Controllers\AttachmentController;
 use Orchid\Platform\Http\Controllers\IndexController;
 use Orchid\Platform\Http\Controllers\RelationController;
 use Orchid\Platform\Http\Screens\NotificationScreen;
+use Orchid\Platform\Http\Controllers\SortableController;
 use Orchid\Platform\Http\Screens\SearchScreen;
 use Tabuna\Breadcrumbs\Trail;
 
@@ -47,6 +48,9 @@ Route::prefix('systems')->group(function () {
 
     Route::post('relation', [RelationController::class, 'view'])
         ->name('systems.relation');
+
+    Route::post('sorting', [SortableController::class, 'saveSortOrder'])
+        ->name('systems.sorting');
 });
 
 if (config('platform.notifications.enabled', true)) {

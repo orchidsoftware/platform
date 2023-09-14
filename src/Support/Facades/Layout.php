@@ -24,6 +24,7 @@ use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Layouts\View;
 use Orchid\Screen\Layouts\Wrapper;
+use Orchid\Screen\Layouts\Sortable;
 
 /**
  * Class Layout.
@@ -48,6 +49,7 @@ use Orchid\Screen\Layouts\Wrapper;
  * @method static Metric    metrics(array $labels)                                  Creates a new metrics layout with the given labels.
  * @method static Split     split(array $layouts)                                   Creates a new split layout with the given layout data.
  * @method static Chart     chart(string $target, string $title = null)             Creates a new chart layout with the given title.
+ * @method static Sortable  sortable(string $target, array $columns)                Creates a new sortable layout with the given target and columns.
  */
 class Layout extends Facade
 {
