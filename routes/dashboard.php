@@ -7,8 +7,8 @@ use Orchid\Platform\Http\Controllers\AsyncController;
 use Orchid\Platform\Http\Controllers\AttachmentController;
 use Orchid\Platform\Http\Controllers\IndexController;
 use Orchid\Platform\Http\Controllers\RelationController;
-use Orchid\Platform\Http\Screens\NotificationScreen;
 use Orchid\Platform\Http\Controllers\SortableController;
+use Orchid\Platform\Http\Screens\NotificationScreen;
 use Orchid\Platform\Http\Screens\SearchScreen;
 use Tabuna\Breadcrumbs\Trail;
 

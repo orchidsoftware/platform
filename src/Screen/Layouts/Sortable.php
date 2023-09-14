@@ -29,7 +29,7 @@ abstract class Sortable extends Layout
     /**
      * Flag indicating whether block headers are hidden or shown.
      *
-     * @var bool $showBlockHeaders
+     * @var bool
      */
     protected bool $showBlockHeaders = false;
 
@@ -91,6 +91,7 @@ abstract class Sortable extends Layout
      * Show or hide block headers.
      *
      * @param bool $showHeaders Whether to show block headers or not. Default is false.
+     *
      * @return $this
      */
     public function showBlockHeaders(bool $showHeaders = true): self
