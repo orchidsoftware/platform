@@ -16,15 +16,17 @@ use Illuminate\Support\Str;
 use Orchid\Attachment\MimeTypes;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Like;
+use Orchid\Platform\Concerns\Sortable;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
+use Orchid\Screen\AsSource;
 
 /**
  * Class Attachment.
  */
 class Attachment extends Model
 {
-    use Filterable, HasFactory;
+    use AsSource, Filterable, HasFactory, Sortable;
 
     /**
      * @var array
@@ -83,6 +85,16 @@ class Attachment extends Model
         'disk',
         'group',
     ];
+
+    /**
+     * Get the column name for sorting.
+     *
+     * @return string
+     */
+    public function getSortColumnName(): string
+    {
+        return 'sort';
+    }
 
     public function user(): BelongsTo
     {
