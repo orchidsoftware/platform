@@ -60,6 +60,17 @@ class Impersonation
     }
 
     /**
+     * Check if the current user is impersonated.
+     *
+     * @alias static bool isSwitch()
+     * @return bool
+     */
+    public static function isImpersonating(): bool
+    {
+        return self::isSwitch();
+    }
+
+    /**
      * Returns the authentication guard.
      *
      * @return \Illuminate\Contracts\Auth\Guard|\Illuminate\Contracts\Auth\StatefulGuard

@@ -49,14 +49,14 @@ class UserTest extends TestUnitCase
         $user = $this->createUser();
         $userSwitch = $this->createUser();
 
-        $this->assertFalse(Impersonation::isSwitch());
+        $this->assertFalse(Impersonation::isImpersonating());
 
         $this->actingAs($user);
         $this->assertEquals($user->id, Auth::id());
 
         Impersonation::loginAs($userSwitch);
 
-        $this->assertTrue(Impersonation::isSwitch());
+        $this->assertTrue(Impersonation::isImpersonating());
         $this->assertEquals($userSwitch->id, Auth::id());
 
         Impersonation::logout();
