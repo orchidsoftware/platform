@@ -10,7 +10,7 @@
         {{ $attributes }}
     >
         @isset($icon)
-            <x-orchid-icon :path="$icon" class="{{ empty($name) ?: 'me-2'}}"/>
+            <x-orchid-icon :path="$icon" class="{{ empty($name) ?: 'me-2 overflow-visible'}}"/>
         @endisset
 
         <span class="me-2">{{ $name ?? '' }}</span>

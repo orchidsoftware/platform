@@ -31,7 +31,7 @@ body {
     }
 
     .aside {
-        height: 60px;
+        height: calc(1.325rem + .9vw + 2em);
         transition: all 300ms ease;
     }
 
