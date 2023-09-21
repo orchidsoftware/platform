@@ -22,8 +22,8 @@ class GroupCollection extends Collection
             ->sortByDesc('value')
             ->pluck('label')
             ->map(fn (string $name) => [
-                'labels' => $this->pluck('label')->map($closure)->toArray(),
-                'values' => $this->getChartsValues($name),
+                'labels'  => $this->pluck('label')->map($closure)->toArray(),
+                'values'  => $this->getChartsValues($name),
             ])
             ->toArray();
     }

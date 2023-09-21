@@ -262,4 +262,47 @@ class MetricsTest extends TestUnitCase
             'values' => $period->pluck('value')->toArray(),
         ], $period->toChart('Users'));
     }
+
+    public function testPercentValues(): void
+    {
+        $current = Carbon::now();
+        $start = (clone $current)->subDays(2);
+        $end = (clone $current)->subDay();
+
+        User::factory()->count(1)->create([
+            'created_at' => $start,
+        ]);
+
+        User::factory()->count(2)->create([
+            'created_at' => $end,
+        ]);
+
+        $period = User::countByDays($start);
+
+        $expected = [
+            [
+                "value" => 1,
+                "label" => $start->toDateString(),
+                "percent" => 33.33,
+            ],
+            [
+                "value" => 2,
+                "label" => $end->toDateString(),
+                "percent" => 66.67,
+            ],
+            [
+                "value" => 0,
+                "label" => $end->copy()->addDay()->toDateString(),
+                "percent" => 0,
+            ],
+        ];
+
+        $actual = $period->all();
+
+        $this->assertEquals($expected, $actual);
+
+        $user = $period->toChart('Users');
+
+        $this->assertSame([33.33, 66.67, 0], $user['percent']);
+    }
 }
