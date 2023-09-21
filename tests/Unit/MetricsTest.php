@@ -281,19 +281,19 @@ class MetricsTest extends TestUnitCase
 
         $expected = [
             [
-                "value" => 1,
-                "label" => $start->toDateString(),
-                "percent" => 33.33,
+                'value'   => 1,
+                'label'   => $start->toDateString(),
+                'percent' => 33.33,
             ],
             [
-                "value" => 2,
-                "label" => $end->toDateString(),
-                "percent" => 66.67,
+                'value'   => 2,
+                'label'   => $end->toDateString(),
+                'percent' => 66.67,
             ],
             [
-                "value" => 0,
-                "label" => $end->copy()->addDay()->toDateString(),
-                "percent" => 0,
+                'value'   => 0,
+                'label'   => $end->copy()->addDay()->toDateString(),
+                'percent' => 0,
             ],
         ];
 
