@@ -40,7 +40,6 @@ class TimeCollection extends Collection
             'name'    => $name,
             'labels'  => $this->pluck('label')->map($closure)->toArray(),
             'values'  => $this->pluck('value')->toArray(),
-            'percent' => $this->pluck('percent')->toArray(),
         ];
     }
 

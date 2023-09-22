@@ -53,9 +53,7 @@ trait Chartable
 
         $days = $startDate->diffInDays($stopDate) + 1;
 
-        $sumValues = $query->sum('value');
-
-        return TimeCollection::times($days, function () use ($startDate, $query, $sumValues) {
+        return TimeCollection::times($days, function () use ($startDate, $query) {
             $found = $query->firstWhere(
                 'label',
                 $startDate->startOfDay()->toDateString()
@@ -64,7 +62,6 @@ trait Chartable
             $result = [
                 'value'   => ($found ? $found->value : 0),
                 'label'   => $startDate->toDateString(),
-                'percent' => ($found ? round($found->value / $sumValues * 100, 2) : 0),
             ];
 
             $startDate->addDay();
