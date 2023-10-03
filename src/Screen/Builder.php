@@ -110,7 +110,7 @@ class Builder
     private function renderGroup(Groupable $group)
     {
         $prepare = collect($group->getGroup())
-            ->map($this->renderFieldable(...))
+            ->map(fn(Fieldable $field) => $this->renderFieldable($field))
             ->filter()
             ->toArray();
 
