@@ -39,7 +39,7 @@ class TD extends Cell
      * @var string|null|int
      */
     protected $width;
-     /**
+    /**
      * @var string|null
      */
     protected $style;
