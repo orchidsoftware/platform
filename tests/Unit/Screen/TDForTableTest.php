@@ -26,6 +26,34 @@ class TDForTableTest extends TestUnitCase
         $this->assertStringContainsString('style="min-width:'.$width.'', $view);
     }
 
+    public function testTdStyle(): void
+    {
+        $style = 'border-color: red;';
+
+        $view = TD::make('name')->style($style)->buildTd(new Repository(['name' => 'value']));
+
+        $this->assertStringContainsString('style=".$style.', $view);
+    }
+
+    public function testTdClass(): void
+    {
+        $class = 'my-custom-class';
+
+        $view = TD::make('name')->class($class)->buildTd(new Repository(['name' => 'value']));
+
+        $this->assertStringContainsString('class=".$class.', $view);
+    }
+       
+    public function testTdWidthWithCustomStyle(): void
+    {
+        $width = '100px';
+        $style = 'border-color: red;';
+    
+        $view = TD::make('name')->width($width)->style($style)->buildTd(new Repository(['name' => 'value']));
+
+        $this->assertStringContainsString('style="min-width:'.$width.' '.$style.'', $view);
+    }
+
     public function testTdWithoutWidth(): void
     {
         $view = TD::make('name')->buildTd(new Repository(['name' => 'value']));
