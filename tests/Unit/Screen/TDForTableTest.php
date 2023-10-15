@@ -32,7 +32,7 @@ class TDForTableTest extends TestUnitCase
 
         $view = TD::make('name')->style($style)->buildTd(new Repository(['name' => 'value']));
 
-        $this->assertStringContainsString('style=".$style.', $view);
+        $this->assertStringContainsString('style="'.$style.'', $view);
     }
 
     public function testTdClass(): void
@@ -41,7 +41,7 @@ class TDForTableTest extends TestUnitCase
 
         $view = TD::make('name')->class($class)->buildTd(new Repository(['name' => 'value']));
 
-        $this->assertStringContainsString('class=".$class.', $view);
+        $this->assertStringContainsString('class="'.$class.'', $view);
     }
 
     public function testTdWidthWithCustomStyle(): void
