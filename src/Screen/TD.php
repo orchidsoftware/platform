@@ -39,6 +39,14 @@ class TD extends Cell
      * @var string|null|int
      */
     protected $width;
+     /**
+     * @var string|null
+     */
+    protected $style;
+    /**
+     * @var string|null
+     */
+    protected $class;
     /**
      * @var string
      */
@@ -89,6 +97,26 @@ class TD extends Cell
     public function width($width): self
     {
         $this->width = $width;
+
+        return $this;
+    }
+
+    /**
+     * @param string $style
+     */
+    public function style($style): self
+    {
+        $this->style = $style;
+
+        return $this;
+    }
+
+    /**
+     * @param string $class
+     */
+    public function class($class): self
+    {
+        $this->class = $class;
 
         return $this;
     }
@@ -263,6 +291,8 @@ class TD extends Cell
             'render'  => $this->render,
             'slug'    => $this->sluggable(),
             'width'   => $this->width,
+            'style'   => $this->style,
+            'class'   => $this->class,
             'colspan' => $this->colspan,
         ]);
     }
