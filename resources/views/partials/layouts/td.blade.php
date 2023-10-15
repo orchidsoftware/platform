@@ -1,6 +1,6 @@
-<td class="text-{{$align}} @if(!$width) text-truncate @endif {{ $class }}" @if($style) style="{{ $style }}" @endif
+<td class="text-{{$align}} @if(!$width) text-truncate @endif {{ $class }}"
     data-column="{{ $slug }}" colspan="{{ $colspan }}"
-    @empty(!$width)style="min-width:{{ is_numeric($width) ? $width . 'px' : $width }};"@endempty
+    style="@empty(!$width)min-width:{{ is_numeric($width) ? $width . 'px' : $width }};@endempty {{ $style }}"
 >
     <div>
         @isset($render)
