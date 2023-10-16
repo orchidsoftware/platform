@@ -41,7 +41,7 @@ class TDForTableTest extends TestUnitCase
 
         $view = TD::make('name')->class($class)->buildTd(new Repository(['name' => 'value']));
 
-        $this->assertStringContainsString('text-start  text-truncate '.$class.'', $view);
+        $this->assertStringContainsString('text-start  text-truncate  '.$class.'', $view);
     }
 
     public function testTdWidthWithCustomStyle(): void
