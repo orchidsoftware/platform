@@ -222,7 +222,7 @@ class TD extends Cell
     public function buildTh()
     {
         return view('platform::partials.layouts.th', [
-            'width'        => is_numeric($width) ? $width . 'px' : $width,
+            'width'        => is_numeric($width) ? $width.'px' : $width,
             'align'        => $this->align,
             'sort'         => $this->sort,
             'sortUrl'      => $this->buildSortUrl(),
@@ -290,7 +290,7 @@ class TD extends Cell
             'value'   => $value,
             'render'  => $this->render,
             'slug'    => $this->sluggable(),
-            'width'   => is_numeric($width) ? $width . 'px' : $width,
+            'width'   => is_numeric($width) ? $width.'px' : $width,
             'style'   => $this->style,
             'class'   => $this->class,
             'colspan' => $this->colspan,
