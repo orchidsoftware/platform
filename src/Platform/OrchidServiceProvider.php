@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Platform;
 
 use Illuminate\Contracts\Foundation\CachesRoutes;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
 use Orchid\Icons\IconFinder;
 
 /*
@@ -22,7 +22,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
      *
      * @var \Orchid\Platform\Dashboard|null
      */
-    protected Dashboard|null $orchid;
+    protected ?Dashboard $orchid;
 
     /**
      * Boot the application events.
@@ -132,7 +132,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
     {
         $iconFinder = $this->app->make(IconFinder::class);
 
-        collect($this->icons())->each(fn($path, $prefix) => $iconFinder->registerIconDirectory($prefix, $path));
+        collect($this->icons())->each(fn ($path, $prefix) => $iconFinder->registerIconDirectory($prefix, $path));
 
         return $this;
     }

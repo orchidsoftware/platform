@@ -463,14 +463,15 @@ abstract class Screen extends Controller
     /**
      * Return to the previous state with the current object properties.
      *
-     * @return \Illuminate\Http\RedirectResponse
      * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     private function backWithCurrentState(): RedirectResponse
     {
         $properties = collect((new \ReflectionClass(static::class))
             ->getProperties(\ReflectionProperty::IS_PUBLIC))
-            ->map(fn(\ReflectionProperty $property) => $property->getName())
+            ->map(fn (\ReflectionProperty $property) => $property->getName())
             ->toArray();
 
         $currentState = collect(get_object_vars($this))
@@ -485,6 +486,7 @@ abstract class Screen extends Controller
 
     /**
      * @deprecated
+     *
      * @param array $data
      *
      * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
