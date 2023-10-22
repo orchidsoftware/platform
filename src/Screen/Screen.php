@@ -6,6 +6,7 @@ namespace Orchid\Screen;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
@@ -341,7 +342,7 @@ abstract class Screen extends Controller
             return redirect()->action([static::class], $request->all());
         }
 
-        return $this->callMethod($method, $arguments) ?? back();  //back(fallback: route(config('platform.index')));
+        return $this->callMethod($method, $arguments) ?? $this->backWithCurrentState();
     }
 
     /**
@@ -401,25 +402,41 @@ abstract class Screen extends Controller
     {
         $uses = static::class.'@'.$method;
 
+        $preparedParameters = self::prepareForExecuteMethod($uses);
+
+        return App::call($uses, $preparedParameters ?? $parameters);
+    }
+
+    /**
+     * Prepare the method execution by binding route parameters and substituting implicit bindings.
+     *
+     * @param string $uses
+     *
+     * @return array|null
+     */
+    public static function prepareForExecuteMethod(string $uses): ?array
+    {
         $route = request()->route();
 
-        collect(\request()->query())->each(function ($value, string $key) use ($route) {
+        if ($route === null) {
+            return null;
+        }
+
+        collect(request()->query())->each(function ($value, string $key) use ($route) {
             $route->setParameter($key, $value);
         });
 
-        if ($route !== null && $method) {
-            $original = $route->action['uses'];
+        $original = $route->action['uses'];
 
-            $route = $route->uses($uses);
-            //Route::substituteBindings($route);
-            Route::substituteImplicitBindings($route);
+        $route = $route->uses($uses);
 
-            $parameters = $route->parameters();
+        Route::substituteImplicitBindings($route);
 
-            $route->uses($original);
-        }
+        $parameters = $route->parameters();
 
-        return App::call(static::class.'@'.$method, $parameters);
+        $route->uses($original);
+
+        return $parameters;
     }
 
     /**
@@ -444,13 +461,37 @@ abstract class Screen extends Controller
     }
 
     /**
+     * Return to the previous state with the current object properties.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
+     */
+    private function backWithCurrentState(): RedirectResponse
+    {
+        $properties = collect((new \ReflectionClass(static::class))
+            ->getProperties(\ReflectionProperty::IS_PUBLIC))
+            ->map(fn(\ReflectionProperty $property) => $property->getName())
+            ->toArray();
+
+        $currentState = collect(get_object_vars($this))
+            ->only($properties);
+
+        if ($currentState->isEmpty()) {
+            return back();
+        }
+
+        return $this->backWith($currentState->all());
+    }
+
+    /**
+     * @deprecated
      * @param array $data
      *
      * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function backWith(array $data)
+    public function backWith(array $data): RedirectResponse
     {
         $repository = new Repository($data);
 
