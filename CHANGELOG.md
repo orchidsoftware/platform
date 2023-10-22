@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.15.0 - 2023-10-22
+
+### Changed
+- Corrected Polish translation [#2730](https://github.com/orchidsoftware/platform/pull/2730)
+- Enhanced Orchid service provider for packages
+- Enabled screen save state for backward navigation by default
+- Display `0` or `false` values for Labels
+
+
 ## 14.14.0 - 2023-09-22
 
 ### Changed
