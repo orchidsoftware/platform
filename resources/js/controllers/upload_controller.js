@@ -245,7 +245,7 @@ export default class extends ApplicationController {
                     console.log('dropzone.addedfile');
 
                     if (this.files.length > this.options.maxFiles) {
-                        controller.alert('Validation error', 'Max files');
+                        controller.alert('Ошибка валидации', 'Превышено максимальное количество файлов');
                         this.removeFile(e);
                     }
 
@@ -270,7 +270,7 @@ export default class extends ApplicationController {
                 });
 
                 this.on("maxfilesexceeded", (file) => {
-                    controller.alert('Validation error', 'Max files exceeded');
+                    controller.alert('Ошибка валидации', 'Превышено максимальное количество файлов');
                     this.removeFile(file);
                 });
 
@@ -328,7 +328,7 @@ export default class extends ApplicationController {
                 }
             },
             error(file, response) {
-                controller.alert('Validation error', 'File upload error');
+                controller.alert('Ошибка валидации', 'Ошибка загрузки файла');
 
                 this.removeFile(file);
 

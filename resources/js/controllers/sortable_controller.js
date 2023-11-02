@@ -12,11 +12,11 @@ export default class extends ApplicationController {
         },
         successMessage: {
             type: String,
-            default: 'Sorting saved successfully.',
+            default: 'Сортировка успешно сохранена.',
         },
         failureMessage: {
             type: String,
-            default: 'Failed to save sorting.',
+            default: 'Не удалось сохранить сортировку.',
         },
     }
 

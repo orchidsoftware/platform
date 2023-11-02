@@ -25,11 +25,11 @@ export default class extends ApplicationController {
         },
         errorSize: {
             type: String,
-            default: 'File ":name" is too large to upload',
+            default: 'Файл ":name" слишком велик для загрузки',
         },
         errorType: {
             type: String,
-            default: 'The attached file must be an image',
+            default: 'Прикрепленный файл должен быть изображением',
         },
     };
 

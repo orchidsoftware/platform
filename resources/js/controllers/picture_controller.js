@@ -38,7 +38,7 @@ export default class extends ApplicationController {
 
         let maxFileSize = this.data.get('max-file-size');
         if (event.target.files[0].size / 1024 / 1024 > maxFileSize) {
-            this.alert('Validation error', `The download file is too large. Max size: ${maxFileSize} MB`);
+            this.alert('Ошибка валидации', `Загружаемый файл слишком велик. Максимальный размер: ${maxFileSize} MB`);
             event.target.value = null;
             return;
         }
@@ -70,7 +70,7 @@ export default class extends ApplicationController {
                     element.querySelector('.picture-path').dispatchEvent(new Event("change"));
                 })
                 .catch((error) => {
-                    this.alert('Validation error', 'File upload error');
+                    this.alert('Ошибка валидации', 'Ошибка загрузки файла');
                     console.warn(error);
                 });
         };

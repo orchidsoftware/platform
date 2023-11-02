@@ -4,9 +4,9 @@ export default class extends ApplicationController {
     static values = {
         needPreventsFormAbandonment: {type: Boolean, default: true},
         hasBeenChanged: {type: Boolean, default: false},
-        failedValidationMessage: {type: String, default: "Something went wrong."},
-        submitLoadingMessage: {type: String, default: "Loading..."},
-        confirmCancelMessage: { type: String, default: "Do you really want to leave? You have unsaved changes." }
+        failedValidationMessage: {type: String, default: "Что-то пошло не так."},
+        submitLoadingMessage: {type: String, default: "Загрузка..."},
+        confirmCancelMessage: { type: String, default: "У вас есть несохраненные изменения.Вы действительно хотите уйти? " }
     }
 
     /**

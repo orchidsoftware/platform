@@ -115,7 +115,7 @@ export default class extends ApplicationController {
             if (/^image\//.test(file.type)) {
                 this.saveToServer(file);
             } else {
-                this.alert('Validation error', 'You could only upload images.', 'danger');
+                this.alert('Ошибка валидации', 'Вы можете загружать только изображения.', 'danger');
                 console.warn('You could only upload images.');
             }
         };
@@ -140,7 +140,7 @@ export default class extends ApplicationController {
                 this.insertToEditor(response.data.url);
             })
             .catch((error) => {
-                this.alert('Validation error', 'Quill image upload failed');
+                this.alert('Ошибка валидации', 'Не удалось загрузить изображение');
                 console.warn('quill image upload failed');
                 console.warn(error);
             });
