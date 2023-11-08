@@ -9,12 +9,13 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Database\Eloquent\Collection;
 use Orchid\Attachment\Models\Attachment;
+use Orchid\Support\Facades\Dashboard;
 use Storage;
 use Symfony\Component\HttpFoundation\File\File as FileSymfony;
 
 class AttachmentRule implements ValidationRule
 {
-    /** @var Collection<Attachment>} */
+    /** @var Collection<Attachment> */
     protected Collection $attachment;
 
     /**
@@ -34,9 +35,11 @@ class AttachmentRule implements ValidationRule
      */
     protected function setAttachment(mixed $ids): void
     {
+        $model = Dashboard::model(Attachment::class);
+
         $this->attachment = is_array($ids)
-            ? Attachment::whereIn('id', $ids)->get()
-            : Attachment::where('id', $ids)->get();
+            ? $model::whereIn('id', $ids)->get()
+            : $model::where('id', $ids)->get();
 
         $this->attachment = $this->attachment->mapWithKeys(fn(Attachment $attachment) => ["_{$attachment->id}" => $attachment]);
     }
@@ -52,7 +55,10 @@ class AttachmentRule implements ValidationRule
         if ($attachment->exists) {
             /** @var Filesystem|Cloud $disk */
             $disk = Storage::disk($attachment->disk);
-            return new FileSymfony($disk->path($attachment->physicalPath()));
+
+            return $disk->exists($attachment->physicalPath())
+                ? new FileSymfony($disk->path($attachment->physicalPath()))
+                : null;
         }
 
         return null;
@@ -78,11 +84,7 @@ class AttachmentRule implements ValidationRule
      */
     protected function removeFiles(\Illuminate\Support\Collection $errors): void
     {
-        $errors->each(function ($message, $key) {
-            if ($this->attachment->has($key)) {
-                $this->attachment[$key]->delete();
-            }
-        });
+        $errors->filter(fn($message, $key) => $this->attachment->has($key))->each(fn($message, $key) => $this->attachment->get($key)->delete());
     }
 
     /**
