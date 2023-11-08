@@ -40,6 +40,14 @@ class TD extends Cell
      */
     protected $width;
     /**
+     * @var string|null
+     */
+    protected $style;
+    /**
+     * @var string|null
+     */
+    protected $class;
+    /**
      * @var string
      */
     protected $filter;
@@ -89,6 +97,26 @@ class TD extends Cell
     public function width($width): self
     {
         $this->width = $width;
+
+        return $this;
+    }
+
+    /**
+     * @param string $style
+     */
+    public function style($style): self
+    {
+        $this->style = $style;
+
+        return $this;
+    }
+
+    /**
+     * @param string $class
+     */
+    public function class($class): self
+    {
+        $this->class = $class;
 
         return $this;
     }
@@ -194,7 +222,7 @@ class TD extends Cell
     public function buildTh()
     {
         return view('platform::partials.layouts.th', [
-            'width'        => $this->width,
+            'width'        => is_numeric($this->width) ? $this->width.'px' : $this->width,
             'align'        => $this->align,
             'sort'         => $this->sort,
             'sortUrl'      => $this->buildSortUrl(),
@@ -262,7 +290,9 @@ class TD extends Cell
             'value'   => $value,
             'render'  => $this->render,
             'slug'    => $this->sluggable(),
-            'width'   => $this->width,
+            'width'   => is_numeric($this->width) ? $this->width.'px' : $this->width,
+            'style'   => $this->style,
+            'class'   => $this->class,
             'colspan' => $this->colspan,
         ]);
     }
