@@ -66,6 +66,7 @@
             "Orchid\\Filters\\": "src/Filters/",
             "Orchid\\Metrics\\": "src/Metrics/",
             "Orchid\\Platform\\": "src/Platform/",
+            "Orchid\\Rule\\": "src/Rule/",
             "Orchid\\Screen\\": "src/Screen/",
             "Orchid\\Support\\": "src/Support/"
         },
