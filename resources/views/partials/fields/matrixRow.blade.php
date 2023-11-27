@@ -1,7 +1,7 @@
 <tr>
     @foreach($columns as $column)
 
-        <th class="p-0 align-middle">
+        <th class="p-0 align-middle @if($sizes) col-{{$sizes[$column]}}"  @endif>
             {!!
                $fields[$column]
                     ->value($row[$column] ?? '')

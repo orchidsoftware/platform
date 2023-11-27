@@ -37,6 +37,7 @@ class Matrix extends Field
             'key',
             'value',
         ],
+        'sizes'             => null,
     ];
 
     /**
