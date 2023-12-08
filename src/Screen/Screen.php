@@ -188,16 +188,15 @@ abstract class Screen extends Controller
      */
     protected function extractState(): Repository
     {
+        $state = request()->post('_state', session()->get('_state'));
         // Check if the '_state' parameter is missing
-        if (! request()->request->has('_state') && session()->missing('_state')) {
+        if ($state === null) {
             // Return an empty Repository object
             return new Repository();
         }
 
-        // Extract the encrypted state from the '_state' parameter, and deserialize it
-        $raw = request()->post('_state') ?? session()->get('_state');
-
-        return Crypt::decrypt($raw);
+        //deserialize '_state' parameter
+        return Crypt::decrypt($state);
     }
 
     /**
