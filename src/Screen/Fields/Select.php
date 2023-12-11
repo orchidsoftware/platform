@@ -80,7 +80,7 @@ class Select extends Field implements ComplexFieldConcern
     /**
      * @param string|Model $model
      */
-    public function fromModel($model, string $name, string $key = null): self
+    public function fromModel($model, string $name, ?string $key = null): self
     {
         /* @var $model Model */
         $model = is_object($model) ? $model : new $model();
@@ -143,7 +143,7 @@ class Select extends Field implements ComplexFieldConcern
         });
     }
 
-    public function fromQuery(Builder $builder, string $name, string $key = null): self
+    public function fromQuery(Builder $builder, string $name, ?string $key = null): self
     {
         $key = $key ?? $builder->getModel()->getKeyName();
 

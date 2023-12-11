@@ -160,7 +160,7 @@ abstract class Chart extends Layout
      *
      * @return static
      */
-    public static function make(string $target, string $title = null): self
+    public static function make(string $target, ?string $title = null): self
     {
         return (new static)->target($target)->title($title);
     }
@@ -180,7 +180,7 @@ abstract class Chart extends Layout
      *
      * @return $this
      */
-    public function title(string $title = null): static
+    public function title(?string $title = null): static
     {
         $this->title = $title;
 

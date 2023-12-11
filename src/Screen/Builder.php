@@ -52,7 +52,7 @@ class Builder
      *
      * @param Fieldable[] $fields
      */
-    public function __construct(iterable $fields, Repository $data = null)
+    public function __construct(iterable $fields, ?Repository $data = null)
     {
         $this->fields = collect($fields)->all();
         $this->data = $data ?? new Repository();
@@ -61,7 +61,7 @@ class Builder
     /**
      * @return $this
      */
-    public function setLanguage(string $language = null): self
+    public function setLanguage(?string $language = null): self
     {
         $this->language = $language;
 
@@ -71,7 +71,7 @@ class Builder
     /**
      * @return $this
      */
-    public function setPrefix(string $prefix = null): self
+    public function setPrefix(?string $prefix = null): self
     {
         $this->prefix = $prefix;
 

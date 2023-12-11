@@ -96,7 +96,7 @@ class SearchScreen extends Screen
     /**
      * @return Factory|View
      */
-    public function compact(string $query = null)
+    public function compact(?string $query = null)
     {
         $total = 0;
 

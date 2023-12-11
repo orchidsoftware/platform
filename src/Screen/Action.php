@@ -38,7 +38,7 @@ class Action extends Field implements Actionable
         'name',
     ];
 
-    public function name(string $name = null): self
+    public function name(?string $name = null): self
     {
         return $this->set('name', $name ?? '');
     }
@@ -62,7 +62,7 @@ class Action extends Field implements Actionable
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function build(Repository $repository = null)
+    public function build(?Repository $repository = null)
     {
         return $this->render();
     }

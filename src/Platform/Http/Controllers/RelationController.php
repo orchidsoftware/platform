@@ -56,10 +56,10 @@ class RelationController extends Controller
         Model $model,
         string $name,
         string $key,
-        string $search = null,
+        ?string $search = null,
         ?array $scope = [],
-        string $append = null,
-        array $searchColumns = null,
+        ?string $append = null,
+        ?array $searchColumns = null,
         ?int $chunk = 10
     ) {
         if ($scope !== null) {

@@ -74,7 +74,7 @@ abstract class Legend extends Layout
     /**
      * @return Rows
      */
-    public function title(string $title = null): self
+    public function title(?string $title = null): self
     {
         $this->title = $title;
 

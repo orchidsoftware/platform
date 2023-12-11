@@ -52,7 +52,7 @@ abstract class Cell
     /**
      * @return static
      */
-    public static function make(string $name = '', string $title = null): static
+    public static function make(string $name = '', ?string $title = null): static
     {
         $td = new static($name);
         $td->column = $name;
@@ -159,7 +159,7 @@ abstract class Cell
      *
      * @return mixed
      */
-    protected function handler($source, object $loop = null)
+    protected function handler($source, ?object $loop = null)
     {
         $callback = $this->render;
 

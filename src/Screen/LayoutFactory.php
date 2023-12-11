@@ -230,7 +230,7 @@ class LayoutFactory
      *
      * @return \Orchid\Screen\Layouts\Chart
      */
-    public static function chart(string $target, string $title = null): Chart
+    public static function chart(string $target, ?string $title = null): Chart
     {
         $chart = new class() extends Chart
         {

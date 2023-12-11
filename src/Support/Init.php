@@ -63,7 +63,7 @@ class Init
      *
      * @return int|float The maximum file upload size
      */
-    public static function maxFileUpload(string $format = null): int
+    public static function maxFileUpload(?string $format = null): int
     {
         $ini = [
             'upload_max_filesize',

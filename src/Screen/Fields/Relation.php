@@ -89,7 +89,7 @@ class Relation extends Field
      *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function fromModel(string $model, string $name, string $key = null): self
+    public function fromModel(string $model, string $name, ?string $key = null): self
     {
         $key = $key ?? resolve($model)->getModel()->getKeyName();
 

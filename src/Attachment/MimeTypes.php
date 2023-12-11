@@ -32,7 +32,7 @@ class MimeTypes
      *
      * @return string|null The file extension, or the default value if no extension is found.
      */
-    public function getExtension(string $mimeType, string $default = null): ?string
+    public function getExtension(string $mimeType, ?string $default = null): ?string
     {
         return Arr::first($this->mime->getExtensions($mimeType), null, $default);
     }
@@ -45,7 +45,7 @@ class MimeTypes
      *
      * @return string|null The MIME type, or the default value if no MIME type is found.
      */
-    public function getMimeType(string $ext, string $default = null): ?string
+    public function getMimeType(string $ext, ?string $default = null): ?string
     {
         return Arr::first($this->mime->getMimeTypes($ext), null, $default);
     }

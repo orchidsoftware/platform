@@ -73,7 +73,7 @@ class UserPresenter extends Presenter implements Personable, Searchable
      * Returns a Laravel Scout builder object that can be used to search for matching users.
      * This method is used by the search functionality to retrieve a list of matching results.
      */
-    public function searchQuery(string $query = null): Builder
+    public function searchQuery(?string $query = null): Builder
     {
         return $this->entity->search($query);
     }

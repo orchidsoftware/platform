@@ -59,7 +59,7 @@ class File
      * @param string       $disk  - the disk to use for storage (defaults to the 'public' disk from the config)
      * @param string       $group - the group to associate the file with
      */
-    public function __construct(UploadedFile $file, string $disk = null, string $group = null)
+    public function __construct(UploadedFile $file, ?string $disk = null, ?string $group = null)
     {
         // Abort the process if the file does not have an observable size
         abort_if($file->getSize() === false, 415, 'File failed to load.');
@@ -172,7 +172,7 @@ class File
      *
      * @return File
      */
-    public function path(string $path = null)
+    public function path(?string $path = null)
     {
         $this->engine->setPath($path);
 

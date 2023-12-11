@@ -85,7 +85,7 @@ class RelationsTest extends TestFeatureCase
         ]);
     }
 
-    private function getScope(array $scope = null, string $append = null): TestResponse
+    private function getScope(?array $scope = null, ?string $append = null): TestResponse
     {
         $params = [
             'model' => Crypt::encryptString(EmptyUserModel::class),

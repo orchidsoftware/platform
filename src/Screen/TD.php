@@ -281,7 +281,7 @@ class TD extends Cell
      *
      * @return Factory|View
      */
-    public function buildTd($repository, object $loop = null)
+    public function buildTd($repository, ?object $loop = null)
     {
         $value = $this->render ? $this->handler($repository, $loop) : $repository->getContent($this->name);
 

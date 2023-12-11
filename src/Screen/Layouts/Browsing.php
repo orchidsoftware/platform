@@ -58,7 +58,7 @@ class Browsing extends Layout
      * The policy defines what features are available to the <iframe> based on the origin of the request
      * (e.g., access to the microphone, camera, battery, web-share API, etc.).
      */
-    public function allow(string $allow = null): Browsing
+    public function allow(?string $allow = null): Browsing
     {
         $this->variables['allow'] = $allow;
 
@@ -71,7 +71,7 @@ class Browsing extends Layout
      *
      * @return $this
      */
-    public function loading(string $loading = null): Browsing
+    public function loading(?string $loading = null): Browsing
     {
         $this->variables['loading'] = $loading;
 
@@ -84,7 +84,7 @@ class Browsing extends Layout
      *
      * @return $this
      */
-    public function csp(string $csp = null): Browsing
+    public function csp(?string $csp = null): Browsing
     {
         $this->variables['csp'] = $csp;
 
@@ -97,7 +97,7 @@ class Browsing extends Layout
      *
      * @return $this
      */
-    public function name(string $name = null): Browsing
+    public function name(?string $name = null): Browsing
     {
         $this->variables['name'] = $name;
 
@@ -110,7 +110,7 @@ class Browsing extends Layout
      *
      * @return $this
      */
-    public function referrerpolicy(string $referrerpolicy = null): Browsing
+    public function referrerpolicy(?string $referrerpolicy = null): Browsing
     {
         $this->variables['referrerpolicy'] = $referrerpolicy;
 
@@ -124,7 +124,7 @@ class Browsing extends Layout
      *
      * @return $this
      */
-    public function sandbox(string $sandbox = null): Browsing
+    public function sandbox(?string $sandbox = null): Browsing
     {
         $this->variables['sandbox'] = $sandbox;
 
