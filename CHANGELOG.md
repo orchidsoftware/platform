@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.16.0 - 2023-11-11
+
+### Added
+- Add `style` and css `class` methods for TD [#2729](https://github.com/orchidsoftware/platform/pull/2729)
+
+### Changed
+- Remove escaped title/description for screen [#2755](https://github.com/orchidsoftware/platform/issues/2755)
+- Changed type model class to interface [#2723](https://github.com/orchidsoftware/platform/issues/2723)
+
+### Fixed
+- Extract state when state is null [#2760](https://github.com/orchidsoftware/platform/pull/2760)
+- Missing types for `NumberRange` field [#2750](https://github.com/orchidsoftware/platform/pull/2750)
+
 ## 14.15.0 - 2023-10-22
 
 ### Changed
