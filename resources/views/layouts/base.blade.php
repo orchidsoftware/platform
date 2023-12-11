@@ -1,7 +1,7 @@
 @extends('platform::dashboard')
 
-@section('title', e(__($name)))
-@section('description', e(__($description)))
+@section('title', __($name))
+@section('description', __($description))
 @section('controller', 'base')
 
 @section('navbar')
