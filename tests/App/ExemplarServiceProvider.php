@@ -8,6 +8,7 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Dashboard;
 use Orchid\Tests\App\Fields\BaseSelectScreen;
+use Orchid\Tests\App\Fields\SelectFromEnumFieldScreen;
 use Orchid\Tests\App\Screens\AsyncHeaderButtonActionScreen;
 use Orchid\Tests\App\Screens\ConfirmScreen;
 use Orchid\Tests\App\Screens\DependentListenerModalScreen;
@@ -53,6 +54,7 @@ class ExemplarServiceProvider extends ServiceProvider
 
                 // Fields
                 $route->screen('fields/base-select-screen', BaseSelectScreen::class)->name('base-select-screen');
+                $route->screen('fields/select-from-enum-field-screen', SelectFromEnumFieldScreen::class)->name('select-from-enum-field-screen');
 
                 //issue 2517
                 $route->screen('item/{parentId}/addChild', ItemAddChildScreen::class)->name('item.addchild');
