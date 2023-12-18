@@ -42,7 +42,7 @@
                 </tr>
             @endforeach
 
-            @if($total->isNotEmpty())
+            @if($total->isNotEmpty() && $rows->isNotEmpty())
                 <tr>
                     @foreach($total as $column)
                         {!! $column->buildTd($repository, $loop) !!}

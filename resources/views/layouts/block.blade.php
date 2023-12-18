@@ -1,13 +1,17 @@
 <fieldset class="row g-0 mb-3">
+    @if(!empty($title) || !empty($description))
     <div class="col p-0 px-3">
         <legend class="text-black px-2 mt-2">
             {{ __($title ?? '') }}
 
+            @if(!empty($description))
             <p class="small text-muted mt-2 mb-0">
                 {!! __($description  ?? '') !!}
             </p>
+            @endif
         </legend>
     </div>
+    @endif
     <div class="col-12 {{!$vertical ? 'col-md-7' : ''}} shadow-sm h-100">
 
         <div class="bg-white d-flex flex-column layout-wrapper {{ empty($commandBar) ? 'rounded' : 'rounded-top' }}">
