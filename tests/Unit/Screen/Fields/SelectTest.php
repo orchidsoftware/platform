@@ -78,6 +78,21 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('value="second" selected', $view);
     }
 
+    public function testSetIndicesValue(): void
+    {
+        $select = Select::make('Indices')
+            ->value('1')
+            ->options([
+                '0' => 'First Value',
+                '1' => 'Second Value',
+                '2' => 'Third Value'
+            ]);
+
+        $view = self::minifyRenderField($select);
+
+        $this->assertStringContainsString('value="1" selected', $view);
+    }
+
     public function testAutoFocus(): void
     {
         $select = Select::make('about')
