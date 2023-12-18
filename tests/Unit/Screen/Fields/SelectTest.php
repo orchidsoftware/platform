@@ -85,7 +85,7 @@ class SelectTest extends TestFieldsUnitCase
             ->options([
                 '0' => 'First Value',
                 '1' => 'Second Value',
-                '2' => 'Third Value'
+                '2' => 'Third Value',
             ]);
 
         $view = self::minifyRenderField($select);
