@@ -17,7 +17,7 @@ export default class extends ApplicationController {
 
         const configsAttributes = {
             enableTime: 'enable-time',
-            time_24hr: 'time-24hr',
+            time_24hr: 'time_24hr',
             allowInput: 'allow-input',
             dateFormat: 'date-format',
             noCalendar: 'no-calendar',
