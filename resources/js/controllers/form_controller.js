@@ -51,10 +51,10 @@ export default class extends ApplicationController {
             return false;
         }
 
-        //if (this.isSubmit) {
-        //    event.preventDefault();
-        //    return false;
-        //}
+        if (this.isSubmit) {
+            event.preventDefault();
+            return false;
+        }
 
         const action = this.loadFormAction(event);
 
@@ -63,7 +63,7 @@ export default class extends ApplicationController {
             return false;
         }
 
-        //this.isSubmit = true;
+        this.isSubmit = true;
         this.animateButton(event);
 
         this.needPreventsFormAbandonmentValue = false;
