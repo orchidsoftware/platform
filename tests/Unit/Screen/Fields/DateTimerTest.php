@@ -68,7 +68,7 @@ class DateTimerTest extends TestFieldsUnitCase
         $this->assertStringContainsString('value="2021-02-01 03:45:27"', $view);
     }
 
-    public function testEnableTimeAndFormat24hr() 
+    public function testEnableTimeAndFormat24hr()
     {
         $field = DateTimer::make('date')
             ->format('Y-m-d H:i:s')
