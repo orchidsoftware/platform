@@ -45,7 +45,7 @@ class DateTimer extends Field
     protected $attributes = [
         'class'                                 => 'form-control',
         'data-datetime-enable-time'             => 'false',
-        'data-datetime-time-24hr'               => 'false',
+        'data-datetime-time_24hr'               => 'false',
         'data-datetime-allow-input'             => 'false',
         'data-datetime-date-format'             => 'Y-m-d H:i:S',
         'data-datetime-no-calendar'             => 'false',
@@ -86,7 +86,7 @@ class DateTimer extends Field
         'tabindex',
         'value',
         'data-datetime-enable-time',
-        'data-datetime-time-24hr',
+        'data-datetime-time_24hr',
         'data-datetime-allow-input',
         'data-datetime-date-format',
         'data-datetime-no-calendar',
@@ -116,7 +116,7 @@ class DateTimer extends Field
      */
     public function format24hr(bool $time = true): self
     {
-        $this->set('data-datetime-time-24hr', var_export($time, true));
+        $this->set('data-datetime-time_24hr', var_export($time, true));
 
         return $this;
     }
