@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.17.0 - 2023-12-20
+
+### Added
+- Option to customize display name for `Select` based on enums [#2776](https://github.com/orchidsoftware/platform/pull/2776)
+
+### Changed
+- Enforce non-null `@section` values to prevent dangling output buffers [#2764](https://github.com/orchidsoftware/platform/pull/2764)
+- `Block` dont output empty title and description [#2765](https://github.com/orchidsoftware/platform/pull/2765)
+- Not strict verification for the value in `Select` [#2769](https://github.com/orchidsoftware/platform/pull/2769)
+- Revert verification for the prevention of re-sending [#2773](https://github.com/orchidsoftware/platform/pull/2773)
+- Do not establish the sensitive properties of `fillable` by default
+
+### Fixed 
+- Hide total row when empty [#2770](https://github.com/orchidsoftware/platform/pull/2770)
+- Work method `format24hr()` for `DateTimer` [#2742](https://github.com/orchidsoftware/platform/issues/2742) [#2775](https://github.com/orchidsoftware/platform/pull/2775)
+- Empty space at the bottom on screens less than 1200px [#2757](https://github.com/orchidsoftware/platform/issues/2757)
+
 ## 14.16.0 - 2023-11-11
 
 ### Added
