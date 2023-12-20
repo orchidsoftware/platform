@@ -24,7 +24,6 @@ body {
 @include media-breakpoint-down(xl) {
 
     .aside-collapse {
-        min-height: calc(100vh - 4rem);
         visibility: hidden;
         opacity: 0;
         transition: all 1ms ease!important;
@@ -37,6 +36,7 @@ body {
 
     body.menu-open {
         .aside-collapse {
+            min-height: calc(100vh - 4rem);
             display: flex !important;
             visibility: visible;
             opacity: 1;
