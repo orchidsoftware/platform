@@ -29,13 +29,6 @@ abstract class Chart extends Layout
     protected $template = 'platform::layouts.chart';
 
     /**
-     * Add a title to the Chart.
-     *
-     * @var string
-     */
-    protected $name;
-
-    /**
      * @var string|null
      */
     protected $description;
