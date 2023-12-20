@@ -240,7 +240,7 @@ class TD extends Cell
      */
     protected function buildFilter(): ?Field
     {
-        /** @var \Orchid\Screen\Field $filter */
+        /** @var \Orchid\Screen\Field $filter|string */
         $filter = $this->filter;
 
         if ($filter === null) {
