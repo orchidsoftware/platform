@@ -169,7 +169,7 @@ class UserEditScreen extends Screen
 
         $user
             ->fill($request->collect('user')->except(['password', 'permissions', 'roles'])->toArray())
-            ->fill(['permissions' => $permissions])
+            ->forceFill(['permissions' => $permissions])
             ->save();
 
         $user->replaceRoles($request->input('user.roles'));
