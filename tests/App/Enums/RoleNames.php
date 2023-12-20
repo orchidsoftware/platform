@@ -11,7 +11,7 @@ enum RoleNames: string
     {
         return match ($this) {
             self::Admin => 'Administrator',
-            self::User => 'Regular user',
+            self::User  => 'Regular user',
         };
     }
 }

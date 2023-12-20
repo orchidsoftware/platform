@@ -90,7 +90,7 @@ class Select extends Field implements ComplexFieldConcern
     }
 
     /**
-     * @param string $enum
+     * @param string      $enum
      * @param string|null $displayName
      *
      * @throws \ReflectionException
