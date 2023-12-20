@@ -91,18 +91,19 @@ class Select extends Field implements ComplexFieldConcern
 
     /**
      * @param string $enum
+     * @param string|null $displayName
      *
      * @throws \ReflectionException
      *
      * @return self
      */
-    public function fromEnum(string $enum): self
+    public function fromEnum(string $enum, ?string $displayName = null): self
     {
         $reflection = new \ReflectionEnum($enum);
         $options = [];
         foreach ($enum::cases() as $item) {
             $key = $reflection->isBacked() ? $item->value : $item->name;
-            $options[$key] = __($item->name);
+            $options[$key] = is_null($displayName) ? __($item->name) : $item->$displayName();
         }
         $this->set('options', $options);
 
@@ -110,6 +111,7 @@ class Select extends Field implements ComplexFieldConcern
             $value = [];
             collect($this->get('value'))->each(static function ($item) use (&$value, $reflection, $enum) {
                 if ($item instanceof $enum) {
+                    /** @var \UnitEnum $item */
                     $value[] = $reflection->isBacked() ? $item->value : $item->name;
                 } else {
                     $value[] = $item;

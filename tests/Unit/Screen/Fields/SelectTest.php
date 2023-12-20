@@ -8,6 +8,7 @@ use Orchid\Platform\Models\Role;
 use Orchid\Screen\Fields\Select;
 use Orchid\Support\Color;
 use Orchid\Tests\App\EmptyUserModel;
+use Orchid\Tests\App\Enums\RoleNames;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 /**
@@ -231,6 +232,18 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('value="first" selected', $view);
         $this->assertStringContainsString('value="second" selected', $view);
         $this->assertStringNotContainsString('value="third" selected', $view);
+    }
+
+    public function testFromEnumWithDisplayName(): void
+    {
+        $select = Select::make('choice')
+            ->value(RoleNames::User)
+            ->fromEnum(RoleNames::class, 'label');
+
+        $view = self::minifyRenderField($select);
+
+        // <option value="user" selected>Regular user</option>
+        $this->assertStringContainsString('value="'.RoleNames::User->value.'" selected>'.RoleNames::User->label(), $view);
     }
 
     public function testMultipleFromEnum(): void
