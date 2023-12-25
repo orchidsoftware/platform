@@ -4,6 +4,8 @@ import {Modal} from "bootstrap";
 
 export default class extends ApplicationController {
 
+    fileType = 'image/png';
+
     /**
      * @type {string[]}
      */
@@ -59,6 +61,11 @@ export default class extends ApplicationController {
     upload(event) {
 
         let maxFileSize = this.data.get('max-file-size');
+        
+        if (this.data.get('keep-original-type')) {
+            this.fileType = event.target.files[0].type
+        }
+
         if (event.target.files[0].size / 1024 / 1024 > maxFileSize) {
             this.alert('Validation error', `The download file is too large. Max size: ${maxFileSize} MB`);
             event.target.value = null;
@@ -136,7 +143,7 @@ export default class extends ApplicationController {
                     this.alert('Validation error', 'File upload error');
                     console.warn(error);
                 });
-        });
+        }, this.fileType);
 
     }
 
