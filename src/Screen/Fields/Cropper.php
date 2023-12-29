@@ -32,6 +32,7 @@ namespace Orchid\Screen\Fields;
  * @method Cropper maxFileSize($value = true)
  * @method Cropper storage($value = null)
  * @method Cropper staticBackdrop($value = false)
+ * @method Cropper keepOriginalType($keep = true)
  */
 class Cropper extends Picture
 {
@@ -46,18 +47,19 @@ class Cropper extends Picture
      * @var array
      */
     protected $attributes = [
-        'value'          => null,
-        'target'         => 'url',
-        'url'            => null,
-        'width'          => null,
-        'height'         => null,
-        'minWidth'       => 0,
-        'minHeight'      => 0,
-        'maxWidth'       => 'Infinity',
-        'maxHeight'      => 'Infinity',
-        'maxFileSize'    => null,
-        'staticBackdrop' => false,
-        'acceptedFiles'  => 'image/*',
+        'value'            => null,
+        'target'           => 'url',
+        'url'              => null,
+        'width'            => null,
+        'height'           => null,
+        'minWidth'         => 0,
+        'minHeight'        => 0,
+        'maxWidth'         => 'Infinity',
+        'maxHeight'        => 'Infinity',
+        'maxFileSize'      => null,
+        'staticBackdrop'   => false,
+        'acceptedFiles'    => 'image/*',
+        'keepOriginalType' => false,
     ];
 
     /**
@@ -147,6 +149,13 @@ class Cropper extends Picture
     {
         $this->set('maxWidth', $size);
         $this->set('maxHeight', $size);
+
+        return $this;
+    }
+
+    public function keepOriginalType(bool $keep = true)
+    {
+        $this->set('keepOriginalType', $keep);
 
         return $this;
     }

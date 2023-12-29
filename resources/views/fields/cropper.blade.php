@@ -14,6 +14,7 @@
          data-cropper-max-file-size="{{ $maxFileSize }}"
          data-cropper-groups="{{ $attributes['groups'] }}"
          data-cropper-path="{{ $attributes['path'] ?? '' }}"
+         data-cropper-keep-original-type="{{ $keepOriginalType }}"
     >
         <div class="border-dashed text-end p-3 cropper-actions">
 

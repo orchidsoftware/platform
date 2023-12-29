@@ -59,4 +59,14 @@ class CropperTest extends TestFieldsUnitCase
         $this->assertStringContainsString(sprintf('data-cropper-path="%s"', $path), $view);
         $this->assertSame($upload->path, $path.'/');
     }
+
+    public function testKeepOriginalType(): void
+    {
+        $picture = Cropper::make('picture')
+            ->keepOriginalType();
+
+        $view = self::renderField($picture);
+
+        $this->assertStringContainsString('data-cropper-keep-original-type="1"', $view);
+    }
 }
