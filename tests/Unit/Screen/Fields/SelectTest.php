@@ -153,7 +153,7 @@ class SelectTest extends TestFieldsUnitCase
         ];
 
         $select = Select::make('choice')
-            ->value("2")
+            ->value('2')
             ->options($options);
 
         $view = self::minifyRenderField($select);
