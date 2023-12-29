@@ -127,6 +127,40 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString($option, $view);
     }
 
+    public function testSelectForNumericArray(): void
+    {
+        $options = [
+            1 => 'First Value',
+            2 => 'Second Value',
+            3 => 'Third Value',
+        ];
+
+        $select = Select::make('choice')
+            ->value(1)
+            ->options($options);
+
+        $view = self::minifyRenderField($select);
+
+        $this->assertStringContainsString('value="1" selected', $view);
+    }
+
+    public function testSelectForNumericArrayWhenStringValue(): void
+    {
+        $options = [
+            1 => 'First Value',
+            2 => 'Second Value',
+            3 => 'Third Value',
+        ];
+
+        $select = Select::make('choice')
+            ->value("2")
+            ->options($options);
+
+        $view = self::minifyRenderField($select);
+
+        $this->assertStringContainsString('value="2" selected', $view);
+    }
+
     public function testEmptyForNumericArray(): void
     {
         $options = [
