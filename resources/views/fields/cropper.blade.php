@@ -14,7 +14,8 @@
          data-cropper-max-file-size="{{ $maxFileSize }}"
          data-cropper-groups="{{ $attributes['groups'] }}"
          data-cropper-path="{{ $attributes['path'] ?? '' }}"
-         data-cropper-keep-original-type="{{ $keepOriginalType }}"
+         data-cropper-keep-original-type-value="{{ $keepOriginalType }}"
+         data-cropper-max-size-message-value="{{ __('The upload file is too large. Max size: {value} MB') }}"
     >
         <div class="border-dashed text-end p-3 cropper-actions">
 

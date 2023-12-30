@@ -67,6 +67,6 @@ class CropperTest extends TestFieldsUnitCase
 
         $view = self::renderField($picture);
 
-        $this->assertStringContainsString('data-cropper-keep-original-type="1"', $view);
+        $this->assertStringContainsString('data-cropper-keep-original-type-value="1"', $view);
     }
 }
