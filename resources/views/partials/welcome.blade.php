@@ -23,7 +23,7 @@
     <div class="row bg-light m-0 p-md-4 p-3 border-top rounded-bottom g-md-5">
 
         <div class="col-md-6 my-2">
-            <h3 class="text-muted fw-light lh-lg d-flex align-items-center ms-1">
+            <h3 class="text-muted fw-light lh-lg d-flex align-items-center">
                 <x-orchid-icon path="bs.book"/>
 
                 <span class="ms-3 text-dark">Explore the Documentation</span>
@@ -36,7 +36,7 @@
         </div>
 
         <div class="col-md-6 my-2">
-            <h3 class="text-muted fw-light lh-lg d-flex align-items-center ms-1">
+            <h3 class="text-muted fw-light lh-lg d-flex align-items-center">
                 <x-orchid-icon path="bs.rocket"/>
 
                 <span class="ms-3 text-dark">Quick Start Guide</span>
@@ -48,7 +48,7 @@
         </div>
 
         <div class="col-md-6 my-2">
-            <h3 class="text-muted fw-light lh-lg d-flex align-items-center ms-1">
+            <h3 class="text-muted fw-light lh-lg d-flex align-items-center">
                 <x-orchid-icon path="bs.collection"/>
 
                 <span class="ms-3 text-dark">The Screens</span>
@@ -61,7 +61,7 @@
         </div>
 
         <div class="col-md-6 my-2">
-            <h3 class="text-muted fw-light lh-lg d-flex align-items-center ms-1">
+            <h3 class="text-muted fw-light lh-lg d-flex align-items-center">
                 <x-orchid-icon path="bs.window-sidebar"/>
 
                 <span class="ms-3 text-dark">Layouts</span>
@@ -74,7 +74,7 @@
         </div>
 
         <div class="col-md-6 my-2">
-            <h3 class="text-muted fw-light lh-lg d-flex align-items-center ms-1">
+            <h3 class="text-muted fw-light lh-lg d-flex align-items-center">
                 <x-orchid-icon path="bs.star"/>
 
                 <span class="ms-3 text-dark">And one more thing</span>
@@ -88,7 +88,7 @@
         </div>
 
         <div class="col-md-6 my-2">
-            <h3 class="text-muted fw-light lh-lg d-flex align-items-center ms-1">
+            <h3 class="text-muted fw-light lh-lg d-flex align-items-center">
                 <x-orchid-icon path="bs.life-preserver"/>
 
                 <span class="ms-3 text-dark">Connect with the Community</span>
