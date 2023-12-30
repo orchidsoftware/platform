@@ -402,13 +402,18 @@ export default class extends ApplicationController {
         let loadMediaModal = Modal.getOrCreateInstance( dropname.querySelector(`.media.modal`));
         loadMediaModal.show();
 
+
+        let filter = {
+            disk: this.data.get('storage'),
+            original_name: this.searchTarget.value,
+            group: this.data.get('groups') || null,
+        };
+
+        Object.keys(filter).forEach((key) => (filter[key] === null) && delete filter[key]);
+
         axios
             .post(this.prefix(`/systems/media?page=${this.page}`), {
-                filter: {
-                    disk: this.data.get('storage'),
-                    original_name: this.searchTarget.value,
-                    group: this.data.get('groups'),
-                },
+                filter
             }, {
                 cancelToken: new CancelToken(function executor(c) {
                     self.cancelRequest = c;
