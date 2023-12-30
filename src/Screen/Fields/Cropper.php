@@ -60,7 +60,7 @@ class Cropper extends Picture
         'staticBackdrop'         => false,
         'acceptedFiles'          => 'image/*',
         'keepOriginalType'       => false,
-        'maxSizeValidateMessage' => "The upload file is too large. Max size: {value} MB",
+        'maxSizeValidateMessage' => 'The upload file is too large. Max size: {value} MB',
     ];
 
     /**
