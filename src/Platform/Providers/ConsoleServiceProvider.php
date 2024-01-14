@@ -60,6 +60,7 @@ class ConsoleServiceProvider extends ServiceProvider
             ->registerTranslationsPublisher()
             ->registerConfigPublisher()
             ->registerOrchidPublisher()
+            ->registerExamplesPublisher()
             ->registerViewsPublisher()
             ->registerAssetsPublisher()
             ->commands($this->commands);
@@ -129,9 +130,23 @@ class ConsoleServiceProvider extends ServiceProvider
     protected function registerOrchidPublisher(): self
     {
         $this->publishes([
-            Dashboard::path('stubs/app/routes/') => base_path('routes'),
             Dashboard::path('stubs/app/Orchid/') => app_path('Orchid'),
         ], 'orchid-app-stubs');
+
+        return $this;
+    }
+
+    /**
+     * Register examples.
+     *
+     * @return $this
+     */
+    protected function registerExamplesPublisher(): self
+    {
+        $this->publishes([
+            Dashboard::path('stubs/examples/Orchid/Layouts/') => app_path('Orchid/Layouts'),
+            Dashboard::path('stubs/examples/Orchid/Screens/') => app_path('Orchid/Screens'),
+        ], 'orchid-examples');
 
         return $this;
     }
