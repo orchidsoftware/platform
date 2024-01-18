@@ -34,7 +34,7 @@ if (!mix.inProduction()) {
 
 mix
     .sass('resources/sass/app.scss', 'css/orchid.css', {
-        implementation: require('node-sass'),
+        implementation: require('sass'),
     })
     .options({
         processCssUrls: false,

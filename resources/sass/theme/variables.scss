@@ -37,6 +37,7 @@ $font-size-lg:                $font-size-base * 1.25;
 $link-color: darken($text-color, 15%);
 $link-hover-color: darken($text-color, 30%);
 
+$dropdown-bg: $white;
 $dropdown-border-radius: 0.35rem;
 $border-radius-base: 0.2rem;
 $border-color: darken($light, 5%);
@@ -69,6 +70,7 @@ $nav-bg: lighten($light, 3%);
 $nav-bg-black: #313d4f;
 $badge-bg: darken($light, 10%);
 
+$list-group-bg: $white;
 $list-group-item-border: lighten($border-color, 3%);
 $list-group-item-hover: lighten($light, 3%);
 $list-group-item-focus: darken($light, 3%);
@@ -76,6 +78,7 @@ $list-group-select-color: #dbeef9;
 $list-group-active-color: $cyan;
 
 
+$table-bg: $white;
 $table-border-color: lighten($border-color, 2%);
 $table-group-separator-color: lighten($border-color, 2%);
 $table-striped-color: lighten($dark, 4.5%);
@@ -144,5 +147,6 @@ $breadcrumb-active-color: #495057;
 
 // modals
 
+$modal-content-bg: $white;
 $modal-backdrop-opacity: .75;
 $modal-content-border-width: 0;
