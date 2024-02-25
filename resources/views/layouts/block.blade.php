@@ -5,7 +5,7 @@
             {{ __($title ?? '') }}
 
             @if(!empty($description))
-            <p class="small text-muted mt-2 mb-0">
+            <p class="small text-muted mt-2 mb-0 text-balance">
                 {!! __($description  ?? '') !!}
             </p>
             @endif

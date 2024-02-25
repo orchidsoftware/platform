@@ -132,6 +132,8 @@ $border-radius-lg: 0.685rem;
 $border-radius-sm: .35rem;
 
 // Pagination
+$pagination-bg: $white;
+$pagination-disabled-bg: $white;
 $pagination-disabled-color: $text-muted;
 
 
@@ -150,3 +152,6 @@ $breadcrumb-active-color: #495057;
 $modal-content-bg: $white;
 $modal-backdrop-opacity: .75;
 $modal-content-border-width: 0;
+
+
+$popover-body-color: $white;

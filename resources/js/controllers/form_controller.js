@@ -194,6 +194,9 @@ export default class extends ApplicationController {
      * @param event
      */
     async confirmCancel(event) {
+        if (event.type === 'turbo:before-fetch-request') {
+            return;
+        }
 
         if (event.target?.activeElement?.type === 'submit') {
             return;
@@ -202,7 +205,7 @@ export default class extends ApplicationController {
         if (this.needPreventsFormAbandonmentValue === true && this.hasBeenChangedValue === true) {
             event.preventDefault();
 
-            if(event.type === 'beforeunload'){
+            if(event.type === 'beforeunload') {
                 event.returnValue = this.confirmCancelMessageValue; //Gecko + IE
                 return this.confirmCancelMessageValue; //Gecko + Webkit, Safari, Chrome etc.
             }

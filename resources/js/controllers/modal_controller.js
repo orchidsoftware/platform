@@ -44,7 +44,7 @@ export default class extends ApplicationController {
 
         if(backdrop !== null){
             backdrop.id = 'backdrop';
-            backdrop.dataset.turboPermanent = true;
+            backdrop.dataset.turboTemporary = true;
         }
     }
 

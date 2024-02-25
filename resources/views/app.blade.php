@@ -20,7 +20,10 @@
 
     @stack('head')
 
+    <meta name="view-transition" content="same-origin">
     <meta name="turbo-root" content="{{  Dashboard::prefix() }}">
+    <meta name="turbo-refresh-method" content="{{ config('platform.turbo.refresh-method', 'replace') }}">
+    <meta name="turbo-refresh-scroll" content="{{ config('platform.turbo.refresh-scroll', 'reset') }}">
     <meta name="dashboard-prefix" content="{{  Dashboard::prefix() }}">
 
     @if(!config('platform.turbo.cache', false))
