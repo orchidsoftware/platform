@@ -35,7 +35,7 @@ class Locale
      *
      * @return string
      */
-    public static function currentDir(string $locale = null): string
+    public static function currentDir(?string $locale = null): string
     {
         $locale = $locale ?? app()->getLocale();
 

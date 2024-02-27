@@ -5,6 +5,77 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.19.0 - 2024-02-26
+
+### Changed
+- Updated `@hotwired/turbo` package to version 8.x
+
+### Fixed
+- Color palette of pagination elements and popovers.
+
+## 14.18.1 - 2024-02-21
+
+### Fixed
+- Asynchronous\Pending modal windows do not send screen `_state`
+
+## 14.18.0 - 2024-01-18
+
+### Changed
+- Boostrap, node-sass versions and other dependencies
+
+### Fixed
+- Change the default value for metrics layout to be compatible with modals [#2787](https://github.com/orchidsoftware/platform/pull/2787)
+
+## 14.17.1 - 2023-12-30
+
+### Added
+- Option to preserve original attachment type when using cropper field [#2779](https://github.com/orchidsoftware/platform/pull/2779)
+- Added accordion arrow transformation animation
+
+### Changed 
+- Changed the definition of the selected value for `Select` [#2782](https://github.com/orchidsoftware/platform/issues/2782)
+- Remove margin for welcome screen
+- Change `Cropper` validation message
+
+## 14.17.0 - 2023-12-20
+
+### Added
+- Option to customize display name for `Select` based on enums [#2776](https://github.com/orchidsoftware/platform/pull/2776)
+
+### Changed
+- Enforce non-null `@section` values to prevent dangling output buffers [#2764](https://github.com/orchidsoftware/platform/pull/2764)
+- `Block` dont output empty title and description [#2765](https://github.com/orchidsoftware/platform/pull/2765)
+- Not strict verification for the value in `Select` [#2769](https://github.com/orchidsoftware/platform/pull/2769)
+- Revert verification for the prevention of re-sending [#2773](https://github.com/orchidsoftware/platform/pull/2773)
+- Do not establish the sensitive properties of `fillable` by default
+
+### Fixed 
+- Hide total row when empty [#2770](https://github.com/orchidsoftware/platform/pull/2770)
+- Work method `format24hr()` for `DateTimer` [#2742](https://github.com/orchidsoftware/platform/issues/2742) [#2775](https://github.com/orchidsoftware/platform/pull/2775)
+- Empty space at the bottom on screens less than 1200px [#2757](https://github.com/orchidsoftware/platform/issues/2757)
+
+## 14.16.0 - 2023-11-11
+
+### Added
+- Add `style` and css `class` methods for TD [#2729](https://github.com/orchidsoftware/platform/pull/2729)
+
+### Changed
+- Remove escaped title/description for screen [#2755](https://github.com/orchidsoftware/platform/issues/2755)
+- Changed type model class to interface [#2723](https://github.com/orchidsoftware/platform/issues/2723)
+
+### Fixed
+- Extract state when state is null [#2760](https://github.com/orchidsoftware/platform/pull/2760)
+- Missing types for `NumberRange` field [#2750](https://github.com/orchidsoftware/platform/pull/2750)
+
+## 14.15.0 - 2023-10-22
+
+### Changed
+- Corrected Polish translation [#2730](https://github.com/orchidsoftware/platform/pull/2730)
+- Enhanced Orchid service provider for packages
+- Enabled screen save state for backward navigation by default
+- Display `0` or `false` values for Labels
+
+
 ## 14.14.0 - 2023-09-22
 
 ### Changed

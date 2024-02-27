@@ -20,7 +20,7 @@ trait Attachable
      *
      * @return MorphToMany
      */
-    public function attachment(string $group = null): MorphToMany
+    public function attachment(?string $group = null): MorphToMany
     {
         $query = $this->morphToMany(
             Dashboard::model(Attachment::class),

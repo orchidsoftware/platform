@@ -32,7 +32,7 @@ trait Chartable
      * @param mixed|null $stopDate
      * @param string     $dateColumn
      */
-    private function groupByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = null): TimeCollection
+    private function groupByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
     {
         $dateColumn = $dateColumn ?? $builder->getModel()->getCreatedAtColumn();
 
@@ -77,7 +77,7 @@ trait Chartable
      * @param string|DateTimeInterface|null $stopDate
      * @param string                        $dateColumn
      */
-    public function scopeCountByDays(Builder $builder, $startDate = null, $stopDate = null, string $dateColumn = null): TimeCollection
+    public function scopeCountByDays(Builder $builder, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
     {
         return $this->groupByDays($builder, 'count(*)', $startDate, $stopDate, $dateColumn);
     }
@@ -88,7 +88,7 @@ trait Chartable
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
      */
-    public function scopeAverageByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = null): TimeCollection
+    public function scopeAverageByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
     {
         return $this->groupByDays($builder, "avg($value)", $startDate, $stopDate, $dateColumn);
     }
@@ -99,7 +99,7 @@ trait Chartable
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
      */
-    public function scopeSumByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = null): TimeCollection
+    public function scopeSumByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
     {
         return $this->groupByDays($builder, "sum($value)", $startDate, $stopDate, $dateColumn);
     }
@@ -110,7 +110,7 @@ trait Chartable
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
      */
-    public function scopeMaxByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = null): TimeCollection
+    public function scopeMaxByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
     {
         return $this->groupByDays($builder, "max($value)", $startDate, $stopDate, $dateColumn);
     }
@@ -121,7 +121,7 @@ trait Chartable
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
      */
-    public function scopeMinByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = null): TimeCollection
+    public function scopeMinByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
     {
         return $this->groupByDays($builder, "min($value)", $startDate, $stopDate, $dateColumn);
     }

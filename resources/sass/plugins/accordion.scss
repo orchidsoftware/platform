@@ -3,15 +3,13 @@
         text-decoration: none;
     }
 
-    /* Todo:: icons
-    .icon-accordion {
-        @extend .icon-arrow-down;
+    svg {
+       transition: all 340ms;
     }
 
-    &.collapsed {
-        .icon-accordion {
-            @extend .icon-arrow-right;
+    &:not(.collapsed) {
+        svg {
+            transform: rotate(90deg);
         }
     }
-     */
 }

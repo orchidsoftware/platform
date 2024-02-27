@@ -1,4 +1,6 @@
 .table {
+    @extend .rounded;
+    overflow: hidden;
   thead {
     tr {
       th {

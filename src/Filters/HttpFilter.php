@@ -51,7 +51,7 @@ class HttpFilter
      *
      * @param Request|null $request The request object to use. If null, use the default request object.
      */
-    public function __construct(Request $request = null)
+    public function __construct(?Request $request = null)
     {
         $this->request = $request ?? request();
 
@@ -147,7 +147,7 @@ class HttpFilter
         return $this;
     }
 
-    public function isSort(string $property = null): bool
+    public function isSort(?string $property = null): bool
     {
         if ($property === null) {
             return $this->sorts->isEmpty();

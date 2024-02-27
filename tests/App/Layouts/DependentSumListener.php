@@ -28,7 +28,7 @@ class DependentSumListener extends Listener
      *
      * @return void
      */
-    public function __construct(string $slug = null)
+    public function __construct(?string $slug = null)
     {
         $this->slug = $slug ?? static::class;
     }

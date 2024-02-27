@@ -32,6 +32,7 @@ namespace Orchid\Screen\Fields;
  * @method Cropper maxFileSize($value = true)
  * @method Cropper storage($value = null)
  * @method Cropper staticBackdrop($value = false)
+ * @method Cropper maxSizeValidateMessage($value = true)
  */
 class Cropper extends Picture
 {
@@ -46,18 +47,20 @@ class Cropper extends Picture
      * @var array
      */
     protected $attributes = [
-        'value'          => null,
-        'target'         => 'url',
-        'url'            => null,
-        'width'          => null,
-        'height'         => null,
-        'minWidth'       => 0,
-        'minHeight'      => 0,
-        'maxWidth'       => 'Infinity',
-        'maxHeight'      => 'Infinity',
-        'maxFileSize'    => null,
-        'staticBackdrop' => false,
-        'acceptedFiles'  => 'image/*',
+        'value'                  => null,
+        'target'                 => 'url',
+        'url'                    => null,
+        'width'                  => null,
+        'height'                 => null,
+        'minWidth'               => 0,
+        'minHeight'              => 0,
+        'maxWidth'               => 'Infinity',
+        'maxHeight'              => 'Infinity',
+        'maxFileSize'            => null,
+        'staticBackdrop'         => false,
+        'acceptedFiles'          => 'image/*',
+        'keepOriginalType'       => false,
+        'maxSizeValidateMessage' => 'The upload file is too large. Max size: {value} MB',
     ];
 
     /**
@@ -147,6 +150,18 @@ class Cropper extends Picture
     {
         $this->set('maxWidth', $size);
         $this->set('maxHeight', $size);
+
+        return $this;
+    }
+
+    /**
+     * Set whether to keep the original image type.
+     *
+     * @param bool $keep Whether to keep the original image type.
+     */
+    public function keepOriginalType(bool $keep = true): self
+    {
+        $this->set('keepOriginalType', $keep);
 
         return $this;
     }

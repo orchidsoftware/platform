@@ -104,7 +104,7 @@ class Attachment extends Model
     /**
      * Return the address by which you can access the file.
      */
-    public function url(string $default = null): ?string
+    public function url(?string $default = null): ?string
     {
         /** @var Filesystem|Cloud $disk */
         $disk = Storage::disk($this->getAttribute('disk'));

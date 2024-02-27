@@ -38,7 +38,7 @@ trait Filterable
     /**
      * @param iterable|string|Selection $kit
      */
-    public function scopeFilters(Builder $builder, mixed $kit = null, HttpFilter $httpFilter = null): Builder
+    public function scopeFilters(Builder $builder, mixed $kit = null, ?HttpFilter $httpFilter = null): Builder
     {
         $filter = $httpFilter ?? new HttpFilter();
         $filter->build($builder);

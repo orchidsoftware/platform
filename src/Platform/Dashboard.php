@@ -21,7 +21,7 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    public const VERSION = '14.14.0';
+    public const VERSION = '14.19.0';
 
     /**
      * @deprecated
@@ -145,7 +145,7 @@ class Dashboard
     /**
      * @return mixed
      */
-    public static function modelClass(string $key, string $default = null)
+    public static function modelClass(string $key, ?string $default = null)
     {
         $model = static::model($key, $default);
 
@@ -155,7 +155,7 @@ class Dashboard
     /**
      * Get the class name for a given Dashboard model.
      */
-    public static function model(string $key, string $default = null): string
+    public static function model(string $key, ?string $default = null): string
     {
         return Arr::get(static::$options, 'models.'.$key, $default ?? $key);
     }

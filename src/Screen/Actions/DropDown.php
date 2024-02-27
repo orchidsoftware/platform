@@ -48,7 +48,7 @@ class DropDown extends Action
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function build(Repository $repository = null)
+    public function build(?Repository $repository = null)
     {
         $this->set('source', $repository);
 

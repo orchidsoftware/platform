@@ -14,7 +14,7 @@ class ModelRouteBindScreen extends Screen
      *
      * @param \Orchid\Platform\Models\User $user
      */
-    public function query(User $user = null): array
+    public function query(?User $user = null): array
     {
         return [
             'user' => $user,

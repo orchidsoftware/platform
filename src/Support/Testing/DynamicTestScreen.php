@@ -49,7 +49,7 @@ class DynamicTestScreen
      *
      * @param string|null $name Route name
      */
-    public function __construct(string $name = null)
+    public function __construct(?string $name = null)
     {
         $this->http = app(MakesHttpRequestsWrapper::class);
         $this->name = $name ?? Str::uuid()->toString();
@@ -62,7 +62,7 @@ class DynamicTestScreen
      * @param string|null  $route      Route name
      * @param array|string $middleware Middleware to be used
      */
-    public function register(string $screen, string $route = null, $middleware = 'web'): DynamicTestScreen
+    public function register(string $screen, ?string $route = null, $middleware = 'web'): DynamicTestScreen
     {
         Route::screen('/_test/'.($route ?? $this->name), $screen)
             ->middleware($middleware)
@@ -155,7 +155,7 @@ class DynamicTestScreen
     /**
      * Get the route URL
      */
-    protected function route(array $parameters = null): string
+    protected function route(?array $parameters = null): string
     {
         return route($this->name, $parameters ?? $this->parameters);
     }

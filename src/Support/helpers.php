@@ -10,7 +10,7 @@ if (! function_exists('alert')) {
     /**
      * Helper function to send an alert.
      */
-    function alert(string $message = null, Color $color = Color::INFO): Alert
+    function alert(?string $message = null, Color $color = Color::INFO): Alert
     {
         $notifier = app(Alert::class);
 

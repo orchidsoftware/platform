@@ -139,7 +139,7 @@ class Menu extends Link
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function build(Repository $repository = null)
+    public function build(?Repository $repository = null)
     {
         $this->set('source', $repository);
 
@@ -197,7 +197,7 @@ class Menu extends Link
     /**
      * @return $this
      */
-    public function title(string $title = null): self
+    public function title(?string $title = null): self
     {
         return $this->set('title', $title);
     }

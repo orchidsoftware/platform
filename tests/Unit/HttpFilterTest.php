@@ -260,7 +260,7 @@ class HttpFilterTest extends TestUnitCase
         HttpFilter::sanitize('email->"%27))%23injectedSQL');
     }
 
-    private function getModelBuilder(HttpFilter $filter = null): Builder
+    private function getModelBuilder(?HttpFilter $filter = null): Builder
     {
         $model = new class extends Model
         {

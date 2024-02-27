@@ -13,7 +13,7 @@ interface Searchable
      */
     public function perSearchShow(): int;
 
-    public function searchQuery(string $query = null): Builder;
+    public function searchQuery(?string $query = null): Builder;
 
     public function label(): string;
 

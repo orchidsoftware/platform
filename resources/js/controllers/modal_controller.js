@@ -44,7 +44,7 @@ export default class extends ApplicationController {
 
         if(backdrop !== null){
             backdrop.id = 'backdrop';
-            backdrop.dataset.turboPermanent = true;
+            backdrop.dataset.turboTemporary = true;
         }
     }
 
@@ -108,7 +108,9 @@ export default class extends ApplicationController {
 
         let query = new URLSearchParams(params).toString()
 
-        this.loadStream(`${this.data.get('async-route')}?${query}`)
+        this.loadStream(`${this.data.get('async-route')}?${query}`, {
+            '_state': document.getElementById('screen-state')?.value || null
+        })
             .then(() => this.element.classList.remove('modal-loading'));
     }
 

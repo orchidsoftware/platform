@@ -92,7 +92,7 @@ class Generator implements Engine
      *
      * @return Generator
      */
-    public function setPath(string $path = null)
+    public function setPath(?string $path = null)
     {
         $this->path = $path;
 

@@ -4,6 +4,21 @@ import {Modal} from "bootstrap";
 
 export default class extends ApplicationController {
 
+    static values = {
+        maxSizeMessage: {
+            type: String,
+            default: "The download file is too large. Max size: {value} MB"
+        },
+        type: {
+            type: String,
+            default: 'image/png'
+        },
+        keepOriginalType: {
+            type: Boolean,
+            default: false
+        }
+    }
+
     /**
      * @type {string[]}
      */
@@ -59,8 +74,13 @@ export default class extends ApplicationController {
     upload(event) {
 
         let maxFileSize = this.data.get('max-file-size');
+
+        if (this.keepOriginalTypeValue) {
+            this.typeValue = event.target.files[0].type
+        }
+
         if (event.target.files[0].size / 1024 / 1024 > maxFileSize) {
-            this.alert('Validation error', `The download file is too large. Max size: ${maxFileSize} MB`);
+            this.toast(this.maxSizeMessageValue.replace(/{value}/, maxFileSize))
             event.target.value = null;
             return;
         }
@@ -136,7 +156,7 @@ export default class extends ApplicationController {
                     this.alert('Validation error', 'File upload error');
                     console.warn(error);
                 });
-        });
+        }, this.typeValue);
 
     }
 

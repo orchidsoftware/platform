@@ -52,7 +52,7 @@
         "orchestra/testbench-dusk": "^8.0",
         "phpunit/php-code-coverage": "^10.0",
         "phpunit/phpunit": "^10.0",
-        "vimeo/psalm": "^4.3 || ^5.0"
+        "vimeo/psalm": "^5.0"
     },
     "conflict": {
         "laravel/framework": "<10.2.0",

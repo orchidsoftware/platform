@@ -29,13 +29,6 @@ abstract class Chart extends Layout
     protected $template = 'platform::layouts.chart';
 
     /**
-     * Add a title to the Chart.
-     *
-     * @var string
-     */
-    protected $name;
-
-    /**
      * @var string|null
      */
     protected $description;
@@ -160,7 +153,7 @@ abstract class Chart extends Layout
      *
      * @return static
      */
-    public static function make(string $target, string $title = null): self
+    public static function make(string $target, ?string $title = null): self
     {
         return (new static)->target($target)->title($title);
     }
@@ -180,7 +173,7 @@ abstract class Chart extends Layout
      *
      * @return $this
      */
-    public function title(string $title = null): static
+    public function title(?string $title = null): static
     {
         $this->title = $title;
 
