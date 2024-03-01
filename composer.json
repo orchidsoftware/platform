@@ -39,9 +39,9 @@
         "ext-json": "*",
         "orchid/blade-icons": "^4.0",
         "tabuna/breadcrumbs": "^4.0",
-        "laravel/framework": "^10.0",
+        "laravel/framework": "^10.0 || ^11.0",
         "laravel/scout": "^9.0 || ^10.0",
-        "watson/active": "^7.0",
+        "watson/active": "^7.0 || dev-master",
         "twbs/bootstrap-icons": "^1.10"
     },
     "require-dev": {
@@ -50,7 +50,7 @@
         "laravel/pint": "^1.2",
         "orchestra/testbench-core": "^8.0",
         "orchestra/testbench-dusk": "^8.0",
-        "phpunit/php-code-coverage": "^10.0",
+        "phpunit/php-code-coverage": "^10.0 || ^11.0",
         "phpunit/phpunit": "^10.0",
         "vimeo/psalm": "^5.0"
     },
