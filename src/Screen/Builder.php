@@ -138,6 +138,10 @@ class Builder
     {
         $name = $attributes['name'];
 
+        if (!is_string($name) || empty($name)) {
+            return $attributes;
+        }
+
         $bindValueName = rtrim($name, '.');
         $attributes['value'] = $this->getValue($bindValueName, $attributes['value'] ?? null);
 
