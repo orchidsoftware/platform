@@ -18,7 +18,7 @@ use Orchid\Screen\Screen;
  * @method static string      version()
  * @method static string      prefix(string $path = '')
  * @method        static      configure(array $options)
- * @method        static      option(string $key, $default = null)
+ * @method        static      option(string $key, ?string $default = null)
  * @method        static      modelClass(string $key, string $default = null)
  * @method        static      model(string $key, string $default = null)
  * @method        static      useModel(string $key, string $custom)
