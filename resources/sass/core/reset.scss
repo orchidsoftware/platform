@@ -1,13 +1,9 @@
 // reset
-html {
-  background-color: $body-bg;
-}
 
 body {
   font-family: $font-family-base;
   font-size: $font-size-base;
   color: $text-color;
-  background-color: transparent;
   font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
