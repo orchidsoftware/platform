@@ -6,6 +6,7 @@ use App\Orchid\Layouts\Examples\ExampleElements;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Fields\CheckBox;
+use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Label;
 use Orchid\Screen\Fields\Password;
@@ -26,9 +27,7 @@ class ExampleFieldsScreen extends Screen
      */
     public function query(): iterable
     {
-        return [
-            'name' => 'Hello! We collected all the fields in one place',
-        ];
+        return [];
     }
 
     /**
@@ -68,109 +67,132 @@ class ExampleFieldsScreen extends Screen
 
             ExampleElements::class,
             Layout::rows([
-                Input::make('test')
-                    ->title('Text')
-                    ->value('Artisanal kale')
-                    ->help('Basic single-line text fields.')
-                    ->horizontal(),
+                Group::make([
+                    Input::make('name')
+                        ->title('Name')
+                        ->value('John Doe')
+                        ->placeholder('Enter your name')
+                        ->help('Enter your full name.')
+                        ->horizontal(),
 
-                Input::make('search')
-                    ->type('search')
-                    ->title('Search')
-                    ->value('How do I shoot web')
-                    ->help('Text fields designed for the user to enter search queries into.')
-                    ->horizontal(),
+                    Input::make('search_query')
+                        ->type('search')
+                        ->title('Search Query')
+                        ->value('How do I shoot web')
+                        ->placeholder('Search...')
+                        ->help('Enter your search query.')
+                        ->horizontal(),
+                ]),
 
-                Input::make('email')
-                    ->type('email')
-                    ->title('Email')
-                    ->value('bootstrap@example.com')
-                    ->help('Used to let the user enter and edit an e-mail address')
-                    ->horizontal(),
+                Group::make([
+                    Input::make('email')
+                        ->type('email')
+                        ->title('Email')
+                        ->value('bootstrap@example.com')
+                        ->placeholder('example@example.com')
+                        ->help('Enter your email address.')
+                        ->horizontal(),
 
-                Input::make('url')
-                    ->type('url')
-                    ->title('Url')
-                    ->value('https://getbootstrap.com')
-                    ->horizontal()
-                    ->help('You might use this when asking to input their website address for a business directory'),
+                    Input::make('website')
+                        ->type('url')
+                        ->title('Website')
+                        ->value('https://orchid.software')
+                        ->placeholder('https://example.com')
+                        ->help('Enter your website URL.')
+                        ->horizontal(),
+                ]),
 
-                Input::make('tel')
-                    ->type('tel')
-                    ->title('Telephone')
-                    ->value('1-(555)-555-5555')
-                    ->horizontal()
-                    ->popover('The device’s autocomplete mechanisms kick in and suggest
+                Group::make([
+                    Input::make('phone')
+                        ->type('tel')
+                        ->title('Phone')
+                        ->value('1-(555)-555-5555')
+                        ->placeholder('Enter phone number')
+                        ->horizontal()
+                        ->popover('The device’s autocomplete mechanisms kick in and suggest
                         phone numbers that can be autofilled with a single tap.')
-                    ->help('Focusing input on a telephone field brings up
-                        a numeric keypad ready for keying in a number.'),
+                        ->help('Enter your phone number.'),
 
-                Input::make('password')
-                    ->type('password')
-                    ->title('Password')
-                    ->value('Password')
-                    ->horizontal(),
+                    Input::make('password')
+                        ->type('password')
+                        ->title('Password')
+                        ->value('Password')
+                        ->placeholder('Enter password')
+                        ->horizontal(),
+                ]),
 
-                Input::make('number')
-                    ->type('number')
-                    ->title('Number')
-                    ->value(42)
-                    ->horizontal(),
+                Group::make([
+                    Input::make('quantity')
+                        ->type('number')
+                        ->title('Quantity')
+                        ->value(42)
+                        ->placeholder('Enter quantity')
+                        ->horizontal(),
 
-                Input::make('date_and_time')
-                    ->type('datetime-local')
-                    ->title('Date and time')
-                    ->value('2011-08-19T13:45:00')
-                    ->horizontal(),
+                    Input::make('appointment_datetime')
+                        ->type('datetime-local')
+                        ->title('Appointment Date and Time')
+                        ->value('2011-08-19T13:45:00')
+                        ->placeholder('YYYY-MM-DDTHH:MM')
+                        ->horizontal(),
+                ]),
 
-                Input::make('date')
-                    ->type('date')
-                    ->title('Date')
-                    ->value('2011-08-19')
-                    ->horizontal(),
+                Group::make([
+                    Input::make('event_date')
+                        ->type('date')
+                        ->title('Event Date')
+                        ->value('2011-08-19')
+                        ->placeholder('YYYY-MM-DD')
+                        ->horizontal(),
 
-                Input::make('month')
-                    ->type('month')
-                    ->title('Month')
-                    ->value('2011-08')
-                    ->horizontal(),
+                    Input::make('event_month')
+                        ->type('month')
+                        ->title('Event Month')
+                        ->value('2011-08')
+                        ->placeholder('YYYY-MM')
+                        ->horizontal(),
+                ]),
 
-                Input::make('week')
-                    ->type('week')
-                    ->title('Week')
-                    ->value('2011-W33')
-                    ->horizontal(),
+                Group::make([
+                    Input::make('week_number')
+                        ->type('week')
+                        ->title('Week Number')
+                        ->value('2011-W33')
+                        ->placeholder('YYYY-W##')
+                        ->horizontal(),
 
-                Input::make('Time')
-                    ->type('time')
-                    ->title('Time')
-                    ->value('13:45:00')
-                    ->horizontal(),
+                    Input::make('event_time')
+                        ->type('time')
+                        ->title('Event Time')
+                        ->value('13:45:00')
+                        ->placeholder('HH:MM:SS')
+                        ->horizontal(),
+                ]),
 
-                Input::make('datalist')
-                    ->title('Datalist example')
-                    ->help('Most browsers include some support for "datalist"
-                                 elements, their styling is inconsistent at best.')
-                    ->datalist([
-                        'San Francisco',
-                        'New York',
-                        'Seattle',
-                        'Los Angeles',
-                        'Chicago',
-                    ])
-                    ->horizontal(),
+                Group::make([
+                    Input::make('city')
+                        ->title('City')
+                        ->help('Select a city from the list.')
+                        ->datalist([
+                            'San Francisco',
+                            'New York',
+                            'Seattle',
+                            'Los Angeles',
+                            'Chicago',
+                        ])
+                        ->horizontal(),
 
-                Input::make('color')
-                    ->type('color')
-                    ->title('Color')
-                    ->value('#563d7c')
-                    ->horizontal(),
+                    Input::make('color_picker')
+                        ->type('color')
+                        ->title('Color Picker')
+                        ->value('#563d7c')
+                        ->horizontal(),
+                ]),
 
                 Button::make('Submit')
                     ->method('buttonClickProcessing')
                     ->type(Color::BASIC),
-
-            ]), //->title('Textual HTML5 Inputs'),
+            ]),
 
             Layout::columns([
                 Layout::rows([
