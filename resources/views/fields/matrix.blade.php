@@ -1,5 +1,5 @@
 @component($typeForm, get_defined_vars())
-    <table class="matrix table table-bordered border-right-0"
+    <table class="matrix table table-bordered border-right-0 overflow-y-auto"
            data-controller="matrix"
            data-matrix-index="{{ $index }}"
            data-matrix-rows="{{ $maxRows }}"
