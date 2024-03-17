@@ -35,6 +35,8 @@ export default class extends ApplicationController {
             disable: 'disable',
             maxDate: 'max-date',
             minDate: 'min-date',
+            mode: "mode",
+            defaultDate: "default-date",
         };
 
         const config = {
@@ -61,6 +63,15 @@ export default class extends ApplicationController {
         });
 
         this.fp = flatpickr(this.element.querySelector('input'), config);
+    }
+
+    /**
+     *
+     * @param event
+     */
+    setValue(event) {
+        const value = event.target.dataset.value;
+        this.fp.setDate(value, true);
     }
 
     /**
