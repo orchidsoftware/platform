@@ -388,10 +388,10 @@ class DateTimer extends Field
         return $this;
     }
 
-    public function multiple():self
+    public function multiple(): self
     {
         $this->set('data-datetime-mode', 'multiple')
-            ->addBeforeRender(function (){
+            ->addBeforeRender(function () {
                 $this->set('data-datetime-default-date', json_encode($this->attributes['value']));
                 $this->attributes['value'] = null;
             });
@@ -406,7 +406,7 @@ class DateTimer extends Field
      *
      * @return $this
      */
-    public function withQuickDates(array $presets):self
+    public function withQuickDates(array $presets): self
     {
         $formattedPresets = collect($presets)
             ->map(fn ($value) => Carbon::parse($value))

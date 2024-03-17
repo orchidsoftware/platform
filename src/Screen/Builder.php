@@ -138,7 +138,7 @@ class Builder
     {
         $name = $attributes['name'];
 
-        if (!is_string($name) || empty($name)) {
+        if (! is_string($name) || empty($name)) {
             return $attributes;
         }
 
