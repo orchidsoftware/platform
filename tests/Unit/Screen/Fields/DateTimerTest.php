@@ -88,11 +88,11 @@ class DateTimerTest extends TestFieldsUnitCase
             ->format24hr()
             ->range()
             ->withQuickDates([
-                'Today'     => Carbon::parse("2024-03-19 12:11:11"),
-                'Yesterday' => Carbon::parse("2024-03-18 12:11:11")->subDay(),
+                'Today'     => Carbon::parse('2024-03-19 12:11:11'),
+                'Yesterday' => Carbon::parse('2024-03-18 12:11:11')->subDay(),
                 'Week'      => [
-                    Carbon::parse("2024-03-19 12:11:11")->startOfDay()->subWeek(),
-                    Carbon::parse("2024-03-19 12:11:11")->endOfDay()
+                    Carbon::parse('2024-03-19 12:11:11')->startOfDay()->subWeek(),
+                    Carbon::parse('2024-03-19 12:11:11')->endOfDay(),
                 ],
             ]);
 
