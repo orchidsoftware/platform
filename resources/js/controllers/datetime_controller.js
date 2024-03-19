@@ -70,7 +70,7 @@ export default class extends ApplicationController {
      * @param event
      */
     setValue(event) {
-        const value = event.target.dataset.value;
+        const value = JSON.parse(event.target.dataset.value);
         this.fp.setDate(value, true);
     }
 

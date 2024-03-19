@@ -409,8 +409,9 @@ class DateTimer extends Field
     public function withQuickDates(array $presets): self
     {
         $formattedPresets = collect($presets)
-            ->map(fn ($value) => Carbon::parse($value))
-            ->map(fn (Carbon $value) => $value->format($this->attributes['data-datetime-date-format']))
+            ->map(fn ($value) => collect($value))
+            ->map
+            ->map(fn ($value) => Carbon::parse($value)->format($this->attributes['data-datetime-date-format']))
             ->all();
 
         $this->attributes['quickDates'] = $formattedPresets;
