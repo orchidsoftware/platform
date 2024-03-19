@@ -66,7 +66,7 @@ jobs:
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       - name: Make SQLite database
-        run: vendor/orchestra/testbench-dusk/create-sqlite-db
+        run: vendor/bin/testbench-dusk workbench:create-sqlite-db
 
       - name: Update Dusk Chromedriver
         run: vendor/bin/dusk-updater detect --auto-update
