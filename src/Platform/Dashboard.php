@@ -21,7 +21,7 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    public const VERSION = '14.19.0';
+    public const VERSION = '14.20.0';
 
     /**
      * @deprecated
