@@ -39,7 +39,7 @@
         "ext-json": "*",
         "orchid/blade-icons": "^4.0",
         "tabuna/breadcrumbs": "^4.0",
-        "laravel/framework": "^10.0",
+        "laravel/framework": "^10.0||^11.0",
         "laravel/scout": "^9.0 || ^10.0",
         "watson/active": "^7.0",
         "twbs/bootstrap-icons": "^1.10"
@@ -47,11 +47,11 @@
     "require-dev": {
         "doctrine/dbal": "^2.10 || ^3.0",
         "fakerphp/faker": "^1.9.1",
-        "laravel/pint": "^1.2",
-        "orchestra/testbench-core": "^8.0",
-        "orchestra/testbench-dusk": "^8.0",
+        "laravel/pint": "^1.14",
+        "orchestra/testbench-core": "^8.0|^9.0",
+        "orchestra/testbench-dusk": "^8.0|^9.0",
         "phpunit/php-code-coverage": "^10.0",
-        "phpunit/phpunit": "^10.0",
+        "phpunit/phpunit": "^10.0|^11.0",
         "vimeo/psalm": "^5.0"
     },
     "conflict": {
