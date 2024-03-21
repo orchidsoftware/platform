@@ -31,6 +31,10 @@ export default class extends ApplicationController {
                 no_results: () => `<div class="no-results">${this.data.get('message-notfound')}</div>`,
             },
             onDelete: () => !! this.data.get('allow-empty'),
+            onItemAdd: function() {
+                this.setTextboxValue('');
+                this.refreshOptions(false);
+            }
         });
     }
 
