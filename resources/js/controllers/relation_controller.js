@@ -37,6 +37,10 @@ export default class extends ApplicationController {
             },
             onDelete: () => !! this.data.get('allow-empty'),
             load: (query, callback) => this.search(query, callback),
+            onItemAdd: function() {
+                this.setTextboxValue('');
+                this.refreshOptions(false);
+            }
         });
     }
 
