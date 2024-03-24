@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 14.21.1 - 2024-03-25
 
 ### Fixed
-- Zero value filtering in parameters for `Button` [#2818](https://github.com/orchidsoftware/platform/issues/2818#event-12227236876)
+- Zero value filtering in parameters for `Button` [#2818](https://github.com/orchidsoftware/platform/issues/2818)
+- Clear input after select item in relation or select fields [#2815](https://github.com/orchidsoftware/platform/pull/2815) [#2797](https://github.com/orchidsoftware/platform/pull/2797)
 
 ## 14.21.0 - 2024-03-19
 
