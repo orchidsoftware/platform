@@ -117,7 +117,7 @@ class Button extends Action
     public function parameters(array|object $parameters): self
     {
         $parameters = is_array($parameters)
-            ? collect($parameters)->filter()->all()
+            ? collect($parameters)->filter(fn($value) => filled($value))->all()
             : $parameters;
 
         return $this->set('parameters', $parameters);

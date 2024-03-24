@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.21.1 - 2024-03-25
+
+### Fixed
+- Zero value filtering in parameters for `Button` [#2818](https://github.com/orchidsoftware/platform/issues/2818#event-12227236876)
+
 ## 14.21.0 - 2024-03-19
 
 ### Added
