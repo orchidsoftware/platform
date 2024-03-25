@@ -16,6 +16,7 @@ class Currency extends Component
      * @param string|null $thousands_separator
      * @param string|null $before
      * @param string|null $after
+     * @param string|null $empty string value if empty
      */
     public function __construct(
         protected float $value,
@@ -24,6 +25,7 @@ class Currency extends Component
         protected ?string $thousands_separator = ',',
         protected ?string $before = '',
         protected ?string $after = '',
+        protected ?string $empty = '',
     ) {
     }
 
@@ -34,7 +36,12 @@ class Currency extends Component
      */
     public function render()
     {
-        $value = number_format($this->value, $this->decimals, $this->decimal_separator, $this->thousands_separator);
+        if(empty($this->value)) {
+            $value = $this->empty;
+        }
+        else {
+            $value = number_format($this->value, $this->decimals, $this->decimal_separator, $this->thousands_separator);
+        }
 
         return Str::of($value)
             ->prepend($this->before.' ')
