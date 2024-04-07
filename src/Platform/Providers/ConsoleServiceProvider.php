@@ -18,7 +18,7 @@ use Orchid\Platform\Commands\ScreenCommand;
 use Orchid\Platform\Commands\SelectionCommand;
 use Orchid\Platform\Commands\TableCommand;
 use Orchid\Platform\Commands\TabMenuCommand;
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 
 class ConsoleServiceProvider extends ServiceProvider
 {
@@ -44,11 +44,11 @@ class ConsoleServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        AboutCommand::add('Orchid Platform', fn () => [
-            'Version'       => Dashboard::version(),
-            'Domain'        => config('platform.domain'),
-            'Prefix'        => config('platform.prefix'),
-            'Assets Status' => Dashboard::assetsAreCurrent() ? '<fg=green;options=bold>CURRENT</>' : '<fg=yellow;options=bold>OUTDATED</>',
+        AboutCommand::add('Orchid', fn () => [
+            'Version'       => Orchid::version(),
+            'Domain'        => config('orchid.domain'),
+            'Prefix'        => config('orchid.prefix'),
+            'Assets Status' => Orchid::assetsAreCurrent() ? '<fg=green;options=bold>CURRENT</>' : '<fg=yellow;options=bold>OUTDATED</>',
         ]);
 
         $this
@@ -69,7 +69,7 @@ class ConsoleServiceProvider extends ServiceProvider
     protected function registerMigrationsPublisher(): self
     {
         $this->publishes([
-            Dashboard::path('database/migrations') => database_path('migrations'),
+            Orchid::path('database/migrations') => database_path('migrations'),
         ], 'orchid-migrations');
 
         return $this;
@@ -83,7 +83,7 @@ class ConsoleServiceProvider extends ServiceProvider
     public function registerTranslationsPublisher(): self
     {
         $this->publishes([
-            Dashboard::path('resources/lang') => lang_path('vendor/platform'),
+            Orchid::path('resources/lang') => lang_path('vendor/orchid'),
         ], 'orchid-lang');
 
         return $this;
@@ -97,7 +97,7 @@ class ConsoleServiceProvider extends ServiceProvider
     public function registerViewsPublisher(): self
     {
         $this->publishes([
-            Dashboard::path('resources/views') => resource_path('views/vendor/platform'),
+            Orchid::path('resources/views') => resource_path('views/vendor/orchid'),
         ], 'orchid-views');
 
         return $this;
@@ -111,7 +111,7 @@ class ConsoleServiceProvider extends ServiceProvider
     protected function registerConfigPublisher(): self
     {
         $this->publishes([
-            Dashboard::path('config/platform.php') => config_path('platform.php'),
+            Orchid::path('config/orchid.php') => config_path('orchid.php'),
         ], 'orchid-config');
 
         return $this;
@@ -125,8 +125,8 @@ class ConsoleServiceProvider extends ServiceProvider
     protected function registerOrchidPublisher(): self
     {
         $this->publishes([
-            Dashboard::path('stubs/app/routes/') => base_path('routes'),
-            Dashboard::path('stubs/app/Orchid/') => app_path('Orchid'),
+            Orchid::path('stubs/app/routes/') => base_path('routes'),
+            Orchid::path('stubs/app/Orchid/') => app_path('Orchid'),
         ], 'orchid-app-stubs');
 
         return $this;
@@ -140,7 +140,7 @@ class ConsoleServiceProvider extends ServiceProvider
     protected function registerAssetsPublisher(): self
     {
         $this->publishes([
-            Dashboard::path('public') => public_path('vendor/orchid'),
+            Orchid::path('public') => public_path('vendor/orchid'),
         ], ['orchid-assets', 'laravel-assets']);
 
         return $this;

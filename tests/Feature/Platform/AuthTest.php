@@ -32,7 +32,7 @@ class AuthTest extends TestFeatureCase
             'remember' => 'on',
         ])
             ->assertStatus(302)
-            ->assertRedirect(route(config('platform.index')))
+            ->assertRedirect(route(config('orchid.index')))
             ->assertCookieNotExpired('lockUser');
     }
 
@@ -60,7 +60,7 @@ class AuthTest extends TestFeatureCase
         $this
             ->actingAs($this->createAdminUser())
             ->post(route('platform.switch.logout'))
-            ->assertRedirect(route(config('platform.index')));
+            ->assertRedirect(route(config('orchid.index')));
     }
 
     public function testRouteDashboardAuthLogout(): void

@@ -50,7 +50,7 @@ class Input extends Field
     /**
      * @var string
      */
-    protected $view = 'platform::fields.input';
+    protected $view = 'orchid::fields.input';
 
     /**
      * Default attributes value.

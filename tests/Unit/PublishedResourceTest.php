@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 use Orchid\Support\Formats;
 use Orchid\Tests\TestUnitCase;
 
@@ -26,17 +26,17 @@ class PublishedResourceTest extends TestUnitCase
         $maxVendorSize = 2 * 1028 * 1028; // ~2 mb
 
         $this->assertLessThan($maxCssSize,
-            filesize(Dashboard::path('/public/css/orchid.css')),
+            filesize(Orchid::path('/public/css/orchid.css')),
             'File orchid.css more '.Formats::formatBytes($maxCssSize)
         );
 
         $this->assertLessThan($maxJsSize,
-            filesize(Dashboard::path('/public/js/orchid.js')),
+            filesize(Orchid::path('/public/js/orchid.js')),
             'File orchid.js more '.Formats::formatBytes($maxJsSize)
         );
 
         $this->assertLessThan($maxVendorSize,
-            filesize(Dashboard::path('/public/js/vendor.js')),
+            filesize(Orchid::path('/public/js/vendor.js')),
             'File vendor.js more '.Formats::formatBytes($maxVendorSize)
         );
     }

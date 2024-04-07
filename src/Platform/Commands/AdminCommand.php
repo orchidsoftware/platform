@@ -8,7 +8,7 @@ use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Database\QueryException;
 use Orchid\Platform\Models\User;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 
 class AdminCommand extends Command
 {
@@ -54,7 +54,7 @@ class AdminCommand extends Command
      */
     protected function createNewUser(): void
     {
-        Dashboard::modelClass(User::class)
+        Orchid::modelClass(User::class)
             ->createAdmin(
                 $this->argument('name') ?? $this->ask('What is your name?', 'admin'),
                 $this->argument('email') ?? $this->ask('What is your email?', 'admin@admin.com'),
@@ -73,10 +73,10 @@ class AdminCommand extends Command
      */
     protected function updateUserPermissions(string $id): void
     {
-        Dashboard::modelClass(User::class)
+        Orchid::modelClass(User::class)
             ->findOrFail($id)
             ->forceFill([
-                'permissions' => Dashboard::getAllowAllPermission(),
+                'permissions' => Orchid::getAllowAllPermission(),
             ])
             ->save();
 

@@ -78,7 +78,7 @@ class Impersonation
     protected static function getAuth()
     {
         // Get the authentication guard specified in the config file
-        return Auth::guard(config('platform.guard'));
+        return Auth::guard(config('orchid.guard'));
     }
 
     /**

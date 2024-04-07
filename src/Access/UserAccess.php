@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 use Orchid\Platform\Events\AddRoleEvent;
 use Orchid\Platform\Events\RemoveRoleEvent;
 use Orchid\Platform\Models\Role;
@@ -36,7 +36,7 @@ trait UserAccess
 
     public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(Dashboard::model(Role::class), 'role_users', 'user_id', 'role_id');
+        return $this->belongsToMany(Orchid::model(Role::class), 'role_users', 'user_id', 'role_id');
     }
 
     /**

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Actions;
 
 use Orchid\Screen\Action;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 
 /**
  * Class Button.
@@ -23,7 +23,7 @@ class Button extends Action
     /**
      * @var string
      */
-    protected $view = 'platform::actions.button';
+    protected $view = 'orchid::actions.button';
 
     /**
      * Default attributes value.
@@ -72,7 +72,7 @@ class Button extends Action
             }
 
             // correct URL for async request
-            $url = Dashboard::isPartialRequest()
+            $url = Orchid::isPartialRequest()
                 ? url()->previous()
                 : url()->current();
 

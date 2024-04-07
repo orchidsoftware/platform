@@ -8,7 +8,7 @@ use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 use Orchid\Platform\Models\User;
 
 trait RoleAccess
@@ -52,7 +52,7 @@ trait RoleAccess
      */
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(Dashboard::model(User::class), 'role_users', 'role_id', 'user_id');
+        return $this->belongsToMany(Orchid::model(User::class), 'role_users', 'role_id', 'user_id');
     }
 
     /**

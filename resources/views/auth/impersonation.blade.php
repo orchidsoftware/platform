@@ -1,4 +1,4 @@
-@extends('platform::auth')
+@extends('orchid::auth')
 @section('title',__('Access Denied: Viewing as Another User'))
 
 @section('content')
@@ -9,7 +9,7 @@
           data-controller="form"
           data-form-need-prevents-form-abandonment-value="false"
           data-action="form#submit"
-          action="{{ route('platform.switch.logout') }}">
+          action="{{ route('orchid.switch.logout') }}">
         @csrf
 
         <p>

@@ -21,12 +21,12 @@
     @stack('head')
 
     <meta name="view-transition" content="same-origin">
-    <meta name="turbo-root" content="{{  Dashboard::prefix() }}">
-    <meta name="turbo-refresh-method" content="{{ config('platform.turbo.refresh-method', 'replace') }}">
-    <meta name="turbo-refresh-scroll" content="{{ config('platform.turbo.refresh-scroll', 'reset') }}">
-    <meta name="dashboard-prefix" content="{{  Dashboard::prefix() }}">
+    <meta name="turbo-root" content="{{  Orchid::prefix() }}">
+    <meta name="turbo-refresh-method" content="{{ config('orchid.turbo.refresh-method', 'replace') }}">
+    <meta name="turbo-refresh-scroll" content="{{ config('orchid.turbo.refresh-scroll', 'reset') }}">
+    <meta name="dashboard-prefix" content="{{  Orchid::prefix() }}">
 
-    @if(!config('platform.turbo.cache', false))
+    @if(!config('orchid.turbo.cache', false))
         <meta name="turbo-cache-control" content="no-cache">
     @endif
 
@@ -34,18 +34,18 @@
     <script src="{{ mix('/js/vendor.js','vendor/orchid') }}" type="text/javascript"></script>
     <script src="{{ mix('/js/orchid.js','vendor/orchid') }}" type="text/javascript"></script>
 
-    @foreach(Dashboard::getResource('stylesheets') as $stylesheet)
+    @foreach(Orchid::getResource('stylesheets') as $stylesheet)
         <link rel="stylesheet" href="{{  $stylesheet }}">
     @endforeach
 
     @stack('stylesheets')
 
-    @foreach(Dashboard::getResource('scripts') as $scripts)
+    @foreach(Orchid::getResource('scripts') as $scripts)
         <script src="{{  $scripts }}" defer type="text/javascript"></script>
     @endforeach
 
-    @if(!empty(config('platform.vite', [])))
-        @vite(config('platform.vite'))
+    @if(!empty(config('orchid.vite', [])))
+        @vite(config('orchid.vite'))
     @endif
 </head>
 
@@ -62,7 +62,7 @@
     </div>
 
 
-    @include('platform::partials.toast')
+    @include('orchid::partials.toast')
 </div>
 
 @stack('scripts')

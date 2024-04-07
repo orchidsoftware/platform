@@ -1,4 +1,4 @@
-@empty(!Dashboard::getSearch()->all())
+@empty(!Orchid::getSearch()->all())
     <div class="p-3">
         <div class="dropdown position-relative" data-controller="search">
             <div class="input-icon">

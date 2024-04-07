@@ -16,6 +16,6 @@ class Stream extends Component
      */
     public function render()
     {
-        return view('platform::components.stream');
+        return view('orchid::components.stream');
     }
 }

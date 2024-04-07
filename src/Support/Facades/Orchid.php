@@ -6,11 +6,11 @@ namespace Orchid\Support\Facades;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
-use Orchid\Platform\Dashboard as DashboardKernel;
+use Orchid\Platform\Orchid as OrchidPlatform;
 use Orchid\Screen\Screen;
 
 /**
- * Class Dashboard.
+ * Class Orchid.
  *
  * @method static Collection  getSearch()
  * @method static Collection  getPermission()
@@ -27,7 +27,7 @@ use Orchid\Screen\Screen;
  * @method static Screen|null getCurrentScreen()
  * @method static bool        isPartialRequest()
  */
-class Dashboard extends Facade
+class Orchid extends Facade
 {
     /**
      * Initiate a mock expectation on the facade.
@@ -36,6 +36,6 @@ class Dashboard extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return DashboardKernel::class;
+        return OrchidPlatform::class;
     }
 }

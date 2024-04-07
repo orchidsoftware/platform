@@ -23,7 +23,7 @@ class UserTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->get(route('platform.systems.users.create'));
+            ->get(route('orchid.systems.users.create'));
 
         $response->assertOk()
             ->assertSee('field-user');

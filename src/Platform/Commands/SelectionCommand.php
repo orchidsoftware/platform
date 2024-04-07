@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Commands;
 
 use Illuminate\Console\GeneratorCommand;
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 
 class SelectionCommand extends GeneratorCommand
 {
@@ -35,7 +35,7 @@ class SelectionCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return Dashboard::path('stubs/selection.stub');
+        return Orchid::path('stubs/selection.stub');
     }
 
     /**

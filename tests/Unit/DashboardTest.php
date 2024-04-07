@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Illuminate\Support\Str;
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Actions\Menu;
 use Orchid\Tests\TestUnitCase;
@@ -17,12 +17,12 @@ class DashboardTest extends TestUnitCase
 {
     public function testIsVersion(): void
     {
-        $this->assertEquals(Dashboard::VERSION, Dashboard::version());
+        $this->assertEquals(Orchid::VERSION, Orchid::version());
     }
 
     public function testIsModelDefault(): void
     {
-        $class = Dashboard::modelClass('UnknownClass', User::class);
+        $class = Orchid::modelClass('UnknownClass', User::class);
 
         $default = new User();
 
@@ -31,32 +31,32 @@ class DashboardTest extends TestUnitCase
 
     public function testIsModelCustomNotFound(): void
     {
-        Dashboard::useModel(User::class, 'MyCustomClass');
+        Orchid::useModel(User::class, 'MyCustomClass');
 
-        $user = Dashboard::modelClass(User::class);
+        $user = Orchid::modelClass(User::class);
 
         $this->assertEquals('MyCustomClass', $user);
     }
 
     public function testIsModelConfigure(): void
     {
-        Dashboard::configure([
+        Orchid::configure([
             'models' => [
                 User::class => 'MyCustomClass',
             ],
         ]);
 
-        $class = Dashboard::model(User::class);
-        $option = Dashboard::option('models.'.User::class);
+        $class = Orchid::model(User::class);
+        $option = Orchid::option('models.'.User::class);
 
         $this->assertEquals('MyCustomClass', $class);
         $this->assertEquals('MyCustomClass', $option);
-        $this->assertEquals(null, Dashboard::option('random'));
+        $this->assertEquals(null, Orchid::option('random'));
     }
 
     public function testIsRegisterResource(): void
     {
-        $dashboard = new Dashboard();
+        $dashboard = new Orchid();
 
         $script = $dashboard
             ->registerResource('scripts', 'app.js')
@@ -107,14 +107,14 @@ class DashboardTest extends TestUnitCase
      */
     public function testIsMacro($name = 'customMarcoName'): void
     {
-        Dashboard::macro('returnNameMacroFunction', fn (string $test) => $test);
+        Orchid::macro('returnNameMacroFunction', fn (string $test) => $test);
 
-        $this->assertEquals(Dashboard::returnNameMacroFunction($name), $name);
+        $this->assertEquals(Orchid::returnNameMacroFunction($name), $name);
     }
 
     public function testRegisterMenuElement(): void
     {
-        $dashboard = new Dashboard();
+        $dashboard = new Orchid();
 
         $view = $dashboard
             ->registerMenuElement(Menu::make('Item 1')->sort(3))
@@ -128,7 +128,7 @@ class DashboardTest extends TestUnitCase
 
     public function testAddMenuSubElements(): void
     {
-        $dashboard = new Dashboard();
+        $dashboard = new Orchid();
 
         $view = $dashboard
             ->registerMenuElement(Menu::make('Item 1')->slug('item'))
@@ -143,12 +143,12 @@ class DashboardTest extends TestUnitCase
     protected function setUp(): void
     {
         parent::setUp();
-        Dashboard::configure([]);
+        Orchid::configure([]);
     }
 
     protected function tearDown(): void
     {
         parent::tearDown();
-        Dashboard::configure([]);
+        Orchid::configure([]);
     }
 }

@@ -30,7 +30,7 @@ class RouteResolveScreenTest extends TestFeatureCase
     public function testImplicitBinding(): void
     {
         Route::screen('bind/users/{user}', ModelRouteBindScreen::class)
-            ->middleware(config('platform.middleware.private'))
+            ->middleware(config('orchid.middleware.private'))
             ->name('bind.implicit-binding');
 
         $user = $this->createAdminUser();
@@ -46,7 +46,7 @@ class RouteResolveScreenTest extends TestFeatureCase
     public function testImplicitBindingWhenAllowNull(): void
     {
         Route::screen('bind/users/{user?}', ModelRouteBindScreen::class)
-            ->middleware(config('platform.middleware.private'))
+            ->middleware(config('orchid.middleware.private'))
             ->name('bind.implicit-binding');
 
         $user = $this->createAdminUser();
@@ -62,7 +62,7 @@ class RouteResolveScreenTest extends TestFeatureCase
     public function testCustomizingKey(): void
     {
         Route::screen('bind/users/{user:email}', ModelRouteBindScreen::class)
-            ->middleware(config('platform.middleware.private'))
+            ->middleware(config('orchid.middleware.private'))
             ->name('bind.customizing-key');
 
         $user = $this->createAdminUser();
@@ -80,7 +80,7 @@ class RouteResolveScreenTest extends TestFeatureCase
         Route::model('bind', User::class);
 
         Route::screen('bind/users/{bind}', ModelRouteParamBindScreen::class)
-            ->middleware(config('platform.middleware.private'))
+            ->middleware(config('orchid.middleware.private'))
             ->name('bind.explicit-binding');
 
         $user = $this->createAdminUser();
@@ -100,7 +100,7 @@ class RouteResolveScreenTest extends TestFeatureCase
         });
 
         Route::screen('bind/users/{user}', ModelRouteBindScreen::class)
-            ->middleware(config('platform.middleware.private'))
+            ->middleware(config('orchid.middleware.private'))
             ->name('bind.resolution-logic');
 
         $user = $this->createAdminUser();

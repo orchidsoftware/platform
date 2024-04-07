@@ -36,7 +36,7 @@ class GuardAuthTest extends TestFeatureCase
             'remember' => 'on',
         ])
             ->assertStatus(302)
-            ->assertRedirect(route(config('platform.index')));
+            ->assertRedirect(route(config('orchid.index')));
     }
 
     public function testFailCustomGuard(): void
@@ -50,7 +50,7 @@ class GuardAuthTest extends TestFeatureCase
 
     public function testCustomGuardShouldUse(): void
     {
-        Route::middleware(config('platform.middleware.private'))->get('custom-guard', function () {
+        Route::middleware(config('orchid.middleware.private'))->get('custom-guard', function () {
             /** @var \Illuminate\Auth\SessionGuard $sessionGuard */
             $sessionGuard = Auth::guard();
 

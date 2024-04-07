@@ -15,7 +15,7 @@ abstract class Accordion extends Layout
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.accordion';
+    protected $template = 'orchid::layouts.accordion';
 
     /**
      * @var array

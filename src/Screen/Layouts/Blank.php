@@ -15,7 +15,7 @@ abstract class Blank extends Layout
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.blank';
+    protected $template = 'orchid::layouts.blank';
 
     /**
      * Layout constructor.

@@ -12,7 +12,7 @@ class Browsing extends Layout
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.browsing';
+    protected $template = 'orchid::layouts.browsing';
 
     /**
      * @var array

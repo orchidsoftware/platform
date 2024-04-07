@@ -1,7 +1,7 @@
 <th @empty(!$width) width="{{$width}}" @endempty class="text-{{$align}}" data-column="{{ $slug }}">
     <div class="d-inline-flex align-items-center">
 
-        @includeWhen($filter !== null, "platform::partials.layouts.filter", ['filter' => $filter])
+        @includeWhen($filter !== null, "orchid::partials.layouts.filter", ['filter' => $filter])
 
         @if($sort)
             <a href="{{ $sortUrl }}"

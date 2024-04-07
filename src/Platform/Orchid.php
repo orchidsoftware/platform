@@ -14,7 +14,7 @@ use Orchid\Screen\Actions\Menu;
 use Orchid\Screen\Screen;
 use RuntimeException;
 
-class Dashboard
+class Orchid
 {
     use Macroable;
 
@@ -22,13 +22,6 @@ class Dashboard
      * ORCHID Version.
      */
     public const VERSION = '14.21.1';
-
-    /**
-     * @deprecated
-     *
-     * Slug for main menu.
-     */
-    public const MENU_MAIN = 'Main';
 
     /**
      * The Dashboard configuration options.
@@ -117,7 +110,7 @@ class Dashboard
      */
     public static function prefix(string $path = ''): string
     {
-        $prefix = config('platform.prefix');
+        $prefix = config('orchid.prefix');
 
         return Str::start($prefix.$path, '/');
     }
@@ -174,6 +167,10 @@ class Dashboard
     public static function path(string $path = ''): string
     {
         $current = dirname(__DIR__, 2);
+
+        if(is_bool(realpath($current.($path ? DIRECTORY_SEPARATOR.$path : $path)))){
+            dd($path, $current);
+        }
 
         return realpath($current.($path ? DIRECTORY_SEPARATOR.$path : $path));
     }
@@ -332,13 +329,13 @@ class Dashboard
      *
      * @return $this
      */
-    public function registerMenuElement(Menu $menu): Dashboard
+    public function registerMenuElement(Menu $menu): Orchid
     {
         if ($menu->get('sort', 0) === 0) {
-            $menu->sort($this->menu->get(self::MENU_MAIN)->count() + 1);
+            $menu->sort($this->menu->count() + 1);
         }
 
-        $this->menu->get(self::MENU_MAIN)->add($menu);
+        $this->menu->add($menu);
 
         return $this;
     }
@@ -351,7 +348,7 @@ class Dashboard
      */
     public function renderMenu(): string
     {
-        return $this->menu->get(self::MENU_MAIN)
+        return $this->menu
             ->sort(fn (Menu $current, Menu $next) => $current->get('sort', 0) <=> $next->get('sort', 0))
             ->map(fn (Menu $menu) => (string) $menu->render())
             ->implode('');
@@ -359,20 +356,20 @@ class Dashboard
 
     public function isEmptyMenu(): bool
     {
-        return $this->menu->get(self::MENU_MAIN)->isEmpty();
+        return $this->menu->isEmpty();
     }
 
     /**
      * @param Menu[] $list
      */
-    public function addMenuSubElements(string $slug, array $list): Dashboard
+    public function addMenuSubElements(string $slug, array $list): Orchid
     {
-        $menu = $this->menu->get(self::MENU_MAIN)
+        $menu = $this->menu
             ->map(fn (Menu $menu) => $slug === $menu->get('slug')
                 ? $menu->list($list)
                 : $menu);
 
-        $this->menu->put(self::MENU_MAIN, $menu);
+        $this->menu->push($menu);
 
         return $this;
     }
@@ -382,9 +379,7 @@ class Dashboard
      */
     public function flushState(): void
     {
-        $this->menu = collect([
-            self::MENU_MAIN    => collect(),
-        ]);
+        $this->menu = collect();
 
         $this->currentScreen = null;
         $this->partialRequest = false;

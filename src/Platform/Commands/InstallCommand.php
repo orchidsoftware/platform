@@ -6,7 +6,7 @@ namespace Orchid\Platform\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 use Orchid\Platform\Events\InstallEvent;
 use Orchid\Platform\Providers\ConsoleServiceProvider;
 
@@ -34,7 +34,7 @@ class InstallCommand extends Command
     public function handle()
     {
         $this->comment('Installation started. Please wait...');
-        $this->info('Version: '.Dashboard::VERSION);
+        $this->info('Version: '.Orchid::VERSION);
 
         $this
             ->executeCommand('vendor:publish', [
@@ -96,7 +96,7 @@ class InstallCommand extends Command
             return $this;
         }
 
-        $user = file_get_contents(Dashboard::path('stubs/app/User.stub'));
+        $user = file_get_contents(Orchid::path('stubs/app/User.stub'));
         file_put_contents(app_path($path), $user);
 
         return $this;

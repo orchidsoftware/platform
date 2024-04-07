@@ -33,7 +33,7 @@
 
 @if($total >= 5)
 
-    <a href="{{ route('platform.search', $query) }}" class="block py-2 px-3 dropdown-item border-top pb-1">
+    <a href="{{ route('orchid.search', $query) }}" class="block py-2 px-3 dropdown-item border-top pb-1">
         <span class="small ps-1">
             {{ __('See more results.') }}
             <span class="text-muted">({{ $total }})</span>

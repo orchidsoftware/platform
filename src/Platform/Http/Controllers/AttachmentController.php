@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Orchid\Attachment\File;
 use Orchid\Attachment\Models\Attachment;
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 use Orchid\Platform\Events\UploadedFileEvent;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -30,8 +30,8 @@ class AttachmentController extends Controller
      */
     public function __construct()
     {
-        $this->checkPermission('platform.systems.attachment');
-        $this->attachment = Dashboard::modelClass(Attachment::class);
+        $this->checkPermission('orchid.systems.attachment');
+        $this->attachment = Orchid::modelClass(Attachment::class);
     }
 
     public function upload(Request $request): JsonResponse

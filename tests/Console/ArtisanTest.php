@@ -7,7 +7,7 @@ namespace Orchid\Tests\Console;
 use Generator;
 use Illuminate\Support\Str;
 use Orchid\Platform\Models\User;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 use Orchid\Tests\TestConsoleCase;
 
 class ArtisanTest extends TestConsoleCase
@@ -65,7 +65,7 @@ class ArtisanTest extends TestConsoleCase
 
         $user->refresh();
 
-        $this->assertEquals(Dashboard::getAllowAllPermission()->toArray(), $user->permissions);
+        $this->assertEquals(Orchid::getAllowAllPermission()->toArray(), $user->permissions);
     }
 
     public function testArtisanOrchidInstall(): void

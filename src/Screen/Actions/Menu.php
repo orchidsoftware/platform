@@ -28,7 +28,7 @@ class Menu extends Link
     /**
      * @var string
      */
-    protected $view = 'platform::actions.menu';
+    protected $view = 'orchid::actions.menu';
 
     /**
      * @var bool

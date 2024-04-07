@@ -37,7 +37,7 @@ class Notification extends Component
             ->limit(15)
             ->get();
 
-        return view('platform::components.notification', [
+        return view('orchid::components.notification', [
             'notifications' => $notifications,
         ]);
     }
@@ -49,6 +49,6 @@ class Notification extends Component
      */
     public function shouldRender(): bool
     {
-        return config('platform.notifications.enabled', true);
+        return config('orchid.notifications.enabled', true);
     }
 }

@@ -32,7 +32,7 @@ class TextArea extends Field
     /**
      * @var string
      */
-    protected $view = 'platform::fields.textarea';
+    protected $view = 'orchid::fields.textarea';
 
     /**
      * Default attributes value.

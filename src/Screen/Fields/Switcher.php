@@ -35,7 +35,7 @@ class Switcher extends Field
     /**
      * @var string
      */
-    protected $view = 'platform::fields.switch';
+    protected $view = 'orchid::fields.switch';
 
     /**
      * Default attributes value.

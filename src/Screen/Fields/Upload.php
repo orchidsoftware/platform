@@ -6,7 +6,7 @@ namespace Orchid\Screen\Fields;
 
 use Illuminate\Support\Arr;
 use Orchid\Attachment\Models\Attachment;
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 use Orchid\Screen\Field;
 use Orchid\Support\Assert;
 use Orchid\Support\Init;
@@ -43,7 +43,7 @@ class Upload extends Field
     /**
      * @var string
      */
-    protected $view = 'platform::fields.upload';
+    protected $view = 'orchid::fields.upload';
 
     /**
      * All attributes that are available to the field.
@@ -122,7 +122,7 @@ class Upload extends Field
             }
 
             /** @var Attachment $attach */
-            $attach = Dashboard::model(Attachment::class);
+            $attach = Orchid::model(Attachment::class);
 
             $value = $attach::whereIn('id', $value)->orderBy('sort')->get()->toArray();
 

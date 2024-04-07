@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 use Orchid\Attachment\Contracts\Engine;
 use Orchid\Attachment\Engines\Generator;
 use Orchid\Attachment\Models\Attachment;
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 use Orchid\Platform\Events\ReplicateFileEvent;
 use Orchid\Platform\Events\UploadFileEvent;
 
@@ -65,11 +65,11 @@ class File
         abort_if($file->getSize() === false, 415, 'File failed to load.');
 
         $this->file = $file;
-        $this->disk = $disk ?? config('platform.attachment.disk', 'public'); // get the disk to use from the config or use the default 'public' disk
+        $this->disk = $disk ?? config('orchid.attachment.disk', 'public'); // get the disk to use from the config or use the default 'public' disk
         $this->storage = Storage::disk($this->disk);
 
         /** @var string $generator */
-        $generator = config('platform.attachment.generator', Generator::class);
+        $generator = config('orchid.attachment.generator', Generator::class);
 
         // Create a new engine class instance to manage the file's associations
         $this->engine = new $generator($file);
@@ -131,7 +131,7 @@ class File
             return null;
         }
 
-        return Dashboard::model(Attachment::class)::where('hash', $this->engine->hash())
+        return Orchid::model(Attachment::class)::where('hash', $this->engine->hash())
             ->where('disk', $this->disk)
             ->first();
     }
@@ -147,7 +147,7 @@ class File
             'mime_type' => $this->engine->mime(),
         ]);
 
-        $attachment = Dashboard::model(Attachment::class)::create([
+        $attachment = Orchid::model(Attachment::class)::create([
             'name'          => $this->engine->name(),
             'mime'          => $this->engine->mime(),
             'hash'          => $this->engine->hash(),

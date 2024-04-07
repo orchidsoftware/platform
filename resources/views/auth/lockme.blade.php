@@ -29,7 +29,7 @@
 
 <div class="row align-items-center">
     <div class="col-md-6 col-xs-12">
-        <a href="{{ route('platform.login.lock') }}" class="small">
+        <a href="{{ route('orchid.login.lock') }}" class="small">
             {{__('Sign in with another user.')}}
         </a>
     </div>

@@ -26,7 +26,7 @@ abstract class Chart extends Layout
      *
      * @var string
      */
-    protected $template = 'platform::layouts.chart';
+    protected $template = 'orchid::layouts.chart';
 
     /**
      * @var string|null

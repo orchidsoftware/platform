@@ -221,7 +221,7 @@ class TD extends Cell
      */
     public function buildTh()
     {
-        return view('platform::partials.layouts.th', [
+        return view('orchid::partials.layouts.th', [
             'width'        => is_numeric($this->width) ? $this->width.'px' : $this->width,
             'align'        => $this->align,
             'sort'         => $this->sort,
@@ -285,7 +285,7 @@ class TD extends Cell
     {
         $value = $this->render ? $this->handler($repository, $loop) : $repository->getContent($this->name);
 
-        return view('platform::partials.layouts.td', [
+        return view('orchid::partials.layouts.td', [
             'align'   => $this->align,
             'value'   => $value,
             'render'  => $this->render,
@@ -313,7 +313,7 @@ class TD extends Cell
             return;
         }
 
-        return view('platform::partials.layouts.selectedTd', [
+        return view('orchid::partials.layouts.selectedTd', [
             'title'         => $this->title,
             'slug'          => $this->sluggable(),
             'defaultHidden' => var_export($this->defaultHidden, true),

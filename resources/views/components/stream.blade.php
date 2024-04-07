@@ -1,4 +1,4 @@
-@props(['target', 'action', 'push', 'rule' => \Orchid\Support\Facades\Dashboard::isPartialRequest()])
+@props(['target', 'action', 'push', 'rule' => \Orchid\Support\Facades\Orchid::isPartialRequest()])
 
 
 @if(filter_var($rule, FILTER_VALIDATE_BOOLEAN))

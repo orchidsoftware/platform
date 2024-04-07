@@ -33,7 +33,7 @@ class Radio extends Field
     /**
      * @var string
      */
-    protected $view = 'platform::fields.radio';
+    protected $view = 'orchid::fields.radio';
 
     /**
      * Default attributes value.

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Access;
 
 use Illuminate\Support\Collection;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 
 trait StatusAccess
 {
@@ -13,7 +13,7 @@ trait StatusAccess
     {
         $permissions = $this->permissions ?? [];
 
-        return Dashboard::getPermission()
+        return Orchid::getPermission()
             ->transform(static fn ($group) => collect($group)->sortBy('description')
                 ->map(static function ($value) use ($permissions) {
                     $slug = $value['slug'];

@@ -1,4 +1,4 @@
-@extends('platform::app')
+@extends('orchid::app')
 
 
 @section('body')
@@ -6,8 +6,8 @@
     <div class="container-md">
         <div class="form-signin h-full min-vh-100 d-flex flex-column justify-content-center">
 
-            <a class="d-flex justify-content-center mb-4 p-0 px-sm-5" href="{{Dashboard::prefix()}}">
-                @includeFirst([config('platform.template.header'), 'platform::header'])
+            <a class="d-flex justify-content-center mb-4 p-0 px-sm-5" href="{{Orchid::prefix()}}">
+                @includeFirst([config('orchid.template.header'), 'orchid::header'])
             </a>
 
             <div class="row justify-content-center">
@@ -20,7 +20,7 @@
             </div>
 
 
-            @includeFirst([config('platform.template.footer'), 'platform::footer'])
+            @includeFirst([config('orchid.template.footer'), 'orchid::footer'])
         </div>
     </div>
 

@@ -6,7 +6,7 @@ namespace Orchid\Platform\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 use Orchid\Platform\Http\Middleware\Access;
 use Orchid\Platform\Http\Middleware\Turbo;
 
@@ -19,7 +19,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Route::middlewareGroup('platform', [
+        Route::middlewareGroup('orchid', [
             Turbo::class,
             Access::class,
         ]);
@@ -40,13 +40,13 @@ class RouteServiceProvider extends ServiceProvider
          * The dashboard routes have a subdomain of the platform.domain config value,
          * a prefix consisting of the Dashboard::prefix() method return value,
          * an alias of 'platform.', middleware from the platform.middleware.private config value,
-         * and are defined in the Dashboard::path('routes/dashboard.php') file.
+         * and are defined in the Dashboard::path('routes/orchid.php') file.
          */
-        Route::domain((string) config('platform.domain'))
-            ->prefix(Dashboard::prefix('/'))
-            ->as('platform.')
-            ->middleware(config('platform.middleware.private'))
-            ->group(Dashboard::path('routes/dashboard.php'));
+        Route::domain((string) config('orchid.domain'))
+            ->prefix(Orchid::prefix('/'))
+            ->as('orchid.')
+            ->middleware(config('orchid.middleware.private'))
+            ->group(Orchid::path('routes/orchid.php'));
 
         /*
          * Auth routes.
@@ -56,11 +56,11 @@ class RouteServiceProvider extends ServiceProvider
          * an alias of 'platform.', middleware from the platform.middleware.public config value,
          * and are defined in the Dashboard::path('routes/auth.php') file.
          */
-        Route::domain((string) config('platform.domain'))
-            ->prefix(Dashboard::prefix('/'))
-            ->as('platform.')
-            ->middleware(config('platform.middleware.public'))
-            ->group(Dashboard::path('routes/auth.php'));
+        Route::domain((string) config('orchid.domain'))
+            ->prefix(Orchid::prefix('/'))
+            ->as('orchid.')
+            ->middleware(config('orchid.middleware.public'))
+            ->group(Orchid::path('routes/auth.php'));
 
         /*
          * Application routes.
@@ -69,11 +69,12 @@ class RouteServiceProvider extends ServiceProvider
          * a prefix consisting of the Dashboard::prefix() method return value,
          * and middleware from the platform.middleware.private config value.
          */
-        if (file_exists(base_path('routes/platform.php'))) {
-            Route::domain((string) config('platform.domain'))
-                ->prefix(Dashboard::prefix('/'))
-                ->middleware(config('platform.middleware.private'))
-                ->group(base_path('routes/platform.php'));
+        if (file_exists(base_path('routes/orchid.php'))) {
+            Route::domain((string) config('orchid.domain'))
+                ->prefix(Orchid::prefix('/'))
+                //->as(config('orchid.routes.name'))
+                ->middleware(config('orchid.middleware.private'))
+                ->group(base_path('routes/orchid.php'));
         }
     }
 }

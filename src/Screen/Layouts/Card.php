@@ -14,7 +14,7 @@ class Card extends Content
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.card';
+    protected $template = 'orchid::layouts.card';
 
     /**
      * @var array|Action[]

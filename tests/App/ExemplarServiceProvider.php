@@ -6,7 +6,7 @@ namespace Orchid\Tests\App;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 use Orchid\Tests\App\Fields\BaseSelectScreen;
 use Orchid\Tests\App\Screens\AsyncHeaderButtonActionScreen;
 use Orchid\Tests\App\Screens\ConfirmScreen;
@@ -26,7 +26,7 @@ class ExemplarServiceProvider extends ServiceProvider
     /**
      * Boot the application events.
      */
-    public function boot(Dashboard $dashboard, Router $router): void
+    public function boot(Orchid $dashboard, Router $router): void
     {
         $dashboard->registerSearch([
             SearchUser::class,
@@ -34,9 +34,9 @@ class ExemplarServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom($dashboard->path('tests/App/Views'), 'exemplar');
 
-        $router->domain((string) config('platform.domain'))
-            ->prefix(Dashboard::prefix('/'))
-            ->middleware(config('platform.middleware.private'))
+        $router->domain((string) config('orchid.domain'))
+            ->prefix(Orchid::prefix('/'))
+            ->middleware(config('orchid.middleware.private'))
             ->as('test.')
             ->group(function ($route) {
                 $route->screen('modal-validation', ModalValidationScreen::class)->name('modal-validation');

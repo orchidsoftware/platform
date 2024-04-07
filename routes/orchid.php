@@ -15,11 +15,11 @@ use Tabuna\Breadcrumbs\Trail;
 // Index and default...
 Route::get('/', [IndexController::class, 'index'])
     ->name('index')
-    ->breadcrumbs(fn (Trail $trail) => $trail->push(__('Home'), route('platform.index')));
+    ->breadcrumbs(fn (Trail $trail) => $trail->push(__('Home'), route('orchid.index')));
 
 Route::screen('search/{query}', SearchScreen::class)
     ->name('search')
-    ->breadcrumbs(fn (Trail $trail, string $query) => $trail->parent('platform.index')
+    ->breadcrumbs(fn (Trail $trail, string $query) => $trail->parent('orchid.index')
         ->push(__('Search'))
         ->push($query));
 
@@ -56,7 +56,7 @@ Route::prefix('systems')->group(function () {
 if (config('platform.notifications.enabled', true)) {
     Route::screen('notifications/{id?}', NotificationScreen::class)
         ->name('notifications')
-        ->breadcrumbs(fn (Trail $trail) => $trail->parent('platform.index')
+        ->breadcrumbs(fn (Trail $trail) => $trail->parent('orchid.index')
             ->push(__('Notifications')));
 
     Route::post('api/notifications', [NotificationScreen::class, 'unreadNotification'])

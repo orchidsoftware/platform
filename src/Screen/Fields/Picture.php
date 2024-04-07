@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Fields;
 
 use Orchid\Attachment\Models\Attachment;
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 use Orchid\Screen\Field;
 use Orchid\Support\Init;
 
@@ -30,7 +30,7 @@ class Picture extends Field
     /**
      * @var string
      */
-    protected $view = 'platform::fields.picture';
+    protected $view = 'orchid::fields.picture';
 
     /**
      * Default attributes value.
@@ -108,7 +108,7 @@ class Picture extends Field
             }
 
             /** @var Attachment $attach */
-            $attach = Dashboard::model(Attachment::class);
+            $attach = Orchid::model(Attachment::class);
 
             $url = optional($attach::find($value))->url();
 

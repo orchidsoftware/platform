@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Screen\Layouts\Listener;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 
 /**
  * Class Screen.
@@ -49,7 +49,7 @@ abstract class Screen extends Controller
      */
     public function screenBaseView(): string
     {
-        return 'platform::layouts.base';
+        return 'orchid::layouts.base';
     }
 
     /**
@@ -124,7 +124,7 @@ abstract class Screen extends Controller
      */
     public function asyncBuild(string $method, string $slug)
     {
-        Dashboard::setCurrentScreen($this, true);
+        Orchid::setCurrentScreen($this, true);
 
         abort_unless(method_exists($this, $method), 404, "Async method: {$method} not found");
 
@@ -160,7 +160,7 @@ abstract class Screen extends Controller
      */
     public function asyncParticalLayout(Layout $layout, Request $request)
     {
-        Dashboard::setCurrentScreen($this, true);
+        Orchid::setCurrentScreen($this, true);
 
         abort_unless($this->checkAccess(request()), static::unaccessed());
 
@@ -168,7 +168,7 @@ abstract class Screen extends Controller
 
         $repository = $layout->handle($state, $request);
 
-        $view = $layout->build($repository).view('platform::partials.state', [
+        $view = $layout->build($repository).view('orchid::partials.state', [
             'state' => $this->serializeStateWithPublicProperties($state),
         ]);
 
@@ -322,7 +322,7 @@ abstract class Screen extends Controller
      */
     public function handle(Request $request, ...$arguments)
     {
-        Dashboard::setCurrentScreen($this);
+        Orchid::setCurrentScreen($this);
 
         $method = $request->route()->parameter('method', 'view');
 
@@ -372,7 +372,7 @@ abstract class Screen extends Controller
      */
     public function needPreventsAbandonment(): bool
     {
-        return config('platform.prevents_abandonment', true);
+        return config('orchid.prevents_abandonment', true);
     }
 
     /**
@@ -388,7 +388,7 @@ abstract class Screen extends Controller
             ->filter()
             ->isNotEmpty();
 
-        return config('platform.full_state', $existListenerLayout);
+        return config('orchid.full_state', $existListenerLayout);
     }
 
     /**

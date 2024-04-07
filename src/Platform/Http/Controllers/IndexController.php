@@ -15,7 +15,7 @@ class IndexController extends Controller
 {
     public function index(): RedirectResponse
     {
-        return redirect()->route(config('platform.index'));
+        return redirect()->route(config('orchid.index'));
     }
 
     /**
@@ -23,6 +23,6 @@ class IndexController extends Controller
      */
     public function fallback()
     {
-        return view('platform::errors.404');
+        return view('orchid::errors.404');
     }
 }

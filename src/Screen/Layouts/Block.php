@@ -20,7 +20,7 @@ abstract class Block extends Layout
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.block';
+    protected $template = 'orchid::layouts.block';
 
     /**
      * @var false[]

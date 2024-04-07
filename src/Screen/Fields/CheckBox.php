@@ -35,7 +35,7 @@ class CheckBox extends Field
     /**
      * @var string
      */
-    protected $view = 'platform::fields.checkbox';
+    protected $view = 'orchid::fields.checkbox';
 
     /**
      * Default attributes value.

@@ -1,4 +1,4 @@
-@extends('platform::dashboard')
+@extends('orchid::dashboard')
 
 @section('title', (string) __($name))
 @section('description', (string) __($description))
@@ -33,7 +33,7 @@
     >
         {!! $layouts !!}
         @csrf
-        @include('platform::partials.confirm')
+        @include('orchid::partials.confirm')
     </form>
 
     <div data-controller="filter">
@@ -43,5 +43,5 @@
         ></form>
     </div>
 
-    @includeWhen(isset($state), 'platform::partials.state')
+    @includeWhen(isset($state), 'orchid::partials.state')
 @endsection

@@ -13,7 +13,7 @@ use Laravel\Scout\ScoutServiceProvider;
 use Orchid\Icons\IconServiceProvider;
 use Orchid\Platform\Components\Notification;
 use Orchid\Platform\Components\Stream;
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 use Orchid\Screen\Components\Popover;
 use Tabuna\Breadcrumbs\BreadcrumbsServiceProvider;
 use Watson\Active\ActiveServiceProvider;
@@ -41,7 +41,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerTranslations(): self
     {
-        $this->loadJsonTranslationsFrom(Dashboard::path('resources/lang/'));
+        $this->loadJsonTranslationsFrom(Orchid::path('resources/lang/'));
 
         return $this;
     }
@@ -53,7 +53,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerViews(): self
     {
-        $this->loadViewsFrom(Dashboard::path('resources/views'), 'platform');
+        $this->loadViewsFrom(Orchid::path('resources/views'), 'orchid');
 
         return $this;
     }
@@ -84,7 +84,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerOctaneEventsListen(): self
     {
-        Event::listen(fn (\Laravel\Octane\Events\RequestReceived $request) => \Orchid\Support\Facades\Dashboard::flushState());
+        Event::listen(fn (\Laravel\Octane\Events\RequestReceived $request) => \Orchid\Support\Facades\Orchid::flushState());
 
         return $this;
     }
@@ -114,7 +114,8 @@ class FoundationServiceProvider extends ServiceProvider
             ->registerTranslations()
             ->registerProviders();
 
-        $this->app->singleton(Dashboard::class, static fn () => new Dashboard());
+        $this->app->singleton(Orchid::class, static fn () => new Orchid());
+
 
         if (! Route::hasMacro('screen')) {
             Route::macro('screen', function ($url, $screen) {
@@ -128,7 +129,7 @@ class FoundationServiceProvider extends ServiceProvider
         }
 
         $this->mergeConfigFrom(
-            Dashboard::path('config/platform.php'), 'platform'
+            Orchid::path('config/orchid.php'), 'orchid'
         );
 
         Blade::component('orchid-popover', Popover::class);

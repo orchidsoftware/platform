@@ -17,7 +17,7 @@ abstract class Split extends Layout
      *
      * @var string
      */
-    protected $template = 'platform::layouts.split';
+    protected $template = 'orchid::layouts.split';
 
     /**
      * An array of default variables that will be passed to the template.

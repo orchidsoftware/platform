@@ -12,7 +12,7 @@ class Persona extends Content
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.persona';
+    protected $template = 'orchid::layouts.persona';
 
     public function render(Personable $user): View
     {

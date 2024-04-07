@@ -18,7 +18,7 @@ class Label extends Field
     /**
      * @var string
      */
-    protected $view = 'platform::fields.label';
+    protected $view = 'orchid::fields.label';
 
     /**
      * Default attributes value.

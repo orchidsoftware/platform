@@ -19,7 +19,7 @@ abstract class TabMenu extends Layout
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.tabMenu';
+    protected $template = 'orchid::layouts.tabMenu';
 
     /**
      * @throws Throwable

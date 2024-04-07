@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid;
 
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\OrchidServiceProvider;
 use Orchid\Screen\Actions\Menu;
@@ -12,20 +12,6 @@ use Orchid\Support\Color;
 
 class PlatformProvider extends OrchidServiceProvider
 {
-    /**
-     * Bootstrap the application services.
-     *
-     * @param Dashboard $dashboard
-     *
-     * @return void
-     */
-    public function boot(Dashboard $dashboard): void
-    {
-        parent::boot($dashboard);
-
-        // ...
-    }
-
     /**
      * Register the application menu.
      *
@@ -41,29 +27,29 @@ class PlatformProvider extends OrchidServiceProvider
 
             Menu::make('Sample Screen')
                 ->icon('bs.collection')
-                ->route('platform.example')
+                ->route('orchid.example')
                 ->badge(fn () => 6),
 
             Menu::make('Form Elements')
                 ->icon('bs.card-list')
-                ->route('platform.example.fields')
+                ->route('orchid.example.fields')
                 ->active('*/examples/form/*'),
 
             Menu::make('Overview Layouts')
                 ->icon('bs.window-sidebar')
-                ->route('platform.example.layouts'),
+                ->route('orchid.example.layouts'),
 
             Menu::make('Grid System')
                 ->icon('bs.columns-gap')
-                ->route('platform.example.grid'),
+                ->route('orchid.example.grid'),
 
             Menu::make('Charts')
                 ->icon('bs.bar-chart')
-                ->route('platform.example.charts'),
+                ->route('orchid.example.charts'),
 
             Menu::make('Cards')
                 ->icon('bs.card-text')
-                ->route('platform.example.cards')
+                ->route('orchid.example.cards')
                 ->divider(),
 
             Menu::make(__('Users'))
@@ -88,7 +74,7 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.box-arrow-up-right')
                 ->url('https://github.com/orchidsoftware/platform/blob/master/CHANGELOG.md')
                 ->target('_blank')
-                ->badge(fn () => Dashboard::version(), Color::DARK),
+                ->badge(fn () => Orchid::version(), Color::DARK),
         ];
     }
 

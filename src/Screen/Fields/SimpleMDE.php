@@ -34,7 +34,7 @@ class SimpleMDE extends Field
     /**
      * @var string
      */
-    protected $view = 'platform::fields.simplemde';
+    protected $view = 'orchid::fields.simplemde';
 
     /**
      * Attributes available for a particular tag.

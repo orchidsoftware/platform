@@ -16,7 +16,7 @@ class TabMenuExample extends TabMenu
     {
         return [
             Menu::make('Overview layouts')
-                ->route('platform.example.layouts'),
+                ->route('orchid.example.layouts'),
 
             Menu::make('Get Started')
                 ->route('platform.main'),
@@ -25,7 +25,7 @@ class TabMenuExample extends TabMenu
                 ->url('https://orchid.software/en/docs'),
 
             Menu::make('Example Screen')
-                ->route('platform.example')
+                ->route('orchid.example')
                 ->badge(fn () => 6),
         ];
     }

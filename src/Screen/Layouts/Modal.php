@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 use Orchid\Screen\Commander;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 
 /**
  * Class Modal.
@@ -51,7 +51,7 @@ class Modal extends Layout
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.modal';
+    protected $template = 'orchid::layouts.modal';
 
     /**
      * Modal constructor.
@@ -226,13 +226,13 @@ class Modal extends Layout
      */
     protected function asyncRoute(): ?string
     {
-        $screen = Dashboard::getCurrentScreen();
+        $screen = Orchid::getCurrentScreen();
 
         if (! $screen) {
             return null;
         }
 
-        return route('platform.async', [
+        return route('orchid.async', [
             'screen'   => Crypt::encryptString(get_class($screen)),
             'method'   => $this->method,
             'template' => $this->getSlug(),

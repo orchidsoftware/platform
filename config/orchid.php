@@ -16,7 +16,7 @@ return [
      |
      */
 
-    'domain' => env('DASHBOARD_DOMAIN', null),
+    'domain' => env('ORCHID_DOMAIN', null),
 
     /*
      |--------------------------------------------------------------------------
@@ -25,11 +25,11 @@ return [
      |
      | This prefix method can be used to specify the prefix of every route in
      | the administrator dashboard. This way, you can easily change the path
-     | to a URL you find more appropriate. For instance: '/', '/admin', or '/panel'.
+     | to a URL you find more appropriate. For instance: '/', '/admin', or '/orchid'.
      |
      */
 
-    'prefix' => env('DASHBOARD_PREFIX', '/admin'),
+    'prefix' => env('ORCHID_PREFIX', '/admin'),
 
     /*
      |--------------------------------------------------------------------------
@@ -46,7 +46,7 @@ return [
 
     'middleware' => [
         'public'  => ['web', 'cache.headers:private;must_revalidate;etag'],
-        'private' => ['web', 'platform', 'cache.headers:private;must_revalidate;etag'],
+        'private' => ['web', 'orchid', 'cache.headers:private;must_revalidate;etag'],
     ],
 
     /*
@@ -95,11 +95,11 @@ return [
      | redirected to this page when they enter the dashboard or click on the
      | dashboard's logo or links.
      |
-     | Example: 'platform.main'
+     | Example: 'orchid.main'
      |
      */
 
-    'index' => 'platform.main',
+    'index' => 'orchid.main',
 
     /*
      |--------------------------------------------------------------------------
@@ -185,7 +185,7 @@ return [
      */
 
     'attachment' => [
-        'disk'      => env('DASHBOARD_FILESYSTEM_DISK', 'public'),
+        'disk'      => env('ORCHID_FILESYSTEM_DISK', 'public'),
         'generator' => \Orchid\Attachment\Engines\Generator::class,
     ],
 
@@ -286,11 +286,11 @@ return [
     | It determines whether the entire user screen will be used or whether
     | the content will be compressed to a fixed width.
     |
-    | Options: 'platform::workspace.compact', 'platform::workspace.full'
+    | Options: 'orchid::workspace.compact', 'orchid::workspace.full'
     |
     */
 
-    'workspace' => 'platform::workspace.compact',
+    'workspace' => 'orchid::workspace.compact',
 
     /*
     |--------------------------------------------------------------------------

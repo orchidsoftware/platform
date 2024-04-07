@@ -28,7 +28,7 @@ class Range extends Field
     /**
      * @var string
      */
-    protected $view = 'platform::fields.range';
+    protected $view = 'orchid::fields.range';
 
     /**
      * Default attributes value.

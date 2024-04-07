@@ -1,4 +1,4 @@
-@extends('platform::auth')
+@extends('orchid::auth')
 @section('title',__('Sign in to your account'))
 
 @section('content')
@@ -10,10 +10,10 @@
           data-controller="form"
           data-form-need-prevents-form-abandonment-value="false"
           data-action="form#submit"
-          action="{{ route('platform.login.auth') }}">
+          action="{{ route('orchid.login.auth') }}">
         @csrf
 
-        @includeWhen($isLockUser,'platform::auth.lockme')
-        @includeWhen(!$isLockUser,'platform::auth.signin')
+        @includeWhen($isLockUser,'orchid::auth.lockme')
+        @includeWhen(!$isLockUser,'orchid::auth.signin')
     </form>
 @endsection

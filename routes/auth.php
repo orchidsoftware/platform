@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Controllers\LoginController;
 
 // Auth web routes
-if (config('platform.auth', true)) {
+if (config('orchid.auth', true)) {
     // Authentication Routes...
     Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::middleware('throttle:60,1')

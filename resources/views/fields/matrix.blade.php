@@ -17,7 +17,7 @@
         <tbody>
 
         @foreach($value as $key => $row)
-            @include('platform::partials.fields.matrixRow',['row' => $row, 'key' => $key])
+            @include('orchid::partials.fields.matrixRow',['row' => $row, 'key' => $key])
         @endforeach
 
         <tr class="add-row">
@@ -31,7 +31,7 @@
         </tr>
 
         <template class="matrix-template">
-            @include('platform::partials.fields.matrixRow',['row' => [], 'key' => '{index}'])
+            @include('orchid::partials.fields.matrixRow',['row' => [], 'key' => '{index}'])
         </template>
         </tbody>
     </table>

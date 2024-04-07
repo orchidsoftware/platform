@@ -1,4 +1,4 @@
-@extends(config('platform.workspace', 'platform::workspace.compact'))
+@extends(config('orchid.workspace', 'orchid::workspace.compact'))
 
 @section('aside')
     <div class="aside col-xs-12 col-xxl-2 bg-dark d-flex flex-column me-auto" data-controller="menu">
@@ -10,17 +10,17 @@
                 <span class="ms-2">@yield('title')</span>
             </a>
 
-            <a class="header-brand order-last" href="{{ route(config('platform.index')) }}">
-                @includeFirst([config('platform.template.header'), 'platform::header'])
+            <a class="header-brand order-last" href="{{ route(config('orchid.index')) }}">
+                @includeFirst([config('orchid.template.header'), 'orchid::header'])
             </a>
         </header>
 
         <nav class="aside-collapse w-100 d-xl-flex flex-column collapse-horizontal" id="headerMenuCollapse">
 
-            @include('platform::partials.search')
+            @include('orchid::partials.search')
 
             <ul class="nav flex-column mb-md-1 mb-auto ps-0">
-                {!! Dashboard::renderMenu(\Orchid\Platform\Dashboard::MENU_MAIN) !!}
+                {!! Orchid::renderMenu() !!}
             </ul>
 
             <div class="h-100 w-100 position-relative to-top cursor d-none d-md-flex mt-md-5"
@@ -38,13 +38,13 @@
 
             <footer class="position-sticky bottom-0">
                 <div class="bg-dark position-relative overflow-hidden" style="padding-bottom: 10px;">
-                    @includeWhen(Auth::check(), 'platform::partials.profile')
+                    @includeWhen(Auth::check(), 'orchid::partials.profile')
                 </div>
 
 
                 {{--
                 <div class="mt-3">
-                    @includeFirst([config('platform.template.footer'), 'platform::footer'])
+                    @includeFirst([config('orchid.template.footer'), 'orchid::footer'])
                 </div>
 
                 --}}
@@ -80,6 +80,6 @@
         </div>
     </div>
 
-    @include('platform::partials.alert')
+    @include('orchid::partials.alert')
     @yield('content')
 @endsection

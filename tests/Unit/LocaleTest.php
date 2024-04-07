@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Illuminate\Support\Collection;
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 use Orchid\Tests\TestUnitCase;
 use Symfony\Component\Finder\Finder;
 
@@ -48,7 +48,7 @@ class LocaleTest extends TestUnitCase
 
     protected function getTranslationFiles(): Collection
     {
-        $patternPath = Dashboard::path('resources/lang').'/*.json';
+        $patternPath = Orchid::path('resources/lang').'/*.json';
 
         return collect(glob($patternPath));
     }
@@ -66,11 +66,11 @@ class LocaleTest extends TestUnitCase
             ->ignoreUnreadableDirs()
             ->followLinks()
             ->in([
-                Dashboard::path('src'),
-                Dashboard::path('stubs'),
-                Dashboard::path('routes'),
-                Dashboard::path('resources/js'),
-                Dashboard::path('resources/views'),
+                Orchid::path('src'),
+                Orchid::path('stubs'),
+                Orchid::path('routes'),
+                Orchid::path('resources/js'),
+                Orchid::path('resources/views'),
             ])
             ->contains($string)
             ->hasResults();

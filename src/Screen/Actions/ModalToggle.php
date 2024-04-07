@@ -22,7 +22,7 @@ class ModalToggle extends Button
     /**
      * @var string
      */
-    protected $view = 'platform::actions.modal';
+    protected $view = 'orchid::actions.modal';
 
     /**
      * Default attributes value.

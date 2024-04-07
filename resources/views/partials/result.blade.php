@@ -39,7 +39,7 @@
 
     <div class="mt-2">
         @includeWhen($results instanceof \Illuminate\Contracts\Pagination\Paginator && $results->isNotEmpty(),
-            'platform::layouts.pagination',
+            'orchid::layouts.pagination',
             ['paginator' => $results]
           )
     </div>

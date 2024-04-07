@@ -88,7 +88,8 @@
             ],
             "aliases": {
                 "Alert": "Orchid\\Support\\Facades\\Alert",
-                "Dashboard": "Orchid\\Support\\Facades\\Dashboard"
+                "Orchid": "Orchid\\Support\\Facades\\Orchid",
+                "Dashboard": "Orchid\\Support\\Facades\\Orchid"
             }
         }
     },

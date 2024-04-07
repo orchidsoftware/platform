@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Commands;
 
 use Illuminate\Console\GeneratorCommand;
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 
 class TableCommand extends GeneratorCommand
 {
@@ -35,7 +35,7 @@ class TableCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return Dashboard::path('stubs/table.stub');
+        return Orchid::path('stubs/table.stub');
     }
 
     /**

@@ -34,14 +34,14 @@
                 {!!
                     $paginator->appends(request()
                         ->except(['page','_token']))
-                        ->links('platform::partials.pagination')
+                        ->links('orchid::partials.pagination')
                 !!}
             @elseif($paginator instanceof \Illuminate\Contracts\Pagination\Paginator)
                 {!!
                     $paginator->appends(request()
                         ->except(['page','_token']))
                         ->onEachSide($onEachSide ?? 3)
-                        ->links('platform::partials.pagination')
+                        ->links('orchid::partials.pagination')
                 !!}
             @endif
         </div>

@@ -33,7 +33,7 @@ class NotificationScreen extends Screen
     /**
      * @var string
      */
-    public $permission = 'platform.index';
+    public $permission = 'orchid.index';
 
     /**
      * @var bool
@@ -90,7 +90,7 @@ class NotificationScreen extends Screen
     public function layout(): iterable
     {
         return [
-            Layout::wrapper('platform::partials.notification-wrap', [
+            Layout::wrapper('orchid::partials.notification-wrap', [
                 'table' => NotificationTable::class,
             ]),
         ];

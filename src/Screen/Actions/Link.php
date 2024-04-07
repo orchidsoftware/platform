@@ -21,7 +21,7 @@ class Link extends Action
     /**
      * @var string
      */
-    protected $view = 'platform::actions.link';
+    protected $view = 'orchid::actions.link';
 
     /**
      * Default attributes value.

@@ -39,7 +39,7 @@ class LoginController extends Controller
      */
     public function __construct(Auth $auth)
     {
-        $this->guard = $auth->guard(config('platform.guard'));
+        $this->guard = $auth->guard(config('orchid.guard'));
 
         $this->middleware('guest', [
             'except' => [
@@ -90,7 +90,7 @@ class LoginController extends Controller
 
         return $request->wantsJson()
             ? new JsonResponse([], 204)
-            : redirect()->intended(route(config('platform.index')));
+            : redirect()->intended(route(config('orchid.index')));
     }
 
     /**
@@ -107,7 +107,7 @@ class LoginController extends Controller
 
         $model = $provider->createModel()->find($user);
 
-        return view('platform::auth.login', [
+        return view('orchid::auth.login', [
             'isLockUser' => optional($model)->exists ?? false,
             'lockUser'   => $model,
         ]);
@@ -120,7 +120,7 @@ class LoginController extends Controller
     {
         $lockUser = $cookieJar->forget('lockUser');
 
-        return redirect()->route('platform.login')->withCookie($lockUser);
+        return redirect()->route('orchid.login')->withCookie($lockUser);
     }
 
     /**
@@ -130,7 +130,7 @@ class LoginController extends Controller
     {
         Impersonation::logout();
 
-        return redirect()->route(config('platform.index'));
+        return redirect()->route(config('orchid.index'));
     }
 
     /**

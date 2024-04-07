@@ -14,7 +14,7 @@ use Orchid\Platform\Http\Layouts\SearchLayout;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Contracts\Searchable;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 use Orchid\Support\Facades\Layout;
 
 class SearchScreen extends Screen
@@ -41,7 +41,7 @@ class SearchScreen extends Screen
             'query' => $query,
         ]);
 
-        $searchModels = Dashboard::getSearch();
+        $searchModels = Orchid::getSearch();
 
         $model = $this->getSearchModel($searchModels);
 
@@ -67,7 +67,7 @@ class SearchScreen extends Screen
         return [
             Button::make(__('Apply'))
                 ->icon('bs.funnel')
-                ->canSee(Dashboard::getSearch()->count() > 1)
+                ->canSee(Orchid::getSearch()->count() > 1)
                 ->method('changeSearchType'),
         ];
     }
@@ -80,7 +80,7 @@ class SearchScreen extends Screen
     public function layout(): iterable
     {
         return [
-            Layout::wrapper('platform::partials.result', [
+            Layout::wrapper('orchid::partials.result', [
                 'radios' => SearchLayout::class,
             ]),
         ];
@@ -101,7 +101,7 @@ class SearchScreen extends Screen
         $total = 0;
 
         /** @var Searchable[] $results */
-        $results = Dashboard::getSearch()
+        $results = Orchid::getSearch()
             ->transform(function (Model $model) use ($query, &$total) {
                 /** @var Searchable $presenter */
                 $presenter = optional($model)->presenter();
@@ -129,7 +129,7 @@ class SearchScreen extends Screen
             })
             ->filter();
 
-        return view('platform::partials.result-compact', [
+        return view('orchid::partials.result-compact', [
             'results' => $results,
             'total'   => $total,
             'query'   => $query,

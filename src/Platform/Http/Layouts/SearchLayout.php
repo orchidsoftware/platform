@@ -9,14 +9,14 @@ use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Label;
 use Orchid\Screen\Fields\Radio;
 use Orchid\Screen\Layouts\Rows;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 use Throwable;
 
 class SearchLayout extends Rows
 {
     public function isSee(): bool
     {
-        return Dashboard::getSearch()->isNotEmpty();
+        return Orchid::getSearch()->isNotEmpty();
     }
 
     /**
@@ -26,7 +26,7 @@ class SearchLayout extends Rows
     {
         $searchModel = $this->query->get('model');
 
-        $layouts = Dashboard::getSearch()
+        $layouts = Orchid::getSearch()
             ->map(static function (Model $model) use ($searchModel) {
                 $radio = Radio::make('type')
                     ->value(get_class($model))

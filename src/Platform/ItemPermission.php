@@ -30,13 +30,29 @@ class ItemPermission
      *
      * @return self The new permission group instance.
      */
-    public static function group(string $group): self
+    public static function make(string $group, array $items = []): self
     {
         $item = new self();
 
         $item->group = $group;
 
+        foreach ($items as $slug => $name){
+            $item->add($slug, $name);
+        }
+
         return $item;
+    }
+
+    /**
+     * Create a new permission group instance with the given group name.
+     *
+     * @param string $group The name of the permission group.
+     *
+     * @return self The new permission group instance.
+     */
+    public static function group(string $group, array $items = []): self
+    {
+        return self::make($group, $items);
     }
 
     /**
@@ -47,7 +63,7 @@ class ItemPermission
      *
      * @return $this The current permission group instance.
      */
-    public function addPermission(string $slug, string $name): self
+    public function add(string $slug, string $name): self
     {
         $this->items[] = [
             'slug'        => $slug,
@@ -55,5 +71,20 @@ class ItemPermission
         ];
 
         return $this;
+    }
+
+    /**
+     * @alias
+     *
+     * Alice for `add` method
+     *
+     * @param string $slug The slug of the permission.
+     * @param string $name The description of the permission.
+     *
+     * @return $this The current permission group instance.
+     */
+    public function addPermission(string $slug, string $name): self
+    {
+        return $this->add($slug, $name);
     }
 }

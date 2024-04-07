@@ -27,7 +27,7 @@ class Attach extends Field
     /**
      * @var string
      */
-    protected $view = 'platform::fields.attach';
+    protected $view = 'orchid::fields.attach';
 
     /**
      * Default attributes value.
