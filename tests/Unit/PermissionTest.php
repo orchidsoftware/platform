@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Exception;
-use Orchid\Platform\Orchid;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
+use Orchid\Platform\Orchid;
 use Orchid\Tests\TestUnitCase;
 
 /**

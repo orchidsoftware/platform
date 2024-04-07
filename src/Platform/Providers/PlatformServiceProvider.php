@@ -6,8 +6,8 @@ namespace Orchid\Platform\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Orchid\Icons\IconFinder;
-use Orchid\Platform\Orchid;
 use Orchid\Platform\ItemPermission;
+use Orchid\Platform\Orchid;
 
 class PlatformServiceProvider extends ServiceProvider
 {

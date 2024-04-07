@@ -14,8 +14,8 @@ use Orchid\Platform\Http\Layouts\SearchLayout;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Contracts\Searchable;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Orchid;
 use Orchid\Support\Facades\Layout;
+use Orchid\Support\Facades\Orchid;
 
 class SearchScreen extends Screen
 {

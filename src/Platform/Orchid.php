@@ -168,7 +168,7 @@ class Orchid
     {
         $current = dirname(__DIR__, 2);
 
-        if(is_bool(realpath($current.($path ? DIRECTORY_SEPARATOR.$path : $path)))){
+        if (is_bool(realpath($current.($path ? DIRECTORY_SEPARATOR.$path : $path)))) {
             dd($path, $current);
         }
 

@@ -6,9 +6,9 @@ namespace Orchid\Platform\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
-use Orchid\Platform\Orchid;
 use Orchid\Platform\Http\Middleware\Access;
 use Orchid\Platform\Http\Middleware\Turbo;
+use Orchid\Platform\Orchid;
 
 class RouteServiceProvider extends ServiceProvider
 {

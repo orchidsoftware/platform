@@ -36,7 +36,7 @@ class ItemPermission
 
         $item->group = $group;
 
-        foreach ($items as $slug => $name){
+        foreach ($items as $slug => $name) {
             $item->add($slug, $name);
         }
 

@@ -116,7 +116,6 @@ class FoundationServiceProvider extends ServiceProvider
 
         $this->app->singleton(Orchid::class, static fn () => new Orchid());
 
-
         if (! Route::hasMacro('screen')) {
             Route::macro('screen', function ($url, $screen) {
                 /* @var Router $this */

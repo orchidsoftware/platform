@@ -6,8 +6,8 @@ namespace Orchid\Platform\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
-use Orchid\Platform\Orchid;
 use Orchid\Platform\Events\InstallEvent;
+use Orchid\Platform\Orchid;
 use Orchid\Platform\Providers\ConsoleServiceProvider;
 
 class InstallCommand extends Command

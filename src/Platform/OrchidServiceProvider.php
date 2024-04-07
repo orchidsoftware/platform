@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform;
 
-use Closure;
 use Illuminate\Contracts\Foundation\CachesRoutes;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +29,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->booting(function (){
+        $this->booting(function () {
             // Need for backward compatibility
             $this->orchid = $this->orchidSingleton();
 
