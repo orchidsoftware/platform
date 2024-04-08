@@ -1,3 +1,10 @@
+.line-clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .show {
   visibility: visible;
 }
@@ -619,7 +626,7 @@
 }
 
 .content-read {
-    max-width: 600px;
+    max-width: 680px;
 }
 
 .text-balance {

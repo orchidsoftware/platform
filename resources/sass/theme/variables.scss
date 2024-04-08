@@ -155,3 +155,19 @@ $modal-content-border-width: 0;
 
 
 $popover-bg: $white;
+
+
+$utilities: (
+    'line-clamp': (
+        property: -webkit-line-clamp,
+        class: line-clamp,
+        responsive: true,
+        values: (
+            1: 1,
+            2: 2,
+            3: 3,
+            4: 4,
+            5: 5,
+        ),
+    ),
+);
