@@ -121,9 +121,10 @@ abstract class Cell
      *
      * @param string $component The component to render.
      * @param mixed  ...$params Optional parameters for the component.
+     *
      * @return $this
      */
-    public function component(string $component,  ...$params): static
+    public function component(string $component, ...$params): static
     {
         /** Backward compatibility workaround.
          *
@@ -166,7 +167,6 @@ abstract class Cell
     {
         return $this->asComponent($component, $params);
     }
-
 
     /**
      * @param Repository|Model $source
