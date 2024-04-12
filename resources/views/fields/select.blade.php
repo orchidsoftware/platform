@@ -9,8 +9,7 @@
         <select {{ $attributes }}>
             @foreach($options as $key => $option)
                 <option value="{{ $key }}"
-                        @if(isset($value) && ((is_array($value) && in_array($key, $value)) || (!is_array($value) && $key == $value)))
-                            selected
+                        @if(isset($value) && ((is_array($value) && in_array($key, $value)) || (!is_array($value) && $key == $value))) selected
                         @endif
                 >{{ $option }}</option>
             @endforeach
