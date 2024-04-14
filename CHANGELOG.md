@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.22.0 - 2024-04-14
+
+### Added
+- `Text` component for `Cell`
+
+### Changed
+- Popover trigger to hover/active
+- Improved component rendering method with backward compatibility
+
+### Fixed
+- Trim profile name/description
+
 ## 14.21.1 - 2024-03-25
 
 ### Fixed
