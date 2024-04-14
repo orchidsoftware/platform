@@ -19,7 +19,7 @@ class Text extends Component
      */
     public function __construct(
         protected mixed $value,
-        protected ?string $title =  null,
+        protected ?string $title = null,
         protected ?string $text = null,
         protected ?int $words = 30,
         protected ?int $clamp = 5,
@@ -36,7 +36,7 @@ class Text extends Component
         return Blade::render('<div class="text-balance line-clamp {{ $class }}">
                               @empty(!$title)<strong class="d-block">{{ $title }}</strong>@endempty
                               <span class="text-muted">{{ $text }}</span></div>', [
-            'class' => $this->clamp ? 'line-clamp-' . $this->clamp : '',
+            'class' => $this->clamp ? 'line-clamp-'.$this->clamp : '',
             'title' => $this->title ? Str::of($this->value->getContent($this->title))->words($this->words) : '',
             'text'  => Str::of($this->value->getContent($this->text))->words($this->words),
         ]);
