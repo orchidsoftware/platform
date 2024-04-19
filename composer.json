@@ -37,6 +37,7 @@
     ],
     "require": {
         "ext-json": "*",
+        "composer-runtime-api": "^2.2",
         "orchid/blade-icons": "^4.0",
         "tabuna/breadcrumbs": "^4.0",
         "laravel/framework": "^10.0||^11.0",
