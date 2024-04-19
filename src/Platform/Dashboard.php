@@ -22,7 +22,6 @@ class Dashboard
      * ORCHID Version.
      *
      * @deprecated Use `Dashboard::version()` instead.
-     *
      */
     public const VERSION = '14.22.1';
 

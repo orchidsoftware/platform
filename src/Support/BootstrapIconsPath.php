@@ -13,6 +13,6 @@ class BootstrapIconsPath
     {
         $packagePath = InstalledVersions::getInstallPath('twbs/bootstrap-icons');
 
-        return realpath($packagePath . '/icons');
+        return realpath($packagePath.'/icons');
     }
 }
