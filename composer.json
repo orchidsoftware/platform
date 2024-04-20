@@ -49,14 +49,13 @@
         "doctrine/dbal": "^2.10 || ^3.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.14",
-        "orchestra/testbench-core": "^8.0 || ^9.0",
-        "orchestra/testbench-dusk": "^8.0 || ^9.0",
-        "phpunit/php-code-coverage": "^10.0 || ^11.0",
+        "orchestra/testbench-core": "^9.0",
+        "orchestra/testbench-dusk": "^9.0",
         "phpunit/phpunit": "^10.0 || ^11.0",
         "vimeo/psalm": "^5.0"
     },
     "conflict": {
-        "laravel/framework": "<10.2.0",
+        "laravel/framework": "<10.48.8",
         "nesbot/carbon": "<2.66.0"
     },
     "autoload": {
