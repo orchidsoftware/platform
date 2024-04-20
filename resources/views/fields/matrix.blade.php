@@ -25,7 +25,7 @@
                 <a href="#" data-action="matrix#addRow" class="btn btn-block small text-muted">
                     <x-orchid-icon path="bs.plus-circle" class="me-2"/>
 
-                    <span>{{ __('Add row') }}</span>
+                    <span>{{ __($addRowLabel) }}</span>
                 </a>
             </th>
         </tr>
