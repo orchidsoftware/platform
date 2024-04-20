@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Access\Impersonation;
 use Orchid\Platform\Models\User;
@@ -12,8 +11,6 @@ use Orchid\Tests\TestUnitCase;
 
 class UserTest extends TestUnitCase
 {
-    use RefreshDatabase;
-
     public function testHasCorrectInstance(): void
     {
         $user = User::factory()->create();
