@@ -33,7 +33,7 @@ class Matrix extends Field
         'maxRows'           => 0,
         'keyValue'          => false,
         'fields'            => [],
-        'addRowLabel'       => null,
+        'addRowLabel'       => 'Add row',
         'columns'           => [
             'key',
             'value',
