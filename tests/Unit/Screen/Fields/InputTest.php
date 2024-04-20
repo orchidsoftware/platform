@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Fields;
 
-use Illuminate\Support\Facades\Session;
+use Illuminate\Foundation\Testing\Concerns\InteractsWithSession;
+use Illuminate\Session\Store;
 use Orchid\Screen\Fields\Input;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 use Throwable;
 
 class InputTest extends TestFieldsUnitCase
 {
+    use InteractsWithSession;
+
     /**
      * @throws Throwable
      */
@@ -121,13 +124,14 @@ class InputTest extends TestFieldsUnitCase
 
     public function testLongNumericValue(): void
     {
-        Session::start();
+        $session = tap(app()->make(Store::class), function ($session) {
+            $session->start();
+            $session->put('_old_input', [
+                'numeric' => '1234567890123456789012345678901234567890',
+            ]);
+        });
 
-        Session::put('_old_input', [
-            'numeric' => '1234567890123456789012345678901234567890',
-        ]);
-
-        request()->setLaravelSession(session());
+        request()->setLaravelSession($session);
 
         $input = Input::make('numeric')->getOldValue();
 
@@ -136,13 +140,14 @@ class InputTest extends TestFieldsUnitCase
 
     public function testMediumLongNumericValue(): void
     {
-        Session::start();
+        $session = tap(app()->make(Store::class), function ($session) {
+            $session->start();
+            $session->put('_old_input', [
+                'numeric' => '66666666666666666666',
+            ]);
+        });
 
-        Session::put('_old_input', [
-            'numeric' => '66666666666666666666',
-        ]);
-
-        request()->setLaravelSession(session());
+        request()->setLaravelSession($session);
 
         $input = Input::make('numeric')->getOldValue();
 

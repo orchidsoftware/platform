@@ -18,10 +18,15 @@ class AuthTest extends TestFeatureCase
 
     public function testRouteDashboardLoginAuth(): void
     {
-        $this->actingAs($this->createAdminUser())
+        $response = $this->actingAs($this->createAdminUser())
             ->get(route('platform.login'))
-            ->assertStatus(302)
-            ->assertRedirect('/home');
+            ->assertStatus(302);
+
+        $this->assertTrue(
+            // Home for Laravel 10.x and earlier
+            // '/' for Laravel 11.x and later
+            $response->isRedirect(url('/home')) || $response->isRedirect(url('/'))
+        );
     }
 
     public function testRouteDashboardLoginAuthSuccess(): void

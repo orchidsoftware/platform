@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Session\Store;
 use Orchid\Screen\Field;
 use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Code;
@@ -194,26 +194,28 @@ class FieldTest extends TestUnitCase
 
     public function testOldName(): void
     {
-        Session::start();
+        $session = tap(app()->make(Store::class), function ($session) {
+            $session->start();
+            $session->put('_old_input', [
+                'name' => "The heart of Seoul's nightlife",
+            ]);
+        });
 
-        Session::put('_old_input', [
-            'name' => "The heart of Seoul's nightlife",
-        ]);
-
-        request()->setLaravelSession(session());
+        request()->setLaravelSession($session);
 
         $this->assertSame("The heart of Seoul's nightlife", Input::make('name')->getOldValue());
     }
 
     public function testNumericOldName(): void
     {
-        Session::start();
+        $session = tap(app()->make(Store::class), function ($session) {
+            $session->start();
+            $session->put('_old_input', [
+                'numeric' => '3.141',
+            ]);
+        });
 
-        Session::put('_old_input', [
-            'numeric' => '3.141',
-        ]);
-
-        request()->setLaravelSession(session());
+        request()->setLaravelSession($session);
 
         $this->assertSame('3.141', Input::make('numeric')->getOldValue());
     }
