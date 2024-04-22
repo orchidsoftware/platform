@@ -37,7 +37,7 @@
     "resolve-url-loader": "^5.0.0",
     "rtlcss": "^4.0.0",
     "sass": "^1.69.7",
-    "sass-loader": "^13.0.2",
+    "sass-loader": "^14.2.1",
     "vue-template-compiler": "^2.6.12"
   }
 }
