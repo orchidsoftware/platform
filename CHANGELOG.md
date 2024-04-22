@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.23.0 - 2024-04-23
+
+### Added
+- Possibility to change 'Add row' label for matrix field [#2824](https://github.com/orchidsoftware/platform/pull/2824)
+- Config for `Prefetching Links on Hover`
+
 ## 14.22.1 - 2024-04-20
 
 ### Fixed
