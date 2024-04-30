@@ -59,10 +59,11 @@ abstract class Legend extends Layout
             : $repository;
 
         return view($this->template, [
-            'repository' => $repository,
-            'columns'    => $columns,
-            'slug'       => $this->getSlug(),
-            'title'      => $this->title,
+            'repository'        => $repository,
+            'columns'           => $columns,
+            'slug'              => $this->getSlug(),
+            'title'             => $this->title,
+            'dataAttributes'    => $this->getDataAttributes(),
         ]);
     }
 

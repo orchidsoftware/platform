@@ -1,5 +1,5 @@
 <div
-     data-controller="chart"
+     @include("platform::components.dataAttributes")
      data-chart-parent="#{{$slug}}"
      data-chart-labels="{{$labels}}"
      data-chart-datasets="{{$data}}"

@@ -37,7 +37,8 @@ abstract class TabMenu extends Layout
         $form = new Builder($this->navigations(), $repository);
 
         return view($this->template, [
-            'navigations'  => $form->generateForm(),
+            'navigations'       => $form->generateForm(),
+            'dataAttributes'    => $this->getDataAttributes(),
         ]);
     }
 

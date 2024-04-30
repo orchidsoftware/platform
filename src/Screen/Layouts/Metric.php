@@ -47,8 +47,9 @@ class Metric extends Layout
         $metrics = collect($this->labels)->map(fn (string $value) => $repository->getContent($value, ''));
 
         return view($this->template, [
-            'title'   => $this->title,
-            'metrics' => $metrics,
+            'title'             => $this->title,
+            'metrics'           => $metrics,
+            'dataAttributes'    => $this->getDataAttributes(),
         ]);
     }
 

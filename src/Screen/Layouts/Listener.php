@@ -81,4 +81,11 @@ abstract class Listener extends Layout
             'layout' => Crypt::encryptString(static::class),
         ]);
     }
+
+    public function getDefaultDataAttributes(): array
+    {
+        return [
+            'controller' => 'listener',
+        ];
+    }
 }

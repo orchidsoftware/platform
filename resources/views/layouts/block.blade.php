@@ -1,4 +1,4 @@
-<fieldset class="row g-0 mb-3">
+<fieldset class="row g-0 mb-3" @include("platform::components.dataAttributes")>
     @if(!empty($title) || !empty($description))
     <div class="col p-0 px-3">
         <legend class="text-black px-2 mt-2">

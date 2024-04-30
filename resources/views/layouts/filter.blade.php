@@ -1,4 +1,4 @@
-<div class="g-0 bg-white rounded mb-3">
+<div class="g-0 bg-white rounded mb-3" @include("platform::components.dataAttributes")>
     <div class="row align-items-center p-4" data-controller="filter">
         @foreach ($filters as $filter)
             <div class="col-sm-auto col-md mb-3 align-self-start" style="min-width: 200px;">

@@ -246,21 +246,29 @@ abstract class Chart extends Layout
             ->toJson(JSON_NUMERIC_CHECK);
 
         return view($this->template, [
-            'title'            => __($this->title),
-            'description'      => __($this->description),
-            'slug'             => Str::slug($this->target.$this->title),
-            'type'             => $this->type,
-            'height'           => $this->height,
-            'labels'           => $labels,
-            'export'           => $this->export,
-            'data'             => json_encode($repository->getContent($this->target), JSON_NUMERIC_CHECK),
-            'colors'           => json_encode($this->colors),
-            'maxSlices'        => json_encode($this->maxSlices),
-            'valuesOverPoints' => json_encode($this->valuesOverPoints),
-            'axisOptions'      => json_encode($this->axisOptions),
-            'barOptions'       => json_encode($this->barOptions),
-            'lineOptions'      => json_encode($this->lineOptions),
-            'markers'          => json_encode($this->markers()),
+            'title'             => __($this->title),
+            'description'       => __($this->description),
+            'slug'              => Str::slug($this->target.$this->title),
+            'type'              => $this->type,
+            'height'            => $this->height,
+            'labels'            => $labels,
+            'export'            => $this->export,
+            'data'              => json_encode($repository->getContent($this->target), JSON_NUMERIC_CHECK),
+            'colors'            => json_encode($this->colors),
+            'maxSlices'         => json_encode($this->maxSlices),
+            'valuesOverPoints'  => json_encode($this->valuesOverPoints),
+            'axisOptions'       => json_encode($this->axisOptions),
+            'barOptions'        => json_encode($this->barOptions),
+            'lineOptions'       => json_encode($this->lineOptions),
+            'markers'           => json_encode($this->markers()),
+            'dataAttributes'    => $this->getDataAttributes(),
         ]);
+    }
+
+    public function getDefaultDataAttributes(): array
+    {
+        return [
+            'controller' => 'chart',
+        ];
     }
 }

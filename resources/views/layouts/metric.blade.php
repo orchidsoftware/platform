@@ -1,4 +1,4 @@
-<div class="mb-3">
+<div class="mb-3" @include("platform::components.dataAttributes")>
     @isset($title)
         <legend class="text-black px-4 mb-0">
             {{ __($title) }}

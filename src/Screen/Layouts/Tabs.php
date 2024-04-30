@@ -51,4 +51,11 @@ abstract class Tabs extends Layout
 
         return $this;
     }
+
+    public function getDefaultDataAttributes(): array
+    {
+        return [
+            'controller' => 'tabs',
+        ];
+    }
 }

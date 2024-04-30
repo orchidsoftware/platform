@@ -49,8 +49,9 @@ abstract class Selection extends Layout
         }
 
         return view($this->template, [
-            'filters' => $filters,
-            'chunk'   => ceil($filters->count() / 4),
+            'filters'           => $filters,
+            'chunk'             => ceil($filters->count() / 4),
+            'dataAttributes'    => $this->getDataAttributes(),
         ]);
     }
 
@@ -58,4 +59,14 @@ abstract class Selection extends Layout
      * @return Filter[]
      */
     abstract public function filters(): iterable;
+
+    public function getDefaultDataAttributes(): array
+    {
+        if($this->template === self::TEMPLATE_DROP_DOWN) {
+            return [
+                'controller' => 'filter',
+            ];
+        }
+        return [];
+    }
 }
