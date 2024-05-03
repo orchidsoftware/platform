@@ -28,7 +28,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function shouldDiscoverEvents()
     {
-        if(isset(static::$shouldDiscoverEvents)) {
+        if (isset(static::$shouldDiscoverEvents)) {
             return get_class($this) === __CLASS__ && static::$shouldDiscoverEvents === true;
         }
 
