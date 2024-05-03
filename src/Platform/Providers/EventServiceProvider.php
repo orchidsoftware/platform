@@ -20,4 +20,18 @@ class EventServiceProvider extends ServiceProvider
             LockUserForLogin::class,
         ],
     ];
+
+    /**
+     * Determine if events and listeners should be automatically discovered.
+     *
+     * @return bool
+     */
+    public function shouldDiscoverEvents()
+    {
+        if(isset(static::$shouldDiscoverEvents)) {
+            return get_class($this) === __CLASS__ && static::$shouldDiscoverEvents === true;
+        }
+
+        return parent::shouldDiscoverEvents();
+    }
 }
