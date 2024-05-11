@@ -97,7 +97,11 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerLoginEventsListen():self
     {
-        Event::listen(Login::class, LockUserForLogin::class,);
+        if (config('platform.auth', true)) {
+            Event::listen(Login::class, LockUserForLogin::class);
+        }
+
+        return $this;
     }
 
     /**
