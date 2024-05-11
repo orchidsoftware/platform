@@ -14,9 +14,11 @@ use Orchid\Icons\IconServiceProvider;
 use Orchid\Platform\Components\Notification;
 use Orchid\Platform\Components\Stream;
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\Listeners\LockUserForLogin;
 use Orchid\Screen\Components\Popover;
 use Tabuna\Breadcrumbs\BreadcrumbsServiceProvider;
 use Watson\Active\ActiveServiceProvider;
+use Illuminate\Auth\Events\Login;
 
 /**
  * Class FoundationServiceProvider.
@@ -31,6 +33,7 @@ class FoundationServiceProvider extends ServiceProvider
     {
         $this
             ->registerViews()
+            ->registerLoginEventsListen()
             ->registerOctaneEventsListen();
     }
 
@@ -90,6 +93,14 @@ class FoundationServiceProvider extends ServiceProvider
     }
 
     /**
+     * @return self
+     */
+    public function registerLoginEventsListen():self
+    {
+        Event::listen(Login::class, LockUserForLogin::class,);
+    }
+
+    /**
      * Get the services provided by the provider.
      */
     public function provides(): array
@@ -100,7 +111,6 @@ class FoundationServiceProvider extends ServiceProvider
             IconServiceProvider::class,
             BreadcrumbsServiceProvider::class,
             RouteServiceProvider::class,
-            EventServiceProvider::class,
             PlatformServiceProvider::class,
         ];
     }
