@@ -14,11 +14,9 @@ use Orchid\Icons\IconServiceProvider;
 use Orchid\Platform\Components\Notification;
 use Orchid\Platform\Components\Stream;
 use Orchid\Platform\Dashboard;
-use Orchid\Platform\Listeners\LockUserForLogin;
 use Orchid\Screen\Components\Popover;
 use Tabuna\Breadcrumbs\BreadcrumbsServiceProvider;
 use Watson\Active\ActiveServiceProvider;
-use Illuminate\Auth\Events\Login;
 
 /**
  * Class FoundationServiceProvider.
@@ -33,7 +31,6 @@ class FoundationServiceProvider extends ServiceProvider
     {
         $this
             ->registerViews()
-            ->registerLoginEventsListen()
             ->registerOctaneEventsListen();
     }
 
@@ -88,18 +85,6 @@ class FoundationServiceProvider extends ServiceProvider
     public function registerOctaneEventsListen(): self
     {
         Event::listen(fn (\Laravel\Octane\Events\RequestReceived $request) => \Orchid\Support\Facades\Dashboard::flushState());
-
-        return $this;
-    }
-
-    /**
-     * @return self
-     */
-    public function registerLoginEventsListen():self
-    {
-        if (config('platform.auth', true)) {
-            Event::listen(Login::class, LockUserForLogin::class);
-        }
 
         return $this;
     }

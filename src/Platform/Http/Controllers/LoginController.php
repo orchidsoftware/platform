@@ -53,11 +53,11 @@ class LoginController extends Controller
      * Handle a login request to the application.
      *
      *
+     * @return JsonResponse|RedirectResponse
      * @throws ValidationException
      *
-     * @return JsonResponse|RedirectResponse
      */
-    public function login(Request $request)
+    public function login(Request $request, CookieJar $cookieJar)
     {
         $request->validate([
             'email'    => 'required|string',
@@ -66,16 +66,21 @@ class LoginController extends Controller
 
         $auth = $this->guard->attempt(
             $request->only(['email', 'password']),
-            $request->filled('remember')
+            $request->boolean('remember')
         );
 
-        if ($auth) {
-            return $this->sendLoginResponse($request);
+        if (!$auth) {
+            throw ValidationException::withMessages([
+                'email' => __('The details you entered did not match our records. Please double-check and try again.'),
+            ]);
         }
 
-        throw ValidationException::withMessages([
-            'email' => __('The details you entered did not match our records. Please double-check and try again.'),
-        ]);
+        if ($request->boolean('remember')) {
+            $user = $cookieJar->forever($this->nameForLock(), $this->guard->id());
+            $cookieJar->queue($user);
+        }
+
+        return $this->sendLoginResponse($request);
     }
 
     /**
@@ -100,7 +105,7 @@ class LoginController extends Controller
      */
     public function showLoginForm(Request $request)
     {
-        $user = $request->cookie('lockUser');
+        $user = $request->cookie($this->nameForLock());
 
         /** @var EloquentUserProvider $provider */
         $provider = $this->guard->getProvider();
@@ -118,7 +123,7 @@ class LoginController extends Controller
      */
     public function resetCookieLockMe(CookieJar $cookieJar)
     {
-        $lockUser = $cookieJar->forget('lockUser');
+        $lockUser = $cookieJar->forget($this->nameForLock());
 
         return redirect()->route('platform.login')->withCookie($lockUser);
     }
@@ -150,5 +155,15 @@ class LoginController extends Controller
         return $request->wantsJson()
             ? new JsonResponse([], 204)
             : redirect('/');
+    }
+
+    /**
+     * Get a unique identifier for the auth session value.
+     *
+     * @return string
+     */
+    private function nameForLock(): string
+    {
+        return sprintf('%s_%s', $this->guard->getName(), '_orchid_lock');
     }
 }
