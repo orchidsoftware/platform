@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
+use Illuminate\Support\Facades\Auth;
 use Orchid\Tests\TestFeatureCase;
 
 class AuthTest extends TestFeatureCase
@@ -38,7 +39,7 @@ class AuthTest extends TestFeatureCase
         ])
             ->assertStatus(302)
             ->assertRedirect(route(config('platform.index')))
-            ->assertCookieNotExpired('lockUser');
+            ->assertCookieNotExpired(sprintf('%s_%s', Auth::guard()->getName(), '_orchid_lock'));
     }
 
     public function testRouteDashboardLoginAuthFail(): void
@@ -57,7 +58,7 @@ class AuthTest extends TestFeatureCase
             'lockUser' => 1,
         ])
             ->assertRedirect(route('platform.login'))
-            ->assertCookieExpired('lockUser');
+            ->assertCookieExpired(sprintf('%s_%s', Auth::guard()->getName(), '_orchid_lock'));
     }
 
     public function testRouteDashboardSwitchLogout(): void

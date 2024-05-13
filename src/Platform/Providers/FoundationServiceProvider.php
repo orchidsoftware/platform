@@ -100,7 +100,6 @@ class FoundationServiceProvider extends ServiceProvider
             IconServiceProvider::class,
             BreadcrumbsServiceProvider::class,
             RouteServiceProvider::class,
-            EventServiceProvider::class,
             PlatformServiceProvider::class,
         ];
     }
