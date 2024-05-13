@@ -53,9 +53,9 @@ class LoginController extends Controller
      * Handle a login request to the application.
      *
      *
-     * @return JsonResponse|RedirectResponse
      * @throws ValidationException
      *
+     * @return JsonResponse|RedirectResponse
      */
     public function login(Request $request, CookieJar $cookieJar)
     {
@@ -69,7 +69,7 @@ class LoginController extends Controller
             $request->boolean('remember')
         );
 
-        if (!$auth) {
+        if (! $auth) {
             throw ValidationException::withMessages([
                 'email' => __('The details you entered did not match our records. Please double-check and try again.'),
             ]);
