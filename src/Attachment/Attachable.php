@@ -29,7 +29,7 @@ trait Attachable
             'attachmentable_id',
             'attachment_id'
         )
-            ->when($group !== null, fn($query) => $query->where('group', $group))
+            ->when($group !== null, fn ($query) => $query->where('group', $group))
             ->orderBy('sort');
     }
 }

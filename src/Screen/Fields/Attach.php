@@ -59,7 +59,6 @@ class Attach extends Field
         'required',
     ];
 
-
     /**
      * Upload constructor.
      */
@@ -130,5 +129,4 @@ class Attach extends Field
             ->set('storage', $storage)
             ->set('visibility', $disk['visibility'] ?? null);
     }
-
 }
