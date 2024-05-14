@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Illuminate\Support\Arr;
+use Orchid\Attachment\Models\Attachment;
+use Orchid\Platform\Dashboard;
 use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
+use Orchid\Support\Assert;
+use Orchid\Support\Init;
 
 /**
  * Class Attach.
@@ -53,4 +58,77 @@ class Attach extends Field
         'multiple',
         'required',
     ];
+
+
+    /**
+     * Upload constructor.
+     */
+    public function __construct()
+    {
+        // Set max file size
+        $this->addBeforeRender(function () {
+            $maxFileSize = $this->get('maxFileSize');
+
+            $serverMaxFileSize = Init::maxFileUpload(Init::MB);
+
+            if ($maxFileSize === null) {
+                $this->set('maxFileSize', $serverMaxFileSize);
+
+                return;
+            }
+
+            throw_if(
+                $maxFileSize > $serverMaxFileSize,
+                'Cannot set the desired maximum file size. This contradicts the settings specified in .ini'
+            );
+        });
+
+        // set load relation attachment
+        $this->addBeforeRender(function () {
+            $value = Arr::wrap($this->get('value'));
+
+            if (! Assert::isIntArray($value)) {
+                return;
+            }
+
+            /** @var Attachment $attach */
+            $attach = Dashboard::model(Attachment::class);
+
+            $value = $attach::whereIn('id', $value)->orderBy('sort')->get()->toArray();
+
+            $this->set('value', $value);
+        });
+
+        // Division into groups
+        $this->addBeforeRender(function () {
+            $group = $this->get('groups');
+
+            if ($group === null) {
+                return;
+            }
+
+            $value = collect($this->get('value', []))
+                ->where('group', $group)
+                ->toArray();
+
+            $this->set('value', $value);
+        });
+    }
+
+    /**
+     * @throws \Throwable
+     *
+     * @return $this
+     */
+    public function storage(string $storage): self
+    {
+        $disk = config('filesystems.disks.'.$storage);
+
+        throw_if($disk === null, 'The selected storage was not found');
+
+        return $this
+            ->set('storage', $storage)
+            ->set('visibility', $disk['visibility'] ?? null);
+    }
+
 }
