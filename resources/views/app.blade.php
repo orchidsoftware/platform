@@ -57,7 +57,7 @@
     <div class="row justify-content-center d-md-flex h-100">
         @yield('aside')
 
-        <div class="col-xxl col-xl-9 col-12">
+        <div class="col-xxl col-xl-9 col-12" @if(!empty($controller))data-controller="{{$controller}}"@endif>
             @yield('body')
         </div>
     </div>

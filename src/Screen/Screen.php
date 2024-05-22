@@ -218,6 +218,7 @@ abstract class Screen extends Controller
             'formValidateMessage'     => $this->formValidateMessage(),
             'needPreventsAbandonment' => $this->needPreventsAbandonment(),
             'state'                   => $this->serializeStateWithPublicProperties($repository),
+            'controller'              => $this->frontendController(),
         ]);
     }
 
@@ -497,5 +498,13 @@ abstract class Screen extends Controller
         $repository = new Repository($data);
 
         return back()->with('_state', $this->serializableState($repository));
+    }
+
+    /**
+     * Name frontend controller in screen.
+     */
+    public function frontendController(): string
+    {
+        return '';
     }
 }
