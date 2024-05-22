@@ -1,4 +1,4 @@
-<div id="accordion-{{$templateSlug}}" class="accordion mb-3">
+<div id="accordion-{{$templateSlug}}" class="accordion mb-3" @include("platform::components.dataAttributes")>
     @foreach($manyForms as $name => $forms)
         <div class="accordion-heading @if ($loop->index) collapsed @endif"
              id="heading-{{\Illuminate\Support\Str::slug($name)}}"

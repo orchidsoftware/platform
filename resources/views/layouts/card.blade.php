@@ -1,4 +1,4 @@
-<div class="d-block bg-white rounded shadow-sm mb-3">
+<div class="d-block bg-white rounded shadow-sm mb-3" @include("platform::components.dataAttributes")>
     <div class="row g-0">
 
             @empty(!$image)

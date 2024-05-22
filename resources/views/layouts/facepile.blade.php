@@ -1,4 +1,4 @@
-<div class="avatar-group d-flex">
+<div class="avatar-group d-flex" @include("platform::components.dataAttributes")>
     @foreach($users as $user)
         <a href="{{ $user->url() }}" class="avatar thumb-xs"
            data-controller="tooltip"

@@ -49,8 +49,9 @@ abstract class Rows extends Layout
         $form = new Builder($this->fields(), $repository);
 
         return view($this->template, [
-            'form'  => $form->generateForm(),
-            'title' => $this->title,
+            'form'              => $form->generateForm(),
+            'title'             => $this->title,
+            'dataAttributes'    => $this->getDataAttributes(),
         ]);
     }
 

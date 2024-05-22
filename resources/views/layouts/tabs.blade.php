@@ -1,5 +1,5 @@
 <div
-    data-controller="tabs"
+    @include("platform::components.dataAttributes")
     data-tabs-slug="{{$templateSlug}}"
     data-tabs-active-tab="{{$activeTab}}"
 >

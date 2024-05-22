@@ -1,4 +1,4 @@
-<fieldset class="mb-3" data-async>
+<fieldset class="mb-3" data-async @include("platform::components.dataAttributes")>
 
     @empty(!$title)
         <div class="col p-0 px-3">

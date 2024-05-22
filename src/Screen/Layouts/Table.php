@@ -66,21 +66,22 @@ abstract class Table extends Layout
         $rows = is_a($content, Paginator::class) || is_a($content, CursorPaginator::class) ? $content : collect()->merge($content);
 
         return view($this->template, [
-            'repository'   => $repository,
-            'rows'         => $rows,
-            'columns'      => $columns,
-            'total'        => $total,
-            'iconNotFound' => $this->iconNotFound(),
-            'textNotFound' => $this->textNotFound(),
-            'subNotFound'  => $this->subNotFound(),
-            'striped'      => $this->striped(),
-            'compact'      => $this->compact(),
-            'bordered'     => $this->bordered(),
-            'hoverable'    => $this->hoverable(),
-            'slug'         => $this->getSlug(),
-            'onEachSide'   => $this->onEachSide(),
-            'showHeader'   => $this->hasHeader($columns, $rows),
-            'title'        => $this->title,
+            'repository'        => $repository,
+            'rows'              => $rows,
+            'columns'           => $columns,
+            'total'             => $total,
+            'iconNotFound'      => $this->iconNotFound(),
+            'textNotFound'      => $this->textNotFound(),
+            'subNotFound'       => $this->subNotFound(),
+            'striped'           => $this->striped(),
+            'compact'           => $this->compact(),
+            'bordered'          => $this->bordered(),
+            'hoverable'         => $this->hoverable(),
+            'slug'              => $this->getSlug(),
+            'onEachSide'        => $this->onEachSide(),
+            'showHeader'        => $this->hasHeader($columns, $rows),
+            'title'             => $this->title,
+            'dataAttributes'    => $this->getDataAttributes(),
         ]);
     }
 
@@ -174,5 +175,13 @@ abstract class Table extends Layout
     protected function total(): array
     {
         return [];
+    }
+
+    public function getDefaultDataAttributes(): array
+    {
+        return [
+            'controller' => 'table',
+            'table-slug' => $this->getSlug(),
+        ];
     }
 }

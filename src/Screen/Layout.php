@@ -40,6 +40,8 @@ abstract class Layout implements JsonSerializable
      */
     protected $query;
 
+    protected array $dataAttributes = [];
+
     /**
      * @return mixed
      */
@@ -63,8 +65,9 @@ abstract class Layout implements JsonSerializable
             ->all();
 
         $variables = array_merge($this->variables, [
-            'templateSlug' => $this->getSlug(),
-            'manyForms'    => $build,
+            'templateSlug'          => $this->getSlug(),
+            'manyForms'             => $build,
+            'dataAttributes'        => $this->getDataAttributes(),
         ]);
 
         return view($this->template, $variables);
@@ -145,5 +148,33 @@ abstract class Layout implements JsonSerializable
         $props = collect(get_object_vars($this));
 
         return $props->except(['query'])->toArray();
+    }
+
+    public function setDataAttributes(array $data): self
+    {
+        $this->dataAttributes = $data;
+
+        return $this;
+    }
+
+    public function getDefaultDataAttributes(): array
+    {
+        return [];
+    }
+
+    public function getDataAttributes(): array
+    {
+        $dataAttributes = $this->getDefaultDataAttributes();
+
+        foreach ($this->dataAttributes as $field => $value) {
+            if(isset($dataAttributes[$field])){
+                $oldValue = $dataAttributes[$field];
+                $dataAttributes[$field] = "{$oldValue} {$value}";
+            } else {
+                $dataAttributes[$field] = $value;
+            }
+        }
+
+        return $dataAttributes;
     }
 }

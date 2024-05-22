@@ -9,8 +9,7 @@
 @endempty
 
 <div class="bg-white rounded shadow-sm mb-3"
-     data-controller="table"
-     data-table-slug="{{$slug}}"
+     @include("platform::components.dataAttributes")
 >
 
     <div class="table-responsive">

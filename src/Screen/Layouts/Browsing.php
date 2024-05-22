@@ -49,7 +49,8 @@ class Browsing extends Layout
         }
 
         return view($this->template, [
-            'attributes' => array_filter($this->variables),
+            'attributes'        => array_filter($this->variables),
+            'dataAttributes'    => $this->getDataAttributes(),
         ]);
     }
 
@@ -156,5 +157,12 @@ class Browsing extends Layout
         $this->variables['srcdoc'] = $srcdoc;
 
         return $this;
+    }
+
+    public function getDefaultDataAttributes(): array
+    {
+        return [
+            'controller' => 'browsing',
+        ];
     }
 }
