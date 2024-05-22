@@ -21,6 +21,5 @@
 
     <p class="my-0 {{ auth()->check() ? 'd-none d-xl-block' : '' }}">
         {{ config('app.name') }}
-        <small class="align-top opacity">Orchid</small>
     </p>
 </div>
