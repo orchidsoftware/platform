@@ -112,6 +112,13 @@ class Attach extends Field
 
             $this->set('value', $value);
         });
+
+        // if is not multiple, then set maxCount to 1
+        $this->addBeforeRender(function () {
+            if (! $this->get('multiple')) {
+                $this->set('maxCount', 1);
+            }
+        });
     }
 
     /**

@@ -13,7 +13,6 @@ export default class extends ApplicationController {
         },
         group: {
             type: String,
-            default: null,
         },
         storage: {
             type: String,
@@ -21,7 +20,6 @@ export default class extends ApplicationController {
         },
         path: {
             type: String,
-            default: null,
         },
         count: {
             type: Number,
@@ -35,6 +33,12 @@ export default class extends ApplicationController {
             type: Number,
             default: 0,
         },
+        uploadUrl: {
+            type: String,
+        },
+        sortUrl: {
+            type: String,
+        },
         errorSize: {
             type: String,
             default: 'File ":name" is too large to upload',
@@ -45,7 +49,7 @@ export default class extends ApplicationController {
         },
     };
 
-    static targets = ['files', 'preview', 'container', 'template'];
+    static targets = ['files', 'preview', 'container', 'template', 'nullable'];
 
     connect() {
         this.attachmentValue.forEach((id) => this.renderPreview(id));
@@ -102,7 +106,7 @@ export default class extends ApplicationController {
         this.loadingValue = this.loadingValue + 1;
         this.element.ariaBusy = 'true';
 
-        fetch(this.prefix('/systems/files'), {
+        fetch(this.uploadUrlValue, {
             method: 'POST',
             body: data,
             headers: {
@@ -139,9 +143,10 @@ export default class extends ApplicationController {
 
     remove(event) {
         const i = event.currentTarget.getAttribute('data-index');
+
         event.currentTarget.closest('.pip').remove();
 
-        this.attachmentValue = this.attachmentValue.filter((id) => String(id) !== String(i));
+        this.attachmentValue = this.attachmentValue.filter((file) => String(file.id) !== String(i));
 
         this.togglePlaceholderShow();
     }
@@ -151,6 +156,16 @@ export default class extends ApplicationController {
      */
     togglePlaceholderShow() {
         this.containerTarget.classList.toggle('d-none', this.attachmentValue.length >= this.countValue);
+
+        // Disable the nullable field if there is at least one valid value and the count equals 1.
+        // If there are no values or if there are multiple values, the field will remain enabled and be sent to the server as `null`.
+        if (this.countValue === 1) {
+            this.nullableTarget.disabled = this.attachmentValue.length > 0;
+        } else {
+            // Unfortunately, this does not work with multiple selections because the server receives [0 => null] instead of an empty array.
+            // Therefore, this logic applies only to single selections.
+            this.nullableTarget.disabled = true;
+        }
     }
 
     /**
@@ -164,6 +179,8 @@ export default class extends ApplicationController {
             preview.innerHTML = preview.innerHTML
                 .replace(/{id}/gi, attachment.id)
                 .replace(/{url}/gi, attachment.url)
+                .replace(/{original_name}/gi, attachment.original_name)
+                .replace(/{mime}/gi, attachment.mime)
                 .replace(/{name}/gi, this.nameValue);
         });
 
@@ -184,7 +201,7 @@ export default class extends ApplicationController {
             items[id] = index;
         });
 
-        fetch(this.prefix('/systems/files'), {
+        fetch(this.sortUrlValue, {
             method: 'POST',
             body: JSON.stringify({
                 files: items,

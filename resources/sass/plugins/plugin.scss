@@ -370,7 +370,8 @@
         }
 
         &:after {
-            content:         "🔗";
+            content:         attr(title);
+            white-space:     pre;
             position:        absolute;
             top:             0;
             left:            0;
@@ -381,7 +382,9 @@
             justify-content: center;
             width:           100%;
             text-align:      center;
-            @extend .h3;
+            text-wrap:       pretty;
+            @extend .p-3;
+            @extend .small;
         }
     }
 
