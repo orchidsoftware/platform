@@ -73,7 +73,7 @@
                 <small class="text-muted" title="@yield('description')">@yield('description')</small>
             </header>
             <nav class="col-xs-12 col-md-auto ms-md-auto p-0">
-                <ul class="nav command-bar justify-content-sm-end justify-content-start d-flex align-items-center">
+                <ul class="nav command-bar justify-content-sm-end justify-content-start d-flex align-items-center gap-2 flex-wrap-reverse flex-sm-nowrap">
                     @yield('navbar')
                 </ul>
             </nav>

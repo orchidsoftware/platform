@@ -23,9 +23,9 @@
         </div>
 
         @empty(!$commandBar)
-            <div class="bg-light px-4 py-3 d-flex justify-content-end rounded-bottom">
+            <div class="bg-light px-4 py-3 d-flex justify-content-end rounded-bottom gap-2">
                 @foreach($commandBar as $command)
-                    <div class="{{ !$loop->first ? 'ms-2' : ''}}">
+                    <div>
                         {!! $command !!}
                     </div>
                 @endforeach
