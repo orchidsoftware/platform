@@ -505,6 +505,6 @@ abstract class Screen extends Controller
      */
     public function frontendController(): string
     {
-        return '';
+        return 'base';
     }
 }
