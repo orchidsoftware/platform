@@ -501,7 +501,13 @@ abstract class Screen extends Controller
     }
 
     /**
-     * Name frontend controller in screen.
+     * Returns the name of the base Stimulus controller for the frontend.
+     *
+     * This method is used to determine the base Stimulus controller that will be
+     * utilized on the frontend of the application. The controller manages the
+     * behavior of UI elements, interacting with other components via Hotwire.
+     *
+     * @return string The name of the base controller.
      */
     public function frontendController(): string
     {
