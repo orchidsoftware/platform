@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.24.0 - 2024-05-27
+
+### Added
+- Add frontend controller in screen. [#2835](https://github.com/orchidsoftware/platform/pull/2835)
+
+### Changed
+- Remove subtitle Orchid on header
+- `Attach` field allow to set custom url endpoint for upload and sort
+
+### Removed
+- EventServiceProvider [#2834](https://github.com/orchidsoftware/platform/pull/2834)
+
 ## 14.23.1 - 2024-05-04
 
 ### Fixed

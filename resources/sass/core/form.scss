@@ -120,10 +120,6 @@ select {
     object-fit: cover;
 }
 
-.form-group:not(:last-child) {
-    margin-bottom: 1em;
-}
-
 .form-control, .form-range{
     max-width: 600px;
 }
