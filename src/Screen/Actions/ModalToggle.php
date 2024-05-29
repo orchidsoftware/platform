@@ -60,8 +60,8 @@ class ModalToggle extends Button
     {
         $this->set('modal', $name);
 
-        if(!empty($options)) {
-           $this->asyncParameters($options);
+        if (! empty($options)) {
+            $this->asyncParameters($options);
         }
 
         return $this;
