@@ -10,7 +10,6 @@ use Illuminate\Support\Arr;
  * Class ModalToggle.
  *
  * @method ModalToggle name(string $name = null)
- * @method ModalToggle modal(string $modalName = null)
  * @method ModalToggle icon(string $icon = null)
  * @method ModalToggle class(string $classes = null)
  * @method ModalToggle modalTitle(string $title)
@@ -49,5 +48,22 @@ class ModalToggle extends Button
         return $this
             ->parameters(Arr::wrap($options))
             ->set('async', 'true');
+    }
+
+    /**
+     * @param string $name
+     * @param array  $options
+     *
+     * @return $this|\Orchid\Screen\Actions\Button
+     */
+    public function modal(string $name, array $options = [])
+    {
+        $this->set('modal', $name);
+
+        if(!empty($options)) {
+           $this->asyncParameters($options);
+        }
+
+        return $this;
     }
 }
