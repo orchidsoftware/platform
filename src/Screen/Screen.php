@@ -136,15 +136,16 @@ abstract class Screen extends Controller
 
         $parameters = request()->collect()->merge([
             'state'   => $state,
-        ])->toArray();
+        ])->all();
 
         $repository = $this->callMethod($method, $parameters);
 
         if (is_array($repository)) {
-            $repository = new Repository($repository);
+            $repository = new Repository(array_merge($repository, $state->all()));
         }
 
-        $view = $this->view($repository)->fragments(collect($slug)->push('screen-state')->toArray());
+        $view = $this->view($repository)
+            ->fragments(collect($slug)->push('screen-state')->all());
 
         return response($view)
             ->header('Content-Type', 'text/vnd.turbo-stream.html');
