@@ -141,7 +141,7 @@ abstract class Screen extends Controller
         $repository = $this->callMethod($method, $parameters);
 
         if (is_array($repository)) {
-            $repository = new Repository(array_merge($repository, $state->all()));
+            $repository = new Repository(array_merge($state->all(), $repository));
         }
 
         $view = $this->view($repository)
