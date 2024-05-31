@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.25.2 - 2024-06-01
+
+### Fixed
+- Updated rules for stubs to ensure correct behavior
+- Enhanced fieldset template for better usability
+- Visual enhancements to the Boolean component [#2838](https://github.com/orchidsoftware/platform/pull/2838)
+
 ## 14.25.1 - 2024-05-30
 
 ### Fixed
