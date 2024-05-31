@@ -25,7 +25,6 @@ class RoleEditScreen extends Screen
     /**
      * Fetch data to be displayed on the screen.
      *
-     *
      * @return array
      */
     public function query(Role $role): iterable
@@ -52,6 +51,9 @@ class RoleEditScreen extends Screen
         return 'Modify the privileges and permissions associated with a specific role.';
     }
 
+    /**
+     * The permissions required to access this screen.
+     */
     public function permission(): ?iterable
     {
         return [
@@ -106,6 +108,7 @@ class RoleEditScreen extends Screen
     public function save(Request $request, Role $role)
     {
         $request->validate([
+            'role.name' => 'required',
             'role.slug' => [
                 'required',
                 Rule::unique(Role::class, 'slug')->ignore($role),
