@@ -13,28 +13,28 @@ class BooleanTest extends TestUnitCase
     {
         $component = new Boolean(true);
 
-        $this->assertEquals("<span class='text-success'>●</span>", $component->render());
+        $this->assertEquals("<span class='me-1 text-success'>●</span>", $component->render());
 
         $component = new Boolean(false);
 
-        $this->assertEquals("<span class='text-danger'>●</span>", $component->render());
+        $this->assertEquals("<span class='me-1 text-danger'>●</span>", $component->render());
     }
 
     public function testRenderBooleanWithNullComponent(): void
     {
         $component = new Boolean(null);
 
-        $this->assertEquals("<span class='text-danger'>●</span>", $component->render());
+        $this->assertEquals("<span class='me-1 text-danger'>●</span>", $component->render());
     }
 
     public function testRenderBooleanWithLabelComponent(): void
     {
         $component = new Boolean(true, true: 'Enabled', false: 'Disabled');
 
-        $this->assertEquals("<span class='text-success'>●</span>Enabled", $component->render());
+        $this->assertEquals("<span class='me-1 text-success'>●</span>Enabled", $component->render());
 
         $component = new Boolean(false, true: 'Enabled', false: 'Disabled');
 
-        $this->assertEquals("<span class='text-danger'>●</span>Disabled", $component->render());
+        $this->assertEquals("<span class='me-1 text-danger'>●</span>Disabled", $component->render());
     }
 }
