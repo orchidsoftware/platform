@@ -142,7 +142,6 @@ class Field implements Fieldable, Htmlable
         return $this->set($method, $arguments->first() ?? true);
     }
 
-
     /**
      * All attributes that are available to the field.
      *
@@ -152,7 +151,6 @@ class Field implements Fieldable, Htmlable
     {
 
     }
-
 
     /**
      * @param mixed $value
@@ -216,14 +214,12 @@ class Field implements Fieldable, Htmlable
 
         $errors = $this->getErrorsMessage();
 
-
         $attributes = $this->getAllowAttributes()->merge([
             'id'             => $id,
             'old'            => $this->getOldValue(),
             'slug'           => $this->getSlug(),
             'oldName'        => $this->getOldName(),
         ]);
-
 
         $field = view($this->view, array_merge($this->getAttributes(), [
             'attributes'     => $this->getAllowAttributes(),
@@ -236,8 +232,7 @@ class Field implements Fieldable, Htmlable
         ]))
             ->withErrors($errors);
 
-
-        if($this->typeForm !== 'platform::partials.fields.vertical') {
+        if ($this->typeForm !== 'platform::partials.fields.vertical') {
             return $field;
         }
 
@@ -246,14 +241,12 @@ class Field implements Fieldable, Htmlable
             'attributes' => $attributes,
         ])->withErrors($errors);
 
-
         $test = Blade::render('<x-test-componen {{ $attributes }}>{!! $field !!}</x-test-componen>', [
             'field'      => $field,
             'attributes' => $attributes,
         ]);
 
-
-       return $test;
+        return $test;
 
         /*
         $test = ->withAttributes(
@@ -268,7 +261,6 @@ class Field implements Fieldable, Htmlable
 */
 
         return $test->render();
-
 
         return view($this->view, array_merge($this->getAttributes(), [
             'attributes'     => $this->getAllowAttributes(),
