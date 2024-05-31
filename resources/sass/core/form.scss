@@ -1,6 +1,7 @@
 .form-control {
-  background: $white none;
-  border: 1px solid $form-control-border-color;
+   background: var(--bs-body-tertiary-bg);
+  //background: $white none;
+  //border: 1px solid $form-control-border-color;
   -webkit-appearance: none;
   -moz-appearance: none;
   color: $black;

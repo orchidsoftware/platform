@@ -13,7 +13,7 @@
      data-chart-line-options="{{$lineOptions}}"
      data-chart-markers="{{$markers}}"
 >
-    <div class="bg-white rounded shadow-sm mb-3 pt-3">
+    <div class="bg-body-tertiary rounded shadow-sm mb-3 pt-3">
 
         <div class="d-flex px-3 align-items-center">
             <legend class="text-black px-2 mt-2 mb-0">

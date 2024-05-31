@@ -1,6 +1,6 @@
 <div class="toast-wrapper" data-controller="toast">
     <template id="toast">
-        <div class="toast rounded shadow-sm bg-white mb-3"
+        <div class="toast rounded shadow-sm bg-body-tertiary mb-3"
              role="alert"
              aria-live="assertive"
              aria-atomic="true"
@@ -20,7 +20,7 @@
 
 
     @if (session()->has(\Orchid\Alert\Toast::SESSION_MESSAGE))
-        <div class="toast rounded shadow-sm bg-white mb-3"
+        <div class="toast rounded shadow-sm bg-body-tertiary mb-3"
              role="alert"
              aria-live="assertive"
              aria-atomic="true"

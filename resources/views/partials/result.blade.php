@@ -6,7 +6,7 @@
 
 @endempty
 
-<div class="bg-white shadow-sm rounded mb-3">
+<div class="bg-body-tertiary shadow-sm rounded mb-3">
     @forelse($results as $item)
 
         <a href="{{$item->url()}}" class="block py-2 px-3 dropdown-item" style="font-size: 0.85em;">

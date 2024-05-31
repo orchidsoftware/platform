@@ -1,4 +1,4 @@
-<fieldset class="mb-3" data-async>
+<fieldset class="mb-3">
 
     @empty(!$title)
         <div class="col p-0 px-3">
@@ -8,7 +8,7 @@
         </div>
     @endempty
 
-    <div class="bg-white rounded shadow-sm p-4 py-4 d-flex flex-column">
+    <div class="bg-body-tertiary rounded shadow-sm p-4 py-4 d-flex flex-column">
         <dl class="d-block m-0">
             @foreach($columns as $column)
                 <div class="d2-grid py-3 {{ $loop->first ? '' : 'border-top' }}">

@@ -13,7 +13,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-10 col-lg-5 col-xxl-5 px-md-5">
 
-                    <div class="bg-white p-4 p-sm-5 rounded shadow-sm">
+                    <div class="bg-body-tertiary p-4 p-sm-5 rounded shadow-sm">
                         @yield('content')
                     </div>
                 </div>

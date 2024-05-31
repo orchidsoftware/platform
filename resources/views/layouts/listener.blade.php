@@ -3,11 +3,6 @@
          data-listener-targets="{{$targets}}"
          id="{{$templateSlug}}"
          data-listener-async-route="{{$asyncRoute}}"
-
-        {{--
-             data-listener-slug="{{$templateSlug}}"
-        data-listener-async-enable="{{$asyncEnable}}"
-        --}}
     >
         @foreach($manyForms as $layouts)
             @foreach($layouts as $layout)

@@ -46,9 +46,13 @@ export default class extends ApplicationController {
 
         // save value
         this.editor.on('text-change', () => {
-            // When usage this.editor.root.innerHtml "/n/r" has been lost
-            textarea.value = this.element.querySelector('.ql-editor').innerHTML || "";
-            textarea.dispatchEvent(new Event('change'));
+            let newValue = this.editor.getSemanticHTML();
+            let oldValue = textarea.value;
+
+            if (oldValue !== newValue) {
+                textarea.value = newValue;
+                textarea.dispatchEvent(new Event('change'));
+            }
         });
 
         this.editor.getModule('toolbar').addHandler('color', (value) => {

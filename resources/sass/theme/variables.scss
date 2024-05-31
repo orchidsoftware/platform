@@ -5,9 +5,9 @@ $orchid-color: #007bff; //#ac5ca0;
 $white: #ffffff;
 $black: #15141a;
 
-$blue: #007bff !default;
-$indigo: #6610f2 !default;
-$purple: #6f42c1 !default;
+$blue: #007aff !default;
+$indigo: #5856d7 !default;
+$purple: #af52de !default;
 $pink: #e83e8c !default;
 $red: #dc3545 !default;
 $orange: #fd7e14 !default;
@@ -25,6 +25,11 @@ $grey: #495057;
 $grey-light: mix($grey, #ffffff, 10%);
 
 $body-bg: #edeef0; //lighten($light, 1%);
+
+//$bg-body-tertiary: #fff;
+//$body-tertiary-color:       rgba($body-color, .5) !default;
+$body-tertiary-bg:          #fff;
+
 $text-color: #394247;
 $text-muted: lighten($text-color, 20%);
 
@@ -171,3 +176,13 @@ $utilities: (
         ),
     ),
 );
+
+
+
+// Dark THEME
+
+// Для карточек #161b22!important
+// Для фона #010409!important
+
+$body-bg-dark: #010409;
+$body-tertiary-bg-dark: #161b22;

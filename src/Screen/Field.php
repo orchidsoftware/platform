@@ -7,6 +7,7 @@ namespace Orchid\Screen;
 use Closure;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Conditionable;
@@ -141,6 +142,18 @@ class Field implements Fieldable, Htmlable
         return $this->set($method, $arguments->first() ?? true);
     }
 
+
+    /**
+     * All attributes that are available to the field.
+     *
+     * @var array
+     */
+    public function attributes(): array
+    {
+
+    }
+
+
     /**
      * @param mixed $value
      *
@@ -202,6 +215,60 @@ class Field implements Fieldable, Htmlable
         $this->set('id', $id);
 
         $errors = $this->getErrorsMessage();
+
+
+        $attributes = $this->getAllowAttributes()->merge([
+            'id'             => $id,
+            'old'            => $this->getOldValue(),
+            'slug'           => $this->getSlug(),
+            'oldName'        => $this->getOldName(),
+        ]);
+
+
+        $field = view($this->view, array_merge($this->getAttributes(), [
+            'attributes'     => $this->getAllowAttributes(),
+            'dataAttributes' => $this->getAllowDataAttributes(),
+            'id'             => $id,
+            'old'            => $this->getOldValue(),
+            'slug'           => $this->getSlug(),
+            'oldName'        => $this->getOldName(),
+            'typeForm'       => $this->typeForm ?? $this->vertical()->typeForm,
+        ]))
+            ->withErrors($errors);
+
+
+        if($this->typeForm !== 'platform::partials.fields.vertical') {
+            return $field;
+        }
+
+        return view('platform::partials.fields.vertical2', [
+            'field'      => $field,
+            'attributes' => $attributes,
+        ])->withErrors($errors);
+
+
+        $test = Blade::render('<x-test-componen {{ $attributes }}>{!! $field !!}</x-test-componen>', [
+            'field'      => $field,
+            'attributes' => $attributes,
+        ]);
+
+
+       return $test;
+
+        /*
+        $test = ->withAttributes(
+            array_merge([
+                (array) $this->getAllowAttributes(),
+                'id'      => $id,
+                'old'     => $this->getOldValue(),
+                'slug'    => $this->getSlug(),
+                'oldName' => $this->getOldName(),
+            ])
+        );
+*/
+
+        return $test->render();
+
 
         return view($this->view, array_merge($this->getAttributes(), [
             'attributes'     => $this->getAllowAttributes(),
@@ -474,23 +541,6 @@ class Field implements Fieldable, Htmlable
         }
 
         return '';
-    }
-
-    /**
-     * Apply the callback if the value is truthy.
-     *
-     * @param bool     $condition
-     * @param callable $callback
-     *
-     * @return $this
-     */
-    public function when(bool $condition, callable $callback)
-    {
-        if ($condition) {
-            $callback($this);
-        }
-
-        return $this;
     }
 
     /**

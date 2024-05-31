@@ -1,4 +1,4 @@
-<div class="d-block bg-white rounded shadow-sm mb-3">
+<div class="d-block bg-body-tertiary rounded shadow-sm mb-3">
     <div class="row g-0">
 
             @empty(!$image)
@@ -28,7 +28,7 @@
                                         <x-orchid-icon path="options-vertical"/>
 
                                     </button>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow bg-white"
+                                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow bg-body-tertiary"
                                          x-placement="bottom-end">
                                         @foreach ($commandBar as $command)
                                             {!! $command !!}
