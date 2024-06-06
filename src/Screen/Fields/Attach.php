@@ -22,8 +22,10 @@ use Orchid\Support\Init;
  * @method Attach   placeholder(string $value)
  * @method Attach   errorMaxSizeMessage(string $value)
  * @method Attach   errorTypeMessage(string $value)
- * @method CheckBox help(string $value = null)
- * @method CheckBox title(string $value = null)
+ * @method Attach   help(string $value = null)
+ * @method Attach   title(string $value = null)
+ * @method Attach   uploadUrl(string $value = null)
+ * @method Attach   sortUrl(string $value = null)
  */
 class Attach extends Field
 {
@@ -46,6 +48,8 @@ class Attach extends Field
         'placeholder'         => 'Upload file',
         'errorMaxSizeMessage' => 'File ":name" is too large to upload',
         'errorTypeMessage'    => 'The attached file must be an image',
+        'uploadUrl'           => null,
+        'sortUrl'             => null,
     ];
 
     /**
@@ -86,7 +90,7 @@ class Attach extends Field
         $this->addBeforeRender(function () {
             $value = Arr::wrap($this->get('value'));
 
-            if (! Assert::isIntArray($value)) {
+            if (!Assert::isIntArray($value)) {
                 return;
             }
 
@@ -115,20 +119,20 @@ class Attach extends Field
 
         // if is not multiple, then set maxCount to 1
         $this->addBeforeRender(function () {
-            if (! $this->get('multiple')) {
+            if (!$this->get('multiple')) {
                 $this->set('maxCount', 1);
             }
         });
     }
 
     /**
+     * @return $this
      * @throws \Throwable
      *
-     * @return $this
      */
     public function storage(string $storage): self
     {
-        $disk = config('filesystems.disks.'.$storage);
+        $disk = config('filesystems.disks.' . $storage);
 
         throw_if($disk === null, 'The selected storage was not found');
 

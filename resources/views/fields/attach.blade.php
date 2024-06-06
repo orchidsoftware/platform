@@ -7,8 +7,8 @@
          data-attach-loading-value="0"
          data-attach-attachment-value='@json($value ?? [])'
 
-         data-attach-upload-url-value="{{ route('platform.systems.files.upload') }}"
-         data-attach-sort-url-value="{{ route('platform.systems.files.sort') }}"
+         data-attach-upload-url-value="{{ $uploadUrl ?? route('platform.systems.files.upload') }}"
+         data-attach-sort-url-value="{{ $sortUrl ?? route('platform.systems.files.sort') }}"
 
          data-uploader-error-size-value="{{ __('File ":name" is too large to upload') }}"
          data-uploader-error-type-value="{{ __('The attached file must be an image') }}"
@@ -27,6 +27,7 @@
                            type="file"
                            data-attach-target="files"
                            data-action="change->attach#selectFiles"
+                           disabled
                         {{ $attributes }}
                     >
 
@@ -51,7 +52,7 @@
                 <input type="hidden" name="{name}" value="{id}">
 
 
-                <img class="attach-image rounded border user-select-none" src="{url}" title="{original_name}"/>
+                <img class="attach-image rounded border user-select-none overflow-hidden" src="{url}" title="{original_name}"/>
 
                 {{--
                     <object class="attach-image rounded border user-select-none" border="0" data="{url}" type="{mime}" title="test"  load="lazy" controls allowfullscreen autoplay="false">

@@ -59,7 +59,6 @@ export default class extends ApplicationController {
             animation: 150,
             onEnd: () => {
                 this.reorderElements();
-                this.toast('save?');
             },
         });
     }
@@ -84,7 +83,7 @@ export default class extends ApplicationController {
 
             if (sizeMB > this.sizeValue) {
                 this.toast(this.errorSizeValue.replace(':name', file.name));
-                alert(this.errorSizeValue.replace(':name', file.name));
+                //alert(this.errorSizeValue.replace(':name', file.name));
                 return;
             }
 
@@ -137,7 +136,7 @@ export default class extends ApplicationController {
                 console.error('Error:', error);
 
                 this.toast(this.errorTypeValue);
-                alert(this.errorTypeValue);
+                //alert(this.errorTypeValue);
             });
     }
 
@@ -156,6 +155,8 @@ export default class extends ApplicationController {
      */
     togglePlaceholderShow() {
         this.containerTarget.classList.toggle('d-none', this.attachmentValue.length >= this.countValue);
+        this.filesTarget.disabled = this.attachmentValue.length > 0;
+
 
         // Disable the nullable field if there is at least one valid value and the count equals 1.
         // If there are no values or if there are multiple values, the field will remain enabled and be sent to the server as `null`.
