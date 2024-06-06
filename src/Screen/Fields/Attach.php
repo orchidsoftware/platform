@@ -15,17 +15,17 @@ use Orchid\Support\Init;
 /**
  * Class Attach.
  *
- * @method Attach   accept(string $value)
- * @method Attach   required($value = true)
- * @method Attach   multiple($value = true)
- * @method Attach   maxSize(int $value)
- * @method Attach   placeholder(string $value)
- * @method Attach   errorMaxSizeMessage(string $value)
- * @method Attach   errorTypeMessage(string $value)
- * @method Attach   help(string $value = null)
- * @method Attach   title(string $value = null)
- * @method Attach   uploadUrl(string $value = null)
- * @method Attach   sortUrl(string $value = null)
+ * @method Attach accept(string $value)
+ * @method Attach required($value = true)
+ * @method Attach multiple($value = true)
+ * @method Attach maxSize(int $value)
+ * @method Attach placeholder(string $value)
+ * @method Attach errorMaxSizeMessage(string $value)
+ * @method Attach errorTypeMessage(string $value)
+ * @method Attach help(string $value = null)
+ * @method Attach title(string $value = null)
+ * @method Attach uploadUrl(string $value = null)
+ * @method Attach sortUrl(string $value = null)
  */
 class Attach extends Field
 {
@@ -90,7 +90,7 @@ class Attach extends Field
         $this->addBeforeRender(function () {
             $value = Arr::wrap($this->get('value'));
 
-            if (!Assert::isIntArray($value)) {
+            if (! Assert::isIntArray($value)) {
                 return;
             }
 
@@ -119,20 +119,20 @@ class Attach extends Field
 
         // if is not multiple, then set maxCount to 1
         $this->addBeforeRender(function () {
-            if (!$this->get('multiple')) {
+            if (! $this->get('multiple')) {
                 $this->set('maxCount', 1);
             }
         });
     }
 
     /**
-     * @return $this
      * @throws \Throwable
      *
+     * @return $this
      */
     public function storage(string $storage): self
     {
-        $disk = config('filesystems.disks.' . $storage);
+        $disk = config('filesystems.disks.'.$storage);
 
         throw_if($disk === null, 'The selected storage was not found');
 
