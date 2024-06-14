@@ -18,6 +18,7 @@ class Modal extends Layout
 {
     use Commander;
 
+    public const SIZE_XL = 'modal-xl';
     public const SIZE_LG = 'modal-lg';
     public const SIZE_SM = 'modal-sm';
 

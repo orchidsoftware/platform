@@ -1,5 +1,5 @@
 @push('modals-container')
-    <div class="modal fade center-scale"
+    <div class="modal fade center-scale {{$type}}"
          id="screen-modal-{{$key}}"
          role="dialog"
          aria-labelledby="screen-modal-{{$key}}"
@@ -10,7 +10,7 @@
          data-modal-open="{{$open}}"
         {{$staticBackdrop ? "data-bs-backdrop=static" : ''}}
     >
-        <div class="modal-dialog modal-fullscreen-md-down {{$size}} {{$type}}"
+        <div class="modal-dialog modal-fullscreen-md-down {{$size}}"
              role="document"
              id="screen-modal-type-{{$key}}"
         >
