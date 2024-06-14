@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.26.0 - 2024-06-14
+
+### Added
+- Support for XL size modal [#2842](https://github.com/orchidsoftware/platform/pull/2842)
+
+### Fixed
+- Adjusted `$type` modal positioning on the page [#2842](https://github.com/orchidsoftware/platform/pull/2842)
+
 ## 14.25.3 - 2024-06-06
 
 ### Fixed
