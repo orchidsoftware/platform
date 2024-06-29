@@ -19,8 +19,7 @@ class DateTime extends Component
         protected mixed $value,
         protected string $format = 'Y-m-d H:i',
         protected DateTimeZone|null|string $tz = null,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view/contents that represent the component.

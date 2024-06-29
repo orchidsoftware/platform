@@ -19,8 +19,7 @@ class Time extends Component
         protected mixed $value,
         protected DateTimeZone|null|string $tz = null,
         protected string $unitPrecision = 'minute'
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view/contents that represent the component.

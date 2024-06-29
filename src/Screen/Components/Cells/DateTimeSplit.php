@@ -21,8 +21,7 @@ class DateTimeSplit extends Component
         protected string $upperFormat = 'M j, Y',
         protected string $lowerFormat = 'D, h:i',
         protected DateTimeZone|null|string $tz = null,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view/contents that represent the component.
