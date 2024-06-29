@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 14.26.1 - 2024-06-30
 
+### Changed
+- Enhanced `zh_TW` language support [#2844](https://github.com/orchidsoftware/platform/pull/2844)
+
 ### Fixed
 - Missing prefix for notification icon [#2848](https://github.com/orchidsoftware/platform/issues/2848)
 
