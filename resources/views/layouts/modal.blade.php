@@ -63,12 +63,13 @@
                 <div class="modal-body layout-wrapper">
                     <x-orchid-stream target="{{$templateSlug}}">
                         <div id="{{ $templateSlug }}">
-                            @foreach($manyForms as $formKey => $modal)
-                                @foreach($modal as $item)
-                                    {!! $item ?? '' !!}
+                            @if($asyncEnable == \Orchid\Support\Facades\Dashboard::isPartialRequest())
+                                @foreach($manyForms as $formKey => $modal)
+                                    @foreach($modal as $item)
+                                        {!! $item ?? '' !!}
+                                    @endforeach
                                 @endforeach
-                            @endforeach
-                            @csrf
+                            @endif
                         </div>
                     </x-orchid-stream>
                 </div>
