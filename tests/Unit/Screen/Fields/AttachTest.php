@@ -83,6 +83,6 @@ class AttachTest extends TestFieldsUnitCase
         $view = self::renderField($uploader);
 
         $this->assertStringContainsString(sprintf('data-attach-path-value="%s"', $path), $view);
-        $this->assertSame($upload->path, $path . '/');
+        $this->assertSame($upload->path, $path.'/');
     }
 }
