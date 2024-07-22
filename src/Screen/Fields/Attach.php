@@ -26,6 +26,7 @@ use Orchid\Support\Init;
  * @method Attach title(string $value = null)
  * @method Attach uploadUrl(string $value = null)
  * @method Attach sortUrl(string $value = null)
+ * @method Attach path(string $value = null)
  */
 class Attach extends Field
 {
@@ -50,6 +51,8 @@ class Attach extends Field
         'errorTypeMessage'    => 'The attached file must be an image',
         'uploadUrl'           => null,
         'sortUrl'             => null,
+        'path'                => null,
+        'storage'             => 'public',
     ];
 
     /**
