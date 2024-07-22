@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection as BaseCollection;
 use Illuminate\Support\Facades\Crypt;
 use Orchid\Platform\Http\Requests\RelationRequest;
+use Illuminate\Support\Facades\Schema;
 
 class RelationController extends Controller
 {
@@ -75,8 +76,10 @@ class RelationController extends Controller
             return $model->take($chunk)->pluck($append ?? $name, $key);
         }
 
-        $model = $model->where(function ($query) use ($name, $search, $searchColumns) {
-            $query->where($name, 'like', '%'.$search.'%');
+        $collection = $model->where(function ($query) use ($name, $search, $searchColumns, $model) {
+            if (Schema::hasColumn($model->getTable(), $name)){
+                $query->where($name, 'like', '%'.$search.'%');
+            }
             if ($searchColumns !== null) {
                 foreach ($searchColumns as $column) {
                     $query->orWhere($column, 'like', '%'.$search.'%');
@@ -84,13 +87,13 @@ class RelationController extends Controller
             }
         });
 
-        return $model
+        return $collection
             ->limit($chunk)
             ->get()
             ->mapWithKeys(function ($item) use ($append, $key, $name) {
                 $resultKey = $item->$key;
 
-                $value = $item->$append ?? $item->$name;
+                $value = $item->$append ?? $item->presenter()->$name;
 
                 if ($resultKey instanceof \UnitEnum) {
                     $resultKey = $resultKey->value;
