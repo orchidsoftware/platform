@@ -119,7 +119,7 @@ class Relation extends Field
             $value = collect($value)
                 ->map(static fn ($item) => [
                     'id'   => $item->$key,
-                    'text' => $item->$text,
+                    'text' => $item->presenter()->$text,
                 ])->toArray();
 
             $this->set('value', $value);
