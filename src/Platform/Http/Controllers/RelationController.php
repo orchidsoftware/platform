@@ -93,7 +93,7 @@ class RelationController extends Controller
             ->mapWithKeys(function ($item) use ($append, $key, $name) {
                 $resultKey = $item->$key;
 
-                $value = $item->$append ?? $item->presenter()->$name;
+                $value = $item->$append ?? $item->$name;
 
                 if ($resultKey instanceof \UnitEnum) {
                     $resultKey = $resultKey->value;
