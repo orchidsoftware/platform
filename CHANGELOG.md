@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.27.0 - 2024-07-23
+
+### Added
+- `path` and `storage` attributes for the `Attach` field
+- Extended method for `Action`
+
+### Changed
+- Modal window no longer requires data definition before loading
+
 ## 14.26.1 - 2024-06-30
 
 ### Changed
