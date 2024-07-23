@@ -13,7 +13,7 @@
      data-table-slug="{{$slug}}"
 >
 
-    <div class="table-responsive">
+    <div class="table-responsive-sm">
         <table @class([
                     'table',
                     'table-compact'  => $compact,
