@@ -153,4 +153,12 @@ class InputTest extends TestFieldsUnitCase
 
         $this->assertEquals('66666666666666666666', $input);
     }
+    public function testOverwriteAttributes(): void
+    {
+        $input = Input::make()
+            ->set('title', 'John Doe')
+            ->set('title', null);
+
+        $this->assertNull($input->get('title'));
+    }
 }
