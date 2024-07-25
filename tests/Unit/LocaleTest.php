@@ -62,7 +62,7 @@ class LocaleTest extends TestUnitCase
      */
     protected function checkUsageTranslateStringInProject(string $string): bool
     {
-        return (new Finder())
+        return (new Finder)
             ->ignoreUnreadableDirs()
             ->followLinks()
             ->in([

@@ -20,7 +20,7 @@ class TurboTest extends TestUnitCase
         $response = new RedirectResponse('/destination');
         $next = fn () => $response;
 
-        $result = (new Turbo())->handle($request, $next);
+        $result = (new Turbo)->handle($request, $next);
 
         $this->assertEquals($response->getTargetUrl(), $result->getTargetUrl());
         $this->assertEquals(302, $result->getStatusCode());
@@ -35,7 +35,7 @@ class TurboTest extends TestUnitCase
         $response = new RedirectResponse('/destination');
         $next = fn () => $response;
 
-        $result = (new Turbo())->handle($request, $next);
+        $result = (new Turbo)->handle($request, $next);
 
         $this->assertEquals($response->getTargetUrl(), $result->getTargetUrl());
         $this->assertEquals(303, $result->getStatusCode());

@@ -25,7 +25,7 @@ if (! function_exists('alert')) {
 if (! function_exists('is_sort')) {
     function is_sort(string $property): bool
     {
-        $filter = new HttpFilter();
+        $filter = new HttpFilter;
 
         return $filter->isSort($property);
     }
@@ -34,7 +34,7 @@ if (! function_exists('is_sort')) {
 if (! function_exists('get_sort')) {
     function get_sort(?string $property): string
     {
-        $filter = new HttpFilter();
+        $filter = new HttpFilter;
 
         return $filter->getSort($property);
     }
@@ -46,7 +46,7 @@ if (! function_exists('get_filter')) {
      */
     function get_filter(string $property)
     {
-        $filter = new HttpFilter();
+        $filter = new HttpFilter;
 
         return $filter->getFilter($property);
     }
@@ -75,7 +75,7 @@ if (! function_exists('get_filter_string')) {
 if (! function_exists('revert_sort')) {
     function revert_sort(string $property): string
     {
-        $filter = new HttpFilter();
+        $filter = new HttpFilter;
 
         return $filter->revertSort($property);
     }

@@ -18,7 +18,7 @@ class FiltersTest extends TestUnitCase
             'name' => 'Alexandr',
         ]);
 
-        $value = (new NameFilter())->value();
+        $value = (new NameFilter)->value();
 
         $this->assertEquals('Name: Alexandr', $value);
     }
@@ -32,14 +32,14 @@ class FiltersTest extends TestUnitCase
             ],
         ]);
 
-        $value = (new NameFilter())->value();
+        $value = (new NameFilter)->value();
 
         $this->assertEquals('Name: Alexandr,Alena', $value);
     }
 
     public function testWithoutDisplayName(): void
     {
-        $name = (new WithoutDisplayFilter())->name();
+        $name = (new WithoutDisplayFilter)->name();
 
         $this->assertEquals('WithoutDisplayFilter', $name);
     }

@@ -151,7 +151,7 @@ class Dashboard
     {
         $model = static::model($key, $default);
 
-        return class_exists($model) ? new $model() : $model;
+        return class_exists($model) ? new $model : $model;
     }
 
     /**

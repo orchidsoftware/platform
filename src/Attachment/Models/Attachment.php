@@ -182,7 +182,7 @@ class Attachment extends Model
      */
     public function getMimeType(): string
     {
-        $mimes = new MimeTypes();
+        $mimes = new MimeTypes;
 
         $type = $mimes->getMimeType($this->getAttribute('extension'));
 

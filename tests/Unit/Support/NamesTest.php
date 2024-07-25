@@ -36,7 +36,7 @@ class NamesTest extends TestUnitCase
     {
         Route::get($name, function () {})->name($name);
 
-        $request = tap(new Request(), function (Request $request) use ($name) {
+        $request = tap(new Request, function (Request $request) use ($name) {
             $request->server->set('REQUEST_URI', \route($name));
         });
 
