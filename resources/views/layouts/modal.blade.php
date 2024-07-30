@@ -70,6 +70,7 @@
                                     @endforeach
                                 @endforeach
                             @endif
+                            @csrf
                         </div>
                     </x-orchid-stream>
                 </div>
