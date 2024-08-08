@@ -16,7 +16,7 @@ class ModalTest extends TestUnitCase
             ->async('asyncTestMethod');
 
         $html = $layout
-            ->build(new Repository())
+            ->build(new Repository)
             ->withErrors([])
             ->render();
 
@@ -26,7 +26,7 @@ class ModalTest extends TestUnitCase
             ->async('testMethod');
 
         $html = $layout
-            ->build(new Repository())
+            ->build(new Repository)
             ->withErrors([])
             ->render();
 

@@ -19,7 +19,7 @@ class ModalWithoutButtonsTest extends TestUnitCase
      */
     public function testModalScreenRender(): void
     {
-        $screen = new ModalScreenWithoutButtons();
+        $screen = new ModalScreenWithoutButtons;
         $html = $screen->view()->withErrors(Validator::make([], []))->render();
 
         $this->assertStringContainsString($screen->name(), $html);

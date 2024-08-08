@@ -13,7 +13,7 @@ class BrowsingTest extends TestUnitCase
     {
         $iframe = Layout::browsing('https://orchid.software');
 
-        $html = $iframe->build(new Repository())->withErrors([])->render();
+        $html = $iframe->build(new Repository)->withErrors([])->render();
 
         $this->assertStringContainsString("src='https://orchid.software'", $html);
         $this->assertStringContainsString("loading='lazy'", $html);
@@ -24,7 +24,7 @@ class BrowsingTest extends TestUnitCase
     {
         $iframe = Layout::browsing('https://orchid.software')->canSee(false);
 
-        $html = $iframe->build(new Repository());
+        $html = $iframe->build(new Repository);
 
         $this->assertNull($html);
     }
@@ -48,7 +48,7 @@ class BrowsingTest extends TestUnitCase
             $iframe->$key($value);
         }
 
-        $html = $iframe->build(new Repository())->withErrors([])->render();
+        $html = $iframe->build(new Repository)->withErrors([])->render();
 
         foreach ($attributes as $key => $value) {
             $this->assertStringContainsString("$key='$value'", $html);

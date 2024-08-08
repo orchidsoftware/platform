@@ -32,7 +32,7 @@ class ItemPermission
      */
     public static function group(string $group): self
     {
-        $item = new self();
+        $item = new self;
 
         $item->group = $group;
 

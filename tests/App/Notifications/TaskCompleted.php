@@ -26,7 +26,7 @@ class TaskCompleted extends Notification
 
     public function toDashboard($notifiable): DashboardMessage
     {
-        return (new DashboardMessage())
+        return (new DashboardMessage)
             ->title('Task Completed')
             ->message('You have completed work. Well done!')
             ->type(Color::INFO)

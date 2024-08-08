@@ -35,7 +35,7 @@ class LayoutTest extends TestUnitCase
 
     public function testCanSeeLayout(): void
     {
-        $layout = new class() extends Layout
+        $layout = new class extends Layout
         {
             /***
              * @return bool

@@ -21,7 +21,7 @@ class MimeTypes
      */
     public function __construct()
     {
-        $this->mime = new Mime();
+        $this->mime = new Mime;
     }
 
     /**

@@ -19,16 +19,16 @@ class SelectionTest extends TestUnitCase
             HiddenFilter::class,
         ]);
 
-        $html = $layout->build(new Repository());
+        $html = $layout->build(new Repository);
 
         $this->assertNull($html);
     }
 
     public function testDisplayFilters(): void
     {
-        $layout = new GroupNameAndEmail();
+        $layout = new GroupNameAndEmail;
 
-        $html = $layout->build(new Repository());
+        $html = $layout->build(new Repository);
 
         collect($layout->filters())
             ->map(fn (string $filter) => resolve($filter))->each(function (Filter $filter) use ($html) {

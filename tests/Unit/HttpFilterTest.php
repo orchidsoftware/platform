@@ -31,7 +31,7 @@ class HttpFilterTest extends TestUnitCase
             'sort' => 'foobar',
         ]);
 
-        $filter = new HttpFilter();
+        $filter = new HttpFilter;
         $this->assertTrue($filter->isSort('foobar'));
 
         $sql = $this->getModelBuilder()->toSql();

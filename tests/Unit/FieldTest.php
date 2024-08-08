@@ -138,25 +138,25 @@ class FieldTest extends TestUnitCase
     {
         $collect = collect(range(0, 10000));
 
-        $fields = $collect->map(fn ($value) => (new Field())->set('value', $value)->getId())->unique();
+        $fields = $collect->map(fn ($value) => (new Field)->set('value', $value)->getId())->unique();
 
         $this->assertEquals($fields->count(), $collect->count());
 
-        $expected = (new Field())->set('value', 'test')->getId();
-        $actual = (new Field())->set('value', 'test')->getId();
+        $expected = (new Field)->set('value', 'test')->getId();
+        $actual = (new Field)->set('value', 'test')->getId();
 
         $this->assertEquals($expected, $actual);
     }
 
     public function testOldNameMatchesLaravelRequestOldPrefix()
     {
-        $field = new Field();
+        $field = new Field;
 
         $field->set('name', 'parent[child][grandchild]');
 
         $this->assertEquals('parent.child.grandchild', $field->getOldName());
 
-        $field = new Field();
+        $field = new Field;
 
         $field->set('name', 'parent[child][grandchild][]');
 
@@ -165,7 +165,7 @@ class FieldTest extends TestUnitCase
 
     public function testOldNameMatchesLaravelRequestOldPrefixWithErrors()
     {
-        $field = new Input();
+        $field = new Input;
         $field->set('name', 'parent[child][grandchild]');
 
         $view = $field->render();
@@ -178,7 +178,7 @@ class FieldTest extends TestUnitCase
         $this->assertStringContainsString('testError', $html);
         $this->assertStringContainsString('parent[child][grandchild]', $html);
 
-        $field = new Input();
+        $field = new Input;
         $field->set('name', 'parent[child][grandchild][]');
 
         $view = $field->render();

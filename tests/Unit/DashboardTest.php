@@ -24,7 +24,7 @@ class DashboardTest extends TestUnitCase
     {
         $class = Dashboard::modelClass('UnknownClass', User::class);
 
-        $default = new User();
+        $default = new User;
 
         $this->assertEquals($class, $default);
     }
@@ -56,7 +56,7 @@ class DashboardTest extends TestUnitCase
 
     public function testIsRegisterResource(): void
     {
-        $dashboard = new Dashboard();
+        $dashboard = new Dashboard;
 
         $script = $dashboard
             ->registerResource('scripts', 'app.js')
@@ -114,7 +114,7 @@ class DashboardTest extends TestUnitCase
 
     public function testRegisterMenuElement(): void
     {
-        $dashboard = new Dashboard();
+        $dashboard = new Dashboard;
 
         $view = $dashboard
             ->registerMenuElement(Menu::make('Item 1')->sort(3))
@@ -128,7 +128,7 @@ class DashboardTest extends TestUnitCase
 
     public function testAddMenuSubElements(): void
     {
-        $dashboard = new Dashboard();
+        $dashboard = new Dashboard;
 
         $view = $dashboard
             ->registerMenuElement(Menu::make('Item 1')->slug('item'))

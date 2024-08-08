@@ -58,7 +58,7 @@ class Generator implements Engine
         $this->file = $file;
         $this->path = null;
         $this->time = time();
-        $this->mimes = new MimeTypes();
+        $this->mimes = new MimeTypes;
         $this->uniqueId = uniqid('', true);
     }
 
