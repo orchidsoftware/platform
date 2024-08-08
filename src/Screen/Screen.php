@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
@@ -26,7 +27,7 @@ use Orchid\Support\Facades\Dashboard;
  */
 abstract class Screen extends Controller
 {
-    use Commander;
+    use Commander, SerializesModels;
 
     /**
      * @param \Illuminate\Http\Request $request
@@ -131,7 +132,6 @@ abstract class Screen extends Controller
         abort_unless($this->checkAccess(request()), static::unaccessed());
 
         $state = $this->extractState();
-
         $this->fillPublicProperty($state);
 
         $parameters = request()->collect()->merge([
@@ -166,11 +166,12 @@ abstract class Screen extends Controller
         abort_unless($this->checkAccess(request()), static::unaccessed());
 
         $state = $this->extractState();
+        $this->fillPublicProperty($state);
 
         $repository = $layout->handle($state, $request);
 
         $view = $layout->build($repository).view('platform::partials.state', [
-            'state' => $this->serializeStateWithPublicProperties($state),
+            'state' => $this->serializableState(),
         ]);
 
         return response($view)
@@ -197,7 +198,9 @@ abstract class Screen extends Controller
         }
 
         //deserialize '_state' parameter
-        return Crypt::decrypt($state);
+        $screen = Crypt::decrypt($state);
+
+        return new Repository(get_object_vars($screen));
     }
 
     /**
@@ -218,25 +221,19 @@ abstract class Screen extends Controller
             'layouts'                 => $this->build($repository),
             'formValidateMessage'     => $this->formValidateMessage(),
             'needPreventsAbandonment' => $this->needPreventsAbandonment(),
-            'state'                   => $this->serializeStateWithPublicProperties($repository),
+            'state'                   => $this->serializableState(),
             'controller'              => $this->frontendController(),
         ]);
     }
 
     /**
-     * @param $repository
-     *
      * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
      *
      * @return string
      */
-    protected function serializableState(Repository $repository): string
+    protected function serializableState(): string
     {
-        if ($repository->isEmpty()) {
-            return '';
-        }
-
-        return Crypt::encrypt($repository);
+        return Crypt::encrypt($this);
     }
 
     /**
@@ -252,26 +249,6 @@ abstract class Screen extends Controller
         $query = $this->callMethod('query', $httpQueryArguments);
 
         return tap(new Repository($query), fn (Repository $repository) =>  $this->fillPublicProperty($repository));
-    }
-
-    /**
-     * Serializes the state of the object using the public properties specified in the given repository.
-     *
-     * @param \Orchid\Screen\Repository $repository The repository containing the public properties to be serialized.
-     *
-     * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
-     *
-     * @return string The serialized state of the object.
-     */
-    public function serializeStateWithPublicProperties(Repository $repository): string
-    {
-        if ($this->isScreenFullStatePreserved()) {
-            return $this->serializableState($repository);
-        }
-
-        $propertiesToSerialize = $repository->getMany($this->getPublicPropertyNames()->toArray());
-
-        return $this->serializableState(new Repository($propertiesToSerialize));
     }
 
     /**
@@ -482,7 +459,7 @@ abstract class Screen extends Controller
             return back();
         }
 
-        return $this->backWith($currentState->all());
+        return back()->with('_state', $this->serializableState());
     }
 
     /**
@@ -496,9 +473,9 @@ abstract class Screen extends Controller
      */
     public function backWith(array $data): RedirectResponse
     {
-        $repository = new Repository($data);
+        $this->fillPublicProperty(new Repository($data));
 
-        return back()->with('_state', $this->serializableState($repository));
+        return back()->with('_state', $this->serializableState());
     }
 
     /**
