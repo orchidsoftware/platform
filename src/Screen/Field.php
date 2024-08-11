@@ -512,7 +512,7 @@ class Field implements Fieldable, Htmlable
      */
     private function getErrorsMessage()
     {
-       return session()->get('errors', new MessageBag());
+        return session()->get('errors', new MessageBag());
     }
 
     /**
