@@ -201,6 +201,15 @@ button.close {
 .btn-loading {
     position: relative;
 
+    .spinner-loading {
+        background: inherit;
+        @extend .w-100;
+        @extend .h-100;
+        @extend .d-flex;
+        @extend .align-items-center;
+        @extend .justify-content-center;
+    }
+
     span:not(.spinner-loading):not(.spinner-border) {
         opacity: 0;
     }
