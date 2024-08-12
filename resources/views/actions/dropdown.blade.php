@@ -4,6 +4,7 @@
         type="button"
         data-bs-toggle="dropdown"
         aria-expanded="false"
+        data-bs-popper-config='{"strategy": "fixed"}'
     >
         @isset($icon)
             <x-orchid-icon :path="$icon" class="{{ empty($name) ?: 'me-2'}}"/>
