@@ -122,13 +122,6 @@ class Field implements Fieldable, Htmlable
     protected $inlineAttributes = [];
 
     /**
-     * Type of the form layout, either vertical or horizontal.
-     *
-     * @var Closure|string|null
-     */
-    protected $typeForm;
-
-    /**
      * @param string $method
      * @param array  $parameters
      *
