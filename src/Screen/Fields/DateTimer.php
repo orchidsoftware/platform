@@ -424,9 +424,9 @@ class DateTimer extends Field
 
     /**
      * Set the date format for the alt input field.
-     * 
+     *
      * @param string $format
-     * 
+     *
      * @return $this
      */
     public function altFormat(string $format): static
