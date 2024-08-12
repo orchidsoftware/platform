@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.28.0 - 2024-08-13
+
+### Added
+- Integrated `altInput` and `altFormat` attributes as recommended by the `flatpickr` package to enhance formatting capabilities. [#2873](https://github.com/orchidsoftware/platform/pull/2873)
+
+### Changed
+- Refactored protected method names and updated descriptions in `Field` class
+- Disabled `single_trait_insert_per_statement` option for `Pint`
+
+### Fixed
+- Drop-down behavior that caused it to either disappear or break the `Table` layout
+- The `maximumSelectionLength` option was not functioning correctly. The issue was resolved by adding the necessary parentheses. [#2873](https://github.com/orchidsoftware/platform/pull/2873)
+- Button text visibility issue when a loading spinner is active
+
+### Removed
+- Unused translation of the term from the project
+
 ## 14.27.2 - 2024-07-30
 
 ### Fixed
