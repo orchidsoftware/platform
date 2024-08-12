@@ -56,6 +56,7 @@ class DateTimer extends Field
         'data-datetime-inline'                  => 'false',
         'data-datetime-position'                => 'auto auto',
         'data-datetime-shorthand-current-month' => 'false',
+        'data-datetime-alt-input'               => 'false',
         'data-datetime-show-months'             => 1,
         'allowEmpty'                            => false,
         'placeholder'                           => 'Select Date...',
@@ -100,6 +101,8 @@ class DateTimer extends Field
         'data-datetime-position',
         'data-datetime-shorthand-current-month',
         'data-datetime-show-months',
+        'data-datetime-alt-input',
+        'data-datetime-alt-format',
     ];
 
     /**
@@ -415,6 +418,21 @@ class DateTimer extends Field
             ->all();
 
         $this->attributes['quickDates'] = $formattedPresets;
+
+        return $this;
+    }
+
+    /**
+     * Set the date format for the alt input field.
+     * 
+     * @param string $format
+     * 
+     * @return $this
+     */
+    public function altFormat(string $format): static
+    {
+        $this->set('data-datetime-alt-format', $format);
+        $this->set('data-datetime-alt-input', var_export(true, true));
 
         return $this;
     }
