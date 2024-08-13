@@ -133,6 +133,7 @@ class Menu extends Link
      * Sets a list of sub-menu items for this menu item.
      *
      * @param Actionable[] $list The array of sub-menu items.
+     *
      * @return $this The current Menu instance for method chaining.
      */
     public function list(array $list): self
@@ -151,7 +152,9 @@ class Menu extends Link
      * Builds and renders the menu view.
      *
      * @param Repository|null $repository The data repository to use for rendering.
+     *
      * @throws \Throwable If rendering fails.
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed The rendered view.
      */
     public function build(?Repository $repository = null)
@@ -163,7 +166,8 @@ class Menu extends Link
      * Adds a badge to the menu item with a specific color.
      *
      * @param \Closure $badge The closure to generate the badge content.
-     * @param Color $color The color of the badge.
+     * @param Color    $color The color of the badge.
+     *
      * @return $this The current Menu instance for method chaining.
      */
     public function badge(\Closure $badge, Color $color = Color::PRIMARY): self
@@ -180,6 +184,7 @@ class Menu extends Link
      * Sets the URL (href attribute) for the menu item.
      *
      * @param string $url The URL to set.
+     *
      * @return $this The current Menu instance for method chaining.
      */
     public function url(string $url): self
@@ -191,9 +196,10 @@ class Menu extends Link
      * Sets the permission(s) required to see the menu item.
      *
      * @param string|string[]|null $permission The required permission(s).
+     *
      * @return $this The current Menu instance for method chaining.
      */
-    public function permission(string|iterable $permission = null): self
+    public function permission(string|iterable|null $permission = null): self
     {
         if ($permission !== null) {
             $this->permit = false;
@@ -224,6 +230,7 @@ class Menu extends Link
      * Sets the title for the menu item.
      *
      * @param string|null $title The title to set.
+     *
      * @return $this The current Menu instance for method chaining.
      */
     public function title(?string $title = null): self
@@ -235,6 +242,7 @@ class Menu extends Link
      * Sets the slug for the menu item.
      *
      * @param string $slug The slug to set.
+     *
      * @return $this The current Menu instance for method chaining.
      */
     public function slug(string $slug): self
@@ -246,6 +254,7 @@ class Menu extends Link
      * Sets the parent menu item for this menu item.
      *
      * @param string $parent The parent menu item slug or identifier.
+     *
      * @return $this The current Menu instance for method chaining.
      */
     public function parent(string $parent): self
