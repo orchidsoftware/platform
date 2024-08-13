@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.28.1 - 2024-08-13
+
+### Fixed
+- Icon clipping issue at various ratios [#2846](https://github.com/orchidsoftware/platform/issues/2846)
+- Nested menu collapsing behavior [#2875](https://github.com/orchidsoftware/platform/issues/2875)
+
 ## 14.28.0 - 2024-08-13
 
 ### Added
