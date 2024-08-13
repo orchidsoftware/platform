@@ -7,7 +7,7 @@
         data-bs-popper-config='{"strategy": "fixed"}'
     >
         @isset($icon)
-            <x-orchid-icon :path="$icon" class="{{ empty($name) ?: 'me-2'}}"/>
+            <x-orchid-icon :path="$icon" class="overflow-visible"/>
         @endisset
 
         <span>{{ $name ?? '' }}</span>

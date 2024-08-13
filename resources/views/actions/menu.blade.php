@@ -10,10 +10,10 @@
         {{ $attributes }}
     >
         @isset($icon)
-            <x-orchid-icon :path="$icon" class="{{ empty($name) ?: 'me-2 overflow-visible'}}"/>
+            <x-orchid-icon :path="$icon" class="overflow-visible"/>
         @endisset
 
-        <span class="me-2">{{ $name ?? '' }}</span>
+        <span class="mx-2">{{ $name ?? '' }}</span>
 
         @isset($badge)
             <b class="badge rounded-pill bg-{{$badge['class']}} col-auto ms-auto">{{$badge['data']()}}</b>
