@@ -26,22 +26,27 @@ use Orchid\Support\Color;
 class Menu extends Link
 {
     /**
+     * The view associated with this menu item.
+     *
      * @var string
      */
     protected $view = 'platform::actions.menu';
 
     /**
+     * Determines whether the menu item should be displayed based on permissions.
+     *
      * @var bool
      */
     protected $permit = true;
 
     /**
-     * Default attributes value.
+     * Default attributes for the menu item.
+     * This includes CSS classes, title, icon, URL, and other options.
      *
      * @var array
      */
     protected $attributes = [
-        'class'          => 'nav-link d-flex align-items-center collapsed',
+        'class'          => 'nav-link d-flex align-items-center collapsed icon-link',
         'title'          => null,
         'icon'           => null,
         'href'           => null,
@@ -74,6 +79,7 @@ class Menu extends Link
 
     /**
      * Menu constructor.
+     * Initializes the menu and sets default behaviors for rendering.
      */
     public function __construct()
     {
@@ -88,6 +94,7 @@ class Menu extends Link
                 $slug = $this->getSlug();
 
                 $this
+                    ->set('slug', $slug)
                     ->set('data-bs-toggle', 'collapse')
                     ->set('href', '#menu-'.$slug);
             })
@@ -96,7 +103,7 @@ class Menu extends Link
                     return;
                 }
 
-                $active = collect([])
+                $active = collect()
                     ->merge($this->get('list'))
                     ->map(fn (Menu $menu) => $menu->get('href'))
                     ->push($this->get('href'))
@@ -112,15 +119,21 @@ class Menu extends Link
             });
     }
 
+    /**
+     * Generates a slug for the menu item based on its name.
+     *
+     * @return string The generated slug.
+     */
     protected function getSlug(): string
     {
-        return $this->get('slug', Str::slug(__($this->get('name'))));
+        return $this->get('slug', Str::slug($this->get('name')));
     }
 
     /**
-     * @param Actionable[] $list
+     * Sets a list of sub-menu items for this menu item.
      *
-     * @return $this
+     * @param Actionable[] $list The array of sub-menu items.
+     * @return $this The current Menu instance for method chaining.
      */
     public function list(array $list): self
     {
@@ -135,19 +148,23 @@ class Menu extends Link
     }
 
     /**
-     * @throws \Throwable
+     * Builds and renders the menu view.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @param Repository|null $repository The data repository to use for rendering.
+     * @throws \Throwable If rendering fails.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed The rendered view.
      */
     public function build(?Repository $repository = null)
     {
-        $this->set('source', $repository);
-
         return $this->render();
     }
 
     /**
-     * @return $this
+     * Adds a badge to the menu item with a specific color.
+     *
+     * @param \Closure $badge The closure to generate the badge content.
+     * @param Color $color The color of the badge.
+     * @return $this The current Menu instance for method chaining.
      */
     public function badge(\Closure $badge, Color $color = Color::PRIMARY): self
     {
@@ -160,7 +177,10 @@ class Menu extends Link
     }
 
     /**
-     * @return $this
+     * Sets the URL (href attribute) for the menu item.
+     *
+     * @param string $url The URL to set.
+     * @return $this The current Menu instance for method chaining.
      */
     public function url(string $url): self
     {
@@ -168,17 +188,18 @@ class Menu extends Link
     }
 
     /**
-     * @param string|string[] $permission
+     * Sets the permission(s) required to see the menu item.
      *
-     * @return $this
+     * @param string|string[]|null $permission The required permission(s).
+     * @return $this The current Menu instance for method chaining.
      */
-    public function permission($permission = null): self
+    public function permission(string|iterable $permission = null): self
     {
-        $user = Auth::user();
-
         if ($permission !== null) {
             $this->permit = false;
         }
+
+        $user = Auth::user();
 
         if ($user === null) {
             return $this;
@@ -189,13 +210,21 @@ class Menu extends Link
         return $this;
     }
 
+    /**
+     * Determines whether the menu item should be displayed based on permissions and visibility conditions.
+     *
+     * @return bool True if the menu item should be displayed, otherwise false.
+     */
     public function isSee(): bool
     {
         return parent::isSee() && $this->permit;
     }
 
     /**
-     * @return $this
+     * Sets the title for the menu item.
+     *
+     * @param string|null $title The title to set.
+     * @return $this The current Menu instance for method chaining.
      */
     public function title(?string $title = null): self
     {
@@ -203,7 +232,10 @@ class Menu extends Link
     }
 
     /**
-     * @return $this
+     * Sets the slug for the menu item.
+     *
+     * @param string $slug The slug to set.
+     * @return $this The current Menu instance for method chaining.
      */
     public function slug(string $slug): self
     {
@@ -211,7 +243,10 @@ class Menu extends Link
     }
 
     /**
-     * @return $this
+     * Sets the parent menu item for this menu item.
+     *
+     * @param string $parent The parent menu item slug or identifier.
+     * @return $this The current Menu instance for method chaining.
      */
     public function parent(string $parent): self
     {
