@@ -258,7 +258,7 @@ abstract class Screen extends Controller
     protected function fillPublicProperty(Repository $repository): void
     {
         $this->getPublicPropertyNames()
-            ->each(fn (string $property) => $this->$property = $repository->get($property, $this->$property));
+            ->map(fn (string $property) => $this->$property = $repository->get($property, $this->$property));
     }
 
     /**
@@ -352,26 +352,12 @@ abstract class Screen extends Controller
     }
 
     /**
-     * Check if the screen state preservation feature is enabled.
-     * Returns true if enabled, false otherwise.
-     */
-    public function isScreenFullStatePreserved(): bool
-    {
-        /** @var Layout $layout */
-        $existListenerLayout = collect($this->layout())
-            ->map(fn ($layout) => is_object($layout) ? $layout : resolve($layout))
-            ->map(fn (Layout $layout) => $layout->findByType(Listener::class))
-            ->filter()
-            ->isNotEmpty();
-
-        return config('platform.full_state', $existListenerLayout);
-    }
-
-    /**
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     * @throws \ReflectionException
+     * Calls the specified method with the given parameters.
      *
      * @return mixed
+     * @throws \ReflectionException
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     private function callMethod(string $method, array $parameters = [])
     {
