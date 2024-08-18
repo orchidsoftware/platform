@@ -6,6 +6,7 @@ export default class extends ApplicationController {
     static values = { text: String }
 
     /**
+     * Returns the <textarea> element within the current controller element.
      *
      * @returns {Element}
      */
@@ -14,18 +15,29 @@ export default class extends ApplicationController {
     }
 
     /**
+     * Returns the input element with the 'upload' class within the current controller element.
      *
+     * @returns {Element}
      */
     get uploadInput() {
         return this.element.querySelector('.upload');
     }
 
+    /**
+     * Initializes the controller and sets up visibility tracking to
+     * only initialize the editor when the element comes into view.
+     */
     initialize() {
-
         this.intersectionObserver = new IntersectionObserver((entries) => this.processIntersectionEntries(entries));
         this.intersectionObserver.observe(this.element);
     }
 
+    /**
+     * Handles IntersectionObserver entries. Initializes the SimpleMDE editor
+     * when the element becomes visible.
+     *
+     * @param {IntersectionObserverEntry[]} entries - Array of intersection observer entries.
+     */
     processIntersectionEntries(entries) {
         entries.forEach((entry) => {
             if (!entry.isIntersecting) {
@@ -34,17 +46,13 @@ export default class extends ApplicationController {
 
             this.intersectionObserver.unobserve(this.element);
             this.editor = this.initEditor();
-
         });
     }
 
-
-
-
-
-
     /**
+     * Initializes the SimpleMDE editor with configuration and content synchronization.
      *
+     * @returns {SimpleMDE} Returns the initialized SimpleMDE instance.
      */
     initEditor() {
         const editor = new SimpleMDE({
@@ -143,34 +151,16 @@ export default class extends ApplicationController {
                     title: 'Insert Horizontal Line',
                 },
             ],
-            initialValue: this.decodeHtmlJson(this.textValue),
+            initialValue: JSON.parse(this.textValue),
             placeholder: this.textarea.placeholder,
             spellChecker: false,
         });
-
-
-        // Required attribute https://github.com/sparksuite/simplemde-markdown-editor/issues/324
-        if (this.textarea.required) {
-            this.element.querySelector('.CodeMirror textarea').required = true;
-        }
 
         return editor;
     }
 
     /**
-     *
-     * @param json
-     * @returns {string}
-     */
-    decodeHtmlJson(json) {
-        let text = document.createElement("textarea");
-        text.innerHTML = JSON.parse(json);
-
-        return text.value;
-    }
-
-    /**
-     *
+     * Opens the file selection dialog.
      */
     showDialogUpload() {
         this.uploadInput.click();
@@ -178,8 +168,9 @@ export default class extends ApplicationController {
 
 
     /**
+     * Handles file upload, sends the file to the server, and inserts the file URL into the editor.
      *
-     * @param event
+     * @param {Event} event - The file upload event.
      */
     upload(event) {
         const file = event.target.files[0];
@@ -195,11 +186,11 @@ export default class extends ApplicationController {
             .post(this.prefix('/systems/files'), formData)
             .then((response) => {
                 this.editor.codemirror.replaceSelection(response.data.url);
-                event.target.value = null;
+                event.target.value = null; // Reset input after upload
             })
             .catch((error) => {
                 console.warn(error);
-                event.target.value = null;
+                event.target.value = null; // Reset input after upload
             });
     }
 }
