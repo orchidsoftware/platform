@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.29.0 - 2024-08-18
+
+### Changed
+- Reduce Data Transfer for State Restore [#2872](https://github.com/orchidsoftware/platform/pull/2872)
+
+### Fixed
+- Public property stop filled when find `false` value
+
 ## 14.28.2 - 2024-08-18
 
 ### Fixed
