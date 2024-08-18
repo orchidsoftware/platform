@@ -6,7 +6,7 @@
         @if($sort)
             <a href="{{ $sortUrl }}"
                class="@if(!is_sort($column)) text-muted @endif">
-                {{$title}}
+                {!! $title !!}
 
                 <x-orchid-popover :content="$popover"/>
 
@@ -16,7 +16,7 @@
                 @endif
             </a>
         @else
-            {{$title}}
+            {!! $title !!}
 
             <x-orchid-popover :content="$popover"/>
         @endif

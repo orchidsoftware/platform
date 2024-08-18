@@ -35,6 +35,10 @@ export default class extends ApplicationController {
             disable: 'disable',
             maxDate: 'max-date',
             minDate: 'min-date',
+            mode: "mode",
+            defaultDate: "default-date",
+            altInput: "alt-input",
+            altFormat: "alt-format",
         };
 
         const config = {
@@ -61,6 +65,15 @@ export default class extends ApplicationController {
         });
 
         this.fp = flatpickr(this.element.querySelector('input'), config);
+    }
+
+    /**
+     *
+     * @param event
+     */
+    setValue(event) {
+        const value = JSON.parse(event.target.dataset.value);
+        this.fp.setDate(value, true);
     }
 
     /**

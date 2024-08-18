@@ -6,9 +6,7 @@ export default class extends ApplicationController {
      *
      */
     connect() {
-        this.popover = new Popover(
-            this.element
-        );
+        this.popover = new Popover(this.element);
     }
 
     /**
@@ -19,7 +17,7 @@ export default class extends ApplicationController {
         event.preventDefault();
         this.popover.toggle();
     }
-    
+
     /**
      * Destroy popover on disconnect
      */

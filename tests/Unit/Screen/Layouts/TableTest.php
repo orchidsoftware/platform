@@ -14,7 +14,7 @@ class TableTest extends TestUnitCase
 {
     public function testTotalRow(): void
     {
-        $layout = new TotalTable();
+        $layout = new TotalTable;
 
         $html = $layout
             ->build(TotalTable::getData())

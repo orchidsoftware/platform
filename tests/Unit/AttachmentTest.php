@@ -141,7 +141,7 @@ class AttachmentTest extends TestUnitCase
 
     public function testAttachmentUrlLinkNotFound(): void
     {
-        $upload = new Attachment();
+        $upload = new Attachment;
 
         $this->assertNull($upload->url());
         $this->assertEquals('default', $upload->url('default'));

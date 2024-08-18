@@ -34,7 +34,7 @@ class Boolean extends Component
      */
     public function render()
     {
-        $class = $this->value ? 'text-success' : 'text-danger';
+        $class = 'me-1 '.($this->value ? 'text-success' : 'text-danger');
         $label = $this->value ? $this->true : $this->false;
 
         return "<span class='$class'>●</span>".$label;

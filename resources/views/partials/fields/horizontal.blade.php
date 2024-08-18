@@ -1,6 +1,6 @@
-<div class="form-group row row-cols-sm-2">
+<div class="form-group row row-cols-sm-2 align-items-baseline">
     @isset($title)
-        <label for="{{$id}}" class="col-sm-3 text-wrap mt-2 form-label">
+        <label for="{{$id}}" class="col-sm-3 text-wrap form-label">
             {{$title}}
 
             <x-orchid-popover :content="$popover ?? ''"/>

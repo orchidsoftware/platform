@@ -79,4 +79,26 @@ class DateTimerTest extends TestFieldsUnitCase
 
         $this->assertStringContainsString('data-datetime-time_24hr="true"', $view);
     }
+
+    public function testWithQuickDates(): void
+    {
+        $field = DateTimer::make('date')
+            ->format('Y-m-d H:i')
+            ->enableTime()
+            ->format24hr()
+            ->range()
+            ->withQuickDates([
+                'Today'     => Carbon::parse('2024-03-19 12:11:11'),
+                'Yesterday' => Carbon::parse('2024-03-18 12:11:11')->subDay(),
+                'Week'      => [
+                    Carbon::parse('2024-03-19 12:11:11')->startOfDay()->subWeek(),
+                    Carbon::parse('2024-03-19 12:11:11')->endOfDay(),
+                ],
+            ]);
+
+        $view = self::renderField($field);
+
+        $this->assertStringContainsString('data-value="[&quot;2024-03-17 12:11&quot;]"', $view);
+        $this->assertStringContainsString('data-value="[&quot;2024-03-12 00:00&quot;,&quot;2024-03-19 23:59&quot;]"', $view);
+    }
 }

@@ -9,13 +9,13 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Controllers\Controller;
-use Orchid\Screen\Layouts\Listener;
 use Orchid\Support\Facades\Dashboard;
 
 /**
@@ -26,7 +26,7 @@ use Orchid\Support\Facades\Dashboard;
  */
 abstract class Screen extends Controller
 {
-    use Commander;
+    use Commander, SerializesModels;
 
     /**
      * @param \Illuminate\Http\Request $request
@@ -79,11 +79,6 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @var Repository
-     */
-    private $source;
-
-    /**
      * The command buttons for this screen.
      *
      * @return Action[]
@@ -131,20 +126,20 @@ abstract class Screen extends Controller
         abort_unless($this->checkAccess(request()), static::unaccessed());
 
         $state = $this->extractState();
-
         $this->fillPublicProperty($state);
 
         $parameters = request()->collect()->merge([
             'state'   => $state,
-        ])->toArray();
+        ])->all();
 
         $repository = $this->callMethod($method, $parameters);
 
         if (is_array($repository)) {
-            $repository = new Repository($repository);
+            $repository = new Repository(array_merge($state->all(), $repository));
         }
 
-        $view = $this->view($repository)->fragments(collect($slug)->push('screen-state')->toArray());
+        $view = $this->view($repository)
+            ->fragments(collect($slug)->push('screen-state')->all());
 
         return response($view)
             ->header('Content-Type', 'text/vnd.turbo-stream.html');
@@ -165,11 +160,12 @@ abstract class Screen extends Controller
         abort_unless($this->checkAccess(request()), static::unaccessed());
 
         $state = $this->extractState();
+        $this->fillPublicProperty($state);
 
         $repository = $layout->handle($state, $request);
 
         $view = $layout->build($repository).view('platform::partials.state', [
-            'state' => $this->serializeStateWithPublicProperties($state),
+            'state' => $this->serializableState(),
         ]);
 
         return response($view)
@@ -192,11 +188,13 @@ abstract class Screen extends Controller
         // Check if the '_state' parameter is missing
         if ($state === null) {
             // Return an empty Repository object
-            return new Repository();
+            return new Repository;
         }
 
         //deserialize '_state' parameter
-        return Crypt::decrypt($state);
+        $screen = Crypt::decrypt($state);
+
+        return new Repository(get_object_vars($screen));
     }
 
     /**
@@ -217,24 +215,21 @@ abstract class Screen extends Controller
             'layouts'                 => $this->build($repository),
             'formValidateMessage'     => $this->formValidateMessage(),
             'needPreventsAbandonment' => $this->needPreventsAbandonment(),
-            'state'                   => $this->serializeStateWithPublicProperties($repository),
+            'state'                   => $this->serializableState(),
+            'controller'              => $this->frontendController(),
         ]);
     }
 
     /**
-     * @param $repository
+     * Serializes the current state of the screen into a string.
      *
-     * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
+     * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException If the PHP version is not supported for serialization.
      *
-     * @return string
+     * @return string The serialized state.
      */
-    protected function serializableState(Repository $repository): string
+    protected function serializableState(): string
     {
-        if ($repository->isEmpty()) {
-            return '';
-        }
-
-        return Crypt::encrypt($repository);
+        return Crypt::encrypt($this);
     }
 
     /**
@@ -253,26 +248,6 @@ abstract class Screen extends Controller
     }
 
     /**
-     * Serializes the state of the object using the public properties specified in the given repository.
-     *
-     * @param \Orchid\Screen\Repository $repository The repository containing the public properties to be serialized.
-     *
-     * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
-     *
-     * @return string The serialized state of the object.
-     */
-    public function serializeStateWithPublicProperties(Repository $repository): string
-    {
-        if ($this->isScreenFullStatePreserved()) {
-            return $this->serializableState($repository);
-        }
-
-        $propertiesToSerialize = $repository->getMany($this->getPublicPropertyNames()->toArray());
-
-        return $this->serializableState(new Repository($propertiesToSerialize));
-    }
-
-    /**
      * Fills the public properties of the object with values from the given repository.
      *
      * @param \Orchid\Screen\Repository $repository The repository containing the values to fill the properties with.
@@ -282,7 +257,7 @@ abstract class Screen extends Controller
     protected function fillPublicProperty(Repository $repository): void
     {
         $this->getPublicPropertyNames()
-            ->each(fn (string $property) => $this->$property = $repository->get($property, $this->$property));
+            ->map(fn (string $property) => $this->$property = $repository->get($property, $this->$property));
     }
 
     /**
@@ -376,24 +351,10 @@ abstract class Screen extends Controller
     }
 
     /**
-     * Check if the screen state preservation feature is enabled.
-     * Returns true if enabled, false otherwise.
-     */
-    public function isScreenFullStatePreserved(): bool
-    {
-        /** @var Layout $layout */
-        $existListenerLayout = collect($this->layout())
-            ->map(fn ($layout) => is_object($layout) ? $layout : resolve($layout))
-            ->map(fn (Layout $layout) => $layout->findByType(Listener::class))
-            ->filter()
-            ->isNotEmpty();
-
-        return config('platform.full_state', $existListenerLayout);
-    }
-
-    /**
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * Calls the specified method with the given parameters.
+     *
      * @throws \ReflectionException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      *
      * @return mixed
      */
@@ -480,7 +441,7 @@ abstract class Screen extends Controller
             return back();
         }
 
-        return $this->backWith($currentState->all());
+        return back()->with('_state', $this->serializableState());
     }
 
     /**
@@ -494,8 +455,22 @@ abstract class Screen extends Controller
      */
     public function backWith(array $data): RedirectResponse
     {
-        $repository = new Repository($data);
+        $this->fillPublicProperty(new Repository($data));
 
-        return back()->with('_state', $this->serializableState($repository));
+        return back()->with('_state', $this->serializableState());
+    }
+
+    /**
+     * Returns the name of the base Stimulus controller for the frontend.
+     *
+     * This method is used to determine the base Stimulus controller that will be
+     * utilized on the frontend of the application. The controller manages the
+     * behavior of UI elements, interacting with other components via Hotwire.
+     *
+     * @return string The name of the base controller.
+     */
+    public function frontendController(): string
+    {
+        return 'base';
     }
 }

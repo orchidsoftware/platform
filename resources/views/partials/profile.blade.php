@@ -5,7 +5,7 @@
             <img src="{{$image}}"  alt="{{ Auth::user()->presenter()->title()}}" class="thumb-sm avatar b me-3" type="image/*">
         @endif
 
-        <small class="d-flex flex-column" style="line-height: 16px;">
+        <small class="d-flex flex-column lh-1 col-9">
             <span class="text-ellipsis text-white">{{Auth::user()->presenter()->title()}}</span>
             <span class="text-ellipsis text-muted">{{Auth::user()->presenter()->subTitle()}}</span>
         </small>

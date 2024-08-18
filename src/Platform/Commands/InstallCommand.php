@@ -34,7 +34,7 @@ class InstallCommand extends Command
     public function handle()
     {
         $this->comment('Installation started. Please wait...');
-        $this->info('Version: '.Dashboard::VERSION);
+        $this->info('Version: '.Dashboard::version());
 
         $this
             ->executeCommand('vendor:publish', [

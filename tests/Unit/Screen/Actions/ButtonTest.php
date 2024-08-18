@@ -57,6 +57,21 @@ class ButtonTest extends TestFieldsUnitCase
         );
     }
 
+    public function testButtonWithZeroParameters(): void
+    {
+        $button = Button::make('About')
+            ->method('test', [
+                'value' => 0,
+            ]);
+
+        $view = self::renderField($button);
+
+        $this->assertStringContainsString(
+            'formaction="http://127.0.0.1:8001/test?value=0',
+            $view
+        );
+    }
+
     public function testButtonTitle(): void
     {
         $button = Button::make('About')

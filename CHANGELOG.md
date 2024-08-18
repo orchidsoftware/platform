@@ -5,6 +5,165 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.29.0 - 2024-08-18
+
+### Changed
+- Reduce Data Transfer for State Restore [#2872](https://github.com/orchidsoftware/platform/pull/2872)
+
+### Fixed
+- Public property stop filled when find `false` value
+
+## 14.28.2 - 2024-08-18
+
+### Fixed
+- SimpleMDE Field Incorrectly Marked as Empty When Using `required` Attribute [#2877](https://github.com/orchidsoftware/platform/issues/2877)
+
+## 14.28.1 - 2024-08-13
+
+### Fixed
+- Icon clipping issue at various ratios [#2846](https://github.com/orchidsoftware/platform/issues/2846)
+- Nested menu collapsing behavior [#2875](https://github.com/orchidsoftware/platform/issues/2875)
+
+## 14.28.0 - 2024-08-13
+
+### Added
+- Integrated `altInput` and `altFormat` attributes as recommended by the `flatpickr` package to enhance formatting capabilities. [#2873](https://github.com/orchidsoftware/platform/pull/2873)
+
+### Changed
+- Refactored protected method names and updated descriptions in `Field` class
+- Disabled `single_trait_insert_per_statement` option for `Pint`
+
+### Fixed
+- Drop-down behavior that caused it to either disappear or break the `Table` layout
+- The `maximumSelectionLength` option was not functioning correctly. The issue was resolved by adding the necessary parentheses. [#2873](https://github.com/orchidsoftware/platform/pull/2873)
+- Button text visibility issue when a loading spinner is active
+
+### Removed
+- Unused translation of the term from the project
+
+## 14.27.2 - 2024-07-30
+
+### Fixed
+- Revert `csrf` token on modal window
+
+## 14.27.1 - 2024-07-23
+
+### Fixed
+- Overflow drop-down on table
+
+## 14.27.0 - 2024-07-23
+
+### Added
+- `path` and `storage` attributes for the `Attach` field
+- Extended method for `Action`
+
+### Changed
+- Modal window no longer requires data definition before loading
+
+## 14.26.1 - 2024-06-30
+
+### Changed
+- Enhanced `zh_TW` language support [#2844](https://github.com/orchidsoftware/platform/pull/2844)
+
+### Fixed
+- Missing prefix for notification icon [#2848](https://github.com/orchidsoftware/platform/issues/2848)
+
+## 14.26.0 - 2024-06-14
+
+### Added
+- Support for XL size modal [#2842](https://github.com/orchidsoftware/platform/pull/2842)
+
+### Fixed
+- Adjusted `$type` modal positioning on the page [#2842](https://github.com/orchidsoftware/platform/pull/2842)
+
+## 14.25.3 - 2024-06-06
+
+### Fixed
+- Missing attributes for `Attach` field
+
+## 14.25.2 - 2024-06-01
+
+### Fixed
+- Updated rules for stubs to ensure correct behavior
+- Enhanced fieldset template for better usability
+- Visual enhancements to the Boolean component [#2838](https://github.com/orchidsoftware/platform/pull/2838)
+
+## 14.25.1 - 2024-05-30
+
+### Fixed
+- Incorrect merge state and data for async modals [#2658](https://github.com/orchidsoftware/platform/issues/2658)
+
+## 14.25.0 - 2024-05-30
+
+### Added
+- Improved `ModalToggle` declaration second argument for `modal` method
+
+### Fixed
+- Missed state when update async modals [#2658](https://github.com/orchidsoftware/platform/issues/2658)
+
+## 14.24.0 - 2024-05-27
+
+### Added
+- Add frontend controller in screen. [#2835](https://github.com/orchidsoftware/platform/pull/2835)
+
+### Changed
+- Remove subtitle Orchid on header
+- `Attach` field allow to set custom url endpoint for upload and sort
+
+### Removed
+- EventServiceProvider [#2834](https://github.com/orchidsoftware/platform/pull/2834)
+
+## 14.23.1 - 2024-05-04
+
+### Fixed
+- Allow events AutoDiscovery in Laravel 11 [#2829](https://github.com/orchidsoftware/platform/pull/2829) [#2828](https://github.com/orchidsoftware/platform/issues/2828)
+
+## 14.23.0 - 2024-04-23
+
+### Added
+- Possibility to change 'Add row' label for matrix field [#2824](https://github.com/orchidsoftware/platform/pull/2824)
+- Config for `Prefetching Links on Hover`
+
+## 14.22.1 - 2024-04-20
+
+### Fixed
+- Custom path to composer vendor directory
+
+## 14.22.0 - 2024-04-14
+
+### Added
+- `Text` component for `Cell`
+
+### Changed
+- Popover trigger to hover/active
+- Improved component rendering method with backward compatibility
+
+### Fixed
+- Trim profile name/description
+
+## 14.21.1 - 2024-03-25
+
+### Fixed
+- Zero value filtering in parameters for `Button` [#2818](https://github.com/orchidsoftware/platform/issues/2818)
+- Clear input after select item in relation or select fields [#2815](https://github.com/orchidsoftware/platform/pull/2815) [#2797](https://github.com/orchidsoftware/platform/pull/2797)
+
+## 14.21.0 - 2024-03-19
+
+### Added
+- Support Laravel 11.x
+
+## 14.20.0 - 2024-03-19
+
+### Added
+- New `range`, `multiple` and `withQuickDates` methods for `DateTimer` field
+
+### Changed 
+- Improve multi lines horizon forms
+- Improve example fields
+
+### Fixed
+- Overflow `select` when usage matrix field
+
 ## 14.19.0 - 2024-02-26
 
 ### Changed

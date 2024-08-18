@@ -1,6 +1,8 @@
 <?php
 
-namespace Orchid\Tests\Feature\Platform;
+declare(strict_types=1);
+
+namespace Orchid\Tests\Unit\Support;
 
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Models\User;

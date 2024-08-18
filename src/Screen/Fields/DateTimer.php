@@ -56,9 +56,11 @@ class DateTimer extends Field
         'data-datetime-inline'                  => 'false',
         'data-datetime-position'                => 'auto auto',
         'data-datetime-shorthand-current-month' => 'false',
+        'data-datetime-alt-input'               => 'false',
         'data-datetime-show-months'             => 1,
         'allowEmpty'                            => false,
         'placeholder'                           => 'Select Date...',
+        'quickDates'                            => [],
     ];
 
     /**
@@ -99,6 +101,8 @@ class DateTimer extends Field
         'data-datetime-position',
         'data-datetime-shorthand-current-month',
         'data-datetime-show-months',
+        'data-datetime-alt-input',
+        'data-datetime-alt-format',
     ];
 
     /**
@@ -373,6 +377,62 @@ class DateTimer extends Field
     public function position(string $vertical = 'auto', string $horizontal = 'auto'): self
     {
         $this->set('data-datetime-position', $vertical.' '.$horizontal);
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function range(): self
+    {
+        $this->set('data-datetime-mode', 'range');
+
+        return $this;
+    }
+
+    public function multiple(): self
+    {
+        $this->set('data-datetime-mode', 'multiple')
+            ->addBeforeRender(function () {
+                $this->set('data-datetime-default-date', json_encode($this->attributes['value']));
+                $this->attributes['value'] = null;
+            });
+
+        return $this;
+    }
+
+    /**
+     * Set quick date options for selection near an input field.
+     *
+     * @param array $presets An array of preset date values
+     *
+     * @return $this
+     */
+    public function withQuickDates(array $presets): self
+    {
+        $formattedPresets = collect($presets)
+            ->map(fn ($value) => collect($value))
+            ->map
+            ->map(fn ($value) => Carbon::parse($value)->format($this->attributes['data-datetime-date-format']))
+            ->all();
+
+        $this->attributes['quickDates'] = $formattedPresets;
+
+        return $this;
+    }
+
+    /**
+     * Set the date format for the alt input field.
+     *
+     * @param string $format
+     *
+     * @return $this
+     */
+    public function altFormat(string $format): static
+    {
+        $this->set('data-datetime-alt-format', $format);
+        $this->set('data-datetime-alt-input', var_export(true, true));
 
         return $this;
     }

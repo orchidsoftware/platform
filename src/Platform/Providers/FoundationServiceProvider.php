@@ -100,7 +100,6 @@ class FoundationServiceProvider extends ServiceProvider
             IconServiceProvider::class,
             BreadcrumbsServiceProvider::class,
             RouteServiceProvider::class,
-            EventServiceProvider::class,
             PlatformServiceProvider::class,
         ];
     }
@@ -114,7 +113,7 @@ class FoundationServiceProvider extends ServiceProvider
             ->registerTranslations()
             ->registerProviders();
 
-        $this->app->singleton(Dashboard::class, static fn () => new Dashboard());
+        $this->app->singleton(Dashboard::class, static fn () => new Dashboard);
 
         if (! Route::hasMacro('screen')) {
             Route::macro('screen', function ($url, $screen) {

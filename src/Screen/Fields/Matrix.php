@@ -33,6 +33,7 @@ class Matrix extends Field
         'maxRows'           => 0,
         'keyValue'          => false,
         'fields'            => [],
+        'addRowLabel'       => 'Add row',
         'columns'           => [
             'key',
             'value',
@@ -105,6 +106,16 @@ class Matrix extends Field
     public function fields(array $fields = []): self
     {
         return $this->set('fields', $fields);
+    }
+
+    /**
+     * @param string $label
+     *
+     * @return self
+     */
+    public function addRowLabel(string $label): self
+    {
+        return $this->set('addRowLabel', $label);
     }
 
     protected function getIdPrefix(): string

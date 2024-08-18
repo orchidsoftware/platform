@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Tests\Feature\Platform;
+namespace Orchid\Tests\Unit\Support;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,10 +34,9 @@ class NamesTest extends TestUnitCase
 
     protected function setRouteName(string $name)
     {
-        Route::get($name, function () {
-        })->name($name);
+        Route::get($name, function () {})->name($name);
 
-        $request = tap(new Request(), function (Request $request) use ($name) {
+        $request = tap(new Request, function (Request $request) use ($name) {
             $request->server->set('REQUEST_URI', \route($name));
         });
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
+use Illuminate\Support\Facades\Auth;
 use Orchid\Tests\TestFeatureCase;
 
 class AuthTest extends TestFeatureCase
@@ -18,10 +19,15 @@ class AuthTest extends TestFeatureCase
 
     public function testRouteDashboardLoginAuth(): void
     {
-        $this->actingAs($this->createAdminUser())
+        $response = $this->actingAs($this->createAdminUser())
             ->get(route('platform.login'))
-            ->assertStatus(302)
-            ->assertRedirect('/home');
+            ->assertStatus(302);
+
+        $this->assertTrue(
+            // Home for Laravel 10.x and earlier
+            // '/' for Laravel 11.x and later
+            $response->isRedirect(url('/home')) || $response->isRedirect(url('/'))
+        );
     }
 
     public function testRouteDashboardLoginAuthSuccess(): void
@@ -33,7 +39,7 @@ class AuthTest extends TestFeatureCase
         ])
             ->assertStatus(302)
             ->assertRedirect(route(config('platform.index')))
-            ->assertCookieNotExpired('lockUser');
+            ->assertCookieNotExpired(sprintf('%s_%s', Auth::guard()->getName(), '_orchid_lock'));
     }
 
     public function testRouteDashboardLoginAuthFail(): void
@@ -52,7 +58,7 @@ class AuthTest extends TestFeatureCase
             'lockUser' => 1,
         ])
             ->assertRedirect(route('platform.login'))
-            ->assertCookieExpired('lockUser');
+            ->assertCookieExpired(sprintf('%s_%s', Auth::guard()->getName(), '_orchid_lock'));
     }
 
     public function testRouteDashboardSwitchLogout(): void

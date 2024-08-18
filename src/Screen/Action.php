@@ -84,4 +84,21 @@ class Action extends Field implements Actionable
     {
         return $this->get('id');
     }
+
+    /**
+     * Adds the 'stretched-link' class to the element, making its parent block clickable.
+     *
+     * The `stretched` method appends the 'stretched-link' class to the element's 'class' attribute,
+     * allowing the entire parent block of the element to become clickable.
+     *
+     * Notes: The parent block must have `position: relative`.
+     *
+     * @return self
+     */
+    public function stretched(): self
+    {
+        $this->attributes['class'] .= ' stretched-link';
+
+        return $this;
+    }
 }

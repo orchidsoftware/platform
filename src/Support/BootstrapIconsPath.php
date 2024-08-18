@@ -2,6 +2,8 @@
 
 namespace Orchid\Support;
 
+use Composer\InstalledVersions;
+
 class BootstrapIconsPath
 {
     /**
@@ -9,6 +11,8 @@ class BootstrapIconsPath
      */
     public static function getFolder(): string
     {
-        return base_path('/vendor/twbs/bootstrap-icons/icons');
+        $packagePath = InstalledVersions::getInstallPath('twbs/bootstrap-icons');
+
+        return realpath($packagePath.'/icons');
     }
 }

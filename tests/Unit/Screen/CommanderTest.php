@@ -34,7 +34,7 @@ class CommanderTest extends TestUnitCase
 
             public function generate()
             {
-                return $this->buildCommandBar(new Repository());
+                return $this->buildCommandBar(new Repository);
             }
         };
     }

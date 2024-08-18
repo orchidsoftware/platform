@@ -16,7 +16,7 @@ class BlockTest extends TestUnitCase
         $layout = LayoutFactory::block([])
             ->title('Profile Information');
 
-        $html = $layout->build(new Repository())
+        $html = $layout->build(new Repository)
             ->withErrors([])
             ->render();
 
@@ -29,7 +29,7 @@ class BlockTest extends TestUnitCase
             ->title('Profile Information')
             ->description("Update your account's profile information and email address.");
 
-        $html = $layout->build(new Repository())
+        $html = $layout->build(new Repository)
             ->withErrors([])
             ->render();
 
@@ -62,7 +62,7 @@ class BlockTest extends TestUnitCase
             ->description("Update your account's profile information and email address.")
             ->commands(Button::make('Submit'));
 
-        $html = $layout->build(new Repository())
+        $html = $layout->build(new Repository)
             ->withErrors([])
             ->render();
 
@@ -79,7 +79,7 @@ class BlockTest extends TestUnitCase
                 Link::make('Link to site'),
             ]);
 
-        $html = $layout->build(new Repository())
+        $html = $layout->build(new Repository)
             ->withErrors([])
             ->render();
 
@@ -95,7 +95,7 @@ class BlockTest extends TestUnitCase
             ->title('Profile Information')
             ->description($view);
 
-        $html = $layout->build(new Repository())
+        $html = $layout->build(new Repository)
             ->withErrors([])
             ->render();
 

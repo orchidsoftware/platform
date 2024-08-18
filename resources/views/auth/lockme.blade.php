@@ -1,17 +1,17 @@
 <div class="mb-3 d-flex align-items-center">
-    <span class="thumb-sm avatar me-3">
-        <img src="{{ $lockUser->presenter()->image() }}" class="b bg-light" alt="test">
-    </span>
-    <span style="width:125px;" class="small">
+    <div class="thumb-sm avatar me-3">
+        <img src="{{ $lockUser->presenter()->image() }}" class="b bg-light" alt="{{ $lockUser->presenter()->title() }}">
+    </div>
+    <div class="d-flex flex-column overflow-hidden small">
         <span class="text-ellipsis">{{ $lockUser->presenter()->title() }}</span>
         <span class="text-muted d-block text-ellipsis">{{ $lockUser->presenter()->subTitle() }}</span>
-    </span>
+    </div>
     <input type="hidden" name="email" required value="{{ $lockUser->email }}">
 </div>
 
 @error('email')
     <span class="d-block invalid-feedback text-danger">
-            {{ $errors->first('email') }}
+        {{ $errors->first('email') }}
     </span>
 @enderror
 

@@ -37,7 +37,7 @@ class NotificationTable extends Table
 
     public function iconNotFound(): string
     {
-        return 'bell';
+        return 'bs.bell';
     }
 
     public function subNotFound(): string
