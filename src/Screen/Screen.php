@@ -222,9 +222,11 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
+     * Serializes the current state of the screen into a string.
      *
-     * @return string
+     * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException If the PHP version is not supported for serialization.
+     *
+     * @return string The serialized state.
      */
     protected function serializableState(): string
     {
