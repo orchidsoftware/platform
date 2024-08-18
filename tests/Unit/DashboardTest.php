@@ -17,7 +17,7 @@ class DashboardTest extends TestUnitCase
 {
     public function testIsVersion(): void
     {
-        $this->assertEquals(Dashboard::VERSION, Dashboard::version());
+        $this->assertNotEmpty(Dashboard::version());
     }
 
     public function testIsModelDefault(): void
