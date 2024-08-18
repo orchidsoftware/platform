@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Controllers\Controller;
-use Orchid\Screen\Layouts\Listener;
 use Orchid\Support\Facades\Dashboard;
 
 /**
@@ -354,10 +353,10 @@ abstract class Screen extends Controller
     /**
      * Calls the specified method with the given parameters.
      *
-     * @return mixed
      * @throws \ReflectionException
-     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
+     * @return mixed
      */
     private function callMethod(string $method, array $parameters = [])
     {

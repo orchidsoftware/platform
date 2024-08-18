@@ -31,21 +31,22 @@ class ScreenFillPublicPropertyTest extends TestUnitCase
      * Tests that the `fillPublicProperty` method correctly fills public properties
      * with various data types: array, object, boolean, string, and float.
      *
-     * @return void
      * @throws \ReflectionException
+     *
+     * @return void
      */
     public function testFillPublicPropertyWithVariousValueTypes(): void
     {
         // Define test data with meaningful property names
         $data = [
-            'simpleArrayProperty' => ['item1', 'item2'], // Simple array
-            'objectProperty' => (object)['key' => 'value'], // Object
+            'simpleArrayProperty'  => ['item1', 'item2'], // Simple array
+            'objectProperty'       => (object) ['key' => 'value'], // Object
             'booleanFalseProperty' => false, // Boolean false
-            'booleanTrueProperty' => true, // Boolean true
-            'stringProperty' => 'string value', // String
-            'floatProperty' => 3.14, // Float
-            'nullProperty' => null, // Null
-            'assocArrayProperty' => ['key1' => 'value1', 'key2' => 'value2'], // Associative array
+            'booleanTrueProperty'  => true, // Boolean true
+            'stringProperty'       => 'string value', // String
+            'floatProperty'        => 3.14, // Float
+            'nullProperty'         => null, // Null
+            'assocArrayProperty'   => ['key1' => 'value1', 'key2' => 'value2'], // Associative array
             'customObjectProperty' => new \stdClass(), // Custom object (stdClass)
         ];
 
