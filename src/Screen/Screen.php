@@ -9,7 +9,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
@@ -26,7 +25,7 @@ use Orchid\Support\Facades\Dashboard;
  */
 abstract class Screen extends Controller
 {
-    use Commander, SerializesModels;
+    use Commander;
 
     /**
      * @param \Illuminate\Http\Request $request
