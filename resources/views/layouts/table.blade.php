@@ -35,7 +35,7 @@
             <tbody>
 
             @foreach($rows as $source)
-                <tr class="position-relative">
+                <tr>
                     @foreach($columns as $column)
                         {!! $column->buildTd($source, $loop->parent) !!}
                     @endforeach
