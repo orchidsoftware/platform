@@ -464,15 +464,9 @@ blockquote {
   > tbody,
   > tfoot {
     > tr {
-        // https://mtsknn.fi/blog/relative-tr-in-safari/
         // Safari doesn't support position: relative on <tr> elements
-        position: relative;
-        transform: translate(0);
-        clip-path: inset(0);
-        :focus-within {
-           outline-offset: -2px; /* Needs to be negative because of the `clip-path` above */
-        }
-
+        position: sticky;
+        overflow: clip;
       > td {
         padding: 8px 15px;
         border-top: 1px solid $table-border-color;
