@@ -266,11 +266,14 @@ abstract class Screen extends Controller
      */
     protected function getPublicPropertyNames(): Collection
     {
-        $reflections = (new \ReflectionClass($this))->getProperties(\ReflectionProperty::IS_PUBLIC);
+        $properties = (new \ReflectionClass(static::class))->getProperties(\ReflectionProperty::IS_PUBLIC);
+        $baseProperties = (new \ReflectionClass(Screen::class))->getProperties(\ReflectionProperty::IS_PUBLIC);
 
-        return collect($reflections)
+        return collect($properties)
+            ->mapWithKeys(fn (\ReflectionProperty $property) => [$property->getName() => $property])
             ->filter(fn (\ReflectionProperty $property) => ! $property->isStatic())
-            ->map(fn (\ReflectionProperty $property) => $property->getName());
+            ->except(array_map(fn (\ReflectionProperty $property) => $property->getName(), $baseProperties))
+            ->keys();
     }
 
     /**
