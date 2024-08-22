@@ -464,9 +464,13 @@ blockquote {
   > tbody,
   > tfoot {
     > tr {
-        // Safari doesn't support position: relative on <tr> elements
-        position: sticky;
-        overflow: clip;
+        &:has(.stretched-link) {
+            // Safari doesn't support position: relative on <tr> elements
+            position: relative;
+            transform: translate(0);
+            clip-path: inset(0);
+            overflow: clip;
+        }
       > td {
         padding: 8px 15px;
         border-top: 1px solid $table-border-color;
