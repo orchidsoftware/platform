@@ -112,6 +112,7 @@ class Field implements Fieldable, Htmlable
         'xml:lang',
         'autocomplete',
         'data-*',
+        'aria-*',
     ];
 
     /**
