@@ -496,7 +496,7 @@ abstract class Screen extends Controller
             $propertyName = $property->getName();
 
             // Skip if there's no default value for the property
-            if (!$defaultProperties->has($propertyName)) {
+            if (! $defaultProperties->has($propertyName)) {
                 continue;
             }
 
@@ -509,8 +509,10 @@ abstract class Screen extends Controller
      * Returns an associative array of property names and their values for the given object.
      *
      * @param object $object
-     * @return Collection
+     *
      * @throws \ReflectionException
+     *
+     * @return Collection
      */
     private function getPropertiesWithValues(object $object): Collection
     {
@@ -519,6 +521,7 @@ abstract class Screen extends Controller
         return collect($reflection->getProperties())
             ->mapWithKeys(function (\ReflectionProperty $property) use ($object) {
                 $property->setAccessible(true); // Ensure we can access private/protected properties
+
                 return [$property->getName() => $property->getValue($object)];
             });
     }

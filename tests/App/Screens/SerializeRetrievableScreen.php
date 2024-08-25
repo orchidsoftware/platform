@@ -12,19 +12,17 @@ class SerializeRetrievableScreen extends Screen
 {
     use ModelStateRetrievable;
 
-    public $public = "Public";
+    public $public = 'Public';
 
     public function __construct(
-        protected Application   $application,
-        private readonly string $private = "Private",
+        protected Application $application,
+        private readonly string $private = 'Private',
         public $user = null
-    )
-    {
+    ) {
         $this->middleware(function ($request, $next) {
             return $next($request);
         });
     }
-
 
     /**
      * Query data.

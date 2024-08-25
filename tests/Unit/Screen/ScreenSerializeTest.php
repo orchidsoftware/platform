@@ -6,8 +6,8 @@ namespace Orchid\Tests\Unit\Screen;
 
 use Illuminate\Support\Facades\DB;
 use Orchid\Platform\Models\User;
-use Orchid\Tests\App\Screens\SerializeScreen;
 use Orchid\Tests\App\Screens\SerializeRetrievableScreen;
+use Orchid\Tests\App\Screens\SerializeScreen;
 use Orchid\Tests\TestUnitCase;
 use ReflectionClass;
 use ReflectionException;

@@ -51,7 +51,7 @@ trait ModelStateRetrievable
             $name = $property->getName();
 
             if ($property->isPrivate() || $property->isProtected()) {
-              continue;
+                continue;
             }
 
             $values[$name] = $this->getSerializedPropertyValue(
@@ -69,9 +69,10 @@ trait ModelStateRetrievable
      *
      * @param array $values
      *
-     * @return void
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \ReflectionException
+     *
+     * @return void
      */
     public function __unserialize(array $values)
     {
@@ -101,7 +102,8 @@ trait ModelStateRetrievable
     /**
      * Get the property value for the given property.
      *
-     * @param  \ReflectionProperty  $property
+     * @param \ReflectionProperty $property
+     *
      * @return mixed
      */
     protected function getPropertyValue(\ReflectionProperty $property)
@@ -110,9 +112,10 @@ trait ModelStateRetrievable
     }
 
     /**
-     * @return array
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \ReflectionException
+     *
+     * @return array
      */
     protected function getDefaultPropertyWithConstructor(): array
     {
@@ -121,7 +124,7 @@ trait ModelStateRetrievable
         $defaultReflection = (new \ReflectionClass($default))->getProperties();
 
         return collect($defaultReflection)
-            ->mapWithKeys(fn(\ReflectionProperty $property) => [$property->getName() => $property->getValue($default)])
+            ->mapWithKeys(fn (\ReflectionProperty $property) => [$property->getName() => $property->getValue($default)])
             ->all();
     }
 }
