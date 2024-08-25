@@ -472,4 +472,64 @@ abstract class Screen extends Controller
     {
         return 'base';
     }
+
+    /**
+     * Reinitialized uninitialized properties with their default values.
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \ReflectionException
+     */
+    public function __wakeup(): void
+    {
+        // Create a fresh instance to retrieve default property values
+        $defaultInstance = app()->make(static::class);
+
+        $defaultProperties = $this->getPropertiesWithValues($defaultInstance);
+        $currentProperties = (new \ReflectionClass($this))->getProperties();
+
+        foreach ($currentProperties as $property) {
+            // Skip if the property is already initialized
+            if ($property->isInitialized($this)) {
+                continue;
+            }
+
+            $propertyName = $property->getName();
+
+            // Skip if there's no default value for the property
+            if (!$defaultProperties->has($propertyName)) {
+                continue;
+            }
+
+            // Set the property to its default value
+            $property->setValue($this, $defaultProperties->get($propertyName));
+        }
+    }
+
+    /**
+     * Returns an associative array of property names and their values for the given object.
+     *
+     * @param object $object
+     * @return Collection
+     * @throws \ReflectionException
+     */
+    private function getPropertiesWithValues(object $object): Collection
+    {
+        $reflection = new \ReflectionClass($object);
+
+        return collect($reflection->getProperties())
+            ->mapWithKeys(function (\ReflectionProperty $property) use ($object) {
+                $property->setAccessible(true); // Ensure we can access private/protected properties
+                return [$property->getName() => $property->getValue($object)];
+            });
+    }
+
+    /**
+     * Returns an array of public property names for serialization.
+     *
+     * @return array
+     */
+    public function __sleep(): array
+    {
+        return $this->getPublicPropertyNames()->all();
+    }
 }
