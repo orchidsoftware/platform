@@ -6,6 +6,7 @@ namespace Orchid\Platform\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Orchid\Access\RoleAccess;
 use Orchid\Access\RoleInterface;
 use Orchid\Filters\Filterable;
@@ -14,6 +15,13 @@ use Orchid\Filters\Types\Where;
 use Orchid\Metrics\Chartable;
 use Orchid\Screen\AsSource;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $slug
+ * @property ?array<string, int> $permissions
+ * @property null|User[]|Collection<User> $users
+ */
 class Role extends Model implements RoleInterface
 {
     use AsSource, Chartable, Filterable, HasFactory, RoleAccess;
