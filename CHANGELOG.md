@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.31.0 - 2024-08-27
+
+### Added
+- Allow "aria-*" attributes in Fields [#2884](https://github.com/orchidsoftware/platform/pull/2884)
+
+### Fixed
+- Screen constructor property initialization during deserialization [#2885](https://github.com/orchidsoftware/platform/pull/2885)
+
 ## 14.30.2 - 2024-08-23
 
 ### Fixed
