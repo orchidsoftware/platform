@@ -37,16 +37,18 @@ export default class extends ApplicationController {
             }
         };
 
-        const fromUrl = select.getAttribute('fromUrl');
+        const fromUrl = select.getAttribute('fromurl');
 
         if (fromUrl) {
-            options['valueField']  = select.getAttribute('ajaxvaluefield') ?? 'value';
-            options['labelField']  = select.getAttribute('ajaxlabelfield') ?? 'label';
+            const fromUrlOptions = JSON.parse(select.getAttribute('fromurl'));
+
+            options['valueField']  = fromUrlOptions['value'];
+            options['labelField']  = fromUrlOptions['label'];
             options['searchField'] = [options['valueField'], options['labelField']];
 
             options['load'] = async (query, callback) => {
                 axios
-                .get(fromUrl, {params: {query}})
+                .get(fromUrlOptions['url'], {params: {query}})
                 .then((response) => {
                     callback(response.data.options);
                 });
