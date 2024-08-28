@@ -46,7 +46,7 @@ export default class extends ApplicationController {
 
             options['load'] = async (query, callback) => {
                 axios
-                .get(ajaxOptionsUrl, { query })
+                .get(ajaxOptionsUrl, {params: {query}})
                 .then((response) => {
                     callback(response.data.options);
                 });
