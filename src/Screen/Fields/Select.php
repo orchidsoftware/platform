@@ -68,8 +68,8 @@ class Select extends Field implements ComplexFieldConcern
         'tags',
         'maximumSelectionLength',
         'ajaxOptionsUrl',
-		'ajaxValueField',
-		'ajaxLabelField',
+        'ajaxValueField',
+        'ajaxLabelField',
     ];
 
     public function __construct()
