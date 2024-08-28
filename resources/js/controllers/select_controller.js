@@ -48,8 +48,7 @@ export default class extends ApplicationController {
                 axios
                 .get(ajaxOptionsUrl, { query })
                 .then((response) => {
-                    console.log(1);
-                    callback(response.data.items);
+                    callback(response.data.options);
                 });
             };
         
