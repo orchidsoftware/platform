@@ -67,7 +67,7 @@ class Select extends Field implements ComplexFieldConcern
         'tabindex',
         'tags',
         'maximumSelectionLength',
-        'ajaxOptionsUrl',
+        'fromUrl',
         'ajaxValueField',
         'ajaxLabelField',
     ];
