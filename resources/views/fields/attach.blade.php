@@ -24,7 +24,7 @@
          "
     >
         <div data-target="attach.preview" class="row row-cols-4 row-cols-lg-6 gy-3 sortable-dropzone">
-            <div class="col order-last" data-attach-target="container">
+            <div class="col order-last attach-file-uploader" data-attach-target="container">
                 <label for="{{$id}}" class="border rounded bg-light attach-image-placeholder pointer-event h-100">
                     <input class="form-control d-none"
                            type="file"
@@ -50,7 +50,7 @@
         </div>
 
 
-        <template data-target="attach.template">
+        <template data-attach-target="template">
             <div class="pip col position-relative">
                 <input type="hidden" name="{name}" value="{id}">
 

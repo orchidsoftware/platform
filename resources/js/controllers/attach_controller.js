@@ -56,6 +56,9 @@ export default class extends ApplicationController {
         this.togglePlaceholderShow();
 
         new Sortable(this.element.querySelector('.sortable-dropzone'), {
+            disabled: this.filesTarget.disabled === true || this.filesTarget.readonly === true,
+            filter: ".attach-file-uploader",
+            draggable:'.pip',
             animation: 150,
             onEnd: () => {
                 this.reorderElements();
@@ -155,7 +158,7 @@ export default class extends ApplicationController {
      */
     togglePlaceholderShow() {
         this.containerTarget.classList.toggle('d-none', this.attachmentValue.length >= this.countValue);
-        this.filesTarget.disabled = this.attachmentValue.length > 0;
+        this.filesTarget.disabled = this.attachmentValue.length >= this.countValue;
 
 
         // Disable the nullable field if there is at least one valid value and the count equals 1.
