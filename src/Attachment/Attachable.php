@@ -14,6 +14,9 @@ use Orchid\Platform\Dashboard;
 trait Attachable
 {
     /**
+     * @deprecated Use the `attachment` method instead.
+     * This method will be removed in the next major release.
+     *
      * Get all the attachments associated with the given model.
      *
      * @param string|null $group
@@ -21,6 +24,18 @@ trait Attachable
      * @return MorphToMany
      */
     public function attachment(?string $group = null): MorphToMany
+    {
+        return $this->attachments($group);
+    }
+
+    /**
+     * Get all the attachments associated with the given model.
+     *
+     * @param string|null $group
+     *
+     * @return MorphToMany
+     */
+    public function attachments(?string $group = null): MorphToMany
     {
         return $this->morphToMany(
             Dashboard::model(Attachment::class),
