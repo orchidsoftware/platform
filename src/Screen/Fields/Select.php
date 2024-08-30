@@ -67,6 +67,7 @@ class Select extends Field implements ComplexFieldConcern
         'tabindex',
         'tags',
         'maximumSelectionLength',
+        'fromUrl',
     ];
 
     public function __construct()
@@ -150,6 +151,18 @@ class Select extends Field implements ComplexFieldConcern
         $key = $key ?? $builder->getModel()->getKeyName();
 
         return $this->setFromEloquent($builder->get(), $name, $key);
+    }
+
+    public function fromUrl(string $url, string $value, ?string $label = null): self
+    {
+        $key = $label ?? $value;
+
+        return $this->set('fromUrl', json_encode(
+			array(
+			'url'   => $url,
+			'value' => $value,
+			'label' => $key
+		)));
     }
 
     public function empty(string $name = '', string $key = ''): self
