@@ -51,7 +51,7 @@ export default class extends ApplicationController {
         });
 
         document.addEventListener("turbo:before-fetch-request", (event) => {
-            const url = new URL(config.url);
+            const url = new URL(event.detail.url);
 
             if (url.origin !== window.location.origin) {
                 event.detail.fetchOptions.headers["X-CSRF-TOKEN"] = token.content;
