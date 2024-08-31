@@ -41,8 +41,21 @@ export default class extends ApplicationController {
         window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
         window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+        axios.interceptors.request.use(function (config) {
+            const url = new URL(config.url);
+
+            if (url.origin !== window.location.origin) {
+                delete config.headers['X-CSRF-TOKEN'];
+            }
+            return config;
+        });
+
         document.addEventListener("turbo:before-fetch-request", (event) => {
-            event.detail.fetchOptions.headers["X-CSRF-TOKEN"] = token.content;
+            const url = new URL(config.url);
+
+            if (url.origin !== window.location.origin) {
+                event.detail.fetchOptions.headers["X-CSRF-TOKEN"] = token.content;
+            }
         });
 
     }
