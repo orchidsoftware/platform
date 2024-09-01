@@ -72,7 +72,12 @@ class RelationController extends Controller
         }
 
         if (is_a($model, BaseCollection::class)) {
-            return $model->take($chunk)->pluck($append ?? $name, $key);
+            return $model->take($chunk)->map(function ($item) use ($append, $key, $name) {
+                return [
+                    'value' => $item->$key,
+                    'label' => $item->$append ?? $item->$name,
+                ];
+            });
         }
 
         $model = $model->where(function ($query) use ($name, $search, $searchColumns) {
@@ -87,19 +92,22 @@ class RelationController extends Controller
         return $model
             ->limit($chunk)
             ->get()
-            ->mapWithKeys(function ($item) use ($append, $key, $name) {
+            ->map(function ($item) use ($append, $key, $name) {
                 $resultKey = $item->$key;
 
-                $value = $item->$append ?? $item->$name;
+                $resultLabel = $item->$append ?? $item->$name;
 
                 if ($resultKey instanceof \UnitEnum) {
                     $resultKey = $resultKey->value;
                 }
-                if ($value instanceof \UnitEnum) {
-                    $value = $value->value;
+                if ($resultLabel instanceof \UnitEnum) {
+                    $resultLabel = $resultLabel->value;
                 }
 
-                return [$resultKey => $value];
+                return [
+                    'value' => $resultKey,
+                    'label' => $resultLabel,
+                ];
             });
     }
 }

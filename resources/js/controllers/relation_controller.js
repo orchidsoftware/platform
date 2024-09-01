@@ -68,18 +68,10 @@ export default class extends ApplicationController {
             searchColumns,
             chunk,
         })
-            .then((response) => {
-                const options = [];
-
-                Object.entries(response.data).forEach((entry) => {
-                    const [value, label] = entry;
-
-                    options.push({ label, value });
-                });
-
-                this.choices.clearOptions();
-                callback(options);
-            });
+        .then((response) => {
+            this.choices.clearOptions();
+            callback(response.data);
+        });
     }
 
     /**
