@@ -62,11 +62,11 @@ class RelationsTest extends TestFeatureCase
     public function testAppendModel(array $scope): void
     {
         $response = $this->getScope($scope, 'full');
-        
+
         $json = $this->users->map(function ($user) {
             return [
                 'value' => $user->id,
-                'label' => $user->name . ' (' . $user->email . ')',
+                'label' => $user->name.' ('.$user->email.')',
             ];
         })->toArray();
 
@@ -129,7 +129,7 @@ class RelationsTest extends TestFeatureCase
             ->post(route('platform.systems.relation'), $params);
 
         $response->assertJson([
-            ['value' => $user->id, 'label' => $user->name . ' (' . $user->email . ')'],
+            ['value' => $user->id, 'label' => $user->name.' ('.$user->email.')'],
         ]);
     }
 
@@ -159,7 +159,7 @@ class RelationsTest extends TestFeatureCase
         $latest_query = array_pop($queryLog);
 
         $response->assertJson([
-            ['value' => $user->id, 'label' => $user->name . ' (' . $user->email . ')'],
+            ['value' => $user->id, 'label' => $user->name.' ('.$user->email.')'],
         ]);
 
         $this->assertContains('select * from "users" where "name" = ? and ("email" like ? or "id" like ?) limit 10', $latest_query);
