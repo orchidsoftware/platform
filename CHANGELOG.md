@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.32.0 - 2024-09-02
+
+### Added
+- New method `deferred` on `Modal` layout
+
+### Fixed
+- Preserve Relation field query order [#2668](https://github.com/orchidsoftware/platform/issues/2668)
+
+### Removed
+- Manual CSRF token handling on Turbo [#2889](https://github.com/orchidsoftware/platform/pull/2889)
+
 ## 14.31.2 - 2024-08-30
 
 ### Deprecated
