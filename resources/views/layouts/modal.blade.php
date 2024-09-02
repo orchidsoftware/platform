@@ -4,10 +4,9 @@
          role="dialog"
          aria-labelledby="screen-modal-{{$key}}"
          data-controller="modal"
-         data-modal-slug="{{$templateSlug}}"
-         data-modal-async-enable="{{$asyncEnable}}"
-         data-modal-async-route="{{$asyncRoute}}"
-         data-modal-open="{{$open}}"
+         data-modal-slug-value="{{$templateSlug}}"
+         data-modal-url-value="{{$deferredRoute}}"
+         data-modal-open-value="{{ var_export($open) }}"
         {{$staticBackdrop ? "data-bs-backdrop=static" : ''}}
     >
         <div class="modal-dialog modal-fullscreen-md-down {{$size}}"
@@ -63,7 +62,7 @@
                 <div class="modal-body layout-wrapper">
                     <x-orchid-stream target="{{$templateSlug}}">
                         <div id="{{ $templateSlug }}">
-                            @if($asyncEnable == \Orchid\Support\Facades\Dashboard::isPartialRequest())
+                            @if(!empty($deferredRoute) == \Orchid\Support\Facades\Dashboard::isPartialRequest())
                                 @foreach($manyForms as $formKey => $modal)
                                     @foreach($modal as $item)
                                         {!! $item ?? '' !!}

@@ -42,12 +42,12 @@ class Modal extends Layout
     protected $size;
 
     /**
-     * What screen method should be called
-     * as a source for an asynchronous request.
+     * The name of the method to be called
+     * for loading data when the modal is opened.
      *
      * @var string
      */
-    protected $method;
+    protected $dataLoadingMethod;
 
     /**
      * @var string
@@ -89,8 +89,7 @@ class Modal extends Layout
     public function build(Repository $repository)
     {
         $this->variables = array_merge($this->variables, [
-            'asyncEnable' => empty($this->method) ? 0 : 1,
-            'asyncRoute'  => $this->asyncRoute(),
+            'deferredRoute' => $this->getDataLoadingUrl(),
         ]);
 
         return $this->buildAsDeep($repository);
@@ -207,25 +206,43 @@ class Modal extends Layout
     }
 
     /**
-     * @param string $method
+     * This method is an alias for the `deferred` method with the `async` prefix.
      *
-     * @return $this
+     * If the provided method name does not start with the `async` prefix, it will be automatically added.
+     * Then the `deferred` method is called with the processed method name.
+     *
+     * @param string $method The name of the method to be called asynchronously.
+     *
+     * @return $this Returns the current instance of the object for method chaining.
      */
     public function async(string $method): self
     {
+        // If the method name does not start with 'async', prepend the 'async' prefix.
         if (! Str::startsWith($method, 'async')) {
             $method = Str::start(Str::ucfirst($method), 'async');
         }
 
-        $this->method = $method;
+        return $this->deferred($method);
+    }
+
+    /**
+     * This method sets the method to be called in a deferred manner.
+     *
+     * @param string $method The name of the method to be called later when needed.
+     *
+     * @return $this Returns the current instance of the object for method chaining.
+     */
+    public function deferred(string $method): self
+    {
+        $this->dataLoadingMethod = $method;
 
         return $this;
     }
 
     /**
-     * Return URL for screen template requests from the browser.
+     * Return the URL for loading data from the browser.
      */
-    protected function asyncRoute(): ?string
+    protected function getDataLoadingUrl(): ?string
     {
         $screen = Dashboard::getCurrentScreen();
 
@@ -233,9 +250,13 @@ class Modal extends Layout
             return null;
         }
 
+        if (empty($this->dataLoadingMethod)) {
+            return null;
+        }
+
         return route('platform.async', [
             'screen'   => Crypt::encryptString(get_class($screen)),
-            'method'   => $this->method,
+            'method'   => $this->dataLoadingMethod,
             'template' => $this->getSlug(),
         ]);
     }
