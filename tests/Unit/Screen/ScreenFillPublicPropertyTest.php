@@ -7,6 +7,7 @@ namespace Orchid\Tests\Unit\Screen;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Screen;
 use Orchid\Tests\TestUnitCase;
+use Orchid\Tests\Unit\Screen\Screens\ScreenWithInheritedProperties;
 
 class ScreenFillPublicPropertyTest extends TestUnitCase
 {
@@ -72,5 +73,30 @@ class ScreenFillPublicPropertyTest extends TestUnitCase
         foreach ($data as $property => $expectedValue) {
             $this->assertEquals($expectedValue, $this->screen->{$property}, "Failed asserting that property '$property' is set correctly.");
         }
+    }
+
+    /**
+     * Tests that the `getPublicPropertyNames` method correctly returns all public properties,
+     * including those defined in the parent class, ensuring they are accessible for filling.
+     */
+    public function testGetPublicPropertyNamesIncludesInheritedProperties(): void
+    {
+        $screen = new ScreenWithInheritedProperties();
+
+        // Use reflection to access the protected method getPublicPropertyNames
+        $reflection = new \ReflectionClass($screen);
+        $method = $reflection->getMethod('getPublicPropertyNames');
+        $method->setAccessible(true);
+
+        // Invoke the protected method and get the result
+        $result = $method->invoke($screen);
+
+        // Assert that the result contains all public properties, including those from the parent class
+        $this->assertEquals($result->all(), [
+            'childProperty1',
+            'childProperty2',
+            'parentProperty1',
+            'parentProperty2',
+        ]);
     }
 }
