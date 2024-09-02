@@ -8,10 +8,6 @@ export default class extends ApplicationController {
     initialize() {
         this.axios();
         this.csrf();
-
-        document.addEventListener('turbo:load', () => {
-            this.csrf();
-        });
     }
 
     /**
@@ -40,11 +36,6 @@ export default class extends ApplicationController {
          */
         window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
         window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-        document.addEventListener("turbo:before-fetch-request", (event) => {
-            event.detail.fetchOptions.headers["X-CSRF-TOKEN"] = token.content;
-        });
-
     }
 
     /**
