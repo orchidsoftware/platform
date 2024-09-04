@@ -41,8 +41,10 @@ export default class extends ApplicationController {
      * @returns {boolean}
      */
     submit(event) {
-        // disable
+        // When Turbo disable
         if (this.getActiveElementAttr('data-turbo') === 'false') {
+            this.addReserveState(event.target);
+
             return true;
         }
 
@@ -214,5 +216,41 @@ export default class extends ApplicationController {
                 event.detail.resume()
             }
         }
+    }
+
+    /**
+     * Adds or updates a hidden input field with name="_state" and id="reserve_state" in the form.
+     * Used in case Turbo is disabled.
+     * @param {HTMLFormElement} form - The form to which the field is added
+     */
+    addReserveState(form) {
+        // Get the state value
+        const stateValue = this.getState();
+
+        // Find the input element with id 'reserve_state'
+        const existingInput = form.querySelector('#reserve_state');
+
+        // If the element already exists, update its value
+        if (existingInput) {
+            existingInput.value = stateValue;
+            return;
+        }
+
+        // If the element does not exist, create a new one
+        const newInput = document.createElement('input');
+
+        // Set its attributes
+        newInput.type = 'hidden';
+        newInput.id = 'reserve_state';
+        newInput.name = '_state';
+        newInput.value = stateValue;
+
+        // Add the new element to the form
+        form.appendChild(newInput);
+    }
+
+    // Implement this method to return the state value
+    getState() {
+        return document.getElementById('screen-state')?.value || '';
     }
 }

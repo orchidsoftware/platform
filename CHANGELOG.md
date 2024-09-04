@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.34.0 - 2024-09-04
+
+### Changed
+- Adding state to the form when Turbo is disabled
+
 ## 14.33.1 - 2024-09-04
 
 ### Fixed
