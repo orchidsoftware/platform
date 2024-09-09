@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Group;
 
 abstract class Filter
 {
@@ -64,7 +65,7 @@ abstract class Filter
     /**
      * Get the display fields.
      *
-     * @return Field[]
+     * @return Field[]|Group[]
      */
     public function display(): iterable
     {
@@ -81,7 +82,7 @@ abstract class Filter
 
     public function render(): string
     {
-        return collect($this->display())->reduce(static fn ($html, Field $field) => $html.$field->form('filters')->render());
+        return collect($this->display())->reduce(static fn ($html, Field|Group $field) => $html.$field->form('filters')->render());
     }
 
     /**
