@@ -10,13 +10,13 @@ use Orchid\Screen\Fields\Input;
 
 class AutofillFilter extends Filter
 {
-	use Autofill;
-	
+    use Autofill;
+
     /**
      * @var array
      */
     public $parameters = [
-        'value', 'inner.value'
+        'value', 'inner.value',
     ];
 
     public function name(): string
@@ -36,7 +36,7 @@ class AutofillFilter extends Filter
     {
         return [
             Input::make('value'),
-            Input::make('inner.value')
+            Input::make('inner.value'),
         ];
     }
 }

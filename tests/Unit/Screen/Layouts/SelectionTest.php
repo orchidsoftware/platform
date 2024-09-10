@@ -50,17 +50,17 @@ class SelectionTest extends TestUnitCase
             ->map(fn (string $filter) => resolve($filter))->each(function (Filter $filter) use ($html) {
                 $this->assertStringContainsString($filter->render(), (string) $html);
             });
-        
+
         // Test with parameterized request
         request()->merge([
             'value' => 'test value',
             'inner' => [
                 'value' => 'test inner value',
-            ]
+            ],
         ]);
-        
+
         $htmlParameterized = (string) $layout->build(new Repository);
-        
+
         collect($layout->filters())
             ->map(fn (string $filter) => resolve($filter))->each(function (Filter $filter) use ($html, $htmlParameterized) {
                 $render = $filter->render();
