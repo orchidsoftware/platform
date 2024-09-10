@@ -7,6 +7,6 @@
             <x-orchid-icon :path="$icon" class="overflow-visible"/>
         @endisset
 
-        <span>{{ $name ?? '' }}</span>
+        {{ $name ?? '' }}
     </a>
 @endcomponent
