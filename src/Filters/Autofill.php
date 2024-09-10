@@ -16,7 +16,7 @@ trait Autofill
 	 */
 	public function render(): string
 	{
-		$fields     = array_map(fn($field) => $field->form('filters'), $this->display());
+		$fields     = collect($this->display())->map(fn($field) => $field->form('filters'));
 		$params     = $this->request->only($this->parameters(), []);
 		$repository = new Repository($params);
 		
