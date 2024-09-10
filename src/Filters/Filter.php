@@ -42,7 +42,7 @@ abstract class Filter
     {
         $this->request = request();
     }
-    
+
     public function query(): iterable
     {
         return [];
@@ -91,9 +91,9 @@ abstract class Filter
     {
         $fields = collect($this->display())->map(fn (Fieldable $field) => $field->form('filters'));
         $params = $this->query();
-        
+
         $builder = new \Orchid\Screen\Builder($fields, new Repository($params));
-        
+
         return $builder->generateForm();
     }
 
