@@ -1,0 +1,67 @@
+name: Quality Assurance
+
+on:
+  push: # (or pull requests)
+    paths:
+      - '.github/workflows/**'
+      - '**.php'
+      - 'psalm.xml.dist'
+      - 'composer.json'
+
+jobs:
+  composer-validate:
+    name: composer-validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP 🔧
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
+          coverage: none
+          tools: composer:v2
+
+      - name: Validate composer.json and composer.lock 👀
+        run: composer validate
+
+  psalm:
+    name: psalm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP 🔧
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
+          coverage: none
+          tools: composer:v2
+
+      - name: Install Dependencies 🔧
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Run psalm
+        run: vendor/bin/psalm --output-format=github
+
+  phploc:
+    name: phploc
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP 🔧
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
+          coverage: none
+          tools: composer:v2
+
+      - name: Install Dependencies 🔧
+        run: composer require --dev phploc/phploc
+
+      - name: Run phploc
+        run: vendor/bin/phploc src/

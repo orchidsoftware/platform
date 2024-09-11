@@ -1,4 +1,4 @@
-name: Check & fix styling
+name: Coding Guidelines
 
 on:
   push: # (or pull requests)
