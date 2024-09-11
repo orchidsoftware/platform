@@ -124,7 +124,7 @@ class Button extends Action
     }
 
     /**
-     * Method download serves as an alias for the rawClick method.
+     * Method download serves as an alias for the `rawClick` method.
      */
     public function download(bool $status = false): self
     {

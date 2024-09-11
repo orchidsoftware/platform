@@ -13,7 +13,7 @@ class SortableController extends Controller
      *
      * @return void
      */
-    public function saveSortOrder(Request $request)
+    public function saveSortOrder(Request $request): void
     {
         $classModel = $request->input('model');
 

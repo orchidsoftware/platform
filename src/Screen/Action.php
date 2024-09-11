@@ -38,12 +38,24 @@ class Action extends Field implements Actionable
         'name',
     ];
 
+    /**
+     * @param string|null $name
+     *
+     * @return self
+     */
     public function name(?string $name = null): self
     {
         return $this->set('name', $name ?? '');
     }
 
     /**
+     * Set the button's visual style based on the given `Color` enum.
+     *
+     * This method applies a CSS class to the action element that corresponds to
+     * the desired button color, ensuring consistency with the platform's color palette.
+     *
+     * @param Color $visual The color style to apply to the button.
+     *
      * @return static
      */
     public function type(Color $visual): self
@@ -68,6 +80,13 @@ class Action extends Field implements Actionable
     }
 
     /**
+     * Enable or disable Hotwire Turbo for this action's click event.
+     *
+     * By setting the `turbo` attribute, this method controls whether
+     * Hotwire Turbo should be applied when the action is clicked.
+     *
+     * @param bool $status Set to `true` to disable Turbo, or `false` to enable it (default).
+     *
      * @return static
      */
     public function rawClick(bool $status = false): self
@@ -78,7 +97,11 @@ class Action extends Field implements Actionable
     }
 
     /**
-     * @return string
+     * Retrieve the unique ID assigned to this action element.
+     *
+     * If the ID is not explicitly set, this method returns `null`.
+     *
+     * @return string|null The ID of the action element, or null if not set.
      */
     protected function getId(): ?string
     {
