@@ -60,8 +60,8 @@ jobs:
           coverage: none
           tools: composer:v2
 
-      - name: Install Dependencies 🔧
-        run: composer require --dev phploc/phploc
+      - name: Download phploc 🔧
+        run: wget https://phar.phpunit.de/phploc.phar
 
       - name: Run phploc
-        run: vendor/bin/phploc src/
+        run: php phploc.phar src/
