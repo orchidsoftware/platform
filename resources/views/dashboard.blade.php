@@ -40,15 +40,6 @@
                 <div class="bg-dark position-relative overflow-hidden" style="padding-bottom: 10px;">
                     @includeWhen(Auth::check(), 'platform::partials.profile')
                 </div>
-
-
-                {{--
-                <div class="mt-3">
-                    @includeFirst([config('platform.template.footer'), 'platform::footer'])
-                </div>
-
-                --}}
-
             </footer>
         </nav>
     </div>
