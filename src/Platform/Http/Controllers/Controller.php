@@ -24,6 +24,7 @@ class Controller extends BaseController
      * The check is done for each request to this controller or its routes.
      *
      * @param string $permission
+     *
      * @return void
      */
     protected function checkPermission(string $permission): void
