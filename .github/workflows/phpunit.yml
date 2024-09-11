@@ -27,7 +27,7 @@ jobs:
 
     steps:
       - name: Checkout code 🛎️
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Cache dependencies 🔧
         uses: actions/cache@v3.3.1
@@ -54,7 +54,7 @@ jobs:
   dusk:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
@@ -66,7 +66,7 @@ jobs:
           coverage: none
           tools: composer:v2
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
