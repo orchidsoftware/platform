@@ -361,6 +361,8 @@ class TD extends Cell
     }
 
     /**
+     * @deprecated is not usage
+     *
      * Decides whether a filter can be provided with a complex (array-like) value, or it needs a scalar one.
      *
      * @param \Orchid\Screen\Field $field
