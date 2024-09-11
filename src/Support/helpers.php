@@ -25,18 +25,14 @@ if (! function_exists('alert')) {
 if (! function_exists('is_sort')) {
     function is_sort(string $property): bool
     {
-        $filter = new HttpFilter;
-
-        return $filter->isSort($property);
+        return (new HttpFilter)->isSort($property);
     }
 }
 
 if (! function_exists('get_sort')) {
     function get_sort(?string $property): string
     {
-        $filter = new HttpFilter;
-
-        return $filter->getSort($property);
+        return (new HttpFilter)->getSort($property);
     }
 }
 
@@ -46,9 +42,7 @@ if (! function_exists('get_filter')) {
      */
     function get_filter(string $property)
     {
-        $filter = new HttpFilter;
-
-        return $filter->getFilter($property);
+        return (new HttpFilter)->getFilter($property);
     }
 }
 
@@ -61,11 +55,15 @@ if (! function_exists('get_filter_string')) {
         $filter = get_filter($property);
 
         if (is_array($filter) && (isset($filter['min']) || isset($filter['max']))) {
-            $filter = ($filter['min'] ?? '').' - '.($filter['max'] ?? '');
-        } elseif (is_array($filter) && (isset($filter['start']) || isset($filter['end']))) {
-            $filter = ($filter['start'] ?? '').' - '.($filter['end'] ?? '');
-        } elseif (is_array($filter)) {
-            $filter = implode(', ', $filter);
+            return sprintf('%s - %s', $filter['min'] ?? '', $filter['max'] ?? '');
+        }
+
+        if (is_array($filter) && (isset($filter['start']) || isset($filter['end']))) {
+            return sprintf('%s - %s', $filter['start'] ?? '', $filter['end'] ?? '');
+        }
+
+        if (is_array($filter)) {
+            return implode(', ', $filter);
         }
 
         return $filter;
@@ -75,8 +73,6 @@ if (! function_exists('get_filter_string')) {
 if (! function_exists('revert_sort')) {
     function revert_sort(string $property): string
     {
-        $filter = new HttpFilter;
-
-        return $filter->revertSort($property);
+        return (new HttpFilter)->revertSort($property);
     }
 }
