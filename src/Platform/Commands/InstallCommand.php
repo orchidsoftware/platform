@@ -10,6 +10,7 @@ use Illuminate\Support\Traits\Conditionable;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Events\InstallEvent;
 use Orchid\Platform\Providers\ConsoleServiceProvider;
+use Symfony\Component\Console\Attribute\AsCommand;
 
 #[AsCommand(name: 'orchid:install')]
 class InstallCommand extends Command
