@@ -9,7 +9,9 @@ use Illuminate\Console\Command;
 use Illuminate\Database\QueryException;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Dashboard;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'orchid:admin')]
 class AdminCommand extends Command
 {
     /**
