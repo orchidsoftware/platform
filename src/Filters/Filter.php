@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Orchid\Screen\Contracts\Fieldable;
-use Orchid\Screen\Field;
-use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Repository;
 
 abstract class Filter
@@ -45,7 +43,7 @@ abstract class Filter
 
     public function query(): iterable
     {
-        return [];
+        return $this->request->only($this->parameters(), []);
     }
 
     /**
@@ -72,7 +70,7 @@ abstract class Filter
     /**
      * Get the display fields.
      *
-     * @return Field[]|Group[]
+     * @return Fieldable[]
      */
     public function display(): iterable
     {
