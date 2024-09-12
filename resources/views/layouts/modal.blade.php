@@ -53,8 +53,8 @@
                         <span class="placeholder col-4 rounded-1"></span>
                     </p>
                 </div>
-                <div class="modal-header">
-                    <h4 class="modal-title text-black fw-light" data-modal-target="title">{{$title}}</h4>
+                <div class="modal-header align-items-baseline gap-3">
+                    <h4 class="modal-title text-black fw-light text-balance text-break" data-modal-target="title">{{$title}}</h4>
                     <button type="button" class="btn-close" title="Close" data-bs-dismiss="modal"
                             aria-label="Close">
                     </button>

@@ -35,9 +35,9 @@
                     >
 
                     <span class="d-block text-center fw-normal small text-muted p-3 mx-auto">
-                    <span class="choose d-flex align-items-center">
+                    <span class="choose d-flex flex-column gap-2 align-items-center text-balance text-wrap">
                             <x-orchid-icon path="bs.cloud-arrow-up" class="h3"/>
-                            <small class="text-muted d-block ms-2">{{ __($placeholder) }}</small>
+                            <small class="text-muted d-block">{{ __($placeholder) }}</small>
                     </span>
 
                     <span class="spinner-border" role="status">
