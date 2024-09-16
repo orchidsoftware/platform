@@ -37,7 +37,8 @@ abstract class OrchidServiceProvider extends ServiceProvider
             ->defineRoutes()
             ->defineSearch()
             ->defineIcons()
-            ->defineMenu();
+            ->defineMenu()
+            ->defineResources();
     }
 
     /**
@@ -237,5 +238,41 @@ abstract class OrchidServiceProvider extends ServiceProvider
     public function routes(Router $router): void
     {
         // Define routes.
+    }
+
+    /**
+     * Define the stylesheets to be registered.
+     *
+     * @return string[]
+     */
+    public function stylesheets(): array
+    {
+        return [];
+    }
+
+    /**
+     * Define the scripts to be registered.
+     *
+     * @return string[]
+     */
+    public function scripts(): array
+    {
+        return [];
+    }
+
+    /**
+     * Define the resources to be registered.
+     *
+     * @return void
+     */
+    protected function defineResources(): void
+    {
+        foreach ($this->stylesheets() as $stylesheet) {
+            $this->orchid->registerResource('stylesheets', $stylesheet);
+        }
+
+        foreach ($this->scripts() as $script) {
+            $this->orchid->registerResource('scripts', $script);
+        }
     }
 }
