@@ -156,7 +156,6 @@ class InstallCommand extends Command
         return $this;
     }
 
-
     /**
      * @param string $directory
      * @param string $search
@@ -166,7 +165,7 @@ class InstallCommand extends Command
      */
     private function replaceInFiles(string $directory, string $search, string $replace): self
     {
-        if (!is_dir($directory)) {
+        if (! is_dir($directory)) {
             return $this;
         }
 

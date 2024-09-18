@@ -7,7 +7,7 @@ trait ScreenTesting
     /**
      * Get a DynamicTestScreen object.
      *
-     * @param string|null $name Name of the screen
+     * @param string|null $name       Name of the screen
      * @param array       $parameters
      *
      * @return \Orchid\Support\Testing\DynamicTestScreen
