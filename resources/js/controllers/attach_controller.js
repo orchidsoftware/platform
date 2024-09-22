@@ -13,6 +13,7 @@ export default class extends ApplicationController {
         },
         group: {
             type: String,
+            default: '',
         },
         storage: {
             type: String,
@@ -20,6 +21,7 @@ export default class extends ApplicationController {
         },
         path: {
             type: String,
+            default: '',
         },
         count: {
             type: Number,

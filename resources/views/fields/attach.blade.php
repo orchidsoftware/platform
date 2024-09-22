@@ -9,6 +9,7 @@
 
          data-attach-storage-value="{{ $storage ?? 'public' }}"
          data-attach-path-value="{{ $path }}"
+         data-attach-group-value="{{ $group }}"
 
          data-attach-upload-url-value="{{ $uploadUrl ?? route('platform.systems.files.upload') }}"
          data-attach-sort-url-value="{{ $sortUrl ?? route('platform.systems.files.sort') }}"
