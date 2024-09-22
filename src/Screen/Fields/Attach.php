@@ -79,17 +79,17 @@ class Attach extends Field
     public function __construct()
     {
         // Ensure file size does not exceed server limits
-        $this->addBeforeRender(fn() => $this->ensureMaxSizeWithinServerLimits());
+        $this->addBeforeRender(fn () => $this->ensureMaxSizeWithinServerLimits());
 
         // Load attachment relations if applicable
-        $this->addBeforeRender(fn() => $this->loadRelatedAttachments());
+        $this->addBeforeRender(fn () => $this->loadRelatedAttachments());
 
         // Filter attachments by the specified group
-        $this->addBeforeRender(fn() => $this->filterAttachmentsByGroup());
+        $this->addBeforeRender(fn () => $this->filterAttachmentsByGroup());
 
         // Set the max count to 1 if multiple file uploads are not enabled
         $this->addBeforeRender(function () {
-            if (!$this->get('multiple')) {
+            if (! $this->get('multiple')) {
                 $this->set('maxCount', 1);
             }
         });
@@ -99,12 +99,14 @@ class Attach extends Field
      * Set the storage disk and visibility for attachments.
      *
      * @param string $storage
-     * @return $this
+     *
      * @throws \Throwable if the specified storage disk is not found in configuration.
+     *
+     * @return $this
      */
     public function storage(string $storage): self
     {
-        $disk = config('filesystems.disks.' . $storage);
+        $disk = config('filesystems.disks.'.$storage);
 
         throw_if($disk === null, 'The selected storage was not found');
 
@@ -120,8 +122,9 @@ class Attach extends Field
      * size configured in the server's `php.ini`. If no size is specified, it sets the size to
      * the server's maximum.
      *
-     * @return $this
      * @throws \Throwable if the desired maximum file size exceeds server settings.
+     *
+     * @return $this
      */
     protected function ensureMaxSizeWithinServerLimits(): self
     {
@@ -178,7 +181,7 @@ class Attach extends Field
     {
         $value = Arr::wrap($this->get('value'));
 
-        if (!Assert::isIntArray($value)) {
+        if (! Assert::isIntArray($value)) {
             return $this;
         }
 
