@@ -11,12 +11,12 @@ return [
      | can be utilized to prevent dashboard internal routes from being registered
      | on subdomains that do not require access to your admin application.
      |
-     | For instance, you can use the admin dashboard on a separate subdomain like
+     | For instance, you can use the 'admin' on a separate subdomain like
      | 'admin.example.com'.
      |
      */
 
-    'domain' => env('DASHBOARD_DOMAIN', null),
+    'domain' => env('PLATFORM_DOMAIN'),
 
     /*
      |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return [
      |
      */
 
-    'prefix' => env('DASHBOARD_PREFIX', '/admin'),
+    'prefix' => env('PLATFORM_PREFIX', '/admin'),
 
     /*
      |--------------------------------------------------------------------------
@@ -185,7 +185,7 @@ return [
      */
 
     'attachment' => [
-        'disk'      => env('DASHBOARD_FILESYSTEM_DISK', 'public'),
+        'disk'      => env('PLATFORM_FILESYSTEM_DISK', 'public'),
         'generator' => \Orchid\Attachment\Engines\Generator::class,
     ],
 
