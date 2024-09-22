@@ -7,10 +7,11 @@
                             data-bs-toggle="dropdown"
                             aria-haspopup="true"
                             data-bs-boundary="viewport"
+                            data-bs-popper-config='{"strategy": "fixed"}'
                             aria-expanded="false">
                         {{ __('Configure columns') }}
                     </button>
-                    <div class="dropdown-menu dropdown-column-menu dropdown-scrollable">
+                    <div class="dropdown-menu">
                         @foreach($columns as $column)
                             {!! $column->buildItemMenu() !!}
                         @endforeach
