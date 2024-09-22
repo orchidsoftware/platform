@@ -19,7 +19,7 @@ use Orchid\Screen\Fields\Range;
 use Orchid\Screen\Fields\Relation;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\Switcher;
-use Orchid\Screen\Fields\Upload;
+use Orchid\Screen\Fields\Attach;
 use Orchid\Screen\Fields\UTM;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
@@ -282,14 +282,15 @@ class ExampleFieldsAdvancedScreen extends Screen
                     ->height(300)
                     ->horizontal(),
 
-                Upload::make('files')
-                    ->title('Upload files')
+                Attach::make('image')
+                    ->title('Upload Image')
+                    ->accept('image/*')
+                    ->help('Select an image file. You can upload files in any image format, such as JPG, PNG, or GIF.')
                     ->horizontal(),
 
-                Upload::make('files_with_catalog')
-                    ->title('Upload with catalog')
-                    ->media()
-                    ->closeOnAdd()
+                Attach::make('files')
+                    ->multiple()
+                    ->title('Upload files')
                     ->horizontal(),
 
             ])->title('File upload'),
