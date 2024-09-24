@@ -31,7 +31,7 @@ class RowTest extends TestUnitCase
     {
         $layout = LayoutFactory::rows([])->title('Profile');
 
-        $html = $layout->build(new Repository())
+        $html = $layout->build(new Repository)
             ->withErrors([])
             ->render();
 
@@ -50,7 +50,7 @@ class RowTest extends TestUnitCase
             }
         };
 
-        $html = $rows->build(new Repository())
+        $html = $rows->build(new Repository)
             ->withErrors([])
             ->render();
 

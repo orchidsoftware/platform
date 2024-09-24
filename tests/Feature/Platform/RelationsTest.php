@@ -43,7 +43,13 @@ class RelationsTest extends TestFeatureCase
     public function testScopeModel(array $scope): void
     {
         $response = $this->getScope($scope);
-        $json = $this->users->pluck('email', 'id')->toArray();
+
+        $json = $this->users->map(function ($user) {
+            return [
+                'value' => $user->id,
+                'label' => $user->email,
+            ];
+        })->toArray();
 
         $response->assertJson($json);
     }
@@ -57,13 +63,12 @@ class RelationsTest extends TestFeatureCase
     {
         $response = $this->getScope($scope, 'full');
 
-        $users = collect();
-
-        $this->users->each(function (User $user) use ($users) {
-            $users->put($user->id, $user->name.' ('.$user->email.')');
-        });
-
-        $json = $users->toArray();
+        $json = $this->users->map(function ($user) {
+            return [
+                'value' => $user->id,
+                'label' => $user->name.' ('.$user->email.')',
+            ];
+        })->toArray();
 
         $response->assertJson($json);
     }
@@ -81,7 +86,7 @@ class RelationsTest extends TestFeatureCase
         ]);
 
         $response->assertJson([
-            $user->id => $user->email,
+            ['value' => $user->id, 'label' => $user->email],
         ]);
     }
 
@@ -124,7 +129,7 @@ class RelationsTest extends TestFeatureCase
             ->post(route('platform.systems.relation'), $params);
 
         $response->assertJson([
-            $user->id => $user->name.' ('.$user->email.')',
+            ['value' => $user->id, 'label' => $user->name.' ('.$user->email.')'],
         ]);
     }
 
@@ -154,7 +159,7 @@ class RelationsTest extends TestFeatureCase
         $latest_query = array_pop($queryLog);
 
         $response->assertJson([
-            $user->id => $user->name.' ('.$user->email.')',
+            ['value' => $user->id, 'label' => $user->name.' ('.$user->email.')'],
         ]);
 
         $this->assertContains('select * from "users" where "name" = ? and ("email" like ? or "id" like ?) limit 10', $latest_query);

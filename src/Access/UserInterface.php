@@ -6,6 +6,9 @@ namespace Orchid\Access;
 
 use IteratorAggregate;
 
+/**
+ * @deprecated This interface is deprecated and should not be used anymore.
+ */
 interface UserInterface
 {
     /**

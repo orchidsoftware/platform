@@ -80,15 +80,17 @@ class UserListScreen extends Screen
             UserFiltersLayout::class,
             UserListLayout::class,
 
-            Layout::modal('asyncEditUserModal', UserEditLayout::class)
-                ->async('asyncGetUser'),
+            Layout::modal('editUserModal', UserEditLayout::class)
+                ->deferred('loadUserOnOpenModal'),
         ];
     }
 
     /**
+     * Loads user data when opening the modal window.
+     *
      * @return array
      */
-    public function asyncGetUser(User $user): iterable
+    public function loadUserOnOpenModal(User $user): iterable
     {
         return [
             'user' => $user,

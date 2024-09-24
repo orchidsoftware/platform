@@ -1,19 +1,19 @@
 .form-control {
-  background: $white none;
-  border: 1px solid $form-control-border-color;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  color: $black;
-  outline: 0;
-  line-height: normal;
-  font-weight: normal;
-  vertical-align: middle;
-  min-height: $input-height;
-  @include transition(all 0.12s ease);
-  @include box-shadow(none);
-  border-radius: 0.125rem;
-  @include placeholder($text-muted);
-  @include transition(background 0.2s linear 0s);
+    background: $white none;
+    border: 1px solid $form-control-border-color;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    color: $black;
+    outline: 0;
+    line-height: normal;
+    font-weight: normal;
+    vertical-align: middle;
+    min-height: $input-height;
+    @include transition(all 0.12s ease);
+    @include box-shadow(none);
+    border-radius: 0.125rem;
+    @include placeholder($text-muted);
+    @include transition(background 0.2s linear 0s);
 
     &:focus {
         border-color: fade-out($black, 0.9);
@@ -25,16 +25,21 @@
     }
 
     &[disabled],
-  &[readonly],
-  fieldset[disabled] & {
-    background: mix($grey-light, #fff, 50%);
-    color: fade-out($grey, .77);
-  }
-  select {
-    -moz-appearance : none;
-    text-indent     : 0.01px;
-    text-overflow   : '';
-  }
+    &[readonly],
+    fieldset[disabled] & {
+        background: mix($grey-light, #fff, 50%);
+        color: fade-out($grey, .77);
+    }
+
+    select {
+        -moz-appearance: none;
+        text-indent: 0.01px;
+        text-overflow: '';
+    }
+
+    &::file-selector-button {
+        min-height: $input-height;
+    }
 }
 
 .input-group {

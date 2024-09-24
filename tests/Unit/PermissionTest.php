@@ -114,7 +114,7 @@ class PermissionTest extends TestUnitCase
      */
     public function testIsRegisteredPermission(): void
     {
-        $dashboard = new Dashboard();
+        $dashboard = new Dashboard;
 
         $permission = ItemPermission::group('Test')
             ->addPermission('test', 'Test Description');
@@ -129,7 +129,7 @@ class PermissionTest extends TestUnitCase
      */
     public function testGetPermissionsByGroup(): void
     {
-        $dashboard = new Dashboard();
+        $dashboard = new Dashboard;
 
         $permissionA = ItemPermission::group('Test-A')
             ->addPermission('test_a', 'Test Description A');
@@ -149,7 +149,7 @@ class PermissionTest extends TestUnitCase
      */
     public function testIsWasRemovedPermission(): void
     {
-        $dashboard = new Dashboard();
+        $dashboard = new Dashboard;
         $permission = ItemPermission::group('Test')
             ->addPermission('test', 'Test Description');
         $dashboard->registerPermissions($permission);

@@ -1,6 +1,5 @@
 .table {
     @extend .rounded;
-    overflow: hidden;
   thead {
     tr {
       th {
@@ -28,7 +27,7 @@
                 text-decoration: initial !important;
             }
         }
-        .dropdown{
+        .dropdown {
           position: inherit;
         }
       }

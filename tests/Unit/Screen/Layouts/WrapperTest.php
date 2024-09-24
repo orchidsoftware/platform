@@ -31,7 +31,7 @@ class WrapperTest extends TestUnitCase
 
     public function testDataVariables(): void
     {
-        $repository = new Repository();
+        $repository = new Repository;
 
         $layout = LayoutFactory::wrapper('exemplar::layouts.wrapper', [
             'variable1' => [

@@ -11,7 +11,7 @@ trait Commander
     /**
      * @return Action[]
      */
-    protected function commandBar(): array
+    protected function commandBar(): iterable
     {
         return [];
     }

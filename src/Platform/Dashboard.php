@@ -19,11 +19,11 @@ class Dashboard
     use Macroable;
 
     /**
-     * ORCHID Version.
+     * The current Orchid version.
      *
      * @deprecated Use `Dashboard::version()` instead.
      */
-    public const VERSION = '14.25.1';
+    public const VERSION = '14.35.1';
 
     /**
      * @deprecated
@@ -43,25 +43,29 @@ class Dashboard
     ];
 
     /**
-     * @var Collection
+     * The collection of menu items.
+     *
+     * @var Collection<Menu>
      */
     public $menu;
 
     /**
-     * JS and CSS resources for implementation in the panel.
+     * Collection of JS and CSS resources for the panel.
      *
      * @var Collection
      */
     public $resources;
 
     /**
-     * Permission for applications.
+     * Collection of permissions for the application.
      *
      * @var Collection
      */
     private $permission;
 
     /**
+     * The current screen instance.
+     *
      * @var Screen|null
      */
     private $currentScreen;
@@ -105,7 +109,7 @@ class Dashboard
      *
      * @return bool
      */
-    public static function assetsAreCurrent()
+    public static function assetsAreCurrent(): bool
     {
         $publishedPath = public_path('vendor/orchid/mix-manifest.json');
 
@@ -145,13 +149,15 @@ class Dashboard
     }
 
     /**
+     * Get the model instance for a given key or class name.
+     *
      * @return mixed
      */
     public static function modelClass(string $key, ?string $default = null)
     {
         $model = static::model($key, $default);
 
-        return class_exists($model) ? new $model() : $model;
+        return class_exists($model) ? new $model : $model;
     }
 
     /**
@@ -183,7 +189,6 @@ class Dashboard
     /**
      * Registers a ItemPermission that defines authentication permissions.
      *
-     *
      * @return $this
      */
     public function registerPermissions(ItemPermission $permission): self
@@ -214,6 +219,8 @@ class Dashboard
     }
 
     /**
+     * Register a resource with the given key.
+     *
      * @param string|array $value
      */
     public function registerResource(string $key, $value): self
@@ -241,6 +248,11 @@ class Dashboard
         return $this->resources->get($key);
     }
 
+    /**
+     * Get the list of searchable models, ensuring uniqueness and resolving model instances.
+     *
+     * @return Collection The collection of searchable models.
+     */
     public function getSearch(): Collection
     {
         return collect(static::$options['search'])
@@ -249,6 +261,8 @@ class Dashboard
     }
 
     /**
+     * Retrieve permissions based on specified groups.
+     *
      * @param array|string $groups
      */
     public function getPermission($groups = []): Collection
@@ -286,6 +300,8 @@ class Dashboard
     }
 
     /**
+     * Remove a specific permission by key.
+     *
      * @return $this
      */
     public function removePermission(string $key): self
@@ -296,6 +312,8 @@ class Dashboard
     }
 
     /**
+     * Get the current screen instance.
+     *
      * @return $this
      */
     public function setCurrentScreen(Screen $screen, bool $partialRequest = false): self
@@ -309,6 +327,11 @@ class Dashboard
         return $this;
     }
 
+    /**
+     * Get the current screen instance.
+     *
+     * @return Screen|null The current screen instance or null if not set.
+     */
     public function getCurrentScreen(): ?Screen
     {
         return $this->currentScreen;
@@ -329,64 +352,77 @@ class Dashboard
     }
 
     /**
-     * Adding a new element to the menu.
+     * Register a menu element with the Dashboard.
      *
+     * @param Menu $menu The menu element to add.
      *
      * @return $this
      */
     public function registerMenuElement(Menu $menu): Dashboard
     {
         if ($menu->get('sort', 0) === 0) {
-            $menu->sort($this->menu->get(self::MENU_MAIN)->count() + 1);
+            $menu->sort($this->menu->count() + 1);
         }
 
-        $this->menu->get(self::MENU_MAIN)->add($menu);
+        $this->menu->add($menu);
 
         return $this;
     }
 
     /**
-     * Generate on the menu display.
+     * Render the menu as a string for display.
      *
+     * @throws \Throwable If rendering fails.
      *
-     * @throws \Throwable
+     * @return string The rendered menu HTML.
      */
     public function renderMenu(): string
     {
-        return $this->menu->get(self::MENU_MAIN)
+        return $this->menu
             ->sort(fn (Menu $current, Menu $next) => $current->get('sort', 0) <=> $next->get('sort', 0))
             ->map(fn (Menu $menu) => (string) $menu->render())
             ->implode('');
     }
 
+    /**
+     * Check if the menu is empty.
+     *
+     * @return bool True if the menu is empty, otherwise false.
+     */
     public function isEmptyMenu(): bool
     {
-        return $this->menu->get(self::MENU_MAIN)->isEmpty();
+        return $this->menu->isEmpty();
     }
 
     /**
-     * @param Menu[] $list
+     * Add submenu items to a menu element identified by its slug.
+     *
+     * @param string $slug The slug of the menu element to update.
+     * @param Menu[] $list Array of submenu items to add.
+     *
+     * @return $this
      */
     public function addMenuSubElements(string $slug, array $list): Dashboard
     {
-        $menu = $this->menu->get(self::MENU_MAIN)
+        $this->menu = $this->menu
             ->map(fn (Menu $menu) => $slug === $menu->get('slug')
                 ? $menu->list($list)
                 : $menu);
-
-        $this->menu->put(self::MENU_MAIN, $menu);
 
         return $this;
     }
 
     /**
-     * Flush the persistent Orchid state.
+     * Clear all persistent state information in the Dashboard.
+     *
+     * This method is essential for Laravel Octane to properly handle stateful requests
+     * when the Dashboard is used as a singleton. It ensures that any stored data
+     * and state information are reset, avoiding potential issues with stale or
+     * inconsistent data between requests.
      */
     public function flushState(): void
     {
-        $this->menu = collect([
-            self::MENU_MAIN    => collect(),
-        ]);
+        $this->menu = collect();
 
         $this->currentScreen = null;
         $this->partialRequest = false;

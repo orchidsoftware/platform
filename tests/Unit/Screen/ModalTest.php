@@ -19,7 +19,7 @@ class ModalTest extends TestUnitCase
      */
     public function testModalScreenRender(): void
     {
-        $screen = new ModalScreen();
+        $screen = new ModalScreen;
         $html = $screen->view()->withErrors(Validator::make([], []))->render();
 
         $this->assertStringContainsString($screen->name(), $html);

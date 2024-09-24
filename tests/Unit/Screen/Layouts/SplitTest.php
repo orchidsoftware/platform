@@ -68,8 +68,6 @@ class SplitTest extends TestUnitCase
      */
     private function getSplitClass($layouts): Split
     {
-        return new class($layouts) extends Split
-        {
-        };
+        return new class($layouts) extends Split {};
     }
 }

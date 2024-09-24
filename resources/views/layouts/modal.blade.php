@@ -1,16 +1,15 @@
 @push('modals-container')
-    <div class="modal fade center-scale"
+    <div class="modal fade center-scale {{$type}}"
          id="screen-modal-{{$key}}"
          role="dialog"
          aria-labelledby="screen-modal-{{$key}}"
          data-controller="modal"
-         data-modal-slug="{{$templateSlug}}"
-         data-modal-async-enable="{{$asyncEnable}}"
-         data-modal-async-route="{{$asyncRoute}}"
-         data-modal-open="{{$open}}"
+         data-modal-slug-value="{{$templateSlug}}"
+         data-modal-url-value="{{$deferredRoute}}"
+         data-modal-open-value="{{ var_export($open) }}"
         {{$staticBackdrop ? "data-bs-backdrop=static" : ''}}
     >
-        <div class="modal-dialog modal-fullscreen-md-down {{$size}} {{$type}}"
+        <div class="modal-dialog modal-fullscreen-md-down {{$size}}"
              role="document"
              id="screen-modal-type-{{$key}}"
         >
@@ -54,8 +53,8 @@
                         <span class="placeholder col-4 rounded-1"></span>
                     </p>
                 </div>
-                <div class="modal-header">
-                    <h4 class="modal-title text-black fw-light" data-modal-target="title">{{$title}}</h4>
+                <div class="modal-header align-items-baseline gap-3">
+                    <h4 class="modal-title text-black fw-light text-balance text-break" data-modal-target="title">{{$title}}</h4>
                     <button type="button" class="btn-close" title="Close" data-bs-dismiss="modal"
                             aria-label="Close">
                     </button>
@@ -63,11 +62,13 @@
                 <div class="modal-body layout-wrapper">
                     <x-orchid-stream target="{{$templateSlug}}">
                         <div id="{{ $templateSlug }}">
-                            @foreach($manyForms as $formKey => $modal)
-                                @foreach($modal as $item)
-                                    {!! $item ?? '' !!}
+                            @if(!empty($deferredRoute) == \Orchid\Support\Facades\Dashboard::isPartialRequest())
+                                @foreach($manyForms as $formKey => $modal)
+                                    @foreach($modal as $item)
+                                        {!! $item ?? '' !!}
+                                    @endforeach
                                 @endforeach
-                            @endforeach
+                            @endif
                             @csrf
                         </div>
                     </x-orchid-stream>

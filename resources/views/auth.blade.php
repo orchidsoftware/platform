@@ -1,6 +1,5 @@
 @extends('platform::app')
 
-
 @section('body')
 
     <div class="container-md">

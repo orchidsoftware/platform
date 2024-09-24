@@ -72,7 +72,7 @@ class CardTest extends TestUnitCase
                 ->rawClick(),
         ]);
 
-        $html = $layout->build(new Repository());
+        $html = $layout->build(new Repository);
 
         $this->assertStringContainsString('Title of a longer featured blog post', $html);
         $this->assertStringContainsString('href="https://orchid.software"', $html);

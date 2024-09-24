@@ -37,6 +37,8 @@ export default class extends ApplicationController {
             minDate: 'min-date',
             mode: "mode",
             defaultDate: "default-date",
+            altInput: "alt-input",
+            altFormat: "alt-format",
         };
 
         const config = {

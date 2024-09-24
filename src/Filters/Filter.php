@@ -7,7 +7,8 @@ namespace Orchid\Filters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Orchid\Screen\Field;
+use Orchid\Screen\Contracts\Fieldable;
+use Orchid\Screen\Repository;
 
 abstract class Filter
 {
@@ -40,6 +41,11 @@ abstract class Filter
         $this->request = request();
     }
 
+    public function query(): iterable
+    {
+        return $this->request->only($this->parameters(), []);
+    }
+
     /**
      * Apply filter if the request parameters were satisfied.
      */
@@ -64,7 +70,7 @@ abstract class Filter
     /**
      * Get the display fields.
      *
-     * @return Field[]
+     * @return Fieldable[]
      */
     public function display(): iterable
     {
@@ -81,7 +87,12 @@ abstract class Filter
 
     public function render(): string
     {
-        return collect($this->display())->reduce(static fn ($html, Field $field) => $html.$field->form('filters')->render());
+        $fields = collect($this->display())->map(fn (Fieldable $field) => $field->form('filters'));
+        $params = $this->query();
+
+        $builder = new \Orchid\Screen\Builder($fields, new Repository($params));
+
+        return $builder->generateForm();
     }
 
     /**

@@ -75,8 +75,8 @@ class ExampleTextEditorsScreen extends Screen
                     ->title('Quill')
                     ->popover('Quill is a free, open source WYSIWYG editor built for the modern web.'),
 
-                Code::make('code')
-                    ->title('Code'),
+                Code::make('snippet')
+                    ->title('Snippet'),
 
             ]),
         ];

@@ -5,6 +5,161 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.35.1 - 2024-09-10
+
+### Fixed
+- Removed extra spans affecting indents
+
+## 14.34.0 - 2024-09-04
+
+### Changed
+- Adding state to the form when Turbo is disabled
+
+## 14.33.1 - 2024-09-04
+
+### Fixed
+- Attempt to attach a missing state on the page [#2892](https://github.com/orchidsoftware/platform/issues/2892)
+
+## 14.33.0 - 2024-09-02
+
+### Changed
+- Retrieve Screen inherited public properties from parent classes [#2880](https://github.com/orchidsoftware/platform/pull/2880)
+
+### Fixed
+- Broken assets
+
+## 14.32.0 - 2024-09-02
+
+### Added
+- New method `deferred` on `Modal` layout
+
+### Fixed
+- Preserve Relation field query order [#2668](https://github.com/orchidsoftware/platform/issues/2668)
+
+### Removed
+- Manual CSRF token handling on Turbo [#2889](https://github.com/orchidsoftware/platform/pull/2889)
+
+## 14.31.2 - 2024-08-30
+
+### Deprecated
+- `attachment` method for Eloquent models. Usage plural `attachments` instead.
+
+## 14.31.1 - 2024-08-30
+
+### Fixed
+- Disabled drag&drop input for `Attach` field [#2867](https://github.com/orchidsoftware/platform/issues/2867)
+- Missing state passing in the `listeners`
+
+## 14.31.0 - 2024-08-27
+
+### Added
+- Allow "aria-*" attributes in Fields [#2884](https://github.com/orchidsoftware/platform/pull/2884)
+
+### Fixed
+- Screen constructor property initialization during deserialization [#2885](https://github.com/orchidsoftware/platform/pull/2885)
+
+## 14.30.2 - 2024-08-23
+
+### Fixed
+- Dropdown menu in the table
+
+## 14.30.1 - 2024-08-22
+
+### Fixed
+- Safari stretched links in the table 
+- Dropdown menu in the table
+
+## 14.30.0 - 2024-08-21
+
+### Added
+- Separate trait for load models on database when restore state
+
+### Fixed
+- Safari doesn't support `position: relative` on `<tr`>` elements
+
+## 14.29.0 - 2024-08-18
+
+### Changed
+- Reduce Data Transfer for State Restore [#2872](https://github.com/orchidsoftware/platform/pull/2872)
+
+### Fixed
+- Public property stop filled when find `false` value
+
+## 14.28.2 - 2024-08-18
+
+### Fixed
+- SimpleMDE Field Incorrectly Marked as Empty When Using `required` Attribute [#2877](https://github.com/orchidsoftware/platform/issues/2877)
+
+## 14.28.1 - 2024-08-13
+
+### Fixed
+- Icon clipping issue at various ratios [#2846](https://github.com/orchidsoftware/platform/issues/2846)
+- Nested menu collapsing behavior [#2875](https://github.com/orchidsoftware/platform/issues/2875)
+
+## 14.28.0 - 2024-08-13
+
+### Added
+- Integrated `altInput` and `altFormat` attributes as recommended by the `flatpickr` package to enhance formatting capabilities. [#2873](https://github.com/orchidsoftware/platform/pull/2873)
+
+### Changed
+- Refactored protected method names and updated descriptions in `Field` class
+- Disabled `single_trait_insert_per_statement` option for `Pint`
+
+### Fixed
+- Drop-down behavior that caused it to either disappear or break the `Table` layout
+- The `maximumSelectionLength` option was not functioning correctly. The issue was resolved by adding the necessary parentheses. [#2873](https://github.com/orchidsoftware/platform/pull/2873)
+- Button text visibility issue when a loading spinner is active
+
+### Removed
+- Unused translation of the term from the project
+
+## 14.27.2 - 2024-07-30
+
+### Fixed
+- Revert `csrf` token on modal window
+
+## 14.27.1 - 2024-07-23
+
+### Fixed
+- Overflow drop-down on table
+
+## 14.27.0 - 2024-07-23
+
+### Added
+- `path` and `storage` attributes for the `Attach` field
+- Extended method for `Action`
+
+### Changed
+- Modal window no longer requires data definition before loading
+
+## 14.26.1 - 2024-06-30
+
+### Changed
+- Enhanced `zh_TW` language support [#2844](https://github.com/orchidsoftware/platform/pull/2844)
+
+### Fixed
+- Missing prefix for notification icon [#2848](https://github.com/orchidsoftware/platform/issues/2848)
+
+## 14.26.0 - 2024-06-14
+
+### Added
+- Support for XL size modal [#2842](https://github.com/orchidsoftware/platform/pull/2842)
+
+### Fixed
+- Adjusted `$type` modal positioning on the page [#2842](https://github.com/orchidsoftware/platform/pull/2842)
+
+## 14.25.3 - 2024-06-06
+
+### Fixed
+- Missing attributes for `Attach` field
+
+## 14.25.2 - 2024-06-01
+
+### Fixed
+- Updated rules for stubs to ensure correct behavior
+- Enhanced fieldset template for better usability
+- Visual enhancements to the Boolean component [#2838](https://github.com/orchidsoftware/platform/pull/2838)
+
 ## 14.25.1 - 2024-05-30
 
 ### Fixed

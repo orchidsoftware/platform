@@ -92,7 +92,7 @@ class NotificationTest extends TestFeatureCase
     private function createNotifyUser(): User
     {
         $user = $this->createAdminUser();
-        $user->notify(new TaskCompleted());
+        $user->notify(new TaskCompleted);
 
         return $user;
     }

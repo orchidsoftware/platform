@@ -31,7 +31,7 @@ class Button extends Action
      * @var array
      */
     protected $attributes = [
-        'class'      => 'btn btn-link',
+        'class'      => 'btn btn-link icon-link',
         'type'       => 'submit',
         'novalidate' => false,
         'method'     => null,
@@ -124,7 +124,7 @@ class Button extends Action
     }
 
     /**
-     * Method download serves as an alias for the rawClick method.
+     * Method download serves as an alias for the `rawClick` method.
      */
     public function download(bool $status = false): self
     {

@@ -83,7 +83,7 @@ class Select extends Field implements ComplexFieldConcern
     public function fromModel($model, string $name, ?string $key = null): self
     {
         /* @var $model Model */
-        $model = is_object($model) ? $model : new $model();
+        $model = is_object($model) ? $model : new $model;
         $key = $key ?? $model->getModel()->getKeyName();
 
         return $this->setFromEloquent($model, $name, $key);

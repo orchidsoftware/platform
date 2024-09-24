@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers;
 
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -13,15 +12,18 @@ use Illuminate\View\View;
  */
 class IndexController extends Controller
 {
+    /**
+     * Redirect to the configured index route.
+     */
     public function index(): RedirectResponse
     {
         return redirect()->route(config('platform.index'));
     }
 
     /**
-     * @return Factory|View
+     * Show the fallback view for undefined routes.
      */
-    public function fallback()
+    public function fallback(): View
     {
         return view('platform::errors.404');
     }

@@ -23,8 +23,7 @@ class Text extends Component
         protected ?string $text = null,
         protected ?int $words = 30,
         protected ?int $clamp = 5,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view/contents that represent the component.

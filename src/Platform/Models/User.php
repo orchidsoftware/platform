@@ -19,6 +19,20 @@ use Orchid\Metrics\Chartable;
 use Orchid\Screen\AsSource;
 use Orchid\Support\Facades\Dashboard;
 
+/**
+ * This class serves as a base model for system users and is not intended
+ * for direct use. It is recommended to extend this class when creating
+ * custom user models, allowing flexibility in extending functionality
+ * and modifying logic.
+ *
+ * The main idea is for this class to provide a standard implementation
+ * that can be adapted to the specific needs of the application through
+ * inheritance. This approach helps avoid modifying the base logic while
+ * enabling the addition of unique features and behaviors in derived classes.
+ *
+ * Directly using this class may limit future extensibility and lead to
+ * unintended changes in the behavior of the entire system.
+ */
 class User extends Authenticatable implements UserInterface
 {
     use AsSource, Chartable, Filterable, HasFactory, Notifiable, UserAccess;

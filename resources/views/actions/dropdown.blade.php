@@ -6,10 +6,10 @@
         aria-expanded="false"
     >
         @isset($icon)
-            <x-orchid-icon :path="$icon" class="{{ empty($name) ?: 'me-2'}}"/>
+            <x-orchid-icon :path="$icon" class="overflow-visible"/>
         @endisset
 
-        <span>{{ $name ?? '' }}</span>
+        {{ $name ?? '' }}
     </button>
 
     <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow bg-white"

@@ -34,6 +34,13 @@ class AttachmentController extends Controller
         $this->attachment = Dashboard::modelClass(Attachment::class);
     }
 
+    /**
+     * Upload files and return their details.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function upload(Request $request): JsonResponse
     {
         $attachment = collect($request->allFiles())
@@ -45,6 +52,9 @@ class AttachmentController extends Controller
         return response()->json($response);
     }
 
+    /**
+     * Update the sort order of the files.
+     */
     public function sort(Request $request): void
     {
         collect($request->get('files', []))
@@ -79,6 +89,8 @@ class AttachmentController extends Controller
     }
 
     /**
+     * Create and load an attachment model from the uploaded file.
+     *
      * @throws BindingResolutionException
      *
      * @return mixed
@@ -104,6 +116,11 @@ class AttachmentController extends Controller
         return $model;
     }
 
+    /**
+     * Retrieve paginated media attachments.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function media(): JsonResponse
     {
         $attachments = $this->attachment->filters()->paginate(12);

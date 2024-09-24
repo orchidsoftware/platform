@@ -464,6 +464,13 @@ blockquote {
   > tbody,
   > tfoot {
     > tr {
+        &:has(.stretched-link) {
+            // Safari doesn't support position: relative on <tr> elements
+            position: relative;
+            transform: translate(0);
+            clip-path: inset(0);
+            overflow: clip;
+        }
       > td {
         padding: 8px 15px;
         border-top: 1px solid $table-border-color;
@@ -578,12 +585,6 @@ blockquote {
       bottom: 0;
     }
   }
-}
-
-.dropdown-scrollable {
-  height: auto;
-  max-height: 400px;
-  overflow-x: hidden;
 }
 
 .btn-group > .btn {

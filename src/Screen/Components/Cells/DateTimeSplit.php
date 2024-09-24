@@ -19,10 +19,9 @@ class DateTimeSplit extends Component
     public function __construct(
         protected mixed $value,
         protected string $upperFormat = 'M j, Y',
-        protected string $lowerFormat = 'D, h:i',
+        protected string $lowerFormat = 'D, H:i',
         protected DateTimeZone|null|string $tz = null,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view/contents that represent the component.

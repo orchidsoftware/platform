@@ -17,6 +17,16 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    /**
+     * Ensure the current user has the required permission.
+     *
+     * This method uses middleware to enforce permission checks.
+     * The check is done for each request to this controller or its routes.
+     *
+     * @param string $permission
+     *
+     * @return void
+     */
     protected function checkPermission(string $permission): void
     {
         $this->middleware(static function ($request, $next) use ($permission) {

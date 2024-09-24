@@ -6,7 +6,9 @@ namespace Orchid\Platform\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 use Orchid\Platform\Dashboard;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'orchid:presenter')]
 class PresenterCommand extends GeneratorCommand
 {
     /**
