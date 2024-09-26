@@ -44,7 +44,7 @@ class RelationsTest extends TestFeatureCase
     {
         $response = $this->getScope($scope);
 
-        $json = $this->users->map(fn($user) => [
+        $json = $this->users->map(fn ($user) => [
             'value' => $user->id,
             'label' => $user->email,
         ])->toArray();
@@ -61,7 +61,7 @@ class RelationsTest extends TestFeatureCase
     {
         $response = $this->getScope($scope, 'full');
 
-        $json = $this->users->map(fn($user) => [
+        $json = $this->users->map(fn ($user) => [
             'value' => $user->id,
             'label' => $user->name.' ('.$user->email.')',
         ])->toArray();

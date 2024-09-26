@@ -12,10 +12,7 @@ class SimpleShowValueWithArguments extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public Application $application, public mixed $value, public string $from = 'Alexandr')
-    {
-
-    }
+    public function __construct(public Application $application, public mixed $value, public string $from = 'Alexandr') {}
 
     /**
      * Get the view / contents that represent the component.

@@ -113,8 +113,8 @@ class FieldTest extends TestUnitCase
     }
 
     /**
-     *
      * @dataProvider exampleFields
+     *
      * @throws \Throwable
      */
     public function testHasCorrectInstance(string $field, mixed $options): void

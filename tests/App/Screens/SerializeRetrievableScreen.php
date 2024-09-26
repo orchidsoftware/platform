@@ -19,7 +19,7 @@ class SerializeRetrievableScreen extends Screen
         private readonly string $private = 'Private',
         public $user = null
     ) {
-        $this->middleware(fn($request, $next) => $next($request));
+        $this->middleware(fn ($request, $next) => $next($request));
     }
 
     /**

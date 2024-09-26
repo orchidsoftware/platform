@@ -5,16 +5,13 @@ declare(strict_types=1);
 namespace Orchid\Tests\App\Components;
 
 use Illuminate\View\Component;
-use Orchid\Platform\Models\User;
 
 class SimpleShowValue extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct(public mixed $value)
-    {
-    }
+    public function __construct(public mixed $value) {}
 
     /**
      * Get the view / contents that represent the component.
