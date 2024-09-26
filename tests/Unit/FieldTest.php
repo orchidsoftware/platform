@@ -113,13 +113,11 @@ class FieldTest extends TestUnitCase
     }
 
     /**
-     * @param mixed $options
      *
      * @dataProvider exampleFields
-     *
      * @throws \Throwable
      */
-    public function testHasCorrectInstance(string $field, $options): void
+    public function testHasCorrectInstance(string $field, mixed $options): void
     {
         /** @var \Orchid\Screen\Field $field */
         $field = $field::make();

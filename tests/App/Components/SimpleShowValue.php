@@ -10,18 +10,10 @@ use Orchid\Platform\Models\User;
 class SimpleShowValue extends Component
 {
     /**
-     * @var User
-     */
-    public $value;
-
-    /**
      * Create a new component instance.
-     *
-     * @param mixed $value
      */
-    public function __construct($value)
+    public function __construct(public mixed $value)
     {
-        $this->value = $value;
     }
 
     /**

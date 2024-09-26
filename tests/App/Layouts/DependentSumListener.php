@@ -57,7 +57,7 @@ class DependentSumListener extends Listener
      */
     public function getSlug(): string
     {
-        return sha1($this->slug);
+        return sha1((string) $this->slug);
     }
 
     /**
