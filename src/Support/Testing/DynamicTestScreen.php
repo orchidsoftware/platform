@@ -194,7 +194,7 @@ class DynamicTestScreen
      *
      * @return $this
      */
-    public function __call(string $name, $arguments)
+    public function __call(string $name, mixed $arguments)
     {
         $this->http->$name($arguments);
 

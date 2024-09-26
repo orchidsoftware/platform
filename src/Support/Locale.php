@@ -37,7 +37,7 @@ class Locale
      */
     public static function currentDir(?string $locale = null): string
     {
-        $locale = $locale ?? app()->getLocale();
+        $locale ??= app()->getLocale();
 
         return in_array($locale, self::RTL) ? 'rtl' : 'ltr';
     }

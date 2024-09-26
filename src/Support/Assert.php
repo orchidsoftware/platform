@@ -10,31 +10,24 @@ class Assert
 {
     /**
      * Check if the given array is a numeric array.
-     *
-     * @param mixed $array
      */
-    public static function isIntArray($array): bool
+    public static function isIntArray(mixed $array): bool
     {
         return self::isArrayClosure($array, 'is_numeric');
     }
 
     /**
      * Check if the given array is an object array.
-     *
-     * @param mixed $array
      */
-    public static function isObjectArray($array): bool
+    public static function isObjectArray(mixed $array): bool
     {
         return self::isArrayClosure($array, 'is_object');
     }
 
     /**
      * Check if the given array passes the callback test.
-     *
-     * @param mixed           $array
-     * @param string|\Closure $callback
      */
-    public static function isArrayClosure($array, $callback): bool
+    public static function isArrayClosure(mixed $array, ?callable $callback): bool
     {
         if (is_a($array, Collection::class)) {
             $array = $array->all();
