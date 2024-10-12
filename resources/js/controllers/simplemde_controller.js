@@ -151,7 +151,7 @@ export default class extends ApplicationController {
                     title: 'Insert Horizontal Line',
                 },
             ],
-            initialValue: atob(this.textValue),
+            initialValue: JSON.parse(this.textValue),
             placeholder: this.textarea.placeholder,
             spellChecker: false,
         });
