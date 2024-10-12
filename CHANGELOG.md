@@ -5,6 +5,36 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.36.2 - 2024-10-11
+
+### Fixed
+- Incorrect parsing of `HTML` in `SimpleMDE` field
+
+## 14.36.1 - 2024-10-11
+
+### Fixed
+- Incorrect parsing of `HTML` in `SimpleMDE` field
+
+## 14.36.0 - 2024-09-27
+
+### Added
+- Secondary parameters for testing `Screen`
+- Missing group attribute for `Attach` field
+- Methods for define resources on packages
+- Autofill values on filters [#2895](https://github.com/orchidsoftware/platform/pull/2895)
+- Description for dont usage vendor user model
+
+### Changed
+- Changed stubs to usage `Attach` field
+- PHPStan issue when the return type of `Field::value` is `self` [#2898](https://github.com/orchidsoftware/platform/pull/2898)
+
+### Deprecated
+- `ComplexFieldConcern` interface and `isComplexFieldType` method in `TD` class
+
+### Fixed
+- Overlapping of part of the content in drop-down displayed list of fields in table
+- 12-hour format to 24-hour format of an hour with leading zeros [#2896](https://github.com/orchidsoftware/platform/pull/2896)
+
 ## 14.35.1 - 2024-09-10
 
 ### Fixed

@@ -45,7 +45,7 @@ class AttachTest extends TestFieldsUnitCase
 
         // pass models
         $upload = Attach::make('file')
-            ->groups('images')
+            ->group('images')
             ->value([
                 $docsGroup,
                 $imagesGroup,
@@ -58,7 +58,7 @@ class AttachTest extends TestFieldsUnitCase
 
         // pass ids
         $upload = Attach::make('file')
-            ->groups('images')
+            ->group('images')
             ->value([
                 $docsGroup->id,
                 $imagesGroup->id,

@@ -10,31 +10,9 @@ use Illuminate\View\Component;
 class SimpleShowValueWithArguments extends Component
 {
     /**
-     * @var mixed
-     */
-    public $value;
-
-    /**
-     * @var Application
-     */
-    public $application;
-
-    /**
-     * @var string
-     */
-    public $from;
-
-    /**
      * Create a new component instance.
-     *
-     * @param mixed $value
      */
-    public function __construct(Application $application, $value, string $from = 'Alexandr')
-    {
-        $this->value = $value;
-        $this->application = $application;
-        $this->from = $from;
-    }
+    public function __construct(public Application $application, public mixed $value, public string $from = 'Alexandr') {}
 
     /**
      * Get the view / contents that represent the component.

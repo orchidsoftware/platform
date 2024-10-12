@@ -30,7 +30,7 @@ class RouteSolving implements Stringable, UrlRoutable
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return 'Hello Word';
     }

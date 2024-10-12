@@ -84,7 +84,7 @@ class RelationWithEnumTest extends TestFieldsUnitCase
 
         $select = Relation::make('role')
             ->title('Select roles')
-            ->fromModel(get_class(new $stringPrimaryClass), 'name')
+            ->fromModel($stringPrimaryClass::class, 'name')
             ->value($current->getRoleSlug());
 
         $view = self::renderField($select);

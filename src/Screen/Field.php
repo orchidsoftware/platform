@@ -148,7 +148,7 @@ class Field implements Fieldable, Htmlable
      *
      * @param mixed $value The value to be set for the 'value' attribute.
      */
-    public function value(mixed $value): self
+    public function value(mixed $value): static
     {
         return $this->set('value', $value);
     }

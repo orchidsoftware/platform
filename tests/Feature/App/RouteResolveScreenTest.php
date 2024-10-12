@@ -95,9 +95,7 @@ class RouteResolveScreenTest extends TestFeatureCase
 
     public function testResolutionLogic(): void
     {
-        Route::bind('user', function ($value) {
-            return User::where('email', $value)->firstOrFail();
-        });
+        Route::bind('user', fn ($value) => User::where('email', $value)->firstOrFail());
 
         Route::screen('bind/users/{user}', ModelRouteBindScreen::class)
             ->middleware(config('platform.middleware.private'))
