@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.37.0 - 2024-10-12
+
+### Added
+- default balanced text style for `TD`
+
+### Fixed
+- Incorrect parsing of `HTML` in `SimpleMDE` field
+
 ## 14.36.2 - 2024-10-11
 
 ### Fixed
