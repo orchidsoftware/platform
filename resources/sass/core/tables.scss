@@ -40,7 +40,7 @@
         padding: 0.8rem 1rem;
         font-size: $font-size-sm;
         vertical-align: middle;
-        word-break: break-all;
+        word-break: break-word;
           &:first-child {
               padding-left: 1.5rem !important;
           }
