@@ -23,7 +23,6 @@ use Orchid\Screen\Field;
  * @method SimpleMDE readonly($value = true)
  * @method SimpleMDE required(bool $value = true)
  * @method SimpleMDE tabindex($value = true)
- * @method SimpleMDE type($value = true)
  * @method SimpleMDE value($value = true)
  * @method SimpleMDE help(string $value = null)
  * @method SimpleMDE popover(string $value = null)
@@ -57,7 +56,5 @@ class SimpleMDE extends Field
         'readonly',
         'required',
         'tabindex',
-        'type',
-        'value',
     ];
 }
