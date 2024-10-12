@@ -151,7 +151,7 @@ export default class extends ApplicationController {
                     title: 'Insert Horizontal Line',
                 },
             ],
-            initialValue: atob(this.textValue),
+            initialValue: decodeURIComponent(atob(this.textValue).split('').map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')),
             placeholder: this.textarea.placeholder,
             spellChecker: false,
         });
