@@ -8,7 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 14.37.0 - 2024-10-12
 
 ### Added
-- default balanced text style for `TD`
+- Default balanced text style for `TD`
+- Property for word wrapping in table cells
+
+### Removed
+- Unused attributes on SimpleMDE
 
 ### Fixed
 - Incorrect parsing of `HTML` in `SimpleMDE` field
