@@ -31,6 +31,7 @@ use Throwable;
  * @method self style($value = true)
  * @method self tabindex($value = true)
  * @method self autocomplete($value = true)
+ * @method self addClass($value = true)
  */
 class Field implements Fieldable, Htmlable
 {
@@ -541,5 +542,23 @@ class Field implements Fieldable, Htmlable
     public function toHtml()
     {
         return $this->render()->toHtml();
+    }
+
+    /**
+     * Add a class to the field including the existing classes.
+     *
+     * @param string|array $classes
+     *
+     * @return static
+     */
+    public function addClass(string|array $classes): self
+    {
+        $currentClasses = array_filter(explode(' ', $this->get('class', '')));
+        $newClasses = is_array($classes) ? $classes : explode(' ', $classes);
+
+        $mergedClasses = array_unique(array_merge($currentClasses, $newClasses));
+        $this->set('class', implode(' ', array_filter($mergedClasses)));
+
+        return $this;
     }
 }
