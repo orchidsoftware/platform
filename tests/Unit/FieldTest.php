@@ -217,4 +217,44 @@ class FieldTest extends TestUnitCase
 
         $this->assertSame('3.141', Input::make('numeric')->getOldValue());
     }
+
+    public function testAddsSingleClassToEmptyClassAttribute(): void
+    {
+        $field = Field::make('test');
+        $field->addClass('new-class');
+
+        $this->assertEquals('new-class', $field->get('class'));
+    }
+
+    public function testAddsMultipleClassesToEmptyClassAttribute(): void
+    {
+        $field = Field::make('test');
+        $field->addClass('class1 class2');
+
+        $this->assertEquals('class1 class2', $field->get('class'));
+    }
+
+    public function testAddsArrayOfClassesToEmptyClassAttribute(): void
+    {
+        $field = Field::make('test');
+        $field->addClass(['class1', 'class2']);
+
+        $this->assertEquals('class1 class2', $field->get('class'));
+    }
+
+    public function testAddsNewClassToExistingClasses(): void
+    {
+        $field = Field::make('test')->set('class', 'existing-class');
+        $field->addClass('new-class');
+
+        $this->assertEquals('existing-class new-class', $field->get('class'));
+    }
+
+    public function testDoesNotDuplicateClasses(): void
+    {
+        $field = Field::make('test')->set('class', 'existing-class');
+        $field->addClass('existing-class new-class');
+
+        $this->assertEquals('existing-class new-class', $field->get('class'));
+    }
 }
