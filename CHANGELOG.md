@@ -8,10 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 14.38.0 - 2024-10-23
 
 ### Added
-- Padding for items `Selection`
 - `addClass()` method to `Field` class for easier class manipulation [#2909](https://github.com/orchidsoftware/platform/pull/2909)
 
 ### Changed
+- Padding for items `Selection`
 - Remove `memory_limit` for check max size upload [#2910](https://github.com/orchidsoftware/platform/issues/2910)
 
 ## 14.37.0 - 2024-10-12
