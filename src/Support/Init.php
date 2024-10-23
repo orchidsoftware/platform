@@ -68,7 +68,6 @@ class Init
         $ini = [
             'upload_max_filesize',
             'post_max_size',
-            'memory_limit',
         ];
 
         $ini = array_map(fn ($item) => self::toBytes(ini_get($item)), $ini);
