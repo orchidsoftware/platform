@@ -15,7 +15,7 @@
         >
             <div class="dropdown-toggle" data-action="click->filter#onMenuClick"
                  data-filter-target="filterItem">
-                <div class="p-3 w-md">
+                <div class="p-3 w-md d-flex flex-column gap-3">
                     @foreach($filters as $filter)
                         {!! $filter->render() !!}
                     @endforeach
