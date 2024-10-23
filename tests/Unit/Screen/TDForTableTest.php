@@ -42,7 +42,6 @@ class TDForTableTest extends TestUnitCase
         $view = TD::make('name')->class($class)
             ->buildTd(new Repository(['name' => 'value']));
 
-
         $this->assertStringContainsString($class, $view);
     }
 
@@ -55,7 +54,7 @@ class TDForTableTest extends TestUnitCase
             ->width($width)
             ->style($style)
             ->buildTd(new Repository([
-                'name' => 'value'
+                'name' => 'value',
             ]));
 
         $this->assertStringContainsString('style="min-width:'.$width.'; '.$style.'', $view);
