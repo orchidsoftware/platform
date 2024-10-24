@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.39.0 - 2024-10-24
+
+### Changed
+- Color favicon to monochrome
+- Improve install examples
+- Added `text-balance` for "Welcome Page"
+- Width for login form (large breakpoint)
+- Increment root font-size
+- Improve color on active item menu
+
 ## 14.38.0 - 2024-10-23
 
 ### Added
