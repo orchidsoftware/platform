@@ -225,14 +225,18 @@ class ExampleFieldsScreen extends Screen
                         ->title('Checkbox')
                         ->placeholder('Remember me'),
 
-                    Radio::make('radio')
-                        ->placeholder('Yes')
-                        ->value(1)
-                        ->title('Radio'),
+                    Group::make([
+                        Radio::make('radio')
+                            ->placeholder('Yes')
+                            ->value(1)
+                            ->title('Radio'),
 
-                    Radio::make('radio')
-                        ->placeholder('No')
-                        ->value(0),
+                        Radio::make('radio')
+                            ->placeholder('No')
+                            ->value(0),
+                    ])
+                        ->autoWidth()
+                        ->alignEnd(),
 
                     TextArea::make('textarea')
                         ->title('Example textarea')
@@ -268,16 +272,20 @@ class ExampleFieldsScreen extends Screen
                         ->placeholder('Remember me')
                         ->disabled(),
 
-                    Radio::make('radio')
-                        ->placeholder('Yes')
-                        ->value(1)
-                        ->title('Radio')
-                        ->disabled(),
+                    Group::make([
+                        Radio::make('radio')
+                            ->placeholder('Yes')
+                            ->value(1)
+                            ->title('Radio')
+                            ->disabled(),
 
-                    Radio::make('radio')
-                        ->placeholder('No')
-                        ->value(0)
-                        ->disabled(),
+                        Radio::make('radio')
+                            ->placeholder('No')
+                            ->value(0)
+                            ->disabled(),
+                    ])
+                        ->autoWidth()
+                        ->alignEnd(),
 
                     TextArea::make('readonly_textarea')
                         ->title('Readonlyd textarea')
