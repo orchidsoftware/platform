@@ -7,8 +7,8 @@
                 Hello, It’s Great to See You!
             </h2>
 
-            <p>
-                It is a fascinating project, and it’s easy enough to use that you might wish to dive right in.<br>
+            <p class="text-balance">
+                It is a fascinating project, and it’s easy enough to use that you might wish to dive right in.
                 You are minutes away from creativity than ever before. Enjoy!
             </p>
         </div>
@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div class="row bg-light m-0 p-md-4 p-3 border-top rounded-bottom g-md-5">
+    <div class="row bg-light m-0 p-md-4 p-3 border-top rounded-bottom g-md-5 text-balance">
 
         <div class="col-md-6 my-2">
             <h3 class="text-muted fw-light lh-lg d-flex align-items-center">
