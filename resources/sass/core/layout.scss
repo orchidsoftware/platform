@@ -11,8 +11,8 @@ body {
 
 @include media-breakpoint-up(xl) {
     .aside {
-        min-width: $app-aside-min-width;
-        max-width: $app-aside-width;
+        width: $app-aside-width;
+        max-width: $app-aside-max-width;
         min-height: 100vh;
 
         nav {
