@@ -149,8 +149,7 @@ class ExampleScreen extends Screen
                 TD::make('price', 'Price')
                     ->width('100')
                     ->usingComponent(Currency::class, before: '$')
-                    ->align(TD::ALIGN_RIGHT)
-                    ->sort(),
+                    ->align(TD::ALIGN_RIGHT),
 
                 TD::make('created_at', 'Created')
                     ->width('100')
