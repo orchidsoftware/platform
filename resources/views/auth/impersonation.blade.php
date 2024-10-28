@@ -2,7 +2,7 @@
 @section('title',__('Access Denied: Viewing as Another User'))
 
 @section('content')
-    <h1 class="h4 text-black mb-4">{{__('Limited Access')}}</h1>
+    <h1 class="h4 text-body-emphasis mb-4">{{__('Limited Access')}}</h1>
 
     <form role="form"
           method="POST"

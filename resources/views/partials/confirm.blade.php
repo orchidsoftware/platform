@@ -6,7 +6,7 @@
     <div class="modal-dialog modal-fullscreen-md-down">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title text-black fw-light">
+                <h4 class="modal-title text-body-emphasis fw-light">
                     {{ __('Are you sure?') }}
                 </h4>
                 <button type="button" class="btn-close" title="Close" data-bs-dismiss="modal" aria-label="Close">

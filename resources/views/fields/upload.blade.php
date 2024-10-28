@@ -53,7 +53,7 @@
                 <div class="modal-dialog modal-fullscreen-md-down">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title text-black fw-light">
+                            <h4 class="modal-title text-body-emphasis fw-light">
                                 {{__('File Information')}}
                                 <small class="text-muted d-block">{{__('Information to display')}}</small>
                             </h4>
@@ -124,7 +124,7 @@
                     <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-md-down slide-up">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title text-black fw-light">
+                                <h4 class="modal-title text-body-emphasis fw-light">
                                     {{__('Media Library')}}
                                     <small class="text-muted d-block">{{__('Previously uploaded files')}}</small>
                                 </h4>

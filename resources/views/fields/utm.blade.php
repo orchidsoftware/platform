@@ -14,7 +14,7 @@
             <div class="modal-dialog modal-fullscreen-md-down modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title text-black fw-light"
+                        <h4 class="modal-title text-body-emphasis fw-light"
                             id="exampleModalLabel">{{__('UTM Generator')}}</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>

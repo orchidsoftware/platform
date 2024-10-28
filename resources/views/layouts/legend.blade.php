@@ -2,7 +2,7 @@
 
     @empty(!$title)
         <div class="col p-0 px-3">
-            <legend class="text-black text-black mt-2 mx-2">
+            <legend class="text-body-emphasis mt-2 mx-2">
                 {{ $title }}
             </legend>
         </div>
@@ -14,7 +14,7 @@
                 <dt class="text-muted fw-normal me-3">
                     {!! $column->buildDt($repository) !!}
                 </dt>
-                <dd class="text-black">
+                <dd class="text-body-emphasis">
                     {!! $column->buildDd($repository) !!}
                 </dd>
             </div>

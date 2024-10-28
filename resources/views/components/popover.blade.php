@@ -1,4 +1,4 @@
-<sup class="text-black"
+<sup class="text-body-emphasis"
      role="button"
      data-controller="popover"
      data-bs-container="body"

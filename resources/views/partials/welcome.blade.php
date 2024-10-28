@@ -3,7 +3,7 @@
     <div class="row g-0">
         <div class="col col-lg-7 mt-6 p-4">
 
-            <h2 class="text-dark fw-light lh-lg">
+            <h2 class="text-body-emphasis fw-light lh-lg">
                 Hello, It’s Great to See You!
             </h2>
 
@@ -26,7 +26,7 @@
             <h3 class="text-muted fw-light lh-lg d-flex align-items-center">
                 <x-orchid-icon path="bs.book"/>
 
-                <span class="ms-3 text-dark">Explore the Documentation</span>
+                <span class="ms-3 text-body-emphasis">Explore the Documentation</span>
             </h3>
             <p class="ms-md-5 ps-md-1">
                 Ready to unleash your coding potential? Our platform built on the Laravel framework is user-friendly and
@@ -39,7 +39,7 @@
             <h3 class="text-muted fw-light lh-lg d-flex align-items-center">
                 <x-orchid-icon path="bs.rocket"/>
 
-                <span class="ms-3 text-dark">Quick Start Guide</span>
+                <span class="ms-3 text-body-emphasis">Quick Start Guide</span>
             </h3>
             <p class="ms-md-5 ps-md-1">
                 Are you entirely new to Laravel Orchid? Don't worry, we all were once. For a quick study of the main
@@ -51,7 +51,7 @@
             <h3 class="text-muted fw-light lh-lg d-flex align-items-center">
                 <x-orchid-icon path="bs.collection"/>
 
-                <span class="ms-3 text-dark">The Screens</span>
+                <span class="ms-3 text-body-emphasis">The Screens</span>
             </h3>
             <p class="ms-md-5 ps-md-1">
                 Screen design is hierarchical and declarative, rather than physical and imperative. You specify what
@@ -64,7 +64,7 @@
             <h3 class="text-muted fw-light lh-lg d-flex align-items-center">
                 <x-orchid-icon path="bs.window-sidebar"/>
 
-                <span class="ms-3 text-dark">Layouts</span>
+                <span class="ms-3 text-body-emphasis">Layouts</span>
             </h3>
             <p class="ms-md-5 ps-md-1">
                 It allows you to express many details so that the user interface can be interpreted and generated
@@ -77,7 +77,7 @@
             <h3 class="text-muted fw-light lh-lg d-flex align-items-center">
                 <x-orchid-icon path="bs.star"/>
 
-                <span class="ms-3 text-dark">And one more thing</span>
+                <span class="ms-3 text-body-emphasis">And one more thing</span>
             </h3>
             <p class="ms-md-5 ps-md-1">
                 Laravel Orchid offers a wide range of features to enhance your user interface and improve data
@@ -91,7 +91,7 @@
             <h3 class="text-muted fw-light lh-lg d-flex align-items-center">
                 <x-orchid-icon path="bs.life-preserver"/>
 
-                <span class="ms-3 text-dark">Connect with the Community</span>
+                <span class="ms-3 text-body-emphasis">Connect with the Community</span>
             </h3>
             <div class="ms-md-5 ps-md-1">
                 <p>

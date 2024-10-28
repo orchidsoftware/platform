@@ -1,6 +1,6 @@
 <div class="mb-3">
     @isset($title)
-        <legend class="text-black px-4 mb-0">
+        <legend class="text-body-emphasis px-4 mb-0">
             {{ __($title) }}
         </legend>
     @endisset
@@ -9,7 +9,7 @@
             <div class="col">
                 <div class="p-4 bg-white rounded shadow-sm h-100 d-flex flex-column">
                     <small class="text-muted d-block mb-1">{{ __($key) }}</small>
-                    <p class="h3 text-black fw-light mt-auto">
+                    <p class="h3 text-body-emphasis fw-light mt-auto">
                         {{ is_array($metric) ? $metric['value'] : $metric }}
 
                         @if(isset($metric['diff']) && (float)$metric['diff'] !== 0.0)
