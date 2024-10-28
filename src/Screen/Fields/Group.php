@@ -16,11 +16,11 @@ class Group implements Fieldable, Groupable
      * @var array
      */
     protected $attributes = [
-        'group'       => [],
-        'class'       => 'col-12 col-md form-group mb-md-0',
-        'align'       => 'align-items-baseline',
-        'itemToEnd'   => false,
-        'gridTemplateColumns' => null
+        'group'               => [],
+        'class'               => 'col-12 col-md form-group mb-md-0',
+        'align'               => 'align-items-baseline',
+        'itemToEnd'           => false,
+        'gridTemplateColumns' => null,
     ];
 
     /**
@@ -87,6 +87,7 @@ class Group implements Fieldable, Groupable
 
     /**
      * @param string $template
+     *
      * @return $this
      */
     public function gridTemplateColumns(string $template): self
