@@ -20,6 +20,7 @@ class Group implements Fieldable, Groupable
         'class'       => 'col-12 col-md form-group mb-md-0',
         'align'       => 'align-items-baseline',
         'itemToEnd'   => false,
+        'gridTemplateColumns' => null
     ];
 
     /**
@@ -71,7 +72,9 @@ class Group implements Fieldable, Groupable
      */
     public function autoWidth(): self
     {
-        return $this->set('class', 'col-auto');
+        $countColumns = count($this->get('group'));
+
+        return $this->set('gridTemplateColumns', sprintf('repeat(%s, max-content)', $countColumns));
     }
 
     /**
@@ -79,7 +82,16 @@ class Group implements Fieldable, Groupable
      */
     public function fullWidth(): self
     {
-        return $this->set('class', 'col');
+        return $this->set('gridTemplateColumns', null);
+    }
+
+    /**
+     * @param string $template
+     * @return $this
+     */
+    public function gridTemplateColumns(string $template): self
+    {
+        return $this->set('gridTemplateColumns', $template);
     }
 
     /**
