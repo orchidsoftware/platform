@@ -1,8 +1,11 @@
-<div class="row form-group {{ $align }}">
+<div class="d-flex flex-column grid d-md-grid form-group {{ $align }}"
+    @style([
+        '--bs-columns: '.count($group),
+        'grid-template-columns: '. $widthColumns => $widthColumns !== null,
+    ])>
     @foreach($group as $field)
         <div class="{{ $class }}
                     {{ $loop->first && $itemToEnd ? 'ms-auto': '' }}
-                    {{ !$loop->last ? 'pe-md-0': '' }}
             ">
             {!! $field !!}
         </div>
