@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.42.0 - 2024-11-01
+
+### Changed
+- Restrict excessively long URLs in modal windows [#2917](https://github.com/orchidsoftware/platform/issues/2917)
+
+## 14.41.0 - 2024-10-29
+
+### Added
+- Template for grid columns on `Group` [#2913](https://github.com/orchidsoftware/platform/pull/2913)
+
 ## 14.40.0 - 2024-10-28
 
 ### Changed

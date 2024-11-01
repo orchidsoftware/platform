@@ -4,8 +4,11 @@
          role="dialog"
          aria-labelledby="screen-modal-{{$key}}"
          data-controller="modal"
-         data-modal-slug-value="{{$templateSlug}}"
-         data-modal-url-value="{{$deferredRoute}}"
+         data-modal-slug-value="{{ $templateSlug }}"
+         data-modal-url-value="{{ $deferredRoute }}"
+         @if(!empty($deferrerParams))
+            data-modal-parameters-value='@json($deferrerParams)'
+         @endif
          data-modal-open-value="{{ var_export($open) }}"
         {{$staticBackdrop ? "data-bs-backdrop=static" : ''}}
     >
@@ -62,7 +65,7 @@
                 <div class="modal-body layout-wrapper">
                     <x-orchid-stream target="{{$templateSlug}}">
                         <div id="{{ $templateSlug }}">
-                            @if(!empty($deferredRoute) == \Orchid\Support\Facades\Dashboard::isPartialRequest())
+                            @if(!empty($deferrerParams) == \Orchid\Support\Facades\Dashboard::isPartialRequest())
                                 @foreach($manyForms as $formKey => $modal)
                                     @foreach($modal as $item)
                                         {!! $item ?? '' !!}

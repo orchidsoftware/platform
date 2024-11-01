@@ -23,7 +23,7 @@ Route::screen('search/{query}', SearchScreen::class)
         ->push(__('Search'))
         ->push($query));
 
-Route::post('async/{screen}/{method?}/{template?}', [AsyncController::class, 'load'])
+Route::post('async', [AsyncController::class, 'load'])
     ->name('async');
 
 Route::post('listener/{screen}/{layout}', [AsyncController::class, 'listener'])

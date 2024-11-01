@@ -12,6 +12,9 @@ export default class extends ApplicationController {
             type: String,
             default: ''
         },
+        parameters: {
+            type: Object,
+        },
         open: {
             type: Boolean,
             default: false
@@ -112,7 +115,7 @@ export default class extends ApplicationController {
         }
 
         // Load deferred data if URL is specified and no validation errors are present
-        if (this.urlValue && !options.validateError) {
+        if (Object.keys(this.parametersValue).length !== 0 && !options.validateError) {
             this.asyncLoadData(JSON.parse(options.params));
         }
 
@@ -153,7 +156,8 @@ export default class extends ApplicationController {
 
         // Load data via stream and update modal state
         this.loadStream(`${this.urlValue}?${query}`, {
-            '_state': document.getElementById('screen-state')?.value || null
+            '_state': document.getElementById('screen-state')?.value || null,
+            ...this.parametersValue
         })
             .then(() => this.element.classList.remove('modal-loading'));
     }

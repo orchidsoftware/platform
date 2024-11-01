@@ -120,7 +120,11 @@ abstract class Screen extends Controller
     {
         Dashboard::setCurrentScreen($this, true);
 
-        abort_unless(method_exists($this, $method), 404, "Async method: {$method} not found");
+        abort_unless(
+            static::getAvailableMethods()->contains($method),
+            Response::HTTP_BAD_REQUEST,
+            "Async method '{$method}' is unavailable."
+        );
 
         abort_unless($this->checkAccess(request()), static::unaccessed());
 

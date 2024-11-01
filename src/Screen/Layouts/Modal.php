@@ -89,7 +89,8 @@ class Modal extends Layout
     public function build(Repository $repository)
     {
         $this->variables = array_merge($this->variables, [
-            'deferredRoute' => $this->getDataLoadingUrl(),
+            'deferredRoute' => route('platform.async'),
+            'deferrerParams' => $this->getDeferrerDataLoadingParameters(),
         ]);
 
         return $this->buildAsDeep($repository);
@@ -240,24 +241,24 @@ class Modal extends Layout
     }
 
     /**
-     * Return the URL for loading data from the browser.
+     * Return the deferrer parameters for loading data from the browser.
      */
-    protected function getDataLoadingUrl(): ?string
+    protected function getDeferrerDataLoadingParameters(): array
     {
         $screen = Dashboard::getCurrentScreen();
 
         if (! $screen) {
-            return null;
+            return [];
         }
 
         if (empty($this->dataLoadingMethod)) {
-            return null;
+            return [];
         }
 
-        return route('platform.async', [
-            'screen'   => Crypt::encryptString(get_class($screen)),
-            'method'   => $this->dataLoadingMethod,
-            'template' => $this->getSlug(),
-        ]);
+        return [
+            '_screen' => Crypt::encryptString(get_class($screen)),
+            '_call' => $this->dataLoadingMethod,
+            '_template' => $this->getSlug(),
+        ];
     }
 }

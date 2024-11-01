@@ -15,14 +15,25 @@ class AsyncController extends Controller
      *
      * @return mixed
      */
-    public function load(string $screen, string $method, string $layout)
+    public function load(Request $request)
     {
-        $screen = Crypt::decryptString($screen);
+        $request->validate([
+            '_call' => 'required|string',
+            '_screen' => 'required|string',
+            '_template' => 'required|string',
+        ]);
+
+        $screen = Crypt::decryptString(
+            $request->input('_screen')
+        );
 
         /** @var Screen $screen */
         $screen = app($screen);
 
-        return $screen->asyncBuild($method, $layout);
+        return $screen->asyncBuild(
+            $request->input('_call'),
+            $request->input('_template')
+        );
     }
 
     /**
