@@ -48,7 +48,7 @@ class AsyncScreenTest extends TestFeatureCase
             ->actingAs($this->createAdminUser())
             ->post(route('platform.async'), [
                 '_screen'   => Crypt::encryptString(DependentListenerScreen::class),
-                '_call'   => Str::random(),
+                '_call'     => Str::random(),
                 '_template' => $layout->getSlug(),
             ]);
 
@@ -71,7 +71,7 @@ class AsyncScreenTest extends TestFeatureCase
                 'second' => 3,
             ]), [
                 '_screen'   => Crypt::encryptString(DependentListenerScreen::class),
-                '_call'   => 'validate',
+                '_call'     => 'validate',
                 '_template' => $layout->getSlug(),
             ]);
 

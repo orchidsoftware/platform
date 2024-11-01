@@ -18,8 +18,8 @@ class AsyncController extends Controller
     public function load(Request $request)
     {
         $request->validate([
-            '_call' => 'required|string',
-            '_screen' => 'required|string',
+            '_call'     => 'required|string',
+            '_screen'   => 'required|string',
             '_template' => 'required|string',
         ]);
 

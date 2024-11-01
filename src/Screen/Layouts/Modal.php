@@ -89,7 +89,7 @@ class Modal extends Layout
     public function build(Repository $repository)
     {
         $this->variables = array_merge($this->variables, [
-            'deferredRoute' => route('platform.async'),
+            'deferredRoute'  => route('platform.async'),
             'deferrerParams' => $this->getDeferrerDataLoadingParameters(),
         ]);
 
@@ -256,8 +256,8 @@ class Modal extends Layout
         }
 
         return [
-            '_screen' => Crypt::encryptString(get_class($screen)),
-            '_call' => $this->dataLoadingMethod,
+            '_screen'   => Crypt::encryptString(get_class($screen)),
+            '_call'     => $this->dataLoadingMethod,
             '_template' => $this->getSlug(),
         ];
     }
