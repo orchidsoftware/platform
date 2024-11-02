@@ -36,7 +36,7 @@ class LoginTest extends TestBrowserCase
             //Redirect to home
             $browser
                 ->visitRoute('platform.login')
-                ->waitForLocation('/home');
+                ->waitForLocation('/');
 
             //Logout
             $browser

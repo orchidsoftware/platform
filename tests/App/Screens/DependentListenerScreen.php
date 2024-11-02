@@ -50,16 +50,6 @@ class DependentListenerScreen extends Screen
     public function layout(): array
     {
         return [
-            Layout::rows([
-                Input::make('first')
-                    ->title('First argument')
-                    ->type('number'),
-
-                Input::make('second')
-                    ->title('Second argument')
-                    ->type('number'),
-            ]),
-
             DependentSumListener::class,
         ];
     }

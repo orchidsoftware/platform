@@ -9,12 +9,6 @@
     <input type="hidden" name="email" required value="{{ $lockUser->email }}">
 </div>
 
-@error('email')
-    <span class="d-block invalid-feedback text-danger">
-        {{ $errors->first('email') }}
-    </span>
-@enderror
-
 <div class="mb-3">
     <input type="hidden" name="remember" value="true">
 
@@ -25,6 +19,12 @@
             ->autofocus()
             ->placeholder(__('Enter your password'))
     !!}
+
+    @error('email')
+        <span class="d-block invalid-feedback">
+            {{ $errors->first('email') }}
+        </span>
+    @enderror
 </div>
 
 <div class="row align-items-center">

@@ -79,7 +79,7 @@ jobs:
       - name: Execute Unit Tests
         run: vendor/bin/phpunit --testsuite=Browser --no-coverage --disable-coverage-ignore
         env:
-          RUNNING_IN_CI: true
+          CI: true
 
       - name: Upload Failed Screenshots
         uses: actions/upload-artifact@v3.1.2

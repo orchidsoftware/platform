@@ -7,11 +7,9 @@ namespace Orchid\Tests\Browser;
 use Laravel\Dusk\Browser;
 use Orchid\Tests\TestBrowserCase;
 
+
 class ModalTest extends TestBrowserCase
 {
-    /**
-     * @throws \Throwable
-     */
     public function testReopenModalForValidationFailed(): void
     {
         $this->browse(function (Browser $browser) {
@@ -35,9 +33,6 @@ class ModalTest extends TestBrowserCase
         });
     }
 
-    /**
-     * @throws \Throwable
-     */
     public function testDoubleReopenModalForValidationFailed(): void
     {
         $this->browse(function (Browser $browser) {
@@ -59,9 +54,6 @@ class ModalTest extends TestBrowserCase
         });
     }
 
-    /**
-     * @throws \Throwable
-     */
     public function testAutoOpenModal(): void
     {
         $this->browse(function (Browser $browser) {

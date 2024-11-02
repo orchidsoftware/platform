@@ -6,6 +6,8 @@ namespace Orchid\Tests\Unit\Screen\Fields;
 
 use Illuminate\Foundation\Testing\Concerns\InteractsWithSession;
 use Illuminate\Session\Store;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\MessageBag;
 use Orchid\Screen\Fields\Input;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 use Throwable;
@@ -161,5 +163,20 @@ class InputTest extends TestFieldsUnitCase
             ->set('title', null);
 
         $this->assertNull($input->get('title'));
+    }
+
+    public function testValidationMessage(): void
+    {
+        $errors = new MessageBag(['name' => ['Name is required']]);
+
+        Session::put('errors', $errors);
+
+        $input = Input::make('name');
+
+        $this->assertStringContainsString(
+            'Name is required',
+            (string) $input,
+            'Expected validation error message was not found in the rendered input.'
+        );
     }
 }

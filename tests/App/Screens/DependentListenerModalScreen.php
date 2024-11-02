@@ -61,16 +61,6 @@ class DependentListenerModalScreen extends Screen
     {
         return [
             Layout::modal('modal-listener', [
-                Layout::rows([
-                    Input::make('first')
-                        ->title('First argument')
-                        ->type('number'),
-
-                    Input::make('second')
-                        ->title('Second argument')
-                        ->type('number'),
-                ]),
-
                 DependentSumListener::class,
             ])->title('Listener in modal'),
         ];

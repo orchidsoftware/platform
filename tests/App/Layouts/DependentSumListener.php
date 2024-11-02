@@ -40,6 +40,14 @@ class DependentSumListener extends Listener
     {
         return [
             Layout::rows([
+                Input::make('first')
+                    ->title('First argument')
+                    ->type('number'),
+
+                Input::make('second')
+                    ->title('Second argument')
+                    ->type('number'),
+
                 Input::make('sum')
                     ->title('SUM')
                     ->help('The result of adding the first argument and the second')
