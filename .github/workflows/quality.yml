@@ -43,8 +43,15 @@ jobs:
       - name: Install Dependencies 🔧
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
+      # Installing psalm separately due to conflict with phpunit
+      - name: Install psalm
+        run: |
+          wget https://github.com/vimeo/psalm/releases/latest/download/psalm.phar
+          chmod +x psalm.phar
+          mv psalm.phar /usr/local/bin/psalm
+
       - name: Run psalm
-        run: vendor/bin/psalm --output-format=github
+        run: psalm --output-format=github
 
   phploc:
     name: phploc
