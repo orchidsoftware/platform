@@ -67,17 +67,28 @@ export default class ApplicationController extends Controller {
     }
 
     /**
+     * Loads a Turbo Stream from the given URL with the specified data,
+     * and optionally invokes a callback after the main handler.
      *
-     * @param url
-     * @param data
+     * @param {string} url - The endpoint to send the request to.
+     * @param {Object} data - The data payload for the request.
+     * @param {Function} [callback] - Optional callback to execute after the main handler.
+     *
+     * @returns {Promise} - A promise that resolves when the stream message is processed.
      */
-    loadStream(url, data) {
-       return window.axios.post(url, data, {
+    loadStream(url, data, callback = null) {
+        return window.axios.post(url, data, {
             headers: {
                 Accept: "text/vnd.turbo-stream.html",
             },
         })
             .then(response => response.data)
-            .then(html => Turbo.renderStreamMessage(html))
+            .then(html => {
+                Turbo.renderStreamMessage(html);
+                if (typeof callback === 'function') {
+                    callback(html);
+                }
+            });
     }
+
 }

@@ -1,24 +1,37 @@
 import ApplicationController from "./application_controller";
 
 export default class extends ApplicationController {
-    /**
-     *
-     */
-    connect() {
-        this.targets.forEach(name => {
-            document.querySelectorAll(`[name="${name}"]`)
-                .forEach((field) =>
-                    field.addEventListener('change',  () => this.asyncLoadData())
-                );
-        });
+    static classes = [ "loading" ]
+    static values = {
+        url: {
+            type: String,
+        },
+        watched: {
+            type: Array,
+            default: [],
+        },
     }
 
     /**
      *
      */
-    asyncLoadData() {
-        const data = new FormData(this.element.closest('form'));
+    connect() {
+        this.fieldsValue.forEach(name => {
+            document.querySelectorAll(`[name="${name}"]`)
+                .forEach((field) =>
+                    field.addEventListener('change',  () => this.debouncedHandleFieldChange())
+                );
+        });
+    }
 
+    /**
+     * Handles the change event on the target fields by asynchronously loading data.
+     */
+    handleFieldChange() {
+        const formElement = this.element.closest('form');
+        formElement.classList.add(...this.loadingClasses);
+
+        const data = new FormData(formElement);
 
         let state = document.getElementById('screen-state').value;
 
@@ -27,15 +40,29 @@ export default class extends ApplicationController {
             data.append('_state', state)
         }
 
-
-        this.loadStream(this.data.get('async-route'), data);
+        this.loadStream(this.urlValue, data, () => {
+            formElement.classList.remove(...this.loadingClasses);
+        });
     }
 
     /**
-     *
-     * @returns {any}
+     * Debounced version of handleFieldChange to prevent multiple rapid requests.
      */
-    get targets() {
-        return JSON.parse(this.data.get('targets'));
+    debouncedHandleFieldChange = this.debounce(() => this.handleFieldChange(), 200);
+
+
+    /**
+     * Utility function to debounce another function.
+     *
+     * @param {Function} func - The function to debounce.
+     * @param {number} wait - The debounce delay in milliseconds.
+     * @returns {Function} - A debounced function.
+     */
+    debounce(func, wait) {
+        let timeout;
+        return (...args) => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+        };
     }
 }
