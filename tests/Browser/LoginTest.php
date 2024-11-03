@@ -42,9 +42,9 @@ class LoginTest extends TestBrowserCase
             $browser
                 ->visitRoute('platform.profile')
                 ->clickLink($user->name)
-                ->waitForText('Sign out', 5)
+                ->waitForText('Sign out')
                 ->press('Sign out')
-                ->waitForText('404', 5);
+                ->waitForText('404');
 
             //Redirect to login
             $browser
