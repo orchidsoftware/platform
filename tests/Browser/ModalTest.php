@@ -7,7 +7,6 @@ namespace Orchid\Tests\Browser;
 use Laravel\Dusk\Browser;
 use Orchid\Tests\TestBrowserCase;
 
-
 class ModalTest extends TestBrowserCase
 {
     public function testReopenModalForValidationFailed(): void
