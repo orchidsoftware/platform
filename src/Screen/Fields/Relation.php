@@ -213,7 +213,6 @@ class Relation extends Field
     /**
      * Set the maximum number of items that may be selected.
      *
-     *
      * @return $this
      */
     public function max(int $number)
@@ -226,7 +225,6 @@ class Relation extends Field
     /**
      * Sets the size of the chunk to be shown to the user.
      *
-     *
      * @return $this
      */
     public function chunk(int $value)
@@ -236,7 +234,6 @@ class Relation extends Field
 
     /**
      * Allow empty value to be set
-     *
      *
      * @return $this
      */
