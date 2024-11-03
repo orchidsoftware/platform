@@ -3,18 +3,20 @@
             {{ $attributes }}
             data-controller="modal-toggle"
             data-action="click->modal-toggle#targetModal"
-            data-modal-toggle-title="{{ $modalTitle ?? $title ??  '' }}"
-            data-modal-toggle-key="{{ $modal ?? '' }}"
-            data-modal-toggle-async="{{ $async }}"
-            data-modal-toggle-params='@json($parameters)'
-            data-modal-toggle-action="{{ $action }}"
-            data-modal-toggle-open="{{ $open }}"
+            data-modal-toggle-open-value="{{ var_export($open) }}"
+            data-modal-toggle-title-value="{{ $modalTitle ?? $title ??  '' }}"
+            data-modal-toggle-key-value="{{ $modal ?? '' }}"
+            data-modal-toggle-action-value="{{ $action }}"
+
+            @if(!empty($parameters))
+                data-modal-toggle-parameters-value='@json($parameters)'
+            @endif
     >
 
         @isset($icon)
             <x-orchid-icon :path="$icon" class="overflow-visible"/>
         @endisset
 
-        <span>{{ $name ?? '' }}</span>
+        {{ $name ?? '' }}
     </button>
 @endcomponent
