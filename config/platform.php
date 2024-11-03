@@ -260,7 +260,10 @@ return [
      */
 
     'turbo' => [
-        'cache'   => true,
+        'cache'          => true,
+        'prefetch'       => true,
+        'refresh-method' => 'replace',
+        'refresh-scroll' => 'reset',
     ],
 
     /*
