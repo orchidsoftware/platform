@@ -16,7 +16,7 @@ export default class extends ApplicationController {
      *
      */
     connect() {
-        this.fieldsValue.forEach(name => {
+        this.watchedValue.forEach(name => {
             document.querySelectorAll(`[name="${name}"]`)
                 .forEach((field) =>
                     field.addEventListener('change',  () => this.debouncedHandleFieldChange())
