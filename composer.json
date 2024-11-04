@@ -37,12 +37,13 @@
     ],
     "require": {
         "composer-runtime-api": "^2.2",
+        "laravel/framework": "11.*",
+        "laravel/scout": "^9.0 || ^10.0",
+        "orchestra/testbench": "9.*",
         "orchid/blade-icons": "^4.0",
         "tabuna/breadcrumbs": "^4.0",
-        "laravel/framework": "^10.0||^11.0",
-        "laravel/scout": "^9.0 || ^10.0",
-        "watson/active": "^7.0",
-        "twbs/bootstrap-icons": "^1.10"
+        "twbs/bootstrap-icons": "^1.10",
+        "watson/active": "^7.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -53,7 +54,7 @@
     },
     "conflict": {
         "laravel/framework": "<10.48.8",
-        "orchestra/testbench-core": "<8.23.9",
+        "orchestra/testbench-core": "<8.23.9 || >9.0 <9.5.2",
         "nesbot/carbon": "<2.66.0"
     },
     "autoload": {
