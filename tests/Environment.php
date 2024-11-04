@@ -66,19 +66,7 @@ trait Environment
      */
     protected function getEnvironmentSetUp($app): void
     {
-        $config = config();
-
-        $config->set('app.debug', true);
-        $config->set('auth.providers.users.model', User::class);
-
-        // set up database configuration
-        $config->set('database.connections.orchid', [
-            'driver'   => 'sqlite',
-            'database' => ':memory:',
-            'prefix'   => '',
-        ]);
-        $config->set('scout.driver', 'collection');
-        $config->set('database.default', 'orchid');
+        config()->set('auth.providers.users.model', User::class);
     }
 
     /**
