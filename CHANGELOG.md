@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.43.0 - 2024-11-06
+
+### Added
+- Additional configuration parameters for Hotwire by default
+
+### Changed
+- The loading of modal windows in the browser has been redesigned. Now, upon invalidation, modal windows, including deferred ones, will automatically open.
+- Installed Psalm to run exclusively on GitHub Actions.
+- Set types to `static` in `Field`.
+
+### Fixed
+- Incorrect listeners names
+
+### Removed
+- Unused option when running PHPUnit
+
 ## 14.42.0 - 2024-11-01
 
 ### Changed
