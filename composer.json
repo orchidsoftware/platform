@@ -39,7 +39,6 @@
         "composer-runtime-api": "^2.2",
         "laravel/framework": "^10.0 || ^11.0",
         "laravel/scout": "^9.0 || ^10.0",
-        "orchestra/testbench": "9.*",
         "orchid/blade-icons": "^4.0",
         "tabuna/breadcrumbs": "^4.0",
         "twbs/bootstrap-icons": "^1.10",
@@ -48,6 +47,7 @@
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.14",
+        "orchestra/testbench": "^8.0 || ^9.0",
         "orchestra/testbench-core": "^8.0 || ^9.0",
         "orchestra/testbench-dusk": "^8.0 || ^9.0",
         "phpunit/phpunit": "^10.0 || ^11.0"

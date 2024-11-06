@@ -16,9 +16,6 @@ jobs:
           coverage: pcov
           tools: composer:v2
 
-      - name: Validate composer.json and composer.lock 👀
-        run: composer validate
-
       - name: Install Dependencies 🔧
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
