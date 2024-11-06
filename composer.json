@@ -37,7 +37,7 @@
     ],
     "require": {
         "composer-runtime-api": "^2.2",
-        "laravel/framework": "11.*",
+        "laravel/framework": "^10.0 || ^11.0",
         "laravel/scout": "^9.0 || ^10.0",
         "orchestra/testbench": "9.*",
         "orchid/blade-icons": "^4.0",
