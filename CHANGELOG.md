@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.43.1 - 2024-11-09
+
+### Changed
+- Improve performance for simple model attribute [#2921](https://github.com/orchidsoftware/platform/pull/2921)
+
 ## 14.43.0 - 2024-11-06
 
 ### Added
