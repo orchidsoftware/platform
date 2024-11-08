@@ -105,7 +105,7 @@ class Select extends Field implements ComplexFieldConcern
             ->mapWithKeys(fn (\UnitEnum $item) => [
                 $reflection->isBacked() ? $item->value : $item->name => $displayName === null
                     ? __($item->name)
-                    : $item->$displayName()
+                    : $item->$displayName(),
             ])
             ->toArray();
 
@@ -126,8 +126,8 @@ class Select extends Field implements ComplexFieldConcern
      * Set options from an Eloquent model or a collection of models.
      *
      * @param Model|Builder|Collection $model The Eloquent model or query builder to use.
-     * @param string        $name  The attribute to use as the display name.
-     * @param string        $key   The attribute to use as the key. Defaults to the model's primary key.
+     * @param string                   $name  The attribute to use as the display name.
+     * @param string                   $key   The attribute to use as the key. Defaults to the model's primary key.
      *
      * @return self
      */

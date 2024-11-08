@@ -239,7 +239,7 @@ abstract class Screen extends Controller
             'needPreventsAbandonment' => $this->needPreventsAbandonment(),
             'state'                   => $this->serializableState(),
             'controller'              => $this->frontendController(),
-            'watched'                 => collect($this->watched())->map(fn ($target) => Builder::convertDotToArray($target))->toJson()
+            'watched'                 => collect($this->watched())->map(fn ($target) => Builder::convertDotToArray($target))->toJson(),
         ]);
     }
 
