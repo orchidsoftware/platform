@@ -26,7 +26,7 @@ trait AsSource
     {
         // When field does not contain a dot, it is a simple field name.
         // And we not need to use cast model to array for this case.
-        if (!str_contains($field, '.')) {
+        if (! str_contains($field, '.')) {
             return $this->getAttribute($field);
         }
 
