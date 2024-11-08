@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Fields;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\Concerns\ComplexFieldConcern;
 use Orchid\Screen\Concerns\Multipliable;
@@ -47,7 +48,6 @@ class Select extends Field implements ComplexFieldConcern
         'options'      => [],
         'allowEmpty'   => '',
         'allowAdd'     => false,
-        'isOptionList' => false,
     ];
 
     /**
@@ -69,29 +69,29 @@ class Select extends Field implements ComplexFieldConcern
         'maximumSelectionLength',
     ];
 
-    public function __construct()
-    {
-        $this->addBeforeRender(function () {
-            $isOptionList = array_is_list((array) $this->get('options', []));
-            $this->set('isOptionList', $isOptionList);
-        });
-    }
-
     /**
-     * @param string|Model $model
+     * Populate the select options from an Eloquent model.
+     *
+     * @param Model|string $model The model class or instance to fetch options from.
+     * @param string       $name  The attribute to use as the display name.
+     * @param string|null  $key   Optional. The key attribute (e.g., ID). Defaults to the model's primary key.
+     *
+     * @return self
      */
-    public function fromModel($model, string $name, ?string $key = null): self
+    public function fromModel(Model|string $model, string $name, ?string $key = null): self
     {
-        /* @var $model Model */
-        $model = is_object($model) ? $model : new $model;
-        $key = $key ?? $model->getModel()->getKeyName();
+        $model = is_string($model) ? new $model : $model;
+
+        $key = $key ?? $model->getKeyName();
 
         return $this->setFromEloquent($model, $name, $key);
     }
 
     /**
-     * @param string      $enum
-     * @param string|null $displayName
+     * Populate the select options from a PHP Enum.
+     *
+     * @param string      $enum        The fully-qualified name of the enum class.
+     * @param string|null $displayName Optional. The method or property to use as the display name. Defaults to the enum case name.
      *
      * @throws \ReflectionException
      *
@@ -100,51 +100,61 @@ class Select extends Field implements ComplexFieldConcern
     public function fromEnum(string $enum, ?string $displayName = null): self
     {
         $reflection = new \ReflectionEnum($enum);
-        $options = [];
-        foreach ($enum::cases() as $item) {
-            $key = $reflection->isBacked() ? $item->value : $item->name;
-            $options[$key] = is_null($displayName) ? __($item->name) : $item->$displayName();
-        }
+
+        $options = collect($enum::cases())
+            ->mapWithKeys(fn (\UnitEnum $item) => [
+                $reflection->isBacked() ? $item->value : $item->name => $displayName === null
+                    ? __($item->name)
+                    : $item->$displayName()
+            ])
+            ->toArray();
+
         $this->set('options', $options);
 
-        return $this->addBeforeRender(function () use ($reflection, $enum) {
-            $value = [];
-            collect($this->get('value'))->each(static function ($item) use (&$value, $reflection, $enum) {
-                if ($item instanceof $enum) {
-                    /** @var \UnitEnum $item */
-                    $value[] = $reflection->isBacked() ? $item->value : $item->name;
-                } else {
-                    $value[] = $item;
-                }
-            });
+        return $this->addBeforeRender(function () use ($enum, $reflection) {
+            $value = collect($this->get('value'))
+                ->map(fn ($item) => $item instanceof $enum
+                    ? ($reflection->isBacked() ? $item->value : $item->name)
+                    : $item)
+                ->toArray();
+
             $this->set('value', $value);
         });
     }
 
     /**
-     * @param Builder|Model $model
+     * Set options from an Eloquent model or a collection of models.
+     *
+     * @param Model|Builder|Collection $model The Eloquent model or query builder to use.
+     * @param string        $name  The attribute to use as the display name.
+     * @param string        $key   The attribute to use as the key. Defaults to the model's primary key.
+     *
+     * @return self
      */
-    private function setFromEloquent($model, string $name, string $key): self
+    private function setFromEloquent(Model|Builder|Collection $model, string $name, string $key): self
     {
-        $options = $model->pluck($name, $key);
+        $options = $model->pluck($name, $key)->toArray();
 
         $this->set('options', $options);
 
         return $this->addBeforeRender(function () use ($name) {
-            $value = [];
-
-            collect($this->get('value'))->each(static function ($item) use (&$value, $name) {
-                if (is_object($item)) {
-                    $value[$item->id] = $item->$name;
-                } else {
-                    $value[] = $item;
-                }
-            });
+            $value = collect($this->get('value'))
+                ->map(fn ($item) => is_object($item) ? [$item->id => $item->$name] : $item)
+                ->toArray();
 
             $this->set('value', $value);
         });
     }
 
+    /**
+     * Populate the select options from a query builder result.
+     *
+     * @param Builder     $builder The query builder to fetch options from.
+     * @param string      $name    The attribute to use as the display name.
+     * @param string|null $key     Optional. The key attribute (e.g., ID). Defaults to the model's primary key.
+     *
+     * @return self
+     */
     public function fromQuery(Builder $builder, string $name, ?string $key = null): self
     {
         $key = $key ?? $builder->getModel()->getKeyName();
@@ -152,27 +162,43 @@ class Select extends Field implements ComplexFieldConcern
         return $this->setFromEloquent($builder->get(), $name, $key);
     }
 
+    /**
+     * Allow the Select field to have an empty (null) option.
+     *
+     * @param string $name The display name for the empty option.
+     * @param string $key  The key to use for the empty option. Defaults to an empty string.
+     *
+     * @return self
+     */
     public function empty(string $name = '', string $key = ''): self
     {
         return $this->addBeforeRender(function () use ($name, $key) {
-            $options = $this->get('options', []);
+            $options = collect($this->get('options', []))->toArray();
 
-            if (! is_array($options)) {
-                $options = $options->toArray();
-            }
-
-            $value = [$key => $name] + $options;
-
-            $this->set('options', $value);
+            $this->set('options', [$key => $name] + $options);
             $this->set('allowEmpty', '1');
         });
     }
 
     /**
-     * @return self
+     * Set the maximum number of items that may be selected.
+     *
+     * @return $this
      */
-    public function taggable()
+    public function max(int $number)
     {
-        return $this->set('tags', true);
+        $this->set('data-maximum-selection-length', (string) $number);
+
+        return $this;
+    }
+
+    /**
+     * Allow empty value to be set
+     *
+     * @deprecated use `allowEmpty()` instead
+     */
+    public function nullable(bool $value = true): self
+    {
+        return $this->set('allowEmpty', $value);
     }
 }

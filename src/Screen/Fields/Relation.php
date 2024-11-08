@@ -213,7 +213,6 @@ class Relation extends Field
     /**
      * Set the maximum number of items that may be selected.
      *
-     *
      * @return $this
      */
     public function max(int $number)

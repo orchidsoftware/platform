@@ -17,24 +17,30 @@
         @stack('modals-container')
     </div>
 
-    <form id="post-form"
-          class="mb-md-4 h-100"
-          method="post"
-          enctype="multipart/form-data"
-          data-controller="form"
-          data-form-need-prevents-form-abandonment-value="{{ var_export($needPreventsAbandonment) }}"
-          data-form-failed-validation-message-value="{{ $formValidateMessage }}"
-          data-action="keypress->form#disableKey
+    <x-orchid-stream target="post-form" :rule="\request()->routeIs('platform.watch')">
+
+        <form id="post-form"
+              class="mb-md-4 h-100"
+              method="post"
+              enctype="multipart/form-data"
+              data-controller="form test"
+              data-test-watched-value="{{ $watched }}"
+              data-test-url-value="{{ route('platform.watch') }}"
+              data-form-need-prevents-form-abandonment-value="{{ var_export($needPreventsAbandonment) }}"
+              data-form-failed-validation-message-value="{{ $formValidateMessage }}"
+              data-action="keypress->form#disableKey
                       turbo:before-fetch-request@document->form#confirmCancel
                       beforeunload@window->form#confirmCancel
                       change->form#changed
                       form#submit"
-          novalidate
-    >
-        {!! $layouts !!}
-        @csrf
-        @include('platform::partials.confirm')
-    </form>
+              novalidate
+        >
+            {!! $layouts !!}
+            @csrf
+            @include('platform::partials.confirm')
+        </form>
+
+    </x-orchid-stream>
 
     <div data-controller="filter">
         <form id="filters" autocomplete="off"

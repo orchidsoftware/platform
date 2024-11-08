@@ -29,6 +29,9 @@ Route::post('async', [AsyncController::class, 'load'])
 Route::post('listener/{screen}/{layout}', [AsyncController::class, 'listener'])
     ->name('async.listener');
 
+Route::post('watch', [AsyncController::class, 'watch'])
+    ->name('watch');
+
 // TODO: Remove group
 Route::prefix('systems')->group(function () {
     Route::post('files', [AttachmentController::class, 'upload'])

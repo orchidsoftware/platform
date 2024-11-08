@@ -175,6 +175,25 @@ abstract class Screen extends Controller
             ->header('Content-Type', 'text/vnd.turbo-stream.html');
     }
 
+    public function asyncParticalRefresh()
+    {
+        Dashboard::setCurrentScreen($this, true);
+
+        abort_unless($this->checkAccess(request()), static::unaccessed());
+
+        $state = $this->extractState();
+        $this->fillPublicProperty($state);
+
+        $query = app()->call([$this, 'refresh']);
+
+        $repository = new Repository(collect($state->all())->merge($query)->all());
+
+        $view = $this->view($repository)->fragments();
+
+        return response($view)
+            ->header('Content-Type', 'text/vnd.turbo-stream.html');
+    }
+
     /**
      * This method extracts the state from a request parameter.
      * If the '_state' parameter is missing, an empty Repository object is returned.
@@ -220,6 +239,7 @@ abstract class Screen extends Controller
             'needPreventsAbandonment' => $this->needPreventsAbandonment(),
             'state'                   => $this->serializableState(),
             'controller'              => $this->frontendController(),
+            'watched'                 => collect($this->watched())->map(fn ($target) => Builder::convertDotToArray($target))->toJson()
         ]);
     }
 
@@ -541,5 +561,13 @@ abstract class Screen extends Controller
     public function __sleep(): array
     {
         return $this->getPublicPropertyNames()->all();
+    }
+
+    /**
+     * List of field names for which values will be listened.
+     */
+    public function watched(): iterable
+    {
+        return [];
     }
 }

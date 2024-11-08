@@ -59,4 +59,16 @@ class AsyncController extends Controller
 
         return $screen->asyncParticalLayout($layout, $request);
     }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return mixed
+     */
+    public function watch(Request $request)
+    {
+        $screen = Crypt::decrypt($request->input('_state'));
+
+        return app()->call([$screen, 'asyncParticalRefresh']);
+    }
 }
