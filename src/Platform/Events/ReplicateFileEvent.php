@@ -17,7 +17,5 @@ class ReplicateFileEvent
     /**
      * ReplicateFileEvent constructor.
      */
-    public function __construct(public Attachment $attachment, public int $time)
-    {
-    }
+    public function __construct(public Attachment $attachment, public int $time) {}
 }

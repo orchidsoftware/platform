@@ -17,7 +17,5 @@ class UploadedFileEvent
     /**
      * UploadedFileEvent constructor.
      */
-    public function __construct(public Attachment $attachment)
-    {
-    }
+    public function __construct(public Attachment $attachment) {}
 }

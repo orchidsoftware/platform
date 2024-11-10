@@ -14,7 +14,5 @@ class InstallEvent
     /**
      * InstallEvent constructor.
      */
-    public function __construct(public Command $command)
-    {
-    }
+    public function __construct(public Command $command) {}
 }
