@@ -16,13 +16,6 @@ class AddRoleEvent
     use SerializesModels;
 
     /**
-     * The authenticated user.
-     *
-     * @var User
-     */
-    public $user;
-
-    /**
      * The role(s) that were added to the user.
      *
      * @var Collection
@@ -35,9 +28,8 @@ class AddRoleEvent
      * @param mixed $user The user to whom the role(s) is added
      * @param mixed $role The role(s) to be added
      */
-    public function __construct($user, $role)
+    public function __construct(public mixed $user, mixed $role)
     {
-        $this->user = $user;
         $this->roles = collect($role);
     }
 }

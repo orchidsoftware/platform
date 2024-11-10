@@ -16,7 +16,7 @@ class GroupCollection extends Collection
     public function toChart(?\Closure $closure = null): array
     {
         // If the closure is not set, we define a default one that returns the original label.
-        $closure = $closure ?? static fn ($label) => $label;
+        $closure ??= static fn ($label) => $label;
 
         return $this
             ->sortByDesc('value')

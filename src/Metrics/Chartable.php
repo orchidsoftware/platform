@@ -34,7 +34,7 @@ trait Chartable
      */
     private function groupByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
     {
-        $dateColumn = $dateColumn ?? $builder->getModel()->getCreatedAtColumn();
+        $dateColumn ??= $builder->getModel()->getCreatedAtColumn();
 
         $startDate = empty($startDate)
             ? Carbon::now()->subMonth()

@@ -12,15 +12,9 @@ use Illuminate\Console\Command;
 class InstallEvent
 {
     /**
-     * @var Command
-     */
-    public $command;
-
-    /**
      * InstallEvent constructor.
      */
-    public function __construct(Command $command)
+    public function __construct(public Command $command)
     {
-        $this->command = $command;
     }
 }

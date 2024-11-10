@@ -15,15 +15,9 @@ class UploadedFileEvent
     use SerializesModels;
 
     /**
-     * @var Attachment
-     */
-    public $attachment;
-
-    /**
      * UploadedFileEvent constructor.
      */
-    public function __construct(Attachment $attachment)
+    public function __construct(public Attachment $attachment)
     {
-        $this->attachment = $attachment;
     }
 }

@@ -169,24 +169,30 @@ class InstallCommand extends Command
             return $this;
         }
 
-        $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($directory));
+        $files = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($directory)
+        );
 
-        // Проходим по всем файлам в директории
+        // Iterate through all files in the directory
         foreach ($files as $file) {
-            // Проверяем, что это файл и имеет расширение .php
-            if ($file->isFile() && $file->getExtension() === 'php') {
-                $filePath = $file->getRealPath();
-                $fileContents = file_get_contents($filePath);
-
-                // Если содержимое файла содержит старый namespace
-                if (strpos($fileContents, $search) !== false) {
-                    // Заменяем старый namespace на новый
-                    $updatedContents = str_replace($search, $replace, $fileContents);
-
-                    // Сохраняем изменения
-                    file_put_contents($filePath, $updatedContents);
-                }
+            // Skip if not a .php file
+            if ($file->getExtension() !== 'php') {
+                continue;
             }
+
+            $filePath = $file->getRealPath();
+            $fileContents = file_get_contents($filePath);
+
+            // Skip if the file does not contain the old namespace
+            if (! str_contains($fileContents, $search)) {
+                continue;
+            }
+
+            // Replace the old namespace with the new one
+            $updatedContents = str_replace($search, $replace, $fileContents);
+
+            // Save the changes
+            file_put_contents($filePath, $updatedContents);
         }
 
         return $this;

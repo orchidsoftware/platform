@@ -6,18 +6,10 @@ namespace Orchid\Platform\Events;
 
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Collection;
-use Orchid\Platform\Models\User;
 
 class RemoveRoleEvent
 {
     use SerializesModels;
-
-    /**
-     * The authenticated user.
-     *
-     * @var User
-     */
-    public $user;
 
     /**
      * Roles that will be removed.
@@ -32,9 +24,8 @@ class RemoveRoleEvent
      * @param mixed $user The user object this event relates to.
      * @param mixed $role The role(s) to remove. Can accept either a Collection or an array.
      */
-    public function __construct($user, $role)
+    public function __construct(public mixed $user, mixed $role)
     {
-        $this->user = $user;
         $this->roles = collect($role);
     }
 }

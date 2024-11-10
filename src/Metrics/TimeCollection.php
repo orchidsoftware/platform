@@ -34,7 +34,7 @@ class TimeCollection extends Collection
      */
     public function toChart(string $name, ?\Closure $closure = null): array
     {
-        $closure = $closure ?? static fn ($label) => $label;
+        $closure ??= static fn ($label) => $label;
 
         return [
             'name'    => $name,
@@ -94,8 +94,6 @@ class TimeCollection extends Collection
      */
     public function withoutZeroValues(): TimeCollection
     {
-        return $this->filter(function (array $item) {
-            return $item['value'] !== 0;
-        });
+        return $this->filter(fn (array $item) => $item['value'] !== 0);
     }
 }
