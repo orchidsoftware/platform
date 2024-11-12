@@ -82,10 +82,9 @@ class RelationController extends Controller
 
         $model = $model->where(function ($query) use ($name, $search, $searchColumns) {
             $query->where($name, 'like', '%'.$search.'%');
-            if ($searchColumns !== null) {
-                foreach ($searchColumns as $column) {
-                    $query->orWhere($column, 'like', '%'.$search.'%');
-                }
+
+            if (is_array($searchColumns)) {
+                $this->applySearchColumns($query, $searchColumns, $search);
             }
         });
 
@@ -109,5 +108,25 @@ class RelationController extends Controller
                     'label' => $resultLabel,
                 ];
             });
+    }
+
+    /**
+     * @param          $query
+     * @param string[] $searchColumns
+     * @param null|string   $search
+     *
+     * @return void
+     */
+    private function applySearchColumns($query, array $searchColumns, ?string $search){
+        foreach ($searchColumns as $column) {
+            $lastDotPosition = strrpos($column, '.');
+            if ($lastDotPosition !== false) {
+                $query->whereHas(substr($column, 0, $lastDotPosition), function ($columnQuery) use ($search, $lastDotPosition, $column) {
+                    $columnQuery->where(substr($column, $lastDotPosition), 'LIKE', '%'.$search.'%');
+                });
+            } else {
+                $query->orWhere($column, 'like', '%'.$search.'%');
+            }
+        }
     }
 }
