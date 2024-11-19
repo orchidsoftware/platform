@@ -24,14 +24,20 @@ class SourceTest extends TestUnitCase
         {
             use AsSource;
 
+            protected $attributes = [
+                'preferences' => '{"theme":"dark","notifications":{"email":true,"sms":false}}',
+            ];
+
             protected $fillable = [
                 'id',
                 'name',
                 'options',
+                'preferences',
             ];
 
             protected $casts = [
-                'options' => 'array',
+                'options'     => 'array',
+                'preferences' => 'json',
             ];
 
             public function getGreetingAttribute()
@@ -79,6 +85,17 @@ class SourceTest extends TestUnitCase
 
         $this->assertIsBool($this->model->getContent('options.skills.php'));
         $this->assertTrue($this->model->getContent('options.skills.php'));
+    }
+
+    public function testGetJsonAttribute(): void
+    {
+        $this->assertIsArray($this->model->getContent('preferences.notifications'));
+        $this->assertArrayHasKey('email', $this->model->getContent('preferences.notifications'));
+        $this->assertTrue($this->model->getContent('preferences.notifications.email'));
+        $this->assertFalse($this->model->getContent('preferences.notifications.sms'));
+
+        $this->assertIsString($this->model->getContent('preferences.theme'));
+        $this->assertSame('dark', $this->model->getContent('preferences.theme'));
     }
 
     public function testGetRelation(): void

@@ -32,6 +32,6 @@ trait AsSource
 
         return $this->getAttribute($field) // Try to get the field value from the object's attributes.
             ?? Arr::get($this->getRelations(), $field) // Try to get the field value from the object's relations.
-            ?? Arr::get($this, $field); // Try to get the field value from the object's array representation.
+            ?? Arr::get($this->attributesToArray(), $field); // Try to get the field value from the object's array representation.
     }
 }
