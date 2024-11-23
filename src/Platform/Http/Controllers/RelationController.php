@@ -10,6 +10,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection as BaseCollection;
 use Illuminate\Support\Facades\Crypt;
 use Orchid\Platform\Http\Requests\RelationRequest;
+use Composer\InstalledVersions;
+use Composer\Semver\VersionParser;
 
 class RelationController extends Controller
 {
@@ -80,14 +82,34 @@ class RelationController extends Controller
             });
         }
 
-        $model = $model->where(function ($query) use ($name, $search, $searchColumns) {
-            $query->where($name, 'like', '%'.$search.'%');
-            if ($searchColumns !== null) {
-                foreach ($searchColumns as $column) {
-                    $query->orWhere($column, 'like', '%'.$search.'%');
-                }
-            }
-        });
+        if (InstalledVersions::satisfies(new VersionParser, 'laravel/framework', '>11.17.0')) {
+            $model = $model->where(function ($query) use ($name, $search, $searchColumns) {
+                $value = '%' . $search . '%';
+
+                $query->whereLike($name, $value);
+
+                $query->when($searchColumns !== null, function ($query) use ($searchColumns, $value) {
+                    foreach ($searchColumns as $column) {
+                        $query->orWhereLike($column, $value);
+                    }
+                });
+            });
+        } else {
+            /**
+             * @deprecated logic for older Laravel versions
+             */
+            $model = $model->where(function ($query) use ($name, $search, $searchColumns) {
+                $value = '%' . $search . '%';
+
+                $query->where($name, 'like', $value);
+
+                $query->when($searchColumns !== null, function ($query) use ($searchColumns, $value) {
+                    foreach ($searchColumns as $column) {
+                        $query->orWhere($column, 'like', $value);
+                    }
+                });
+            });
+        }
 
         return $model
             ->limit($chunk)
