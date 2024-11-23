@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.44.0 - 2024-11-23
+
+### Changed
+- Remove default limits for 'Attach' field file size and quantity
+- Use `whereLike` for case-insensitive search [#2924](https://github.com/orchidsoftware/platform/pull/2924)
+- Allow mutation elocument model on `getContent` [#2923](https://github.com/orchidsoftware/platform/issues/2923)
+- Refactored to modern PHP standards
+
+### Fixed
+- Loading `csrf` token for `axios` after login
+
 ## 14.43.1 - 2024-11-09
 
 ### Changed
