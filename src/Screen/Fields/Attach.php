@@ -46,8 +46,8 @@ class Attach extends Field
      * @var array
      */
     protected $attributes = [
-        'maxCount'            => 999,
-        'maxSize'             => 8, // MB
+        'maxCount'            => 0,
+        'maxSize'             => 0, // MB
         'accept'              => '*/*',
         'placeholder'         => 'Upload file',
         'errorMaxSizeMessage' => 'File ":name" is too large to upload',
