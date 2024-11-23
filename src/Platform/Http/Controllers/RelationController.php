@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers;
 
+use Composer\InstalledVersions;
+use Composer\Semver\VersionParser;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection as BaseCollection;
 use Illuminate\Support\Facades\Crypt;
 use Orchid\Platform\Http\Requests\RelationRequest;
-use Composer\InstalledVersions;
-use Composer\Semver\VersionParser;
 
 class RelationController extends Controller
 {
@@ -84,7 +84,7 @@ class RelationController extends Controller
 
         if (InstalledVersions::satisfies(new VersionParser, 'laravel/framework', '>11.17.0')) {
             $model = $model->where(function ($query) use ($name, $search, $searchColumns) {
-                $value = '%' . $search . '%';
+                $value = '%'.$search.'%';
 
                 $query->whereLike($name, $value);
 
@@ -99,7 +99,7 @@ class RelationController extends Controller
              * @deprecated logic for older Laravel versions
              */
             $model = $model->where(function ($query) use ($name, $search, $searchColumns) {
-                $value = '%' . $search . '%';
+                $value = '%'.$search.'%';
 
                 $query->where($name, 'like', $value);
 
