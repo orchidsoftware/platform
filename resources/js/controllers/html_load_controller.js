@@ -8,6 +8,12 @@ export default class extends ApplicationController {
     initialize() {
         this.axios();
         this.csrf();
+
+        /**
+         * Ensures the CSRF token is updated for pages that were reloaded,
+         * such as when a user logs into the system.
+         */
+        window.addEventListener('turbo:load', () => this.csrf());
     }
 
     /**
