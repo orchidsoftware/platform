@@ -37,6 +37,7 @@
     ],
     "require": {
         "composer-runtime-api": "^2.2",
+        "composer/semver": "^3.0",
         "laravel/framework": "^10.0 || ^11.0",
         "laravel/scout": "^9.0 || ^10.0",
         "orchid/blade-icons": "^4.0",
