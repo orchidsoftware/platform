@@ -6,11 +6,20 @@ namespace Orchid\Filters\Types;
 
 use Illuminate\Database\Eloquent\Builder;
 use Orchid\Filters\BaseHttpEloquentFilter;
+use Composer\InstalledVersions;
+use Composer\Semver\VersionParser;
 
 class Like extends BaseHttpEloquentFilter
 {
     public function run(Builder $builder): Builder
     {
-        return $builder->where($this->column, 'like', '%'.$this->getHttpValue().'%');
+        if (InstalledVersions::satisfies(new VersionParser, 'laravel/framework', '>11.17.0')) {
+            return $builder->whereLike($this->column, $this->getHttpValue());
+        }
+
+        /**
+         * @deprecated logic for older Laravel versions
+         */
+        return $builder->where($this->column, 'like', '%' . $this->getHttpValue() . '%');
     }
 }
