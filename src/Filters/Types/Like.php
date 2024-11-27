@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Filters\Types;
 
-use Illuminate\Database\Eloquent\Builder;
-use Orchid\Filters\BaseHttpEloquentFilter;
 use Composer\InstalledVersions;
 use Composer\Semver\VersionParser;
+use Illuminate\Database\Eloquent\Builder;
+use Orchid\Filters\BaseHttpEloquentFilter;
 
 class Like extends BaseHttpEloquentFilter
 {
@@ -20,6 +20,6 @@ class Like extends BaseHttpEloquentFilter
         /**
          * @deprecated logic for older Laravel versions
          */
-        return $builder->where($this->column, 'like', '%' . $this->getHttpValue() . '%');
+        return $builder->where($this->column, 'like', '%'.$this->getHttpValue().'%');
     }
 }
