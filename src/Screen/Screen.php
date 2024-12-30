@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Screen\Layouts\Listener;
 use Orchid\Support\Facades\Dashboard;
 
 /**
@@ -90,7 +91,7 @@ abstract class Screen extends Controller
     /**
      * The layout for this screen, consisting of a collection of views.
      *
-     * @return Layout[]
+     * @return iterable<\Orchid\Screen\Layout>|iterable<string>
      */
     abstract public function layout(): iterable;
 
@@ -156,7 +157,7 @@ abstract class Screen extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function asyncParticalLayout(Layout $layout, Request $request)
+    public function asyncParticalLayout(Listener $layout, Request $request): Response
     {
         Dashboard::setCurrentScreen($this, true);
 
@@ -291,9 +292,6 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param                          ...$arguments
-     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
