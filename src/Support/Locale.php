@@ -41,4 +41,17 @@ class Locale
 
         return in_array($locale, self::RTL) ? 'rtl' : 'ltr';
     }
+
+    /**
+     * Check if the current or given locale has RTL direction.
+     *
+     * @param string|null $locale
+     * @return bool
+     */
+    public static function isRtl(?string $locale = null): bool
+    {
+        $locale ??= app()->getLocale();
+
+        return self::currentDir($locale) === 'rtl';
+    }
 }

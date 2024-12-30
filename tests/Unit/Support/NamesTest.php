@@ -32,7 +32,7 @@ class NamesTest extends TestUnitCase
         $this->assertSame('page-platform-empty', Names::getPageNameClass());
     }
 
-    protected function setRouteName(string $name)
+    protected function setRouteName(string $name): void
     {
         Route::get($name, function () {})->name($name);
 

@@ -12,7 +12,7 @@
     </title>
     <meta name="csrf_token" content="{{ csrf_token() }}" id="csrf_token">
     <meta name="auth" content="{{ Auth::check() }}" id="auth">
-    @if(\Orchid\Support\Locale::currentDir(app()->getLocale()) == "rtl")
+    @if(\Orchid\Support\Locale::isRtl())
         <link rel="stylesheet" type="text/css" href="{{  mix('/css/orchid.rtl.css','vendor/orchid') }}">
     @else
         <link rel="stylesheet" type="text/css" href="{{  mix('/css/orchid.css','vendor/orchid') }}">
