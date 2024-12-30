@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
@@ -136,7 +135,7 @@ class FoundationServiceProvider extends ServiceProvider
         }
 
         $macro = function (string $url, string $screen) {
-            return Route::match(['GET', 'HEAD', 'POST'], $url . '/{method?}', $screen)
+            return Route::match(['GET', 'HEAD', 'POST'], $url.'/{method?}', $screen)
                 ->where('method', $screen::getAvailableMethods()->implode('|'));
         };
 
