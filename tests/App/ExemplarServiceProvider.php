@@ -54,7 +54,7 @@ class ExemplarServiceProvider extends ServiceProvider
                 // Fields
                 $route->screen('fields/base-select-screen', BaseSelectScreen::class)->name('base-select-screen');
 
-                //issue 2517
+                // issue 2517
                 $route->screen('item/{parentId}/addChild', ItemAddChildScreen::class)->name('item.addchild');
                 $route->screen('items', ItemListScreen::class)->name('items');
             });

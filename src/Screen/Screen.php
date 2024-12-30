@@ -194,7 +194,7 @@ abstract class Screen extends Controller
             return new Repository;
         }
 
-        //deserialize '_state' parameter
+        // deserialize '_state' parameter
         $screen = Crypt::decrypt($state);
 
         return new Repository(get_object_vars($screen));

@@ -29,12 +29,12 @@ class AttachmentsTableSeeder extends Seeder
 
     public function addfile()
     {
-        $dirimages = config('filesystems.disks.public.root').DIRECTORY_SEPARATOR.'tmp'.DIRECTORY_SEPARATOR; //date('Y/m/d');
+        $dirimages = config('filesystems.disks.public.root').DIRECTORY_SEPARATOR.'tmp'.DIRECTORY_SEPARATOR; // date('Y/m/d');
 
-        //if(!MakeFile::exists($dirimages))
-        //{
+        // if(!MakeFile::exists($dirimages))
+        // {
         MakeFile::makeDirectory($dirimages, $mode = 0777, $recursive = true, $force = true);
-        //}
+        // }
         $faker = Faker::create();
 
         $image = $faker->image($dirimages, $width = 640, $height = 480);
@@ -45,7 +45,7 @@ class AttachmentsTableSeeder extends Seeder
             'storage' => Storage::disk($this->storage),
         ])->load();
 
-        //dd($attachment->toArray());
+        // dd($attachment->toArray());
         return $attachment->toArray();
     }
 }
