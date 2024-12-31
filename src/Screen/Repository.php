@@ -52,9 +52,9 @@ class Repository extends \Illuminate\Config\Repository implements Countable
      * @param $key
      * @param $value
      *
-     * @return $this|void
+     * @return $this
      */
-    public function set($key, $value = null)
+    public function set($key, $value = null): self
     {
         parent::set($key, $value);
 
