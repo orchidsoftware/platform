@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Attachment\Models;
 
 use Exception;
-use Illuminate\Contracts\Filesystem\Cloud;
-use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -106,7 +104,7 @@ class Attachment extends Model
      */
     public function url(?string $default = null): ?string
     {
-        /** @var Filesystem|Cloud $disk */
+        /** @var \Illuminate\Filesystem\FilesystemAdapter $disk */
         $disk = Storage::disk($this->getAttribute('disk'));
         $path = $this->physicalPath();
 
@@ -158,7 +156,7 @@ class Attachment extends Model
     {
         if ($this->exists) {
             if (static::where('hash', $this->hash)->where('disk', $this->disk)->limit(2)->count() <= 1) {
-                //Physical removal a file.
+                // Physical removal a file.
                 Storage::disk($this->disk)->delete($this->physicalPath());
             }
             $this->relationships()->delete();

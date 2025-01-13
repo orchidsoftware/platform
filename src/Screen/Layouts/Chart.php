@@ -136,7 +136,7 @@ abstract class Chart extends Layout
      */
     protected $axisOptions = [
         'xIsSeries'  => true,
-        'xAxisMode'  => 'span', //'tick'
+        'xAxisMode'  => 'span', // 'tick'
     ];
 
     /**

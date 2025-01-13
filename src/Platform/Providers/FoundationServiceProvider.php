@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
@@ -115,23 +114,33 @@ class FoundationServiceProvider extends ServiceProvider
 
         $this->app->singleton(Dashboard::class, static fn () => new Dashboard);
 
-        if (! Route::hasMacro('screen')) {
-            Route::macro('screen', function ($url, $screen) {
-                /* @var Router $this */
-                $route = $this->match(['GET', 'HEAD', 'POST'], $url.'/{method?}', $screen);
-
-                $route->where('method', $screen::getAvailableMethods()->implode('|'));
-
-                return $route;
-            });
-        }
-
-        $this->mergeConfigFrom(
-            Dashboard::path('config/platform.php'), 'platform'
-        );
+        $this
+            ->registerScreenMacro()
+            ->mergeConfigFrom(
+                Dashboard::path('config/platform.php'), 'platform'
+            );
 
         Blade::component('orchid-popover', Popover::class);
         Blade::component('orchid-notification', Notification::class);
         Blade::component('orchid-stream', Stream::class);
+    }
+
+    /**
+     * Register the 'screen' route macro.
+     */
+    protected function registerScreenMacro(): self
+    {
+        if (Route::hasMacro('screen')) {
+            return $this;
+        }
+
+        $macro = function (string $url, string $screen) {
+            return Route::match(['GET', 'HEAD', 'POST'], $url.'/{method?}', $screen)
+                ->where('method', $screen::getAvailableMethods()->implode('|'));
+        };
+
+        Route::macro('screen', $macro);
+
+        return $this;
     }
 }

@@ -14,8 +14,8 @@
          data-attach-upload-url-value="{{ $uploadUrl ?? route('platform.systems.files.upload') }}"
          data-attach-sort-url-value="{{ $sortUrl ?? route('platform.systems.files.sort') }}"
 
-         data-uploader-error-size-value="{{ __('File ":name" is too large to upload') }}"
-         data-uploader-error-type-value="{{ __('The attached file must be an image') }}"
+         data-attach-error-size-value="{{ $errorMaxSizeMessage }}"
+         data-attach-error-type-value="{{ $errorTypeMessage }}"
 
          data-action="
              drop->attach#dropFiles:prevent

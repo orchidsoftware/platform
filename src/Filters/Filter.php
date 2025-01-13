@@ -70,7 +70,7 @@ abstract class Filter
     /**
      * Get the display fields.
      *
-     * @return Fieldable[]
+     * @return iterable<Fieldable>
      */
     public function display(): iterable
     {
@@ -87,7 +87,7 @@ abstract class Filter
 
     public function render(): string
     {
-        $fields = collect($this->display())->map(fn (Fieldable $field) => $field->form('filters'));
+        $fields = collect($this->display())->map(fn (Fieldable $field) => $field->set('form', 'filters'));
         $params = $this->query();
 
         $builder = new \Orchid\Screen\Builder($fields, new Repository($params));
@@ -100,7 +100,7 @@ abstract class Filter
      */
     public function count(): int
     {
-        return count($this->display());
+        return collect($this->display())->count();
     }
 
     /**
