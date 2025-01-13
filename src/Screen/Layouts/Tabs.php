@@ -22,7 +22,7 @@ abstract class Tabs extends Layout
      */
     protected $variables = [
         'activeTab'    => null,
-        'labels'         => [],
+        'labels'       => [],
     ];
 
     /**
