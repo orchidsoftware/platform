@@ -22,6 +22,11 @@ class SearchScreen extends Screen
     public const SESSION_NAME = 'orchid_search_type';
 
     /**
+     * @var string
+     */
+    protected $description = '';
+
+    /**
      * Display header name.
      */
     public function name(): ?string

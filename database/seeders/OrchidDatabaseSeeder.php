@@ -19,10 +19,10 @@ class OrchidDatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            //AttachmentsTableSeeder::class,
-            //UsersTableSeeder::class,
-            //RolesTableSeeder::class,
-            //SettingsTableSeeder::class,
+            // AttachmentsTableSeeder::class,
+            // UsersTableSeeder::class,
+            // RolesTableSeeder::class,
+            // SettingsTableSeeder::class,
         ]);
     }
 }

@@ -44,6 +44,10 @@ abstract class Content extends Layout
 
     public function __toString(): string
     {
-        return (string) $this->render($this->target);
+        if (method_exists($this, 'render')) {
+            return (string) $this->render($this->target);
+        }
+
+        throw new \RuntimeException('Method render not found');
     }
 }
