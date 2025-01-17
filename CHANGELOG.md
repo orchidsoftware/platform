@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.44.2 - 2025-01-17
+
+### Added
+- Translated Role edit title and description in ru language [#2936](https://github.com/orchidsoftware/platform/pull/2936)
+
+### Changed
+- Use `whereLike` for case-insensitive search
+- Simplify RTL condition logic
+- Improved workspace centering on laptops
+- Increment pslam error level
+
+### Fixed
+- Laravel version conflict for PHP 8.4
+- Fixed jumping horizontal field title
+- Error Notifications Are Not Passing Correctly in Attach [#2934](https://github.com/orchidsoftware/platform/pull/2934)
+
 ## 14.44.1 - 2024-11-26
 
 ### Fixed
