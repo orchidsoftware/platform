@@ -55,4 +55,18 @@ abstract class Accordion extends Layout
 
         return $this;
     }
+
+    /**
+     * Specifies the accordion that should be opened by default.
+     *
+     * @param string $activeAccordion
+     *
+     * @return $this
+     */
+    public function activeAccordion(string $activeAccordion): self
+    {
+        $this->variables['activeAccordion'] = $activeAccordion;
+
+        return $this;
+    }
 }
