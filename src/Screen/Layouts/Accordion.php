@@ -71,10 +71,12 @@ abstract class Accordion extends Layout
      *
      * @return $this
      */
-    public function activeAccordion(string|array $activeAccordion): self
+    public function open(string|array $activeAccordion): self
     {
+        $activeAccordion = Arr::wrap($activeAccordion);
+
         $this->variables['open'] = $this->openSet
-            ? array_merge($this->variables['open'], Arr::wrap($activeAccordion))
+            ? array_merge($this->variables['open'], $activeAccordion)
             : $activeAccordion;
 
         $this->openSet = true;
