@@ -19,11 +19,6 @@ abstract class Accordion extends Layout
     protected $template = 'platform::layouts.accordion';
 
     /**
-     * @var bool
-     */
-    private $openSet = false;
-
-    /**
      * @var array
      */
     protected $variables = [
@@ -73,13 +68,7 @@ abstract class Accordion extends Layout
      */
     public function open(string|array $activeAccordion): self
     {
-        $activeAccordion = Arr::wrap($activeAccordion);
-
-        $this->variables['open'] = $this->openSet
-            ? array_merge($this->variables['open'], $activeAccordion)
-            : $activeAccordion;
-
-        $this->openSet = true;
+        $this->variables['open'] = Arr::wrap($activeAccordion);
 
         return $this;
     }
