@@ -23,7 +23,7 @@ abstract class Accordion extends Layout
      */
     protected $variables = [
         'stayOpen' => false,
-        'open' => [],
+        'open'     => [],
     ];
 
     /**
@@ -72,5 +72,4 @@ abstract class Accordion extends Layout
 
         return $this;
     }
-
 }
