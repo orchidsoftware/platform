@@ -6,6 +6,7 @@ namespace Orchid\Tests\Unit\Support;
 
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Models\User;
+use Orchid\Support\Facades\Dashboard;
 use Orchid\Support\Testing\DynamicTestScreen;
 use Orchid\Support\Testing\ScreenTesting;
 use Orchid\Tests\App\Screens\BaseScreenTesting;
@@ -111,5 +112,21 @@ class HelperDynamicTestScreenTest extends TestUnitCase
             ->call('methodWithValidation')
             ->assertRedirect()
             ->assertInvalid(['title', 'body']);
+    }
+
+    public function testUsageStateIncrementExample(): void
+    {
+        $screen = $this->screen()
+            ->register(BaseScreenTesting::class);
+
+        $screen->display()->assertOk();
+
+        foreach (range(1, 10) as $i) {
+            $screen
+                ->followingRedirects()
+                ->method('increment');
+
+            $this->assertEquals($i, Dashboard::getCurrentScreen()->increment);
+        }
     }
 }
