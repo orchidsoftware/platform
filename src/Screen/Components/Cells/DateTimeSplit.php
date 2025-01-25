@@ -2,9 +2,11 @@
 
 namespace Orchid\Screen\Components\Cells;
 
+use Closure;
 use DateTimeZone;
 use Illuminate\Support\Carbon;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
 class DateTimeSplit extends Component
 {
@@ -26,9 +28,9 @@ class DateTimeSplit extends Component
     /**
      * Get the view/contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View|Closure|string
      */
-    public function render()
+    public function render(): View|Closure|string
     {
         $date = Carbon::parse($this->value, $this->tz);
 

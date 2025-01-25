@@ -2,6 +2,8 @@
 
 namespace Orchid\Screen\Components\Cells;
 
+use Closure;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Percentage extends Component
@@ -24,9 +26,9 @@ class Percentage extends Component
     /**
      * Get the view/contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View|Closure|string
      */
-    public function render()
+    public function render(): View|Closure|string
     {
         return number_format($this->value * 100, $this->decimals, $this->decimal_separator, $this->thousands_separator).'%';
     }

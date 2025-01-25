@@ -2,13 +2,13 @@
 
 namespace Orchid\Screen\Components\Cells;
 
+use Closure;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
 class Boolean extends Component
 {
-    /**
-     * @var float
-     */
+
     public ?bool $value;
     public ?string $false;
     public ?string $true;
@@ -18,7 +18,7 @@ class Boolean extends Component
      *
      * @param bool        $value
      * @param string|null $true
-     * @param string|null $falseLabel
+     * @param string|null $false
      */
     public function __construct(?bool $value, ?string $true = null, ?string $false = null)
     {
@@ -30,9 +30,9 @@ class Boolean extends Component
     /**
      * Get the view/contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View|Closure|string
      */
-    public function render()
+    public function render(): View|Closure|string
     {
         $class = 'me-1 '.($this->value ? 'text-success' : 'text-danger');
         $label = $this->value ? $this->true : $this->false;

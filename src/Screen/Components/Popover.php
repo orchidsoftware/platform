@@ -9,19 +9,15 @@ use Illuminate\View\Component;
 
 class Popover extends Component
 {
-    /**
-     * @var string|null
-     */
-    public $content;
+
+    public ?string $content;
 
     /**
      * Available options:
      * 'top', 'right', 'bottom',
      * 'left', 'auto'.
-     *
-     * @var string
      */
-    public $placement;
+    public string $placement;
 
     /**
      * Create a new component instance.
@@ -34,10 +30,8 @@ class Popover extends Component
 
     /**
      * Get the view / contents that represent the component.
-     *
-     * @return View|string
      */
-    public function render()
+    public function render(): View|string
     {
         return view('platform::components.popover');
     }
@@ -47,8 +41,8 @@ class Popover extends Component
      *
      * @return bool
      */
-    public function shouldRender()
+    public function shouldRender(): bool
     {
-        return ! empty($this->content);
+        return !empty($this->content);
     }
 }

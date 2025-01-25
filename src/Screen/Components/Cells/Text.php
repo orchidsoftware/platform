@@ -2,6 +2,8 @@
 
 namespace Orchid\Screen\Components\Cells;
 
+use Closure;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
@@ -28,9 +30,9 @@ class Text extends Component
     /**
      * Get the view/contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View|Closure|string
      */
-    public function render()
+    public function render(): View|Closure|string
     {
         return Blade::render('<div class="text-balance line-clamp {{ $class }}">
                               @empty(!$title)<strong class="d-block">{{ $title }}</strong>@endempty

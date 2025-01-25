@@ -2,8 +2,10 @@
 
 namespace Orchid\Screen\Components\Cells;
 
+use Closure;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
 class Currency extends Component
 {
@@ -29,9 +31,9 @@ class Currency extends Component
     /**
      * Get the view/contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View|Closure|string
      */
-    public function render()
+    public function render(): View|Closure|string
     {
         $value = number_format($this->value, $this->decimals, $this->decimal_separator, $this->thousands_separator);
 

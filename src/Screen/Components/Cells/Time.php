@@ -2,7 +2,9 @@
 
 namespace Orchid\Screen\Components\Cells;
 
+use Closure;
 use DateTimeZone;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
 use Illuminate\View\Component;
 
@@ -24,9 +26,9 @@ class Time extends Component
     /**
      * Get the view/contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View|Closure|string
      */
-    public function render()
+    public function render(): View|Closure|string
     {
         return Carbon::parse($this->value, $this->tz)->toTimeString($this->unitPrecision);
     }
