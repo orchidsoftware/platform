@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Actions;
 
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 use Orchid\Screen\Action;
 use Orchid\Screen\Contracts\Actionable;
 use Orchid\Screen\Repository;

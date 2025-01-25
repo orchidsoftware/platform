@@ -8,7 +8,7 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Support\Blade;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 
 /**
  * Class Component.

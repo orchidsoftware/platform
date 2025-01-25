@@ -15,34 +15,16 @@ abstract class Cell
 {
     use CanSee, Macroable;
 
-    /**
-     * @var string
-     */
-    protected $name;
+    protected string $name;
 
-    /**
-     * @var string
-     */
-    protected $title;
+    protected string $title;
 
-    /**
-     * @var Closure|null
-     */
-    protected $render;
+    protected ?Closure $render = null;
 
-    /**
-     * @var string
-     */
-    protected $column;
+    protected string $column;
 
-    /**
-     * @var string
-     */
-    protected $popover;
-
-    /**
-     * Cell constructor.
-     */
+    protected string $popover = '';
+    
     public function __construct(string $name)
     {
         $this->name = $name;
@@ -50,6 +32,8 @@ abstract class Cell
     }
 
     /**
+     * @param string $name
+     * @param string|null $title
      * @return static
      */
     public static function make(string $name = '', ?string $title = null): static
@@ -76,9 +60,10 @@ abstract class Cell
     }
 
     /**
+     * @param string $component
+     * @param array $params
+     * @return string|null
      * @throws \ReflectionException
-     *
-     * @return string
      */
     protected function getNameParameterExpected(string $component, array $params = []): ?string
     {
@@ -170,10 +155,10 @@ abstract class Cell
 
     /**
      * @param Repository|Model $source
-     *
+     * @param object|null $loop
      * @return mixed
      */
-    protected function handler($source, ?object $loop = null)
+    protected function handler($source, ?object $loop = null): mixed
     {
         $callback = $this->render;
 

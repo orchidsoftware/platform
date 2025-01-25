@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\View;
@@ -15,7 +16,7 @@ class Sight extends Cell
      *
      * @return Factory|View
      */
-    public function buildDt()
+    public function buildDt(): Factory|View
     {
         return view('platform::partials.layouts.dt', [
             'column'  => $this->column,
@@ -27,11 +28,11 @@ class Sight extends Cell
     /**
      * Builds content for the column.
      *
-     * @param Repository|Model $repository
+     * @param Model|Repository $repository
      *
-     * @return string|\Illuminate\Contracts\Support\Htmlable|null
+     * @return string|Htmlable|null
      */
-    public function buildDd($repository)
+    public function buildDd(Model|Repository $repository): Htmlable|string|null
     {
         $value = $this->render
             ? $this->handler($repository)

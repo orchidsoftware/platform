@@ -7,7 +7,7 @@ namespace Orchid\Screen\Layouts;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Sight;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 
 /**
  * Class Legend.

@@ -6,13 +6,12 @@ namespace Orchid\Screen;
 
 use Closure;
 use Illuminate\Contracts\Support\Htmlable;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\View\ComponentAttributeBag;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 use Orchid\Screen\Concerns\Makeable;
 use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;

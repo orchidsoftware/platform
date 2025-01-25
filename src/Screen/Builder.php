@@ -158,11 +158,12 @@ class Builder
     /**
      * Gets value of Repository.
      *
+     * @param string $key
      * @param mixed|null $value
      *
      * @return mixed
      */
-    private function getValue(string $key, $value = null)
+    private function getValue(string $key, $value = null): mixed
     {
         if ($this->language !== null) {
             $key = $this->language.'.'.$key;

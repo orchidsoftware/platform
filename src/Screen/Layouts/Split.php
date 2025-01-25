@@ -2,7 +2,7 @@
 
 namespace Orchid\Screen\Layouts;
 
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 

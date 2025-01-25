@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Illuminate\Support\Arr;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 use JsonSerializable;
 
 /**

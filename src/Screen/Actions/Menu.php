@@ -7,7 +7,7 @@ namespace Orchid\Screen\Actions;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 use Orchid\Screen\Contracts\Actionable;
 use Orchid\Screen\Repository;
 use Orchid\Support\Color;

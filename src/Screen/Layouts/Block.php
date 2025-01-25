@@ -9,7 +9,7 @@ use Orchid\Screen\Action;
 use Orchid\Screen\Commander;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 
 /**
  * Class Block.

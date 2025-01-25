@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 use Orchid\Screen\Builder;
 use Orchid\Screen\Field;
 use Orchid\Screen\Layout;

@@ -19,7 +19,7 @@ trait CanSee
      *
      * @var bool
      */
-    private $display = true;
+    private bool $display = true;
 
     /**
      * Set the visibility of the element.

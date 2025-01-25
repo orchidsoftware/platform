@@ -4,7 +4,7 @@ namespace Orchid\Screen\Layouts;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 use Orchid\Screen\Builder;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;

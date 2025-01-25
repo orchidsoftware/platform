@@ -6,7 +6,7 @@ namespace Orchid\Screen\Layouts;
 
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 use Orchid\Screen\Commander;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;

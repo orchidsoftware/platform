@@ -34,9 +34,11 @@ class LayoutFactory
     use Macroable;
 
     /**
-     * @param Arrayable|array $data
+     * @param string $view
+     * @param array|Arrayable $data
+     * @return View
      */
-    public static function view(string $view, $data = []): View
+    public static function view(string $view, array|Arrayable $data = []): View
     {
         return new class($view, $data) extends View {};
     }
@@ -53,7 +55,7 @@ class LayoutFactory
             /**
              * @var Field[]
              */
-            protected $fields;
+            protected array $fields;
 
             /**
              *  constructor.
@@ -77,7 +79,7 @@ class LayoutFactory
             /**
              * @var array
              */
-            protected $columns;
+            protected array $columns;
 
             public function __construct(string $target, array $columns)
             {
@@ -110,7 +112,7 @@ class LayoutFactory
     /**
      * @param string|string[] $layouts
      */
-    public static function modal(string $key, $layouts): Modal
+    public static function modal(string $key, array|string|Rows $layouts): Modal
     {
         $layouts = Arr::wrap($layouts);
 
@@ -142,7 +144,7 @@ class LayoutFactory
             /**
              * @var string[]
              */
-            protected $filters;
+            protected array $filters;
 
             /**
              * Constructor.
@@ -165,9 +167,9 @@ class LayoutFactory
     }
 
     /**
-     * @param Layout|string|string[] $layouts
+     * @param string|Layout|string[] $layouts
      */
-    public static function block($layouts): Block
+    public static function block(array|string|Layout $layouts): Block
     {
         return new class(Arr::wrap($layouts)) extends Block {};
     }
@@ -179,7 +181,7 @@ class LayoutFactory
             /**
              * @var array
              */
-            protected $columns;
+            protected array $columns;
 
             public function __construct(string $target, array $columns)
             {
@@ -208,7 +210,7 @@ class LayoutFactory
      * @param string      $target
      * @param string|null $title
      *
-     * @return \Orchid\Screen\Layouts\Chart
+     * @return Chart
      */
     public static function chart(string $target, ?string $title = null): Chart
     {
@@ -223,7 +225,7 @@ class LayoutFactory
      * @param string $target
      * @param array  $columns
      *
-     * @return \Orchid\Screen\Layouts\Sortable
+     * @return Sortable
      */
     public static function sortable(string $target, array $columns): Sortable
     {
@@ -232,7 +234,7 @@ class LayoutFactory
             /**
              * @var array
              */
-            protected $columns;
+            protected array $columns;
 
             public function __construct(string $target, array $columns)
             {

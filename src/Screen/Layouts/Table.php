@@ -7,7 +7,7 @@ namespace Orchid\Screen\Layouts;
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Support\Collection;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\TD;

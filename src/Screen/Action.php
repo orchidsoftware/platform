@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Contracts\View\View;
 use Orchid\Screen\Contracts\Actionable;
 use Orchid\Support\Color;
 use Closure;
+use Throwable;
 
 class Action extends Field implements Actionable
 {
@@ -65,11 +67,11 @@ class Action extends Field implements Actionable
     }
 
     /**
-     * @throws \Throwable
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @param Repository|null $repository
+     * @return View|null
+     * @throws Throwable
      */
-    public function build(?Repository $repository = null)
+    public function build(?Repository $repository = null): ?View
     {
         return $this->render();
     }
