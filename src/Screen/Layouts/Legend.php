@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
-use Illuminate\Contracts\View\Factory;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Sight;
