@@ -12,9 +12,7 @@ use Orchid\Screen\Contracts\Cardable;
 // todo: use Commander trait?
 class Card extends Content
 {
-    /**
-     * @var string
-     */
+
     protected string $template = 'platform::layouts.card';
 
     /**

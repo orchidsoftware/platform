@@ -14,9 +14,7 @@ use Illuminate\View\View;
  */
 abstract class Legend extends Layout
 {
-    /**
-     * @var string
-     */
+
     protected string $template = 'platform::layouts.legend';
 
     /**

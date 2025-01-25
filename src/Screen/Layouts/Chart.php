@@ -21,10 +21,6 @@ abstract class Chart extends Layout
     public const TYPE_PERCENTAGE = 'percentage';
     public const TYPE_AXIS_MIXED = 'axis-mixed';
 
-    /**
-     * The Main template to display the layer
-     * Represents the view() argument.
-     */
     protected string $template = 'platform::layouts.chart';
 
     protected ?string $description = null;

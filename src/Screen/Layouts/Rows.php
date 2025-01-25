@@ -16,9 +16,7 @@ use Throwable;
  */
 abstract class Rows extends Layout
 {
-    /**
-     * @var string
-     */
+
     protected string $template = 'platform::layouts.row';
 
     /**

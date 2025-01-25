@@ -9,9 +9,7 @@ use Orchid\Screen\Contracts\Personable;
 
 class Persona extends Content
 {
-    /**
-     * @var string
-     */
+
     protected string $template = 'platform::layouts.persona';
 
     public function render(Personable $user): View

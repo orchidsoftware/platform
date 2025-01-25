@@ -10,9 +10,7 @@ use Orchid\Screen\Sight;
 
 abstract class Sortable extends Layout
 {
-    /**
-     * @var string
-     */
+
     protected string $template = 'platform::layouts.sortable';
 
     /**
