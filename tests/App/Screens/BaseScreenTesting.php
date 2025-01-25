@@ -14,7 +14,6 @@ use Orchid\Support\Facades\Toast;
 
 class BaseScreenTesting extends Screen
 {
-
     public int $increment = 0;
 
     /**
@@ -23,7 +22,7 @@ class BaseScreenTesting extends Screen
     public function query(?User $user = null): array
     {
         return [
-            'user'    => $user,
+            'user'      => $user,
             'increment' => $this->increment,
         ];
     }
@@ -89,7 +88,7 @@ class BaseScreenTesting extends Screen
         Toast::warning('Validation Success');
     }
 
-    public function increment():void
+    public function increment(): void
     {
         $this->increment++;
     }
