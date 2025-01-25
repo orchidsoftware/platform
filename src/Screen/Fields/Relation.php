@@ -35,14 +35,12 @@ class Relation extends Field
     /**
      * @var string
      */
-    protected $view = 'platform::fields.relation';
+    protected string $view = 'platform::fields.relation';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'class'                 => 'form-control',
         'value'                 => [],
         'relationScope'         => null,
@@ -53,10 +51,7 @@ class Relation extends Field
         'allowAdd'              => false,
     ];
 
-    /**
-     * @var array
-     */
-    protected $required = [
+    protected array $required = [
         'name',
         'relationModel',
         'relationName',
@@ -68,10 +63,8 @@ class Relation extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accesskey',
         'autofocus',
         'disabled',
@@ -85,9 +78,10 @@ class Relation extends Field
     ];
 
     /**
-     * @param string|Model $model
-     *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @param string $model
+     * @param string $name
+     * @param string|null $key
+     * @return Relation
      */
     public function fromModel(string $model, string $name, ?string $key = null): self
     {
@@ -126,13 +120,19 @@ class Relation extends Field
         });
     }
 
+    /**
+     * @param string $class
+     * @param string $name
+     * @param string $key
+     * @return self
+     */
     public function fromClass(string $class, string $name, string $key = 'id'): self
     {
         $this->set('relationModel', Crypt::encryptString($class));
         $this->set('relationName', Crypt::encryptString($name));
         $this->set('relationKey', Crypt::encryptString($key));
 
-        return $this->addBeforeRender(function () use ($class, $name, $key) {
+        return $this->addBeforeRender(function () use ($class, $name, $key): self {
             $value = $this->get('value');
 
             if (empty($value)) {
@@ -166,12 +166,14 @@ class Relation extends Field
                     ];
                 })->toArray();
 
-            $this->set('value', $value);
+            return $this->set('value', $value);
         });
     }
 
     /**
+     * @param string $scope
      * @param array $parameters
+     * @return Relation
      */
     public function applyScope(string $scope, ...$parameters): self
     {

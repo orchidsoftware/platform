@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Illuminate\View\View;
 use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Contracts\Groupable;
 use Orchid\Screen\Field;
@@ -12,10 +13,8 @@ class Group implements Fieldable, Groupable
 {
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'group'               => [],
         'class'               => 'col-12 col-md form-group mb-md-0',
         'align'               => 'align-items-baseline',
@@ -25,20 +24,16 @@ class Group implements Fieldable, Groupable
 
     /**
      * Required Attributes.
-     *
-     * @var array
      */
-    protected $required = [];
+    protected array $required = [];
+
+    protected string $view = 'platform::fields.group';
 
     /**
-     * @var string
+     * @param array $group
+     * @return Groupable
      */
-    protected $view = 'platform::fields.group';
-
-    /**
-     * @return static
-     */
-    public static function make(array $group = [])
+    public static function make(array $group = []): Groupable
     {
         return (new static)->setGroup($group);
     }
@@ -52,6 +47,7 @@ class Group implements Fieldable, Groupable
     }
 
     /**
+     * @param array $group
      * @return $this
      */
     public function setGroup(array $group = []): Groupable
@@ -60,9 +56,9 @@ class Group implements Fieldable, Groupable
     }
 
     /**
-     * @return \Illuminate\View\View
+     * @return View
      */
-    public function render()
+    public function render(): View
     {
         return view($this->view, $this->attributes);
     }

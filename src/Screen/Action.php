@@ -6,22 +6,19 @@ namespace Orchid\Screen;
 
 use Orchid\Screen\Contracts\Actionable;
 use Orchid\Support\Color;
+use Closure;
 
 class Action extends Field implements Actionable
 {
     /**
      * Override the form view.
-     *
-     * @var string
      */
-    protected $typeForm = 'platform::partials.fields.clear';
+    protected Closure|string $typeForm = 'platform::partials.fields.clear';
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'type',
         'autofocus',
         'disabled',
@@ -31,10 +28,8 @@ class Action extends Field implements Actionable
     /**
      * A set of attributes for the assignment
      * of which will automatically translate them.
-     *
-     * @var array
      */
-    protected $translations = [
+    protected array $translations = [
         'name',
     ];
 

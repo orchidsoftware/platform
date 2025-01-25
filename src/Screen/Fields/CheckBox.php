@@ -32,17 +32,13 @@ use Orchid\Screen\Field;
  */
 class CheckBox extends Field
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.checkbox';
+
+    protected string $view = 'platform::fields.checkbox';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'type'          => 'checkbox',
         'class'         => 'form-check-input',
         'value'         => false,
@@ -56,7 +52,7 @@ class CheckBox extends Field
      *
      * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accesskey',
         'autofocus',
         'checked',

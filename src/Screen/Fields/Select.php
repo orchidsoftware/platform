@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace Orchid\Screen\Fields;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\Concerns\ComplexFieldConcern;
 use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
+use ReflectionEnum;
+use ReflectionException;
+use UnitEnum;
 
 /**
  * Class Select.
@@ -32,17 +36,12 @@ class Select extends Field implements ComplexFieldConcern
 {
     use Multipliable;
 
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.select';
+    protected string $view = 'platform::fields.select';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'class'        => 'form-control',
         'options'      => [],
         'allowEmpty'   => '',
@@ -52,10 +51,8 @@ class Select extends Field implements ComplexFieldConcern
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accesskey',
         'autofocus',
         'disabled',
@@ -79,8 +76,11 @@ class Select extends Field implements ComplexFieldConcern
 
     /**
      * @param string|Model $model
+     * @param string $name
+     * @param string|null $key
+     * @return Select
      */
-    public function fromModel($model, string $name, ?string $key = null): self
+    public function fromModel(Model|string $model, string $name, ?string $key = null): self
     {
         /* @var $model Model */
         $model = is_object($model) ? $model : new $model;
@@ -93,13 +93,13 @@ class Select extends Field implements ComplexFieldConcern
      * @param string      $enum
      * @param string|null $displayName
      *
-     * @throws \ReflectionException
+     * @throws ReflectionException
      *
      * @return self
      */
     public function fromEnum(string $enum, ?string $displayName = null): self
     {
-        $reflection = new \ReflectionEnum($enum);
+        $reflection = new ReflectionEnum($enum);
         $options = [];
         foreach ($enum::cases() as $item) {
             $key = $reflection->isBacked() ? $item->value : $item->name;
@@ -111,7 +111,7 @@ class Select extends Field implements ComplexFieldConcern
             $value = [];
             collect($this->get('value'))->each(static function ($item) use (&$value, $reflection, $enum) {
                 if ($item instanceof $enum) {
-                    /** @var \UnitEnum $item */
+                    /** @var UnitEnum $item */
                     $value[] = $reflection->isBacked() ? $item->value : $item->name;
                 } else {
                     $value[] = $item;
@@ -122,9 +122,12 @@ class Select extends Field implements ComplexFieldConcern
     }
 
     /**
-     * @param Builder|Model $model
+     * @param Model|Builder|Collection $model
+     * @param string $name
+     * @param string $key
+     * @return Select
      */
-    private function setFromEloquent($model, string $name, string $key): self
+    private function setFromEloquent(Model|Builder|Collection $model, string $name, string $key): self
     {
         $options = $model->pluck($name, $key);
 
@@ -171,8 +174,8 @@ class Select extends Field implements ComplexFieldConcern
     /**
      * @return self
      */
-    public function taggable()
+    public function taggable(): self
     {
-        return $this->set('tags', true);
+        return $this->set('tags');
     }
 }

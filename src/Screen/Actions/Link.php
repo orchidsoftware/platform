@@ -18,17 +18,13 @@ use Orchid\Screen\Action;
  */
 class Link extends Action
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::actions.link';
+
+    protected string $view = 'platform::actions.link';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'class' => 'btn btn-link icon-link',
         'icon'  => null,
         'href'  => '#!',
@@ -37,10 +33,8 @@ class Link extends Action
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    public $inlineAttributes = [
+    public array $inlineAttributes = [
         'autofocus',
         'disabled',
         'tabindex',
@@ -53,7 +47,7 @@ class Link extends Action
     /**
      * Set the link.
      *
-     *
+     * @param string $link
      * @return $this
      */
     public function href(string $link = ''): self
@@ -64,12 +58,13 @@ class Link extends Action
     }
 
     /**
-     * @param array $parameters
-     * @param bool  $absolute
+     * @param string $name
+     * @param mixed $parameters
+     * @param bool $absolute
      *
      * @return $this
      */
-    public function route(string $name, $parameters = [], $absolute = true): self
+    public function route(string $name, mixed $parameters = [], bool $absolute = true): self
     {
         $route = route($name, $parameters, $absolute);
 

@@ -22,24 +22,17 @@ class BaseFieldTest extends TestFieldsUnitCase
     {
         $field = new class extends Field
         {
-            /**
-             * @var string
-             */
-            public $view = '';
+
+            public string $view = '';
 
             /**
              * Default attributes value.
-             *
-             * @var array
              */
-            public $attributes = [
+            public array $attributes = [
                 'class' => 'form-control',
             ];
 
-            /**
-             * @var array
-             */
-            public $required = [
+            public array $required = [
                 'name',
                 'height',
             ];

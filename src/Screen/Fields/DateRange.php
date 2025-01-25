@@ -19,24 +19,19 @@ use Orchid\Screen\Field;
  */
 class DateRange extends Field implements ComplexFieldConcern
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.dataRange';
+
+    protected string $view = 'platform::fields.dataRange';
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'form',
         'name',
     ];
 
     /**
      * Disable native mobile pickers in favor of calendar
-     *
      *
      * @return $this
      */

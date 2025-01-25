@@ -29,27 +29,21 @@ use Orchid\Screen\Field;
  */
 class TextArea extends Field
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.textarea';
+
+    protected string $view = 'platform::fields.textarea';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'class' => 'form-control no-resize',
         'value' => null,
     ];
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accesskey',
         'autofocus',
         'cols',

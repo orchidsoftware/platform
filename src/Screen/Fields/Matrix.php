@@ -16,17 +16,13 @@ use Orchid\Screen\Field;
  */
 class Matrix extends Field
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.matrix';
+
+    protected string $view = 'platform::fields.matrix';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'index'             => 0,
         'removableRows'     => true,
         'idPrefix'          => null,
@@ -83,17 +79,19 @@ class Matrix extends Field
     }
 
     /**
-     * @return Field|Matrix
+     * @param int $count
+     * @return Matrix
      */
-    public function maxRows(int $count)
+    public function maxRows(int $count): self
     {
         return $this->set('maxRows', $count);
     }
 
     /**
-     * @return Field|Matrix
+     * @param bool $value
+     * @return Matrix
      */
-    public function removableRows(bool $value = true)
+    public function removableRows(bool $value = true): self
     {
         return $this->set('removableRows', $value);
     }

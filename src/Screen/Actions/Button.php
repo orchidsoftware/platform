@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Actions;
 
 use Orchid\Screen\Action;
+use Orchid\Screen\Field;
 use Orchid\Support\Facades\Dashboard;
 
 /**
@@ -20,17 +21,13 @@ use Orchid\Support\Facades\Dashboard;
  */
 class Button extends Action
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::actions.button';
+
+    protected string $view = 'platform::actions.button';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'class'      => 'btn btn-link icon-link',
         'type'       => 'submit',
         'novalidate' => false,
@@ -45,10 +42,8 @@ class Button extends Action
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'form',
         'formaction',
         'formenctype',
@@ -78,7 +73,7 @@ class Button extends Action
 
             $query = http_build_query($this->get('parameters'));
 
-            $action = rtrim("{$url}/{$this->get('method')}?{$query}", '/?');
+            $action = rtrim("$url/{$this->get('method')}?$query", '/?');
             $this->set('action', $action);
         })->addBeforeRender(function () {
             $action = $this->get('action');
@@ -90,9 +85,10 @@ class Button extends Action
     }
 
     /**
-     * @return Button|\Orchid\Screen\Field
+     * @param bool $novalidate
+     * @return Button|Field
      */
-    public function novalidate(bool $novalidate = true)
+    public function novalidate(bool $novalidate = true): Field|Button
     {
         return $this->set('formnovalidate', var_export($novalidate, true));
     }
@@ -138,7 +134,7 @@ class Button extends Action
      *
      * @return $this
      */
-    public function route($name, $parameters = [], $absolute = true): self
+    public function route(array|string $name, mixed $parameters = [], bool $absolute = true): self
     {
         return $this->action(route($name, $parameters, $absolute));
     }

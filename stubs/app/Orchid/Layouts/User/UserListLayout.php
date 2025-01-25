@@ -24,6 +24,7 @@ class UserListLayout extends Table
 
     /**
      * @return TD[]
+     * @throws \ReflectionException
      */
     public function columns(): array
     {

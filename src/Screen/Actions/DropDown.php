@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Actions;
 
+use Illuminate\View\View;
 use Orchid\Screen\Action;
 use Orchid\Screen\Contracts\Actionable;
 use Orchid\Screen\Repository;
+use Throwable;
 
 /**
  * Class DropDown.
@@ -18,17 +20,13 @@ use Orchid\Screen\Repository;
  */
 class DropDown extends Action
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::actions.dropdown';
+
+    protected string $view = 'platform::actions.dropdown';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'class'  => 'btn btn-link icon-link',
         'source' => null,
         'icon'   => null,
@@ -44,11 +42,11 @@ class DropDown extends Action
     }
 
     /**
-     * @throws \Throwable
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @param Repository|null $repository
+     * @return View|null
+     * @throws Throwable
      */
-    public function build(?Repository $repository = null)
+    public function build(?Repository $repository = null): ?View
     {
         $this->set('source', $repository);
 

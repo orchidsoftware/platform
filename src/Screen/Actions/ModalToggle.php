@@ -18,17 +18,13 @@ use Illuminate\Support\Arr;
  */
 class ModalToggle extends Button
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::actions.modal';
+
+    protected string $view = 'platform::actions.modal';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'class'      => 'btn btn-link icon-link',
         'modal'      => null,
         'method'     => null,
@@ -42,8 +38,9 @@ class ModalToggle extends Button
 
     /**
      * @param int|string|array $options
+     * @return ModalToggle
      */
-    public function asyncParameters($options = []): self
+    public function asyncParameters(int|string|array $options = []): self
     {
         return $this
             ->parameters(Arr::wrap($options))
@@ -54,9 +51,9 @@ class ModalToggle extends Button
      * @param string $name
      * @param array  $options
      *
-     * @return $this|\Orchid\Screen\Actions\Button
+     * @return ModalToggle
      */
-    public function modal(string $name, array $options = [])
+    public function modal(string $name, array $options = []): self
     {
         $this->set('modal', $name);
 

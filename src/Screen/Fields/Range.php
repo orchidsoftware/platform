@@ -25,24 +25,18 @@ use Orchid\Screen\Field;
  */
 class Range extends Field
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.range';
+
+    protected string $view = 'platform::fields.range';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [];
+    protected array $attributes = [];
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accesskey',
         'autofocus',
         'disabled',

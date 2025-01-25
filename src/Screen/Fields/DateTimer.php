@@ -35,14 +35,14 @@ class DateTimer extends Field
     /**
      * @var string
      */
-    protected $view = 'platform::fields.datetime';
+    protected string $view = 'platform::fields.datetime';
 
     /**
      * Default attributes value.
      *
      * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'class'                                 => 'form-control',
         'data-datetime-enable-time'             => 'false',
         'data-datetime-time_24hr'               => 'false',
@@ -68,7 +68,7 @@ class DateTimer extends Field
      *
      * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accept',
         'accesskey',
         'autocomplete',

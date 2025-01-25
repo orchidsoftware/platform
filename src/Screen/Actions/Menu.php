@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Actions;
 
+use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 use Orchid\Screen\Contracts\Actionable;
 use Orchid\Screen\Repository;
 use Orchid\Support\Color;
+use Throwable;
 
 /**
  * Class Menu
@@ -27,25 +30,19 @@ class Menu extends Link
 {
     /**
      * The view associated with this menu item.
-     *
-     * @var string
      */
-    protected $view = 'platform::actions.menu';
+    protected string $view = 'platform::actions.menu';
 
     /**
      * Determines whether the menu item should be displayed based on permissions.
-     *
-     * @var bool
      */
-    protected $permit = true;
+    protected bool $permit = true;
 
     /**
      * Default attributes for the menu item.
      * This includes CSS classes, title, icon, URL, and other options.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'class'          => 'nav-link d-flex align-items-center collapsed icon-link',
         'title'          => null,
         'icon'           => null,
@@ -63,10 +60,8 @@ class Menu extends Link
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    public $inlineAttributes = [
+    public array $inlineAttributes = [
         'autofocus',
         'disabled',
         'tabindex',
@@ -153,11 +148,11 @@ class Menu extends Link
      *
      * @param Repository|null $repository The data repository to use for rendering.
      *
-     * @throws \Throwable If rendering fails.
+     * @return View|mixed The rendered view.
+     *@throws Throwable If rendering fails.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed The rendered view.
      */
-    public function build(?Repository $repository = null)
+    public function build(?Repository $repository = null): ?View
     {
         return $this->render();
     }
@@ -165,12 +160,12 @@ class Menu extends Link
     /**
      * Adds a badge to the menu item with a specific color.
      *
-     * @param \Closure $badge The closure to generate the badge content.
+     * @param Closure $badge The closure to generate the badge content.
      * @param Color    $color The color of the badge.
      *
      * @return $this The current Menu instance for method chaining.
      */
-    public function badge(\Closure $badge, Color $color = Color::PRIMARY): self
+    public function badge(Closure $badge, Color $color = Color::PRIMARY): self
     {
         $this->set('badge', [
             'class' => $color->name(),
@@ -195,7 +190,7 @@ class Menu extends Link
     /**
      * Sets the permission(s) required to see the menu item.
      *
-     * @param string|string[]|null $permission The required permission(s).
+     * @param string|iterable|null $permission The required permission(s).
      *
      * @return $this The current Menu instance for method chaining.
      */

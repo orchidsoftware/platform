@@ -48,14 +48,12 @@ class Code extends Field
     /**
      * @var string
      */
-    protected $view = 'platform::fields.code';
+    protected string $view = 'platform::fields.code';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'class'        => 'form-control',
         'language'     => 'js',
         'lineNumbers'  => true,
@@ -65,10 +63,8 @@ class Code extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accesskey',
         'autofocus',
         'checked',
