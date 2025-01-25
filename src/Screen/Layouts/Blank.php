@@ -6,16 +6,15 @@ namespace Orchid\Screen\Layouts;
 
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
+use Illuminate\Contracts\View\View;
 
 /**
  * Class Blank.
  */
 abstract class Blank extends Layout
 {
-    /**
-     * @var string
-     */
-    protected $template = 'platform::layouts.blank';
+
+    protected string $template = 'platform::layouts.blank';
 
     /**
      * Layout constructor.
@@ -27,10 +26,7 @@ abstract class Blank extends Layout
         $this->layouts = $layouts;
     }
 
-    /**
-     * @return \Illuminate\View\View|mixed
-     */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         return $this->buildAsDeep($repository);
     }

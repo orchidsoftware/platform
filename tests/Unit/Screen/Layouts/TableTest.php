@@ -29,7 +29,7 @@ class TableTest extends TestUnitCase
     {
         $layout = new class extends Table
         {
-            protected $target = 'target';
+            protected string $target = 'target';
 
             protected function columns(): array
             {
@@ -61,7 +61,7 @@ class TableTest extends TestUnitCase
     {
         $layout = new class extends Table
         {
-            protected $target = 'target';
+            protected string $target = 'target';
 
             protected function columns(): array
             {
@@ -85,7 +85,7 @@ class TableTest extends TestUnitCase
     {
         $layout = new class extends Table
         {
-            protected $target = 'target';
+            protected string $target = 'target';
 
             protected function columns(): array
             {
@@ -109,7 +109,7 @@ class TableTest extends TestUnitCase
     {
         $layout = new class extends Table
         {
-            protected $target = 'target';
+            protected string $target = 'target';
 
             protected function columns(): array
             {
@@ -133,7 +133,7 @@ class TableTest extends TestUnitCase
     {
         $layout = new class extends Table
         {
-            protected $target = 'target';
+            protected string $target = 'target';
 
             protected function columns(): array
             {
@@ -153,7 +153,7 @@ class TableTest extends TestUnitCase
     {
         $layout = new class extends Table
         {
-            protected $target = 'target';
+            protected string $target = 'target';
 
             protected function columns(): array
             {

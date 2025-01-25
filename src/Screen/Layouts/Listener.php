@@ -8,20 +8,19 @@ use Orchid\Screen\Builder;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Support\Facades\Dashboard;
+use Illuminate\Contracts\View\View;
 
 abstract class Listener extends Layout
 {
-    /**
-     * @var string
-     */
-    protected $template = 'platform::layouts.listener';
+
+    protected string $template = 'platform::layouts.listener';
 
     /**
      * List of field names for which values will be listened.
      *
      * @var string[]
      */
-    protected $targets = [];
+    protected array $targets = [];
 
     /**
      * @return array
@@ -36,13 +35,10 @@ abstract class Listener extends Layout
      */
     abstract public function handle(Repository $repository, Request $request): Repository;
 
-    /**
-     * @return mixed|void
-     */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         if (! $this->isSee()) {
-            return;
+            return null;
         }
 
         $this->query = $repository;
@@ -72,7 +68,7 @@ abstract class Listener extends Layout
     {
         $screen = Dashboard::getCurrentScreen();
 
-        if (! $screen) {
+        if (!$screen) {
             return null;
         }
 

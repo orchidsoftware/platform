@@ -7,6 +7,7 @@ namespace Orchid\Screen\Layouts;
 use Illuminate\Support\Arr;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
+use Illuminate\Contracts\View\View;
 
 /**
  * Class Wrapper.
@@ -24,15 +25,12 @@ abstract class Wrapper extends Layout
         $this->layouts = $layouts;
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\View|void
-     */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         $this->query = $repository;
 
         if (! $this->isSee()) {
-            return;
+            return null;
         }
 
         $build = collect($this->layouts)

@@ -16,10 +16,8 @@ trait CanSee
      * Determines whether the element should be displayed.
      *
      * If set to `false`, the element will be hidden and not rendered in the output.
-     *
-     * @var bool
      */
-    private $display = true;
+    private bool $display = true;
 
     /**
      * Set the visibility of the element.

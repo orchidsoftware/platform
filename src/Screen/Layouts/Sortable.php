@@ -3,28 +3,27 @@
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Sight;
 
 abstract class Sortable extends Layout
 {
-    /**
-     * @var string
-     */
-    protected $template = 'platform::layouts.sortable';
+
+    protected string $template = 'platform::layouts.sortable';
 
     /**
      * Used to create the title of a group of form elements.
      *
      * @var string|null
      */
-    protected $title;
+    protected ?string $title;
 
     /**
      * @var Repository
      */
-    protected $query;
+    protected Repository $query;
 
     /**
      * Flag indicating whether block headers are hidden or shown.
@@ -38,20 +37,15 @@ abstract class Sortable extends Layout
      *
      * The name of the key to fetch it from the query.
      * The results of which will be elements of the table.
-     *
-     * @var string
      */
-    protected $target;
+    protected string $target;
 
-    /**
-     * @return Factory|\Illuminate\View\View|null
-     */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         $this->query = $repository;
 
-        if (! $this->isSee()) {
-            return;
+        if (!$this->isSee()) {
+            return null;
         }
 
         $columns = collect($this->columns())->filter(static fn (Sight $sight) => $sight->isSee());
@@ -72,14 +66,8 @@ abstract class Sortable extends Layout
         ]);
     }
 
-    /**
-     * @return array
-     */
     abstract protected function columns(): iterable;
 
-    /**
-     * @return Rows
-     */
     public function title(?string $title = null): self
     {
         $this->title = $title;
@@ -91,8 +79,6 @@ abstract class Sortable extends Layout
      * Show or hide block headers.
      *
      * @param bool $showHeaders Whether to show block headers or not. Default is false.
-     *
-     * @return $this
      */
     public function showBlockHeaders(bool $showHeaders = true): self
     {
@@ -118,8 +104,6 @@ abstract class Sortable extends Layout
 
     /**
      * Return a success message for sorting operation.
-     *
-     * @return string
      */
     public function successSortMessage(): string
     {
@@ -128,8 +112,6 @@ abstract class Sortable extends Layout
 
     /**
      * Return a failure message for sorting operation.
-     *
-     * @return string
      */
     public function failureSortMessage(): string
     {

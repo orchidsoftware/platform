@@ -42,7 +42,7 @@ class RowTest extends TestUnitCase
     {
         $rows = new class extends Rows
         {
-            protected $title = 'Profile';
+            protected ?string $title = 'Profile';
 
             protected function fields(): array
             {

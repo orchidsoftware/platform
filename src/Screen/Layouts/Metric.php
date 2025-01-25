@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
@@ -13,35 +14,24 @@ use Orchid\Screen\Repository;
  */
 class Metric extends Layout
 {
-    /**
-     * @var string
-     */
-    protected $template = 'platform::layouts.metric';
 
-    /**
-     * @var string|null
-     */
-    protected $title;
+    protected string $template = 'platform::layouts.metric';
 
-    /**
-     * @var array
-     */
-    protected $labels = [];
+    protected ?string $title = null;
+
+    protected array $labels = [];
 
     public function __construct(array $labels)
     {
         $this->labels = $labels;
     }
 
-    /**
-     * @return Factory|\Illuminate\View\View
-     */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         $this->query = $repository;
 
         if (! $this->isSee() || empty($this->labels)) {
-            return;
+            return null;
         }
 
         $metrics = collect($this->labels)->map(fn (string $value) => $repository->getContent($value, ''));
@@ -52,10 +42,7 @@ class Metric extends Layout
         ]);
     }
 
-    /**
-     * @return $this
-     */
-    public function title(string $title): Metric
+    public function title(string $title): self
     {
         $this->title = $title;
 

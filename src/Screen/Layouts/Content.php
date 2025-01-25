@@ -9,24 +9,19 @@ use Orchid\Screen\Repository;
 
 abstract class Content extends Layout
 {
-    /**
-     * @var Repository|null
-     */
-    protected $query;
+
+    protected Repository $query;
 
     /**
      * Key property for a query.
-     *
-     * @var mixed
      */
-    protected $target;
+    protected mixed $target;
 
     /**
      * Card constructor.
      *
-     * @param mixed $target
      */
-    public function __construct($target)
+    public function __construct(mixed $target)
     {
         $this->target = $target;
     }

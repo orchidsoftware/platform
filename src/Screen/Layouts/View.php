@@ -4,39 +4,31 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Contracts\Support\Arrayable;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
-/**
- * Class View.
- */
 abstract class View extends Layout
 {
-    /**
-     * @var array
-     */
-    private $data;
+
+    private array $data;
 
     /**
-     * View constructor.
-     *
-     * @param \Illuminate\Contracts\Support\Arrayable|array $data
+     * @param string $template
+     * @param array|Arrayable $data
      */
-    public function __construct(string $template, $data = [])
+    public function __construct(string $template, array|Arrayable $data = [])
     {
         $this->template = $template;
         $this->data = $data;
     }
 
-    /**
-     * @return mixed
-     */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?\Illuminate\Contracts\View\View
     {
         $this->query = $repository;
 
         if (! $this->isSee()) {
-            return;
+            return null;
         }
 
         $data = array_merge($this->data, $repository->toArray());

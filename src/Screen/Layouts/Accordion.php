@@ -7,21 +7,17 @@ namespace Orchid\Screen\Layouts;
 use Illuminate\Support\Arr;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
+use Illuminate\Contracts\View\View;
 
 /**
  * Class Accordion.
  */
 abstract class Accordion extends Layout
 {
-    /**
-     * @var string
-     */
-    protected $template = 'platform::layouts.accordion';
 
-    /**
-     * @var array
-     */
-    protected $variables = [
+    protected string $template = 'platform::layouts.accordion';
+
+    protected array $variables = [
         'stayOpen' => false,
         'open'     => [],
     ];
@@ -37,20 +33,13 @@ abstract class Accordion extends Layout
         $this->variables['open'] = [array_key_first($this->layouts)];
     }
 
-    /**
-     * @return mixed
-     */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         return $this->buildAsDeep($repository);
     }
 
     /**
      * Make accordion items stay open when another item is opened.
-     *
-     * @param bool $stayOpen
-     *
-     * @return $this
      */
     public function stayOpen(bool $stayOpen = true): self
     {

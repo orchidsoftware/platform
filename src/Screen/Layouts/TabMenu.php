@@ -4,34 +4,29 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
-use Illuminate\Contracts\View\Factory;
 use Orchid\Screen\Actions\Menu;
 use Orchid\Screen\Builder;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
-use Throwable;
+use Illuminate\Contracts\View\View;
 
 /**
  * Class TabMenu.
  */
 abstract class TabMenu extends Layout
 {
-    /**
-     * @var string
-     */
-    protected $template = 'platform::layouts.tabMenu';
+
+    protected string $template = 'platform::layouts.tabMenu';
 
     /**
-     * @throws Throwable
-     *
-     * @return Factory|\Illuminate\View\View
+     * @throws \Throwable
      */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         $this->query = $repository;
 
         if (! $this->isSee()) {
-            return;
+            return null;
         }
 
         $form = new Builder($this->navigations(), $repository);

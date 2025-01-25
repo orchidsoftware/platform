@@ -10,14 +10,9 @@ use Orchid\Screen\Contracts\Personable;
 
 class Facepile extends Content
 {
-    /**
-     * @var string
-     */
-    protected $template = 'platform::layouts.facepile';
 
-    /**
-     * @param Personable[] $users
-     */
+    protected string $template = 'platform::layouts.facepile';
+
     public function render(ArrayAccess $users): View
     {
         return view($this->template, [

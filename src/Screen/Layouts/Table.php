@@ -7,54 +7,38 @@ namespace Orchid\Screen\Layouts;
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\TD;
 
-/**
- * Class Table.
- */
 abstract class Table extends Layout
 {
-    /**
-     * @var string
-     */
-    protected $template = 'platform::layouts.table';
 
-    /**
-     * @var Repository
-     */
-    protected $query;
+    protected string $template = 'platform::layouts.table';
+
+    protected Repository $query;
 
     /**
      * Data source.
      *
      * The name of the key to fetch it from the query.
      * The results of which will be elements of the table.
-     *
-     * @var string
      */
-    protected $target;
+    protected string $target;
 
     /**
-     * Table title.
-     *
      * The string to be displayed on top of the table.
-     *
-     * @var string
      */
-    protected $title;
+    protected ?string $title = null;
 
-    /**
-     * @return Factory|\Illuminate\View\View|void
-     */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         $this->query = $repository;
 
-        if (! $this->isSee()) {
-            return;
+        if (!$this->isSee()) {
+            return null;
         }
 
         $columns = collect($this->columns())->filter(static fn (TD $column) => $column->isSee());
@@ -163,12 +147,9 @@ abstract class Table extends Layout
             return false;
         }
 
-        return ! empty(request()->query()) || $row->isNotEmpty();
+        return !empty(request()->query()) || $row->isNotEmpty();
     }
 
-    /**
-     * @return array
-     */
     abstract protected function columns(): iterable;
 
     protected function total(): array

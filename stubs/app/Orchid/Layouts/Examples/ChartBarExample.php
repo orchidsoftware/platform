@@ -12,15 +12,11 @@ class ChartBarExample extends Chart
      * Available options:
      * 'bar', 'line',
      * 'pie', 'percentage'.
-     *
-     * @var string
      */
-    protected $type = self::TYPE_BAR;
+    protected string $type = self::TYPE_BAR;
 
     /**
      * Height of the chart.
-     *
-     * @var int
      */
-    protected $height = 300;
+    protected int $height = 300;
 }

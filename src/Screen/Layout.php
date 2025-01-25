@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use JsonSerializable;
 
@@ -17,10 +18,8 @@ abstract class Layout implements JsonSerializable
     /**
      * The Main template to display the layer
      * Represents the view() argument.
-     *
-     * @var string
      */
-    protected $template;
+    protected string $template;
 
     /**
      * Nested layers that should be
@@ -28,32 +27,20 @@ abstract class Layout implements JsonSerializable
      *
      * @var Layout[]
      */
-    protected $layouts = [];
+    protected array $layouts = [];
 
-    /**
-     * @var array
-     */
-    protected $variables = [];
+    protected array $variables = [];
 
-    /**
-     * @var Repository
-     */
-    protected $query;
+    protected Repository $query;
 
-    /**
-     * @return mixed
-     */
-    abstract public function build(Repository $repository);
+    abstract public function build(Repository $repository): mixed;
 
-    /**
-     * @return mixed
-     */
-    protected function buildAsDeep(Repository $repository)
+    protected function buildAsDeep(Repository $repository): ?View
     {
         $this->query = $repository;
 
-        if (! $this->isSee()) {
-            return;
+        if (!$this->isSee()) {
+            return null;
         }
 
         $build = collect($this->layouts)
@@ -71,12 +58,12 @@ abstract class Layout implements JsonSerializable
     }
 
     /**
-     * @param array      $layouts
+     * @param array $layouts
      * @param int|string $key
-     *
+     * @param Repository $repository
      * @return array
      */
-    protected function buildChild(iterable $layouts, $key, Repository $repository)
+    protected function buildChild(iterable $layouts, int|string $key, Repository $repository): array
     {
         return collect($layouts)
             ->flatten()
@@ -98,10 +85,7 @@ abstract class Layout implements JsonSerializable
         return sha1(json_encode($this));
     }
 
-    /**
-     * @return Layout|null
-     */
-    public function findBySlug(string $slug)
+    public function findBySlug(string $slug): ?Layout
     {
         if ($slug === $this->getSlug()) {
             return $this;
@@ -122,10 +106,7 @@ abstract class Layout implements JsonSerializable
             ->first();
     }
 
-    /**
-     * @return Layout|null
-     */
-    public function findByType(string $type)
+    public function findByType(string $type): ?Layout
     {
         if (is_subclass_of($this, $type)) {
             return $this;
