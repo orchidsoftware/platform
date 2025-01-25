@@ -6,17 +6,17 @@ namespace Orchid\Screen\Layouts;
 
 use ArrayAccess;
 use Illuminate\View\View;
-use Orchid\Screen\Contracts\Personable;
 
 class Facepile extends Content
 {
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.facepile';
+    protected string $template = 'platform::layouts.facepile';
 
     /**
-     * @param Personable[] $users
+     * @param ArrayAccess $users
+     * @return View
      */
     public function render(ArrayAccess $users): View
     {

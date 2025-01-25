@@ -6,6 +6,7 @@ namespace Orchid\Screen\Layouts;
 
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 use Orchid\Screen\Commander;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
@@ -28,35 +29,23 @@ class Modal extends Layout
     /**
      * The modal window variation key,
      * for example, on the right, in the center.
-     *
-     * @var string
      */
-    protected $type = self::TYPE_CENTER;
+    protected string $type = self::TYPE_CENTER;
 
     /**
      * The size of the modal window,
      * for example, large or small.
-     *
-     * @var string
      */
-    protected $size;
+    protected string $size;
 
     /**
      * The name of the method to be called
      * for loading data when the modal is opened.
-     *
-     * @var string
      */
-    protected $dataLoadingMethod;
+    protected string $dataLoadingMethod;
 
-    /**
-     * @var string
-     */
-    protected $template = 'platform::layouts.modal';
+    protected string $template = 'platform::layouts.modal';
 
-    /**
-     * Modal constructor.
-     */
     public function __construct(string $key, array $layouts = [])
     {
         $this->variables = [
@@ -84,9 +73,10 @@ class Modal extends Layout
     }
 
     /**
-     * @return mixed
+     * @param Repository $repository
+     * @return View|null
      */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         $this->variables = array_merge($this->variables, [
             'deferredRoute'  => route('platform.async'),

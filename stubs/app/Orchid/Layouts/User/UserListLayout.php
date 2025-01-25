@@ -20,7 +20,7 @@ class UserListLayout extends Table
     /**
      * @var string
      */
-    public $target = 'users';
+    public string $target = 'users';
 
     /**
      * @return TD[]

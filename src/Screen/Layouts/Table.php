@@ -6,8 +6,8 @@ namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Contracts\Pagination\Paginator;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Collection;
+use Illuminate\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\TD;
@@ -17,44 +17,36 @@ use Orchid\Screen\TD;
  */
 abstract class Table extends Layout
 {
-    /**
-     * @var string
-     */
-    protected $template = 'platform::layouts.table';
 
-    /**
-     * @var Repository
-     */
-    protected $query;
+    protected string $template = 'platform::layouts.table';
+
+    protected Repository $query;
 
     /**
      * Data source.
      *
      * The name of the key to fetch it from the query.
      * The results of which will be elements of the table.
-     *
-     * @var string
      */
-    protected $target;
+    protected string $target;
 
     /**
      * Table title.
      *
      * The string to be displayed on top of the table.
-     *
-     * @var string
      */
-    protected $title;
+    protected ?string $title = null;
 
     /**
-     * @return Factory|\Illuminate\View\View|void
+     * @param Repository $repository
+     * @return View|null
      */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         $this->query = $repository;
 
         if (! $this->isSee()) {
-            return;
+            return null;
         }
 
         $columns = collect($this->columns())->filter(static fn (TD $column) => $column->isSee());
@@ -155,7 +147,9 @@ abstract class Table extends Layout
     }
 
     /**
-     * @param \Illuminate\Support\Collection|Illuminate\Contracts\Pagination\Paginator|Illuminate\Contracts\Pagination\CursorPaginator $row
+     * @param Collection $columns
+     * @param Collection|Paginator|CursorPaginator $row
+     * @return bool
      */
     protected function hasHeader(Collection $columns, Collection|Paginator|CursorPaginator $row): bool
     {

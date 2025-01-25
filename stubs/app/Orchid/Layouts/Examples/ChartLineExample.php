@@ -10,17 +10,15 @@ class ChartLineExample extends Chart
 {
     /**
      * Height of the chart.
-     *
-     * @var int
      */
-    protected $height = 300;
+    protected int $height = 300;
 
     /**
      * Configuring line.
      *
      * @var array
      */
-    protected $lineOptions = [
+    protected array $lineOptions = [
         'spline'     => 1,
         'regionFill' => 1,
         'hideDots'   => 0,

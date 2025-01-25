@@ -9,6 +9,7 @@ use Orchid\Screen\Action;
 use Orchid\Screen\Commander;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
+use Illuminate\View\View;
 
 /**
  * Class Block.
@@ -17,24 +18,13 @@ abstract class Block extends Layout
 {
     use Commander;
 
-    /**
-     * @var string
-     */
-    protected $template = 'platform::layouts.block';
+    protected string $template = 'platform::layouts.block';
 
-    /**
-     * @var false[]
-     */
-    protected $variables = [
+    protected array $variables = [
         'vertical' => false,
     ];
 
-    /**
-     * Button commands.
-     *
-     * @var array
-     */
-    protected $commandBar = [];
+    protected array $commandBar = [];
 
     /**
      * Layout constructor.
@@ -54,10 +44,7 @@ abstract class Block extends Layout
         return $this->commandBar;
     }
 
-    /**
-     * @return mixed
-     */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         $this->variables['commandBar'] = $this->buildCommandBar($repository);
 
@@ -77,9 +64,8 @@ abstract class Block extends Layout
     /**
      * Used to create the description of a group of form elements.
      *
-     * @param string|\Illuminate\View\View description
      */
-    public function description($description): self
+    public function description(string|View $description): self
     {
         $this->variables['description'] = $description;
 
@@ -90,8 +76,9 @@ abstract class Block extends Layout
      * Used to define block orientation.
      *
      * @param bool $vertical
+     * @return Block
      */
-    public function vertical($vertical = true): self
+    public function vertical(bool $vertical = true): self
     {
         $this->variables['vertical'] = $vertical;
 
@@ -99,12 +86,14 @@ abstract class Block extends Layout
     }
 
     /**
-     * @param Action|Action[] description
+     * @param Action|Action[] $commands
      */
-    public function commands($commands): self
+    public function commands(Action|array $commands): self
     {
         $this->commandBar = Arr::wrap($commands);
 
         return $this;
     }
+
+
 }

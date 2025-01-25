@@ -6,16 +6,15 @@ namespace Orchid\Screen\Layouts;
 
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
+use Illuminate\View\View;
 
 /**
  * Class Columns.
  */
 abstract class Columns extends Layout
 {
-    /**
-     * @var string
-     */
-    protected $template = 'platform::layouts.columns';
+
+    protected string $template = 'platform::layouts.columns';
 
     /**
      * Layout constructor.
@@ -27,10 +26,7 @@ abstract class Columns extends Layout
         $this->layouts = $layouts;
     }
 
-    /**
-     * @return mixed
-     */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         return $this->buildAsDeep($repository);
     }

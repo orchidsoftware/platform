@@ -12,13 +12,8 @@ class ChartPercentageExample extends Chart
      * Available options:
      * 'bar', 'line',
      * 'pie', 'percentage'.
-     *
-     * @var string
      */
-    protected $type = self::TYPE_PERCENTAGE;
+    protected string $type = self::TYPE_PERCENTAGE;
 
-    /**
-     * @var int
-     */
-    protected $height = 160;
+    protected int $height = 160;
 }

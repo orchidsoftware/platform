@@ -12,10 +12,8 @@ use Orchid\Screen\Repository;
  */
 abstract class Blank extends Layout
 {
-    /**
-     * @var string
-     */
-    protected $template = 'platform::layouts.blank';
+
+    protected string $template = 'platform::layouts.blank';
 
     /**
      * Layout constructor.
@@ -27,10 +25,7 @@ abstract class Blank extends Layout
         $this->layouts = $layouts;
     }
 
-    /**
-     * @return \Illuminate\View\View|mixed
-     */
-    public function build(Repository $repository)
+    public function build(Repository $repository): \Illuminate\View\View
     {
         return $this->buildAsDeep($repository);
     }

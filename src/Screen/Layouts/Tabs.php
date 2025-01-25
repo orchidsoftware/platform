@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
@@ -12,15 +13,10 @@ use Orchid\Screen\Repository;
  */
 abstract class Tabs extends Layout
 {
-    /**
-     * @var string
-     */
-    public $template = 'platform::layouts.tabs';
 
-    /**
-     * @var array
-     */
-    protected $variables = [
+    public string $template = 'platform::layouts.tabs';
+
+    protected array $variables = [
         'activeTab'    => null,
     ];
 
@@ -35,17 +31,19 @@ abstract class Tabs extends Layout
     }
 
     /**
-     * @return mixed
+     * @param Repository $repository
+     * @return View|null
      */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         return $this->buildAsDeep($repository);
     }
 
     /**
+     * @param string $name
      * @return $this
      */
-    public function activeTab(string $name)
+    public function activeTab(string $name): self
     {
         $this->variables['activeTab'] = $name;
 

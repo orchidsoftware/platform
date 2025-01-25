@@ -4,6 +4,7 @@ namespace Orchid\Screen\Layouts;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\View\View;
 use Orchid\Screen\Builder;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
@@ -11,17 +12,15 @@ use Orchid\Support\Facades\Dashboard;
 
 abstract class Listener extends Layout
 {
-    /**
-     * @var string
-     */
-    protected $template = 'platform::layouts.listener';
+
+    protected string $template = 'platform::layouts.listener';
 
     /**
      * List of field names for which values will be listened.
      *
      * @var string[]
      */
-    protected $targets = [];
+    protected array $targets = [];
 
     /**
      * @return array
@@ -29,20 +28,21 @@ abstract class Listener extends Layout
     abstract protected function layouts(): iterable;
 
     /**
-     * @param \Orchid\Screen\Repository $repository
-     * @param \Illuminate\Http\Request  $request
+     * @param Repository $repository
+     * @param Request $request
      *
-     * @return \Orchid\Screen\Repository
+     * @return Repository
      */
     abstract public function handle(Repository $repository, Request $request): Repository;
 
     /**
-     * @return mixed|void
+     * @param Repository $repository
+     * @return View|null
      */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         if (! $this->isSee()) {
-            return;
+            return null;
         }
 
         $this->query = $repository;

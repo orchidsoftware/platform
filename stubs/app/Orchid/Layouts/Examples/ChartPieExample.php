@@ -12,13 +12,8 @@ class ChartPieExample extends Chart
      * Available options:
      * 'bar', 'line',
      * 'pie', 'percentage'.
-     *
-     * @var string
      */
-    protected $type = self::TYPE_PIE;
+    protected string $type = self::TYPE_PIE;
 
-    /**
-     * @var int
-     */
-    protected $height = 350;
+    protected int $height = 350;
 }

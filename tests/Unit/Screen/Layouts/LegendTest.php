@@ -14,7 +14,7 @@ class LegendTest extends TestUnitCase
     {
         $layout = new class extends Legend
         {
-            protected $target = 'target';
+            protected string $target = 'target';
 
             protected function columns(): array
             {

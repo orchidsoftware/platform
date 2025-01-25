@@ -17,7 +17,7 @@ class ChartTest extends TestUnitCase
             /**
              * @var string
              */
-            protected $target = 'charts';
+            protected string $target = 'charts';
         };
 
         $html = $layout
@@ -36,7 +36,7 @@ class ChartTest extends TestUnitCase
             /**
              * @var string
              */
-            protected $target = 'charts';
+            protected string $target = 'charts';
         };
 
         $html = $layout

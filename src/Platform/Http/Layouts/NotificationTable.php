@@ -9,12 +9,8 @@ use Orchid\Screen\TD;
 
 class NotificationTable extends Table
 {
-    /**
-     * Data source.
-     *
-     * @var string
-     */
-    public $target = 'notifications';
+
+    public string $target = 'notifications';
 
     /**
      * @return TD[]

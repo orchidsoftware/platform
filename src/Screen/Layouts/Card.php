@@ -9,17 +9,18 @@ use Orchid\Screen\Action;
 use Orchid\Screen\Contracts\Actionable;
 use Orchid\Screen\Contracts\Cardable;
 
+// todo: use Commander trait?
 class Card extends Content
 {
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.card';
+    protected string $template = 'platform::layouts.card';
 
     /**
      * @var array|Action[]
      */
-    protected $commandBar;
+    protected array $commandBar;
 
     /**
      * Card constructor.

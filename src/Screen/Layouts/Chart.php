@@ -6,6 +6,7 @@ namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
@@ -23,38 +24,30 @@ abstract class Chart extends Layout
     /**
      * The Main template to display the layer
      * Represents the view() argument.
-     *
-     * @var string
      */
-    protected $template = 'platform::layouts.chart';
+    protected string $template = 'platform::layouts.chart';
 
-    /**
-     * @var string|null
-     */
-    protected $description;
+    protected ?string $description = null;
 
     /**
      * Add a title to the Chart.
      *
-     * @var string
      */
-    protected $title = 'My Chart';
+    protected string $title = 'My Chart';
 
     /**
      * Available options:
      * 'bar', 'line', 'pie',
      * 'percentage', 'axis-mixed'.
      *
-     * @var string
      */
-    protected $type = self::TYPE_LINE;
+    protected string $type = self::TYPE_LINE;
 
     /**
      * Height of the chart.
      *
-     * @var int
      */
-    protected $height = 250;
+    protected int $height = 250;
 
     /**
      * Data source.
@@ -62,16 +55,14 @@ abstract class Chart extends Layout
      * The name of the key to fetch it from the query.
      * The results of which will be elements of the chart.
      *
-     * @var string
      */
-    protected $target = '';
+    protected string $target = '';
 
     /**
      * Colors used.
      *
-     * @var array
      */
-    protected $colors = [
+    protected array $colors = [
         '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80',
         '#8d98b3', '#e5cf0d', '#97b552', '#95706d', '#dc69aa',
         '#07a2a4', '#9a7fd1', '#588dd5', '#f5994e', '#c05050',
@@ -81,9 +72,8 @@ abstract class Chart extends Layout
     /**
      * Determines whether to display the export button.
      *
-     * @var bool
      */
-    protected $export = false;
+    protected bool $export = false;
 
     /**
      * Limiting the slices.
@@ -92,23 +82,20 @@ abstract class Chart extends Layout
      * it makes sense to bundle up the least of the values as a cumulated data point,
      * rather than showing tiny slices.
      *
-     * @var int
      */
-    protected $maxSlices = 7;
+    protected int $maxSlices = 7;
 
     /**
      * To display data values over bars or dots in an axis graph.
      *
-     * @var int
      */
-    protected $valuesOverPoints = 0;
+    protected int $valuesOverPoints = 0;
 
     /**
      * Configuring percentage bars.
      *
-     * @var array
      */
-    protected $barOptions = [
+    protected array $barOptions = [
         'spaceRatio' => 0.5,
         'stacked'    => 0,
         'height'     => 20,
@@ -117,10 +104,8 @@ abstract class Chart extends Layout
 
     /**
      * Configuring line.
-     *
-     * @var array
      */
-    protected $lineOptions = [
+    protected array $lineOptions = [
         'regionFill' => 0,
         'hideDots'   => 0,
         'hideLine'   => 0,
@@ -131,10 +116,8 @@ abstract class Chart extends Layout
 
     /**
      * Configuring axios.
-     *
-     * @var array
      */
-    protected $axisOptions = [
+    protected array $axisOptions = [
         'xIsSeries'  => true,
         'xAxisMode'  => 'span', // 'tick'
     ];
@@ -229,14 +212,15 @@ abstract class Chart extends Layout
     }
 
     /**
-     * @return Factory|\Illuminate\View\View
+     * @param Repository $repository
+     * @return View|null
      */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         $this->query = $repository;
 
         if (! $this->isSee()) {
-            return;
+            return null;
         }
 
         $labels = collect($repository->getContent($this->target))

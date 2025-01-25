@@ -15,10 +15,8 @@ class DependentSumListener extends Listener
     /**
      * The name of the key to fetch it from the query.
      * The results of which will be elements of the table.
-     *
-     * @var string[]
      */
-    protected $targets = [
+    protected array $targets = [
         'first',
         'second',
     ];

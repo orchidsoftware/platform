@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
-use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 use Orchid\Screen\Builder;
 use Orchid\Screen\Field;
 use Orchid\Screen\Layout;
@@ -19,31 +19,26 @@ abstract class Rows extends Layout
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.row';
+    protected string $template = 'platform::layouts.row';
 
     /**
      * Used to create the title of a group of form elements.
-     *
-     * @var string|null
      */
-    protected $title;
+    protected ?string $title = null;
+
+    protected Repository $query;
 
     /**
-     * @var Repository
-     */
-    protected $query;
-
-    /**
+     * @param Repository $repository
+     * @return View|null
      * @throws Throwable
-     *
-     * @return Factory|\Illuminate\View\View
      */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         $this->query = $repository;
 
         if (! $this->isSee()) {
-            return;
+            return null;
         }
 
         $form = new Builder($this->fields(), $repository);
