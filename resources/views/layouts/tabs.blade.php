@@ -7,7 +7,7 @@
         <ul class="nav nav-tabs nav-tabs-scroll-bar" role="tablist">
             @foreach($manyForms as $name => $tab)
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link
+                    <button type="button" class="nav-link
                         @if ($activeTab === $name)
                             active
                         @elseif($loop->first && is_null($activeTab))
@@ -20,7 +20,7 @@
                        role="tab"
                        data-bs-toggle="tab">
                         {!! $name !!}
-                    </a>
+                    </button>
                 </li>
             @endforeach
         </ul>
