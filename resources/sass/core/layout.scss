@@ -8,6 +8,13 @@ body {
   overflow-x: hidden;
 }
 
+a, button, .btn {
+    &:focus-visible {
+        outline: 2px auto #005fcc !important;  /* Blue outline */
+    }
+}
+
+
 
 @include media-breakpoint-up(xl) {
     .aside {

@@ -6,9 +6,9 @@
              data-bs-target="#collapse-{{\Illuminate\Support\Str::slug($name)}}"
              aria-expanded="true"
              aria-controls="collapse-{{\Illuminate\Support\Str::slug($name)}}">
-            <h6 class="btn btn-link btn-group-justified pt-2 pb-2 mb-0 pe-0 ps-0 d-flex align-items-center">
+            <button type="button" class="btn btn-link btn-group-justified pt-2 pb-2 mb-0 pe-0 ps-0 d-flex align-items-center">
                 <x-orchid-icon path="bs.chevron-right" class="small me-2"/> {!! $name !!}
-            </h6>
+            </button>
         </div>
 
         <div id="collapse-{{\Illuminate\Support\Str::slug($name)}}"
