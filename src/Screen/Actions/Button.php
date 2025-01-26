@@ -80,12 +80,12 @@ class Button extends Action
         });
     }
 
-    public function novalidate(bool $novalidate = true): self
+    public function novalidate(bool $novalidate = true): static
     {
         return $this->set('formnovalidate', var_export($novalidate, true));
     }
 
-    public function method(string $name, array $parameters = []): self
+    public function method(string $name, array $parameters = []): static
     {
         return $this
             ->set('method', $name)
@@ -97,7 +97,7 @@ class Button extends Action
      *
      * @param array|object $parameters The array or object containing the parameters.
      */
-    public function parameters(array|object $parameters): self
+    public function parameters(array|object $parameters): static
     {
         $parameters = is_array($parameters)
             ? collect($parameters)->filter(fn ($value) => filled($value))->all()
@@ -109,12 +109,12 @@ class Button extends Action
     /**
      * Method download serves as an alias for the `rawClick` method.
      */
-    public function download(bool $status = false): self
+    public function download(bool $status = false): static
     {
         return $this->rawClick($status);
     }
 
-    public function route(string $name, mixed $parameters = [], bool $absolute = true): self
+    public function route(string $name, mixed $parameters = [], bool $absolute = true): static
     {
         return $this->action(route($name, $parameters, $absolute));
     }

@@ -42,7 +42,7 @@ class Metric extends Layout
         ]);
     }
 
-    public function title(string $title): self
+    public function title(string $title): static
     {
         $this->title = $title;
 

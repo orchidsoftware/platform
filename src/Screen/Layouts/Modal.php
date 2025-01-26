@@ -85,7 +85,7 @@ class Modal extends Layout
     /**
      * Set the text button for apply action.
      */
-    public function applyButton(string $text): self
+    public function applyButton(string $text): static
     {
         $this->variables['apply'] = $text;
 
@@ -95,7 +95,7 @@ class Modal extends Layout
     /**
      * Whether to disable the applied button or not.
      */
-    public function withoutApplyButton(bool $withoutApplyButton = true): self
+    public function withoutApplyButton(bool $withoutApplyButton = true): static
     {
         $this->variables['withoutApplyButton'] = $withoutApplyButton;
 
@@ -105,7 +105,7 @@ class Modal extends Layout
     /**
      * Whether to disable the close button or not.
      */
-    public function withoutCloseButton(bool $withoutCloseButton = true): self
+    public function withoutCloseButton(bool $withoutCloseButton = true): static
     {
         $this->variables['withoutCloseButton'] = $withoutCloseButton;
 
@@ -115,7 +115,7 @@ class Modal extends Layout
     /**
      * Set the text button for cancel action.
      */
-    public function closeButton(string $text): self
+    public function closeButton(string $text): static
     {
         $this->variables['close'] = $text;
 
@@ -125,7 +125,7 @@ class Modal extends Layout
     /**
      * Set CSS class for size modal.
      */
-    public function size(string $class): self
+    public function size(string $class): static
     {
         $this->variables['size'] = $class;
 
@@ -135,7 +135,7 @@ class Modal extends Layout
     /**
      * Set CSS class for type modal.
      */
-    public function type(string $class): self
+    public function type(string $class): static
     {
         $this->variables['type'] = $class;
 
@@ -145,35 +145,35 @@ class Modal extends Layout
     /**
      * Set title for header modal.
      */
-    public function title(string $title): self
+    public function title(string $title): static
     {
         $this->variables['title'] = $title;
 
         return $this;
     }
 
-    public function rawClick(bool $status = false): self
+    public function rawClick(bool $status = false): static
     {
         $this->variables['turbo'] = $status;
 
         return $this;
     }
 
-    public function open(bool $status = true): self
+    public function open(bool $status = true): static
     {
         $this->variables['open'] = $status;
 
         return $this;
     }
 
-    public function method(string $method): self
+    public function method(string $method): static
     {
         $this->variables['method'] = url()->current().'/'.$method;
 
         return $this;
     }
 
-    public function staticBackdrop(bool $status = true): self
+    public function staticBackdrop(bool $status = true): static
     {
         $this->variables['staticBackdrop'] = $status;
 
@@ -190,7 +190,7 @@ class Modal extends Layout
      *
      * @return $this Returns the current instance of the object for method chaining.
      */
-    public function async(string $method): self
+    public function async(string $method): static
     {
         // If the method name does not start with 'async', prepend the 'async' prefix.
         if (! Str::startsWith($method, 'async')) {
@@ -207,7 +207,7 @@ class Modal extends Layout
      *
      * @return $this Returns the current instance of the object for method chaining.
      */
-    public function deferred(string $method): self
+    public function deferred(string $method): static
     {
         $this->dataLoadingMethod = $method;
 

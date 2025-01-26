@@ -43,7 +43,7 @@ class ModalToggle extends Button
             ->set('async', 'true');
     }
 
-    public function modal(string $name, array $options = []): self
+    public function modal(string $name, array $options = []): static
     {
         $this->set('modal', $name);
 

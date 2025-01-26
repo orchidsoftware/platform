@@ -58,7 +58,7 @@ abstract class Block extends Layout
     /**
      * Used to create the title of a group of form elements.
      */
-    public function title(string $title): self
+    public function title(string $title): static
     {
         $this->variables['title'] = $title;
 
@@ -68,7 +68,7 @@ abstract class Block extends Layout
     /**
      * Used to create the description of a group of form elements.
      */
-    public function description(string|View $description): self
+    public function description(string|View $description): static
     {
         $this->variables['description'] = $description;
 
@@ -78,7 +78,7 @@ abstract class Block extends Layout
     /**
      * Used to define block orientation.
      */
-    public function vertical(bool $vertical = true): self
+    public function vertical(bool $vertical = true): static
     {
         $this->variables['vertical'] = $vertical;
 
@@ -88,7 +88,7 @@ abstract class Block extends Layout
     /**
      * @param Action|Action[] $commands
      */
-    public function commands(Action|array $commands): self
+    public function commands(Action|array $commands): static
     {
         $this->commandBar = Arr::wrap($commands);
 

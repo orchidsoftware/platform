@@ -53,7 +53,7 @@ abstract class Component extends Layout
         return $view->with($component->data());
     }
 
-    public function with(array $data): self
+    public function with(array $data): static
     {
         $this->data = array_merge($this->data, $data);
 

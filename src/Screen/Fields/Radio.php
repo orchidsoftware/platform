@@ -66,7 +66,7 @@ class Radio extends Field
         'type',
     ];
 
-    protected function modifyValue(): self
+    protected function modifyValue(): static
     {
         return $this->checked($this->get('value') === $this->getOldValue());
     }

@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 trait Multipliable
 {
 
-    public function multiple(): self
+    public function multiple(): static
     {
         $this->set('multiple', 'multiple');
         $this->set('allowEmpty', '1'); // TODO do NOT allow null value when multiple is on

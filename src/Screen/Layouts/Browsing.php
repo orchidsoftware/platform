@@ -76,7 +76,7 @@ class Browsing extends Layout
      *
      * @return $this
      */
-    public function csp(?string $csp = null): self
+    public function csp(?string $csp = null): static
     {
         $this->variables['csp'] = $csp;
 
@@ -88,7 +88,7 @@ class Browsing extends Layout
      *
      * @return $this
      */
-    public function name(?string $name = null): self
+    public function name(?string $name = null): static
     {
         $this->variables['name'] = $name;
 
@@ -100,7 +100,7 @@ class Browsing extends Layout
      *
      * @return $this
      */
-    public function referrerpolicy(?string $referrerpolicy = null): self
+    public function referrerpolicy(?string $referrerpolicy = null): static
     {
         $this->variables['referrerpolicy'] = $referrerpolicy;
 
@@ -113,7 +113,7 @@ class Browsing extends Layout
      *
      * @return $this
      */
-    public function sandbox(?string $sandbox = null): self
+    public function sandbox(?string $sandbox = null): static
     {
         $this->variables['sandbox'] = $sandbox;
 
@@ -126,7 +126,7 @@ class Browsing extends Layout
      *
      * @return $this
      */
-    public function src(string $src): self
+    public function src(string $src): static
     {
         $this->variables['src'] = $src;
 
@@ -138,7 +138,7 @@ class Browsing extends Layout
      *
      * @return $this
      */
-    public function srcdoc(string $srcdoc): self
+    public function srcdoc(string $srcdoc): static
     {
         $this->variables['srcdoc'] = $srcdoc;
 

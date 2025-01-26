@@ -35,7 +35,7 @@ class DateRange extends Field implements ComplexFieldConcern
      *
      * @return $this
      */
-    public function disableMobile(bool $disable = true): self
+    public function disableMobile(bool $disable = true): static
     {
         $this->set('data-datetime-disable-mobile', var_export($disable, true));
 

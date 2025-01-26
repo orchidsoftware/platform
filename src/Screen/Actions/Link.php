@@ -44,14 +44,14 @@ class Link extends Action
         'download',
     ];
 
-    public function href(string $link = ''): self
+    public function href(string $link = ''): static
     {
         $this->set('href', $link);
 
         return $this;
     }
 
-    public function route(string $name, mixed $parameters = [], bool $absolute = true): self
+    public function route(string $name, mixed $parameters = [], bool $absolute = true): static
     {
         $route = route($name, $parameters, $absolute);
 

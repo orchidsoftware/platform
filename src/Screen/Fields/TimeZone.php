@@ -62,7 +62,7 @@ class TimeZone extends Field
         });
     }
 
-    public function listIdentifiers(int $time = DateTimeZone::ALL): self
+    public function listIdentifiers(int $time = DateTimeZone::ALL): static
     {
         $timeZone = collect(DateTimeZone::listIdentifiers($time))
             ->mapWithKeys(static fn ($timezone) => [$timezone => $timezone])->toArray();

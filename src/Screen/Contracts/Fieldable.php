@@ -15,7 +15,7 @@ interface Fieldable
 
     public function get(string $key, mixed $value = null): mixed;
 
-    public function set(string $key, mixed $value): self;
+    public function set(string $key, mixed $value): static;
 
     public function getAttributes(): array;
 }

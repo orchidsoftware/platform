@@ -75,12 +75,12 @@ class Matrix extends Field
             });
     }
 
-    public function maxRows(int $count): self
+    public function maxRows(int $count): static
     {
         return $this->set('maxRows', $count);
     }
 
-    public function removableRows(bool $value = true): self
+    public function removableRows(bool $value = true): static
     {
         return $this->set('removableRows', $value);
     }
@@ -88,12 +88,12 @@ class Matrix extends Field
     /**
      * @param Field[] $fields
      */
-    public function fields(array $fields = []): self
+    public function fields(array $fields = []): static
     {
         return $this->set('fields', $fields);
     }
 
-    public function addRowLabel(string $label): self
+    public function addRowLabel(string $label): static
     {
         return $this->set('addRowLabel', $label);
     }

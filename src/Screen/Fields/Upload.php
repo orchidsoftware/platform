@@ -141,7 +141,7 @@ class Upload extends Field
      *
      * @return $this
      */
-    public function storage(string $storage): self
+    public function storage(string $storage): static
     {
         $disk = config('filesystems.disks.'.$storage);
 
@@ -155,7 +155,7 @@ class Upload extends Field
     /**
      * Set custom attachment upload path
      */
-    public function path(string $path): self
+    public function path(string $path): static
     {
         return $this->set('path', $path);
     }

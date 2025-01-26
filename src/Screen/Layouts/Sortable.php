@@ -68,7 +68,7 @@ abstract class Sortable extends Layout
 
     abstract protected function columns(): iterable;
 
-    public function title(?string $title = null): self
+    public function title(?string $title = null): static
     {
         $this->title = $title;
 
@@ -80,7 +80,7 @@ abstract class Sortable extends Layout
      *
      * @param bool $showHeaders Whether to show block headers or not. Default is false.
      */
-    public function showBlockHeaders(bool $showHeaders = true): self
+    public function showBlockHeaders(bool $showHeaders = true): static
     {
         $this->showBlockHeaders = $showHeaders;
 

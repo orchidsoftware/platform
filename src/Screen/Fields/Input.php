@@ -104,7 +104,7 @@ class Input extends Field
         });
     }
 
-    public function datalist(array $datalist = []): self
+    public function datalist(array $datalist = []): static
     {
         if (empty($datalist)) {
             return $this;

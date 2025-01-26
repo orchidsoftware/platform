@@ -70,42 +70,42 @@ class TD extends Cell
      */
     protected $callbackFilterValue;
 
-    public function width(string|int|float $width): self
+    public function width(string|int|float $width): static
     {
         $this->width = $width;
 
         return $this;
     }
 
-    public function style(string $style): self
+    public function style(string $style): static
     {
         $this->style = $style;
 
         return $this;
     }
 
-    public function class(string $class): self
+    public function class(string $class): static
     {
         $this->class = $class;
 
         return $this;
     }
 
-    public function filterOptions(iterable $filterOptions): self
+    public function filterOptions(iterable $filterOptions): static
     {
         $this->filterOptions = $filterOptions;
 
         return $this;
     }
 
-    public function filterValue(callable $callable): self
+    public function filterValue(callable $callable): static
     {
         $this->callbackFilterValue = $callable;
 
         return $this;
     }
 
-    public function filter(string|Field $filter = self::FILTER_TEXT, iterable|callable|null $options = null): self
+    public function filter(string|Field $filter = self::FILTER_TEXT, iterable|callable|null $options = null): static
     {
         if (is_iterable($options)) {
             $this->filterOptions($options);
@@ -120,42 +120,42 @@ class TD extends Cell
         return $this;
     }
 
-    public function sort(bool $sort = true): self
+    public function sort(bool $sort = true): static
     {
         $this->sort = $sort;
 
         return $this;
     }
 
-    public function align(string $align): self
+    public function align(string $align): static
     {
         $this->align = $align;
 
         return $this;
     }
 
-    public function alignLeft(): self
+    public function alignLeft(): static
     {
         $this->align = self::ALIGN_LEFT;
 
         return $this;
     }
 
-    public function alignRight(): self
+    public function alignRight(): static
     {
         $this->align = self::ALIGN_RIGHT;
 
         return $this;
     }
 
-    public function alignCenter(): self
+    public function alignCenter(): static
     {
         $this->align = self::ALIGN_CENTER;
 
         return $this;
     }
 
-    public function colspan(int $colspan): self
+    public function colspan(int $colspan): static
     {
         $this->colspan = $colspan;
 
@@ -265,7 +265,7 @@ class TD extends Cell
     /**
      * Prevents the user from hiding a column in the interface.
      */
-    public function cantHide(bool $hidden = false): self
+    public function cantHide(bool $hidden = false): static
     {
         $this->allowUserHidden = $hidden;
 
@@ -275,7 +275,7 @@ class TD extends Cell
     /**
      * @return $this
      */
-    public function defaultHidden(bool $hidden = true): self
+    public function defaultHidden(bool $hidden = true): static
     {
         $this->defaultHidden = $hidden;
 

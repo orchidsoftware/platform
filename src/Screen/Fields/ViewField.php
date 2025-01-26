@@ -14,7 +14,7 @@ use Orchid\Screen\Field;
  */
 class ViewField extends Field
 {
-    public function view(string $view): self
+    public function view(string $view): static
     {
         $this->view = $view;
 

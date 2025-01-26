@@ -130,12 +130,12 @@ abstract class Chart extends Layout
      *
      * @return static
      */
-    public static function make(string $target, ?string $title = null): self
+    public static function make(string $target, ?string $title = null): static
     {
         return (new static)->target($target)->title($title);
     }
 
-    public function target(string $target): self
+    public function target(string $target): static
     {
         $this->target = $target;
 
@@ -145,7 +145,7 @@ abstract class Chart extends Layout
     /**
      * Set title of the chart.
      */
-    public function title(?string $title = null): self
+    public function title(?string $title = null): static
     {
         $this->title = $title;
 
@@ -155,7 +155,7 @@ abstract class Chart extends Layout
     /**
      * Set description of the chart.
      */
-    public function description(string $description): self
+    public function description(string $description): static
     {
         $this->description = $description;
 
@@ -165,21 +165,21 @@ abstract class Chart extends Layout
     /**
      * Set the height of the chart.
      */
-    public function height(int $height): self
+    public function height(int $height): static
     {
         $this->height = $height;
 
         return $this;
     }
 
-    public function type(string $type): self
+    public function type(string $type): static
     {
         $this->type = $type;
 
         return $this;
     }
 
-    public function export(bool $export = true): self
+    public function export(bool $export = true): static
     {
         $this->export = $export;
 

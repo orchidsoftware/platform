@@ -41,7 +41,7 @@ abstract class Accordion extends Layout
     /**
      * Make accordion items stay open when another item is opened.
      */
-    public function stayOpen(bool $stayOpen = true): self
+    public function stayOpen(bool $stayOpen = true): static
     {
         $this->variables['stayOpen'] = $stayOpen;
 
@@ -55,7 +55,7 @@ abstract class Accordion extends Layout
      *
      * @return $this
      */
-    public function open(string|array $activeAccordion): self
+    public function open(string|array $activeAccordion): static
     {
         $this->variables['open'] = Arr::wrap($activeAccordion);
 

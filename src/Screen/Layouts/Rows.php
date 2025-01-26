@@ -47,7 +47,7 @@ abstract class Rows extends Layout
         ]);
     }
 
-    public function title(?string $title = null): self
+    public function title(?string $title = null): static
     {
         $this->title = $title;
 

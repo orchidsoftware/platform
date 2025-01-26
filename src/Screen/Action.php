@@ -39,7 +39,7 @@ class Action extends Field implements Actionable
      *
      * @return self
      */
-    public function name(?string $name = null): self
+    public function name(?string $name = null): static
     {
         return $this->set('name', $name ?? '');
     }
@@ -54,7 +54,7 @@ class Action extends Field implements Actionable
      *
      * @return static
      */
-    public function type(Color $visual): self
+    public function type(Color $visual): static
     {
         $colors = array_map(static fn (Color $color) => 'btn-'.$color->name(), Color::cases());
 
@@ -83,7 +83,7 @@ class Action extends Field implements Actionable
      *
      * @return static
      */
-    public function rawClick(bool $status = false): self
+    public function rawClick(bool $status = false): static
     {
         $this->set('turbo', $status);
 
@@ -112,7 +112,7 @@ class Action extends Field implements Actionable
      *
      * @return self
      */
-    public function stretched(): self
+    public function stretched(): static
     {
         $this->attributes['class'] .= ' stretched-link';
 

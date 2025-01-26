@@ -47,7 +47,7 @@ class Repository extends \Illuminate\Config\Repository implements Countable
      *
      * @return $this
      */
-    public function set($key, $value = null): self
+    public function set($key, $value = null): static
     {
         parent::set($key, $value);
 

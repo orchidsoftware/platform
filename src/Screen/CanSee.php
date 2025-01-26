@@ -27,7 +27,7 @@ trait CanSee
      *
      * @param bool $value The visibility status. `true` to display, `false` to hide.
      */
-    public function canSee(bool $value): self
+    public function canSee(bool $value): static
     {
         $this->display = $value;
 
