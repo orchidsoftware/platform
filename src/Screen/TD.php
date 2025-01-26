@@ -35,15 +35,15 @@ class TD extends Cell
     public const FILTER_NUMBER_RANGE = 'numberRange';
     public const FILTER_SELECT = 'select';
 
-    protected string|null|int $width = null;
+    protected string|null|float|int $width = null;
 
     protected ?string $style = null;
 
     protected ?string $class = null;
 
-    protected ?string $filter = null;
+    protected null|string|Field $filter = null;
 
-    protected bool $sort;
+    protected bool $sort = false;
 
     protected string $align = self::ALIGN_LEFT;
 
@@ -70,11 +70,7 @@ class TD extends Cell
      */
     protected $callbackFilterValue;
 
-    /**
-     * @param string|int $width
-     * @return TD
-     */
-    public function width(string|int $width): self
+    public function width(string|int|float $width): self
     {
         $this->width = $width;
 
@@ -109,7 +105,7 @@ class TD extends Cell
         return $this;
     }
 
-    public function filter(string $filter = self::FILTER_TEXT, iterable|callable|null $options = null): self
+    public function filter(string|Field $filter = self::FILTER_TEXT, iterable|callable|null $options = null): self
     {
         if (is_iterable($options)) {
             $this->filterOptions($options);
@@ -224,7 +220,7 @@ class TD extends Cell
     /**
      * Builds content for the column.
      */
-    public function buildTd(Repository|Model $repository, ?object $loop = null): View
+    public function buildTd(Repository|Model|string $repository, ?object $loop = null): View
     {
         $value = $this->render ? $this->handler($repository, $loop) : $repository->getContent($this->name);
 
