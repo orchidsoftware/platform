@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Access;
 
+use Illuminate\Auth\SessionGuard;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Facades\Auth;
 
 class Impersonation
@@ -75,9 +74,9 @@ class Impersonation
     /**
      * Returns the authentication guard.
      *
-     * @return \Illuminate\Contracts\Auth\Guard|\Illuminate\Contracts\Auth\StatefulGuard
+     * @return SessionGuard
      */
-    protected static function getAuth(): Guard|StatefulGuard
+    protected static function getAuth(): SessionGuard
     {
         // Get the authentication guard specified in the config file
         return Auth::guard(config('platform.guard'));

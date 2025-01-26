@@ -11,6 +11,8 @@ use Orchid\Attachment\MimeTypes;
 
 class Generator implements Engine
 {
+    protected const UNKNOWN = 'unknown';
+
     /**
      * The uploaded file instance.
      *
@@ -118,13 +120,16 @@ class Generator implements Engine
 
     /**
      * Get the file extension.
+     *
+     * @psalm-suppress InvalidNullableReturnType
+     * @psalm-suppress NullableReturnStatement
      */
     public function extension(): string
     {
         $extension = $this->file->getClientOriginalExtension();
 
         return empty($extension)
-            ? $this->mimes->getExtension($this->file->getClientMimeType(), 'unknown')
+            ? $this->mimes->getExtension($this->file->getClientMimeType(), static::UNKNOWN)
             : $extension;
     }
 
@@ -135,6 +140,6 @@ class Generator implements Engine
     {
         return $this->mimes->getMimeType($this->extension())
             ?? $this->mimes->getMimeType($this->file->getClientMimeType())
-            ?? 'unknown';
+            ?? static::UNKNOWN;
     }
 }
