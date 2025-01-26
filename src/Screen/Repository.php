@@ -12,10 +12,8 @@ use Illuminate\Support\Arr;
  */
 class Repository extends \Illuminate\Config\Repository implements Countable
 {
-    /**
-     * @var int
-     */
-    protected $position = 0;
+
+    protected int $position = 0;
 
     /**
      * Create a new configuration repository.
@@ -28,12 +26,7 @@ class Repository extends \Illuminate\Config\Repository implements Countable
         $this->items = collect($items)->all();
     }
 
-    /**
-     * @param mixed|null $default
-     *
-     * @return mixed
-     */
-    public function getContent(string $key, $default = null)
+    public function getContent(string $key, mixed $default = null): mixed
     {
         return Arr::get($this->items, $key, $default);
     }

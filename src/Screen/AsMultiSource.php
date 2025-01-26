@@ -13,17 +13,13 @@ trait AsMultiSource
     }
     /**
      * Name row localization.
-     *
-     * @var string
      */
-    public $jsonColumnName = 'content';
+    public string $jsonColumnName = 'content';
 
     /**
-     * @param null $locale
-     *
      * @return mixed|null
      */
-    public function getContent(string $field, $locale = null)
+    public function getContent(string $field, ?string $locale = null) : mixed
     {
         return $this->getBaseContent($field) ?? $this->getContentMultiLang($field, $locale);
     }
