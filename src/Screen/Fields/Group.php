@@ -45,7 +45,7 @@ class Group implements Fieldable, Groupable
     /**
      * @return $this
      */
-    public function setGroup(array $group = []): Groupable
+    public function setGroup(array $group = []): static
     {
         return $this->set('group', $group);
     }
