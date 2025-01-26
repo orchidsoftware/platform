@@ -29,7 +29,7 @@ class ArtisanTest extends TestConsoleCase
     /**
      * @dataProvider artisanOrchidMake
      */
-    public function testArtisanOrchidMake(string $name, string $command, string $path): void
+    public function test_artisan_orchid_make(string $name, string $command, string $path): void
     {
         $file = Str::random();
 
@@ -40,7 +40,7 @@ class ArtisanTest extends TestConsoleCase
         $this->assertFileExists(app_path($path.$file.'.php'));
     }
 
-    public function testArtisanOrchidAdmin(): void
+    public function test_artisan_orchid_admin(): void
     {
         $this->artisan('orchid:admin')
             ->expectsQuestion('What is your name?', 'testConsoleCreateUser')
@@ -68,14 +68,14 @@ class ArtisanTest extends TestConsoleCase
         $this->assertEquals(Orchid::getAllowAllPermission()->toArray(), $user->permissions);
     }
 
-    public function testArtisanOrchidInstall(): void
+    public function test_artisan_orchid_install(): void
     {
         $this->artisan('orchid:install')
             ->expectsOutputToContain("To start the embedded server, run 'artisan serve'")
             ->assertOk();
     }
 
-    public function testArtisanOrchidLink(): void
+    public function test_artisan_orchid_link(): void
     {
         $this->artisan('orchid:publish')
             ->assertOk();

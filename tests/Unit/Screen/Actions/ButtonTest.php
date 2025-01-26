@@ -12,7 +12,7 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
  */
 class ButtonTest extends TestFieldsUnitCase
 {
-    public function testButtonInstance(): void
+    public function test_button_instance(): void
     {
         $button = Button::make('About')
             ->method('test');
@@ -25,7 +25,7 @@ class ButtonTest extends TestFieldsUnitCase
         );
     }
 
-    public function testButtonParams(): void
+    public function test_button_params(): void
     {
         $button = Button::make('About')
             ->method('test')
@@ -41,7 +41,7 @@ class ButtonTest extends TestFieldsUnitCase
         );
     }
 
-    public function testButtonWithNullParameters(): void
+    public function test_button_with_null_parameters(): void
     {
         $button = Button::make('About')
             ->method('test', [
@@ -57,7 +57,7 @@ class ButtonTest extends TestFieldsUnitCase
         );
     }
 
-    public function testButtonWithZeroParameters(): void
+    public function test_button_with_zero_parameters(): void
     {
         $button = Button::make('About')
             ->method('test', [
@@ -72,7 +72,7 @@ class ButtonTest extends TestFieldsUnitCase
         );
     }
 
-    public function testButtonTitle(): void
+    public function test_button_title(): void
     {
         $button = Button::make('About')
             ->method('test')
@@ -86,7 +86,7 @@ class ButtonTest extends TestFieldsUnitCase
         );
     }
 
-    public function testButtonDisableTurbolinks(): void
+    public function test_button_disable_turbolinks(): void
     {
         $button = Button::make('About')
             ->method('test')
@@ -100,7 +100,7 @@ class ButtonTest extends TestFieldsUnitCase
         );
     }
 
-    public function testButtonEnabledTurbolinks(): void
+    public function test_button_enabled_turbolinks(): void
     {
         $button = Button::make('About')
             ->method('test')
@@ -114,7 +114,7 @@ class ButtonTest extends TestFieldsUnitCase
         );
     }
 
-    public function testButtonForCustomAction(): void
+    public function test_button_for_custom_action(): void
     {
         $buttonForRoute = Button::make('About')
             ->action(route('platform.index'));
@@ -137,7 +137,7 @@ class ButtonTest extends TestFieldsUnitCase
         );
     }
 
-    public function testButtonWhenDisable()
+    public function test_button_when_disable()
     {
         $button = Button::make('About')
             ->method('test')
@@ -160,7 +160,7 @@ class ButtonTest extends TestFieldsUnitCase
         $this->assertStringNotContainsString('disabled', $view);
     }
 
-    public function testButtonMethodParameters(): void
+    public function test_button_method_parameters(): void
     {
         $button = Button::make('About')
             ->method('test', [
@@ -175,7 +175,7 @@ class ButtonTest extends TestFieldsUnitCase
         );
     }
 
-    public function testButtonMethodParametersOverwrite(): void
+    public function test_button_method_parameters_overwrite(): void
     {
         $button = Button::make('About')
             ->parameters([

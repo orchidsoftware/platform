@@ -8,7 +8,7 @@ use Orchid\Tests\TestUnitCase;
 
 class TDForTableTest extends TestUnitCase
 {
-    public function testShowPopover(): void
+    public function test_show_popover(): void
     {
         $popover = 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus.';
 
@@ -17,7 +17,7 @@ class TDForTableTest extends TestUnitCase
         $this->assertStringContainsString($popover, $view);
     }
 
-    public function testTdWidth(): void
+    public function test_td_width(): void
     {
         $width = '100px';
 
@@ -26,7 +26,7 @@ class TDForTableTest extends TestUnitCase
         $this->assertStringContainsString('style="min-width:'.$width.'', $view);
     }
 
-    public function testTdStyle(): void
+    public function test_td_style(): void
     {
         $style = 'border-color: red;';
 
@@ -35,7 +35,7 @@ class TDForTableTest extends TestUnitCase
         $this->assertStringContainsString('style="'.$style.'', $view);
     }
 
-    public function testTdClass(): void
+    public function test_td_class(): void
     {
         $class = 'my-custom-class';
 
@@ -44,7 +44,7 @@ class TDForTableTest extends TestUnitCase
         $this->assertStringContainsString('text-start  text-truncate  '.$class.'', $view);
     }
 
-    public function testTdWidthWithCustomStyle(): void
+    public function test_td_width_with_custom_style(): void
     {
         $width = '100px';
         $style = 'border-color: red;';
@@ -54,14 +54,14 @@ class TDForTableTest extends TestUnitCase
         $this->assertStringContainsString('style="min-width:'.$width.'; '.$style.'', $view);
     }
 
-    public function testTdWithoutWidth(): void
+    public function test_td_without_width(): void
     {
         $view = TD::make('name')->buildTd(new Repository(['name' => 'value']));
 
         $this->assertStringNotContainsString('style="min-width:"', $view);
     }
 
-    public function testTdWidthNumeric(): void
+    public function test_td_width_numeric(): void
     {
         $integer = 100;
 
@@ -76,7 +76,7 @@ class TDForTableTest extends TestUnitCase
         $this->assertStringContainsString('style="min-width:'.$float.'px', $view);
     }
 
-    public function testTdWidthString(): void
+    public function test_td_width_string(): void
     {
         $stringWithInteger = '100';
 
@@ -97,7 +97,7 @@ class TDForTableTest extends TestUnitCase
         $this->assertStringContainsString('style="min-width:'.$stringWithNotOnlyNumeric, $view);
     }
 
-    public function testTdAlight(): void
+    public function test_td_alight(): void
     {
         $view = TD::make('name')->alignLeft()->buildTd(new Repository(['name' => 'value']));
         $this->assertStringContainsString('class="text-'.TD::ALIGN_LEFT, $view);

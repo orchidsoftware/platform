@@ -55,7 +55,7 @@ class Builder
     public function __construct(iterable $fields, ?Repository $data = null)
     {
         $this->fields = collect($fields)->all();
-        $this->data = $data ?? new Repository();
+        $this->data = $data ?? new Repository;
     }
 
     /**
@@ -145,7 +145,7 @@ class Builder
         $bindValueName = rtrim($name, '.');
         $attributes['value'] = $this->getValue($bindValueName, $attributes['value'] ?? null);
 
-        //set prefix
+        // set prefix
         if ($attributes['prefix'] !== null) {
             $name = '.'.$name;
         }

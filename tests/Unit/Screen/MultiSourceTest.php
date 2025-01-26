@@ -63,13 +63,13 @@ class MultiSourceTest extends TestUnitCase
         ]);
     }
 
-    public function testMultiLanguageAttribute(): void
+    public function test_multi_language_attribute(): void
     {
         $this->assertContains('Russia', $this->model->getContent('country', 'en'));
         $this->assertContains('Россия', $this->model->getContent('country', 'ru'));
     }
 
-    public function testMultiLanguageFallBack(): void
+    public function test_multi_language_fall_back(): void
     {
         $this->assertContains('Spain', $this->model->getContent('country', 'es'));
     }

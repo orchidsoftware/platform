@@ -9,7 +9,7 @@ use Orchid\Tests\TestUnitCase;
 
 class PercentageTest extends TestUnitCase
 {
-    public function testRenderPercentageComponent(): void
+    public function test_render_percentage_component(): void
     {
         $value = 0.75;
 
@@ -21,7 +21,7 @@ class PercentageTest extends TestUnitCase
     /**
      * Tests rendering of the percentage component with decimal value.
      */
-    public function testRenderPercentageWithDecimalComponent(): void
+    public function test_render_percentage_with_decimal_component(): void
     {
         $value = 0.7554545465;
 
@@ -33,7 +33,7 @@ class PercentageTest extends TestUnitCase
     /**
      * Tests rendering of the percentage component with integer value.
      */
-    public function testRenderPercentageIntComponent(): void
+    public function test_render_percentage_int_component(): void
     {
         $value = 1;
 
@@ -45,7 +45,7 @@ class PercentageTest extends TestUnitCase
     /**
      * Tests rendering of the percentage component with value greater than one.
      */
-    public function testRenderPercentageMoreThanOneComponent(): void
+    public function test_render_percentage_more_than_one_component(): void
     {
         $value = 1.25;
 
@@ -57,7 +57,7 @@ class PercentageTest extends TestUnitCase
     /**
      * Tests rendering of the percentage component with value greater than one.
      */
-    public function testRenderPercentageZeroComponent(): void
+    public function test_render_percentage_zero_component(): void
     {
         $value = 0;
 

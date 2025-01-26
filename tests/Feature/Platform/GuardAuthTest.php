@@ -28,7 +28,7 @@ class GuardAuthTest extends TestFeatureCase
         ]);
     }
 
-    public function testRouteCustomGuardAuthSuccess(): void
+    public function test_route_custom_guard_auth_success(): void
     {
         $this->post(route('platform.login.auth'), [
             'email'    => $this->createAdminUser()->email,
@@ -39,7 +39,7 @@ class GuardAuthTest extends TestFeatureCase
             ->assertRedirect(route(config('orchid.index')));
     }
 
-    public function testFailCustomGuard(): void
+    public function test_fail_custom_guard(): void
     {
         $this
             ->actingAs($this->createAdminUser(), 'web')
@@ -48,7 +48,7 @@ class GuardAuthTest extends TestFeatureCase
             ->assertRedirect(route('platform.login'));
     }
 
-    public function testCustomGuardShouldUse(): void
+    public function test_custom_guard_should_use(): void
     {
         Route::middleware(config('orchid.middleware.private'))->get('custom-guard', function () {
             /** @var \Illuminate\Auth\SessionGuard $sessionGuard */

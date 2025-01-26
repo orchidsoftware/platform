@@ -11,7 +11,7 @@ use Orchid\Tests\TestUnitCase;
 
 class MetricsTest extends TestUnitCase
 {
-    public function testGroupCount(): void
+    public function test_group_count(): void
     {
         User::factory()->count(5)->create([
             'name' => true,
@@ -52,7 +52,7 @@ class MetricsTest extends TestUnitCase
         ], $namedLabel);
     }
 
-    public function testPeriod(): void
+    public function test_period(): void
     {
         $current = Carbon::now();
         $start = (clone $current)->subDays(2);
@@ -81,7 +81,7 @@ class MetricsTest extends TestUnitCase
         ], $period->toChart('Users'));
     }
 
-    public function testMaxValuesPeriod(): void
+    public function test_max_values_period(): void
     {
         $current = Carbon::now();
         $start = (clone $current)->subDays(2);
@@ -111,7 +111,7 @@ class MetricsTest extends TestUnitCase
         ], $period->toChart('Users'));
     }
 
-    public function testMinValuesPeriod(): void
+    public function test_min_values_period(): void
     {
         $current = Carbon::now();
         $start = (clone $current)->subDays(2);
@@ -141,7 +141,7 @@ class MetricsTest extends TestUnitCase
         ], $period->toChart('Users'));
     }
 
-    public function testSumPeriod(): void
+    public function test_sum_period(): void
     {
         $current = Carbon::now();
         $start = (clone $current)->subDays(2);
@@ -170,7 +170,7 @@ class MetricsTest extends TestUnitCase
         ], $period->toChart('Users'));
     }
 
-    public function testAvgPeriod(): void
+    public function test_avg_period(): void
     {
         $current = Carbon::now();
         $start = (clone $current)->subDays(2);
@@ -199,7 +199,7 @@ class MetricsTest extends TestUnitCase
         ], $period->toChart('Users'));
     }
 
-    public function testPeriodShowDaysOfWeek(): void
+    public function test_period_show_days_of_week(): void
     {
         $current = Carbon::now();
         $start = (clone $current)->subDays(6);
@@ -238,7 +238,7 @@ class MetricsTest extends TestUnitCase
         });
     }
 
-    public function testPeriodWithoutZero(): void
+    public function test_period_without_zero(): void
     {
         $current = Carbon::now();
         $start = (clone $current)->subDays(2);

@@ -11,7 +11,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class NotificationTest extends TestFeatureCase
 {
-    public function testViewNotification(): void
+    public function test_view_notification(): void
     {
         $response = $this
             ->actingAs($this->createNotifyUser())
@@ -22,7 +22,7 @@ class NotificationTest extends TestFeatureCase
             ->assertSee('Task Completed');
     }
 
-    public function testMaskAllAsRead(): void
+    public function test_mask_all_as_read(): void
     {
         $user = $this->createNotifyUser();
 
@@ -38,7 +38,7 @@ class NotificationTest extends TestFeatureCase
             ->assertDontSee('Mask all as read');
     }
 
-    public function testRemove(): void
+    public function test_remove(): void
     {
         $user = $this->createNotifyUser();
 
@@ -55,7 +55,7 @@ class NotificationTest extends TestFeatureCase
             ->assertDontSee('Task Completed');
     }
 
-    public function testMaskReadNotification(): void
+    public function test_mask_read_notification(): void
     {
         $user = $this->createNotifyUser();
         $notification = $user
@@ -74,7 +74,7 @@ class NotificationTest extends TestFeatureCase
         $this->assertTrue($notification->read());
     }
 
-    public function testShowAPIUnread(): void
+    public function test_show_api_unread(): void
     {
         $response = $this
             ->actingAs($this->createNotifyUser())
@@ -92,7 +92,7 @@ class NotificationTest extends TestFeatureCase
     private function createNotifyUser(): User
     {
         $user = $this->createAdminUser();
-        $user->notify(new TaskCompleted());
+        $user->notify(new TaskCompleted);
 
         return $user;
     }

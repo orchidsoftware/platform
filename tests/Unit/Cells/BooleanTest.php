@@ -9,7 +9,7 @@ use Orchid\Tests\TestUnitCase;
 
 class BooleanTest extends TestUnitCase
 {
-    public function testRenderBooleanComponent(): void
+    public function test_render_boolean_component(): void
     {
         $component = new Boolean(true);
 
@@ -20,14 +20,14 @@ class BooleanTest extends TestUnitCase
         $this->assertEquals("<span class='text-danger'>●</span>", $component->render());
     }
 
-    public function testRenderBooleanWithNullComponent(): void
+    public function test_render_boolean_with_null_component(): void
     {
         $component = new Boolean(null);
 
         $this->assertEquals("<span class='text-danger'>●</span>", $component->render());
     }
 
-    public function testRenderBooleanWithLabelComponent(): void
+    public function test_render_boolean_with_label_component(): void
     {
         $component = new Boolean(true, true: 'Enabled', false: 'Disabled');
 

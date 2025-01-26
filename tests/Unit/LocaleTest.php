@@ -11,12 +11,12 @@ use Symfony\Component\Finder\Finder;
 
 class LocaleTest extends TestUnitCase
 {
-    public function testLoadTranslations(): void
+    public function test_load_translations(): void
     {
         $this->assertEquals(trans('Apply', [], 'ru'), 'Применить');
     }
 
-    public function testTranslationsJsonValidation(): void
+    public function test_translations_json_validation(): void
     {
         $this->getTranslationFiles()
             ->each(function (string $file) {
@@ -26,7 +26,7 @@ class LocaleTest extends TestUnitCase
             });
     }
 
-    public function testUsageAllTranslateString(): void
+    public function test_usage_all_translate_string(): void
     {
         $this->getTranslationFiles()
             ->map(function (string $file) {
@@ -62,7 +62,7 @@ class LocaleTest extends TestUnitCase
      */
     protected function checkUsageTranslateStringInProject(string $string): bool
     {
-        return (new Finder())
+        return (new Finder)
             ->ignoreUnreadableDirs()
             ->followLinks()
             ->in([

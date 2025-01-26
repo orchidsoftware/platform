@@ -65,14 +65,14 @@ class SourceTest extends TestUnitCase
         $this->model = $model;
     }
 
-    public function testGetSimpleAttribute(): void
+    public function test_get_simple_attribute(): void
     {
         $this->assertEquals(8, $this->model->getContent('id'));
         $this->assertEquals('Alexandr Chernyaev', $this->model->getContent('name'));
         $this->assertEquals('red', $this->model->getContent('color'));
     }
 
-    public function testGetArrayAttribute(): void
+    public function test_get_array_attribute(): void
     {
         $this->assertIsArray($this->model->getContent('options.country'));
         $this->assertContains('Russia', $this->model->getContent('options.country'));
@@ -81,7 +81,7 @@ class SourceTest extends TestUnitCase
         $this->assertTrue($this->model->getContent('options.skills.php'));
     }
 
-    public function testGetRelation(): void
+    public function test_get_relation(): void
     {
         $this->assertIsInt($this->model->getContent('many.three'));
         $this->assertEquals(84, $this->model->getContent('many.three'));
@@ -91,12 +91,12 @@ class SourceTest extends TestUnitCase
         $this->assertEquals('one', $this->model->getContent('many')[0]);
     }
 
-    public function testGetAttributeWithAccessor()
+    public function test_get_attribute_with_accessor()
     {
         $this->assertEquals('Hello Alexandr Chernyaev', $this->model->getContent('greeting'));
     }
 
-    public function testNoAccessToProperties(): void
+    public function test_no_access_to_properties(): void
     {
         $this->assertNull($this->model->getContent('incrementing')); // public
         $this->assertNull($this->model->getContent('fillable')); // property

@@ -13,7 +13,7 @@ class LayoutsMarcoTest extends TestUnitCase
     /**
      * @param string $name
      */
-    public function testMacroLayout($name = 'customMarcoName'): void
+    public function test_macro_layout($name = 'customMarcoName'): void
     {
         LayoutFactory::macro('returnNameMacroFunction', fn (string $test) => $test);
 
@@ -23,7 +23,7 @@ class LayoutsMarcoTest extends TestUnitCase
     /**
      * @param string $name
      */
-    public function testMacroLayoutFacade($name = 'customMarcoNameFacade'): void
+    public function test_macro_layout_facade($name = 'customMarcoNameFacade'): void
     {
         LayoutFactory::macro('returnNameMacroFunctionFacade', fn (string $test) => $test);
 

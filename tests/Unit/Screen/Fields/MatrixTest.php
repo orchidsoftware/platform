@@ -10,7 +10,7 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 class MatrixTest extends TestFieldsUnitCase
 {
-    public function testColumns(): void
+    public function test_columns(): void
     {
         $matrix = Matrix::make('matrix')
             ->columns([
@@ -26,7 +26,7 @@ class MatrixTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Units', $view);
     }
 
-    public function testColumnsAlias(): void
+    public function test_columns_alias(): void
     {
         $matrix = Matrix::make('matrix')
             ->columns([
@@ -41,7 +41,7 @@ class MatrixTest extends TestFieldsUnitCase
         $this->assertStringContainsString('United', $view);
     }
 
-    public function testColumnsValue(): void
+    public function test_columns_value(): void
     {
         $matrix = Matrix::make('matrix')
             ->columns([
@@ -64,7 +64,7 @@ class MatrixTest extends TestFieldsUnitCase
         $this->assertStringContainsString('rgb', $view);
     }
 
-    public function testColumnsField(): void
+    public function test_columns_field(): void
     {
         $matrix = Matrix::make('matrix')
             ->columns([
@@ -93,7 +93,7 @@ class MatrixTest extends TestFieldsUnitCase
         $this->assertStringContainsString($input, $view);
     }
 
-    public function testCustomIdPrefix(): void
+    public function test_custom_id_prefix(): void
     {
         $matrix = Matrix::make('matrix')
             ->columns([

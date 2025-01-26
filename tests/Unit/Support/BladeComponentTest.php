@@ -13,14 +13,14 @@ use Orchid\Tests\TestUnitCase;
 
 class BladeComponentTest extends TestUnitCase
 {
-    public function testEmptyComponent(): void
+    public function test_empty_component(): void
     {
         $view = Blade::renderComponent(EmptyComponent::class, []);
 
         $this->assertEmpty($view);
     }
 
-    public function testHelloComponent(): void
+    public function test_hello_component(): void
     {
         $view = Blade::renderComponent(Hello::class, [
             'name' => 'Alexandr',
@@ -30,7 +30,7 @@ class BladeComponentTest extends TestUnitCase
         $this->assertStringContainsString(app()->version(), $view);
     }
 
-    public function testHelloClosure(): void
+    public function test_hello_closure(): void
     {
         $view = Blade::renderComponent(ClosureComponent::class, [
             'name' => 'Alexandr',
@@ -39,14 +39,14 @@ class BladeComponentTest extends TestUnitCase
         $this->assertStringContainsString('Hello Alexandr', $view);
     }
 
-    public function testHelloHtmlable(): void
+    public function test_hello_htmlable(): void
     {
         $view = Blade::renderComponent(HtmlableComponent::class, []);
 
         $this->assertStringContainsString('Hello word', $view);
     }
 
-    public function testAnonymous(): void
+    public function test_anonymous(): void
     {
         $view = Blade::renderComponent('exemplar::simple-anonymous-component', [
             'property1' => 'Hello world',
@@ -55,7 +55,7 @@ class BladeComponentTest extends TestUnitCase
         $this->assertStringContainsString('Hello world', $view);
     }
 
-    public function testPopoverComponent(): void
+    public function test_popover_component(): void
     {
         $view = Blade::renderComponent('orchid-popover', [
             'content' => 'Hello world',

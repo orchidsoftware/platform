@@ -8,7 +8,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class Issue2517Test extends TestFeatureCase
 {
-    public function testIssue2517(): void
+    public function test_issue2517(): void
     {
         $this
             ->actingAs($this->createAdminUser())
@@ -20,7 +20,7 @@ class Issue2517Test extends TestFeatureCase
             ->assertSuccessful();
         $this->followingRedirects()
             ->post(route('test.item.addchild', ['parentId' => 1, 'method' => 'addChild']), ['item' => ['name' => 'name 7']])
-            ->assertSuccessful() //странно, в живую там 302
+            ->assertSuccessful() // странно, в живую там 302
 
             ->assertSee('Item with paretn_id=1 saved')
             ->assertSee('/dashboard/items/create"', false)

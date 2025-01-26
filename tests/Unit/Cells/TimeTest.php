@@ -9,7 +9,7 @@ use Orchid\Tests\TestUnitCase;
 
 class TimeTest extends TestUnitCase
 {
-    public function testRenderTimeComponent(): void
+    public function test_render_time_component(): void
     {
         $time = '2022-01-01 12:34:56';
 
@@ -18,7 +18,7 @@ class TimeTest extends TestUnitCase
         $this->assertEquals('12:34', $component->render());
     }
 
-    public function testRenderTimeWithUnitComponent(): void
+    public function test_render_time_with_unit_component(): void
     {
         $time = '2022-01-01 12:34:56';
 

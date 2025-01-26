@@ -24,8 +24,7 @@ class Currency extends Component
         protected ?string $thousands_separator = ',',
         protected ?string $before = '',
         protected ?string $after = '',
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view/contents that represent the component.

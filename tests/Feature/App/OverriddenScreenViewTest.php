@@ -8,7 +8,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class OverriddenScreenViewTest extends TestFeatureCase
 {
-    public function testOverriddenScreenView(): void
+    public function test_overridden_screen_view(): void
     {
         Route::screen('OverriddenScreenView', OverriddenScreenView::class);
 

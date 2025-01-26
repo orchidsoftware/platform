@@ -12,7 +12,7 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
  */
 class DateRangeTest extends TestFieldsUnitCase
 {
-    public function testInstance(): void
+    public function test_instance(): void
     {
         $field = DateRange::make('date');
 
@@ -22,7 +22,7 @@ class DateRangeTest extends TestFieldsUnitCase
         $this->assertStringContainsString('name="date[end]"', $view);
     }
 
-    public function testValueInstance(): void
+    public function test_value_instance(): void
     {
         $start = now()->subMonth();
         $end = now();

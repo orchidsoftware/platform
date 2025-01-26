@@ -40,7 +40,7 @@ class RelationWithEnumTest extends TestFieldsUnitCase
         $this->users = User::factory()->times(10)->create();
     }
 
-    public function testInstance(): void
+    public function test_instance(): void
     {
         /** @var RoleWithEnum $current */
         $current = $this->roles->random();
@@ -56,7 +56,7 @@ class RelationWithEnumTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Select role', $view);
     }
 
-    public function testInstanceArray(): void
+    public function test_instance_array(): void
     {
         /** @var RoleWithEnum $current */
         $current = $this->roles->random();
@@ -72,7 +72,7 @@ class RelationWithEnumTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Select roles', $view);
     }
 
-    public function testInstanceArrayWithStringPrimary(): void
+    public function test_instance_array_with_string_primary(): void
     {
         $stringPrimaryClass = new class extends RoleWithEnum
         {
@@ -93,7 +93,7 @@ class RelationWithEnumTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Select roles', $view);
     }
 
-    public function testMultipleInstance(): void
+    public function test_multiple_instance(): void
     {
         /** @var RoleWithEnum $current */
         $current = $this->roles->random(2);
@@ -108,7 +108,7 @@ class RelationWithEnumTest extends TestFieldsUnitCase
         $this->assertStringContainsString($current[1]->name->value, $view);
     }
 
-    public function testMultipleInstanceArray(): void
+    public function test_multiple_instance_array(): void
     {
         /** @var RoleWithEnum $current */
         $current = $this->roles->random(2);
@@ -126,7 +126,7 @@ class RelationWithEnumTest extends TestFieldsUnitCase
         $this->assertStringContainsString($current[1]->name->value, $view);
     }
 
-    public function testInstanceWithEnumKey(): void
+    public function test_instance_with_enum_key(): void
     {
         /** @var RoleWithEnum $current */
         $current = $this->roles->random();

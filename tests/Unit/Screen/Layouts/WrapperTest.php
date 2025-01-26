@@ -11,7 +11,7 @@ use Orchid\Tests\TestUnitCase;
 
 class WrapperTest extends TestUnitCase
 {
-    public function testQueryVariables(): void
+    public function test_query_variables(): void
     {
         $repository = new Repository([
             'variable' => true,
@@ -29,9 +29,9 @@ class WrapperTest extends TestUnitCase
         $this->assertStringContainsString('<p>Hello Alexandr Chernyaev</p>', $html);
     }
 
-    public function testDataVariables(): void
+    public function test_data_variables(): void
     {
-        $repository = new Repository();
+        $repository = new Repository;
 
         $layout = LayoutFactory::wrapper('exemplar::layouts.wrapper', [
             'variable1' => [

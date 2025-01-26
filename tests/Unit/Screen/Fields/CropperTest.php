@@ -14,7 +14,7 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
  */
 class CropperTest extends TestFieldsUnitCase
 {
-    public function testInstance(): void
+    public function test_instance(): void
     {
         $picture = Cropper::make('picture')
             ->width(1920)
@@ -26,7 +26,7 @@ class CropperTest extends TestFieldsUnitCase
         $this->assertStringContainsString('https://example.com/img.jpg', $view);
     }
 
-    public function testValueTargetId(): void
+    public function test_value_target_id(): void
     {
         $file = UploadedFile::fake()->create('document.jpg', 200);
         $attachment = new File($file);
@@ -44,7 +44,7 @@ class CropperTest extends TestFieldsUnitCase
         $this->assertStringContainsString($upload->url, $view);
     }
 
-    public function testUploadedPath(): void
+    public function test_uploaded_path(): void
     {
         $file = UploadedFile::fake()->create('document.jpg', 200);
         $path = 'custom-path';
@@ -60,7 +60,7 @@ class CropperTest extends TestFieldsUnitCase
         $this->assertSame($upload->path, $path.'/');
     }
 
-    public function testKeepOriginalType(): void
+    public function test_keep_original_type(): void
     {
         $picture = Cropper::make('picture')
             ->keepOriginalType();

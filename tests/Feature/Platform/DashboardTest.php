@@ -8,7 +8,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class DashboardTest extends TestFeatureCase
 {
-    public function testRouteDashboardIndex(): void
+    public function test_route_dashboard_index(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())
@@ -19,7 +19,7 @@ class DashboardTest extends TestFeatureCase
             ->assertRedirect('/dashboard/main');
     }
 
-    public function testRouteDashboardIndexNotUser(): void
+    public function test_route_dashboard_index_not_user(): void
     {
         $response = $this->get(route('platform.index'));
 

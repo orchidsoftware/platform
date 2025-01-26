@@ -8,7 +8,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class AuthTest extends TestFeatureCase
 {
-    public function testRouteDashboardLogin(): void
+    public function test_route_dashboard_login(): void
     {
         $this->get(route('platform.login'))
             ->assertOk()
@@ -16,7 +16,7 @@ class AuthTest extends TestFeatureCase
             ->assertSee('type="password"', false);
     }
 
-    public function testRouteDashboardLoginAuth(): void
+    public function test_route_dashboard_login_auth(): void
     {
         $this->actingAs($this->createAdminUser())
             ->get(route('platform.login'))
@@ -24,7 +24,7 @@ class AuthTest extends TestFeatureCase
             ->assertRedirect('/home');
     }
 
-    public function testRouteDashboardLoginAuthSuccess(): void
+    public function test_route_dashboard_login_auth_success(): void
     {
         $this->post(route('platform.login.auth'), [
             'email'    => $this->createAdminUser()->email,
@@ -36,7 +36,7 @@ class AuthTest extends TestFeatureCase
             ->assertCookieNotExpired('lockUser');
     }
 
-    public function testRouteDashboardLoginAuthFail(): void
+    public function test_route_dashboard_login_auth_fail(): void
     {
         $this->post(route('platform.login.auth'), [
             'email'    => $this->createAdminUser()->email,
@@ -46,7 +46,7 @@ class AuthTest extends TestFeatureCase
             ->assertRedirect('/');
     }
 
-    public function testRouteDashboardGuestLockAuth(): void
+    public function test_route_dashboard_guest_lock_auth(): void
     {
         $this->call('GET', route('platform.login.lock'), $parameters = [], $cookies = [
             'lockUser' => 1,
@@ -55,7 +55,7 @@ class AuthTest extends TestFeatureCase
             ->assertCookieExpired('lockUser');
     }
 
-    public function testRouteDashboardSwitchLogout(): void
+    public function test_route_dashboard_switch_logout(): void
     {
         $this
             ->actingAs($this->createAdminUser())
@@ -63,7 +63,7 @@ class AuthTest extends TestFeatureCase
             ->assertRedirect(route(config('orchid.index')));
     }
 
-    public function testRouteDashboardAuthLogout(): void
+    public function test_route_dashboard_auth_logout(): void
     {
         $auth = $this->actingAs($this->createAdminUser());
 

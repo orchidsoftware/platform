@@ -19,7 +19,7 @@ class NotificationDisabledTest extends TestFeatureCase
         config()->set('platform.notifications.enabled', false);
     }
 
-    public function testRouteForDisabledNotification(): void
+    public function test_route_for_disabled_notification(): void
     {
         $this->assertFalse(Route::has('platform.notifications'));
         $this->assertFalse(Route::has('platform.api.notifications'));

@@ -11,7 +11,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class AccessTest extends TestFeatureCase
 {
-    public function testAccessMiddleware(): void
+    public function test_access_middleware(): void
     {
         $user = User::factory()->create([
             'permissions' => [

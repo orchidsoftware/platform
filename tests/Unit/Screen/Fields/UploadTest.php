@@ -13,7 +13,7 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 class UploadTest extends TestFieldsUnitCase
 {
-    public function testStorage(): void
+    public function test_storage(): void
     {
         $upload = Upload::make('file');
         $this->assertSame('public', $upload->getAttributes()['visibility']);
@@ -22,7 +22,7 @@ class UploadTest extends TestFieldsUnitCase
         $this->assertNull($upload->getAttributes()['visibility']);
     }
 
-    public function testExceedMaxServerSize()
+    public function test_exceed_max_server_size()
     {
         $uploadSize = Init::maxFileUpload(Init::MB) + 1;
         $upload = Upload::make('file')->maxFileSize($uploadSize);
@@ -31,7 +31,7 @@ class UploadTest extends TestFieldsUnitCase
         $upload->render();
     }
 
-    public function testNonDivisionGroup(): void
+    public function test_non_division_group(): void
     {
         $imagesGroup = Attachment::factory()->create(['group' => 'images']);
         $docsGroup = Attachment::factory()->create(['group' => 'docs']);
@@ -47,7 +47,7 @@ class UploadTest extends TestFieldsUnitCase
         $this->assertStringContainsString($imagesGroup->getTitleAttribute(), $view);
     }
 
-    public function testDivisionGroup(): void
+    public function test_division_group(): void
     {
         $imagesGroup = Attachment::factory()->create(['group' => 'images']);
         $docsGroup = Attachment::factory()->create(['group' => 'docs']);
@@ -79,7 +79,7 @@ class UploadTest extends TestFieldsUnitCase
         $this->assertStringNotContainsString($docsGroup->getTitleAttribute(), $view);
     }
 
-    public function testUploadedPath(): void
+    public function test_uploaded_path(): void
     {
         $file = UploadedFile::fake()->create('document.jpg', 200);
         $path = 'custom-path';

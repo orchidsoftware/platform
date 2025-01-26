@@ -12,7 +12,7 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
  */
 class ModalToggleTest extends TestFieldsUnitCase
 {
-    public function testModalToggleInstance(): void
+    public function test_modal_toggle_instance(): void
     {
         $modalToggle = ModalToggle::make('About');
         $view = self::renderField($modalToggle);
@@ -20,7 +20,7 @@ class ModalToggleTest extends TestFieldsUnitCase
         $this->assertStringContainsString('About', $view);
     }
 
-    public function testModalToggleTitle(): void
+    public function test_modal_toggle_title(): void
     {
         $modalToggle = ModalToggle::make('About')
             ->title('Title for modal');
@@ -30,7 +30,7 @@ class ModalToggleTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Title for modal', $view);
     }
 
-    public function testModalToggleModalKey(): void
+    public function test_modal_toggle_modal_key(): void
     {
         $modalToggle = ModalToggle::make('About')
             ->modal('KeyForModal')
@@ -49,7 +49,7 @@ class ModalToggleTest extends TestFieldsUnitCase
         );
     }
 
-    public function testModalToggleModalParams(): void
+    public function test_modal_toggle_modal_params(): void
     {
         $modalToggle = ModalToggle::make('About')
             ->modal('KeyForModal')

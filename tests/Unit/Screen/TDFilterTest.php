@@ -8,7 +8,7 @@ use Orchid\Tests\TestUnitCase;
 
 class TDFilterTest extends TestUnitCase
 {
-    public function testTdSimpleFilter(): void
+    public function test_td_simple_filter(): void
     {
         request()->replace([
             'filter' => ['name' => 'username'],
@@ -21,7 +21,7 @@ class TDFilterTest extends TestUnitCase
         $this->assertStringContainsString('username', $view);
     }
 
-    public function testTdSimpleFilterCallableValueArgument(): void
+    public function test_td_simple_filter_callable_value_argument(): void
     {
         request()->replace([
             'filter' => ['number' => 2022],
@@ -34,7 +34,7 @@ class TDFilterTest extends TestUnitCase
         $this->assertStringContainsString('4044', $view);
     }
 
-    public function testTdSimpleFilterCallableValueMethod(): void
+    public function test_td_simple_filter_callable_value_method(): void
     {
         request()->replace([
             'filter' => ['number' => 2022],
@@ -48,7 +48,7 @@ class TDFilterTest extends TestUnitCase
         $this->assertStringContainsString('4044', $view);
     }
 
-    public function testTDEmptyFilterWithCallableValue(): void
+    public function test_td_empty_filter_with_callable_value(): void
     {
         request()->replace([
             'filter' => null,

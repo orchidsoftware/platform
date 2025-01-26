@@ -8,7 +8,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class ScreenAutoWritePropertyTest extends TestFeatureCase
 {
-    public function testWriteOnlyPublicProperty(): void
+    public function test_write_only_public_property(): void
     {
         $this
             ->actingAs($this->createAdminUser())

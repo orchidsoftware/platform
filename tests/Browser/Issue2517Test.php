@@ -9,12 +9,12 @@ use Orchid\Tests\TestBrowserCase;
 
 class Issue2517Test extends TestBrowserCase
 {
-    public function testIssue2517(): void
+    public function test_issue2517(): void
     {
         $this->browse(function (Browser $browser) {
             $user = $this->createAdminUser();
 
-            //check that the first screen is working
+            // check that the first screen is working
             $browser
                 ->loginAs($user)
                 ->visitRoute('test.items')
@@ -28,7 +28,7 @@ class Issue2517Test extends TestBrowserCase
             });
             $browser->waitForText('Added Item');
 
-            //perform actions in the second
+            // perform actions in the second
             $browser->visitRoute('test.item.addchild', 1)
                 ->waitForText('Add child')
                 ->type('item[name]', 'name 7')
@@ -40,7 +40,7 @@ class Issue2517Test extends TestBrowserCase
 
                 ->press('.toast button')
 
-                //check that the first screen is still working
+                // check that the first screen is still working
                 ->press('Add Item');
 
             $browser->whenAvailable('.modal', function (Browser $modal) {

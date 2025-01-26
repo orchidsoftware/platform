@@ -34,12 +34,12 @@ class CommanderTest extends TestUnitCase
 
             public function generate()
             {
-                return $this->buildCommandBar(new Repository());
+                return $this->buildCommandBar(new Repository);
             }
         };
     }
 
-    public function testCountCommandItems(): void
+    public function test_count_command_items(): void
     {
         $command = $this->getCommandClass();
 

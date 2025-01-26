@@ -10,7 +10,7 @@ use Orchid\Tests\TestUnitCase;
 
 class SplitTest extends TestUnitCase
 {
-    public function testBase(): void
+    public function test_base(): void
     {
         $layout = $this->getSplitClass([
             Layout::rows([Input::make('first')]),
@@ -23,7 +23,7 @@ class SplitTest extends TestUnitCase
         $this->assertStringContainsString('col-md-6 order-md-last', $html);
     }
 
-    public function testRatio(): void
+    public function test_ratio(): void
     {
         $layout = $this->getSplitClass([
             Layout::rows([Input::make('first')]),
@@ -36,7 +36,7 @@ class SplitTest extends TestUnitCase
         $this->assertStringContainsString('col-md-10 order-md-last', $html);
     }
 
-    public function testRatioInvalid(): void
+    public function test_ratio_invalid(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -48,7 +48,7 @@ class SplitTest extends TestUnitCase
         $layout->build(new Repository);
     }
 
-    public function testReverseOnPhone(): void
+    public function test_reverse_on_phone(): void
     {
         $layout = $this->getSplitClass([
             Layout::rows([Input::make('first')]),
@@ -68,8 +68,6 @@ class SplitTest extends TestUnitCase
      */
     private function getSplitClass($layouts): Split
     {
-        return new class($layouts) extends Split
-        {
-        };
+        return new class($layouts) extends Split {};
     }
 }

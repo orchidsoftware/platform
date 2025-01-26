@@ -10,7 +10,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class FallbackEnabledTest extends TestFeatureCase
 {
-    public function testRouteEnabled(): void
+    public function test_route_enabled(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())

@@ -32,7 +32,7 @@ class SelectWithEnumTest extends TestFieldsUnitCase
         $this->roles = RoleWithEnum::all();
     }
 
-    public function testEmptyFromModel(): void
+    public function test_empty_from_model(): void
     {
         $select = Select::make('choice')
             ->empty('empty')

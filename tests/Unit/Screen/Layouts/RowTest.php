@@ -12,7 +12,7 @@ use Orchid\Tests\TestUnitCase;
 
 class RowTest extends TestUnitCase
 {
-    public function testQueryVariables(): void
+    public function test_query_variables(): void
     {
         $repository = new Repository([
             'name' => 'Alexandr Chernyaev',
@@ -27,18 +27,18 @@ class RowTest extends TestUnitCase
         $this->assertStringContainsString('Alexandr Chernyaev', $html);
     }
 
-    public function testTitleForShortRow(): void
+    public function test_title_for_short_row(): void
     {
         $layout = LayoutFactory::rows([])->title('Profile');
 
-        $html = $layout->build(new Repository())
+        $html = $layout->build(new Repository)
             ->withErrors([])
             ->render();
 
         $this->assertStringContainsString('Profile', $html);
     }
 
-    public function testTitleForRow(): void
+    public function test_title_for_row(): void
     {
         $rows = new class extends Rows
         {
@@ -50,7 +50,7 @@ class RowTest extends TestUnitCase
             }
         };
 
-        $html = $rows->build(new Repository())
+        $html = $rows->build(new Repository)
             ->withErrors([])
             ->render();
 

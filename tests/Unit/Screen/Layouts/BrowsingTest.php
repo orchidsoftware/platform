@@ -9,27 +9,27 @@ use Orchid\Tests\TestUnitCase;
 
 class BrowsingTest extends TestUnitCase
 {
-    public function testInstance(): void
+    public function test_instance(): void
     {
         $iframe = Layout::browsing('https://orchid.software');
 
-        $html = $iframe->build(new Repository())->withErrors([])->render();
+        $html = $iframe->build(new Repository)->withErrors([])->render();
 
         $this->assertStringContainsString("src='https://orchid.software'", $html);
         $this->assertStringContainsString("loading='lazy'", $html);
         $this->assertStringNotContainsString('allow', $html);
     }
 
-    public function testCanSeeInstance(): void
+    public function test_can_see_instance(): void
     {
         $iframe = Layout::browsing('https://orchid.software')->canSee(false);
 
-        $html = $iframe->build(new Repository());
+        $html = $iframe->build(new Repository);
 
         $this->assertNull($html);
     }
 
-    public function testAttributes(): void
+    public function test_attributes(): void
     {
         $attributes = [
             'allow'          => Str::random(),
@@ -48,7 +48,7 @@ class BrowsingTest extends TestUnitCase
             $iframe->$key($value);
         }
 
-        $html = $iframe->build(new Repository())->withErrors([])->render();
+        $html = $iframe->build(new Repository)->withErrors([])->render();
 
         foreach ($attributes as $key => $value) {
             $this->assertStringContainsString("$key='$value'", $html);

@@ -11,7 +11,7 @@ use Orchid\Tests\TestUnitCase;
 
 class SortableTest extends TestUnitCase
 {
-    public function testNewModel(): void
+    public function test_new_model(): void
     {
         $model = new class extends Model
         {
@@ -43,7 +43,7 @@ class SortableTest extends TestUnitCase
 
     }
 
-    public function testForAttachment()
+    public function test_for_attachment()
     {
         $first_file = UploadedFile::fake()->create('first-file');
         $first_upload = (new File($first_file, 'public'))->load();

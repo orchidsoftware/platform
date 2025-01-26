@@ -247,7 +247,7 @@ class Field implements Fieldable, Htmlable
             ->filter(fn ($value, $attribute) => Str::is($allow, $attribute))
             ->toArray();
 
-        return (new ComponentAttributeBag())
+        return (new ComponentAttributeBag)
             ->merge($attributes);
     }
 
@@ -451,7 +451,7 @@ class Field implements Fieldable, Htmlable
 
     private function getErrorsMessage(): array
     {
-        $errors = session()->get('errors', new MessageBag());
+        $errors = session()->get('errors', new MessageBag);
 
         return $errors->getMessages();
     }

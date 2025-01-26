@@ -17,9 +17,9 @@ class ModalTest extends TestUnitCase
     /**
      * @throws \Throwable
      */
-    public function testModalScreenRender(): void
+    public function test_modal_screen_render(): void
     {
-        $screen = new ModalScreen();
+        $screen = new ModalScreen;
         $html = $screen->view()->withErrors(Validator::make([], []))->render();
 
         $this->assertStringContainsString($screen->name(), $html);

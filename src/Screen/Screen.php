@@ -192,10 +192,10 @@ abstract class Screen extends Controller
         // Check if the '_state' parameter is missing
         if ($state === null) {
             // Return an empty Repository object
-            return new Repository();
+            return new Repository;
         }
 
-        //deserialize '_state' parameter
+        // deserialize '_state' parameter
         return Crypt::decrypt($state);
     }
 

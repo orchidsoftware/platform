@@ -9,7 +9,7 @@ use Orchid\Tests\TestUnitCase;
 
 class CurrencyTest extends TestUnitCase
 {
-    public function testRenderCurrencyComponent(): void
+    public function test_render_currency_component(): void
     {
         $value = 4;
 
@@ -18,7 +18,7 @@ class CurrencyTest extends TestUnitCase
         $this->assertEquals('4.00', $component->render());
     }
 
-    public function testRenderDecimalComponent(): void
+    public function test_render_decimal_component(): void
     {
         $value = 0.75;
 
@@ -27,7 +27,7 @@ class CurrencyTest extends TestUnitCase
         $this->assertEquals('0.75', $component->render());
     }
 
-    public function testRenderBigCurrencyComponent(): void
+    public function test_render_big_currency_component(): void
     {
         $value = 100400500.75;
 
@@ -36,7 +36,7 @@ class CurrencyTest extends TestUnitCase
         $this->assertEquals('100,400,500.75', $component->render());
     }
 
-    public function testRenderBigCurrencyWithParameterComponent(): void
+    public function test_render_big_currency_with_parameter_component(): void
     {
         $value = 100400500.75;
 
@@ -45,7 +45,7 @@ class CurrencyTest extends TestUnitCase
         $this->assertEquals('100 400 500,8', $component->render());
     }
 
-    public function testRenderBigCurrencyWithBeforeTextComponent(): void
+    public function test_render_big_currency_with_before_text_component(): void
     {
         $value = 100400500.75;
 
@@ -54,7 +54,7 @@ class CurrencyTest extends TestUnitCase
         $this->assertEquals('$ 100,400,500.75', $component->render());
     }
 
-    public function testRenderBigCurrencyWithAfterTextComponent(): void
+    public function test_render_big_currency_with_after_text_component(): void
     {
         $value = 100400500.75;
 

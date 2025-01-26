@@ -40,7 +40,7 @@ class RelationsTest extends TestFeatureCase
      *
      * @throws \Throwable
      */
-    public function testScopeModel(array $scope): void
+    public function test_scope_model(array $scope): void
     {
         $response = $this->getScope($scope);
         $json = $this->users->pluck('email', 'id')->toArray();
@@ -53,7 +53,7 @@ class RelationsTest extends TestFeatureCase
      *
      * @throws \Throwable
      */
-    public function testAppendModel(array $scope): void
+    public function test_append_model(array $scope): void
     {
         $response = $this->getScope($scope, 'full');
 
@@ -71,7 +71,7 @@ class RelationsTest extends TestFeatureCase
     /**
      * @throws \Throwable
      */
-    public function testParamsForScopeModel(): void
+    public function test_params_for_scope_model(): void
     {
         $user = $this->users->first();
 
@@ -106,7 +106,7 @@ class RelationsTest extends TestFeatureCase
             ->post(route('platform.systems.relation'), $params);
     }
 
-    public function testSearchColumns()
+    public function test_search_columns()
     {
         $user = $this->users->random();
         $params = [
@@ -128,7 +128,7 @@ class RelationsTest extends TestFeatureCase
         ]);
     }
 
-    public function testSearchColumnsWithScopes()
+    public function test_search_columns_with_scopes()
     {
         $user = $this->users->random();
         $params = [

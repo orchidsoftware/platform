@@ -9,7 +9,7 @@ use Orchid\Tests\TestUnitCase;
 
 class NumberTest extends TestUnitCase
 {
-    public function testRenderNumberComponent(): void
+    public function test_render_number_component(): void
     {
         $value = 4;
 
@@ -18,7 +18,7 @@ class NumberTest extends TestUnitCase
         $this->assertEquals('4', $component->render());
     }
 
-    public function testRenderDecimalComponent(): void
+    public function test_render_decimal_component(): void
     {
         $value = 0.75;
 
@@ -27,7 +27,7 @@ class NumberTest extends TestUnitCase
         $this->assertEquals('0.75', $component->render());
     }
 
-    public function testRenderBigNumberComponent(): void
+    public function test_render_big_number_component(): void
     {
         $value = 100400500.75;
 
@@ -36,7 +36,7 @@ class NumberTest extends TestUnitCase
         $this->assertEquals('100,400,501', $component->render());
     }
 
-    public function testRenderBigNumberWithParameterComponent(): void
+    public function test_render_big_number_with_parameter_component(): void
     {
         $value = 100400500.75;
 

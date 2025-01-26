@@ -13,7 +13,7 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
  */
 class TimeZoneTest extends TestFieldsUnitCase
 {
-    public function testInstance(): void
+    public function test_instance(): void
     {
         $textArea = TimeZone::make('time')
             ->title('Select time zone');
@@ -24,7 +24,7 @@ class TimeZoneTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Select time zone', $view);
     }
 
-    public function testNeedRequire(): void
+    public function test_need_require(): void
     {
         $textArea = TimeZone::make('time')
             ->required();
@@ -34,7 +34,7 @@ class TimeZoneTest extends TestFieldsUnitCase
         $this->assertStringContainsString('required', $view);
     }
 
-    public function testSetValue(): void
+    public function test_set_value(): void
     {
         $select = TimeZone::make('time')
             ->value('Africa/Accra');
@@ -44,7 +44,7 @@ class TimeZoneTest extends TestFieldsUnitCase
         $this->assertStringContainsString('value="Africa/Accra" selected', $view);
     }
 
-    public function testSetMultipleValue(): void
+    public function test_set_multiple_value(): void
     {
         $select = TimeZone::make('time')
             ->multiple()
@@ -59,7 +59,7 @@ class TimeZoneTest extends TestFieldsUnitCase
         $this->assertStringContainsString('value="Africa/Bamako" selected', $view);
     }
 
-    public function testListIdentifiers(): void
+    public function test_list_identifiers(): void
     {
         $select = TimeZone::make('time')
             ->listIdentifiers(DateTimeZone::EUROPE)

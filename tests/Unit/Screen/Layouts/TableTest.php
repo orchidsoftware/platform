@@ -12,9 +12,9 @@ use Orchid\Tests\TestUnitCase;
 
 class TableTest extends TestUnitCase
 {
-    public function testTotalRow(): void
+    public function test_total_row(): void
     {
-        $layout = new TotalTable();
+        $layout = new TotalTable;
 
         $html = $layout
             ->build(TotalTable::getData())
@@ -25,7 +25,7 @@ class TableTest extends TestUnitCase
         $this->assertStringContainsString('600', $html);
     }
 
-    public function testCanSee(): void
+    public function test_can_see(): void
     {
         $layout = new class extends Table
         {
@@ -57,7 +57,7 @@ class TableTest extends TestUnitCase
         $this->assertNotEmpty($html);
     }
 
-    public function testStriped(): void
+    public function test_striped(): void
     {
         $layout = new class extends Table
         {
@@ -81,7 +81,7 @@ class TableTest extends TestUnitCase
         $this->assertStringContainsString('table-striped', $html);
     }
 
-    public function testBordered(): void
+    public function test_bordered(): void
     {
         $layout = new class extends Table
         {
@@ -105,7 +105,7 @@ class TableTest extends TestUnitCase
         $this->assertStringContainsString('table-bordered', $html);
     }
 
-    public function testHoverable(): void
+    public function test_hoverable(): void
     {
         $layout = new class extends Table
         {
@@ -129,7 +129,7 @@ class TableTest extends TestUnitCase
         $this->assertStringContainsString('table-hover', $html);
     }
 
-    public function testShowTextNotFoundWhenTargetIsEmptyCollection()
+    public function test_show_text_not_found_when_target_is_empty_collection()
     {
         $layout = new class extends Table
         {
@@ -149,7 +149,7 @@ class TableTest extends TestUnitCase
         $this->assertNotEmpty($html);
     }
 
-    public function testLoopTable(): void
+    public function test_loop_table(): void
     {
         $layout = new class extends Table
         {

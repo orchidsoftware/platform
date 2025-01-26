@@ -14,7 +14,7 @@ class UserTest extends TestUnitCase
 {
     use RefreshDatabase;
 
-    public function testHasCorrectInstance(): void
+    public function test_has_correct_instance(): void
     {
         $user = User::factory()->create();
 
@@ -22,7 +22,7 @@ class UserTest extends TestUnitCase
         $this->assertInstanceOf(User::class, $user);
     }
 
-    public function testCanGetNameTitle(): void
+    public function test_can_get_name_title(): void
     {
         $user = $this->createUser();
 
@@ -37,14 +37,14 @@ class UserTest extends TestUnitCase
         return User::factory()->create($attributes);
     }
 
-    public function testCanGetSubTitle(): void
+    public function test_can_get_sub_title(): void
     {
         $user = $this->createUser();
 
         $this->assertEquals('Regular User', $user->presenter()->subTitle());
     }
 
-    public function testLoginAs(): void
+    public function test_login_as(): void
     {
         $user = $this->createUser();
         $userSwitch = $this->createUser();
@@ -64,7 +64,7 @@ class UserTest extends TestUnitCase
         $this->assertEquals($user->id, Auth::id());
     }
 
-    public function testImpersonator(): void
+    public function test_impersonator(): void
     {
         $user = $this->createUser();
         $userSwitch = $this->createUser();
@@ -83,7 +83,7 @@ class UserTest extends TestUnitCase
         $this->assertEquals(null, Impersonation::impersonator());
     }
 
-    public function testLoginAsLimit(): void
+    public function test_login_as_limit(): void
     {
         $user = $this->createUser([
             'permissions' => [],

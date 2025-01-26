@@ -119,7 +119,7 @@ class FieldTest extends TestUnitCase
      *
      * @throws \Throwable
      */
-    public function testHasCorrectInstance(string $field, $options): void
+    public function test_has_correct_instance(string $field, $options): void
     {
         /** @var \Orchid\Screen\Field $field */
         $field = $field::make();
@@ -134,38 +134,38 @@ class FieldTest extends TestUnitCase
         $this->assertStringContainsString('example', $view->withErrors([])->render());
     }
 
-    public function testUniqueId(): void
+    public function test_unique_id(): void
     {
         $collect = collect(range(0, 10000));
 
-        $fields = $collect->map(fn ($value) => (new Field())->set('value', $value)->getId())->unique();
+        $fields = $collect->map(fn ($value) => (new Field)->set('value', $value)->getId())->unique();
 
         $this->assertEquals($fields->count(), $collect->count());
 
-        $expected = (new Field())->set('value', 'test')->getId();
-        $actual = (new Field())->set('value', 'test')->getId();
+        $expected = (new Field)->set('value', 'test')->getId();
+        $actual = (new Field)->set('value', 'test')->getId();
 
         $this->assertEquals($expected, $actual);
     }
 
-    public function testOldNameMatchesLaravelRequestOldPrefix()
+    public function test_old_name_matches_laravel_request_old_prefix()
     {
-        $field = new Field();
+        $field = new Field;
 
         $field->set('name', 'parent[child][grandchild]');
 
         $this->assertEquals('parent.child.grandchild', $field->getOldName());
 
-        $field = new Field();
+        $field = new Field;
 
         $field->set('name', 'parent[child][grandchild][]');
 
         $this->assertEquals('parent.child.grandchild', $field->getOldName());
     }
 
-    public function testOldNameMatchesLaravelRequestOldPrefixWithErrors()
+    public function test_old_name_matches_laravel_request_old_prefix_with_errors()
     {
-        $field = new Input();
+        $field = new Input;
         $field->set('name', 'parent[child][grandchild]');
 
         $view = $field->render();
@@ -178,7 +178,7 @@ class FieldTest extends TestUnitCase
         $this->assertStringContainsString('testError', $html);
         $this->assertStringContainsString('parent[child][grandchild]', $html);
 
-        $field = new Input();
+        $field = new Input;
         $field->set('name', 'parent[child][grandchild][]');
 
         $view = $field->render();
@@ -192,7 +192,7 @@ class FieldTest extends TestUnitCase
         $this->assertStringContainsString('parent[child][grandchild][]', $html);
     }
 
-    public function testOldName(): void
+    public function test_old_name(): void
     {
         Session::start();
 
@@ -205,7 +205,7 @@ class FieldTest extends TestUnitCase
         $this->assertSame("The heart of Seoul's nightlife", Input::make('name')->getOldValue());
     }
 
-    public function testNumericOldName(): void
+    public function test_numeric_old_name(): void
     {
         Session::start();
 

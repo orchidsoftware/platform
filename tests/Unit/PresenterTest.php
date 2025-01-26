@@ -9,7 +9,7 @@ use Orchid\Tests\TestUnitCase;
 
 class PresenterTest extends TestUnitCase
 {
-    public function testPresenterMethod(): void
+    public function test_presenter_method(): void
     {
         $presenter = $this->getPresenterClass();
 
@@ -17,7 +17,7 @@ class PresenterTest extends TestUnitCase
         $this->assertFalse($presenter->getStatus);
     }
 
-    public function testPresenterProperty(): void
+    public function test_presenter_property(): void
     {
         $presenter = $this->getPresenterClass();
 

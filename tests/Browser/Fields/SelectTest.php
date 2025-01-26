@@ -13,7 +13,7 @@ class SelectTest extends TestBrowserCase
     /**
      * @throws Throwable
      */
-    public function testSubmittedData(): void
+    public function test_submitted_data(): void
     {
         $assert = collect([
             'choiceFromModel'                    => '1',

@@ -12,18 +12,18 @@ use Orchid\Tests\TestUnitCase;
 
 class FiltersTest extends TestUnitCase
 {
-    public function testSimpleValue(): void
+    public function test_simple_value(): void
     {
         request()->merge([
             'name' => 'Alexandr',
         ]);
 
-        $value = (new NameFilter())->value();
+        $value = (new NameFilter)->value();
 
         $this->assertEquals('Name: Alexandr', $value);
     }
 
-    public function testMultipleValue(): void
+    public function test_multiple_value(): void
     {
         request()->merge([
             'name' => [
@@ -32,19 +32,19 @@ class FiltersTest extends TestUnitCase
             ],
         ]);
 
-        $value = (new NameFilter())->value();
+        $value = (new NameFilter)->value();
 
         $this->assertEquals('Name: Alexandr,Alena', $value);
     }
 
-    public function testWithoutDisplayName(): void
+    public function test_without_display_name(): void
     {
-        $name = (new WithoutDisplayFilter())->name();
+        $name = (new WithoutDisplayFilter)->name();
 
         $this->assertEquals('WithoutDisplayFilter', $name);
     }
 
-    public function testPatternValue(): void
+    public function test_pattern_value(): void
     {
         request()->merge([
             'pattern' => [
@@ -60,7 +60,7 @@ class FiltersTest extends TestUnitCase
         $this->assertStringContainsString('"pattern" = ?', $sql);
     }
 
-    public function testPatternWithoutChildValue(): void
+    public function test_pattern_without_child_value(): void
     {
         request()->merge([
             'pattern' => 'any',
@@ -73,7 +73,7 @@ class FiltersTest extends TestUnitCase
         $this->assertStringNotContainsString('"pattern" = ?', $sql);
     }
 
-    public function testPatternWithNestedValue(): void
+    public function test_pattern_with_nested_value(): void
     {
         request()->merge([
             'test.pattern.name' => 'any',

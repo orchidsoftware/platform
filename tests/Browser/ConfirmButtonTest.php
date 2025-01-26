@@ -13,7 +13,7 @@ class ConfirmButtonTest extends TestBrowserCase
     /**
      * @throws Throwable
      */
-    public function testConfirmButton(): void
+    public function test_confirm_button(): void
     {
         $this->browse(function (Browser $browser) {
             $browser

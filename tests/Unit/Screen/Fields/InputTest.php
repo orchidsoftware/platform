@@ -14,7 +14,7 @@ class InputTest extends TestFieldsUnitCase
     /**
      * @throws Throwable
      */
-    public function testShowHr(): void
+    public function test_show_hr(): void
     {
         $input = Input::make('inputFieldName');
         $hr = '<div class="line line-dashed border-bottom my-3"></div>';
@@ -26,7 +26,7 @@ class InputTest extends TestFieldsUnitCase
         $this->assertStringContainsString($hr, self::renderField($input));
     }
 
-    public function testArrayMask(): void
+    public function test_array_mask(): void
     {
         $input = Input::make('price')
             ->mask([
@@ -41,7 +41,7 @@ class InputTest extends TestFieldsUnitCase
         $this->assertStringContainsString('currency', $view);
     }
 
-    public function testStringMask(): void
+    public function test_string_mask(): void
     {
         $input = Input::make('phone')
             ->mask('(999) 999-9999');
@@ -51,7 +51,7 @@ class InputTest extends TestFieldsUnitCase
         $this->assertStringContainsString('(999) 999-9999', $view);
     }
 
-    public function testObjectToSting(): void
+    public function test_object_to_sting(): void
     {
         $input = Input::make('name')
             ->title('What is your name?');
@@ -59,7 +59,7 @@ class InputTest extends TestFieldsUnitCase
         $this->assertStringContainsString('What is your name?', (string) $input);
     }
 
-    public function testDataAttributes(): void
+    public function test_data_attributes(): void
     {
         $input = (string) Input::make('name')
             ->set('data-name', 'Alexandr Chernyaev')
@@ -71,21 +71,21 @@ class InputTest extends TestFieldsUnitCase
         $this->assertStringContainsString('data-hello="world!"', $input);
     }
 
-    public function testEscapeAttributes(): void
+    public function test_escape_attributes(): void
     {
         $input = (string) Input::make('name')->value('valueQuote"');
 
         $this->assertStringContainsString('value="valueQuote&quot;"', $input);
     }
 
-    public function testRemoveBooleanAttributes(): void
+    public function test_remove_boolean_attributes(): void
     {
         $input = (string) Input::make('name')->required(false);
 
         $this->assertStringNotContainsString('required', $input);
     }
 
-    public function testDataListAttribute(): void
+    public function test_data_list_attribute(): void
     {
         $input = (string) Input::make('browser')->datalist([
             'Opera', 'Edge', 'Firefox',
@@ -102,7 +102,7 @@ class InputTest extends TestFieldsUnitCase
         $this->assertStringNotContainsString('<datalist id="datalist-browser"', $input);
     }
 
-    public function testWithoutFormType()
+    public function test_without_form_type()
     {
         $input = Input::make('inputFieldName')
             ->title('Lorem ipsum dolor sit amet')
@@ -112,14 +112,14 @@ class InputTest extends TestFieldsUnitCase
         $this->assertStringNotContainsString('</label>', self::renderField($input));
     }
 
-    public function testAddMinLengthAttribute(): void
+    public function test_add_min_length_attribute(): void
     {
         $input = (string) Input::make('name')->minlength(3);
 
         $this->assertStringContainsString('minlength="3"', $input);
     }
 
-    public function testLongNumericValue(): void
+    public function test_long_numeric_value(): void
     {
         Session::start();
 
@@ -134,7 +134,7 @@ class InputTest extends TestFieldsUnitCase
         $this->assertEquals('1234567890123456789012345678901234567890', $input);
     }
 
-    public function testMediumLongNumericValue(): void
+    public function test_medium_long_numeric_value(): void
     {
         Session::start();
 

@@ -12,7 +12,7 @@ use Orchid\Tests\TestUnitCase;
 
 class ModelFiltersTest extends TestUnitCase
 {
-    public function testNotParamsFiltersApply(): void
+    public function test_not_params_filters_apply(): void
     {
         $sql = User::filtersApply([
             NameFilter::class,
@@ -22,7 +22,7 @@ class ModelFiltersTest extends TestUnitCase
         $this->assertEquals('select * from "users"', $sql);
     }
 
-    public function testOnlyOneParamsFiltersApply(): void
+    public function test_only_one_params_filters_apply(): void
     {
         request()->merge([
             'name' => 'Alexandr',
@@ -36,7 +36,7 @@ class ModelFiltersTest extends TestUnitCase
         $this->assertEquals('select * from "users" where "name" = ?', $sql);
     }
 
-    public function testManyParamsFiltersApply(): void
+    public function test_many_params_filters_apply(): void
     {
         request()->merge([
             'name'  => 'Alexandr',
@@ -51,7 +51,7 @@ class ModelFiltersTest extends TestUnitCase
         $this->assertEquals('select * from "users" where "name" = ? and "email" = ?', $sql);
     }
 
-    public function testManyParamsFiltersApplyWithHttpAndDefaultSort(): void
+    public function test_many_params_filters_apply_with_http_and_default_sort(): void
     {
         request()->merge([
             'name'  => 'Alexandr',
@@ -69,7 +69,7 @@ class ModelFiltersTest extends TestUnitCase
         $this->assertEquals('select * from "users" where "name" = ? and "email" = ? order by "created_at" asc', $sql);
     }
 
-    public function testDefaultSort(): void
+    public function test_default_sort(): void
     {
         $sql = User::filters()->defaultSort('created_at')->toSql();
 
@@ -80,7 +80,7 @@ class ModelFiltersTest extends TestUnitCase
         $this->assertEquals('select * from "users" order by "created_at" desc', $sql);
     }
 
-    public function testDefaultSortWithParams(): void
+    public function test_default_sort_with_params(): void
     {
         request()->merge([
             'sort' => '-created_at',
@@ -99,7 +99,7 @@ class ModelFiltersTest extends TestUnitCase
         $this->assertEquals('select * from "users" order by "created_at" asc', $sql);
     }
 
-    public function testFiltersApplySomeSelection(): void
+    public function test_filters_apply_some_selection(): void
     {
         request()->merge([
             'name'  => 'Alexandr',
@@ -116,7 +116,7 @@ class ModelFiltersTest extends TestUnitCase
         $this->assertSame($sqlApply, $sqlSelection);
     }
 
-    public function testShortFilters(): void
+    public function test_short_filters(): void
     {
         request()->merge([
             'name'  => 'Alexandr',

@@ -158,7 +158,7 @@ class Attachment extends Model
     {
         if ($this->exists) {
             if (static::where('hash', $this->hash)->where('disk', $this->disk)->limit(2)->count() <= 1) {
-                //Physical removal a file.
+                // Physical removal a file.
                 Storage::disk($this->disk)->delete($this->physicalPath());
             }
             $this->relationships()->delete();
@@ -182,7 +182,7 @@ class Attachment extends Model
      */
     public function getMimeType(): string
     {
-        $mimes = new MimeTypes();
+        $mimes = new MimeTypes;
 
         $type = $mimes->getMimeType($this->getAttribute('extension'));
 

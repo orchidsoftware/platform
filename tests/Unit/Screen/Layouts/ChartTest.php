@@ -10,7 +10,7 @@ use Orchid\Tests\TestUnitCase;
 
 class ChartTest extends TestUnitCase
 {
-    public function testDisabledExportButton(): void
+    public function test_disabled_export_button(): void
     {
         $layout = new class extends Chart
         {
@@ -29,7 +29,7 @@ class ChartTest extends TestUnitCase
         $this->assertStringNotContainsString('Export', $html);
     }
 
-    public function testEnabledExportButton(): void
+    public function test_enabled_export_button(): void
     {
         $layout = new class extends Chart
         {

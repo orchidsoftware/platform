@@ -9,7 +9,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class SearchTest extends TestFeatureCase
 {
-    public function testSearchCompactNotRecords(): void
+    public function test_search_compact_not_records(): void
     {
         $this
             ->actingAs($this->createAdminUser())
@@ -18,7 +18,7 @@ class SearchTest extends TestFeatureCase
             ->assertSee('There are no records in this view');
     }
 
-    public function testSearchCompact(): void
+    public function test_search_compact(): void
     {
         $user = SearchUser::create([
             'id'       => 1,
@@ -34,7 +34,7 @@ class SearchTest extends TestFeatureCase
             ->assertSee($user->name);
     }
 
-    public function testSearchPage(): void
+    public function test_search_page(): void
     {
         $user = SearchUser::create([
             'id'       => 1,

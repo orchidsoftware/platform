@@ -7,7 +7,7 @@ use Orchid\Tests\TestUnitCase;
 
 class SightForLegendTest extends TestUnitCase
 {
-    public function testShowPopover(): void
+    public function test_show_popover(): void
     {
         $popover = 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus.';
 

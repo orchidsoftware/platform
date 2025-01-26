@@ -11,7 +11,7 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 class MenuTest extends TestFieldsUnitCase
 {
-    public function testMenuInstance(): void
+    public function test_menu_instance(): void
     {
         $link = Menu::make('About');
         $view = self::renderField($link);
@@ -20,7 +20,7 @@ class MenuTest extends TestFieldsUnitCase
         $this->assertStringContainsString('#menu-about', $view);
     }
 
-    public function testMenuPermissions(): void
+    public function test_menu_permissions(): void
     {
         // guest
         $link = Menu::make('About')->permission('unknown');
@@ -62,7 +62,7 @@ class MenuTest extends TestFieldsUnitCase
         $this->assertTrue($link->isSee());
     }
 
-    public function testMenuUrl(): void
+    public function test_menu_url(): void
     {
         $link = Menu::make('About')->href('https:://orchid.software');
         $view = self::renderField($link);
@@ -70,7 +70,7 @@ class MenuTest extends TestFieldsUnitCase
         $this->assertStringContainsString('href="https:://orchid.software"', $view);
     }
 
-    public function testMenuTitle(): void
+    public function test_menu_title(): void
     {
         $link = Menu::make('About')->title('Navigation');
         $view = self::renderField($link);
@@ -78,7 +78,7 @@ class MenuTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Navigation', $view);
     }
 
-    public function testMenuBadge(): void
+    public function test_menu_badge(): void
     {
         $link = Menu::make('About')->badge(fn () => 'Badge text');
         $view = self::renderField($link);
@@ -86,7 +86,7 @@ class MenuTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Badge text', $view);
     }
 
-    public function testMenuList(): void
+    public function test_menu_list(): void
     {
         $link = Menu::make('About')->list([
             Menu::make('Web site')
@@ -109,7 +109,7 @@ class MenuTest extends TestFieldsUnitCase
         $this->assertStringNotContainsString('https:://orchid.software/admin', $view);
     }
 
-    public function testMenuSlug(): void
+    public function test_menu_slug(): void
     {
         $link = Menu::make('About')->slug('navigation');
         $view = self::renderField($link);

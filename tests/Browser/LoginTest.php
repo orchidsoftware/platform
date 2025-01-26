@@ -9,7 +9,7 @@ use Orchid\Tests\TestBrowserCase;
 
 class LoginTest extends TestBrowserCase
 {
-    public function testLogout(): void
+    public function test_logout(): void
     {
         $this->browse(function (Browser $browser) {
             $user = $this->createAdminUser();
@@ -33,12 +33,12 @@ class LoginTest extends TestBrowserCase
                 ->waitForLocation('/dashboard/main')
                 ->waitForText('Get Started');
 
-            //Redirect to home
+            // Redirect to home
             $browser
                 ->visitRoute('platform.login')
                 ->waitForLocation('/home');
 
-            //Logout
+            // Logout
             $browser
                 ->visitRoute('platform.profile')
                 ->clickLink($user->name)
@@ -46,7 +46,7 @@ class LoginTest extends TestBrowserCase
                 ->press('Sign out')
                 ->waitForText('404', 5);
 
-            //Redirect to login
+            // Redirect to login
             $browser
                 ->visitRoute('platform.main')
                 ->waitForLocation('/dashboard/login')

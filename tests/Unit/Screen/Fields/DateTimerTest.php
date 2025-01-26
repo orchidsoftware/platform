@@ -13,7 +13,7 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
  */
 class DateTimerTest extends TestFieldsUnitCase
 {
-    public function testInstance(): void
+    public function test_instance(): void
     {
         $field = DateTimer::make('date');
 
@@ -22,7 +22,7 @@ class DateTimerTest extends TestFieldsUnitCase
         $this->assertStringContainsString('name="date"', $view);
     }
 
-    public function testValueInstance(): void
+    public function test_value_instance(): void
     {
         $start = now();
 
@@ -33,7 +33,7 @@ class DateTimerTest extends TestFieldsUnitCase
         $this->assertStringContainsString(sprintf('value="%s"', $start->toDateTimeString()), $view);
     }
 
-    public function testServerFormat(): void
+    public function test_server_format(): void
     {
         $value = Carbon::createFromFormat('Y-m-d H:i:s.u', '2021-02-01 03:45:27.612584');
 
@@ -55,7 +55,7 @@ class DateTimerTest extends TestFieldsUnitCase
         $this->assertStringContainsString('value="2021-02-01"', $view);
     }
 
-    public function testWithoutServerFormat(): void
+    public function test_without_server_format(): void
     {
         $value = Carbon::createFromFormat('Y-m-d H:i:s.u', '2021-02-01 03:45:27.612584');
 
@@ -68,7 +68,7 @@ class DateTimerTest extends TestFieldsUnitCase
         $this->assertStringContainsString('value="2021-02-01 03:45:27"', $view);
     }
 
-    public function testEnableTimeAndFormat24hr()
+    public function test_enable_time_and_format24hr()
     {
         $field = DateTimer::make('date')
             ->format('Y-m-d H:i:s')
@@ -80,7 +80,7 @@ class DateTimerTest extends TestFieldsUnitCase
         $this->assertStringContainsString('data-datetime-time_24hr="true"', $view);
     }
 
-    public function testWithQuickDates(): void
+    public function test_with_quick_dates(): void
     {
         $field = DateTimer::make('date')
             ->format('Y-m-d H:i')

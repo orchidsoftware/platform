@@ -13,7 +13,7 @@ class DependentListenerTest extends TestBrowserCase
     /**
      * @throws Throwable
      */
-    public function testLoadData(): void
+    public function test_load_data(): void
     {
         $this->browse(function (Browser $browser) {
             $browser
@@ -30,7 +30,7 @@ class DependentListenerTest extends TestBrowserCase
         });
     }
 
-    public function testLoadDataFromModal(): void
+    public function test_load_data_from_modal(): void
     {
         $this->browse(function (Browser $browser) {
             $browser
@@ -49,7 +49,7 @@ class DependentListenerTest extends TestBrowserCase
         });
     }
 
-    public function testLoadDataFromNestedTargets(): void
+    public function test_load_data_from_nested_targets(): void
     {
         $this->browse(function (Browser $browser) {
             $browser

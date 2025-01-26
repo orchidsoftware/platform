@@ -17,7 +17,7 @@ class BuilderTest extends TestUnitCase
     /**
      * @throws \Throwable
      */
-    public function testSimpleBuild(): void
+    public function test_simple_build(): void
     {
         $form = $this->getBuilder(['name' => 'Alexandr'])
             ->generateForm();
@@ -29,7 +29,7 @@ class BuilderTest extends TestUnitCase
     /**
      * @throws \Throwable
      */
-    public function testPrefixBuild(): void
+    public function test_prefix_build(): void
     {
         $form = $this->getBuilder(['profile' => ['name' => 'Alexandr']])
             ->setPrefix('profile')
@@ -42,7 +42,7 @@ class BuilderTest extends TestUnitCase
     /**
      * @throws \Throwable
      */
-    public function testLanguageBuild(): void
+    public function test_language_build(): void
     {
         $form = $this->getBuilder(['en' => ['name' => 'Alexandr']])
             ->setLanguage('en')
@@ -56,7 +56,7 @@ class BuilderTest extends TestUnitCase
     /**
      * @throws \Throwable
      */
-    public function testLanguageAndPrefixBuild(): void
+    public function test_language_and_prefix_build(): void
     {
         $form = $this->getBuilder([
             'profile' => [
@@ -75,7 +75,7 @@ class BuilderTest extends TestUnitCase
     /**
      * @throws \Throwable
      */
-    public function testPrefixForFields(): void
+    public function test_prefix_for_fields(): void
     {
         $fields = [
             Input::make('name')->prefix('one'),
@@ -98,7 +98,7 @@ class BuilderTest extends TestUnitCase
     /**
      * @throws \Throwable
      */
-    public function testPrefixAndLanguageForFields(): void
+    public function test_prefix_and_language_for_fields(): void
     {
         $fields = [
             Input::make('name')->prefix('one'),

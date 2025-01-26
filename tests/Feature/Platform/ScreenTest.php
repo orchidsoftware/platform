@@ -8,7 +8,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class ScreenTest extends TestFeatureCase
 {
-    public function testRedirectForManyParams(): void
+    public function test_redirect_for_many_params(): void
     {
         $this
             ->actingAs($this->createAdminUser())

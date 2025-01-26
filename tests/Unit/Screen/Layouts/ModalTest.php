@@ -10,13 +10,13 @@ use Orchid\Tests\TestUnitCase;
 
 class ModalTest extends TestUnitCase
 {
-    public function testAsyncAutomaticCorrectionMethod(): void
+    public function test_async_automatic_correction_method(): void
     {
         $layout = Layout::modal('automatic_correction', [])
             ->async('asyncTestMethod');
 
         $html = $layout
-            ->build(new Repository())
+            ->build(new Repository)
             ->withErrors([])
             ->render();
 
@@ -26,7 +26,7 @@ class ModalTest extends TestUnitCase
             ->async('testMethod');
 
         $html = $layout
-            ->build(new Repository())
+            ->build(new Repository)
             ->withErrors([])
             ->render();
 

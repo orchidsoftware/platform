@@ -8,7 +8,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class UserTest extends TestFeatureCase
 {
-    public function testRouteSystemsUsers(): void
+    public function test_route_systems_users(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())
@@ -19,7 +19,7 @@ class UserTest extends TestFeatureCase
             ->assertSee($this->createAdminUser()->email);
     }
 
-    public function testRouteSystemsUsersCreate(): void
+    public function test_route_systems_users_create(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())
@@ -29,7 +29,7 @@ class UserTest extends TestFeatureCase
             ->assertSee('field-user');
     }
 
-    public function testRouteSystemsUsersEdit(): void
+    public function test_route_systems_users_edit(): void
     {
         $user = $this->createAdminUser();
 
@@ -40,7 +40,7 @@ class UserTest extends TestFeatureCase
             ->assertSee($user->email);
     }
 
-    public function testRouteSystemsUsersEditRemove(): void
+    public function test_route_systems_users_edit_remove(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())

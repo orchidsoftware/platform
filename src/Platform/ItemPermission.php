@@ -32,7 +32,7 @@ class ItemPermission
      */
     public static function make(string $group, array $items = []): self
     {
-        $item = new self();
+        $item = new self;
 
         $item->group = $group;
 

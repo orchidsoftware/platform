@@ -13,22 +13,22 @@ use Orchid\Tests\TestUnitCase;
 
 class SelectionTest extends TestUnitCase
 {
-    public function testNoDisplayOnlyHiddenFilter(): void
+    public function test_no_display_only_hidden_filter(): void
     {
         $layout = LayoutFactory::selection([
             HiddenFilter::class,
         ]);
 
-        $html = $layout->build(new Repository());
+        $html = $layout->build(new Repository);
 
         $this->assertNull($html);
     }
 
-    public function testDisplayFilters(): void
+    public function test_display_filters(): void
     {
-        $layout = new GroupNameAndEmail();
+        $layout = new GroupNameAndEmail;
 
-        $html = $layout->build(new Repository());
+        $html = $layout->build(new Repository);
 
         collect($layout->filters())
             ->map(fn (string $filter) => resolve($filter))->each(function (Filter $filter) use ($html) {

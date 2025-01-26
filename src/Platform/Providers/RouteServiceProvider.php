@@ -72,7 +72,7 @@ class RouteServiceProvider extends ServiceProvider
         if (file_exists(base_path('routes/orchid.php'))) {
             Route::domain((string) config('orchid.domain'))
                 ->prefix(Orchid::prefix('/'))
-                //->as(config('orchid.routes.name'))
+                // ->as(config('orchid.routes.name'))
                 ->middleware(config('orchid.middleware.private'))
                 ->group(base_path('routes/orchid.php'));
         }

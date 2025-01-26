@@ -10,7 +10,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class SortableTest extends TestFeatureCase
 {
-    public function testAttachmentHttpSort(): void
+    public function test_attachment_http_sort(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())

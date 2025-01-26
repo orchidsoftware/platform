@@ -25,13 +25,13 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
  */
 class HttpFilterTest extends TestUnitCase
 {
-    public function testHttpIsSort(): void
+    public function test_http_is_sort(): void
     {
         request()->merge([
             'sort' => 'foobar',
         ]);
 
-        $filter = new HttpFilter();
+        $filter = new HttpFilter;
         $this->assertTrue($filter->isSort('foobar'));
 
         $sql = $this->getModelBuilder()->toSql();
@@ -39,7 +39,7 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringContainsString('order by "foobar" asc', $sql);
     }
 
-    public function testLike(): void
+    public function test_like(): void
     {
         request()->merge([
             'filter' => [
@@ -52,7 +52,7 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringContainsString('"Like" like ?', $sql);
     }
 
-    public function testIlike(): void
+    public function test_ilike(): void
     {
         request()->merge([
             'filter' => [
@@ -65,7 +65,7 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringContainsString('"Ilike" ILIKE ?', $sql);
     }
 
-    public function testWhereIn(): void
+    public function test_where_in(): void
     {
         request()->merge([
             'filter' => [
@@ -88,7 +88,7 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringContainsString('"WhereIn" in (?, ?)', $sql);
     }
 
-    public function testWhereBetween(): void
+    public function test_where_between(): void
     {
         request()->merge([
             'filter' => [
@@ -101,7 +101,7 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringContainsString('"WhereBetween" between ? and ?', $sql);
     }
 
-    public function testFilterRange(): void
+    public function test_filter_range(): void
     {
         request()->merge([
             'filter' => [
@@ -114,7 +114,7 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringContainsString('"WhereMaxMin" >= ? and "WhereMaxMin" <= ?', $sql);
     }
 
-    public function testFilterRangePartial(): void
+    public function test_filter_range_partial(): void
     {
         request()->merge([
             'filter' => [
@@ -127,7 +127,7 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringContainsString('"WhereMaxMin" >= ?', $sql);
     }
 
-    public function testFilterDateRange(): void
+    public function test_filter_date_range(): void
     {
         request()->merge([
             'filter' => [
@@ -140,7 +140,7 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringContainsString('strftime(\'%Y-%m-%d\', "WhereDateStartEnd") >= cast(? as text) and strftime(\'%Y-%m-%d\', "WhereDateStartEnd") <= cast(? as text)', $sql);
     }
 
-    public function testFilterDateRangePartial(): void
+    public function test_filter_date_range_partial(): void
     {
         request()->merge([
             'filter' => [
@@ -153,7 +153,7 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringContainsString('where strftime(\'%Y-%m-%d\', "WhereDateStartEnd") >= cast(? as text)', $sql);
     }
 
-    public function testMultiple(): void
+    public function test_multiple(): void
     {
         request()->merge([
             'filter' => [
@@ -168,7 +168,7 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringContainsString('"Like" like ?', $sql);
     }
 
-    public function testUnknownAttributes(): void
+    public function test_unknown_attributes(): void
     {
         request()->merge([
             'sort'   => 'unknown',
@@ -183,7 +183,7 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringNotContainsStringIgnoringCase('"unknown" like ?', $sql);
     }
 
-    public function testHttpSort(): void
+    public function test_http_sort(): void
     {
         $filter = new HttpFilter(new Request([
             'sort' => 'foobar',
@@ -213,7 +213,7 @@ class HttpFilterTest extends TestUnitCase
     }
     */
 
-    public function testNullable(): void
+    public function test_nullable(): void
     {
         $filter = new HttpFilter(new Request([
             'filter' => [
@@ -228,7 +228,7 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringNotContainsString('"Where"', $sql);
     }
 
-    public function testJSONSort(): void
+    public function test_json_sort(): void
     {
         request()->merge([
             'sort' => 'foobar.ru.name',
@@ -247,13 +247,13 @@ class HttpFilterTest extends TestUnitCase
         $this->assertStringContainsString("order by json_extract(\"foobar\", '$.\"ru\".\"name\"') desc", $sql);
     }
 
-    public function testHttpSanitize(): void
+    public function test_http_sanitize(): void
     {
         $this->assertEquals('content->name', HttpFilter::sanitize('content->name'));
         $this->assertEquals('email', HttpFilter::sanitize('email'));
     }
 
-    public function testHttpInjectedSQL(): void
+    public function test_http_injected_sql(): void
     {
         $this->expectException(HttpException::class);
 

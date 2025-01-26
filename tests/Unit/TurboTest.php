@@ -11,7 +11,7 @@ use Orchid\Tests\TestUnitCase;
 
 class TurboTest extends TestUnitCase
 {
-    public function testDoesntChangeResponseWhenNotTurboVisit(): void
+    public function test_doesnt_change_response_when_not_turbo_visit(): void
     {
         $request = Request::create('/source');
         $request->headers->add([
@@ -20,13 +20,13 @@ class TurboTest extends TestUnitCase
         $response = new RedirectResponse('/destination');
         $next = fn () => $response;
 
-        $result = (new Turbo())->handle($request, $next);
+        $result = (new Turbo)->handle($request, $next);
 
         $this->assertEquals($response->getTargetUrl(), $result->getTargetUrl());
         $this->assertEquals(302, $result->getStatusCode());
     }
 
-    public function testHandlesRedirectResponses()
+    public function test_handles_redirect_responses()
     {
         $request = Request::create('/source');
         $request->headers->add([
@@ -35,7 +35,7 @@ class TurboTest extends TestUnitCase
         $response = new RedirectResponse('/destination');
         $next = fn () => $response;
 
-        $result = (new Turbo())->handle($request, $next);
+        $result = (new Turbo)->handle($request, $next);
 
         $this->assertEquals($response->getTargetUrl(), $result->getTargetUrl());
         $this->assertEquals(303, $result->getStatusCode());

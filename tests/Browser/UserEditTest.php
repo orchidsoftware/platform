@@ -10,7 +10,7 @@ use Orchid\Tests\TestBrowserCase;
 
 class UserEditTest extends TestBrowserCase
 {
-    public function testEditPage(): void
+    public function test_edit_page(): void
     {
         $this->browse(function (Browser $browser) {
             $user = $this->createAdminUser();
@@ -33,7 +33,7 @@ class UserEditTest extends TestBrowserCase
         });
     }
 
-    public function testListPage(): void
+    public function test_list_page(): void
     {
         $this->browse(function (Browser $browser) {
             $user = $this->createAdminUser();
@@ -46,7 +46,7 @@ class UserEditTest extends TestBrowserCase
         });
     }
 
-    public function testListAsync(): void
+    public function test_list_async(): void
     {
         $this->browse(function (Browser $browser) {
             $user = $this->createAdminUser();

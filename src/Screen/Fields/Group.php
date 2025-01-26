@@ -39,7 +39,7 @@ class Group implements Fieldable, Groupable
      */
     public static function make(array $group = [])
     {
-        return (new static())->setGroup($group);
+        return (new static)->setGroup($group);
     }
 
     /**

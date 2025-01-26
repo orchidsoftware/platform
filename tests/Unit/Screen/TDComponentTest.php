@@ -25,7 +25,7 @@ class TDComponentTest extends TestUnitCase
         $this->user = User::factory()->make();
     }
 
-    public function testTdSimpleComponent(): void
+    public function test_td_simple_component(): void
     {
         $view = TD::make()
             ->component(UserTD::class)
@@ -34,7 +34,7 @@ class TDComponentTest extends TestUnitCase
         $this->assertStringContainsString($this->user->email, $view);
     }
 
-    public function testTdArgumentComponent(): void
+    public function test_td_argument_component(): void
     {
         $view = TD::make()
             ->component(UserTDArguments::class, [
@@ -45,7 +45,7 @@ class TDComponentTest extends TestUnitCase
         $this->checkedArgument($view);
     }
 
-    public function testTdArgumentView(): void
+    public function test_td_argument_view(): void
     {
         $view = TD::make()
             ->component(UserTDView::class, [
@@ -56,7 +56,7 @@ class TDComponentTest extends TestUnitCase
         $this->checkedArgument($view);
     }
 
-    public function testTdComponentWithMixedArguments(): void
+    public function test_td_component_with_mixed_arguments(): void
     {
         $view = TD::make()
             ->component(Hello::class, [
@@ -69,7 +69,7 @@ class TDComponentTest extends TestUnitCase
         $this->assertStringContainsString($this->app->version(), $view);
     }
 
-    public function testTdAnonymousComponentWithClosureArguments(): void
+    public function test_td_anonymous_component_with_closure_arguments(): void
     {
         $view = TD::make()
             ->component('exemplar::simple-anonymous-component', [
@@ -82,7 +82,7 @@ class TDComponentTest extends TestUnitCase
         $this->assertStringContainsString($this->user->email, $view);
     }
 
-    public function testTdAnonymousComponentWithoutArguments(): void
+    public function test_td_anonymous_component_without_arguments(): void
     {
         $view = TD::make()
             ->component('exemplar::simple-anonymous-component')

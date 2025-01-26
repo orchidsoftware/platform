@@ -14,21 +14,21 @@ use Orchid\Tests\TestUnitCase;
  */
 class AlertTest extends TestUnitCase
 {
-    public function testHtmlSanitize(): void
+    public function test_html_sanitize(): void
     {
         Alert::info('<h1>Hello Word</h1>');
 
         self::assertEquals('&lt;h1&gt;Hello Word&lt;/h1&gt;', session('flash_notification.message'));
     }
 
-    public function testWithoutSanitize(): void
+    public function test_without_sanitize(): void
     {
         Alert::withoutEscaping()->info('<h1>Hello Word</h1>');
 
         self::assertEquals('<h1>Hello Word</h1>', session('flash_notification.message'));
     }
 
-    public function testHelperAlert(): void
+    public function test_helper_alert(): void
     {
         alert('test');
 
@@ -41,7 +41,7 @@ class AlertTest extends TestUnitCase
     /**
      * @dataProvider getLevels
      */
-    public function testShouldFlashLevelsAlert(string $level, string $css): void
+    public function test_should_flash_levels_alert(string $level, string $css): void
     {
         Alert::$level('test');
 
@@ -52,7 +52,7 @@ class AlertTest extends TestUnitCase
     /**
      * @dataProvider getLevels
      */
-    public function testShouldFlashLevelsToast(string $level, string $css): void
+    public function test_should_flash_levels_toast(string $level, string $css): void
     {
         Toast::$level('test');
 
@@ -60,7 +60,7 @@ class AlertTest extends TestUnitCase
         self::assertEquals($css, session('toast_notification.level'));
     }
 
-    public function testShouldToastValue(): void
+    public function test_should_toast_value(): void
     {
         Toast::info('Hello Alexandr!')
             ->autoHide(false)
@@ -71,7 +71,7 @@ class AlertTest extends TestUnitCase
         self::assertEquals('3000', session('toast_notification.delay'));
     }
 
-    public function testShouldFlashViewAlert(): void
+    public function test_should_flash_view_alert(): void
     {
         Alert::view('exemplar::alert', Color::INFO, [
             'name' => 'Alexandr',
@@ -81,7 +81,7 @@ class AlertTest extends TestUnitCase
         self::assertEquals('info', session('flash_notification.level'));
     }
 
-    public function testShouldCheckAlert(): void
+    public function test_should_check_alert(): void
     {
         self::assertFalse(Alert::check());
 

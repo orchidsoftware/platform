@@ -9,7 +9,7 @@ use Orchid\Tests\TestUnitCase;
 
 class ComponentTest extends TestUnitCase
 {
-    public function testQueryVariables(): void
+    public function test_query_variables(): void
     {
         $repository = new Repository([
             'name' => 'Alexandr Chernyaev',
@@ -23,7 +23,7 @@ class ComponentTest extends TestUnitCase
         $this->assertStringContainsString($this->app->version(), $html);
     }
 
-    public function testAccessByAlias(): void
+    public function test_access_by_alias(): void
     {
         $repository = new Repository([
             'name' => 'Alexandr Chernyaev',
@@ -39,7 +39,7 @@ class ComponentTest extends TestUnitCase
         $this->assertStringContainsString($this->app->version(), $html);
     }
 
-    public function testAnonymousComponent(): void
+    public function test_anonymous_component(): void
     {
         $repository = new Repository([
             'property1' => 'First property value',
@@ -53,7 +53,7 @@ class ComponentTest extends TestUnitCase
         $this->assertStringContainsString('default value', $html);
     }
 
-    public function testWithAdditionalData(): void
+    public function test_with_additional_data(): void
     {
         $repository = new Repository([
             'property1' => 'First property value',
@@ -69,7 +69,7 @@ class ComponentTest extends TestUnitCase
         $this->assertStringContainsString('It is second property value', $html);
     }
 
-    public function testAdditionalDataOverrideRepositoryData(): void
+    public function test_additional_data_override_repository_data(): void
     {
         $repository = new Repository([
             'property1' => 'First property value',

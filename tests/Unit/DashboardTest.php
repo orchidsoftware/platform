@@ -15,21 +15,21 @@ use Orchid\Tests\TestUnitCase;
  */
 class DashboardTest extends TestUnitCase
 {
-    public function testIsVersion(): void
+    public function test_is_version(): void
     {
         $this->assertEquals(Orchid::VERSION, Orchid::version());
     }
 
-    public function testIsModelDefault(): void
+    public function test_is_model_default(): void
     {
         $class = Orchid::modelClass('UnknownClass', User::class);
 
-        $default = new User();
+        $default = new User;
 
         $this->assertEquals($class, $default);
     }
 
-    public function testIsModelCustomNotFound(): void
+    public function test_is_model_custom_not_found(): void
     {
         Orchid::useModel(User::class, 'MyCustomClass');
 
@@ -38,7 +38,7 @@ class DashboardTest extends TestUnitCase
         $this->assertEquals('MyCustomClass', $user);
     }
 
-    public function testIsModelConfigure(): void
+    public function test_is_model_configure(): void
     {
         Orchid::configure([
             'models' => [
@@ -54,9 +54,9 @@ class DashboardTest extends TestUnitCase
         $this->assertEquals(null, Orchid::option('random'));
     }
 
-    public function testIsRegisterResource(): void
+    public function test_is_register_resource(): void
     {
-        $dashboard = new Orchid();
+        $dashboard = new Orchid;
 
         $script = $dashboard
             ->registerResource('scripts', 'app.js')
@@ -105,16 +105,16 @@ class DashboardTest extends TestUnitCase
     /**
      * @param string $name
      */
-    public function testIsMacro($name = 'customMarcoName'): void
+    public function test_is_macro($name = 'customMarcoName'): void
     {
         Orchid::macro('returnNameMacroFunction', fn (string $test) => $test);
 
         $this->assertEquals(Orchid::returnNameMacroFunction($name), $name);
     }
 
-    public function testRegisterMenuElement(): void
+    public function test_register_menu_element(): void
     {
-        $dashboard = new Orchid();
+        $dashboard = new Orchid;
 
         $view = $dashboard
             ->registerMenuElement(Menu::make('Item 1')->sort(3))
@@ -126,9 +126,9 @@ class DashboardTest extends TestUnitCase
         $this->assertTrue(Str::of($view)->after('Item 2')->contains('Item 1'));
     }
 
-    public function testAddMenuSubElements(): void
+    public function test_add_menu_sub_elements(): void
     {
-        $dashboard = new Orchid();
+        $dashboard = new Orchid;
 
         $view = $dashboard
             ->registerMenuElement(Menu::make('Item 1')->slug('item'))

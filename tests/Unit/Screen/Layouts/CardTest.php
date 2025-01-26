@@ -11,7 +11,7 @@ use Orchid\Tests\TestUnitCase;
 
 class CardTest extends TestUnitCase
 {
-    public function testQueryStringBind(): void
+    public function test_query_string_bind(): void
     {
         $repository = new Repository([
             'card' => $this->getCardClass(),
@@ -64,7 +64,7 @@ class CardTest extends TestUnitCase
         };
     }
 
-    public function testQueryParams(): void
+    public function test_query_params(): void
     {
         $layout = new Card($this->getCardClass(), [
             Link::make('Website')
@@ -72,7 +72,7 @@ class CardTest extends TestUnitCase
                 ->rawClick(),
         ]);
 
-        $html = $layout->build(new Repository());
+        $html = $layout->build(new Repository);
 
         $this->assertStringContainsString('Title of a longer featured blog post', $html);
         $this->assertStringContainsString('href="https://orchid.software"', $html);

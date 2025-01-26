@@ -28,7 +28,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->roles = Role::factory()->times(10)->create();
     }
 
-    public function testInstance(): void
+    public function test_instance(): void
     {
         $select = Select::make('choice')
             ->title('Title About')
@@ -53,7 +53,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Think about what you want to tell', $view);
     }
 
-    public function testNeedRequire(): void
+    public function test_need_require(): void
     {
         $select = Select::make('choice')
             ->options([])
@@ -64,7 +64,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('required', $view);
     }
 
-    public function testSetValue(): void
+    public function test_set_value(): void
     {
         $select = Select::make('choice')
             ->value('second')
@@ -79,7 +79,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('value="second" selected', $view);
     }
 
-    public function testSetIndicesValue(): void
+    public function test_set_indices_value(): void
     {
         $select = Select::make('Indices')
             ->value('1')
@@ -94,7 +94,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('value="1" selected', $view);
     }
 
-    public function testAutoFocus(): void
+    public function test_auto_focus(): void
     {
         $select = Select::make('about')
             ->autofocus();
@@ -104,7 +104,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('autofocus', $view);
     }
 
-    public function testEmptyForAssociativeArray(): void
+    public function test_empty_for_associative_array(): void
     {
         $options = [
             'first'  => 'First Value',
@@ -127,7 +127,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString($option, $view);
     }
 
-    public function testSelectForNumericArray(): void
+    public function test_select_for_numeric_array(): void
     {
         $options = [
             1 => 'First Value',
@@ -144,7 +144,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('value="1" selected', $view);
     }
 
-    public function testSelectForNumericArrayWhenStringValue(): void
+    public function test_select_for_numeric_array_when_string_value(): void
     {
         $options = [
             1 => 'First Value',
@@ -161,7 +161,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('value="2" selected', $view);
     }
 
-    public function testEmptyForNumericArray(): void
+    public function test_empty_for_numeric_array(): void
     {
         $options = [
             1 => 'First Value',
@@ -184,7 +184,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString($option, $view);
     }
 
-    public function testEmptyFromModel(): void
+    public function test_empty_from_model(): void
     {
         $select = Select::make('choice')
             ->empty('empty')
@@ -201,7 +201,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString($option, $view);
     }
 
-    public function testAttributesCanBeUsed(): void
+    public function test_attributes_can_be_used(): void
     {
         $select = Select::make('choice')
             ->empty('empty')
@@ -228,7 +228,7 @@ class SelectTest extends TestFieldsUnitCase
         return sprintf($option, $value, $name);
     }
 
-    public function testStrictTypeCasting(): void
+    public function test_strict_type_casting(): void
     {
         $select = Select::make('choice')
             ->value('-')
@@ -244,7 +244,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('<option value="0">0</option>', $view);
     }
 
-    public function testMultiple(): void
+    public function test_multiple(): void
     {
         $select = Select::make('choice')
             ->multiple()
@@ -268,7 +268,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringNotContainsString('value="third" selected', $view);
     }
 
-    public function testFromEnumWithDisplayName(): void
+    public function test_from_enum_with_display_name(): void
     {
         $select = Select::make('choice')
             ->value(RoleNames::User)
@@ -280,7 +280,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('value="'.RoleNames::User->value.'" selected>'.RoleNames::User->label(), $view);
     }
 
-    public function testMultipleFromEnum(): void
+    public function test_multiple_from_enum(): void
     {
         $select = Select::make('choice')
             ->multiple()

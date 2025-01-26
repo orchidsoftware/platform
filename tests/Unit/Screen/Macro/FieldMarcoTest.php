@@ -12,7 +12,7 @@ class FieldMarcoTest extends TestUnitCase
     /**
      * @param string $name
      */
-    public function testMacroField($name = 'customMarcoName'): void
+    public function test_macro_field($name = 'customMarcoName'): void
     {
         Field::macro('returnNameMacroFunction', fn () => /** @var Field $this */
 $this->get('name'));
@@ -22,7 +22,7 @@ $this->get('name'));
         $this->assertEquals($field->returnNameMacroFunction(), $name);
     }
 
-    public function testMacroFieldSelfReturn(): void
+    public function test_macro_field_self_return(): void
     {
         Field::macro('retrunSelf', fn () => /** @var Field $this */
 $this);

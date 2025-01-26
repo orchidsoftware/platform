@@ -19,7 +19,7 @@ class PermissionTest extends TestUnitCase
     /**
      * Verify permissions.
      */
-    public function testIsPermission(): void
+    public function test_is_permission(): void
     {
         $user = $this->createUser();
 
@@ -112,9 +112,9 @@ class PermissionTest extends TestUnitCase
     /**
      * Dashboard registered permission.
      */
-    public function testIsRegisteredPermission(): void
+    public function test_is_registered_permission(): void
     {
-        $dashboard = new Orchid();
+        $dashboard = new Orchid;
 
         $permission = ItemPermission::group('Test')
             ->addPermission('test', 'Test Description');
@@ -127,9 +127,9 @@ class PermissionTest extends TestUnitCase
     /**
      * Dashboard registered permission by group.
      */
-    public function testGetPermissionsByGroup(): void
+    public function test_get_permissions_by_group(): void
     {
-        $dashboard = new Orchid();
+        $dashboard = new Orchid;
 
         $permissionA = ItemPermission::group('Test-A')
             ->addPermission('test_a', 'Test Description A');
@@ -147,9 +147,9 @@ class PermissionTest extends TestUnitCase
     /**
      * Dashboard remove permission.
      */
-    public function testIsWasRemovedPermission(): void
+    public function test_is_was_removed_permission(): void
     {
-        $dashboard = new Orchid();
+        $dashboard = new Orchid;
         $permission = ItemPermission::group('Test')
             ->addPermission('test', 'Test Description');
         $dashboard->registerPermissions($permission);
@@ -157,7 +157,7 @@ class PermissionTest extends TestUnitCase
         $this->assertEmpty($dashboard->getPermission()->get('Test'));
     }
 
-    public function testReplasePermission(): void
+    public function test_replase_permission(): void
     {
         $user = $this->createUser();
 
@@ -169,7 +169,7 @@ class PermissionTest extends TestUnitCase
     /**
      * @throws Exception
      */
-    public function testDeleteUser(): void
+    public function test_delete_user(): void
     {
         $user = $this->createUser();
         $role = $this->createRole();
@@ -187,7 +187,7 @@ class PermissionTest extends TestUnitCase
         $this->assertTrue($user->delete());
     }
 
-    public function testDeleteRole(): void
+    public function test_delete_role(): void
     {
         $user = $this->createUser();
         $role = $this->createRole();
@@ -202,7 +202,7 @@ class PermissionTest extends TestUnitCase
         $this->assertFalse($user->inRole($role));
     }
 
-    public function testDeleteUnknownRole(): void
+    public function test_delete_unknown_role(): void
     {
         $user = $this->createUser();
 
@@ -228,7 +228,7 @@ class PermissionTest extends TestUnitCase
         $this->assertFalse($user->inRole($roleModerator));
     }
 
-    public function testEmptyPermission(): void
+    public function test_empty_permission(): void
     {
         $nullPermission = $this->createUser()
             ->setAttribute('permissions', null)
@@ -242,7 +242,7 @@ class PermissionTest extends TestUnitCase
         $this->assertFalse($stringPermission);
     }
 
-    public function testHasAnyAccess(): void
+    public function test_has_any_access(): void
     {
         $user = $this->createUser();
 
@@ -256,7 +256,7 @@ class PermissionTest extends TestUnitCase
         ]));
     }
 
-    public function testHasAnyEmptyAccess(): void
+    public function test_has_any_empty_access(): void
     {
         $user = $this->createUser();
 
@@ -267,14 +267,14 @@ class PermissionTest extends TestUnitCase
      * Permissions can be checked based on wildcards
      * using the * character to match any of a set of permissions.
      */
-    public function testWildcardChecksPermission(): void
+    public function test_wildcard_checks_permission(): void
     {
         $permission = $this->createUser()->hasAccess('access.user.*');
 
         $this->assertTrue($permission);
     }
 
-    public function testScopeByAccess(): void
+    public function test_scope_by_access(): void
     {
         $user = $this->createUser();
         $userAlt = $this->createAltUser();
@@ -318,7 +318,7 @@ class PermissionTest extends TestUnitCase
         $this->assertTrue($users->contains($userAlt));
     }
 
-    public function testScopeByAnyAccess(): void
+    public function test_scope_by_any_access(): void
     {
         $user = $this->createUser();
         $userAlt = $this->createAltUser();

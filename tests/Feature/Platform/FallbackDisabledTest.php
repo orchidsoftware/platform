@@ -20,7 +20,7 @@ class FallbackDisabledTest extends TestFeatureCase
         config()->set('platform.fallback', false);
     }
 
-    public function testRouteDisabled(): void
+    public function test_route_disabled(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())

@@ -101,4 +101,4 @@ Route::screen('/examples/grid', ExampleGridScreen::class)->name('orchid.example.
 Route::screen('/examples/charts', ExampleChartsScreen::class)->name('orchid.example.charts');
 Route::screen('/examples/cards', ExampleCardsScreen::class)->name('orchid.example.cards');
 
-//Route::screen('idea', Idea::class, 'orchid.screens.idea');
+// Route::screen('idea', Idea::class, 'orchid.screens.idea');

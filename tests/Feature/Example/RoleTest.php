@@ -21,7 +21,7 @@ class RoleTest extends TestFeatureCase
         $this->role = Role::factory()->create();
     }
 
-    public function testRouteSystemsRoles(): void
+    public function test_route_systems_roles(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())
@@ -33,7 +33,7 @@ class RoleTest extends TestFeatureCase
             ->assertSee($this->role->slug);
     }
 
-    public function testRouteSystemsRolesCreate(): void
+    public function test_route_systems_roles_create(): void
     {
         $response = $this->actingAs($this->createAdminUser())
             ->get(route('platform.systems.roles.create'));
@@ -43,7 +43,7 @@ class RoleTest extends TestFeatureCase
             ->assertSee('field-roles');
     }
 
-    public function testRouteSystemsRolesEdit(): void
+    public function test_route_systems_roles_edit(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())
@@ -55,7 +55,7 @@ class RoleTest extends TestFeatureCase
             ->assertSee($this->role->slug);
     }
 
-    public function testCanHaveStringPrimary(): void
+    public function test_can_have_string_primary(): void
     {
         $StringPrimaryClass = new class extends Role
         {

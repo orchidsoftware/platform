@@ -37,7 +37,7 @@ class AttachmentTest extends TestUnitCase
         $this->path = '/test';
     }
 
-    public function testAttachmentFile(): void
+    public function test_attachment_file(): void
     {
         $file = UploadedFile::fake()->create('document.xml', 200);
         $attachment = new File($file, $this->disk);
@@ -57,7 +57,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertStringContainsString($upload->name.'.xml', $upload->url());
     }
 
-    public function testAttachmentCustomEngineFile(): void
+    public function test_attachment_custom_engine_file(): void
     {
         config()->set('platform.attachment.generator', CustomAttachmentGenerator::class);
         $file = UploadedFile::fake()->create('document.xml', 200);
@@ -82,7 +82,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertStringContainsString('/storage/'.$path, $upload->url());
     }
 
-    public function testAttachmentCustomPath(): void
+    public function test_attachment_custom_path(): void
     {
         $file = UploadedFile::fake()->create('document.xml', 200);
         $attachment = new File($file, $this->disk);
@@ -106,7 +106,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertStringContainsString($path, $upload->url());
     }
 
-    public function testAttachmentImage(): void
+    public function test_attachment_image(): void
     {
         $file = UploadedFile::fake()->image('avatar.jpg', 1920, 1080)->size(100);
 
@@ -116,7 +116,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertNotNull($upload->url());
     }
 
-    public function testAttachmentUser(): void
+    public function test_attachment_user(): void
     {
         $user = User::factory()->create();
 
@@ -129,7 +129,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertEquals($upload->user()->first()->email, $user->email);
     }
 
-    public function testAttachmentUrlLink(): void
+    public function test_attachment_url_link(): void
     {
         $file = UploadedFile::fake()->create('example.jpg', 1920, 1080);
         $attachment = new File($file, $this->disk);
@@ -139,15 +139,15 @@ class AttachmentTest extends TestUnitCase
         $this->assertNotNull($upload->url());
     }
 
-    public function testAttachmentUrlLinkNotFound(): void
+    public function test_attachment_url_link_not_found(): void
     {
-        $upload = new Attachment();
+        $upload = new Attachment;
 
         $this->assertNull($upload->url());
         $this->assertEquals('default', $upload->url('default'));
     }
 
-    public function testAttachmentMimeType(): void
+    public function test_attachment_mime_type(): void
     {
         $file = UploadedFile::fake()->create('user.jpg', 1920, 1080);
         $attachment = new File($file, $this->disk);
@@ -156,7 +156,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertEquals('image/jpeg', $upload->getMimeType());
     }
 
-    public function testAttachmentDelete(): void
+    public function test_attachment_delete(): void
     {
         $file = UploadedFile::fake()->create('delete.jpg');
         $attachment = new File($file, $this->disk);
@@ -167,7 +167,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertTrue($delete);
     }
 
-    public function testDuplicateAttachmentUpload(): void
+    public function test_duplicate_attachment_upload(): void
     {
         $file = UploadedFile::fake()->create('duplicate.jpg');
         $clone = clone $file;
@@ -182,7 +182,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertNotNull($clone->url());
     }
 
-    public function testAttachmentUploadAllowingDuplicate(): void
+    public function test_attachment_upload_allowing_duplicate(): void
     {
         $file = UploadedFile::fake()->create('duplicate.jpg');
         $clone = clone $file;
@@ -197,7 +197,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertNotNull($clone->url());
     }
 
-    public function testUnknownMimeTypeAttachmentUpload(): void
+    public function test_unknown_mime_type_attachment_upload(): void
     {
         $file = UploadedFile::fake()->create('duplicate.gyhkjfewfowejg');
         $upload = (new File($file, $this->disk))->load();
@@ -205,7 +205,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertEquals('unknown', $upload->getMimeType());
     }
 
-    public function testUnknownExtensionAttachmentUpload(): void
+    public function test_unknown_extension_attachment_upload(): void
     {
         $file = UploadedFile::fake()->create('unknown-file');
         $upload = (new File($file, $this->disk))->load();
@@ -213,7 +213,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertEquals('bin', $upload->extension);
     }
 
-    public function testAttachmentTitleAttribute(): void
+    public function test_attachment_title_attribute(): void
     {
         $attachment = new Attachment([
             'original_name' => 'photo.jpg',
@@ -228,7 +228,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertEquals($attachment->name.'.'.$attachment->extension, $attachment->getTitleAttribute());
     }
 
-    public function testAttachmentTrait(): void
+    public function test_attachment_trait(): void
     {
         $file = UploadedFile::fake()->create('relations');
         $upload = (new File($file, $this->disk))->load();
@@ -254,7 +254,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertStringContainsString(' "group" = ?', $sql);
     }
 
-    public function testIsMimeAttachment()
+    public function test_is_mime_attachment()
     {
         $file = UploadedFile::fake()->create('is-mime.jpg');
         $attachment = new File($file, $this->disk);
@@ -264,7 +264,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertFalse($upload->isMime('image/png'));
     }
 
-    public function testIsPhysicalExistAttachment()
+    public function test_is_physical_exist_attachment()
     {
         $file = UploadedFile::fake()->create('isPhysical.jpg');
         $attachment = new File($file, $this->disk);
@@ -283,7 +283,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertFalse($attachment->isPhysicalExists());
     }
 
-    public function testDownloadAttachment()
+    public function test_download_attachment()
     {
         $file = UploadedFile::fake()->create('download.jpg');
         $attachment = new File($file, $this->disk);

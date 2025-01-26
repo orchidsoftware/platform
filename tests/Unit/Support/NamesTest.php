@@ -11,21 +11,21 @@ use Orchid\Tests\TestUnitCase;
 
 class NamesTest extends TestUnitCase
 {
-    public function testNamesForPageClass(): void
+    public function test_names_for_page_class(): void
     {
         $this->setRouteName('empty');
 
         $this->assertSame('page-empty', Names::getPageNameClass());
     }
 
-    public function testNamesSeparateForPageClass(): void
+    public function test_names_separate_for_page_class(): void
     {
         $this->setRouteName('platform.empty');
 
         $this->assertSame('page-platform-empty', Names::getPageNameClass());
     }
 
-    public function testNamesSlugForPageClass(): void
+    public function test_names_slug_for_page_class(): void
     {
         $this->setRouteName('platform empty');
 
@@ -34,10 +34,9 @@ class NamesTest extends TestUnitCase
 
     protected function setRouteName(string $name)
     {
-        Route::get($name, function () {
-        })->name($name);
+        Route::get($name, function () {})->name($name);
 
-        $request = tap(new Request(), function (Request $request) use ($name) {
+        $request = tap(new Request, function (Request $request) use ($name) {
             $request->server->set('REQUEST_URI', \route($name));
         });
 

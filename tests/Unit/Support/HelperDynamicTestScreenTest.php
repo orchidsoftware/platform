@@ -13,7 +13,7 @@ class HelperDynamicTestScreenTest extends TestUnitCase
 {
     use ScreenTesting;
 
-    public function testRouteRegister(): void
+    public function test_route_register(): void
     {
         $wrap = new DynamicTestScreen('text_screen_name');
         $wrap->register(BaseScreenTesting::class);
@@ -25,7 +25,7 @@ class HelperDynamicTestScreenTest extends TestUnitCase
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function testUsageExample(): void
+    public function test_usage_example(): void
     {
         $screen = $this->screen()
             ->register(BaseScreenTesting::class);
@@ -87,7 +87,7 @@ class HelperDynamicTestScreenTest extends TestUnitCase
             ->assertJson($user->toJson());
     }
 
-    public function testFollowingAndWithoutFollowingRedirects(): void
+    public function test_following_and_without_following_redirects(): void
     {
         $user = User::factory()->make();
 

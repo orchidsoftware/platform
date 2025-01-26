@@ -48,7 +48,7 @@ class BaseFieldTest extends TestFieldsUnitCase
         $this->field = $field;
     }
 
-    public function testRequredAttributeNameField(): void
+    public function test_requred_attribute_name_field(): void
     {
         $this->expectException(FieldRequiredAttributeException::class);
         $this->expectExceptionMessage('Field must have the following attribute: name');
@@ -56,7 +56,7 @@ class BaseFieldTest extends TestFieldsUnitCase
         $this->field->render();
     }
 
-    public function testRequredAttributeHeightField(): void
+    public function test_requred_attribute_height_field(): void
     {
         $this->expectException(FieldRequiredAttributeException::class);
         $this->expectExceptionMessage('Field must have the following attribute: height');
@@ -65,7 +65,7 @@ class BaseFieldTest extends TestFieldsUnitCase
         $this->field->render();
     }
 
-    public function testNoDisplay(): void
+    public function test_no_display(): void
     {
         $this->assertNull($this->field->canSee(false)->render());
     }

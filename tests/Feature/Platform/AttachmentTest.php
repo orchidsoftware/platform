@@ -10,7 +10,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class AttachmentTest extends TestFeatureCase
 {
-    public function testAttachmentHttpUpload(): void
+    public function test_attachment_http_upload(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())
@@ -27,7 +27,7 @@ class AttachmentTest extends TestFeatureCase
             ]);
     }
 
-    public function testAttachmentHttpMultiUpload(): void
+    public function test_attachment_http_multi_upload(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())
@@ -50,7 +50,7 @@ class AttachmentTest extends TestFeatureCase
             ]);
     }
 
-    public function testAttachmentHttpDestroy(): void
+    public function test_attachment_http_destroy(): void
     {
         /** @var $response \Illuminate\Testing\TestResponse */
         $response = $this
@@ -69,7 +69,7 @@ class AttachmentTest extends TestFeatureCase
         $response->assertOk();
     }
 
-    public function testAttachmentHttpUpdate(): void
+    public function test_attachment_http_update(): void
     {
         /** @var $response \Illuminate\Testing\TestResponse */
         $response = $this
@@ -98,7 +98,7 @@ class AttachmentTest extends TestFeatureCase
             ]);
     }
 
-    public function testAttachmentHttpSort(): void
+    public function test_attachment_http_sort(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())

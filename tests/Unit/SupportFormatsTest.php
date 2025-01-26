@@ -10,12 +10,12 @@ use Orchid\Tests\TestUnitCase;
 
 class SupportFormatsTest extends TestUnitCase
 {
-    public function testUnixDateToTimeString(): void
+    public function test_unix_date_to_time_string(): void
     {
         $this->assertEquals('2018-05-07 23:30:20', Formats::toDateTimeString(1525735820));
     }
 
-    public function testFormatBytes(): void
+    public function test_format_bytes(): void
     {
         $this->assertEquals(0, Formats::formatBytes(0));
         $this->assertEquals('1000 bytes', Formats::formatBytes(1000));
@@ -25,7 +25,7 @@ class SupportFormatsTest extends TestUnitCase
         $this->assertEquals('9.09 TB', Formats::formatBytes(10000000000000));
     }
 
-    public function testConvertBytes(): void
+    public function test_convert_bytes(): void
     {
         $bytes = Init::toBytes('1G');
 

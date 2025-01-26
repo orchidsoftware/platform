@@ -10,7 +10,7 @@ use Orchid\Tests\TestUnitCase;
 
 class LegendTest extends TestUnitCase
 {
-    public function testCanSee(): void
+    public function test_can_see(): void
     {
         $layout = new class extends Legend
         {
@@ -42,7 +42,7 @@ class LegendTest extends TestUnitCase
         $this->assertNotEmpty($html);
     }
 
-    public function testBaseUsage(): void
+    public function test_base_usage(): void
     {
         $layout = Layout::legend('user', [
             Sight::make('name'),

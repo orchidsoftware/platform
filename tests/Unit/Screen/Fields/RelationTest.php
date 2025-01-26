@@ -36,7 +36,7 @@ class RelationTest extends TestFieldsUnitCase
         $this->users = User::factory()->times(10)->create();
     }
 
-    public function testInstance(): void
+    public function test_instance(): void
     {
         /** @var Role $current */
         $current = $this->roles->random();
@@ -52,7 +52,7 @@ class RelationTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Select role', $view);
     }
 
-    public function testInstanceArray(): void
+    public function test_instance_array(): void
     {
         /** @var Role $current */
         $current = $this->roles->random();
@@ -68,7 +68,7 @@ class RelationTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Select roles', $view);
     }
 
-    public function testInstanceArrayWithStringPrimary(): void
+    public function test_instance_array_with_string_primary(): void
     {
         $stringPrimaryClass = new class extends Role
         {
@@ -89,7 +89,7 @@ class RelationTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Select roles', $view);
     }
 
-    public function testMultipleInstance(): void
+    public function test_multiple_instance(): void
     {
         /** @var Role $current */
         $current = $this->roles->random(2);
@@ -104,7 +104,7 @@ class RelationTest extends TestFieldsUnitCase
         $this->assertStringContainsString($current[1]->name, $view);
     }
 
-    public function testMultipleInstanceArray(): void
+    public function test_multiple_instance_array(): void
     {
         /** @var Role $current */
         $current = $this->roles->random(2);
@@ -122,7 +122,7 @@ class RelationTest extends TestFieldsUnitCase
         $this->assertStringContainsString($current[1]->name, $view);
     }
 
-    public function testNotScope(): void
+    public function test_not_scope(): void
     {
         $select = Relation::make('users')
             ->fromModel(EmptyUserModel::class, 'name');
@@ -132,7 +132,7 @@ class RelationTest extends TestFieldsUnitCase
         $this->assertStringContainsString('data-relation-scope=""', $view);
     }
 
-    public function testScopeWithAttributes(): void
+    public function test_scope_with_attributes(): void
     {
         $select = Relation::make('users')
             ->fromModel(EmptyUserModel::class, 'name')
@@ -148,7 +148,7 @@ class RelationTest extends TestFieldsUnitCase
         ], Crypt::decrypt($crypt));
     }
 
-    public function testScopeWithNotAttributes(): void
+    public function test_scope_with_not_attributes(): void
     {
         $select = Relation::make('users')
             ->fromClass(EmptyUserModel::class, 'name')
@@ -164,7 +164,7 @@ class RelationTest extends TestFieldsUnitCase
         ], Crypt::decrypt($crypt));
     }
 
-    public function testScopeWithInstance(): void
+    public function test_scope_with_instance(): void
     {
         /** @var User $current */
         $current = $this->users->random();
@@ -186,7 +186,7 @@ class RelationTest extends TestFieldsUnitCase
         $this->assertStringNotContainsString($current->name, self::renderField($select));
     }
 
-    public function testSearchColumns(): void
+    public function test_search_columns(): void
     {
         $select = Relation::make('users')
             ->fromModel(EmptyUserModel::class, 'name')

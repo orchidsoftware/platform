@@ -12,7 +12,7 @@ class ModalTest extends TestBrowserCase
     /**
      * @throws \Throwable
      */
-    public function testReopenModalForValidationFailed(): void
+    public function test_reopen_modal_for_validation_failed(): void
     {
         $this->browse(function (Browser $browser) {
             $browser
@@ -38,7 +38,7 @@ class ModalTest extends TestBrowserCase
     /**
      * @throws \Throwable
      */
-    public function testDoubleReopenModalForValidationFailed(): void
+    public function test_double_reopen_modal_for_validation_failed(): void
     {
         $this->browse(function (Browser $browser) {
             $browser
@@ -62,7 +62,7 @@ class ModalTest extends TestBrowserCase
     /**
      * @throws \Throwable
      */
-    public function testAutoOpenModal(): void
+    public function test_auto_open_modal(): void
     {
         $this->browse(function (Browser $browser) {
             $browser

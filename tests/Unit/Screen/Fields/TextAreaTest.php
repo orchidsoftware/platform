@@ -12,7 +12,7 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
  */
 class TextAreaTest extends TestFieldsUnitCase
 {
-    public function testInstance(): void
+    public function test_instance(): void
     {
         $textArea = TextArea::make('about')
             ->title('Title About')
@@ -27,7 +27,7 @@ class TextAreaTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Think about what you want to tell', $view);
     }
 
-    public function testNeedRequire(): void
+    public function test_need_require(): void
     {
         $textArea = TextArea::make('about')
             ->required();
@@ -37,7 +37,7 @@ class TextAreaTest extends TestFieldsUnitCase
         $this->assertStringContainsString('required', $view);
     }
 
-    public function testSetRows(): void
+    public function test_set_rows(): void
     {
         $textArea = TextArea::make('about')
             ->rows(10);
@@ -47,7 +47,7 @@ class TextAreaTest extends TestFieldsUnitCase
         $this->assertStringContainsString('rows="10"', $view);
     }
 
-    public function testPlaceHolder(): void
+    public function test_place_holder(): void
     {
         $textArea = TextArea::make('about')
             ->placeholder('Tell us about yourself');
@@ -57,7 +57,7 @@ class TextAreaTest extends TestFieldsUnitCase
         $this->assertStringContainsString('Tell us about yourself', $view);
     }
 
-    public function testAutoFocus(): void
+    public function test_auto_focus(): void
     {
         $textArea = TextArea::make('about')
             ->autofocus();
@@ -67,7 +67,7 @@ class TextAreaTest extends TestFieldsUnitCase
         $this->assertStringContainsString('autofocus', $view);
     }
 
-    public function testAutoComplite(): void
+    public function test_auto_complite(): void
     {
         $textArea = TextArea::make('about')
             ->autocomplete();
@@ -77,7 +77,7 @@ class TextAreaTest extends TestFieldsUnitCase
         $this->assertStringContainsString('autocomplete', $view);
     }
 
-    public function testOldValue(): void
+    public function test_old_value(): void
     {
         $textArea = TextArea::make('about')
             ->value('About Me');

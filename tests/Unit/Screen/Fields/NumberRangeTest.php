@@ -12,7 +12,7 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
  */
 class NumberRangeTest extends TestFieldsUnitCase
 {
-    public function testInstance(): void
+    public function test_instance(): void
     {
         $field = NumberRange::make('num');
 
@@ -22,7 +22,7 @@ class NumberRangeTest extends TestFieldsUnitCase
         $this->assertStringContainsString('name="num[max]"', $view);
     }
 
-    public function testValueInstance(): void
+    public function test_value_instance(): void
     {
         $min = 3.14;
         $max = 42;

@@ -12,7 +12,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class AsyncScreenTest extends TestFeatureCase
 {
-    public function testAsyncDependentListenerScreen(): void
+    public function test_async_dependent_listener_screen(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())
@@ -30,7 +30,7 @@ class AsyncScreenTest extends TestFeatureCase
         $this->assertStringContainsString('The result of adding', $response->getContent());
     }
 
-    public function testAsyncMethodNotFoundScreen(): void
+    public function test_async_method_not_found_screen(): void
     {
         /** @var DependentSumListener $layout */
         $layout = $this->app->make(DependentSumListener::class);

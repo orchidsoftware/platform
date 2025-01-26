@@ -15,7 +15,7 @@ class AsyncTest extends TestUnitCase
     /**
      * @throws \Throwable
      */
-    public function testFindBySlug(): void
+    public function test_find_by_slug(): void
     {
         app(\Illuminate\Contracts\View\Factory::class)->share('errors', new ViewErrorBag);
 
@@ -34,7 +34,7 @@ class AsyncTest extends TestUnitCase
             ->each(fn ($layout) => $this->assertNotNull($layout));
     }
 
-    public function testSlugLayout(): void
+    public function test_slug_layout(): void
     {
         $first = new DependentSumListener('modal-1');
         $second = new DependentSumListener('modal-2');
@@ -42,7 +42,7 @@ class AsyncTest extends TestUnitCase
         $this->assertNotEquals($first->getSlug(), $second->getSlug());
     }
 
-    public function testAnonymousClass(): void
+    public function test_anonymous_class(): void
     {
         $first = new DependentSumListener('modal-1');
         $second = new DependentSumListener('modal-2');

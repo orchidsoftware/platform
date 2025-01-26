@@ -8,7 +8,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class ScreenUnaccessedTest extends TestFeatureCase
 {
-    public function testRedirectUnaccessed(): void
+    public function test_redirect_unaccessed(): void
     {
         $this
             ->actingAs($this->createAdminUser())

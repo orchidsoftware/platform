@@ -40,7 +40,7 @@ trait Filterable
      */
     public function scopeFilters(Builder $builder, mixed $kit = null, ?HttpFilter $httpFilter = null): Builder
     {
-        $filter = $httpFilter ?? new HttpFilter();
+        $filter = $httpFilter ?? new HttpFilter;
         $filter->build($builder);
 
         if ($kit === null) {

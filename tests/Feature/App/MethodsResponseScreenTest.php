@@ -9,20 +9,20 @@ use Orchid\Tests\TestFeatureCase;
 
 class MethodsResponseScreenTest extends TestFeatureCase
 {
-    public function testRedirect(): void
+    public function test_redirect(): void
     {
         $this->callMethod('redirect')
             ->assertRedirect('#');
     }
 
-    public function testResponse(): void
+    public function test_response(): void
     {
         $this->callMethod('response')
             ->assertOk()
             ->assertSeeText('content');
     }
 
-    public function testEmpty(): void
+    public function test_empty(): void
     {
         $this->callMethod('empty')
             ->assertRedirect(back()->getTargetUrl());

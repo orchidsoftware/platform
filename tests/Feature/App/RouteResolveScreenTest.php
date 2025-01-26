@@ -13,7 +13,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class RouteResolveScreenTest extends TestFeatureCase
 {
-    public function testResolveModel(): void
+    public function test_resolve_model(): void
     {
         Route::screen('route-resolve/{resolve}', RouteResolveScreen::class)
             ->name('route-resolve');
@@ -27,7 +27,7 @@ class RouteResolveScreenTest extends TestFeatureCase
             ->assertSee('Hello Word');
     }
 
-    public function testImplicitBinding(): void
+    public function test_implicit_binding(): void
     {
         Route::screen('bind/users/{user}', ModelRouteBindScreen::class)
             ->middleware(config('orchid.middleware.private'))
@@ -43,7 +43,7 @@ class RouteResolveScreenTest extends TestFeatureCase
             ->assertSee($user->email);
     }
 
-    public function testImplicitBindingWhenAllowNull(): void
+    public function test_implicit_binding_when_allow_null(): void
     {
         Route::screen('bind/users/{user?}', ModelRouteBindScreen::class)
             ->middleware(config('orchid.middleware.private'))
@@ -59,7 +59,7 @@ class RouteResolveScreenTest extends TestFeatureCase
             ->assertSee('User Name');
     }
 
-    public function testCustomizingKey(): void
+    public function test_customizing_key(): void
     {
         Route::screen('bind/users/{user:email}', ModelRouteBindScreen::class)
             ->middleware(config('orchid.middleware.private'))
@@ -75,7 +75,7 @@ class RouteResolveScreenTest extends TestFeatureCase
             ->assertSee($user->email);
     }
 
-    public function testExplicitBinding(): void
+    public function test_explicit_binding(): void
     {
         Route::model('bind', User::class);
 
@@ -93,7 +93,7 @@ class RouteResolveScreenTest extends TestFeatureCase
             ->assertSee($user->email);
     }
 
-    public function testResolutionLogic(): void
+    public function test_resolution_logic(): void
     {
         Route::bind('user', function ($value) {
             return User::where('email', $value)->firstOrFail();

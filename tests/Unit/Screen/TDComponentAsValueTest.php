@@ -23,7 +23,7 @@ class TDComponentAsValueTest extends TestUnitCase
         $this->user = User::factory()->make();
     }
 
-    public function testTdSimpleComponent(): void
+    public function test_td_simple_component(): void
     {
         $view = TD::make('email')
             ->asComponent(SimpleShowValue::class)
@@ -32,7 +32,7 @@ class TDComponentAsValueTest extends TestUnitCase
         $this->assertStringContainsString($this->user->email, $view);
     }
 
-    public function testTdWithoutArgumentComponent()
+    public function test_td_without_argument_component()
     {
         $view = TD::make('email')
             ->asComponent(SimpleShowValueWithArguments::class)
@@ -42,7 +42,7 @@ class TDComponentAsValueTest extends TestUnitCase
         $this->assertStringContainsString(app()->version(), $view);
     }
 
-    public function testTdArgumentComponent(): void
+    public function test_td_argument_component(): void
     {
         $view = TD::make('email')
             ->asComponent(SimpleShowValueWithArguments::class, [
@@ -53,7 +53,7 @@ class TDComponentAsValueTest extends TestUnitCase
         $this->checkedArgument($view);
     }
 
-    public function testTdArgumentView(): void
+    public function test_td_argument_view(): void
     {
         $view = TD::make('email')
             ->asComponent(SimpleShowValueWithArguments::class, [
@@ -64,7 +64,7 @@ class TDComponentAsValueTest extends TestUnitCase
         $this->checkedArgument($view);
     }
 
-    public function testTdArgumentViewUsingComponent(): void
+    public function test_td_argument_view_using_component(): void
     {
         $view = TD::make('email')
             ->usingComponent(SimpleShowValueWithArguments::class, from: 'Sasha')
@@ -73,7 +73,7 @@ class TDComponentAsValueTest extends TestUnitCase
         $this->checkedArgument($view);
     }
 
-    public function testTdArgumentViewWithClosureArgument(): void
+    public function test_td_argument_view_with_closure_argument(): void
     {
         $view = TD::make('email')
             ->asComponent(SimpleShowValueWithArguments::class, [
@@ -84,7 +84,7 @@ class TDComponentAsValueTest extends TestUnitCase
         $this->checkedArgument($view);
     }
 
-    public function testTdAnonymousComponentWithClosureArguments(): void
+    public function test_td_anonymous_component_with_closure_arguments(): void
     {
         $view = TD::make('email')
             ->asComponent('exemplar::simple-anonymous-component', [

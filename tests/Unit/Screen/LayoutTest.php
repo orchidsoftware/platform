@@ -13,7 +13,7 @@ use Orchid\Tests\TestUnitCase;
 
 class LayoutTest extends TestUnitCase
 {
-    public function testFindLayoutBySlugs(): void
+    public function test_find_layout_by_slugs(): void
     {
         $row = LayoutFactory::rows([
             Input::make('input'),
@@ -33,9 +33,9 @@ class LayoutTest extends TestUnitCase
         $this->assertNull($find);
     }
 
-    public function testCanSeeLayout(): void
+    public function test_can_see_layout(): void
     {
-        $layout = new class() extends Layout
+        $layout = new class extends Layout
         {
             /***
              * @return bool
