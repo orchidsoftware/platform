@@ -40,17 +40,13 @@ use Orchid\Support\Init;
  */
 class Upload extends Field
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.upload';
+
+    protected string $view = 'platform::fields.upload';
 
     /**
      * All attributes that are available to the field.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'value'           => null,
         'multiple'        => true,
         'parallelUploads' => 10,
@@ -68,10 +64,8 @@ class Upload extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accept',
         'form',
         'formaction',
@@ -90,9 +84,6 @@ class Upload extends Field
         'path',
     ];
 
-    /**
-     * Upload constructor.
-     */
     public function __construct()
     {
         // Set max file size

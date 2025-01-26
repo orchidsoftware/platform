@@ -32,17 +32,13 @@ use Orchid\Screen\Field;
  */
 class DateTimer extends Field
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.datetime';
+
+    protected string $view = 'platform::fields.datetime';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'class'                                 => 'form-control',
         'data-datetime-enable-time'             => 'false',
         'data-datetime-time_24hr'               => 'false',
@@ -65,10 +61,8 @@ class DateTimer extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accept',
         'accesskey',
         'autocomplete',
@@ -152,7 +146,6 @@ class DateTimer extends Field
      * If the argument is not passed, then the value specified
      * in the 'format' method will be taken
      *
-     *
      * @return $this
      */
     public function serverFormat(?string $format = null): self
@@ -174,7 +167,6 @@ class DateTimer extends Field
 
     /**
      * Disable the calendar for the field and show only time.
-     *
      *
      * @return $this
      */

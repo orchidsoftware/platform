@@ -6,13 +6,12 @@ namespace Orchid\Screen;
 
 use Closure;
 use Illuminate\Contracts\Support\Htmlable;
-use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\View\ComponentAttributeBag;
-use Illuminate\View\View;
 use Orchid\Screen\Concerns\Makeable;
 use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
@@ -44,31 +43,25 @@ class Field implements Fieldable, Htmlable
      *
      * @var Closure[]
      */
-    private $beforeRender = [];
+    private array $beforeRender = [];
 
     /**
      * View template show.
-     *
-     * @var string
      */
-    protected $view;
+    protected string $view;
 
     /**
      * An array containing all attributes available to the field.
      * Attributes are used to configure the HTML form element.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'value' => null,
     ];
 
     /**
      * Required Attributes.
-     *
-     * @var array
      */
-    protected $required = [
+    protected array $required = [
         'name',
     ];
 
@@ -78,15 +71,13 @@ class Field implements Fieldable, Htmlable
      *
      * @var Closure|string|null
      */
-    protected $typeForm;
+    protected Closure|string|null $typeForm;
 
     /**
      * A set of attributes for the assignment
      * of which will automatically translate them.
-     *
-     * @var array
      */
-    protected $translations = [
+    protected array $translations = [
         'title',
         'placeholder',
         'help',
@@ -95,10 +86,8 @@ class Field implements Fieldable, Htmlable
     /**
      * Universal attributes are applied to almost all tags,
      * so they are allocated to a separate group so that they do not repeat for all tags.
-     *
-     * @var array
      */
-    protected $universalAttributes = [
+    protected array $universalAttributes = [
         'accesskey',
         'class',
         'dir',
@@ -117,24 +106,23 @@ class Field implements Fieldable, Htmlable
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [];
+    protected array $inlineAttributes = [];
 
     /**
      * @param string $method
      * @param array  $parameters
      *
-     * @return $this|mixed|static|\Orchid\Screen\Field
+     * @return $this|mixed|Field
      */
-    public function __call(string $method, array $parameters)
+    public function __call($method, $parameters)
     {
         if (static::hasMacro($method)) {
             return $this->macroCall($method, $parameters);
         }
 
-        $arguments = collect($parameters)->map(static fn ($argument) => $argument instanceof Closure ? $argument() : $argument);
+        $arguments = collect($parameters)
+            ->map(static fn ($argument) => $argument instanceof Closure ? $argument() : $argument);
 
         if (method_exists($this, $method)) {
             $this->$method($arguments);
@@ -157,11 +145,11 @@ class Field implements Fieldable, Htmlable
      * Sets the value for the specified attribute of the field.
      *
      * @param string $key   The name of the attribute to set.
-     * @param mixed  $value The value of the attribute. Defaults to true.
+     * @param mixed $value The value of the attribute. Defaults to true.
      *
      * @return static Returns the current instance for method chaining.
      */
-    public function set(string $key, $value = true): static
+    public function set(string $key, mixed $value = true): static
     {
         $this->attributes[$key] = $value;
 
@@ -190,13 +178,11 @@ class Field implements Fieldable, Htmlable
      * Renders the field.
      *
      * @throws Throwable
-     *
-     * @return Factory|View|mixed
      */
-    public function render()
+    public function render(): ?View
     {
         if (! $this->isSee()) {
-            return;
+            return null;
         }
 
         $this
@@ -277,8 +263,6 @@ class Field implements Fieldable, Htmlable
     /**
      * Generates a field ID if not already set.
      *
-     * @param string $defaultId The default ID to set if none is provided.
-     *
      * @return static Returns the current instance for method chaining.
      */
     public function generateId(): static
@@ -302,7 +286,7 @@ class Field implements Fieldable, Htmlable
      *
      * @return static|mixed|null
      */
-    public function get(string $key, $value = null)
+    public function get(string $key, mixed $value = null): mixed
     {
         return $this->attributes[$key] ?? $value;
     }
@@ -312,7 +296,7 @@ class Field implements Fieldable, Htmlable
      *
      * @return float|int|mixed|string
      */
-    public function getOldValue()
+    public function getOldValue(): mixed
     {
         return old($this->getOldName());
     }
@@ -502,9 +486,9 @@ class Field implements Fieldable, Htmlable
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      *
-     * @return \Closure|mixed|object|null
+     * @return Closure|mixed|object|null
      */
-    private function getErrorsMessage()
+    private function getErrorsMessage(): mixed
     {
         return session()->get('errors', new MessageBag());
     }
@@ -520,12 +504,8 @@ class Field implements Fieldable, Htmlable
     {
         $view = $this->render();
 
-        if (is_string($view)) {
-            return $view;
-        }
-
         if (is_a($view, View::class)) {
-            return (string) $view->render();
+            return $view->render();
         }
 
         return '';
@@ -538,7 +518,7 @@ class Field implements Fieldable, Htmlable
      *
      * @return string
      */
-    public function toHtml()
+    public function toHtml(): string
     {
         return $this->render()->toHtml();
     }

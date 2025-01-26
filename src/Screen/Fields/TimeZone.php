@@ -25,17 +25,12 @@ class TimeZone extends Field
 {
     use Multipliable;
 
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.select';
+    protected string $view = 'platform::fields.select';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'class'        => 'form-control',
         'options'      => [],
         'allowEmpty'   => 0,
@@ -45,10 +40,8 @@ class TimeZone extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accesskey',
         'autofocus',
         'disabled',
@@ -59,9 +52,6 @@ class TimeZone extends Field
         'tabindex',
     ];
 
-    /**
-     * TimeZone constructor.
-     */
     public function __construct()
     {
         $this->listIdentifiers();

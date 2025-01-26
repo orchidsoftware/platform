@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Illuminate\Contracts\View\View;
 use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Contracts\Groupable;
 use Orchid\Screen\Field;
@@ -12,10 +13,8 @@ class Group implements Fieldable, Groupable
 {
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'group'               => [],
         'class'               => 'col-12 col-md form-group mb-md-0',
         'align'               => 'align-items-baseline',
@@ -25,20 +24,12 @@ class Group implements Fieldable, Groupable
 
     /**
      * Required Attributes.
-     *
-     * @var array
      */
-    protected $required = [];
+    protected array $required = [];
 
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.group';
+    protected string $view = 'platform::fields.group';
 
-    /**
-     * @return static
-     */
-    public static function make(array $group = [])
+    public static function make(array $group = []): static
     {
         return (new static)->setGroup($group);
     }
@@ -59,10 +50,7 @@ class Group implements Fieldable, Groupable
         return $this->set('group', $group);
     }
 
-    /**
-     * @return \Illuminate\View\View
-     */
-    public function render()
+    public function render(): View
     {
         return view($this->view, $this->attributes);
     }
@@ -141,24 +129,14 @@ class Group implements Fieldable, Groupable
         return $this->set('widthColumns', $template);
     }
 
-    /**
-     * @param mixed $value
-     *
-     * @return static
-     */
-    public function set(string $key, $value = true): self
+    public function set(string $key, mixed $value = true): self
     {
         $this->attributes[$key] = $value;
 
         return $this;
     }
 
-    /**
-     * @param mixed|null $value
-     *
-     * @return static|mixed|null
-     */
-    public function get(string $key, $value = null)
+    public function get(string $key, mixed $value = null): mixed
     {
         return $this->attributes[$key] ?? $value;
     }
@@ -168,9 +146,6 @@ class Group implements Fieldable, Groupable
         return $this->attributes;
     }
 
-    /**
-     * @return $this
-     */
     public function form(string $name): self
     {
         $group = array_map(fn ($field) => $field->form($name), $this->getGroup());
@@ -240,6 +215,6 @@ class Group implements Fieldable, Groupable
      */
     public function toEnd(): self
     {
-        return $this->set('itemToEnd', true);
+        return $this->set('itemToEnd');
     }
 }

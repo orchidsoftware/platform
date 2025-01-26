@@ -32,17 +32,13 @@ use Orchid\Screen\Field;
  */
 class Switcher extends Field
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.switch';
+
+    protected string $view = 'platform::fields.switch';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'type'     => 'checkbox',
         'class'    => 'form-check-input',
         'value'    => false,
@@ -52,10 +48,8 @@ class Switcher extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accesskey',
         'autocomplete',
         'autofocus',

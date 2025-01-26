@@ -20,27 +20,21 @@ use Orchid\Screen\Field;
  */
 class Map extends Field
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.map';
+
+    protected string $view = 'platform::fields.map';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'zoom'   => 14,
         'height' => '300px',
     ];
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'name',
         'required',
         'height',

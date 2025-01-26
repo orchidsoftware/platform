@@ -8,9 +8,7 @@ use Illuminate\Support\Str;
 
 trait Multipliable
 {
-    /**
-     * @return $this
-     */
+
     public function multiple(): self
     {
         $this->set('multiple', 'multiple');

@@ -47,27 +47,20 @@ class Input extends Field
 {
     use Multipliable;
 
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.input';
+    protected string $view = 'platform::fields.input';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'class'    => 'form-control',
         'datalist' => [],
     ];
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accept',
         'accesskey',
         'autocomplete',
@@ -100,9 +93,6 @@ class Input extends Field
         'inputmode',
     ];
 
-    /**
-     * Input constructor.
-     */
     public function __construct()
     {
         $this->addBeforeRender(function () {

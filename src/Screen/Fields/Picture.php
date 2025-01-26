@@ -27,17 +27,13 @@ use Orchid\Support\Init;
  */
 class Picture extends Field
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.picture';
+
+    protected string $view = 'platform::fields.picture';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'value'          => null,
         'target'         => 'url',
         'url'            => null,
@@ -47,10 +43,8 @@ class Picture extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'form',
         'formaction',
         'formenctype',
@@ -69,9 +63,6 @@ class Picture extends Field
         'path',
     ];
 
-    /**
-     * Picture constructor.
-     */
     public function __construct()
     {
         // Set max file size

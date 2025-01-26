@@ -4,28 +4,18 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Contracts;
 
+use Illuminate\Contracts\View\View;
+
 interface Fieldable
 {
     /**
      * The process of creating.
-     *
-     * @return mixed
      */
-    public function render();
+    public function render(): ?View;
 
-    /**
-     * @param mixed $value
-     *
-     * @return mixed
-     */
-    public function get(string $key, $value = null);
+    public function get(string $key, mixed $value = null): mixed;
 
-    /**
-     * @param mixed $value
-     *
-     * @return $this
-     */
-    public function set(string $key, $value);
+    public function set(string $key, mixed $value): self;
 
     public function getAttributes(): array;
 }

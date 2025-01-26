@@ -30,17 +30,13 @@ use Orchid\Screen\Field;
  */
 class Radio extends Field
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.radio';
+
+    protected string $view = 'platform::fields.radio';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'type'   => 'radio',
         'class'  => 'form-check-input',
         'value'  => null,
@@ -48,10 +44,8 @@ class Radio extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accesskey',
         'autofocus',
         'checked',
@@ -72,9 +66,6 @@ class Radio extends Field
         'type',
     ];
 
-    /**
-     * @return $this
-     */
     protected function modifyValue(): self
     {
         return $this->checked($this->get('value') === $this->getOldValue());

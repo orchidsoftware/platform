@@ -32,17 +32,12 @@ class Select extends Field implements ComplexFieldConcern
 {
     use Multipliable;
 
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.select';
+    protected string $view = 'platform::fields.select';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'class'        => 'form-control',
         'options'      => [],
         'allowEmpty'   => '',
@@ -52,10 +47,8 @@ class Select extends Field implements ComplexFieldConcern
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accesskey',
         'autofocus',
         'disabled',
@@ -77,10 +70,7 @@ class Select extends Field implements ComplexFieldConcern
         });
     }
 
-    /**
-     * @param string|Model $model
-     */
-    public function fromModel($model, string $name, ?string $key = null): self
+    public function fromModel(string|Model $model, string $name, ?string $key = null): self
     {
         /* @var $model Model */
         $model = is_object($model) ? $model : new $model;

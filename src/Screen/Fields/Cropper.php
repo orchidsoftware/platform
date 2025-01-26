@@ -36,17 +36,13 @@ namespace Orchid\Screen\Fields;
  */
 class Cropper extends Picture
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.cropper';
+
+    protected string $view = 'platform::fields.cropper';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'value'                  => null,
         'target'                 => 'url',
         'url'                    => null,
@@ -65,10 +61,8 @@ class Cropper extends Picture
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accept',
         'accesskey',
         'autofocus',

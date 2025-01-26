@@ -30,17 +30,13 @@ use Orchid\Screen\Field;
  */
 class SimpleMDE extends Field
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.simplemde';
+
+    protected string $view = 'platform::fields.simplemde';
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accesskey',
         'autocomplete',
         'autofocus',
