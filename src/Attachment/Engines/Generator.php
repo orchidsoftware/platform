@@ -93,7 +93,7 @@ class Generator implements Engine
      *
      * @return static
      */
-    public function setPath(?string $path = null):static
+    public function setPath(?string $path = null): static
     {
         $this->path = $path;
 

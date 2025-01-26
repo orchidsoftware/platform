@@ -32,9 +32,7 @@ class Alert
      *
      * @param \Illuminate\Session\Store $session The session store instance.
      */
-    public function __construct(protected Store $session)
-    {
-    }
+    public function __construct(protected Store $session) {}
 
     /**
      * Flash an information message.
