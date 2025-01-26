@@ -205,7 +205,10 @@ class DynamicTestScreen
      */
     public function from(string $url): self
     {
-        $this->http->getApplication()['session']->setPreviousUrl($url);
+        /** @var \Illuminate\Session\SessionManager $session */
+        $session = $this->http->getApplication()->get('session');
+
+        $session->setPreviousUrl($url);
 
         return $this;
     }
