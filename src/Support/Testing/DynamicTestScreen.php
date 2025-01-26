@@ -112,7 +112,7 @@ class DynamicTestScreen
     public function display(array $headers = []): TestResponse
     {
         return $this->http
-            ->when($this->followRedirects, fn($http) => $http->followingRedirects())
+            ->when($this->followRedirects, fn ($http) => $http->followingRedirects())
             ->withSession($this->session)
             ->get($this->route(), $headers);
     }
@@ -136,7 +136,7 @@ class DynamicTestScreen
         $this->from($route);
 
         return $this->http
-            ->when($this->followRedirects, fn($http) => $http->followingRedirects())
+            ->when($this->followRedirects, fn ($http) => $http->followingRedirects())
             ->withSession($this->session)
             ->post($route, $parameters, $headers);
     }

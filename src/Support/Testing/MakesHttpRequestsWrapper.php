@@ -20,14 +20,14 @@ use Illuminate\Support\Traits\Conditionable;
  */
 class MakesHttpRequestsWrapper
 {
-    use InteractsWithAuthentication, InteractsWithExceptionHandling, InteractsWithSession, MakesHttpRequests, Conditionable;
+    use Conditionable, InteractsWithAuthentication, InteractsWithExceptionHandling, InteractsWithSession, MakesHttpRequests;
 
     /**
      * Creates a new wrapper instance.
      *
      * @param Application $app The application instance
      */
-    public function __construct(protected Application $app){}
+    public function __construct(protected Application $app) {}
 
     /**
      * Get the instance of the application
