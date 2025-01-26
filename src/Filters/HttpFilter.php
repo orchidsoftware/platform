@@ -138,7 +138,7 @@ class HttpFilter
                 $key = $column->before('->');
 
                 if ($allowedSorts->containsStrict($key->toString())) {
-                    $safe = $this->sanitize($column->toString());
+                    $safe = static::sanitize($column->toString());
 
                     $builder->orderBy($safe, $descending);
                 }

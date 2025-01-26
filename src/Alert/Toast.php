@@ -46,9 +46,9 @@ class Toast extends Alert
      *
      * @param bool $autoHide
      *
-     * @return $this
+     * @return static
      */
-    public function autoHide(bool $autoHide = true): self
+    public function autoHide(bool $autoHide = true): static
     {
         $this->session->flash(static::SESSION_AUTO_HIDE, var_export($autoHide, true));
 
@@ -60,9 +60,9 @@ class Toast extends Alert
      *
      * @param bool $disable
      *
-     * @return $this
+     * @return static
      */
-    public function disableAutoHide(bool $disable = true): self
+    public function disableAutoHide(bool $disable = true): static
     {
         return $this->autoHide(! $disable);
     }
@@ -72,9 +72,9 @@ class Toast extends Alert
      *
      * @param int $delay The delay in seconds
      *
-     * @return $this
+     * @return static
      */
-    public function delay(int $delay = 5000): self
+    public function delay(int $delay = 5000): static
     {
         $this->session->flash(static::SESSION_DELAY, $delay);
 
