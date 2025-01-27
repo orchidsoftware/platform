@@ -38,7 +38,7 @@
     "require": {
         "composer-runtime-api": "^2.2",
         "composer/semver": "^3.0",
-        "laravel/framework": "^10.0 || ^11.0",
+        "laravel/framework": "^11.0",
         "laravel/scout": "^9.0 || ^10.0",
         "orchid/blade-icons": "^4.0",
         "tabuna/breadcrumbs": "^4.0",
@@ -48,10 +48,10 @@
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.14",
-        "orchestra/testbench": "^8.0 || ^9.0",
-        "orchestra/testbench-core": "^8.0 || ^9.0",
-        "orchestra/testbench-dusk": "^8.0 || ^9.0",
-        "phpunit/phpunit": "^10.0 || ^11.0"
+        "orchestra/testbench": "^9.0",
+        "orchestra/testbench-core": "^9.0",
+        "orchestra/testbench-dusk": "^9.0",
+        "phpunit/phpunit": "^11.0"
     },
     "conflict": {
         "laravel/framework": "<10.48.25 || >=11.34.0",
