@@ -23,22 +23,16 @@ class Alert
     public const SESSION_LEVEL = 'flash_notification.level';
 
     /**
-     * Store instance for session.
-     */
-    protected $session;
-
-    /**
      * Whether to run PHP's htmlspecialchars function to prevent attacks against scripts.
      */
     protected bool $sanitize = true;
 
     /**
      * Instantiate the flash notifier with session.
+     *
+     * @param \Illuminate\Session\Store $session The session store instance.
      */
-    public function __construct(Store $session)
-    {
-        $this->session = $session;
-    }
+    public function __construct(protected Store $session) {}
 
     /**
      * Flash an information message.
@@ -60,9 +54,9 @@ class Alert
      * @param string $message The message to flash.
      * @param Color  $color   The color of the message (default: Color::INFO).
      *
-     * @return $this
+     * @return static
      */
-    public function message(string $message, Color $color = Color::INFO): self
+    public function message(string $message, Color $color = Color::INFO): static
     {
         $this->session->flash(static::SESSION_MESSAGE, $this->sanitize ? e($message) : $message);
         $this->session->flash(static::SESSION_LEVEL, $color->name());
@@ -75,9 +69,9 @@ class Alert
      *
      * @param string $message The message to flash.
      *
-     * @return $this
+     * @return static
      */
-    public function success(string $message): self
+    public function success(string $message): static
     {
         $this->message($message, Color::SUCCESS);
 
@@ -89,9 +83,9 @@ class Alert
      *
      * @param string $message The message to flash.
      *
-     * @return $this
+     * @return static
      */
-    public function error(string $message): self
+    public function error(string $message): static
     {
         $this->message($message, Color::ERROR);
 
@@ -103,9 +97,9 @@ class Alert
      *
      * @param string $message The message to flash.
      *
-     * @return $this
+     * @return static
      */
-    public function warning(string $message): self
+    public function warning(string $message): static
     {
         $this->message($message, Color::WARNING);
 
@@ -121,9 +115,9 @@ class Alert
      *
      * @throws \Throwable
      *
-     * @return $this
+     * @return static
      */
-    public function view(string $template, Color $color = Color::INFO, array $data = []): self
+    public function view(string $template, Color $color = Color::INFO, array $data = []): static
     {
         $message = view($template, $data)->render();
 
@@ -136,9 +130,9 @@ class Alert
     /**
      * Set the $sanitize property too false to prevent escaping data.
      *
-     * @return $this
+     * @return static
      */
-    public function withoutEscaping(): self
+    public function withoutEscaping(): static
     {
         $this->sanitize = false;
 

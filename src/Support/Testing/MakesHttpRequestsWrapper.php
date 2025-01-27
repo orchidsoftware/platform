@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\Concerns\InteractsWithAuthentication;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithExceptionHandling;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithSession;
 use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests;
+use Illuminate\Support\Traits\Conditionable;
 
 /**
  * Trait MakesHttpRequestsWrapper
@@ -19,24 +20,14 @@ use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests;
  */
 class MakesHttpRequestsWrapper
 {
-    use InteractsWithAuthentication, InteractsWithExceptionHandling, InteractsWithSession, MakesHttpRequests;
-
-    /**
-     * The application instance
-     *
-     * @var Application
-     */
-    protected $app;
+    use Conditionable, InteractsWithAuthentication, InteractsWithExceptionHandling, InteractsWithSession, MakesHttpRequests;
 
     /**
      * Creates a new wrapper instance.
      *
-     * @param Application $app
+     * @param Application $app The application instance
      */
-    public function __construct(Application $app)
-    {
-        $this->app = $app;
-    }
+    public function __construct(protected Application $app) {}
 
     /**
      * Get the instance of the application

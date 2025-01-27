@@ -14,28 +14,28 @@ class DynamicTestScreen
     /**
      * @var MakesHttpRequestsWrapper Wrapper for HTTP requests
      */
-    protected $http;
+    protected MakesHttpRequestsWrapper $http;
 
     /**
      * Name of the route
      *
      * @var string
      */
-    protected $name;
+    protected string $name;
 
     /**
      * Route parameters
      *
      * @var array
      */
-    protected $parameters = [];
+    protected array $parameters = [];
 
     /**
      * Session data
      *
      * @var array
      */
-    protected $session = [];
+    protected array $session = [];
 
     /**
      * Indicates whether redirects should be followed.
@@ -62,7 +62,7 @@ class DynamicTestScreen
      * @param string|null  $route      Route name
      * @param array|string $middleware Middleware to be used
      */
-    public function register(string $screen, ?string $route = null, $middleware = 'web'): DynamicTestScreen
+    public function register(string $screen, ?string $route = null, array|string $middleware = 'web'): DynamicTestScreen
     {
         Route::screen('/_test/'.($route ?? $this->name), $screen)
             ->middleware($middleware)
@@ -107,14 +107,14 @@ class DynamicTestScreen
      *
      * @param array $headers Headers to be used
      *
-     * @throws \Psr\Container\NotFoundExceptionInterface
-     * @throws \Psr\Container\ContainerExceptionInterface
-     *
-     * @return \Illuminate\Testing\TestResponse|mixed
+     * @return \Illuminate\Testing\TestResponse
      */
-    public function display(array $headers = [])
+    public function display(array $headers = []): TestResponse
     {
-        return $this->http->get($this->route(), $headers);
+        return $this->http
+            ->when($this->followRedirects, fn ($http) => $http->followingRedirects())
+            ->withSession($this->session)
+            ->get($this->route(), $headers);
     }
 
     /**
@@ -135,13 +135,10 @@ class DynamicTestScreen
 
         $this->from($route);
 
-        $http = $this->http->withSession($this->session);
-
-        if ($this->followRedirects) {
-            $http->followingRedirects();
-        }
-
-        return $http->post($route, $parameters, $headers);
+        return $this->http
+            ->when($this->followRedirects, fn ($http) => $http->followingRedirects())
+            ->withSession($this->session)
+            ->post($route, $parameters, $headers);
     }
 
     /**
@@ -179,7 +176,7 @@ class DynamicTestScreen
      * @param UserContract $user  User to act as
      * @param string|null  $guard Guard name
      */
-    public function be(UserContract $user, $guard = null): self
+    public function be(UserContract $user, ?string $guard = null): self
     {
         $this->http->be($user, $guard);
 
@@ -208,7 +205,10 @@ class DynamicTestScreen
      */
     public function from(string $url): self
     {
-        $this->http->getApplication()['session']->setPreviousUrl($url);
+        /** @var \Illuminate\Session\SessionManager $session */
+        $session = $this->http->getApplication()->get('session');
+
+        $session->setPreviousUrl($url);
 
         return $this;
     }

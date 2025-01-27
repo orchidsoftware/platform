@@ -20,6 +20,7 @@
     <issueHandlers>
         <UndefinedMagicMethod errorLevel="suppress" />
         <MissingTemplateParam errorLevel="suppress" />
+        <InvalidTemplateParam errorLevel="suppress" />
         <UndefinedClass>
             <errorLevel type="suppress">
                 <referencedClass name="Laravel\Octane\Events\RequestReceived" />

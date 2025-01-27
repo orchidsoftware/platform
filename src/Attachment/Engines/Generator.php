@@ -11,40 +11,42 @@ use Orchid\Attachment\MimeTypes;
 
 class Generator implements Engine
 {
+    protected const UNKNOWN = 'unknown';
+
     /**
      * The uploaded file instance.
      *
      * @var UploadedFile
      */
-    protected $file;
+    protected UploadedFile $file;
 
     /**
      * The Unix timestamp indicating the time when the file was created
      *
      * @var int
      */
-    protected $time;
+    protected int $time;
 
     /**
      * The generated unique identifier
      *
      * @var string
      */
-    protected $uniqueId;
+    protected string $uniqueId;
 
     /**
      * The mime types instance.
      *
      * @var MimeTypes
      */
-    protected $mimes;
+    protected MimeTypes $mimes;
 
     /**
      * The file path.
      *
      * @var ?string
      */
-    protected $path;
+    protected ?string $path;
 
     /**
      * Create a new Generator instance.
@@ -56,7 +58,6 @@ class Generator implements Engine
     public function __construct(UploadedFile $file)
     {
         $this->file = $file;
-        $this->path = null;
         $this->time = time();
         $this->mimes = new MimeTypes;
         $this->uniqueId = uniqid('', true);
@@ -90,9 +91,11 @@ class Generator implements Engine
     /**
      * Set the custom file path.
      *
-     * @return Generator
+     * @param string|null $path
+     *
+     * @return static
      */
-    public function setPath(?string $path = null)
+    public function setPath(?string $path = null): static
     {
         $this->path = $path;
 
@@ -117,13 +120,16 @@ class Generator implements Engine
 
     /**
      * Get the file extension.
+     *
+     * @psalm-suppress InvalidNullableReturnType
+     * @psalm-suppress NullableReturnStatement
      */
     public function extension(): string
     {
         $extension = $this->file->getClientOriginalExtension();
 
         return empty($extension)
-            ? $this->mimes->getExtension($this->file->getClientMimeType(), 'unknown')
+            ? $this->mimes->getExtension($this->file->getClientMimeType(), static::UNKNOWN)
             : $extension;
     }
 
@@ -134,6 +140,6 @@ class Generator implements Engine
     {
         return $this->mimes->getMimeType($this->extension())
             ?? $this->mimes->getMimeType($this->file->getClientMimeType())
-            ?? 'unknown';
+            ?? static::UNKNOWN;
     }
 }

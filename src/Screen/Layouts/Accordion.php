@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Support\Arr;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
@@ -22,6 +23,7 @@ abstract class Accordion extends Layout
      */
     protected $variables = [
         'stayOpen' => false,
+        'open'     => [],
     ];
 
     /**
@@ -32,6 +34,7 @@ abstract class Accordion extends Layout
     public function __construct(array $layouts = [])
     {
         $this->layouts = $layouts;
+        $this->variables['open'] = [array_key_first($this->layouts)];
     }
 
     /**
@@ -52,6 +55,20 @@ abstract class Accordion extends Layout
     public function stayOpen(bool $stayOpen = true): self
     {
         $this->variables['stayOpen'] = $stayOpen;
+
+        return $this;
+    }
+
+    /**
+     * Set active accordion(s).
+     *
+     * @param string|array $activeAccordion
+     *
+     * @return $this
+     */
+    public function open(string|array $activeAccordion): self
+    {
+        $this->variables['open'] = Arr::wrap($activeAccordion);
 
         return $this;
     }
