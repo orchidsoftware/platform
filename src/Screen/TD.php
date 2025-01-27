@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Orchid\Screen\Concerns\ComplexFieldConcern;
@@ -12,7 +13,6 @@ use Orchid\Screen\Fields\DateTimer;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\NumberRange;
 use Orchid\Screen\Fields\Select;
-use Illuminate\Contracts\View\View;
 
 class TD extends Cell
 {

@@ -17,12 +17,12 @@ use Orchid\Screen\TD;
 
 class UserListLayout extends Table
 {
-
     public string $target = 'users';
 
     /**
-     * @return TD[]
      * @throws \ReflectionException
+     *
+     * @return TD[]
      */
     public function columns(): array
     {

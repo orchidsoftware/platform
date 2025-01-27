@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Closure;
 use Illuminate\Contracts\View\View;
 use Orchid\Screen\Contracts\Actionable;
 use Orchid\Support\Color;
-use Closure;
 
 class Action extends Field implements Actionable
 {

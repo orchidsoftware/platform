@@ -6,7 +6,6 @@ namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Contracts\Pagination\Paginator;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Orchid\Screen\Layout;
@@ -15,7 +14,6 @@ use Orchid\Screen\TD;
 
 abstract class Table extends Layout
 {
-
     protected string $template = 'platform::layouts.table';
 
     protected Repository $query;
@@ -37,7 +35,7 @@ abstract class Table extends Layout
     {
         $this->query = $repository;
 
-        if (!$this->isSee()) {
+        if (! $this->isSee()) {
             return null;
         }
 
@@ -147,7 +145,7 @@ abstract class Table extends Layout
             return false;
         }
 
-        return !empty(request()->query()) || $row->isNotEmpty();
+        return ! empty(request()->query()) || $row->isNotEmpty();
     }
 
     abstract protected function columns(): iterable;

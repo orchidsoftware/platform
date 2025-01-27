@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Contracts\View\View;
 use Orchid\Screen\Actions\Menu;
 use Orchid\Screen\Builder;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
-use Illuminate\Contracts\View\View;
 
 /**
  * Class TabMenu.
  */
 abstract class TabMenu extends Layout
 {
-
     protected string $template = 'platform::layouts.tabMenu';
 
     /**

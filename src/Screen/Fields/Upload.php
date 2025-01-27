@@ -40,7 +40,6 @@ use Orchid\Support\Init;
  */
 class Upload extends Field
 {
-
     protected string $view = 'platform::fields.upload';
 
     /**

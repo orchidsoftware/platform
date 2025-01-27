@@ -145,7 +145,7 @@ class Field implements Fieldable, Htmlable
      * Sets the value for the specified attribute of the field.
      *
      * @param string $key   The name of the attribute to set.
-     * @param mixed $value The value of the attribute. Defaults to true.
+     * @param mixed  $value The value of the attribute. Defaults to true.
      *
      * @return static Returns the current instance for method chaining.
      */

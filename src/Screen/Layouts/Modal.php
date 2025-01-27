@@ -221,7 +221,7 @@ class Modal extends Layout
     {
         $screen = Dashboard::getCurrentScreen();
 
-        if (!$screen) {
+        if (! $screen) {
             return [];
         }
 

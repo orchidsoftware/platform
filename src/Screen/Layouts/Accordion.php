@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
-use Illuminate\Contracts\View\View;
 
 /**
  * Class Accordion.
  */
 abstract class Accordion extends Layout
 {
-
     protected string $template = 'platform::layouts.accordion';
 
     protected array $variables = [

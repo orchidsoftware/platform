@@ -32,7 +32,6 @@ use Orchid\Screen\Field;
  */
 class DateTimer extends Field
 {
-
     protected string $view = 'platform::fields.datetime';
 
     /**

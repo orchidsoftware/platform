@@ -71,7 +71,6 @@ class LayoutFactory
     {
         return new class($target, $columns) extends Table
         {
-
             protected array $columns;
 
             public function __construct(string $target, array $columns)

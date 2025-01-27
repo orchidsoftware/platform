@@ -20,7 +20,6 @@ use Orchid\Support\Facades\Dashboard;
  */
 class Button extends Action
 {
-
     protected string $view = 'platform::actions.button';
 
     /**

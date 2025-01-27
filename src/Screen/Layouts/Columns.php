@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Contracts\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
-use Illuminate\Contracts\View\View;
 
 /**
  * Class Columns.
  */
 abstract class Columns extends Layout
 {
-
     protected string $template = 'platform::layouts.columns';
 
     /**

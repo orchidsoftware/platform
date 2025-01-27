@@ -9,7 +9,6 @@ use Orchid\Screen\Repository;
 
 abstract class Content extends Layout
 {
-
     protected Repository $query;
 
     /**
@@ -19,7 +18,6 @@ abstract class Content extends Layout
 
     /**
      * Card constructor.
-     *
      */
     public function __construct(mixed $target)
     {

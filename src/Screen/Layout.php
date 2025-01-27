@@ -39,7 +39,7 @@ abstract class Layout implements JsonSerializable
     {
         $this->query = $repository;
 
-        if (!$this->isSee()) {
+        if (! $this->isSee()) {
             return null;
         }
 
@@ -58,9 +58,10 @@ abstract class Layout implements JsonSerializable
     }
 
     /**
-     * @param array $layouts
+     * @param array      $layouts
      * @param int|string $key
      * @param Repository $repository
+     *
      * @return array
      */
     protected function buildChild(iterable $layouts, int|string $key, Repository $repository): array

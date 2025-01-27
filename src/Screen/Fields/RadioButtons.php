@@ -24,7 +24,6 @@ use Orchid\Screen\Field;
  */
 class RadioButtons extends Field
 {
-
     protected string $view = 'platform::fields.radiobutton';
 
     /**

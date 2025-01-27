@@ -12,7 +12,6 @@ use Illuminate\Support\Arr;
  */
 class Repository extends \Illuminate\Config\Repository implements Countable
 {
-
     protected int $position = 0;
 
     /**

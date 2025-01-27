@@ -19,7 +19,6 @@ use Orchid\Screen\Field;
  */
 class DateRange extends Field implements ComplexFieldConcern
 {
-
     protected string $view = 'platform::fields.dataRange';
 
     /**

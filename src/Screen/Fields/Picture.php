@@ -27,7 +27,6 @@ use Orchid\Support\Init;
  */
 class Picture extends Field
 {
-
     protected string $view = 'platform::fields.picture';
 
     /**

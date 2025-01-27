@@ -2,17 +2,16 @@
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Orchid\Screen\Builder;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Support\Facades\Dashboard;
-use Illuminate\Contracts\View\View;
 
 abstract class Listener extends Layout
 {
-
     protected string $template = 'platform::layouts.listener';
 
     /**
@@ -68,7 +67,7 @@ abstract class Listener extends Layout
     {
         $screen = Dashboard::getCurrentScreen();
 
-        if (!$screen) {
+        if (! $screen) {
             return null;
         }
 

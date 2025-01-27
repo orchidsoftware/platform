@@ -8,7 +8,6 @@ use Illuminate\Support\Str;
 
 trait Multipliable
 {
-
     public function multiple(): static
     {
         $this->set('multiple', 'multiple');

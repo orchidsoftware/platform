@@ -35,6 +35,7 @@ abstract class Screen extends Controller
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      * @throws PhpVersionNotSupportedException
+     *
      * @see static::handle()
      */
     public function __invoke(Request $request, ...$arguments): mixed
@@ -177,10 +178,10 @@ abstract class Screen extends Controller
      * If the '_state' parameter is missing, an empty Repository object is returned.
      * Otherwise, the state is extracted from the encrypted '_state' parameter, deserialized and returned.
      *
-     * @return Repository - The extracted state.
-     *@throws NotFoundExceptionInterface  - If the container cannot find a required dependency injection for a class.
-     *
+     * @throws NotFoundExceptionInterface  - If the container cannot find a required dependency injection for a class.
      * @throws ContainerExceptionInterface - If the container cannot provide the dependency injection for a class.
+     *
+     * @return Repository - The extracted state.
      */
     protected function extractState(): Repository
     {
@@ -219,7 +220,6 @@ abstract class Screen extends Controller
      * Serializes the current state of the screen into a string.
      *
      * @return string The serialized state.
-     *
      */
     protected function serializableState(): string
     {
@@ -230,7 +230,6 @@ abstract class Screen extends Controller
      * @param array $httpQueryArguments
      *
      * @return Repository
-     *
      */
     protected function buildQueryRepository(array $httpQueryArguments = []): Repository
     {
@@ -278,9 +277,10 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @return RedirectResponse|mixed
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
+     *
+     * @return RedirectResponse|mixed
      */
     public function handle(Request $request, ...$arguments): mixed
     {
@@ -339,7 +339,6 @@ abstract class Screen extends Controller
 
     /**
      * Calls the specified method with the given parameters.
-     *
      */
     private function callMethod(string $method, array $parameters = []): mixed
     {
@@ -407,7 +406,6 @@ abstract class Screen extends Controller
      * Return to the previous state with the current object properties.
      *
      * @return RedirectResponse
-     *
      */
     private function backWithCurrentState(): RedirectResponse
     {
@@ -432,7 +430,6 @@ abstract class Screen extends Controller
      * @return RedirectResponse
      *
      * @deprecated
-     *
      */
     public function backWith(array $data): RedirectResponse
     {
@@ -490,7 +487,6 @@ abstract class Screen extends Controller
      * Returns an associative array of property names and their values for the given object.
      *
      * @param object $object
-     *
      *
      * @return Collection
      */

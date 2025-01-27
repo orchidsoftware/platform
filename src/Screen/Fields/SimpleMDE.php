@@ -30,7 +30,6 @@ use Orchid\Screen\Field;
  */
 class SimpleMDE extends Field
 {
-
     protected string $view = 'platform::fields.simplemde';
 
     /**

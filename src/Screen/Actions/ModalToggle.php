@@ -18,7 +18,6 @@ use Illuminate\Support\Arr;
  */
 class ModalToggle extends Button
 {
-
     protected string $view = 'platform::actions.modal';
 
     /**

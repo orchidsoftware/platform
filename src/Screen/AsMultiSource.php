@@ -19,7 +19,7 @@ trait AsMultiSource
     /**
      * @return mixed|null
      */
-    public function getContent(string $field, ?string $locale = null) : mixed
+    public function getContent(string $field, ?string $locale = null): mixed
     {
         return $this->getBaseContent($field) ?? $this->getContentMultiLang($field, $locale);
     }

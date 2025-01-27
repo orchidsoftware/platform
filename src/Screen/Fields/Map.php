@@ -20,7 +20,6 @@ use Orchid\Screen\Field;
  */
 class Map extends Field
 {
-
     protected string $view = 'platform::fields.map';
 
     /**

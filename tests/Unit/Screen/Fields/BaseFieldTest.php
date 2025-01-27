@@ -22,7 +22,6 @@ class BaseFieldTest extends TestFieldsUnitCase
     {
         $field = new class extends Field
         {
-
             public string $view = '';
 
             /**

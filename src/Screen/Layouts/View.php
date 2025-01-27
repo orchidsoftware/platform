@@ -10,11 +10,10 @@ use Orchid\Screen\Repository;
 
 abstract class View extends Layout
 {
-
     private array $data;
 
     /**
-     * @param string $template
+     * @param string          $template
      * @param array|Arrayable $data
      */
     public function __construct(string $template, array|Arrayable $data = [])

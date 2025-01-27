@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Contracts\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Sight;
-use Illuminate\Contracts\View\View;
 
 /**
  * Class Legend.
  */
 abstract class Legend extends Layout
 {
-
     protected string $template = 'platform::layouts.legend';
 
     /**

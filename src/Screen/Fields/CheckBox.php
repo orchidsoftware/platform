@@ -32,7 +32,6 @@ use Orchid\Screen\Field;
  */
 class CheckBox extends Field
 {
-
     protected string $view = 'platform::fields.checkbox';
 
     /**

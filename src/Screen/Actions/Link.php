@@ -18,7 +18,6 @@ use Orchid\Screen\Action;
  */
 class Link extends Action
 {
-
     protected string $view = 'platform::actions.link';
 
     /**

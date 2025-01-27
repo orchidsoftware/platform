@@ -15,7 +15,6 @@ use Orchid\Screen\Field;
  */
 class Label extends Field
 {
-
     protected string $view = 'platform::fields.label';
 
     /**

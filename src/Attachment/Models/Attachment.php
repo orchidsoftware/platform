@@ -24,7 +24,7 @@ use Orchid\Screen\AsSource;
  * Class Attachment.
  *
  * @method static Builder|static whereIn(string $column, array $values)
- * @method static static|null find(mixed $id, array $columns = ['*'])
+ * @method static static|null    find(mixed $id, array $columns = ['*'])
  */
 class Attachment extends Model
 {

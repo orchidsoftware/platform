@@ -30,7 +30,7 @@ abstract class Selection extends Layout
     {
         $this->query = $repository;
 
-        if (!$this->isSee()) {
+        if (! $this->isSee()) {
             return null;
         }
 

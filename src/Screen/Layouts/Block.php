@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use Orchid\Screen\Action;
 use Orchid\Screen\Commander;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
-use Illuminate\Contracts\View\View;
 
 /**
  * Class Block.

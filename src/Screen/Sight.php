@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Model;
 
 class Sight extends Cell
 {

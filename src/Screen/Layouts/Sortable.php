@@ -2,7 +2,6 @@
 
 namespace Orchid\Screen\Layouts;
 
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
@@ -10,7 +9,6 @@ use Orchid\Screen\Sight;
 
 abstract class Sortable extends Layout
 {
-
     protected string $template = 'platform::layouts.sortable';
 
     /**
@@ -44,7 +42,7 @@ abstract class Sortable extends Layout
     {
         $this->query = $repository;
 
-        if (!$this->isSee()) {
+        if (! $this->isSee()) {
             return null;
         }
 

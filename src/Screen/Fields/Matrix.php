@@ -16,7 +16,6 @@ use Orchid\Screen\Field;
  */
 class Matrix extends Field
 {
-
     protected string $view = 'platform::fields.matrix';
 
     /**

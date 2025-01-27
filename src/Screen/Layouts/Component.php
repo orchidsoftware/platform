@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Contracts\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Support\Blade;
-use Illuminate\Contracts\View\View;
 
 /**
  * Class Component.
  */
 abstract class Component extends Layout
 {
-
     private string $component;
 
     private array $data = [];

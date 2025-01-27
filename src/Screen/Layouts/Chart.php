@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
-use Illuminate\Contracts\View\View;
 
 /**
  * Class Chart.
@@ -31,7 +31,6 @@ abstract class Chart extends Layout
 
     /**
      * Add a title to the Chart.
-     *
      */
     protected string $title = 'My Chart';
 

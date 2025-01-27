@@ -8,7 +8,6 @@ use Orchid\Screen\TD;
 
 class TotalTable extends Table
 {
-
     protected string $target = 'table';
 
     protected function columns(): array
