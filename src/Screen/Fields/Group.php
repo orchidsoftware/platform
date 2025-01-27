@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Illuminate\Contracts\View\View;
 use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Contracts\Groupable;
 use Orchid\Screen\Field;
@@ -12,10 +13,8 @@ class Group implements Fieldable, Groupable
 {
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'group'               => [],
         'class'               => 'col-12 col-md form-group mb-md-0',
         'align'               => 'align-items-baseline',
@@ -25,20 +24,12 @@ class Group implements Fieldable, Groupable
 
     /**
      * Required Attributes.
-     *
-     * @var array
      */
-    protected $required = [];
+    protected array $required = [];
 
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.group';
+    protected string $view = 'platform::fields.group';
 
-    /**
-     * @return static
-     */
-    public static function make(array $group = [])
+    public static function make(array $group = []): static
     {
         return (new static)->setGroup($group);
     }
@@ -54,15 +45,12 @@ class Group implements Fieldable, Groupable
     /**
      * @return $this
      */
-    public function setGroup(array $group = []): Groupable
+    public function setGroup(array $group = []): static
     {
         return $this->set('group', $group);
     }
 
-    /**
-     * @return \Illuminate\View\View
-     */
-    public function render()
+    public function render(): View
     {
         return view($this->view, $this->attributes);
     }
@@ -80,7 +68,7 @@ class Group implements Fieldable, Groupable
      *
      * @return $this Returns the current instance for method chaining.
      */
-    public function autoWidth(): self
+    public function autoWidth(): static
     {
         $countColumns = count($this->get('group'));
 
@@ -97,7 +85,7 @@ class Group implements Fieldable, Groupable
      *
      * @return $this Returns the current instance for method chaining.
      */
-    public function fullWidth(): self
+    public function fullWidth(): static
     {
         return $this->set('widthColumns', null);
     }
@@ -136,29 +124,19 @@ class Group implements Fieldable, Groupable
      *
      * @return $this Returns the current instance for method chaining.
      */
-    public function widthColumns(string $template): self
+    public function widthColumns(string $template): static
     {
         return $this->set('widthColumns', $template);
     }
 
-    /**
-     * @param mixed $value
-     *
-     * @return static
-     */
-    public function set(string $key, $value = true): self
+    public function set(string $key, mixed $value = true): static
     {
         $this->attributes[$key] = $value;
 
         return $this;
     }
 
-    /**
-     * @param mixed|null $value
-     *
-     * @return static|mixed|null
-     */
-    public function get(string $key, $value = null)
+    public function get(string $key, mixed $value = null): mixed
     {
         return $this->attributes[$key] ?? $value;
     }
@@ -168,10 +146,7 @@ class Group implements Fieldable, Groupable
         return $this->attributes;
     }
 
-    /**
-     * @return $this
-     */
-    public function form(string $name): self
+    public function form(string $name): static
     {
         $group = array_map(fn ($field) => $field->form($name), $this->getGroup());
 
@@ -186,7 +161,7 @@ class Group implements Fieldable, Groupable
      *
      * @return $this Returns the current instance for method chaining.
      */
-    public function alignBaseLine(): self
+    public function alignBaseLine(): static
     {
         return $this->set('align', 'align-items-baseline');
     }
@@ -199,7 +174,7 @@ class Group implements Fieldable, Groupable
      *
      * @return $this Returns the current instance for method chaining.
      */
-    public function alignCenter(): self
+    public function alignCenter(): static
     {
         return $this->set('align', 'align-items-center');
     }
@@ -212,7 +187,7 @@ class Group implements Fieldable, Groupable
      *
      * @return $this Returns the current instance for method chaining.
      */
-    public function alignEnd(): self
+    public function alignEnd(): static
     {
         return $this->set('align', 'align-items-end');
     }
@@ -225,7 +200,7 @@ class Group implements Fieldable, Groupable
      *
      * @return $this Returns the current instance for method chaining.
      */
-    public function alignStart(): self
+    public function alignStart(): static
     {
         return $this->set('align', 'align-items-start');
     }
@@ -238,8 +213,8 @@ class Group implements Fieldable, Groupable
     /**
      * @return $this
      */
-    public function toEnd(): self
+    public function toEnd(): static
     {
-        return $this->set('itemToEnd', true);
+        return $this->set('itemToEnd');
     }
 }

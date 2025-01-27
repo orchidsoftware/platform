@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use Illuminate\View\View;
 use Orchid\Screen\Concerns\ComplexFieldConcern;
 use Orchid\Screen\Fields\DateRange;
 use Orchid\Screen\Fields\DateTimer;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\NumberRange;
 use Orchid\Screen\Fields\Select;
+use Illuminate\Contracts\View\View;
 
 class TD extends Cell
 {
@@ -35,54 +34,34 @@ class TD extends Cell
     public const FILTER_DATE_RANGE = 'dateRange';
     public const FILTER_NUMBER_RANGE = 'numberRange';
     public const FILTER_SELECT = 'select';
-    /**
-     * @var string|null|int
-     */
-    protected $width;
-    /**
-     * @var string|null
-     */
-    protected $style;
-    /**
-     * @var string|null
-     */
-    protected $class;
-    /**
-     * @var string
-     */
-    protected $filter;
-    /**
-     * @var bool
-     */
-    protected $sort;
-    /**
-     * @var string
-     */
-    protected $align = self::ALIGN_LEFT;
-    /**
-     * @var int
-     */
-    protected $colspan = 1;
+
+    protected string|null|float|int $width = null;
+
+    protected ?string $style = null;
+
+    protected ?string $class = null;
+
+    protected null|string|Field $filter = null;
+
+    protected bool $sort = false;
+
+    protected string $align = self::ALIGN_LEFT;
+
+    protected int $colspan = 1;
     /**
      * Displays whether the user can hide
      * or show the column in the browser.
-     *
-     * @var bool
      */
-    protected $allowUserHidden = true;
+    protected bool $allowUserHidden = true;
     /**
      * Should the user independently enable
      * the display of the column.
-     *
-     * @var bool
      */
-    protected $defaultHidden = false;
+    protected bool $defaultHidden = false;
     /**
      * Possible options for filters if it's select
-     *
-     * @var array
      */
-    protected $filterOptions = [];
+    protected iterable $filterOptions = [];
 
     /**
      * Callable return filter value in column
@@ -91,58 +70,42 @@ class TD extends Cell
      */
     protected $callbackFilterValue;
 
-    /**
-     * @param string|int $width
-     */
-    public function width($width): self
+    public function width(string|int|float $width): static
     {
         $this->width = $width;
 
         return $this;
     }
 
-    /**
-     * @param string $style
-     */
-    public function style($style): self
+    public function style(string $style): static
     {
         $this->style = $style;
 
         return $this;
     }
 
-    /**
-     * @param string $class
-     */
-    public function class($class): self
+    public function class(string $class): static
     {
         $this->class = $class;
 
         return $this;
     }
 
-    /**
-     * @param string|\Orchid\Screen\Field $filter
-     */
-    public function filterOptions(iterable $filterOptions): self
+    public function filterOptions(iterable $filterOptions): static
     {
         $this->filterOptions = $filterOptions;
 
         return $this;
     }
 
-    public function filterValue(callable $callable): self
+    public function filterValue(callable $callable): static
     {
         $this->callbackFilterValue = $callable;
 
         return $this;
     }
 
-    /**
-     * @param string                 $filter
-     * @param iterable|callable|null $options
-     */
-    public function filter($filter = self::FILTER_TEXT, $options = null): self
+    public function filter(string|Field $filter = self::FILTER_TEXT, iterable|callable|null $options = null): static
     {
         if (is_iterable($options)) {
             $this->filterOptions($options);
@@ -157,57 +120,42 @@ class TD extends Cell
         return $this;
     }
 
-    public function sort(bool $sort = true): self
+    public function sort(bool $sort = true): static
     {
         $this->sort = $sort;
 
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    public function align(string $align): self
+    public function align(string $align): static
     {
         $this->align = $align;
 
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    public function alignLeft(): self
+    public function alignLeft(): static
     {
         $this->align = self::ALIGN_LEFT;
 
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    public function alignRight(): self
+    public function alignRight(): static
     {
         $this->align = self::ALIGN_RIGHT;
 
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    public function alignCenter(): self
+    public function alignCenter(): static
     {
         $this->align = self::ALIGN_CENTER;
 
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    public function colspan(int $colspan): self
+    public function colspan(int $colspan): static
     {
         $this->colspan = $colspan;
 
@@ -216,10 +164,8 @@ class TD extends Cell
 
     /**
      * Builds a column heading.
-     *
-     * @return Factory|View
      */
-    public function buildTh()
+    public function buildTh(): View
     {
         return view('platform::partials.layouts.th', [
             'width'        => is_numeric($this->width) ? $this->width.'px' : $this->width,
@@ -236,11 +182,11 @@ class TD extends Cell
     }
 
     /**
-     * @return \Orchid\Screen\Field|null
+     * @return Field|null
      */
     protected function buildFilter(): ?Field
     {
-        /** @var \Orchid\Screen\Field $filter|string */
+        /** @var Field $filter|string */
         $filter = $this->filter;
 
         if ($filter === null) {
@@ -258,9 +204,6 @@ class TD extends Cell
             ->autofocus();
     }
 
-    /**
-     * @return \Orchid\Screen\Field
-     */
     protected function detectConstantFilter(string $filter): Field
     {
         $input = match ($filter) {
@@ -276,12 +219,8 @@ class TD extends Cell
 
     /**
      * Builds content for the column.
-     *
-     * @param Repository|Model $repository
-     *
-     * @return Factory|View
      */
-    public function buildTd($repository, ?object $loop = null)
+    public function buildTd(Repository|Model|string $repository, ?object $loop = null): View
     {
         $value = $this->render ? $this->handler($repository, $loop) : $repository->getContent($this->name);
 
@@ -303,14 +242,12 @@ class TD extends Cell
     }
 
     /**
-     * Builds an item menu for show/hiden column.
-     *
-     * @return Factory|View|null
+     * Builds an item menu for show/hidden column.
      */
-    public function buildItemMenu()
+    public function buildItemMenu(): ?View
     {
         if (! $this->isAllowUserHidden()) {
-            return;
+            return null;
         }
 
         return view('platform::partials.layouts.selectedTd', [
@@ -328,7 +265,7 @@ class TD extends Cell
     /**
      * Prevents the user from hiding a column in the interface.
      */
-    public function cantHide(bool $hidden = false): self
+    public function cantHide(bool $hidden = false): static
     {
         $this->allowUserHidden = $hidden;
 
@@ -338,7 +275,7 @@ class TD extends Cell
     /**
      * @return $this
      */
-    public function defaultHidden(bool $hidden = true): self
+    public function defaultHidden(bool $hidden = true): static
     {
         $this->defaultHidden = $hidden;
 
@@ -355,7 +292,7 @@ class TD extends Cell
     /**
      * @param TD[] $columns
      */
-    public static function isShowVisibleColumns($columns): bool
+    public static function isShowVisibleColumns(iterable $columns): bool
     {
         return collect($columns)->filter(fn ($column) => $column->isAllowUserHidden())->isNotEmpty();
     }
@@ -364,8 +301,6 @@ class TD extends Cell
      * @deprecated is not usage
      *
      * Decides whether a filter can be provided with a complex (array-like) value, or it needs a scalar one.
-     *
-     * @param \Orchid\Screen\Field $field
      */
     protected function isComplexFieldType(Field $field): bool
     {

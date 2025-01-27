@@ -36,17 +36,13 @@ namespace Orchid\Screen\Fields;
  */
 class Cropper extends Picture
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.cropper';
+
+    protected string $view = 'platform::fields.cropper';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'value'                  => null,
         'target'                 => 'url',
         'url'                    => null,
@@ -65,10 +61,8 @@ class Cropper extends Picture
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accept',
         'accesskey',
         'autofocus',
@@ -95,7 +89,7 @@ class Cropper extends Picture
     /**
      * Set the minimum with of the resized image.
      */
-    public function minWidth(int $width): self
+    public function minWidth(int $width): static
     {
         $this->set('minWidth', $width);
 
@@ -105,7 +99,7 @@ class Cropper extends Picture
     /**
      * Set the minimum height of the resized image.
      */
-    public function minHeight(int $height): self
+    public function minHeight(int $height): static
     {
         $this->set('minHeight', $height);
 
@@ -115,7 +109,7 @@ class Cropper extends Picture
     /**
      * Set the maximum width of the resized image.
      */
-    public function maxWidth(int $width): self
+    public function maxWidth(int $width): static
     {
         $this->set('maxWidth', $width);
 
@@ -125,7 +119,7 @@ class Cropper extends Picture
     /**
      * Set the maximum height of the resized image.
      */
-    public function maxHeight(int $height): self
+    public function maxHeight(int $height): static
     {
         $this->set('maxHeight', $height);
 
@@ -135,7 +129,7 @@ class Cropper extends Picture
     /**
      * Set the minimum with and height of the resized image.
      */
-    public function minCanvas(int $size): self
+    public function minCanvas(int $size): static
     {
         $this->set('minWidth', $size);
         $this->set('minHeight', $size);
@@ -146,7 +140,7 @@ class Cropper extends Picture
     /**
      * Set the maximum with and height of the resized image.
      */
-    public function maxCanvas(int $size): self
+    public function maxCanvas(int $size): static
     {
         $this->set('maxWidth', $size);
         $this->set('maxHeight', $size);
@@ -159,7 +153,7 @@ class Cropper extends Picture
      *
      * @param bool $keep Whether to keep the original image type.
      */
-    public function keepOriginalType(bool $keep = true): self
+    public function keepOriginalType(bool $keep = true): static
     {
         $this->set('keepOriginalType', $keep);
 

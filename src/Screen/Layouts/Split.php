@@ -2,6 +2,7 @@
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Contracts\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
@@ -14,24 +15,18 @@ abstract class Split extends Layout
 {
     /**
      * The name of the template file that will be used to render this layout.
-     *
-     * @var string
      */
-    protected $template = 'platform::layouts.split';
+    protected string $template = 'platform::layouts.split';
 
     /**
      * An array of default variables that will be passed to the template.
-     *
-     * @var string[]
      */
-    protected $variables = [
+    protected array $variables = [
         'columnClass'    => ['col-md-6', 'col-md-6'],
         'reverseOnPhone' => false,
     ];
 
     /**
-     * Split constructor.
-     *
      * @param Layout[] $layouts The layouts that will be contained in this split layout.
      */
     public function __construct(array $layouts = [])
@@ -44,9 +39,9 @@ abstract class Split extends Layout
      *
      * @param Repository $repository The repository instance.
      *
-     * @return mixed The HTML representation of this layout.
+     * @return View|null The HTML representation of this layout.
      */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         return $this->buildAsDeep($repository);
     }
@@ -60,7 +55,7 @@ abstract class Split extends Layout
      *
      * @return $this This instance of the Split class.
      */
-    public function ratio(string $ratio): self
+    public function ratio(string $ratio): static
     {
         $allowedRatios = collect([
             '20/80' => ['col-md-2', 'col-md-10'],
@@ -88,7 +83,7 @@ abstract class Split extends Layout
      *
      * @return $this This instance of the Split class.
      */
-    public function reverseOnPhone(): self
+    public function reverseOnPhone(): static
     {
         $this->variables['reverseOnPhone'] = true;
 

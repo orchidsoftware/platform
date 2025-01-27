@@ -37,27 +37,21 @@ use Orchid\Screen\Field;
  */
 class Password extends Field
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.password';
+
+    protected string $view = 'platform::fields.password';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'type'  => 'password',
         'class' => 'form-control',
     ];
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accept',
         'accesskey',
         'autocomplete',

@@ -4,24 +4,22 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Contracts\View\View;
 use Orchid\Screen\Contracts\Actionable;
 use Orchid\Support\Color;
+use Closure;
 
 class Action extends Field implements Actionable
 {
     /**
      * Override the form view.
-     *
-     * @var string
      */
-    protected $typeForm = 'platform::partials.fields.clear';
+    protected string|Closure|null $typeForm = 'platform::partials.fields.clear';
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'type',
         'autofocus',
         'disabled',
@@ -31,10 +29,8 @@ class Action extends Field implements Actionable
     /**
      * A set of attributes for the assignment
      * of which will automatically translate them.
-     *
-     * @var array
      */
-    protected $translations = [
+    protected array $translations = [
         'name',
     ];
 
@@ -43,7 +39,7 @@ class Action extends Field implements Actionable
      *
      * @return self
      */
-    public function name(?string $name = null): self
+    public function name(?string $name = null): static
     {
         return $this->set('name', $name ?? '');
     }
@@ -58,7 +54,7 @@ class Action extends Field implements Actionable
      *
      * @return static
      */
-    public function type(Color $visual): self
+    public function type(Color $visual): static
     {
         $colors = array_map(static fn (Color $color) => 'btn-'.$color->name(), Color::cases());
 
@@ -71,10 +67,8 @@ class Action extends Field implements Actionable
 
     /**
      * @throws \Throwable
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function build(?Repository $repository = null)
+    public function build(?Repository $repository = null): ?View
     {
         return $this->render();
     }
@@ -89,7 +83,7 @@ class Action extends Field implements Actionable
      *
      * @return static
      */
-    public function rawClick(bool $status = false): self
+    public function rawClick(bool $status = false): static
     {
         $this->set('turbo', $status);
 
@@ -118,7 +112,7 @@ class Action extends Field implements Actionable
      *
      * @return self
      */
-    public function stretched(): self
+    public function stretched(): static
     {
         $this->attributes['class'] .= ' stretched-link';
 

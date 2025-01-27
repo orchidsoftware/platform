@@ -15,27 +15,21 @@ use Orchid\Screen\Field;
  */
 class Label extends Field
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.label';
+
+    protected string $view = 'platform::fields.label';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'id'    => null,
         'value' => null,
     ];
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'class',
     ];
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
-use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Orchid\Filters\Filter;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
@@ -24,20 +24,14 @@ abstract class Selection extends Layout
      */
     public const TEMPLATE_LINE = 'platform::layouts.filter';
 
-    /**
-     * @var string
-     */
-    public $template = self::TEMPLATE_DROP_DOWN;
+    public string $template = self::TEMPLATE_DROP_DOWN;
 
-    /**
-     * @return Factory|\Illuminate\View\View|mixed
-     */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         $this->query = $repository;
 
-        if (! $this->isSee()) {
-            return;
+        if (!$this->isSee()) {
+            return null;
         }
 
         $filters = collect($this->filters())
@@ -45,7 +39,7 @@ abstract class Selection extends Layout
             ->filter(fn (Filter $filter) => $filter->isDisplay());
 
         if ($filters->isEmpty()) {
-            return;
+            return null;
         }
 
         return view($this->template, [

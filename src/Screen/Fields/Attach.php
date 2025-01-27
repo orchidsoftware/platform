@@ -35,17 +35,13 @@ class Attach extends Field
 
     /**
      * The view that will be used to render the attachment field.
-     *
-     * @var string
      */
-    protected $view = 'platform::fields.attach';
+    protected string $view = 'platform::fields.attach';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'maxCount'            => 0,
         'maxSize'             => 0, // MB
         'accept'              => '*/*',
@@ -61,10 +57,8 @@ class Attach extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accept',
         'multiple',
         'required',
@@ -104,7 +98,7 @@ class Attach extends Field
      *
      * @return $this
      */
-    public function storage(string $storage): self
+    public function storage(string $storage): static
     {
         $disk = config('filesystems.disks.'.$storage);
 
@@ -126,7 +120,7 @@ class Attach extends Field
      *
      * @return $this
      */
-    protected function ensureMaxSizeWithinServerLimits(): self
+    protected function ensureMaxSizeWithinServerLimits(): static
     {
         $maxFileSize = $this->get('maxFileSize');
 
@@ -154,7 +148,7 @@ class Attach extends Field
      *
      * @return $this
      */
-    protected function filterAttachmentsByGroup(): self
+    protected function filterAttachmentsByGroup(): static
     {
         $group = $this->get('group');
 
@@ -177,7 +171,7 @@ class Attach extends Field
      *
      * @return $this
      */
-    protected function loadRelatedAttachments(): self
+    protected function loadRelatedAttachments(): static
     {
         $value = Arr::wrap($this->get('value'));
 

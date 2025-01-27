@@ -12,8 +12,5 @@ interface Personable
 
     public function url(): string;
 
-    /**
-     * @return string
-     */
     public function image(): ?string;
 }

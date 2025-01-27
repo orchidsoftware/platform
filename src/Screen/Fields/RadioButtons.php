@@ -24,27 +24,21 @@ use Orchid\Screen\Field;
  */
 class RadioButtons extends Field
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.radiobutton';
+
+    protected string $view = 'platform::fields.radiobutton';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'type'  => 'radio',
         'class' => 'btn-check',
     ];
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accesskey',
         'autofocus',
         'disabled',
@@ -64,7 +58,7 @@ class RadioButtons extends Field
         $this->declarateActive();
     }
 
-    public function declarateActive(): self
+    public function declarateActive(): static
     {
         return $this->set('active', fn (string $key, ?string $value = null) => $key === $value);
     }

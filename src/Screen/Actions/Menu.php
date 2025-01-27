@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Actions;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Orchid\Screen\Contracts\Actionable;
@@ -27,25 +28,19 @@ class Menu extends Link
 {
     /**
      * The view associated with this menu item.
-     *
-     * @var string
      */
-    protected $view = 'platform::actions.menu';
+    protected string $view = 'platform::actions.menu';
 
     /**
      * Determines whether the menu item should be displayed based on permissions.
-     *
-     * @var bool
      */
-    protected $permit = true;
+    protected bool $permit = true;
 
     /**
      * Default attributes for the menu item.
      * This includes CSS classes, title, icon, URL, and other options.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'class'          => 'nav-link d-flex align-items-center collapsed icon-link',
         'title'          => null,
         'icon'           => null,
@@ -63,10 +58,8 @@ class Menu extends Link
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    public $inlineAttributes = [
+    public array $inlineAttributes = [
         'autofocus',
         'disabled',
         'tabindex',
@@ -77,10 +70,6 @@ class Menu extends Link
         'data-bs-toggle',
     ];
 
-    /**
-     * Menu constructor.
-     * Initializes the menu and sets default behaviors for rendering.
-     */
     public function __construct()
     {
         $this
@@ -121,8 +110,6 @@ class Menu extends Link
 
     /**
      * Generates a slug for the menu item based on its name.
-     *
-     * @return string The generated slug.
      */
     protected function getSlug(): string
     {
@@ -136,7 +123,7 @@ class Menu extends Link
      *
      * @return $this The current Menu instance for method chaining.
      */
-    public function list(array $list): self
+    public function list(array $list): static
     {
         $default = $this->get('list', []);
 
@@ -157,7 +144,7 @@ class Menu extends Link
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed The rendered view.
      */
-    public function build(?Repository $repository = null)
+    public function build(?Repository $repository = null): ?View
     {
         return $this->render();
     }
@@ -170,7 +157,7 @@ class Menu extends Link
      *
      * @return $this The current Menu instance for method chaining.
      */
-    public function badge(\Closure $badge, Color $color = Color::PRIMARY): self
+    public function badge(\Closure $badge, Color $color = Color::PRIMARY): static
     {
         $this->set('badge', [
             'class' => $color->name(),
@@ -187,7 +174,7 @@ class Menu extends Link
      *
      * @return $this The current Menu instance for method chaining.
      */
-    public function url(string $url): self
+    public function url(string $url): static
     {
         return $this->set('href', $url);
     }
@@ -199,7 +186,7 @@ class Menu extends Link
      *
      * @return $this The current Menu instance for method chaining.
      */
-    public function permission(string|iterable|null $permission = null): self
+    public function permission(string|iterable|null $permission = null): static
     {
         if ($permission !== null) {
             $this->permit = false;
@@ -233,7 +220,7 @@ class Menu extends Link
      *
      * @return $this The current Menu instance for method chaining.
      */
-    public function title(?string $title = null): self
+    public function title(?string $title = null): static
     {
         return $this->set('title', $title);
     }
@@ -245,7 +232,7 @@ class Menu extends Link
      *
      * @return $this The current Menu instance for method chaining.
      */
-    public function slug(string $slug): self
+    public function slug(string $slug): static
     {
         return $this->set('slug', $slug);
     }
@@ -257,7 +244,7 @@ class Menu extends Link
      *
      * @return $this The current Menu instance for method chaining.
      */
-    public function parent(string $parent): self
+    public function parent(string $parent): static
     {
         return $this->set('parent', $parent);
     }

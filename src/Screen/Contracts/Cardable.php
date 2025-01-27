@@ -12,13 +12,7 @@ interface Cardable
 
     public function description(): string;
 
-    /**
-     * @return string
-     */
     public function image(): ?string;
 
-    /**
-     * @return Color
-     */
     public function color(): ?Color;
 }

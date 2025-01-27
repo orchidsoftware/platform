@@ -22,24 +22,17 @@ class BaseFieldTest extends TestFieldsUnitCase
     {
         $field = new class extends Field
         {
-            /**
-             * @var string
-             */
-            public $view = '';
+
+            public string $view = '';
 
             /**
              * Default attributes value.
-             *
-             * @var array
              */
-            public $attributes = [
+            public array $attributes = [
                 'class' => 'form-control',
             ];
 
-            /**
-             * @var array
-             */
-            public $required = [
+            public array $required = [
                 'name',
                 'height',
             ];
@@ -48,7 +41,7 @@ class BaseFieldTest extends TestFieldsUnitCase
         $this->field = $field;
     }
 
-    public function testRequredAttributeNameField(): void
+    public function testRequiredAttributeNameField(): void
     {
         $this->expectException(FieldRequiredAttributeException::class);
         $this->expectExceptionMessage('Field must have the following attribute: name');
@@ -56,7 +49,7 @@ class BaseFieldTest extends TestFieldsUnitCase
         $this->field->render();
     }
 
-    public function testRequredAttributeHeightField(): void
+    public function testRequiredAttributeHeightField(): void
     {
         $this->expectException(FieldRequiredAttributeException::class);
         $this->expectExceptionMessage('Field must have the following attribute: height');

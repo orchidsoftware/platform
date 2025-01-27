@@ -11,15 +11,13 @@ use Orchid\Screen\Contracts\Cardable;
 
 class Card extends Content
 {
-    /**
-     * @var string
-     */
-    protected $template = 'platform::layouts.card';
+
+    protected string $template = 'platform::layouts.card';
 
     /**
      * @var array|Action[]
      */
-    protected $commandBar;
+    protected array $commandBar;
 
     /**
      * Card constructor.

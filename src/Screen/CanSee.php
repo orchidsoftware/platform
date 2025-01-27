@@ -16,10 +16,8 @@ trait CanSee
      * Determines whether the element should be displayed.
      *
      * If set to `false`, the element will be hidden and not rendered in the output.
-     *
-     * @var bool
      */
-    private $display = true;
+    private bool $display = true;
 
     /**
      * Set the visibility of the element.
@@ -28,10 +26,8 @@ trait CanSee
      * If set to `false`, the component will not be included in the rendered template.
      *
      * @param bool $value The visibility status. `true` to display, `false` to hide.
-     *
-     * @return $this
      */
-    public function canSee(bool $value): self
+    public function canSee(bool $value): static
     {
         $this->display = $value;
 

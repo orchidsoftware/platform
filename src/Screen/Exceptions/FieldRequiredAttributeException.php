@@ -12,9 +12,6 @@ use Throwable;
  */
 class FieldRequiredAttributeException extends Exception
 {
-    /**
-     * FieldRequiredAttributeException constructor.
-     */
     public function __construct(string $attribute = '', int $code = 0, ?Throwable $previous = null)
     {
         parent::__construct($attribute, $code, $previous);

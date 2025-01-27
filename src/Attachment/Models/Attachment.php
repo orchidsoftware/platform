@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Attachment\Models;
 
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,6 +22,9 @@ use Orchid\Screen\AsSource;
 
 /**
  * Class Attachment.
+ *
+ * @method static Builder|static whereIn(string $column, array $values)
+ * @method static static|null find(mixed $id, array $columns = ['*'])
  */
 class Attachment extends Model
 {

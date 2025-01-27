@@ -18,7 +18,7 @@ class DependentSumListener extends Listener
      *
      * @var string[]
      */
-    protected $targets = [
+    protected array $targets = [
         'first',
         'second',
     ];

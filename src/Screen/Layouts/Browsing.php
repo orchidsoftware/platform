@@ -6,18 +6,14 @@ namespace Orchid\Screen\Layouts;
 
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
+use Illuminate\Contracts\View\View;
 
 class Browsing extends Layout
 {
-    /**
-     * @var string
-     */
-    protected $template = 'platform::layouts.browsing';
 
-    /**
-     * @var array
-     */
-    protected $variables = [
+    protected string $template = 'platform::layouts.browsing';
+
+    protected array $variables = [
         'allow'          => null,
         'loading'        => 'lazy',
         'csp'            => null,
@@ -37,15 +33,12 @@ class Browsing extends Layout
         $this->src($src);
     }
 
-    /**
-     * @return mixed
-     */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         $this->query = $repository;
 
         if (! $this->isSee()) {
-            return;
+            return null;
         }
 
         return view($this->template, [
@@ -81,10 +74,9 @@ class Browsing extends Layout
     /**
      * A Content Security Policy enforced for the embedded resource.
      *
-     *
      * @return $this
      */
-    public function csp(?string $csp = null): Browsing
+    public function csp(?string $csp = null): static
     {
         $this->variables['csp'] = $csp;
 
@@ -94,10 +86,9 @@ class Browsing extends Layout
     /**
      * A targetable name for the embedded browsing context.
      *
-     *
      * @return $this
      */
-    public function name(?string $name = null): Browsing
+    public function name(?string $name = null): static
     {
         $this->variables['name'] = $name;
 
@@ -107,10 +98,9 @@ class Browsing extends Layout
     /**
      * Indicates which referrer to send when fetching the frame's resource.
      *
-     *
      * @return $this
      */
-    public function referrerpolicy(?string $referrerpolicy = null): Browsing
+    public function referrerpolicy(?string $referrerpolicy = null): static
     {
         $this->variables['referrerpolicy'] = $referrerpolicy;
 
@@ -121,10 +111,9 @@ class Browsing extends Layout
      * Applies extra restrictions to the content in the frame.
      * The value of the attribute can either be empty to apply all restrictions.
      *
-     *
      * @return $this
      */
-    public function sandbox(?string $sandbox = null): Browsing
+    public function sandbox(?string $sandbox = null): static
     {
         $this->variables['sandbox'] = $sandbox;
 
@@ -135,10 +124,9 @@ class Browsing extends Layout
      * Applies extra restrictions to the content in the frame.
      * The value of the attribute can either be empty to apply all restrictions.
      *
-     *
      * @return $this
      */
-    public function src(string $src): Browsing
+    public function src(string $src): static
     {
         $this->variables['src'] = $src;
 
@@ -148,10 +136,9 @@ class Browsing extends Layout
     /**
      * Inline HTML to embed, overriding the src attribute.
      *
-     *
      * @return $this
      */
-    public function srcdoc(string $srcdoc): Browsing
+    public function srcdoc(string $srcdoc): static
     {
         $this->variables['srcdoc'] = $srcdoc;
 

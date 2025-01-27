@@ -74,7 +74,7 @@ trait ModelStateRetrievable
      *
      * @return void
      */
-    public function __unserialize(array $values)
+    public function __unserialize(array $values): void
     {
         $default = $this->getDefaultPropertyWithConstructor();
 
@@ -106,7 +106,7 @@ trait ModelStateRetrievable
      *
      * @return mixed
      */
-    protected function getPropertyValue(\ReflectionProperty $property)
+    protected function getPropertyValue(\ReflectionProperty $property): mixed
     {
         return $property->getValue($this);
     }

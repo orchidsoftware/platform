@@ -27,27 +27,21 @@ use Orchid\Screen\Field;
  */
 class UTM extends Field
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.utm';
+
+    protected string $view = 'platform::fields.utm';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'type'  => 'url',
         'class' => 'form-control',
     ];
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accesskey',
         'autocomplete',
         'autofocus',

@@ -32,17 +32,12 @@ class Relation extends Field
 {
     use Multipliable;
 
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.relation';
+    protected string $view = 'platform::fields.relation';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'class'                 => 'form-control',
         'value'                 => [],
         'relationScope'         => null,
@@ -53,10 +48,7 @@ class Relation extends Field
         'allowAdd'              => false,
     ];
 
-    /**
-     * @var array
-     */
-    protected $required = [
+    protected array $required = [
         'name',
         'relationModel',
         'relationName',
@@ -68,10 +60,8 @@ class Relation extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accesskey',
         'autofocus',
         'disabled',
@@ -84,12 +74,7 @@ class Relation extends Field
         'data-maximum-selection-length',
     ];
 
-    /**
-     * @param string|Model $model
-     *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     */
-    public function fromModel(string $model, string $name, ?string $key = null): self
+    public function fromModel(string $model, string $name, ?string $key = null): static
     {
         $key = $key ?? resolve($model)->getModel()->getKeyName();
 
@@ -99,6 +84,7 @@ class Relation extends Field
             ->set('relationKey', Crypt::encryptString($key));
 
         return $this->addBeforeRender(function () use ($model, $name, $key) {
+
             $append = $this->get('relationAppend');
 
             if (is_string($append)) {
@@ -113,6 +99,7 @@ class Relation extends Field
             }
 
             if (! Assert::isObjectArray($value)) {
+                /* @var $model Model */
                 $value = $model::whereIn($key, $value)->get();
             }
 
@@ -126,7 +113,7 @@ class Relation extends Field
         });
     }
 
-    public function fromClass(string $class, string $name, string $key = 'id'): self
+    public function fromClass(string $class, string $name, string $key = 'id'): static
     {
         $this->set('relationModel', Crypt::encryptString($class));
         $this->set('relationName', Crypt::encryptString($name));
@@ -166,14 +153,11 @@ class Relation extends Field
                     ];
                 })->toArray();
 
-            $this->set('value', $value);
+            return $this->set('value', $value);
         });
     }
 
-    /**
-     * @param array $parameters
-     */
-    public function applyScope(string $scope, ...$parameters): self
+    public function applyScope(string $scope, ...$parameters): static
     {
         $data = [
             'name'       => lcfirst($scope),
@@ -190,7 +174,7 @@ class Relation extends Field
      *
      * @return $this
      */
-    public function searchColumns(...$columns): self
+    public function searchColumns(...$columns): static
     {
         $columns = Arr::wrap($columns);
 
@@ -203,7 +187,7 @@ class Relation extends Field
      * Displays the calculated model
      * field in the selection field.
      */
-    public function displayAppend(string $append): self
+    public function displayAppend(string $append): static
     {
         $this->set('relationAppend', Crypt::encryptString($append));
 
@@ -215,7 +199,7 @@ class Relation extends Field
      *
      * @return $this
      */
-    public function max(int $number)
+    public function max(int $number): static
     {
         $this->set('data-maximum-selection-length', (string) $number);
 
@@ -227,7 +211,7 @@ class Relation extends Field
      *
      * @return $this
      */
-    public function chunk(int $value)
+    public function chunk(int $value): static
     {
         return $this->set('chunk', $value);
     }
@@ -237,7 +221,7 @@ class Relation extends Field
      *
      * @return $this
      */
-    public function allowEmpty(bool $value = true)
+    public function allowEmpty(bool $value = true): static
     {
         return $this->set('allowEmpty', $value);
     }
@@ -247,7 +231,7 @@ class Relation extends Field
      *
      * @deprecated use `allowEmpty()` instead
      */
-    public function nullable(bool $value = true): self
+    public function nullable(bool $value = true): static
     {
         return $this->set('allowEmpty', $value);
     }

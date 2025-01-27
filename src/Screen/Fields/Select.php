@@ -32,17 +32,12 @@ class Select extends Field implements ComplexFieldConcern
 {
     use Multipliable;
 
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.select';
+    protected string $view = 'platform::fields.select';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'class'        => 'form-control',
         'options'      => [],
         'allowEmpty'   => '',
@@ -52,10 +47,8 @@ class Select extends Field implements ComplexFieldConcern
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accesskey',
         'autofocus',
         'disabled',
@@ -77,10 +70,7 @@ class Select extends Field implements ComplexFieldConcern
         });
     }
 
-    /**
-     * @param string|Model $model
-     */
-    public function fromModel($model, string $name, ?string $key = null): self
+    public function fromModel(string|Model $model, string $name, ?string $key = null): static
     {
         /* @var $model Model */
         $model = is_object($model) ? $model : new $model;
@@ -97,7 +87,7 @@ class Select extends Field implements ComplexFieldConcern
      *
      * @return self
      */
-    public function fromEnum(string $enum, ?string $displayName = null): self
+    public function fromEnum(string $enum, ?string $displayName = null): static
     {
         $reflection = new \ReflectionEnum($enum);
         $options = [];
@@ -124,7 +114,7 @@ class Select extends Field implements ComplexFieldConcern
     /**
      * @param Builder|Model $model
      */
-    private function setFromEloquent($model, string $name, string $key): self
+    private function setFromEloquent($model, string $name, string $key): static
     {
         $options = $model->pluck($name, $key);
 
@@ -145,14 +135,14 @@ class Select extends Field implements ComplexFieldConcern
         });
     }
 
-    public function fromQuery(Builder $builder, string $name, ?string $key = null): self
+    public function fromQuery(Builder $builder, string $name, ?string $key = null): static
     {
         $key = $key ?? $builder->getModel()->getKeyName();
 
         return $this->setFromEloquent($builder->get(), $name, $key);
     }
 
-    public function empty(string $name = '', string $key = ''): self
+    public function empty(string $name = '', string $key = ''): static
     {
         return $this->addBeforeRender(function () use ($name, $key) {
             $options = $this->get('options', []);

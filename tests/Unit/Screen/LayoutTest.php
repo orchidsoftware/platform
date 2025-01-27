@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layout;
@@ -46,14 +47,15 @@ class LayoutTest extends TestUnitCase
             }
 
             /**
-             * @return mixed
+             * @param Repository $repository
+             * @return string|null
              */
-            public function build(Repository $repository)
+            public function build(Repository $repository): ?string
             {
                 $this->query = $repository;
 
                 if (! $this->isSee()) {
-                    return;
+                    return null;
                 }
 
                 return 'display';

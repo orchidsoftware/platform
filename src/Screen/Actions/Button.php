@@ -20,17 +20,13 @@ use Orchid\Support\Facades\Dashboard;
  */
 class Button extends Action
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::actions.button';
+
+    protected string $view = 'platform::actions.button';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'class'      => 'btn btn-link icon-link',
         'type'       => 'submit',
         'novalidate' => false,
@@ -45,10 +41,8 @@ class Button extends Action
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'form',
         'formaction',
         'formenctype',
@@ -61,9 +55,6 @@ class Button extends Action
         'tabindex',
     ];
 
-    /**
-     * Button constructor.
-     */
     public function __construct()
     {
         $this->addBeforeRender(function () {
@@ -89,18 +80,12 @@ class Button extends Action
         });
     }
 
-    /**
-     * @return Button|\Orchid\Screen\Field
-     */
-    public function novalidate(bool $novalidate = true)
+    public function novalidate(bool $novalidate = true): static
     {
         return $this->set('formnovalidate', var_export($novalidate, true));
     }
 
-    /**
-     * @return $this
-     */
-    public function method(string $name, array $parameters = []): self
+    public function method(string $name, array $parameters = []): static
     {
         return $this
             ->set('method', $name)
@@ -111,10 +96,8 @@ class Button extends Action
      * Sets the parameters for the action.
      *
      * @param array|object $parameters The array or object containing the parameters.
-     *
-     * @return $this
      */
-    public function parameters(array|object $parameters): self
+    public function parameters(array|object $parameters): static
     {
         $parameters = is_array($parameters)
             ? collect($parameters)->filter(fn ($value) => filled($value))->all()
@@ -126,19 +109,12 @@ class Button extends Action
     /**
      * Method download serves as an alias for the `rawClick` method.
      */
-    public function download(bool $status = false): self
+    public function download(bool $status = false): static
     {
         return $this->rawClick($status);
     }
 
-    /**
-     * @param array|string $name
-     * @param mixed        $parameters
-     * @param bool         $absolute
-     *
-     * @return $this
-     */
-    public function route($name, $parameters = [], $absolute = true): self
+    public function route(string $name, mixed $parameters = [], bool $absolute = true): static
     {
         return $this->action(route($name, $parameters, $absolute));
     }

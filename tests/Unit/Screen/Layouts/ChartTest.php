@@ -14,10 +14,7 @@ class ChartTest extends TestUnitCase
     {
         $layout = new class extends Chart
         {
-            /**
-             * @var string
-             */
-            protected $target = 'charts';
+            protected string $target = 'charts';
         };
 
         $html = $layout
@@ -33,10 +30,7 @@ class ChartTest extends TestUnitCase
     {
         $layout = new class extends Chart
         {
-            /**
-             * @var string
-             */
-            protected $target = 'charts';
+            protected string $target = 'charts';
         };
 
         $html = $layout

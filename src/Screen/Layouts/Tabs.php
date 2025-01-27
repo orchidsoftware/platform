@@ -6,21 +6,17 @@ namespace Orchid\Screen\Layouts;
 
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
+use Illuminate\Contracts\View\View;
 
 /**
  * Class Tabs.
  */
 abstract class Tabs extends Layout
 {
-    /**
-     * @var string
-     */
-    public $template = 'platform::layouts.tabs';
 
-    /**
-     * @var array
-     */
-    protected $variables = [
+    public string $template = 'platform::layouts.tabs';
+
+    protected array $variables = [
         'activeTab'    => null,
     ];
 
@@ -34,18 +30,12 @@ abstract class Tabs extends Layout
         $this->layouts = $layouts;
     }
 
-    /**
-     * @return mixed
-     */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         return $this->buildAsDeep($repository);
     }
 
-    /**
-     * @return $this
-     */
-    public function activeTab(string $name)
+    public function activeTab(string $name): static
     {
         $this->variables['activeTab'] = $name;
 

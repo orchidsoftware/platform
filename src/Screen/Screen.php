@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,9 +14,12 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
+use Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Screen\Layouts\Listener;
 use Orchid\Support\Facades\Dashboard;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 /**
  * Class Screen.
@@ -29,17 +32,12 @@ abstract class Screen extends Controller
     use Commander;
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param mixed                    ...$arguments
-     *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     * @throws \ReflectionException
-     *
-     * @return mixed
-     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws PhpVersionNotSupportedException
      * @see static::handle()
      */
-    public function __invoke(Request $request, ...$arguments)
+    public function __invoke(Request $request, ...$arguments): mixed
     {
         return $this->handle($request, ...$arguments);
     }
@@ -83,7 +81,7 @@ abstract class Screen extends Controller
      *
      * @return Action[]
      */
-    public function commandBar()
+    public function commandBar(): iterable
     {
         return [];
     }
@@ -91,18 +89,18 @@ abstract class Screen extends Controller
     /**
      * The layout for this screen, consisting of a collection of views.
      *
-     * @return iterable<\Orchid\Screen\Layout>|iterable<string>
+     * @return iterable<Layout>|iterable<string>
      */
     abstract public function layout(): iterable;
 
     /**
      * Builds the screen using the given data repository.
      *
-     * @param \Orchid\Screen\Repository $repository
+     * @param Repository $repository
      *
      * @return View
      */
-    public function build(Repository $repository)
+    public function build(Repository $repository): View
     {
         return LayoutFactory::blank([
             $this->layout(),
@@ -112,19 +110,19 @@ abstract class Screen extends Controller
     /**
      * Builds the screen asynchronously using the given method and template slug.
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     * @throws \ReflectionException
-     *
-     * @return \Illuminate\Http\Response
+     * @throws BindingResolutionException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws \Throwable
      */
-    public function asyncBuild(string $method, string $slug)
+    public function asyncBuild(string $method, string $slug): Response
     {
         Dashboard::setCurrentScreen($this, true);
 
         abort_unless(
             static::getAvailableMethods()->contains($method),
             Response::HTTP_BAD_REQUEST,
-            "Async method '{$method}' is unavailable."
+            "Async method '$method' is unavailable."
         );
 
         abort_unless($this->checkAccess(request()), static::unaccessed());
@@ -152,10 +150,8 @@ abstract class Screen extends Controller
     /**
      * Builds the screen asynchronously using listeners
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     * @throws \ReflectionException
-     *
-     * @return \Illuminate\Http\Response
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function asyncParticalLayout(Listener $layout, Request $request): Response
     {
@@ -181,10 +177,10 @@ abstract class Screen extends Controller
      * If the '_state' parameter is missing, an empty Repository object is returned.
      * Otherwise, the state is extracted from the encrypted '_state' parameter, deserialized and returned.
      *
-     * @throws \Psr\Container\ContainerExceptionInterface - If the container cannot provide the dependency injection for a class.
-     * @throws \Psr\Container\NotFoundExceptionInterface  - If the container cannot find a required dependency injection for a class.
+     * @return Repository - The extracted state.
+     *@throws NotFoundExceptionInterface  - If the container cannot find a required dependency injection for a class.
      *
-     * @return \Orchid\Screen\Repository - The extracted state.
+     * @throws ContainerExceptionInterface - If the container cannot provide the dependency injection for a class.
      */
     protected function extractState(): Repository
     {
@@ -201,12 +197,7 @@ abstract class Screen extends Controller
         return new Repository(get_object_vars($screen));
     }
 
-    /**
-     * @throws \Throwable
-     *
-     * @return Factory|\Illuminate\View\View
-     */
-    public function view(array|Repository $httpQueryArguments = [])
+    public function view(array|Repository $httpQueryArguments = []): View
     {
         $repository = is_a($httpQueryArguments, Repository::class)
             ? $httpQueryArguments
@@ -227,9 +218,8 @@ abstract class Screen extends Controller
     /**
      * Serializes the current state of the screen into a string.
      *
-     * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException If the PHP version is not supported for serialization.
-     *
      * @return string The serialized state.
+     *
      */
     protected function serializableState(): string
     {
@@ -239,10 +229,8 @@ abstract class Screen extends Controller
     /**
      * @param array $httpQueryArguments
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     * @throws \ReflectionException
+     * @return Repository
      *
-     * @return \Orchid\Screen\Repository
      */
     protected function buildQueryRepository(array $httpQueryArguments = []): Repository
     {
@@ -254,7 +242,7 @@ abstract class Screen extends Controller
     /**
      * Fills the public properties of the object with values from the given repository.
      *
-     * @param \Orchid\Screen\Repository $repository The repository containing the values to fill the properties with.
+     * @param Repository $repository The repository containing the values to fill the properties with.
      *
      * @return void
      */
@@ -267,7 +255,7 @@ abstract class Screen extends Controller
     /**
      * Retrieves the names of all public properties of the object.
      *
-     * @return \Illuminate\Support\Collection The names of the public properties.
+     * @return Collection The names of the public properties.
      */
     protected function getPublicPropertyNames(): Collection
     {
@@ -283,23 +271,18 @@ abstract class Screen extends Controller
 
     /**
      * Response or HTTP code that will be returned if user does not have access to the screen.
-     *
-     * @return int | \Symfony\Component\HttpFoundation\Response
      */
-    public static function unaccessed()
+    public static function unaccessed(): int|\Symfony\Component\HttpFoundation\Response
     {
         return Response::HTTP_FORBIDDEN;
     }
 
     /**
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
-     * @throws \ReflectionException
-     *
-     * @return \Illuminate\Http\RedirectResponse|mixed
+     * @return RedirectResponse|mixed
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
-    public function handle(Request $request, ...$arguments)
+    public function handle(Request $request, ...$arguments): mixed
     {
         Dashboard::setCurrentScreen($this);
 
@@ -357,12 +340,8 @@ abstract class Screen extends Controller
     /**
      * Calls the specified method with the given parameters.
      *
-     * @throws \ReflectionException
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     *
-     * @return mixed
      */
-    private function callMethod(string $method, array $parameters = [])
+    private function callMethod(string $method, array $parameters = []): mixed
     {
         $uses = static::class.'@'.$method;
 
@@ -427,9 +406,8 @@ abstract class Screen extends Controller
     /**
      * Return to the previous state with the current object properties.
      *
-     * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
+     * @return RedirectResponse
      *
-     * @return \Illuminate\Http\RedirectResponse
      */
     private function backWithCurrentState(): RedirectResponse
     {
@@ -449,13 +427,12 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @deprecated
-     *
      * @param array $data
      *
-     * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
+     * @return RedirectResponse
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @deprecated
+     *
      */
     public function backWith(array $data): RedirectResponse
     {
@@ -482,7 +459,6 @@ abstract class Screen extends Controller
      * Reinitialized uninitialized properties with their default values.
      *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     * @throws \ReflectionException
      */
     public function __wakeup(): void
     {
@@ -515,7 +491,6 @@ abstract class Screen extends Controller
      *
      * @param object $object
      *
-     * @throws \ReflectionException
      *
      * @return Collection
      */

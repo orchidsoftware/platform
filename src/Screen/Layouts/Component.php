@@ -7,16 +7,15 @@ namespace Orchid\Screen\Layouts;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Support\Blade;
+use Illuminate\Contracts\View\View;
 
 /**
  * Class Component.
  */
 abstract class Component extends Layout
 {
-    /**
-     * @var string
-     */
-    private $component;
+
+    private string $component;
 
     private array $data = [];
 
@@ -30,15 +29,13 @@ abstract class Component extends Layout
 
     /**
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     *
-     * @return mixed
      */
-    public function build(Repository $repository)
+    public function build(Repository $repository): ?View
     {
         $this->query = $repository;
 
         if (! $this->isSee()) {
-            return;
+            return null;
         }
 
         $data = array_merge($repository->toArray(), $this->data);
@@ -46,7 +43,7 @@ abstract class Component extends Layout
         $component = Blade::resolveComponent($this->component, $data);
 
         if (! $component->shouldRender()) {
-            return;
+            return null;
         }
 
         $resolve = $component->resolveView();
@@ -56,7 +53,7 @@ abstract class Component extends Layout
         return $view->with($component->data());
     }
 
-    public function with(array $data): self
+    public function with(array $data): static
     {
         $this->data = array_merge($this->data, $data);
 

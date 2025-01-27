@@ -45,17 +45,12 @@ class Code extends Field
      */
     public const JS = 'js';
 
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.code';
+    protected string $view = 'platform::fields.code';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'class'        => 'form-control',
         'language'     => 'js',
         'lineNumbers'  => true,
@@ -65,10 +60,8 @@ class Code extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accesskey',
         'autofocus',
         'checked',
@@ -90,9 +83,6 @@ class Code extends Field
         'height',
     ];
 
-    /**
-     * Code constructor.
-     */
     public function __construct()
     {
         $this->addBeforeRender(function () {

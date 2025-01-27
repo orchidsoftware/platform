@@ -33,17 +33,13 @@ use Orchid\Screen\Field;
  */
 class Quill extends Field
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.quill';
+
+    protected string $view = 'platform::fields.quill';
 
     /**
      * All attributes that are available to the field.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'value'   => null,
         'toolbar' => ['text', 'color', 'quote', 'header', 'list', 'format', 'media'],
         'height'  => '300px',
@@ -52,10 +48,8 @@ class Quill extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'accesskey',
         'autocomplete',
         'autofocus',

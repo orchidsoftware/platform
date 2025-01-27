@@ -61,7 +61,7 @@ class Builder
     /**
      * @return $this
      */
-    public function setLanguage(?string $language = null): self
+    public function setLanguage(?string $language = null): static
     {
         $this->language = $language;
 
@@ -71,7 +71,7 @@ class Builder
     /**
      * @return $this
      */
-    public function setPrefix(?string $prefix = null): self
+    public function setPrefix(?string $prefix = null): static
     {
         $this->prefix = $prefix;
 

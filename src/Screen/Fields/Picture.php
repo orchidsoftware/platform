@@ -27,17 +27,13 @@ use Orchid\Support\Init;
  */
 class Picture extends Field
 {
-    /**
-     * @var string
-     */
-    protected $view = 'platform::fields.picture';
+
+    protected string $view = 'platform::fields.picture';
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
-    protected $attributes = [
+    protected array $attributes = [
         'value'          => null,
         'target'         => 'url',
         'url'            => null,
@@ -47,10 +43,8 @@ class Picture extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
-    protected $inlineAttributes = [
+    protected array $inlineAttributes = [
         'form',
         'formaction',
         'formenctype',
@@ -69,9 +63,6 @@ class Picture extends Field
         'path',
     ];
 
-    /**
-     * Picture constructor.
-     */
     public function __construct()
     {
         // Set max file size
@@ -96,7 +87,7 @@ class Picture extends Field
      * The stored value will be in the form
      * of id attachment.
      */
-    public function targetId(): self
+    public function targetId(): static
     {
         $this->set('target', 'id');
 
@@ -120,7 +111,7 @@ class Picture extends Field
      * The saved value will be in the form
      * of a full address before the file.
      */
-    public function targetUrl(): self
+    public function targetUrl(): static
     {
         $this->set('target', 'url');
 
@@ -131,7 +122,7 @@ class Picture extends Field
      * The saved value will be in the form
      * of a relative address before the file.
      */
-    public function targetRelativeUrl(): self
+    public function targetRelativeUrl(): static
     {
         $this->set('target', 'relativeUrl');
 
@@ -141,7 +132,7 @@ class Picture extends Field
     /**
      * Set custom attachment upload path
      */
-    public function path(string $path): self
+    public function path(string $path): static
     {
         return $this->set('path', $path);
     }

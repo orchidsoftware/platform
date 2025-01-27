@@ -13,14 +13,14 @@ class ChartLineExample extends Chart
      *
      * @var int
      */
-    protected $height = 300;
+    protected int $height = 300;
 
     /**
      * Configuring line.
      *
      * @var array
      */
-    protected $lineOptions = [
+    protected array $lineOptions = [
         'spline'     => 1,
         'regionFill' => 1,
         'hideDots'   => 0,
@@ -31,7 +31,7 @@ class ChartLineExample extends Chart
 
     /**
      * To highlight certain values on the Y axis, markers can be set.
-     * They will shown as dashed lines on the graph.
+     * They will show as dashed lines on the graph.
      */
     protected function markers(): ?array
     {
