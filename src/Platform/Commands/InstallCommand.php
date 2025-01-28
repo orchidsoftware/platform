@@ -7,7 +7,7 @@ namespace Orchid\Platform\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Traits\Conditionable;
-use Orchid\Platform\Dashboard;
+use Orchid\Support\Facades\Dashboard;
 use Orchid\Platform\Events\InstallEvent;
 use Orchid\Platform\Providers\ConsoleServiceProvider;
 use Symfony\Component\Console\Attribute\AsCommand;

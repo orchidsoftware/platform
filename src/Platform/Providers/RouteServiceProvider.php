@@ -6,7 +6,7 @@ namespace Orchid\Platform\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
-use Orchid\Platform\Dashboard;
+use Orchid\Support\Facades\Dashboard;
 use Orchid\Platform\Http\Middleware\Access;
 use Orchid\Platform\Http\Middleware\BladeIcons;
 use Orchid\Platform\Http\Middleware\Turbo;

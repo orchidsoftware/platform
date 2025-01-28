@@ -2,27 +2,18 @@
 
 namespace Orchid\Platform\Configuration;
 
-use Illuminate\Support\Collection;
 use Orchid\Screen\Actions\Menu;
+use Orchid\Support\Attributes\ClearsOctaneState;
 
 trait ManagesMenu
 {
     /**
      * The collection of menu items.
      *
-     * @var Collection<Menu>
+     * @var array<Menu>
      */
-    private ?Collection $menuItems;
-
-    /**
-     * @return Collection<Menu>
-     */
-    public function menu(): Collection
-    {
-        $this->menuItems = $this->menuItems ?? collect();
-
-        return $this->menuItems;
-    }
+    #[ClearsOctaneState]
+    protected array $menuItems = [];
 
     /**
      * Register a menu element with the Dashboard.
@@ -34,10 +25,10 @@ trait ManagesMenu
     public function registerMenuElement(Menu $menu): static
     {
         if ($menu->get('sort', 0) === 0) {
-            $menu->sort($this->menu->count() + 1);
+            $menu->sort(count($this->menuItems) + 1);
         }
 
-        $this->menu()->add($menu);
+        $this->menuItems[] = $menu;
 
         return $this;
     }
@@ -51,7 +42,7 @@ trait ManagesMenu
      */
     public function renderMenu(): string
     {
-        return $this->menu()
+        return collect($this->menuItems)
             ->sort(fn (Menu $current, Menu $next) => $current->get('sort', 0) <=> $next->get('sort', 0))
             ->map(fn (Menu $menu) => (string) $menu->render())
             ->implode('');
@@ -64,7 +55,7 @@ trait ManagesMenu
      */
     public function isEmptyMenu(): bool
     {
-        return $this->menu()->isEmpty();
+        return empty($this->menuItems);
     }
 
     /**
@@ -77,10 +68,11 @@ trait ManagesMenu
      */
     public function addMenuSubElements(string $slug, array $list): static
     {
-        $this->menuItems = $this->menu()
+        $this->menuItems = collect($this->menuItems)
             ->map(fn (Menu $menu) => $slug === $menu->get('slug')
                 ? $menu->list($list)
-                : $menu);
+                : $menu)
+            ->all();
 
         return $this;
     }

@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Orchid\Attachment\File;
 use Orchid\Attachment\Models\Attachment;
-use Orchid\Platform\Dashboard;
+use Orchid\Support\Facades\Dashboard;
 use Orchid\Platform\Events\UploadedFileEvent;
 use Symfony\Component\HttpFoundation\Response;
 

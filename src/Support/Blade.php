@@ -15,11 +15,6 @@ class Blade
     private static array $components = [];
 
     /**
-     * The component tag compiler instance.
-     */
-    private static ComponentTagCompiler $compiler;
-
-    /**
      * Used to render a Blade component from a class and an array of data
      *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
@@ -68,7 +63,6 @@ class Blade
 
         return resolve($class, $data);
     }
-
     /**
      * Get information about a component
      *
@@ -97,7 +91,7 @@ class Blade
      */
     private static function compiler(): ComponentTagCompiler
     {
-        return static::$compiler ??= new ComponentTagCompiler(
+        return new ComponentTagCompiler(
             app('blade.compiler')->getClassComponentAliases(),
             app('blade.compiler')->getClassComponentNamespaces(),
             app('blade.compiler')

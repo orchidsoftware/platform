@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Fields;
 
 use Orchid\Attachment\Models\Attachment;
-use Orchid\Platform\Dashboard;
+use Orchid\Support\Facades\Dashboard;
 use Orchid\Screen\Field;
 use Orchid\Support\Init;
 

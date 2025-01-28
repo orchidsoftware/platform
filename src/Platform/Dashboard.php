@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform;
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
+use Orchid\Support\Attributes\ClearsOctaneState;
 
 class Dashboard
 {
@@ -20,45 +20,6 @@ class Dashboard
         Macroable;
 
     /**
-     * The current Orchid version.
-     *
-     * @deprecated Use `Dashboard::version()` instead.
-     */
-    public const VERSION = '14.52.0';
-
-    /**
-     * @deprecated
-     *
-     * Slug for main menu.
-     */
-    public const MENU_MAIN = 'Main';
-
-    /**
-     * The Dashboard configuration options.
-     *
-     * @var array
-     */
-    protected static $options = [
-        'search' => [],
-        'models' => [],
-    ];
-
-    /**
-     * Dashboard constructor.
-     */
-    public function __construct()
-    {
-        $this->resources = collect();
-
-        $this->permission = collect([
-            'all'     => collect(),
-            'removed' => collect(),
-        ]);
-
-        $this->flushState();
-    }
-
-    /**
      * Get the route with the dashboard prefix.
      */
     public static function prefix(string $path = ''): string
@@ -69,26 +30,6 @@ class Dashboard
     }
 
     /**
-     * Configure the Dashboard application.
-     */
-    public static function configure(array $options): void
-    {
-        static::$options = $options;
-    }
-
-    /**
-     * Get a Dashboard configuration option.
-     *
-     * @param mixed|null $default
-     *
-     * @return mixed
-     */
-    public static function option(string $key, $default = null)
-    {
-        return Arr::get(static::$options, $key, $default);
-    }
-
-    /**
      * Clear all persistent state information in the Orchid.
      *
      * This method is essential for Laravel Octane to properly handle stateful requests
@@ -96,11 +37,18 @@ class Dashboard
      * and state information are reset, avoiding potential issues with stale or
      * inconsistent data between requests.
      */
-    public function flushState(): void
+    public function flush(): void
     {
-        $this->menu = collect();
+        $properties = (new \ReflectionClass($this))->getProperties();
 
-        $this->currentScreen = null;
-        $this->partialRequest = false;
+        foreach ($properties as $property) {
+            foreach ($property->getAttributes() as $attribute) {
+                if ($attribute->getName() !== ClearsOctaneState::class) {
+                    continue;
+                }
+
+               $property->setValue($this, $property->getDefaultValue());
+            }
+        }
     }
 }

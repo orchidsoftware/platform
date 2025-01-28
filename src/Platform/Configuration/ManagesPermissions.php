@@ -2,34 +2,46 @@
 
 namespace Orchid\Platform\Configuration;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Orchid\Platform\ItemPermission;
 
 trait ManagesPermissions
 {
     /**
-     * Collection of permissions for the application.
+     * A registry of all registered permissions, grouped by category.
      *
-     * @var Collection
+     * @var array<string, array<string, mixed>>
      */
-    private $permission;
+    protected array $registeredPermissions = [];
+
+    /**
+     * A list of revoked permission slugs.
+     *
+     * @var string[]
+     */
+    protected array $removedPermissions = [];
+
+    /**
+     * @deprecated Use registerPermission instead.
+     */
+    public function registerPermissions(ItemPermission $permission): static
+    {
+        return $this->registerPermission($permission);
+    }
 
     /**
      * Registers a ItemPermission that defines authentication permissions.
      *
-     * @return $this
+     * @param \Orchid\Platform\ItemPermission $permission
+     *
+     * @return static
      */
-    public function registerPermissions(ItemPermission $permission): self
+    public function registerPermission(ItemPermission $permission): static
     {
-        if (empty($permission->group)) {
-            return $this;
-        }
+        $old = Arr::get($this->registeredPermissions, $permission->group, []);
 
-        $old = $this->permission->get('all')
-            ->get($permission->group, []);
-
-        $this->permission->get('all')
-            ->put($permission->group, array_merge_recursive($old, $permission->items));
+        $this->registeredPermissions[$permission->group] = array_merge($old, $permission->items);
 
         return $this;
     }
@@ -38,35 +50,24 @@ trait ManagesPermissions
      * Retrieve permissions based on specified groups.
      *
      * @param array|string $groups
+     *
+     * @return \Illuminate\Support\Collection
      */
-    public function getPermission($groups = []): Collection
+    public function getPermission(string|array $groups = []): Collection
     {
-        $all = $this->permission->get('all')
-            ->when(! empty($groups), fn (Collection $collection) => $collection->only($groups));
-
-        $removed = $this->permission->get('removed');
-
-        if (! $removed->count()) {
-            return $all;
-        }
-
-        return $all->map(static function ($group) use ($removed) {
-            foreach ($group[key($group)] as $key => $item) {
-                if ($removed->contains($item)) {
-                    unset($group[key($group)]);
-                }
-            }
-
-            return $group;
-        });
+        return collect($this->registeredPermissions)
+            ->when(! empty($groups), fn (Collection $collection) => $collection->only($groups))
+            ->map(fn ($group) => collect($group)->whereNotIn('slug', $this->removedPermissions));
     }
 
     /**
      * Get all registered permissions with the enabled state.
      *
      * @param array|string $groups
+     *
+     * @return \Illuminate\Support\Collection
      */
-    public function getAllowAllPermission($groups = []): Collection
+    public function getAllowAllPermission(string|array $groups = []): Collection
     {
         return $this->getPermission($groups)
             ->collapse()
@@ -76,11 +77,13 @@ trait ManagesPermissions
     /**
      * Remove a specific permission by key.
      *
-     * @return $this
+     * @param string $key
+     *
+     * @return static
      */
-    public function removePermission(string $key): self
+    public function removePermission(string $key): static
     {
-        $this->permission->get('removed')->push($key);
+        $this->removedPermissions[] = $key;
 
         return $this;
     }

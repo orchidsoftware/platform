@@ -6,14 +6,19 @@ use Illuminate\Support\Arr;
 
 trait ManagesModelOptions
 {
+    protected array $registeredReplaceModels = [];
+
     /**
      * Get the model instance for a given key or class name.
      *
+     * @param string      $key
+     * @param string|null $default
+     *
      * @return mixed
      */
-    public static function modelClass(string $key, ?string $default = null)
+    public function modelClass(string $key, ?string $default = null): mixed
     {
-        $model = static::model($key, $default);
+        $model = $this->model($key, $default);
 
         return class_exists($model) ? new $model : $model;
     }
@@ -21,16 +26,18 @@ trait ManagesModelOptions
     /**
      * Get the class name for a given Dashboard model.
      */
-    public static function model(string $key, ?string $default = null): string
+    public function model(string $key, ?string $default = null): string
     {
-        return Arr::get(static::$options, 'models.'.$key, $default ?? $key);
+        return Arr::get($this->registeredReplaceModels, $key, $default ?? $key);
     }
 
     /**
      * Get the user model class name.
      */
-    public static function useModel(string $key, string $custom): void
+    public function useModel(string $key, string $custom): static
     {
-        static::$options['models'][$key] = $custom;
+       $this->registeredReplaceModels[$key] = $custom;
+
+       return $this;
     }
 }

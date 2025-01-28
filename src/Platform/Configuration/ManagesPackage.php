@@ -6,12 +6,14 @@ use Composer\InstalledVersions;
 
 trait ManagesPackage
 {
+    protected static string $composerPackage = 'orchid/platform';
+
     /**
      * Get the version number of the application.
      */
     public static function version(): string
     {
-        return InstalledVersions::getVersion('orchid/platform');
+        return InstalledVersions::getVersion(static::$composerPackage);
     }
 
     /**
@@ -19,7 +21,7 @@ trait ManagesPackage
      */
     public static function path(string $path = ''): string
     {
-        $current = InstalledVersions::getInstallPath('orchid/platform');
+        $current = InstalledVersions::getInstallPath(static::$composerPackage);
 
         return realpath($current.($path ? DIRECTORY_SEPARATOR.$path : $path));
     }

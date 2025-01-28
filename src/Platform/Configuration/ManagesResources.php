@@ -9,23 +9,25 @@ use RuntimeException;
 
 trait ManagesResources
 {
+    use ManagesPackage;
+
     /**
      * Collection of JS and CSS resources for the panel.
      *
-     * @var Collection
+     * @var array
      */
-    public $resources;
+    protected array $registeredResources = [];
 
     /**
      * Register a resource with the given key.
      *
      * @param string|array $value
      */
-    public function registerResource(string $key, $value): self
+    public function registerResource(string $key, $value): static
     {
-        $item = $this->resources->get($key, []);
+        $item = Arr::get($this->registeredResources, $key, []);
 
-        $this->resources[$key] = array_merge($item, Arr::wrap($value));
+        $this->registeredResources[$key] = array_merge($item, Arr::wrap($value));
 
         return $this;
     }
@@ -39,11 +41,8 @@ trait ManagesResources
      */
     public function getResource($key = null)
     {
-        if ($key === null) {
-            return $this->resources;
-        }
-
-        return $this->resources->get($key);
+        return collect($this->registeredResources)
+            ->when($key !== null, fn (Collection $resources) => $resources->get($key));
     }
 
     /**
@@ -53,12 +52,12 @@ trait ManagesResources
      *
      * @return bool
      */
-    public static function assetsAreCurrent(): bool
+    public function assetsAreCurrent(): bool
     {
         $publishedPath = public_path('vendor/orchid/mix-manifest.json');
 
         throw_unless(File::exists($publishedPath), new RuntimeException('Orchid assets are not published. Please run: `php artisan orchid:publish`'));
 
-        return File::get($publishedPath) === File::get(__DIR__.'/../../public/mix-manifest.json');
+        return File::get($publishedPath) === File::get($this->path('public/mix-manifest.json'));
     }
 }

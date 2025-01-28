@@ -7,13 +7,22 @@ use Illuminate\Support\Collection;
 trait ManagesSearch
 {
     /**
+     * A registry of all registered permissions, grouped by category.
+     *
+     * @var array<string, array<string, mixed>>
+     */
+    protected static array $registeredSearchModels = [];
+
+    /**
      * Registers a set of models for which full-text search is required.
      *
-     * @return $this
+     * @param array $models
+     *
+     * @return static
      */
     public function registerSearch(array $models): static
     {
-        static::$options['search'] = array_merge($models, static::$options['search'] ?? []);
+        static::$registeredSearchModels = array_merge(static::$registeredSearchModels, $models);
 
         return $this;
     }
@@ -25,7 +34,7 @@ trait ManagesSearch
      */
     public function getSearch(): Collection
     {
-        return collect(static::$options['search'])
+        return collect(static::$registeredSearchModels)
             ->unique()
             ->transform(static fn ($model) => is_object($model) ? $model : resolve($model));
     }

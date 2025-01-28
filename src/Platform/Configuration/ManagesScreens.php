@@ -4,6 +4,7 @@ namespace Orchid\Platform\Configuration;
 
 use Illuminate\Support\Facades\App;
 use Orchid\Screen\Screen;
+use Orchid\Support\Attributes\ClearsOctaneState;
 
 trait ManagesScreens
 {
@@ -12,7 +13,8 @@ trait ManagesScreens
      *
      * @var Screen|null
      */
-    private ?Screen $currentScreen;
+    #[ClearsOctaneState]
+    private ?Screen $currentScreen = null;
 
     /**
      * Determines whether the current request is a partial request or not.
@@ -21,6 +23,7 @@ trait ManagesScreens
      *
      * @var bool Set to true if the current request is a partial request, false otherwise.
      */
+    #[ClearsOctaneState]
     private bool $partialRequest = false;
 
     /**
@@ -36,9 +39,9 @@ trait ManagesScreens
     /**
      * Get the current screen instance.
      *
-     * @return $this
+     * @return static The current instance to allow method chaining.
      */
-    public function setCurrentScreen(Screen $screen, bool $partialRequest = false): self
+    public function setCurrentScreen(Screen $screen, bool $partialRequest = false): static
     {
         $this->currentScreen = $screen;
         $this->partialRequest = $partialRequest;
