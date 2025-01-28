@@ -36,8 +36,8 @@ trait ManagesModelOptions
      */
     public function useModel(string $key, string $custom): static
     {
-       $this->registeredReplaceModels[$key] = $custom;
+        $this->registeredReplaceModels[$key] = $custom;
 
-       return $this;
+        return $this;
     }
 }

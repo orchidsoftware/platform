@@ -115,12 +115,12 @@ class FoundationServiceProvider extends ServiceProvider
 
         $this->app->bind(
             Dashboard::class,
-            fn(Application $app) => $app->make(Dashboard::class)
+            fn (Application $app) => $app->make(Dashboard::class)
         );
 
         $this->app->singleton(
             Dashboard::class,
-            static fn(Application $app) => new Dashboard
+            static fn (Application $app) => new Dashboard
         );
 
         $this

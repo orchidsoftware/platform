@@ -47,7 +47,7 @@ class Dashboard
                     continue;
                 }
 
-               $property->setValue($this, $property->getDefaultValue());
+                $property->setValue($this, $property->getDefaultValue());
             }
         }
     }

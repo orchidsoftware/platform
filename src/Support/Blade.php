@@ -63,6 +63,7 @@ class Blade
 
         return resolve($class, $data);
     }
+
     /**
      * Get information about a component
      *
