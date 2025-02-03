@@ -68,6 +68,6 @@
 
 @stack('scripts')
 
-
+@include('platform::partials.search-modal')
 </body>
 </html>
