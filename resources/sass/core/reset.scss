@@ -10,7 +10,7 @@ body {
   line-height: $line-height-base;
 }
 
-*:focus {
+*:focus:not(:focus-visible) {
   outline: 0 !important;
 }
 
