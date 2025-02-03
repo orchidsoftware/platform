@@ -8,6 +8,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 use Orchid\Attachment\Contracts\Engine;
 use Orchid\Attachment\MimeTypes;
+use RuntimeException;
 
 class Generator implements Engine
 {
@@ -107,7 +108,16 @@ class Generator implements Engine
      */
     public function hash(): string
     {
-        return sha1_file($this->file->path());
+        $hash = sha1_file($this->file->path());
+
+        if ($hash === false) {
+            throw new RuntimeException(sprintf(
+                'Failed to generate a hash for the file: %s.',
+                $this->file->path()
+            ));
+        }
+
+        return $hash;
     }
 
     /**

@@ -126,7 +126,7 @@ class Attachment extends Model
             return null;
         }
 
-        return parse_url($url, PHP_URL_PATH);
+        return parse_url($url, PHP_URL_PATH) ?: null;
     }
 
     public function getTitleAttribute(): ?string
