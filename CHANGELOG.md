@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.45.0 - 2025-02-03
+
+### Added
+- Added keyboard accessibility for tab navigation [#2944](https://github.com/orchidsoftware/platform/pull/2944)
+- Added support for Kazakh language translations [#2949](https://github.com/orchidsoftware/platform/pull/2949)
+- Added `activeAccordion` method to `Accordion.php` [#2939](https://github.com/orchidsoftware/platform/pull/2939)
+- Added screen state test
+
+### Changed
+- Updated global search to use a window modal for better UX
+- Improved tag ID generation for tabs [#2935](https://github.com/orchidsoftware/platform/issues/2935)
+- Improved code on accordion layout
+- Improved type annotations and type hints
+- Improved types for screen testing
+
+### Fixed
+- Fixed Pslam errors
+- Fixed code style issues
+- Fixed types inconsistencies
+- Improved Accordion accessibility [#2946](https://github.com/orchidsoftware/platform/pull/2946)
+- Reload page when changing assets [#2932](https://github.com/orchidsoftware/platform/issues/2932)
+
+### CI/CD
+- Updated version of `actions/upload-artifact`
+
 ## 14.44.2 - 2025-01-17
 
 ### Added

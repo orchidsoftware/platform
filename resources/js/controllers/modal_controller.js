@@ -66,13 +66,6 @@ export default class extends ApplicationController {
      * @param event - The event object for the 'shown.bs.modal' event.
      */
     show(event) {
-        // Focus on the element with 'autofocus' attribute, if available
-        let autoFocusElement = this.element.querySelector('[autofocus]');
-
-        if (autoFocusElement !== null) {
-            autoFocusElement.focus();
-        }
-
         // Modify the backdrop to ensure it's not mistakenly identified as a Turbo frame
         let backdrop = document.querySelector('.modal-backdrop');
 
@@ -80,6 +73,9 @@ export default class extends ApplicationController {
             backdrop.id = 'backdrop';
             backdrop.dataset.turboTemporary = true;
         }
+
+        // Focus on the element with 'autofocus' attribute, if available
+        this.element.querySelector('[autofocus]')?.focus();
     }
 
     /**
