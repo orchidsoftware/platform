@@ -14,6 +14,7 @@
                             'active' => $activeTab === $name || ($loop->first && is_null($activeTab))
                         ])
                         data-action="tabs#setActiveTab"
+                        href="#tab-{{sha1($templateSlug.$name)}}"
                         data-bs-target="#tab-{{sha1($templateSlug.$name)}}"
                         id="button-tab-{{sha1($templateSlug.$name)}}"
                         aria-selected="false"
