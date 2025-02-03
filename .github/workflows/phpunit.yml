@@ -82,8 +82,8 @@ jobs:
           CI: true
 
       - name: Upload Failed Screenshots
-        uses: actions/upload-artifact@v4.6
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: screenshots
+          name: screenshots>
           path: tests/Browser/screenshots/*
