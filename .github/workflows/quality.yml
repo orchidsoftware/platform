@@ -9,8 +9,8 @@ on:
       - 'composer.json'
 
 jobs:
-  composer-validate:
-    name: composer-validate
+  composer:
+    name: composer
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,6 +25,18 @@ jobs:
 
       - name: Validate composer.json and composer.lock 👀
         run: composer validate
+
+      - name: Install dependencies
+        run: composer install --no-progress --no-suggest
+
+      - name: Check for outdated dependencies
+        run: |
+          if [ -n "$(composer outdated --direct)" ]; then
+            echo "❌ There are outdated dependencies!"
+            composer outdated --direct
+            exit 1
+          fi
+        shell: bash
 
   psalm:
     name: psalm
