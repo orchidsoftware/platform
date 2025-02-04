@@ -23,7 +23,7 @@ Orchid is a free [Laravel](https://laravel.com) package that abstracts standard 
 
 - **Fast Loading Times** - Enjoy an SPA like performance! Transitions can be made without reloading a page and require no additional code. Thanks to the [Hotwire](https://hotwire.dev/) project, Orchid makes this a satisfying experience for both users and developers.
 
-- **Access Permissions & Roles** - Take advantage of [granular access permissions](https://orchid.software/en/docs/access/), based on a user’s identity and corresponding role membership.
+- **Access Permissions & Roles** - Take advantage of [access permissions](https://orchid.software/en/docs/access/), based on a user’s identity and corresponding role membership.
 
 - **Filtering & Sorting** - Offer users the ability to filter and sort data quickly! Orchid uses an [Eloquent based filtering/sorting approach](https://orchid.software/en/docs/quickstart-sort-filter-table/).
 
