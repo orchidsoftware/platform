@@ -51,7 +51,7 @@ class LoginController extends Controller
 
         if (InstalledVersions::satisfies(new VersionParser, 'laravel/framework', '>11.17.0')) {
             $middleware = RedirectIfAuthenticated::class;
-            RedirectIfAuthenticated::redirectUsing(static fn() => route(config('platform.index')));
+            RedirectIfAuthenticated::redirectUsing(static fn () => route(config('platform.index')));
         }
 
         $this->middleware($middleware, [
