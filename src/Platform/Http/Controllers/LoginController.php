@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers;
 
+use Composer\InstalledVersions;
+use Composer\Semver\VersionParser;
 use Illuminate\Auth\EloquentUserProvider;
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
 use Illuminate\Contracts\Auth\Factory as Auth;
@@ -42,9 +44,17 @@ class LoginController extends Controller
     {
         $this->guard = $auth->guard(config('platform.guard'));
 
-        RedirectIfAuthenticated::redirectUsing(static fn () => route(config('platform.index')));
+        /**
+         * @deprecated logic for older Laravel versions
+         */
+        $middleware = 'guest';
 
-        $this->middleware(RedirectIfAuthenticated::class, [
+        if (InstalledVersions::satisfies(new VersionParser, 'laravel/framework', '>11.17.0')) {
+            $middleware = RedirectIfAuthenticated::class;
+            RedirectIfAuthenticated::redirectUsing(static fn() => route(config('platform.index')));
+        }
+
+        $this->middleware($middleware, [
             'except' => [
                 'logout',
                 'switchLogout',

@@ -24,7 +24,11 @@ class AuthTest extends TestFeatureCase
             ->assertStatus(302);
 
         $this->assertTrue(
-            $response->isRedirect(route(config('platform.index')))
+            // Home for Laravel 10.x and earlier
+            // '/' for Laravel 11.x and later
+            $response->isRedirect(url('/home'))
+                || $response->isRedirect(url('/'))
+                || $response->isRedirect(route(config('platform.index')))
         );
     }
 
