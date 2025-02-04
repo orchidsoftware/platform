@@ -36,7 +36,7 @@ class LoginTest extends TestBrowserCase
             // Redirect to home
             $browser
                 ->visitRoute('platform.login')
-                ->waitForLocation('/');
+                ->waitForRoute(config('platform.index'));
 
             // Logout
             $browser
@@ -44,7 +44,7 @@ class LoginTest extends TestBrowserCase
                 ->clickLink($user->name)
                 ->waitForText('Sign out')
                 ->press('Sign out')
-                ->waitForText('404');
+                ->waitForRoute('platform.login');
 
             // Redirect to login
             $browser

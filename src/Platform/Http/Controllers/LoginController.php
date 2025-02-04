@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Controllers;
 
 use Illuminate\Auth\EloquentUserProvider;
+use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
 use Illuminate\Contracts\Auth\Factory as Auth;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\View\Factory;
@@ -41,7 +42,9 @@ class LoginController extends Controller
     {
         $this->guard = $auth->guard(config('platform.guard'));
 
-        $this->middleware('guest', [
+        RedirectIfAuthenticated::redirectUsing(static fn () => route(config('platform.index')));
+
+        $this->middleware(RedirectIfAuthenticated::class, [
             'except' => [
                 'logout',
                 'switchLogout',
