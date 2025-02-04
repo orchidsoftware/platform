@@ -9,8 +9,8 @@ on:
       - 'composer.json'
 
 jobs:
-  composer-validate:
-    name: composer-validate
+  composer:
+    name: composer
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,20 +25,6 @@ jobs:
 
       - name: Validate composer.json and composer.lock 👀
         run: composer validate
-
-  composer-outdated:
-    name: composer-outdated
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup PHP 🔧
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.3
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
-          coverage: none
-          tools: composer:v2
 
       - name: Install dependencies
         run: composer install --no-progress --no-suggest
