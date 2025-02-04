@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.45.1 - 2025-02-04
+
+### Fixed
+- Laravel version conflict [#2952](https://github.com/orchidsoftware/platform/pull/2952) [#2951](https://github.com/orchidsoftware/platform/issues/2951)
+
 ## 14.45.0 - 2025-02-03
 
 ### Added
