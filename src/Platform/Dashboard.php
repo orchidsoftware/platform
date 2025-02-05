@@ -23,7 +23,7 @@ class Dashboard
      *
      * @deprecated Use `Dashboard::version()` instead.
      */
-    public const VERSION = '14.45.1';
+    public const VERSION = '14.45.2';
 
     /**
      * @deprecated
