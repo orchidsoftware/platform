@@ -81,6 +81,11 @@ export default class extends ApplicationController {
         });
     }
 
+    /**
+     *
+     * @param search
+     * @param callback
+     */
     search(search, callback) {
         const model = this.data.get('model');
         const name = this.data.get('name');
@@ -101,7 +106,6 @@ export default class extends ApplicationController {
             chunk,
         })
             .then((response) => {
-                console.log(response.data)
                 this.choices.clearOptions();
                 callback(response.data);
             });

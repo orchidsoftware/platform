@@ -9,16 +9,34 @@ use Composer\Semver\VersionParser;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection as BaseCollection;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Log;
 use Orchid\Platform\Http\Requests\RelationRequest;
 
 class Select2Controller extends Controller
 {
+
+    public function view(Request $request)
+    {
+        $model = Crypt::decryptString($request->model);
+        $chunk = $request->chunk;
+
+        $model = new $model;
+
+        return response()->json($model->limit($chunk)->get()->map(function ($item) {
+            return [
+                'label' => $item->name,
+                'value' => $item->email,
+            ];
+        }));
+    }
+
     /**
      * @return JsonResponse
      */
-    public function view(RelationRequest $request)
+    public function view1(Request $request)
     {
         [
             'model'         => $model,
@@ -30,6 +48,7 @@ class Select2Controller extends Controller
         ] = collect($request->all())
             ->except(['search', 'chunk'])
             ->map(static function ($item, $key) {
+
                 if ($item === null) {
                     return null;
                 }
@@ -64,6 +83,9 @@ class Select2Controller extends Controller
         ?array $searchColumns = null,
         ?int $chunk = 10
     ) {
+
+        Log::info('model', [$model]);
+
         if ($scope !== null) {
             /** @var Collection|array $model */
             $model = $model->{$scope['name']}(...$scope['parameters']);
@@ -75,6 +97,7 @@ class Select2Controller extends Controller
 
         if (is_a($model, BaseCollection::class)) {
             return $model->take($chunk)->map(function ($item) use ($append, $key, $name) {
+                Log::info('321');
                 return [
                     'value' => $item->$key,
                     'label' => $item->$append ?? $item->$name,
@@ -110,6 +133,10 @@ class Select2Controller extends Controller
                 });
             });
         }
+
+        Log::info('123', [
+            $chunk, $model, $key, $name,
+        ]);
 
         return $model
             ->limit($chunk)

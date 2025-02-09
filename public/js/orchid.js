@@ -16000,6 +16000,7 @@ var _default = /*#__PURE__*/function (_ApplicationControlle) {
       var append = this.data.get('append');
       var searchColumns = this.data.get('search-columns');
       var chunk = this.data.get('chunk');
+      console.log(model);
       axios.post(this.data.get('route'), {
         search: _search,
         model: model,
@@ -16342,6 +16343,12 @@ var _default = /*#__PURE__*/function (_ApplicationControlle) {
         }
       });
     }
+
+    /**
+     *
+     * @param search
+     * @param callback
+     */
   }, {
     key: "search",
     value: function search(_search, callback) {
@@ -16353,6 +16360,7 @@ var _default = /*#__PURE__*/function (_ApplicationControlle) {
       var append = this.data.get('append');
       var searchColumns = this.data.get('search-columns');
       var chunk = this.data.get('chunk');
+      console.log(model);
       axios.post(this.data.get('route'), {
         search: _search,
         model: model,
@@ -16363,7 +16371,6 @@ var _default = /*#__PURE__*/function (_ApplicationControlle) {
         searchColumns: searchColumns,
         chunk: chunk
       }).then(function (response) {
-        console.log(response.data);
         _this2.choices.clearOptions();
         callback(response.data);
       });

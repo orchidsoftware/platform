@@ -77,15 +77,10 @@ class Select2 extends Field implements ComplexFieldConcern
 
     public function fromModel(string|Model|Builder $model, string $name, ?string $key = null): static
     {
-
-        $this->set('model', Crypt::encryptString($model));
-        $this->set('name', Crypt::encryptString($name));
-        $this->set('scope', null);
-        $this->set('searchColumns', null);
-        $this->set('append', null);
-
         $model = is_object($model) ? $model : new $model;
         $key = $key ?? $model->getModel()->getKeyName();
+
+        $this->set('lazyModel', Crypt::encryptString($model->getMorphClass()));
 
         return $this->setFromEloquent($model, $name, $key);
     }
@@ -99,7 +94,7 @@ class Select2 extends Field implements ComplexFieldConcern
     private function setFromEloquent(Builder|Model $model, string $name, string $key): static
     {
         $display = $this->getDisplayAppend($model, $name);
-        $this->set('key', Crypt::encryptString($key));
+
         $options = $model
             ->when($this->get('lazy'), fn($query) => $query->limit($this->get('chunk')))
             ->get()
@@ -109,9 +104,15 @@ class Select2 extends Field implements ComplexFieldConcern
 
         $this->set('options', $options);
 
+        $this->set('lazyName', $name);
+        $this->set('lazyKey', $key);
+        $this->set('lazyScope', null);
+        $this->set('lazySearchColumns', null);
+        $this->set('lazyChunk', null);
+
+
         return $this->addBeforeRender(function () use ($display, $key) {
             $value = [];
-
             collect($this->get('value'))->each(static function ($item) use (&$value, $display, $key) {
                 if (is_object($item)) {
                     $value[$item->$key] = $item->$display;
@@ -123,6 +124,8 @@ class Select2 extends Field implements ComplexFieldConcern
             $this->set('options', $this->get('options')->union(collect($value)));
 
             $this->set('value', $value);
+
+
         });
     }
 
@@ -151,6 +154,5 @@ class Select2 extends Field implements ComplexFieldConcern
 
         return $this;
     }
-
 
 }
