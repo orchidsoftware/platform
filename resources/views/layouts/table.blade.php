@@ -35,7 +35,7 @@
             <tbody>
 
             @foreach($rows as $source)
-                <tr @class($contextual($source)->contextualClass())>
+                <tr @class($resolveColor($source)->contextualClass())>
                     @foreach($columns as $column)
                         {!! $column->buildTd($source, $loop->parent) !!}
                     @endforeach

@@ -65,7 +65,7 @@ abstract class Table extends Layout
             'onEachSide'   => $this->onEachSide(),
             'showHeader'   => $this->hasHeader($columns, $rows),
             'title'        => $this->title,
-            'contextual'   => fn($row) => $this->contextual($row),
+            'resolveColor'   => fn($row) => $this->resolveColor($row),
         ]);
     }
 
@@ -161,7 +161,7 @@ abstract class Table extends Layout
     /**
      * A method that processes a string and returns the color of the string.
     */
-    protected function contextual(Repository|Model|string $row): Color
+    protected function resolveColor(Repository|Model|string $row): Color
     {
        return Color::DEFAULT;
     }

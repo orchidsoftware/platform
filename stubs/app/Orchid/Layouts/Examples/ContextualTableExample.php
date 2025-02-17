@@ -56,7 +56,7 @@ class ContextualTableExample extends Table
         ];
     }
 
-    protected function contextual(Repository|Model|string $row): Color
+    protected function resolveColor(Repository|Model|string $row): Color
     {
         return match (true) {
             $row->get('price') > 700 => Color::DANGER,
