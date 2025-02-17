@@ -11,7 +11,7 @@ use Orchid\Screen\Repository;
 use Orchid\Screen\TD;
 use Orchid\Support\Color;
 
-class ContextualTableExample extends Table
+class resolveRowColorTableExample extends Table
 {
     /**
      * Data source.
@@ -21,7 +21,7 @@ class ContextualTableExample extends Table
      *
      * @var string
      */
-    protected string $target = 'contextual';
+    protected string $target = 'resolveRowColor';
 
     /**
      * Get the table cells to be displayed.
@@ -56,7 +56,7 @@ class ContextualTableExample extends Table
         ];
     }
 
-    protected function resolveColor(Repository|Model|string $row): Color
+    protected function resolveRowColor(Repository|Model|string $row): Color
     {
         return match (true) {
             $row->get('price') > 700 => Color::DANGER,

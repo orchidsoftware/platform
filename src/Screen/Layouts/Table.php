@@ -65,7 +65,7 @@ abstract class Table extends Layout
             'onEachSide'   => $this->onEachSide(),
             'showHeader'   => $this->hasHeader($columns, $rows),
             'title'        => $this->title,
-            'resolveColor'   => fn($row) => $this->resolveColor($row),
+            'resolveRowColor'   => fn($row) => $this->resolveRowColor($row),
         ]);
     }
 
@@ -161,7 +161,7 @@ abstract class Table extends Layout
     /**
      * A method that processes a string and returns the color of the string.
     */
-    protected function resolveColor(Repository|Model|string $row): Color
+    protected function resolveRowColor(Repository|Model|string $row): Color
     {
        return Color::DEFAULT;
     }

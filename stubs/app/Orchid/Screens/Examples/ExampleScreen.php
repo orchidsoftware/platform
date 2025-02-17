@@ -4,7 +4,7 @@ namespace App\Orchid\Screens\Examples;
 
 use App\Orchid\Layouts\Examples\ChartBarExample;
 use App\Orchid\Layouts\Examples\ChartLineExample;
-use App\Orchid\Layouts\Examples\ContextualTableExample;
+use App\Orchid\Layouts\Examples\resolveRowColorTableExample;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Orchid\Screen\Actions\Button;
@@ -66,7 +66,7 @@ class ExampleScreen extends Screen
                 new Repository(['id' => 500, 'name' => self::TEXT_EXAMPLE, 'price' => 0.15, 'created_at' => '01.01.2020']),
 
             ],
-            'contextual'   => [
+            'resolveRowColor'   => [
                 new Repository(['id' => 100, 'name' => self::TEXT_EXAMPLE, 'price' => 10.24, 'created_at' => '01.01.2020']),
                 new Repository(['id' => 200, 'name' => self::TEXT_EXAMPLE, 'price' => 65.9, 'created_at' => '01.01.2020']),
                 new Repository(['id' => 300, 'name' => self::TEXT_EXAMPLE, 'price' => 754.2, 'created_at' => '01.01.2020']),
@@ -166,7 +166,7 @@ class ExampleScreen extends Screen
                     ->align(TD::ALIGN_RIGHT),
             ]),
 
-            ContextualTableExample::class,
+            resolveRowColorTableExample::class,
 
             Layout::modal('exampleModal', Layout::rows([
                 Input::make('toast')
