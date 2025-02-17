@@ -4,7 +4,7 @@ namespace App\Orchid\Screens\Examples;
 
 use App\Orchid\Layouts\Examples\ChartBarExample;
 use App\Orchid\Layouts\Examples\ChartLineExample;
-use App\Orchid\Layouts\Examples\resolveRowColorTableExample;
+use App\Orchid\Layouts\Examples\ResolveRowColorTableExample;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Orchid\Screen\Actions\Button;
@@ -166,7 +166,7 @@ class ExampleScreen extends Screen
                     ->align(TD::ALIGN_RIGHT),
             ]),
 
-            resolveRowColorTableExample::class,
+            ResolveRowColorTableExample::class,
 
             Layout::modal('exampleModal', Layout::rows([
                 Input::make('toast')

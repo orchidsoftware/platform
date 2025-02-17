@@ -11,7 +11,7 @@ use Orchid\Screen\Repository;
 use Orchid\Screen\TD;
 use Orchid\Support\Color;
 
-class resolveRowColorTableExample extends Table
+class ResolveRowColorTableExample extends Table
 {
     /**
      * Data source.
