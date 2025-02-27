@@ -7,9 +7,13 @@ namespace Orchid\Screen\Fields;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Laravel\SerializableClosure\SerializableClosure;
 use Orchid\Screen\Concerns\ComplexFieldConcern;
 use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
+use Orchid\Tests\App\Screens\SerializeScreen;
 
 /**
  * Class Select2.
@@ -41,13 +45,14 @@ class Select2 extends Field implements ComplexFieldConcern
      * Default attributes value.
      */
     protected array $attributes = [
-        'class'        => 'form-control',
-        'options'      => [],
-        'allowEmpty'   => '',
-        'allowAdd'     => false,
-        'isOptionList' => false,
-        'chunk'        => 10,
-        'lazy'         => false,
+        'class'         => 'form-control',
+        'options'       => [],
+        'allowEmpty'    => '',
+        'allowAdd'      => false,
+        'isOptionList'  => false,
+        'chunk'         => 10,
+        'lazy'          => false,
+        'searchColumns' => null,
     ];
 
     /**
@@ -95,21 +100,22 @@ class Select2 extends Field implements ComplexFieldConcern
     {
         $display = $this->getDisplayAppend($model, $name);
 
-        $options = $model
-            ->when($this->get('lazy'), fn($query) => $query->limit($this->get('chunk')))
+        $this->set('display', $display);
+
+        $query = $model
+            ->when($this->get('lazy'), fn($query) => $query->limit($this->get('chunk')));
+
+        $this->set('query', $query->toSql());
+
+        Log::info($this->get('query'));
+
+        $options = $query
             ->get()
             ->mapWithKeys(function ($model) use ($display, $key) {
                 return [$model->$key => $model->$display];
             });
 
         $this->set('options', $options);
-
-        $this->set('lazyName', $name);
-        $this->set('lazyKey', $key);
-        $this->set('lazyScope', null);
-        $this->set('lazySearchColumns', null);
-        $this->set('lazyChunk', null);
-
 
         return $this->addBeforeRender(function () use ($display, $key) {
             $value = [];
@@ -124,8 +130,6 @@ class Select2 extends Field implements ComplexFieldConcern
             $this->set('options', $this->get('options')->union(collect($value)));
 
             $this->set('value', $value);
-
-
         });
     }
 

@@ -12,6 +12,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection as BaseCollection;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Orchid\Platform\Http\Requests\RelationRequest;
 
@@ -20,10 +21,10 @@ class Select2Controller extends Controller
 
     public function view(Request $request)
     {
-        $model = Crypt::decryptString($request->model);
-        $chunk = $request->chunk;
+        Log::info($request->input('query'));
+        $result = DB::select($request->input('query'));
 
-        $model = new $model;
+        Log::info(json_encode($result));
 
         return response()->json($model->limit($chunk)->get()->map(function ($item) {
             return [
