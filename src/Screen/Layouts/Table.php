@@ -50,22 +50,22 @@ abstract class Table extends Layout
         $rows = is_a($content, Paginator::class) || is_a($content, CursorPaginator::class) ? $content : collect()->merge($content);
 
         return view($this->template, [
-            'repository'   => $repository,
-            'rows'         => $rows,
-            'columns'      => $columns,
-            'total'        => $total,
-            'iconNotFound' => $this->iconNotFound(),
-            'textNotFound' => $this->textNotFound(),
-            'subNotFound'  => $this->subNotFound(),
-            'striped'      => $this->striped(),
-            'compact'      => $this->compact(),
-            'bordered'     => $this->bordered(),
-            'hoverable'    => $this->hoverable(),
-            'slug'         => $this->getSlug(),
-            'onEachSide'   => $this->onEachSide(),
-            'showHeader'   => $this->hasHeader($columns, $rows),
-            'title'        => $this->title,
-            'resolveRowColor'   => fn($row) => $this->resolveRowColor($row),
+            'repository'        => $repository,
+            'rows'              => $rows,
+            'columns'           => $columns,
+            'total'             => $total,
+            'iconNotFound'      => $this->iconNotFound(),
+            'textNotFound'      => $this->textNotFound(),
+            'subNotFound'       => $this->subNotFound(),
+            'striped'           => $this->striped(),
+            'compact'           => $this->compact(),
+            'bordered'          => $this->bordered(),
+            'hoverable'         => $this->hoverable(),
+            'slug'              => $this->getSlug(),
+            'onEachSide'        => $this->onEachSide(),
+            'showHeader'        => $this->hasHeader($columns, $rows),
+            'title'             => $this->title,
+            'resolveRowColor'   => fn ($row) => $this->resolveRowColor($row),
         ]);
     }
 
@@ -160,10 +160,9 @@ abstract class Table extends Layout
 
     /**
      * A method that processes a string and returns the color of the string.
-    */
+     */
     protected function resolveRowColor(Repository|Model|string $row): Color
     {
-       return Color::DEFAULT;
+        return Color::DEFAULT;
     }
-
 }

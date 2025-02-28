@@ -26,8 +26,9 @@ class ResolveRowColorTableExample extends Table
     /**
      * Get the table cells to be displayed.
      *
-     * @return TD[]
      * @throws \ReflectionException
+     *
+     * @return TD[]
      */
     protected function columns(): iterable
     {
@@ -60,9 +61,8 @@ class ResolveRowColorTableExample extends Table
     {
         return match (true) {
             $row->get('price') > 700 => Color::DANGER,
-            $row->get('price') < 1 => Color::SUCCESS,
-            default => Color::DEFAULT,
+            $row->get('price') < 1   => Color::SUCCESS,
+            default                  => Color::DEFAULT,
         };
     }
-
 }
