@@ -12,7 +12,7 @@ export default class extends ApplicationController {
 
         const options = {
             placeholder: textarea.placeholder,
-            readOnly: textarea.readOnly,
+            readOnly: textarea.readOnly || textarea.disabled,
             theme: 'snow',
             modules: {
                 toolbar: {
