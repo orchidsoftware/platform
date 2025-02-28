@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Input files in the cropper now respect `$acceptedFiles` [#2962](https://github.com/orchidsoftware/platform/pull/2962)
+- Modal caching when navigating back and autofocus on open [#2959](https://github.com/orchidsoftware/platform/pull/2959)
+- Alias `disabled`/`readonly` for Quill [#2964](https://github.com/orchidsoftware/platform/pull/2964)
 
 ## 14.46.0 - 2025-03-01
 
