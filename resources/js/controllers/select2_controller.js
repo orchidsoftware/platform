@@ -70,17 +70,28 @@ export default class extends ApplicationController {
      * @param callback
      */
     search(search, callback) {
-        const name = this.data.get('display');
+        const name = this.data.get('name');
+        const display = this.data.get('display');
+        const key = this.data.get('key');
         const searchColumns = this.data.get('search-columns');
         const query = this.data.get('query');
 
-        console.log(query)
+        console.log({
+            name,
+            display,
+            key,
+            searchColumns,
+            query,
+            search,
+        })
 
         axios.post(this.data.get('route'), {
-            search,
             name,
+            display,
+            key,
             searchColumns,
-            query
+            query,
+            search,
         })
             .then((response) => {
                 this.choices.clearOptions();

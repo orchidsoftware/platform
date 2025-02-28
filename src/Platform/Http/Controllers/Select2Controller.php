@@ -8,67 +8,43 @@ use Composer\InstalledVersions;
 use Composer\Semver\VersionParser;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection as BaseCollection;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Orchid\Platform\Http\Requests\RelationRequest;
+use Orchid\Support\QuerySerializer;
 
 class Select2Controller extends Controller
 {
 
     public function view(Request $request)
     {
-        Log::info($request->input('query'));
-        $result = DB::select($request->input('query'));
+        $name = 'name';
+        $display = $request->get('display') ?? $name;
+        $search = $request->get('search');
 
-        Log::info(json_encode($result));
+        $query = QuerySerializer::unserialize($request->get('query'));
 
-        return response()->json($model->limit($chunk)->get()->map(function ($item) {
+        $searchColumns = $request->get('searchColumns') ? Crypt::decrypt($request->get('searchColumns')) : null;
+
+        $query = $query->where(function ($query) use ($name, $search, $searchColumns) {
+            $value = '%'.$search.'%';
+
+            $query->whereLike($name, $value);
+
+            $query->when($searchColumns !== null, function ($query) use ($searchColumns, $value) {
+                foreach ($searchColumns as $column) {
+                    $query->orWhereLike($column, $value);
+                }
+            });
+        });
+
+        return response()->json($query->get()->map(function ($item) use ($display) {
             return [
-                'label' => $item->name,
-                'value' => $item->email,
+                'label' => $item->$display,
+                'value' => $item->id,
             ];
         }));
-    }
-
-    /**
-     * @return JsonResponse
-     */
-    public function view1(Request $request)
-    {
-        [
-            'model'         => $model,
-            'name'          => $name,
-            'key'           => $key,
-            'scope'         => $scope,
-            'append'        => $append,
-            'searchColumns' => $searchColumns,
-        ] = collect($request->all())
-            ->except(['search', 'chunk'])
-            ->map(static function ($item, $key) {
-
-                if ($item === null) {
-                    return null;
-                }
-
-                if ($key === 'scope' || $key === 'searchColumns') {
-                    return Crypt::decrypt($item);
-                }
-
-                return Crypt::decryptString($item);
-            });
-
-        /** @var Model $model */
-        /** @psalm-suppress UndefinedClass */
-        $model = new $model;
-        $search = $request->get('search', '');
-
-        $items = $this->buildersItems($model, $name, $key, $search, $scope, $append, $searchColumns, (int) $request->get('chunk', 10));
-
-        return response()->json($items);
     }
 
     /**
@@ -98,7 +74,6 @@ class Select2Controller extends Controller
 
         if (is_a($model, BaseCollection::class)) {
             return $model->take($chunk)->map(function ($item) use ($append, $key, $name) {
-                Log::info('321');
                 return [
                     'value' => $item->$key,
                     'label' => $item->$append ?? $item->$name,
@@ -134,10 +109,6 @@ class Select2Controller extends Controller
                 });
             });
         }
-
-        Log::info('123', [
-            $chunk, $model, $key, $name,
-        ]);
 
         return $model
             ->limit($chunk)

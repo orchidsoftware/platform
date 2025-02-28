@@ -6,14 +6,12 @@ namespace Orchid\Screen\Fields;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use Laravel\SerializableClosure\SerializableClosure;
 use Orchid\Screen\Concerns\ComplexFieldConcern;
 use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
-use Orchid\Tests\App\Screens\SerializeScreen;
+use Orchid\Support\QuerySerializer;
 
 /**
  * Class Select2.
@@ -84,9 +82,7 @@ class Select2 extends Field implements ComplexFieldConcern
     {
         $model = is_object($model) ? $model : new $model;
         $key = $key ?? $model->getModel()->getKeyName();
-
-        $this->set('lazyModel', Crypt::encryptString($model->getMorphClass()));
-
+        
         return $this->setFromEloquent($model, $name, $key);
     }
 
@@ -100,14 +96,10 @@ class Select2 extends Field implements ComplexFieldConcern
     {
         $display = $this->getDisplayAppend($model, $name);
 
-        $this->set('display', $display);
-
         $query = $model
             ->when($this->get('lazy'), fn($query) => $query->limit($this->get('chunk')));
 
-        $this->set('query', $query->toSql());
-
-        Log::info($this->get('query'));
+        $this->prepareLazyQuery($name, $key, $query, $display);
 
         $options = $query
             ->get()
@@ -155,6 +147,23 @@ class Select2 extends Field implements ComplexFieldConcern
     public function displayAppend(string $append): static
     {
         $this->set('displayAppend', Crypt::encryptString($append));
+
+        return $this;
+    }
+
+    private function prepareLazyQuery(string $name, string $key, Builder $query, string $display = null): void
+    {
+        $this->set('lazyName', $name);
+        $this->set('lazyKey', $key);
+        $this->set('lazyQuery', QuerySerializer::serialize($query));
+        $this->set('lazyDisplay', $display);
+    }
+
+    public function searchColumns(...$columns): static
+    {
+        $columns = Arr::wrap($columns);
+
+        $this->set('searchColumns', Crypt::encrypt($columns));
 
         return $this;
     }
