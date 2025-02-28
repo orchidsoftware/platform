@@ -31,7 +31,7 @@
 
                     {{ __('Browse') }}
                     <input type="file"
-                           accept="image/*"
+                           accept="{{ $acceptedFiles }}"
                            data-cropper-target="upload"
                            data-action="change->cropper#upload click->cropper#openModal"
                            class="d-none">
