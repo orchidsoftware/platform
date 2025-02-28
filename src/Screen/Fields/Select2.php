@@ -51,6 +51,10 @@ class Select2 extends Field implements ComplexFieldConcern
         'chunk'         => 10,
         'lazy'          => false,
         'searchColumns' => null,
+        'lazyName'      => null,
+        'lazyDisplay'   => null,
+        'lazyKey'       => null,
+        'lazyQuery'     => null,
     ];
 
     /**
@@ -82,8 +86,32 @@ class Select2 extends Field implements ComplexFieldConcern
     {
         $model = is_object($model) ? $model : new $model;
         $key = $key ?? $model->getModel()->getKeyName();
-        
+
         return $this->setFromEloquent($model, $name, $key);
+    }
+
+    public function fromEnum(string $enum, ?string $displayName = null): static
+    {
+        $reflection = new \ReflectionEnum($enum);
+        $options = [];
+        foreach ($enum::cases() as $item) {
+            $key = $reflection->isBacked() ? $item->value : $item->name;
+            $options[$key] = is_null($displayName) ? __($item->name) : $item->$displayName();
+        }
+        $this->set('options', $options);
+
+        return $this->addBeforeRender(function () use ($reflection, $enum) {
+            $value = [];
+            collect($this->get('value'))->each(static function ($item) use (&$value, $reflection, $enum) {
+                if ($item instanceof $enum) {
+                    /** @var \UnitEnum $item */
+                    $value[] = $reflection->isBacked() ? $item->value : $item->name;
+                } else {
+                    $value[] = $item;
+                }
+            });
+            $this->set('value', $value);
+        });
     }
 
     /**
