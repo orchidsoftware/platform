@@ -49,9 +49,9 @@
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.14",
         "orchestra/testbench": "^8.0 || ^9.0 || ^10.0",
-        "orchestra/testbench-core": "^8.0 || ^9.0",
-        "orchestra/testbench-dusk": "^8.0 || ^9.0",
-        "phpunit/phpunit": "^10.0 || ^11.0"
+        "orchestra/testbench-core": "^8.0 || ^9.0 || ^10.0",
+        "orchestra/testbench-dusk": "^8.0 || ^9.0 || ^10.0",
+        "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0"
     },
     "conflict": {
         "laravel/framework": "<=10.48.25, <=11.34.0",

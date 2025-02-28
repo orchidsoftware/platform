@@ -21,6 +21,8 @@
         <UndefinedMagicMethod errorLevel="suppress" />
         <MissingTemplateParam errorLevel="suppress" />
         <InvalidTemplateParam errorLevel="suppress" />
+        <MissingOverrideAttribute errorLevel="suppress" />
+        <UndefinedThisPropertyFetch errorLevel="suppress" />
         <UndefinedClass>
             <errorLevel type="suppress">
                 <referencedClass name="Laravel\Octane\Events\RequestReceived" />
