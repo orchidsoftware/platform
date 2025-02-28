@@ -16000,7 +16000,6 @@ var _default = /*#__PURE__*/function (_ApplicationControlle) {
       var append = this.data.get('append');
       var searchColumns = this.data.get('search-columns');
       var chunk = this.data.get('chunk');
-      console.log(model);
       axios.post(this.data.get('route'), {
         search: _search,
         model: model,
@@ -16250,25 +16249,11 @@ var _default = /*#__PURE__*/function (_ApplicationControlle) {
   _inherits(_default, _ApplicationControlle);
   return _createClass(_default, [{
     key: "connect",
-    value:
-    /**
-     *
-     */
-    function connect() {
+    value: function connect() {
       if (document.documentElement.hasAttribute('data-turbo-preview')) {
         return;
       }
       this.choices = this.initTomSelect();
-    }
-
-    /**
-     *
-     */
-  }, {
-    key: "disconnect",
-    value: function disconnect() {
-      var _this$choices;
-      (_this$choices = this.choices) === null || _this$choices === void 0 || _this$choices.destroy();
     }
   }, {
     key: "initTomSelect",
@@ -16277,53 +16262,12 @@ var _default = /*#__PURE__*/function (_ApplicationControlle) {
       var select = this.element.querySelector('select');
       var plugins = ['change_listener'];
       if (select.hasAttribute('multiple')) {
-        plugins.push('remove_button');
-        plugins.push('clear_button');
+        plugins.push('remove_button', 'clear_button');
       }
-      if (this.data.get('lazy')) {
-        console.log('lazy');
-        return new tom_select__WEBPACK_IMPORTED_MODULE_0__["default"](select, {
-          create: this.data.get('allow-add') === 'true',
-          allowEmptyOption: true,
-          placeholder: select.getAttribute('placeholder') === 'false' ? '' : select.getAttribute('placeholder'),
-          preload: 'focus',
-          plugins: plugins,
-          maxOptions: this.data.get('chunk'),
-          maxItems: select.getAttribute('maximumSelectionLength') || select.hasAttribute('multiple') ? null : 1,
-          valueField: 'value',
-          labelField: 'label',
-          searchField: [],
-          sortField: [{
-            field: '$order'
-          }, {
-            field: '$score'
-          }],
-          render: {
-            option_create: function option_create(data, escape) {
-              return "<div class=\"create\">".concat(_this.data.get('message-add'), " <strong>").concat(escape(data.input), "</strong>&hellip;</div>");
-            },
-            no_results: function no_results() {
-              return "<div class=\"no-results\">".concat(_this.data.get('message-notfound'), "</div>");
-            }
-          },
-          onDelete: function onDelete() {
-            return !!_this.data.get('allow-empty');
-          },
-          load: function load(query, callback) {
-            return _this.search(query, callback);
-          },
-          onItemAdd: function onItemAdd() {
-            this.setTextboxValue('');
-            this.refreshOptions(false);
-          }
-        });
-      }
-      return new tom_select__WEBPACK_IMPORTED_MODULE_0__["default"](select, {
+      var options = {
         create: this.data.get('allow-add') === 'true',
         allowEmptyOption: true,
-        maxOptions: 'null',
         placeholder: select.getAttribute('placeholder') === 'false' ? '' : select.getAttribute('placeholder'),
-        preload: true,
         plugins: plugins,
         maxItems: select.getAttribute('maximumSelectionLength') || (select.hasAttribute('multiple') ? null : 1),
         render: {
@@ -16341,7 +16285,38 @@ var _default = /*#__PURE__*/function (_ApplicationControlle) {
           this.setTextboxValue('');
           this.refreshOptions(false);
         }
-      });
+      };
+      if (this.data.get('lazy')) {
+        console.log('lazy');
+        Object.assign(options, {
+          preload: 'focus',
+          maxOptions: this.data.get('chunk'),
+          valueField: 'value',
+          labelField: 'label',
+          searchField: [],
+          sortField: [{
+            field: '$order'
+          }, {
+            field: '$score'
+          }],
+          load: function load(query, callback) {
+            return _this.search(query, callback);
+          }
+        });
+      } else {
+        options.preload = true;
+      }
+      return new tom_select__WEBPACK_IMPORTED_MODULE_0__["default"](select, options);
+    }
+
+    /**
+     *
+     */
+  }, {
+    key: "disconnect",
+    value: function disconnect() {
+      var _this$choices;
+      (_this$choices = this.choices) === null || _this$choices === void 0 || _this$choices.destroy();
     }
 
     /**
@@ -16353,23 +16328,26 @@ var _default = /*#__PURE__*/function (_ApplicationControlle) {
     key: "search",
     value: function search(_search, callback) {
       var _this2 = this;
-      var model = this.data.get('model');
       var name = this.data.get('name');
+      var display = this.data.get('display');
       var key = this.data.get('key');
-      var scope = this.data.get('scope');
-      var append = this.data.get('append');
       var searchColumns = this.data.get('search-columns');
-      var chunk = this.data.get('chunk');
-      console.log(model);
-      axios.post(this.data.get('route'), {
-        search: _search,
-        model: model,
+      var query = this.data.get('query');
+      console.log({
         name: name,
+        display: display,
         key: key,
-        scope: scope,
-        append: append,
         searchColumns: searchColumns,
-        chunk: chunk
+        query: query,
+        search: _search
+      });
+      axios.post(this.data.get('route'), {
+        name: name,
+        display: display,
+        key: key,
+        searchColumns: searchColumns,
+        query: query,
+        search: _search
       }).then(function (response) {
         _this2.choices.clearOptions();
         callback(response.data);
