@@ -91,4 +91,33 @@ export default class ApplicationController extends Controller {
             });
     }
 
+
+    /**
+     * Updates or removes the Turbo cache control meta tag dynamically.
+     *
+     * @param {boolean|string} value - If `true`, sets "no-cache". If `false`, removes the meta tag.
+     *                                 If a string is provided, sets it as the meta content.
+     */
+     updateTurboCacheControl(value) {
+        const metaName = 'turbo-cache-control';
+        let metaTag = document.querySelector(`meta[name="${metaName}"]`);
+
+        if (value === false) {
+            // Remove the meta tag if explicitly disabling cache control
+            if (metaTag) {
+                metaTag.remove();
+            }
+            return;
+        }
+
+        if (!metaTag) {
+            metaTag = document.createElement('meta');
+            metaTag.name = metaName;
+            document.head.appendChild(metaTag);
+        }
+
+        metaTag.content = value === true ? 'no-cache' : String(value);
+    }
+
+
 }

@@ -42,14 +42,14 @@ export default class extends ApplicationController {
      * Setup event listeners and initial modal state when the controller connects.
      */
     connect() {
+        // Add event listeners for modal show and hide events
+        this.element.addEventListener('shown.bs.modal', this.show);
+        this.element.addEventListener('hide.bs.modal', this.hidden);
+
         // Show the modal if the 'open' value is true
         if (this.openValue) {
             (new Modal(this.element)).show();
         }
-
-        // Add event listeners for modal show and hide events
-        this.element.addEventListener('shown.bs.modal', this.show);
-        this.element.addEventListener('hide.bs.modal', this.hidden);
 
         // Open the last opened modal if validation errors are present
         this.openLastModal();
@@ -66,13 +66,7 @@ export default class extends ApplicationController {
      * @param event - The event object for the 'shown.bs.modal' event.
      */
     show(event) {
-        // Modify the backdrop to ensure it's not mistakenly identified as a Turbo frame
-        let backdrop = document.querySelector('.modal-backdrop');
-
-        if (backdrop !== null) {
-            backdrop.id = 'backdrop';
-            backdrop.dataset.turboTemporary = true;
-        }
+        this.updateTurboCacheControl('no-cache');
 
         // Focus on the element with 'autofocus' attribute, if available
         this.element.querySelector('[autofocus]')?.focus();
@@ -82,11 +76,9 @@ export default class extends ApplicationController {
      * Handle the modal hide event.
      * @param event - The event object for the 'hide.bs.modal' event.
      */
-    hidden(event) {
-        // Ensure the modal has appropriate classes when hiding
-        if (!this.element.classList.contains('fade')) {
-            this.element.classList.add('fade', 'in');
-        }
+     hidden(event) {
+        this.updateTurboCacheControl('cache');
+
         // Clear the stored last open modal from session storage
         this.clearLastOpenModal();
     }

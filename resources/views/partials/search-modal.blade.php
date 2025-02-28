@@ -1,5 +1,6 @@
 <div class="modal fade center-scale"
      tabindex="-1"
+     data-controller="modal"
      role="dialog"
      id="search-modal"
 >
