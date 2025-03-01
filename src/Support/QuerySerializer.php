@@ -3,7 +3,6 @@
 namespace Orchid\Support;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 
@@ -19,8 +18,8 @@ class QuerySerializer
     {
         return Crypt::encrypt([
             'sql' => $query->toSql(),
-            'bindings' => $query->getBindings(),
             'model' => get_class($query->getModel()),
+            'limit' => $query->getQuery()->limit,
         ]);
     }
 
@@ -37,10 +36,11 @@ class QuerySerializer
         $model = new $data['model'];
         $query = $model->newQuery();
 
-        $query->fromSub(function (QueryBuilder $subQuery) use ($data) {
-            $subQuery->from(DB::raw("({$data['sql']}) as sub"))
-                ->addBinding($data['bindings'], 'select');
-        }, 'sub');
+        $query->raw($data['sql']);
+
+        if (isset($data['limit'])) {
+            $query->take($data['limit']);
+        }
 
         return $query;
     }

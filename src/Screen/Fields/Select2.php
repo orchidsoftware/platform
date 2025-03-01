@@ -30,8 +30,7 @@ use Orchid\Support\QuerySerializer;
  * @method Select2 title(string $value = null)
  * @method Select2 maximumSelectionLength(int $value = 0)
  * @method Select2 allowAdd($value = true)
- * @method Select2 lazy(bool $value = true)
- * @method Select2 chunk(int $value = 10)
+ * @method Select taggable($value = true)
  */
 class Select2 extends Field implements ComplexFieldConcern
 {
@@ -125,7 +124,9 @@ class Select2 extends Field implements ComplexFieldConcern
         $display = $this->getDisplayAppend($model, $name);
 
         $query = $model
-            ->when($this->get('lazy'), fn($query) => $query->limit($this->get('chunk')));
+            ->when($this->get('lazy'), fn($query) => $query->take($this->get('chunk')));
+
+        $name = 'name';
 
         $this->prepareLazyQuery($name, $key, $query, $display);
 
@@ -148,7 +149,6 @@ class Select2 extends Field implements ComplexFieldConcern
             });
 
             $this->set('options', $this->get('options')->union(collect($value)));
-
             $this->set('value', $value);
         });
     }
@@ -179,12 +179,12 @@ class Select2 extends Field implements ComplexFieldConcern
         return $this;
     }
 
-    private function prepareLazyQuery(string $name, string $key, Builder $query, string $display = null): void
+    public function chunk(int $chunk = 10): static
     {
-        $this->set('lazyName', $name);
-        $this->set('lazyKey', $key);
-        $this->set('lazyQuery', QuerySerializer::serialize($query));
-        $this->set('lazyDisplay', $display);
+        $this->set('chunk', $chunk);
+        $this->set('lazy');
+
+        return $this;
     }
 
     public function searchColumns(...$columns): static
@@ -194,6 +194,14 @@ class Select2 extends Field implements ComplexFieldConcern
         $this->set('searchColumns', Crypt::encrypt($columns));
 
         return $this;
+    }
+
+    private function prepareLazyQuery(string $name, string $key, Builder $query, string $display = null): void
+    {
+        $this->set('lazyName', $name);
+        $this->set('lazyKey', $key);
+        $this->set('lazyQuery', QuerySerializer::serialize($query));
+        $this->set('lazyDisplay', $display);
     }
 
 }

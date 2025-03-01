@@ -15,9 +15,7 @@
          data-select2-lazy="{{ $lazy }}"
     >
         <select id="{{$id}}" data-relation-target="select" {{ $attributes }}>
-            @foreach($value as $key => $option)
-                <option selected value="{{ $key }}">{{$option}}</option>
-            @endforeach
+
             @foreach($options as $key => $option)
                 <option value="{{$key}}"
                         @isset($value)
@@ -28,6 +26,13 @@
                         @endisset
                 >{{$option}}</option>
             @endforeach
+
+            @if($lazy)
+                    @foreach($value as $key => $option)
+                        <option selected value="{{ $key }}">{{$option}}</option>
+                    @endforeach
+            @endif
+
         </select>
     </div>
 @endcomponent

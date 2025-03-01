@@ -19,7 +19,7 @@ class Select2Controller extends Controller
 
     public function view(Request $request)
     {
-        $name = 'name';
+        $name = $request->get('name');
         $display = $request->get('display') ?? $name;
         $search = $request->get('search');
 
