@@ -18,17 +18,11 @@ class QuerySerializer
     {
         return Crypt::encrypt([
             'sql' => $query->toSql(),
+            'bindings' => $query->getBindings(),
             'model' => get_class($query->getModel()),
-            'limit' => $query->getQuery()->limit,
         ]);
     }
 
-    /**
-     * Unserialize array to Eloquent Builder.
-     *
-     * @param string $data
-     * @return Builder
-     */
     public static function unserialize(string $data): Builder
     {
         $data = Crypt::decrypt($data);
@@ -36,12 +30,11 @@ class QuerySerializer
         $model = new $data['model'];
         $query = $model->newQuery();
 
-        $query->raw($data['sql']);
-
-        if (isset($data['limit'])) {
-            $query->take($data['limit']);
-        }
+        $query->getQuery()->from($model->getTable())
+        ->setBindings($data['bindings'])
+        ->whereRaw($data['sql']);
 
         return $query;
     }
+
 }

@@ -127,9 +127,6 @@ class Select2 extends Field implements ComplexFieldConcern
         $query = $model
             ->when($this->get('lazy'), fn($query) => $query->take($this->get('chunk')));
 
-        $query = QuerySerializer::serialize($query);
-        $query = QuerySerializer::unserialize($query);
-
         $this->prepareLazyQuery($name, $key, $query, $display);
 
         $options = $query
