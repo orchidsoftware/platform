@@ -4,14 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers;
 
-use Composer\InstalledVersions;
-use Composer\Semver\VersionParser;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
-use Illuminate\Support\Collection as BaseCollection;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Log;
 use Orchid\Platform\Http\Requests\Select2Request;
 use Orchid\Support\Select2QLazyQuery;
 
