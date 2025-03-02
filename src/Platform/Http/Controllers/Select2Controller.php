@@ -20,69 +20,18 @@ class Select2Controller extends Controller
     public function view(Request $request)
     {
         $name = $request->get('name');
-        $display = $request->get('display') ?? $name;
+        $display = $request->get('display') ? Crypt::decrypt($request->get('display')) : $name;
         $search = $request->get('search');
+        $key = $request->get('key');
 
         $query = QuerySerializer::unserialize($request->get('query'));
 
-        $searchColumns = $request->get('searchColumns') ? Crypt::decrypt($request->get('searchColumns')) : null;
-
-        $query = $query->where(function ($query) use ($name, $search, $searchColumns) {
-            $value = '%'.$search.'%';
-
-            $query->whereLike($name, $value);
-
-            $query->when($searchColumns !== null, function ($query) use ($searchColumns, $value) {
-                foreach ($searchColumns as $column) {
-                    $query->orWhereLike($column, $value);
-                }
-            });
-        });
-
-        return response()->json($query->get()->map(function ($item) use ($display) {
-            return [
-                'label' => $item->$display,
-                'value' => $item->id,
-            ];
-        }));
-    }
-
-    /**
-     * @return mixed
-     */
-    private function buildersItems(
-        Model $model,
-        string $name,
-        string $key,
-        ?string $search = null,
-        ?array $scope = [],
-        ?string $append = null,
-        ?array $searchColumns = null,
-        ?int $chunk = 10
-    ) {
-
-        Log::info('model', [$model]);
-
-        if ($scope !== null) {
-            /** @var Collection|array $model */
-            $model = $model->{$scope['name']}(...$scope['parameters']);
-        }
-
-        if (is_array($model)) {
-            $model = collect($model);
-        }
-
-        if (is_a($model, BaseCollection::class)) {
-            return $model->take($chunk)->map(function ($item) use ($append, $key, $name) {
-                return [
-                    'value' => $item->$key,
-                    'label' => $item->$append ?? $item->$name,
-                ];
-            });
-        }
+        $searchColumns = $request->get('searchColumns')
+            ? Crypt::decrypt($request->get('searchColumns'))
+            : null;
 
         if (InstalledVersions::satisfies(new VersionParser, 'laravel/framework', '>11.17.0')) {
-            $model = $model->where(function ($query) use ($name, $search, $searchColumns) {
+            $query = $query->where(function ($query) use ($name, $search, $searchColumns) {
                 $value = '%'.$search.'%';
 
                 $query->whereLike($name, $value);
@@ -94,10 +43,7 @@ class Select2Controller extends Controller
                 });
             });
         } else {
-            /**
-             * @deprecated logic for older Laravel versions
-             */
-            $model = $model->where(function ($query) use ($name, $search, $searchColumns) {
+            $query = $query->where(function ($query) use ($name, $search, $searchColumns) {
                 $value = '%'.$search.'%';
 
                 $query->where($name, 'like', $value);
@@ -110,25 +56,11 @@ class Select2Controller extends Controller
             });
         }
 
-        return $model
-            ->limit($chunk)
-            ->get()
-            ->map(function ($item) use ($append, $key, $name) {
-                $resultKey = $item->$key;
-
-                $resultLabel = $item->$append ?? $item->$name;
-
-                if ($resultKey instanceof \UnitEnum) {
-                    $resultKey = $resultKey->value;
-                }
-                if ($resultLabel instanceof \UnitEnum) {
-                    $resultLabel = $resultLabel->value;
-                }
-
-                return [
-                    'value' => $resultKey,
-                    'label' => $resultLabel,
-                ];
-            });
+        return response()->json($query->get()->map(function ($item) use ($display, $key) {
+            return [
+                'label' => $item->$display,
+                'value' => $item->$key,
+            ];
+        }));
     }
 }

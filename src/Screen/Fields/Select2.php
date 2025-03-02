@@ -30,7 +30,8 @@ use Orchid\Support\QuerySerializer;
  * @method Select2 title(string $value = null)
  * @method Select2 maximumSelectionLength(int $value = 0)
  * @method Select2 allowAdd($value = true)
- * @method Select taggable($value = true)
+ * @method Select2 taggable($value = true)
+ * @method Select2 displayAppend(string $value)
  */
 class Select2 extends Field implements ComplexFieldConcern
 {
@@ -126,8 +127,6 @@ class Select2 extends Field implements ComplexFieldConcern
         $query = $model
             ->when($this->get('lazy'), fn($query) => $query->take($this->get('chunk')));
 
-        $name = 'name';
-
         $this->prepareLazyQuery($name, $key, $query, $display);
 
         $options = $query
@@ -157,10 +156,6 @@ class Select2 extends Field implements ComplexFieldConcern
     {
         $append = $this->get('displayAppend');
 
-        if (is_string($append)) {
-            $append = Crypt::decryptString($append);
-        }
-
         if ($model instanceof Builder) {
             $model = $model->getModel();
         }
@@ -170,13 +165,6 @@ class Select2 extends Field implements ComplexFieldConcern
         }
 
         return $name;
-    }
-
-    public function displayAppend(string $append): static
-    {
-        $this->set('displayAppend', Crypt::encryptString($append));
-
-        return $this;
     }
 
     public function chunk(int $chunk = 10): static
@@ -201,7 +189,7 @@ class Select2 extends Field implements ComplexFieldConcern
         $this->set('lazyName', $name);
         $this->set('lazyKey', $key);
         $this->set('lazyQuery', QuerySerializer::serialize($query));
-        $this->set('lazyDisplay', $display);
+        $this->set('lazyDisplay', Crypt::encryptString($display));
     }
 
 }
