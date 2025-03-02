@@ -20,7 +20,7 @@ class Select2Controller extends Controller
     public function view(Request $request)
     {
         $name = $request->get('name');
-        $display = $request->get('display') ? Crypt::decrypt($request->get('display')) : $name;
+        $display = $request->get('display') ? Crypt::decryptString($request->get('display')) : $name;
         $search = $request->get('search');
         $key = $request->get('key');
 
