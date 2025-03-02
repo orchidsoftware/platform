@@ -185,8 +185,9 @@ class Select2 extends Field implements ComplexFieldConcern
 
     private function prepareLazyQuery(string $name, string $key, Builder $query, string $display = null): void
     {
+        $queryClone = clone $query;
         $this->set('key', $key);
-        $this->set('query', Select2QLazyQuery::prepare($query, $name, $this->get('searchColumns')));
+        $this->set('query', Select2QLazyQuery::prepare($queryClone, $name, $this->get('searchColumns')));
         $this->set('display', $display);
     }
 
