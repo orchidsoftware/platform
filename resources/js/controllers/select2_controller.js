@@ -39,7 +39,7 @@ export default class extends ApplicationController {
             }
         };
 
-        if (this.data.get('lazy')) {
+        if (this.data.get('query')) {
             Object.assign(options, {
                 preload: 'focus',
                 maxOptions: this.data.get('chunk'),

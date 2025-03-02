@@ -32,6 +32,7 @@ use Orchid\Support\Select2LazyQuery;
  * @method Select2 taggable($value = true)
  * @method Select2 displayAppend(string $value)
  * @method Select2 allowEmpty(bool $value = true)
+ * @method Select2 chunk(int $value = 10)
  */
 class Select2 extends Field implements ComplexFieldConcern
 {
@@ -48,12 +49,11 @@ class Select2 extends Field implements ComplexFieldConcern
         'allowEmpty'    => '',
         'allowAdd'      => false,
         'isOptionList'  => false,
-        'chunk'         => 10,
-        'lazy'          => false,
+        'chunk'         => null,
         'searchColumns' => null,
-        'display'   => null,
-        'key'       => null,
-        'query'     => null,
+        'display'       => null,
+        'key'           => null,
+        'query'         => null,
     ];
 
     /**
@@ -124,7 +124,7 @@ class Select2 extends Field implements ComplexFieldConcern
         $display = $this->getDisplayAppend($model, $name);
 
         $query = $model
-            ->when($this->get('lazy'), fn($query) => $query->take($this->get('chunk')));
+            ->when($this->get('chunk'), fn($query) => $query->take($this->get('chunk')));
 
         $this->prepareLazyQuery($name, $key, $query, $display);
 
@@ -166,10 +166,14 @@ class Select2 extends Field implements ComplexFieldConcern
         return $name;
     }
 
-    public function chunk(int $chunk = 10): static
+    /**
+     * Set the maximum number of items that may be selected.
+     *
+     * @return $this
+     */
+    public function max(int $number): static
     {
-        $this->set('chunk', $chunk);
-        $this->set('lazy');
+        $this->set('data-maximum-selection-length', (string) $number);
 
         return $this;
     }

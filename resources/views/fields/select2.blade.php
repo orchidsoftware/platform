@@ -10,7 +10,6 @@
          data-select2-message-notfound="{{ __('No results found') }}"
          data-select2-message-add="{{ __('Add') }}"
          data-select2-allow-add="{{ var_export($allowAdd, true) }}"
-         data-select2-lazy="{{ $lazy }}"
     >
         <select id="{{$id}}" data-relation-target="select" {{ $attributes }}>
 
@@ -25,7 +24,7 @@
                 >{{$option}}</option>
             @endforeach
 
-            @if($lazy)
+            @if($query)
                     @foreach($value as $key => $option)
                         <option selected value="{{ $key }}">{{$option}}</option>
                     @endforeach
