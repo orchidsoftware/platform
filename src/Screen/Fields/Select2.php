@@ -7,7 +7,6 @@ namespace Orchid\Screen\Fields;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Crypt;
 use Orchid\Screen\Concerns\ComplexFieldConcern;
 use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
@@ -32,6 +31,7 @@ use Orchid\Support\Select2QLazyQuery;
  * @method Select2 allowAdd($value = true)
  * @method Select2 taggable($value = true)
  * @method Select2 displayAppend(string $value)
+ * @method Select2 allowEmpty(bool $value = true)
  */
 class Select2 extends Field implements ComplexFieldConcern
 {
