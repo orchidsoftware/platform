@@ -51,10 +51,9 @@ class Select2 extends Field implements ComplexFieldConcern
         'chunk'         => 10,
         'lazy'          => false,
         'searchColumns' => null,
-        'lazyName'      => null,
-        'lazyDisplay'   => null,
-        'lazyKey'       => null,
-        'lazyQuery'     => null,
+        'display'   => null,
+        'key'       => null,
+        'query'     => null,
     ];
 
     /**
@@ -186,9 +185,9 @@ class Select2 extends Field implements ComplexFieldConcern
 
     private function prepareLazyQuery(string $name, string $key, Builder $query, string $display = null): void
     {
-        $this->set('lazyKey', $key);
-        $this->set('lazyQuery', Select2QLazyQuery::prepare($query, $name, $this->get('searchColumns')));
-        $this->set('lazyDisplay', $display);
+        $this->set('key', $key);
+        $this->set('query', Select2QLazyQuery::prepare($query, $name, $this->get('searchColumns')));
+        $this->set('display', $display);
     }
 
 }
