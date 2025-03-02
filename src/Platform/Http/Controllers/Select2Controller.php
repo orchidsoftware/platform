@@ -12,49 +12,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection as BaseCollection;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Log;
-use Orchid\Support\QuerySerializer;
+use Orchid\Platform\Http\Requests\Select2Request;
+use Orchid\Support\Select2QLazyQuery;
 
 class Select2Controller extends Controller
 {
 
-    public function view(Request $request)
+    public function view(Select2Request $request)
     {
-        $name = $request->get('name');
-        $display = $request->get('display') ? Crypt::decryptString($request->get('display')) : $name;
+        $display = $request->get('display');
         $search = $request->get('search');
         $key = $request->get('key');
 
-        $query = QuerySerializer::unserialize($request->get('query'));
-
-        $searchColumns = $request->get('searchColumns')
-            ? Crypt::decrypt($request->get('searchColumns'))
-            : null;
-
-        if (InstalledVersions::satisfies(new VersionParser, 'laravel/framework', '>11.17.0')) {
-            $query = $query->where(function ($query) use ($name, $search, $searchColumns) {
-                $value = '%'.$search.'%';
-
-                $query->whereLike($name, $value);
-
-                $query->when($searchColumns !== null, function ($query) use ($searchColumns, $value) {
-                    foreach ($searchColumns as $column) {
-                        $query->orWhereLike($column, $value);
-                    }
-                });
-            });
-        } else {
-            $query = $query->where(function ($query) use ($name, $search, $searchColumns) {
-                $value = '%'.$search.'%';
-
-                $query->where($name, 'like', $value);
-
-                $query->when($searchColumns !== null, function ($query) use ($searchColumns, $value) {
-                    foreach ($searchColumns as $column) {
-                        $query->orWhere($column, 'like', $value);
-                    }
-                });
-            });
-        }
+        $query = Select2QLazyQuery::execute($request->get('query'), $search);
 
         return response()->json($query->get()->map(function ($item) use ($display, $key) {
             return [

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Crypt;
 use Orchid\Screen\Concerns\ComplexFieldConcern;
 use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
-use Orchid\Support\QuerySerializer;
+use Orchid\Support\Select2QLazyQuery;
 
 /**
  * Class Select2.
@@ -179,17 +179,16 @@ class Select2 extends Field implements ComplexFieldConcern
     {
         $columns = Arr::wrap($columns);
 
-        $this->set('searchColumns', Crypt::encrypt($columns));
+        $this->set('searchColumns', $columns);
 
         return $this;
     }
 
     private function prepareLazyQuery(string $name, string $key, Builder $query, string $display = null): void
     {
-        $this->set('lazyName', $name);
         $this->set('lazyKey', $key);
-        $this->set('lazyQuery', QuerySerializer::serialize($query));
-        $this->set('lazyDisplay', Crypt::encryptString($display));
+        $this->set('lazyQuery', Select2QLazyQuery::prepare($query, $name, $this->get('searchColumns')));
+        $this->set('lazyDisplay', $display);
     }
 
 }

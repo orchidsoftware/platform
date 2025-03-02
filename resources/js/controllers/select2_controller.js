@@ -40,7 +40,6 @@ export default class extends ApplicationController {
         };
 
         if (this.data.get('lazy')) {
-            console.log('lazy');
             Object.assign(options, {
                 preload: 'focus',
                 maxOptions: this.data.get('chunk'),
@@ -70,26 +69,13 @@ export default class extends ApplicationController {
      * @param callback
      */
     search(search, callback) {
-        const name = this.data.get('name');
         const display = this.data.get('display');
         const key = this.data.get('key');
-        const searchColumns = this.data.get('search-columns');
         const query = this.data.get('query');
 
-        console.log({
-            name,
-            display,
-            key,
-            searchColumns,
-            query,
-            search,
-        })
-
         axios.post(this.data.get('route'), {
-            name,
             display,
             key,
-            searchColumns,
             query,
             search,
         })

@@ -16287,7 +16287,6 @@ var _default = /*#__PURE__*/function (_ApplicationControlle) {
         }
       };
       if (this.data.get('lazy')) {
-        console.log('lazy');
         Object.assign(options, {
           preload: 'focus',
           maxOptions: this.data.get('chunk'),
@@ -16328,24 +16327,12 @@ var _default = /*#__PURE__*/function (_ApplicationControlle) {
     key: "search",
     value: function search(_search, callback) {
       var _this2 = this;
-      var name = this.data.get('name');
       var display = this.data.get('display');
       var key = this.data.get('key');
-      var searchColumns = this.data.get('search-columns');
       var query = this.data.get('query');
-      console.log({
-        name: name,
-        display: display,
-        key: key,
-        searchColumns: searchColumns,
-        query: query,
-        search: _search
-      });
       axios.post(this.data.get('route'), {
-        name: name,
         display: display,
         key: key,
-        searchColumns: searchColumns,
         query: query,
         search: _search
       }).then(function (response) {
