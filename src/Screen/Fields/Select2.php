@@ -10,7 +10,7 @@ use Illuminate\Support\Arr;
 use Orchid\Screen\Concerns\ComplexFieldConcern;
 use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
-use Orchid\Support\Select2QLazyQuery;
+use Orchid\Support\Select2LazyQuery;
 
 /**
  * Class Select2.
@@ -187,7 +187,7 @@ class Select2 extends Field implements ComplexFieldConcern
     {
         $queryClone = clone $query;
         $this->set('key', $key);
-        $this->set('query', Select2QLazyQuery::prepare($queryClone, $name, $this->get('searchColumns')));
+        $this->set('query', Select2LazyQuery::prepare($queryClone, $name, $this->get('searchColumns')));
         $this->set('display', $display);
     }
 

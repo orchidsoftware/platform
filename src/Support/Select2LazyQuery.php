@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
 
-class Select2QLazyQuery
+class Select2LazyQuery
 {
     /**
      * Prepare and Serialize Eloquent Builder to encrypted string.

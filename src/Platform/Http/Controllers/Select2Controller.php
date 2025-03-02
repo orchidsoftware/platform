@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Controllers;
 
 use Orchid\Platform\Http\Requests\Select2Request;
-use Orchid\Support\Select2QLazyQuery;
+use Orchid\Support\Select2LazyQuery;
 
 class Select2Controller extends Controller
 {
@@ -16,7 +16,7 @@ class Select2Controller extends Controller
         $search = $request->get('search');
         $key = $request->get('key');
 
-        $query = Select2QLazyQuery::execute($request->get('query'), $search);
+        $query = Select2LazyQuery::execute($request->get('query'), $search);
 
         return response()->json($query->get()->map(function ($item) use ($display, $key) {
             $resultKey = $item->$key;
