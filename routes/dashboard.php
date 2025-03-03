@@ -7,6 +7,7 @@ use Orchid\Platform\Http\Controllers\AsyncController;
 use Orchid\Platform\Http\Controllers\AttachmentController;
 use Orchid\Platform\Http\Controllers\IndexController;
 use Orchid\Platform\Http\Controllers\RelationController;
+use Orchid\Platform\Http\Controllers\Select2Controller;
 use Orchid\Platform\Http\Controllers\SortableController;
 use Orchid\Platform\Http\Screens\NotificationScreen;
 use Orchid\Platform\Http\Screens\SearchScreen;
@@ -48,6 +49,9 @@ Route::prefix('systems')->group(function () {
 
     Route::post('relation', [RelationController::class, 'view'])
         ->name('systems.relation');
+
+    Route::post('select2', [Select2Controller::class, 'view'])
+        ->name('systems.select2');
 
     Route::post('sorting', [SortableController::class, 'saveSortOrder'])
         ->name('systems.sorting');
