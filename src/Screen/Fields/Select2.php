@@ -32,7 +32,6 @@ use Orchid\Support\Select2LazyQuery;
  * @method Select2 taggable($value = true)
  * @method Select2 displayAppend(string $value)
  * @method Select2 allowEmpty(bool $value = true)
- * @method Select2 chunk(int $value = 10)
  */
 class Select2 extends Field implements ComplexFieldConcern
 {
@@ -81,8 +80,15 @@ class Select2 extends Field implements ComplexFieldConcern
         });
     }
 
-    public function fromModel(string|Model|Builder $model, string $name, ?string $key = null): static
+    public function fromModel(
+        string|Model|Builder $model,
+        string $name, ?string
+        $key = null,
+        ?int $chunk = null
+    ): static
     {
+        $this->set('chunk', $chunk);
+
         $model = is_object($model) ? $model : new $model;
         $key = $key ?? $model->getModel()->getKeyName();
 
