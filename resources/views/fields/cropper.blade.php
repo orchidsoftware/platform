@@ -16,6 +16,8 @@
          data-cropper-path="{{ $attributes['path'] ?? '' }}"
          data-cropper-keep-original-type-value="{{ $keepOriginalType }}"
          data-cropper-max-size-message-value="{{ __($maxSizeValidateMessage) }}"
+         data-cropper-image-smoothing-enabled="{{ $imageSmoothingEnabled }}"
+         data-cropper-image-smoothing-quality="{{ $imageSmoothingQuality }}"
     >
         <div class="border-dashed text-end p-3 cropper-actions">
 

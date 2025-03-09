@@ -61,6 +61,8 @@ class Cropper extends Picture
         'acceptedFiles'          => 'image/*',
         'keepOriginalType'       => false,
         'maxSizeValidateMessage' => 'The upload file is too large. Max size: {value} MB',
+        'imageSmoothingEnabled'  => true,
+        'imageSmoothingQuality'  => 'medium',
     ];
 
     /**
@@ -162,6 +164,37 @@ class Cropper extends Picture
     public function keepOriginalType(bool $keep = true): self
     {
         $this->set('keepOriginalType', $keep);
+
+        return $this;
+    }
+
+    /**
+     * Enables or disables image smoothing.
+     *
+     * @param boolean $enabled - Whether to enable image smoothing.
+     */
+
+    public function imageSmoothingEnabled(bool $enabled = true): self
+    {
+        $this->set('imageSmoothingEnabled', $enabled);
+
+        return $this;
+    }
+
+    /**
+     * Sets the quality of image smoothing.
+     *
+     * Accepts values: 'low', 'medium', 'high'.
+     * Defaults to 'medium'.
+     *
+     * @param string $quality The quality of image smoothing.
+     *
+     * @return $this
+     */
+
+    public function imageSmoothingQuality(string $quality = 'medium'): self
+    {
+        $this->set('imageSmoothingQuality', $quality);
 
         return $this;
     }
