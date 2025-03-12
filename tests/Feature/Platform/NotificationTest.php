@@ -6,12 +6,33 @@ namespace Orchid\Tests\Feature\Platform;
 
 use Orchid\Platform\Models\User;
 use Orchid\Platform\Notifications\DashboardMessage;
+use Orchid\Support\Color;
 use Orchid\Tests\App\Notifications\TaskCompleted;
 use Orchid\Tests\TestFeatureCase;
 
 class NotificationTest extends TestFeatureCase
 {
-    public function testViewNotification(): void
+    public function testNotificationForInnerClass(): void
+    {
+        $user = $this->createAdminUser();
+        $user->notify(DashboardMessage::make()
+            ->title('Simple Notification')
+            ->action('#')
+            ->message('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
+            ->type(Color::INFO)
+        );
+
+        $response = $this
+            ->actingAs($user)
+            ->get(route('platform.notifications'));
+
+        $response
+            ->assertOk()
+            ->assertSee('Simple Notification')
+            ->assertSee('Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
+    }
+
+    public function testNotificationForNotificationClass(): void
     {
         $response = $this
             ->actingAs($this->createNotifyUser())
@@ -22,7 +43,7 @@ class NotificationTest extends TestFeatureCase
             ->assertSee('Task Completed');
     }
 
-    public function testMaskAllAsRead(): void
+    public function testMarkAllNotificationsAsRead(): void
     {
         $user = $this->createNotifyUser();
 
@@ -38,7 +59,7 @@ class NotificationTest extends TestFeatureCase
             ->assertDontSee('Mask all as read');
     }
 
-    public function testRemove(): void
+    public function testDeleteAllNotifications(): void
     {
         $user = $this->createNotifyUser();
 
@@ -55,7 +76,7 @@ class NotificationTest extends TestFeatureCase
             ->assertDontSee('Task Completed');
     }
 
-    public function testMaskReadNotification(): void
+    public function testMarkSingleNotificationAsRead(): void
     {
         $user = $this->createNotifyUser();
         $notification = $user
@@ -74,7 +95,7 @@ class NotificationTest extends TestFeatureCase
         $this->assertTrue($notification->read());
     }
 
-    public function testShowAPIUnread(): void
+    public function testAPIReturnsUnreadNotifications(): void
     {
         $response = $this
             ->actingAs($this->createNotifyUser())
