@@ -15,12 +15,12 @@ class NotificationTest extends TestFeatureCase
     public function testNotificationForInnerClass():void
     {
         $user = $this->createAdminUser();
-        $user->notify(new DashboardMessage([
-            'title'   => 'Simple Notification',
-            'action'  => '#',
-            'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            'type'    => Color::INFO->name(),
-        ]));
+        $user->notify(DashboardMessage::make()
+            ->title('Simple Notification')
+            ->action('#')
+            ->message('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
+            ->type(Color::INFO->name())
+        );
 
         $response = $this
             ->actingAs($user)
