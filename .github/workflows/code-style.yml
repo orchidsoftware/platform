@@ -1,7 +1,8 @@
 name: Coding Guidelines
 
 on:
-  push: # (or pull requests)
+  pull_request:
+  push:
     paths:
       - '.github/workflows/**'
       - '**.php'

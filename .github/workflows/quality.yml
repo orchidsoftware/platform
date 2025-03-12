@@ -1,12 +1,14 @@
 name: Quality Assurance
 
 on:
-  push: # (or pull requests)
+  pull_request:
+  push:
     paths:
       - '.github/workflows/**'
       - '**.php'
-      - 'psalm.xml.dist'
+      - 'phpunit.xml'
       - 'composer.json'
+      - 'composer.lock'
 
 jobs:
   composer:
