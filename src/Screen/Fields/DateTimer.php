@@ -10,25 +10,25 @@ use Orchid\Screen\Field;
 /**
  * Class DateTimer.
  *
- * @method DateTimer accesskey($value = true)
- * @method DateTimer autofocus($value = true)
- * @method DateTimer disabled($value = true)
- * @method DateTimer form($value = true)
- * @method DateTimer formaction($value = true)
- * @method DateTimer formenctype($value = true)
- * @method DateTimer formmethod($value = true)
- * @method DateTimer formnovalidate($value = true)
- * @method DateTimer formtarget($value = true)
- * @method DateTimer name(string $value = null)
- * @method DateTimer placeholder(string $value = null)
- * @method DateTimer readonly($value = true)
- * @method DateTimer required(bool $value = true)
- * @method DateTimer tabindex($value = true)
- * @method DateTimer value($value = true)
- * @method DateTimer help(string $value = null)
- * @method DateTimer popover(string $value = null)
- * @method DateTimer allowEmpty(bool $enabled = true)
- * @method DateTimer title(string $value = null)
+ * @method static accesskey($value = true)
+ * @method static autofocus($value = true)
+ * @method static disabled($value = true)
+ * @method static form($value = true)
+ * @method static formaction($value = true)
+ * @method static formenctype($value = true)
+ * @method static formmethod($value = true)
+ * @method static formnovalidate($value = true)
+ * @method static formtarget($value = true)
+ * @method static name(string $value = null)
+ * @method static placeholder(string $value = null)
+ * @method static readonly($value = true)
+ * @method static required(bool $value = true)
+ * @method static tabindex($value = true)
+ * @method static value($value = true)
+ * @method static help(string $value = null)
+ * @method static popover(string $value = null)
+ * @method static allowEmpty(bool $enabled = true)
+ * @method static title(string $value = null)
  */
 class DateTimer extends Field
 {
@@ -108,7 +108,7 @@ class DateTimer extends Field
     /**
      * Enables time picker.
      */
-    public function enableTime(bool $time = true): self
+    public function enableTime(bool $time = true): static
     {
         $this->set('data-datetime-enable-time', var_export($time, true));
 
@@ -118,7 +118,7 @@ class DateTimer extends Field
     /**
      * Displays time picker in 24-hour mode without AM/PM selection when enabled.
      */
-    public function format24hr(bool $time = true): self
+    public function format24hr(bool $time = true): static
     {
         $this->set('data-datetime-time_24hr', var_export($time, true));
 
@@ -129,7 +129,7 @@ class DateTimer extends Field
      * Allows the user to enter a date directly input the input field.
      * By default, direct entry is disabled.
      */
-    public function allowInput(bool $time = true): self
+    public function allowInput(bool $time = true): static
     {
         $this->set('data-datetime-allow-input', var_export($time, true));
 
@@ -140,7 +140,7 @@ class DateTimer extends Field
      * A string of characters which are used
      * to define how the date will be displayed in the input box.
      */
-    public function format(string $format): self
+    public function format(string $format): static
     {
         $this->set('data-datetime-date-format', $format);
 
@@ -152,10 +152,11 @@ class DateTimer extends Field
      * If the argument is not passed, then the value specified
      * in the 'format' method will be taken
      *
+     * @param string|null $format
      *
-     * @return $this
+     * @return static
      */
-    public function serverFormat(?string $format = null): self
+    public function serverFormat(?string $format = null): static
     {
         return $this->addBeforeRender(function () use ($format) {
             $value = $this->get('value');
@@ -175,10 +176,11 @@ class DateTimer extends Field
     /**
      * Disable the calendar for the field and show only time.
      *
+     * @param bool $noCalendar
      *
-     * @return $this
+     * @return static
      */
-    public function noCalendar(bool $noCalendar = true): self
+    public function noCalendar(bool $noCalendar = true): static
     {
         $this->enableTime();
         $this->set('data-datetime-no-calendar', var_export($noCalendar, true));
@@ -189,10 +191,11 @@ class DateTimer extends Field
     /**
      * Adjusts the step for the minute input (incl. scrolling).
      *
+     * @param int $increment
      *
-     * @return $this
+     * @return static
      */
-    public function minuteIncrement(int $increment): self
+    public function minuteIncrement(int $increment): static
     {
         $this->set('data-datetime-minute-increment', $increment);
 
@@ -202,10 +205,11 @@ class DateTimer extends Field
     /**
      * Adjusts the step for the hour input (incl. scrolling).
      *
+     * @param int $increment
      *
-     * @return $this
+     * @return static
      */
-    public function hourIncrement(int $increment): self
+    public function hourIncrement(int $increment): static
     {
         $this->set('data-datetime-hour-increment', $increment);
 
@@ -226,9 +230,11 @@ class DateTimer extends Field
      * ]
      *
      *
-     * @return $this
+     * @param array $dates
+     *
+     * @return static
      */
-    public function available(array $dates = []): self
+    public function available(array $dates = []): static
     {
         $this->set('data-datetime-enable', json_encode($dates));
 
@@ -249,9 +255,11 @@ class DateTimer extends Field
      * ]
      *
      *
-     * @return $this
+     * @param array $dates
+     *
+     * @return static
      */
-    public function unavailable(array $dates = []): self
+    public function unavailable(array $dates = []): static
     {
         $this->set('data-datetime-disable', json_encode($dates));
 
@@ -261,10 +269,11 @@ class DateTimer extends Field
     /**
      * Allow selection of dates on or before the specified date
      *
+     * @param \Carbon\Carbon $date
      *
-     * @return $this
+     * @return static
      */
-    public function max(Carbon $date): self
+    public function max(Carbon $date): static
     {
         $format = $this->get('data-datetime-date-format');
         $this->set('data-datetime-max-date', $date->format($format));
@@ -275,10 +284,11 @@ class DateTimer extends Field
     /**
      * Allow selection of dates on or after the specified date
      *
+     * @param \Carbon\Carbon $date
      *
-     * @return $this
+     * @return static
      */
-    public function min(Carbon $date): self
+    public function min(Carbon $date): static
     {
         $format = $this->get('data-datetime-date-format');
         $this->set('data-datetime-min-date', $date->format($format));
@@ -289,10 +299,11 @@ class DateTimer extends Field
     /**
      * Show calendar week numbers
      *
+     * @param bool $show
      *
-     * @return $this
+     * @return static
      */
-    public function weekNumbers(bool $show = true): self
+    public function weekNumbers(bool $show = true): static
     {
         $this->set('data-datetime-week-numbers', var_export($show, true));
 
@@ -302,10 +313,11 @@ class DateTimer extends Field
     /**
      * Disable native mobile pickers in favor of calendar
      *
+     * @param bool $disable
      *
-     * @return $this
+     * @return static
      */
-    public function disableMobile(bool $disable = true): self
+    public function disableMobile(bool $disable = true): static
     {
         $this->set('data-datetime-disable-mobile', var_export($disable, true));
 
@@ -315,10 +327,11 @@ class DateTimer extends Field
     /**
      * Disable native mobile pickers in favor of calendar
      *
+     * @param bool $inline
      *
-     * @return $this
+     * @return static
      */
-    public function inline(bool $inline = true): self
+    public function inline(bool $inline = true): static
     {
         $this->set('class', 'd-none');
         $this->set('data-datetime-inline', var_export($inline, true));
@@ -327,9 +340,11 @@ class DateTimer extends Field
     }
 
     /**
-     * @return $this
+     * @param bool $static
+     *
+     * @return static
      */
-    public function static(bool $static = true): self
+    public function static(bool $static = true): static
     {
         $this->set('data-datetime-static', var_export($static, true));
 
@@ -339,10 +354,11 @@ class DateTimer extends Field
     /**
      * Show the month using the shorthand version (ie, Sep instead of September).
      *
+     * @param bool $short
      *
-     * @return $this
+     * @return static
      */
-    public function shorthandCurrentMonth(bool $short = true): self
+    public function shorthandCurrentMonth(bool $short = true): static
     {
         $this->set('data-datetime-shorthand-current-month', var_export($short, true));
 
@@ -352,10 +368,11 @@ class DateTimer extends Field
     /**
      * The number of months to be shown at the same time when displaying the calendar.
      *
+     * @param int $count
      *
-     * @return $this
+     * @return static
      */
-    public function showMonths(int $count = 1): self
+    public function showMonths(int $count = 1): static
     {
         $this->set('data-datetime-show-months', $count);
 
@@ -371,10 +388,12 @@ class DateTimer extends Field
      *
      * Not used with inline()
      *
+     * @param string $vertical
+     * @param string $horizontal
      *
-     * @return $this
+     * @return static
      */
-    public function position(string $vertical = 'auto', string $horizontal = 'auto'): self
+    public function position(string $vertical = 'auto', string $horizontal = 'auto'): static
     {
         $this->set('data-datetime-position', $vertical.' '.$horizontal);
 
@@ -382,16 +401,16 @@ class DateTimer extends Field
     }
 
     /**
-     * @return $this
+     * @return static
      */
-    public function range(): self
+    public function range(): static
     {
         $this->set('data-datetime-mode', 'range');
 
         return $this;
     }
 
-    public function multiple(): self
+    public function multiple(): static
     {
         $this->set('data-datetime-mode', 'multiple')
             ->addBeforeRender(function () {
@@ -407,9 +426,9 @@ class DateTimer extends Field
      *
      * @param array $presets An array of preset date values
      *
-     * @return $this
+     * @return static
      */
-    public function withQuickDates(array $presets): self
+    public function withQuickDates(array $presets): static
     {
         $formattedPresets = collect($presets)
             ->map(fn ($value) => collect($value))
@@ -427,7 +446,7 @@ class DateTimer extends Field
      *
      * @param string $format
      *
-     * @return $this
+     * @return static
      */
     public function altFormat(string $format): static
     {

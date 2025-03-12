@@ -10,38 +10,38 @@ use Orchid\Screen\Field;
 /**
  * Class Input.
  *
- * @method Input accept($value = true)
- * @method Input accesskey($value = true)
- * @method Input autocomplete($value = true)
- * @method Input autofocus($value = true)
- * @method Input checked($value = true)
- * @method Input disabled($value = true)
- * @method Input form($value = true)
- * @method Input formaction($value = true)
- * @method Input formenctype($value = true)
- * @method Input formmethod($value = true)
- * @method Input formnovalidate($value = true)
- * @method Input formtarget($value = true)
- * @method Input max(int $value)
- * @method Input maxlength(int $value)
- * @method Input min(int $value)
- * @method Input minlength(int $value)
- * @method Input name(string $value = null)
- * @method Input pattern($value = true)
- * @method Input placeholder(string $value = null)
- * @method Input readonly($value = true)
- * @method Input required(bool $value = true)
- * @method Input size($value = true)
- * @method Input src($value = true)
- * @method Input step($value = true)
- * @method Input tabindex($value = true)
- * @method Input type($value = true)
- * @method Input value($value = true)
- * @method Input help(string $value = null)
- * @method Input popover(string $value = null)
- * @method Input mask($value = true)
- * @method Input title(string $value = null)
- * @method Input inputmode(string $value = null)
+ * @method static accept($value = true)
+ * @method static accesskey($value = true)
+ * @method static autocomplete($value = true)
+ * @method static autofocus($value = true)
+ * @method static checked($value = true)
+ * @method static disabled($value = true)
+ * @method static form($value = true)
+ * @method static formaction($value = true)
+ * @method static formenctype($value = true)
+ * @method static formmethod($value = true)
+ * @method static formnovalidate($value = true)
+ * @method static formtarget($value = true)
+ * @method static max(int $value)
+ * @method static maxlength(int $value)
+ * @method static min(int $value)
+ * @method static minlength(int $value)
+ * @method static name(string $value = null)
+ * @method static pattern($value = true)
+ * @method static placeholder(string $value = null)
+ * @method static readonly($value = true)
+ * @method static required(bool $value = true)
+ * @method static size($value = true)
+ * @method static src($value = true)
+ * @method static step($value = true)
+ * @method static tabindex($value = true)
+ * @method static type($value = true)
+ * @method static value($value = true)
+ * @method static help(string $value = null)
+ * @method static popover(string $value = null)
+ * @method static mask($value = true)
+ * @method static title(string $value = null)
+ * @method static inputmode(string $value = null)
  */
 class Input extends Field
 {
@@ -114,7 +114,7 @@ class Input extends Field
         });
     }
 
-    public function datalist(array $datalist = []): self
+    public function datalist(array $datalist = []): static
     {
         if (empty($datalist)) {
             return $this;

@@ -9,18 +9,18 @@ use Orchid\Screen\Field;
 /**
  * Class RadioButtons.
  *
- * @method RadioButtons accesskey($value = true)
- * @method RadioButtons autofocus($value = true)
- * @method RadioButtons disabled($value = true)
- * @method RadioButtons form($value = true)
- * @method RadioButtons name(string $value = null)
- * @method RadioButtons required(bool $value = true)
- * @method RadioButtons size($value = true)
- * @method RadioButtons tabindex($value = true)
- * @method RadioButtons help(string $value = null)
- * @method RadioButtons popover(string $value = null)
- * @method RadioButtons title(string $value = null)
- * @method RadioButtons options(array $value = [])
+ * @method statics accesskey($value = true)
+ * @method statics autofocus($value = true)
+ * @method statics disabled($value = true)
+ * @method statics form($value = true)
+ * @method statics name(string $value = null)
+ * @method statics required(bool $value = true)
+ * @method statics size($value = true)
+ * @method statics tabindex($value = true)
+ * @method statics help(string $value = null)
+ * @method statics popover(string $value = null)
+ * @method statics title(string $value = null)
+ * @method statics options(array $value = [])
  */
 class RadioButtons extends Field
 {
@@ -64,7 +64,7 @@ class RadioButtons extends Field
         $this->declarateActive();
     }
 
-    public function declarateActive(): self
+    public function declarateActive(): static
     {
         return $this->set('active', fn (string $key, ?string $value = null) => $key === $value);
     }

@@ -10,13 +10,13 @@ use Orchid\Support\Facades\Dashboard;
 /**
  * Class Button.
  *
- * @method Button name(string $name = null)
- * @method Button modal(string $modalName = null)
- * @method Button icon(string $icon = null)
- * @method Button class(string $classes = null)
- * @method Button confirm(string $confirm = true)
- * @method Button action(string $url)
- * @method Button disabled(bool $disabled = true)
+ * @method static name(string $name = null)
+ * @method static modal(string $modalName = null)
+ * @method static icon(string $icon = null)
+ * @method static class(string $classes = null)
+ * @method static confirm(string $confirm = true)
+ * @method static action(string $url)
+ * @method static disabled(bool $disabled = true)
  */
 class Button extends Action
 {
@@ -92,7 +92,7 @@ class Button extends Action
     /**
      * @return Button|\Orchid\Screen\Field
      */
-    public function novalidate(bool $novalidate = true)
+    public function novalidate(bool $novalidate = true): static
     {
         return $this->set('formnovalidate', var_export($novalidate, true));
     }
@@ -100,7 +100,7 @@ class Button extends Action
     /**
      * @return $this
      */
-    public function method(string $name, array $parameters = []): self
+    public function method(string $name, array $parameters = []): static
     {
         return $this
             ->set('method', $name)
@@ -114,7 +114,7 @@ class Button extends Action
      *
      * @return $this
      */
-    public function parameters(array|object $parameters): self
+    public function parameters(array|object $parameters): static
     {
         $parameters = is_array($parameters)
             ? collect($parameters)->filter(fn ($value) => filled($value))->all()
@@ -126,7 +126,7 @@ class Button extends Action
     /**
      * Method download serves as an alias for the `rawClick` method.
      */
-    public function download(bool $status = false): self
+    public function download(bool $status = false): static
     {
         return $this->rawClick($status);
     }
@@ -136,9 +136,9 @@ class Button extends Action
      * @param mixed        $parameters
      * @param bool         $absolute
      *
-     * @return $this
+     * @return static
      */
-    public function route($name, $parameters = [], $absolute = true): self
+    public function route($name, $parameters = [], $absolute = true): static
     {
         return $this->action(route($name, $parameters, $absolute));
     }

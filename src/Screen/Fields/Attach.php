@@ -15,19 +15,19 @@ use Orchid\Support\Init;
 /**
  * Class Attach.
  *
- * @method Attach accept(string $value)
- * @method Attach required($value = true)
- * @method Attach multiple($value = true)
- * @method Attach maxSize(int $value)
- * @method Attach placeholder(string $value)
- * @method Attach errorMaxSizeMessage(string $value)
- * @method Attach errorTypeMessage(string $value)
- * @method Attach help(string $value = null)
- * @method Attach title(string $value = null)
- * @method Attach uploadUrl(string $value = null)
- * @method Attach sortUrl(string $value = null)
- * @method Attach path(string $value = null)
- * @method Attach group(string $value = null)
+ * @method static accept(string $value)
+ * @method static required($value = true)
+ * @method static multiple($value = true)
+ * @method static maxSize(int $value)
+ * @method static placeholder(string $value)
+ * @method static errorMaxSizeMessage(string $value)
+ * @method static errorTypeMessage(string $value)
+ * @method static help(string $value = null)
+ * @method static title(string $value = null)
+ * @method static uploadUrl(string $value = null)
+ * @method static sortUrl(string $value = null)
+ * @method static path(string $value = null)
+ * @method static group(string $value = null)
  */
 class Attach extends Field
 {
@@ -102,9 +102,9 @@ class Attach extends Field
      *
      * @throws \Throwable if the specified storage disk is not found in configuration.
      *
-     * @return $this
+     * @return static
      */
-    public function storage(string $storage): self
+    public function storage(string $storage): static
     {
         $disk = config('filesystems.disks.'.$storage);
 
@@ -124,9 +124,9 @@ class Attach extends Field
      *
      * @throws \Throwable if the desired maximum file size exceeds server settings.
      *
-     * @return $this
+     * @return static
      */
-    protected function ensureMaxSizeWithinServerLimits(): self
+    protected function ensureMaxSizeWithinServerLimits(): static
     {
         $maxFileSize = $this->get('maxFileSize');
 
@@ -152,9 +152,9 @@ class Attach extends Field
      * This method filters the existing attachments by the specified group and
      * updates the field's value to include only attachments that belong to the group.
      *
-     * @return $this
+     * @return static
      */
-    protected function filterAttachmentsByGroup(): self
+    protected function filterAttachmentsByGroup(): static
     {
         $group = $this->get('group');
 
@@ -175,9 +175,9 @@ class Attach extends Field
      * This method fetches related attachments from the database based on their IDs,
      * sorts them by the `sort` field, and updates the field's value with the sorted attachments.
      *
-     * @return $this
+     * @return static
      */
-    protected function loadRelatedAttachments(): self
+    protected function loadRelatedAttachments(): static
     {
         $value = Arr::wrap($this->get('value'));
 

@@ -9,24 +9,24 @@ use Orchid\Screen\Field;
 /**
  * Class Radio.
  *
- * @method Radio accesskey($value = true)
- * @method Radio autofocus($value = true)
- * @method Radio checked($value = true)
- * @method Radio disabled($value = true)
- * @method Radio form($value = true)
- * @method Radio formaction($value = true)
- * @method Radio formenctype($value = true)
- * @method Radio formmethod($value = true)
- * @method Radio formnovalidate($value = true)
- * @method Radio formtarget($value = true)
- * @method Radio name(string $value = null)
- * @method Radio placeholder(string $value = null)
- * @method Radio readonly($value = true)
- * @method Radio required(bool $value = true)
- * @method Radio tabindex($value = true)
- * @method Radio value($value = true)
- * @method Radio help(string $value = null)
- * @method Radio title(string $value = null)
+ * @method static accesskey($value = true)
+ * @method static autofocus($value = true)
+ * @method static checked($value = true)
+ * @method static disabled($value = true)
+ * @method static form($value = true)
+ * @method static formaction($value = true)
+ * @method static formenctype($value = true)
+ * @method static formmethod($value = true)
+ * @method static formnovalidate($value = true)
+ * @method static formtarget($value = true)
+ * @method static name(string $value = null)
+ * @method static placeholder(string $value = null)
+ * @method static readonly($value = true)
+ * @method static required(bool $value = true)
+ * @method static tabindex($value = true)
+ * @method static value($value = true)
+ * @method static help(string $value = null)
+ * @method static title(string $value = null)
  */
 class Radio extends Field
 {
@@ -73,9 +73,9 @@ class Radio extends Field
     ];
 
     /**
-     * @return $this
+     * @return static
      */
-    protected function modifyValue(): self
+    protected function modifyValue(): static
     {
         return $this->checked($this->get('value') === $this->getOldValue());
     }
