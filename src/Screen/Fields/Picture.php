@@ -12,18 +12,18 @@ use Orchid\Support\Init;
 /**
  * Class Picture.
  *
- * @method Picture acceptedFiles(string $value = null)
- * @method Picture name(string $value = null)
- * @method Picture required(bool $value = true)
- * @method Picture size($value = true)
- * @method Picture src($value = true)
- * @method Picture value($value = true)
- * @method Picture help(string $value = null)
- * @method Picture popover(string $value = null)
- * @method Picture title(string $value = null)
- * @method Picture maxFileSize($value = true)
- * @method Picture storage($value = null)
- * @method Picture groups($value = true)
+* @method static acceptedFiles(string $value = null)
+* @method static name(string $value = null)
+* @method static required(bool $value = true)
+* @method static size($value = true)
+* @method static src($value = true)
+* @method static value($value = true)
+* @method static help(string $value = null)
+* @method static popover(string $value = null)
+* @method static title(string $value = null)
+* @method static maxFileSize($value = true)
+* @method static storage($value = null)
+* @method static groups($value = true)
  */
 class Picture extends Field
 {
@@ -96,7 +96,7 @@ class Picture extends Field
      * The stored value will be in the form
      * of id attachment.
      */
-    public function targetId(): self
+    public function targetId(): static
     {
         $this->set('target', 'id');
 
@@ -120,7 +120,7 @@ class Picture extends Field
      * The saved value will be in the form
      * of a full address before the file.
      */
-    public function targetUrl(): self
+    public function targetUrl(): static
     {
         $this->set('target', 'url');
 
@@ -131,7 +131,7 @@ class Picture extends Field
      * The saved value will be in the form
      * of a relative address before the file.
      */
-    public function targetRelativeUrl(): self
+    public function targetRelativeUrl(): static
     {
         $this->set('target', 'relativeUrl');
 
@@ -141,7 +141,7 @@ class Picture extends Field
     /**
      * Set custom attachment upload path
      */
-    public function path(string $path): self
+    public function path(string $path): static
     {
         return $this->set('path', $path);
     }

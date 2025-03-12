@@ -10,12 +10,12 @@ use Orchid\Screen\Field;
 /**
  * Class DateRange.
  *
- * @method DateRange form($value = true)
- * @method DateRange name(string $value = null)
- * @method DateRange value($value = true)
- * @method DateRange help(string $value = null)
- * @method DateRange popover(string $value = null)
- * @method DateRange title(string $value = null)
+* @method static form($value = true)
+* @method static name(string $value = null)
+* @method static value($value = true)
+* @method static help(string $value = null)
+* @method static popover(string $value = null)
+* @method static title(string $value = null)
  */
 class DateRange extends Field implements ComplexFieldConcern
 {
@@ -37,10 +37,11 @@ class DateRange extends Field implements ComplexFieldConcern
     /**
      * Disable native mobile pickers in favor of calendar
      *
+     * @param bool $disable
      *
-     * @return $this
+     * @return static
      */
-    public function disableMobile(bool $disable = true): self
+    public function disableMobile(bool $disable = true): static
     {
         $this->set('data-datetime-disable-mobile', var_export($disable, true));
 

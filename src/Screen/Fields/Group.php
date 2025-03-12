@@ -78,9 +78,9 @@ class Group implements Fieldable, Groupable
      * The number of columns is determined by counting the elements in the group,
      * and a repeat function is used to apply `max-content` for each column.
      *
-     * @return $this Returns the current instance for method chaining.
+     * @return static Returns the current instance for method chaining.
      */
-    public function autoWidth(): self
+    public function autoWidth(): static
     {
         $countColumns = count($this->get('group'));
 
@@ -95,9 +95,9 @@ class Group implements Fieldable, Groupable
      * By setting the width columns to null, it allows for a responsive layout
      * that adjusts based on screen size.
      *
-     * @return $this Returns the current instance for method chaining.
+     * @return static Returns the current instance for method chaining.
      */
-    public function fullWidth(): self
+    public function fullWidth(): static
     {
         return $this->set('widthColumns', null);
     }
@@ -134,19 +134,20 @@ class Group implements Fieldable, Groupable
      *                         for the column widths. This should conform
      *                         to the CSS `grid-template-columns` specification.
      *
-     * @return $this Returns the current instance for method chaining.
+     * @return static Returns the current instance for method chaining.
      */
-    public function widthColumns(string $template): self
+    public function widthColumns(string $template): static
     {
         return $this->set('widthColumns', $template);
     }
 
     /**
-     * @param mixed $value
+     * @param string $key
+     * @param mixed  $value
      *
      * @return static
      */
-    public function set(string $key, $value = true): self
+    public function set(string $key, $value = true): static
     {
         $this->attributes[$key] = $value;
 
@@ -169,9 +170,11 @@ class Group implements Fieldable, Groupable
     }
 
     /**
-     * @return $this
+     * @param string $name
+     *
+     * @return static
      */
-    public function form(string $name): self
+    public function form(string $name): static
     {
         $group = array_map(fn ($field) => $field->form($name), $this->getGroup());
 
@@ -184,9 +187,9 @@ class Group implements Fieldable, Groupable
      * This method sets the vertical alignment of the columns to the baseline,
      * ensuring that the text aligns according to the baseline of the content.
      *
-     * @return $this Returns the current instance for method chaining.
+     * @return static Returns the current instance for method chaining.
      */
-    public function alignBaseLine(): self
+    public function alignBaseLine(): static
     {
         return $this->set('align', 'align-items-baseline');
     }
@@ -197,9 +200,9 @@ class Group implements Fieldable, Groupable
      * This method sets the vertical alignment of the columns to the center,
      * ensuring that all columns are aligned in the middle of the container.
      *
-     * @return $this Returns the current instance for method chaining.
+     * @return static Returns the current instance for method chaining.
      */
-    public function alignCenter(): self
+    public function alignCenter(): static
     {
         return $this->set('align', 'align-items-center');
     }
@@ -210,9 +213,9 @@ class Group implements Fieldable, Groupable
      * This method sets the vertical alignment of the columns to the end,
      * positioning all columns at the bottom of the container.
      *
-     * @return $this Returns the current instance for method chaining.
+     * @return static Returns the current instance for method chaining.
      */
-    public function alignEnd(): self
+    public function alignEnd(): static
     {
         return $this->set('align', 'align-items-end');
     }
@@ -223,9 +226,9 @@ class Group implements Fieldable, Groupable
      * This method sets the vertical alignment of the columns to the start,
      * positioning all columns at the top of the container.
      *
-     * @return $this Returns the current instance for method chaining.
+     * @return static Returns the current instance for method chaining.
      */
-    public function alignStart(): self
+    public function alignStart(): static
     {
         return $this->set('align', 'align-items-start');
     }
@@ -236,9 +239,9 @@ class Group implements Fieldable, Groupable
     }
 
     /**
-     * @return $this
+     * @return static
      */
-    public function toEnd(): self
+    public function toEnd(): static
     {
         return $this->set('itemToEnd', true);
     }

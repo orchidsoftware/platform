@@ -13,20 +13,20 @@ use Orchid\Screen\Field;
 /**
  * Class Select.
  *
- * @method Select accesskey($value = true)
- * @method Select autofocus($value = true)
- * @method Select disabled($value = true)
- * @method Select form($value = true)
- * @method Select name(string $value = null)
- * @method Select required(bool $value = true)
- * @method Select size($value = true)
- * @method Select tabindex($value = true)
- * @method Select help(string $value = null)
- * @method Select popover(string $value = null)
- * @method Select options($value = null)
- * @method Select title(string $value = null)
- * @method Select maximumSelectionLength(int $value = 0)
- * @method Select allowAdd($value = true)
+* @method static accesskey($value = true)
+* @method static autofocus($value = true)
+* @method static disabled($value = true)
+* @method static form($value = true)
+* @method static name(string $value = null)
+* @method static required(bool $value = true)
+* @method static size($value = true)
+* @method static tabindex($value = true)
+* @method static help(string $value = null)
+* @method static popover(string $value = null)
+* @method static options($value = null)
+* @method static title(string $value = null)
+* @method static maximumSelectionLength(int $value = 0)
+* @method static allowAdd($value = true)
  */
 class Select extends Field implements ComplexFieldConcern
 {
@@ -80,7 +80,7 @@ class Select extends Field implements ComplexFieldConcern
     /**
      * @param string|Model $model
      */
-    public function fromModel($model, string $name, ?string $key = null): self
+    public function fromModel($model, string $name, ?string $key = null): static
     {
         /* @var $model Model */
         $model = is_object($model) ? $model : new $model;
@@ -95,9 +95,9 @@ class Select extends Field implements ComplexFieldConcern
      *
      * @throws \ReflectionException
      *
-     * @return self
+     * @return static
      */
-    public function fromEnum(string $enum, ?string $displayName = null): self
+    public function fromEnum(string $enum, ?string $displayName = null): static
     {
         $reflection = new \ReflectionEnum($enum);
         $options = [];
@@ -124,7 +124,7 @@ class Select extends Field implements ComplexFieldConcern
     /**
      * @param Builder|Model $model
      */
-    private function setFromEloquent($model, string $name, string $key): self
+    private function setFromEloquent($model, string $name, string $key): static
     {
         $options = $model->pluck($name, $key);
 
@@ -145,14 +145,14 @@ class Select extends Field implements ComplexFieldConcern
         });
     }
 
-    public function fromQuery(Builder $builder, string $name, ?string $key = null): self
+    public function fromQuery(Builder $builder, string $name, ?string $key = null): static
     {
         $key = $key ?? $builder->getModel()->getKeyName();
 
         return $this->setFromEloquent($builder->get(), $name, $key);
     }
 
-    public function empty(string $name = '', string $key = ''): self
+    public function empty(string $name = '', string $key = ''): static
     {
         return $this->addBeforeRender(function () use ($name, $key) {
             $options = $this->get('options', []);
@@ -169,9 +169,9 @@ class Select extends Field implements ComplexFieldConcern
     }
 
     /**
-     * @return self
+     * @return static
      */
-    public function taggable()
+    public function taggable(): static
     {
         return $this->set('tags', true);
     }

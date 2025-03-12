@@ -9,14 +9,14 @@ use Orchid\Screen\Field;
 /**
  * Class Map.
  *
- * @method Map name(string $value = null)
- * @method Map value($value = true)
- * @method Map help(string $value = null)
- * @method Map popover(string $value = null)
- * @method Map zoom($value = true)
- * @method Map height($value = '300px')
- * @method Map title(string $value = null)
- * @method Map required(bool $value = true)
+* @method static name(string $value = null)
+* @method static value($value = true)
+* @method static help(string $value = null)
+* @method static popover(string $value = null)
+* @method static zoom($value = true)
+* @method static height($value = '300px')
+* @method static title(string $value = null)
+* @method static required(bool $value = true)
  */
 class Map extends Field
 {

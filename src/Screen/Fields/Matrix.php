@@ -9,10 +9,10 @@ use Orchid\Screen\Field;
 /**
  * Class Matrix.
  *
- * @method Matrix columns(array $columns)
- * @method Matrix keyValue(bool $keyValue)
- * @method Matrix title(string $value = null)
- * @method Matrix help(string $value = null)
+* @method static columns(array $columns)
+* @method static keyValue(bool $keyValue)
+* @method static title(string $value = null)
+* @method static help(string $value = null)
  */
 class Matrix extends Field
 {
@@ -83,17 +83,21 @@ class Matrix extends Field
     }
 
     /**
-     * @return Field|Matrix
+     * @param int $count
+     *
+     * @return static
      */
-    public function maxRows(int $count)
+    public function maxRows(int $count): static
     {
         return $this->set('maxRows', $count);
     }
 
     /**
-     * @return Field|Matrix
+     * @param bool $value
+     *
+     * @return static
      */
-    public function removableRows(bool $value = true)
+    public function removableRows(bool $value = true): static
     {
         return $this->set('removableRows', $value);
     }
@@ -101,9 +105,9 @@ class Matrix extends Field
     /**
      * @param Field[] $fields
      *
-     * @return $this
+     * @return static
      */
-    public function fields(array $fields = []): self
+    public function fields(array $fields = []): static
     {
         return $this->set('fields', $fields);
     }
@@ -111,9 +115,9 @@ class Matrix extends Field
     /**
      * @param string $label
      *
-     * @return self
+     * @return static
      */
-    public function addRowLabel(string $label): self
+    public function addRowLabel(string $label): static
     {
         return $this->set('addRowLabel', $label);
     }
