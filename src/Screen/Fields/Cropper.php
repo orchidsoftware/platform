@@ -173,7 +173,6 @@ class Cropper extends Picture
      *
      * @param bool $enabled - Whether to enable image smoothing.
      */
-
     public function imageSmoothingEnabled(bool $enabled = true): static
     {
         $this->set('imageSmoothingEnabled', $enabled);

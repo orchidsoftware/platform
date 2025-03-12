@@ -9,18 +9,18 @@ use Orchid\Screen\Field;
 /**
  * Class RadioButtons.
  *
-* @method statics accesskey($value = true)
-* @method statics autofocus($value = true)
-* @method statics disabled($value = true)
-* @method statics form($value = true)
-* @method statics name(string $value = null)
-* @method statics required(bool $value = true)
-* @method statics size($value = true)
-* @method statics tabindex($value = true)
-* @method statics help(string $value = null)
-* @method statics popover(string $value = null)
-* @method statics title(string $value = null)
-* @method statics options(array $value = [])
+ * @method statics accesskey($value = true)
+ * @method statics autofocus($value = true)
+ * @method statics disabled($value = true)
+ * @method statics form($value = true)
+ * @method statics name(string $value = null)
+ * @method statics required(bool $value = true)
+ * @method statics size($value = true)
+ * @method statics tabindex($value = true)
+ * @method statics help(string $value = null)
+ * @method statics popover(string $value = null)
+ * @method statics title(string $value = null)
+ * @method statics options(array $value = [])
  */
 class RadioButtons extends Field
 {

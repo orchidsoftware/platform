@@ -13,20 +13,20 @@ use Orchid\Screen\Field;
 /**
  * Class Select.
  *
-* @method static accesskey($value = true)
-* @method static autofocus($value = true)
-* @method static disabled($value = true)
-* @method static form($value = true)
-* @method static name(string $value = null)
-* @method static required(bool $value = true)
-* @method static size($value = true)
-* @method static tabindex($value = true)
-* @method static help(string $value = null)
-* @method static popover(string $value = null)
-* @method static options($value = null)
-* @method static title(string $value = null)
-* @method static maximumSelectionLength(int $value = 0)
-* @method static allowAdd($value = true)
+ * @method static accesskey($value = true)
+ * @method static autofocus($value = true)
+ * @method static disabled($value = true)
+ * @method static form($value = true)
+ * @method static name(string $value = null)
+ * @method static required(bool $value = true)
+ * @method static size($value = true)
+ * @method static tabindex($value = true)
+ * @method static help(string $value = null)
+ * @method static popover(string $value = null)
+ * @method static options($value = null)
+ * @method static title(string $value = null)
+ * @method static maximumSelectionLength(int $value = 0)
+ * @method static allowAdd($value = true)
  */
 class Select extends Field implements ComplexFieldConcern
 {

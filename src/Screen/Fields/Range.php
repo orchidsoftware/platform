@@ -9,19 +9,19 @@ use Orchid\Screen\Field;
 /**
  * Class Range
  *
-* @method static accesskey($value = true)
-* @method static autofocus($value = true)
-* @method static disabled($value = true)
-* @method static form($value = true)
-* @method static name(string $value = null)
-* @method static required(bool $value = true)
-* @method static tabindex($value = true)
-* @method static help(string $value = null)
-* @method static popover(string $value = null)
-* @method static title(string $value = null)
-* @method static step($value = true)
-* @method static max(int $value)
-* @method static min(int $value)
+ * @method static accesskey($value = true)
+ * @method static autofocus($value = true)
+ * @method static disabled($value = true)
+ * @method static form($value = true)
+ * @method static name(string $value = null)
+ * @method static required(bool $value = true)
+ * @method static tabindex($value = true)
+ * @method static help(string $value = null)
+ * @method static popover(string $value = null)
+ * @method static title(string $value = null)
+ * @method static step($value = true)
+ * @method static max(int $value)
+ * @method static min(int $value)
  */
 class Range extends Field
 {

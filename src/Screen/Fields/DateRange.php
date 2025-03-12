@@ -10,12 +10,12 @@ use Orchid\Screen\Field;
 /**
  * Class DateRange.
  *
-* @method static form($value = true)
-* @method static name(string $value = null)
-* @method static value($value = true)
-* @method static help(string $value = null)
-* @method static popover(string $value = null)
-* @method static title(string $value = null)
+ * @method static form($value = true)
+ * @method static name(string $value = null)
+ * @method static value($value = true)
+ * @method static help(string $value = null)
+ * @method static popover(string $value = null)
+ * @method static title(string $value = null)
  */
 class DateRange extends Field implements ComplexFieldConcern
 {

@@ -12,18 +12,18 @@ use Orchid\Support\Init;
 /**
  * Class Picture.
  *
-* @method static acceptedFiles(string $value = null)
-* @method static name(string $value = null)
-* @method static required(bool $value = true)
-* @method static size($value = true)
-* @method static src($value = true)
-* @method static value($value = true)
-* @method static help(string $value = null)
-* @method static popover(string $value = null)
-* @method static title(string $value = null)
-* @method static maxFileSize($value = true)
-* @method static storage($value = null)
-* @method static groups($value = true)
+ * @method static acceptedFiles(string $value = null)
+ * @method static name(string $value = null)
+ * @method static required(bool $value = true)
+ * @method static size($value = true)
+ * @method static src($value = true)
+ * @method static value($value = true)
+ * @method static help(string $value = null)
+ * @method static popover(string $value = null)
+ * @method static title(string $value = null)
+ * @method static maxFileSize($value = true)
+ * @method static storage($value = null)
+ * @method static groups($value = true)
  */
 class Picture extends Field
 {
