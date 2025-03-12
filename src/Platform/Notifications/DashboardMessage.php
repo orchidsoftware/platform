@@ -5,21 +5,18 @@ declare(strict_types=1);
 namespace Orchid\Platform\Notifications;
 
 use Carbon\Carbon;
-use Illuminate\Notifications\Messages\DatabaseMessage;
+use Illuminate\Notifications\Notification;
 use Orchid\Support\Color;
+use Illuminate\Contracts\Support\Arrayable;
 
-class DashboardMessage extends DatabaseMessage
+class DashboardMessage extends Notification implements Arrayable
 {
     /**
      * The data that should be stored with the notification.
      *
      * @var array
      */
-    public $data = [
-        'title'   => '',
-        'action'  => '#', // URL for the "View" button
-        'message' => '',
-    ];
+    public array $data = [];
 
     /**
      * Create a new instance of DashboardMessage with the given data.
@@ -29,11 +26,14 @@ class DashboardMessage extends DatabaseMessage
     public function __construct(array $data = [])
     {
         $default = [
-            'time' => Carbon::now(), // The timestamp this message was created.
-            'type' => Color::INFO->name(), // The type of message (INFO, WARNING, SUCCESS, or ERROR).
+            'title'   => '',
+            'action'  => '#', // URL for the "View" button
+            'message' => '',
+            'time'    => Carbon::now(), // The timestamp this message was created.
+            'type'    => Color::INFO->name(), // The type of message (INFO, WARNING, SUCCESS, or ERROR).
         ];
 
-        parent::__construct(array_merge($default, $data));
+        $this->data = array_merge($default, $data);
     }
 
     /**
@@ -91,5 +91,37 @@ class DashboardMessage extends DatabaseMessage
         $this->data['type'] = $color->name();
 
         return $this;
+    }
+
+    /**
+     * Get the notification channels.
+     *
+     * @param mixed $notifiable
+     *
+     * @return array
+     */
+    public function via(mixed $notifiable)
+    {
+        return [DashboardChannel::class];
+    }
+
+    /**
+     * Get the instance as an array for dashboard.
+     *
+     * @return array
+     */
+    public function toDashboard(): array
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * Convert the notification instance to an array.
+     *
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return $this->data;
     }
 }
