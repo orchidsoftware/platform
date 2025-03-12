@@ -2,7 +2,7 @@
     "A good password is at least 15 characters or at least 8 characters long, including a number and a lowercase letter.": "Gowy açar sözi, azyndan 8 ýa-da 15 simboldan ybarat bolup, öz içine san we harplary alýandyr.",
     "A privilege is necessary to perform certain tasks and operations in an area.": "Belli bir amallary we meseleleri ýerine ýetirmek üçin artykmaçlyk zerurdyr.",
     "A Role defines a set of tasks a user assigned the role is allowed to perform.": "Rol bu, ulanyjynyň ýerine ýetirmegine rugsat berlen meseleleriň toplumyny kesgitleýär.",
-    "A role is a collection of privileges (of possibly different services like the Users service, Moderator, and so on) that grants users with that role the ability to perform certain tasks or operations.": "Rol, ulanyjylara belli bir meseleleri ýa-da amallary ýerine ýetirmek ukybyny berýän artykmaçlyklar ýygyndysydyr (Ulanyjylar hyzmaty, Moderator we ş.m. ýaly dürli hyzmatlardan bolmagy mümkin).",
+    "Defines a set of privileges that grant users access to various services and allow them to perform specific tasks or operations.": "Rol, ulanyjylara belli bir meseleleri ýa-da amallary ýerine ýetirmek ukybyny berýän artykmaçlyklar ýygyndysydyr (Ulanyjylar hyzmaty, Moderator we ş.m. ýaly dürli hyzmatlardan bolmagy mümkin).",
     "A comprehensive list of all roles, including their permissions and associated users.": "Giriş hukuklary",
     "Actions": "Amallar",
     "Actual name in the system": "Ulgamdaky hakyky ady",

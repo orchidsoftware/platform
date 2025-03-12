@@ -2,7 +2,7 @@
     "A good password is at least 15 characters or at least 8 characters long, including a number and a lowercase letter.": "Хороший пароль должен содержать не менее 15 или не менее 8 символов, включая цифру и строчную букву.",
     "A privilege is necessary to perform certain tasks and operations in an area.": "Привилегия необходима для выполнения определенных задач и операций в области.",
     "A Role defines a set of tasks a user assigned the role is allowed to perform.": "Роль определяет набор задач, которые разрешено выполнять пользователю с назначенной ролью.",
-    "A role is a collection of privileges (of possibly different services like the Users service, Moderator, and so on) that grants users with that role the ability to perform certain tasks or operations.": "Роль - это набор привилегий (возможно, различных служб, таких как служба «Пользователи», «Модератор» и т. Д.), Которые предоставляют пользователям с этой ролью возможность выполнять определенные задачи или операции.",
+    "Defines a set of privileges that grant users access to various services and allow them to perform specific tasks or operations.": "Определяет набор привилегий, предоставляющих пользователям доступ к различным службам и возможность выполнять определённые задачи или операции.",
     "A comprehensive list of all roles, including their permissions and associated users.": "Права доступа",
     "Actions": "Действия",
     "Actual name in the system": "Реальное имя в системе",

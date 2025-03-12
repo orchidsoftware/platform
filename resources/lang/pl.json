@@ -2,7 +2,7 @@
     "A good password is at least 15 characters or at least 8 characters long, including a number and a lowercase letter.": "Dobre hasło powinno mieć co najmniej 15 znaków lub co najmniej 8 znaków, zawierać cyfrę i małą literę.",
     "A privilege is necessary to perform certain tasks and operations in an area.": "Uprawnienie jest niezbędne do wykonywania określonych zadań i operacji w danej dziedzinie.",
     "A Role defines a set of tasks a user assigned the role is allowed to perform.": "Rola definiuje zestaw zadań, które użytkownik przypisany do roli może wykonywać.",
-    "A role is a collection of privileges (of possibly different services like the Users service, Moderator, and so on) that grants users with that role the ability to perform certain tasks or operations.": "Rola to zbiór uprawnień (ewentualnie różnych usług, takich jak usługa Użytkownicy, Moderator, itp.), które umożliwiają użytkownikom z tą rolą wykonywanie określonych zadań i operacji.",
+    "Defines a set of privileges that grant users access to various services and allow them to perform specific tasks or operations.": "Rola to zbiór uprawnień (ewentualnie różnych usług, takich jak usługa Użytkownicy, Moderator, itp.), które umożliwiają użytkownikom z tą rolą wykonywanie określonych zadań i operacji.",
     "A comprehensive list of all roles, including their permissions and associated users.": "Pełna lista wszystkich ról, wraz z uprawnieniami i przypisanymi użytkownikami.",
     "Actions": "Akcje",
     "Actual name in the system": "Aktualna nazwa w systemie",

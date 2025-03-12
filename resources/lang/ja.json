@@ -4,7 +4,7 @@
     "A good password is at least 15 characters or at least 8 characters long, including a number and a lowercase letter.": "良いパスワードは、数字と小文字を含む15文字以上または8文字以上です。",
     "A privilege is necessary to perform certain tasks and operations in an area.": "特定のタスクや操作をエリアで実行するには、特権が必要です。",
     "A Role defines a set of tasks a user assigned the role is allowed to perform.": "ロールは、そのロールが割り当てられたユーザーが実行できるタスクのセットを定義します。",
-    "A role is a collection of privileges (of possibly different services like the Users service, Moderator, and so on) that grants users with that role the ability to perform certain tasks or operations.": "ロールは、そのロールを持つユーザーに特定のタスクや操作を実行する能力を付与する特権の集合体です（Users service、Moderatorなどの可能性のある異なるサービス）。",
+    "Defines a set of privileges that grant users access to various services and allow them to perform specific tasks or operations.": "ロールは、そのロールを持つユーザーに特定のタスクや操作を実行する能力を付与する特権の集合体です（Users service、Moderatorなどの可能性のある異なるサービス）。",
     "Access Controls": "アクセス制御",
     "Actions": "アクション",
     "Actual name in the system": "システム内の実際の名前",

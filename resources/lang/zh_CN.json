@@ -149,7 +149,7 @@
     "Charts": "图表工具",
     "Cards": "卡片",
     "Actions": "动作",
-    "A role is a collection of privileges (of possibly different services like the Users service, Moderator, and so on) that grants users with that role the ability to perform certain tasks or operations.": "角色是权限的集合（可能是客服、管理员等不同的服务），授予具有该角色的会员执行某些任务或操作的能力。",
+    "Defines a set of privileges that grant users access to various services and allow them to perform specific tasks or operations.": "角色是权限的集合（可能是客服、管理员等不同的服务），授予具有该角色的会员执行某些任务或操作的能力。",
     "Permission/Privilege": "权限/特权",
     "A privilege is necessary to perform certain tasks and operations in an area.": "特权是在一个区域中执行某些任务和操作必需的。",
     "Main": "主要",

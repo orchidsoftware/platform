@@ -76,7 +76,7 @@
   "A good password is at least 15 characters or at least 8 characters long, including a number and a lowercase letter.": "كلمة المرور الجيدة تتكون من 15 حرفًا على الأقل أو 8 أحرف على الأقل ، بما في ذلك رقم وحرف صغير.",
   "A privilege is necessary to perform certain tasks and operations in an area.": "يعد الامتياز ضروريًا لأداء مهام وعمليات معينة في منطقة ما.",
   "A Role defines a set of tasks a user assigned the role is allowed to perform.": "يحدد الدور مجموعة من المهام التي يُسمح للمستخدم المعين للدور بتنفيذها.",
-  "A role is a collection of privileges (of possibly different services like the Users service, Moderator, and so on) that grants users with that role the ability to perform certain tasks or operations.": "الدور عبارة عن مجموعة من الامتيازات (ربما لخدمات مختلفة مثل خدمة المستخدمين ، الوسيط ، وما إلى ذلك) التي تمنح المستخدمين الذين لديهم هذا الدور القدرة على أداء مهام أو عمليات معينة.",
+  "Defines a set of privileges that grant users access to various services and allow them to perform specific tasks or operations.": "الدور عبارة عن مجموعة من الامتيازات (ربما لخدمات مختلفة مثل خدمة المستخدمين ، الوسيط ، وما إلى ذلك) التي تمنح المستخدمين الذين لديهم هذا الدور القدرة على أداء مهام أو عمليات معينة.",
   "A comprehensive list of all roles, including their permissions and associated users.": "حقوق الوصول",
   "Actions": "الإجراءات",
   "Actual name in the system": "الاسم الفعلي في النظام",
