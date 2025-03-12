@@ -12,7 +12,7 @@ use Orchid\Tests\TestFeatureCase;
 
 class NotificationTest extends TestFeatureCase
 {
-    public function testNotificationForInnerClass():void
+    public function testNotificationForInnerClass(): void
     {
         $user = $this->createAdminUser();
         $user->notify(DashboardMessage::make()
@@ -31,7 +31,6 @@ class NotificationTest extends TestFeatureCase
             ->assertSee('Simple Notification')
             ->assertSee('Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
     }
-
 
     public function testNotificationForNotificationClass(): void
     {

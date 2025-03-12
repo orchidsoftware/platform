@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Platform\Notifications;
 
 use Carbon\Carbon;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Notifications\Notification;
 use Orchid\Support\Color;
-use Illuminate\Contracts\Support\Arrayable;
 
 class DashboardMessage extends Notification implements Arrayable
 {
