@@ -37,6 +37,18 @@ class DashboardMessage extends Notification implements Arrayable
     }
 
     /**
+     * Create a new element.
+     *
+     * @param mixed ...$arguments
+     *
+     * @return static
+     */
+    public static function make(...$arguments): static
+    {
+        return new static(...$arguments);
+    }
+
+    /**
      * Set the title of the message.
      *
      * @param string $title The title to be set.

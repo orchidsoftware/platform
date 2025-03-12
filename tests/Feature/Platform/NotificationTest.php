@@ -19,7 +19,7 @@ class NotificationTest extends TestFeatureCase
             ->title('Simple Notification')
             ->action('#')
             ->message('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
-            ->type(Color::INFO->name())
+            ->type(Color::INFO)
         );
 
         $response = $this
