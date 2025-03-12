@@ -13,6 +13,7 @@ use Orchid\Screen\Field;
  * @method static keyValue(bool $keyValue)
  * @method static title(string $value = null)
  * @method static help(string $value = null)
+ * @method static sizes(array $sizes)
  */
 class Matrix extends Field
 {
@@ -38,6 +39,7 @@ class Matrix extends Field
             'key',
             'value',
         ],
+        'sizes'             => false,
     ];
 
     /**

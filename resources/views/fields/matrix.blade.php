@@ -8,7 +8,7 @@
         <thead>
         <tr>
             @foreach($columns as $key => $column)
-                <th scope="col" class="text-capitalize">
+                <th scope="col" class="text-capitalize {{ $sizes !== false ? 'col-' . ($sizes[$column] ?? '') : '' }}">
                     {{ is_int($key) ? $column : $key }}
                 </th>
             @endforeach
