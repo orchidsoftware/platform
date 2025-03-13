@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.47.0 - 2025-03-13
+
+### Added
+- Support for simple persistent notification sending [#2968](https://github.com/orchidsoftware/platform/pull/2968)
+- Smoothing method for `Cropper` [#2966](https://github.com/orchidsoftware/platform/pull/2966)
+
+### Changed
+- Improved default text for the edit role screen
+- Updated triggers for GitHub Actions
+- Refactored `Field` class methods to support fluent chaining with a `static` return type [#2967](https://github.com/orchidsoftware/platform/pull/2967)
+
 ## 14.46.1 - 2025-03-01
 
 ### Fixed
