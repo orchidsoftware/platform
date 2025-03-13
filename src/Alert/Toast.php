@@ -68,9 +68,23 @@ class Toast extends Alert
     }
 
     /**
+     * Make the toast notification persistent.
+     *
+     * Disables auto-hide, keeping the notification visible until manually dismissed.
+     *
+     * @param bool $persistent Whether the toast should remain visible indefinitely.
+     *
+     * @return static
+     */
+    public function persistent(bool $persistent = true): static
+    {
+        return $this->autoHide(! $persistent);
+    }
+
+    /**
      * Set the delay option for the toast notification.
      *
-     * @param int $delay The delay in seconds
+     * @param int $delay The delay in milliseconds before hiding the toast.
      *
      * @return static
      */
@@ -79,5 +93,19 @@ class Toast extends Alert
         $this->session->flash(static::SESSION_DELAY, $delay);
 
         return $this;
+    }
+
+    /**
+     * Set the toast notification delay in seconds.
+     *
+     * Converts seconds to milliseconds and applies the delay.
+     *
+     * @param int $seconds Delay duration in seconds.
+     *
+     * @return static
+     */
+    public function seconds(int $seconds): static
+    {
+        return $this->delay($seconds * 1000);
     }
 }
