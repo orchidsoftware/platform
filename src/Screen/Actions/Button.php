@@ -10,13 +10,13 @@ use Orchid\Support\Facades\Dashboard;
 /**
  * Class Button.
  *
- * @method static name(string $name = null)
- * @method static modal(string $modalName = null)
- * @method static icon(string $icon = null)
- * @method static class(string $classes = null)
- * @method static confirm(string $confirm = true)
- * @method static action(string $url)
- * @method static disabled(bool $disabled = true)
+ * @method $this name(string $name = null)
+ * @method $this modal(string $modalName = null)
+ * @method $this icon(string $icon = null)
+ * @method $this class(string $classes = null)
+ * @method $this confirm(string $confirm = true)
+ * @method $this action(string $url)
+ * @method $this disabled(bool $disabled = true)
  */
 class Button extends Action
 {

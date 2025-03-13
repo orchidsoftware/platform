@@ -9,10 +9,10 @@ use Orchid\Screen\Field;
 /**
  * Class Matrix.
  *
- * @method static columns(array $columns)
- * @method static keyValue(bool $keyValue)
- * @method static title(string $value = null)
- * @method static help(string $value = null)
+ * @method $this columns(array $columns)
+ * @method $this keyValue(bool $keyValue)
+ * @method $this title(string $value = null)
+ * @method $this help(string $value = null)
  */
 class Matrix extends Field
 {

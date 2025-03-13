@@ -15,19 +15,19 @@ use Orchid\Support\Init;
 /**
  * Class Attach.
  *
- * @method static accept(string $value)
- * @method static required($value = true)
- * @method static multiple($value = true)
- * @method static maxSize(int $value)
- * @method static placeholder(string $value)
- * @method static errorMaxSizeMessage(string $value)
- * @method static errorTypeMessage(string $value)
- * @method static help(string $value = null)
- * @method static title(string $value = null)
- * @method static uploadUrl(string $value = null)
- * @method static sortUrl(string $value = null)
- * @method static path(string $value = null)
- * @method static group(string $value = null)
+ * @method $this accept(string $value)
+ * @method $this required($value = true)
+ * @method $this multiple($value = true)
+ * @method $this maxSize(int $value)
+ * @method $this placeholder(string $value)
+ * @method $this errorMaxSizeMessage(string $value)
+ * @method $this errorTypeMessage(string $value)
+ * @method $this help(string $value = null)
+ * @method $this title(string $value = null)
+ * @method $this uploadUrl(string $value = null)
+ * @method $this sortUrl(string $value = null)
+ * @method $this path(string $value = null)
+ * @method $this group(string $value = null)
  */
 class Attach extends Field
 {

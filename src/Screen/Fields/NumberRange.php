@@ -10,11 +10,11 @@ use Orchid\Screen\Field;
 /**
  * Class NumberRange.
  *
- * @method static form($value = true)
- * @method static name(string $value = null)
- * @method static help(string $value = null)
- * @method static popover(string $value = null)
- * @method static title(string $value = null)
+ * @method $this form($value = true)
+ * @method $this name(string $value = null)
+ * @method $this help(string $value = null)
+ * @method $this popover(string $value = null)
+ * @method $this title(string $value = null)
  */
 class NumberRange extends Field implements ComplexFieldConcern
 {
