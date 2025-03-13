@@ -71,6 +71,26 @@ class AlertTest extends TestUnitCase
         self::assertEquals('3000', session('toast_notification.delay'));
     }
 
+    public function testToastShouldBePersistent(): void
+    {
+        Toast::info('Hello Alexandr!')
+            ->persistent();
+
+        self::assertEquals('Hello Alexandr!', session('toast_notification.message'));
+        self::assertEquals('false', session('toast_notification.auto_hide'));
+    }
+
+    public function testToastShouldSetDelayAndBePersistent(): void
+    {
+        Toast::info('Hello Alexandr!')
+            ->seconds(4)
+            ->persistent();
+
+        self::assertEquals('Hello Alexandr!', session('toast_notification.message'));
+        self::assertEquals('4000', session('toast_notification.delay'));
+    }
+
+
     public function testShouldFlashViewAlert(): void
     {
         Alert::view('exemplar::alert', Color::INFO, [
