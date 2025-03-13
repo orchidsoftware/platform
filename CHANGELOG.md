@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.48.0 - 2025-03-13
+
+### Added
+- `persistent` and `seconds` methods to Toast notification [#2974](https://github.com/orchidsoftware/platform/pull/2974)
+
+### Changed
+- Improve side menu notification badge and icon size
+
+### Fixed
+- Correct title for demo layouts page
+
 ## 14.47.0 - 2025-03-13
 
 ### Added
