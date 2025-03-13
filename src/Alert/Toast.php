@@ -56,6 +56,8 @@ class Toast extends Alert
     }
 
     /**
+     * @alias persistent() method
+     *
      * Disable the auto hide option for the toast notification.
      *
      * @param bool $disable
@@ -64,7 +66,7 @@ class Toast extends Alert
      */
     public function disableAutoHide(bool $disable = true): static
     {
-        return $this->autoHide(! $disable);
+        return $this->persistent($disable);
     }
 
     /**
