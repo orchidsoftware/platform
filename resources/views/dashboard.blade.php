@@ -19,7 +19,7 @@
 
             @include('platform::partials.search')
 
-            <ul class="nav flex-column mb-md-1 mb-auto ps-0">
+            <ul class="nav flex-column mb-md-1 mb-auto ps-0 gap-1">
                 {!! Dashboard::renderMenu() !!}
             </ul>
 

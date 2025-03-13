@@ -12,7 +12,8 @@
         <x-orchid-icon path="bs.circle-fill" width="0.4em" height="0.4em" />
     </template>
 
-    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" data-notification-target="badge">
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-danger lh-1 aspect-ratio-1x1"
+          data-notification-target="badge">
     </span>
 </a>
 

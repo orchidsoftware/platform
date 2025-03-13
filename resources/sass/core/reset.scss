@@ -55,12 +55,16 @@ small, .small {
 }
 
 .badge {
-  &.up {
-    position: relative;
-    top: -10px;
-    padding: 3px 6px;
-    margin-left: -10px;
-  }
+    display: inline-flex;
+    align-items: center;
+    align-content: center;
+
+    &.up {
+        position: relative;
+        top: -10px;
+        padding: 3px 6px;
+        margin-left: -10px;
+    }
 }
 
 blockquote {
