@@ -90,7 +90,6 @@ class AlertTest extends TestUnitCase
         self::assertEquals('4000', session('toast_notification.delay'));
     }
 
-
     public function testShouldFlashViewAlert(): void
     {
         Alert::view('exemplar::alert', Color::INFO, [

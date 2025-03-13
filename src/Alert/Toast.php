@@ -73,6 +73,7 @@ class Toast extends Alert
      * Disables auto-hide, keeping the notification visible until manually dismissed.
      *
      * @param bool $persistent Whether the toast should remain visible indefinitely.
+     *
      * @return static
      */
     public function persistent(bool $persistent = true): static
@@ -100,6 +101,7 @@ class Toast extends Alert
      * Converts seconds to milliseconds and applies the delay.
      *
      * @param int $seconds Delay duration in seconds.
+     *
      * @return static
      */
     public function seconds(int $seconds): static
