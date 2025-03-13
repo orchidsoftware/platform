@@ -15,7 +15,7 @@ class TabMenuExample extends TabMenu
     protected function navigations(): iterable
     {
         return [
-            Menu::make('Overview layouts')
+            Menu::make('Layouts Overview')
                 ->route('platform.example.layouts'),
 
             Menu::make('Get Started')

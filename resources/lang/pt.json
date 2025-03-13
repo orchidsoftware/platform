@@ -156,6 +156,6 @@
   "Defines a set of privileges that grant users access to various services and allow them to perform specific tasks or operations.": "Uma função é uma coleção de privilégios que concede aos utilizadores com essa função a capacidade de executar certas tarefas ou operações.",
   "A privilege is necessary to perform certain tasks and operations in an area.": "Um privilégio é necessário para realizar certas tarefas e operações numa determinada área.",
   "Permission/Privilege": "Permissão/Privilégio",
-  "Overview layouts": "Visão geral de esquemas",
+  "Layouts Overview": "Visão geral de esquemas",
   "Form Controls": "Controlos de formulário"
 }
