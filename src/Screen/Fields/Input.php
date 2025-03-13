@@ -35,7 +35,7 @@ use Orchid\Screen\Field;
  * @method $this src($value = true)
  * @method $this step($value = true)
  * @method $this tabindex($value = true)
- * @method self type($value = true)
+ * @method self  type($value = true)
  * @method $this value($value = true)
  * @method Input help(string $value = null)
  * @method $this popover(string $value = null)
