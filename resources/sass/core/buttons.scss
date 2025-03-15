@@ -9,6 +9,10 @@
     &:focus{
         box-shadow: none;
     }
+    &:focus-visible {
+      box-shadow: 0 0 0 .25rem rgba(0, 123, 255, .25) !important;
+      outline: 0 !important;
+   }
 }
 
 .btn-link {

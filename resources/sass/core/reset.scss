@@ -33,6 +33,11 @@ a:focus {
   text-decoration: none;
 }
 
+a:focus-visible {
+  box-shadow: 0 0 0 .25rem rgba(0, 123, 255, .25) !important;
+  outline: 0 !important;
+}
+
 label {
     color: lighten($black, 20%);
     font-weight: normal;
