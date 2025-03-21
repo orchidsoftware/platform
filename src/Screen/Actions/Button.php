@@ -62,6 +62,17 @@ class Button extends Action
     ];
 
     /**
+     * A set of attributes for the assignment
+     * of which will automatically translate them.
+     *
+     * @var array
+     */
+    protected $translations = [
+        'name',
+        'confirm',
+    ];
+
+    /**
      * Button constructor.
      */
     public function __construct()
