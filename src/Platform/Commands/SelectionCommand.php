@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
-use Illuminate\Console\GeneratorCommand;
-use Orchid\Platform\Dashboard;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 #[AsCommand(name: 'orchid:selection')]
@@ -37,7 +35,7 @@ class SelectionCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return Dashboard::path('stubs/selection.stub');
+        return $this->resolveStubPath('selection.stub');
     }
 
     /**
