@@ -16,7 +16,7 @@ use Orchid\Platform\Commands\PublishCommand;
 use Orchid\Platform\Commands\RowsCommand;
 use Orchid\Platform\Commands\ScreenCommand;
 use Orchid\Platform\Commands\SelectionCommand;
-use Orchid\Platform\Commands\StubPublishCommand;
+use Orchid\Platform\Commands\StubsCommand;
 use Orchid\Platform\Commands\TableCommand;
 use Orchid\Platform\Commands\TabMenuCommand;
 use Orchid\Platform\Dashboard;
@@ -41,7 +41,7 @@ class ConsoleServiceProvider extends ServiceProvider
         ListenerCommand::class,
         PresenterCommand::class,
         TabMenuCommand::class,
-        StubPublishCommand::class,
+        StubsCommand::class,
     ];
 
     public function boot(): void

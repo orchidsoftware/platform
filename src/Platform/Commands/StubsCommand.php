@@ -9,15 +9,15 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Events\PublishingStubs;
 use Symfony\Component\Console\Attribute\AsCommand;
 
-#[AsCommand(name: 'orchid:stub-publish')]
-class StubPublishCommand extends Command
+#[AsCommand(name: 'orchid:stubs')]
+class StubsCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'orchid:stub-publish
+    protected $signature = 'orchid:stubs
                     {--existing : Publish and overwrite only the files that have already been published}
                     {--force : Overwrite any existing files}';
 
