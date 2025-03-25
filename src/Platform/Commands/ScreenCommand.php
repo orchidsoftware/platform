@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
-use Illuminate\Console\GeneratorCommand;
-use Orchid\Platform\Dashboard;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 #[AsCommand(name: 'orchid:screen')]
@@ -37,7 +35,7 @@ class ScreenCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return Dashboard::path('stubs/screen.stub');
+        return $this->resolveStubPath('screen.stub');
     }
 
     /**
