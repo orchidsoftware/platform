@@ -1,0 +1,5 @@
+@component($typeForm, get_defined_vars())
+    <div data-controller="{{ jsControllerName }}">
+        <input {{ $attributes }}>
+    </div>
+@endcomponent

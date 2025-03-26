@@ -1,0 +1,9 @@
+export default class extends window.Controller {
+    static get targets() {
+        return ["input"];
+    }
+
+    connect() {
+        console.log("{{ jsControllerName }} connected");
+    }
+}
