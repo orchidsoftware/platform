@@ -7,13 +7,16 @@ use Orchid\Platform\Dashboard;
 abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand
 {
     /**
-     * @param string $stub
+     * Resolve the fully-qualified path to the stub.
      *
+     * @param  string  $stub
      * @return string
      */
     protected function resolveStubPath(string $stub): string
     {
-        return file_exists($path = $this->laravel->basePath('stubs/orchid/platform/'.trim($stub, '/')))
+        $path = $this->laravel->basePath('stubs/orchid/platform/'.trim($stub, '/'));
+
+        return file_exists($path)
             ? $path
             : Dashboard::path('stubs/'.$stub);
     }
