@@ -51,12 +51,11 @@ class StubPublishCommand extends Command
             'table.stub',
             'tabMenu.stub',
         ])
-            ->mapWithKeys(fn(string $file) => [
-                Dashboard::path("stubs/{$file}") => $file
+            ->mapWithKeys(fn (string $file) => [
+                Dashboard::path("stubs/{$file}") => $file,
             ]);
 
         $this->laravel['events']->dispatch($event = new PublishingStubs($stubs->all()));
-
 
         foreach ($event->stubs as $from => $to) {
             $to = $stubsPath.'/'.ltrim($to, '/');
@@ -74,7 +73,7 @@ class StubPublishCommand extends Command
      */
     protected function shouldPublish(string $path): bool
     {
-        return !file_exists($path)
+        return ! file_exists($path)
             || $this->option('force')
             || ($this->option('existing')
                 && file_exists($path));

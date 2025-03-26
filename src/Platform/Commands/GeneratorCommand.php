@@ -9,7 +9,8 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand
     /**
      * Resolve the fully-qualified path to the stub.
      *
-     * @param  string  $stub
+     * @param string $stub
+     *
      * @return string
      */
     protected function resolveStubPath(string $stub): string
