@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.49.0 - 2025-03-27
+
+### Added
+- Added a new Artisan command to publish `stubs` [#2978](https://github.com/orchidsoftware/platform/pull/2978)
+- Introduced the "confirm" attribute for property translations [#2976](https://github.com/orchidsoftware/platform/pull/2976)
+
+### Fixed
+- Corrected method annotation return type for `RadioButtons` [#2980](https://github.com/orchidsoftware/platform/pull/2980)
+
 ## 14.48.1 - 2025-03-14
 
 ### Fixed
