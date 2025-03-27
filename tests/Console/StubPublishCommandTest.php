@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Console;
 
-use Orchid\Tests\TestConsoleCase;
 use Illuminate\Filesystem\Filesystem;
+use Orchid\Tests\TestConsoleCase;
 
 class StubPublishCommandTest extends TestConsoleCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
