@@ -12,20 +12,19 @@ class StubPublishCommandTest extends TestConsoleCase
     public function setUp(): void
     {
         parent::setUp();
+
+        $this->filesystem = new Filesystem();
         $this->stubsPath = base_path('stubs/orchid/platform');
+        $this->filesystem->ensureDirectoryExists($this->stubsPath);
     }
 
     /**
      * Clears the directory after each test.
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
+        $this->filesystem->deleteDirectory($this->stubsPath);
         parent::tearDown();
-
-        $filesystem = new Filesystem();
-        if ($filesystem->exists($this->stubsPath)) {
-            $filesystem->cleanDirectory($this->stubsPath);
-        }
     }
 
     /**
