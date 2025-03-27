@@ -1,0 +1,15 @@
+@component($typeForm, get_defined_vars())
+    <div data-controller="{{ controller }}">
+        <input {{ $attributes }}>
+    </div>
+@endcomponent
+
+<script>
+  application.register("{{ controller }}",
+    class extends window.Controller {
+      connect() {
+        console.log('{{ controller }} connected!');
+      }
+    }
+  );
+</script>

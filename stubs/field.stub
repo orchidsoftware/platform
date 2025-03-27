@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Orchid\Fields;
+
+use Orchid\Screen\Field;
+
+class TestTr extends Field
+{
+    /**
+     * Blade template
+     *
+     * @var string
+     */
+    protected $view = 'orchid.fields.test-tr';
+
+    /**
+     * Default attributes value.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'placeholder' => 'Hello, Artisan!',
+        'class'       => 'form-control',
+        'title'       => 'Hello, Artisan',
+    ];
+
+    /**
+     * Attributes available for a particular tag.
+     *
+     * @var array
+     */
+    protected $inlineAttributes = [
+        'placeholder',
+    ];
+}
