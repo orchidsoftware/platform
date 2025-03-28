@@ -5,7 +5,7 @@
 @endcomponent
 
 <script>
-    window.registerController('{{ controller }}', {
+    window.orchid.register('{{ controller }}', {
         connect() {
             console.log("{{ controller }} connected!");
         }

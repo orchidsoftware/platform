@@ -35,11 +35,13 @@ class FieldCommand extends GeneratorCommand
 
     public function handle(): bool
     {
-        parent::handle();
+        if (! parent::handle()) {
+            $this->writeView();
 
-        $this->writeView();
+            return true;
+        }
 
-        return true;
+        return false;
     }
 
     /**

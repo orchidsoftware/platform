@@ -4,11 +4,13 @@ import * as Bootstrap from 'bootstrap';
 import { Application } from '@hotwired/stimulus';
 import { definitionsFromContext } from '@hotwired/stimulus-webpack-helpers';
 import ApplicationController from './controllers/application_controller';
+import orchid from "./orchid";
 
 window.Turbo = Turbo;
 window.Bootstrap = Bootstrap;
 window.application = Application.start();
 window.Controller = ApplicationController;
+window.orchid = orchid;
 
 const context = require.context('./controllers', true, /\.js$/);
 application.load(definitionsFromContext(context));
@@ -20,14 +22,3 @@ window.addEventListener('turbo:before-fetch-request', (event) => {
         event.detail?.fetchOptions?.body?.append('_state', state);
     }
 });
-
-window.registerController = function(name, definition) {
-    if (!application.router.modulesByIdentifier.has(name)) {
-        application.register(name, class extends window.Controller {
-            constructor() {
-                super();
-                Object.assign(this, definition);
-            }
-        });
-    }
-};
