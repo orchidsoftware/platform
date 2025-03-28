@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Orchid\Fields;
+namespace DummyNamespace;
 
 use Orchid\Screen\Field;
 
-class TestTr extends Field
+class DummyClass extends Field
 {
     /**
      * Blade template
      *
      * @var string
      */
-    protected $view = 'orchid.fields.test-tr';
+    protected $view = '{{ view }}';
 
     /**
      * Default attributes value.
