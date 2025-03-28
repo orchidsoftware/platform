@@ -22,10 +22,6 @@ class FieldCommand extends GeneratorCommand
 
     public function handle(): bool
     {
-        if (! parent::handle()) {
-            return false;
-        }
-
         $this->writeView();
 
         if ($this->option('controller')) {
@@ -90,7 +86,6 @@ class FieldCommand extends GeneratorCommand
 
         $stubPath = Dashboard::path('stubs/field/stimulus-controller.stub');
         if (! $this->files->exists($stubPath)) {
-            dump("Stub file missing: $stubPath");
             $this->components->error('Stub file not found.');
 
             return;
@@ -98,7 +93,6 @@ class FieldCommand extends GeneratorCommand
 
         $stub = str_replace('{{ jsControllerName }}', $this->getJsControllerName(), $this->files->get($stubPath));
         $this->files->put($path, $stub);
-        dump("JS created: $path");
 
         $this->components->info(sprintf('JS Controller [%s] created successfully.', $path));
     }
