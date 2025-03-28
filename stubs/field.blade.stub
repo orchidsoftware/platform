@@ -1,0 +1,13 @@
+@component($typeForm, get_defined_vars())
+    <div data-controller="{{ controller }}">
+        <input {{ $attributes }}>
+    </div>
+@endcomponent
+
+<script>
+    window.orchid.register('{{ controller }}', {
+        connect() {
+            console.log("{{ controller }} connected!");
+        }
+    });
+</script>

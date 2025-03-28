@@ -1,0 +1,36 @@
+<?php
+
+namespace DummyNamespace;
+
+use Orchid\Screen\Field;
+
+class DummyClass extends Field
+{
+    /**
+     * Blade template
+     *
+     * @var string
+     */
+    protected $view = '{{ view }}';
+
+    /**
+     * Default attributes value.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'placeholder' => 'Hello, Artisan!',
+        'class'       => 'form-control',
+        'title'       => 'Hello, Artisan',
+    ];
+
+    /**
+     * Attributes available for a particular tag.
+     *
+     * @var array
+     */
+    protected $inlineAttributes = [
+        'placeholder',
+        'title'
+    ];
+}
