@@ -31,5 +31,6 @@ class DummyClass extends Field
      */
     protected $inlineAttributes = [
         'placeholder',
+        'title'
     ];
 }
