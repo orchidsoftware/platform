@@ -17,6 +17,17 @@ window.addEventListener('turbo:before-fetch-request', (event) => {
     let state = document.getElementById('screen-state')?.value;
 
     if (state && state.length > 0) {
-        event.detail?.fetchOptions?.body?.append('_state', state)
+        event.detail?.fetchOptions?.body?.append('_state', state);
     }
 });
+
+window.registerController = function(name, definition) {
+    if (!application.router.modulesByIdentifier.has(name)) {
+        application.register(name, class extends window.Controller {
+            constructor() {
+                super();
+                Object.assign(this, definition);
+            }
+        });
+    }
+};
