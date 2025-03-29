@@ -2,7 +2,6 @@
 
 namespace Orchid\Platform\Commands;
 
-use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -28,7 +27,6 @@ class OrchidUserCommand extends Command
     {
         $userId = $this->option('id');
 
-
         if ($userId) {
             /** @var UpdateAdminUser $service */
             $service = app(config('orchid.adminTerminalCreator', UpdateAdminUser::class), [
@@ -40,7 +38,6 @@ class OrchidUserCommand extends Command
                 'command' => $this,
             ]);
         }
-
 
         try {
             $arguments = $service->prepare(
@@ -59,21 +56,20 @@ class OrchidUserCommand extends Command
         }
     }
 
-
     /**
      * Обрабатывает вводимые данные.
      */
     private function parseArguments(): Collection
     {
         return collect($this->argument('arguments'))
-            ->map(fn(string $arg) => Str::of($arg))
+            ->map(fn (string $arg) => Str::of($arg))
             ->mapWithKeys(function (Stringable $arg) {
 
-                if(!$arg->contains('=')) {
-                    return[ $arg->toString() => null ];
+                if (! $arg->contains('=')) {
+                    return [$arg->toString() => null];
                 }
 
-                $explode =  $arg->explode('=', 2);
+                $explode = $arg->explode('=', 2);
 
                 return [$explode[0] => $explode[1]];
             });

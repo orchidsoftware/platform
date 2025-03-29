@@ -208,7 +208,6 @@ class Field implements Fieldable, Htmlable
             ->markFieldWithError()
             ->generateId();
 
-
         $slot = view($this->view, array_merge($this->getAttributes(), [
             'attributes'     => $this->getAllowAttributes(),
             'dataAttributes' => $this->getAllowDataAttributes(),
@@ -217,7 +216,6 @@ class Field implements Fieldable, Htmlable
         ]))
             ->withErrors($this->getErrorsMessage());
 
-
         if ($this->typeForm) {
             return view($this->typeForm, [
                 'slot'  => $slot,
@@ -225,7 +223,6 @@ class Field implements Fieldable, Htmlable
             ])
                 ->withErrors($this->getErrorsMessage());
         }
-
 
         return $slot;
 

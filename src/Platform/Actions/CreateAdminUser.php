@@ -3,10 +3,10 @@
 namespace Orchid\Platform\Actions;
 
 use Illuminate\Console\Command;
-use Orchid\Platform\Models\User;
-use Orchid\Support\Facades\Dashboard;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
+use Orchid\Platform\Models\User;
+use Orchid\Support\Facades\Dashboard;
 
 class CreateAdminUser
 {
@@ -35,7 +35,7 @@ class CreateAdminUser
      * Prepare user attributes before creating or updating.
      * If a console command is provided, it will prompt the user for missing attributes.
      *
-     * @param Collection      $attributes The provided attributes.
+     * @param Collection $attributes The provided attributes.
      *
      * @return Collection The prepared attributes.
      */
@@ -49,7 +49,7 @@ class CreateAdminUser
             ]);
         }
 
-        if (!$attributes->has('permissions')) {
+        if (! $attributes->has('permissions')) {
             $attributes->put('permissions', Dashboard::getAllowAllPermission());
         }
 
