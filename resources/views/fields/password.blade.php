@@ -1,6 +1,4 @@
-@component($typeForm, get_defined_vars())
-
-    <div data-controller="password"
+ <div data-controller="password"
          class="input-icon"
     >
         <input {{ $attributes }} data-password-target="password">
@@ -15,5 +13,3 @@
             </span>
         </div>
     </div>
-
-@endcomponent

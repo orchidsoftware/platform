@@ -1,4 +1,25 @@
-@component($typeForm, get_defined_vars())
+
+    <script>
+        console.warn(application);
+        console.warn('Connected!');
+
+        function canRegisterController(name){
+            return !application.router.modulesByIdentifier.has(name)
+        }
+
+        if(canRegisterController('example')){
+            application.register("example",
+                class extends window.Controller {
+                    connect() {
+                        alert('Hello connected!');
+                    }
+                }
+            );
+        }
+    </script>
+
+<div data-controller="example"></div>
+
     <div data-controller="attach"
          class="attach"
          data-attach-name-value="{{ $name }}"
@@ -69,4 +90,3 @@
         </template>
 
     </div>
-@endcomponent

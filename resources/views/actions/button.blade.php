@@ -1,4 +1,4 @@
-@component($typeForm, get_defined_vars())
+
     <button
             data-controller="button"
             data-turbo="{{ var_export($turbo) }}"
@@ -14,4 +14,3 @@
 
         {{ $name ?? '' }}
     </button>
-@endcomponent

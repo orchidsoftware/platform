@@ -1,4 +1,4 @@
-@component($typeForm, get_defined_vars())
+
     <div data-controller="radiobutton">
         <div class="btn-group btn-group-toggle p-0" data-toggle="buttons">
 
@@ -13,4 +13,4 @@
             @endforeach
         </div>
     </div>
-@endcomponent
+

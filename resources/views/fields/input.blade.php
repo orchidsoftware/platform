@@ -1,4 +1,4 @@
-@component($typeForm, get_defined_vars())
+
     <div data-controller="input"
          data-input-mask="{{$mask ?? ''}}"
     >
@@ -12,4 +12,4 @@
             @endforeach
         </datalist>
     @endempty
-@endcomponent
+

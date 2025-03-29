@@ -1,4 +1,4 @@
-@component($typeForm, get_defined_vars())
+
     <div data-controller="map"
          data-map-id="{{$id}}"
          data-map-zoom="{{$zoom}}"
@@ -38,4 +38,4 @@
         <div class="marker-results"></div>
 
     </div>
-@endcomponent
+

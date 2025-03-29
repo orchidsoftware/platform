@@ -1,4 +1,4 @@
-@component($typeForm, get_defined_vars())
+
     <div
         data-controller="upload"
         data-upload-storage="{{$storage ?? config('platform.attachment.disk', 'public')}}"
@@ -189,4 +189,3 @@
 
         </div>
     </div>
-@endcomponent

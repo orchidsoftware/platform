@@ -1,4 +1,3 @@
-@component($typeForm, get_defined_vars())
 
     <div data-controller="utm">
         <div class="input-group mb-3">
@@ -75,6 +74,4 @@
             </div>
         </div>
     </div>
-
-@endcomponent
 

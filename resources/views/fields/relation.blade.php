@@ -1,4 +1,4 @@
-@component($typeForm, get_defined_vars())
+
     <div data-controller="relation"
          data-relation-id="{{$id}}"
          data-relation-placeholder="{{$attributes['placeholder'] ?? ''}}"
@@ -21,4 +21,4 @@
             @endforeach
         </select>
     </div>
-@endcomponent
+

@@ -28,7 +28,7 @@
     <meta name="dashboard-prefix" content="{{  Dashboard::prefix() }}">
 
     @if(!config('platform.turbo.cache', false))
-        <meta name="turbo-cache-control" content="no-cache">
+        <meta name="turbo-cache-control" content="no-preview">
     @endif
 
     @foreach(collect(['/js/manifest.js', '/js/vendor.js', '/js/orchid.js']) as $key)

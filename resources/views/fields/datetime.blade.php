@@ -1,4 +1,4 @@
-@component($typeForm, get_defined_vars())
+
     <div
         data-controller="datetime"
          class="input-group"
@@ -26,7 +26,6 @@
             </label>
         @endforeach
         </div>
-@endcomponent
 
 
 

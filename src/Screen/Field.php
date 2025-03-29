@@ -21,16 +21,16 @@ use Throwable;
 /**
  * Class Field.
  *
- * @method self accesskey($value = true)
- * @method self class($value = true)
- * @method self dir($value = true)
- * @method self hidden($value = true)
- * @method self id($value = true)
- * @method self lang($value = true)
- * @method self spellcheck($value = true)
- * @method self style($value = true)
- * @method self tabindex($value = true)
- * @method self autocomplete($value = true)
+ * @method static accesskey($value = true)
+ * @method static class($value = true)
+ * @method static dir($value = true)
+ * @method static hidden($value = true)
+ * @method static id($value = true)
+ * @method static lang($value = true)
+ * @method static spellcheck($value = true)
+ * @method static style($value = true)
+ * @method static tabindex($value = true)
+ * @method static autocomplete($value = true)
  */
 class Field implements Fieldable, Htmlable
 {
@@ -78,7 +78,7 @@ class Field implements Fieldable, Htmlable
      *
      * @var Closure|string|null
      */
-    protected $typeForm;
+    protected $typeForm = 'platform::partials.fields.vertical';
 
     /**
      * A set of attributes for the assignment
@@ -207,6 +207,27 @@ class Field implements Fieldable, Htmlable
             ->translateAttributes()
             ->markFieldWithError()
             ->generateId();
+
+
+        $slot = view($this->view, array_merge($this->getAttributes(), [
+            'attributes'     => $this->getAllowAttributes(),
+            'dataAttributes' => $this->getAllowDataAttributes(),
+            'old'            => $this->getOldValue(),
+            'oldName'        => $this->getOldName(),
+        ]))
+            ->withErrors($this->getErrorsMessage());
+
+
+        if ($this->typeForm) {
+            return view($this->typeForm, [
+                'slot'  => $slot,
+                'field' => $this,
+            ])
+                ->withErrors($this->getErrorsMessage());
+        }
+
+
+        return $slot;
 
         return view($this->view, array_merge($this->getAttributes(), [
             'attributes'     => $this->getAllowAttributes(),

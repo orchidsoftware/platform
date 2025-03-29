@@ -1,4 +1,4 @@
-@component($typeForm, get_defined_vars())
+
     <button
         {{ $attributes }}
         type="button"
@@ -19,4 +19,4 @@
             {!!  $item->build($source) !!}
         @endforeach
     </div>
-@endcomponent
+

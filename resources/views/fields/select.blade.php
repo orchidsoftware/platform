@@ -1,4 +1,4 @@
-@component($typeForm, get_defined_vars())
+
     <div data-controller="select"
         data-select-placeholder="{{$attributes['placeholder'] ?? ''}}"
         data-select-allow-empty="{{ $allowEmpty }}"
@@ -19,4 +19,4 @@
             @endforeach
         </select>
     </div>
-@endcomponent
+

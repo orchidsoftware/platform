@@ -1,4 +1,4 @@
-@component($typeForm, get_defined_vars())
+
     <div class="row">
         <div class="col-md-6 pe-1">
             <div class="form-group">
@@ -24,4 +24,4 @@
             </div>
         </div>
     </div>
-@endcomponent
+

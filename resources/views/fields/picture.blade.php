@@ -1,4 +1,4 @@
-@component($typeForm, get_defined_vars())
+
     <div data-controller="picture"
          data-picture-value="{{ $attributes['value'] }}"
          data-picture-storage="{{ $storage ?? config('platform.attachment.disk', 'public') }}"
@@ -44,4 +44,3 @@
                {{ $attributes }}
         >
     </div>
-@endcomponent

@@ -1,4 +1,4 @@
-@component($typeForm, get_defined_vars())
+
     <div data-controller="cropper"
          data-cropper-value="{{ $attributes['value'] }}"
          data-cropper-storage="{{ $storage ?? config('platform.attachment.disk', 'public') }}"
@@ -83,4 +83,3 @@
             </div>
         </div>
     </div>
-@endcomponent

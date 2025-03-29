@@ -1,4 +1,4 @@
-@component($typeForm, get_defined_vars())
+
     <div data-controller="checkbox"
          data-checkbox-indeterminate="{{$indeterminate}}">
         @isset($sendTrueOrFalse)
@@ -19,4 +19,4 @@
             </div>
         @endisset
     </div>
-@endcomponent
+

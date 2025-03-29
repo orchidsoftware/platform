@@ -1,15 +1,17 @@
 <div class="form-group">
-    @isset($title)
-        <label for="{{$id}}" class="form-label">{{$title}}
-            @if(isset($attributes['required']) && $attributes['required'])
+    @if($field->has('title'))
+        <label for="{{ $field->get('id') }}" class="form-label">
+            {{ $field->get('title') }}
+
+            @if($field->get('required', false))
                 <sup class="text-danger">*</sup>
             @endif
 
-            <x-orchid-popover :content="$popover ?? ''"/>
+            <x-orchid-popover :content="$field->get('popover', '')"/>
         </label>
-    @endisset
+    @endif
 
-    {{$slot}}
+    {!! $slot !!}
 
     @php
         // Backport for consistent error handling behavior between Laravel 10 and 11.
@@ -25,15 +27,17 @@
         }
     @endphp
 
-    @if($errors->has($oldName))
+        @if($errors->has($field->getOldName()))
         <div class="invalid-feedback d-block">
-            <small>{{$errors->first($oldName)}}</small>
+            <small>{{$errors->first($field->getOldName())}}</small>
         </div>
     @elseif(isset($help))
-        <small class="form-text text-muted">{!!$help!!}</small>
+        <small class="form-text text-muted">
+            {!! $field->get('help') !!}
+        </small>
     @endif
 </div>
 
-@isset($hr)
+@if($field->get('hr'))
     <div class="line line-dashed border-bottom my-3"></div>
 @endisset

@@ -1,4 +1,4 @@
-@component($typeForm, get_defined_vars())
+
     @isset($sendTrueOrFalse)
         <input hidden name="{{$attributes['name']}}" value="{{$attributes['novalue']}}">
         <div class="form-check form-switch">
@@ -18,4 +18,3 @@
             <label class="form-check-label" for="{{$id}}">{{$placeholder ?? ''}}</label>
         </div>
     @endisset
-@endcomponent
