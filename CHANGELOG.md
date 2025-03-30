@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Methods `format/serverFormat` to `DateRange` field
 
 ### Fixed
-- Disable check for latest package versions in `dev`
+- Disabled check for the latest package versions in `dev`
 
 
 ## 14.49.0 - 2025-03-27
