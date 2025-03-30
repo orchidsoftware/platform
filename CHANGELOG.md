@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Added field stub [#2983](https://github.com/orchidsoftware/platform/pull/2983) [#2984](https://github.com/orchidsoftware/platform/pull/2984)
-- Methods `format/serverFormat` to `DateRange` field
+- Methods `format/serverFormat` to `DateRange` field [#2975](https://github.com/orchidsoftware/platform/pull/2975)
 
 ### Fixed
 - Disabled check for the latest package versions in `dev`
