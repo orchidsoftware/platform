@@ -42,7 +42,7 @@ class DateRange extends Field implements ComplexFieldConcern
     protected $inlineAttributes = [
         'form',
         'name',
-		'data-datetime-date-format',
+        'data-datetime-date-format',
     ];
 
     /**
@@ -91,14 +91,14 @@ class DateRange extends Field implements ComplexFieldConcern
                 $format = $this->get('data-datetime-date-format');
             }
 
-			foreach ($values as $key => $value) {
+            foreach ($values as $key => $value) {
 
-				if ($value === null) {
-					continue;
-				}
+                if ($value === null) {
+                    continue;
+                }
 
-				$values[$key] = Carbon::parse($value)->format($format);
-			}
+                $values[$key] = Carbon::parse($value)->format($format);
+            }
 
             $this->set('value', $values);
         });
