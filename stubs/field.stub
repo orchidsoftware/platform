@@ -7,30 +7,31 @@ use Orchid\Screen\Field;
 class DummyClass extends Field
 {
     /**
-     * Blade template
+     * The Blade view used to render the field.
      *
      * @var string
      */
     protected $view = '{{ view }}';
 
     /**
-     * Default attributes value.
+     * Default attributes for the field.
      *
      * @var array
      */
     protected $attributes = [
-        'placeholder' => 'Hello, Artisan!',
+        'placeholder' => 'Enter text...',
         'class'       => 'form-control',
-        'title'       => 'Hello, Artisan',
+        'type'        => 'text',
     ];
 
     /**
-     * Attributes available for a particular tag.
+     * List of attributes available for the HTML tag.
      *
      * @var array
      */
     protected $inlineAttributes = [
         'placeholder',
-        'title'
+        'value',
+        'type',
     ];
 }

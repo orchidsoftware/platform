@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Orchid\Platform\Dashboard;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 #[AsCommand(name: 'orchid:field')]
@@ -33,6 +31,12 @@ class FieldCommand extends GeneratorCommand
      */
     protected $type = 'Field';
 
+    /**
+     * Execute the console command.
+     *
+     * @return bool Whether the command execution was successful.
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
     public function handle(): bool
     {
         if (! parent::handle()) {
@@ -46,6 +50,8 @@ class FieldCommand extends GeneratorCommand
 
     /**
      * Get the stub file for the generator.
+     *
+     * @return string The path to the stub file.
      */
     protected function getStub(): string
     {
@@ -62,26 +68,36 @@ class FieldCommand extends GeneratorCommand
         return $rootNamespace.'\Orchid\Fields';
     }
 
-    protected function getView(): string
+    /**
+     * Get the view name based on the field name input.
+     *
+     * @param string $separator The separator to use for the view path.
+     *
+     * @return string The formatted view name.
+     */
+    protected function getView($separator = '.'): string
     {
-        $segments = explode('/', str_replace('\\', '/', $this->argument('name')));
-        $name = array_pop($segments);
-        $path = ['orchid', 'fields', $name];
-
-        return (new Collection($path))
+        return Str::of($this->getNameInput())
+            ->replace('\\', '/')
+            ->explode('/')
             ->map(fn ($segment) => Str::kebab($segment))
-            ->implode('.');
+            ->prepend('fields')
+            ->prepend('orchid')
+            ->implode($separator);
     }
 
+    /**
+     * Generate the Blade view file for the field.
+     *
+     * @return void
+     */
     protected function writeView(): void
     {
         $path = $this->viewPath(
-            str_replace('.', '/', $this->getView()).'.blade.php'
+            sprintf('%s.blade.php', $this->getView('/'))
         );
 
-        if (! $this->files->isDirectory(dirname($path))) {
-            $this->files->makeDirectory(dirname($path), 0777, true, true);
-        }
+        $this->makeDirectory($path);
 
         if ($this->files->exists($path) && ! $this->option('force')) {
             $this->components->error('View already exists.');
@@ -89,29 +105,36 @@ class FieldCommand extends GeneratorCommand
             return;
         }
 
-        $stubPath = Dashboard::path('stubs/field.blade.stub');
+        $stubPath = $this->resolveStubPath('field.blade.stub');
 
-        if (! $this->files->exists($stubPath)) {
-            $this->components->error('Stub file not found.');
 
-            return;
-        }
+        $this->files->copy($stubPath, $path);
+        $this->files->replaceInFile('{{ controller }}', $this->getStimulusControllerName(), $path);
 
-        $stub = str_replace(
-            '{{ controller }}',
-            Str::kebab($this->getStimulusControllerName()),
-            $this->files->get($stubPath)
-        );
-
-        $this->files->put($path, $stub);
         $this->components->info(sprintf('View [%s] created successfully.', $path));
     }
 
+    /**
+     * Derive the Stimulus controller name based on the class name argument.
+     *
+     * @return string The Stimulus controller name.
+     */
     protected function getStimulusControllerName(): string
     {
-        return Str::studly(class_basename($this->argument('name')));
+        return Str::of($this->getNameInput())
+            ->classBasename()
+            ->snake('-')
+            ->toString();
     }
 
+    /**
+     * Build the class with additional replacements.
+     *
+     * @param string $name The class name.
+     *
+     * @return string The processed class stub.
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
     protected function buildClass($name): string
     {
         $stub = parent::buildClass($name);

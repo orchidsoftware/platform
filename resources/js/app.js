@@ -4,13 +4,13 @@ import * as Bootstrap from 'bootstrap';
 import { Application } from '@hotwired/stimulus';
 import { definitionsFromContext } from '@hotwired/stimulus-webpack-helpers';
 import ApplicationController from './controllers/application_controller';
-import orchid from "./orchid";
+import Orchid from "./orchid";
 
 window.Turbo = Turbo;
 window.Bootstrap = Bootstrap;
 window.application = Application.start();
 window.Controller = ApplicationController;
-window.orchid = orchid;
+window.Orchid = Orchid;
 
 const context = require.context('./controllers', true, /\.js$/);
 application.load(definitionsFromContext(context));
