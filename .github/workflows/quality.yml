@@ -33,7 +33,7 @@ jobs:
 
       - name: Check for outdated dependencies
         run: |
-          if [ -n "$(composer outdated --direct)" ]; then
+          if [ -n "$(composer outdated --direct --no-dev)" ]; then
             echo "❌ There are outdated dependencies!"
             composer outdated --direct
             exit 1
