@@ -1,7 +1,7 @@
 const Orchid = {
     /**
      * Registers a controller with the application router.
-     * Ensures the controller is always an instance of window.Controller.
+     * Registers the provided controller definition directly.
      *
      * @param {string} name - The unique name of the controller.
      * @param {Object} definition - The controller definition.
