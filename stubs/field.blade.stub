@@ -1,13 +1,28 @@
 @component($typeForm, get_defined_vars())
     <div data-controller="{{ controller }}">
-        <input {{ $attributes }}>
+        <input
+            {{
+                $attributes->merge([
+                    'data-{{ controller }}-target' => 'name',
+                    'data-action' => 'input->{{ controller }}#greet',
+                ])
+            }}>
+
+        <span data-{{ controller }}-target="output"></span>
     </div>
 @endcomponent
 
 <script>
-    window.orchid.register('{{ controller }}', {
+    Orchid.register('{{ controller }}', class extends Controller {
+        static targets = ['name', 'output'];
+
         connect() {
-            console.log("{{ controller }} connected!");
+            console.log("MyInput controller has been connected!");
+        }
+
+        greet() {
+            this.outputTarget.textContent =
+                `Hello, ${this.nameTarget.value}!`;
         }
     });
 </script>
