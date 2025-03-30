@@ -34,8 +34,9 @@ class FieldCommand extends GeneratorCommand
     /**
      * Execute the console command.
      *
-     * @return bool Whether the command execution was successful.
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     *
+     * @return bool Whether the command execution was successful.
      */
     public function handle(): bool
     {
@@ -107,7 +108,6 @@ class FieldCommand extends GeneratorCommand
 
         $stubPath = $this->resolveStubPath('field.blade.stub');
 
-
         $this->files->copy($stubPath, $path);
         $this->files->replaceInFile('{{ controller }}', $this->getStimulusControllerName(), $path);
 
@@ -132,8 +132,9 @@ class FieldCommand extends GeneratorCommand
      *
      * @param string $name The class name.
      *
-     * @return string The processed class stub.
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     *
+     * @return string The processed class stub.
      */
     protected function buildClass($name): string
     {
