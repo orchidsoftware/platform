@@ -33,5 +33,6 @@ class DummyClass extends Field
         'placeholder',
         'value',
         'type',
+        'name'
     ];
 }
