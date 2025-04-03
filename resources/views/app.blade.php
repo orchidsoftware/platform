@@ -12,11 +12,8 @@
     </title>
     <meta name="csrf_token" content="{{ csrf_token() }}" id="csrf_token">
     <meta name="auth" content="{{ Auth::check() }}" id="auth">
-    @if(\Orchid\Support\Locale::isRtl())
-        <link rel="stylesheet" type="text/css" href="{{  mix('/css/orchid.rtl.css','vendor/orchid') }}"  data-turbo-track="reload" >
-    @else
-        <link rel="stylesheet" type="text/css" href="{{  mix('/css/orchid.css','vendor/orchid') }}"  data-turbo-track="reload" >
-    @endif
+
+    {{ \Orchid\Platform\Dashboard::vite() }}
 
     @stack('head')
 
@@ -30,10 +27,6 @@
     @if(!config('platform.turbo.cache', false))
         <meta name="turbo-cache-control" content="no-cache">
     @endif
-
-    @foreach(collect(['/js/manifest.js', '/js/vendor.js', '/js/orchid.js']) as $key)
-        <script src="{{ mix($key,'vendor/orchid') }}" data-turbo-track="reload" type="text/javascript"></script>
-    @endforeach
 
     @foreach(Dashboard::getResource('stylesheets') as $stylesheet)
         <link rel="stylesheet" href="{{  $stylesheet }}" data-turbo-track="reload">
