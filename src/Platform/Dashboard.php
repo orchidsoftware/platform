@@ -51,4 +51,40 @@ class Dashboard
             }
         }
     }
+
+    /**
+     * Determine published assets are up-to-date.
+     *
+     * @throws \RuntimeException
+     *
+     * @return bool
+     */
+    public static function assetsAreCurrent(): bool
+    {
+        $publishedPath = public_path('vendor/orchid/manifest.json');
+
+        throw_unless(File::exists($publishedPath), new RuntimeException('Orchid assets are not published. Please run: `php artisan orchid:publish`'));
+
+        return File::get($publishedPath) === File::get(__DIR__.'/../../public/manifest.json');
+    }
+
+    /**
+     * @return \Illuminate\Foundation\Vite
+     */
+    public static function vite(): \Illuminate\Foundation\Vite
+    {
+        return Vite::useBuildDirectory('vendor/orchid')
+            ->useManifestFilename('manifest.json')
+            ->useStyleTagAttributes(['data-turbo-track' => 'reload'])
+            ->useScriptTagAttributes(['data-turbo-track' => 'reload'])
+            ->withEntryPoints(['resources/js/app.js', 'resources/sass/app.scss'])
+            ->createAssetPathsUsing(function (string $path, ?bool $secure) {
+
+                if (\Orchid\Support\Locale::isRtl() && Str::endsWith($path, '.css')) {
+                    $path = Str::replaceLast('.css', '.rtl.css', $path);
+                }
+
+                return asset($path, $secure);
+            });
+    }
 }
