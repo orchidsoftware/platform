@@ -8,6 +8,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Orchid\Screen\Actions\Menu;
@@ -111,11 +112,31 @@ class Dashboard
      */
     public static function assetsAreCurrent(): bool
     {
-        $publishedPath = public_path('vendor/orchid/mix-manifest.json');
+        $publishedPath = public_path('vendor/orchid/manifest.json');
 
         throw_unless(File::exists($publishedPath), new RuntimeException('Orchid assets are not published. Please run: `php artisan orchid:publish`'));
 
-        return File::get($publishedPath) === File::get(__DIR__.'/../../public/mix-manifest.json');
+        return File::get($publishedPath) === File::get(__DIR__.'/../../public/manifest.json');
+    }
+
+    /**
+     * @return \Illuminate\Foundation\Vite
+     */
+    public static function vite(): \Illuminate\Foundation\Vite
+    {
+        return Vite::useBuildDirectory('vendor/orchid')
+            ->useManifestFilename('manifest.json')
+            ->useStyleTagAttributes(['data-turbo-track' => 'reload'])
+            ->useScriptTagAttributes(['data-turbo-track' => 'reload'])
+            ->withEntryPoints(['resources/js/app.js', 'resources/sass/app.scss'])
+            ->createAssetPathsUsing(function (string $path, ?bool $secure) {
+
+                if (\Orchid\Support\Locale::isRtl() && Str::endsWith($path, '.css')) {
+                    $path = Str::replaceLast('.css', '.rtl.css', $path);
+                }
+
+                return asset($path, $secure);
+            });
     }
 
     /**
