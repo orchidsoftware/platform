@@ -94,7 +94,7 @@ abstract class Chart extends Layout
      *
      * @var int
      */
-    protected $maxSlices = 7;
+    protected $maxSlices = 6;
 
     /**
      * To display data values over bars or dots in an axis graph.
