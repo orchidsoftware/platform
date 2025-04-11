@@ -1,62 +1,99 @@
 import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
-import viteRtlCssPlugin from 'vite-plugin-rtl-css';
 import { resolve } from 'path';
-import manifestSRI from 'vite-plugin-manifest-sri';
 import fs from 'fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
+import viteRtlCssPlugin from 'vite-plugin-rtl-css';
+import manifestSRI from 'vite-plugin-manifest-sri';
 
-// Функция для генерации безопасного случайного хеша
-const generateHash = (length = 16) => {
-    const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    return Array.from({ length }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
-};
+/**
+ * Custom Vite plugin that appends a version query hash (`?v=HASH`) to the `file`
+ * and `css` entries in the manifest.json. This ensures proper cache busting when file
+ * contents change by generating an MD5 hash of each asset.
+ */
+function addQueryHashToManifest() {
+    return {
+        name: 'add-query-hash-to-manifest',
+        apply: 'build',
+        closeBundle() {
+            const publicDir = path.resolve(__dirname, 'public');
+            const manifestFile = path.resolve(publicDir, 'manifest.json');
 
-// Плагин для добавления случайного хеша в манифест
-const addHashToManifest = () => ({
-    name: 'vite-plugin-add-hash-to-manifest',
-    apply: 'build',
-    enforce: 'post',
-    closeBundle() {
-        const manifestPath = path.resolve('public', 'manifest.json');
+            // If the manifest does not exist, exit early.
+            if (!fs.existsSync(manifestFile)) {
+                return;
+            }
 
-        if (fs.existsSync(manifestPath)) {
-            const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
-            const hash = generateHash(16);
+            const manifestData = fs.readFileSync(manifestFile, 'utf-8');
+            const manifest = JSON.parse(manifestData);
 
-            Object.keys(manifest).forEach((key) => {
-                manifest[key].file += `?v=${hash}`;
+            /**
+             * Appends a version query parameter to the given file path based on its content hash.
+             *
+             * @param {string} filePath - Relative file path from the public directory.
+             * @returns {string} - File path with appended version query parameter.
+             */
+            const appendHash = (filePath) => {
+                const [baseFilePath] = filePath.split('?');
+                const absolutePath = path.resolve(publicDir, baseFilePath);
+
+                // Return the original filePath if the file does not exist.
+                if (!fs.existsSync(absolutePath)) {
+                    return filePath;
+                }
+
+                const fileBuffer = fs.readFileSync(absolutePath);
+                const hash = crypto
+                    .createHash('md5')
+                    .update(fileBuffer)
+                    .digest('hex')
+                    .slice(0, 8);
+
+                return `${baseFilePath}?v=${hash}`;
+            };
+
+            // Process each manifest entry to append a version query hash.
+            Object.entries(manifest).forEach(([key, value]) => {
+                if (value.file) {
+                    value.file = appendHash(value.file);
+                }
+
+                if (Array.isArray(value.css)) {
+                    value.css = value.css.map(appendHash);
+                }
             });
 
-            fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
-            console.log(`✅ Добавлен хеш ?v=${hash} в manifest.json`);
-        }
-    },
-});
+            // Write the updated manifest back to disk.
+            fs.writeFileSync(manifestFile, JSON.stringify(manifest, null, 2));
+        },
+    };
+}
 
-export default defineConfig(({ mode }) => ({
-    plugins: [
-        viteRtlCssPlugin(),
-        manifestSRI(),
-        //addHashToManifest(),
-    ],
-    build: {
-        emptyOutDir: false,
-        outDir: 'public',
-        rollupOptions: {
-            input: [
-                'resources/js/app.js',
-                'resources/sass/app.scss',
-            ],
-            output: {
-                assetFileNames: 'assets/[name].[ext]',
-                chunkFileNames: 'assets/[name].js',
-                entryFileNames: 'assets/app.js',
+export default defineConfig(() => {
+    return {
+        plugins: [
+            viteRtlCssPlugin(),
+            manifestSRI(),
+            addQueryHashToManifest(),
+        ],
+        build: {
+            outDir: 'public',
+            emptyOutDir: false,
+            manifest: true,
+            rollupOptions: {
+                input: [
+                    'resources/js/app.js',
+                    'resources/sass/app.scss',
+                ],
+                output: {
+                    assetFileNames: 'assets/[name].[ext]',
+                    chunkFileNames: 'assets/[name].js',
+                    entryFileNames: 'assets/[name].js',
+                },
             },
         },
-        manifest: true,
-    },
-    resolve: {
-        root: resolve(__dirname, './'),
-    },
-}));
+        resolve: {
+            root: resolve(__dirname, './'),
+        },
+    };
+});
