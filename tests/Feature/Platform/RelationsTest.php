@@ -10,6 +10,7 @@ use Illuminate\Testing\TestResponse;
 use Orchid\Platform\Models\User;
 use Orchid\Tests\App\EmptyUserModel;
 use Orchid\Tests\TestFeatureCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class RelationsTest extends TestFeatureCase
 {
@@ -40,6 +41,7 @@ class RelationsTest extends TestFeatureCase
      *
      * @throws \Throwable
      */
+    #[DataProvider('scopeList')]
     public function testScopeModel(array $scope): void
     {
         $response = $this->getScope($scope);
@@ -57,6 +59,7 @@ class RelationsTest extends TestFeatureCase
      *
      * @throws \Throwable
      */
+    #[DataProvider('scopeList')]
     public function testAppendModel(array $scope): void
     {
         $response = $this->getScope($scope, 'full');
