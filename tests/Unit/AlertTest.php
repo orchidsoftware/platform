@@ -8,6 +8,7 @@ use Orchid\Support\Color;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Toast;
 use Orchid\Tests\TestUnitCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * Class AlertTest.
@@ -40,7 +41,9 @@ class AlertTest extends TestUnitCase
 
     /**
      * @dataProvider getLevels
+     *
      */
+    #[DataProvider('getLevels')]
     public function testShouldFlashLevelsAlert(string $level, string $css): void
     {
         Alert::$level('test');
@@ -52,6 +55,7 @@ class AlertTest extends TestUnitCase
     /**
      * @dataProvider getLevels
      */
+    #[DataProvider('getLevels')]
     public function testShouldFlashLevelsToast(string $level, string $css): void
     {
         Toast::$level('test');

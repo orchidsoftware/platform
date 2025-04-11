@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Dashboard;
 use Orchid\Tests\TestConsoleCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class ArtisanTest extends TestConsoleCase
 {
@@ -29,6 +30,7 @@ class ArtisanTest extends TestConsoleCase
     /**
      * @dataProvider artisanOrchidMake
      */
+    #[DataProvider('artisanOrchidMake')]
     public function testArtisanOrchidMake(string $name, string $command, string $path): void
     {
         $file = Str::random();

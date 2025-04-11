@@ -24,6 +24,7 @@ use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Fields\UTM;
 use Orchid\Tests\TestUnitCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * Class FieldTest.
@@ -117,6 +118,7 @@ class FieldTest extends TestUnitCase
      *
      * @throws \Throwable
      */
+    #[DataProvider('exampleFields')]
     public function testHasCorrectInstance(string $field, mixed $options): void
     {
         /** @var \Orchid\Screen\Field $field */
