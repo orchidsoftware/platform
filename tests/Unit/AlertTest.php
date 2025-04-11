@@ -41,7 +41,6 @@ class AlertTest extends TestUnitCase
 
     /**
      * @dataProvider getLevels
-     *
      */
     #[DataProvider('getLevels')]
     public function testShouldFlashLevelsAlert(string $level, string $css): void
