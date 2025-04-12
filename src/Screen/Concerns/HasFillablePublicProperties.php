@@ -2,9 +2,9 @@
 
 namespace Orchid\Screen\Concerns;
 
+use Illuminate\Support\Collection;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Screen;
-use Illuminate\Support\Collection;
 
 trait HasFillablePublicProperties
 {

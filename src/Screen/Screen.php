@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Screen\Concerns\HasFillablePublicProperties;
+use Orchid\Screen\Concerns\InteractsWithEncryptedState;
 use Orchid\Screen\Layouts\Listener;
 use Orchid\Support\Facades\Dashboard;
-use Orchid\Screen\Concerns\InteractsWithEncryptedState;
 
 /**
  * Class Screen.
@@ -27,7 +27,7 @@ use Orchid\Screen\Concerns\InteractsWithEncryptedState;
  */
 abstract class Screen extends Controller
 {
-    use Commander, InteractsWithEncryptedState, HasFillablePublicProperties;
+    use Commander, HasFillablePublicProperties, InteractsWithEncryptedState;
 
     /**
      * @param \Illuminate\Http\Request $request
