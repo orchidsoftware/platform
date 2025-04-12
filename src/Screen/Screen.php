@@ -12,11 +12,12 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Screen\Concerns\HasFillablePublicProperties;
 use Orchid\Screen\Layouts\Listener;
 use Orchid\Support\Facades\Dashboard;
+use Orchid\Screen\Concerns\InteractsWithEncryptedState;
 
 /**
  * Class Screen.
@@ -26,7 +27,7 @@ use Orchid\Support\Facades\Dashboard;
  */
 abstract class Screen extends Controller
 {
-    use Commander;
+    use Commander, InteractsWithEncryptedState, HasFillablePublicProperties;
 
     /**
      * @param \Illuminate\Http\Request $request
@@ -76,16 +77,6 @@ abstract class Screen extends Controller
         return isset($this->permission)
             ? Arr::wrap($this->permission)
             : null;
-    }
-
-    /**
-     * The command buttons for this screen.
-     *
-     * @return Action[]
-     */
-    public function commandBar()
-    {
-        return [];
     }
 
     /**
@@ -177,31 +168,6 @@ abstract class Screen extends Controller
     }
 
     /**
-     * This method extracts the state from a request parameter.
-     * If the '_state' parameter is missing, an empty Repository object is returned.
-     * Otherwise, the state is extracted from the encrypted '_state' parameter, deserialized and returned.
-     *
-     * @throws \Psr\Container\ContainerExceptionInterface - If the container cannot provide the dependency injection for a class.
-     * @throws \Psr\Container\NotFoundExceptionInterface  - If the container cannot find a required dependency injection for a class.
-     *
-     * @return \Orchid\Screen\Repository - The extracted state.
-     */
-    protected function extractState(): Repository
-    {
-        $state = request()->post('_state', session()->get('_state'));
-        // Check if the '_state' parameter is missing
-        if ($state === null) {
-            // Return an empty Repository object
-            return new Repository;
-        }
-
-        // deserialize '_state' parameter
-        $screen = Crypt::decrypt($state);
-
-        return new Repository(get_object_vars($screen));
-    }
-
-    /**
      * @throws \Throwable
      *
      * @return Factory|\Illuminate\View\View
@@ -225,18 +191,6 @@ abstract class Screen extends Controller
     }
 
     /**
-     * Serializes the current state of the screen into a string.
-     *
-     * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException If the PHP version is not supported for serialization.
-     *
-     * @return string The serialized state.
-     */
-    protected function serializableState(): string
-    {
-        return Crypt::encrypt($this);
-    }
-
-    /**
      * @param array $httpQueryArguments
      *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
@@ -249,36 +203,6 @@ abstract class Screen extends Controller
         $query = $this->callMethod('query', $httpQueryArguments);
 
         return tap(new Repository($query), fn (Repository $repository) =>  $this->fillPublicProperty($repository));
-    }
-
-    /**
-     * Fills the public properties of the object with values from the given repository.
-     *
-     * @param \Orchid\Screen\Repository $repository The repository containing the values to fill the properties with.
-     *
-     * @return void
-     */
-    protected function fillPublicProperty(Repository $repository): void
-    {
-        $this->getPublicPropertyNames()
-            ->map(fn (string $property) => $this->$property = $repository->get($property, $this->$property));
-    }
-
-    /**
-     * Retrieves the names of all public properties of the object.
-     *
-     * @return \Illuminate\Support\Collection The names of the public properties.
-     */
-    protected function getPublicPropertyNames(): Collection
-    {
-        $properties = (new \ReflectionClass(static::class))->getProperties(\ReflectionProperty::IS_PUBLIC);
-        $baseProperties = (new \ReflectionClass(Screen::class))->getProperties(\ReflectionProperty::IS_PUBLIC);
-
-        return collect($properties)
-            ->mapWithKeys(fn (\ReflectionProperty $property) => [$property->getName() => $property])
-            ->filter(fn (\ReflectionProperty $property) => ! $property->isStatic())
-            ->except(array_map(fn (\ReflectionProperty $property) => $property->getName(), $baseProperties))
-            ->keys();
     }
 
     /**
