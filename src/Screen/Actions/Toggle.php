@@ -77,7 +77,7 @@ class Toggle extends Button
     public static function make(?string $name = null): static
     {
         return (new self())->name($name)
-            ->title($title ?? Str::title($name));
+            ->title(Str::title($name));
     }
 
     public function __construct()
