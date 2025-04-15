@@ -6,7 +6,8 @@
                 data-action="button#confirm"
                 data-button-confirm="{{ $confirm }}"
             @endempty
-        {{ $attributes }}>
+        {{ $attributes }}
+    >
 
         @isset($icon)
             <x-orchid-icon :path="$icon" class="overflow-visible"/>
