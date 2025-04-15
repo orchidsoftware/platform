@@ -24,44 +24,6 @@ class Toggle extends Button
     protected $view = 'platform::actions.toggle';
 
     /**
-     * Default attributes value.
-     *
-     * @var array
-     */
-    protected $attributes = [
-        'class'      => 'form-check-input',
-        'type'       => 'checkbox',
-        'novalidate' => false,
-        'method'     => null,
-        'action'     => null,
-        'parameters' => [],
-        'turbo'      => true,
-        'form'       => 'post-form',
-        'yesvalue'   => 1,
-        'novalue'    => 0,
-    ];
-
-    /**
-     * Attributes available for a particular tag.
-     *
-     * @var array
-     */
-    protected $inlineAttributes = [
-        'form',
-        'formaction',
-        'formenctype',
-        'formmethod',
-        'formnovalidate',
-        'formtarget',
-        'type',
-        'disabled',
-        'yesvalue',
-        'novalue',
-        'title',
-        'novalidate'
-    ];
-
-    /**
      * A set of attributes for the assignment
      * of which will automatically translate them.
      *
@@ -85,7 +47,9 @@ class Toggle extends Button
         parent::__construct();
 
         $this->addBeforeRender(function () {
-            $this->set('value', (bool) $this->get('value'));
+            $this->set('value', (bool) $this->get('value'))
+                ->set('type', 'checkbox')
+                ->set('class', 'form-check-input');
         });
     }
 }
