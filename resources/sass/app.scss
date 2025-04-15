@@ -2,16 +2,16 @@
 @import "theme/variables";
 
 // Vendor
-@import "~bootstrap/scss/bootstrap";
-@import "~dropzone/dist/basic";
-@import "~dropzone/dist/dropzone";
-@import "~cropperjs/dist/cropper";
-@import "~simplemde/dist/simplemde.min";
-@import "~flatpickr/dist/flatpickr.min";
-@import "~leaflet/dist/leaflet";
-@import "~quill/dist/quill.snow";
-@import "~frappe-charts/src/css/charts";
-@import "~tom-select/dist/scss/tom-select.bootstrap5";
+@import "bootstrap/scss/bootstrap";
+@import "dropzone/dist/basic";
+@import "dropzone/dist/dropzone";
+@import "cropperjs/dist/cropper";
+@import "simplemde/dist/simplemde.min";
+@import "flatpickr/dist/flatpickr.min";
+@import "leaflet/dist/leaflet";
+@import "quill/dist/quill.snow";
+@import "frappe-charts/src/css/charts";
+@import "tom-select/dist/scss/tom-select.bootstrap5";
 
 // App
 @import "core/mixins";

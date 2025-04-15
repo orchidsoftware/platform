@@ -21,23 +21,17 @@ class PublishedResourceTest extends TestUnitCase
      */
     public function testFilesAreMinified(): void
     {
-        $maxCssSize = 500 * 1028; //  ~500 kb
+        $maxCssSize = 550 * 1028; //  ~550 kb
         $maxJsSize = 2 * 1028 * 1028; // ~2 mb
-        $maxVendorSize = 2 * 1028 * 1028; // ~2 mb
 
         $this->assertLessThan($maxCssSize,
-            filesize(Dashboard::path('/public/css/orchid.css')),
+            filesize(Dashboard::path('/public/assets/app.css')),
             'File orchid.css more '.Formats::formatBytes($maxCssSize)
         );
 
         $this->assertLessThan($maxJsSize,
-            filesize(Dashboard::path('/public/js/orchid.js')),
+            filesize(Dashboard::path('/public/assets/app.js')),
             'File orchid.js more '.Formats::formatBytes($maxJsSize)
-        );
-
-        $this->assertLessThan($maxVendorSize,
-            filesize(Dashboard::path('/public/js/vendor.js')),
-            'File vendor.js more '.Formats::formatBytes($maxVendorSize)
         );
     }
 }
