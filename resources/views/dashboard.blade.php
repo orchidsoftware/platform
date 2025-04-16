@@ -1,25 +1,25 @@
 @extends(config('platform.workspace', 'platform::workspace.compact'))
 
 @section('aside')
-    <div class="aside col-xs-12 col-xxl-2 bg-dark d-flex flex-column" data-controller="menu">
+    <div class="aside col-xs-12 col-xxl-2 bg-dark d-flex flex-column" data-controller="menu" data-bs-theme="dark">
         <header class="d-xl-block p-3 mt-xl-4 w-100 d-flex align-items-center">
-            <a href="#" class="header-toggler d-xl-none me-auto order-first d-flex align-items-center lh-1"
+            <a href="#" class="header-toggler d-xl-none me-auto order-first d-flex align-items-center lh-1 link-body-emphasis"
                data-action="click->menu#toggle">
                 <x-orchid-icon path="bs.three-dots-vertical" class="icon-menu"/>
 
                 <span class="ms-2">@yield('title')</span>
             </a>
 
-            <a class="header-brand order-last" href="{{ route(config('platform.index')) }}">
+            <a class="header-brand order-last link-body-emphasis" href="{{ route(config('platform.index')) }}">
                 @includeFirst([config('platform.template.header'), 'platform::header'])
             </a>
         </header>
 
-        <nav class="aside-collapse w-100 d-xl-flex flex-column collapse-horizontal" id="headerMenuCollapse">
+        <nav class="aside-collapse w-100 d-xl-flex flex-column collapse-horizontal text-body-emphasis" id="headerMenuCollapse">
 
             @include('platform::partials.search')
 
-            <ul class="nav flex-column mb-md-1 mb-auto ps-0 gap-1">
+            <ul class="nav nav-pills flex-column mb-md-1 mb-auto ps-0 gap-1">
                 {!! Dashboard::renderMenu() !!}
             </ul>
 
@@ -28,9 +28,9 @@
                  title="{{ __('Scroll to top') }}">
                 <div class="bottom-left w-100 mb-2 ps-3 overflow-hidden">
                     <small data-controller="viewport-entrance-toggle"
-                           class="scroll-to-top"
+                           class="scroll-to-top d-flex align-items-center gap-3"
                            data-viewport-entrance-toggle-class="show">
-                        <x-orchid-icon path="bs.chevron-up" class="me-2"/>
+                        <x-orchid-icon path="bs.chevron-up"/>
                         {{ __('Scroll to top') }}
                     </small>
                 </div>

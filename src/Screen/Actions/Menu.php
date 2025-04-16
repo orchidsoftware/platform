@@ -46,7 +46,7 @@ class Menu extends Link
      * @var array
      */
     protected $attributes = [
-        'class'          => 'nav-link d-flex align-items-center collapsed icon-link',
+        'class'          => 'nav-link d-flex align-items-center collapsed icon-link gap-3',
         'title'          => null,
         'icon'           => null,
         'href'           => null,
