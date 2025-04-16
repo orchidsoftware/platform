@@ -2,8 +2,8 @@
 
 namespace Orchid\Screen\Concerns;
 
-use Orchid\Screen\Repository;
 use Illuminate\Support\Facades\Crypt;
+use Orchid\Screen\Repository;
 
 trait InteractsWithEncryptedState
 {
@@ -19,7 +19,7 @@ trait InteractsWithEncryptedState
      */
     protected function extractState(?string $state = null): Repository
     {
-        if($state === null) {
+        if ($state === null) {
             $state = request()->get('_state', session()->get('_state'));
         }
 
