@@ -6,6 +6,7 @@ namespace Orchid\Screen\Actions;
 
 use Orchid\Screen\Action;
 use Orchid\Support\Facades\Dashboard;
+use Illuminate\Contracts\Routing\UrlRoutable;
 
 /**
  * Class Button.
@@ -121,17 +122,41 @@ class Button extends Action
     /**
      * Sets the parameters for the action.
      *
-     * @param array|object $parameters The array or object containing the parameters.
-     *
+     * @param array|object $parameters
      * @return $this
      */
     public function parameters(array|object $parameters): static
     {
-        $parameters = is_array($parameters)
-            ? collect($parameters)->filter(fn ($value) => filled($value))->all()
-            : $parameters;
+        return $this->set('parameters', $this->prepareActionParameters($parameters));
+    }
 
-        return $this->set('parameters', $parameters);
+    /**
+     * Normalizes parameters before setting them.
+     *
+     * @param array|object $parameters
+     * @return array|object
+     */
+    protected function prepareActionParameters(array|object $parameters): array|object
+    {
+        if(!is_array($parameters)) {
+            return $parameters;
+        }
+
+        return collect($parameters)
+            ->filter(fn ($value) => filled($value))
+            ->map(fn($value) => $this->extractRouteKey($value))
+            ->all();
+    }
+
+    /**
+     * Extracts key from Eloquent model if applicable.
+     *
+     * @param mixed $value
+     * @return mixed
+     */
+    protected function extractRouteKey(mixed $value): mixed
+    {
+        return $value instanceof UrlRoutable ? $value->getRouteKey() : $value;
     }
 
     /**
