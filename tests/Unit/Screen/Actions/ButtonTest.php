@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Fields;
 
+use Orchid\Platform\Models\User;
 use Orchid\Screen\Actions\Button;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
@@ -187,6 +188,24 @@ class ButtonTest extends TestFieldsUnitCase
 
         $this->assertStringContainsString(
             'formaction="http://127.0.0.1:8001/test?id=1',
+            $view
+        );
+    }
+
+    public function testButtonMethodParametersAcceptsEloquentModel(): void
+    {
+        $user = User::factory()->create();
+
+        $button = Button::make('About')
+            ->parameters([
+                'user' => $user,
+            ])
+            ->method('test');
+
+        $view = self::renderField($button);
+
+        $this->assertStringContainsString(
+            'formaction="http://127.0.0.1:8001/test?user='.$user->getKey(),
             $view
         );
     }
