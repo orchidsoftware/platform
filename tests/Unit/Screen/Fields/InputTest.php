@@ -8,8 +8,8 @@ use Illuminate\Foundation\Testing\Concerns\InteractsWithSession;
 use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\HtmlString;
-use Illuminate\Support\Str;
 use Illuminate\Support\MessageBag;
+use Illuminate\Support\Str;
 use Orchid\Screen\Fields\Input;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 use Throwable;
@@ -213,6 +213,4 @@ class InputTest extends TestFieldsUnitCase
             'HTML title text not rendered correctly.'
         );
     }
-
-
 }
