@@ -229,6 +229,7 @@ class Field implements Fieldable, Htmlable
 
         collect($this->attributes)
             ->intersectByKeys(array_flip($this->translations))
+            ->filter(fn ($value) => is_string($value))
             ->each(function ($value, $key) use ($lang) {
                 $translation = __($value, [], $lang);
                 $this->set($key, is_string($translation) ? $translation : $value);

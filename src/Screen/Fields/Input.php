@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Illuminate\Contracts\Support\Htmlable;
 use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
 
@@ -37,10 +38,10 @@ use Orchid\Screen\Field;
  * @method $this tabindex($value = true)
  * @method self  type($value = true)
  * @method $this value($value = true)
- * @method Input help(string $value = null)
+ * @method Input help(string|Htmlable $value = null)
  * @method $this popover(string $value = null)
  * @method $this mask($value = true)
- * @method $this title(string $value = null)
+ * @method $this title(string|Htmlable $value = null)
  * @method $this inputmode(string $value = null)
  */
 class Input extends Field
