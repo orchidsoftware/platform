@@ -1,6 +1,6 @@
 // Colors
 $orchid-color: #007bff; //#ac5ca0;
-
+$min-contrast-ratio:   4.5;
 
 $white: #ffffff;
 $black: #15141a;
@@ -172,3 +172,6 @@ $utilities: (
         ),
     ),
 );
+
+
+$nav-pills-link-color: inherit;

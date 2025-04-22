@@ -7,13 +7,13 @@
 @if (!empty($name))
 <li class="nav-item {{ active($active) }}">
     <a data-turbo="{{ var_export($turbo) }}"
-        {{ $attributes }}
+        {{ $attributes->merge(['class' => active($active)]) }}
     >
         @isset($icon)
-            <x-orchid-icon :path="$icon" width="1.125rem" height="1.125rem" class="overflow-visible"/>
+            <x-orchid-icon :path="$icon" class="overflow-visible"/>
         @endisset
 
-        <span class="mx-2">{{ $name ?? '' }}</span>
+        <span class="text-break">{{ $name ?? '' }}</span>
 
         @isset($badge)
             <b class="badge rounded-pill bg-{{$badge['class']}} col-auto ms-auto">{{$badge['data']()}}</b>
@@ -23,16 +23,20 @@
 @endif
 
 @if(!empty($list))
-    <div class="nav collapse sub-menu ps-3 {{active($active, 'show')}}"
+    <div class="gap-3 collapse sub-menu {{ active($active, 'show') }}"
          id="menu-{{$slug}}"
          @isset($parent)
             data-bs-parent="#menu-{{$parent}}">
          @else
             data-bs-parent="#headerMenuCollapse">
          @endisset
-        @foreach($list as $item)
-            {!!  $item->build($source) !!}
-        @endforeach
+
+             <div class="vr ms-3"></div>
+             <div class="nav nav-pills gap-1">
+                  @foreach($list as $item)
+                      {!!  $item->build($source) !!}
+                  @endforeach
+             </div>
     </div>
 @endif
 

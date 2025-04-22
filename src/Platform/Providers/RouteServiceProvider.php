@@ -8,6 +8,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Middleware\Access;
+use Orchid\Platform\Http\Middleware\BladeIcons;
 use Orchid\Platform\Http\Middleware\Turbo;
 
 class RouteServiceProvider extends ServiceProvider
@@ -21,6 +22,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middlewareGroup('platform', [
             Turbo::class,
+            BladeIcons::class,
             Access::class,
         ]);
 
