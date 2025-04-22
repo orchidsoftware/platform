@@ -7,6 +7,8 @@ namespace Orchid\Tests\Unit\Screen\Fields;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithSession;
 use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
 use Illuminate\Support\MessageBag;
 use Orchid\Screen\Fields\Input;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
@@ -179,4 +181,38 @@ class InputTest extends TestFieldsUnitCase
             'Expected validation error message was not found in the rendered input.'
         );
     }
+
+    public function testHelpTextSupportsHtml(): void
+    {
+        $htmlHelp = new HtmlString('Your <strong>full name</strong> here, including any middle names.');
+
+        $input = Input::make('name')->help($htmlHelp);
+
+        $expected = 'Your <strong>full name</strong> here, including any middle names.';
+
+        $this->assertStringContainsString(
+            $expected,
+            self::minifyRenderField($input),
+            'HTML help text not rendered correctly.'
+        );
+    }
+
+    public function testTitleTextSupportsHtml(): void
+    {
+        $htmlTitle = Str::of('Your **full name** here, including any middle names.')
+            ->inlineMarkdown()
+            ->toHtmlString();
+
+        $input = Input::make('name')->title($htmlTitle);
+
+        $expected = 'Your <strong>full name</strong> here, including any middle names.';
+
+        $this->assertStringContainsString(
+            $expected,
+            self::minifyRenderField($input),
+            'HTML title text not rendered correctly.'
+        );
+    }
+
+
 }
