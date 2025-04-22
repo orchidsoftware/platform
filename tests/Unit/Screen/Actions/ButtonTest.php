@@ -205,7 +205,7 @@ class ButtonTest extends TestFieldsUnitCase
         $view = self::renderField($button);
 
         $this->assertStringContainsString(
-            'formaction="http://127.0.0.1:8001/test?user='. $user->getKey(),
+            'formaction="http://127.0.0.1:8001/test?user='.$user->getKey(),
             $view
         );
     }
