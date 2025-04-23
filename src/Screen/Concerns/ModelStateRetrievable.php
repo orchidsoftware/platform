@@ -55,7 +55,7 @@ trait ModelStateRetrievable
                 continue;
             }
 
-            // Allow full model that are not yet saved
+            // Store unsaved models as-is, since they cannot be rehydrated via DB
             if($value instanceof Model && !$value->exists) {
                 $values[$name] = $value;
                 continue;
