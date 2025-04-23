@@ -168,6 +168,4 @@ class ScreenSerializeTest extends TestUnitCase
         $this->assertEquals('Alexandr', $unserializedScreen->user->name);
         $this->assertCount(0, DB::getQueryLog());
     }
-
-
 }
