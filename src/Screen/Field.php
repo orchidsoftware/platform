@@ -287,12 +287,19 @@ class Field implements Fieldable, Htmlable
             return $this;
         }
 
-        $generatedId = hash(
+        $hash = hash(
             'xxh3',
             json_encode($this->getAttributes())
         );
 
-        return $this->set('id', $generatedId);
+        $id = collect([
+            'field',
+            $this->get('lang'),
+            $this->get('name'),
+            $hash,
+        ])->implode('-');
+
+        return $this->set('id', Str::slug($id));
     }
 
     /**
