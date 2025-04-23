@@ -62,7 +62,7 @@ abstract class Listener extends Layout
      */
     public function getSlug(): string
     {
-        return sha1(static::class);
+        return hash('xxh3', (static::class));
     }
 
     /**
