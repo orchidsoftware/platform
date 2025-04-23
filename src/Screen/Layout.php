@@ -95,7 +95,7 @@ abstract class Layout implements JsonSerializable
      */
     public function getSlug(): string
     {
-        return sha1(json_encode($this));
+        return hash('xxh3', json_encode($this));
     }
 
     /**
