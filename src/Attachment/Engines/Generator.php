@@ -70,7 +70,10 @@ class Generator implements Engine
      */
     public function name(): string
     {
-        return sha1($this->uniqueId.$this->file->getClientOriginalName());
+        return hash(
+            $this->hashAlgorithm(),
+            $this->uniqueId.$this->file->getClientOriginalName()
+        );
     }
 
     /**
@@ -108,7 +111,10 @@ class Generator implements Engine
      */
     public function hash(): string
     {
-        $hash = sha1_file($this->file->path());
+        $hash = hash_file(
+            $this->hashAlgorithm(),
+            $this->file->path()
+        );
 
         if ($hash === false) {
             throw new RuntimeException(sprintf(
@@ -151,5 +157,25 @@ class Generator implements Engine
         return $this->mimes->getMimeType($this->extension())
             ?? $this->mimes->getMimeType($this->file->getClientMimeType())
             ?? static::UNKNOWN;
+    }
+
+    /**
+     * Get the hashing algorithm used for file name and content hashing.
+     *
+     * This method centralizes the choice of hash algorithm used throughout
+     * the Generator. Changing the return value here will affect both
+     * the generated file name and the file content hash.
+     *
+     * Supported algorithms include those listed by `hash_algos()`,
+     * such as 'sha1', 'sha256', 'md5', etc.
+     *
+     * @see https://www.php.net/manual/en/function.hash.php
+     * @see https://www.php.net/manual/en/function.hash-file.php
+     *
+     * @return string The name of the hashing algorithm to use.
+     */
+    protected function hashAlgorithm(): string
+    {
+        return 'sha1';
     }
 }
