@@ -141,4 +141,31 @@ class ScreenSerializeTest extends TestUnitCase
         // Ensure the user's name after deserialization does not match the unsaved change
         $this->assertNotSame('Changed Name', $unserializedScreen->user->name);
     }
+
+    /**
+     * Tests serialization and deserialization with the ModelStateRetrievable trait.
+     *
+     * Ensures that an unsaved model is serialized with its attributes intact
+     * and is restored as-is upon deserialization (without DB query).
+     */
+    public function testWithPropertyRetrievableWhenEloquentModelNotSaved(): void
+    {
+        $user = User::factory()->make([
+            'name' => 'Alexandr',
+        ]);
+
+        $this->assertNull($user->getKey());
+
+        $screen = app()->make(SerializeRetrievableScreen::class, ['user' => $user]);
+        $serializedScreen = serialize($screen);
+
+        $this->assertStringContainsString('Alexandr', $serializedScreen);
+
+        DB::enableQueryLog();
+
+        $unserializedScreen = unserialize($serializedScreen);
+
+        $this->assertEquals('Alexandr', $unserializedScreen->user->name);
+        $this->assertCount(0, DB::getQueryLog());
+    }
 }
