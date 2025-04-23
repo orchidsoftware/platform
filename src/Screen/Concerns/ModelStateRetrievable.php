@@ -2,6 +2,7 @@
 
 namespace Orchid\Screen\Concerns;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Queue\Attributes\WithoutRelations;
 use Illuminate\Queue\SerializesAndRestoresModelIdentifiers;
 
@@ -51,6 +52,12 @@ trait ModelStateRetrievable
             $name = $property->getName();
 
             if ($property->isPrivate() || $property->isProtected()) {
+                continue;
+            }
+
+            // Allow full model that are not yet saved
+            if($value instanceof Model && !$value->exists) {
+                $values[$name] = $value;
                 continue;
             }
 
