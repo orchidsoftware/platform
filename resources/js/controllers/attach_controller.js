@@ -214,6 +214,7 @@ export default class extends ApplicationController {
                 files: items,
             }),
             headers: {
+                'Content-Type': 'application/json;charset=utf-8',
                 'X-CSRF-Token': document.head.querySelector('meta[name="csrf_token"]').content,
             },
         }).then();
