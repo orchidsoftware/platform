@@ -19,7 +19,8 @@ class SourceTest extends TestUnitCase
     {
         parent::setUp();
 
-        $model = new class extends Model {
+        $model = new class extends Model
+        {
             use AsSource;
 
             protected $attributes = [
@@ -34,19 +35,19 @@ class SourceTest extends TestUnitCase
             ];
 
             protected $casts = [
-                'options' => 'array',
+                'options'     => 'array',
                 'preferences' => 'json',
             ];
 
             public function getGreetingAttribute()
             {
-                return 'Hello ' . $this->name;
+                return 'Hello '.$this->name;
             }
         };
 
         $model->fill([
-            'id' => 8,
-            'name' => 'Alexandr Chernyaev',
+            'id'      => 8,
+            'name'    => 'Alexandr Chernyaev',
             'options' => [
                 'skills' => [
                     'php' => true,
@@ -65,7 +66,8 @@ class SourceTest extends TestUnitCase
 
         $model->color = 'red';
 
-        $relationModel = fn(string $name) => new class(['name' => $name]) extends Model {
+        $relationModel = fn (string $name) => new class(['name' => $name]) extends Model
+        {
             protected $fillable = ['name'];
         };
 
@@ -148,5 +150,4 @@ class SourceTest extends TestUnitCase
         $this->assertNull($this->model->getContent('options.invalid'));
         $this->assertNull($this->model->getContent('many.four'));
     }
-
 }
