@@ -13,15 +13,13 @@ use Orchid\Tests\TestUnitCase;
  */
 class SourceTest extends TestUnitCase
 {
-    /**
-     * @var Model
-     */
-    protected $model;
+    private Model $model;
 
     protected function setUp(): void
     {
-        $model = new class extends Model
-        {
+        parent::setUp();
+
+        $model = new class extends Model {
             use AsSource;
 
             protected $attributes = [
@@ -36,22 +34,22 @@ class SourceTest extends TestUnitCase
             ];
 
             protected $casts = [
-                'options'     => 'array',
+                'options' => 'array',
                 'preferences' => 'json',
             ];
 
             public function getGreetingAttribute()
             {
-                return 'Hello '.$this->name;
+                return 'Hello ' . $this->name;
             }
         };
 
         $model->fill([
-            'id'      => 8,
-            'name'    => 'Alexandr Chernyaev',
+            'id' => 8,
+            'name' => 'Alexandr Chernyaev',
             'options' => [
-                'skills'  => [
-                    'php'  => true,
+                'skills' => [
+                    'php' => true,
                 ],
                 'country' => [
                     'Russia',
@@ -66,7 +64,18 @@ class SourceTest extends TestUnitCase
         ]);
 
         $model->color = 'red';
-        $model->setRelations(['many' => ['one', 'two', 'three' => 84]]);
+
+        $relationModel = fn(string $name) => new class(['name' => $name]) extends Model {
+            protected $fillable = ['name'];
+        };
+
+        $model->setRelations([
+            'many' => [
+                $relationModel('one'),
+                $relationModel('two'),
+                'three' => $relationModel('three'),
+            ],
+        ]);
 
         $this->model = $model;
     }
@@ -98,25 +107,46 @@ class SourceTest extends TestUnitCase
         $this->assertSame('dark', $this->model->getContent('preferences.theme'));
     }
 
-    public function testGetRelation(): void
+    public function testGetRelationByPath(): void
     {
-        $this->assertIsInt($this->model->getContent('many.three'));
-        $this->assertEquals(84, $this->model->getContent('many.three'));
-
-        $this->assertContains('one', $this->model->getContent('many'));
-        $this->assertContains('two', $this->model->getContent('many'));
-        $this->assertEquals('one', $this->model->getContent('many')[0]);
+        $name = $this->model->getContent('many.three.name');
+        $this->assertSame('three', $name);
     }
 
-    public function testGetAttributeWithAccessor()
+    public function testGetNamedRelation(): void
+    {
+        $related = $this->model->getContent('many.three');
+        $this->assertInstanceOf(Model::class, $related);
+        $this->assertSame('three', $related->name);
+    }
+
+    public function testGetRelationList(): void
+    {
+        $relations = $this->model->getContent('many');
+
+        $this->assertIsArray($relations);
+        $this->assertCount(3, $relations);
+        $this->assertSame('one', $relations[0]->name);
+        $this->assertSame('two', $relations[1]->name);
+        $this->assertSame('three', $relations['three']->name);
+    }
+
+    public function testGetAttributeWithAccessor(): void
     {
         $this->assertEquals('Hello Alexandr Chernyaev', $this->model->getContent('greeting'));
     }
 
-    public function testNoAccessToProperties(): void
+    public function testNoAccessToInternalProperties(): void
     {
         $this->assertNull($this->model->getContent('incrementing')); // public
         $this->assertNull($this->model->getContent('fillable')); // property
         $this->assertNull($this->model->getContent('connection'));
     }
+
+    public function testGetNonexistentPathReturnsNull(): void
+    {
+        $this->assertNull($this->model->getContent('options.invalid'));
+        $this->assertNull($this->model->getContent('many.four'));
+    }
+
 }
