@@ -63,6 +63,7 @@ class Cropper extends Picture
         'maxSizeValidateMessage' => 'The upload file is too large. Max size: {value} MB',
         'imageSmoothingEnabled'  => true,
         'imageSmoothingQuality'  => 'medium',
+        'fillColor'              => '#fff',
     ];
 
     /**
@@ -193,6 +194,13 @@ class Cropper extends Picture
     public function imageSmoothingQuality(string $quality = 'medium'): static
     {
         $this->set('imageSmoothingQuality', $quality);
+
+        return $this;
+    }
+
+    public function fillColor(string $color = '#fff'): static
+    {
+        $this->set('fillColor', $color);
 
         return $this;
     }

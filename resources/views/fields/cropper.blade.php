@@ -18,6 +18,7 @@
          data-cropper-max-size-message-value="{{ __($maxSizeValidateMessage) }}"
          data-cropper-image-smoothing-enabled="{{ $imageSmoothingEnabled }}"
          data-cropper-image-smoothing-quality="{{ $imageSmoothingQuality }}"
+         data-cropper-fill-color="{{ $fillColor }}"
     >
         <div class="border-dashed text-end p-3 cropper-actions">
 
