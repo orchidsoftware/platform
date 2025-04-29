@@ -32,7 +32,7 @@
          @endisset
 
              <div class="vr ms-3"></div>
-             <div class="nav nav-pills gap-1">
+             <div class="nav nav-pills gap-1 d-flex flex-column w-100">
                   @foreach($list as $item)
                       {!!  $item->build($source) !!}
                   @endforeach
