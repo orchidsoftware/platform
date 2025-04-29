@@ -31,8 +31,8 @@
             data-bs-parent="#headerMenuCollapse">
          @endisset
 
-             <div class="vr ms-3"></div>
-             <div class="nav nav-pills gap-1 d-flex flex-column w-100">
+             <div class="vr ms-3 my-2"></div>
+             <div class="nav nav-pills gap-1 d-flex flex-column flex-nowrap flex-grow-1">
                   @foreach($list as $item)
                       {!!  $item->build($source) !!}
                   @endforeach
