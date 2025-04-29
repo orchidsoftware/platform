@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.51.0 - 2025-04-29
+
+### Added
+- Added support HTML rendering in help and title fields [#3001](https://github.com/orchidsoftware/platform/pull/3001)
+- Support passing Eloquent models as action parameters [#3000](https://github.com/orchidsoftware/platform/pull/3000)
+- Split screen state/fillable logic into reusable trait
+
+### Changed
+- UI improvements for better look [#2999](https://github.com/orchidsoftware/platform/pull/2999)
+- Improve balance of added text in horizontal titles
+- Refactor component hashing: switch to `xxh3` [#3004](https://github.com/orchidsoftware/platform/pull/3004)
+- Extract hash algorithm to protected method for easier override [#3002](https://github.com/orchidsoftware/platform/pull/3002)
+
+### Fixed
+- Set default max slices to 6 to minimize issues with the used package [#2965](https://github.com/orchidsoftware/platform/issues/2965)
+- Avoid PHPUnit 12 conflict by using `Attributes\DataProvider` [#2990](https://github.com/orchidsoftware/platform/pull/2990)
+- Fix serialization and deserialization for unsaved Eloquent models [#3003](https://github.com/orchidsoftware/platform/pull/3003)
+- Workaround for Laravel `12.10.1` relation loading regression in `getAttribute()` [#3006](https://github.com/orchidsoftware/platform/pull/3006)
+- Fix file sorting issue on servers expecting `Content-Type` [#3005](https://github.com/orchidsoftware/platform/pull/3005)
+
 ## 14.50.1 - 2025-04-02
 
 ### Fixed
