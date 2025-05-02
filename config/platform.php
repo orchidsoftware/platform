@@ -263,7 +263,7 @@ return [
         'cache'          => true,
         'prefetch'       => true,
         'refresh-method' => 'replace',
-        'refresh-scroll' => 'reset',
+        'refresh-scroll' => 'preserve',
     ],
 
     /*
