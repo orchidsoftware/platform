@@ -3,7 +3,7 @@
 namespace Orchid\Platform\Configuration;
 
 use Orchid\Screen\Actions\Menu;
-use Orchid\Support\Attributes\ClearsOctaneState;
+use Orchid\Support\Attributes\FlushOctaneState;
 
 trait ManagesMenu
 {
@@ -12,7 +12,7 @@ trait ManagesMenu
      *
      * @var array<Menu>
      */
-    #[ClearsOctaneState]
+    #[FlushOctaneState]
     protected array $menuItems = [];
 
     /**

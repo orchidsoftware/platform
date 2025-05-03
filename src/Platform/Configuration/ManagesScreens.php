@@ -4,7 +4,7 @@ namespace Orchid\Platform\Configuration;
 
 use Illuminate\Support\Facades\App;
 use Orchid\Screen\Screen;
-use Orchid\Support\Attributes\ClearsOctaneState;
+use Orchid\Support\Attributes\FlushOctaneState;
 
 trait ManagesScreens
 {
@@ -13,7 +13,7 @@ trait ManagesScreens
      *
      * @var Screen|null
      */
-    #[ClearsOctaneState]
+    #[FlushOctaneState]
     private ?Screen $currentScreen = null;
 
     /**
@@ -23,7 +23,7 @@ trait ManagesScreens
      *
      * @var bool Set to true if the current request is a partial request, false otherwise.
      */
-    #[ClearsOctaneState]
+    #[FlushOctaneState]
     private bool $partialRequest = false;
 
     /**

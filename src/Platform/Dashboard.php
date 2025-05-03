@@ -6,7 +6,7 @@ namespace Orchid\Platform;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
-use Orchid\Support\Attributes\ClearsOctaneState;
+use Orchid\Support\Attributes\FlushOctaneState;
 
 class Dashboard
 {
@@ -43,7 +43,7 @@ class Dashboard
 
         foreach ($properties as $property) {
             foreach ($property->getAttributes() as $attribute) {
-                if ($attribute->getName() !== ClearsOctaneState::class) {
+                if ($attribute->getName() !== FlushOctaneState::class) {
                     continue;
                 }
 
