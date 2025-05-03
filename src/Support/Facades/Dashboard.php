@@ -20,7 +20,7 @@ use Orchid\Screen\Screen;
  * @method        static      configure(array $options)
  * @method        static      option(string $key, ?string $default = null)
  * @method static mixed       modelClass(string $key, string $default = null)
- * @method        static      model(string $key, string $default = null)
+ * @method static string      model(string $key, string $default = null)
  * @method        static      useModel(string $key, string $custom)
  * @method static bool        checkUpdate()
  * @method static self        setCurrentScreen(Screen $screen, bool $partialRequest = false)

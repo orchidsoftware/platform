@@ -26,7 +26,14 @@
         <UndefinedClass>
             <errorLevel type="suppress">
                 <referencedClass name="Laravel\Octane\Events\RequestReceived" />
+                <referencedClass name="Orchid\Support\Attributes\ClearsOctaneState" />
             </errorLevel>
         </UndefinedClass>
+
+        <UndefinedAttributeClass>
+            <errorLevel type="suppress">
+                <referencedClass name="Orchid\Support\Attributes\ClearsOctaneState" />
+            </errorLevel>
+        </UndefinedAttributeClass>
     </issueHandlers>
 </psalm>
