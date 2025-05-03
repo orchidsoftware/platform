@@ -126,6 +126,7 @@ export default class extends ApplicationController {
             maxHeight: this.data.get('max-height'),
             imageSmoothingEnabled: this.data.get('image-smoothing-enabled'),
             imageSmoothingQuality: this.data.get('image-smoothing-quality'),
+            fillColor: this.data.get('fill-color'),
         }).toBlob((blob) => {
             const formData = new FormData();
 
