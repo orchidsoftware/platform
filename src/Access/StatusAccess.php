@@ -43,8 +43,9 @@ trait StatusAccess
     /**
      * Determine if a given permission slug is active.
      *
-     * @param  string  $slug
-     * @param  array<string, bool|int>  $permissions
+     * @param string                  $slug
+     * @param array<string, bool|int> $permissions
+     *
      * @return bool
      */
     private function isActive(string $slug, array $permissions): bool
