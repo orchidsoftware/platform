@@ -31,7 +31,7 @@ class RoleEditScreen extends Screen
     {
         return [
             'role'       => $role,
-            'permission' => $role->getStatusPermission(),
+            'permission' => $role->statusOfPermissions(),
         ];
     }
 
