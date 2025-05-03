@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.52.0 - 2025-05-04
+
+### Added
+- `Toggle` action button [#3009](https://github.com/orchidsoftware/platform/pull/3009)
+- Fill color parameter for cropper [#3007](https://github.com/orchidsoftware/platform/pull/3007)
+
+### Changed
+- Rename `getStatusPermission` to `statusOfPermissions`
+- Set Turbo scroll behavior to `preserve` by default [#3008](https://github.com/orchidsoftware/platform/pull/3008)
+
+### Fixed
+- Padding between text and close button
 
 ## 14.51.2 - 2025-04-29
 
