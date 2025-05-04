@@ -16,7 +16,9 @@
             <directory suffix=".blade.php">./src/</directory>
         </exclude>
         <report>
-            <clover outputFile="clover.xml"/>
+            <html outputDirectory="tests/coverage/html"/>
+            <text outputFile="tests/coverage/coverage.txt"/>
+            <clover outputFile="tests/coverage/clover.xml"/>
         </report>
     </coverage>
     <testsuites>

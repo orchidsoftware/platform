@@ -46,30 +46,6 @@ if (! function_exists('get_filter')) {
     }
 }
 
-if (! function_exists('get_filter_string')) {
-    /**
-     * @return string
-     */
-    function get_filter_string(string $property): ?string
-    {
-        $filter = get_filter($property);
-
-        if (is_array($filter) && (isset($filter['min']) || isset($filter['max']))) {
-            return sprintf('%s - %s', $filter['min'] ?? '', $filter['max'] ?? '');
-        }
-
-        if (is_array($filter) && (isset($filter['start']) || isset($filter['end']))) {
-            return sprintf('%s - %s', $filter['start'] ?? '', $filter['end'] ?? '');
-        }
-
-        if (is_array($filter)) {
-            return implode(', ', $filter);
-        }
-
-        return $filter;
-    }
-}
-
 if (! function_exists('revert_sort')) {
     function revert_sort(string $property): string
     {

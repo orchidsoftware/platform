@@ -28,7 +28,10 @@ jobs:
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit 🧪
-        run: vendor/bin/phpunit --coverage-clover=coverage.xml
+        run: vendor/bin/phpunit
 
-      - name: Submit code coverage report 🔭
-        run: bash <(curl -s https://codecov.io/bash)
+      - name: Upload coverage report as artifact 📦
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-coverage-report
+          path: tests/coverage/
