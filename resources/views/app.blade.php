@@ -13,7 +13,7 @@
     <meta name="csrf_token" content="{{ csrf_token() }}" id="csrf_token">
     <meta name="auth" content="{{ Auth::check() }}" id="auth">
 
-    {{ \Orchid\Platform\Dashboard::vite() }}
+    {{ Dashboard::vite() }}
 
     @stack('head')
 
