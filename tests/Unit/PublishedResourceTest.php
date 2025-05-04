@@ -32,12 +32,12 @@ class PublishedResourceTest extends TestUnitCase
 
         $this->assertLessThan($maxCssSize,
             filesize(Dashboard::path('/public/assets/app.css')),
-            'File orchid.css more ' . Formats::formatBytes($maxCssSize)
+            'File orchid.css more '.Formats::formatBytes($maxCssSize)
         );
 
         $this->assertLessThan($maxJsSize,
             filesize(Dashboard::path('/public/assets/app.js')),
-            'File orchid.js more ' . Formats::formatBytes($maxJsSize)
+            'File orchid.js more '.Formats::formatBytes($maxJsSize)
         );
     }
 
@@ -97,6 +97,6 @@ class PublishedResourceTest extends TestUnitCase
 
         $decoded = json_decode($json, true);
         $this->assertIsArray($decoded, 'Manifest JSON is not an array.');
-        $this->assertSame(JSON_ERROR_NONE, json_last_error(), 'Invalid JSON: ' . json_last_error_msg());
+        $this->assertSame(JSON_ERROR_NONE, json_last_error(), 'Invalid JSON: '.json_last_error_msg());
     }
 }
