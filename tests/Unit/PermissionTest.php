@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Exception;
-use Orchid\Platform\Dashboard;
 use Illuminate\Support\Collection;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
@@ -401,7 +401,7 @@ class PermissionTest extends TestUnitCase
         $user = User::factory()->create([
             'permissions' => [
                 'platform.systems.attachment' => true,
-            ]
+            ],
         ]);
 
         $expectedPermissions = \Orchid\Support\Facades\Dashboard::getPermission()
