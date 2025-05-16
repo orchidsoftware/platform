@@ -6,6 +6,7 @@ namespace Orchid\Tests\Unit;
 
 use Exception;
 use Orchid\Platform\Dashboard;
+use Illuminate\Support\Collection;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
@@ -386,5 +387,36 @@ class PermissionTest extends TestUnitCase
         $this->assertEquals(2, $users->count());
         $this->assertTrue($users->contains($user));
         $this->assertTrue($users->contains($userAlt));
+    }
+
+    public function testCountRoleCorrectPermissionCount(): void
+    {
+        $role = $this->createRole();
+
+        $this->assertEquals(2, $role->getCountPermissions());
+    }
+
+    public function testGetStatusPermissionReturnsAllPermissionsWithCorrectActiveFlags(): void
+    {
+        $user = User::factory()->create([
+            'permissions' => [
+                'platform.systems.attachment' => true,
+            ]
+        ]);
+
+        $expectedPermissions = \Orchid\Support\Facades\Dashboard::getPermission()
+            ->map
+            ->map(function ($permission) {
+                $permission['active'] = in_array($permission['slug'], [
+                    'platform.systems.attachment',
+                ]);
+
+                return $permission;
+            });
+
+        $resultPermissions = $user->getStatusPermission();
+
+        $this->instance(Collection::class, $resultPermissions);
+        $this->assertEquals($expectedPermissions, $resultPermissions);
     }
 }

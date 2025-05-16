@@ -83,6 +83,15 @@ class AlertTest extends TestUnitCase
         self::assertEquals('false', session('toast_notification.auto_hide'));
     }
 
+    public function testToastShouldBePersistentAlias(): void
+    {
+        Toast::info('Hello Alexandr!')
+            ->disableAutoHide();
+
+        self::assertEquals('Hello Alexandr!', session('toast_notification.message'));
+        self::assertEquals('false', session('toast_notification.auto_hide'));
+    }
+
     public function testToastShouldSetDelayAndBePersistent(): void
     {
         Toast::info('Hello Alexandr!')
