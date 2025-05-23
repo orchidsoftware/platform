@@ -18,6 +18,7 @@ trait HasTranslations
      * Mark the given attribute(s) as translatable.
      *
      * @param string|array $value
+     *
      * @return $this
      */
     public function translatable(string|array $value): static
@@ -34,9 +35,10 @@ trait HasTranslations
      * Exclude the given attribute(s) from being translated.
      *
      * @param string|array|null $value
+     *
      * @return $this
      */
-    public function withoutTranslation(string|array $value = null): static
+    public function withoutTranslation(string|array|null $value = null): static
     {
         if (empty($value)) {
             $this->translations = [];
@@ -44,7 +46,7 @@ trait HasTranslations
             return $this;
         }
 
-        $this->translations =  collect($this->translations)
+        $this->translations = collect($this->translations)
             ->reject(fn ($item) => in_array($item, Arr::wrap($value), true))
             ->toArray();
 
@@ -55,6 +57,7 @@ trait HasTranslations
      * Determine whether the given attribute should be translated.
      *
      * @param string $attribute
+     *
      * @return bool
      */
     public function shouldTranslate(string $attribute): bool

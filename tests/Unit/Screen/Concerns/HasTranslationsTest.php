@@ -11,10 +11,12 @@ class HasTranslationsTest extends TestUnitCase
     {
         parent::setUp();
 
-        $this->field = new class {
+        $this->field = new class
+        {
             use HasTranslations;
 
-            public function getTranslations(){
+            public function getTranslations()
+            {
                 return $this->translations;
             }
         };
