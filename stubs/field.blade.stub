@@ -1,16 +1,14 @@
-@component($typeForm, get_defined_vars())
-    <div data-controller="{{ controller }}">
-        <input
-            {{
-                $attributes->merge([
-                    'data-{{ controller }}-target' => 'name',
-                    'data-action' => 'input->{{ controller }}#greet',
-                ])
-            }}>
+<div data-controller="{{ controller }}">
+    <input
+        {{
+            $attributes->merge([
+                'data-{{ controller }}-target' => 'name',
+                'data-action' => 'input->{{ controller }}#greet',
+            ])
+        }}>
 
-        <span data-{{ controller }}-target="output"></span>
-    </div>
-@endcomponent
+    <span data-{{ controller }}-target="output"></span>
+</div>
 
 <script>
     Orchid.register('{{ controller }}', class extends Controller {
