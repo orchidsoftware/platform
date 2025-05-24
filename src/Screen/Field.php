@@ -13,6 +13,7 @@ use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\View\ComponentAttributeBag;
 use Illuminate\View\View;
+use Orchid\Screen\Concerns\HasTranslations;
 use Orchid\Screen\Concerns\Makeable;
 use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
@@ -34,7 +35,7 @@ use Throwable;
  */
 class Field implements Fieldable, Htmlable
 {
-    use CanSee, Conditionable, Macroable, Makeable {
+    use CanSee, Conditionable, Macroable, HasTranslations, Makeable {
         Macroable::__call as macroCall;
     }
 
@@ -228,8 +229,7 @@ class Field implements Fieldable, Htmlable
         $lang = $this->get('lang');
 
         collect($this->attributes)
-            ->intersectByKeys(array_flip($this->translations))
-            ->filter(fn ($value) => is_string($value))
+            ->filter(fn ($value, $key) =>  is_string($value) && $this->shouldTranslate($key))
             ->each(function ($value, $key) use ($lang) {
                 $translation = __($value, [], $lang);
                 $this->set($key, is_string($translation) ? $translation : $value);
