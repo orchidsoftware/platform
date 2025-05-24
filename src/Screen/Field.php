@@ -22,16 +22,16 @@ use Throwable;
 /**
  * Class Field.
  *
- * @method self accesskey($value = true)
- * @method self class($value = true)
- * @method self dir($value = true)
- * @method self hidden($value = true)
- * @method self id($value = true)
- * @method self lang($value = true)
- * @method self spellcheck($value = true)
- * @method self style($value = true)
- * @method self tabindex($value = true)
- * @method self autocomplete($value = true)
+ * @method static accesskey($value = true)
+ * @method static class($value = true)
+ * @method static dir($value = true)
+ * @method static hidden($value = true)
+ * @method static id($value = true)
+ * @method static lang($value = true)
+ * @method static spellcheck($value = true)
+ * @method static style($value = true)
+ * @method static tabindex($value = true)
+ * @method static autocomplete($value = true)
  */
 class Field implements Fieldable, Htmlable
 {
@@ -74,12 +74,20 @@ class Field implements Fieldable, Htmlable
     ];
 
     /**
-     * Vertical or Horizontal
-     * bootstrap forms.
+     * The default layout wrapper view for the field.
+     *
+     * This property holds the Blade view path or Closure that defines
+     * the layout used to wrap the field when rendering.
+     *
+     * It provides the standard wrapper including label, help text, and validation feedback.
+     *
+     * Set to `null` to disable the wrapper and render the field without any additional markup.
+     *
+     * This value can be overridden in subclasses to customize the wrapper.
      *
      * @var Closure|string|null
      */
-    protected $typeForm;
+    protected $typeForm = 'platform::partials.fields.vertical';
 
     /**
      * A set of attributes for the assignment
@@ -209,14 +217,26 @@ class Field implements Fieldable, Htmlable
             ->markFieldWithError()
             ->generateId();
 
-        return view($this->view, array_merge($this->getAttributes(), [
+
+        $slot = view($this->view, array_merge($this->getAttributes(), [
             'attributes'     => $this->getAllowAttributes(),
             'dataAttributes' => $this->getAllowDataAttributes(),
             'old'            => $this->getOldValue(),
             'oldName'        => $this->getOldName(),
-            'typeForm'       => $this->typeForm ?? $this->vertical()->typeForm,
         ]))
             ->withErrors($this->getErrorsMessage());
+
+
+        if ($this->typeForm) {
+            return view($this->typeForm, [
+                'slot'  => $slot,
+                'field' => $this,
+            ])
+                ->withErrors($this->getErrorsMessage());
+        }
+
+
+        return $slot;
     }
 
     /**
