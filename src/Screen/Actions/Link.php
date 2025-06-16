@@ -24,6 +24,13 @@ class Link extends Action
     protected $view = 'platform::actions.link';
 
     /**
+     * The field wrapper view type (horizontal/vertical).
+     *
+     * @var string|null
+     */
+    protected $typeForm = null;
+
+    /**
      * Default attributes value.
      *
      * @var array
