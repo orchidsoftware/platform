@@ -27,9 +27,9 @@
             <a href="#"
                data-action="filter#clearFilter"
                data-filter="{{$column}}"
-               class="badge bg-light border d-inline-flex align-items-center">
+               class="badge bg-light border d-inline-flex align-items-center link-body-emphasis gap-1">
                 <span>{{ $filterString }}</span>
-                <x-orchid-icon path="bs.x-lg" class="ms-1"/>
+                <x-orchid-icon path="bs.x-lg"/>
             </a>
         </div>
     @endif
