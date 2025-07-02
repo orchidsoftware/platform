@@ -46,7 +46,7 @@
                     </span>
                 </span>
                 </label>
-                <input type="hidden" name="{{ $name }}" data-attach-target="nullable" value="0">
+                <input type="hidden" name="{{ $name }}" data-attach-target="nullable" value="">
             </div>
         </div>
 
