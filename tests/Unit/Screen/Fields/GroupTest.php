@@ -114,8 +114,8 @@ class GroupTest extends TestFieldsUnitCase
     {
         $group = Group::make([Input::make('x')]);
 
-        $this->assertIsString((string)$group);
-        $this->assertStringContainsString('input', (string)$group);
+        $this->assertIsString((string) $group);
+        $this->assertStringContainsString('input', (string) $group);
     }
 
     public function testItAppliesFormNameToAllFields()
