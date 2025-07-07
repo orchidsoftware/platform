@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Illuminate\View\View;
 use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Contracts\Groupable;
 use Orchid\Screen\Field;
@@ -62,8 +63,12 @@ class Group implements Fieldable, Groupable
     /**
      * @return \Illuminate\View\View
      */
-    public function render()
+    public function render(): ?View
     {
+        if (empty($this->getGroup())) {
+            return null;
+        }
+
         return view($this->view, $this->attributes);
     }
 
