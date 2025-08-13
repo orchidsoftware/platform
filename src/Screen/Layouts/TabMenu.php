@@ -24,17 +24,19 @@ abstract class TabMenu extends Layout
     /**
      * @throws Throwable
      *
-     * @return Factory|\Illuminate\View\View
+     * @return Factory|\Illuminate\View\View|void
      */
     public function build(Repository $repository)
     {
         $this->query = $repository;
 
-        if (! $this->isSee()) {
+        $navigations = $this->navigations();
+
+        if (! $this->isSee() || empty($navigations)) {
             return;
         }
 
-        $form = new Builder($this->navigations(), $repository);
+        $form = new Builder($navigations, $repository);
 
         return view($this->template, [
             'navigations'  => $form->generateForm(),
