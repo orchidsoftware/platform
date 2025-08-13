@@ -6,10 +6,6 @@ export default class extends ApplicationController {
      *
      */
     connect() {
-        if (document.documentElement.hasAttribute('data-turbo-preview')) {
-            return;
-        }
-
         const select = this.element.querySelector('select');
         const plugins = ['change_listener'];
 
