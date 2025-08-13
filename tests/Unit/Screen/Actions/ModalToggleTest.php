@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Tests\Unit\Screen\Fields;
+namespace Orchid\Tests\Unit\Screen\Actions;
 
 use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
