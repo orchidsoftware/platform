@@ -15,10 +15,10 @@
 
 <div class="h2 d-flex align-items-center">
     @auth
-        <x-orchid-icon path="bs.house" class="d-inline d-xl-none"/>
+        <x-orchid-icon path="bs.house" class="d-inline d-lg-none"/>
     @endauth
 
-    <p class="my-0 {{ auth()->check() ? 'd-none d-xl-block' : '' }}">
+    <p class="my-0 {{ auth()->check() ? 'd-none d-lg-block' : '' }}">
         {{ config('app.name') }}
     </p>
 </div>
