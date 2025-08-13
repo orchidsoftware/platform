@@ -44,7 +44,7 @@ trait UserAccess
      */
     public function inRole($role): bool
     {
-        $role = Arr::first($this->roles, static function ($instance) use ($role) {
+        $role = Arr::first($this->roles->all(), static function ($instance) use ($role) {
             if ($role instanceof RoleInterface) {
                 return $instance->getRoleId() === $role->getRoleId();
             }
