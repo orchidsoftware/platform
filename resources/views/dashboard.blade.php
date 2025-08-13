@@ -1,9 +1,9 @@
 @extends(config('platform.workspace', 'platform::workspace.compact'))
 
 @section('aside')
-    <div class="aside col-xs-12 col-xxl-2 bg-dark d-flex flex-column" data-controller="menu" data-bs-theme="dark">
-        <header class="d-xl-block p-3 mt-xl-4 w-100 d-flex align-items-center">
-            <a href="#" class="header-toggler d-xl-none me-auto order-first d-flex align-items-center lh-1 link-body-emphasis"
+    <div class="aside col-xs-12 col-lg-3 col-xl-2 bg-dark d-flex flex-column" data-controller="menu" data-bs-theme="dark">
+        <header class="p-3 mt-lg-4 w-100 d-flex align-items-center">
+            <a href="#" class="header-toggler d-lg-none me-auto order-first d-flex align-items-center lh-1 link-body-emphasis"
                data-action="click->menu#toggle">
                 <x-orchid-icon path="bs.three-dots-vertical" class="icon-menu"/>
 
@@ -15,7 +15,7 @@
             </a>
         </header>
 
-        <nav class="aside-collapse w-100 d-xl-flex flex-column collapse-horizontal text-body-emphasis" id="headerMenuCollapse">
+        <nav class="aside-collapse w-100 d-lg-flex flex-column collapse-horizontal text-body-emphasis" id="headerMenuCollapse">
 
             @include('platform::partials.search')
 
