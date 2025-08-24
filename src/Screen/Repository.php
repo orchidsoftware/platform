@@ -68,4 +68,11 @@ class Repository extends \Illuminate\Config\Repository implements Countable
     {
         return $this->count() === 0;
     }
+
+    public static function elements(array $items): array
+    {
+        return collect($items)
+            ->map(fn ($item) => new self($item))
+            ->all();
+    }
 }
