@@ -59,7 +59,7 @@
     "Original referrer: (e.g. google, newsletter)": "推荐来源: (如：谷歌, 邮件)",
     "Paid keywords: (e.g. running+shoes)": "付费关键字: (如: 跑步鞋)",
     "Password": "密码",
-    "Please check the entered data, it may be necessary to specify in other languages.": "请检查数据，或者输入另一种语言",
+    "Unable to start action. Please check your input and try again.": "操作无法完成。请检查数据并重试。",
     "Product, promo code, or slogan (e.g. spring_sale)": "产品，促销码，口号 (如： 春季新款)",
     "There are no records in this view": "当前页面无数据",
     "Remember Me": "记住我",

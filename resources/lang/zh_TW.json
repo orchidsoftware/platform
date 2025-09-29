@@ -59,7 +59,7 @@
     "Original referrer: (e.g. google, newsletter)": "推薦來源: (如：Google, email)",
     "Paid keywords: (e.g. running+shoes)": "付費關鍵字: (如: 跑布鞋)",
     "Password": "密碼",
-    "Please check the entered data, it may be necessary to specify in other languages.": "請檢查資料或輸入其他語言",
+    "Unable to start action. Please check your input and try again.": "操作無法完成。請檢查資料並重試。",
     "Product, promo code, or slogan (e.g. spring_sale)": "產品，促銷代碼，標語 (如：春季促銷)",
     "There are no records in this view": "目前頁面沒有資料",
     "Remember Me": "記住我",

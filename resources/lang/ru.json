@@ -98,7 +98,7 @@
     "Password changed.": "Пароль изменен.",
     "Permission/Privilege": "Разрешения/Привилегии",
     "Permissions": "Разрешения",
-    "Please check the entered data, it may be necessary to specify in other languages.": "Пожалуйста, проверьте введенные данные, возможны указания на других языках.",
+    "Unable to start action. Please check your input and try again.": "Не удалось выполнить операцию. Пожалуйста, проверьте введенные данные и попробуйте еще раз.",
     "Previously uploaded files": "Ранее загруженные файлы",
     "Product, promo code, or slogan (e.g. spring_sale)": "Продукции, промо-код или лозунг (например, spring_sale)",
     "Profile": "Профиль",

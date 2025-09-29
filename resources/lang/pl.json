@@ -97,7 +97,7 @@
     "Password changed.": "Hasło zostało zmienione",
     "Permission/Privilege": "Uprawnienie/Przywilej",
     "Permissions": "Uprawnienia",
-    "Please check the entered data, it may be necessary to specify in other languages.": "Proszę sprawdzić wprowadzone dane, może być konieczne podanie ich w innych językach.",
+    "Unable to start action. Please check your input and try again.": "Nie udało się wykonać operacji. Proszę sprawdzić dane i spróbować ponownie.",
     "Previously uploaded files": "Wcześniej wgrane pliki",
     "Product, promo code, or slogan (e.g. spring_sale)": "Produkt, kod promocyjny lub slogan (np. spring_sale)",
     "Profile": "Profil",

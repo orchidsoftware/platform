@@ -57,7 +57,7 @@
     "Original referrer: (e.g. google, newsletter)": "Oorspronkelijke verwijzer: (bijv. Google, nieuwsbrief)",
     "Paid keywords: (e.g. running+shoes)": "Betaalde zoekwoorden: (bijv. hardlopen + schoenen)",
     "Password": "Wachtwoord",
-    "Please check the entered data, it may be necessary to specify in other languages.": "Controleer de ingevoerde gegevens, het kan nodig zijn om in andere talen te specificeren.",
+    "Unable to start action. Please check your input and try again.": "De bewerking kon niet worden voltooid. Controleer de gegevens en probeer opnieuw.",
     "Product, promo code, or slogan (e.g. spring_sale)": "Product, promotiecode of slogan (bijvoorbeeld lenteverkoop)",
     "There are no records in this view": "Er zijn geen records om te tonen",
     "Remember Me": "Onthoud mij",

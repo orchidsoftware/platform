@@ -97,7 +97,7 @@
     "Password changed.": "Құпия сөз өзгертілді.",
     "Permission/Privilege": "Рұқсаттар/Мүмкіншіліктер",
     "Permissions": "Рұқсаттар",
-    "Please check the entered data, it may be necessary to specify in other languages.": "Енгізілген деректерді тексеріңіз, басқа тілдерде нұсқаулар болуы мүмкін.",
+    "Unable to start action. Please check your input and try again.": "Операция орындалмады. Деректерді тексеріп, қайталап көріңіз.",
     "Previously uploaded files": "Бұрын жүктелген файлдар",
     "Product, promo code, or slogan (e.g. spring_sale)": "Өнімдер, промо-код немесе ұран (мысалы, spring_sale)",
     "Profile": "Профиль",
