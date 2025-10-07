@@ -43,7 +43,7 @@ class ExampleFieldsScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'A comprehensive guide to basic form controls, including input fields, buttons, checkboxes, and radio buttons.';
+        return 'A guide to designing and implementing basic form controls, from input fields to radio buttons.';
     }
 
     /**

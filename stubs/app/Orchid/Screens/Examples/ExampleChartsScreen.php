@@ -57,7 +57,7 @@ class ExampleChartsScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'A comprehensive guide to creating and customizing various types of charts, including bar, line, and pie charts.';
+        return 'A guide to designing and implementing charts, from bar to pie.';
     }
 
     /**
