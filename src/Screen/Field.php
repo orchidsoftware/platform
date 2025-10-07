@@ -331,6 +331,28 @@ class Field implements Fieldable, Htmlable
     }
 
     /**
+     * @param mixed|null $value
+     *
+     * @return static|mixed|null
+     */
+    public function has(string $key)
+    {
+        return ! empty($this->get($key));
+    }
+
+    /**
+     * Retrieve the unique ID assigned to this action element.
+     *
+     * If the ID is not explicitly set, this method returns `null`.
+     *
+     * @return string|null The ID of the action element, or null if not set.
+     */
+    protected function getId(): ?string
+    {
+        return $this->get('id');
+    }
+
+    /**
      * Get the old value of the field.
      *
      * @return float|int|mixed|string

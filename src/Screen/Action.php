@@ -97,18 +97,6 @@ class Action extends Field implements Actionable
     }
 
     /**
-     * Retrieve the unique ID assigned to this action element.
-     *
-     * If the ID is not explicitly set, this method returns `null`.
-     *
-     * @return string|null The ID of the action element, or null if not set.
-     */
-    protected function getId(): ?string
-    {
-        return $this->get('id');
-    }
-
-    /**
      * Adds the 'stretched-link' class to the element, making its parent block clickable.
      *
      * The `stretched` method appends the 'stretched-link' class to the element's 'class' attribute,
