@@ -225,15 +225,15 @@ class Field implements Fieldable, Htmlable
         ]))
             ->withErrors($this->getErrorsMessage());
 
-        if ($this->typeForm) {
-            return view($this->typeForm, [
-                'slot'  => $slot,
-                'field' => $this,
-            ])
-                ->withErrors($this->getErrorsMessage());
+        if (!$this->typeForm) {
+            return $slot;
         }
 
-        return $slot;
+        return view($this->typeForm, [
+            'slot'  => $slot,
+            'field' => $this,
+        ])
+            ->withErrors($this->getErrorsMessage());
     }
 
     /**
@@ -497,7 +497,7 @@ class Field implements Fieldable, Htmlable
      */
     public function withoutFormType(): static
     {
-        $this->typeForm = static fn (array $attributes) => $attributes['slot'];
+        $this->typeForm = null;
 
         return $this;
     }
