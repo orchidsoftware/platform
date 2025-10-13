@@ -15,6 +15,7 @@ function addQueryHashToManifest() {
     return {
         name: 'add-query-hash-to-manifest',
         apply: 'build',
+        enforce: 'post',
         closeBundle() {
             const publicDir = path.resolve(__dirname, 'public');
             const manifestFile = path.resolve(publicDir, 'manifest.json');
@@ -79,7 +80,7 @@ export default defineConfig(() => {
         build: {
             outDir: 'public',
             emptyOutDir: false,
-            manifest: true,
+            manifest: 'manifest.json',
             rollupOptions: {
                 input: [
                     'resources/js/app.js',

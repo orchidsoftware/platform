@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-      "build": "vite build"
-   },
+    "build": "vite build"
+  },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-transform-block-scoping": "^7.12.1",
@@ -11,7 +11,7 @@
     "@hotwired/turbo": "^8.0.2",
     "@popperjs/core": "^2.9.2",
     "axios": "^1.1.3",
-    "bootstrap": "~5.3.0",
+    "bootstrap": "^5.3.8",
     "codeflask": "^1.4.0",
     "cropperjs": "^1.5.11",
     "cross-env": "^10.1.0",
@@ -19,19 +19,20 @@
     "flatpickr": "^4.6.3",
     "frappe-charts": "^1.6.1",
     "inputmask": "^5.0.6",
-    "laravel-mix": "^6.0.16",
+    "laravel-vite-plugin": "^2.0.0",
     "leaflet": "^1.7.1",
-    "quill": "^2.0.0",
-    "simplemde": "^1.11",
-    "sortablejs": "^1.13.0",
-    "tom-select": "^2.3.1",
     "postcss": "^8.2.10",
+    "qs": "^6.14.0",
+    "quill": "^2.0.0",
     "rtlcss": "^4.0.0",
     "sass": "^1.69.7",
     "sass-loader": "^16.0.5",
-    "vite-plugin-rtl-css": "^1.0.6",
-    "vue-template-compiler": "^2.6.12",
+    "simplemde": "^1.11",
+    "sortablejs": "^1.13.0",
     "stimulus-vite-helpers": "^3.0.1",
-    "vite-plugin-manifest-sri": "^0.2.0"
+    "tom-select": "^2.3.1",
+    "vite": "^7.1.9",
+    "vite-plugin-manifest-sri": "^0.2.0",
+    "vite-plugin-rtl-css": "^1.0.6"
   }
 }
