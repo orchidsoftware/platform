@@ -175,7 +175,7 @@ abstract class Table extends Layout
     /**
      * Determine if table header should be displayed.
      *
-     * @param Collection $columns
+     * @param Collection                           $columns
      * @param Collection|Paginator|CursorPaginator $row
      *
      * @return bool
