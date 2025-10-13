@@ -1,5 +1,8 @@
 <div data-controller="input"
      data-input-mask="{{$mask ?? ''}}"
+     @if ($attributes['hidden'])
+     style="display: none;"
+     @endif
 >
     <input {{ $attributes }}>
 </div>
