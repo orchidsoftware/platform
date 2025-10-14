@@ -22,7 +22,7 @@
                     <div class="position-relative d-flex flex-column gap-3" data-controller="search">
                         <div class="input-icon">
                             <input
-                                data-action="keyup->search#query blur->search#blur focus->search#focus"
+                                data-action="input->search#query focus->search#focus blur->search#blur"
                                 data-search-target="query"
                                 autocomplete="off"
                                 autofocus
@@ -36,6 +36,7 @@
                             </div>
                         </div>
                         <div id="search-result"
+                             data-search-target="result"
                              class="d-flex flex-column gap-2 list-group">
                         </div>
                     </div>

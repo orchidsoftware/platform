@@ -9,7 +9,6 @@ use Orchid\Platform\Http\Controllers\IndexController;
 use Orchid\Platform\Http\Controllers\RelationController;
 use Orchid\Platform\Http\Controllers\SortableController;
 use Orchid\Platform\Http\Screens\NotificationScreen;
-use Orchid\Platform\Http\Screens\SearchScreen;
 use Tabuna\Breadcrumbs\Trail;
 
 // Index and default...
@@ -17,11 +16,9 @@ Route::get('/', [IndexController::class, 'index'])
     ->name('index')
     ->breadcrumbs(fn (Trail $trail) => $trail->push(__('Home'), route('platform.index')));
 
-Route::screen('search/{query}', SearchScreen::class)
-    ->name('search')
-    ->breadcrumbs(fn (Trail $trail, string $query) => $trail->parent('platform.index')
-        ->push(__('Search'))
-        ->push($query));
+Route::post('search/{query}', [\Orchid\Platform\Http\Controllers\SearchController::class, 'search'])
+    ->where('query', '.*')
+    ->name('search');
 
 Route::post('async', [AsyncController::class, 'load'])
     ->name('async');

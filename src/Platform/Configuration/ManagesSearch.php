@@ -2,7 +2,10 @@
 
 namespace Orchid\Platform\Configuration;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Orchid\Screen\Contracts\Searchable;
 
 trait ManagesSearch
 {
@@ -37,5 +40,54 @@ trait ManagesSearch
         return collect(static::$registeredSearchModels)
             ->unique()
             ->transform(static fn ($model) => is_object($model) ? $model : resolve($model));
+    }
+
+    /**
+     * Execute a search across all registered models and return grouped results.
+     */
+    public function search(?string $query = null): Collection
+    {
+        return $this->getSearch()
+            ->map(fn (Model $model) => $this->buildSearchResult($model, $query))
+            ->filter();
+    }
+
+    /**
+     * Build a single search result group for the given model.
+     *
+     * @param Model       $model
+     * @param string|null $query
+     *
+     * @throws \Throwable
+     *
+     * @return array{label: string,result: LengthAwarePaginator }|null
+     */
+    protected function buildSearchResult(Model $model, ?string $query): ?array
+    {
+        $presenter = optional($model)->presenter();
+
+        throw_unless(
+            $presenter instanceof Searchable,
+            sprintf(
+                "The presenter must implement '%s' for model %s.",
+                Searchable::class,
+                get_class($model)
+            )
+        );
+
+        $result = $presenter->searchQuery($query)
+            ->paginate($presenter->perSearchShow());
+
+        if ($result->isEmpty()) {
+            return null;
+        }
+
+        $result->getCollection()
+            ->transform(static fn (Model $model) => $model->presenter());
+
+        return [
+            'label'  => $presenter->label(),
+            'result' => $result,
+        ];
     }
 }

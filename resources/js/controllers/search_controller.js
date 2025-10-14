@@ -1,82 +1,49 @@
 import ApplicationController from "./application_controller";
-import * as Turbo from "@hotwired/turbo"
 
 export default class extends ApplicationController {
+    static targets = ["query", "result"];
 
-    static targets = [ "query" ];
-
-    /**
-     *
-     * @returns {HTMLElement}
-     */
-    get getResultElement() {
-        return document.getElementById('search-result');
-    }
-
-    /**
-     * Search Event
-     *
-     * @param event
-     */
     query(event) {
-        const element = this.getResultElement;
-        const startQuery = this.queryTarget.value;
+        const query = event.target.value.trim();
 
-        if (event.target.value === '') {
-            element.classList.remove('show');
+        if (query === "") {
+            this.resultTarget.classList.remove("show");
             return;
         }
 
-        if (event.keyCode === 13) {
-            Turbo.visit(this.prefix(`/search/${encodeURIComponent(this.queryTarget.value)}`));
-        }
-
-        this.showResultQuery(startQuery);
+        this.fetchResults(query);
     }
 
-    /**
-     * Event for blur
-     */
     blur() {
-        const element = this.getResultElement;
-
-        setTimeout(() => {
-            element.classList.remove('show');
-        }, 140);
+        setTimeout(() => this.resultTarget.classList.remove("show"), 140);
     }
 
-    /**
-     * Event for focus
-     *
-     * @param event
-     */
     focus(event) {
-        if (event.target.value === '') {
-            return;
+        const query = event.target.value.trim();
+        if (query !== "") {
+            this.fetchResults(query);
         }
-
-        this.showResultQuery(event.target.value);
     }
 
-    /**
-     *
-     * @param query
-     */
-    showResultQuery(query) {
+    fetchResults(query) {
+        fetch(this.prefix(`/search/${encodeURIComponent(query)}`), {
+            method: "POST",
+            headers: {
+                'X-CSRF-Token': document.head.querySelector('meta[name="csrf_token"]').content,
+            },
+        })
+            .then(response => response.text())
+            .then(html => {
+                // Check if the input has changed
+                if (query !== this.queryTarget.value.trim()) {
+                    return;
+                }
 
-        const element = this.getResultElement;
-
-        setTimeout(() => {
-            if (query !== this.queryTarget.value) {
-                return;
-            }
-
-            axios
-                .post(this.prefix(`/search/${encodeURIComponent(query)}/compact`))
-                .then((response) => {
-                    element.classList.add('show');
-                    element.innerHTML = response.data;
-                });
-        }, 200);
+                this.resultTarget.innerHTML = html;
+                this.resultTarget.classList.add("show");
+            })
+            .catch(() => {
+                this.resultTarget.classList.remove("show");
+            });
     }
 }
