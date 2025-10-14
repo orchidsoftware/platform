@@ -4,6 +4,7 @@ namespace Orchid\Platform\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Orchid\Support\Facades\Dashboard;
+
 class SearchController
 {
     /**

@@ -225,7 +225,7 @@ class Field implements Fieldable, Htmlable
         ]))
             ->withErrors($this->getErrorsMessage());
 
-        if (!$this->typeForm) {
+        if (! $this->typeForm) {
             return $slot;
         }
 

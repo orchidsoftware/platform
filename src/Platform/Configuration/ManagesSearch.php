@@ -55,10 +55,12 @@ trait ManagesSearch
     /**
      * Build a single search result group for the given model.
      *
-     * @param Model $model
+     * @param Model       $model
      * @param string|null $query
-     * @return array{label: string,result: LengthAwarePaginator }|null
+     *
      * @throws \Throwable
+     *
+     * @return array{label: string,result: LengthAwarePaginator }|null
      */
     protected function buildSearchResult(Model $model, ?string $query): ?array
     {
