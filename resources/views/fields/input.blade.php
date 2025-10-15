@@ -1,8 +1,5 @@
 <div data-controller="input"
      data-input-mask="{{$mask ?? ''}}"
-     @class([
-        'd-none' => $attributes['type'] === 'hidden' || $attributes['hidden']
-     ])
 >
     <input {{ $attributes }}>
 </div>
