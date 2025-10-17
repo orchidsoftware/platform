@@ -1,11 +1,11 @@
-<th @empty(!$width) width="{{$width}}" @endempty class="text-{{$align}}" data-column="{{ $slug }}">
+<th @empty(!$width) width="{{$width}}" @endempty class="text-{{$align}} text-dark" data-column="{{ $slug }}">
     <div class="d-inline-flex align-items-center">
 
         @includeWhen($filter !== null, "platform::partials.layouts.filter", ['filter' => $filter])
 
         @if($sort)
             <a href="{{ $sortUrl }}"
-               class="@if(!is_sort($column)) text-muted @endif">
+               class="@if(!is_sort($column)) text-dark @endif">
                 {!! $title !!}
 
                 <x-orchid-popover :content="$popover"/>
