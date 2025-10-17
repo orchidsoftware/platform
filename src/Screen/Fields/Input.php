@@ -112,6 +112,10 @@ class Input extends Field
             if (is_array($mask)) {
                 $this->set('mask', json_encode($mask));
             }
+
+            if ($this->get('type') === 'hidden' || $this->get('hidden', false)) {
+                $this->hiddenFormType();
+            }
         });
     }
 

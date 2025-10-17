@@ -71,7 +71,7 @@ class Link extends Action
     }
 
     /**
-     * @param array $parameters
+     * @param mixed $parameters
      * @param bool  $absolute
      *
      * @return $this

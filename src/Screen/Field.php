@@ -491,6 +491,18 @@ class Field implements Fieldable, Htmlable
     }
 
     /**
+     * Use hidden layout for the field.
+     *
+     * @return $this
+     */
+    public function hiddenFormType(): static
+    {
+        $this->typeForm = 'platform::partials.fields.hidden';
+
+        return $this;
+    }
+
+    /**
      * Displaying an item without titles or additional information.
      *
      * @return $this
