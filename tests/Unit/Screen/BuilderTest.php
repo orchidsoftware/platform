@@ -128,8 +128,8 @@ class BuilderTest extends TestUnitCase
             Group::make([
                 Group::make([
                     Input::make('test'),
-                ])
-            ])
+                ]),
+            ]),
         ]);
 
         $form = $builder->generateForm();
