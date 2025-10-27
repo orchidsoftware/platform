@@ -102,7 +102,11 @@ class Builder
     private function renderGroup(Groupable $group)
     {
         $prepare = collect($group->getGroup())
-            ->map(fn ($field) => $this->render($field))
+            ->map(function ($field) {
+                return is_subclass_of($field, Groupable::class)
+                    ? $this->renderGroup($field)
+                    : $this->render($field);
+            })
             ->filter()
             ->toArray();
 
