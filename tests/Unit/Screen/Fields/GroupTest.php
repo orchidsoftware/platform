@@ -144,4 +144,15 @@ class GroupTest extends TestFieldsUnitCase
         $this->assertArrayHasKey('widthColumns', $attributes);
         $this->assertArrayHasKey('itemToEnd', $attributes);
     }
+
+    public function testItCanBeNested()
+    {
+        $group = Group::make([
+            Group::make([
+                Input::make('test'),
+            ]),
+        ]);
+
+        $this->assertStringContainsString('input', $group->render()->render());
+    }
 }
