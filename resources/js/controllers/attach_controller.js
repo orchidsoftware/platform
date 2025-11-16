@@ -185,11 +185,15 @@ export default class extends ApplicationController {
         preview.querySelectorAll('*').forEach(element => {
             preview.innerHTML = preview.innerHTML
                 .replace(/{id}/gi, attachment.id)
-                .replace(/{url}/gi, attachment.url)
                 .replace(/{original_name}/gi, attachment.original_name)
                 .replace(/{mime}/gi, attachment.mime)
                 .replace(/{name}/gi, this.nameValue);
         });
+
+        const attachImage = preview.querySelector('.attach-image');
+        if (attachImage) {
+            attachImage.src = attachment.url;
+        }
 
         if (replace !== null) {
             this.element.querySelector(`#attachment-${replace}`).outerHTML = pip.outerHTML;
