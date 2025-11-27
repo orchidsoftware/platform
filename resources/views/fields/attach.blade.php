@@ -56,7 +56,10 @@
                 <input type="hidden" name="{name}" value="{id}">
 
 
-                <img class="attach-image rounded border user-select-none overflow-hidden" src="{url}" title="{original_name}"/>
+                <img class="attach-image rounded border user-select-none overflow-hidden"
+                     src="{url}"
+                     loading="lazy"
+                     title="{original_name}"/>
 
                 {{--
                     <object class="attach-image rounded border user-select-none" border="0" data="{url}" type="{mime}" title="test"  load="lazy" controls allowfullscreen autoplay="false">
