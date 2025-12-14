@@ -9,11 +9,11 @@ use Illuminate\Support\Collection;
 class Assert
 {
     /**
-     * Check if the given array is a numeric array.
+     * Check if the given array is a string array.
      */
-    public static function isIntArray(mixed $array): bool
+    public static function isStringArray(mixed $array): bool
     {
-        return self::isArrayClosure($array, 'is_numeric');
+        return self::isArrayClosure($array, 'is_string');
     }
 
     /**

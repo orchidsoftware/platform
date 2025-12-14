@@ -181,7 +181,7 @@ class Attach extends Field
     {
         $value = Arr::wrap($this->get('value'));
 
-        if (! Assert::isIntArray($value)) {
+        if (! Assert::isStringArray($value)) {
             return $this;
         }
 

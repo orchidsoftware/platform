@@ -146,7 +146,7 @@ class Relation extends Field
                 $value = Arr::wrap($value);
             }
 
-            if (property_exists($class, 'value') && Assert::isIntArray($value)) {
+            if (property_exists($class, 'value') && Assert::isStringArray($value)) {
                 $class->value = $value;
             }
 
