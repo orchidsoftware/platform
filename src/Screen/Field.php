@@ -225,15 +225,15 @@ class Field implements Fieldable, Htmlable
         ]))
             ->withErrors($this->getErrorsMessage());
 
-        if ($this->typeForm) {
-            return view($this->typeForm, [
-                'slot'  => $slot,
-                'field' => $this,
-            ])
-                ->withErrors($this->getErrorsMessage());
+        if (! $this->typeForm) {
+            return $slot;
         }
 
-        return $slot;
+        return view($this->typeForm, [
+            'slot'  => $slot,
+            'field' => $this,
+        ])
+            ->withErrors($this->getErrorsMessage());
     }
 
     /**
@@ -328,6 +328,28 @@ class Field implements Fieldable, Htmlable
     public function get(string $key, $value = null)
     {
         return $this->attributes[$key] ?? $value;
+    }
+
+    /**
+     * @param mixed|null $value
+     *
+     * @return static|mixed|null
+     */
+    public function has(string $key)
+    {
+        return ! empty($this->get($key));
+    }
+
+    /**
+     * Retrieve the unique ID assigned to this action element.
+     *
+     * If the ID is not explicitly set, this method returns `null`.
+     *
+     * @return string|null The ID of the action element, or null if not set.
+     */
+    protected function getId(): ?string
+    {
+        return $this->get('id');
     }
 
     /**
@@ -469,13 +491,25 @@ class Field implements Fieldable, Htmlable
     }
 
     /**
+     * Use hidden layout for the field.
+     *
+     * @return $this
+     */
+    public function hiddenFormType(): static
+    {
+        $this->typeForm = 'platform::partials.fields.hidden';
+
+        return $this;
+    }
+
+    /**
      * Displaying an item without titles or additional information.
      *
      * @return $this
      */
     public function withoutFormType(): static
     {
-        $this->typeForm = static fn (array $attributes) => $attributes['slot'];
+        $this->typeForm = null;
 
         return $this;
     }

@@ -50,7 +50,7 @@
     <div class="row justify-content-center d-md-flex h-100">
         @yield('aside')
 
-        <div class="col-xxl col-xl-9 col-12 mx-auto">
+        <div class="col-xxl col-lg-9 col-xl-9 col-12 mx-auto">
             @yield('body')
         </div>
     </div>

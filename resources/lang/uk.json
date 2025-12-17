@@ -57,7 +57,7 @@
     "Original referrer: (e.g. google, newsletter)": "Джерело переходу: (наприклад google, yandex, habr...)",
     "Paid keywords: (e.g. running+shoes)": "Ключові слова: (например running+shoes)",
     "Password": "Пароль",
-    "Please check the entered data, it may be necessary to specify in other languages.": "Будь ласка, перевірте введені дані, можливо їх необхідно вказати для інших мов.",
+    "Unable to start action. Please check your input and try again.": "Не вдалося виконати операцію. Будь ласка, перевірте дані та спробуйте ще раз.",
     "Product, promo code, or slogan (e.g. spring_sale)": "Продукція, промокод чи партнер (наприклад spring_sale, nike)",
     "There are no records in this view": "Записів не знайдено",
     "Remember Me": "Пам'ятай мене",

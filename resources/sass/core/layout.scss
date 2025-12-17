@@ -8,9 +8,9 @@ body {
   overflow-x: hidden;
 }
 
-@include media-breakpoint-up(xl) {
+@include media-breakpoint-up(lg) {
     .aside {
-        width: $app-aside-width;
+        width: min($app-aside-width, 25%);
         max-width: $app-aside-max-width;
         min-height: 100vh;
 
@@ -20,7 +20,7 @@ body {
     }
 }
 
-@include media-breakpoint-down(xl) {
+@include media-breakpoint-down(lg) {
 
     .aside-collapse {
         visibility: hidden;

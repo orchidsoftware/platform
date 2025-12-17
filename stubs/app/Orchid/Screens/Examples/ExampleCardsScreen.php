@@ -39,7 +39,7 @@ class ExampleCardsScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'A comprehensive guide to the design and implementation of cards, including basic and advanced features.';
+        return 'A guide to designing and implementing cards, from basics to advanced features.';
     }
 
     /**

@@ -47,6 +47,8 @@ abstract class Table extends Layout
     protected $title;
 
     /**
+     * Build the table view with columns, rows, and other settings.
+     *
      * @return Factory|\Illuminate\View\View|void
      */
     public function build(Repository $repository)
@@ -84,6 +86,13 @@ abstract class Table extends Layout
         ]);
     }
 
+    /**
+     * Set the table title.
+     *
+     * @param string|null $title
+     *
+     * @return self
+     */
     public function title(?string $title = null): self
     {
         $this->title = $title;
@@ -91,11 +100,17 @@ abstract class Table extends Layout
         return $this;
     }
 
+    /**
+     * Icon displayed when no data is found.
+     */
     protected function iconNotFound(): string
     {
         return 'bs.journal-x';
     }
 
+    /**
+     * Text displayed when no data is found.
+     */
     protected function textNotFound(): string
     {
         if (count(request()->query()) !== 0) {
@@ -105,6 +120,9 @@ abstract class Table extends Layout
         return __('There are no objects currently displayed');
     }
 
+    /**
+     * Subtext displayed when no data is found.
+     */
     protected function subNotFound(): string
     {
         if (count(request()->query()) !== 0) {
@@ -155,7 +173,12 @@ abstract class Table extends Layout
     }
 
     /**
-     * @param \Illuminate\Support\Collection|Illuminate\Contracts\Pagination\Paginator|Illuminate\Contracts\Pagination\CursorPaginator $row
+     * Determine if table header should be displayed.
+     *
+     * @param Collection                           $columns
+     * @param Collection|Paginator|CursorPaginator $row
+     *
+     * @return bool
      */
     protected function hasHeader(Collection $columns, Collection|Paginator|CursorPaginator $row): bool
     {
@@ -167,10 +190,15 @@ abstract class Table extends Layout
     }
 
     /**
-     * @return array
+     * Define table columns.
+     *
+     * @return iterable|TD[]
      */
     abstract protected function columns(): iterable;
 
+    /**
+     * Define total row configuration.
+     */
     protected function total(): array
     {
         return [];

@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 14.52.4 - 2025-08-13
+
+### Fixed
+
+- Argument type in roles [#3035](https://github.com/orchidsoftware/platform/issues/3035)
+
+## 14.52.3 - 2025-07-07
+
+### Fixed
+
+-`Group::render()` now returns `null` if the field group is empty to prevent rendering an empty block and improve
+performance.
+
+## 14.52.2 - 2025-07-02
+
+### Fixed
+- Attach field send `null` when empty
+
 ## 14.52.1 - 2025-06-30
 
 ### Fixed

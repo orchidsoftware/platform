@@ -59,7 +59,7 @@
     "Original referrer: (e.g. google, newsletter)": "Ursprünglicher Referrer: (z.B. Google, Newsletter)",
     "Paid keywords: (e.g. running+shoes)": "Bezahlte Schlüsselwörter: (z.B. Laufen+Schuhe)",
     "Password": "Passwort",
-    "Please check the entered data, it may be necessary to specify in other languages.": "Bitte überprüfen Sie die eingegebenen Daten, ggf. sind Angaben in anderen Sprachen erforderlich.",
+    "Unable to start action. Please check your input and try again.": "Der Vorgang konnte nicht ausgeführt werden. Bitte überprüfen Sie Ihre Eingabe und versuchen Sie es erneut.",
     "Product, promo code, or slogan (e.g. spring_sale)": "Produkt, Gutscheincode oder Slogan (z.B. spring_sale)",
     "There are no records in this view": "In dieser Ansicht sind keine Datensätze vorhanden",
     "Regular User": "Normaler Benutzer",

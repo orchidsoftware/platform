@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Screen;
 
 use Orchid\Screen\Builder;
+use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Repository;
 use Orchid\Tests\TestUnitCase;
@@ -119,6 +120,22 @@ class BuilderTest extends TestUnitCase
         $this->assertStringContainsString('name="three[en][name]"', $form);
         $this->assertStringContainsString('lang="en"', $form);
         $this->assertStringContainsString('value="Alexandr"', $form);
+    }
+
+    public function testNestedGroupsBuild(): void
+    {
+        $builder = new Builder([
+            Group::make([
+                Group::make([
+                    Input::make('test'),
+                ]),
+            ]),
+        ]);
+
+        $form = $builder->generateForm();
+
+        $this->assertStringContainsString('input', $form);
+        $this->assertStringContainsString('name="test"', $form);
     }
 
     /**

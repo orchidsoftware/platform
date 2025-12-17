@@ -44,7 +44,7 @@ trait UserAccess
      */
     public function inRole($role): bool
     {
-        $role = Arr::first($this->roles, static function ($instance) use ($role) {
+        $role = Arr::first($this->roles->all(), static function ($instance) use ($role) {
             if ($role instanceof RoleInterface) {
                 return $instance->getRoleId() === $role->getRoleId();
             }
@@ -101,7 +101,7 @@ trait UserAccess
     }
 
     /**
-     * Query Scope for retreiving users by a certain permission
+     * Query Scope for retrieving users by a certain permission
      * The * character usage is not implemented.
      */
     public function scopeByAccess(Builder $builder, string $permitWithoutWildcard): Builder
@@ -114,7 +114,7 @@ trait UserAccess
     }
 
     /**
-     * Query Scope for retreiving users by any permissions
+     * Query Scope for retrieving users by any permissions
      * The * character usage is not implemented.
      *
      * @param string|iterable $permitsWithoutWildcard
