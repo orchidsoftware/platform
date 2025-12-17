@@ -56,7 +56,8 @@
     "conflict": {
         "laravel/framework": "<=10.48.25, <=11.34.0",
         "orchestra/testbench-core": "<8.23.9",
-        "nesbot/carbon": "<2.66.0"
+        "nesbot/carbon": "<2.66.0",
+        "laravel/scout": "<10.19.1"
     },
     "autoload": {
         "psr-4": {
