@@ -109,7 +109,6 @@ class InstallCommand extends Command
         return $this;
     }
 
-
     /**
      * @return false|string
      */
