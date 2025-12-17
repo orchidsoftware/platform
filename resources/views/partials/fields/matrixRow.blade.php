@@ -4,7 +4,7 @@
         <th class="p-0 align-middle">
             {!!
                $fields[$column]
-                    ->value($row[$column] ?? '')
+                    ->value($row[$column] ?? null)
                     ->prefix($name)
                     ->id("$idPrefix-$key-$column")
                     ->name($keyValue ? $column : "[$key][$column]")
