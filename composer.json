@@ -55,6 +55,7 @@
     },
     "conflict": {
         "laravel/framework": "<=10.48.25, <=11.46.0",
+        "orchestra/testbench": "<9.15.0"
         "orchestra/testbench-core": "<8.23.9, <9.17.0",
         "nesbot/carbon": "<2.66.0",
         "laravel/scout": "<10.19.1"
