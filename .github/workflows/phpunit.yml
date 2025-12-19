@@ -76,7 +76,7 @@ jobs:
         uses: actions/upload-artifact@v6
         if: failure()
         with:
-          name: composer-files
+          name: composer-files-php${{ matrix.php }}-${{ matrix.os }}-laravel${{ matrix.laravel }}-dep${{ matrix.dependency-version }}
           path: |
             composer.lock
             composer.json
