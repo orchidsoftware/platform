@@ -103,7 +103,7 @@ class Picture extends Field
         return $this->addBeforeRender(function () {
             $value = (string) $this->get('value');
 
-            if (! is_string($value) || empty($value)) {
+            if ((! is_string($value) && ! is_int($value)) || empty($value)) {
                 return;
             }
 
