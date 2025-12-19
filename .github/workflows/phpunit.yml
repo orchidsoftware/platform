@@ -76,7 +76,7 @@ jobs:
         uses: actions/upload-artifact@v6
         if: failure()
         with:
-          name: composer-files-${{ github.run_id }}
+          name: composer-files-${{ github.run_id }}-${{ hashFiles('composer.lock') }}-php-${{ matrix.php }}-os-${{ matrix.os }}
           path: |
             composer.lock
             composer.json
