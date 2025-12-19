@@ -71,6 +71,13 @@ jobs:
       - name: Execute tests (Unit and Feature tests) via PHPUnit 🧪
         run: vendor/bin/phpunit  --no-coverage --disable-coverage-ignore --order-by=random
 
+      - name: Upload composer.lock for failed test run
+        uses: actions/upload-artifact@v6
+        if: failure()
+        with:
+          name: composer.lock
+          path: composer.lock
+
   dusk:
     runs-on: ubuntu-latest
 
