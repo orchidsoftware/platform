@@ -76,7 +76,7 @@ jobs:
         uses: actions/upload-artifact@v6
         if: failure()
         with:
-          name: composer-files-${{ GITHUB_RUN_ID }}
+          name: composer-files-${{ github.run_id }}
           path: |
             composer.lock
             composer.json
