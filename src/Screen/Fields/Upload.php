@@ -117,7 +117,7 @@ class Upload extends Field
         $this->addBeforeRender(function () {
             $value = Arr::wrap($this->get('value'));
 
-            if (! Assert::isIntArray($value)) {
+            if (! Assert::isIdArray($value)) {
                 return;
             }
 
