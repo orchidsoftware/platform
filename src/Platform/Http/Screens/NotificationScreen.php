@@ -11,7 +11,6 @@ use Orchid\Platform\Notifications\DashboardMessage;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
 class NotificationScreen extends Screen
@@ -96,7 +95,7 @@ class NotificationScreen extends Screen
     public function layout(): iterable
     {
         return [
-            NotificationTable::class
+            NotificationTable::class,
         ];
     }
 

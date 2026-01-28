@@ -621,6 +621,7 @@ class Field implements Fieldable, Htmlable
      * Set the field as required without displaying an asterisk.
      *
      * @param bool $value
+     *
      * @return static
      */
     public function requiredWithoutAsterisk(bool $value = false): static
