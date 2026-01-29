@@ -6,6 +6,7 @@
     transition: all 340ms !important;
   }
   .modal-content {
+    overflow: hidden;
     border-radius: $border-radius;
     box-shadow: none;
   }

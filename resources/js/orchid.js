@@ -14,6 +14,24 @@ const Orchid = {
 
         application.register(name, definition);
     },
+
+    /**
+     * Returns a unique ID for the current browser tab.
+     * The ID stays the same for this tab even after reload.
+     * Stored in sessionStorage under "orchid_tab_id".
+     *
+     * @returns {string}
+     */
+    id() {
+        let tabId = sessionStorage.getItem('orchid_tab_id');
+
+        if (!tabId) {
+            tabId = 'orchid_window_' + crypto.randomUUID();
+            sessionStorage.setItem('orchid_tab_id', tabId);
+        }
+
+        return tabId;
+    }
 };
 
 export default Orchid;

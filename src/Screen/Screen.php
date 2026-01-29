@@ -148,7 +148,7 @@ abstract class Screen extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function asyncParticalLayout(Listener $layout, Request $request): Response
+    public function asyncPartialLayout(Listener $layout, Request $request): Response
     {
         Dashboard::setCurrentScreen($this, true);
 
@@ -451,7 +451,13 @@ abstract class Screen extends Controller
             ->mapWithKeys(function (\ReflectionProperty $property) use ($object) {
                 $property->setAccessible(true); // Ensure we can access private/protected properties
 
-                return [$property->getName() => $property->getValue($object)];
+                // Check if the property has been initialized
+                if ($property->isInitialized($object)) {
+                    return [$property->getName() => $property->getValue($object)];
+                }
+
+                // If not initialized, return null (or default value)
+                return [$property->getName() => null];
             });
     }
 

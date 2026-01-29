@@ -1,6 +1,9 @@
-<button formaction="{{ url()->current() }}/{{ $notification->id }}/maskNotification"
-        type="submit"
-        class="btn btn-link text-start p-4 d-flex align-items-baseline">
+<div class="text-start p-4 d-flex align-items-baseline">
+
+    <button formaction="{{ url()->current() }}/{{ $notification->id }}/maskNotification"
+            type="submit"
+            class="stretched-link position-absolute top-0 start-0 w-100 h-100 opacity-0">
+    </button>
 
     <small class="align-self-start me-2 text-{{ $notification->data['type'] }} @if($notification->read()) opacity @endif">
         <x-orchid-icon path="bs.circle-fill"/>
@@ -18,4 +21,4 @@
     <small class="text-muted col-3 ms-auto d-none d-md-block text-end">
          {{ $notification->created_at->diffForHumans() }}
     </small>
-</button>
+</div>

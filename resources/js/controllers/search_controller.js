@@ -3,26 +3,18 @@ import ApplicationController from "./application_controller";
 export default class extends ApplicationController {
     static targets = ["query", "result"];
 
+    connect() {
+        this.index = -1;
+    }
+
     query(event) {
         const query = event.target.value.trim();
 
         if (query === "") {
-            this.resultTarget.classList.remove("show");
             return;
         }
 
         this.fetchResults(query);
-    }
-
-    blur() {
-        setTimeout(() => this.resultTarget.classList.remove("show"), 140);
-    }
-
-    focus(event) {
-        const query = event.target.value.trim();
-        if (query !== "") {
-            this.fetchResults(query);
-        }
     }
 
     fetchResults(query) {
@@ -40,10 +32,56 @@ export default class extends ApplicationController {
                 }
 
                 this.resultTarget.innerHTML = html;
-                this.resultTarget.classList.add("show");
+                this.resultTarget.classList.remove("d-none");
             })
             .catch(() => {
-                this.resultTarget.classList.remove("show");
+                this.toast("Error fetching search results");
             });
+    }
+
+
+    keydown(event) {
+        if (!this.items.length) {
+            return;
+        }
+
+        switch (event.key) {
+            case "ArrowDown":
+                event.preventDefault();
+                this.move(1);
+                break;
+
+            case "ArrowUp":
+                event.preventDefault();
+                this.move(-1);
+                break;
+
+            case "Enter":
+                this.open();
+                break;
+        }
+    }
+
+    move(step) {
+        this.index += step;
+
+        if (this.index < 0) {
+            this.index = this.items.length - 1;
+        }
+
+        if (this.index >= this.items.length) {
+            this.index = 0;
+        }
+
+        this.items[this.index].focus();
+    }
+
+    open() {
+        const link = this.items[this.index]?.querySelector("a");
+        link?.click();
+    }
+
+    get items() {
+        return Array.from(this.resultTarget.querySelectorAll("[data-search-item]"));
     }
 }

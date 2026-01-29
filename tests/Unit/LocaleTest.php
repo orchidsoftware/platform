@@ -69,7 +69,6 @@ class LocaleTest extends TestUnitCase
                 Dashboard::path('src'),
                 Dashboard::path('stubs'),
                 Dashboard::path('routes'),
-                Dashboard::path('resources/js'),
                 Dashboard::path('resources/views'),
             ])
             ->contains($string)

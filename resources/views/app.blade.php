@@ -61,6 +61,6 @@
 
 @stack('scripts')
 
-@include('platform::partials.search-modal')
+@include('platform::partials.search.modal')
 </body>
 </html>

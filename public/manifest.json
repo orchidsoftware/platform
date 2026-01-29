@@ -1,14 +1,19 @@
 {
   "resources/js/app.js": {
-    "file": "assets/app.js?v=6d507ed2",
-    "isEntry": true,
+    "file": "assets/app.js?v=9a0ca443",
+    "name": "app",
     "src": "resources/js/app.js",
-    "integrity": "sha384-r0qKRGCKpByrh/uftoOOc4So8tVNZJezahxoDhUFcvUVetOvuEhOqzewSUzQ2XTN"
+    "isEntry": true,
+    "integrity": "sha384-0g2/8lmkC15eCqxDKzwRpg03UsJuQWFXSQxv0M0cmamLXN35/olQITcbjfrREWLz"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app.css?v=af1ca96b",
-    "isEntry": true,
+    "file": "assets/app.css?v=1a2da261",
     "src": "resources/sass/app.scss",
-    "integrity": "sha384-+JqLG6zZecAiFDFxLSiTiLmEPwXoZLx0u5yQwWjQhrhcIOPgk2+hLAGeY+ZN6OGL"
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ],
+    "integrity": "sha384-UhZlAcQieMUrdzbGq+dtJNJu0CjrMsKiUSYTMoRMNEuePoxH1kkP0a+eZNwZ0m7i"
   }
 }

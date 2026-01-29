@@ -54,7 +54,6 @@ class InstallCommand extends Command
             ->executeCommand('migrate')
             ->executeCommand('storage:link')
             ->changeUserModel()
-            ->setValueEnv('SCOUT_DRIVER')
             ->when(class_exists(\App\Models\User::class), function () {
                 $this->replaceInFiles(app_path(), 'use Orchid\\Platform\\Models\\User;', 'use App\\Models\\User;');
             })
@@ -106,17 +105,6 @@ class InstallCommand extends Command
 
         $user = file_get_contents(Dashboard::path('stubs/app/User.stub'));
         file_put_contents(app_path($path), $user);
-
-        return $this;
-    }
-
-    private function setValueEnv(string $constant, string $value = 'null'): self
-    {
-        $str = $this->fileGetContent(app_path('../.env'));
-
-        if ($str !== false && ! str_contains($str, $constant)) {
-            file_put_contents(app_path('../.env'), $str.PHP_EOL.$constant.'='.$value.PHP_EOL);
-        }
 
         return $this;
     }

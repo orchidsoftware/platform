@@ -1,8 +1,8 @@
 @extends('platform::auth')
-@section('title',__('Access Denied: Viewing as Another User'))
+@section('title', __('Access Denied: Viewing as Another User'))
 
 @section('content')
-    <h1 class="h4 text-body-emphasis mb-4">{{__('Limited Access')}}</h1>
+    <h1 class="h4 text-body-emphasis mb-4">{{ __('Limited Access' )}}</h1>
 
     <form role="form"
           method="POST"
@@ -17,7 +17,11 @@
         </p>
 
         <button id="button-login" type="submit" class="btn btn-default btn-block" tabindex="2">
-            <x-orchid-icon path="bs.box-arrow-in-right" class="small me-2"/> {{__('Switch to My Account')}}
+            <x-orchid-icon path="bs.box-arrow-in-right"
+                           width="1.25em"
+                           height="1.25em"
+                           class="small me-2"/>
+            {{ __('Switch to My Account') }}
         </button>
 
     </form>

@@ -9,10 +9,10 @@
 		border-top: 0;
         color: fade-out($dark, .45);
         &:first-child {
-          padding-left: 1.5rem !important;
+          padding-left: 1.5rem;
         }
         &:last-child {
-            padding-right: 1.5rem !important;
+            padding-right: 1.5rem;
         }
         .form-group.row {
             select.form-control {
@@ -42,10 +42,10 @@
         vertical-align: middle;
         word-break: break-word;
           &:first-child {
-              padding-left: 1.5rem !important;
+              padding-left: 1.5rem;
           }
           &:last-child {
-              padding-right: 1.5rem !important;
+              padding-right: 1.5rem;
           }
           > div > .form-group > .btn {
               display: inline-flex;
@@ -68,8 +68,3 @@
   margin-bottom: 0 !important;
 }
 
-.table-notification {
-    .table tbody tr td {
-        padding: 0!important
-    }
-}

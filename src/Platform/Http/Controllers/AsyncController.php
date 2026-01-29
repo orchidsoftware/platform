@@ -57,6 +57,6 @@ class AsyncController extends Controller
         /** @var \Orchid\Screen\Layouts\Listener $layout */
         $layout = app($layout);
 
-        return $screen->asyncParticalLayout($layout, $request);
+        return $screen->asyncPartialLayout($layout, $request);
     }
 }

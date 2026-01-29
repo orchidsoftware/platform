@@ -12,7 +12,7 @@ class SearchController
      */
     public function search(?string $query = null): View
     {
-        return view('platform::partials.search-result', [
+        return view('platform::partials.search.results', [
             'results' => Dashboard::search($query),
             'query'   => $query,
         ]);

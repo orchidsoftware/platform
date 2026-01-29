@@ -1,10 +1,10 @@
 @extends('platform::auth')
-@section('title',__('Sign in to your account'))
+@section('title', __('Sign in to your account'))
 
 @section('content')
-    <h1 class="h4 text-body-emphasis mb-4">{{__('Sign in to your account')}}</h1>
+    <h1 class="h4 text-body-emphasis mb-4">{{ __('Sign in to your account') }}</h1>
 
-    <form class="m-t-md"
+    <form class="d-flex flex-column gap-3"
           role="form"
           method="POST"
           data-controller="form"
@@ -13,7 +13,7 @@
           action="{{ route('platform.login.auth') }}">
         @csrf
 
-        @includeWhen($isLockUser,'platform::auth.lockme')
-        @includeWhen(!$isLockUser,'platform::auth.signin')
+        @includeWhen($isLockUser, 'platform::auth.lockme')
+        @includeWhen(!$isLockUser, 'platform::auth.signin')
     </form>
 @endsection

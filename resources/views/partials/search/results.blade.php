@@ -7,7 +7,11 @@
     @endempty
 
     @foreach ($group['result'] as $item)
-        <div class="p-2 list-group-item-action d-flex gap-3 align-items-start position-relative rounded overflow-hidden">
+        <div
+            tabindex="0"
+            data-search-item
+            data-action="keydown->search#keydown"
+            class="p-2 search-result-item d-flex gap-3 align-items-start position-relative rounded overflow-hidden">
 
             @empty(!$item->image())
                 <div class="thumb-sm rounded overflow-hidden">
@@ -26,11 +30,15 @@
                     {{ $item->subTitle() }}
                 </div>
             </div>
+
+            <div class="search-result-item-icon ms-auto my-auto me-2 opacity-50">
+                <x-orchid-icon path="bs.arrow-return-left" width="1.25rem" height="1.25rem"/>
+            </div>
         </div>
     @endforeach
 
 @empty
-    <p class="ms-3 me-3 mb-0 text-center">
+    <p class="mb-0 text-center p-5 text-center bg-body-tertiary rounded-3 text-balance">
         {{ __('There are no records in this view.') }}
     </p>
 @endforelse

@@ -3,7 +3,7 @@
         <label for="{{ $field->get('id') }}" class="form-label text-balance">
             {{ $field->get('title') }}
 
-            @if($field->get('required', false))
+            @if($field->get('required', false) && $field->get('showRequiredMark', true))
                 <sup class="text-danger">*</sup>
             @endif
 
@@ -28,7 +28,7 @@
     @endphp
 
     @if($errors->has($field->getOldName()))
-        <div class="invalid-feedback d-block">
+        <div class="invalid-feedback d-block text-balance">
             <small>{{ $errors->first($field->getOldName()) }}</small>
         </div>
     @elseif($field->has('help'))

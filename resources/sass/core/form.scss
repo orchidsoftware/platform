@@ -125,6 +125,24 @@ select {
     object-fit: cover;
 }
 
-.form-control, .form-range{
+.form-control, .form-range {
     max-width: 600px;
+}
+
+/* Search result item hover/focus effect */
+.search-result-item {
+    &:hover, &:focus, &:focus-visible {
+        z-index: 1;
+        @extend .bg-secondary;
+        @extend .bg-opacity-10;
+        outline: none;
+
+        .search-result-item-icon {
+            visibility: visible;
+        }
+    }
+}
+
+.search-result-item-icon {
+    visibility: hidden;
 }

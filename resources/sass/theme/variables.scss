@@ -51,6 +51,8 @@ $btn-default-bg: lighten($light, 5%);
 $btn-default-border: $border-color;
 $btn-border-radius: $border-radius-base;
 $btn-close-focus-shadow: none;
+$btn-close-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath d='M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z'/%3E%3C/svg%3E");
+
 
 $input-height: 2.45rem;
 $input-border: darken($border-color, 5%);

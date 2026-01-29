@@ -1,4 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
+import Orchid from '../orchid'
 
 export default class ApplicationController extends Controller {
 
@@ -119,5 +120,12 @@ export default class ApplicationController extends Controller {
         metaTag.content = value === true ? 'no-cache' : String(value);
     }
 
+    /**
+     * Returns a unique ID for the current browser tab.
+     * @returns {string}
+     */
+    tabId() {
+        return Orchid.id();
+    }
 
 }

@@ -17,7 +17,7 @@
 
         <nav class="aside-collapse w-100 d-lg-flex flex-column collapse-horizontal text-body-emphasis" id="headerMenuCollapse">
 
-            @include('platform::partials.search')
+            @include('platform::partials.search.trigger')
 
             <ul class="nav nav-pills flex-column mb-md-1 mb-auto ps-0 gap-1">
                 {!! Dashboard::renderMenu() !!}

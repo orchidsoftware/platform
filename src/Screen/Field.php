@@ -616,4 +616,16 @@ class Field implements Fieldable, Htmlable
 
         return $this->set('class', implode(' ', array_filter($mergedClasses)));
     }
+
+    /**
+     * Set the field as required without displaying an asterisk.
+     *
+     * @param bool $value
+     *
+     * @return static
+     */
+    public function requiredWithoutAsterisk(bool $value = false): static
+    {
+        return $this->set('showRequiredMark', $value);
+    }
 }

@@ -11,25 +11,10 @@ use Orchid\Platform\Notifications\DashboardMessage;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
 class NotificationScreen extends Screen
 {
-    /**
-     * Display header name.
-     *
-     * @var string
-     */
-    public $name = 'Notifications';
-
-    /**
-     * Display header description.
-     *
-     * @var string
-     */
-    public $description = 'Important events you follow';
-
     /**
      * @var string
      */
@@ -62,6 +47,26 @@ class NotificationScreen extends Screen
     }
 
     /**
+     * Display header name.
+     *
+     * @return string
+     */
+    public function name(): string
+    {
+        return 'Notifications';
+    }
+
+    /**
+     * Display header description.
+     *
+     * @return string
+     */
+    public function description(): string
+    {
+        return 'Important events you follow';
+    }
+
+    /**
      * Button commands.
      *
      * @return Action[]
@@ -90,9 +95,7 @@ class NotificationScreen extends Screen
     public function layout(): iterable
     {
         return [
-            Layout::wrapper('platform::partials.notification-wrap', [
-                'table' => NotificationTable::class,
-            ]),
+            NotificationTable::class,
         ];
     }
 
@@ -141,7 +144,7 @@ class NotificationScreen extends Screen
 
         Toast::info(__('All messages have been deleted.'));
 
-        return back();
+        return back()->withInput();
     }
 
     /**
