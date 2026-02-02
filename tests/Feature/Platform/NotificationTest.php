@@ -24,7 +24,7 @@ class NotificationTest extends TestFeatureCase
 
         $response = $this
             ->actingAs($user)
-            ->get(route('platform.notifications'));
+            ->get(route('orchid.notifications'));
 
         $response
             ->assertOk()
@@ -36,7 +36,7 @@ class NotificationTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createNotifyUser())
-            ->get(route('platform.notifications'));
+            ->get(route('orchid.notifications'));
 
         $response
             ->assertOk()
@@ -49,12 +49,12 @@ class NotificationTest extends TestFeatureCase
 
         $this
             ->actingAs($user)
-            ->post(route('platform.notifications', 'markAllAsRead'))
+            ->post(route('orchid.notifications', 'markAllAsRead'))
             ->assertRedirect();
 
         $this
             ->actingAs($user)
-            ->get(route('platform.notifications'))
+            ->get(route('orchid.notifications'))
             ->assertSee('All messages have been read.')
             ->assertDontSee('Mask all as read');
     }
@@ -65,12 +65,12 @@ class NotificationTest extends TestFeatureCase
 
         $this
             ->actingAs($user)
-            ->post(route('platform.notifications', 'removeAll'))
+            ->post(route('orchid.notifications', 'removeAll'))
             ->assertRedirect();
 
         $this
             ->actingAs($user)
-            ->get(route('platform.notifications'))
+            ->get(route('orchid.notifications'))
             ->assertSee('All messages have been deleted.')
             ->assertDontSee('Test remove notification')
             ->assertDontSee('Task Completed');
@@ -88,7 +88,7 @@ class NotificationTest extends TestFeatureCase
 
         $this
             ->actingAs($user)
-            ->post(route('platform.notifications', [$notification->id, 'maskNotification']))
+            ->post(route('orchid.notifications', [$notification->id, 'maskNotification']))
             ->assertRedirect();
 
         $notification = $notification->fresh();
@@ -99,7 +99,7 @@ class NotificationTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createNotifyUser())
-            ->post(route('platform.api.notifications'));
+            ->post(route('orchid.api.notifications'));
 
         $response
             ->assertOk()

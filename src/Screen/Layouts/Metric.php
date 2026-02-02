@@ -16,7 +16,7 @@ class Metric extends Layout
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.metric';
+    protected $template = 'orchid::layouts.metric';
 
     /**
      * @var string|null

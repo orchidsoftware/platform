@@ -7,14 +7,14 @@ use Illuminate\Support\Facades\Crypt;
 use Orchid\Screen\Builder;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 
 abstract class Listener extends Layout
 {
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.listener';
+    protected $template = 'orchid::layouts.listener';
 
     /**
      * List of field names for which values will be listened.
@@ -70,13 +70,13 @@ abstract class Listener extends Layout
      */
     protected function asyncRoute(): ?string
     {
-        $screen = Dashboard::getCurrentScreen();
+        $screen = Orchid::getCurrentScreen();
 
         if (! $screen) {
             return null;
         }
 
-        return route('platform.async.listener', [
+        return route('orchid.async.listener', [
             'screen' => Crypt::encryptString(get_class($screen)),
             'layout' => Crypt::encryptString(static::class),
         ]);

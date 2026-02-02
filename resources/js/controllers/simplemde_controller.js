@@ -183,7 +183,7 @@ export default class extends ApplicationController {
         formData.append('file', file);
 
         axios
-            .post(this.prefix('/systems/files'), formData)
+            .post(this.prefix('/files'), formData)
             .then((response) => {
                 this.editor.codemirror.replaceSelection(response.data.url);
                 event.target.value = null; // Reset input after upload

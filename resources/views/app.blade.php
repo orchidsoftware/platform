@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="{{  app()->getLocale() }}" data-controller="html-load" dir="{{ \Orchid\Support\Locale::currentDir() }}">
+<html lang="{{  app()->getLocale() }}"
+      data-controller="html-load"
+      dir="{{ \Orchid\Support\Locale::currentDir() }}"
+>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,33 +16,33 @@
     <meta name="csrf_token" content="{{ csrf_token() }}" id="csrf_token">
     <meta name="auth" content="{{ Auth::check() }}" id="auth">
 
-    {{ Dashboard::vite() }}
+    {{ Orchid::vite() }}
 
     @stack('head')
 
     <meta name="view-transition" content="same-origin">
-    <meta name="turbo-root" content="{{  Dashboard::prefix() }}">
-    <meta name="turbo-refresh-method" content="{{ config('platform.turbo.refresh-method', 'replace') }}">
-    <meta name="turbo-refresh-scroll" content="{{ config('platform.turbo.refresh-scroll', 'reset') }}">
-    <meta name="turbo-prefetch" content="{{ var_export(config('platform.turbo.prefetch', true)) }}">
-    <meta name="dashboard-prefix" content="{{  Dashboard::prefix() }}">
+    <meta name="turbo-root" content="{{  Orchid::prefix() }}">
+    <meta name="turbo-refresh-method" content="{{ config('orchid.turbo.refresh-method', 'replace') }}">
+    <meta name="turbo-refresh-scroll" content="{{ config('orchid.turbo.refresh-scroll', 'reset') }}">
+    <meta name="turbo-prefetch" content="{{ var_export(config('orchid.turbo.prefetch', true)) }}">
+    <meta name="dashboard-prefix" content="{{  Orchid::prefix() }}">
 
-    @if(!config('platform.turbo.cache', false))
+    @if(!config('orchid.turbo.cache', false))
         <meta name="turbo-cache-control" content="no-cache">
     @endif
 
-    @foreach(Dashboard::getResource('stylesheets') as $stylesheet)
+    @foreach(Orchid::getResource('stylesheets') as $stylesheet)
         <link rel="stylesheet" href="{{  $stylesheet }}" data-turbo-track="reload">
     @endforeach
 
     @stack('stylesheets')
 
-    @foreach(Dashboard::getResource('scripts') as $scripts)
-        <script src="{{  $scripts }}" defer type="text/javascript" data-turbo-track="reload"></script>
+    @foreach(Orchid::getResource('scripts') as $scripts)
+        <script src="{{ $scripts }}" defer type="text/javascript" data-turbo-track="reload"></script>
     @endforeach
 
-    @if(!empty(config('platform.vite', [])))
-        @vite(config('platform.vite'))
+    @if(!empty(config('orchid.vite', [])))
+        @vite(config('orchid.vite'))
     @endif
 </head>
 
@@ -55,12 +58,11 @@
         </div>
     </div>
 
-
-    @include('platform::partials.toast')
+    @include('orchid::partials.toast')
 </div>
 
 @stack('scripts')
 
-@include('platform::partials.search.modal')
+@include('orchid::partials.search.modal')
 </body>
 </html>

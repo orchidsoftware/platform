@@ -23,7 +23,7 @@ class DateRange extends Field implements ComplexFieldConcern
     /**
      * @var string
      */
-    protected $view = 'platform::fields.dataRange';
+    protected $view = 'orchid::fields.dataRange';
 
     /**
      * Default attributes value.

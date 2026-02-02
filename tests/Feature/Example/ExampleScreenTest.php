@@ -12,7 +12,7 @@ class ExampleScreenTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->get(route('platform.example'));
+            ->get(route('orchid.example'));
 
         $response->assertOk()
             ->assertSee('Example Screen')
@@ -23,7 +23,7 @@ class ExampleScreenTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->get(route('platform.example.fields'));
+            ->get(route('orchid.example.fields'));
 
         $response->assertOk()
             ->assertSee('Form Controls');
@@ -33,7 +33,7 @@ class ExampleScreenTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->get(route('platform.example.layouts'));
+            ->get(route('orchid.example.layouts'));
 
         $response->assertOk()
             ->assertSee('Layout Overview');

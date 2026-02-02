@@ -65,7 +65,7 @@
                 <div class="modal-body layout-wrapper">
                     <x-orchid-stream target="{{$templateSlug}}">
                         <div id="{{ $templateSlug }}">
-                            @if(!empty($deferrerParams) == \Orchid\Support\Facades\Dashboard::isPartialRequest())
+                            @if(!empty($deferrerParams) == \Orchid\Support\Facades\Orchid::isPartialRequest())
                                 @foreach($manyForms as $formKey => $modal)
                                     @foreach($modal as $item)
                                         {!! $item ?? '' !!}

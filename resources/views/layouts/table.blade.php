@@ -73,7 +73,7 @@
         </div>
     @else
 
-        @include('platform::layouts.pagination',[
+        @include('orchid::layouts.pagination',[
                 'paginator' => $rows,
                 'columns' => $columns,
                 'onEachSide' => $onEachSide,

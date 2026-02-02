@@ -1,6 +1,6 @@
 <div data-controller="picture"
      data-picture-value="{{ $attributes['value'] }}"
-     data-picture-storage="{{ $storage ?? config('platform.attachment.disk', 'public') }}"
+     data-picture-storage="{{ $storage ?? config('orchid.attachment.disk', 'public') }}"
      data-picture-target="{{ $target }}"
      data-picture-url="{{ $url }}"
      data-picture-max-file-size="{{ $maxFileSize }}"

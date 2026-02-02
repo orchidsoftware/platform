@@ -21,7 +21,7 @@ class DropDown extends Action
     /**
      * @var string
      */
-    protected $view = 'platform::actions.dropdown';
+    protected $view = 'orchid::actions.dropdown';
 
     /**
      * Default attributes value.

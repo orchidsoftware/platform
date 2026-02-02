@@ -17,7 +17,7 @@ use Orchid\Filters\Types\Where;
 use Orchid\Filters\Types\WhereDateStartEnd;
 use Orchid\Metrics\Chartable;
 use Orchid\Screen\AsSource;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 
 /**
  * This class serves as a base model for system users and is not intended
@@ -116,7 +116,7 @@ class User extends Authenticatable implements UserInterface
             'name'        => $name,
             'email'       => $email,
             'password'    => Hash::make($password),
-            'permissions' => Dashboard::getAllowAllPermission(),
+            'permissions' => Orchid::getAllowAllPermission(),
         ]);
     }
 

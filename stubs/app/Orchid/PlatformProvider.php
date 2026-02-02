@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid;
 
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\OrchidServiceProvider;
 use Orchid\Screen\Actions\Menu;
@@ -15,11 +15,11 @@ class PlatformProvider extends OrchidServiceProvider
     /**
      * Bootstrap the application services.
      *
-     * @param Dashboard $dashboard
+     * @param Orchid $orchid
      *
      * @return void
      */
-    public function boot(Dashboard $dashboard): void
+    public function boot(Orchid $orchid): void
     {
         parent::boot($dashboard);
 
@@ -37,45 +37,45 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make('Get Started')
                 ->icon('bs.book')
                 ->title('Navigation')
-                ->route(config('platform.index')),
+                ->route(config('orchid.index')),
 
             Menu::make('Sample Screen')
                 ->icon('bs.collection')
-                ->route('platform.example')
+                ->route('orchid.example')
                 ->badge(fn () => 6),
 
             Menu::make('Form Elements')
                 ->icon('bs.card-list')
-                ->route('platform.example.fields')
+                ->route('orchid.example.fields')
                 ->active('*/examples/form/*'),
 
             Menu::make('Layouts Overview')
                 ->icon('bs.window-sidebar')
-                ->route('platform.example.layouts'),
+                ->route('orchid.example.layouts'),
 
             Menu::make('Grid System')
                 ->icon('bs.columns-gap')
-                ->route('platform.example.grid'),
+                ->route('orchid.example.grid'),
 
             Menu::make('Charts')
                 ->icon('bs.bar-chart')
-                ->route('platform.example.charts'),
+                ->route('orchid.example.charts'),
 
             Menu::make('Cards')
                 ->icon('bs.card-text')
-                ->route('platform.example.cards')
+                ->route('orchid.example.cards')
                 ->divider(),
 
             Menu::make(__('Users'))
                 ->icon('bs.people')
-                ->route('platform.systems.users')
-                ->permission('platform.systems.users')
+                ->route('orchid.users')
+                ->permission('orchid.users')
                 ->title(__('Access Controls')),
 
             Menu::make(__('Roles'))
                 ->icon('bs.shield')
-                ->route('platform.systems.roles')
-                ->permission('platform.systems.roles')
+                ->route('orchid.roles')
+                ->permission('orchid.roles')
                 ->divider(),
 
             Menu::make('Documentation')
@@ -88,7 +88,7 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.box-arrow-up-right')
                 ->url('https://github.com/orchidsoftware/platform/blob/master/CHANGELOG.md')
                 ->target('_blank')
-                ->badge(fn () => Dashboard::version(), Color::DARK),
+                ->badge(fn () => Orchid::version(), Color::DARK),
         ];
     }
 
@@ -101,8 +101,8 @@ class PlatformProvider extends OrchidServiceProvider
     {
         return [
             ItemPermission::group(__('System'))
-                ->addPermission('platform.systems.roles', __('Roles'))
-                ->addPermission('platform.systems.users', __('Users')),
+                ->addPermission('orchid.roles', __('Roles'))
+                ->addPermission('orchid.users', __('Users')),
         ];
     }
 }

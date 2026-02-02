@@ -19,7 +19,7 @@ abstract class Rows extends Layout
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.row';
+    protected $template = 'orchid::layouts.row';
 
     /**
      * Used to create the title of a group of form elements.

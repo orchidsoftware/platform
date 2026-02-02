@@ -7,6 +7,7 @@ namespace Orchid\Platform\Http\Screens;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 use Orchid\Platform\Http\Layouts\NotificationTable;
+use Orchid\Platform\Notifications\OrchidMessage;
 use Orchid\Platform\Notifications\DashboardMessage;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
@@ -18,7 +19,7 @@ class NotificationScreen extends Screen
     /**
      * @var string
      */
-    public $permission = 'platform.index';
+    public $permission = 'orchid.index';
 
     /**
      * @var bool
@@ -106,7 +107,7 @@ class NotificationScreen extends Screen
      */
     private function prepareUserNotificationRelation(mixed $user)
     {
-        return $user->notifications()->where('type', DashboardMessage::class);
+        return $user->notifications()->whereIn('type', [OrchidMessage::class, DashboardMessage::class]);
     }
 
     /**
@@ -129,7 +130,7 @@ class NotificationScreen extends Screen
     {
         $request->user()
             ->unreadNotifications
-            ->where('type', DashboardMessage::class)
+            ->whereIn('type', [OrchidMessage::class, DashboardMessage::class])
             ->markAsRead();
 
         Toast::info(__('All messages have been read.'));
@@ -154,7 +155,7 @@ class NotificationScreen extends Screen
     {
         return $request->user()
             ->unreadNotifications()
-            ->where('type', DashboardMessage::class)
+            ->whereIn('type', [OrchidMessage::class, DashboardMessage::class])
             ->paginate();
     }
 }

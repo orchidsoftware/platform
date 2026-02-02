@@ -31,14 +31,14 @@ class Access
      */
     public function __construct(Auth $auth)
     {
-        $auth->shouldUse(config('platform.guard'));
+        $auth->shouldUse(config('orchid.guard'));
         $this->guard = $auth->guard();
     }
 
     /**
      * @return ResponseFactory|RedirectResponse|Response|mixed
      */
-    public function handle(Request $request, Closure $next, string $permission = 'platform.index')
+    public function handle(Request $request, Closure $next, string $permission = 'orchid.index')
     {
         Carbon::setLocale(config('app.locale'));
 
@@ -51,7 +51,7 @@ class Access
         }
 
         if (Impersonation::isSwitch()) {
-            return response()->view('platform::auth.impersonation');
+            return response()->view('orchid::auth.impersonation');
         }
 
         // The current user is already signed in.
@@ -71,8 +71,8 @@ class Access
             return response('Unauthorized.', 401);
         }
 
-        if (Route::has('platform.login')) {
-            return redirect()->guest(route('platform.login'));
+        if (Route::has('orchid.login')) {
+            return redirect()->guest(route('orchid.login'));
         }
 
         if (Route::has('login')) {

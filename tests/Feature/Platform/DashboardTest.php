@@ -12,7 +12,7 @@ class DashboardTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->get(route('platform.index'));
+            ->get(route('orchid.index'));
 
         $response
             ->assertStatus(302)
@@ -21,7 +21,7 @@ class DashboardTest extends TestFeatureCase
 
     public function testRouteDashboardIndexNotUser(): void
     {
-        $response = $this->get(route('platform.index'));
+        $response = $this->get(route('orchid.index'));
 
         $response
             ->assertStatus(302)

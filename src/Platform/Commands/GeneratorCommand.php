@@ -2,7 +2,7 @@
 
 namespace Orchid\Platform\Commands;
 
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 
 abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand
 {
@@ -19,6 +19,6 @@ abstract class GeneratorCommand extends \Illuminate\Console\GeneratorCommand
 
         return file_exists($path)
             ? $path
-            : Dashboard::path('stubs/'.$stub);
+            : Orchid::path('stubs/'.$stub);
     }
 }

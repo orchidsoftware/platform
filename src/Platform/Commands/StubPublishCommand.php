@@ -7,7 +7,7 @@ namespace Orchid\Platform\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Events\PublishingStubs;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 #[AsCommand(name: 'orchid:stubs')]
@@ -52,7 +52,7 @@ class StubPublishCommand extends Command
             'tabMenu.stub',
         ])
             ->mapWithKeys(fn (string $file) => [
-                Dashboard::path("stubs/{$file}") => $file,
+                Orchid::path("stubs/{$file}") => $file,
             ]);
 
         $this->laravel['events']->dispatch($event = new PublishingStubs($stubs->all()));

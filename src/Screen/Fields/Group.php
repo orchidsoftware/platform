@@ -34,7 +34,7 @@ class Group implements Fieldable, Groupable
     /**
      * @var string
      */
-    protected $view = 'platform::fields.group';
+    protected $view = 'orchid::fields.group';
 
     /**
      * @return static

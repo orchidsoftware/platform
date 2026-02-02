@@ -30,7 +30,7 @@ class Menu extends Link
      *
      * @var string
      */
-    protected $view = 'platform::actions.menu';
+    protected $view = 'orchid::actions.menu';
 
     /**
      * Determines whether the menu item should be displayed based on permissions.

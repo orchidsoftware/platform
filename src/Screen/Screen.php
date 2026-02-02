@@ -16,8 +16,9 @@ use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Screen\Concerns\HasFillablePublicProperties;
 use Orchid\Screen\Concerns\InteractsWithEncryptedState;
+use Orchid\Screen\Concerns\ModelStateRetrievable;
 use Orchid\Screen\Layouts\Listener;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 
 /**
  * Class Screen.
@@ -27,7 +28,10 @@ use Orchid\Support\Facades\Dashboard;
  */
 abstract class Screen extends Controller
 {
-    use Commander, HasFillablePublicProperties, InteractsWithEncryptedState;
+    use Commander,
+        HasFillablePublicProperties,
+        ModelStateRetrievable,
+        InteractsWithEncryptedState;
 
     /**
      * @param \Illuminate\Http\Request $request
@@ -50,7 +54,7 @@ abstract class Screen extends Controller
      */
     public function screenBaseView(): string
     {
-        return 'platform::layouts.base';
+        return 'orchid::layouts.base';
     }
 
     /**
@@ -110,7 +114,7 @@ abstract class Screen extends Controller
      */
     public function asyncBuild(string $method, string $slug)
     {
-        Dashboard::setCurrentScreen($this, true);
+        Orchid::setCurrentScreen($this, true);
 
         abort_unless(
             static::getAvailableMethods()->contains($method),
@@ -150,7 +154,7 @@ abstract class Screen extends Controller
      */
     public function asyncPartialLayout(Listener $layout, Request $request): Response
     {
-        Dashboard::setCurrentScreen($this, true);
+        Orchid::setCurrentScreen($this, true);
 
         abort_unless($this->checkAccess(request()), static::unaccessed());
 
@@ -159,7 +163,7 @@ abstract class Screen extends Controller
 
         $repository = $layout->handle($state, $request);
 
-        $view = $layout->build($repository).view('platform::partials.state', [
+        $view = $layout->build($repository).view('orchid::partials.state', [
             'state' => $this->serializableState(),
         ]);
 
@@ -225,7 +229,7 @@ abstract class Screen extends Controller
      */
     public function handle(Request $request, ...$arguments)
     {
-        Dashboard::setCurrentScreen($this);
+        Orchid::setCurrentScreen($this);
 
         $method = $request->route()->parameter('method', 'view');
 
@@ -275,7 +279,7 @@ abstract class Screen extends Controller
      */
     public function needPreventsAbandonment(): bool
     {
-        return config('platform.prevents_abandonment', true);
+        return config('orchid.prevents_abandonment', true);
     }
 
     /**

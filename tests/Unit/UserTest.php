@@ -94,7 +94,7 @@ class UserTest extends TestUnitCase
         $this->actingAs($user);
 
         $this
-            ->get(route('platform.main'))
+            ->get(route('orchid.main'))
             ->assertStatus(403);
 
         Impersonation::loginAs($userSwitch);
@@ -102,7 +102,7 @@ class UserTest extends TestUnitCase
         $this->assertTrue(Impersonation::isSwitch());
 
         $this
-            ->get(route('platform.main'))
+            ->get(route('orchid.main'))
             ->assertStatus(200)
             ->assertSee('Limited Access');
     }

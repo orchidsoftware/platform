@@ -14,7 +14,7 @@ class Action extends Field implements Actionable
      *
      * @var string
      */
-    protected $typeForm = 'platform::partials.fields.clear';
+    protected $typeForm = 'orchid::partials.fields.clear';
 
     /**
      * Attributes available for a particular tag.

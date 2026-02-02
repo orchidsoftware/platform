@@ -39,7 +39,7 @@ abstract class TestBrowserCase extends TestCase
     {
         $this->getEnvSetUp($app);
 
-        config()->set('platform.prevents_abandonment', false);
+        config()->set('orchid.prevents_abandonment', false);
 
         if (isset($_SERVER['CI'])) {
             Options::withoutUI();

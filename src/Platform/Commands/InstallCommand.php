@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Traits\Conditionable;
 use Orchid\Platform\Events\InstallEvent;
 use Orchid\Platform\Providers\ConsoleServiceProvider;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 #[AsCommand(name: 'orchid:install')]
@@ -39,7 +39,7 @@ class InstallCommand extends Command
     public function handle()
     {
         $this->comment('Installation started. Please wait...');
-        $this->info('Version: '.Dashboard::version());
+        $this->info('Version: '.Orchid::version());
 
         $this
             ->executeCommand('vendor:publish', [
@@ -103,7 +103,7 @@ class InstallCommand extends Command
             return $this;
         }
 
-        $user = file_get_contents(Dashboard::path('stubs/app/User.stub'));
+        $user = file_get_contents(Orchid::path('stubs/app/User.stub'));
         file_put_contents(app_path($path), $user);
 
         return $this;

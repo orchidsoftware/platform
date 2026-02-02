@@ -17,7 +17,7 @@ use Orchid\Filters\Types\Like;
 use Orchid\Platform\Concerns\Sortable;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\AsSource;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 
 /**
  * Class Attachment.
@@ -96,7 +96,7 @@ class Attachment extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(Dashboard::model(User::class));
+        return $this->belongsTo(Orchid::model(User::class));
     }
 
     /**
@@ -170,7 +170,7 @@ class Attachment extends Model
      */
     public function relationships()
     {
-        return $this->hasMany(Dashboard::model(Attachmentable::class), 'attachment_id');
+        return $this->hasMany(Orchid::model(Attachmentable::class), 'attachment_id');
     }
 
     /**

@@ -35,7 +35,7 @@ class Relation extends Field
     /**
      * @var string
      */
-    protected $view = 'platform::fields.relation';
+    protected $view = 'orchid::fields.relation';
 
     /**
      * Default attributes value.

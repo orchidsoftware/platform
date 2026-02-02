@@ -20,7 +20,7 @@ class NamesTest extends TestUnitCase
 
     public function testNamesSeparateForPageClass(): void
     {
-        $this->setRouteName('platform.empty');
+        $this->setRouteName('orchid.empty');
 
         $this->assertSame('page-platform-empty', Names::getPageNameClass());
     }

@@ -14,12 +14,12 @@ use Throwable;
 /**
  * Class TabMenu.
  */
-abstract class TabMenu extends Layout
+abstract class SideMenu extends Layout
 {
     /**
      * @var string
      */
-    protected $template = 'orchid::layouts.tabMenu';
+    protected $template = 'orchid::layouts.sideMenu';
 
     /**
      * @throws Throwable

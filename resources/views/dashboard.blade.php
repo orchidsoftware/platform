@@ -1,4 +1,4 @@
-@extends(config('platform.workspace', 'platform::workspace.compact'))
+@extends(config('orchid.workspace', 'orchid::workspace.compact'))
 
 @section('aside')
     <div class="aside col-xs-12 col-lg-3 col-xl-2 bg-dark d-flex flex-column" data-controller="menu" data-bs-theme="dark">
@@ -10,17 +10,17 @@
                 <span class="ms-2">@yield('title')</span>
             </a>
 
-            <a class="header-brand order-last link-body-emphasis" href="{{ route(config('platform.index')) }}">
-                @includeFirst([config('platform.template.header'), 'platform::header'])
+            <a class="header-brand order-last link-body-emphasis" href="{{ route(config('orchid.index')) }}">
+                @includeFirst([config('orchid.template.header'), 'orchid::header'])
             </a>
         </header>
 
         <nav class="aside-collapse w-100 d-lg-flex flex-column collapse-horizontal text-body-emphasis" id="headerMenuCollapse">
 
-            @include('platform::partials.search.trigger')
+            @include('orchid::partials.search.trigger')
 
             <ul class="nav nav-pills flex-column mb-md-1 mb-auto ps-0 gap-1">
-                {!! Dashboard::renderMenu() !!}
+                {!! Orchid::renderMenu() !!}
             </ul>
 
             <div class="h-100 w-100 position-relative to-top cursor d-none d-md-flex mt-md-5"
@@ -38,7 +38,7 @@
 
             <footer class="position-sticky bottom-0">
                 <div class="bg-dark position-relative overflow-hidden" style="padding-bottom: 10px;">
-                    @includeWhen(Auth::check(), 'platform::partials.profile')
+                    @includeWhen(Auth::check(), 'orchid::partials.profile')
                 </div>
             </footer>
         </nav>
@@ -71,6 +71,6 @@
         </div>
     </div>
 
-    @include('platform::partials.alert')
+    @include('orchid::partials.alert')
     @yield('content')
 @endsection

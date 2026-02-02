@@ -7,6 +7,7 @@ namespace Orchid\Platform\Components;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Orchid\Platform\Notifications\OrchidMessage;
 use Orchid\Platform\Notifications\DashboardMessage;
 
 class Notification extends Component
@@ -33,11 +34,11 @@ class Notification extends Component
     {
         $notifications = $this->user
             ->unreadNotifications()
-            ->where('type', DashboardMessage::class)
+            ->whereIn('type', [OrchidMessage::class, DashboardMessage::class])
             ->limit(15)
             ->get();
 
-        return view('platform::components.notification', [
+        return view('orchid::components.notification', [
             'notifications' => $notifications,
         ]);
     }
@@ -49,6 +50,6 @@ class Notification extends Component
      */
     public function shouldRender(): bool
     {
-        return config('platform.notifications.enabled', true);
+        return config('orchid.notifications.enabled', true);
     }
 }

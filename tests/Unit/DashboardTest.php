@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Illuminate\Support\Str;
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
+use Orchid\Support\Facades\Orchid as OrchidFacade;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Actions\Menu;
 use Orchid\Tests\TestUnitCase;
@@ -17,12 +18,12 @@ class DashboardTest extends TestUnitCase
 {
     public function testIsVersion(): void
     {
-        $this->assertNotEmpty(Dashboard::version());
+        $this->assertNotEmpty(OrchidFacade::version());
     }
 
     public function testIsModelDefault(): void
     {
-        $dashboard = new Dashboard;
+        $dashboard = new Orchid;
         $class = $dashboard->modelClass('UnknownClass', User::class);
 
         $default = new User;
@@ -32,7 +33,7 @@ class DashboardTest extends TestUnitCase
 
     public function testIsModelCustomNotFound(): void
     {
-        $dashboard = new Dashboard;
+        $dashboard = new Orchid;
 
         $dashboard->useModel(User::class, 'MyCustomClass');
 
@@ -43,7 +44,7 @@ class DashboardTest extends TestUnitCase
 
     public function testIsRegisterResource(): void
     {
-        $dashboard = new Dashboard;
+        $dashboard = new Orchid;
 
         $script = $dashboard
             ->registerResource('scripts', 'app.js')
@@ -94,14 +95,14 @@ class DashboardTest extends TestUnitCase
      */
     public function testIsMacro($name = 'customMarcoName'): void
     {
-        Dashboard::macro('returnNameMacroFunction', fn (string $test) => $test);
+        OrchidFacade::macro('returnNameMacroFunction', fn (string $test) => $test);
 
-        $this->assertEquals(Dashboard::returnNameMacroFunction($name), $name);
+        $this->assertEquals(OrchidFacade::returnNameMacroFunction($name), $name);
     }
 
     public function testRegisterMenuElement(): void
     {
-        $dashboard = new Dashboard;
+        $dashboard = new Orchid;
 
         $view = $dashboard
             ->registerMenuElement(Menu::make('Item 1')->sort(3))
@@ -115,7 +116,7 @@ class DashboardTest extends TestUnitCase
 
     public function testAddMenuSubElements(): void
     {
-        $dashboard = new Dashboard;
+        $dashboard = new Orchid;
 
         $view = $dashboard
             ->registerMenuElement(Menu::make('Item 1')->slug('item'))
@@ -130,12 +131,12 @@ class DashboardTest extends TestUnitCase
     protected function setUp(): void
     {
         parent::setUp();
-        \Orchid\Support\Facades\Dashboard::flush();
+        OrchidFacade::flush();
     }
 
     protected function tearDown(): void
     {
         parent::tearDown();
-        \Orchid\Support\Facades\Dashboard::flush();
+        OrchidFacade::flush();
     }
 }

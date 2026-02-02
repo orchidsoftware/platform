@@ -35,7 +35,7 @@ class Select extends Field implements ComplexFieldConcern
     /**
      * @var string
      */
-    protected $view = 'platform::fields.select';
+    protected $view = 'orchid::fields.select';
 
     /**
      * Default attributes value.

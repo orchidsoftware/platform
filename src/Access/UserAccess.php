@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
 use Orchid\Platform\Events\AddRoleEvent;
 use Orchid\Platform\Events\RemoveRoleEvent;
 use Orchid\Platform\Models\Role;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 
 trait UserAccess
 {
@@ -36,7 +36,7 @@ trait UserAccess
 
     public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(Dashboard::model(Role::class), 'role_users', 'user_id', 'role_id');
+        return $this->belongsToMany(Orchid::model(Role::class), 'role_users', 'user_id', 'role_id');
     }
 
     /**

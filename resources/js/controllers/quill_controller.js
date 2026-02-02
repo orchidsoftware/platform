@@ -135,7 +135,7 @@ export default class extends ApplicationController {
         }
 
         axios
-            .post(this.prefix('/systems/files'), formData)
+            .post(this.prefix('/files'), formData)
             .then((response) => {
                 this.insertToEditor(response.data.url);
             })

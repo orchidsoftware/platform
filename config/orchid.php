@@ -46,7 +46,7 @@ return [
 
     'middleware' => [
         'public'  => ['web', 'cache.headers:private;must_revalidate;etag'],
-        'private' => ['web', 'platform', 'cache.headers:private;must_revalidate;etag'],
+        'private' => ['web', 'orchid', 'cache.headers:private;must_revalidate;etag'],
     ],
 
     /*
@@ -95,11 +95,11 @@ return [
      | redirected to this page when they enter the dashboard or click on the
      | dashboard's logo or links.
      |
-     | Example: 'platform.main'
+     | Example: 'orchid.main'
      |
      */
 
-    'index' => 'platform.main',
+    'index' => 'orchid.main',
 
     /*
      |--------------------------------------------------------------------------
@@ -111,7 +111,7 @@ return [
      |
      */
 
-    'profile' => 'platform.profile',
+    'profile' => 'orchid.profile',
 
     /*
      |--------------------------------------------------------------------------
@@ -289,11 +289,11 @@ return [
     | It determines whether the entire user screen will be used or whether
     | the content will be compressed to a fixed width.
     |
-    | Options: 'platform::workspace.compact', 'platform::workspace.full'
+    | Options: 'orchid::workspace.compact', 'orchid::workspace.full'
     |
     */
 
-    'workspace' => 'platform::workspace.compact',
+    'workspace' => 'orchid::workspace.compact',
 
     /*
     |--------------------------------------------------------------------------

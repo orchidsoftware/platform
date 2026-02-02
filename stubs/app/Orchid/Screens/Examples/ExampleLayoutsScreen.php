@@ -56,29 +56,29 @@ class ExampleLayoutsScreen extends Screen
     {
         return [
 
-            Layout::block(Layout::view('platform::dummy.block'))
+            Layout::block(Layout::view('orchid::dummy.block'))
                 ->title('Block Header')
                 ->description('Excellent description that editing or views in block'),
 
             Layout::tabs([
-                'Example Tab 1' => Layout::view('platform::dummy.block'),
-                'Example Tab 2' => Layout::view('platform::dummy.block'),
-                'Example Tab 3' => Layout::view('platform::dummy.block'),
+                'Example Tab 1' => Layout::view('orchid::dummy.block'),
+                'Example Tab 2' => Layout::view('orchid::dummy.block'),
+                'Example Tab 3' => Layout::view('orchid::dummy.block'),
             ]),
 
             TabMenuExample::class,
-            Layout::view('platform::dummy.block'),
+            Layout::view('orchid::dummy.block'),
 
             Layout::columns([
-                Layout::view('platform::dummy.block'),
-                Layout::view('platform::dummy.block'),
-                Layout::view('platform::dummy.block'),
+                Layout::view('orchid::dummy.block'),
+                Layout::view('orchid::dummy.block'),
+                Layout::view('orchid::dummy.block'),
             ]),
 
             Layout::accordion([
-                'Collapsible Group Item #1' => Layout::view('platform::dummy.block'),
-                'Collapsible Group Item #2' => Layout::view('platform::dummy.block'),
-                'Collapsible Group Item #3' => Layout::view('platform::dummy.block'),
+                'Collapsible Group Item #1' => Layout::view('orchid::dummy.block'),
+                'Collapsible Group Item #2' => Layout::view('orchid::dummy.block'),
+                'Collapsible Group Item #3' => Layout::view('orchid::dummy.block'),
             ]),
 
         ];

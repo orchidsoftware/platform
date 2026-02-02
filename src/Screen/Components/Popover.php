@@ -39,7 +39,7 @@ class Popover extends Component
      */
     public function render()
     {
-        return view('platform::components.popover');
+        return view('orchid::components.popover');
     }
 
     /**

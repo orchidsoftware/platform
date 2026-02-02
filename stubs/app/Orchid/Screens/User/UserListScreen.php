@@ -51,7 +51,7 @@ class UserListScreen extends Screen
     public function permission(): ?iterable
     {
         return [
-            'platform.systems.users',
+            'orchid.users',
         ];
     }
 
@@ -65,7 +65,7 @@ class UserListScreen extends Screen
         return [
             Link::make(__('Add'))
                 ->icon('bs.plus-circle')
-                ->route('platform.systems.users.create'),
+                ->route('orchid.users.create'),
         ];
     }
 

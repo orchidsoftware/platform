@@ -16,12 +16,12 @@ class NotificationDisabledTest extends TestFeatureCase
     {
         parent::getEnvironmentSetUp($app);
 
-        config()->set('platform.notifications.enabled', false);
+        config()->set('orchid.notifications.enabled', false);
     }
 
     public function testRouteForDisabledNotification(): void
     {
-        $this->assertFalse(Route::has('platform.notifications'));
-        $this->assertFalse(Route::has('platform.api.notifications'));
+        $this->assertFalse(Route::has('orchid.notifications'));
+        $this->assertFalse(Route::has('orchid.api.notifications'));
     }
 }

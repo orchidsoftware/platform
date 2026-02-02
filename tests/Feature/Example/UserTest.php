@@ -12,7 +12,7 @@ class UserTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->get(route('platform.systems.users'));
+            ->get(route('orchid.users'));
 
         $response->assertOk()
             ->assertSee($this->createAdminUser()->name)
@@ -23,7 +23,7 @@ class UserTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->get(route('platform.systems.users.create'));
+            ->get(route('orchid.users.create'));
 
         $response->assertOk()
             ->assertSee('field-user');
@@ -35,7 +35,7 @@ class UserTest extends TestFeatureCase
 
         $this
             ->actingAs($user)
-            ->get(route('platform.systems.users.edit', $user->id))
+            ->get(route('orchid.users.edit', $user->id))
             ->assertSee($user->name)
             ->assertSee($user->email);
     }
@@ -44,7 +44,7 @@ class UserTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->post(route('platform.systems.users.edit', [$this->createAdminUser()->id, 'remove']));
+            ->post(route('orchid.users.edit', [$this->createAdminUser()->id, 'remove']));
 
         $response
             ->assertStatus(302)

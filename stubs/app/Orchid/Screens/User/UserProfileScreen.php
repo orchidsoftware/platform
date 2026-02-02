@@ -61,12 +61,12 @@ class UserProfileScreen extends Screen
                 ->novalidate()
                 ->canSee(Impersonation::isSwitch())
                 ->icon('bs.people')
-                ->route('platform.switch.logout'),
+                ->route('orchid.switch.logout'),
 
             Button::make('Sign out')
                 ->novalidate()
                 ->icon('bs.box-arrow-left')
-                ->route('platform.logout'),
+                ->route('orchid.logout'),
         ];
     }
 
@@ -117,7 +117,7 @@ class UserProfileScreen extends Screen
 
     public function changePassword(Request $request): void
     {
-        $guard = config('platform.guard', 'web');
+        $guard = config('orchid.guard', 'web');
         $request->validate([
             'old_password' => 'required|current_password:'.$guard,
             'password'     => 'required|confirmed|different:old_password',

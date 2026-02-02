@@ -99,7 +99,7 @@ class GroupTest extends TestFieldsUnitCase
         $view = $group->render();
 
         $this->assertInstanceOf(\Illuminate\View\View::class, $view);
-        $this->assertSame('platform::fields.group', $view->getName());
+        $this->assertSame('orchid::fields.group', $view->getName());
         $this->assertArrayHasKey('group', $view->getData());
     }
 

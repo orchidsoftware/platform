@@ -1,4 +1,4 @@
-@if(Dashboard::getSearch()->isNotEmpty())
+@if(Orchid::getSearch()->isNotEmpty())
     <div class="p-3">
         <div class="position-relative overflow-hidden">
             <div class="input-icon">

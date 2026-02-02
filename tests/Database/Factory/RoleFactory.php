@@ -24,21 +24,21 @@ class RoleFactory extends Factory
         $role = ['Admin', 'User'];
         $roles = [
             $role[0] => [
-                'platform.index'              => 1,
-                'platform.systems'            => 1,
-                'platform.systems.roles'      => 1,
-                'platform.systems.settings'   => 1,
-                'platform.systems.users'      => 1,
-                'platform.systems.attachment' => 1,
-                'platform.systems.media'      => 1,
+                'orchid.index'       => 1,
+                'orchid'             => 1,
+                'orchid.roles'       => 1,
+                'orchid.settings'    => 1,
+                'orchid.users'       => 1,
+                'orchid.attachment'  => 1,
+                'orchid.media'       => 1,
             ],
             $role[1] => [
-                'platform.index'              => 1,
-                'platform.systems'            => 1,
-                'platform.systems.settings'   => 1,
-                'platform.systems.comment'    => 1,
-                'platform.systems.attachment' => 1,
-                'platform.systems.media'      => 1,
+                'orchid.index'       => 1,
+                'orchid'             => 1,
+                'orchid.settings'    => 1,
+                'orchid.comment'     => 1,
+                'orchid.attachment'  => 1,
+                'orchid.media'       => 1,
             ],
         ];
 

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\Feature\Platform;
 
 use Illuminate\Support\Str;
-use Orchid\Platform\Dashboard;
+use Orchid\Support\Facades\Orchid;
 use Orchid\Tests\TestFeatureCase;
 
 class FallbackDisabledTest extends TestFeatureCase
@@ -17,14 +17,14 @@ class FallbackDisabledTest extends TestFeatureCase
     {
         parent::getEnvironmentSetUp($app);
 
-        config()->set('platform.fallback', false);
+        config()->set('orchid.fallback', false);
     }
 
     public function testRouteDisabled(): void
     {
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->get(Dashboard::prefix('/error-test/').Str::random());
+            ->get(Orchid::prefix('/error-test/').Str::random());
 
         $response
             ->assertDontSee('orchid.software')

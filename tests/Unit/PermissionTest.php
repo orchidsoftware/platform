@@ -6,7 +6,7 @@ namespace Orchid\Tests\Unit;
 
 use Exception;
 use Illuminate\Support\Collection;
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
@@ -115,7 +115,7 @@ class PermissionTest extends TestUnitCase
      */
     public function testIsRegisteredPermission(): void
     {
-        $dashboard = new Dashboard;
+        $dashboard = new Orchid;
 
         $permission = ItemPermission::group('Test')
             ->addPermission('test', 'Test Description');
@@ -130,7 +130,7 @@ class PermissionTest extends TestUnitCase
      */
     public function testGetPermissionsByGroup(): void
     {
-        $dashboard = new Dashboard;
+        $dashboard = new Orchid;
 
         $permissionA = ItemPermission::group('Test-A')
             ->addPermission('test_a', 'Test Description A');
@@ -150,7 +150,7 @@ class PermissionTest extends TestUnitCase
      */
     public function testIsWasRemovedPermission(): void
     {
-        $dashboard = new Dashboard;
+        $dashboard = new Orchid;
         $permission = ItemPermission::group('Test')
             ->addPermission('test', 'Test Description');
         $dashboard->registerPermissions($permission);
@@ -400,15 +400,15 @@ class PermissionTest extends TestUnitCase
     {
         $user = User::factory()->create([
             'permissions' => [
-                'platform.systems.attachment' => true,
+                'orchid.attachment' => true,
             ],
         ]);
 
-        $expectedPermissions = \Orchid\Support\Facades\Dashboard::getPermission()
+        $expectedPermissions = \Orchid\Support\Facades\Orchid::getPermission()
             ->map
             ->map(function ($permission) {
                 $permission['active'] = in_array($permission['slug'], [
-                    'platform.systems.attachment',
+                    'orchid.attachment',
                 ]);
 
                 return $permission;

@@ -19,7 +19,7 @@ class Matrix extends Field
     /**
      * @var string
      */
-    protected $view = 'platform::fields.matrix';
+    protected $view = 'orchid::fields.matrix';
 
     /**
      * Default attributes value.

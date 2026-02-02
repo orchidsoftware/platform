@@ -12,7 +12,7 @@ abstract class Sortable extends Layout
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.sortable';
+    protected $template = 'orchid::layouts.sortable';
 
     /**
      * Used to create the title of a group of form elements.

@@ -20,17 +20,17 @@ abstract class OrchidServiceProvider extends ServiceProvider
     /**
      * The Orchid Dashboard instance.
      *
-     * @var \Orchid\Platform\Dashboard|null
+     * @var \Orchid\Platform\Orchid|null
      */
-    protected ?Dashboard $orchid;
+    protected ?Orchid $orchid;
 
     /**
      * Boot the application events.
      */
-    public function boot(Dashboard $dashboard): void
+    public function boot(Orchid $orchid): void
     {
         // Need for backward compatibility
-        $this->orchid = $dashboard;
+        $this->orchid = $orchid;
 
         $this
             ->definePermissions()
@@ -44,12 +44,12 @@ abstract class OrchidServiceProvider extends ServiceProvider
     /**
      * Get the Orchid Dashboard instance.
      *
-     * @return \Orchid\Platform\Dashboard
+     * @return \Orchid\Platform\Orchid
      */
-    private function orchidSingleton(): Dashboard
+    private function orchidSingleton(): Orchid
     {
         if ($this->orchid === null) {
-            $this->orchid = $this->app->make(Dashboard::class);
+            $this->orchid = $this->app->make(Orchid::class);
         }
 
         return $this->orchid;
@@ -75,7 +75,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
     private function defineMenu(): static
     {
         // Register the menu items
-        View::composer('platform::dashboard', function () {
+        View::composer('orchid::dashboard', function () {
             $elements = [...$this->menu(), ...$this->registerMenu(), ...$this->registerMainMenu(), ...$this->registerProfileMenu()];
 
             foreach ($elements as $element) {
@@ -114,9 +114,9 @@ abstract class OrchidServiceProvider extends ServiceProvider
             return $this;
         }
 
-        Route::domain((string) config('platform.domain'))
-            ->prefix(Dashboard::prefix('/'))
-            ->middleware(config('platform.middleware.private'))
+        Route::domain((string) config('orchid.domain'))
+            ->prefix(Orchid::prefix('/'))
+            ->middleware(config('orchid.middleware.private'))
             ->group(function (Router $route) {
                 $this->routes($route);
             });

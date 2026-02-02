@@ -65,7 +65,7 @@ class UserListLayout extends Table
                     ->list([
 
                         Link::make(__('Edit'))
-                            ->route('platform.systems.users.edit', $user->id)
+                            ->route('orchid.users.edit', $user->id)
                             ->icon('bs.pencil'),
 
                         Button::make(__('Delete'))

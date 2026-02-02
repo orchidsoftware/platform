@@ -17,7 +17,7 @@ abstract class Legend extends Layout
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.legend';
+    protected $template = 'orchid::layouts.legend';
 
     /**
      * Used to create the title of a group of form elements.

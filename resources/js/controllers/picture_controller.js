@@ -56,7 +56,7 @@ export default class extends ApplicationController {
             formData.append('acceptedFiles', this.data.get('accepted-files'));
 
             let element = this.element;
-             window.axios.post(this.prefix('/systems/files'), formData)
+             window.axios.post(this.prefix('/files'), formData)
                 .then((response) => {
                     let image = response.data.url;
                     let targetValue = this.data.get('target');

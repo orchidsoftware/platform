@@ -7,7 +7,7 @@ namespace App\Orchid\Screens;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 
-class PlatformScreen extends Screen
+class WelcomeScreen extends Screen
 {
     /**
      * Fetch data to be displayed on the screen.
@@ -53,8 +53,8 @@ class PlatformScreen extends Screen
     public function layout(): iterable
     {
         return [
-            Layout::view('platform::partials.update-assets'),
-            Layout::view('platform::partials.welcome'),
+            Layout::view('orchid::partials.update-assets'),
+            Layout::view('orchid::partials.welcome'),
         ];
     }
 }

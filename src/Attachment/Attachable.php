@@ -6,7 +6,7 @@ namespace Orchid\Attachment;
 
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Orchid\Attachment\Models\Attachment;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 
 /**
  * This trait is used to relate or attach multiple files with Eloquent models.
@@ -38,7 +38,7 @@ trait Attachable
     public function attachments(?string $group = null): MorphToMany
     {
         return $this->morphToMany(
-            Dashboard::model(Attachment::class),
+            Orchid::model(Attachment::class),
             'attachmentable',
             'attachmentable',
             'attachmentable_id',

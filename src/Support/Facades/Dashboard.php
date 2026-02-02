@@ -6,7 +6,7 @@ namespace Orchid\Support\Facades;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
-use Orchid\Platform\Dashboard as DashboardKernel;
+use Orchid\Platform\Orchid as OrchidKernel;
 use Orchid\Screen\Screen;
 
 /**
@@ -36,6 +36,6 @@ class Dashboard extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return DashboardKernel::class;
+        return OrchidKernel::class;
     }
 }
