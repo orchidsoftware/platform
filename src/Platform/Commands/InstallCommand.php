@@ -22,7 +22,8 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'orchid:install';
+    protected $signature = 'orchid:install
+                            {--without-examples : Install without examples}';
 
     /**
      * The console command description.
@@ -49,10 +50,13 @@ class InstallCommand extends Command
                     'orchid-migrations',
                     'orchid-app-stubs',
                     'orchid-assets',
+                    $this->option('without-examples') ?: 'orchid-examples',
                 ],
             ])
             ->executeCommand('migrate')
             ->executeCommand('storage:link')
+            ->addPlatformProvider()
+            ->addRoutes()
             ->changeUserModel()
             ->when(class_exists(\App\Models\User::class), function () {
                 $this->replaceInFiles(app_path(), 'use Orchid\\Platform\\Models\\User;', 'use App\\Models\\User;');
@@ -83,6 +87,42 @@ class InstallCommand extends Command
             $parameters = str_replace('%5C', '/', $parameters);
             $this->alert("An error has occurred. The '{$command} {$parameters}' command was not executed");
         }
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    private function addPlatformProvider(string $path = 'app/Orchid/PlatformProvider.php'): self
+    {
+        if ($this->option('without-examples')) {
+            return $this;
+        }
+
+        $this->info('Adding PlatformProvider');
+
+        $platform_provider = file_get_contents(Dashboard::path('stubs/examples/Orchid/PlatformProvider.php'));
+        file_put_contents(base_path($path), $platform_provider);
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    private function addRoutes(string $path = 'routes/platform.php'): self
+    {
+        $this->info('Adding routes');
+
+        if ($this->option('without-examples')) {
+            $source_path = 'stubs/app/routes/platform.stub';
+        } else {
+            $source_path = 'stubs/examples/routes/platform.stub';
+        }
+
+        $platform_routes = file_get_contents(Dashboard::path($source_path));
+        file_put_contents(base_path($path), $platform_routes);
 
         return $this;
     }
