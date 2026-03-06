@@ -7,6 +7,4 @@ namespace Orchid\Platform\Notifications;
 /**
  * @deprecated Use OrchidChannel instead. Kept for backward compatibility.
  */
-class DashboardChannel extends OrchidChannel
-{
-}
+class DashboardChannel extends OrchidChannel {}

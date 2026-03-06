@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Orchid;
 
-use Orchid\Platform\Orchid;
 use Orchid\Platform\ItemPermission;
+use Orchid\Platform\Orchid;
 use Orchid\Platform\OrchidServiceProvider;
 use Orchid\Screen\Actions\Menu;
 use Orchid\Support\Color;

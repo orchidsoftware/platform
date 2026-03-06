@@ -25,12 +25,12 @@ class RoleFactory extends Factory
         $roles = [
             $role[0] => [
                 'orchid.index'              => 1,
-                'orchid'            => 1,
-                'orchid.roles'      => 1,
-                'orchid.settings'   => 1,
-                'orchid.users'      => 1,
-                'orchid.attachment' => 1,
-                'orchid.media'      => 1,
+                'orchid'                    => 1,
+                'orchid.roles'              => 1,
+                'orchid.settings'           => 1,
+                'orchid.users'              => 1,
+                'orchid.attachment'         => 1,
+                'orchid.media'              => 1,
             ],
             $role[1] => [
                 'orchid.index'       => 1,

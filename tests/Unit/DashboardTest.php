@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Illuminate\Support\Str;
-use Orchid\Platform\Orchid;
-use Orchid\Support\Facades\Orchid as OrchidFacade;
 use Orchid\Platform\Models\User;
+use Orchid\Platform\Orchid;
 use Orchid\Screen\Actions\Menu;
+use Orchid\Support\Facades\Orchid as OrchidFacade;
 use Orchid\Tests\TestUnitCase;
 
 /**

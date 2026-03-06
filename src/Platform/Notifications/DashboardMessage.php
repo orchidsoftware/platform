@@ -7,6 +7,4 @@ namespace Orchid\Platform\Notifications;
 /**
  * @deprecated Use OrchidMessage instead. Kept for backward compatibility with stored notifications.
  */
-class DashboardMessage extends OrchidMessage
-{
-}
+class DashboardMessage extends OrchidMessage {}

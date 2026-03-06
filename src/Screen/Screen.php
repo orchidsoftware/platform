@@ -30,8 +30,8 @@ abstract class Screen extends Controller
 {
     use Commander,
         HasFillablePublicProperties,
-        ModelStateRetrievable,
-        InteractsWithEncryptedState;
+        InteractsWithEncryptedState,
+        ModelStateRetrievable;
 
     /**
      * @param \Illuminate\Http\Request $request

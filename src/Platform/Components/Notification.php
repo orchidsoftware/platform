@@ -7,8 +7,8 @@ namespace Orchid\Platform\Components;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use Orchid\Platform\Notifications\OrchidMessage;
 use Orchid\Platform\Notifications\DashboardMessage;
+use Orchid\Platform\Notifications\OrchidMessage;
 
 class Notification extends Component
 {

@@ -21,7 +21,6 @@ Route::get('/', [IndexController::class, 'index'])
     ->name('index')
     ->breadcrumbs(fn (Trail $trail) => $trail->push(__('Home'), route('orchid.index')));
 
-
 /*
 |--------------------------------------------------------------------------
 | Global Search
@@ -30,7 +29,6 @@ Route::get('/', [IndexController::class, 'index'])
 Route::post('search/{query}', [SearchController::class, 'search'])
     ->where('query', '.*')
     ->name('search');
-
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +40,6 @@ Route::post('async', [AsyncController::class, 'load'])
 
 Route::post('listener/{screen}/{layout}', [AsyncController::class, 'listener'])
     ->name('async.listener');
-
 
 /*
 |--------------------------------------------------------------------------
@@ -64,7 +61,6 @@ Route::delete('files/{id}', [AttachmentController::class, 'destroy'])
 Route::put('files/post/{id}', [AttachmentController::class, 'update'])
     ->name('files.update');
 
-
 /*
 |--------------------------------------------------------------------------
 | Relation Field Rendering
@@ -73,7 +69,6 @@ Route::put('files/post/{id}', [AttachmentController::class, 'update'])
 Route::post('relation', [RelationController::class, 'view'])
     ->name('relation');
 
-
 /*
 |--------------------------------------------------------------------------
 | Sortable / Drag-and-Drop Ordering
@@ -81,7 +76,6 @@ Route::post('relation', [RelationController::class, 'view'])
 */
 Route::post('sorting', [SortableController::class, 'saveSortOrder'])
     ->name('sorting');
-
 
 /*
 |--------------------------------------------------------------------------
@@ -97,7 +91,6 @@ if (config('orchid.notifications.enabled', true)) {
     Route::post('api/notifications', [NotificationScreen::class, 'unreadNotification'])
         ->name('api.notifications');
 }
-
 
 /*
 |--------------------------------------------------------------------------
