@@ -81,6 +81,14 @@ export default class extends ApplicationController {
             axios({ method, url }).then((response) => {
                 const total = response.data.total;
                 this.channel.postMessage({ total });
+
+                document.dispatchEvent(new CustomEvent('orchid:notification', {
+                    detail: {
+                        count: total,
+                        previousCount: this.countValue
+                    }
+                }));
+
                 this.render(total);
             });
         }, interval * 1000);
@@ -131,6 +139,7 @@ export default class extends ApplicationController {
             badge = '';
         }
 
+        this.countValue = count;
         this.badgeTarget.classList.remove('d-none');
         this.badgeTarget.innerHTML = badge;
     }
