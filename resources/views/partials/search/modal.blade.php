@@ -10,6 +10,7 @@
             <div class="modal-body p-4 py-4">
                 <div class="position-relative d-flex flex-column gap-3"
                      data-controller="search"
+                     data-search-error-message-value="{{ __('Search is temporarily unavailable.') }}"
                 >
                     <div class="input-icon">
                         <div class="input-icon-addon">
