@@ -2,12 +2,18 @@ import ApplicationController from "./application_controller";
 
 export default class extends ApplicationController {
     static values = {
-        needPreventsFormAbandonment: {type: Boolean, default: true},
-        hasBeenChanged: {type: Boolean, default: false},
-        failedValidationMessage: {type: String, default: "Something went wrong."},
-        submitLoadingMessage: {type: String, default: "Loading..."},
-        confirmCancelMessage: { type: String, default: "Do you really want to leave? You have unsaved changes." }
-    }
+        needPreventsFormAbandonment: { type: Boolean, default: true },
+        hasBeenChanged: { type: Boolean, default: false },
+        failedValidationMessage: {
+            type: String,
+            default: "Something went wrong.",
+        },
+        submitLoadingMessage: { type: String, default: "Loading..." },
+        confirmCancelMessage: {
+            type: String,
+            default: "Do you really want to leave? You have unsaved changes.",
+        },
+    };
 
     /**
      * Connect Form
@@ -16,8 +22,8 @@ export default class extends ApplicationController {
         /**
          * Added focus button for Mac OS firefox/safari
          */
-        document.querySelectorAll('button[type=submit]').forEach((button) => {
-            button.addEventListener('click', (event) => {
+        document.querySelectorAll("button[type=submit]").forEach(button => {
+            button.addEventListener("click", event => {
                 event.target.focus();
             });
         });
@@ -27,7 +33,7 @@ export default class extends ApplicationController {
      *
      */
     submitByForm(event) {
-        const formId = this.data.get('id');
+        const formId = this.data.get("id");
         const formElem = document.getElementById(formId);
         formElem.submit();
 
@@ -42,7 +48,7 @@ export default class extends ApplicationController {
      */
     submit(event) {
         // When Turbo disable
-        if (this.getActiveElementAttr('data-turbo') === 'false') {
+        if (this.getActiveElementAttr("data-turbo") === "false") {
             this.addReserveState(event.target);
 
             return true;
@@ -70,7 +76,7 @@ export default class extends ApplicationController {
 
         this.needPreventsFormAbandonmentValue = false;
 
-        const screenEventSubmit = new Event('orchid:screen-submit');
+        const screenEventSubmit = new Event("orchid:screen-submit");
         event.target.dispatchEvent(screenEventSubmit);
 
         return true;
@@ -82,15 +88,16 @@ export default class extends ApplicationController {
     animateButton(event) {
         const button = event.submitter;
 
-        if (button.tagName !== 'BUTTON') {
+        if (button.tagName !== "BUTTON") {
             return;
         }
 
         button.disabled = true;
-        button.classList.add('cursor-wait');
-        button.classList.add('btn-loading');
+        button.classList.add("cursor-wait");
+        button.classList.add("btn-loading");
 
-        button.innerHTML += '<span class="spinner-loading position-absolute top-50 start-50 translate-middle"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></span>';
+        button.innerHTML +=
+            '<span class="spinner-loading position-absolute top-50 start-50 translate-middle"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></span>';
     }
 
     /**
@@ -101,20 +108,20 @@ export default class extends ApplicationController {
     validateForm(event) {
         // Cancellation
         if (
-            this.getActiveElementAttr('data-novalidate') === 'true'
-            || this.getActiveElementAttr('formnovalidate') === 'true'
-            || this.getActiveElementAttr('formnovalidate') === 'formnovalidate'
+            this.getActiveElementAttr("data-novalidate") === "true" ||
+            this.getActiveElementAttr("formnovalidate") === "true" ||
+            this.getActiveElementAttr("formnovalidate") === "formnovalidate"
         ) {
             return true;
         }
 
         if (!event.target.reportValidity()) {
             this.toast(this.failedValidationMessageValue);
-            event.target.classList.add('was-validated');
+            event.target.classList.add("was-validated");
             return false;
         }
 
-        event.target.classList.remove('was-validated');
+        event.target.classList.remove("was-validated");
 
         return true;
     }
@@ -125,7 +132,7 @@ export default class extends ApplicationController {
      * @returns {boolean}
      */
     get isSubmit() {
-        return this.data.get('submit') === 'true';
+        return this.data.get("submit") === "true";
     }
 
     /**
@@ -143,7 +150,7 @@ export default class extends ApplicationController {
      * @param value
      */
     set isSubmit(value) {
-        this.data.set('submit', value);
+        this.data.set("submit", value);
     }
 
     /**
@@ -152,8 +159,8 @@ export default class extends ApplicationController {
      * @returns {string}
      */
     loadFormAction(event) {
-        const formAction = this.element.getAttribute('action');
-        const activeElementAction = this.getActiveElementAttr('formaction');
+        const formAction = this.element.getAttribute("action");
+        const activeElementAction = this.getActiveElementAttr("formaction");
         const submitterAction = event.submitter.formAction;
 
         return activeElementAction || formAction || submitterAction;
@@ -165,7 +172,6 @@ export default class extends ApplicationController {
      * @returns {boolean}
      */
     disableKey(event) {
-
         if (/textarea/i.test(event.target.tagName)) {
             return true;
         }
@@ -186,7 +192,7 @@ export default class extends ApplicationController {
      * Trigger for form has been changed
      */
     changed(event) {
-        if(this.element === event.target.form) {
+        if (this.element === event.target.form) {
             this.hasBeenChangedValue = true;
         }
     }
@@ -196,24 +202,27 @@ export default class extends ApplicationController {
      * @param event
      */
     async confirmCancel(event) {
-        if (event.type === 'turbo:before-fetch-request') {
+        if (event.type === "turbo:before-fetch-request") {
             return;
         }
 
-        if (event.target?.activeElement?.type === 'submit') {
+        if (event.target?.activeElement?.type === "submit") {
             return;
         }
 
-        if (this.needPreventsFormAbandonmentValue === true && this.hasBeenChangedValue === true) {
+        if (
+            this.needPreventsFormAbandonmentValue === true &&
+            this.hasBeenChangedValue === true
+        ) {
             event.preventDefault();
 
-            if(event.type === 'beforeunload') {
+            if (event.type === "beforeunload") {
                 event.returnValue = this.confirmCancelMessageValue; //Gecko + IE
                 return this.confirmCancelMessageValue; //Gecko + Webkit, Safari, Chrome etc.
             }
 
             if (window.confirm(this.confirmCancelMessageValue)) {
-                event.detail.resume()
+                event.detail.resume();
             }
         }
     }
@@ -228,7 +237,7 @@ export default class extends ApplicationController {
         const stateValue = this.getState();
 
         // Find the input element with id 'reserve_state'
-        const existingInput = form.querySelector('#reserve_state');
+        const existingInput = form.querySelector("#reserve_state");
 
         // If the element already exists, update its value
         if (existingInput) {
@@ -237,12 +246,12 @@ export default class extends ApplicationController {
         }
 
         // If the element does not exist, create a new one
-        const newInput = document.createElement('input');
+        const newInput = document.createElement("input");
 
         // Set its attributes
-        newInput.type = 'hidden';
-        newInput.id = 'reserve_state';
-        newInput.name = '_state';
+        newInput.type = "hidden";
+        newInput.id = "reserve_state";
+        newInput.name = "_state";
         newInput.value = stateValue;
 
         // Add the new element to the form
@@ -251,6 +260,6 @@ export default class extends ApplicationController {
 
     // Implement this method to return the state value
     getState() {
-        return document.getElementById('screen-state')?.value || '';
+        return document.getElementById("screen-state")?.value || "";
     }
 }

@@ -1,5 +1,5 @@
 import ApplicationController from "./application_controller";
-import axios from 'axios';
+import axios from "axios";
 
 export default class extends ApplicationController {
     /**
@@ -13,7 +13,7 @@ export default class extends ApplicationController {
          * Ensures the CSRF token is updated for pages that were reloaded,
          * such as when a user logs into the system.
          */
-        window.addEventListener('turbo:load', () => this.csrf());
+        window.addEventListener("turbo:load", () => this.csrf());
     }
 
     /**
@@ -40,14 +40,15 @@ export default class extends ApplicationController {
          * all outgoing HTTP requests automatically have it attached. This is just
          * a simple convenience so we don't have to attach every token manually.
          */
-        window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-        window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+        window.axios.defaults.headers.common["X-CSRF-TOKEN"] = token.content;
+        window.axios.defaults.headers.common["X-Requested-With"] =
+            "XMLHttpRequest";
     }
 
     /**
      *
      */
     goToTop() {
-        window.scrollTo({top: 0, behavior: 'smooth'});
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 }

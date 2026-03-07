@@ -1,19 +1,11 @@
-import ApplicationController from "./application_controller"
+import ApplicationController from "./application_controller";
 
 export default class extends ApplicationController {
-
     /**
      *
      * @type {string[]}
      */
-    static targets = [
-        "url",
-        "source",
-        "medium",
-        "campaign",
-        "term",
-        "content",
-    ];
+    static targets = ["url", "source", "medium", "campaign", "term", "content"];
 
     /**
      *
@@ -25,11 +17,11 @@ export default class extends ApplicationController {
 
         let url = new URL(this.urlTarget.value);
 
-        this.sourceTarget.value = this.loadParam(url, 'source');
-        this.mediumTarget.value = this.loadParam(url, 'medium');
-        this.campaignTarget.value = this.loadParam(url, 'campaign');
-        this.termTarget.value = this.loadParam(url, 'term');
-        this.contentTarget.value = this.loadParam(url, 'content');
+        this.sourceTarget.value = this.loadParam(url, "source");
+        this.mediumTarget.value = this.loadParam(url, "medium");
+        this.campaignTarget.value = this.loadParam(url, "campaign");
+        this.termTarget.value = this.loadParam(url, "term");
+        this.contentTarget.value = this.loadParam(url, "content");
     }
 
     /**
@@ -37,13 +29,13 @@ export default class extends ApplicationController {
      */
     generate() {
         let url = new URL(this.urlTarget.value);
-        this.urlTarget.value = url.protocol + '//' + url.host + url.pathname;
+        this.urlTarget.value = url.protocol + "//" + url.host + url.pathname;
 
-        this.addParams('source', this.sourceTarget.value);
-        this.addParams('medium', this.mediumTarget.value);
-        this.addParams('campaign', this.campaignTarget.value);
-        this.addParams('term', this.termTarget.value);
-        this.addParams('content', this.contentTarget.value);
+        this.addParams("source", this.sourceTarget.value);
+        this.addParams("medium", this.mediumTarget.value);
+        this.addParams("campaign", this.campaignTarget.value);
+        this.addParams("term", this.termTarget.value);
+        this.addParams("content", this.contentTarget.value);
     }
 
     /**
@@ -52,11 +44,14 @@ export default class extends ApplicationController {
      * @returns {string}
      */
     slugify(text) {
-        return text.toString().toLowerCase().trim()
-            .replace(/\s+/g, '-')           // Replace spaces with -
-            .replace(/&/g, '-and-')         // Replace & with 'and'
-            .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-            .replace(/\-\-+/g, '-');        // Replace multiple - with single -
+        return text
+            .toString()
+            .toLowerCase()
+            .trim()
+            .replace(/\s+/g, "-") // Replace spaces with -
+            .replace(/&/g, "-and-") // Replace & with 'and'
+            .replace(/[^\w\-]+/g, "") // Remove all non-word chars
+            .replace(/\-\-+/g, "-"); // Replace multiple - with single -
     }
 
     /**
@@ -75,7 +70,10 @@ export default class extends ApplicationController {
      * @param value
      */
     change(replace, value) {
-        this.urlTarget.value = this.urlTarget.value.replace(replace, `$1${encodeURIComponent(value)}`);
+        this.urlTarget.value = this.urlTarget.value.replace(
+            replace,
+            `$1${encodeURIComponent(value)}`
+        );
     }
 
     /**
@@ -113,7 +111,6 @@ export default class extends ApplicationController {
      * @returns {string | null}
      */
     loadParam(url, param) {
-        return url.searchParams.get('utm_' + param);
+        return url.searchParams.get("utm_" + param);
     }
-
 }

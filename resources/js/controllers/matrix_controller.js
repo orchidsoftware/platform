@@ -1,21 +1,18 @@
 import ApplicationController from "./application_controller";
 
 export default class extends ApplicationController {
-
     /**
      *
      * @type {string[]}
      */
-    static targets = [
-        'index'
-    ];
+    static targets = ["index"];
 
     /**
      *
      */
     connect() {
-        this.template = this.element.querySelector('.matrix-template');
-        this.keyValueMode = this.data.get('key-value') === 'true';
+        this.template = this.element.querySelector(".matrix-template");
+        this.keyValueMode = this.data.get("key-value") === "true";
 
         this.detectMaxRows();
     }
@@ -26,8 +23,8 @@ export default class extends ApplicationController {
     deleteRow(event) {
         let path = event.path || (event.composedPath && event.composedPath());
 
-        path.forEach((element) => {
-            if(element.tagName !== 'TR'){
+        path.forEach(element => {
+            if (element.tagName !== "TR") {
                 return;
             }
 
@@ -45,14 +42,12 @@ export default class extends ApplicationController {
     addRow(event) {
         this.index++;
 
-        let row = this.template.content.querySelector('tr').cloneNode(true);
-        row.innerHTML = row.innerHTML
-            .replace(/{index}/gi, this.index);
+        let row = this.template.content.querySelector("tr").cloneNode(true);
+        row.innerHTML = row.innerHTML.replace(/{index}/gi, this.index);
 
+        let creatingRows = this.element.querySelector(".add-row");
 
-        let creatingRows = this.element.querySelector('.add-row');
-
-        this.element.querySelector('tbody').insertBefore(row, creatingRows);
+        this.element.querySelector("tbody").insertBefore(row, creatingRows);
 
         this.detectMaxRows();
         event.preventDefault();
@@ -64,7 +59,7 @@ export default class extends ApplicationController {
      * @returns {number}
      */
     get index() {
-        return parseInt(this.data.get('index'));
+        return parseInt(this.data.get("index"));
     }
 
     /**
@@ -72,7 +67,7 @@ export default class extends ApplicationController {
      * @param value
      */
     set index(value) {
-        this.data.set('index', value);
+        this.data.set("index", value);
     }
 
     /**
@@ -80,13 +75,15 @@ export default class extends ApplicationController {
      * of a new line based on line counting
      */
     detectMaxRows() {
-        const max = parseInt(this.data.get('rows'));
-        if(max === 0){
+        const max = parseInt(this.data.get("rows"));
+        if (max === 0) {
             return;
         }
 
-        let current = this.element.querySelectorAll('tbody tr:not(.add-row)').length;
-        let addRow = this.element.querySelector('.add-row th');
-        addRow.style.display = max <= current ? 'none' : '';
+        let current = this.element.querySelectorAll(
+            "tbody tr:not(.add-row)"
+        ).length;
+        let addRow = this.element.querySelector(".add-row th");
+        addRow.style.display = max <= current ? "none" : "";
     }
 }

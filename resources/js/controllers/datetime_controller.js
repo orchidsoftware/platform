@@ -1,40 +1,39 @@
-import flatpickr             from 'flatpickr';
-import rangePlugin           from 'flatpickr/dist/plugins/rangePlugin';
-import ApplicationController from './application_controller';
-import 'flatpickr/dist/l10n';
+import flatpickr from "flatpickr";
+import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
+import ApplicationController from "./application_controller";
+import "flatpickr/dist/l10n";
 
 export default class extends ApplicationController {
-
     /**
      *
      */
     connect() {
         const plugins = [];
 
-        if (this.data.get('range')) {
-            plugins.push(new rangePlugin({ input: this.data.get('range') }));
+        if (this.data.get("range")) {
+            plugins.push(new rangePlugin({ input: this.data.get("range") }));
         }
 
         const configsAttributes = {
-            enableTime: 'enable-time',
-            time_24hr: 'time_24hr',
-            allowInput: 'allow-input',
-            dateFormat: 'date-format',
-            noCalendar: 'no-calendar',
-            minuteIncrement: 'minute-increment',
-            hourIncrement: 'hour-increment',
-            static: 'static',
-            disableMobile: 'disable-mobile',
-            inline: 'inline',
-            position: 'position',
-            shorthandCurrentMonth: 'shorthand-current-month',
-            showMonths: 'show-months',
-            allowEmpty: 'allowEmpty',
-            placeholder: 'placeholder',
-            enable: 'enable',
-            disable: 'disable',
-            maxDate: 'max-date',
-            minDate: 'min-date',
+            enableTime: "enable-time",
+            time_24hr: "time_24hr",
+            allowInput: "allow-input",
+            dateFormat: "date-format",
+            noCalendar: "no-calendar",
+            minuteIncrement: "minute-increment",
+            hourIncrement: "hour-increment",
+            static: "static",
+            disableMobile: "disable-mobile",
+            inline: "inline",
+            position: "position",
+            shorthandCurrentMonth: "shorthand-current-month",
+            showMonths: "show-months",
+            allowEmpty: "allowEmpty",
+            placeholder: "placeholder",
+            enable: "enable",
+            disable: "disable",
+            maxDate: "max-date",
+            minDate: "min-date",
             mode: "mode",
             defaultDate: "default-date",
             altInput: "alt-input",
@@ -44,7 +43,7 @@ export default class extends ApplicationController {
         const config = {
             locale: document.documentElement.lang,
             plugins,
-            appendTo: this.element.closest('.dropdown') || undefined,
+            appendTo: this.element.closest(".dropdown") || undefined,
         };
 
         Object.entries(configsAttributes).forEach(([key, value]) => {
@@ -52,7 +51,7 @@ export default class extends ApplicationController {
                 return;
             }
 
-            if (typeof this.data.get(value) !== 'string') {
+            if (typeof this.data.get(value) !== "string") {
                 config[key] = this.data.get(value);
                 return;
             }
@@ -64,7 +63,7 @@ export default class extends ApplicationController {
             }
         });
 
-        this.fp = flatpickr(this.element.querySelector('input'), config);
+        this.fp = flatpickr(this.element.querySelector("input"), config);
     }
 
     /**

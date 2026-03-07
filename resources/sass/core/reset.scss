@@ -1,36 +1,41 @@
 // reset
 
 body {
-  font-family: $font-family-base;
-  font-size: $font-size-base;
-  color: $text-color;
-  font-smoothing: antialiased;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: $line-height-base;
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    color: $text-color;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: $line-height-base;
 }
 
 *:focus:not(:focus-visible) {
-  outline: 0 !important;
+    outline: 0 !important;
 }
 
-.h1, .h2, .h3, .h4, .h5, .h6 {
-  margin: 0;
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    margin: 0;
 }
 
 // Links
 // -------------------------
 
 a {
-  color: $link-color;
-  text-decoration: none;
-  cursor: pointer;
+    color: $link-color;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 a:hover,
 a:focus {
-  color: $link-hover-color;
-  text-decoration: none;
+    color: $link-hover-color;
+    text-decoration: none;
 }
 
 label {
@@ -41,17 +46,20 @@ label {
     white-space: nowrap;
 }
 
-small, .small {
-  font-size: $font-size-sm;
+small,
+.small {
+    font-size: $font-size-sm;
 }
 
-.badge, .label {
-  font-weight: bold;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, .2)
+.badge,
+.label {
+    font-weight: bold;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
-.badge.bg-light, .label.bg-light {
-  text-shadow: none;
+.badge.bg-light,
+.label.bg-light {
+    text-shadow: none;
 }
 
 .badge {
@@ -68,234 +76,235 @@ small, .small {
 }
 
 blockquote {
-  border-color: $border-color;
+    border-color: $border-color;
 }
 
 .caret-white {
-  border-top-color: #fff;
-  border-top-color: rgba(255, 255, 255, .65);
-  a:hover & {
     border-top-color: #fff;
-  }
+    border-top-color: rgba(255, 255, 255, 0.65);
+    a:hover & {
+        border-top-color: #fff;
+    }
 }
 
 .thumbnail {
-  border-color: $border-color;
+    border-color: $border-color;
 }
 
 .progress {
-  background-color: $light;
+    background-color: $light;
 }
 
 .progress-xxs {
-  height: 2px
+    height: 2px;
 }
 
 .progress-xs {
-  height: 6px
+    height: 6px;
 }
 
 .progress-sm {
-  height: 12px;
-  .progress-bar {
-    font-size: 10px;
-    line-height: 1rem;
-  }
+    height: 12px;
+    .progress-bar {
+        font-size: 10px;
+        line-height: 1rem;
+    }
 }
 
-.progress, .progress-bar {
-  @include box-shadow(none);
+.progress,
+.progress-bar {
+    @include box-shadow(none);
 }
 
 .progress-bar-primary {
-  background-color: $primary;
+    background-color: $primary;
 }
 
 .progress-bar-info {
-  background-color: $info;
+    background-color: $info;
 }
 
 .progress-bar-success {
-  background-color: $success;
+    background-color: $success;
 }
 
 .progress-bar-warning {
-  background-color: $warning;
+    background-color: $warning;
 }
 
 .progress-bar-danger {
-  background-color: $danger;
+    background-color: $danger;
 }
 
 .progress-bar-black {
-  background-color: $black;
+    background-color: $black;
 }
 
 .progress-bar-white {
-  background-color: #fff;
+    background-color: #fff;
 }
 
 .accordion-group,
 .accordion-inner {
-  border-color: $border-color;
-  border-radius: $border-radius-base;
+    border-color: $border-color;
+    border-radius: $border-radius-base;
 }
 
 .alert {
-  font-size: $font-size-sm;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  border-radius: 0;
-  border: 0;
-  p,ul{
-    margin-bottom: 0;
-  }
-  .close i {
-    font-size: 12px;
-    font-weight: normal;
-    display: block;
-  }
+    font-size: $font-size-sm;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-radius: 0;
+    border: 0;
+    p,
+    ul {
+        margin-bottom: 0;
+    }
+    .close i {
+        font-size: 12px;
+        font-weight: normal;
+        display: block;
+    }
 }
 
 .form-control {
-  border-color: $input-border;
-  border-radius: $input-border-radius;
-  &,
-  &:focus {
-    @include box-shadow(none);
-  }
-  &:focus {
-    border-color: $input-border-focus;
-  }
+    border-color: $input-border;
+    border-radius: $input-border-radius;
+    &,
+    &:focus {
+        @include box-shadow(none);
+    }
+    &:focus {
+        border-color: $input-border-focus;
+    }
 }
 
 .form-horizontal {
-  .control-label.text-left {
-    text-align: left;
-  }
+    .control-label.text-left {
+        text-align: left;
+    }
 }
 
 .form-control-spin {
-  position: absolute;
-  z-index: 2;
-  right: 10px;
-  top: 50%;
-  margin-top: -7px;
+    position: absolute;
+    z-index: 2;
+    right: 10px;
+    top: 50%;
+    margin-top: -7px;
 }
 
 .input-lg {
-  height: 45px;
+    height: 45px;
 }
 
 .input-group-addon {
-  border-color: $input-border;
-  background-color: $light;
+    border-color: $input-border;
+    background-color: $light;
 }
 
 .list-group {
-  border-radius: $border-radius-base;
-  &.no-radius {
-    .list-group-item {
-      border-radius: 0 !important;
+    border-radius: $border-radius-base;
+    &.no-radius {
+        .list-group-item {
+            border-radius: 0 !important;
+        }
     }
-  }
-  &.no-borders {
-    .list-group-item {
-      border: none;
+    &.no-borders {
+        .list-group-item {
+            border: none;
+        }
     }
-  }
-  &.no-border {
-    .list-group-item {
-      border-width: 1px 0;
+    &.no-border {
+        .list-group-item {
+            border-width: 1px 0;
+        }
     }
-  }
-  &.no-bg {
-    .list-group-item {
-      background-color: transparent;
+    &.no-bg {
+        .list-group-item {
+            background-color: transparent;
+        }
     }
-  }
 }
 
 .list-group-item {
-  border-color: $list-group-item-border;
-  padding-right: 15px;
-  a#{&} {
-    &:hover,
-    &:focus,
-    &.hover {
-      background-color: $list-group-item-hover;
+    border-color: $list-group-item-border;
+    padding-right: 15px;
+    a#{&} {
+        &:hover,
+        &:focus,
+        &.hover {
+            background-color: $list-group-item-hover;
+        }
     }
-  }
-  &.media {
-    margin-top: 0;
-  }
-  &.active {
-    color: #fff;
-    border-color: $list-group-active-color !important;
-    background-color: $list-group-active-color !important;
-    .text-muted {
-      color: lighten($list-group-active-color, 30%) !important;
+    &.media {
+        margin-top: 0;
     }
-    a {
-      color: #fff;
+    &.active {
+        color: #fff;
+        border-color: $list-group-active-color !important;
+        background-color: $list-group-active-color !important;
+        .text-muted {
+            color: lighten($list-group-active-color, 30%) !important;
+        }
+        a {
+            color: #fff;
+        }
     }
-  }
-  &.focus {
-    background-color: $list-group-item-focus !important;
-  }
-  &.select {
-    position: relative;
-    z-index: 1;
-    background-color: $list-group-select-color !important;
-    border-color: darken($list-group-select-color, 5%);
-  }
+    &.focus {
+        background-color: $list-group-item-focus !important;
+    }
+    &.select {
+        position: relative;
+        z-index: 1;
+        background-color: $list-group-select-color !important;
+        border-color: darken($list-group-select-color, 5%);
+    }
 
-  .list-group-alt & {
-    &:nth-child(2n+2) {
-      background-color: rgba(0, 0, 0, 0.02) !important;
+    .list-group-alt & {
+        &:nth-child(2n + 2) {
+            background-color: rgba(0, 0, 0, 0.02) !important;
+        }
     }
-  }
-  .list-group-lg & {
-    padding-top: 15px;
-    padding-bottom: 15px;
-  }
-  .list-group-sm & {
-    padding: 6px 10px;
-  }
-  .list-group-sp & {
-    margin-bottom: 5px;
-    border-radius: 3px;
-  }
-  > .badge {
-    margin-right: 0;
-  }
+    .list-group-lg & {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    .list-group-sm & {
+        padding: 6px 10px;
+    }
+    .list-group-sp & {
+        margin-bottom: 5px;
+        border-radius: 3px;
+    }
+    > .badge {
+        margin-right: 0;
+    }
 }
 
 .nav {
-  .nav-item {
-      align-items: center;
-      display: flex;
-      flex-direction: row;
-      text-overflow: ellipsis;
+    .nav-item {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        text-overflow: ellipsis;
 
-      .nav-link {
-          width: 100%;
-          &:hover,
-          &:focus {
-            //  border-radius: unset;
-          }
-      }
-  }
-  .open {
-    .nav-link {
-      &,
-      &:hover,
-      &:focus {
-        background-color: $nav-bg;
-      }
+        .nav-link {
+            width: 100%;
+            &:hover,
+            &:focus {
+                //  border-radius: unset;
+            }
+        }
     }
-  }
+    .open {
+        .nav-link {
+            &,
+            &:hover,
+            &:focus {
+                background-color: $nav-bg;
+            }
+        }
+    }
 }
-
 
 @include media-breakpoint-down(md) {
     .nav-scroll-bar {
@@ -321,291 +330,293 @@ blockquote {
 }
 
 .tab-container {
-  margin-bottom: 15px;
-  .tab-content {
-    padding: 15px;
-    background-color: #fff;
-    border: 1px solid $border-color;
-    border-top-width: 0;
-    border-radius: 0 0 $border-radius-base $border-radius-base;
-  }
+    margin-bottom: 15px;
+    .tab-content {
+        padding: 15px;
+        background-color: #fff;
+        border: 1px solid $border-color;
+        border-top-width: 0;
+        border-radius: 0 0 $border-radius-base $border-radius-base;
+    }
 }
 
 .pagination {
-  margin: 0;
-  > li, .page-item {
-    > a, .page-link {
-      border: none;
-      &:hover,
-      &:focus {
-        border-color: initial;
-        background-color: initial;
-        text-decoration: underline;
-        box-shadow: none;
-      }
-	}
-	&.active{
-		.page-link, span {
-			&,
-			&:hover,
-			&:focus {
-				z-index: 3;
-				background-color: inherit;
-				border-color: inherit;
-				cursor: default;
-                @extend .text-muted;
+    margin: 0;
+    > li,
+    .page-item {
+        > a,
+        .page-link {
+            border: none;
+            &:hover,
+            &:focus {
+                border-color: initial;
+                background-color: initial;
+                text-decoration: underline;
+                box-shadow: none;
             }
-		}
-	}
+        }
+        &.active {
+            .page-link,
+            span {
+                &,
+                &:hover,
+                &:focus {
+                    z-index: 3;
+                    background-color: inherit;
+                    border-color: inherit;
+                    cursor: default;
+                    @extend .text-muted;
+                }
+            }
+        }
+    }
 
-
-  }
-
-
-  @at-root .text-right & {
-    -webkit-box-pack: end!important;
-    -ms-flex-pack: end!important;
-    justify-content: flex-end!important;
-  }
+    @at-root .text-right & {
+        -webkit-box-pack: end !important;
+        -ms-flex-pack: end !important;
+        justify-content: flex-end !important;
+    }
 }
 
 .panel,
 .card {
-  border-radius: $border-radius-base;
-  border-color: $border-color;
-  .accordion-toggle {
-    font-size: 14px;
-    display: block;
-    cursor: pointer;
-  }
-  .list-group-item {
-    border-color: $panel-list-group-border;
-  }
-  &.no-borders {
-    border-width: 0;
-    .card-heading,
-    .card-footer {
-      border-width: 0;
+    border-radius: $border-radius-base;
+    border-color: $border-color;
+    .accordion-toggle {
+        font-size: 14px;
+        display: block;
+        cursor: pointer;
     }
-  }
+    .list-group-item {
+        border-color: $panel-list-group-border;
+    }
+    &.no-borders {
+        border-width: 0;
+        .card-heading,
+        .card-footer {
+            border-width: 0;
+        }
+    }
 }
 
 .card-heading {
-  .card-default & {
-    background-color: $panel-heading-bg;
-  }
-  border-radius: $border-radius-base $border-radius-base 0 0;
-  &.no-border {
-    margin: -1px -1px 0 -1px;
-    border: none;
-  }
-  .nav {
-    margin: -10px  -15px;
-  }
-  .list-group {
-    background: transparent;
-  }
+    .card-default & {
+        background-color: $panel-heading-bg;
+    }
+    border-radius: $border-radius-base $border-radius-base 0 0;
+    &.no-border {
+        margin: -1px -1px 0 -1px;
+        border: none;
+    }
+    .nav {
+        margin: -10px -15px;
+    }
+    .list-group {
+        background: transparent;
+    }
 }
 
 .card-footer {
-  border-color: $panel-heading-border;
-  border-radius: 0 0 $border-radius-base $border-radius-base;
-  background-color: $panel-footer-bg;
+    border-color: $panel-heading-border;
+    border-radius: 0 0 $border-radius-base $border-radius-base;
+    background-color: $panel-footer-bg;
 }
 
 .card-default {
-  border-color: $panel-border;
-  > .card-heading,
-  > .card-footer {
-    border-color: $panel-heading-border;
-  }
+    border-color: $panel-border;
+    > .card-heading,
+    > .card-footer {
+        border-color: $panel-heading-border;
+    }
 }
 
 .card-group .card-heading + .card-collapse .card-body {
-  border-top: 1px solid #eaedef;
+    border-top: 1px solid #eaedef;
 }
 
 .table {
-  > tbody,
-  > tfoot {
-    > tr {
-        &:has(.stretched-link) {
-            // Safari doesn't support position: relative on <tr> elements
-            position: relative;
-            transform: translate(0);
-            clip-path: inset(0);
-            overflow: clip;
+    > tbody,
+    > tfoot {
+        > tr {
+            &:has(.stretched-link) {
+                // Safari doesn't support position: relative on <tr> elements
+                position: relative;
+                transform: translate(0);
+                clip-path: inset(0);
+                overflow: clip;
+            }
+            > td {
+                padding: 8px 15px;
+                border-top: 1px solid $table-border-color;
+            }
         }
-      > td {
-        padding: 8px 15px;
-        border-top: 1px solid $table-border-color;
-      }
     }
-  }
-  > thead > tr > th {
-    padding: 1em;
-    border-bottom: 1px solid $table-border-color;
-  }
+    > thead > tr > th {
+        padding: 1em;
+        border-bottom: 1px solid $table-border-color;
+    }
 }
 
-.well, pre {
-  background-color: $light;
-  border-color: $border-color;
+.well,
+pre {
+    background-color: $light;
+    border-color: $border-color;
 }
 
 .dropdown-menu {
-  display: none;
-  min-width: 12rem;
-  @include box-shadow(0 2px 6px rgba(0, 0, 0, 0.1));
-  border: 1px solid $border-color;
-  &.pull-left {
-    left: 100%;
-  }
-  > .panel, .card {
-    border: none;
-    margin: -5px 0;
-  }
-  > li > a {
-    padding: 5px 15px;
-  }
+    display: none;
+    min-width: 12rem;
+    @include box-shadow(0 2px 6px rgba(0, 0, 0, 0.1));
+    border: 1px solid $border-color;
+    &.pull-left {
+        left: 100%;
+    }
+    > .panel,
+    .card {
+        border: none;
+        margin: -5px 0;
+    }
+    > li > a {
+        padding: 5px 15px;
+    }
 
-  > li > a:hover,
-  > li > a:focus,
-  > .active > a,
-  > .active > a:hover,
-  > .active > a:focus {
-    background-image: none;
-    filter: none;
-    background-color: $light !important;
-    color: $link-hover-color;
-  }
+    > li > a:hover,
+    > li > a:focus,
+    > .active > a,
+    > .active > a:hover,
+    > .active > a:focus {
+        background-image: none;
+        filter: none;
+        background-color: $light !important;
+        color: $link-hover-color;
+    }
 }
 
 .dropdown-menu-arrow {
-  &:before {
-    position: absolute;
-    top: -6px;
-    left: 12px;
-    display: inline-block;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid $border-color;
-    border-left: 5px solid transparent;
-    border-bottom-color: rgba(0, 0, 0, 0.2);
-    content: '';
-  }
-
-  &:after {
-    position: absolute;
-    top: -5px;
-    left: 12px;
-    display: inline-block;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid #fff;
-    border-left: 5px solid transparent;
-    content: '';
-  }
-
-  &.dropdown-menu-end {
-    &:before,
-    &:after {
-      left: auto;
-      right: 12px;
+    &:before {
+        position: absolute;
+        top: -6px;
+        left: 12px;
+        display: inline-block;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid $border-color;
+        border-left: 5px solid transparent;
+        border-bottom-color: rgba(0, 0, 0, 0.2);
+        content: "";
     }
-  }
+
+    &:after {
+        position: absolute;
+        top: -5px;
+        left: 12px;
+        display: inline-block;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid #fff;
+        border-left: 5px solid transparent;
+        content: "";
+    }
+
+    &.dropdown-menu-end {
+        &:before,
+        &:after {
+            left: auto;
+            right: 12px;
+        }
+    }
 }
 
 .dropdown-header {
-  padding: 5px 15px;
+    padding: 5px 15px;
 }
 
 .dropdown-submenu {
-  position: relative;
-  &:hover,
-  &:focus {
-    > a {
-      background-color: $light !important;
-      color: $text-color;
+    position: relative;
+    &:hover,
+    &:focus {
+        > a {
+            background-color: $light !important;
+            color: $text-color;
+        }
+        > .dropdown-menu {
+            display: block;
+        }
     }
-    > .dropdown-menu {
-      display: block;
+    &.pull-left {
+        float: none !important;
+        > .dropdown-menu {
+            left: -100%;
+            margin-left: 10px;
+        }
     }
-  }
-  &.pull-left {
-    float: none !important;
-    > .dropdown-menu {
-      left: -100%;
-      margin-left: 10px;
+    .dropdown-menu {
+        left: 100%;
+        top: 0;
+        margin-top: -6px;
+        margin-left: -1px;
     }
-  }
-  .dropdown-menu {
-    left: 100%;
-    top: 0;
-    margin-top: -6px;
-    margin-left: -1px
-  }
 
-  .dropup & {
-    > .dropdown-menu {
-      top: auto;
-      bottom: 0;
+    .dropup & {
+        > .dropdown-menu {
+            top: auto;
+            bottom: 0;
+        }
     }
-  }
 }
 
 .btn-group > .btn {
-  margin-left: -1px;
+    margin-left: -1px;
 }
 
 /*cols*/
 .col-lg-2-4 {
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .col-0 {
-  clear: left;
+    clear: left;
 }
 
 .row.no-gutter {
-  margin-left: 0;
-  margin-right: 0;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .no-gutter [class*="col"] {
-  padding: 0;
+    padding: 0;
 }
 
 .row-sm {
-  margin-left: -10px;
-  margin-right: -10px;
-  > div {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
+    margin-left: -10px;
+    margin-right: -10px;
+    > div {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }
 
 .modal-backdrop {
-  background-color: $dark;
-  &.in {
-    opacity: 0.8;
-    filter: alpha(opacity=80);
-  }
+    background-color: $dark;
+    &.in {
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+    }
 }
 
 .modal-over {
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: fixed;
 }
 
 .modal-center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
 }
 
 .dropdown-item {
@@ -634,29 +645,28 @@ blockquote {
     }
 }
 .breadcrumb {
-  border-radius: unset;
-  background-color: initial;
+    border-radius: unset;
+    background-color: initial;
 }
 
 .sub-menu {
     width: 100%;
     display: flex;
-    transition: all .4s ease-in-out 0s;
+    transition: all 0.4s ease-in-out 0s;
 
     .dropdown-item {
-        padding: .5rem 2.5rem;
+        padding: 0.5rem 2.5rem;
     }
 
-    .dropdown-item:hover, .dropdown-item:focus {
+    .dropdown-item:hover,
+    .dropdown-item:focus {
         background-color: inherit;
     }
 }
 
-
 dd {
     margin: 0;
 }
-
 
 .card-text {
     text-overflow: ellipsis;
@@ -664,7 +674,8 @@ dd {
     -webkit-box-orient: vertical;
 }
 
-sub, sup {
+sub,
+sup {
     font-size: 80%;
 }
 
@@ -673,11 +684,10 @@ legend {
     margin-bottom: 1rem;
 }
 
-.toast{
+.toast {
     border-radius: $border-radius;
     border: none;
 }
-
 
 .bg-dark {
     .nav {
@@ -690,11 +700,10 @@ legend {
     }
 }
 
-
 @include color-mode(dark) {
     .nav-pills {
         --#{$prefix}nav-link-bg: #{rgba(lighten($grey, 10), 0.25)};
-        --#{$prefix}nav-pills-link-active-bg:#{rgba(lighten($grey, 10), 0.25)};
+        --#{$prefix}nav-pills-link-active-bg: #{rgba(lighten($grey, 10), 0.25)};
     }
 }
 
@@ -705,14 +714,13 @@ legend {
     > li {
         > a {
             transition: all 340ms;
-            color: var(--bs-text-body-emphasis)!important;
+            color: var(--bs-text-body-emphasis) !important;
             &:hover,
             &:focus {
-                color: var(--bs-text-body-emphasis)!important;
-                background-color: var(--bs-nav-link-bg)!important;
+                color: var(--bs-text-body-emphasis) !important;
+                background-color: var(--bs-nav-link-bg) !important;
                 @extend .rounded;
             }
         }
     }
 }
-

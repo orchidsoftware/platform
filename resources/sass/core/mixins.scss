@@ -1,15 +1,13 @@
-@mixin color-schema($bg-color: #555, $percent: 15%, $sat-percent:null){
-  background-color: saturate(darken($bg-color, $percent), $sat-percent);
+@mixin color-schema($bg-color: #555, $percent: 15%, $sat-percent: null) {
+    background-color: saturate(darken($bg-color, $percent), $sat-percent);
 }
-
-
 
 // Button variants
 // -------------------------
 // Easily pump out default styles, as well as :hover, :focus, :active,
 // and disabled options for all buttons
 
-@mixin button-variant($color,$background, $border){
+@mixin button-variant($color, $background, $border) {
     $button-variant: &;
     color: $color !important;
     background-color: $background !important;
@@ -23,157 +21,153 @@
         color: $color !important;
         background-color: darken($background, 5%) !important;
         border-color: darken($border, 8%) !important;
-        box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125) !important;
+        box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
     }
-  &:active,
-  &.active,
-  .open .dropdown-toggle#{$button-variant} {
-    background-image: none;
-  }
-  &.disabled,
-  &[disabled],
-  fieldset[disabled] & {
-    &,
-    &:hover,
-    &:focus,
     &:active,
-    &.active {
-        background-color: $background !important;
-        border-color: $border !important
+    &.active,
+    .open .dropdown-toggle#{$button-variant} {
+        background-image: none;
     }
-  }
-  &:not([disabled]):not(.disabled):active,
-  &:not([disabled]):not(.disabled).active,
-  .show > &.dropdown-toggle {
-      cursor: default !important;
-      color: $color !important;
-      background-color: darken($background, 5%) !important;
-      border-color: darken($border, 8%) !important;
-      box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125) !important;
-  }
-
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+        &,
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+            background-color: $background !important;
+            border-color: $border !important;
+        }
+    }
+    &:not([disabled]):not(.disabled):active,
+    &:not([disabled]):not(.disabled).active,
+    .show > &.dropdown-toggle {
+        cursor: default !important;
+        color: $color !important;
+        background-color: darken($background, 5%) !important;
+        border-color: darken($border, 8%) !important;
+        box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
+    }
 }
-
 
 // CSS3 PROPERTIES
 // --------------------------------------------------
 
-
 // Drop shadows
-@mixin box-shadow($shadow){
-  -webkit-box-shadow: $shadow; // iOS <4.3 & Android <4.1
-  box-shadow: $shadow;
+@mixin box-shadow($shadow) {
+    -webkit-box-shadow: $shadow; // iOS <4.3 & Android <4.1
+    box-shadow: $shadow;
 }
 
 // Transitions
-@mixin transition($transition){
-  -webkit-transition: $transition;
-  transition: $transition;
+@mixin transition($transition) {
+    -webkit-transition: $transition;
+    transition: $transition;
 }
 
-@mixin transition-delay($transition-delay){
-  -webkit-transition-delay: $transition-delay;
-  transition-delay: $transition-delay;
+@mixin transition-delay($transition-delay) {
+    -webkit-transition-delay: $transition-delay;
+    transition-delay: $transition-delay;
 }
 
-@mixin transition-duration($transition-duration){
-  -webkit-transition-duration: $transition-duration;
-  transition-duration: $transition-duration;
+@mixin transition-duration($transition-duration) {
+    -webkit-transition-duration: $transition-duration;
+    transition-duration: $transition-duration;
 }
 
-@mixin transition-transform($transition){
-  -webkit-transition: -webkit-transform $transition;
-  -moz-transition: -moz-transform $transition;
-  -o-transition: -o-transform $transition;
-  transition: transform $transition;
+@mixin transition-transform($transition) {
+    -webkit-transition: -webkit-transform $transition;
+    -moz-transition: -moz-transform $transition;
+    -o-transition: -o-transform $transition;
+    transition: transform $transition;
 }
 
 // Transformations
-@mixin rotate($degrees){
-  -webkit-transform: rotate($degrees);
-  -ms-transform: rotate($degrees); // IE9+
-  transform: rotate($degrees);
+@mixin rotate($degrees) {
+    -webkit-transform: rotate($degrees);
+    -ms-transform: rotate($degrees); // IE9+
+    transform: rotate($degrees);
 }
 
-@mixin scale($ratio){
-  -webkit-transform: scale($ratio);
-  -ms-transform: scale($ratio); // IE9+
-  transform: scale($ratio);
+@mixin scale($ratio) {
+    -webkit-transform: scale($ratio);
+    -ms-transform: scale($ratio); // IE9+
+    transform: scale($ratio);
 }
 
-@mixin translate3d($x, $y, $z){
-  -webkit-transform: translate3d($x, $y, $z);
-  transform: translate3d($x, $y, $z);
+@mixin translate3d($x, $y, $z) {
+    -webkit-transform: translate3d($x, $y, $z);
+    transform: translate3d($x, $y, $z);
 }
-
 
 // Optional hyphenation
-@mixin hyphens($mode: auto){
-  word-wrap: break-word;
-  -webkit-hyphens: $mode;
-  -moz-hyphens: $mode;
-  -ms-hyphens: $mode; // IE10+
-  -o-hyphens: $mode;
-  hyphens: $mode;
+@mixin hyphens($mode: auto) {
+    word-wrap: break-word;
+    -webkit-hyphens: $mode;
+    -moz-hyphens: $mode;
+    -ms-hyphens: $mode; // IE10+
+    -o-hyphens: $mode;
+    hyphens: $mode;
 }
 
 // Opacity
-@mixin opacity($opacity){
-  opacity: $opacity;
-  // IE8 filter
-  $opacity-ie: ($opacity * 100);
-  filter: #{"alpha(opacity=${opacity-ie})"};
+@mixin opacity($opacity) {
+    opacity: $opacity;
+    // IE8 filter
+    $opacity-ie: ($opacity * 100);
+    filter: #{"alpha(opacity=${opacity-ie})"};
 }
 
 // Transitions
-@mixin transition($transition){
-  -webkit-transition: $transition;
-  transition: $transition;
+@mixin transition($transition) {
+    -webkit-transition: $transition;
+    transition: $transition;
 }
 
-@mixin transition-property($transition-property){
-  -webkit-transition-property: $transition-property;
-  transition-property: $transition-property;
+@mixin transition-property($transition-property) {
+    -webkit-transition-property: $transition-property;
+    transition-property: $transition-property;
 }
 
-@mixin transition-delay($transition-delay){
-  -webkit-transition-delay: $transition-delay;
-  transition-delay: $transition-delay;
+@mixin transition-delay($transition-delay) {
+    -webkit-transition-delay: $transition-delay;
+    transition-delay: $transition-delay;
 }
 
-@mixin transition-duration($transition-duration){
-  -webkit-transition-duration: $transition-duration;
-  transition-duration: $transition-duration;
+@mixin transition-duration($transition-duration) {
+    -webkit-transition-duration: $transition-duration;
+    transition-duration: $transition-duration;
 }
 
-@mixin transition-transform($transition){
-  -webkit-transition: -webkit-transform $transition;
-  -moz-transition: -moz-transform $transition;
-  -o-transition: -o-transform $transition;
-  transition: transform $transition;
+@mixin transition-transform($transition) {
+    -webkit-transition: -webkit-transform $transition;
+    -moz-transition: -moz-transform $transition;
+    -o-transition: -o-transform $transition;
+    transition: transform $transition;
 }
 
 // Placeholder text
-@mixin placeholder($color: $input-color-placeholder){
-  &:-moz-placeholder {
-    color: $color;
-  }
-  // Firefox 4-18
-  &::-moz-placeholder {
-    color: $color;
-    opacity: 1;
-  }
-  // Firefox 19+
-  &:-ms-input-placeholder {
-    color: $color;
-  }
-  // Internet Explorer 10+
-  &::-webkit-input-placeholder {
-    color: $color;
-  }
-  // Safari and Chrome
-  &.placeholder {
-    color: $color;
-  }
-  // Fallback
+@mixin placeholder($color: $input-color-placeholder) {
+    &:-moz-placeholder {
+        color: $color;
+    }
+    // Firefox 4-18
+    &::-moz-placeholder {
+        color: $color;
+        opacity: 1;
+    }
+    // Firefox 19+
+    &:-ms-input-placeholder {
+        color: $color;
+    }
+    // Internet Explorer 10+
+    &::-webkit-input-placeholder {
+        color: $color;
+    }
+    // Safari and Chrome
+    &.placeholder {
+        color: $color;
+    }
+    // Fallback
 }

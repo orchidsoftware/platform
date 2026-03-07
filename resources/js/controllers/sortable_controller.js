@@ -1,24 +1,23 @@
-import ApplicationController from "./application_controller"
-import Sortable              from 'sortablejs';
+import ApplicationController from "./application_controller";
+import Sortable from "sortablejs";
 
 export default class extends ApplicationController {
-
     static values = {
-        model:  String,
-        action:  String,
+        model: String,
+        action: String,
         selector: {
             type: String,
-            default: '.reorder-handle',
+            default: ".reorder-handle",
         },
         successMessage: {
             type: String,
-            default: 'Sorting saved successfully.',
+            default: "Sorting saved successfully.",
         },
         failureMessage: {
             type: String,
-            default: 'Failed to save sorting.',
+            default: "Failed to save sorting.",
         },
-    }
+    };
 
     connect() {
         this.sortable = new Sortable(this.element, {
@@ -41,17 +40,17 @@ export default class extends ApplicationController {
 
         elements.forEach((element, index) => {
             params.items.push({
-                id: element.getAttribute('data-model-id'),
+                id: element.getAttribute("data-model-id"),
                 sortOrder: index,
-            })
+            });
         });
 
         axios
             .post(this.actionValue, params)
             .then(() => this.toast(this.successMessageValue))
-            .catch((error) => {
+            .catch(error => {
                 console.error(error);
-                this.toast(this.failureMessageValue, 'danger')
+                this.toast(this.failureMessageValue, "danger");
             });
     }
 }

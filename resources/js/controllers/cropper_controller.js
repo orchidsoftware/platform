@@ -1,54 +1,54 @@
 import ApplicationController from "./application_controller";
-import Cropper from 'cropperjs';
-import {Modal} from "bootstrap";
+import Cropper from "cropperjs";
+import { Modal } from "bootstrap";
 
 export default class extends ApplicationController {
-
     static values = {
         maxSizeMessage: {
             type: String,
-            default: "The download file is too large. Max size: {value} MB"
+            default: "The download file is too large. Max size: {value} MB",
         },
         type: {
             type: String,
-            default: 'image/png'
+            default: "image/png",
         },
         keepOriginalType: {
             type: Boolean,
-            default: false
-        }
-    }
+            default: false,
+        },
+    };
 
     /**
      * @type {string[]}
      */
 
-    static targets = [
-        "source",
-        "upload"
-    ];
+    static targets = ["source", "upload"];
 
     /**
      *
      */
     connect() {
-        let image = this.data.get('url') ? this.data.get('url') : this.data.get(`value`);
+        let image = this.data.get("url")
+            ? this.data.get("url")
+            : this.data.get(`value`);
 
         if (image) {
-            this.element.querySelector('.cropper-preview').src = image;
+            this.element.querySelector(".cropper-preview").src = image;
         } else {
-            this.element.querySelector('.cropper-preview').classList.add('none');
-            this.element.querySelector('.cropper-remove').classList.add('none');
+            this.element
+                .querySelector(".cropper-preview")
+                .classList.add("none");
+            this.element.querySelector(".cropper-remove").classList.add("none");
         }
 
-        let cropPanel = this.element.querySelector('.upload-panel');
+        let cropPanel = this.element.querySelector(".upload-panel");
 
-        cropPanel.width = this.data.get('width');
-        cropPanel.height = this.data.get('height');
+        cropPanel.width = this.data.get("width");
+        cropPanel.height = this.data.get("height");
 
         this.cropper = new Cropper(cropPanel, {
             viewMode: 2,
-            aspectRatio: this.data.get('width') / this.data.get('height'),
+            aspectRatio: this.data.get("width") / this.data.get("height"),
             minContainerHeight: 500,
         });
     }
@@ -57,10 +57,9 @@ export default class extends ApplicationController {
      *
      * @returns {Modal}
      */
-    getModal()
-    {
+    getModal() {
         if (!this.modal) {
-            this.modal = new Modal(this.element.querySelector('.modal'));
+            this.modal = new Modal(this.element.querySelector(".modal"));
         }
 
         return this.modal;
@@ -72,15 +71,16 @@ export default class extends ApplicationController {
      * @param event
      */
     upload(event) {
-
-        let maxFileSize = this.data.get('max-file-size');
+        let maxFileSize = this.data.get("max-file-size");
 
         if (this.keepOriginalTypeValue) {
-            this.typeValue = event.target.files[0].type
+            this.typeValue = event.target.files[0].type;
         }
 
         if (event.target.files[0].size / 1024 / 1024 > maxFileSize) {
-            this.toast(this.maxSizeMessageValue.replace(/{value}/, maxFileSize))
+            this.toast(
+                this.maxSizeMessageValue.replace(/{value}/, maxFileSize)
+            );
             event.target.value = null;
             return;
         }
@@ -94,7 +94,7 @@ export default class extends ApplicationController {
         reader.readAsDataURL(event.target.files[0]);
 
         reader.onloadend = () => {
-            this.cropper.replace(reader.result)
+            this.cropper.replace(reader.result);
         };
 
         this.getModal().show();
@@ -103,8 +103,7 @@ export default class extends ApplicationController {
     /**
      *
      */
-    openModal(event)
-    {
+    openModal(event) {
         if (!event.target.files[0]) {
             return;
         }
@@ -116,60 +115,71 @@ export default class extends ApplicationController {
      * Action on click button "Crop"
      */
     crop() {
+        this.cropper
+            .getCroppedCanvas({
+                width: this.data.get("width"),
+                height: this.data.get("height"),
+                minWidth: this.data.get("min-width"),
+                minHeight: this.data.get("min-height"),
+                maxWidth: this.data.get("max-width"),
+                maxHeight: this.data.get("max-height"),
+                imageSmoothingEnabled: this.data.get("image-smoothing-enabled"),
+                imageSmoothingQuality: this.data.get("image-smoothing-quality"),
+                fillColor: this.data.get("fill-color"),
+            })
+            .toBlob(blob => {
+                const formData = new FormData();
 
-        this.cropper.getCroppedCanvas({
-            width: this.data.get('width'),
-            height: this.data.get('height'),
-            minWidth: this.data.get('min-width'),
-            minHeight: this.data.get('min-height'),
-            maxWidth: this.data.get('max-width'),
-            maxHeight: this.data.get('max-height'),
-            imageSmoothingEnabled: this.data.get('image-smoothing-enabled'),
-            imageSmoothingQuality: this.data.get('image-smoothing-quality'),
-            fillColor: this.data.get('fill-color'),
-        }).toBlob((blob) => {
-            const formData = new FormData();
+                formData.append("file", blob);
+                formData.append("storage", this.data.get("storage"));
+                formData.append("group", this.data.get("groups"));
+                formData.append("path", this.data.get("path"));
+                formData.append(
+                    "acceptedFiles",
+                    this.data.get("accepted-files")
+                );
 
-            formData.append('file', blob);
-            formData.append('storage', this.data.get('storage'));
-            formData.append('group', this.data.get('groups'));
-            formData.append('path', this.data.get('path'));
-            formData.append('acceptedFiles', this.data.get('accepted-files'));
+                let element = this.element;
+                window.axios
+                    .post(this.prefix("/files"), formData)
+                    .then(response => {
+                        let image = response.data.url;
+                        let targetValue = this.data.get("target");
 
-            let element = this.element;
-             window.axios.post(this.prefix('/files'), formData)
-                .then((response) => {
-                    let image = response.data.url;
-                    let targetValue = this.data.get('target');
+                        element.querySelector(".cropper-preview").src = image;
+                        element
+                            .querySelector(".cropper-preview")
+                            .classList.remove("none");
+                        element
+                            .querySelector(".cropper-remove")
+                            .classList.remove("none");
+                        element.querySelector(".cropper-path").value =
+                            response.data[targetValue];
 
-                    element.querySelector('.cropper-preview').src = image;
-                    element.querySelector('.cropper-preview').classList.remove('none');
-                    element.querySelector('.cropper-remove').classList.remove('none');
-                    element.querySelector('.cropper-path').value = response.data[targetValue];
+                        // add event for listener
+                        element
+                            .querySelector(".cropper-path")
+                            .dispatchEvent(new Event("change"));
 
-                    // add event for listener
-                    element.querySelector('.cropper-path').dispatchEvent(new Event("change"));
+                        console.log(this.getModal(), this.getModal().hide());
 
-                    console.log(this.getModal(), this.getModal().hide());
-
-                    this.getModal().hide();
-                })
-                .catch((error) => {
-                    this.alert('Validation error', 'File upload error');
-                    console.warn(error);
-                });
-        }, this.typeValue);
-
+                        this.getModal().hide();
+                    })
+                    .catch(error => {
+                        this.alert("Validation error", "File upload error");
+                        console.warn(error);
+                    });
+            }, this.typeValue);
     }
 
     /**
      *
      */
     clear() {
-        this.element.querySelector('.cropper-path').value = '';
-        this.element.querySelector('.cropper-preview').src = '';
-        this.element.querySelector('.cropper-preview').classList.add('none');
-        this.element.querySelector('.cropper-remove').classList.add('none');
+        this.element.querySelector(".cropper-path").value = "";
+        this.element.querySelector(".cropper-preview").src = "";
+        this.element.querySelector(".cropper-preview").classList.add("none");
+        this.element.querySelector(".cropper-remove").classList.add("none");
     }
 
     /**
@@ -208,21 +218,22 @@ export default class extends ApplicationController {
     }
 
     scalex() {
-        const dataScaleX = this.element.querySelector('.cropper-dataScaleX');
+        const dataScaleX = this.element.querySelector(".cropper-dataScaleX");
         this.cropper.scaleX(-dataScaleX.value);
     }
 
     scaley() {
-        const dataScaleY = this.element.querySelector('.cropper-dataScaleY');
-        this.cropper.scaleY(-dataScaleY.value)
+        const dataScaleY = this.element.querySelector(".cropper-dataScaleY");
+        this.cropper.scaleY(-dataScaleY.value);
     }
 
     aspectratiowh() {
-        this.cropper.setAspectRatio(this.data.get('width') / this.data.get('height'));
+        this.cropper.setAspectRatio(
+            this.data.get("width") / this.data.get("height")
+        );
     }
 
     aspectratiofree() {
         this.cropper.setAspectRatio(NaN);
     }
-
 }

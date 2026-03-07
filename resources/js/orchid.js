@@ -23,15 +23,15 @@ const Orchid = {
      * @returns {string}
      */
     id() {
-        let tabId = sessionStorage.getItem('orchid_tab_id');
+        let tabId = sessionStorage.getItem("orchid_tab_id");
 
         if (!tabId) {
-            tabId = 'orchid_window_' + crypto.randomUUID();
-            sessionStorage.setItem('orchid_tab_id', tabId);
+            tabId = "orchid_window_" + crypto.randomUUID();
+            sessionStorage.setItem("orchid_tab_id", tabId);
         }
 
         return tabId;
-    }
+    },
 };
 
 export default Orchid;

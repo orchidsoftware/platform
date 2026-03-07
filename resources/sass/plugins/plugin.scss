@@ -1,9 +1,9 @@
 // sortable
 .sortable-placeholder {
-  list-style    : none;
-  border        : 1px dashed #cccccc;
-  min-height    : 50px;
-  margin-bottom : 5px
+    list-style: none;
+    border: 1px dashed #cccccc;
+    min-height: 50px;
+    margin-bottom: 5px;
 }
 
 .reorder-drag {
@@ -11,92 +11,94 @@
 }
 
 // input
-.chosen-choices, .chosen-single, .bootstrap-tagsinput {
-  @extend .form-control;
+.chosen-choices,
+.chosen-single,
+.bootstrap-tagsinput {
+    @extend .form-control;
 }
 
 .select2-search__field {
-  width : 100% !important;
+    width: 100% !important;
 }
-.select2{
+.select2 {
     width: 100% !important;
     min-width: 10em;
     max-width: 600px;
 }
 .select2-container--bootstrap {
+    .select2-selection {
+        @include box-shadow(none);
+        border: 1px solid $form-control-border-color;
+    }
 
-  .select2-selection {
-    @include box-shadow(none);
-    border : 1px solid $form-control-border-color;
-  }
+    .select2-dropdown {
+        border-color: fade-out($black, 0.9);
+        outline: 0 !important;
+        @include box-shadow(none);
+        @include placeholder($text-muted);
+        z-index: 1200;
+    }
 
-  .select2-dropdown {
-    border-color : fade-out($black, 0.9);
-    outline      : 0 !important;
-    @include box-shadow(none);
-    @include placeholder($text-muted);
-    z-index: 1200;
-  }
+    &.select2-container--focus .select2-selection,
+    &.select2-container--open .select2-selection {
+        border-color: fade-out($black, 0.9);
+        background-color: $grey-light;
+        outline: 0 !important;
+        @include box-shadow(none);
+        @include placeholder($text-muted);
+    }
 
-  &.select2-container--focus .select2-selection, &.select2-container--open .select2-selection {
-    border-color     : fade-out($black, 0.9);
-    background-color : $grey-light;
-    outline          : 0 !important;
-    @include box-shadow(none);
-    @include placeholder($text-muted);
-  }
-
-  .select2-results__option--highlighted[aria-selected]{
-    background-color : $grey-light;
-    color: inherit;
-  }
-
+    .select2-results__option--highlighted[aria-selected] {
+        background-color: $grey-light;
+        color: inherit;
+    }
 }
-.select2-container--bootstrap.select2-container--disabled .select2-selection{
+.select2-container--bootstrap.select2-container--disabled .select2-selection {
     background: mix($grey-light, #fff, 50%);
-    color: fade-out($grey, .77);
+    color: fade-out($grey, 0.77);
     border: 1px solid $form-control-border-color;
 }
 
 // SimpleMDE Markdown Editor
-.CodeMirror-fullscreen, .editor-toolbar.fullscreen, .editor-preview-side {
-  z-index : 1040;
+.CodeMirror-fullscreen,
+.editor-toolbar.fullscreen,
+.editor-preview-side {
+    z-index: 1040;
 }
-.CodeMirror-fullscreen{
-  background-color: $body-bg;
-  @extend .py-2;
-  @extend .px-3;
-
-  .CodeMirror-code,
-  .editor-preview-active,
-  .CodeMirror-sizer,
-  .CodeMirror-scroll{
-    max-width: 60em!important;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .CodeMirror-scroll{
-    @extend .card;
+.CodeMirror-fullscreen {
+    background-color: $body-bg;
     @extend .py-2;
     @extend .px-3;
-  }
 
-  .CodeMirror-sizer {
-    max-width: 100%;
-  }
+    .CodeMirror-code,
+    .editor-preview-active,
+    .CodeMirror-sizer,
+    .CodeMirror-scroll {
+        max-width: 60em !important;
+        margin: 0 auto;
+        position: relative;
+    }
 
-  .CodeMirror-vscrollbar{
-    overflow: hidden;
-  }
+    .CodeMirror-scroll {
+        @extend .card;
+        @extend .py-2;
+        @extend .px-3;
+    }
 
-  .CodeMirror-scroll{
-    overflow: auto!important;
-  }
+    .CodeMirror-sizer {
+        max-width: 100%;
+    }
 
+    .CodeMirror-vscrollbar {
+        overflow: hidden;
+    }
+
+    .CodeMirror-scroll {
+        overflow: auto !important;
+    }
 }
 
-.editor-preview-side{
+.editor-preview-side {
     border-left: none !important;
     @extend .border-top;
     @extend .bg-white;
@@ -104,62 +106,60 @@
     @extend .px-3;
 }
 
-.editor-toolbar.fullscreen{
-  text-align: center;
+.editor-toolbar.fullscreen {
+    text-align: center;
 }
 
 .CodeMirror.CodeMirror-fullscreen.CodeMirror-sided {
-  padding: 0;
-  margin: 0;
-  left: 0;
-  .CodeMirror-scroll{
-    width: 100%;
+    padding: 0;
     margin: 0;
-    max-width: 100%!important;
-    border: none;
-  }
+    left: 0;
+    .CodeMirror-scroll {
+        width: 100%;
+        margin: 0;
+        max-width: 100% !important;
+        border: none;
+    }
 }
 
-.simplemde-wrapper{
-  .editor-toolbar{
-      @extend .border-top;
-      @extend .border-start;
-      @extend .border-end;
-  }
+.simplemde-wrapper {
+    .editor-toolbar {
+        @extend .border-top;
+        @extend .border-start;
+        @extend .border-end;
+    }
 
-  .CodeMirror{
-    border: 1px solid $form-control-border-color;
-  }
+    .CodeMirror {
+        border: 1px solid $form-control-border-color;
+    }
 
-  img {
-      max-width: 100%;
-  }
+    img {
+        max-width: 100%;
+    }
 }
-
 
 // Datetimepicker
 .bootstrap-datetimepicker-widget {
-  &.dropdown-menu {
-    width : 18rem;
-  }
-  .table-condensed {
-    > tbody,
-    > thead,
-    > tfoot {
-      > tr {
-        > td,
-        > th {
-          padding : 4px;
-        }
-      }
+    &.dropdown-menu {
+        width: 18rem;
     }
-  }
-
+    .table-condensed {
+        > tbody,
+        > thead,
+        > tfoot {
+            > tr {
+                > td,
+                > th {
+                    padding: 4px;
+                }
+            }
+        }
+    }
 }
 
 // Flatpickr
-.flatpickr-wrapper{
-  width: 100%;
+.flatpickr-wrapper {
+    width: 100%;
 }
 
 .flatpickr-input {
@@ -169,46 +169,47 @@
     }
 }
 
-.CodeMirror-wrap pre{
-  word-wrap: break-word;
-  word-break: break-all;
+.CodeMirror-wrap pre {
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 //codeflask
-.codeflask{
-  pre,code {
-    background: none!important;
-  }
-  code[class*="language-"], pre[class*="language-"] {
-    line-height: 20px;
-    width: fit-content;
-  }
-  .codeflask__flatten {
-    padding:     10px;
-    white-space: pre;
-    overflow:    auto;
-    margin:      0;
-    text-align:  left;
-  }
-  &.codeflask--has-line-numbers:before {
-    border-right: 1px solid $form-control-border-color;
-  }
+.codeflask {
+    pre,
+    code {
+        background: none !important;
+    }
+    code[class*="language-"],
+    pre[class*="language-"] {
+        line-height: 20px;
+        width: fit-content;
+    }
+    .codeflask__flatten {
+        padding: 10px;
+        white-space: pre;
+        overflow: auto;
+        margin: 0;
+        text-align: left;
+    }
+    &.codeflask--has-line-numbers:before {
+        border-right: 1px solid $form-control-border-color;
+    }
 }
-
 
 // Quill
 
-.ql-editor{
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  bottom: 0;
-  width: 100%;
-  padding: 15px;
-  .ql-video {
+.ql-editor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    bottom: 0;
     width: 100%;
-  }
+    padding: 15px;
+    .ql-video {
+        width: 100%;
+    }
 }
 
 .ql-picker-label {
@@ -217,37 +218,39 @@
     }
 }
 
-.ql-color, .ql-background {
-  .ql-picker-options [data-value=custom-color] {
-    background: none !important;
-    width: 100% !important;
-    height: 20px !important;
-    text-align: center;
+.ql-color,
+.ql-background {
+    .ql-picker-options [data-value="custom-color"] {
+        background: none !important;
+        width: 100% !important;
+        height: 20px !important;
+        text-align: center;
 
-    &:before {
-      content: 'Custom Color';
-    }
+        &:before {
+            content: "Custom Color";
+        }
 
-    &:hover {
-      border-color: transparent !important;
+        &:hover {
+            border-color: transparent !important;
+        }
     }
-  }
 }
 
-.ql-toolbar.ql-snow, .ql-container.ql-snow{
-  border: 1px solid $form-control-border-color;
-  font-size: $font-size-base;
-  font-family: $font-family-base;
+.ql-toolbar.ql-snow,
+.ql-container.ql-snow {
+    border: 1px solid $form-control-border-color;
+    font-size: $font-size-base;
+    font-family: $font-family-base;
 }
-
 
 // frappe-chart chart
 .graph-svg-tip {
-  @extend .bg-dark;
-  @extend .rounded;
+    @extend .bg-dark;
+    @extend .rounded;
 }
 
-.chart-container .axis, .chart-container .chart-label {
+.chart-container .axis,
+.chart-container .chart-label {
     color: $text-muted !important;
 }
 
@@ -256,50 +259,50 @@
     font-weight: 500 !important;
 }
 
-
 // leaflet-touch
 
 .leaflet-touch .leaflet-control-zoom-in,
 .leaflet-touch .leaflet-control-zoom-out {
-  font-size: $font-size-base;
+    font-size: $font-size-base;
 }
 
 // toast
 .toast-wrapper {
-  position: fixed;
-  top: 1.5em;
-  right: 1.5em;
-  z-index: $zindex-fixed;
-  width: 20em;
+    position: fixed;
+    top: 1.5em;
+    right: 1.5em;
+    z-index: $zindex-fixed;
+    width: 20em;
 }
 
 @include media-breakpoint-down(sm) {
-  .toast-wrapper {
-    width: 100vw;
-    top: 1.5em;
-    right: 0;
-    left: 0;
-    overflow: hidden;
+    .toast-wrapper {
+        width: 100vw;
+        top: 1.5em;
+        right: 0;
+        left: 0;
+        overflow: hidden;
 
-    .toast {
-      backdrop-filter: blur(1em);
-      max-width: 100vw;
-      margin: 0 auto;
+        .toast {
+            backdrop-filter: blur(1em);
+            max-width: 100vw;
+            margin: 0 auto;
+        }
     }
-  }
 }
 
 .matrix {
-
-    div, span {
+    div,
+    span {
         border: none !important;
     }
 
-    .form-control, .select2-selection--single {
+    .form-control,
+    .select2-selection--single {
         border: none !important;
         height: 40px !important;
         font-weight: 400;
-        &:focus{
+        &:focus {
             border-radius: 0;
         }
     }
@@ -334,14 +337,15 @@
     }
 }
 
-
 .profile-container {
     background: rgb(19, 20, 21);
     position: relative;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
 
-    a, svg, span {
+    a,
+    svg,
+    span {
         line-height: normal;
     }
 }

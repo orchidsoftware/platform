@@ -1,70 +1,70 @@
 .table {
     @extend .rounded;
-  thead {
-    tr {
-      th {
-        font-weight: 600;
-        font-size: 0.9em;
-        vertical-align: baseline;
-		border-top: 0;
-        color: fade-out($dark, .45);
-        &:first-child {
-          padding-left: 1.5rem;
-        }
-        &:last-child {
-            padding-right: 1.5rem;
-        }
-        .form-group.row {
-            select.form-control {
-                padding-left: 0.6rem;
+    thead {
+        tr {
+            th {
+                font-weight: 600;
+                font-size: 0.9em;
+                vertical-align: baseline;
+                border-top: 0;
+                color: fade-out($dark, 0.45);
+                &:first-child {
+                    padding-left: 1.5rem;
+                }
+                &:last-child {
+                    padding-right: 1.5rem;
+                }
+                .form-group.row {
+                    select.form-control {
+                        padding-left: 0.6rem;
+                    }
+                    input.form-control {
+                        padding: 0 0.3rem;
+                    }
+                }
+                .btn-link {
+                    &:hover,
+                    &:focus {
+                        text-decoration: initial !important;
+                    }
+                }
+                .dropdown {
+                    position: inherit;
+                }
             }
-            input.form-control {
-                padding: 0 0.3rem;
-            }
         }
-        .btn-link {
-            &:hover, &:focus {
-                text-decoration: initial !important;
-            }
-        }
-        .dropdown {
-          position: inherit;
-        }
-      }
     }
-  }
-  tbody {
-    tr {
-      td {
-        border-top: 0;
-        padding: 0.8rem 1rem;
-        font-size: $font-size-sm;
-        vertical-align: middle;
-        word-break: break-word;
-          &:first-child {
-              padding-left: 1.5rem;
-          }
-          &:last-child {
-              padding-right: 1.5rem;
-          }
-          > div > .form-group > .btn {
-              display: inline-flex;
-              width: auto;
-              @extend .btn-sm;
-          }
-      }
+    tbody {
+        tr {
+            td {
+                border-top: 0;
+                padding: 0.8rem 1rem;
+                font-size: $font-size-sm;
+                vertical-align: middle;
+                word-break: break-word;
+                &:first-child {
+                    padding-left: 1.5rem;
+                }
+                &:last-child {
+                    padding-right: 1.5rem;
+                }
+                > div > .form-group > .btn {
+                    display: inline-flex;
+                    width: auto;
+                    @extend .btn-sm;
+                }
+            }
+        }
     }
-  }
 }
 
 .table-compact {
-  // stylelint-disable-next-line selector-max-universal
-  > :not(caption) > * > * {
-    padding: $table-cell-padding-y-sm $table-cell-padding-x-sm !important;
-  }
+    // stylelint-disable-next-line selector-max-universal
+    > :not(caption) > * > * {
+        padding: $table-cell-padding-y-sm $table-cell-padding-x-sm !important;
+    }
 }
 
 .fht-table {
-  margin-bottom: 0 !important;
+    margin-bottom: 0 !important;
 }
-

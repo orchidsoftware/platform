@@ -1,10 +1,10 @@
-import { defineConfig } from 'vite';
-import { resolve } from 'path';
-import fs from 'fs';
-import path from 'node:path';
-import crypto from 'node:crypto';
-import viteRtlCssPlugin from 'vite-plugin-rtl-css';
-import manifestSRI from 'vite-plugin-manifest-sri';
+import { defineConfig } from "vite";
+import { resolve } from "path";
+import fs from "fs";
+import path from "node:path";
+import crypto from "node:crypto";
+import viteRtlCssPlugin from "vite-plugin-rtl-css";
+import manifestSRI from "vite-plugin-manifest-sri";
 
 /**
  * Custom Vite plugin that appends a version query hash (`?v=HASH`) to the `file`
@@ -13,19 +13,19 @@ import manifestSRI from 'vite-plugin-manifest-sri';
  */
 function addQueryHashToManifest() {
     return {
-        name: 'add-query-hash-to-manifest',
-        apply: 'build',
-        enforce: 'post',
+        name: "add-query-hash-to-manifest",
+        apply: "build",
+        enforce: "post",
         closeBundle() {
-            const publicDir = path.resolve(__dirname, 'public');
-            const manifestFile = path.resolve(publicDir, 'manifest.json');
+            const publicDir = path.resolve(__dirname, "public");
+            const manifestFile = path.resolve(publicDir, "manifest.json");
 
             // If the manifest does not exist, exit early.
             if (!fs.existsSync(manifestFile)) {
                 return;
             }
 
-            const manifestData = fs.readFileSync(manifestFile, 'utf-8');
+            const manifestData = fs.readFileSync(manifestFile, "utf-8");
             const manifest = JSON.parse(manifestData);
 
             /**
@@ -34,8 +34,8 @@ function addQueryHashToManifest() {
              * @param {string} filePath - Relative file path from the public directory.
              * @returns {string} - File path with appended version query parameter.
              */
-            const appendHash = (filePath) => {
-                const [baseFilePath] = filePath.split('?');
+            const appendHash = filePath => {
+                const [baseFilePath] = filePath.split("?");
                 const absolutePath = path.resolve(publicDir, baseFilePath);
 
                 // Return the original filePath if the file does not exist.
@@ -45,9 +45,9 @@ function addQueryHashToManifest() {
 
                 const fileBuffer = fs.readFileSync(absolutePath);
                 const hash = crypto
-                    .createHash('md5')
+                    .createHash("md5")
                     .update(fileBuffer)
-                    .digest('hex')
+                    .digest("hex")
                     .slice(0, 8);
 
                 return `${baseFilePath}?v=${hash}`;
@@ -72,29 +72,22 @@ function addQueryHashToManifest() {
 
 export default defineConfig(() => {
     return {
-        plugins: [
-            viteRtlCssPlugin(),
-            manifestSRI(),
-            addQueryHashToManifest(),
-        ],
+        plugins: [viteRtlCssPlugin(), manifestSRI(), addQueryHashToManifest()],
         build: {
-            outDir: 'public',
+            outDir: "public",
             emptyOutDir: false,
-            manifest: 'manifest.json',
+            manifest: "manifest.json",
             rollupOptions: {
-                input: [
-                    'resources/js/app.js',
-                    'resources/sass/app.scss',
-                ],
+                input: ["resources/js/app.js", "resources/sass/app.scss"],
                 output: {
-                    assetFileNames: 'assets/[name].[ext]',
-                    chunkFileNames: 'assets/[name].js',
-                    entryFileNames: 'assets/[name].js',
+                    assetFileNames: "assets/[name].[ext]",
+                    chunkFileNames: "assets/[name].js",
+                    entryFileNames: "assets/[name].js",
                 },
             },
         },
         resolve: {
-            root: resolve(__dirname, './'),
+            root: resolve(__dirname, "./"),
         },
     };
 });

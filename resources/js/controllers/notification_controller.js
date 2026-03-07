@@ -1,8 +1,7 @@
 import ApplicationController from "./application_controller";
-import * as Turbo from "@hotwired/turbo"
+import * as Turbo from "@hotwired/turbo";
 
 export default class extends ApplicationController {
-
     /**
      *
      * @type {*[]}
@@ -19,13 +18,13 @@ export default class extends ApplicationController {
         },
         method: {
             type: String,
-            default: 'get',
+            default: "get",
         },
         interval: {
             type: Number,
             default: 60,
-        }
-    }
+        },
+    };
 
     /**
      * Initialize BroadcastChannel and listen for messages from other tabs
@@ -33,7 +32,7 @@ export default class extends ApplicationController {
     initialize() {
         this.channel = new BroadcastChannel(this.channelName());
 
-        this.channel.onmessage = (event) => {
+        this.channel.onmessage = event => {
             const { total } = event.data;
             Turbo.cache.clear();
             this.render(total);
@@ -60,7 +59,7 @@ export default class extends ApplicationController {
      * Returns the name of the BroadcastChannel
      */
     channelName() {
-        return 'profile.notifications';
+        return "profile.notifications";
     }
 
     /**
@@ -73,27 +72,27 @@ export default class extends ApplicationController {
         const interval = this.intervalValue;
 
         return setInterval(() => {
-
             if (!this.ensureLeader()) {
                 return;
             }
 
-            axios({ method, url }).then((response) => {
+            axios({ method, url }).then(response => {
                 const total = response.data.total;
                 this.channel.postMessage({ total });
 
-                document.dispatchEvent(new CustomEvent('orchid:notification', {
-                    detail: {
-                        count: total,
-                        previousCount: this.countValue
-                    }
-                }));
+                document.dispatchEvent(
+                    new CustomEvent("orchid:notification", {
+                        detail: {
+                            count: total,
+                            previousCount: this.countValue,
+                        },
+                    })
+                );
 
                 this.render(total);
             });
         }, interval * 1000);
     }
-
 
     /**
      * Attempt to become the leader tab if there is no current leader.
@@ -106,10 +105,12 @@ export default class extends ApplicationController {
      */
     ensureLeader() {
         const now = Date.now();
-        const leader = JSON.parse(localStorage.getItem('notification_leader') || "null");
+        const leader = JSON.parse(
+            localStorage.getItem("notification_leader") || "null"
+        );
 
         const newLeader = {
-            type: 'leader',
+            type: "leader",
             id: this.tabId(),
             expiry: now + this.intervalValue * 2 * 1000, // 2× interval
         };
@@ -118,29 +119,30 @@ export default class extends ApplicationController {
             return false;
         }
 
-        localStorage.setItem('notification_leader', JSON.stringify(newLeader));
+        localStorage.setItem("notification_leader", JSON.stringify(newLeader));
 
         return true;
     }
-
 
     /**
      * Update the badge element with the current notification count
      * @param {number} count
      */
     render(count) {
-        let badge =  this.element.querySelector('#notification-circle').innerHTML.trim();
+        let badge = this.element
+            .querySelector("#notification-circle")
+            .innerHTML.trim();
 
         if (count < 10) {
             badge = count;
         }
 
-        if(count === null || parseInt(count) === 0){
-            badge = '';
+        if (count === null || parseInt(count) === 0) {
+            badge = "";
         }
 
         this.countValue = count;
-        this.badgeTarget.classList.remove('d-none');
+        this.badgeTarget.classList.remove("d-none");
         this.badgeTarget.innerHTML = badge;
     }
 }

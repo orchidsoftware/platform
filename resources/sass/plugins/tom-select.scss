@@ -1,6 +1,6 @@
 .ts-control {
     box-shadow: none !important;
-    padding: .375rem .5rem;
+    padding: 0.375rem 0.5rem;
     min-height: 2.45rem;
     font-size: 1rem;
     @extend .d-flex;
@@ -11,6 +11,6 @@
     min-width: auto;
 }
 
-.ts-wrapper.multi .ts-control>div{
+.ts-wrapper.multi .ts-control > div {
     margin: 0;
 }

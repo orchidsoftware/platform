@@ -1,13 +1,12 @@
 import ApplicationController from "./application_controller";
-import {Modal} from "bootstrap";
+import { Modal } from "bootstrap";
 
 export default class extends ApplicationController {
-
     /**
      *
      * @type {[string, string]}
      */
-    static targets = ["message", "button"]
+    static targets = ["message", "button"];
 
     /**
      *
@@ -33,19 +32,17 @@ export default class extends ApplicationController {
      *
      */
     open(options) {
-        this
-            .setButton(options.button)
-            .setMessage(options.message);
+        this.setButton(options.button).setMessage(options.message);
 
         /**
          * Added focus button for Mac OS firefox/safari
          */
-        document.querySelectorAll('button[type=submit]').forEach((button) => {
-            button.addEventListener('click', (event) => {
+        document.querySelectorAll("button[type=submit]").forEach(button => {
+            button.addEventListener("click", event => {
                 event.target.focus();
             });
         });
 
-        (new Modal(this.element)).show();
+        new Modal(this.element).show();
     }
 }

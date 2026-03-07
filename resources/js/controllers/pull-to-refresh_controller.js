@@ -1,4 +1,4 @@
-import {Controller} from '@hotwired/stimulus';
+import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
     /**
@@ -14,17 +14,17 @@ export default class extends Controller {
      * @param event
      */
     touchmove(event) {
-
         if (this.willRefresh) {
-            return
+            return;
         }
 
-        const scrollTop = document.body.scrollTop
-        const dy = event.changedTouches[0].screenY - this.startPageY
+        const scrollTop = document.body.scrollTop;
+        const dy = event.changedTouches[0].screenY - this.startPageY;
 
         if (scrollTop < 1 && dy > 150) {
             this.willRefresh = true;
-            this.element.style = 'filter: blur(1px);opacity: 0.2;touch-action: none;';
+            this.element.style =
+                "filter: blur(1px);opacity: 0.2;touch-action: none;";
         }
     }
 
@@ -34,7 +34,7 @@ export default class extends Controller {
      */
     touchend(event) {
         if (this.willRefresh) {
-            Turbo.visit(window.location.toString(), {action: 'replace'});
+            Turbo.visit(window.location.toString(), { action: "replace" });
         }
     }
 }

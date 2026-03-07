@@ -1,6 +1,6 @@
 // Colors
 $orchid-color: #007bff; //#ac5ca0;
-$min-contrast-ratio:   4.5;
+$min-contrast-ratio: 4.5;
 
 $white: #ffffff;
 $black: #15141a;
@@ -28,11 +28,10 @@ $body-bg: #edeef0; //lighten($light, 1%);
 $text-color: #394247;
 $text-muted: lighten($text-color, 20%);
 
-$font-size-root:              .95rem;
-$font-size-base:              1rem;
-$font-size-sm:                $font-size-base * .875;
-$font-size-lg:                $font-size-base * 1.25;
-
+$font-size-root: 0.95rem;
+$font-size-base: 1rem;
+$font-size-sm: $font-size-base * 0.875;
+$font-size-lg: $font-size-base * 1.25;
 
 $link-color: darken($text-color, 15%);
 $link-hover-color: darken($text-color, 30%);
@@ -41,7 +40,6 @@ $dropdown-bg: $white;
 $dropdown-border-radius: 0.35rem;
 $border-radius-base: 0.2rem;
 $border-color: darken($light, 5%);
-
 
 // Buttons
 // -------------------------
@@ -52,7 +50,6 @@ $btn-default-border: $border-color;
 $btn-border-radius: $border-radius-base;
 $btn-close-focus-shadow: none;
 $btn-close-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath d='M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z'/%3E%3C/svg%3E");
-
 
 $input-height: 2.45rem;
 $input-border: darken($border-color, 5%);
@@ -79,12 +76,11 @@ $list-group-item-focus: darken($light, 3%);
 $list-group-select-color: #dbeef9;
 $list-group-active-color: $cyan;
 
-
 $table-bg: $white;
 $table-border-color: lighten($border-color, 2%);
 $table-group-separator-color: lighten($border-color, 2%);
 $table-striped-color: lighten($dark, 4.5%);
-$table-hover-bg: rgba($dark, .045) !default;
+$table-hover-bg: rgba($dark, 0.045) !default;
 
 $app-aside-width: 20em;
 $app-aside-max-width: 280px;
@@ -107,8 +103,8 @@ $menu-light: #fafafa;
 $form-height: 35px;
 $form-group-height: 54px;
 $form-control-border-color: fade-out($black, 0.9);
-$input-padding-y: .5rem;
-$input-padding-x: .75rem;
+$input-padding-y: 0.5rem;
+$input-padding-x: 0.75rem;
 $form-check-input-width: 1.2em;
 
 $tablet: 768px;
@@ -130,22 +126,20 @@ $enable-caret: false;
 $enable-cssgrid: true;
 
 //Border
-$border-radius: .5rem;
+$border-radius: 0.5rem;
 $border-radius-lg: 0.685rem;
-$border-radius-sm: .35rem;
+$border-radius-sm: 0.35rem;
 
 // Pagination
 $pagination-bg: $white;
 $pagination-disabled-bg: $white;
 $pagination-disabled-color: $text-muted;
 
-
 // Responsive font sizes
 $enable-responsive-font-sizes: true;
 
-
 // Navigation
-$nav-link-padding-y: .625rem;
+$nav-link-padding-y: 0.625rem;
 
 // Breadcrumbs
 $breadcrumb-active-color: #495057;
@@ -153,15 +147,13 @@ $breadcrumb-active-color: #495057;
 // modals
 
 $modal-content-bg: $white;
-$modal-backdrop-opacity: .75;
+$modal-backdrop-opacity: 0.75;
 $modal-content-border-width: 0;
-
 
 $popover-bg: $white;
 
-
 $utilities: (
-    'line-clamp': (
+    "line-clamp": (
         property: -webkit-line-clamp,
         class: line-clamp,
         responsive: true,
@@ -174,6 +166,5 @@ $utilities: (
         ),
     ),
 );
-
 
 $nav-pills-link-color: inherit;
