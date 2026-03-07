@@ -6,130 +6,152 @@ namespace Orchid\Platform\Http\Controllers;
 
 use Composer\InstalledVersions;
 use Composer\Semver\VersionParser;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection as BaseCollection;
-use Illuminate\Support\Facades\Crypt;
 use Orchid\Platform\Http\Requests\RelationRequest;
 
 class RelationController extends Controller
 {
     /**
-     * @return JsonResponse
+     * Return options for the lazy select field (paginated search).
      */
-    public function view(RelationRequest $request)
+    public function __invoke(RelationRequest $request): JsonResponse
     {
-        [
-            'model'         => $model,
-            'name'          => $name,
-            'key'           => $key,
-            'scope'         => $scope,
-            'append'        => $append,
-            'searchColumns' => $searchColumns,
-        ] = collect($request->all())
-            ->except(['search', 'chunk'])
-            ->map(static function ($item, $key) {
-                if ($item === null) {
-                    return null;
-                }
+        $payload = $request->resolvedPayload();
 
-                if ($key === 'scope' || $key === 'searchColumns') {
-                    return Crypt::decrypt($item);
-                }
-
-                return Crypt::decryptString($item);
-            });
-
-        /** @var Model $model */
-        /** @psalm-suppress UndefinedClass */
-        $model = new $model;
-        $search = $request->get('search', '');
-
-        $items = $this->buildersItems($model, $name, $key, $search, $scope, $append, $searchColumns, (int) $request->get('chunk', 10));
+        $items = $this->resolveOptions(
+            $payload['model'],
+            $payload['name'],
+            $payload['key'],
+            $payload['search'],
+            $payload['chunk'],
+            $payload['scope'],
+            $payload['append'],
+            $payload['searchColumns']
+        );
 
         return response()->json($items);
     }
 
     /**
-     * @return mixed
+     * Resolve options for the given model and search term.
+     *
+     * @param  array{name: string, parameters: array}|null  $scope
+     * @param  array<int, string>|null  $searchColumns
+     * @return array<int, array{value: mixed, label: mixed}>
      */
-    private function buildersItems(
-        Model $model,
+    private function resolveOptions(
+        string $modelClass,
         string $name,
         string $key,
-        ?string $search = null,
-        ?array $scope = [],
-        ?string $append = null,
-        ?array $searchColumns = null,
-        ?int $chunk = 10
-    ) {
-        if ($scope !== null) {
-            /** @var Collection|array $model */
-            $model = $model->{$scope['name']}(...$scope['parameters']);
+        ?string $search,
+        int $chunk,
+        ?array $scope,
+        ?string $append,
+        ?array $searchColumns
+    ): array {
+        $search = $search ?? '';
+        /** @var Model $model */
+        $model = new $modelClass;
+
+        $queryOrCollection = $this->applyScope($model, $scope);
+
+        if ($queryOrCollection instanceof BaseCollection || is_array($queryOrCollection)) {
+            $collection = collect($queryOrCollection);
+
+            return $collection
+                ->take($chunk)
+                ->map(fn ($item) => $this->formatOption($item, $key, $name, $append))
+                ->values()
+                ->all();
         }
 
-        if (is_array($model)) {
-            $model = collect($model);
-        }
+        $builder = $queryOrCollection instanceof Builder ? $queryOrCollection : $model->newQuery();
+        $this->applySearch($builder, $name, $search, $searchColumns);
 
-        if (is_a($model, BaseCollection::class)) {
-            return $model->take($chunk)->map(function ($item) use ($append, $key, $name) {
-                return [
-                    'value' => $item->$key,
-                    'label' => $item->$append ?? $item->$name,
-                ];
-            });
-        }
-
-        if (InstalledVersions::satisfies(new VersionParser, 'laravel/framework', '>11.17.0')) {
-            $model = $model->where(function ($query) use ($name, $search, $searchColumns) {
-                $value = '%'.$search.'%';
-
-                $query->whereLike($name, $value);
-
-                $query->when($searchColumns !== null, function ($query) use ($searchColumns, $value) {
-                    foreach ($searchColumns as $column) {
-                        $query->orWhereLike($column, $value);
-                    }
-                });
-            });
-        } else {
-            /**
-             * @deprecated logic for older Laravel versions
-             */
-            $model = $model->where(function ($query) use ($name, $search, $searchColumns) {
-                $value = '%'.$search.'%';
-
-                $query->where($name, 'like', $value);
-
-                $query->when($searchColumns !== null, function ($query) use ($searchColumns, $value) {
-                    foreach ($searchColumns as $column) {
-                        $query->orWhere($column, 'like', $value);
-                    }
-                });
-            });
-        }
-
-        return $model
+        return $builder
             ->limit($chunk)
             ->get()
-            ->map(function ($item) use ($append, $key, $name) {
-                $resultKey = $item->$key;
+            ->map(fn ($item) => $this->formatOption($item, $key, $name, $append))
+            ->values()
+            ->all();
+    }
 
-                $resultLabel = $item->$append ?? $item->$name;
+    /**
+     * Apply scope to the model (e.g. for tenant or custom filtering).
+     * Laravel scopes receive the query builder as first argument.
+     *
+     * @param  array{name: string, parameters: array}|null  $scope
+     * @return Builder|Collection|array
+     */
+    private function applyScope(Model $model, ?array $scope): Builder|Collection|array
+    {
+        $query = $model->newQuery();
 
-                if ($resultKey instanceof \UnitEnum) {
-                    $resultKey = $resultKey->value;
+        if ($scope === null || $scope === []) {
+            return $query;
+        }
+
+        return $query->{$scope['name']}(...($scope['parameters'] ?? []));
+    }
+
+    /**
+     * Apply search filter to the query.
+     *
+     * @param  array<int, string>|null  $searchColumns
+     */
+    private function applySearch(Builder $query, string $name, string $search, ?array $searchColumns): void
+    {
+        if ($search === '') {
+            return;
+        }
+
+        $value = '%' . $search . '%';
+        $useWhereLike = InstalledVersions::satisfies(new VersionParser(), 'laravel/framework', '>11.17.0');
+
+        $query->where(function (Builder $q) use ($name, $value, $searchColumns, $useWhereLike): void {
+            if ($useWhereLike) {
+                $q->whereLike($name, $value);
+                if ($searchColumns !== null) {
+                    foreach ($searchColumns as $column) {
+                        $q->orWhereLike($column, $value);
+                    }
                 }
-                if ($resultLabel instanceof \UnitEnum) {
-                    $resultLabel = $resultLabel->value;
+            } else {
+                $q->where($name, 'like', $value);
+                if ($searchColumns !== null) {
+                    foreach ($searchColumns as $column) {
+                        $q->orWhere($column, 'like', $value);
+                    }
                 }
+            }
+        });
+    }
 
-                return [
-                    'value' => $resultKey,
-                    'label' => $resultLabel,
-                ];
-            });
+    /**
+     * Format a single item for TomSelect (value/label).
+     *
+     * @param  object|array  $item
+     * @return array{value: mixed, label: mixed}
+     */
+    private function formatOption(object|array $item, string $key, string $name, ?string $append): array
+    {
+        $arr = is_array($item) ? $item : (array) $item;
+        $obj = is_object($item) ? $item : (object) $item;
+
+        $value = is_array($item)
+            ? ($arr[$key] ?? null)
+            : $obj->$key;
+        $label = $append !== null && $append !== ''
+            ? (is_array($item) ? ($arr[$append] ?? $arr[$name] ?? $value) : ($obj->$append ?? $obj->$name ?? $value))
+            : (is_array($item) ? ($arr[$name] ?? $value) : ($obj->$name ?? $value));
+
+        return [
+            'value' => $value instanceof \UnitEnum ? $value->value : $value,
+            'label' => $label instanceof \UnitEnum ? $label->value : $label,
+        ];
     }
 }

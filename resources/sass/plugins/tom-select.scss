@@ -1,7 +1,16 @@
 .ts-control {
     box-shadow: none !important;
+    padding: .375rem .5rem;
+    min-height: 2.45rem;
+    font-size: 1rem;
+    @extend .d-flex;
+    @extend .gap-1;
 }
 
 .ts-control > input {
     min-width: auto;
+}
+
+.ts-wrapper.multi .ts-control>div{
+    margin: 0;
 }

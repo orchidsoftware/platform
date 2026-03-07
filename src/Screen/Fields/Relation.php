@@ -7,12 +7,12 @@ namespace Orchid\Screen\Fields;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Crypt;
-use Orchid\Screen\Concerns\Multipliable;
-use Orchid\Screen\Field;
 use Orchid\Support\Assert;
 
 /**
- * Class Relation.
+ * Relation select: loads options via HTTP in chunks.
+ *
+ * @deprecated Use Select::make()->fromModel(...)->lazy(10) instead. This class is kept for backward compatibility.
  *
  * @method $this accesskey($value = true)
  * @method $this autofocus($value = true)
@@ -28,144 +28,64 @@ use Orchid\Support\Assert;
  * @method $this title(string $value = null)
  * @method $this allowAdd($value = false)
  */
-class Relation extends Field
+class Relation extends Select
 {
-    use Multipliable;
-
-    /**
-     * @var string
-     */
-    protected $view = 'orchid::fields.relation';
-
     /**
      * Default attributes value.
      *
      * @var array
      */
     protected $attributes = [
-        'class'                 => 'form-control',
-        'value'                 => [],
-        'relationScope'         => null,
-        'relationAppend'        => null,
-        'relationSearchColumns' => null,
-        'chunk'                 => 10,
-        'allowEmpty'            => '',
-        'allowAdd'              => false,
+        'value' => [],
     ];
 
-    /**
-     * @var array
-     */
-    protected $required = [
-        'name',
-        'relationModel',
-        'relationName',
-        'relationKey',
-        'relationScope',
-        'relationAppend',
-        'relationSearchColumns',
-    ];
-
-    /**
-     * Attributes available for a particular tag.
-     *
-     * @var array
-     */
-    protected $inlineAttributes = [
-        'accesskey',
-        'autofocus',
-        'disabled',
-        'form',
-        'placeholder',
-        'name',
-        'required',
-        'size',
-        'tabindex',
-        'data-maximum-selection-length',
-    ];
+    public function __construct()
+    {
+        parent::__construct();
+        $this->lazy(Select::DEFAULT_LAZY_CHUNK);
+    }
 
     /**
      * @param string|Model $model
-     *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function fromModel(string $model, string $name, ?string $key = null): static
+    public function fromModel(string|Model $model, string $name, ?string $key = null): static
     {
-        $key = $key ?? resolve($model)->getModel()->getKeyName();
+        return parent::fromModel($model, $name, $key);
+    }
 
+    /**
+     * Load options from a class with a scope (e.g. custom handler). Lazy-only.
+     */
+    public function fromClass(string $class, string $name, string $key = 'id'): static
+    {
         $this
-            ->set('relationModel', Crypt::encryptString($model))
+            ->set('relationModel', Crypt::encryptString($class))
             ->set('relationName', Crypt::encryptString($name))
             ->set('relationKey', Crypt::encryptString($key));
 
-        return $this->addBeforeRender(function () use ($model, $name, $key) {
-            $append = $this->get('relationAppend');
-
-            if (is_string($append)) {
-                $append = Crypt::decryptString($append);
-            }
-
-            $text = $append ?? $name;
-            $value = $this->get('value');
-
-            if (! is_iterable($value)) {
-                $value = Arr::wrap($value);
-            }
-
-            if (! Assert::isObjectArray($value)) {
-                $value = $model::whereIn($key, $value)->get();
-            }
-
-            $value = collect($value)
-                ->map(static fn ($item) => [
-                    'id'   => $item->$key,
-                    'text' => $item->$text,
-                ])->toArray();
-
-            $this->set('value', $value);
-        });
-    }
-
-    public function fromClass(string $class, string $name, string $key = 'id'): static
-    {
-        $this->set('relationModel', Crypt::encryptString($class));
-        $this->set('relationName', Crypt::encryptString($name));
-        $this->set('relationKey', Crypt::encryptString($key));
-
         return $this->addBeforeRender(function () use ($class, $name, $key) {
             $value = $this->get('value');
-
             if (empty($value)) {
-                return $this->set('value', $value);
+                return $this->set('value', $value ?? []);
             }
-
-            $scope = $this->get('scope', 'handler');
-            $class = resolve($class);
-
+            $scope = $this->get('relationScope') ? Crypt::decrypt($this->get('relationScope')) : ['name' => 'handler', 'parameters' => []];
+            $instance = resolve($class);
             if (! is_iterable($value)) {
                 $value = Arr::wrap($value);
             }
-
-            if (property_exists($class, 'value') && Assert::isIdArray($value)) {
-                $class->value = $value;
+            if (property_exists($instance, 'value') && Assert::isIntArray($value)) {
+                $instance->value = $value;
             }
-
-            $class = $class->{$scope['name']}(...$scope['parameters']);
-
-            $item = collect($class)
-                ->whereIn($key, $value)
-                ->values();
-
-            $value = collect($item)
+            $items = $instance->{$scope['name']}(...$scope['parameters']);
+            $items = collect($items)->whereIn($key, $value)->values();
+            $value = collect($items)
                 ->map(static function ($item) use ($name, $key) {
                     $item = is_array($item) ? collect($item) : $item;
-
                     return [
                         'id'   => $item->get($key),
                         'text' => $item->get($name),
                     ];
                 })->toArray();
-
             $this->set('value', $value);
         });
     }
@@ -175,51 +95,7 @@ class Relation extends Field
      */
     public function applyScope(string $scope, ...$parameters): static
     {
-        $data = [
-            'name'       => lcfirst($scope),
-            'parameters' => $parameters,
-        ];
-        $this->set('scope', $data);
-        $this->set('relationScope', Crypt::encrypt($data));
-
-        return $this;
-    }
-
-    /**
-     * @param string|array $columns
-     *
-     * @return static
-     */
-    public function searchColumns(...$columns): static
-    {
-        $columns = Arr::wrap($columns);
-
-        $this->set('relationSearchColumns', Crypt::encrypt($columns));
-
-        return $this;
-    }
-
-    /**
-     * Displays the calculated model
-     * field in the selection field.
-     */
-    public function displayAppend(string $append): static
-    {
-        $this->set('relationAppend', Crypt::encryptString($append));
-
-        return $this;
-    }
-
-    /**
-     * Set the maximum number of items that may be selected.
-     *
-     * @return static
-     */
-    public function max(int $number): static
-    {
-        $this->set('data-maximum-selection-length', (string) $number);
-
-        return $this;
+        return parent::applyScope($scope, ...$parameters);
     }
 
     /**
@@ -229,17 +105,7 @@ class Relation extends Field
      */
     public function chunk(int $value): static
     {
-        return $this->set('chunk', $value);
-    }
-
-    /**
-     * Allow empty value to be set
-     *
-     * @return static
-     */
-    public function allowEmpty(bool $value = true): static
-    {
-        return $this->set('allowEmpty', $value);
+        return $this->set('lazyChunk', $value);
     }
 
     /**
