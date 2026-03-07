@@ -28,11 +28,11 @@ class ExemplarServiceProvider extends ServiceProvider
      */
     public function boot(Orchid $orchid, Router $router): void
     {
-        $dashboard->registerSearch([
+        $orchid->registerSearch([
             SearchUser::class,
         ]);
 
-        $this->loadViewsFrom($dashboard->path('tests/App/Views'), 'exemplar');
+        $this->loadViewsFrom($orchid->path('tests/App/Views'), 'exemplar');
 
         $router->domain((string) config('orchid.domain'))
             ->prefix(Orchid::prefix('/'))

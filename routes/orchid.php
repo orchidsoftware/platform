@@ -66,7 +66,7 @@ Route::put('files/post/{id}', [AttachmentController::class, 'update'])
 | Relation Field Rendering
 |--------------------------------------------------------------------------
 */
-Route::post('relation', [RelationController::class, 'view'])
+Route::post('relation', RelationController::class)
     ->name('relation');
 
 /*
