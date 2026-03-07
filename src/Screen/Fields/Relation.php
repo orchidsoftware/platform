@@ -81,6 +81,7 @@ class Relation extends Select
             $value = collect($items)
                 ->map(static function ($item) use ($name, $key) {
                     $item = is_array($item) ? collect($item) : $item;
+
                     return [
                         'id'   => $item->get($key),
                         'text' => $item->get($name),

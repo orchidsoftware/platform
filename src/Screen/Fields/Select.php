@@ -212,8 +212,8 @@ class Select extends Field implements ComplexFieldConcern
     /**
      * Prepend an empty option to the list.
      *
-     * @param  string  $name  Label for the empty option
-     * @param  string  $key  Value for the empty option
+     * @param string $name Label for the empty option
+     * @param string $key  Value for the empty option
      */
     public function empty(string $name = '', string $key = ''): static
     {
@@ -289,7 +289,7 @@ class Select extends Field implements ComplexFieldConcern
     }
 
     /**
-     * @param  Model|\Illuminate\Support\Collection  $source
+     * @param Model|\Illuminate\Support\Collection $source
      */
     private function setFromEloquent(Model|\Illuminate\Support\Collection $source, string $name, string $key): static
     {

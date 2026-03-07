@@ -39,8 +39,9 @@ class RelationController extends Controller
     /**
      * Resolve options for the given model and search term.
      *
-     * @param  array{name: string, parameters: array}|null  $scope
-     * @param  array<int, string>|null  $searchColumns
+     * @param array{name: string, parameters: array}|null $scope
+     * @param array<int, string>|null                     $searchColumns
+     *
      * @return array<int, array{value: mixed, label: mixed}>
      */
     private function resolveOptions(
@@ -84,7 +85,8 @@ class RelationController extends Controller
      * Apply scope to the model (e.g. for tenant or custom filtering).
      * Laravel scopes receive the query builder as first argument.
      *
-     * @param  array{name: string, parameters: array}|null  $scope
+     * @param array{name: string, parameters: array}|null $scope
+     *
      * @return Builder|Collection|array
      */
     private function applyScope(Model $model, ?array $scope): Builder|Collection|array
@@ -101,7 +103,7 @@ class RelationController extends Controller
     /**
      * Apply search filter to the query.
      *
-     * @param  array<int, string>|null  $searchColumns
+     * @param array<int, string>|null $searchColumns
      */
     private function applySearch(Builder $query, string $name, string $search, ?array $searchColumns): void
     {
@@ -109,7 +111,7 @@ class RelationController extends Controller
             return;
         }
 
-        $value = '%' . $search . '%';
+        $value = '%'.$search.'%';
         $useWhereLike = InstalledVersions::satisfies(new VersionParser(), 'laravel/framework', '>11.17.0');
 
         $query->where(function (Builder $q) use ($name, $value, $searchColumns, $useWhereLike): void {
@@ -134,7 +136,8 @@ class RelationController extends Controller
     /**
      * Format a single item for TomSelect (value/label).
      *
-     * @param  object|array  $item
+     * @param object|array $item
+     *
      * @return array{value: mixed, label: mixed}
      */
     private function formatOption(object|array $item, string $key, string $name, ?string $append): array
