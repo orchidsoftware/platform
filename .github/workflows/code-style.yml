@@ -8,7 +8,7 @@ on:
       - 'phpunit.xml'
       - 'composer.json'
       - 'composer.lock'
-      - '.prettierrc',
+      - '.prettierrc'
       - '.prettierignore'
       - '**.php'
       - '**.js'
