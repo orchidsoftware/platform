@@ -9,7 +9,7 @@
            data-datetime-target="instance"
     >
 
-    @if(true === $allowEmpty)
+    @if(($allowEmpty ?? false) === true)
         <div class="input-group-append bg-white">
             <a class="input-group-text h-100 text-muted"
                title="clear"

@@ -44,6 +44,9 @@
     @if(!empty(config('orchid.vite', [])))
         @vite(config('orchid.vite'))
     @endif
+
+    <link rel="stylesheet" href="{{ asset('vendor/orchid/assets/app.css') }}">
+<script src="{{ asset('vendor/orchid/assets/app.js') }}" defer></script>
 </head>
 
 <body class="{{ \Orchid\Support\Names::getPageNameClass() }}" data-controller="pull-to-refresh">
