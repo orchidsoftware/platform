@@ -39,7 +39,7 @@
         "composer-runtime-api": "^2.2",
         "composer/semver": "^3.0",
         "laravel/framework": "^10.0 || ^11.0 || ^12.0",
-        "laravel/scout": "^9.0 || ^10.0",
+        "laravel/scout": "^9.0 || ^10.0 || ^11.0",
         "orchid/blade-icons": "^4.0",
         "tabuna/breadcrumbs": "^4.0",
         "twbs/bootstrap-icons": "^1.10",
