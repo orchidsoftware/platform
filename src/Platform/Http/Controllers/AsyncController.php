@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers;
 
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Orchid\Screen\Layouts\Listener;
 use Orchid\Screen\Screen;
 
 class AsyncController extends Controller
@@ -37,11 +39,11 @@ class AsyncController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param string                   $screen
-     * @param string                   $layout
+     * @param Request $request
+     * @param string  $screen
+     * @param string  $layout
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      * @throws \ReflectionException
      *
      * @return mixed
@@ -54,7 +56,7 @@ class AsyncController extends Controller
         /** @var Screen $screen */
         $screen = app($screen);
 
-        /** @var \Orchid\Screen\Layouts\Listener $layout */
+        /** @var Listener $layout */
         $layout = app($layout);
 
         return $screen->asyncPartialLayout($layout, $request);

@@ -17,6 +17,8 @@ use Orchid\Screen\Concerns\HasTranslations;
 use Orchid\Screen\Concerns\Makeable;
 use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Throwable;
 
 /**
@@ -135,7 +137,7 @@ class Field implements Fieldable, Htmlable
      * @param string $method
      * @param array  $parameters
      *
-     * @return $this|mixed|static|\Orchid\Screen\Field
+     * @return $this|mixed|static|Field
      */
     public function __call(string $method, array $parameters)
     {
@@ -556,10 +558,10 @@ class Field implements Fieldable, Htmlable
     }
 
     /**
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      *
-     * @return \Closure|mixed|object|null
+     * @return Closure|mixed|object|null
      */
     private function getErrorsMessage()
     {

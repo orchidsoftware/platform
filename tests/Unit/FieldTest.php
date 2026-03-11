@@ -121,7 +121,7 @@ class FieldTest extends TestUnitCase
     #[DataProvider('exampleFields')]
     public function testHasCorrectInstance(string $field, mixed $options): void
     {
-        /** @var \Orchid\Screen\Field $field */
+        /** @var Field $field */
         $field = $field::make();
 
         foreach ($options as $key => $option) {

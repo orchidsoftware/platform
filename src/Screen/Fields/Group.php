@@ -61,7 +61,7 @@ class Group implements Fieldable, Groupable
     }
 
     /**
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function render(): ?View
     {

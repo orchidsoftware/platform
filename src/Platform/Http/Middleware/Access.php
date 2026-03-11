@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Closure;
 use Illuminate\Contracts\Auth\Factory as Auth;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -63,7 +64,7 @@ class Access
      * Redirect on the application login form.
      *
      *
-     * @return \Illuminate\Contracts\Foundation\Application|ResponseFactory|RedirectResponse|Response
+     * @return Application|ResponseFactory|RedirectResponse|Response
      */
     protected function redirectToLogin(Request $request)
     {

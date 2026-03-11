@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\App\Screens;
 
+use Orchid\Screen\Action;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
@@ -37,7 +38,7 @@ class ModelAutoOpenScreen extends Screen
     /**
      * Button commands.
      *
-     * @return \Orchid\Screen\Action[]
+     * @return Action[]
      */
     public function commandBar(): array
     {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -13,12 +14,15 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Screen\Concerns\HasFillablePublicProperties;
 use Orchid\Screen\Concerns\InteractsWithEncryptedState;
 use Orchid\Screen\Concerns\ModelStateRetrievable;
 use Orchid\Screen\Layouts\Listener;
 use Orchid\Support\Facades\Orchid;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 /**
  * Class Screen.
@@ -34,10 +38,10 @@ abstract class Screen extends Controller
         ModelStateRetrievable;
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param mixed                    ...$arguments
+     * @param Request $request
+     * @param mixed   ...$arguments
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      * @throws \ReflectionException
      *
      * @return mixed
@@ -86,14 +90,14 @@ abstract class Screen extends Controller
     /**
      * The layout for this screen, consisting of a collection of views.
      *
-     * @return iterable<\Orchid\Screen\Layout>|iterable<string>
+     * @return iterable<Layout>|iterable<string>
      */
     abstract public function layout(): iterable;
 
     /**
      * Builds the screen using the given data repository.
      *
-     * @param \Orchid\Screen\Repository $repository
+     * @param Repository $repository
      *
      * @return View
      */
@@ -107,10 +111,10 @@ abstract class Screen extends Controller
     /**
      * Builds the screen asynchronously using the given method and template slug.
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      * @throws \ReflectionException
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function asyncBuild(string $method, string $slug)
     {
@@ -147,10 +151,10 @@ abstract class Screen extends Controller
     /**
      * Builds the screen asynchronously using listeners
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      * @throws \ReflectionException
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function asyncPartialLayout(Listener $layout, Request $request): Response
     {
@@ -197,10 +201,10 @@ abstract class Screen extends Controller
     /**
      * @param array $httpQueryArguments
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      * @throws \ReflectionException
      *
-     * @return \Orchid\Screen\Repository
+     * @return Repository
      */
     protected function buildQueryRepository(array $httpQueryArguments = []): Repository
     {
@@ -220,12 +224,12 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws BindingResolutionException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      * @throws \ReflectionException
      *
-     * @return \Illuminate\Http\RedirectResponse|mixed
+     * @return RedirectResponse|mixed
      */
     public function handle(Request $request, ...$arguments)
     {
@@ -286,7 +290,7 @@ abstract class Screen extends Controller
      * Calls the specified method with the given parameters.
      *
      * @throws \ReflectionException
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      *
      * @return mixed
      */
@@ -355,9 +359,9 @@ abstract class Screen extends Controller
     /**
      * Return to the previous state with the current object properties.
      *
-     * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
+     * @throws PhpVersionNotSupportedException
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     private function backWithCurrentState(): RedirectResponse
     {
@@ -381,9 +385,9 @@ abstract class Screen extends Controller
      *
      * @param array $data
      *
-     * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException
+     * @throws PhpVersionNotSupportedException
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function backWith(array $data): RedirectResponse
     {
@@ -409,7 +413,7 @@ abstract class Screen extends Controller
     /**
      * Reinitialized uninitialized properties with their default values.
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      * @throws \ReflectionException
      */
     public function __wakeup(): void

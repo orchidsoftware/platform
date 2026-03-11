@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
@@ -25,7 +26,7 @@ abstract class Wrapper extends Layout
     }
 
     /**
-     * @return \Illuminate\Contracts\View\View|void
+     * @return View|void
      */
     public function build(Repository $repository)
     {

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Foundation\Application;
+use Illuminate\Routing\Router;
 use Orchestra\Testbench\Concerns\WithLaravelMigrations;
 use Orchid\Platform\Database\Seeders\OrchidDatabaseSeeder;
 use Orchid\Platform\Models\User;
@@ -62,7 +64,7 @@ trait Environment
     }
 
     /**
-     * @param \Illuminate\Foundation\Application $app
+     * @param Application $app
      */
     protected function getEnvironmentSetUp($app): void
     {
@@ -70,7 +72,7 @@ trait Environment
     }
 
     /**
-     * @param \Illuminate\Foundation\Application $app
+     * @param Application $app
      */
     protected function getPackageProviders($app): array
     {
@@ -84,7 +86,7 @@ trait Environment
     /**
      * Define routes setup.
      *
-     * @param \Illuminate\Routing\Router $router
+     * @param Router $router
      *
      * @return void
      */
@@ -94,7 +96,7 @@ trait Environment
     }
 
     /**
-     * @param \Illuminate\Foundation\Application $app
+     * @param Application $app
      */
     protected function getPackageAliases($app): array
     {

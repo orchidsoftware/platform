@@ -52,7 +52,7 @@ class Generator implements Engine
     /**
      * Create a new Generator instance.
      *
-     * @param \Illuminate\Http\UploadedFile $file
+     * @param UploadedFile $file
      *
      * @return void
      */

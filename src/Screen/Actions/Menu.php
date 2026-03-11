@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Actions;
 
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 use Orchid\Screen\Contracts\Actionable;
 use Orchid\Screen\Repository;
 use Orchid\Support\Color;
@@ -155,7 +157,7 @@ class Menu extends Link
      *
      * @throws \Throwable If rendering fails.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed The rendered view.
+     * @return Factory|View|mixed The rendered view.
      */
     public function build(?Repository $repository = null)
     {

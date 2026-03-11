@@ -208,7 +208,7 @@ class LayoutFactory
      * @param string      $target
      * @param string|null $title
      *
-     * @return \Orchid\Screen\Layouts\Chart
+     * @return Chart
      */
     public static function chart(string $target, ?string $title = null): Chart
     {
@@ -223,7 +223,7 @@ class LayoutFactory
      * @param string $target
      * @param array  $columns
      *
-     * @return \Orchid\Screen\Layouts\Sortable
+     * @return Sortable
      */
     public static function sortable(string $target, array $columns): Sortable
     {

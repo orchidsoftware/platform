@@ -7,6 +7,7 @@ namespace Orchid\Screen\Fields;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Crypt;
 use Orchid\Screen\Concerns\ComplexFieldConcern;
 use Orchid\Screen\Concerns\Multipliable;
@@ -289,9 +290,9 @@ class Select extends Field implements ComplexFieldConcern
     }
 
     /**
-     * @param Model|\Illuminate\Support\Collection $source
+     * @param Model|Collection $source
      */
-    private function setFromEloquent(Model|\Illuminate\Support\Collection $source, string $name, string $key): static
+    private function setFromEloquent(Model|Collection $source, string $name, string $key): static
     {
         $options = $source->pluck($name, $key);
         $this->set('options', $options);

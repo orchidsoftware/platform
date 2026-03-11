@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 use Orchid\Screen\Contracts\Actionable;
 use Orchid\Support\Color;
 
@@ -72,7 +74,7 @@ class Action extends Field implements Actionable
     /**
      * @throws \Throwable
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @return Factory|View|mixed
      */
     public function build(?Repository $repository = null)
     {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Str;
 use Orchid\Support\Facades\Orchid;
 use Orchid\Tests\TestFeatureCase;
@@ -11,7 +12,7 @@ use Orchid\Tests\TestFeatureCase;
 class FallbackDisabledTest extends TestFeatureCase
 {
     /**
-     * @param \Illuminate\Foundation\Application $app
+     * @param Application $app
      */
     protected function getEnvironmentSetUp($app): void
     {

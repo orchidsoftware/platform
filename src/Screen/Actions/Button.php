@@ -6,6 +6,7 @@ namespace Orchid\Screen\Actions;
 
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Orchid\Screen\Action;
+use Orchid\Screen\Field;
 use Orchid\Support\Facades\Orchid;
 
 /**
@@ -102,7 +103,7 @@ class Button extends Action
     }
 
     /**
-     * @return Button|\Orchid\Screen\Field
+     * @return Button|Field
      */
     public function novalidate(bool $novalidate = true): static
     {

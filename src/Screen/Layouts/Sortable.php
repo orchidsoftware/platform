@@ -3,6 +3,7 @@
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Sight;
@@ -44,7 +45,7 @@ abstract class Sortable extends Layout
     protected $target;
 
     /**
-     * @return Factory|\Illuminate\View\View|null
+     * @return Factory|View|null
      */
     public function build(Repository $repository)
     {

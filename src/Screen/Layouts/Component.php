@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Support\Blade;
@@ -29,7 +30,7 @@ abstract class Component extends Layout
     }
 
     /**
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      *
      * @return mixed
      */

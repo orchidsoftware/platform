@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class SortableController extends Controller
 {
     /**
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      *
      * @return void
      */

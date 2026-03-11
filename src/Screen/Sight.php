@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\View;
@@ -29,7 +30,7 @@ class Sight extends Cell
      *
      * @param Repository|Model $repository
      *
-     * @return string|\Illuminate\Contracts\Support\Htmlable|null
+     * @return string|Htmlable|null
      */
     public function buildDd($repository)
     {

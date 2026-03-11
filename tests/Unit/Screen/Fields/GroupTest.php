@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Fields;
 
+use Illuminate\View\View;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
@@ -98,7 +99,7 @@ class GroupTest extends TestFieldsUnitCase
 
         $view = $group->render();
 
-        $this->assertInstanceOf(\Illuminate\View\View::class, $view);
+        $this->assertInstanceOf(View::class, $view);
         $this->assertSame('orchid::fields.group', $view->getName());
         $this->assertArrayHasKey('group', $view->getData());
     }

@@ -122,7 +122,7 @@ class TD extends Cell
     }
 
     /**
-     * @param string|\Orchid\Screen\Field $filter
+     * @param string|Field $filter
      */
     public function filterOptions(iterable $filterOptions): self
     {
@@ -236,11 +236,11 @@ class TD extends Cell
     }
 
     /**
-     * @return \Orchid\Screen\Field|null
+     * @return Field|null
      */
     protected function buildFilter(): ?Field
     {
-        /** @var \Orchid\Screen\Field $filter|string */
+        /** @var Field $filter|string */
         $filter = $this->filter;
 
         if ($filter === null) {
@@ -259,7 +259,7 @@ class TD extends Cell
     }
 
     /**
-     * @return \Orchid\Screen\Field
+     * @return Field
      */
     protected function detectConstantFilter(string $filter): Field
     {
@@ -365,7 +365,7 @@ class TD extends Cell
      *
      * Decides whether a filter can be provided with a complex (array-like) value, or it needs a scalar one.
      *
-     * @param \Orchid\Screen\Field $field
+     * @param Field $field
      */
     protected function isComplexFieldType(Field $field): bool
     {

@@ -29,10 +29,10 @@ abstract class Listener extends Layout
     abstract protected function layouts(): iterable;
 
     /**
-     * @param \Orchid\Screen\Repository $repository
-     * @param \Illuminate\Http\Request  $request
+     * @param Repository $repository
+     * @param Request    $request
      *
-     * @return \Orchid\Screen\Repository
+     * @return Repository
      */
     abstract public function handle(Repository $repository, Request $request): Repository;
 

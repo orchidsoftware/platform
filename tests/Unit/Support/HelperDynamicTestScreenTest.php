@@ -11,6 +11,8 @@ use Orchid\Support\Testing\DynamicTestScreen;
 use Orchid\Support\Testing\ScreenTesting;
 use Orchid\Tests\App\Screens\BaseScreenTesting;
 use Orchid\Tests\TestUnitCase;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class HelperDynamicTestScreenTest extends TestUnitCase
 {
@@ -25,8 +27,8 @@ class HelperDynamicTestScreenTest extends TestUnitCase
     }
 
     /**
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function testUsageExample(): void
     {
@@ -49,8 +51,8 @@ class HelperDynamicTestScreenTest extends TestUnitCase
     }
 
     /**
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function textExampleWithRouteParams(): void
     {

@@ -8,6 +8,7 @@ use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Collection;
+use Illuminate\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\TD;
@@ -49,7 +50,7 @@ abstract class Table extends Layout
     /**
      * Build the table view with columns, rows, and other settings.
      *
-     * @return Factory|\Illuminate\View\View|void
+     * @return Factory|View|void
      */
     public function build(Repository $repository)
     {

@@ -33,7 +33,7 @@ trait ManagesPermissions
     /**
      * Registers a ItemPermission that defines authentication permissions.
      *
-     * @param \Orchid\Platform\ItemPermission $permission
+     * @param ItemPermission $permission
      *
      * @return static
      */
@@ -51,7 +51,7 @@ trait ManagesPermissions
      *
      * @param array|string $groups
      *
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     public function getPermission(string|array $groups = []): Collection
     {
@@ -65,7 +65,7 @@ trait ManagesPermissions
      *
      * @param array|string $groups
      *
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     public function getAllowAllPermission(string|array $groups = []): Collection
     {

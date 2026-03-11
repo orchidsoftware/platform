@@ -3,6 +3,8 @@
 namespace Orchid\Tests\App\Screens;
 
 use Illuminate\Http\RedirectResponse;
+use Orchid\Screen\Action;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 
 class UnaccessedScreen extends Screen
@@ -33,7 +35,7 @@ class UnaccessedScreen extends Screen
     /**
      * Button commands.
      *
-     * @return \Orchid\Screen\Action[]
+     * @return Action[]
      */
     public function commandBar(): array
     {
@@ -43,7 +45,7 @@ class UnaccessedScreen extends Screen
     /**
      * Views.
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): array
     {

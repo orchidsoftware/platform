@@ -10,6 +10,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use League\Flysystem\FilesystemException;
 use Orchid\Attachment\Contracts\Engine;
 use Orchid\Attachment\Engines\Generator;
 use Orchid\Attachment\Models\Attachment;
@@ -80,7 +81,7 @@ class File
      * Load the file and either create a new entry or retrieve
      * an already stored entry matching the hash of the file
      *
-     * @throws \League\Flysystem\FilesystemException
+     * @throws FilesystemException
      *
      * @return Model|Attachment
      */

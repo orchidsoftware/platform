@@ -1,5 +1,9 @@
 <?php
 
+use App\Orchid\PlatformProvider;
+use Orchid\Attachment\Engines\Generator;
+use Orchid\Support\BootstrapIconsPath;
+
 return [
 
     /*
@@ -186,7 +190,7 @@ return [
 
     'attachment' => [
         'disk'      => env('PLATFORM_FILESYSTEM_DISK', 'public'),
-        'generator' => \Orchid\Attachment\Engines\Generator::class,
+        'generator' => Generator::class,
     ],
 
     /*
@@ -203,7 +207,7 @@ return [
      */
 
     'icons' => [
-        'bs'  => \Orchid\Support\BootstrapIconsPath::getFolder(),
+        'bs'  => BootstrapIconsPath::getFolder(),
     ],
 
     /*
@@ -319,6 +323,6 @@ return [
      |
      */
 
-    'provider' => \App\Orchid\PlatformProvider::class,
+    'provider' => PlatformProvider::class,
 
 ];

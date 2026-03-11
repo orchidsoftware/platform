@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
+use Illuminate\Auth\SessionGuard;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Models\User;
@@ -51,7 +52,7 @@ class GuardAuthTest extends TestFeatureCase
     public function testCustomGuardShouldUse(): void
     {
         Route::middleware(config('orchid.middleware.private'))->get('custom-guard', function () {
-            /** @var \Illuminate\Auth\SessionGuard $sessionGuard */
+            /** @var SessionGuard $sessionGuard */
             $sessionGuard = Auth::guard();
 
             return $sessionGuard->getName();

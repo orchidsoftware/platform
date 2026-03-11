@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Orchid\Tests\TestFeatureCase;
 
 class NotificationDisabledTest extends TestFeatureCase
 {
     /**
-     * @param \Illuminate\Foundation\Application $app
+     * @param Application $app
      */
     protected function getEnvironmentSetUp($app): void
     {

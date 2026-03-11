@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Icons\IconFinder;
+use Orchid\Screen\Actions\Menu;
 
 /*
  * This class represents the Orchid Service Provider.
@@ -20,7 +21,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
     /**
      * The Orchid Dashboard instance.
      *
-     * @var \Orchid\Platform\Orchid|null
+     * @var Orchid|null
      */
     protected ?Orchid $orchid;
 
@@ -44,7 +45,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
     /**
      * Get the Orchid Dashboard instance.
      *
-     * @return \Orchid\Platform\Orchid
+     * @return Orchid
      */
     private function orchidSingleton(): Orchid
     {
@@ -151,7 +152,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
     /**
      * Returns an array of menu items.
      *
-     * @return \Orchid\Screen\Actions\Menu[]
+     * @return Menu[]
      */
     public function menu(): array
     {
@@ -163,7 +164,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
      *
      * Returns an array of menu items.
      *
-     * @return \Orchid\Screen\Actions\Menu[]
+     * @return Menu[]
      */
     public function registerMenu(): array
     {
@@ -175,7 +176,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
      *
      * Returns an array of menu items.
      *
-     * @return \Orchid\Screen\Actions\Menu[]
+     * @return Menu[]
      */
     public function registerMainMenu(): array
     {
@@ -187,7 +188,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
      *
      * Returns an array of menu items.
      *
-     * @return \Orchid\Screen\Actions\Menu[]
+     * @return Menu[]
      */
     public function registerProfileMenu(): array
     {
@@ -231,7 +232,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
     /**
      * Define routes setup.
      *
-     * @param \Illuminate\Routing\Router $router
+     * @param Router $router
      *
      * @return void
      */
