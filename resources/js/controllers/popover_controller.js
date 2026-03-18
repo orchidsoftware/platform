@@ -1,5 +1,5 @@
 import ApplicationController from "./application_controller";
-import {Popover} from 'bootstrap';
+import { Popover } from "bootstrap";
 
 export default class extends ApplicationController {
     /**

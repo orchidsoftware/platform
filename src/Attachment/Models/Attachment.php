@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Orchid\Attachment\MimeTypes;
@@ -17,7 +18,7 @@ use Orchid\Filters\Types\Like;
 use Orchid\Platform\Concerns\Sortable;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\AsSource;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 
 /**
  * Class Attachment.
@@ -96,7 +97,7 @@ class Attachment extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(Dashboard::model(User::class));
+        return $this->belongsTo(Orchid::model(User::class));
     }
 
     /**
@@ -104,7 +105,7 @@ class Attachment extends Model
      */
     public function url(?string $default = null): ?string
     {
-        /** @var \Illuminate\Filesystem\FilesystemAdapter $disk */
+        /** @var FilesystemAdapter $disk */
         $disk = Storage::disk($this->getAttribute('disk'));
         $path = $this->physicalPath();
 
@@ -170,7 +171,7 @@ class Attachment extends Model
      */
     public function relationships()
     {
-        return $this->hasMany(Dashboard::model(Attachmentable::class), 'attachment_id');
+        return $this->hasMany(Orchid::model(Attachmentable::class), 'attachment_id');
     }
 
     /**

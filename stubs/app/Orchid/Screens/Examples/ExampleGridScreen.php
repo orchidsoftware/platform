@@ -57,7 +57,7 @@ class ExampleGridScreen extends Screen
      */
     public function layout(): iterable
     {
-        $template = Layout::view('platform::dummy.block');
+        $template = Layout::view('orchid::dummy.block');
 
         return [
             Layout::split([

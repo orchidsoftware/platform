@@ -1,4 +1,4 @@
-@extends('platform::app')
+@extends('orchid::app')
 
 @section('body')
 
@@ -6,7 +6,7 @@
         <div class="workspace workspace-limit pt-3 pt-md-4 mb-4 mb-md-0 d-flex flex-column h-100">
             @yield('workspace')
 
-            @includeFirst([config('platform.template.footer'), 'platform::footer'])
+            @includeFirst([config('orchid.template.footer'), 'orchid::footer'])
         </div>
     </div>
 

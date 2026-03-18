@@ -1,0 +1,28 @@
+{
+    "tabWidth": 4,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": false,
+    "trailingComma": "es5",
+    "bracketSpacing": true,
+    "arrowParens": "avoid",
+    "endOfLine": "lf",
+    "proseWrap": "preserve",
+    "printWidth": 80,
+    "overrides": [
+        {
+            "files": ["*.yaml", "*.yml"],
+            "options": {
+                "tabWidth": 2,
+                "singleQuote": true
+            }
+        },
+        {
+            "files": ["*.json", ".prettierrc", ".prettierrc.*", ".babelrc"],
+            "options": {
+                "quoteProps": "preserve",
+                "proseWrap": "preserve"
+            }
+        }
+    ]
+}

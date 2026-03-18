@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
@@ -16,7 +17,7 @@ class Metric extends Layout
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.metric';
+    protected $template = 'orchid::layouts.metric';
 
     /**
      * @var string|null
@@ -34,7 +35,7 @@ class Metric extends Layout
     }
 
     /**
-     * @return Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function build(Repository $repository)
     {

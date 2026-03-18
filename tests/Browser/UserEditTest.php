@@ -17,17 +17,17 @@ class UserEditTest extends TestBrowserCase
             $email = $this->faker()->safeEmail;
             $browser
                 ->loginAs($user)
-                ->visitRoute('platform.systems.users')
+                ->visitRoute('orchid.users')
                 ->clickLink($user->name, 'table a')
-                ->waitForRoute('platform.systems.users.edit', $user)
+                ->waitForRoute('orchid.users.edit', $user)
                 ->pause(2500)
                 ->assertInputValue('user[email]', $user->email)
                 ->type('user[email]', $email)
                 ->press('Save')
-                ->waitForRoute('platform.systems.users')
+                ->waitForRoute('orchid.users')
                 ->waitForText('User was saved.')
                 ->clickLink($user->name, 'table a')
-                ->waitForRoute('platform.systems.users.edit', $user)
+                ->waitForRoute('orchid.users.edit', $user)
                 ->pause(2500)
                 ->assertInputValue('user[email]', $email);
         });
@@ -40,7 +40,7 @@ class UserEditTest extends TestBrowserCase
             $browser
                 ->loginAs($user, 'web')
                 ->assertAuthenticatedAs($user)
-                ->visitRoute('platform.systems.users')
+                ->visitRoute('orchid.users')
                 ->assertSee('User Management')
                 ->assertSee('A comprehensive list of all registered users, including their profiles and privileges');
         });
@@ -54,7 +54,7 @@ class UserEditTest extends TestBrowserCase
 
             $browser
                 ->loginAs($user)
-                ->visitRoute('platform.systems.users')
+                ->visitRoute('orchid.users')
                 ->pressAndWaitFor($user->email)
                 ->pause(10000)
                 ->type('user[name]', $string)

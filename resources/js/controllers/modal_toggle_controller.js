@@ -1,7 +1,6 @@
 import ApplicationController from "./application_controller";
 
 export default class extends ApplicationController {
-
     static values = {
         title: {
             type: String,
@@ -20,7 +19,7 @@ export default class extends ApplicationController {
             type: Boolean,
             default: false,
         },
-    }
+    };
 
     /**
      *
@@ -31,7 +30,7 @@ export default class extends ApplicationController {
                 return;
             }
 
-            this.modal.classList.remove('fade', 'in');
+            this.modal.classList.remove("fade", "in");
             this.targetModal();
         });
     }
@@ -42,7 +41,7 @@ export default class extends ApplicationController {
      */
     targetModal(event) {
         this.application
-            .getControllerForElementAndIdentifier(this.modal, 'modal')
+            .getControllerForElementAndIdentifier(this.modal, "modal")
             .open({
                 title: this.titleValue || this.modal.dataset.modalTitle,
                 submit: this.actionValue,
@@ -59,11 +58,10 @@ export default class extends ApplicationController {
      * @returns {HTMLElement}
      */
     get modal() {
-
         let modal = document.getElementById(`screen-modal-${this.keyValue}`);
 
         if (modal === null) {
-            this.toast('The modal element does not exist.', 'warning');
+            this.toast("The modal element does not exist.", "warning");
         }
 
         return modal;

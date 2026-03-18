@@ -59,7 +59,7 @@ class AttachmentTest extends TestUnitCase
 
     public function testAttachmentCustomEngineFile(): void
     {
-        config()->set('platform.attachment.generator', CustomAttachmentGenerator::class);
+        config()->set('orchid.attachment.generator', CustomAttachmentGenerator::class);
         $file = UploadedFile::fake()->create('document.xml', 200);
         $attachment = new File($file, $this->disk);
 

@@ -6,11 +6,13 @@ namespace Orchid\Tests\Unit\Support;
 
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Models\User;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 use Orchid\Support\Testing\DynamicTestScreen;
 use Orchid\Support\Testing\ScreenTesting;
 use Orchid\Tests\App\Screens\BaseScreenTesting;
 use Orchid\Tests\TestUnitCase;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class HelperDynamicTestScreenTest extends TestUnitCase
 {
@@ -25,8 +27,8 @@ class HelperDynamicTestScreenTest extends TestUnitCase
     }
 
     /**
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function testUsageExample(): void
     {
@@ -49,8 +51,8 @@ class HelperDynamicTestScreenTest extends TestUnitCase
     }
 
     /**
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function textExampleWithRouteParams(): void
     {
@@ -126,7 +128,7 @@ class HelperDynamicTestScreenTest extends TestUnitCase
                 ->followingRedirects()
                 ->method('increment');
 
-            $this->assertEquals($i, Dashboard::getCurrentScreen()->increment);
+            $this->assertEquals($i, Orchid::getCurrentScreen()->increment);
         }
     }
 }

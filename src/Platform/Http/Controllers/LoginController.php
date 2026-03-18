@@ -8,6 +8,7 @@ use Composer\InstalledVersions;
 use Composer\Semver\VersionParser;
 use Illuminate\Auth\EloquentUserProvider;
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
+use Illuminate\Auth\SessionGuard;
 use Illuminate\Contracts\Auth\Factory as Auth;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\View\Factory;
@@ -33,7 +34,7 @@ class LoginController extends Controller
     */
 
     /**
-     * @var Guard|\Illuminate\Auth\SessionGuard
+     * @var Guard|SessionGuard
      */
     protected $guard;
 
@@ -42,7 +43,7 @@ class LoginController extends Controller
      */
     public function __construct(Auth $auth)
     {
-        $this->guard = $auth->guard(config('platform.guard'));
+        $this->guard = $auth->guard(config('orchid.guard'));
 
         /**
          * @deprecated logic for older Laravel versions
@@ -51,7 +52,7 @@ class LoginController extends Controller
 
         if (InstalledVersions::satisfies(new VersionParser, 'laravel/framework', '>11.17.0')) {
             $middleware = RedirectIfAuthenticated::class;
-            RedirectIfAuthenticated::redirectUsing(static fn () => route(config('platform.index')));
+            RedirectIfAuthenticated::redirectUsing(static fn () => route(config('orchid.index')));
         }
 
         $this->middleware($middleware, [
@@ -100,7 +101,7 @@ class LoginController extends Controller
      * Send the response after the user was authenticated.
      *
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     * @return RedirectResponse|JsonResponse
      */
     protected function sendLoginResponse(Request $request)
     {
@@ -108,7 +109,7 @@ class LoginController extends Controller
 
         return $request->wantsJson()
             ? new JsonResponse([], 204)
-            : redirect()->intended(route(config('platform.index')));
+            : redirect()->intended(route(config('orchid.index')));
     }
 
     /**
@@ -125,7 +126,7 @@ class LoginController extends Controller
 
         $model = $provider->createModel()->find($user);
 
-        return view('platform::auth.login', [
+        return view('orchid::auth.login', [
             'isLockUser' => optional($model)->exists ?? false,
             'lockUser'   => $model,
         ]);
@@ -138,7 +139,7 @@ class LoginController extends Controller
     {
         $lockUser = $cookieJar->forget($this->nameForLock());
 
-        return redirect()->route('platform.login')->withCookie($lockUser);
+        return redirect()->route('orchid.login')->withCookie($lockUser);
     }
 
     /**
@@ -148,14 +149,14 @@ class LoginController extends Controller
     {
         Impersonation::logout();
 
-        return redirect()->route(config('platform.index'));
+        return redirect()->route(config('orchid.index'));
     }
 
     /**
      * Log the user out of the application.
      *
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     * @return RedirectResponse|JsonResponse
      */
     public function logout(Request $request)
     {

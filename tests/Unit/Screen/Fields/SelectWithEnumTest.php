@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Screen\Fields;
 
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Collection;
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Fields\Select;
 use Orchid\Tests\App\Enums\RoleNames;
@@ -18,7 +19,7 @@ class SelectWithEnumTest extends TestFieldsUnitCase
 {
     use WithFaker;
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     protected $roles;
 

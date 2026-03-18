@@ -20,7 +20,7 @@ class Toggle extends Button
     /**
      * @var string
      */
-    protected $view = 'platform::actions.toggle';
+    protected $view = 'orchid::actions.toggle';
 
     /**
      * Default attributes value.

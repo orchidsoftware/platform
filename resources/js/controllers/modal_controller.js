@@ -2,35 +2,32 @@ import ApplicationController from "./application_controller";
 import { Modal } from "bootstrap";
 
 export default class extends ApplicationController {
-
     static values = {
         slug: {
             type: String,
-            default: ''
+            default: "",
         },
         url: {
             type: String,
-            default: ''
+            default: "",
         },
         parameters: {
             type: Object,
         },
         open: {
             type: Boolean,
-            default: false
-        }
-    }
+            default: false,
+        },
+    };
 
     /**
      * Define targets for elements that this controller interacts with.
      * @type {string[]}
      */
-    static targets = [
-        "title"
-    ];
+    static targets = ["title"];
 
     // Define a constant for the session storage key
-    static SESSION_KEY_FOR_LAST_OPEN_MODAL = 'last-open-modal';
+    static SESSION_KEY_FOR_LAST_OPEN_MODAL = "last-open-modal";
 
     initialize() {
         // Bind 'this' context to class methods for event handling
@@ -43,12 +40,12 @@ export default class extends ApplicationController {
      */
     connect() {
         // Add event listeners for modal show and hide events
-        this.element.addEventListener('shown.bs.modal', this.show);
-        this.element.addEventListener('hide.bs.modal', this.hidden);
+        this.element.addEventListener("shown.bs.modal", this.show);
+        this.element.addEventListener("hide.bs.modal", this.hidden);
 
         // Show the modal if the 'open' value is true
         if (this.openValue) {
-            (new Modal(this.element)).show();
+            new Modal(this.element).show();
         }
 
         // Open the last opened modal if validation errors are present
@@ -57,8 +54,8 @@ export default class extends ApplicationController {
 
     disconnect() {
         // Remove event listeners when the controller disconnects
-        this.element.removeEventListener('shown.bs.modal', this.show);
-        this.element.removeEventListener('hide.bs.modal', this.hidden);
+        this.element.removeEventListener("shown.bs.modal", this.show);
+        this.element.removeEventListener("hide.bs.modal", this.hidden);
     }
 
     /**
@@ -66,18 +63,18 @@ export default class extends ApplicationController {
      * @param event - The event object for the 'shown.bs.modal' event.
      */
     show(event) {
-        this.updateTurboCacheControl('no-cache');
+        this.updateTurboCacheControl("no-cache");
 
         // Focus on the element with 'autofocus' attribute, if available
-        this.element.querySelector('[autofocus]')?.focus();
+        this.element.querySelector("[autofocus]")?.focus();
     }
 
     /**
      * Handle the modal hide event.
      * @param event - The event object for the 'hide.bs.modal' event.
      */
-     hidden(event) {
-        this.updateTurboCacheControl('cache');
+    hidden(event) {
+        this.updateTurboCacheControl("cache");
 
         // Clear the stored last open modal from session storage
         this.clearLastOpenModal();
@@ -91,11 +88,12 @@ export default class extends ApplicationController {
         options = {
             ...options,
             slug: this.slugValue,
-            validateError: this.element.querySelectorAll('.invalid-feedback').length > 0
+            validateError:
+                this.element.querySelectorAll(".invalid-feedback").length > 0,
         };
 
         // Set the form action URL
-        this.element.querySelector('form').action = options.submit;
+        this.element.querySelector("form").action = options.submit;
 
         // Update the modal title if provided
         if (options.title !== undefined) {
@@ -103,7 +101,10 @@ export default class extends ApplicationController {
         }
 
         // Load deferred data if URL is specified and no validation errors are present
-        if (Object.keys(this.parametersValue).length !== 0 && !options.validateError) {
+        if (
+            Object.keys(this.parametersValue).length !== 0 &&
+            !options.validateError
+        ) {
             this.asyncLoadData(options.params);
         }
 
@@ -111,7 +112,7 @@ export default class extends ApplicationController {
         this.storeLastOpenModal(options);
 
         // Toggle the modal visibility
-        (new Modal(this.element)).toggle();
+        new Modal(this.element).toggle();
     }
 
     /**
@@ -119,7 +120,7 @@ export default class extends ApplicationController {
      */
     openLastModal() {
         // If no validation errors are present, do nothing
-        if (this.element.querySelectorAll('.invalid-feedback').length === 0) {
+        if (this.element.querySelectorAll(".invalid-feedback").length === 0) {
             return;
         }
 
@@ -127,7 +128,7 @@ export default class extends ApplicationController {
 
         // Reopen the last modal if it matches the current slug
         if (lastOpenModal && lastOpenModal.slug === this.slugValue) {
-            this.element.classList.remove('fade', 'in');
+            this.element.classList.remove("fade", "in");
             this.open(lastOpenModal);
         }
     }
@@ -137,17 +138,16 @@ export default class extends ApplicationController {
      * @param params - Query parameters for the data request.
      */
     asyncLoadData(params) {
-        this.element.classList.add('modal-loading');
+        this.element.classList.add("modal-loading");
 
         // Create query string from parameters
         let query = new URLSearchParams(params).toString();
 
         // Load data via stream and update modal state
         this.loadStream(`${this.urlValue}?${query}`, {
-            '_state': document.getElementById('screen-state')?.value || null,
-            ...this.parametersValue
-        })
-            .then(() => this.element.classList.remove('modal-loading'));
+            _state: document.getElementById("screen-state")?.value || null,
+            ...this.parametersValue,
+        }).then(() => this.element.classList.remove("modal-loading"));
     }
 
     /**
@@ -155,7 +155,10 @@ export default class extends ApplicationController {
      * @param options - Modal options to store.
      */
     storeLastOpenModal(options) {
-        window.sessionStorage.setItem(this.constructor.SESSION_KEY_FOR_LAST_OPEN_MODAL, JSON.stringify(options));
+        window.sessionStorage.setItem(
+            this.constructor.SESSION_KEY_FOR_LAST_OPEN_MODAL,
+            JSON.stringify(options)
+        );
     }
 
     /**
@@ -163,13 +166,21 @@ export default class extends ApplicationController {
      * @returns {Object|false} - The last opened modal options or false if not found.
      */
     lastOpenModal() {
-        return JSON.parse(sessionStorage.getItem(this.constructor.SESSION_KEY_FOR_LAST_OPEN_MODAL)) ?? false;
+        return (
+            JSON.parse(
+                sessionStorage.getItem(
+                    this.constructor.SESSION_KEY_FOR_LAST_OPEN_MODAL
+                )
+            ) ?? false
+        );
     }
 
     /**
      * Clear the last opened modal options from session storage.
      */
     clearLastOpenModal() {
-        sessionStorage.removeItem(this.constructor.SESSION_KEY_FOR_LAST_OPEN_MODAL);
+        sessionStorage.removeItem(
+            this.constructor.SESSION_KEY_FOR_LAST_OPEN_MODAL
+        );
     }
 }

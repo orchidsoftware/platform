@@ -1,8 +1,10 @@
-import { Controller } from '@hotwired/stimulus';
+import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
     initialize() {
-        this.intersectionObserver = new IntersectionObserver((entries) => this.processIntersectionEntries(entries));
+        this.intersectionObserver = new IntersectionObserver(entries =>
+            this.processIntersectionEntries(entries)
+        );
     }
 
     connect() {
@@ -15,8 +17,13 @@ export default class extends Controller {
 
     // Private
     processIntersectionEntries(entries) {
-        entries.forEach((entry) => {
-            this.element.classList.toggle(this.data.get('class'), entry.isIntersecting && window.document.body.scrollHeight > window.document.body.clientHeight + 400);
+        entries.forEach(entry => {
+            this.element.classList.toggle(
+                this.data.get("class"),
+                entry.isIntersecting &&
+                    window.document.body.scrollHeight >
+                        window.document.body.clientHeight + 400
+            );
         });
     }
 }

@@ -5,11 +5,15 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Screens;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Orchid\Platform\Http\Layouts\NotificationTable;
 use Orchid\Platform\Notifications\DashboardMessage;
+use Orchid\Platform\Notifications\OrchidMessage;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Toast;
 
@@ -18,7 +22,7 @@ class NotificationScreen extends Screen
     /**
      * @var string
      */
-    public $permission = 'platform.index';
+    public $permission = 'orchid.index';
 
     /**
      * @var bool
@@ -90,7 +94,7 @@ class NotificationScreen extends Screen
     /**
      * Views.
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): iterable
     {
@@ -106,11 +110,11 @@ class NotificationScreen extends Screen
      */
     private function prepareUserNotificationRelation(mixed $user)
     {
-        return $user->notifications()->where('type', DashboardMessage::class);
+        return $user->notifications()->whereIn('type', [OrchidMessage::class, DashboardMessage::class]);
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return RedirectResponse|Redirector
      */
     public function maskNotification(string $id, Request $request)
     {
@@ -129,14 +133,14 @@ class NotificationScreen extends Screen
     {
         $request->user()
             ->unreadNotifications
-            ->where('type', DashboardMessage::class)
+            ->whereIn('type', [OrchidMessage::class, DashboardMessage::class])
             ->markAsRead();
 
         Toast::info(__('All messages have been read.'));
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function removeAll(Request $request)
     {
@@ -154,7 +158,7 @@ class NotificationScreen extends Screen
     {
         return $request->user()
             ->unreadNotifications()
-            ->where('type', DashboardMessage::class)
+            ->whereIn('type', [OrchidMessage::class, DashboardMessage::class])
             ->paginate();
     }
 }

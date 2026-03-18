@@ -1,10 +1,10 @@
-<a href="{{ route('platform.notifications') }}"
+<a href="{{ route('orchid.notifications') }}"
    class="m-auto d-flex align-items-center btn btn-link position-relative px-1 py-0 h-100 link-body-emphasis"
    data-controller="notification"
    data-notification-count-value="{{ count($notifications) }}"
-   data-notification-url-value="{{ route('platform.api.notifications') }}"
+   data-notification-url-value="{{ route('orchid.api.notifications') }}"
    data-notification-method-value="post"
-   data-notification-interval-value="{{ config('platform.notifications.interval') }}"
+   data-notification-interval-value="{{ config('orchid.notifications.interval') }}"
 >
     <x-orchid-icon path="bs.bell" />
 

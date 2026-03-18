@@ -3,7 +3,10 @@
 namespace Orchid\Screen\Concerns;
 
 use Illuminate\Support\Facades\Crypt;
+use Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException;
 use Orchid\Screen\Repository;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 trait InteractsWithEncryptedState
 {
@@ -12,10 +15,10 @@ trait InteractsWithEncryptedState
      * If the '_state' parameter is missing, an empty Repository object is returned.
      * Otherwise, the state is extracted from the encrypted '_state' parameter, deserialized and returned.
      *
-     * @throws \Psr\Container\ContainerExceptionInterface - If the container cannot provide the dependency injection for a class.
-     * @throws \Psr\Container\NotFoundExceptionInterface  - If the container cannot find a required dependency injection for a class.
+     * @throws ContainerExceptionInterface - If the container cannot provide the dependency injection for a class.
+     * @throws NotFoundExceptionInterface  - If the container cannot find a required dependency injection for a class.
      *
-     * @return \Orchid\Screen\Repository - The extracted state.
+     * @return Repository - The extracted state.
      */
     protected function extractState(?string $state = null): Repository
     {
@@ -38,7 +41,7 @@ trait InteractsWithEncryptedState
     /**
      * Serializes the current state of the screen into a string.
      *
-     * @throws \Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException If the PHP version is not supported for serialization.
+     * @throws PhpVersionNotSupportedException If the PHP version is not supported for serialization.
      *
      * @return string The serialized state.
      */

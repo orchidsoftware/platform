@@ -3,7 +3,7 @@
 namespace Orchid\Platform\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 
 class SearchController
 {
@@ -12,8 +12,8 @@ class SearchController
      */
     public function search(?string $query = null): View
     {
-        return view('platform::partials.search.results', [
-            'results' => Dashboard::search($query),
+        return view('orchid::partials.search.results', [
+            'results' => Orchid::search($query),
             'query'   => $query,
         ]);
     }

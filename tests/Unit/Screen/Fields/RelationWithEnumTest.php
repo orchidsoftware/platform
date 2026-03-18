@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Screen\Fields;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\WithFaker;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
@@ -25,7 +26,7 @@ class RelationWithEnumTest extends TestFieldsUnitCase
     protected $roles;
 
     /**
-     * @var Collection|\Illuminate\Database\Eloquent\Model|mixed
+     * @var Collection|Model|mixed
      */
     protected $users;
 

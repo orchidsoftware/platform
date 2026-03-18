@@ -14,7 +14,7 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 class BaseFieldTest extends TestFieldsUnitCase
 {
     /**
-     * @var \Orchid\Screen\Field
+     * @var Field
      */
     public $field;
 

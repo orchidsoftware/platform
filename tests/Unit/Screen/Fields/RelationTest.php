@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Screen\Fields;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
 use Orchid\Platform\Models\Role;
@@ -24,7 +25,7 @@ class RelationTest extends TestFieldsUnitCase
     protected $roles;
 
     /**
-     * @var Collection|\Illuminate\Database\Eloquent\Model|mixed
+     * @var Collection|Model|mixed
      */
     protected $users;
 
@@ -129,7 +130,7 @@ class RelationTest extends TestFieldsUnitCase
 
         $view = self::renderField($select);
 
-        $this->assertStringContainsString('data-relation-scope=""', $view);
+        $this->assertStringContainsString('data-select-scope-value=""', $view);
     }
 
     public function testScopeWithAttributes(): void
@@ -140,7 +141,7 @@ class RelationTest extends TestFieldsUnitCase
 
         $view = self::renderField($select);
 
-        $crypt = Str::between($view, 'data-relation-scope="', '=="');
+        $crypt = Str::between($view, 'data-select-scope-value="', '"');
 
         $this->assertEquals([
             'name'       => lcfirst('exampleScope'),
@@ -156,7 +157,7 @@ class RelationTest extends TestFieldsUnitCase
 
         $view = self::renderField($select);
 
-        $crypt = Str::between($view, 'data-relation-scope="', '=="');
+        $crypt = Str::between($view, 'data-select-scope-value="', '"');
 
         $this->assertEquals([
             'name'       => lcfirst('exampleScope'),
@@ -194,7 +195,7 @@ class RelationTest extends TestFieldsUnitCase
 
         $view = self::renderField($select);
 
-        $crypt = Str::between($view, 'data-relation-search-columns="', '=="');
+        $crypt = Str::between($view, 'data-select-search-columns-value="', '"');
 
         $this->assertEquals(['email', 'id'], Crypt::decrypt($crypt));
     }

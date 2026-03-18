@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Support\Testing;
 
 use Illuminate\Contracts\Auth\Authenticatable as UserContract;
+use Illuminate\Session\SessionManager;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Illuminate\Testing\TestResponse;
@@ -107,7 +108,7 @@ class DynamicTestScreen
      *
      * @param array $headers Headers to be used
      *
-     * @return \Illuminate\Testing\TestResponse
+     * @return TestResponse
      */
     public function display(array $headers = []): TestResponse
     {
@@ -124,7 +125,7 @@ class DynamicTestScreen
      * @param array  $parameters Parameters to be used
      * @param array  $headers    Headers to be used
      *
-     * @return \Illuminate\Testing\TestResponse
+     * @return TestResponse
      */
     public function method(string $method, array $parameters = [], array $headers = []): TestResponse
     {
@@ -205,7 +206,7 @@ class DynamicTestScreen
      */
     public function from(string $url): self
     {
-        /** @var \Illuminate\Session\SessionManager $session */
+        /** @var SessionManager $session */
         $session = $this->http->getApplication()->get('session');
 
         $session->setPreviousUrl($url);

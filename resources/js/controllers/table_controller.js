@@ -1,8 +1,6 @@
 import ApplicationController from "./application_controller";
 
 export default class extends ApplicationController {
-
-
     /**
      *
      */
@@ -19,12 +17,12 @@ export default class extends ApplicationController {
         this.allowDefaultHidden();
         this.renderColumn();
 
-
-        if (this.element.querySelector('.dropdown-column-menu') !== null) {
-            this.element.querySelector('.dropdown-column-menu')
-                .addEventListener('click', (e) => {
+        if (this.element.querySelector(".dropdown-column-menu") !== null) {
+            this.element
+                .querySelector(".dropdown-column-menu")
+                .addEventListener("click", e => {
                     e.stopPropagation();
-                })
+                });
         }
     }
 
@@ -36,8 +34,9 @@ export default class extends ApplicationController {
             return;
         }
 
-        this.element.querySelectorAll('input[data-default-hidden="true"]')
-            .forEach((checkbox) => {
+        this.element
+            .querySelectorAll('input[data-default-hidden="true"]')
+            .forEach(checkbox => {
                 this.hideColumn(checkbox.dataset.column);
             });
     }
@@ -47,7 +46,6 @@ export default class extends ApplicationController {
      * @param event
      */
     toggleColumn(event) {
-
         const columnName = event.target.dataset.column;
 
         this.hiddenColumns.includes(columnName)
@@ -64,7 +62,7 @@ export default class extends ApplicationController {
      * @param columnName
      */
     showColumn(columnName) {
-        this.hiddenColumns = this.hiddenColumns.filter((value) => {
+        this.hiddenColumns = this.hiddenColumns.filter(value => {
             return value !== columnName;
         });
     }
@@ -81,32 +79,34 @@ export default class extends ApplicationController {
      * Shows or hides columns
      */
     renderColumn() {
-        this.element.querySelectorAll('td[data-column], th[data-column]')
-            .forEach((column) => {
-                column.style.display = '';
+        this.element
+            .querySelectorAll("td[data-column], th[data-column]")
+            .forEach(column => {
+                column.style.display = "";
             });
 
-        const showClass = this.hiddenColumns.map(
-            column => `td[data-column="${column}"], th[data-column="${column}"]`,
-        ).join();
+        const showClass = this.hiddenColumns
+            .map(
+                column =>
+                    `td[data-column="${column}"], th[data-column="${column}"]`
+            )
+            .join();
 
-        if (showClass.length < 1){
+        if (showClass.length < 1) {
             return;
         }
 
-        this.element.querySelectorAll(showClass)
-            .forEach((column) => {
-                column.style.display = 'none';
-            });
+        this.element.querySelectorAll(showClass).forEach(column => {
+            column.style.display = "none";
+        });
 
-        const checkBoxEnable = this.hiddenColumns.map(
-            column => `input[data-column="${column}"]`,
-        ).join();
+        const checkBoxEnable = this.hiddenColumns
+            .map(column => `input[data-column="${column}"]`)
+            .join();
 
-        this.element.querySelectorAll(checkBoxEnable)
-            .forEach((checkbox) => {
-                checkbox.checked = false;
-            });
+        this.element.querySelectorAll(checkBoxEnable).forEach(checkbox => {
+            checkbox.checked = false;
+        });
     }
 
     /**
@@ -114,6 +114,6 @@ export default class extends ApplicationController {
      * @returns {string}
      */
     get slug() {
-        return this.data.get('slug');
+        return this.data.get("slug");
     }
 }

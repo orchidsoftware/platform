@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Middleware\Access;
 use Orchid\Platform\Http\Middleware\BladeIcons;
 use Orchid\Platform\Http\Middleware\Turbo;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -20,7 +20,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Route::middlewareGroup('platform', [
+        Route::middlewareGroup('orchid', [
             Turbo::class,
             BladeIcons::class,
             Access::class,
@@ -39,43 +39,43 @@ class RouteServiceProvider extends ServiceProvider
         /*
          * Dashboard routes.
          *
-         * The dashboard routes have a subdomain of the platform.domain config value,
-         * a prefix consisting of the Dashboard::prefix() method return value,
-         * an alias of 'platform.', middleware from the platform.middleware.private config value,
-         * and are defined in the Dashboard::path('routes/dashboard.php') file.
+         * The dashboard routes have a subdomain of the orchid.domain config value,
+         * a prefix consisting of the Orchid::prefix() method return value,
+         * an alias of 'orchid.', middleware from the orchid.middleware.private config value,
+         * and are defined in the Orchid::path('routes/orchid.php') file.
          */
-        Route::domain((string) config('platform.domain'))
-            ->prefix(Dashboard::prefix('/'))
-            ->as('platform.')
-            ->middleware(config('platform.middleware.private'))
-            ->group(Dashboard::path('routes/dashboard.php'));
+        Route::domain((string) config('orchid.domain'))
+            ->prefix(Orchid::prefix('/'))
+            ->as('orchid.')
+            ->middleware(config('orchid.middleware.private'))
+            ->group(Orchid::path('routes/orchid.php'));
 
         /*
          * Auth routes.
          *
-         * The auth routes have a subdomain of the platform.domain config value,
-         * a prefix consisting of the Dashboard::prefix() method return value,
-         * an alias of 'platform.', middleware from the platform.middleware.public config value,
-         * and are defined in the Dashboard::path('routes/auth.php') file.
+         * The auth routes have a subdomain of the orchid.domain config value,
+         * a prefix consisting of the Orchid::prefix() method return value,
+         * an alias of 'orchid.', middleware from the orchid.middleware.public config value,
+         * and are defined in the Orchid::path('routes/auth.php') file.
          */
-        Route::domain((string) config('platform.domain'))
-            ->prefix(Dashboard::prefix('/'))
-            ->as('platform.')
-            ->middleware(config('platform.middleware.public'))
-            ->group(Dashboard::path('routes/auth.php'));
+        Route::domain((string) config('orchid.domain'))
+            ->prefix(Orchid::prefix('/'))
+            ->as('orchid.')
+            ->middleware(config('orchid.middleware.public'))
+            ->group(Orchid::path('routes/auth.php'));
 
         /*
          * Application routes.
          *
-         * If the 'routes/platform.php' file exists, its routes have a subdomain of the platform.domain config value,
-         * a prefix consisting of the Dashboard::prefix() method return value,
-         * and middleware from the platform.middleware.private config value.
+         * If the 'routes/orchid.php' file exists, its routes have a subdomain of the orchid.domain config value,
+         * a prefix consisting of the Orchid::prefix() method return value,
+         * and middleware from the orchid.middleware.private config value.
          */
-        if (file_exists(base_path('routes/platform.php'))) {
-            Route::domain((string) config('platform.domain'))
-                ->prefix(Dashboard::prefix('/'))
-                ->middleware(config('platform.middleware.private'))
-                ->group(base_path('routes/platform.php'));
+        if (file_exists(base_path('routes/orchid.php'))) {
+            Route::domain((string) config('orchid.domain'))
+                ->prefix(Orchid::prefix('/'))
+                ->middleware(config('orchid.middleware.private'))
+                ->group(base_path('routes/orchid.php'));
         }
     }
 }

@@ -1,6 +1,13 @@
 import ApplicationController from "./application_controller";
 
 export default class extends ApplicationController {
+    static values = {
+        failedMessage: {
+            type: String,
+            default: "Search is temporarily unavailable.",
+        },
+    };
+
     static targets = ["query", "result"];
 
     connect() {
@@ -21,10 +28,18 @@ export default class extends ApplicationController {
         fetch(this.prefix(`/search/${encodeURIComponent(query)}`), {
             method: "POST",
             headers: {
-                'X-CSRF-Token': document.head.querySelector('meta[name="csrf_token"]').content,
+                "X-CSRF-Token": document.head.querySelector(
+                    'meta[name="csrf_token"]'
+                ).content,
             },
         })
-            .then(response => response.text())
+            .then(response => {
+                if (!response.ok) {
+                    return Promise.reject(response);
+                }
+
+                return response.text();
+            })
             .then(html => {
                 // Check if the input has changed
                 if (query !== this.queryTarget.value.trim()) {
@@ -35,10 +50,9 @@ export default class extends ApplicationController {
                 this.resultTarget.classList.remove("d-none");
             })
             .catch(() => {
-                this.toast("Error fetching search results");
+                alert(this.failedMessageValue);
             });
     }
-
 
     keydown(event) {
         if (!this.items.length) {
@@ -82,6 +96,8 @@ export default class extends ApplicationController {
     }
 
     get items() {
-        return Array.from(this.resultTarget.querySelectorAll("[data-search-item]"));
+        return Array.from(
+            this.resultTarget.querySelectorAll("[data-search-item]")
+        );
     }
 }

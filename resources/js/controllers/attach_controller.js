@@ -1,11 +1,11 @@
 import ApplicationController from "./application_controller";
-import Sortable from 'sortablejs';
+import Sortable from "sortablejs";
 
 export default class extends ApplicationController {
     static values = {
         name: {
             type: String,
-            default: 'attachment[]',
+            default: "attachment[]",
         },
         attachment: {
             type: Array,
@@ -13,15 +13,15 @@ export default class extends ApplicationController {
         },
         group: {
             type: String,
-            default: '',
+            default: "",
         },
         storage: {
             type: String,
-            default: 'public',
+            default: "public",
         },
         path: {
             type: String,
-            default: '',
+            default: "",
         },
         count: {
             type: Number,
@@ -47,20 +47,22 @@ export default class extends ApplicationController {
         },
         errorType: {
             type: String,
-            default: 'The attached file must be an image',
+            default: "The attached file must be an image",
         },
     };
 
-    static targets = ['files', 'preview', 'container', 'template', 'nullable'];
+    static targets = ["files", "preview", "container", "template", "nullable"];
 
     connect() {
-        this.attachmentValue.forEach((id) => this.renderPreview(id));
+        this.attachmentValue.forEach(id => this.renderPreview(id));
         this.togglePlaceholderShow();
 
-        new Sortable(this.element.querySelector('.sortable-dropzone'), {
-            disabled: this.filesTarget.disabled === true || this.filesTarget.readonly === true,
+        new Sortable(this.element.querySelector(".sortable-dropzone"), {
+            disabled:
+                this.filesTarget.disabled === true ||
+                this.filesTarget.readonly === true,
             filter: ".attach-file-uploader",
-            draggable:'.pip',
+            draggable: ".pip",
             animation: 150,
             onEnd: () => {
                 this.reorderElements();
@@ -68,26 +70,23 @@ export default class extends ApplicationController {
         });
     }
 
-
-    preventDefaults (event) {
-        event.preventDefault()
-        event.stopPropagation()
+    preventDefaults(event) {
+        event.preventDefault();
+        event.stopPropagation();
     }
 
     dropFiles(event) {
         this.filesTarget.files = event.dataTransfer.files;
 
-        this.filesTarget.dispatchEvent(
-            new Event('change', { bubbles: true })
-        );
+        this.filesTarget.dispatchEvent(new Event("change", { bubbles: true }));
     }
 
     selectFiles(event) {
-        [...event.target.files].forEach((file) => {
+        [...event.target.files].forEach(file => {
             let sizeMB = file.size / 1000 / 1000; //MB (Not MiB)
 
             if (this.sizeValue > 0 && sizeMB > this.sizeValue) {
-                this.toast(this.errorSizeValue.replace(':name', file.name));
+                this.toast(this.errorSizeValue.replace(":name", file.name));
                 //alert(this.errorSizeValue.replace(':name', file.name));
                 return;
             }
@@ -102,24 +101,26 @@ export default class extends ApplicationController {
 
     upload(file) {
         let data = new FormData();
-        data.append('file', file);
-        data.append('storage', this.storageValue);
-        data.append('group', this.groupValue);
-        data.append('path', this.pathValue);
+        data.append("file", file);
+        data.append("storage", this.storageValue);
+        data.append("group", this.groupValue);
+        data.append("path", this.pathValue);
 
         this.loadingValue = this.loadingValue + 1;
-        this.element.ariaBusy = 'true';
+        this.element.ariaBusy = "true";
 
         fetch(this.uploadUrlValue, {
-            method: 'POST',
+            method: "POST",
             body: data,
             headers: {
-                'X-CSRF-Token': document.head.querySelector('meta[name="csrf_token"]').content,
+                "X-CSRF-Token": document.head.querySelector(
+                    'meta[name="csrf_token"]'
+                ).content,
             },
         })
-            .then((response) => response.json())
-            .then((attachment) => {
-                this.element.ariaBusy = 'false';
+            .then(response => response.json())
+            .then(attachment => {
+                this.element.ariaBusy = "false";
                 this.loadingValue = this.loadingValue - 1;
 
                 let limit = this.attachmentValue.length < this.countValue;
@@ -134,11 +135,11 @@ export default class extends ApplicationController {
                 this.togglePlaceholderShow();
                 this.renderPreview(attachment);
             })
-            .catch((error) => {
-                this.element.ariaBusy = 'false';
+            .catch(error => {
+                this.element.ariaBusy = "false";
                 this.loadingValue = this.loadingValue - 1;
                 this.togglePlaceholderShow();
-                console.error('Error:', error);
+                console.error("Error:", error);
 
                 this.toast(this.errorTypeValue);
                 //alert(this.errorTypeValue);
@@ -146,11 +147,13 @@ export default class extends ApplicationController {
     }
 
     remove(event) {
-        const i = event.currentTarget.getAttribute('data-index');
+        const i = event.currentTarget.getAttribute("data-index");
 
-        event.currentTarget.closest('.pip').remove();
+        event.currentTarget.closest(".pip").remove();
 
-        this.attachmentValue = this.attachmentValue.filter((file) => String(file.id) !== String(i));
+        this.attachmentValue = this.attachmentValue.filter(
+            file => String(file.id) !== String(i)
+        );
 
         this.togglePlaceholderShow();
     }
@@ -159,9 +162,11 @@ export default class extends ApplicationController {
      *
      */
     togglePlaceholderShow() {
-        let toggle = this.attachmentValue.length >= this.countValue && this.countValue !== 0;
+        let toggle =
+            this.attachmentValue.length >= this.countValue &&
+            this.countValue !== 0;
 
-        this.containerTarget.classList.toggle('d-none', toggle);
+        this.containerTarget.classList.toggle("d-none", toggle);
         this.filesTarget.disabled = toggle;
 
         // Disable the nullable field if there is at least one valid value and the count equals 1.
@@ -180,9 +185,11 @@ export default class extends ApplicationController {
      * @param replace
      */
     renderPreview(attachment, replace = null) {
-        let preview =  this.templateTarget.content.querySelector('*').cloneNode(true);
+        let preview = this.templateTarget.content
+            .querySelector("*")
+            .cloneNode(true);
 
-        preview.querySelectorAll('*').forEach(element => {
+        preview.querySelectorAll("*").forEach(element => {
             preview.innerHTML = preview.innerHTML
                 .replace(/{id}/gi, attachment.id)
                 .replace(/{url}/gi, attachment.url)
@@ -192,30 +199,33 @@ export default class extends ApplicationController {
         });
 
         if (replace !== null) {
-            this.element.querySelector(`#attachment-${replace}`).outerHTML = pip.outerHTML;
+            this.element.querySelector(`#attachment-${replace}`).outerHTML =
+                pip.outerHTML;
             return;
         }
 
-        this.containerTarget.insertAdjacentElement('beforebegin', preview);
+        this.containerTarget.insertAdjacentElement("beforebegin", preview);
     }
 
-    reorderElements(){
+    reorderElements() {
         const items = {};
         let elements = this.element.querySelectorAll(`:scope .pip`);
 
         elements.forEach((preview, index) => {
-            const id = preview.querySelector('input').value;
+            const id = preview.querySelector("input").value;
             items[id] = index;
         });
 
         fetch(this.sortUrlValue, {
-            method: 'POST',
+            method: "POST",
             body: JSON.stringify({
                 files: items,
             }),
             headers: {
-                'Content-Type': 'application/json;charset=utf-8',
-                'X-CSRF-Token': document.head.querySelector('meta[name="csrf_token"]').content,
+                "Content-Type": "application/json;charset=utf-8",
+                "X-CSRF-Token": document.head.querySelector(
+                    'meta[name="csrf_token"]'
+                ).content,
             },
         }).then();
     }

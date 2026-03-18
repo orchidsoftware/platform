@@ -12,7 +12,7 @@ class ScreenTest extends TestFeatureCase
     {
         $this
             ->actingAs($this->createAdminUser())
-            ->get(route('platform.main', [
+            ->get(route('orchid.main', [
                 'method' => 'any',
             ]))
             ->assertSuccessful();

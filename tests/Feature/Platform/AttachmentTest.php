@@ -14,7 +14,7 @@ class AttachmentTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->post(route('platform.systems.files.upload'), [
+            ->post(route('orchid.files.upload'), [
                 'files' => UploadedFile::fake()->image('avatar.jpg'),
             ]);
 
@@ -31,7 +31,7 @@ class AttachmentTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->post(route('platform.systems.files.upload'), [
+            ->post(route('orchid.files.upload'), [
                 'files' => [
                     UploadedFile::fake()->image('avatar1.jpg'),
                     UploadedFile::fake()->image('avatar2.png'),
@@ -55,7 +55,7 @@ class AttachmentTest extends TestFeatureCase
         /** @var $response \Illuminate\Testing\TestResponse */
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->post(route('platform.systems.files.upload'), [
+            ->post(route('orchid.files.upload'), [
                 'files' => UploadedFile::fake()->image('avatar.jpg'),
             ]);
 
@@ -64,7 +64,7 @@ class AttachmentTest extends TestFeatureCase
 
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->delete(route('platform.systems.files.destroy', $upload->id));
+            ->delete(route('orchid.files.destroy', $upload->id));
 
         $response->assertOk();
     }
@@ -74,7 +74,7 @@ class AttachmentTest extends TestFeatureCase
         /** @var $response \Illuminate\Testing\TestResponse */
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->post(route('platform.systems.files.upload'), [
+            ->post(route('orchid.files.upload'), [
                 'files' => UploadedFile::fake()->image('avatar.jpg'),
             ]);
 
@@ -83,7 +83,7 @@ class AttachmentTest extends TestFeatureCase
 
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->put(route('platform.systems.files.update', $upload->id), [
+            ->put(route('orchid.files.update', $upload->id), [
                 'name'        => 'New name',
                 'description' => 'New description',
                 'alt'         => 'New alt',
@@ -102,7 +102,7 @@ class AttachmentTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->post(route('platform.systems.files.upload'), [
+            ->post(route('orchid.files.upload'), [
                 'files' => [
                     UploadedFile::fake()->image('first.jpg'),
                     UploadedFile::fake()->image('second.png'),
@@ -123,7 +123,7 @@ class AttachmentTest extends TestFeatureCase
 
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->post(route('platform.systems.files.sort'), [
+            ->post(route('orchid.files.sort'), [
                 'files' => $sort,
             ]);
 

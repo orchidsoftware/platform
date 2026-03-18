@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 use Orchid\Screen\Actions\Menu;
 use Orchid\Screen\Builder;
 use Orchid\Screen\Layout;
@@ -19,12 +20,12 @@ abstract class TabMenu extends Layout
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.tabMenu';
+    protected $template = 'orchid::layouts.tabMenu';
 
     /**
      * @throws Throwable
      *
-     * @return Factory|\Illuminate\View\View|void
+     * @return Factory|View|void
      */
     public function build(Repository $repository)
     {

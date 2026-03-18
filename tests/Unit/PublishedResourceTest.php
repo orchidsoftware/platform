@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
-use Orchid\Platform\Dashboard;
+use Orchid\Support\Facades\Orchid;
 use Orchid\Support\Formats;
 use Orchid\Tests\TestUnitCase;
 
@@ -12,8 +12,8 @@ class PublishedResourceTest extends TestUnitCase
 {
     public function testFilesArePublished(): void
     {
-        $this->assertFileExists(Dashboard::path('/public/assets/app.css'));
-        $this->assertFileExists(Dashboard::path('/public/assets/app.js'));
+        $this->assertFileExists(Orchid::path('/public/assets/app.css'));
+        $this->assertFileExists(Orchid::path('/public/assets/app.js'));
     }
 
     /**
@@ -31,19 +31,19 @@ class PublishedResourceTest extends TestUnitCase
         $maxJsSize = 2 * 1028 * 1028; // ~2 mb
 
         $this->assertLessThan($maxCssSize,
-            filesize(Dashboard::path('/public/assets/app.css')),
+            filesize(Orchid::path('/public/assets/app.css')),
             'File orchid.css more '.Formats::formatBytes($maxCssSize)
         );
 
         $this->assertLessThan($maxJsSize,
-            filesize(Dashboard::path('/public/assets/app.js')),
+            filesize(Orchid::path('/public/assets/app.js')),
             'File orchid.js more '.Formats::formatBytes($maxJsSize)
         );
     }
 
     public function testManifestFilesHaveVersion(): void
     {
-        $manifestPath = Dashboard::path('/public/manifest.json');
+        $manifestPath = Orchid::path('/public/manifest.json');
         $this->assertFileExists($manifestPath, 'Manifest file does not exist.');
 
         $manifestContent = file_get_contents($manifestPath);
@@ -67,12 +67,12 @@ class PublishedResourceTest extends TestUnitCase
 
     public function testManifestFilesExist(): void
     {
-        $manifestPath = Dashboard::path('/public/manifest.json');
+        $manifestPath = Orchid::path('/public/manifest.json');
         $manifest = json_decode(file_get_contents($manifestPath), true);
 
         foreach ($manifest as $data) {
             $filePath = explode('?', $data['file'])[0]; // Remove query string
-            $fullPath = Dashboard::path("/public/{$filePath}");
+            $fullPath = Orchid::path("/public/{$filePath}");
 
             $this->assertFileExists($fullPath, "Asset file does not exist: {$filePath}");
         }
@@ -80,7 +80,7 @@ class PublishedResourceTest extends TestUnitCase
 
     public function testManifestEntriesHaveIntegrity(): void
     {
-        $manifestPath = Dashboard::path('/public/manifest.json');
+        $manifestPath = Orchid::path('/public/manifest.json');
         $manifest = json_decode(file_get_contents($manifestPath), true);
 
         foreach ($manifest as $source => $data) {
@@ -91,7 +91,7 @@ class PublishedResourceTest extends TestUnitCase
 
     public function testManifestIsValidJson(): void
     {
-        $manifestPath = Dashboard::path('/public/manifest.json');
+        $manifestPath = Orchid::path('/public/manifest.json');
         $json = file_get_contents($manifestPath);
         $this->assertNotFalse($json, 'Manifest file cannot be read.');
 

@@ -25,7 +25,7 @@ class RoleTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->get(route('platform.systems.roles'));
+            ->get(route('orchid.roles'));
 
         $response
             ->assertOk()
@@ -36,7 +36,7 @@ class RoleTest extends TestFeatureCase
     public function testRouteSystemsRolesCreate(): void
     {
         $response = $this->actingAs($this->createAdminUser())
-            ->get(route('platform.systems.roles.create'));
+            ->get(route('orchid.roles.create'));
 
         $response
             ->assertOk()
@@ -47,7 +47,7 @@ class RoleTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->get(route('platform.systems.roles.edit', $this->role->id));
+            ->get(route('orchid.roles.edit', $this->role->id));
 
         $response->assertOk()
             ->assertSee('field-roles')

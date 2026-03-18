@@ -4,24 +4,25 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Orchid\Tests\TestFeatureCase;
 
 class NotificationDisabledTest extends TestFeatureCase
 {
     /**
-     * @param \Illuminate\Foundation\Application $app
+     * @param Application $app
      */
     protected function getEnvironmentSetUp($app): void
     {
         parent::getEnvironmentSetUp($app);
 
-        config()->set('platform.notifications.enabled', false);
+        config()->set('orchid.notifications.enabled', false);
     }
 
     public function testRouteForDisabledNotification(): void
     {
-        $this->assertFalse(Route::has('platform.notifications'));
-        $this->assertFalse(Route::has('platform.api.notifications'));
+        $this->assertFalse(Route::has('orchid.notifications'));
+        $this->assertFalse(Route::has('orchid.api.notifications'));
     }
 }

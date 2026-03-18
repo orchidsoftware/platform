@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 use Orchid\Screen\Builder;
 use Orchid\Screen\Field;
 use Orchid\Screen\Layout;
@@ -19,7 +20,7 @@ abstract class Rows extends Layout
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.row';
+    protected $template = 'orchid::layouts.row';
 
     /**
      * Used to create the title of a group of form elements.
@@ -36,7 +37,7 @@ abstract class Rows extends Layout
     /**
      * @throws Throwable
      *
-     * @return Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function build(Repository $repository)
     {

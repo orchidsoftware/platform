@@ -34,7 +34,7 @@ class Group implements Fieldable, Groupable
     /**
      * @var string
      */
-    protected $view = 'platform::fields.group';
+    protected $view = 'orchid::fields.group';
 
     /**
      * @return static
@@ -61,7 +61,7 @@ class Group implements Fieldable, Groupable
     }
 
     /**
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function render(): ?View
     {

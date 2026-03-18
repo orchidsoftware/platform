@@ -23,7 +23,7 @@ class Map extends Field
     /**
      * @var string
      */
-    protected $view = 'platform::fields.map';
+    protected $view = 'orchid::fields.map';
 
     /**
      * Default attributes value.

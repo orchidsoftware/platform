@@ -14,7 +14,7 @@ class SortableTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->post(route('platform.systems.files.upload'), [
+            ->post(route('orchid.files.upload'), [
                 'files' => [
                     UploadedFile::fake()->image('first.jpg'),
                     UploadedFile::fake()->image('second.png'),
@@ -38,7 +38,7 @@ class SortableTest extends TestFeatureCase
 
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->post(route('platform.systems.sorting'), [
+            ->post(route('orchid.sorting'), [
                 'items' => $sortItems,
                 'model' => Attachment::class,
             ]);

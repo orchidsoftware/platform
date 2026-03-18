@@ -5,10 +5,18 @@ on:
   push:
     paths:
       - '.github/workflows/**'
-      - '**.php'
       - 'phpunit.xml'
       - 'composer.json'
       - 'composer.lock'
+      - '.prettierrc'
+      - '.prettierignore'
+      - '**.php'
+      - '**.js'
+      - '**.scss'
+      - '**.json'
+      - '**.md'
+      - '**.yaml'
+      - '**.yml'
 
 jobs:
   php-cs-fixer:
@@ -33,6 +41,18 @@ jobs:
 
       - name: Run Pint
         run: vendor/bin/pint
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 'lts/*'
+          package-manager-cache: false
+
+      - name: Install Dependencies 🔧
+        run: npm install --no-package-lock
+
+      - name: Run Prettier
+        run: npx prettier . --write
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v7

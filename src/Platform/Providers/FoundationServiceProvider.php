@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Octane\Events\RequestReceived;
 use Laravel\Scout\ScoutServiceProvider;
 use Orchid\Icons\IconServiceProvider;
 use Orchid\Platform\Components\Notification;
 use Orchid\Platform\Components\Stream;
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Orchid;
 use Orchid\Screen\Components\Popover;
 use Tabuna\Breadcrumbs\BreadcrumbsServiceProvider;
 use Watson\Active\ActiveServiceProvider;
@@ -41,7 +42,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerTranslations(): self
     {
-        $this->loadJsonTranslationsFrom(Dashboard::path('resources/lang/'));
+        $this->loadJsonTranslationsFrom(Orchid::path('resources/lang/'));
 
         return $this;
     }
@@ -53,7 +54,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerViews(): self
     {
-        $this->loadViewsFrom(Dashboard::path('resources/views'), 'platform');
+        $this->loadViewsFrom(Orchid::path('resources/views'), 'orchid');
 
         return $this;
     }
@@ -84,7 +85,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerOctaneEventsListen(): self
     {
-        Event::listen(fn (\Laravel\Octane\Events\RequestReceived $request) => \Orchid\Support\Facades\Dashboard::flush());
+        Event::listen(fn (RequestReceived $request) => \Orchid\Support\Facades\Orchid::flush());
 
         return $this;
     }
@@ -114,19 +115,19 @@ class FoundationServiceProvider extends ServiceProvider
             ->registerProviders();
 
         $this->app->bind(
-            Dashboard::class,
-            fn (Application $app) => $app->make(Dashboard::class)
+            Orchid::class,
+            fn (Application $app) => $app->make(Orchid::class)
         );
 
         $this->app->singleton(
-            Dashboard::class,
-            static fn (Application $app) => new Dashboard
+            Orchid::class,
+            static fn (Application $app) => new Orchid
         );
 
         $this
             ->registerScreenMacro()
             ->mergeConfigFrom(
-                Dashboard::path('config/platform.php'), 'platform'
+                Orchid::path('config/orchid.php'), 'orchid'
             );
 
         Blade::component('orchid-popover', Popover::class);

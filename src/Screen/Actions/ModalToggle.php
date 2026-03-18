@@ -21,7 +21,7 @@ class ModalToggle extends Button
     /**
      * @var string
      */
-    protected $view = 'platform::actions.modal';
+    protected $view = 'orchid::actions.modal';
 
     /**
      * Default attributes value.
@@ -54,7 +54,7 @@ class ModalToggle extends Button
      * @param string $name
      * @param array  $options
      *
-     * @return $this|\Orchid\Screen\Actions\Button
+     * @return $this|Button
      */
     public function modal(string $name, array $options = [])
     {

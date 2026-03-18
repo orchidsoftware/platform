@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
+use Illuminate\Auth\SessionGuard;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Models\User;
@@ -15,7 +16,7 @@ class GuardAuthTest extends TestFeatureCase
     {
         parent::setUp();
 
-        config()->set('platform.guard', 'admin');
+        config()->set('orchid.guard', 'admin');
 
         config()->set('auth.guards.admin', [
             'driver'   => 'session',
@@ -30,28 +31,28 @@ class GuardAuthTest extends TestFeatureCase
 
     public function testRouteCustomGuardAuthSuccess(): void
     {
-        $this->post(route('platform.login.auth'), [
+        $this->post(route('orchid.login.auth'), [
             'email'    => $this->createAdminUser()->email,
             'password' => 'password',
             'remember' => 'on',
         ])
             ->assertStatus(302)
-            ->assertRedirect(route(config('platform.index')));
+            ->assertRedirect(route(config('orchid.index')));
     }
 
     public function testFailCustomGuard(): void
     {
         $this
             ->actingAs($this->createAdminUser(), 'web')
-            ->get(route('platform.index'))
+            ->get(route('orchid.index'))
             ->assertStatus(302)
-            ->assertRedirect(route('platform.login'));
+            ->assertRedirect(route('orchid.login'));
     }
 
     public function testCustomGuardShouldUse(): void
     {
-        Route::middleware(config('platform.middleware.private'))->get('custom-guard', function () {
-            /** @var \Illuminate\Auth\SessionGuard $sessionGuard */
+        Route::middleware(config('orchid.middleware.private'))->get('custom-guard', function () {
+            /** @var SessionGuard $sessionGuard */
             $sessionGuard = Auth::guard();
 
             return $sessionGuard->getName();

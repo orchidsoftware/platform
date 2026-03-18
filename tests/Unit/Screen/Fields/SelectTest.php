@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Fields;
 
+use Illuminate\Support\Collection;
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Fields\Select;
 use Orchid\Support\Color;
@@ -17,7 +18,7 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 class SelectTest extends TestFieldsUnitCase
 {
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     protected $roles;
 

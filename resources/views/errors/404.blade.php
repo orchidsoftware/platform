@@ -1,4 +1,4 @@
-@extends('platform::dashboard')
+@extends('orchid::dashboard')
 
 @section('title', '404')
 @section('description', __("You requested a page that doesn't exist."))

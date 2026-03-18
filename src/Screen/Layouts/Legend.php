@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Sight;
@@ -17,7 +18,7 @@ abstract class Legend extends Layout
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.legend';
+    protected $template = 'orchid::layouts.legend';
 
     /**
      * Used to create the title of a group of form elements.
@@ -42,7 +43,7 @@ abstract class Legend extends Layout
     protected $target;
 
     /**
-     * @return Factory|\Illuminate\View\View|null
+     * @return Factory|View|null
      */
     public function build(Repository $repository)
     {

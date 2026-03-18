@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Orchid\Support\Attributes\FlushOctaneState;
 
-class Dashboard
+class Orchid
 {
     use Configuration\ManagesMenu,
         Configuration\ManagesModelOptions,
@@ -20,11 +20,11 @@ class Dashboard
         Macroable;
 
     /**
-     * Get the route with the dashboard prefix.
+     * Get the route with the orchid prefix.
      */
     public static function prefix(string $path = ''): string
     {
-        $prefix = config('platform.prefix');
+        $prefix = config('orchid.prefix');
 
         return Str::start($prefix.$path, '/');
     }
@@ -33,7 +33,7 @@ class Dashboard
      * Clear all persistent state information in the Orchid.
      *
      * This method is essential for Laravel Octane to properly handle stateful requests
-     * when the Dashboard is used as a singleton. It ensures that any stored data
+     * when the Orchid is used as a singleton. It ensures that any stored data
      * and state information are reset, avoiding potential issues with stale or
      * inconsistent data between requests.
      */

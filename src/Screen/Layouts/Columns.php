@@ -15,7 +15,7 @@ abstract class Columns extends Layout
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.columns';
+    protected $template = 'orchid::layouts.columns';
 
     /**
      * Layout constructor.

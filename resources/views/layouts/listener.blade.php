@@ -1,4 +1,4 @@
-<x-orchid-stream :target="$templateSlug" :rule="\request()->routeIs('platform.async.listener')">
+<x-orchid-stream :target="$templateSlug" :rule="\request()->routeIs('orchid.async.listener')">
     <div data-controller="listener"
          data-listener-watched-value="{{$targets}}"
          data-listener-url-value="{{$asyncRoute}}"

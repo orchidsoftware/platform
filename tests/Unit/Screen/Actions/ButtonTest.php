@@ -118,7 +118,7 @@ class ButtonTest extends TestFieldsUnitCase
     public function testButtonForCustomAction(): void
     {
         $buttonForRoute = Button::make('About')
-            ->action(route('platform.index'));
+            ->action(route('orchid.index'));
 
         $view = self::renderField($buttonForRoute);
 

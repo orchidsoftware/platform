@@ -10,8 +10,8 @@
      data-attach-path-value="{{ $path }}"
      data-attach-group-value="{{ $group }}"
 
-     data-attach-upload-url-value="{{ $uploadUrl ?? route('platform.systems.files.upload') }}"
-     data-attach-sort-url-value="{{ $sortUrl ?? route('platform.systems.files.sort') }}"
+     data-attach-upload-url-value="{{ $uploadUrl ?? route('orchid.files.upload') }}"
+     data-attach-sort-url-value="{{ $sortUrl ?? route('orchid.files.sort') }}"
 
      data-attach-error-size-value="{{ $errorMaxSizeMessage }}"
      data-attach-error-type-value="{{ $errorTypeMessage }}"

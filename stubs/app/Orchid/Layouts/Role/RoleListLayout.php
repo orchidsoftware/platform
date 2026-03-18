@@ -29,7 +29,7 @@ class RoleListLayout extends Table
                 ->cantHide()
                 ->filter(Input::make())
                 ->render(fn (Role $role) => Link::make($role->name)
-                    ->route('platform.systems.roles.edit', $role->id)),
+                    ->route('orchid.roles.edit', $role->id)),
 
             TD::make('slug', __('Slug'))
                 ->sort()

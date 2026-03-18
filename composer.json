@@ -56,8 +56,7 @@
     "conflict": {
         "laravel/framework": "<=10.48.25, <=11.34.0",
         "orchestra/testbench-core": "<8.23.9",
-        "nesbot/carbon": "<2.66.0",
-        "laravel/scout": "<10.19.1"
+        "nesbot/carbon": "<2.66.0"
     },
     "autoload": {
         "psr-4": {
@@ -89,6 +88,7 @@
             ],
             "aliases": {
                 "Alert": "Orchid\\Support\\Facades\\Alert",
+                "Orchid": "Orchid\\Support\\Facades\\Orchid",
                 "Dashboard": "Orchid\\Support\\Facades\\Dashboard"
             }
         }
@@ -98,6 +98,7 @@
         "orchid/fortify": "Orchid template for Laravel Fortify."
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "lock": false
     }
 }

@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Orchid\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Foundation\Application;
+use Illuminate\Routing\Router;
 use Orchestra\Testbench\Concerns\WithLaravelMigrations;
 use Orchid\Platform\Database\Seeders\OrchidDatabaseSeeder;
 use Orchid\Platform\Models\User;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 use Orchid\Support\Facades\Alert;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 use Orchid\Tests\App\ExemplarServiceProvider;
 use Tabuna\Breadcrumbs\Breadcrumbs;
 use Tabuna\Breadcrumbs\BreadcrumbsServiceProvider;
@@ -33,7 +35,7 @@ trait Environment
         parent::setUp();
 
         /* Refresh application for route/breadcrumbs/orchid provider */
-        if (! $this->app['router']->has('platform.main')) {
+        if (! $this->app['router']->has('orchid.main')) {
             $this->refreshApplication();
             $this->defineDatabaseMigrations();
         }
@@ -62,7 +64,7 @@ trait Environment
     }
 
     /**
-     * @param \Illuminate\Foundation\Application $app
+     * @param Application $app
      */
     protected function getEnvironmentSetUp($app): void
     {
@@ -70,7 +72,7 @@ trait Environment
     }
 
     /**
-     * @param \Illuminate\Foundation\Application $app
+     * @param Application $app
      */
     protected function getPackageProviders($app): array
     {
@@ -84,7 +86,7 @@ trait Environment
     /**
      * Define routes setup.
      *
-     * @param \Illuminate\Routing\Router $router
+     * @param Router $router
      *
      * @return void
      */
@@ -94,7 +96,7 @@ trait Environment
     }
 
     /**
-     * @param \Illuminate\Foundation\Application $app
+     * @param Application $app
      */
     protected function getPackageAliases($app): array
     {
@@ -102,7 +104,7 @@ trait Environment
             'Alert'       => Alert::class,
             'Active'      => Active::class,
             'Breadcrumbs' => Breadcrumbs::class,
-            'Dashboard'   => Dashboard::class,
+            'Orchid'      => Orchid::class,
         ];
     }
 }

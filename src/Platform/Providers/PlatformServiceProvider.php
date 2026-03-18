@@ -4,34 +4,35 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
+use App\Orchid\PlatformProvider;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Icons\IconFinder;
-use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemPermission;
+use Orchid\Platform\Orchid;
 
 class PlatformServiceProvider extends ServiceProvider
 {
     /**
-     * @var Dashboard
+     * @var Orchid
      */
-    protected $dashboard;
+    protected $orchid;
 
     /**
      * Boot the application events.
      */
-    public function boot(Dashboard $dashboard, IconFinder $iconFinder): void
+    public function boot(Orchid $orchid, IconFinder $iconFinder): void
     {
-        $this->dashboard = $dashboard;
+        $this->orchid = $orchid;
 
-        foreach (config('platform.icons', []) as $key => $path) {
+        foreach (config('orchid.icons', []) as $key => $path) {
             $iconFinder->registerIconDirectory($key, $path);
         }
 
         $this->app->booted(function () {
-            $this->dashboard
-                ->registerResource('stylesheets', config('platform.resource.stylesheets'))
-                ->registerResource('scripts', config('platform.resource.scripts'))
-                ->registerSearch(config('platform.search', []))
+            $this->orchid
+                ->registerResource('stylesheets', config('orchid.resource.stylesheets'))
+                ->registerResource('scripts', config('orchid.resource.scripts'))
+                ->registerSearch(config('orchid.search', []))
                 ->registerPermissions($this->registerPermissionsMain())
                 ->registerPermissions($this->registerPermissionsSystems());
         });
@@ -40,13 +41,13 @@ class PlatformServiceProvider extends ServiceProvider
     protected function registerPermissionsMain(): ItemPermission
     {
         return ItemPermission::group(__('Main'))
-            ->addPermission('platform.index', __('Main'));
+            ->addPermission('orchid.index', __('Main'));
     }
 
     protected function registerPermissionsSystems(): ItemPermission
     {
         return ItemPermission::group(__('System'))
-            ->addPermission('platform.systems.attachment', __('Attachment'));
+            ->addPermission('orchid.attachment', __('Attachment'));
     }
 
     /**
@@ -54,7 +55,7 @@ class PlatformServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $provider = config('platform.provider', \App\Orchid\PlatformProvider::class);
+        $provider = config('orchid.provider', PlatformProvider::class);
 
         if ($provider !== null && class_exists($provider)) {
             $this->app->register($provider);

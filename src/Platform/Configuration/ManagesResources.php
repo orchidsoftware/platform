@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\Str;
+use Orchid\Support\Locale;
 use RuntimeException;
 
 trait ManagesResources
@@ -50,7 +51,7 @@ trait ManagesResources
     /**
      * Determine published assets are up-to-date.
      *
-     * @throws \RuntimeException
+     * @throws RuntimeException
      *
      * @return bool
      */
@@ -72,7 +73,7 @@ trait ManagesResources
             ->withEntryPoints(['resources/js/app.js', 'resources/sass/app.scss'])
             ->createAssetPathsUsing(function (string $path, ?bool $secure) {
 
-                if (\Orchid\Support\Locale::isRtl() && Str::endsWith($path, '.css')) {
+                if (Locale::isRtl() && Str::endsWith($path, '.css')) {
                     $path = Str::replaceLast('.css', '.rtl.css', $path);
                 }
 

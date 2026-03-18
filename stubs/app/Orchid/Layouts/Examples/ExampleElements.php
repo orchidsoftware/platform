@@ -16,16 +16,16 @@ class ExampleElements extends TabMenu
     {
         return [
             Menu::make('Basic Elements')
-                ->route('platform.example.fields'),
+                ->route('orchid.example.fields'),
 
             Menu::make('Advanced Elements')
-                ->route('platform.example.advanced'),
+                ->route('orchid.example.advanced'),
 
             Menu::make('Text Editors')
-                ->route('platform.example.editors'),
+                ->route('orchid.example.editors'),
 
             Menu::make('Run Actions')
-                ->route('platform.example.actions'),
+                ->route('orchid.example.actions'),
         ];
     }
 }

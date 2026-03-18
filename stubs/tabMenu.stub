@@ -16,7 +16,7 @@ class DummyClass extends TabMenu
     {
         return [
             Menu::make('Home')
-                ->route(config('platform.index')),
+                ->route(config('orchid.index')),
         ];
     }
 }

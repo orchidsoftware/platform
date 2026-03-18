@@ -30,7 +30,7 @@ class Alert
     /**
      * Instantiate the flash notifier with session.
      *
-     * @param \Illuminate\Session\Store $session The session store instance.
+     * @param Store $session The session store instance.
      */
     public function __construct(protected Store $session) {}
 

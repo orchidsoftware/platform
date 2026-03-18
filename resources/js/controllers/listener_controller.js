@@ -1,7 +1,7 @@
 import ApplicationController from "./application_controller";
 
 export default class extends ApplicationController {
-    static classes = [ "loading" ]
+    static classes = ["loading"];
     static values = {
         url: {
             type: String,
@@ -10,16 +10,19 @@ export default class extends ApplicationController {
             type: Array,
             default: [],
         },
-    }
+    };
 
     /**
      *
      */
     connect() {
         this.watchedValue.forEach(name => {
-            document.querySelectorAll(`[name="${name}"]`)
-                .forEach((field) =>
-                    field.addEventListener('change',  () => this.debouncedHandleFieldChange())
+            document
+                .querySelectorAll(`[name="${name}"]`)
+                .forEach(field =>
+                    field.addEventListener("change", () =>
+                        this.debouncedHandleFieldChange()
+                    )
                 );
         });
     }
@@ -28,16 +31,16 @@ export default class extends ApplicationController {
      * Handles the change event on the target fields by asynchronously loading data.
      */
     handleFieldChange() {
-        const formElement = this.element.closest('form');
+        const formElement = this.element.closest("form");
         formElement.classList.add(...this.loadingClasses);
 
         const data = new FormData(formElement);
 
-        let state = document.getElementById('screen-state').value;
+        let state = document.getElementById("screen-state").value;
 
         // Added state to send
         if (state.length > 0) {
-            data.append('_state', state)
+            data.append("_state", state);
         }
 
         this.loadStream(this.urlValue, data, () => {
@@ -48,8 +51,10 @@ export default class extends ApplicationController {
     /**
      * Debounced version of handleFieldChange to prevent multiple rapid requests.
      */
-    debouncedHandleFieldChange = this.debounce(() => this.handleFieldChange(), 200);
-
+    debouncedHandleFieldChange = this.debounce(
+        () => this.handleFieldChange(),
+        200
+    );
 
     /**
      * Utility function to debounce another function.

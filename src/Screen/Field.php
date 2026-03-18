@@ -17,6 +17,8 @@ use Orchid\Screen\Concerns\HasTranslations;
 use Orchid\Screen\Concerns\Makeable;
 use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Throwable;
 
 /**
@@ -87,7 +89,7 @@ class Field implements Fieldable, Htmlable
      *
      * @var Closure|string|null
      */
-    protected $typeForm = 'platform::partials.fields.vertical';
+    protected $typeForm = 'orchid::partials.fields.vertical';
 
     /**
      * A set of attributes for the assignment
@@ -135,7 +137,7 @@ class Field implements Fieldable, Htmlable
      * @param string $method
      * @param array  $parameters
      *
-     * @return $this|mixed|static|\Orchid\Screen\Field
+     * @return $this|mixed|static|Field
      */
     public function __call(string $method, array $parameters)
     {
@@ -461,7 +463,7 @@ class Field implements Fieldable, Htmlable
      */
     public function vertical(): static
     {
-        $this->typeForm = 'platform::partials.fields.vertical';
+        $this->typeForm = 'orchid::partials.fields.vertical';
 
         return $this;
     }
@@ -473,7 +475,7 @@ class Field implements Fieldable, Htmlable
      */
     public function clear(): static
     {
-        $this->typeForm = 'platform::partials.fields.clear';
+        $this->typeForm = 'orchid::partials.fields.clear';
 
         return $this;
     }
@@ -485,7 +487,7 @@ class Field implements Fieldable, Htmlable
      */
     public function horizontal(): static
     {
-        $this->typeForm = 'platform::partials.fields.horizontal';
+        $this->typeForm = 'orchid::partials.fields.horizontal';
 
         return $this;
     }
@@ -497,7 +499,7 @@ class Field implements Fieldable, Htmlable
      */
     public function hiddenFormType(): static
     {
-        $this->typeForm = 'platform::partials.fields.hidden';
+        $this->typeForm = 'orchid::partials.fields.hidden';
 
         return $this;
     }
@@ -556,10 +558,10 @@ class Field implements Fieldable, Htmlable
     }
 
     /**
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      *
-     * @return \Closure|mixed|object|null
+     * @return Closure|mixed|object|null
      */
     private function getErrorsMessage()
     {

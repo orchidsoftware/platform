@@ -1,11 +1,12 @@
-html, body {
+html,
+body {
     width: 100%;
     height: 100%;
     overscroll-behavior-y: none;
 }
 
 body {
-  overflow-x: hidden;
+    overflow-x: hidden;
 }
 
 @include media-breakpoint-up(lg) {
@@ -21,15 +22,14 @@ body {
 }
 
 @include media-breakpoint-down(lg) {
-
     .aside-collapse {
         visibility: hidden;
         opacity: 0;
-        transition: all 1ms ease!important;
+        transition: all 1ms ease !important;
     }
 
     .aside {
-        height: calc(1.325rem + .9vw + 2em);
+        height: calc(1.325rem + 0.9vw + 2em);
         transition: all 300ms ease;
     }
 
@@ -42,7 +42,7 @@ body {
         }
 
         .aside {
-            height: auto!important;
+            height: auto !important;
             min-height: 100vh;
         }
 
@@ -52,7 +52,7 @@ body {
     }
 
     body:not(.menu-open) {
-        .aside-collapse{
+        .aside-collapse {
             .sub-menu {
                 visibility: hidden !important;
             }
@@ -60,24 +60,23 @@ body {
     }
 }
 
-
 .full-height {
-  height: 100vh;
-  overflow: auto;
+    height: 100vh;
+    overflow: auto;
 }
-
 
 .command-bar {
     --#{$prefix}dropdown-item-padding-x: 1rem;
-    --#{$prefix}dropdown-item-padding-y: .25rem;
+    --#{$prefix}dropdown-item-padding-y: 0.25rem;
 }
 
 .table td {
     --#{$prefix}dropdown-item-padding-x: 0.5rem;
-    --#{$prefix}dropdown-item-padding-y: .25rem;
+    --#{$prefix}dropdown-item-padding-y: 0.25rem;
 }
 
-.command-bar, .table td, {
+.command-bar,
+.table td {
     --#{$prefix}dropdown-spacer: #{$dropdown-spacer};
     --#{$prefix}dropdown-color: #{$dropdown-color};
     --#{$prefix}dropdown-bg: #{$dropdown-bg};
@@ -98,12 +97,11 @@ body {
     }
 }
 
-.dropdown-menu{
+.dropdown-menu {
     .btn {
         @extend .dropdown-item;
     }
 }
-
 
 @include media-breakpoint-down(md) {
     // Styles
@@ -141,11 +139,9 @@ body {
                 }
             }
              */
-
         }
     }
 }
-
 
 .layout {
     @extend .bg-white;
@@ -166,8 +162,8 @@ body {
         box-shadow: none !important;
     }
 
-    > .mb-3:last-child{
-        @extend .mb-0
+    > .mb-3:last-child {
+        @extend .mb-0;
     }
 }
 
@@ -183,12 +179,10 @@ body {
     border: none;
 }
 
-
 .workspace-limit {
     max-width: calc(1120px + #{$spacer});
     overscroll-behavior-y: none;
 }
-
 
 .command-bar-wrapper {
     position: sticky;
@@ -199,7 +193,6 @@ body {
     left: 0;
     right: 0;
 }
-
 
 @include media-breakpoint-down(md) {
     .command-bar-wrapper {
@@ -237,4 +230,3 @@ body {
          */
     }
 }
-

@@ -16,7 +16,7 @@ class LoginTest extends TestBrowserCase
 
             // login
             $browser
-                ->visitRoute('platform.login')
+                ->visitRoute('orchid.login')
                 ->waitForText('Sign in to your account')
 
                 // invalid login
@@ -35,20 +35,20 @@ class LoginTest extends TestBrowserCase
 
             // Redirect to home
             $browser
-                ->visitRoute('platform.login')
-                ->waitForRoute(config('platform.index'));
+                ->visitRoute('orchid.login')
+                ->waitForRoute(config('orchid.index'));
 
             // Logout
             $browser
-                ->visitRoute('platform.profile')
+                ->visitRoute('orchid.profile')
                 ->clickLink($user->name)
                 ->waitForText('Sign out')
                 ->press('Sign out')
-                ->waitForRoute('platform.login');
+                ->waitForRoute('orchid.login');
 
             // Redirect to login
             $browser
-                ->visitRoute('platform.main')
+                ->visitRoute('orchid.main')
                 ->waitForLocation('/dashboard/login')
                 ->assertSee('Sign in to your account');
         });

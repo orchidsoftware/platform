@@ -39,7 +39,7 @@ class Cropper extends Picture
     /**
      * @var string
      */
-    protected $view = 'platform::fields.cropper';
+    protected $view = 'orchid::fields.cropper';
 
     /**
      * Default attributes value.

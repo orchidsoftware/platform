@@ -21,7 +21,7 @@ class AsyncScreenTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->post(route('platform.async.listener', [
+            ->post(route('orchid.async.listener', [
                 'screen' => Crypt::encryptString(DependentListenerScreen::class),
                 'layout' => Crypt::encryptString(DependentSumListener::class),
             ]), [
@@ -46,7 +46,7 @@ class AsyncScreenTest extends TestFeatureCase
 
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->post(route('platform.async'), [
+            ->post(route('orchid.async'), [
                 '_screen'   => Crypt::encryptString(DependentListenerScreen::class),
                 '_call'     => Str::random(),
                 '_template' => $layout->getSlug(),
@@ -66,7 +66,7 @@ class AsyncScreenTest extends TestFeatureCase
 
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->post(route('platform.async', [
+            ->post(route('orchid.async', [
                 'first'  => 2,
                 'second' => 3,
             ]), [

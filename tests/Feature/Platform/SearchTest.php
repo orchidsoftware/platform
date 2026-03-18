@@ -14,7 +14,7 @@ class SearchTest extends TestFeatureCase
     {
         $this
             ->actingAs($this->createAdminUser())
-            ->post(route('platform.search', Str::uuid()->toString()))
+            ->post(route('orchid.search', Str::uuid()->toString()))
             ->assertOk()
             ->assertSee('There are no records in this view');
     }
@@ -30,7 +30,7 @@ class SearchTest extends TestFeatureCase
 
         $this
             ->actingAs($this->createAdminUser())
-            ->post(route('platform.search', $user->email))
+            ->post(route('orchid.search', $user->email))
             ->assertOk()
             ->assertSee($user->name);
     }

@@ -1,6 +1,6 @@
 <div
     data-controller="upload"
-    data-upload-storage="{{$storage ?? config('platform.attachment.disk', 'public')}}"
+    data-upload-storage="{{$storage ?? config('orchid.attachment.disk', 'public')}}"
     data-upload-name="{{$name}}"
     data-upload-id="dropzone-{{$id}}"
     data-upload-data='@json($value)'

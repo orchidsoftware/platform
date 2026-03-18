@@ -3,6 +3,7 @@
 namespace Orchid\Tests\App\Screens;
 
 use Orchid\Platform\Models\User;
+use Orchid\Screen\Action;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
@@ -12,7 +13,7 @@ class ModelRouteBindScreen extends Screen
     /**
      * Query data.
      *
-     * @param \Orchid\Platform\Models\User $user
+     * @param User $user
      */
     public function query(?User $user = null): array
     {
@@ -32,7 +33,7 @@ class ModelRouteBindScreen extends Screen
     /**
      * Button commands.
      *
-     * @return \Orchid\Screen\Action[]
+     * @return Action[]
      */
     public function commandBar(): array
     {

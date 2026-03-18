@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\Support\Arr;
+use Illuminate\View\View;
 use Orchid\Screen\Action;
 use Orchid\Screen\Commander;
 use Orchid\Screen\Layout;
@@ -20,7 +21,7 @@ abstract class Block extends Layout
     /**
      * @var string
      */
-    protected $template = 'platform::layouts.block';
+    protected $template = 'orchid::layouts.block';
 
     /**
      * @var false[]
@@ -77,7 +78,7 @@ abstract class Block extends Layout
     /**
      * Used to create the description of a group of form elements.
      *
-     * @param string|\Illuminate\View\View description
+     * @param string|View description
      */
     public function description($description): self
     {

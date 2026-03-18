@@ -28,7 +28,7 @@ class TimeZone extends Field
     /**
      * @var string
      */
-    protected $view = 'platform::fields.select';
+    protected $view = 'orchid::fields.select';
 
     /**
      * Default attributes value.

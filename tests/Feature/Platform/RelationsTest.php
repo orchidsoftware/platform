@@ -107,7 +107,7 @@ class RelationsTest extends TestFeatureCase
 
         return $this
             ->actingAs($this->createAdminUser())
-            ->post(route('platform.systems.relation'), $params);
+            ->post(route('orchid.relation'), $params);
     }
 
     public function testSearchColumns()
@@ -125,7 +125,7 @@ class RelationsTest extends TestFeatureCase
 
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->post(route('platform.systems.relation'), $params);
+            ->post(route('orchid.relation'), $params);
 
         $response->assertJson([
             ['value' => $user->id, 'label' => $user->name.' ('.$user->email.')'],
@@ -152,7 +152,7 @@ class RelationsTest extends TestFeatureCase
 
         $response = $this
             ->actingAs($this->createAdminUser())
-            ->post(route('platform.systems.relation'), $params);
+            ->post(route('orchid.relation'), $params);
 
         $queryLog = DB::getQueryLog();
         $latest_query = array_pop($queryLog);

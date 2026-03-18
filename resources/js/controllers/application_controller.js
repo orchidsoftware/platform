@@ -1,20 +1,21 @@
-import { Controller } from '@hotwired/stimulus';
-import Orchid from '../orchid'
+import { Controller } from "@hotwired/stimulus";
+import Orchid from "../orchid";
 
 export default class ApplicationController extends Controller {
-
     /**
      *
      * @param path
      * @returns {*}
      */
     prefix(path) {
-        let prefix = document.head.querySelector('meta[name="dashboard-prefix"]');
+        let prefix = document.head.querySelector(
+            'meta[name="dashboard-prefix"]'
+        );
 
         // Remove double slashes from url
-        let pathname = `${prefix.content}${path}`.replace(/\/\/+/g, '/')
+        let pathname = `${prefix.content}${path}`.replace(/\/\/+/g, "/");
 
-        return `${location.protocol}//${location.hostname}${location.port ? `:${location.port}` : ''}${pathname}`;
+        return `${location.protocol}//${location.hostname}${location.port ? `:${location.port}` : ""}${pathname}`;
     }
 
     /**
@@ -23,9 +24,12 @@ export default class ApplicationController extends Controller {
      * @param message
      * @param type
      */
-    alert(title, message, type = 'warning') {
+    alert(title, message, type = "warning") {
         let toastWrapper = document.querySelector('[data-controller="toast"]');
-        let toastController = application.getControllerForElementAndIdentifier(toastWrapper, 'toast');
+        let toastController = application.getControllerForElementAndIdentifier(
+            toastWrapper,
+            "toast"
+        );
         toastController.alert(title, message, type);
     }
 
@@ -34,9 +38,12 @@ export default class ApplicationController extends Controller {
      * @param message
      * @param type
      */
-    toast(message, type = 'warning') {
+    toast(message, type = "warning") {
         let toastWrapper = document.querySelector('[data-controller="toast"]');
-        let toastController = application.getControllerForElementAndIdentifier(toastWrapper, 'toast');
+        let toastController = application.getControllerForElementAndIdentifier(
+            toastWrapper,
+            "toast"
+        );
         toastController.toast(message, type);
     }
 
@@ -48,21 +55,19 @@ export default class ApplicationController extends Controller {
         let output = {};
 
         new FormData(elem).forEach((value, key) => {
-
-                if (!Object.prototype.hasOwnProperty.call(output, key)) {
-                    output[key] = value;
-                    return;
-                }
-
-                let current = output[key];
-
-                if (!Array.isArray(current)) {
-                    current = output[key] = [current];
-                }
-
-                current.push(value);
+            if (!Object.prototype.hasOwnProperty.call(output, key)) {
+                output[key] = value;
+                return;
             }
-        );
+
+            let current = output[key];
+
+            if (!Array.isArray(current)) {
+                current = output[key] = [current];
+            }
+
+            current.push(value);
+        });
 
         return output;
     }
@@ -78,20 +83,20 @@ export default class ApplicationController extends Controller {
      * @returns {Promise} - A promise that resolves when the stream message is processed.
      */
     loadStream(url, data, callback = null) {
-        return window.axios.post(url, data, {
-            headers: {
-                Accept: "text/vnd.turbo-stream.html",
-            },
-        })
+        return window.axios
+            .post(url, data, {
+                headers: {
+                    Accept: "text/vnd.turbo-stream.html",
+                },
+            })
             .then(response => response.data)
             .then(html => {
                 Turbo.renderStreamMessage(html);
-                if (typeof callback === 'function') {
+                if (typeof callback === "function") {
                     callback(html);
                 }
             });
     }
-
 
     /**
      * Updates or removes the Turbo cache control meta tag dynamically.
@@ -99,8 +104,8 @@ export default class ApplicationController extends Controller {
      * @param {boolean|string} value - If `true`, sets "no-cache". If `false`, removes the meta tag.
      *                                 If a string is provided, sets it as the meta content.
      */
-     updateTurboCacheControl(value) {
-        const metaName = 'turbo-cache-control';
+    updateTurboCacheControl(value) {
+        const metaName = "turbo-cache-control";
         let metaTag = document.querySelector(`meta[name="${metaName}"]`);
 
         if (value === false) {
@@ -112,12 +117,12 @@ export default class ApplicationController extends Controller {
         }
 
         if (!metaTag) {
-            metaTag = document.createElement('meta');
+            metaTag = document.createElement("meta");
             metaTag.name = metaName;
             document.head.appendChild(metaTag);
         }
 
-        metaTag.content = value === true ? 'no-cache' : String(value);
+        metaTag.content = value === true ? "no-cache" : String(value);
     }
 
     /**
@@ -127,5 +132,4 @@ export default class ApplicationController extends Controller {
     tabId() {
         return Orchid.id();
     }
-
 }

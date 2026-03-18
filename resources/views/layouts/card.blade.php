@@ -38,9 +38,10 @@
                             </div>
                         @endif
                     </div>
-                    <div class="card-text layout-wrapper layout-wrapper-no-padder">{!! $description ?? '' !!}</div>
+                    <div class="card-text layout-wrapper layout-wrapper-no-padder">
+                        {!! $description ?? '' !!}
+                    </div>
                 </div>
             </div>
-
-        </div>
+    </div>
 </div>

@@ -122,7 +122,7 @@ class TD extends Cell
     }
 
     /**
-     * @param string|\Orchid\Screen\Field $filter
+     * @param string|Field $filter
      */
     public function filterOptions(iterable $filterOptions): self
     {
@@ -221,7 +221,7 @@ class TD extends Cell
      */
     public function buildTh()
     {
-        return view('platform::partials.layouts.th', [
+        return view('orchid::partials.layouts.th', [
             'width'        => is_numeric($this->width) ? $this->width.'px' : $this->width,
             'align'        => $this->align,
             'sort'         => $this->sort,
@@ -236,11 +236,11 @@ class TD extends Cell
     }
 
     /**
-     * @return \Orchid\Screen\Field|null
+     * @return Field|null
      */
     protected function buildFilter(): ?Field
     {
-        /** @var \Orchid\Screen\Field $filter|string */
+        /** @var Field $filter|string */
         $filter = $this->filter;
 
         if ($filter === null) {
@@ -259,7 +259,7 @@ class TD extends Cell
     }
 
     /**
-     * @return \Orchid\Screen\Field
+     * @return Field
      */
     protected function detectConstantFilter(string $filter): Field
     {
@@ -285,7 +285,7 @@ class TD extends Cell
     {
         $value = $this->render ? $this->handler($repository, $loop) : $repository->getContent($this->name);
 
-        return view('platform::partials.layouts.td', [
+        return view('orchid::partials.layouts.td', [
             'align'   => $this->align,
             'value'   => $value,
             'render'  => $this->render,
@@ -313,7 +313,7 @@ class TD extends Cell
             return;
         }
 
-        return view('platform::partials.layouts.selectedTd', [
+        return view('orchid::partials.layouts.selectedTd', [
             'title'         => $this->title,
             'slug'          => $this->sluggable(),
             'defaultHidden' => var_export($this->defaultHidden, true),
@@ -365,7 +365,7 @@ class TD extends Cell
      *
      * Decides whether a filter can be provided with a complex (array-like) value, or it needs a scalar one.
      *
-     * @param \Orchid\Screen\Field $field
+     * @param Field $field
      */
     protected function isComplexFieldType(Field $field): bool
     {

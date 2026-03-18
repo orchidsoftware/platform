@@ -9,7 +9,7 @@ use Orchid\Attachment\Models\Attachment;
 use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
 use Orchid\Support\Assert;
-use Orchid\Support\Facades\Dashboard;
+use Orchid\Support\Facades\Orchid;
 use Orchid\Support\Init;
 
 /**
@@ -38,7 +38,7 @@ class Attach extends Field
      *
      * @var string
      */
-    protected $view = 'platform::fields.attach';
+    protected $view = 'orchid::fields.attach';
 
     /**
      * Default attributes value.
@@ -186,7 +186,7 @@ class Attach extends Field
         }
 
         /** @var Attachment $attach */
-        $attach = Dashboard::model(Attachment::class);
+        $attach = Orchid::model(Attachment::class);
 
         $value = $attach::whereIn('id', $value)
             ->orderBy('sort')
