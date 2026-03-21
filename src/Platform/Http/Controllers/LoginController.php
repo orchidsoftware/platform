@@ -8,6 +8,7 @@ use Composer\InstalledVersions;
 use Composer\Semver\VersionParser;
 use Illuminate\Auth\EloquentUserProvider;
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
+use Illuminate\Auth\SessionGuard;
 use Illuminate\Contracts\Auth\Factory as Auth;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\View\Factory;
@@ -33,7 +34,7 @@ class LoginController extends Controller
     */
 
     /**
-     * @var Guard|\Illuminate\Auth\SessionGuard
+     * @var Guard|SessionGuard
      */
     protected $guard;
 
@@ -100,7 +101,7 @@ class LoginController extends Controller
      * Send the response after the user was authenticated.
      *
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     * @return RedirectResponse|JsonResponse
      */
     protected function sendLoginResponse(Request $request)
     {
@@ -155,7 +156,7 @@ class LoginController extends Controller
      * Log the user out of the application.
      *
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     * @return RedirectResponse|JsonResponse
      */
     public function logout(Request $request)
     {

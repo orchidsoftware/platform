@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Screens;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Orchid\Platform\Http\Layouts\NotificationTable;
 use Orchid\Platform\Notifications\DashboardMessage;
 use Orchid\Screen\Action;
@@ -107,7 +109,7 @@ class NotificationScreen extends Screen
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return RedirectResponse|Redirector
      */
     public function maskNotification(string $id, Request $request)
     {
@@ -133,7 +135,7 @@ class NotificationScreen extends Screen
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function removeAll(Request $request)
     {

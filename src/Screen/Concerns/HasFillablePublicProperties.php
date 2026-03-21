@@ -11,7 +11,7 @@ trait HasFillablePublicProperties
     /**
      * Fills the public properties of the object with values from the given repository.
      *
-     * @param \Orchid\Screen\Repository $repository The repository containing the values to fill the properties with.
+     * @param Repository $repository The repository containing the values to fill the properties with.
      *
      * @return void
      */
@@ -24,7 +24,7 @@ trait HasFillablePublicProperties
     /**
      * Retrieves the names of all public properties of the object.
      *
-     * @return \Illuminate\Support\Collection The names of the public properties.
+     * @return Collection The names of the public properties.
      */
     protected function getPublicPropertyNames(): Collection
     {

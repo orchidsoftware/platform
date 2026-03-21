@@ -2,6 +2,7 @@
 
 namespace Orchid\Screen\Concerns;
 
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Queue\Attributes\WithoutRelations;
 use Illuminate\Queue\SerializesAndRestoresModelIdentifiers;
@@ -77,7 +78,7 @@ trait ModelStateRetrievable
      *
      * @param array $values
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      * @throws \ReflectionException
      *
      * @return void
@@ -120,7 +121,7 @@ trait ModelStateRetrievable
     }
 
     /**
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      * @throws \ReflectionException
      *
      * @return array

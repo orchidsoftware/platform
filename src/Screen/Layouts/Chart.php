@@ -6,6 +6,7 @@ namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
@@ -229,7 +230,7 @@ abstract class Chart extends Layout
     }
 
     /**
-     * @return Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function build(Repository $repository)
     {

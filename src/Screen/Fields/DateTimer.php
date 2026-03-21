@@ -269,7 +269,7 @@ class DateTimer extends Field
     /**
      * Allow selection of dates on or before the specified date
      *
-     * @param \Carbon\Carbon $date
+     * @param Carbon $date
      *
      * @return static
      */
@@ -284,7 +284,7 @@ class DateTimer extends Field
     /**
      * Allow selection of dates on or after the specified date
      *
-     * @param \Carbon\Carbon $date
+     * @param Carbon $date
      *
      * @return static
      */

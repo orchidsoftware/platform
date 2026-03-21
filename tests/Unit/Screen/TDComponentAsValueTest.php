@@ -3,6 +3,8 @@
 namespace Orchid\Tests\Unit\Screen;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\TD;
 use Orchid\Tests\App\Components\SimpleShowValue;
@@ -12,7 +14,7 @@ use Orchid\Tests\TestUnitCase;
 class TDComponentAsValueTest extends TestUnitCase
 {
     /**
-     * @var \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|mixed
+     * @var Collection|Model|mixed
      */
     protected $user;
 

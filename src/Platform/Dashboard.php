@@ -105,7 +105,7 @@ class Dashboard
     /**
      * Determine published assets are up-to-date.
      *
-     * @throws \RuntimeException
+     * @throws RuntimeException
      *
      * @return bool
      */

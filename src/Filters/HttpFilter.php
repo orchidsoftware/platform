@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Filters;
 
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class HttpFilter
 {
@@ -67,7 +69,7 @@ class HttpFilter
      *
      * @param Builder $builder The builder to add the filters and sorts to.
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      *
      * @return Builder The builder with the filters and sorts added.
      */
@@ -87,7 +89,7 @@ class HttpFilter
      *
      * @param string $column The column name to sanitize.
      *
-     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
+     * @throws HttpException
      *
      * @return string The sanitized column name.
      */
@@ -103,7 +105,7 @@ class HttpFilter
      *
      * @param Builder $builder The builder to add the filters to.
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      *
      * @return HttpFilter This HttpFilter instance.
      */

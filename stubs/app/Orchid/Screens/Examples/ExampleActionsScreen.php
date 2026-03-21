@@ -3,6 +3,7 @@
 namespace App\Orchid\Screens\Examples;
 
 use App\Orchid\Layouts\Examples\ExampleElements;
+use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
@@ -11,6 +12,7 @@ use Orchid\Screen\Screen;
 use Orchid\Support\Color;
 use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ExampleActionsScreen extends Screen
 {
@@ -45,7 +47,7 @@ class ExampleActionsScreen extends Screen
     /**
      * The screen's action buttons.
      *
-     * @return \Orchid\Screen\Action[]
+     * @return Action[]
      */
     public function commandBar(): iterable
     {
@@ -157,7 +159,7 @@ class ExampleActionsScreen extends Screen
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     * @return StreamedResponse
      */
     public function export()
     {

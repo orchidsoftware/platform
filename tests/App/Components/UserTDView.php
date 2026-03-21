@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\App\Components;
 
+use Illuminate\Contracts\View\View;
+
 class UserTDView extends UserTDArguments
 {
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|string
+     * @return View|string
      */
     public function render()
     {

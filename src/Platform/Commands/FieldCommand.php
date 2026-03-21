@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Attribute\AsCommand;
 
@@ -34,7 +35,7 @@ class FieldCommand extends GeneratorCommand
     /**
      * Execute the console command.
      *
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws FileNotFoundException
      *
      * @return bool Whether the command execution was successful.
      */
@@ -132,7 +133,7 @@ class FieldCommand extends GeneratorCommand
      *
      * @param string $name The class name.
      *
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws FileNotFoundException
      *
      * @return string The processed class stub.
      */

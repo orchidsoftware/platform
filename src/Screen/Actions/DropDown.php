@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Actions;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 use Orchid\Screen\Action;
 use Orchid\Screen\Contracts\Actionable;
 use Orchid\Screen\Repository;
@@ -46,7 +48,7 @@ class DropDown extends Action
     /**
      * @throws \Throwable
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @return Factory|View|mixed
      */
     public function build(?Repository $repository = null)
     {

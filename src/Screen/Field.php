@@ -11,6 +11,7 @@ use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
+use Illuminate\Support\ViewErrorBag;
 use Illuminate\View\ComponentAttributeBag;
 use Illuminate\View\View;
 use Orchid\Screen\Concerns\Makeable;
@@ -126,7 +127,7 @@ class Field implements Fieldable, Htmlable
      * @param string $method
      * @param array  $parameters
      *
-     * @return $this|mixed|static|\Orchid\Screen\Field
+     * @return $this|mixed|static|Field
      */
     public function __call(string $method, array $parameters)
     {
@@ -514,7 +515,7 @@ class Field implements Fieldable, Htmlable
     {
         $errors = session('errors');
 
-        if ($errors instanceof \Illuminate\Support\ViewErrorBag) {
+        if ($errors instanceof ViewErrorBag) {
             return $errors->getBag('default');
         }
 

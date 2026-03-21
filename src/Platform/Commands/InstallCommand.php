@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
+use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Traits\Conditionable;
@@ -55,7 +56,7 @@ class InstallCommand extends Command
             ->executeCommand('storage:link')
             ->changeUserModel()
             ->setValueEnv('SCOUT_DRIVER')
-            ->when(class_exists(\App\Models\User::class), function () {
+            ->when(class_exists(User::class), function () {
                 $this->replaceInFiles(app_path(), 'use Orchid\\Platform\\Models\\User;', 'use App\\Models\\User;');
             })
             ->showMeLove();

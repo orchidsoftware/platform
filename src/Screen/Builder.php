@@ -95,7 +95,7 @@ class Builder
     }
 
     /**
-     * @throws \Throwable
+     * @throws Throwable
      *
      * @return array|string
      */

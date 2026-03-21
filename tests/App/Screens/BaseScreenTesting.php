@@ -74,7 +74,7 @@ class BaseScreenTesting extends Screen
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      *
      * @return void
      */

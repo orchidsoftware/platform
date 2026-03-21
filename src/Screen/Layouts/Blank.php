@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
@@ -28,7 +29,7 @@ abstract class Blank extends Layout
     }
 
     /**
-     * @return \Illuminate\View\View|mixed
+     * @return View|mixed
      */
     public function build(Repository $repository)
     {

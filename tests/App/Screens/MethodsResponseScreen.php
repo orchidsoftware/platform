@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\App\Screens;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Orchid\Screen\Action;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 
 class MethodsResponseScreen extends Screen
@@ -38,7 +43,7 @@ class MethodsResponseScreen extends Screen
     /**
      * Views.
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): array
     {
@@ -46,7 +51,7 @@ class MethodsResponseScreen extends Screen
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function redirect()
     {
@@ -54,7 +59,7 @@ class MethodsResponseScreen extends Screen
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @return Application|ResponseFactory|Response
      */
     public function response()
     {

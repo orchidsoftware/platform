@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Octane\Events\RequestReceived;
 use Laravel\Scout\ScoutServiceProvider;
 use Orchid\Icons\IconServiceProvider;
 use Orchid\Platform\Components\Notification;
@@ -83,7 +84,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerOctaneEventsListen(): self
     {
-        Event::listen(fn (\Laravel\Octane\Events\RequestReceived $request) => \Orchid\Support\Facades\Dashboard::flushState());
+        Event::listen(fn (RequestReceived $request) => \Orchid\Support\Facades\Dashboard::flushState());
 
         return $this;
     }
