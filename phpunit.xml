@@ -8,6 +8,17 @@
          stopOnError="false"
          defaultTestSuite="Main"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd">
+    <coverage>
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+        <exclude>
+            <directory suffix=".blade.php">./src/</directory>
+        </exclude>
+        <report>
+            <clover outputFile="clover.xml"/>
+        </report>
+    </coverage>
     <testsuites>
         <testsuite name="Main">
             <directory suffix="Test.php">./tests/Feature</directory>
