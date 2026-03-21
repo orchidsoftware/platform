@@ -505,14 +505,24 @@ class Field implements Fieldable, Htmlable
     }
 
     /**
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * Get the validation error messages for the current request.
      *
-     * @return \Closure|mixed|object|null
+     * Ensures that a MessageBag instance is always returned,
+     * extracting the default bag when a ViewErrorBag is present.
      */
-    private function getErrorsMessage()
+    private function getErrorsMessage(): MessageBag
     {
-        return session()->get('errors', new MessageBag());
+        $errors = session('errors');
+
+        if ($errors instanceof \Illuminate\Support\ViewErrorBag) {
+            return $errors->getBag('default');
+        }
+
+        if ($errors instanceof MessageBag) {
+            return $errors;
+        }
+
+        return new MessageBag();
     }
 
     /**
