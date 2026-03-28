@@ -221,7 +221,7 @@ class MetricsTest extends TestUnitCase
         });
 
         /* Carbon Language */
-        \Carbon\Carbon::setLocale('ru');
+        Carbon::setLocale('ru');
 
         $period = User::sumByDays('id', $start)->showDaysOfWeek()->toChart('Users');
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Screen\Fields;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
 use Orchid\Platform\Models\Role;
@@ -24,7 +25,7 @@ class RelationTest extends TestFieldsUnitCase
     protected $roles;
 
     /**
-     * @var Collection|\Illuminate\Database\Eloquent\Model|mixed
+     * @var Collection|Model|mixed
      */
     protected $users;
 

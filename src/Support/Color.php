@@ -51,7 +51,7 @@ enum Color
      * @param string $name
      * @param array  $arguments
      *
-     * @return \Closure|\Orchid\Support\Color
+     * @return \Closure|Color
      */
     public static function __callStatic($name, $arguments)
     {

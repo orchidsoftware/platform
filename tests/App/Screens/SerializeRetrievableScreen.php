@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Tests\App\Screens;
 
 use Illuminate\Foundation\Application;
+use Orchid\Screen\Action;
 use Orchid\Screen\Concerns\ModelStateRetrievable;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 
 class SerializeRetrievableScreen extends Screen
@@ -49,7 +51,7 @@ class SerializeRetrievableScreen extends Screen
     /**
      * Button commands.
      *
-     * @return \Orchid\Screen\Action[]
+     * @return Action[]
      */
     public function commandBar(): array
     {
@@ -59,7 +61,7 @@ class SerializeRetrievableScreen extends Screen
     /**
      * Views.
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): array
     {

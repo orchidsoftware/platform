@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Contracts\Support\Arrayable;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
@@ -20,7 +21,7 @@ abstract class View extends Layout
     /**
      * View constructor.
      *
-     * @param \Illuminate\Contracts\Support\Arrayable|array $data
+     * @param Arrayable|array $data
      */
     public function __construct(string $template, $data = [])
     {

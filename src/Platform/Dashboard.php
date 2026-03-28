@@ -23,7 +23,7 @@ class Dashboard
      *
      * @deprecated Use `Dashboard::version()` instead.
      */
-    public const VERSION = '14.52.4';
+    public const VERSION = '14.53.0';
 
     /**
      * @deprecated
@@ -105,7 +105,7 @@ class Dashboard
     /**
      * Determine published assets are up-to-date.
      *
-     * @throws \RuntimeException
+     * @throws RuntimeException
      *
      * @return bool
      */

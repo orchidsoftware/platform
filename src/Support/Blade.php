@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Support;
 
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\AnonymousComponent;
@@ -22,7 +23,7 @@ class Blade
     /**
      * Used to render a Blade component from a class and an array of data
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      */
     public static function renderComponent(string $class, mixed $data): ?string
     {
@@ -54,7 +55,7 @@ class Blade
     /**
      * Get instance of the ViewComponent based on the provided class and data
      *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      *
      * @return ViewComponent
      */

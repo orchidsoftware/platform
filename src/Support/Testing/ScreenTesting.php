@@ -10,7 +10,7 @@ trait ScreenTesting
      * @param string|null $name       Name of the screen
      * @param array       $parameters
      *
-     * @return \Orchid\Support\Testing\DynamicTestScreen
+     * @return DynamicTestScreen
      */
     public function screen(?string $name = null, array $parameters = []): DynamicTestScreen
     {

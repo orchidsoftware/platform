@@ -8,6 +8,7 @@ use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Collection;
+use Illuminate\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\TD;
@@ -47,7 +48,7 @@ abstract class Table extends Layout
     protected $title;
 
     /**
-     * @return Factory|\Illuminate\View\View|void
+     * @return Factory|View|void
      */
     public function build(Repository $repository)
     {
@@ -155,7 +156,7 @@ abstract class Table extends Layout
     }
 
     /**
-     * @param \Illuminate\Support\Collection|Illuminate\Contracts\Pagination\Paginator|Illuminate\Contracts\Pagination\CursorPaginator $row
+     * @param Collection|Illuminate\Contracts\Pagination\Paginator|Illuminate\Contracts\Pagination\CursorPaginator $row
      */
     protected function hasHeader(Collection $columns, Collection|Paginator|CursorPaginator $row): bool
     {

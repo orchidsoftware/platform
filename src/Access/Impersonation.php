@@ -85,7 +85,7 @@ class Impersonation
     /**
      * Returns the impersonator (the original authenticated user), if there has been a user switch.
      *
-     * @return \Illuminate\Contracts\Auth\Authenticatable|null The impersonator or null if there has been no user switch
+     * @return Authenticatable|null The impersonator or null if there has been no user switch
      */
     public static function impersonator(): ?Authenticatable
     {

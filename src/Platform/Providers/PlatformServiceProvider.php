@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
+use App\Orchid\PlatformProvider;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Icons\IconFinder;
 use Orchid\Platform\Dashboard;
@@ -54,7 +55,7 @@ class PlatformServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $provider = config('platform.provider', \App\Orchid\PlatformProvider::class);
+        $provider = config('platform.provider', PlatformProvider::class);
 
         if ($provider !== null && class_exists($provider)) {
             $this->app->register($provider);

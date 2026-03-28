@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\App\Fields;
 
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Fields\Relation;
 use Orchid\Screen\Fields\Select;
@@ -22,7 +23,7 @@ class BaseSelectScreen extends BaseFieldScreen
     }
 
     /**
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      */
     public function fields(): array
     {

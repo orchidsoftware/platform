@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\App\Screens;
 
 use Orchid\Screen\Action;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Tests\App\Layouts\DependentSumListener;
 
@@ -43,7 +44,7 @@ class DependentListenerScreen extends Screen
      *
      * @throws \Throwable
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): array
     {

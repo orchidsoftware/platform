@@ -26,7 +26,7 @@ class SortableTest extends TestUnitCase
             ];
 
             /**
-             * @var \string[][][]
+             * @var string[][][]
              */
             protected $attributes = [
                 'order' => 0,

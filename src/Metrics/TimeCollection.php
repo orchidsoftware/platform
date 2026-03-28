@@ -12,7 +12,7 @@ class TimeCollection extends Collection
      * @param        $values
      * @param string $format
      *
-     * @return \Orchid\Metrics\TimeCollection
+     * @return TimeCollection
      */
     public function makeFromKeyValue($values, string $format = 'Y-m-d'): TimeCollection
     {

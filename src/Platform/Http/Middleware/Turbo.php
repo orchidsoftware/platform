@@ -59,7 +59,7 @@ class Turbo
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      *
      * @return bool
      */

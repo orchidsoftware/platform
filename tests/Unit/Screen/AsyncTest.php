@@ -2,6 +2,7 @@
 
 namespace Orchid\Tests\Unit\Screen;
 
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ViewErrorBag;
 use Orchid\Screen\Layouts\Listener;
 use Orchid\Screen\Screen;
@@ -17,7 +18,7 @@ class AsyncTest extends TestUnitCase
      */
     public function testFindBySlug(): void
     {
-        app(\Illuminate\Contracts\View\Factory::class)->share('errors', new ViewErrorBag);
+        app(Factory::class)->share('errors', new ViewErrorBag);
 
         /** @var Screen $screen */
         $screen = app(FindBySlugLayoutScreen::class);

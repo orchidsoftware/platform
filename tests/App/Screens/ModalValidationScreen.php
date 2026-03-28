@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\App\Screens;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Orchid\Screen\Action;
 use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Screen;
@@ -40,7 +42,7 @@ class ModalValidationScreen extends Screen
     /**
      * Button commands.
      *
-     * @return \Orchid\Screen\Action[]
+     * @return Action[]
      */
     public function commandBar(): array
     {
@@ -70,7 +72,7 @@ class ModalValidationScreen extends Screen
         ];
     }
 
-    public function showMessage(Request $request): \Illuminate\Http\RedirectResponse
+    public function showMessage(Request $request): RedirectResponse
     {
         $request->validate([
             'message' => 'required|string|min:10',

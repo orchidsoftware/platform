@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Tests\App\Screens;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
+use Orchid\Screen\Action;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Tests\App\RouteSolving;
 
@@ -37,7 +40,7 @@ class RouteResolveScreen extends Screen
     /**
      * Button commands.
      *
-     * @return \Orchid\Screen\Action[]
+     * @return Action[]
      */
     public function commandBar(): array
     {
@@ -47,7 +50,7 @@ class RouteResolveScreen extends Screen
     /**
      * Views.
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): array
     {
@@ -55,7 +58,7 @@ class RouteResolveScreen extends Screen
     }
 
     /**
-     * @return \Illuminate\Routing\Route|object|string|null
+     * @return Route|object|string|null
      */
     public function resolveModel(RouteSolving $resolve, Request $request)
     {

@@ -64,9 +64,9 @@ class FindBySlugLayoutScreen extends Screen
     }
 
     /**
-     * @param \Orchid\Screen\Repository $state
+     * @param Repository $state
      *
-     * @return \Orchid\Screen\Repository
+     * @return Repository
      */
     public function asyncStub(Repository $state): Repository
     {
