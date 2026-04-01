@@ -31,7 +31,7 @@
         "sortablejs": "^1.13.0",
         "stimulus-vite-helpers": "^3.0.1",
         "tom-select": "^2.3.1",
-        "vite": "^7.1.9",
+        "vite": "^8.0.3",
         "vite-plugin-manifest-sri": "^0.2.0",
         "vite-plugin-rtl-css": "^1.0.6",
         "prettier": "3.8.1"
