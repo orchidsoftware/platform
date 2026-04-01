@@ -281,6 +281,92 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringContainsString('value="'.RoleNames::User->value.'" selected>'.RoleNames::User->label(), $view);
     }
 
+    public function testOptionGroupRendering(): void
+    {
+        $select = Select::make('choice')
+            ->options([
+                'Fruits' => [
+                    'apple'  => 'Apple',
+                    'banana' => 'Banana',
+                ],
+                'Veggies' => [
+                    'carrot' => 'Carrot',
+                ],
+            ]);
+
+        $view = self::renderField($select);
+
+        $this->assertStringContainsString('<optgroup label="Fruits">', $view);
+        $this->assertStringContainsString('<optgroup label="Veggies">', $view);
+        $this->assertStringContainsString('Apple', $view);
+        $this->assertStringContainsString('Banana', $view);
+        $this->assertStringContainsString('Carrot', $view);
+    }
+
+    public function testOptionGroupSelectedValue(): void
+    {
+        $select = Select::make('choice')
+            ->value('banana')
+            ->options([
+                'Fruits' => [
+                    'apple'  => 'Apple',
+                    'banana' => 'Banana',
+                ],
+                'Veggies' => [
+                    'carrot' => 'Carrot',
+                ],
+            ]);
+
+        $view = self::minifyRenderField($select);
+
+        $this->assertStringContainsString('value="banana" selected', $view);
+        $this->assertStringNotContainsString('value="apple" selected', $view);
+        $this->assertStringNotContainsString('value="carrot" selected', $view);
+    }
+
+    public function testOptionGroupMultipleSelectedValues(): void
+    {
+        $select = Select::make('choice')
+            ->multiple()
+            ->value(['apple', 'carrot'])
+            ->options([
+                'Fruits' => [
+                    'apple'  => 'Apple',
+                    'banana' => 'Banana',
+                ],
+                'Veggies' => [
+                    'carrot' => 'Carrot',
+                ],
+            ]);
+
+        $view = self::minifyRenderField($select);
+
+        $this->assertStringContainsString('value="apple" selected', $view);
+        $this->assertStringContainsString('value="carrot" selected', $view);
+        $this->assertStringNotContainsString('value="banana" selected', $view);
+    }
+
+    public function testOptionGroupMixedWithFlatOptions(): void
+    {
+        $select = Select::make('choice')
+            ->value('banana')
+            ->options([
+                'standalone' => 'Standalone Option',
+                'Fruits'     => [
+                    'apple'  => 'Apple',
+                    'banana' => 'Banana',
+                ],
+            ]);
+
+        $view = self::minifyRenderField($select);
+
+        $this->assertStringContainsString('<option value="standalone">Standalone Option</option>', $view);
+        $this->assertStringContainsString('<optgroup label="Fruits">', $view);
+        $this->assertStringContainsString('value="banana" selected', $view);
+        $this->assertStringNotContainsString('value="standalone" selected', $view);
+        $this->assertStringNotContainsString('value="apple" selected', $view);
+    }
+
     public function testMultipleFromEnum(): void
     {
         $select = Select::make('choice')
