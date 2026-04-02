@@ -122,7 +122,7 @@ export default class extends ApplicationController {
             text: ["bold", "italic", "underline", "strike", "link", "clean"],
             quote: ["blockquote", "code-block"],
             color: [{ color: this.colors() }, { background: this.colors() }],
-            header: [{ header: "1" }, { header: "2" }],
+            header: [{ header: "1" }, { header: "2" },{ header: "3" }, { header: "4" }, { header: "5"}, { header: "6" }],
             list: [{ list: "ordered" }, { list: "bullet" }],
             format: [{ indent: "-1" }, { indent: "+1" }, { align: [] }],
             media: ["image", "video"],
