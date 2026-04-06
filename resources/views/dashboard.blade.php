@@ -38,6 +38,7 @@
 
             <footer class="position-sticky bottom-0">
                 <div class="bg-dark position-relative overflow-hidden" style="padding-bottom: 10px;">
+
                     @includeWhen(Auth::check(), 'orchid::partials.profile')
                 </div>
             </footer>
@@ -58,7 +59,7 @@
     @endif
 
     <div class="order-last order-md-0 command-bar-wrapper">
-        <div class="@hasSection('navbar') @else d-none d-md-block @endif layout d-md-flex align-items-center">
+        <div class="@hasSection('navbar') @else d-none d-md-block @endif bg-surface layout d-md-flex align-items-center">
             <header class="d-none d-md-block col-xs-12 col-md p-0 me-3">
                 <h1 class="m-0 fw-light h3 text-body-emphasis">@yield('title')</h1>
                 <small class="text-muted" title="@yield('description')">@yield('description')</small>

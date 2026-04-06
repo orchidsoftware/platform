@@ -56,13 +56,13 @@
                         <span class="placeholder col-4 rounded-1"></span>
                     </p>
                 </div>
-                <div class="modal-header align-items-baseline gap-3">
+                <div class="modal-header bg-white align-items-baseline gap-3">
                     <h4 class="modal-title text-body-emphasis fw-light text-balance text-break" data-modal-target="title">{{$title}}</h4>
                     <button type="button" class="btn-close" title="Close" data-bs-dismiss="modal"
                             aria-label="Close">
                     </button>
                 </div>
-                <div class="modal-body layout-wrapper">
+                <div class="modal-body bg-white layout-wrapper">
                     <x-orchid-stream target="{{$templateSlug}}">
                         <div id="{{ $templateSlug }}">
                             @if(!empty($deferrerParams) == \Orchid\Support\Facades\Orchid::isPartialRequest())

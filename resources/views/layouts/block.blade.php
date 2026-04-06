@@ -12,9 +12,9 @@
         </legend>
     </div>
     @endif
-    <div class="col-12 {{!$vertical ? 'col-md-7' : ''}} shadow-sm h-100">
+    <div class="col-12 {{!$vertical ? 'col-md-7' : ''}} shadow-sm overflow-hidden rounded h-100">
 
-        <div class="bg-white d-flex flex-column layout-wrapper {{ empty($commandBar) ? 'rounded' : 'rounded-top' }}">
+        <div class="bg-surface d-flex flex-column layout-wrapper {{ empty($commandBar) ? 'rounded' : 'rounded-top' }}">
             @foreach($manyForms as $key => $layouts)
                 @foreach($layouts as $layout)
                     {!! $layout ?? '' !!}
@@ -23,7 +23,7 @@
         </div>
 
         @empty(!$commandBar)
-            <div class="bg-light px-4 py-3 d-flex justify-content-end rounded-bottom gap-2">
+            <div class="bg-surface border-top px-4 py-3 d-flex justify-content-end rounded-bottom gap-2">
                 @foreach($commandBar as $command)
                     <div>
                         {!! $command !!}

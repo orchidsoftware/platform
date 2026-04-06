@@ -144,7 +144,7 @@ body {
 }
 
 .layout {
-    @extend .bg-white;
+    background-color: var(--bs-body-bg);
     @extend .shadow-sm;
     @extend .rounded;
     @extend .p-4;
@@ -160,6 +160,7 @@ body {
 .layout-wrapper {
     .shadow-sm {
         box-shadow: none !important;
+        border: none !important;
     }
 
     > .mb-3:last-child {
