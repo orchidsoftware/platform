@@ -19,7 +19,7 @@
         "flatpickr": "^4.6.3",
         "frappe-charts": "^1.6.1",
         "inputmask": "^5.0.6",
-        "laravel-vite-plugin": "^2.0.0",
+        "laravel-vite-plugin": "^3.0.1",
         "leaflet": "^1.7.1",
         "postcss": "^8.2.10",
         "qs": "^6.14.0",
