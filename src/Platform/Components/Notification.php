@@ -46,8 +46,6 @@ class Notification extends Component
 
     /**
      * Determine if the component should be rendered.
-     *
-     * @return bool
      */
     public function shouldRender(): bool
     {

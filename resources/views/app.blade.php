@@ -25,7 +25,7 @@
     <meta name="turbo-refresh-method" content="{{ config('orchid.turbo.refresh-method', 'replace') }}">
     <meta name="turbo-refresh-scroll" content="{{ config('orchid.turbo.refresh-scroll', 'reset') }}">
     <meta name="turbo-prefetch" content="{{ var_export(config('orchid.turbo.prefetch', true)) }}">
-    <meta name="dashboard-prefix" content="{{  Orchid::prefix() }}">
+    <meta name="orchid-prefix" content="{{  Orchid::prefix() }}">
 
     @if(!config('orchid.turbo.cache', false))
         <meta name="turbo-cache-control" content="no-cache">
@@ -64,5 +64,6 @@
 @stack('scripts')
 
 @include('orchid::partials.search.modal')
+@include('orchid::partials.notification.modal')
 </body>
 </html>

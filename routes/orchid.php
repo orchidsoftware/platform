@@ -9,7 +9,7 @@ use Orchid\Platform\Http\Controllers\IndexController;
 use Orchid\Platform\Http\Controllers\RelationController;
 use Orchid\Platform\Http\Controllers\SearchController;
 use Orchid\Platform\Http\Controllers\SortableController;
-use Orchid\Platform\Http\Screens\NotificationScreen;
+use Orchid\Platform\Http\Controllers\NotificationController;
 use Tabuna\Breadcrumbs\Trail;
 
 /*
@@ -83,13 +83,18 @@ Route::post('sorting', [SortableController::class, 'saveSortOrder'])
 |--------------------------------------------------------------------------
 */
 if (config('orchid.notifications.enabled', true)) {
-    Route::screen('notifications/{id?}', NotificationScreen::class)
-        ->name('notifications')
-        ->breadcrumbs(fn (Trail $trail) => $trail->parent('orchid.index')
-            ->push(__('Notifications')));
 
-    Route::post('api/notifications', [NotificationScreen::class, 'unreadNotification'])
-        ->name('api.notifications');
+    Route::post('/notifications', [NotificationController::class, 'index'])
+        ->name('notifications.index');
+
+    Route::post('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])
+        ->name('notifications.markAsRead');
+
+    Route::post('/notifications/read-all', [NotificationController::class, 'markAllAsRead'])
+        ->name('notifications.markAllAsRead');
+
+    Route::post('/notifications/unread-count', [NotificationController::class, 'unreadCount'])
+        ->name('notifications.unreadCount');
 }
 
 /*

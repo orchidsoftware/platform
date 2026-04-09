@@ -1,8 +1,12 @@
-<a href="{{ route('orchid.notifications') }}"
+<a
+   href="#"
+   data-bs-toggle="modal"
+   data-bs-target="#notification-modal"
    class="m-auto d-flex align-items-center btn btn-link position-relative px-1 py-0 h-100 link-body-emphasis"
    data-controller="notification"
+   data-action="click->notification#fetch"
    data-notification-count-value="{{ count($notifications) }}"
-   data-notification-url-value="{{ route('orchid.api.notifications') }}"
+   data-notification-url-value="{{ route('orchid.notifications.unreadCount') }}"
    data-notification-method-value="post"
    data-notification-interval-value="{{ config('orchid.notifications.interval') }}"
 >
