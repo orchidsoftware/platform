@@ -2,22 +2,26 @@ import ApplicationController from "./application_controller";
 
 export default class extends ApplicationController {
     static values = {
-        failedMessage: {
-            type: String,
-            default: "Search is temporarily unavailable.",
-        },
-    };
+        failedMessage: {type: String, default: "Search is temporarily unavailable."},
+    }
 
-    static targets = ["query", "result"];
+    static targets = ["query", "result", "placeholder"];
+
+    static classes = ["hidden"];
 
     connect() {
         this.index = -1;
+        this.requestId = 0;
     }
 
-    query(event) {
-        const query = event.target.value.trim();
+    query() {
+        const query = this.queryTarget.value.trim();
 
         if (query === "") {
+            this.requestId++;
+            this.hidePlaceholder();
+            this.resultTarget.innerHTML = "";
+            this.resultTarget.classList.add(this.hiddenClass);
             return;
         }
 
@@ -25,12 +29,15 @@ export default class extends ApplicationController {
     }
 
     fetchResults(query) {
+        const requestId = ++this.requestId;
+
+        this.showPlaceholder();
+        this.resultTarget.classList.add(this.hiddenClass);
+
         fetch(this.prefix(`/search/${encodeURIComponent(query)}`), {
             method: "POST",
             headers: {
-                "X-CSRF-Token": document.head.querySelector(
-                    'meta[name="csrf_token"]'
-                ).content,
+                'X-CSRF-Token': document.head.querySelector('meta[name="csrf_token"]').content,
             },
         })
             .then(response => {
@@ -41,18 +48,47 @@ export default class extends ApplicationController {
                 return response.text();
             })
             .then(html => {
-                // Check if the input has changed
-                if (query !== this.queryTarget.value.trim()) {
+                if (requestId !== this.requestId) {
                     return;
                 }
 
+                if (query !== this.queryTarget.value.trim()) {
+                    this.hidePlaceholder();
+                    this.resultTarget.classList.remove(this.hiddenClass);
+                    return;
+                }
+
+                this.hidePlaceholder();
                 this.resultTarget.innerHTML = html;
-                this.resultTarget.classList.remove("d-none");
+                this.resultTarget.classList.remove(this.hiddenClass);
             })
             .catch(() => {
+                if (requestId !== this.requestId) {
+                    return;
+                }
+
+                this.hidePlaceholder();
+                this.resultTarget.classList.remove(this.hiddenClass);
                 alert(this.failedMessageValue);
             });
     }
+
+    showPlaceholder() {
+        if (!this.hasPlaceholderTarget) {
+            return;
+        }
+
+        this.placeholderTarget.classList.remove(this.hiddenClass);
+    }
+
+    hidePlaceholder() {
+        if (!this.hasPlaceholderTarget) {
+            return;
+        }
+
+        this.placeholderTarget.classList.add(this.hiddenClass);
+    }
+
 
     keydown(event) {
         if (!this.items.length) {
@@ -96,8 +132,6 @@ export default class extends ApplicationController {
     }
 
     get items() {
-        return Array.from(
-            this.resultTarget.querySelectorAll("[data-search-item]")
-        );
+        return Array.from(this.resultTarget.querySelectorAll("[data-search-item]"));
     }
 }

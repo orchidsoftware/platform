@@ -10,7 +10,8 @@
             <div class="modal-body p-4 py-4">
                 <div class="position-relative d-flex flex-column gap-3"
                      data-controller="search"
-                     data-search-error-message-value="{{ __('Search is temporarily unavailable.') }}"
+                     data-search-failed-message-value="{{ __('Search is temporarily unavailable.') }}"
+                     data-search-hidden-class="d-none"
                 >
                     <div class="input-icon">
                         <div class="input-icon-addon">
@@ -32,10 +33,14 @@
                             </button>
                         </div>
                     </div>
+
+                    @include('orchid::partials.search.placeholder')
+
                     <div id="search-result"
                          data-search-target="result"
                          class="d-flex flex-column gap-2 list-group d-none">
                     </div>
+
                 </div>
             </div>
         </div>
