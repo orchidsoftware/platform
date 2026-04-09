@@ -4,11 +4,11 @@ on:
   pull_request:
   push:
     paths:
-      - '.github/workflows/**'
+      - .github/workflows/**
       - '**.php'
-      - 'phpunit.xml'
-      - 'composer.json'
-      - 'composer.lock'
+      - phpunit.xml
+      - composer.json
+      - composer.lock
   schedule:
     - cron: '0 0 * * *'
 
@@ -21,7 +21,7 @@ jobs:
       matrix:
         php: [8.4, 8.3, 8.2, 8.1]
         os: [ubuntu-latest, windows-latest]
-        laravel: ['10.*', '11.*', '12.*']
+        laravel: ['10.*', '11.*', '12.*', '13.*']
         dependency-version: [prefer-lowest, prefer-stable]
         include:
           - laravel: 11.*
@@ -30,12 +30,18 @@ jobs:
             testbench: 8.*
           - laravel: 12.*
             testbench: 10.*
+          - laravel: 13.*
+            testbench: 11.*
         exclude:
           - laravel: 10.*
             php: 8.0
           - laravel: 11.*
             php: 8.1
           - laravel: 12.*
+            php: 8.1
+          - laravel: 13.*
+            php: 8.2
+          - laravel: 13.*
             php: 8.1
 
     name: P${{ matrix.php }} - ${{ matrix.os }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }}
