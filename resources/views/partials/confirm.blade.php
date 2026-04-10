@@ -19,7 +19,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-link" data-bs-dismiss="modal">
-                    {{__('Cancel')}}
+                    {{ __('Cancel') }}
                 </button>
 
                 <div data-confirm-target="button">
@@ -29,4 +29,3 @@
         </div>
     </div>
 </div>
-
