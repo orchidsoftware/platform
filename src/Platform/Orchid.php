@@ -42,11 +42,7 @@ class Orchid
         $properties = (new \ReflectionClass($this))->getProperties();
 
         foreach ($properties as $property) {
-            foreach ($property->getAttributes() as $attribute) {
-                if ($attribute->getName() !== FlushOctaneState::class) {
-                    continue;
-                }
-
+            if ($property->getAttributes(FlushOctaneState::class)) {
                 $property->setValue($this, $property->getDefaultValue());
             }
         }
