@@ -28,10 +28,10 @@ trait Presentable
             return new $class($this);
         }
 
-        $attributes = (new ReflectionClass(static::class))
-            ->getAttributes(UsePresenter::class);
 
-        foreach ($attributes as $attribute) {
+        $attribute = $this->findPresenterAttribute();
+
+        if ($attribute !== null) {
             $class = $attribute->newInstance()->presenter;
 
             return new $class($this);
@@ -41,5 +41,28 @@ trait Presentable
             'No presenter found for [%s]. Add #[UsePresenter(YourPresenter::class)] to the class or call presenter($class) at runtime.',
             static::class,
         ));
+    }
+
+
+    /**
+     * @param ReflectionClass $ref
+     * @return \ReflectionAttribute|null
+     */
+    private function findPresenterAttribute(ReflectionClass $reflectionClass = null): ?\ReflectionAttribute
+    {
+        if ($reflectionClass === null) {
+            $reflectionClass = new ReflectionClass($this);
+        }
+
+        $attributes = $reflectionClass
+            ->getAttributes(UsePresenter::class, \ReflectionAttribute::IS_INSTANCEOF);
+
+        foreach ($attributes as $attribute) {
+            return $attribute;
+        }
+
+        $parent = $reflectionClass->getParentClass();
+
+        return $parent ? $this->findPresenterAttribute($parent) : null;
     }
 }
