@@ -17,38 +17,24 @@ use RuntimeException;
  */
 trait Presentable
 {
-    private ?string $presenterClass = null;
-
     /**
      * Return a presenter instance, optionally overriding the presenter class for this instance.
      *
-     * @param  class-string<Presenter>|null  $class
+     * @param class-string<Presenter>|null $class
      */
     public function presenter(?string $class = null): Presenter
     {
         if ($class !== null) {
-            $this->presenterClass = $class;
-        }
-
-        return new ($this->resolvePresenterClass())($this);
-    }
-
-    /**
-     * @return class-string<Presenter>
-     *
-     * @throws RuntimeException
-     */
-    private function resolvePresenterClass(): string
-    {
-        if ($this->presenterClass !== null) {
-            return $this->presenterClass;
+            return new $class($this);
         }
 
         $attributes = (new ReflectionClass(static::class))
             ->getAttributes(UsePresenter::class);
 
-        if ($attributes !== []) {
-            return $attributes[0]->newInstance()->presenter;
+        foreach ($attributes as $attribute) {
+            $class = $attribute->newInstance()->presenter;
+
+            return new $class($this);
         }
 
         throw new RuntimeException(sprintf(
