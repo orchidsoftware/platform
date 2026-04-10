@@ -15,7 +15,7 @@ class PlatformServiceProvider extends ServiceProvider
     /**
      * @var Orchid
      */
-    protected $orchid;
+    protected Orchid $orchid;
 
     /**
      * Boot the application events.
@@ -53,7 +53,7 @@ class PlatformServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      */
-    public function register()
+    public function register(): void
     {
         $provider = config('orchid.provider', PlatformProvider::class);
 

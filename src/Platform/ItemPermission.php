@@ -10,18 +10,14 @@ namespace Orchid\Platform;
 class ItemPermission
 {
     /**
-     * The name of the permission group.
-     *
-     * @var string
+     * Create a new permission group instance.
      */
-    public $group;
-
-    /**
-     * The list of permissions in the group.
-     *
-     * @var array[]
-     */
-    public $items = [];
+    public function __construct(
+        public string $group,
+        public array  $items = []
+    )
+    {
+    }
 
     /**
      * Create a new permission group instance with the given group name.
@@ -32,9 +28,7 @@ class ItemPermission
      */
     public static function group(string $group): self
     {
-        $item = new self;
-
-        $item->group = $group;
+        $item = new self($group);
 
         return $item;
     }

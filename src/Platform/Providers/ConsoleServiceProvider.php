@@ -48,7 +48,7 @@ class ConsoleServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        AboutCommand::add('Orchid Platform', fn () => [
+        AboutCommand::add('Orchid', fn () => [
             'Version'       => Orchid::version(),
             'Domain'        => config('orchid.domain'),
             'Prefix'        => config('orchid.prefix'),
