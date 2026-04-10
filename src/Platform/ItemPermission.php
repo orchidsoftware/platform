@@ -14,10 +14,8 @@ class ItemPermission
      */
     public function __construct(
         public string $group,
-        public array  $items = []
-    )
-    {
-    }
+        public array $items = []
+    ) {}
 
     /**
      * Create a new permission group instance with the given group name.

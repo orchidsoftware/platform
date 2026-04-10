@@ -9,9 +9,7 @@ export default class ApplicationController extends Controller {
      * @returns {*}
      */
     prefix(path) {
-        let prefix = document.head.querySelector(
-            'meta[name="orchid-prefix"]'
-        );
+        let prefix = document.head.querySelector('meta[name="orchid-prefix"]');
 
         // Remove double slashes from url
         let pathname = `${prefix.content}${path}`.replace(/\/\/+/g, "/");

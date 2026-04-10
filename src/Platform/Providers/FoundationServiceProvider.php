@@ -9,12 +9,14 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Octane\Events\RequestReceived;
 use Laravel\Scout\ScoutServiceProvider;
 use Orchid\Icons\IconServiceProvider;
 use Orchid\Platform\Components\Notification;
 use Orchid\Platform\Components\Stream;
 use Orchid\Platform\Orchid;
 use Orchid\Screen\Components\Popover;
+use Orchid\Support\Facades\Dashboard;
 use Tabuna\Breadcrumbs\BreadcrumbsServiceProvider;
 use Watson\Active\ActiveServiceProvider;
 
@@ -85,7 +87,7 @@ class FoundationServiceProvider extends ServiceProvider
     public function registerOctaneEventsListen(): self
     {
         Event::listen(
-            fn (\Laravel\Octane\Events\RequestReceived $request) => \Orchid\Support\Facades\Dashboard::flush()
+            fn (RequestReceived $request) => Dashboard::flush()
         );
 
         return $this;
