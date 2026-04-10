@@ -17,7 +17,7 @@ use Attribute;
 final class UsePresenter
 {
     /**
-     * @param  class-string<Presenter>  $presenter
+     * @param class-string<Presenter> $presenter
      */
     public function __construct(
         public readonly string $presenter,

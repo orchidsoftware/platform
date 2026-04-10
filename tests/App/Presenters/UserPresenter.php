@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Tests\App\Presenters;
 
 use Laravel\Scout\Builder;
+use Orchid\Presenter\Presenter;
 use Orchid\Screen\Contracts\Personable;
 use Orchid\Screen\Contracts\Searchable;
-use Orchid\Presenter\Presenter;
 
 class UserPresenter extends Presenter implements Personable, Searchable
 {

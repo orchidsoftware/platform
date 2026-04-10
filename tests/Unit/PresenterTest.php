@@ -57,7 +57,7 @@ class PresenterTest extends TestUnitCase
 
     public function testPresenterResolvesViaAttribute(): void
     {
-        $model     = new ModelWithPresenterAttribute();
+        $model = new ModelWithPresenterAttribute();
         $presenter = $model->presenter();
 
         $this->assertInstanceOf(StubPresenter::class, $presenter);
@@ -70,7 +70,7 @@ class PresenterTest extends TestUnitCase
 
     public function testPresenterRuntimeOverride(): void
     {
-        $model     = new ModelWithPresenterAttribute();
+        $model = new ModelWithPresenterAttribute();
         $presenter = $model->presenter(AnotherStubPresenter::class);
 
         $this->assertInstanceOf(AnotherStubPresenter::class, $presenter);
@@ -88,7 +88,7 @@ class PresenterTest extends TestUnitCase
 
     public function testPresenterSetDynamicallyWithoutAttribute(): void
     {
-        $model     = new ModelWithoutPresenterAttribute();
+        $model = new ModelWithoutPresenterAttribute();
         $presenter = $model->presenter(StubPresenter::class);
 
         $this->assertInstanceOf(StubPresenter::class, $presenter);

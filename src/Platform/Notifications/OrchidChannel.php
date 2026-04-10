@@ -12,8 +12,8 @@ class OrchidChannel extends DatabaseChannel
     /**
      * Build an array payload for the DatabaseNotification model.
      *
-     * @param mixed                                  $notifiable   The notifiable entity instance
-     * @param \Illuminate\Notifications\Notification $notification The notification object instance
+     * @param mixed        $notifiable   The notifiable entity instance
+     * @param Notification $notification The notification object instance
      *
      * @return array
      */
@@ -30,8 +30,8 @@ class OrchidChannel extends DatabaseChannel
     /**
      * Get the data for the notification.
      *
-     * @param mixed                                  $notifiable   The notifiable entity instance
-     * @param \Illuminate\Notifications\Notification $notification The notification object instance
+     * @param mixed        $notifiable   The notifiable entity instance
+     * @param Notification $notification The notification object instance
      *
      * @throws \RuntimeException
      *

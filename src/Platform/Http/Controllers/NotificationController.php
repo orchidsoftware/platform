@@ -2,9 +2,11 @@
 
 namespace Orchid\Platform\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\View\View;
 use Orchid\Platform\Notifications\DashboardMessage;
 use Orchid\Platform\Notifications\OrchidMessage;
 use Orchid\Support\Facades\Toast;
@@ -18,11 +20,12 @@ class NotificationController extends Controller
      * Display latest user notifications.
      *
      * @param Request $request
-     * @return \Illuminate\View\View
+     *
+     * @return View
      */
     public function index(Request $request)
     {
-        /** @var \Illuminate\Database\Eloquent\Collection|DatabaseNotification[] $notifications */
+        /** @var Collection|DatabaseNotification[] $notifications */
         $notifications = $request->user()
             ->notifications()
             ->whereIn('type', [OrchidMessage::class, DashboardMessage::class])
@@ -36,9 +39,10 @@ class NotificationController extends Controller
     /**
      * Mark a notification as read and redirect.
      *
-     * @param string $id
+     * @param string  $id
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @return RedirectResponse
      */
     public function markAsRead(string $id, Request $request)
     {
@@ -75,6 +79,7 @@ class NotificationController extends Controller
      * Get the count of unread user notifications for dashboard and Orchid messages.
      *
      * @param Request $request
+     *
      * @return int
      */
     public function unreadCount(Request $request): array

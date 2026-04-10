@@ -28,7 +28,6 @@ trait Presentable
             return new $class($this);
         }
 
-
         $attribute = $this->findPresenterAttribute();
 
         if ($attribute !== null) {
@@ -43,12 +42,12 @@ trait Presentable
         ));
     }
 
-
     /**
      * @param ReflectionClass $ref
+     *
      * @return \ReflectionAttribute|null
      */
-    private function findPresenterAttribute(ReflectionClass $reflectionClass = null): ?\ReflectionAttribute
+    private function findPresenterAttribute(?ReflectionClass $reflectionClass = null): ?\ReflectionAttribute
     {
         if ($reflectionClass === null) {
             $reflectionClass = new ReflectionClass($this);
