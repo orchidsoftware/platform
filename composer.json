@@ -38,7 +38,7 @@
     "require": {
         "composer-runtime-api": "^2.2",
         "composer/semver": "^3.0",
-        "laravel/framework": "^10.0 || ^11.0 || ^12.0",
+        "laravel/framework": "^10.0 || ^11.0 || ^12.0 || ^13.0",
         "laravel/scout": "^9.0 || ^10.0 || ^11.0",
         "orchid/blade-icons": "^4.0",
         "tabuna/breadcrumbs": "^4.0 || ^5.0",
@@ -48,9 +48,9 @@
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.14",
-        "orchestra/testbench": "^8.0 || ^9.5 || ^10.0",
-        "orchestra/testbench-core": "^8.0 || ^9.5 || ^10.0",
-        "orchestra/testbench-dusk": "^8.0 || ^9.5 || ^10.0",
+        "orchestra/testbench": "^8.0 || ^9.5 || ^10.0 || ^11.0",
+        "orchestra/testbench-core": "^8.0 || ^9.5 || ^10.0 || ^11.0",
+        "orchestra/testbench-dusk": "^8.0 || ^9.5 || ^10.0 || ^11.0",
         "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0"
     },
     "conflict": {
@@ -66,6 +66,7 @@
             "Orchid\\Filters\\": "src/Filters/",
             "Orchid\\Metrics\\": "src/Metrics/",
             "Orchid\\Platform\\": "src/Platform/",
+            "Orchid\\Presenter\\": "src/Presenter/",
             "Orchid\\Screen\\": "src/Screen/",
             "Orchid\\Support\\": "src/Support/"
         },
@@ -88,8 +89,7 @@
             ],
             "aliases": {
                 "Alert": "Orchid\\Support\\Facades\\Alert",
-                "Orchid": "Orchid\\Support\\Facades\\Orchid",
-                "Dashboard": "Orchid\\Support\\Facades\\Dashboard"
+                "Orchid": "Orchid\\Support\\Facades\\Orchid"
             }
         }
     },
