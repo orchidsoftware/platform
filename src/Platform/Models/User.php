@@ -17,7 +17,9 @@ use Orchid\Filters\Types\Where;
 use Orchid\Filters\Types\WhereDateStartEnd;
 use Orchid\Metrics\Chartable;
 use Orchid\Screen\AsSource;
+use Orchid\Presenter\UsePresenter;
 use Orchid\Support\Facades\Orchid;
+use Orchid\Presenter\Presentable;
 
 /**
  * This class serves as a base model for system users and is not intended
@@ -33,9 +35,10 @@ use Orchid\Support\Facades\Orchid;
  * Directly using this class may limit future extensibility and lead to
  * unintended changes in the behavior of the entire system.
  */
+#[UsePresenter(UserPresenter::class)]
 class User extends Authenticatable implements UserInterface
 {
-    use AsSource, Chartable, Filterable, HasFactory, Notifiable, UserAccess;
+    use AsSource, Chartable, Filterable, HasFactory, Notifiable, Presentable, UserAccess;
 
     /**
      * The database table used by the model.
@@ -120,11 +123,4 @@ class User extends Authenticatable implements UserInterface
         ]);
     }
 
-    /**
-     * @return UserPresenter
-     */
-    public function presenter()
-    {
-        return new UserPresenter($this);
-    }
 }
