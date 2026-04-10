@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 import Orchid from "../orchid";
+import { Modal } from "bootstrap";
 
 export default class ApplicationController extends Controller {
     /**
@@ -9,7 +10,7 @@ export default class ApplicationController extends Controller {
      */
     prefix(path) {
         let prefix = document.head.querySelector(
-            'meta[name="dashboard-prefix"]'
+            'meta[name="orchid-prefix"]'
         );
 
         // Remove double slashes from url
@@ -82,7 +83,7 @@ export default class ApplicationController extends Controller {
      *
      * @returns {Promise} - A promise that resolves when the stream message is processed.
      */
-    loadStream(url, data, callback = null) {
+    loadStream(url, data = {}, callback = null) {
         return window.axios
             .post(url, data, {
                 headers: {
@@ -131,5 +132,21 @@ export default class ApplicationController extends Controller {
      */
     tabId() {
         return Orchid.id();
+    }
+
+    /**
+     * Get the currently open Bootstrap modal instance.
+     *
+     * @returns {bootstrap.Modal|null}
+     */
+    getActiveModal() {
+        const modals = document.querySelectorAll(".modal.show");
+        const element = modals[modals.length - 1];
+
+        if (!element) {
+            return null;
+        }
+
+        return Modal.getOrCreateInstance(element);
     }
 }
