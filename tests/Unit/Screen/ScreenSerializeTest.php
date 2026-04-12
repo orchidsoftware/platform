@@ -196,7 +196,7 @@ class ScreenSerializeTest extends TestUnitCase
 
     /**
      * Tests that primitive types (int, string, float, array) and stdClass objects are safely
-     * serialized and restored through the Screen state mechanism.
+     * serialized with HMAC signing (via SignedValue) and correctly restored.
      */
     public function testWithPrimitivesAndStdObject(): void
     {
@@ -205,12 +205,14 @@ class ScreenSerializeTest extends TestUnitCase
         // int — differs from the 'Public' string default
         $screen->public = 42;
         $serializedInt = serialize($screen);
+        $this->assertStringContainsString('"hash"', $serializedInt);
         $unserializedInt = unserialize($serializedInt);
         $this->assertSame(42, $unserializedInt->public);
 
         // string — differs from the 'Public' string default
         $screen->public = 'custom string';
         $serializedStr = serialize($screen);
+        $this->assertStringContainsString('"hash"', $serializedStr);
         $unserializedStr = unserialize($serializedStr);
         $this->assertSame('custom string', $unserializedStr->public);
 
@@ -219,6 +221,7 @@ class ScreenSerializeTest extends TestUnitCase
         $obj->key = 'value';
         $screen->public = $obj;
         $serializedObj = serialize($screen);
+        $this->assertStringContainsString('"hash"', $serializedObj);
         $unserializedObj = unserialize($serializedObj);
         $this->assertInstanceOf(\stdClass::class, $unserializedObj->public);
         $this->assertSame('value', $unserializedObj->public->key);
@@ -226,19 +229,21 @@ class ScreenSerializeTest extends TestUnitCase
         // float — uses the dedicated float property (default is 0.0)
         $screen->amount = 3.14;
         $serializedFloat = serialize($screen);
+        $this->assertStringContainsString('"hash"', $serializedFloat);
         $unserializedFloat = unserialize($serializedFloat);
         $this->assertSame(3.14, $unserializedFloat->amount);
 
         // array — uses the dedicated array property (default is [])
         $screen->data = ['foo' => 'bar', 'baz' => 123];
         $serializedArray = serialize($screen);
+        $this->assertStringContainsString('"hash"', $serializedArray);
         $unserializedArray = unserialize($serializedArray);
         $this->assertSame(['foo' => 'bar', 'baz' => 123], $unserializedArray->data);
     }
 
     /**
      * Tests that a non-Model, non-Closure custom object (ValueObject) is serialized
-     * via PHP native serialization (not as a ModelIdentifier) and correctly restored.
+     * via a signed SerializableClosure (not as a ModelIdentifier) and correctly restored.
      */
     public function testWithComplexObject(): void
     {
@@ -247,9 +252,12 @@ class ScreenSerializeTest extends TestUnitCase
 
         $serialized = serialize($screen);
 
-        // Not a ModelIdentifier — the object's own attributes must appear in the payload
+        // The object is captured inside a signed SerializableClosure — not a ModelIdentifier
         $this->assertStringContainsString('orchid', $serialized);
         $this->assertStringContainsString('ValueObject', $serialized);
+
+        // HMAC hash must be present — confirms signing is active
+        $this->assertStringContainsString('"hash"', $serialized);
 
         DB::enableQueryLog();
 

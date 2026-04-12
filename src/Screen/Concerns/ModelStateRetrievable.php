@@ -3,6 +3,8 @@
 namespace Orchid\Screen\Concerns;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Contracts\Queue\QueueableCollection;
+use Illuminate\Contracts\Queue\QueueableEntity;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Queue\Attributes\WithoutRelations;
 use Illuminate\Queue\SerializesAndRestoresModelIdentifiers;
@@ -71,11 +73,22 @@ trait ModelStateRetrievable
                 continue;
             }
 
-            $values[$name] = $this->getSerializedPropertyValue(
-                $value,
-                ! $classLevelWithoutRelations &&
-                empty($property->getAttributes(WithoutRelations::class))
-            );
+            // Saved Eloquent models and model collections are stored as lightweight
+            // model identifiers and rehydrated from the database on deserialization
+            if ($value instanceof QueueableEntity || $value instanceof QueueableCollection) {
+                $values[$name] = $this->getSerializedPropertyValue(
+                    $value,
+                    ! $classLevelWithoutRelations &&
+                    empty($property->getAttributes(WithoutRelations::class))
+                );
+
+                continue;
+            }
+
+            // All other values (primitives, arrays, plain objects) are wrapped in a
+            // signed SerializableClosure (HMAC-protected when APP_KEY is set) to
+            // prevent tampering when the state is round-tripped through the client
+            $values[$name] = new SignedValue($value);
         }
 
         return $values;
@@ -110,11 +123,14 @@ trait ModelStateRetrievable
                 continue;
             }
 
-            $restored = $this->getRestoredPropertyValue($values[$name]);
+            $value = $values[$name];
 
-            // Unwrap SerializableClosure back to a plain closure
-            if ($restored instanceof SerializableClosure) {
-                $restored = $restored->getClosure();
+            if ($value instanceof SignedValue) {
+                $restored = $value->restore();
+            } elseif ($value instanceof SerializableClosure) {
+                $restored = $value->getClosure();
+            } else {
+                $restored = $this->getRestoredPropertyValue($value);
             }
 
             $property->setValue($this, $restored);
