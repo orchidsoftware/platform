@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\Feature\Platform;
 
 use Orchid\Platform\Models\User;
-use Orchid\Platform\Notifications\DashboardMessage;
+use Orchid\Platform\Notifications\OrchidMessage;
 use Orchid\Support\Color;
 use Orchid\Tests\App\Notifications\TaskCompleted;
 use Orchid\Tests\TestFeatureCase;
@@ -15,7 +15,7 @@ class NotificationTest extends TestFeatureCase
     public function testNotificationForInnerClass(): void
     {
         $user = $this->createAdminUser();
-        $user->notify(DashboardMessage::make()
+        $user->notify(OrchidMessage::make()
             ->title('Simple Notification')
             ->action('#')
             ->message('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
@@ -24,7 +24,7 @@ class NotificationTest extends TestFeatureCase
 
         $response = $this
             ->actingAs($user)
-            ->get(route('orchid.notifications'));
+            ->post(route('orchid.notifications.index'));
 
         $response
             ->assertOk()
@@ -36,7 +36,7 @@ class NotificationTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->createNotifyUser())
-            ->get(route('orchid.notifications'));
+            ->post(route('orchid.notifications.index'));
 
         $response
             ->assertOk()
@@ -49,31 +49,11 @@ class NotificationTest extends TestFeatureCase
 
         $this
             ->actingAs($user)
-            ->post(route('orchid.notifications', 'markAllAsRead'))
+            ->post(route('orchid.notifications.markAllAsRead'))
             ->assertRedirect();
 
-        $this
-            ->actingAs($user)
-            ->get(route('orchid.notifications'))
-            ->assertSee('All messages have been read.')
-            ->assertDontSee('Mask all as read');
-    }
-
-    public function testDeleteAllNotifications(): void
-    {
-        $user = $this->createNotifyUser();
-
-        $this
-            ->actingAs($user)
-            ->post(route('orchid.notifications', 'removeAll'))
-            ->assertRedirect();
-
-        $this
-            ->actingAs($user)
-            ->get(route('orchid.notifications'))
-            ->assertSee('All messages have been deleted.')
-            ->assertDontSee('Test remove notification')
-            ->assertDontSee('Task Completed');
+        $user->refresh();
+        $this->assertTrue($user->unreadNotifications->isEmpty());
     }
 
     public function testMarkSingleNotificationAsRead(): void
@@ -81,14 +61,14 @@ class NotificationTest extends TestFeatureCase
         $user = $this->createNotifyUser();
         $notification = $user
             ->notifications()
-            ->where('type', DashboardMessage::class)
+            ->where('type', OrchidMessage::class)
             ->first();
 
         $this->assertTrue($notification->unread());
 
         $this
             ->actingAs($user)
-            ->post(route('orchid.notifications', [$notification->id, 'maskNotification']))
+            ->post(route('orchid.notifications.markAsRead', $notification->id))
             ->assertRedirect();
 
         $notification = $notification->fresh();

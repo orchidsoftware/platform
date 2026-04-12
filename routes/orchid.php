@@ -84,7 +84,6 @@ Route::post('sorting', [SortableController::class, 'saveSortOrder'])
 */
 if (config('orchid.notifications.enabled', true)) {
 
-    // Sidebar / AJAX notification routes (registered first to take priority)
     Route::post('/notifications/fetch', [NotificationController::class, 'index'])
         ->name('notifications.index');
 
@@ -97,13 +96,8 @@ if (config('orchid.notifications.enabled', true)) {
     Route::post('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])
         ->name('notifications.markAsRead');
 
-    // JSON API endpoint
     Route::post('/api/notifications', [NotificationController::class, 'api'])
         ->name('api.notifications');
-
-    // Full-page notification screen (catch-all, registered last)
-    Route::match(['GET', 'HEAD', 'POST'], '/notifications/{id?}/{method?}', \Orchid\Platform\Http\Screens\NotificationScreen::class)
-        ->name('notifications');
 }
 
 /*

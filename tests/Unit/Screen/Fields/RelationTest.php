@@ -141,7 +141,7 @@ class RelationTest extends TestFieldsUnitCase
 
         $view = self::renderField($select);
 
-        $crypt = Str::between($view, 'data-select-scope-value="', '"');
+        $crypt = Str::betweenFirst($view, 'data-select-scope-value="', '"');
 
         $this->assertEquals([
             'name'       => lcfirst('exampleScope'),
@@ -157,7 +157,7 @@ class RelationTest extends TestFieldsUnitCase
 
         $view = self::renderField($select);
 
-        $crypt = Str::between($view, 'data-select-scope-value="', '"');
+        $crypt = Str::betweenFirst($view, 'data-select-scope-value="', '"');
 
         $this->assertEquals([
             'name'       => lcfirst('exampleScope'),
@@ -195,7 +195,7 @@ class RelationTest extends TestFieldsUnitCase
 
         $view = self::renderField($select);
 
-        $crypt = Str::between($view, 'data-select-search-columns-value="', '"');
+        $crypt = Str::betweenFirst($view, 'data-select-search-columns-value="', '"');
 
         $this->assertEquals(['email', 'id'], Crypt::decrypt($crypt));
     }
