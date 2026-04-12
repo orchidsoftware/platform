@@ -22,7 +22,7 @@ class NamesTest extends TestUnitCase
     {
         $this->setRouteName('orchid.empty');
 
-        $this->assertSame('page-platform-empty', Names::getPageNameClass());
+        $this->assertSame('page-orchid-empty', Names::getPageNameClass());
     }
 
     public function testNamesSlugForPageClass(): void

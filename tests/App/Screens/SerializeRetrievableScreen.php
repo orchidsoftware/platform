@@ -6,15 +6,14 @@ namespace Orchid\Tests\App\Screens;
 
 use Illuminate\Foundation\Application;
 use Orchid\Screen\Action;
-use Orchid\Screen\Concerns\ModelStateRetrievable;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 
 class SerializeRetrievableScreen extends Screen
 {
-    use ModelStateRetrievable;
-
     public $public = 'Public';
+
+    public $callback = null;
 
     public function __construct(
         protected Application $application,

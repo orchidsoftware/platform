@@ -6,6 +6,7 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Queue\Attributes\WithoutRelations;
 use Illuminate\Queue\SerializesAndRestoresModelIdentifiers;
+use Laravel\SerializableClosure\SerializableClosure;
 
 /**
  * This trait is designed for managing the state of Eloquent models. It uses
@@ -63,6 +64,13 @@ trait ModelStateRetrievable
                 continue;
             }
 
+            // Wrap closures for safe serialization
+            if ($value instanceof \Closure) {
+                $values[$name] = new SerializableClosure($value);
+
+                continue;
+            }
+
             $values[$name] = $this->getSerializedPropertyValue(
                 $value,
                 ! $classLevelWithoutRelations &&
@@ -102,9 +110,14 @@ trait ModelStateRetrievable
                 continue;
             }
 
-            $property->setValue(
-                $this, $this->getRestoredPropertyValue($values[$name])
-            );
+            $restored = $this->getRestoredPropertyValue($values[$name]);
+
+            // Unwrap SerializableClosure back to a plain closure
+            if ($restored instanceof SerializableClosure) {
+                $restored = $restored->getClosure();
+            }
+
+            $property->setValue($this, $restored);
         }
     }
 
