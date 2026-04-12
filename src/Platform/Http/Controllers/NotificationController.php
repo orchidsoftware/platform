@@ -80,7 +80,7 @@ class NotificationController extends Controller
      *
      * @param Request $request
      *
-     * @return int
+     * @return array
      */
     public function unreadCount(Request $request): array
     {

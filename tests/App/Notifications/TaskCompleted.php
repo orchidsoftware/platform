@@ -6,8 +6,8 @@ namespace Orchid\Tests\App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use Orchid\Platform\Notifications\DashboardChannel;
-use Orchid\Platform\Notifications\DashboardMessage;
+use Orchid\Platform\Notifications\OrchidChannel;
+use Orchid\Platform\Notifications\OrchidMessage;
 use Orchid\Support\Color;
 
 class TaskCompleted extends Notification
@@ -19,12 +19,12 @@ class TaskCompleted extends Notification
      */
     public function via(mixed $notifiable): array
     {
-        return [DashboardChannel::class];
+        return [OrchidChannel::class];
     }
 
-    public function toDashboard($notifiable): DashboardMessage
+    public function toOrchid($notifiable): OrchidMessage
     {
-        return (new DashboardMessage)
+        return (new OrchidMessage)
             ->title('Task Completed')
             ->message('You have completed work. Well done!')
             ->type(Color::INFO)

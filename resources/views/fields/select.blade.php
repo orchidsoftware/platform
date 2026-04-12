@@ -14,10 +14,12 @@
          data-select-model-value="{{ $relationModel }}"
          data-select-name-value="{{ $relationName }}"
          data-select-key-value="{{ $relationKey }}"
-         data-select-scope-value="{{ $relationScope }}"
          data-select-append-value="{{ $relationAppend }}"
-         data-select-search-columns-value="{{ $relationSearchColumns }}"
          data-select-chunk-value="{{ $lazyChunk }}"
+         @if($relationSearchColumns)
+         data-select-search-columns-value="{{ $relationSearchColumns }}"
+         @endif
+         data-select-scope-value="{{ $relationScope }}"
      @endif
 >
     <select id="{{ $id ?? \Illuminate\Support\Str::random(8) }}" {{ $attributes }} @if($isLazy) data-select-target="select" @endif>

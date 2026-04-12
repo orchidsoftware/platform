@@ -36,7 +36,17 @@ class Relation extends Select
      * @var array
      */
     protected $attributes = [
-        'value' => [],
+        'value'                 => [],
+        'allowEmpty'            => '',
+        'allowAdd'              => false,
+        'isOptionList'          => false,
+        'lazyChunk'             => null,
+        'relationModel'         => null,
+        'relationName'          => null,
+        'relationKey'           => null,
+        'relationScope'         => null,
+        'relationAppend'        => null,
+        'relationSearchColumns' => null,
     ];
 
     public function __construct()

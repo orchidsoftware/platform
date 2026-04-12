@@ -18,7 +18,13 @@ trait HasFillablePublicProperties
     protected function fillPublicProperty(Repository $repository): void
     {
         $this->getPublicPropertyNames()
-            ->map(fn (string $property) => $this->$property = $repository->get($property, $this->$property));
+            ->each(function (string $property) use ($repository) {
+                $default = property_exists($this, $property) && isset($this->$property)
+                    ? $this->$property
+                    : null;
+
+                $this->$property = $repository->get($property, $default);
+            });
     }
 
     /**

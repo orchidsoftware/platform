@@ -84,17 +84,17 @@ Route::post('sorting', [SortableController::class, 'saveSortOrder'])
 */
 if (config('orchid.notifications.enabled', true)) {
 
-    Route::post('/notifications', [NotificationController::class, 'index'])
+    Route::post('/notifications/fetch', [NotificationController::class, 'index'])
         ->name('notifications.index');
-
-    Route::post('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])
-        ->name('notifications.markAsRead');
 
     Route::post('/notifications/read-all', [NotificationController::class, 'markAllAsRead'])
         ->name('notifications.markAllAsRead');
 
     Route::post('/notifications/unread-count', [NotificationController::class, 'unreadCount'])
         ->name('notifications.unreadCount');
+
+    Route::post('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])
+        ->name('notifications.markAsRead');
 }
 
 /*
