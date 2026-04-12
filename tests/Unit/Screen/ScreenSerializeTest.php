@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Screen;
 
 use Illuminate\Support\Facades\DB;
+use Laravel\SerializableClosure\Serializers\Signed;
 use Orchid\Platform\Models\User;
 use Orchid\Tests\App\Screens\SerializeRetrievableScreen;
 use Orchid\Tests\App\Screens\SerializeScreen;
+use Orchid\Tests\App\Screens\ValueObject;
 use Orchid\Tests\TestUnitCase;
 use ReflectionClass;
 use ReflectionException;
@@ -193,7 +195,7 @@ class ScreenSerializeTest extends TestUnitCase
     }
 
     /**
-     * Tests that primitive types (int, string) and stdClass objects are safely
+     * Tests that primitive types (int, string, float, array) and stdClass objects are safely
      * serialized and restored through the Screen state mechanism.
      */
     public function testWithPrimitivesAndStdObject(): void
@@ -220,5 +222,67 @@ class ScreenSerializeTest extends TestUnitCase
         $unserializedObj = unserialize($serializedObj);
         $this->assertInstanceOf(\stdClass::class, $unserializedObj->public);
         $this->assertSame('value', $unserializedObj->public->key);
+
+        // float — uses the dedicated float property (default is 0.0)
+        $screen->amount = 3.14;
+        $serializedFloat = serialize($screen);
+        $unserializedFloat = unserialize($serializedFloat);
+        $this->assertSame(3.14, $unserializedFloat->amount);
+
+        // array — uses the dedicated array property (default is [])
+        $screen->data = ['foo' => 'bar', 'baz' => 123];
+        $serializedArray = serialize($screen);
+        $unserializedArray = unserialize($serializedArray);
+        $this->assertSame(['foo' => 'bar', 'baz' => 123], $unserializedArray->data);
+    }
+
+    /**
+     * Tests that a non-Model, non-Closure custom object (ValueObject) is serialized
+     * via PHP native serialization (not as a ModelIdentifier) and correctly restored.
+     */
+    public function testWithComplexObject(): void
+    {
+        $screen = app()->make(SerializeRetrievableScreen::class);
+        $screen->valueObject = new ValueObject('orchid', 42);
+
+        $serialized = serialize($screen);
+
+        // Not a ModelIdentifier — the object's own attributes must appear in the payload
+        $this->assertStringContainsString('orchid', $serialized);
+        $this->assertStringContainsString('ValueObject', $serialized);
+
+        DB::enableQueryLog();
+
+        $unserialized = unserialize($serialized);
+
+        // No DB query — not an Eloquent model
+        $this->assertCount(0, DB::getQueryLog());
+
+        $this->assertInstanceOf(ValueObject::class, $unserialized->valueObject);
+        $this->assertSame('orchid', $unserialized->valueObject->label);
+        $this->assertSame(42, $unserialized->valueObject->count);
+    }
+
+    /**
+     * Tests that Closures are signed with the application key (HMAC) when APP_KEY is
+     * configured, making the serialized payload tamper-evident.
+     */
+    public function testClosureIsSignedWithAppKey(): void
+    {
+        // EncryptionServiceProvider registers an HMAC signer when APP_KEY is present
+        $this->assertNotNull(Signed::$signer, 'Expected a Signer to be registered via APP_KEY.');
+
+        $screen = app()->make(SerializeRetrievableScreen::class);
+        $screen->callback = fn () => 'secure';
+
+        $serialized = serialize($screen);
+
+        // Signed serializer adds a "hash" key to the payload
+        $this->assertStringContainsString('"hash"', $serialized);
+
+        // Round-trip verification: the closure is callable and returns the expected value
+        $unserialized = unserialize($serialized);
+        $this->assertIsCallable($unserialized->callback);
+        $this->assertSame('secure', ($unserialized->callback)());
     }
 }
