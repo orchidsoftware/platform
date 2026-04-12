@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // sortable
 .sortable-placeholder {
     list-style: none;
@@ -32,7 +34,7 @@
     }
 
     .select2-dropdown {
-        border-color: fade-out($black, 0.9);
+        border-color: color.change($black, $alpha: 0.1);
         outline: 0 !important;
         @include box-shadow(none);
         @include placeholder($text-muted);
@@ -41,7 +43,7 @@
 
     &.select2-container--focus .select2-selection,
     &.select2-container--open .select2-selection {
-        border-color: fade-out($black, 0.9);
+        border-color: color.change($black, $alpha: 0.1);
         background-color: $grey-light;
         outline: 0 !important;
         @include box-shadow(none);
@@ -54,8 +56,8 @@
     }
 }
 .select2-container--bootstrap.select2-container--disabled .select2-selection {
-    background: mix($grey-light, #fff, 50%);
-    color: fade-out($grey, 0.77);
+    background: color.mix($grey-light, #fff, 50%);
+    color: color.change($grey, $alpha: 0.23);
     border: 1px solid $form-control-border-color;
 }
 
@@ -101,7 +103,7 @@
 .editor-preview-side {
     border-left: none !important;
     @extend .border-top;
-    @extend .bg-white;
+    @extend .bg-surface;
     @extend .py-2;
     @extend .px-3;
 }

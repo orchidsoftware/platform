@@ -8,7 +8,7 @@
     </fieldset>
 @endempty
 
-<div class="bg-white rounded shadow-sm mb-3 overflow-hidden"
+<div class="bg-surface rounded shadow-sm mb-3 overflow-hidden"
      data-controller="table"
      data-table-slug="{{$slug}}"
 >

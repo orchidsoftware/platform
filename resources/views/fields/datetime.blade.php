@@ -10,7 +10,7 @@
     >
 
     @if(true === $allowEmpty)
-        <div class="input-group-append bg-white">
+        <div class="input-group-append bg-surface">
             <a class="input-group-text h-100 text-muted"
                title="clear"
                data-action="click->datetime#clear">

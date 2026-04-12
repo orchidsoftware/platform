@@ -8,7 +8,7 @@
         </div>
     @endempty
 
-    <dl class="bg-white rounded shadow-sm p-4 py-4 d-flex flex-column">
+    <dl class="bg-surface rounded shadow-sm p-4 py-4 d-flex flex-column">
         @foreach($columns as $column)
             <div class="d2-grid py-3 {{ $loop->first ? '' : 'border-top' }}">
                 <dt class="text-muted fw-normal me-3">
