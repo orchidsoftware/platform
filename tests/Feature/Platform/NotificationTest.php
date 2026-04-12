@@ -75,19 +75,17 @@ class NotificationTest extends TestFeatureCase
         $this->assertTrue($notification->read());
     }
 
-    public function testAPIReturnsUnreadNotifications(): void
+    public function testUnreadCount(): void
     {
+        $user = $this->createNotifyUser();
+
         $response = $this
-            ->actingAs($this->createNotifyUser())
-            ->post(route('orchid.api.notifications'));
+            ->actingAs($user)
+            ->post(route('orchid.notifications.unreadCount'));
 
         $response
             ->assertOk()
-            ->assertJsonFragment([
-                'type'    => 'info',
-                'title'   => 'Task Completed',
-                'message' => 'You have completed work. Well done!',
-            ]);
+            ->assertJson(['total' => 1]);
     }
 
     private function createNotifyUser(): User

@@ -95,9 +95,6 @@ if (config('orchid.notifications.enabled', true)) {
 
     Route::post('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])
         ->name('notifications.markAsRead');
-
-    Route::post('/api/notifications', [NotificationController::class, 'api'])
-        ->name('api.notifications');
 }
 
 /*

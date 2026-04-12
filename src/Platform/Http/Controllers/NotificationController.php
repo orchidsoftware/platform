@@ -93,22 +93,4 @@ class NotificationController extends Controller
             'total' => $total,
         ];
     }
-
-    /**
-     * Return unread notifications as JSON for the API.
-     *
-     * @param Request $request
-     *
-     * @return array
-     */
-    public function api(Request $request): array
-    {
-        return $request->user()
-            ->unreadNotifications()
-            ->whereIn('type', [OrchidMessage::class, DashboardMessage::class])
-            ->get()
-            ->map(fn (DatabaseNotification $notification) => $notification->data)
-            ->values()
-            ->toArray();
-    }
 }
