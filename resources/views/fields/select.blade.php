@@ -2,6 +2,13 @@
     // Lazy (HTTP) mode only when both lazyChunk is set and relation params exist (fromModel).
     // fromQuery/fromEnum/options() do not set relationModel, so lazy() is ignored and options load eagerly.
     $isLazy = isset($lazyChunk) && $lazyChunk !== null && !empty($relationModel);
+    
+    // Default values for optional parameters.
+    $allowEmpty = $allowEmpty ?? false;
+    $allowAdd   = $allowAdd ?? false;
+    $relationScope = $relationScope ?? '';
+    $relationAppend = $relationAppend ?? '';
+    $relationSearchColumns = $relationSearchColumns ?? '';
 @endphp
 <div data-controller="select"
      data-select-placeholder-value="{{ $attributes['placeholder'] ?? '' }}"
