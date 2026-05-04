@@ -24,6 +24,8 @@ export default class extends ApplicationController {
                     e.stopPropagation();
                 });
         }
+
+        this.loadOpenDetails();
     }
 
     /**
@@ -107,6 +109,73 @@ export default class extends ApplicationController {
         this.element.querySelectorAll(checkBoxEnable).forEach(checkbox => {
             checkbox.checked = false;
         });
+    }
+
+    toggleDetail(event) {
+        const button = event.currentTarget;
+        const target = document.getElementById(button.dataset.detailTargetId);
+        const row = target?.closest("[data-row-detail-row]");
+
+        if (!target || !row) {
+            return;
+        }
+
+        const isExpanded = button.getAttribute("aria-expanded") === "true";
+
+        button.setAttribute("aria-expanded", String(!isExpanded));
+        row.classList.toggle("d-none", isExpanded);
+
+        if (!isExpanded && button.dataset.detailLoaded !== "true") {
+            this.loadDetail(button, target);
+        }
+    }
+
+    loadOpenDetails() {
+        this.element
+            .querySelectorAll('[data-detail-loaded="false"][aria-expanded="true"]')
+            .forEach(button => {
+                const target = document.getElementById(
+                    button.dataset.detailTargetId
+                );
+
+                if (target) {
+                    this.loadDetail(button, target);
+                }
+            });
+    }
+
+    loadDetail(button, target) {
+        const body = this.detailData(button.dataset.detailBody);
+        const query = this.detailData(button.dataset.detailQuery);
+        const queryString = new URLSearchParams(query).toString();
+        const url = queryString
+            ? `${button.dataset.detailUrl}?${queryString}`
+            : button.dataset.detailUrl;
+
+        this.loadStream(url, {
+            ...body,
+            _state: document.getElementById("screen-state")?.value || null,
+        })
+            .then(() => {
+                button.dataset.detailLoaded = "true";
+            })
+            .catch(error => {
+                console.error(error);
+                target.innerHTML = `<div class="text-danger small">${error.message}</div>`;
+            });
+    }
+
+    detailData(value) {
+        if (!value) {
+            return {};
+        }
+
+        try {
+            return JSON.parse(value);
+        } catch (error) {
+            console.error(error);
+            return {};
+        }
     }
 
     /**

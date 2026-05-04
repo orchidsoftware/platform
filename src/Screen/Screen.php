@@ -176,6 +176,58 @@ abstract class Screen extends Controller
     }
 
     /**
+     * Builds row detail content asynchronously.
+     *
+     * @throws BindingResolutionException
+     * @throws \ReflectionException
+     */
+    public function asyncRowDetail(string $method, string $layoutSlug, string $target): Response
+    {
+        Orchid::setCurrentScreen($this, true);
+
+        abort_unless(
+            static::getAvailableMethods()->contains($method),
+            Response::HTTP_BAD_REQUEST,
+            "Async method '{$method}' is unavailable."
+        );
+
+        abort_unless($this->checkAccess(request()), static::unaccessed());
+
+        $state = $this->extractState();
+        $this->fillPublicProperty($state);
+
+        $parameters = request()->collect()->merge([
+            'state' => $state,
+        ])->all();
+
+        $repository = $this->callMethod($method, $parameters);
+
+        if (is_array($repository)) {
+            $repository = new Repository(array_merge($state->all(), $repository));
+        }
+
+        if (! $repository instanceof Repository) {
+            $repository = new Repository(['source' => $repository]);
+        }
+
+        $layout = LayoutFactory::blank([$this->layout()])->findBySlug($layoutSlug);
+
+        abort_unless(
+            $layout !== null && method_exists($layout, 'buildDetailContent'),
+            Response::HTTP_BAD_REQUEST,
+            "Layout '{$layoutSlug}' does not support row details."
+        );
+
+        $view = view('orchid::partials.layouts.row-detail-stream', [
+            'target'  => $target,
+            'content' => $layout->buildDetailContent($repository),
+        ]);
+
+        return response($view)
+            ->header('Content-Type', 'text/vnd.turbo-stream.html');
+    }
+
+    /**
      * @throws \Throwable
      *
      * @return Factory|\Illuminate\View\View

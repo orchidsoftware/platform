@@ -61,4 +61,31 @@ class AsyncController extends Controller
 
         return $screen->asyncPartialLayout($layout, $request);
     }
+
+    /**
+     * @throws BindingResolutionException
+     * @throws \ReflectionException
+     */
+    public function rowDetail(Request $request)
+    {
+        $request->validate([
+            '_call'   => 'required|string',
+            '_layout' => 'required|string',
+            '_screen' => 'required|string',
+            '_target' => 'required|string',
+        ]);
+
+        $screen = Crypt::decryptString(
+            $request->input('_screen')
+        );
+
+        /** @var Screen $screen */
+        $screen = app($screen);
+
+        return $screen->asyncRowDetail(
+            $request->input('_call'),
+            $request->input('_layout'),
+            $request->input('_target')
+        );
+    }
 }
