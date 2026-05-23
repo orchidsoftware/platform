@@ -34,7 +34,7 @@ class PermissionTest extends TestUnitCase
 
         // User of role
         $this->assertEquals(1, $user->roles()->count());
-        $this->assertEquals(1, $role->roles()->count());
+        $this->assertEquals(1, $role->users()->count());
         $this->assertTrue($user->inRole('admin'));
         $this->assertTrue($user->inRole($role));
         $this->assertFalse($user->inRole('notFoundRole'));
@@ -180,7 +180,7 @@ class PermissionTest extends TestUnitCase
         $this->assertFalse($user->inRole($role));
 
         $user->addRole($role);
-        $user->removeRoleBySlug($role->slug);
+        $user->removeRoleBySlug($role->name);
 
         $this->assertFalse($user->inRole($role));
 

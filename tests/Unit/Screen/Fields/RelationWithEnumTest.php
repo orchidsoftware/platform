@@ -34,10 +34,21 @@ class RelationWithEnumTest extends TestFieldsUnitCase
     {
         parent::setUp();
 
-        Role::factory()->times(10)->create([
-            'name' => $this->faker->randomElement(RoleNames::cases())->value,
-        ]);
-        $this->roles = RoleWithEnum::all();
+        collect(RoleNames::cases())
+            ->each(function (RoleNames $roleName): void {
+                $attributes = Role::factory()->make([
+                    'name' => $roleName->value,
+                ])->toArray();
+
+                Role::query()->updateOrCreate(
+                    ['name' => $roleName->value],
+                    $attributes
+                );
+            });
+
+        $this->roles = RoleWithEnum::query()
+            ->whereIn('name', collect(RoleNames::cases())->map->value->all())
+            ->get();
         $this->users = User::factory()->times(10)->create();
     }
 
@@ -77,11 +88,11 @@ class RelationWithEnumTest extends TestFieldsUnitCase
     {
         $stringPrimaryClass = new class extends RoleWithEnum
         {
-            protected $primaryKey = 'slug';
+            protected $primaryKey = 'name';
         };
 
         /** @var RoleWithEnum $current */
-        $current = $this->roles->random();
+        $current = $stringPrimaryClass::query()->firstOrFail();
 
         $select = Relation::make('role')
             ->title('Select roles')
@@ -90,7 +101,7 @@ class RelationWithEnumTest extends TestFieldsUnitCase
 
         $view = self::renderField($select);
 
-        $this->assertStringContainsString($current->name->value, $view);
+        $this->assertStringContainsString($current->name->name, $view);
         $this->assertStringContainsString('Select roles', $view);
     }
 

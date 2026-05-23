@@ -3,6 +3,7 @@
 namespace Orchid\Platform\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 use Orchid\Platform\Models\Role;
 
 class RoleFactory extends Factory
@@ -45,7 +46,7 @@ class RoleFactory extends Factory
         $selRole = $this->faker->randomElement($role);
 
         return [
-            'name'        => $this->faker->unique()->jobTitle,
+            'name'        => 'role-'. Str::ulid(),
             'permissions' => $roles[$selRole],
         ];
     }

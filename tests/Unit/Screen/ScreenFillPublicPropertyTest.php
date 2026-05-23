@@ -12,23 +12,6 @@ use Orchid\Tests\Unit\Screen\Screens\ScreenWithInheritedProperties;
 class ScreenFillPublicPropertyTest extends TestUnitCase
 {
     /**
-     * @var Screen
-     */
-    private $screen;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->screen = $this->getMockBuilder(Screen::class)
-            ->onlyMethods(['getPublicPropertyNames', 'layout'])
-            ->getMock();
-
-        $this->screen->method('layout')
-            ->willReturn([]);
-    }
-
-    /**
      * Tests that the `fillPublicProperty` method correctly fills public properties
      * with various data types: array, object, boolean, string, and float.
      *
@@ -38,6 +21,29 @@ class ScreenFillPublicPropertyTest extends TestUnitCase
      */
     public function testFillPublicPropertyWithVariousValueTypes(): void
     {
+        $screen = new class extends Screen
+        {
+            public $simpleArrayProperty;
+            public $objectProperty;
+            public $booleanFalseProperty;
+            public $booleanTrueProperty;
+            public $stringProperty;
+            public $floatProperty;
+            public $nullProperty;
+            public $assocArrayProperty;
+            public $customObjectProperty;
+
+            public function layout(): iterable
+            {
+                return [];
+            }
+
+            public function fillForTest(Repository $repository): void
+            {
+                $this->fillPublicProperty($repository);
+            }
+        };
+
         // Define test data with meaningful property names
         $data = [
             'simpleArrayProperty'  => ['item1', 'item2'], // Simple array
@@ -53,25 +59,16 @@ class ScreenFillPublicPropertyTest extends TestUnitCase
 
         // Initialize public properties for testing
         foreach (array_keys($data) as $property) {
-            $this->screen->{$property} = null; // Set property to null initially
+            $screen->{$property} = null; // Set property to null initially
         }
-
-        $this->screen->method('getPublicPropertyNames')
-            ->willReturn(collect(array_keys($data)));
 
         $repository = new Repository($data);
 
-        // Use reflection to access the protected method fillPublicProperty
-        $reflection = new \ReflectionClass($this->screen);
-        $method = $reflection->getMethod('fillPublicProperty');
-        $method->setAccessible(true);
-
-        // Invoke the method to fill properties
-        $method->invoke($this->screen, $repository);
+        $screen->fillForTest($repository);
 
         // Assert that each public property is set correctly
         foreach ($data as $property => $expectedValue) {
-            $this->assertEquals($expectedValue, $this->screen->{$property}, "Failed asserting that property '$property' is set correctly.");
+            $this->assertEquals($expectedValue, $screen->{$property}, "Failed asserting that property '$property' is set correctly.");
         }
     }
 

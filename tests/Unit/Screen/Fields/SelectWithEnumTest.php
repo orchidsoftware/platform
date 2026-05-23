@@ -27,10 +27,21 @@ class SelectWithEnumTest extends TestFieldsUnitCase
     {
         parent::setUp();
 
-        Role::factory()->times(10)->create([
-            'name' => $this->faker->randomElement(RoleNames::cases())->value,
-        ]);
-        $this->roles = RoleWithEnum::all();
+        collect(RoleNames::cases())
+            ->each(function (RoleNames $roleName): void {
+                $attributes = Role::factory()->make([
+                    'name' => $roleName->value,
+                ])->toArray();
+
+                Role::query()->updateOrCreate(
+                    ['name' => $roleName->value],
+                    $attributes
+                );
+            });
+
+        $this->roles = RoleWithEnum::query()
+            ->whereIn('name', collect(RoleNames::cases())->map->value->all())
+            ->get();
     }
 
     public function testEmptyFromModel(): void

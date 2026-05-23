@@ -21,9 +21,11 @@ class RoleFactory extends Factory
      */
     public function definition()
     {
-        $role = ['Admin', 'User'];
-        $roles = [
-            $role[0] => [
+        $name = $this->faker->randomElement(['Admin', 'User']);
+
+        return [
+            'name'        => $this->faker->unique()->lexify($name.'_??????'),
+            'permissions' => [
                 'orchid.index'       => 1,
                 'orchid'             => 1,
                 'orchid.roles'       => 1,
@@ -32,21 +34,6 @@ class RoleFactory extends Factory
                 'orchid.attachment'  => 1,
                 'orchid.media'       => 1,
             ],
-            $role[1] => [
-                'orchid.index'       => 1,
-                'orchid'             => 1,
-                'orchid.settings'    => 1,
-                'orchid.comment'     => 1,
-                'orchid.attachment'  => 1,
-                'orchid.media'       => 1,
-            ],
-        ];
-
-        $selRole = $this->faker->randomElement($role);
-
-        return [
-            'name'        => $this->faker->unique()->jobTitle,
-            'permissions' => $roles[$selRole],
         ];
     }
 }

@@ -77,7 +77,7 @@ class RelationTest extends TestFieldsUnitCase
         };
 
         /** @var Role $current */
-        $current = $this->roles->random();
+        $current = $stringPrimaryClass::query()->firstOrFail();
 
         $select = Relation::make('role')
             ->title('Select roles')

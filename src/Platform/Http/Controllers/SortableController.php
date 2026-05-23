@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class SortableController extends Controller
 {
@@ -30,8 +31,11 @@ class SortableController extends Controller
         abort_unless(class_exists($classModel), 400);
 
         $model = new $classModel;
+        $policy = Gate::getPolicyFor($model);
 
-        $this->authorize('isSortable', $model);
+        if ($policy !== null && method_exists($policy, 'isSortable')) {
+            $this->authorize('isSortable', $model);
+        }
 
         $request->collect('items')->each(function ($item) use ($model) {
             $model->where($model->getKeyName(), '=', $item['id'])->update([

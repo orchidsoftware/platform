@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Orchid\Platform\Events\AddRoleEvent;
@@ -36,18 +35,23 @@ trait UserAccess
      */
     public function inRole($role): bool
     {
-        $role = Arr::first($this->roles->all(), static function ($instance) use ($role) {
-            if ($role instanceof RoleInterface) {
-                return $instance->getRoleId() === $role->getRoleId();
-            }
-            if ($role === $instance->getRoleId() || $role === $instance->getRoleSlug()) {
-                return true;
-            }
+        if ($role instanceof Model) {
+            return $this->roles()->whereKey($role->getKey())->exists();
+        }
 
+        if (! is_string($role) && ! is_int($role)) {
             return false;
-        });
+        }
 
-        return $role !== null;
+        return $this->roles()
+            ->where(function (Builder $builder) use ($role) {
+                $builder->whereKey($role);
+
+                if (is_string($role)) {
+                    $builder->orWhere('name', $role);
+                }
+            })
+            ->exists();
     }
 
     public function hasAccess(string $permit, bool $cache = true): bool
@@ -141,8 +145,38 @@ trait UserAccess
         $result = $this->roles()->save($role);
 
         $this->eventAddRole($role);
+        $this->clearCachePermission();
 
         return $result;
+    }
+
+    /**
+     * @return $this
+     */
+    public function removeRole(Model $role)
+    {
+        $this->roles()->detach($role->getKey());
+
+        $this->eventRemoveRole($role);
+        $this->clearCachePermission();
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function removeRoleBySlug(string $slug)
+    {
+        $role = $this->roles()
+            ->where('name', $slug)
+            ->first();
+
+        if ($role === null) {
+            return $this;
+        }
+
+        return $this->removeRole($role);
     }
 
     /**
@@ -157,6 +191,7 @@ trait UserAccess
         $this->roles()->attach($roles);
 
         $this->eventAddRole($roles);
+        $this->clearCachePermission();
 
         return $this;
     }

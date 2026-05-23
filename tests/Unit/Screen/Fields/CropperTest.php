@@ -40,7 +40,7 @@ class CropperTest extends TestFieldsUnitCase
 
         $view = self::renderField($picture);
 
-        $this->assertStringContainsString(sprintf('value="%d"', $upload->id), $view);
+        $this->assertStringContainsString(sprintf('value="%s"', $upload->id), $view);
         $this->assertStringContainsString($upload->url, $view);
     }
 

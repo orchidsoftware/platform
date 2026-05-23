@@ -7,7 +7,9 @@ namespace Orchid\Tests\Feature\Platform;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Gate;
 use Orchid\Attachment\Models\Attachment;
+use Orchid\Tests\App\Policies\PolicySortAllow;
 use Orchid\Tests\App\Policies\PolicySortDeny;
+use Orchid\Tests\App\Policies\PolicySortWithoutMethod;
 use Orchid\Tests\TestFeatureCase;
 
 class SortableTest extends TestFeatureCase
@@ -15,7 +17,7 @@ class SortableTest extends TestFeatureCase
     protected function setUp(): void
     {
         parent::setUp();
-        Gate::policy(Attachment::class, null);
+        Gate::policy(Attachment::class, PolicySortAllow::class);
     }
 
     protected function tearDown(): void
@@ -60,6 +62,46 @@ class SortableTest extends TestFeatureCase
         $this->assertSame($sortBefore, $sortAfter, 'Sort order must not change when policy denies.');
     }
 
+    public function testSortingIsAllowedWhenPolicyIsMissing(): void
+    {
+        Gate::policy(Attachment::class, null);
+
+        $response = $this
+            ->actingAs($this->createAdminUser())
+            ->post(route('orchid.files.upload'), [
+                'files' => [
+                    UploadedFile::fake()->image('first.jpg'),
+                    UploadedFile::fake()->image('second.png'),
+                ],
+            ]);
+
+        $attachments = $response->decodeResponseJson()->json();
+
+        $ids = array_column($attachments, 'id');
+        $sortItems = collect($ids)->reverse()->values()->map(fn ($id, $index) => [
+            'id'        => $id,
+            'sortOrder' => $index,
+        ])->all();
+
+        $expectedSort = collect($sortItems)->pluck('sortOrder', 'id')->all();
+
+        $response = $this
+            ->actingAs($this->createAdminUser())
+            ->post(route('orchid.sorting'), [
+                'items' => $sortItems,
+                'model' => Attachment::class,
+            ]);
+
+        $response->assertOk();
+
+        $sortAfter = Attachment::whereIn('id', $ids)->pluck('sort', 'id')->toArray();
+
+        ksort($expectedSort);
+        ksort($sortAfter);
+
+        $this->assertSame($expectedSort, $sortAfter, 'Sort order should change when policy is missing.');
+    }
+
     public function testAttachmentHttpSort(): void
     {
         $response = $this
@@ -100,5 +142,45 @@ class SortableTest extends TestFeatureCase
             ->toArray();
 
         $this->assertEquals($sort, $attachments);
+    }
+
+    public function testSortingIsAllowedWhenPolicyHasNoIsSortableMethod(): void
+    {
+        Gate::policy(Attachment::class, PolicySortWithoutMethod::class);
+
+        $response = $this
+            ->actingAs($this->createAdminUser())
+            ->post(route('orchid.files.upload'), [
+                'files' => [
+                    UploadedFile::fake()->image('first.jpg'),
+                    UploadedFile::fake()->image('second.png'),
+                ],
+            ]);
+
+        $attachments = $response->decodeResponseJson()->json();
+
+        $ids = array_column($attachments, 'id');
+        $sortItems = collect($ids)->reverse()->values()->map(fn ($id, $index) => [
+            'id'        => $id,
+            'sortOrder' => $index,
+        ])->all();
+
+        $expectedSort = collect($sortItems)->pluck('sortOrder', 'id')->all();
+
+        $response = $this
+            ->actingAs($this->createAdminUser())
+            ->post(route('orchid.sorting'), [
+                'items' => $sortItems,
+                'model' => Attachment::class,
+            ]);
+
+        $response->assertOk();
+
+        $sortAfter = Attachment::whereIn('id', $ids)->pluck('sort', 'id')->toArray();
+
+        ksort($expectedSort);
+        ksort($sortAfter);
+
+        $this->assertSame($expectedSort, $sortAfter, 'Sort order should change when policy has no isSortable method.');
     }
 }
