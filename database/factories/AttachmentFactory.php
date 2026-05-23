@@ -32,8 +32,6 @@ class AttachmentFactory extends Factory
             'size'          => random_int(1, 100),
             'sort'          => random_int(1, 100),
             'path'          => Str::random(),
-            'description'   => Str::random(),
-            'alt'           => Str::random(),
             'hash'          => Str::random(),
             'disk'          => 'public',
             'group'         => null,
