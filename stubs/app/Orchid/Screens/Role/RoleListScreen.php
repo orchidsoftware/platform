@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\Role;
 
-use App\Orchid\Layouts\Role\RoleListLayout;
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Link;
-use Orchid\Screen\Layout;
+use Orchid\Screen\Components\Cells\DateTimeSplit;
+use Orchid\Screen\Fields\Input;
+use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Screen;
+use Orchid\Screen\TD;
 
 class RoleListScreen extends Screen
 {
@@ -41,6 +43,9 @@ class RoleListScreen extends Screen
         return 'A comprehensive list of all roles, including their permissions and associated users.';
     }
 
+    /**
+     * The permissions required to access this screen.
+     */
     public function permission(): ?iterable
     {
         return [
@@ -64,13 +69,30 @@ class RoleListScreen extends Screen
 
     /**
      * The screen's layout elements.
-     *
-     * @return string[]|Layout[]
      */
     public function layout(): iterable
     {
         return [
-            RoleListLayout::class,
+            Layout::table('roles', [
+                TD::make('name', __('Name'))
+                    ->sort()
+                    ->cantHide()
+                    ->filter(Input::make())
+                    ->render(fn (Role $role) => Link::make($role->name)
+                        ->stretched()
+                        ->route('orchid.roles.edit', $role->id)),
+
+                TD::make('created_at', __('Created'))
+                    ->usingComponent(DateTimeSplit::class)
+                    ->align(TD::ALIGN_RIGHT)
+                    ->defaultHidden()
+                    ->sort(),
+
+                TD::make('updated_at', __('Last edit'))
+                    ->usingComponent(DateTimeSplit::class)
+                    ->align(TD::ALIGN_RIGHT)
+                    ->sort(),
+            ])
         ];
     }
 }

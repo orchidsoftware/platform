@@ -2,22 +2,24 @@
 
 declare(strict_types=1);
 
-namespace App\Orchid\Layouts\Role;
+namespace App\Orchid\Layouts\User;
 
-use Illuminate\Support\Collection;
 use Orchid\Platform\Models\User;
+use Illuminate\Support\Collection;
 use Orchid\Screen\Field;
 use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Layouts\Rows;
 use Throwable;
 
-class RolePermissionLayout extends Rows
+class PermissionLayout extends Rows
 {
     /**
+     * Currently inspected user.
+     *
      * @var User|null
      */
-    private $user;
+    private ?User $user;
 
     /**
      * The screen's layout elements.
@@ -35,6 +37,12 @@ class RolePermissionLayout extends Rows
         );
     }
 
+    /**
+     * Transform raw grouped permissions into Orchid fields.
+     *
+     * @param  Collection  $permissionsRaw  Map<title, Collection<array>>
+     * @return Field[]
+     */
     private function generatedPermissionFields(Collection $permissionsRaw): array
     {
         return $permissionsRaw
@@ -43,6 +51,13 @@ class RolePermissionLayout extends Rows
             ->toArray();
     }
 
+    /**
+     * Build a grouped set of checkbox fields for a permission category.
+     *
+     * @param  Collection  $permissions  Collection<array{slug: string, description: string, active: bool}>
+     * @param  string      $title
+     * @return Collection     Collection<Group>
+     */
     private function makeCheckBoxGroup(Collection $permissions, string $title): Collection
     {
         return $permissions
@@ -57,6 +72,12 @@ class RolePermissionLayout extends Rows
                 ->autoWidth());
     }
 
+    /**
+     * Create a single checkbox for a permission.
+     *
+     * @param  Collection  $chunks  Collection{slug: string, description: string, active: bool}
+     * @return CheckBox
+     */
     private function makeCheckBox(Collection $chunks): CheckBox
     {
         return CheckBox::make('permissions.'.base64_encode($chunks->get('slug')))
@@ -69,8 +90,15 @@ class RolePermissionLayout extends Rows
             ));
     }
 
-    private function getIndeterminateStatus($slug, $value): bool
+    /**
+     * Determine if checkbox should be indeterminate (user has permission transitively).
+     *
+     * @param  string       $permission  Permission slug
+     * @param  bool|mixed   $value       Role's permission active flag
+     * @return bool
+     */
+    private function getIndeterminateStatus(string $permission, $value): bool
     {
-        return optional($this->user)->hasAccess($slug) === true && $value === false;
+        return optional($this->user)->hasAccess($permission) === true && $value === false;
     }
 }

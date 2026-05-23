@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\Role;
 
-use App\Orchid\Layouts\Role\RoleEditLayout;
-use App\Orchid\Layouts\Role\RolePermissionLayout;
+use App\Orchid\Layouts\User\PermissionLayout;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
@@ -19,7 +19,7 @@ use Orchid\Support\Facades\Toast;
 class RoleEditScreen extends Screen
 {
     /**
-     * @var Role
+     * @var Role|null
      */
     public $role;
 
@@ -90,13 +90,21 @@ class RoleEditScreen extends Screen
     {
         return [
             Layout::block([
-                RoleEditLayout::class,
+              Layout::rows([
+                  Input::make('role.name')
+                      ->type('text')
+                      ->max(255)
+                      ->required()
+                      ->title(__('Name'))
+                      ->placeholder(__('Name'))
+                      ->help(__('Role display name')),
+              ])
             ])
                 ->title('Role')
                 ->description('Defines a set of privileges that grant users access to various services and allow them to perform specific tasks or operations.'),
 
             Layout::block([
-                RolePermissionLayout::class,
+                PermissionLayout::class,
             ])
                 ->title('Permission/Privilege')
                 ->description('A privilege is necessary to perform certain tasks and operations in an area.'),
@@ -109,16 +117,15 @@ class RoleEditScreen extends Screen
     public function save(Request $request, Role $role)
     {
         $request->validate([
-            'role.name' => 'required',
-            'role.slug' => [
+            'role.name' => [
                 'required',
-                Rule::unique(Role::class, 'slug')->ignore($role),
+                Rule::unique(Role::class, 'name')->ignore($role),
             ],
         ]);
 
-        $role->fill($request->get('role'));
+        $role->fill($request->input('role'));
 
-        $role->permissions = collect($request->get('permissions'))
+        $role->permissions = collect($request->input('permissions'))
             ->map(fn ($value, $key) => [base64_decode($key) => $value])
             ->collapse()
             ->toArray();
