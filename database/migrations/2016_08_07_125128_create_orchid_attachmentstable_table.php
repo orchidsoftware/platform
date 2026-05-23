@@ -12,17 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('attachments', function (Blueprint $table) {
-            $table->increments('id');
-            $table->text('name');
-            $table->text('original_name');
+            $table->uuid('id')->primary();
+            $table->string('name');
+            $table->string('original_name');
             $table->string('mime');
             $table->string('extension')->nullable();
             $table->bigInteger('size')->default(0);
             $table->integer('sort')->default(0);
-            $table->text('path');
-            $table->text('description')->nullable();
-            $table->text('alt')->nullable();
-            $table->text('hash')->nullable();
+            $table->string('path');
+            $table->string('hash')->nullable();
             $table->string('disk')->default('public');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('group')->nullable();
@@ -30,14 +28,12 @@ return new class extends Migration
         });
 
         Schema::create('attachmentable', function (Blueprint $table) {
-            $table->increments('id');
             $table->string('attachmentable_type');
-            $table->unsignedInteger('attachmentable_id');
-            $table->unsignedInteger('attachment_id');
+            $table->string('attachmentable_id');
 
             $table->index(['attachmentable_type', 'attachmentable_id']);
 
-            $table->foreign('attachment_id')
+            $table->foreignUuid('attachment_id')
                 ->references('id')
                 ->on('attachments')
                 ->onUpdate('cascade')
