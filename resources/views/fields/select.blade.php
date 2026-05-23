@@ -1,4 +1,6 @@
 @php
+    $id = $id ?? \Illuminate\Support\Str::random(8);
+
     // Lazy (HTTP) mode only when both lazyChunk is set and relation params exist (fromModel).
     // fromQuery/fromEnum/options() do not set relationModel, so lazy() is ignored and options load eagerly.
     $isLazy = isset($lazyChunk) && $lazyChunk !== null && !empty($relationModel);
@@ -22,7 +24,12 @@
          data-select-scope-value="{{ $relationScope }}"
      @endif
 >
-    <select id="{{ $id ?? \Illuminate\Support\Str::random(8) }}" {{ $attributes }} @if($isLazy) data-select-target="select" @endif>
+    <select
+        {{ $attributes
+            ->merge(['id' => $id])
+            ->merge($isLazy ? ['data-select-target' => 'select'] : [])
+            }}
+    >
         @if($isLazy)
             @foreach (($value ?? []) as $option)
                 <option selected value="{{ $option['id'] }}">{{ $option['text'] }}</option>
