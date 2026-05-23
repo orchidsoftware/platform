@@ -46,7 +46,7 @@ class RoleFactory extends Factory
         $selRole = $this->faker->randomElement($role);
 
         return [
-            'name'        => 'role-'. Str::ulid(),
+            'name'        => 'role-'.Str::ulid(),
             'permissions' => $roles[$selRole],
         ];
     }
