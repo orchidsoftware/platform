@@ -33,8 +33,8 @@ class PermissionTest extends TestUnitCase
         $user->addRole($role);
 
         // User of role
-        $this->assertEquals(1, $user->getRoles()->count());
-        $this->assertEquals(1, $role->getUsers()->count());
+        $this->assertEquals(1, $user->roles()->count());
+        $this->assertEquals(1, $role->roles()->count());
         $this->assertTrue($user->inRole('admin'));
         $this->assertTrue($user->inRole($role));
         $this->assertFalse($user->inRole('notFoundRole'));
