@@ -23,7 +23,7 @@ class DependentListenerTest extends TestBrowserCase
                 ->assertInputValue('first', 100)
                 ->assertDontSee('The result of adding the first argument and the second')
                 ->type('second', 200)
-                ->click('h1') // return cursor for run event onchange
+                ->keys('second', '{tab}')
                 ->waitForText('The result of adding the first argument and the second')
                 ->assertSee('SUM')
                 ->assertInputValue('sum', 300);
@@ -42,7 +42,7 @@ class DependentListenerTest extends TestBrowserCase
                 ->assertInputValue('first', 100)
                 ->assertDontSee('The result of adding the first argument and the second')
                 ->type('second', 200)
-                ->click('h1') // return cursor for run event onchange
+                ->keys('second', '{tab}')
                 ->waitForText('The result of adding the first argument and the second')
                 ->assertSee('SUM')
                 ->assertInputValue('sum', 300);
@@ -59,7 +59,7 @@ class DependentListenerTest extends TestBrowserCase
                 ->assertInputValue('father[first]', 100)
                 ->assertDontSee('The result of adding the first argument and the second')
                 ->type('father[second]', 200)
-                ->click('h1') // return cursor for run event onchange
+                ->keys('father[second]', '{tab}')
                 ->waitForText('The result of adding the first argument and the second')
                 ->assertSee('SUM')
                 ->assertInputValue('sum', 300);
