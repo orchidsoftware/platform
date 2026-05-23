@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Screen;
+namespace Orchid\Screen\Concerns;
 
 /**
  * Trait CanSee
@@ -19,7 +19,7 @@ trait CanSee
      *
      * @var bool
      */
-    private $display = true;
+    private bool $display = true;
 
     /**
      * Set the visibility of the element.

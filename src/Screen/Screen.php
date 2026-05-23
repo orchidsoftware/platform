@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Screen\Concerns\HasCommandBar;
 use Orchid\Screen\Concerns\HasFillablePublicProperties;
 use Orchid\Screen\Concerns\InteractsWithEncryptedState;
 use Orchid\Screen\Concerns\ModelStateRetrievable;
@@ -32,7 +33,7 @@ use Psr\Container\NotFoundExceptionInterface;
  */
 abstract class Screen extends Controller
 {
-    use Commander,
+    use HasCommandBar,
         HasFillablePublicProperties,
         InteractsWithEncryptedState,
         ModelStateRetrievable;

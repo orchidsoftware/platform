@@ -7,7 +7,7 @@ namespace Orchid\Screen\Layouts;
 use Illuminate\Support\Arr;
 use Illuminate\View\View;
 use Orchid\Screen\Action;
-use Orchid\Screen\Commander;
+use Orchid\Screen\Concerns\HasCommandBar;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
@@ -16,7 +16,7 @@ use Orchid\Screen\Repository;
  */
 abstract class Block extends Layout
 {
-    use Commander;
+    use HasCommandBar;
 
     /**
      * @var string

@@ -6,7 +6,7 @@ namespace Orchid\Screen\Layouts;
 
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
-use Orchid\Screen\Commander;
+use Orchid\Screen\Concerns\HasCommandBar;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Support\Facades\Orchid;
@@ -16,7 +16,7 @@ use Orchid\Support\Facades\Orchid;
  */
 class Modal extends Layout
 {
-    use Commander;
+    use HasCommandBar;
 
     public const SIZE_XL = 'modal-xl';
     public const SIZE_LG = 'modal-lg';

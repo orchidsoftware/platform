@@ -6,6 +6,7 @@ namespace Orchid\Screen;
 
 use Illuminate\Support\Arr;
 use JsonSerializable;
+use Orchid\Screen\Concerns\CanSee;
 
 /**
  * Class Layout.
@@ -81,7 +82,7 @@ abstract class Layout implements JsonSerializable
         return collect($layouts)
             ->flatten()
             ->map(fn ($layout) => is_object($layout) ? $layout : resolve($layout))
-            ->filter(fn () => $this->isSee())
+            ->filter(fn (self $layout) => $layout->isSee())
             ->reduce(function ($build, self $layout) use ($key, $repository) {
                 $build[$key][] = $layout->build($repository);
 

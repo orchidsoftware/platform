@@ -6,7 +6,7 @@ namespace Orchid\Tests\Unit\Screen;
 
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Link;
-use Orchid\Screen\Commander;
+use Orchid\Screen\Concerns\HasCommandBar;
 use Orchid\Screen\Repository;
 use Orchid\Tests\TestUnitCase;
 
@@ -19,7 +19,7 @@ class CommanderTest extends TestUnitCase
     {
         return new class
         {
-            use Commander;
+            use HasCommandBar;
 
             /**
              * @return Action[]

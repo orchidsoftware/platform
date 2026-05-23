@@ -13,6 +13,7 @@ use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\View\ComponentAttributeBag;
 use Illuminate\View\View;
+use Orchid\Screen\Concerns\CanSee;
 use Orchid\Screen\Concerns\HasTranslations;
 use Orchid\Screen\Concerns\Makeable;
 use Orchid\Screen\Contracts\Fieldable;

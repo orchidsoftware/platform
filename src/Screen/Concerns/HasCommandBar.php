@@ -2,16 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Screen;
+namespace Orchid\Screen\Concerns;
 
+use Orchid\Screen\Action;
 use Orchid\Screen\Contracts\Actionable;
+use Orchid\Screen\Repository;
 
-trait Commander
+trait HasCommandBar
 {
     /**
      * @return Action[]
      */
-    protected function commandBar(): iterable
+    public function commandBar(): iterable
     {
         return [];
     }
