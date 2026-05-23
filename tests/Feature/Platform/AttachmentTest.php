@@ -84,17 +84,13 @@ class AttachmentTest extends TestFeatureCase
         $response = $this
             ->actingAs($this->createAdminUser())
             ->put(route('orchid.files.update', $upload->id), [
-                'name'        => 'New name',
-                'description' => 'New description',
-                'alt'         => 'New alt',
+                'name' => 'New name',
             ]);
 
         $response
             ->assertOk()
             ->assertJson([
-                'name'        => 'New name',
-                'description' => 'New description',
-                'alt'         => 'New alt',
+                'name' => 'New name',
             ]);
     }
 

@@ -7,9 +7,9 @@ namespace Orchid\Tests\Browser;
 use Laravel\Dusk\Browser;
 use Orchid\Tests\TestBrowserCase;
 
-class Issue2517Test extends TestBrowserCase
+class ItemAddChildScreenFlowTest extends TestBrowserCase
 {
-    public function testIssue2517(): void
+    public function testItemAddChildScreenFlow(): void
     {
         $this->browse(function (Browser $browser) {
             $user = $this->createAdminUser();

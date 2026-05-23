@@ -6,9 +6,9 @@ namespace Orchid\Tests\Feature\Platform;
 
 use Orchid\Tests\TestFeatureCase;
 
-class Issue2517Test extends TestFeatureCase
+class ItemAddChildScreenFlowTest extends TestFeatureCase
 {
-    public function testIssue2517(): void
+    public function testItemAddChildScreenFlow(): void
     {
         $this
             ->actingAs($this->createAdminUser())

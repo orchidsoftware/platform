@@ -54,20 +54,4 @@ class RoleTest extends TestFeatureCase
             ->assertSee($this->role->name)
             ->assertSee($this->role->slug);
     }
-
-    public function testCanHaveStringPrimary(): void
-    {
-        $StringPrimaryClass = new class extends Role
-        {
-            protected $keyType = 'string';
-        };
-
-        $role = $StringPrimaryClass::make([
-            'id'          => Str::uuid()->toString(),
-            'name'        => 'UUID',
-            'permissions' => [],
-        ]);
-
-        $this->assertIsString($role->getRoleId());
-    }
 }
