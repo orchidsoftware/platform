@@ -90,15 +90,15 @@ class RoleEditScreen extends Screen
     {
         return [
             Layout::block([
-              Layout::rows([
-                  Input::make('role.name')
-                      ->type('text')
-                      ->max(255)
-                      ->required()
-                      ->title(__('Name'))
-                      ->placeholder(__('Name'))
-                      ->help(__('Role display name')),
-              ])
+                Layout::rows([
+                    Input::make('role.name')
+                        ->type('text')
+                        ->max(255)
+                        ->required()
+                        ->title(__('Name'))
+                        ->placeholder(__('Name'))
+                        ->help(__('Role display name')),
+                ]),
             ])
                 ->title('Role')
                 ->description('Defines a set of privileges that grant users access to various services and allow them to perform specific tasks or operations.'),

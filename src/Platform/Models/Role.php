@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Access\RoleAccess;
@@ -11,11 +12,10 @@ use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Like;
 use Orchid\Metrics\Chartable;
 use Orchid\Screen\AsSource;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Role extends Model
 {
-    use AsSource, HasUuids, Chartable, Filterable, HasFactory, RoleAccess;
+    use AsSource, Chartable, Filterable, HasFactory, HasUuids, RoleAccess;
 
     /**
      * @var string

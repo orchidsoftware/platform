@@ -26,7 +26,7 @@ use Orchid\Support\Facades\Orchid;
  */
 class Attachment extends Model
 {
-    use AsSource, HasUuids, Filterable, HasFactory, Sortable;
+    use AsSource, Filterable, HasFactory, HasUuids, Sortable;
 
     /**
      * @var array

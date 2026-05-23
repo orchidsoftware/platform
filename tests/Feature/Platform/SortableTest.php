@@ -4,22 +4,21 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Gate;
 use Orchid\Attachment\Models\Attachment;
-use Orchid\Platform\Models\User;
 use Orchid\Tests\App\Policies\PolicySortDeny;
 use Orchid\Tests\TestFeatureCase;
 
 class SortableTest extends TestFeatureCase
 {
-    public function setUp():void
+    protected function setUp(): void
     {
         parent::setUp();
         Gate::policy(Attachment::class, null);
     }
 
-    public function tearDown():void
+    protected function tearDown(): void
     {
         Gate::policy(Attachment::class, null);
         parent::tearDown();
@@ -44,7 +43,7 @@ class SortableTest extends TestFeatureCase
         $sortBefore = Attachment::whereIn('id', $ids)->pluck('sort', 'id')->toArray();
 
         $sortItems = collect($ids)->map(fn ($id, $index) => [
-            'id' => $id,
+            'id'        => $id,
             'sortOrder' => $index,
         ])->values()->all();
 
@@ -60,7 +59,6 @@ class SortableTest extends TestFeatureCase
         $sortAfter = Attachment::whereIn('id', $ids)->pluck('sort', 'id')->toArray();
         $this->assertSame($sortBefore, $sortAfter, 'Sort order must not change when policy denies.');
     }
-
 
     public function testAttachmentHttpSort(): void
     {

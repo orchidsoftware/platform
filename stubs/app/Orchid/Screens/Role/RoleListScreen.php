@@ -9,9 +9,9 @@ use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Components\Cells\DateTimeSplit;
 use Orchid\Screen\Fields\Input;
-use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Screen\TD;
+use Orchid\Support\Facades\Layout;
 
 class RoleListScreen extends Screen
 {
@@ -92,7 +92,7 @@ class RoleListScreen extends Screen
                     ->usingComponent(DateTimeSplit::class)
                     ->align(TD::ALIGN_RIGHT)
                     ->sort(),
-            ])
+            ]),
         ];
     }
 }

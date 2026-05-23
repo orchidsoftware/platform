@@ -101,8 +101,8 @@ class File
         $attachment = $attachment->replicate()
             ->fill([
                 'original_name' => $this->file->getClientOriginalName(),
-                'sort' => $this->sort,
-                'group' => $this->group,
+                'sort'          => $this->sort,
+                'group'         => $this->group,
             ])
             ->forceFill([
                 'user_id' => Auth::id(),
@@ -158,17 +158,17 @@ class File
 
         $attachment = Orchid::modelClass(Attachment::class)
             ->forceFill([
-                'name' => $this->engine->name(),
-                'mime' => $this->engine->mime(),
-                'hash' => $this->engine->hash(),
-                'extension' => $this->engine->extension(),
+                'name'          => $this->engine->name(),
+                'mime'          => $this->engine->mime(),
+                'hash'          => $this->engine->hash(),
+                'extension'     => $this->engine->extension(),
                 'original_name' => $this->file->getClientOriginalName(),
-                'size' => $this->file->getSize(),
-                'path' => Str::finish($this->engine->path(), '/'),
-                'disk' => $this->disk,
-                'group' => $this->group,
-                'user_id' => Auth::id(),
-                'sort' => $this->sort,
+                'size'          => $this->file->getSize(),
+                'path'          => Str::finish($this->engine->path(), '/'),
+                'disk'          => $this->disk,
+                'group'         => $this->group,
+                'user_id'       => Auth::id(),
+                'sort'          => $this->sort,
             ]);
 
         $attachment->save();
@@ -194,6 +194,7 @@ class File
 
     /**
      * @param int $sort
+     *
      * @return $this
      */
     public function sort(int $sort = 0)
