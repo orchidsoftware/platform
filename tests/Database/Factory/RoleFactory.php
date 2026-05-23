@@ -45,8 +45,7 @@ class RoleFactory extends Factory
         $selRole = $this->faker->randomElement($role);
 
         return [
-            'name'        => $this->faker->lexify($selRole.'_???'),
-            'slug'        => $this->faker->unique()->jobTitle,
+            'name'        => $this->faker->unique()->jobTitle,
             'permissions' => $roles[$selRole],
         ];
     }

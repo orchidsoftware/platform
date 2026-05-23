@@ -30,7 +30,6 @@ class Role extends Model implements RoleInterface
     protected $fillable = [
         'id',
         'name',
-        'slug',
         'permissions',
     ];
 
@@ -48,7 +47,6 @@ class Role extends Model implements RoleInterface
     protected $allowedFilters = [
         'id'          => Where::class,
         'name'        => Like::class,
-        'slug'        => Like::class,
         'permissions' => Like::class,
     ];
 
@@ -58,7 +56,6 @@ class Role extends Model implements RoleInterface
     protected $allowedSorts = [
         'id',
         'name',
-        'slug',
         'updated_at',
         'created_at',
     ];

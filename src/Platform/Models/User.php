@@ -10,7 +10,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Orchid\Access\UserAccess;
-use Orchid\Access\UserInterface;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
@@ -36,7 +35,7 @@ use Orchid\Support\Facades\Orchid;
  * unintended changes in the behavior of the entire system.
  */
 #[UsePresenter(UserPresenter::class)]
-class User extends Authenticatable implements UserInterface
+class User extends Authenticatable
 {
     use AsSource, Chartable, Filterable, HasFactory, Notifiable, Presentable, UserAccess;
 

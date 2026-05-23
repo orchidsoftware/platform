@@ -26,14 +26,6 @@ trait UserAccess
      */
     private $cachePermissions;
 
-    /**
-     * @return Collection
-     */
-    public function getRoles()
-    {
-        return $this->roles()->get();
-    }
-
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Orchid::model(Role::class), 'role_users', 'user_id', 'role_id');
@@ -151,30 +143,6 @@ trait UserAccess
         $this->eventAddRole($role);
 
         return $result;
-    }
-
-    /**
-     * Remove Role Slug.
-     */
-    public function removeRoleBySlug(string $slug): int
-    {
-        $role = $this->roles()->where('slug', $slug)->first();
-
-        if ($role === null) {
-            return 0;
-        }
-
-        $this->eventRemoveRole($role);
-
-        return $this->roles()->detach($role);
-    }
-
-    /**
-     * @return int|null
-     */
-    public function removeRole(RoleInterface $role): int
-    {
-        return $this->removeRoleBySlug($role->getRoleSlug());
     }
 
     /**
