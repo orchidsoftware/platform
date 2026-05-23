@@ -5,7 +5,6 @@
     "Defines a set of privileges that grant users access to various services and allow them to perform specific tasks or operations.": "Rola to zbiór uprawnień (ewentualnie różnych usług, takich jak usługa Użytkownicy, Moderator, itp.), które umożliwiają użytkownikom z tą rolą wykonywanie określonych zadań i operacji.",
     "A comprehensive list of all roles, including their permissions and associated users.": "Pełna lista wszystkich ról, wraz z uprawnieniami i przypisanymi użytkownikami.",
     "Actions": "Akcje",
-    "Actual name in the system": "Aktualna nazwa w systemie",
     "Ad-specific content used to differentiate ads": "Zawartość specyficzna dla reklamy, używana do odróżniania reklam",
     "Add": "Dodaj",
     "Add row": "Dodaj wiersz",

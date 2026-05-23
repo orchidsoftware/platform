@@ -5,7 +5,6 @@
     "Defines a set of privileges that grant users access to various services and allow them to perform specific tasks or operations.": "Uma função é uma coleção de privilégios (de serviços possivelmente diferentes, como o serviço Usuários, Moderador e assim por diante) que concede aos usuários com essa função a capacidade de executar certas tarefas ou operações.",
     "A comprehensive list of all roles, including their permissions and associated users.": "Direitos de acesso",
     "Actions": "Ações",
-    "Actual name in the system": "Nome real no sistema",
     "Ad-specific content used to differentiate ads": "Conteudo especifico para diferenciar anuncios",
     "Add": "Adicionar",
     "Add row": "Adicionar linha",

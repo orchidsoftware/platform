@@ -7,7 +7,6 @@
     "Defines a set of privileges that grant users access to various services and allow them to perform specific tasks or operations.": "ロールは、そのロールを持つユーザーに特定のタスクや操作を実行する能力を付与する特権の集合体です（Users service、Moderatorなどの可能性のある異なるサービス）。",
     "Access Controls": "アクセス制御",
     "Actions": "アクション",
-    "Actual name in the system": "システム内の実際の名前",
     "Ad-specific content used to differentiate ads": "広告を区別するために使用される広告特有のコンテンツ",
     "Add row": "行を追加",
     "Add": "追加",

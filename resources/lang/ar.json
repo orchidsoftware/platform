@@ -74,7 +74,6 @@
     "Defines a set of privileges that grant users access to various services and allow them to perform specific tasks or operations.": "الدور عبارة عن مجموعة من الامتيازات (ربما لخدمات مختلفة مثل خدمة المستخدمين ، الوسيط ، وما إلى ذلك) التي تمنح المستخدمين الذين لديهم هذا الدور القدرة على أداء مهام أو عمليات معينة.",
     "A comprehensive list of all roles, including their permissions and associated users.": "حقوق الوصول",
     "Actions": "الإجراءات",
-    "Actual name in the system": "الاسم الفعلي في النظام",
     "Ad-specific content used to differentiate ads": "محتوى خاص بالإعلان يُستخدم للتمييز بين الإعلانات",
     "Add row": "إضافة صف",
     "Add": "أضف",
