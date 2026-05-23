@@ -57,7 +57,7 @@ class AttachmentController extends Controller
      */
     public function sort(Request $request): void
     {
-        collect($request->get('files', []))
+        collect($request->input('files', []))
             ->each(function ($sort, $id) {
                 $attachment = $this->attachment->find($id);
                 $attachment->sort = $sort;
@@ -70,7 +70,7 @@ class AttachmentController extends Controller
      */
     public function destroy(string $id, Request $request): void
     {
-        $storage = $request->get('storage', 'public');
+        $storage = $request->input('storage', 'public');
         $this->attachment->findOrFail($id)->delete($storage);
     }
 
@@ -99,12 +99,16 @@ class AttachmentController extends Controller
     {
         $file = resolve(File::class, [
             'file'  => $file,
-            'disk'  => $request->get('storage'),
-            'group' => $request->get('group'),
+            'disk'  => $request->input('storage'),
+            'group' => $request->input('group'),
         ]);
 
         if ($request->has('path')) {
-            $file->path($request->get('path'));
+            $file->path($request->input('path'));
+        }
+
+        if ($request->has('sort')) {
+            $file->sort($request->integer('sort'));
         }
 
         $model = $file->load();

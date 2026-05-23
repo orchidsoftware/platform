@@ -105,6 +105,7 @@ export default class extends ApplicationController {
         data.append("storage", this.storageValue);
         data.append("group", this.groupValue);
         data.append("path", this.pathValue);
+        data.append('sort', this.countValue + 1);
 
         this.loadingValue = this.loadingValue + 1;
         this.element.ariaBusy = "true";
