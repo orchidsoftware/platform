@@ -97,9 +97,8 @@ class PermissionTest extends TestUnitCase
     private function createRole(): Role
     {
         return Role::firstOrCreate([
-            'slug' => 'admin',
+            'name' => 'admin',
         ], [
-            'slug'        => 'admin',
             'name'        => 'admin',
             'permissions' => [
                 'access.user.duplicate'       => 0,
@@ -207,8 +206,8 @@ class PermissionTest extends TestUnitCase
     {
         $user = $this->createUser();
 
-        $roleUser = Role::factory()->create(['slug' => 'User']);
-        $roleModerator = Role::factory()->create(['slug' => 'Moderator']);
+        $roleUser = Role::factory()->create(['name' => 'User']);
+        $roleModerator = Role::factory()->create(['name' => 'Moderator']);
 
         $user->addRole($roleUser);
         $user->addRole($roleModerator);
