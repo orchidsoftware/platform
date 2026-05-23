@@ -54,6 +54,11 @@ class File
     protected $duplicate = false;
 
     /**
+     * @var int
+     */
+    protected int $sort = 0;
+
+    /**
      * Class constructor
      *
      * @param UploadedFile $file  - the uploaded file object to store
@@ -93,12 +98,15 @@ class File
             return $this->save();
         }
 
-        $attachment = $attachment->replicate()->fill([
-            'original_name' => $this->file->getClientOriginalName(),
-            'sort'          => 0,
-            'user_id'       => Auth::id(),
-            'group'         => $this->group,
-        ]);
+        $attachment = $attachment->replicate()
+            ->fill([
+                'original_name' => $this->file->getClientOriginalName(),
+                'sort' => $this->sort,
+                'group' => $this->group,
+            ])
+            ->forceFill([
+                'user_id' => Auth::id(),
+            ]);
 
         $attachment->save();
 
@@ -148,18 +156,22 @@ class File
             'mime_type' => $this->engine->mime(),
         ]);
 
-        $attachment = Orchid::model(Attachment::class)::create([
-            'name'          => $this->engine->name(),
-            'mime'          => $this->engine->mime(),
-            'hash'          => $this->engine->hash(),
-            'extension'     => $this->engine->extension(),
-            'original_name' => $this->file->getClientOriginalName(),
-            'size'          => $this->file->getSize(),
-            'path'          => Str::finish($this->engine->path(), '/'),
-            'disk'          => $this->disk,
-            'group'         => $this->group,
-            'user_id'       => Auth::id(),
-        ]);
+        $attachment = Orchid::modelClass(Attachment::class)
+            ->forceFill([
+                'name' => $this->engine->name(),
+                'mime' => $this->engine->mime(),
+                'hash' => $this->engine->hash(),
+                'extension' => $this->engine->extension(),
+                'original_name' => $this->file->getClientOriginalName(),
+                'size' => $this->file->getSize(),
+                'path' => Str::finish($this->engine->path(), '/'),
+                'disk' => $this->disk,
+                'group' => $this->group,
+                'user_id' => Auth::id(),
+                'sort' => $this->sort,
+            ]);
+
+        $attachment->save();
 
         event(new UploadFileEvent($attachment, $this->engine->time()));
 
@@ -176,6 +188,17 @@ class File
     public function path(?string $path = null)
     {
         $this->engine->setPath($path);
+
+        return $this;
+    }
+
+    /**
+     * @param int $sort
+     * @return $this
+     */
+    public function sort(int $sort = 0)
+    {
+        $this->sort = $sort;
 
         return $this;
     }

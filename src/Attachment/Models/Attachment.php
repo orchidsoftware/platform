@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Attachment\Models;
 
 use Exception;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -25,7 +26,7 @@ use Orchid\Support\Facades\Orchid;
  */
 class Attachment extends Model
 {
-    use AsSource, Filterable, HasFactory, Sortable;
+    use AsSource, HasUuids, Filterable, HasFactory, Sortable;
 
     /**
      * @var array
@@ -37,9 +38,6 @@ class Attachment extends Model
         'extension',
         'size',
         'path',
-        'user_id',
-        'description',
-        'alt',
         'sort',
         'hash',
         'disk',
@@ -211,6 +209,7 @@ class Attachment extends Model
      */
     public function download(array $headers = [])
     {
-        return Storage::disk($this->disk)->download($this->physicalPath(), $this->original_name, $headers);
+        return Storage::disk($this->disk)
+            ->download($this->physicalPath(), $this->original_name, $headers);
     }
 }
