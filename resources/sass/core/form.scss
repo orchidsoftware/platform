@@ -1,9 +1,11 @@
+@use "sass:color";
+
 .form-control {
-    background: $white none;
+    background: var(--orchid-surface-bg) none;
     border: 1px solid $form-control-border-color;
     -webkit-appearance: none;
     -moz-appearance: none;
-    color: $black;
+    color: var(--bs-body-color);
     outline: 0;
     line-height: normal;
     font-weight: normal;
@@ -16,10 +18,10 @@
     @include transition(background 0.2s linear 0s);
 
     &:focus {
-        border-color: fade-out($black, 0.9);
-        background-color: $grey-light;
+        border-color: color.change($black, $alpha: 0.1);
+        background-color: var(--bs-tertiary-bg);
         outline: 0 !important;
-        color: $black;
+        color: var(--bs-body-color);
         @include box-shadow(none);
         @include placeholder($dark);
     }
@@ -27,8 +29,8 @@
     &[disabled],
     &[readonly],
     fieldset[disabled] & {
-        background: mix($grey-light, #fff, 50%);
-        color: fade-out($grey, 0.77);
+        background: var(--bs-secondary-bg);
+        color: var(--bs-secondary-color);
     }
 
     select {

@@ -1,5 +1,7 @@
+@use "sass:color";
+
 @mixin color-schema($bg-color: #555, $percent: 15%, $sat-percent: null) {
-    background-color: saturate(darken($bg-color, $percent), $sat-percent);
+    background-color: color.adjust(color.adjust($bg-color, $lightness: -$percent), $saturation: $sat-percent);
 }
 
 // Button variants
@@ -19,8 +21,8 @@
     &.active,
     .open .dropdown-toggle {
         color: $color !important;
-        background-color: darken($background, 5%) !important;
-        border-color: darken($border, 8%) !important;
+        background-color: color.adjust($background, $lightness: -5%) !important;
+        border-color: color.adjust($border, $lightness: -8%) !important;
         box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
     }
     &:active,
@@ -45,8 +47,8 @@
     .show > &.dropdown-toggle {
         cursor: default !important;
         color: $color !important;
-        background-color: darken($background, 5%) !important;
-        border-color: darken($border, 8%) !important;
+        background-color: color.adjust($background, $lightness: -5%) !important;
+        border-color: color.adjust($border, $lightness: -8%) !important;
         box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
     }
 }

@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="{{  app()->getLocale() }}"
-      data-controller="html-load"
+      data-controller="html-load theme"
       dir="{{ \Orchid\Support\Locale::currentDir() }}"
 >
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+    <script>
+        (function() {
+            var t = localStorage.getItem('theme');
+            if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-bs-theme', t);
+        })();
+    </script>
     <title>
         @yield('title', config('app.name'))
         @hasSection('title')

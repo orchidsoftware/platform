@@ -62,7 +62,7 @@
                 </object>
             --}}
 
-            <button class="btn-close rounded-circle bg-white border shadow position-absolute end-0 top-0"
+            <button class="btn-close rounded-circle bg-body border shadow position-absolute end-0 top-0"
                     type="button" data-action="click->attach#remove" data-index="{id}"></button>
         </div>
     </template>

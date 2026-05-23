@@ -1,4 +1,4 @@
-<div class="bg-white rounded-top shadow-sm mb-4 rounded-bottom">
+<div class="bg-surface rounded-top shadow-sm mb-4 rounded-bottom">
 
     <div class="row g-0">
         <div class="col col-lg-7 mt-6 p-4">
@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div class="row bg-light m-0 p-md-4 p-3 border-top rounded-bottom g-md-5 text-balance">
+    <div class="row m-0 p-md-4 p-3 border-top rounded-bottom g-md-5 text-balance">
 
         <div class="col-md-6 my-2">
             <h3 class="text-muted fw-light d-flex align-items-center gap-3">

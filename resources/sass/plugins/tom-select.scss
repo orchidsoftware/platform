@@ -1,3 +1,10 @@
+/* Override tom-select's hardcoded color (#343a40) with a theme-aware variable */
+.ts-dropdown,
+.ts-control,
+.ts-control input {
+    color: var(--bs-body-color);
+}
+
 .ts-control {
     box-shadow: none !important;
     padding: 0.375rem 0.5rem;

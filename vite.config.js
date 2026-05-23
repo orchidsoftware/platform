@@ -73,6 +73,19 @@ function addQueryHashToManifest() {
 export default defineConfig(() => {
     return {
         plugins: [viteRtlCssPlugin(), manifestSRI(), addQueryHashToManifest()],
+        publicDir: false,
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    silenceDeprecations: [
+                        "import",
+                        "global-builtin",
+                        "color-functions",
+                        "if-function",
+                    ],
+                },
+            },
+        },
         build: {
             outDir: "public",
             emptyOutDir: false,

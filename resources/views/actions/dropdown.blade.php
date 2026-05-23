@@ -11,7 +11,7 @@
     {{ $name ?? '' }}
 </button>
 
-<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow bg-white"
+<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow bg-surface"
      x-placement="bottom-end"
 >
     @foreach($list as $item)

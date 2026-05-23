@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .btn {
     font-weight: 400;
     border-radius: $btn-border-radius;
@@ -22,8 +24,8 @@
 
 .btn-default {
     @include button-variant($text-color, $btn-default-bg, $btn-default-border);
-    background-color: #fff;
-    border-bottom-color: darken($btn-default-border, 2%);
+    background-color: var(--bs-body-bg) !important;
+    border-bottom-color: color.adjust($btn-default-border, $lightness: -2%);
     @include box-shadow(0 1px 1px rgba(90, 90, 90, 0.1));
     &.btn-bg {
         border-color: rgba(0, 0, 0, 0.1);

@@ -1,0 +1,428 @@
+/**
+ * Dark mode overrides for custom Orchid components.
+ *
+ * Bootstrap 5.3 automatically switches its CSS custom properties via
+ * `data-bs-theme="dark"`. However, third-party plugins and Orchid's
+ * own custom styles require explicit overrides collected here.
+ *
+ * This file MUST be imported last in `app.scss` so that its rules
+ * take precedence over all other component styles.
+ *
+ * @see https://getbootstrap.com/docs/5.3/customize/color-modes/
+ */
+
+/* Theme toggle icon visibility — purely CSS-driven, no JS flash.
+   Selectors target html[data-bs-theme] specifically so that the
+   sidebar's local data-bs-theme="dark" does not interfere.
+   ========================================================= */
+html[data-bs-theme="dark"] .theme-icon-dark {
+    display: none;
+}
+
+html[data-bs-theme="light"] .theme-icon-light {
+    display: none;
+}
+
+/* Surface utility — white in light mode, dark card bg in dark mode.
+   Used for content panels, cards, tables, etc.
+   ========================================================= */
+:root {
+    --orchid-surface-bg: #{$white};
+}
+
+.bg-surface {
+    background-color: var(--orchid-surface-bg) !important;
+}
+
+/* Dark mode variable override — placed outside the mixin
+   so it targets :root directly, not as a descendant. */
+[data-bs-theme="dark"] {
+    --orchid-surface-bg: var(--bs-secondary-bg);
+}
+
+@include color-mode(dark) {
+
+    /* bg-white override — make it theme-aware in dark mode
+       ======================================== */
+    .bg-white {
+        background-color: var(--bs-secondary-bg) !important;
+    }
+
+    /* Body
+       ======================================== */
+    body {
+        background-color: var(--bs-body-bg);
+    }
+
+    /* Layout — workspace content panels
+       ======================================== */
+    .layout {
+        background-color: var(--bs-secondary-bg) !important;
+    }
+
+    /* Cards & Panels
+       ======================================== */
+    .card,
+    .panel {
+        background-color: var(--bs-secondary-bg);
+        border-color: var(--bs-border-color);
+    }
+
+    .card-heading {
+        .card-default & {
+            background-color: var(--bs-tertiary-bg);
+        }
+    }
+
+    /* Tables
+       ======================================== */
+    .table {
+        --bs-table-bg: var(--orchid-surface-bg);
+        --bs-table-border-color: var(--bs-border-color);
+
+        > thead > tr > th {
+            color: var(--bs-secondary-color);
+            border-bottom-color: var(--bs-border-color);
+        }
+
+        > tbody > tr > td,
+        > tfoot > tr > td {
+            border-top-color: var(--bs-border-color);
+        }
+    }
+
+    /* Shadow replacement — box-shadow is invisible on dark backgrounds,
+       use a subtle border instead.
+       ======================================== */
+    .shadow-sm {
+        box-shadow: none !important;
+        border: 1px solid var(--bs-border-color);
+    }
+
+    /* Forms
+       ======================================== */
+    .form-control {
+        background-color: var(--orchid-surface-bg);
+        color: var(--bs-body-color);
+        border-color: var(--bs-border-color);
+
+        &:focus {
+            background-color: var(--bs-tertiary-bg);
+            color: var(--bs-body-color);
+            border-color: var(--bs-border-color);
+        }
+    }
+
+    .input-group-addon {
+        border-color: var(--bs-border-color);
+        background-color: var(--bs-tertiary-bg);
+    }
+
+    /* Buttons
+       ======================================== */
+    .btn-default {
+        background-color: var(--bs-secondary-bg) !important;
+        border-color: var(--bs-border-color) !important;
+        color: var(--bs-body-color) !important;
+    }
+
+    .btn-link {
+        color: var(--bs-body-color);
+    }
+
+    /* Dropdowns
+       ======================================== */
+    .dropdown-menu {
+        background-color: var(--bs-body-bg);
+        border-color: var(--bs-border-color);
+    }
+
+    /* Modals
+       ======================================== */
+    .modal-content {
+        background-color: var(--bs-body-bg);
+    }
+
+    .modal-footer {
+        background-color: var(--bs-secondary-bg) !important;
+        border-color: var(--bs-border-color) !important;
+    }
+
+    .modal-backdrop {
+        background-color: #000;
+    }
+
+    /* List Groups
+       ======================================== */
+    .list-group-item {
+        background-color: var(--bs-body-bg);
+        border-color: var(--bs-border-color);
+
+        a#{&} {
+            &:hover,
+            &:focus,
+            &.hover {
+                background-color: var(--bs-tertiary-bg);
+            }
+        }
+
+        &.focus {
+            background-color: var(--bs-tertiary-bg) !important;
+        }
+    }
+
+    /* Breadcrumbs
+       ======================================== */
+    .breadcrumb {
+        --bs-breadcrumb-divider-color: var(--bs-secondary-color);
+    }
+
+    /* Progress bars
+       ======================================== */
+    .progress {
+        background-color: var(--bs-secondary-bg);
+    }
+
+    /* Well & Pre (code blocks)
+       ======================================== */
+    .well,
+    pre {
+        background-color: var(--bs-tertiary-bg);
+        border-color: var(--bs-border-color);
+    }
+
+    /* Dropzone — file upload previews
+       ======================================== */
+    .dropzone,
+    .dropzone-wrapper {
+        .dz-preview {
+            background-color: var(--bs-secondary-bg) !important;
+
+            .dz-details {
+                background-color: var(--bs-tertiary-bg) !important;
+                border-color: var(--bs-border-color) !important;
+            }
+
+            .dz-image img {
+                background-color: var(--bs-tertiary-bg) !important;
+            }
+        }
+    }
+
+    /* SimpleMDE / CodeMirror — markdown editor
+       ======================================== */
+    .CodeMirror-fullscreen {
+        background-color: var(--bs-body-bg);
+    }
+
+    .editor-preview-side {
+        background-color: var(--bs-body-bg) !important;
+    }
+
+    .simplemde-wrapper .CodeMirror {
+        border-color: var(--bs-border-color);
+        background-color: var(--orchid-surface-bg);
+        color: var(--bs-body-color);
+    }
+
+    .CodeMirror {
+        background: var(--orchid-surface-bg);
+        color: var(--bs-body-color);
+    }
+
+    .editor-toolbar {
+        border-color: var(--bs-border-color);
+
+        a,
+        button {
+            color: var(--bs-body-color) !important;
+
+            &:hover,
+            &.active {
+                background: var(--bs-tertiary-bg);
+            }
+        }
+
+        i.separator {
+            border-left-color: var(--bs-border-color);
+            border-right-color: var(--bs-border-color);
+        }
+    }
+
+    /* Codeflask — inline code editor
+       ======================================== */
+    .codeflask {
+        background: var(--orchid-surface-bg);
+        color: var(--bs-body-color);
+
+        &.codeflask--has-line-numbers:before {
+            border-right-color: var(--bs-border-color);
+            background: var(--bs-tertiary-bg);
+        }
+
+        textarea {
+            color: var(--bs-body-color) !important;
+            caret-color: var(--bs-body-color);
+        }
+
+        .codeflask__flatten {
+            color: var(--bs-body-color);
+        }
+
+        .token {
+            &.comment { color: #6a9955; }
+            &.keyword { color: #569cd6; }
+            &.string { color: #ce9178; }
+            &.number { color: #b5cea8; }
+            &.operator { color: #d4d4d4; }
+            &.punctuation { color: #d4d4d4; }
+        }
+    }
+
+    /* Quill — rich-text editor
+       ======================================== */
+    .ql-toolbar.ql-snow,
+    .ql-container.ql-snow {
+        border-color: var(--bs-border-color);
+    }
+
+    .ql-toolbar.ql-snow {
+        .ql-stroke {
+            stroke: var(--bs-body-color);
+        }
+        .ql-fill {
+            fill: var(--bs-body-color);
+        }
+        .ql-picker-label {
+            color: var(--bs-body-color);
+        }
+    }
+
+    .ql-editor {
+        color: var(--bs-body-color);
+    }
+
+    /* Flatpickr — date/time picker
+       ======================================== */
+    .flatpickr-calendar {
+        background: var(--bs-body-bg);
+        border-color: var(--bs-border-color);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .flatpickr-months .flatpickr-month,
+    .flatpickr-weekdays,
+    span.flatpickr-weekday {
+        background: var(--bs-body-bg);
+        color: var(--bs-body-color);
+    }
+
+    .flatpickr-day {
+        color: var(--bs-body-color);
+
+        &:hover {
+            background: var(--bs-tertiary-bg);
+            border-color: var(--bs-border-color);
+        }
+    }
+
+    .flatpickr-input.form-control[readonly] {
+        background: var(--bs-body-bg);
+        color: var(--bs-body-color);
+    }
+
+    /* Tom Select — select/tagging input
+       ======================================== */
+    .ts-control {
+        background-color: var(--orchid-surface-bg) !important;
+        color: var(--bs-body-color) !important;
+        border-color: var(--bs-border-color) !important;
+
+        > input {
+            color: var(--bs-body-color) !important;
+        }
+
+        > .item {
+            color: var(--bs-body-color) !important;
+        }
+    }
+
+    .ts-dropdown {
+        background: var(--orchid-surface-bg);
+        color: var(--bs-body-color);
+        border-color: var(--bs-border-color);
+    }
+
+    .ts-dropdown .active {
+        background-color: var(--bs-tertiary-bg);
+        color: var(--bs-body-color);
+    }
+
+    /* Select2 — enhanced select boxes
+       ======================================== */
+    .select2-container--bootstrap .select2-selection {
+        background-color: var(--bs-body-bg);
+        border-color: var(--bs-border-color);
+        color: var(--bs-body-color);
+    }
+
+    .select2-container--bootstrap .select2-dropdown {
+        background-color: var(--bs-body-bg);
+        border-color: var(--bs-border-color);
+    }
+
+    .select2-container--bootstrap .select2-results__option--highlighted[aria-selected] {
+        background-color: var(--bs-tertiary-bg);
+    }
+
+    /* Toast — notification popups
+       ======================================== */
+    .toast {
+        background-color: var(--bs-secondary-bg);
+        color: var(--bs-body-color);
+    }
+
+    /* Profile container — sidebar user card
+       ======================================== */
+    .profile-container {
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    /* Matrix — grid/table input widget
+       ======================================== */
+    .matrix {
+        .form-control,
+        .select2-selection--single {
+            background-color: var(--bs-body-bg);
+            color: var(--bs-body-color);
+        }
+    }
+
+    /* Attachment — file attachment previews
+       ======================================== */
+    .attach .attach-image {
+        border-color: var(--bs-border-color);
+    }
+
+    /* Search results — command palette items
+       ======================================== */
+    .search-result-item {
+        &:hover,
+        &:focus,
+        &:focus-visible {
+            background-color: var(--bs-tertiary-bg) !important;
+        }
+    }
+
+    /* Command bar — sticky action toolbar
+       ======================================== */
+    .command-bar-wrapper .layout {
+        border-color: var(--bs-border-color) !important;
+    }
+
+    /* Leaflet — interactive map
+       ======================================== */
+    .leaflet-container {
+        background: var(--bs-body-bg);
+    }
+}

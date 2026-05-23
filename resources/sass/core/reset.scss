@@ -1,9 +1,11 @@
+@use "sass:color";
+
 // reset
 
 body {
     font-family: $font-family-base;
     font-size: $font-size-base;
-    color: $text-color;
+    color: var(--bs-body-color);
     font-smoothing: antialiased;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -27,19 +29,19 @@ body {
 // -------------------------
 
 a {
-    color: $link-color;
+    color: var(--bs-body-color);
     text-decoration: none;
     cursor: pointer;
 }
 
 a:hover,
 a:focus {
-    color: $link-hover-color;
+    color: var(--bs-emphasis-color);
     text-decoration: none;
 }
 
 label {
-    color: lighten($black, 20%);
+    color: var(--bs-body-color);
     font-weight: normal;
     font-size: $font-size-sm;
     word-break: normal;
@@ -243,7 +245,7 @@ blockquote {
         border-color: $list-group-active-color !important;
         background-color: $list-group-active-color !important;
         .text-muted {
-            color: lighten($list-group-active-color, 30%) !important;
+            color: color.adjust($list-group-active-color, $lightness: 30%) !important;
         }
         a {
             color: #fff;
@@ -256,7 +258,7 @@ blockquote {
         position: relative;
         z-index: 1;
         background-color: $list-group-select-color !important;
-        border-color: darken($list-group-select-color, 5%);
+        border-color: color.adjust($list-group-select-color, $lightness: -5%);
     }
 
     .list-group-alt & {
@@ -333,8 +335,8 @@ blockquote {
     margin-bottom: 15px;
     .tab-content {
         padding: 15px;
-        background-color: #fff;
-        border: 1px solid $border-color;
+        background-color: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
         border-top-width: 0;
         border-radius: 0 0 $border-radius-base $border-radius-base;
     }
@@ -417,9 +419,9 @@ blockquote {
 }
 
 .card-footer {
-    border-color: $panel-heading-border;
+    border-color: var(--bs-border-color);
     border-radius: 0 0 $border-radius-base $border-radius-base;
-    background-color: $panel-footer-bg;
+    background-color: var(--bs-body-bg);
 }
 
 .card-default {
@@ -467,7 +469,7 @@ pre {
     display: none;
     min-width: 12rem;
     @include box-shadow(0 2px 6px rgba(0, 0, 0, 0.1));
-    border: 1px solid $border-color;
+    border: 1px solid var(--bs-border-color);
     &.pull-left {
         left: 100%;
     }
@@ -487,8 +489,8 @@ pre {
     > .active > a:focus {
         background-image: none;
         filter: none;
-        background-color: $light !important;
-        color: $link-hover-color;
+        background-color: var(--bs-tertiary-bg) !important;
+        color: var(--bs-body-color);
     }
 }
 
@@ -499,7 +501,7 @@ pre {
         left: 12px;
         display: inline-block;
         border-right: 5px solid transparent;
-        border-bottom: 5px solid $border-color;
+        border-bottom: 5px solid var(--bs-border-color);
         border-left: 5px solid transparent;
         border-bottom-color: rgba(0, 0, 0, 0.2);
         content: "";
@@ -511,7 +513,7 @@ pre {
         left: 12px;
         display: inline-block;
         border-right: 5px solid transparent;
-        border-bottom: 5px solid #fff;
+        border-bottom: 5px solid var(--bs-body-bg);
         border-left: 5px solid transparent;
         content: "";
     }
@@ -534,8 +536,8 @@ pre {
     &:hover,
     &:focus {
         > a {
-            background-color: $light !important;
-            color: $text-color;
+            background-color: var(--bs-tertiary-bg) !important;
+            color: var(--bs-body-color);
         }
         > .dropdown-menu {
             display: block;
@@ -692,7 +694,7 @@ legend {
 .bg-dark {
     .nav {
         .dropdown-item.active {
-            color: desaturate(lighten($dark, 60%), 5%);
+            color: color.adjust(color.adjust($dark, $lightness: 60%), $saturation: -5%);
             @include color-schema($dark, 5%, 2.5%);
             @extend .rounded;
             @extend .shadow-sm;
@@ -702,8 +704,8 @@ legend {
 
 @include color-mode(dark) {
     .nav-pills {
-        --#{$prefix}nav-link-bg: #{rgba(lighten($grey, 10), 0.25)};
-        --#{$prefix}nav-pills-link-active-bg: #{rgba(lighten($grey, 10), 0.25)};
+        --#{$prefix}nav-link-bg: #{rgba(color.adjust($grey, $lightness: 10%), 0.25)};
+        --#{$prefix}nav-pills-link-active-bg: #{rgba(color.adjust($grey, $lightness: 10%), 0.25)};
     }
 }
 
