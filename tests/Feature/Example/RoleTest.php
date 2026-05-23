@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Example;
 
-use Illuminate\Support\Str;
 use Orchid\Platform\Models\Role;
 use Orchid\Tests\TestFeatureCase;
 

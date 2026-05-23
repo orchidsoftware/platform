@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Orchid\Platform\Events\AddRoleEvent;
 use Orchid\Platform\Events\RemoveRoleEvent;
@@ -21,7 +22,7 @@ trait UserAccess
     use StatusAccess;
 
     /**
-     * @var null|\Illuminate\Support\Collection
+     * @var null|Collection
      */
     private $cachePermissions;
 
@@ -118,7 +119,7 @@ trait UserAccess
             return $builder->whereRaw('1=0');
         }
 
-        $rule = function (Builder $builder, \Illuminate\Support\Collection $permits) {
+        $rule = function (Builder $builder, Collection $permits) {
             $permits->each(function ($permit) use ($builder) {
                 $builder->orWhere('permissions->'.$permit, true);
             });
