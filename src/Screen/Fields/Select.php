@@ -8,11 +8,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Crypt;
 use Orchid\Screen\Concerns\ComplexFieldConcern;
 use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
-use Orchid\Support\Assert;
+use Orchid\Screen\Fields\Support\ChoicePayload;
 
 /**
  * Unified select field.
@@ -34,7 +33,6 @@ use Orchid\Support\Assert;
  * @method $this options($value = null)
  * @method $this title(string $value = null)
  * @method $this maximumSelectionLength(int $value = 0)
- * @method $this allowAdd($value = true)
  */
 class Select extends Field implements ComplexFieldConcern
 {
@@ -45,6 +43,11 @@ class Select extends Field implements ComplexFieldConcern
      */
     public const DEFAULT_LAZY_CHUNK = 10;
 
+    /**
+     * View template show.
+     *
+     * @var string
+     */
     protected $view = 'orchid::fields.select';
 
     /**
@@ -55,8 +58,8 @@ class Select extends Field implements ComplexFieldConcern
     protected $attributes = [
         'class'                 => 'form-control',
         'options'               => [],
-        'allowEmpty'            => '',
-        'allowAdd'              => false,
+        'allowEmpty'            => false,
+        'allowCreate'           => false,
         'isOptionList'          => false,
         'lazyChunk'             => null,
         'relationModel'         => null,
@@ -65,6 +68,12 @@ class Select extends Field implements ComplexFieldConcern
         'relationScope'         => null,
         'relationAppend'        => null,
         'relationSearchColumns' => null,
+        'relationHandler'       => false,
+        'choices'               => null,
+        'isLazy'                => false,
+        'selectedValues'        => [],
+        'allowEmptyValue'       => 'false',
+        'allowCreateValue'      => 'false',
     ];
 
     /**
@@ -87,15 +96,12 @@ class Select extends Field implements ComplexFieldConcern
         'data-maximum-selection-length',
     ];
 
+    /**
+     * Create a new select field instance.
+     */
     public function __construct()
     {
-        $this->addBeforeRender(function (): void {
-            if ($this->isLazy()) {
-                return;
-            }
-            $options = $this->get('options', []);
-            $this->set('isOptionList', array_is_list((array) $options));
-        });
+        $this->addBeforeRender(fn () => $this->prepareForRender());
     }
 
     /**
@@ -113,15 +119,13 @@ class Select extends Field implements ComplexFieldConcern
      */
     public function fromModel(string|Model $model, string $name, ?string $key = null): static
     {
-        $modelClass = $model instanceof Model ? get_class($model) : $model;
         $instance = $model instanceof Model ? $model : new $model;
-        $key = $key ?? $instance->getModel()->getKeyName();
+        $modelClass = $instance::class;
+        $key ??= $instance->getKeyName();
 
         $this->setRelationParams($modelClass, $name, $key);
 
         if ($this->isLazy()) {
-            $this->addBeforeRender(fn () => $this->resolveLazyDisplayValue($modelClass, $name, $key));
-
             return $this;
         }
 
@@ -133,12 +137,10 @@ class Select extends Field implements ComplexFieldConcern
      */
     public function applyScope(string $scope, mixed ...$parameters): static
     {
-        $this->set('relationScope', Crypt::encrypt([
+        return $this->set('relationScope', [
             'name'       => lcfirst($scope),
             'parameters' => $parameters,
-        ]));
-
-        return $this;
+        ]);
     }
 
     /**
@@ -146,9 +148,7 @@ class Select extends Field implements ComplexFieldConcern
      */
     public function searchColumns(string|array ...$columns): static
     {
-        $this->set('relationSearchColumns', Crypt::encrypt(Arr::flatten($columns)));
-
-        return $this;
+        return $this->set('relationSearchColumns', Arr::flatten($columns));
     }
 
     /**
@@ -156,9 +156,7 @@ class Select extends Field implements ComplexFieldConcern
      */
     public function displayAppend(string $append): static
     {
-        $this->set('relationAppend', Crypt::encryptString($append));
-
-        return $this;
+        return $this->set('relationAppend', $append);
     }
 
     /**
@@ -175,6 +173,24 @@ class Select extends Field implements ComplexFieldConcern
     public function allowEmpty(bool $value = true): static
     {
         return $this->set('allowEmpty', $value);
+    }
+
+    /**
+     * Allow creating options that are not present in the loaded list.
+     */
+    public function allowCreate(bool $value = true): static
+    {
+        return $this->set('allowCreate', $value);
+    }
+
+    /**
+     * Allow creating options that are not present in the loaded list.
+     *
+     * @deprecated Use allowCreate() instead.
+     */
+    public function allowAdd(bool $value = true): static
+    {
+        return $this->allowCreate($value);
     }
 
     /**
@@ -196,7 +212,10 @@ class Select extends Field implements ComplexFieldConcern
                     ? ($reflection->isBacked() ? $item->value : $item->name)
                     : $item;
             })->all();
-            $this->set('value', $value);
+
+            $this
+                ->set('value', $value)
+                ->refreshSelectedValues();
         });
     }
 
@@ -205,7 +224,7 @@ class Select extends Field implements ComplexFieldConcern
      */
     public function fromQuery(Builder $builder, string $name, ?string $key = null): static
     {
-        $key = $key ?? $builder->getModel()->getKeyName();
+        $key ??= $builder->getModel()->getKeyName();
 
         return $this->setFromEloquent($builder->get(), $name, $key);
     }
@@ -220,12 +239,23 @@ class Select extends Field implements ComplexFieldConcern
     {
         return $this->addBeforeRender(function () use ($name, $key): void {
             $options = $this->get('options', []);
-            $options = is_array($options) ? $options : $options->toArray();
-            $this->set('options', [$key => $name] + $options);
-            $this->set('allowEmpty', '1');
+
+            $options = is_array($options)
+                ? $options
+                : $options->toArray();
+
+            $this
+                ->set('options', [$key => $name] + $options)
+                ->set('allowEmpty', true)
+                ->set('allowEmptyValue', 'true');
         });
     }
 
+    /**
+     * Allow selecting multiple options.
+     *
+     * @deprecated
+     */
     public function taggable(): static
     {
         return $this->set('tags', true);
@@ -240,73 +270,176 @@ class Select extends Field implements ComplexFieldConcern
     }
 
     /**
-     * Store encrypted relation params so lazy() works whether called before or after fromModel().
+     * Prepare the values consumed by the select Blade view.
+     */
+    protected function prepareForRender(): void
+    {
+        $this
+            ->set('isLazy', $this->hasLazyChoices())
+            ->set('allowEmptyValue', var_export($this->get('allowEmpty'), true))
+            ->set('allowCreateValue', var_export($this->get('allowCreate'), true));
+
+        $this->refreshSelectedValues();
+
+        if ($this->get('isLazy')) {
+            if (! $this->get('relationHandler')) {
+                $this->set('value', $this->choicePayload()->selectedOptions($this->get('value')));
+            }
+
+            $this->refreshChoices();
+
+            return;
+        }
+
+        $this->set('isOptionList', array_is_list((array) $this->get('options', [])));
+    }
+
+    /**
+     * Determine whether the field has enough information for lazy choices.
+     */
+    protected function hasLazyChoices(): bool
+    {
+        return $this->isLazy() && ! empty($this->get('relationModel'));
+    }
+
+    /**
+     * Store relation params so lazy() works whether called before or after fromModel().
      */
     protected function setRelationParams(string $modelClass, string $name, string $key): static
     {
         return $this
-            ->set('relationModel', Crypt::encryptString($modelClass))
-            ->set('relationName', Crypt::encryptString($name))
-            ->set('relationKey', Crypt::encryptString($key));
+            ->set('relationModel', $modelClass)
+            ->set('relationName', $name)
+            ->set('relationKey', $key);
     }
 
     /**
-     * Normalize current value to [{id, text}] for the lazy select view.
-     */
-    protected function resolveLazyDisplayValue(string $modelClass, string $name, string $key): void
-    {
-        $labelAttribute = $this->resolveRelationAppend() ?? $name;
-        $value = $this->get('value');
-        $value = is_iterable($value) ? $value : Arr::wrap($value);
-
-        if (! Assert::isObjectArray($value)) {
-            $value = $modelClass::whereIn($key, $value)->get();
-        }
-
-        $normalized = collect($value)->map(function ($item) use ($key, $labelAttribute) {
-            $id = $item->$key;
-            $text = $item->$labelAttribute;
-
-            return [
-                'id'   => $id instanceof \UnitEnum ? $id->value : $id,
-                'text' => $text instanceof \UnitEnum ? $text->value : $text,
-            ];
-        })->toArray();
-
-        $this->set('value', $normalized);
-    }
-
-    /**
-     * Decrypt and return the relation append attribute name, or null.
+     * Return the relation append attribute name, or null.
      */
     protected function resolveRelationAppend(): ?string
     {
         $append = $this->get('relationAppend');
-        if ($append === null || $append === '') {
-            return null;
-        }
 
-        return is_string($append) ? Crypt::decryptString($append) : null;
+        return is_string($append) && $append !== '' ? $append : null;
     }
 
     /**
+     * Build the encrypted choices payload exposed to JavaScript.
+     *
+     * Relation settings are kept as plain PHP values while the field is being
+     * configured, then converted into a single encrypted payload before render.
+     * That keeps the browser contract compact without encrypting every
+     * intermediate field attribute separately.
+     */
+    protected function refreshChoices(): void
+    {
+        $this->set('choices', (string) $this->choicePayload());
+    }
+
+    /**
+     * Build the choices payload from the configured relation settings.
+     */
+    protected function choicePayload(): ChoicePayload
+    {
+        $model = $this->get('relationModel');
+        $name = $this->get('relationName');
+        $key = $this->get('relationKey');
+
+        if (! is_string($model) || ! is_string($name) || ! is_string($key)) {
+            throw new \UnexpectedValueException('Choice payload attributes must not be empty.');
+        }
+
+        return new ChoicePayload(
+            model: $model,
+            name: $name,
+            key: $key,
+            chunk: (int) $this->get('lazyChunk', self::DEFAULT_LAZY_CHUNK),
+            scope: $this->get('relationScope'),
+            append: $this->resolveRelationAppend(),
+            searchColumns: $this->get('relationSearchColumns', []),
+        );
+    }
+
+    /**
+     * Populate options from resolved Eloquent models.
+     *
      * @param Model|Collection $source
      */
     private function setFromEloquent(Model|Collection $source, string $name, string $key): static
     {
-        $options = $source->pluck($name, $key);
-        $this->set('options', $options);
+        $this->set('options', $source->pluck($name, $key));
 
-        return $this->addBeforeRender(function () use ($name, $key): void {
-            $value = [];
-            foreach (collect($this->get('value')) as $item) {
-                if (is_object($item)) {
-                    $value[$item->$key] = $item->$name;
-                } else {
-                    $value[] = $item;
-                }
+        return $this->addBeforeRender(function () use ($key): void {
+            if ($this->get('isLazy')) {
+                return;
             }
-            $this->set('value', $value);
+
+            $this
+                ->set('value', $this->normalizeSelectedValues($this->get('value'), $key))
+                ->refreshSelectedValues();
         });
+    }
+
+    /**
+     * Refresh the normalized selected values exposed to the Blade view.
+     */
+    private function refreshSelectedValues(): static
+    {
+        return $this->set('selectedValues', $this->get('isLazy') ? [] : $this->selectedValues());
+    }
+
+    /**
+     * Values selected in eager mode, normalized for strict Blade checks.
+     *
+     * @return array<int, string>
+     */
+    private function selectedValues(): array
+    {
+        $value = $this->get('value', []);
+        $items = is_array($value) && ! array_is_list($value)
+            ? array_keys($value)
+            : Arr::wrap($value);
+
+        return collect($items)
+            ->map(fn ($item): string => (string) $this->enumValue($item))
+            ->all();
+    }
+
+    /**
+     * Convert selected model/array/scalar values into the option keys expected by the select view.
+     *
+     * @return array<int, mixed>
+     */
+    private function normalizeSelectedValues(mixed $value, string $key): array
+    {
+        $items = $value instanceof Collection ? $value : collect(Arr::wrap($value));
+
+        return $items
+            ->map(fn ($item) => $this->normalizeSelectedValue($item, $key))
+            ->filter(static fn ($item): bool => $item !== null)
+            ->values()
+            ->all();
+    }
+
+    /**
+     * Normalize one selected model, array, scalar, or enum value.
+     */
+    private function normalizeSelectedValue(mixed $item, string $key): mixed
+    {
+        $value = is_object($item) || is_array($item)
+            ? data_get($item, $key)
+            : $item;
+
+        return $this->enumValue($value);
+    }
+
+    /**
+     * Convert enum values into their scalar representation.
+     */
+    private function enumValue(mixed $value): mixed
+    {
+        return $value instanceof \BackedEnum
+            ? $value->value
+            : ($value instanceof \UnitEnum ? $value->name : $value);
     }
 }

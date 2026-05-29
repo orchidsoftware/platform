@@ -61,6 +61,36 @@ class SelectWithEnumTest extends TestFieldsUnitCase
         $this->assertStringContainsString($option, $view);
     }
 
+    public function testLazyFromModelCanSelectEnumAttributeValue(): void
+    {
+        /** @var RoleWithEnum $role */
+        $role = $this->roles->random();
+
+        $select = Select::make('choice')
+            ->value($role->id)
+            ->fromModel(RoleWithEnum::class, 'name')
+            ->lazy();
+
+        $view = self::minifyRenderField($select);
+
+        $this->assertStringContainsString('<option selected value="'.$role->id.'">'.$role->name->value.'</option>', $view);
+    }
+
+    public function testLazyFromModelCanUseEnumAttributeAsKey(): void
+    {
+        /** @var RoleWithEnum $role */
+        $role = $this->roles->random();
+
+        $select = Select::make('choice')
+            ->value($role)
+            ->fromModel(RoleWithEnum::class, 'name', 'name')
+            ->lazy();
+
+        $view = self::minifyRenderField($select);
+
+        $this->assertStringContainsString('<option selected value="'.$role->name->value.'">'.$role->name->value.'</option>', $view);
+    }
+
     /**
      * @param string $value
      */

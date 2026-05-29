@@ -5,9 +5,9 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Http\Controllers\AsyncController;
 use Orchid\Platform\Http\Controllers\AttachmentController;
+use Orchid\Platform\Http\Controllers\ChoicesController;
 use Orchid\Platform\Http\Controllers\IndexController;
 use Orchid\Platform\Http\Controllers\NotificationController;
-use Orchid\Platform\Http\Controllers\RelationController;
 use Orchid\Platform\Http\Controllers\SearchController;
 use Orchid\Platform\Http\Controllers\SortableController;
 use Tabuna\Breadcrumbs\Trail;
@@ -63,11 +63,11 @@ Route::put('files/post/{id}', [AttachmentController::class, 'update'])
 
 /*
 |--------------------------------------------------------------------------
-| Relation Field Rendering
+| Field Choices
 |--------------------------------------------------------------------------
 */
-Route::post('relation', RelationController::class)
-    ->name('relation');
+Route::post('choices', ChoicesController::class)
+    ->name('choices');
 
 /*
 |--------------------------------------------------------------------------
@@ -84,7 +84,7 @@ Route::post('sorting', [SortableController::class, 'saveSortOrder'])
 */
 if (config('orchid.notifications.enabled', true)) {
 
-    Route::post('/notifications/fetch', [NotificationController::class, 'index'])
+    Route::post('/notifications', [NotificationController::class, 'index'])
         ->name('notifications.index');
 
     Route::post('/notifications/read-all', [NotificationController::class, 'markAllAsRead'])

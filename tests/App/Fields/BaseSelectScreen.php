@@ -6,7 +6,6 @@ namespace Orchid\Tests\App\Fields;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Orchid\Platform\Models\User;
-use Orchid\Screen\Fields\Relation;
 use Orchid\Screen\Fields\Select;
 use Orchid\Tests\App\Screens\BaseFieldScreen;
 
@@ -66,21 +65,25 @@ class BaseSelectScreen extends BaseFieldScreen
                     3 => 'Three',
                 ]),
 
-            Relation::make('relationFromModel')
-                ->fromModel(User::class, 'name'),
+            Select::make('relationFromModel')
+                ->fromModel(User::class, 'name')
+                ->lazy(),
 
-            Relation::make('relationFromModelMultiple')
+            Select::make('relationFromModelMultiple')
                 ->multiple()
-                ->fromModel(User::class, 'name'),
+                ->fromModel(User::class, 'name')
+                ->lazy(),
 
-            Relation::make('relationFromModelMultipleAllowEmpty')
+            Select::make('relationFromModelMultipleAllowEmpty')
                 ->multiple()
                 ->allowEmpty()
-                ->fromModel(User::class, 'name'),
+                ->fromModel(User::class, 'name')
+                ->lazy(),
 
-            Relation::make('relationFromModelMultipleWithValue')
+            Select::make('relationFromModelMultipleWithValue')
                 ->multiple()
-                ->fromModel(User::class, 'name'),
+                ->fromModel(User::class, 'name')
+                ->lazy(),
         ];
     }
 }

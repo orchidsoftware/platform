@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Fields;
 
 use DateTimeZone;
+use Illuminate\Support\Arr;
 use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
 
@@ -36,11 +37,15 @@ class TimeZone extends Field
      * @var array
      */
     protected $attributes = [
-        'class'        => 'form-control',
-        'options'      => [],
-        'allowEmpty'   => 0,
-        'allowAdd'     => false,
-        'isOptionList' => false,
+        'class'            => 'form-control',
+        'options'          => [],
+        'allowEmpty'       => 0,
+        'allowCreate'      => false,
+        'isOptionList'     => false,
+        'isLazy'           => false,
+        'selectedValues'   => [],
+        'allowEmptyValue'  => 'false',
+        'allowCreateValue' => 'false',
     ];
 
     /**
@@ -67,18 +72,31 @@ class TimeZone extends Field
         $this->listIdentifiers();
 
         $this->addBeforeRender(function () {
-            $isOptionList = array_is_list((array) $this->get('options', []));
-            $this->set('isOptionList', $isOptionList);
+            $this
+                ->set('isOptionList', array_is_list((array) $this->get('options', [])))
+                ->set('selectedValues', $this->selectedValues())
+                ->set('allowEmptyValue', var_export((bool) $this->get('allowEmpty'), true))
+                ->set('allowCreateValue', var_export((bool) $this->get('allowCreate'), true));
         });
     }
 
     public function listIdentifiers(int $time = DateTimeZone::ALL): static
     {
-        $timeZone = collect(DateTimeZone::listIdentifiers($time))
-            ->mapWithKeys(static fn ($timezone) => [$timezone => $timezone])->toArray();
-
-        $this->set('options', $timeZone);
-
-        return $this;
+        return $this->set('options', collect(DateTimeZone::listIdentifiers($time))
+            ->mapWithKeys(static fn ($timezone) => [$timezone => $timezone])
+            ->toArray());
     }
+
+    /**
+     * Values selected in eager mode, normalized for strict Blade checks.
+     *
+     * @return array<int, string>
+     */
+    private function selectedValues(): array
+    {
+        return collect(Arr::wrap($this->get('value', [])))
+            ->map(static fn ($item): string => (string) $item)
+            ->all();
+    }
+
 }
