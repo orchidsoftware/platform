@@ -98,5 +98,4 @@ class TimeZone extends Field
             ->map(static fn ($item): string => (string) $item)
             ->all();
     }
-
 }
