@@ -46,7 +46,6 @@
     word-break: break-all;
 }
 
-
 // Quill
 
 .ql-editor {
@@ -200,8 +199,6 @@
     }
 }
 
-
-
 .markdown-editor-wrapper {
     max-width: 600px;
 
@@ -231,10 +228,10 @@
     }
 
     .cm-content {
-        padding: .5rem .35rem;
+        padding: 0.5rem 0.35rem;
     }
 
-    .cm-line{
+    .cm-line {
         padding: 0 0.4rem;
     }
 

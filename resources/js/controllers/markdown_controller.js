@@ -1,6 +1,15 @@
 import { markdown } from "@codemirror/lang-markdown";
-import { defaultKeymap, history, historyKeymap, indentWithTab } from "@codemirror/commands";
-import { HighlightStyle, bracketMatching, syntaxHighlighting } from "@codemirror/language";
+import {
+    defaultKeymap,
+    history,
+    historyKeymap,
+    indentWithTab,
+} from "@codemirror/commands";
+import {
+    HighlightStyle,
+    bracketMatching,
+    syntaxHighlighting,
+} from "@codemirror/language";
 import { EditorState, RangeSetBuilder, StateField } from "@codemirror/state";
 import { tags } from "@lezer/highlight";
 import {
@@ -90,7 +99,11 @@ function buildHeadingLineDecorations(doc) {
             continue;
         }
 
-        builder.add(line.from, line.from, Decoration.line({ class: `cm-md-heading-${level[1].length}` }));
+        builder.add(
+            line.from,
+            line.from,
+            Decoration.line({ class: `cm-md-heading-${level[1].length}` })
+        );
     }
 
     return builder.finish();
@@ -165,15 +178,23 @@ export default class extends ApplicationController {
                     headingLineDecorations,
                     markdownMarkerDecorations,
                     placeholder(this.#placeholder()),
-                    keymap.of([indentWithTab, ...historyKeymap, ...defaultKeymap]),
+                    keymap.of([
+                        indentWithTab,
+                        ...historyKeymap,
+                        ...defaultKeymap,
+                    ]),
                     EditorView.domEventHandlers({
                         paste: event => this.#paste(event),
                     }),
                     EditorView.lineWrapping,
-                    EditorView.editable.of(!this.textareaTarget.readOnly && !this.textareaTarget.disabled),
+                    EditorView.editable.of(
+                        !this.textareaTarget.readOnly &&
+                            !this.textareaTarget.disabled
+                    ),
                     EditorView.updateListener.of(update => {
                         if (update.docChanged) {
-                            this.textareaTarget.value = update.state.doc.toString();
+                            this.textareaTarget.value =
+                                update.state.doc.toString();
                         }
                     }),
                 ],
@@ -386,7 +407,11 @@ export default class extends ApplicationController {
             return code.textContent;
         }
 
-        return Array.from(template.content.querySelectorAll("p, h1, h2, h3, h4, h5, h6, li, blockquote"))
+        return Array.from(
+            template.content.querySelectorAll(
+                "p, h1, h2, h3, h4, h5, h6, li, blockquote"
+            )
+        )
             .map(element => element.textContent.trim())
             .filter(Boolean)
             .join("\n\n");
@@ -406,7 +431,9 @@ export default class extends ApplicationController {
             .map(line => line.replace(/[ \t]+$/g, ""))
             .join("\n");
 
-        return this.#unwrapMarkdownParagraphs(normalized.replace(/\n[ \t]+\n/g, "\n\n").replace(/\n{3,}/g, "\n\n"));
+        return this.#unwrapMarkdownParagraphs(
+            normalized.replace(/\n[ \t]+\n/g, "\n\n").replace(/\n{3,}/g, "\n\n")
+        );
     }
 
     /**
@@ -473,7 +500,11 @@ export default class extends ApplicationController {
         const text = `${before}${content}${after}`;
         const cursor =
             typeof options.cursor === "function"
-                ? options.cursor({ from: selection.from + before.length, content, selected })
+                ? options.cursor({
+                      from: selection.from + before.length,
+                      content,
+                      selected,
+                  })
                 : selection.from + text.length;
 
         this.view.dispatch({
@@ -499,7 +530,11 @@ export default class extends ApplicationController {
             const text = line.text;
 
             if (text.startsWith(prefix)) {
-                changes.push({ from: line.from, to: line.from + prefix.length, insert: "" });
+                changes.push({
+                    from: line.from,
+                    to: line.from + prefix.length,
+                    insert: "",
+                });
                 offset -= prefix.length;
             } else {
                 changes.push({ from: line.from, insert: prefix });
@@ -515,7 +550,9 @@ export default class extends ApplicationController {
 
         this.view.dispatch({
             changes,
-            selection: { anchor: Math.max(selection.from, selection.to + offset) },
+            selection: {
+                anchor: Math.max(selection.from, selection.to + offset),
+            },
             scrollIntoView: true,
         });
         this.view.focus();

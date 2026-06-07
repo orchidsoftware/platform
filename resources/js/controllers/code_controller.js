@@ -1,8 +1,18 @@
 import { css } from "@codemirror/lang-css";
 import { html } from "@codemirror/lang-html";
 import { javascript } from "@codemirror/lang-javascript";
-import { defaultKeymap, history, historyKeymap, indentWithTab } from "@codemirror/commands";
-import { HighlightStyle, bracketMatching, defaultHighlightStyle, syntaxHighlighting } from "@codemirror/language";
+import {
+    defaultKeymap,
+    history,
+    historyKeymap,
+    indentWithTab,
+} from "@codemirror/commands";
+import {
+    HighlightStyle,
+    bracketMatching,
+    defaultHighlightStyle,
+    syntaxHighlighting,
+} from "@codemirror/language";
 import { EditorState } from "@codemirror/state";
 import {
     EditorView,
@@ -59,18 +69,28 @@ export default class extends ApplicationController {
                     drawSelection(),
                     highlightActiveLine(),
                     bracketMatching(),
-                    syntaxHighlighting(defaultHighlightStyle, { fallback: true }),
+                    syntaxHighlighting(defaultHighlightStyle, {
+                        fallback: true,
+                    }),
                     syntaxHighlighting(markupHighlightStyle),
                     this.#languageExtension(),
                     this.#lineNumberExtension(),
                     activeLineTheme,
                     placeholder(this.#placeholder()),
-                    keymap.of([indentWithTab, ...historyKeymap, ...defaultKeymap]),
+                    keymap.of([
+                        indentWithTab,
+                        ...historyKeymap,
+                        ...defaultKeymap,
+                    ]),
                     EditorView.lineWrapping,
-                    EditorView.editable.of(!this.textareaTarget.readOnly && !this.textareaTarget.disabled),
+                    EditorView.editable.of(
+                        !this.textareaTarget.readOnly &&
+                            !this.textareaTarget.disabled
+                    ),
                     EditorView.updateListener.of(update => {
                         if (update.docChanged) {
-                            this.textareaTarget.value = update.state.doc.toString();
+                            this.textareaTarget.value =
+                                update.state.doc.toString();
                         }
                     }),
                 ],

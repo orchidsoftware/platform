@@ -91,13 +91,13 @@ class Code extends Field
     public function __construct()
     {
         $this->addBeforeRender(function () {
-                $value = $this->get('value');
+            $value = $this->get('value');
 
-                if($value === null || is_string($value)) {
-                    return;
-                }
+            if ($value === null || is_string($value)) {
+                return;
+            }
 
-                $this->set('value', json_encode($value, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+            $this->set('value', json_encode($value, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         });
     }
 }
