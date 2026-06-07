@@ -1,9 +1,21 @@
+@php
+    $inputAttributes = $attributes->except(['height', 'language', 'lineNumbers']);
+@endphp
+
 <div
+    class="markup-editor-wrapper"
     data-controller="code"
-    data-code-language="{{$language}}"
-    data-code-line-numbers="{{$lineNumbers}}"
-    data-code-default-Theme="{{$defaultTheme}}"
+    data-code-language-value="{{ $language }}"
+    data-code-line-numbers-value="{{ $lineNumbers ? 'true' : 'false' }}"
 >
-    <div class="code border position-relative w-100" style="min-height: {{ $attributes['height'] }}"></div>
-    <input type="hidden" {{ $attributes }}>
+    <div
+        class="markup-editor border"
+        data-code-target="editor"
+        style="min-height: {{ $attributes['height'] }}"
+    ></div>
+
+    <textarea
+        data-code-target="textarea"
+        {{ $inputAttributes->merge(['class' => 'd-none']) }}
+    >{{ $value ?? '' }}</textarea>
 </div>

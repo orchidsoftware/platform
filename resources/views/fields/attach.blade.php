@@ -41,7 +41,7 @@
                 </span>
 
                 <span class="spinner-border" role="status">
-                    <span class="visually-hidden">{{ __('Loading...') }}</span>
+                    <span class="visually-hidden">{{ __('Loading…') }}</span>
                 </span>
             </span>
             </label>
@@ -58,7 +58,7 @@
             <img class="attach-image rounded border user-select-none overflow-hidden" src="{url}" title="{original_name}"/>
 
             {{--
-                <object class="attach-image rounded border user-select-none" border="0" data="{url}" type="{mime}" title="test"  load="lazy" controls allowfullscreen autoplay="false">
+                <object class="attach-image rounded border user-select-none" border="0" data="{url}" type="{mime}" load="lazy" controls allowfullscreen autoplay="false">
                 </object>
             --}}
 

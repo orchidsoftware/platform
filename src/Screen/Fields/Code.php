@@ -7,7 +7,7 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
- * Class Input.
+ * Class Code.
  *
  * @method $this name(string $value = null)
  * @method $this value($value = true)
@@ -17,6 +17,7 @@ use Orchid\Screen\Field;
  * @method $this lineNumbers($value = true)
  * @method $this height($value = '300px')
  * @method $this readonly($value = true)
+ * @method $this placeholder(string $value = null)
  * @method $this title(string $value = null)
  */
 class Code extends Field
@@ -56,11 +57,11 @@ class Code extends Field
      * @var array
      */
     protected $attributes = [
-        'class'        => 'form-control',
-        'language'     => 'js',
-        'lineNumbers'  => true,
-        'defaultTheme' => true,
-        'height'       => '300px',
+        'class'       => 'form-control',
+        'language'    => self::JS,
+        'lineNumbers' => true,
+        'height'      => '300px',
+        'value'       => null,
     ];
 
     /**
@@ -71,35 +72,32 @@ class Code extends Field
     protected $inlineAttributes = [
         'accesskey',
         'autofocus',
-        'checked',
         'disabled',
         'form',
-        'formaction',
-        'formenctype',
-        'formmethod',
-        'formnovalidate',
-        'formtarget',
-        'language',
-        'lineNumbers',
         'name',
         'placeholder',
         'readonly',
         'required',
         'tabindex',
         'value',
+        'language',
+        'lineNumbers',
         'height',
     ];
 
     /**
-     * Code constructor.
+     * Markup constructor.
      */
     public function __construct()
     {
         $this->addBeforeRender(function () {
-            if ($this->get('language') === 'json') {
                 $value = $this->get('value');
-                $this->set('value', json_encode($value));
-            }
+
+                if($value === null || is_string($value)) {
+                    return;
+                }
+
+                $this->set('value', json_encode($value, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         });
     }
 }

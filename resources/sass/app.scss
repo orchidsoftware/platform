@@ -4,9 +4,7 @@
 // Vendor
 @import "bootstrap/scss/bootstrap";
 @import "dropzone/dist/basic";
-@import "dropzone/dist/dropzone";
 @import "cropperjs/dist/cropper";
-@import "simplemde/dist/simplemde.min";
 @import "flatpickr/dist/flatpickr.min";
 @import "leaflet/dist/leaflet";
 @import "quill/dist/quill.snow";
@@ -23,7 +21,6 @@
 @import "core/utilities";
 @import "core/tables";
 @import "core/form";
-@import "plugins/dropzone";
 @import "plugins/load-opacity";
 @import "plugins/accordion";
 @import "plugins/tom-select";

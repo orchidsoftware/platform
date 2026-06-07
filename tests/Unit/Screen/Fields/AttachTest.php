@@ -13,6 +13,16 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 class AttachTest extends TestFieldsUnitCase
 {
+    public function testStorage(): void
+    {
+        $attach = Attach::make('file');
+        $this->assertSame('public', $attach->getAttributes()['storage']);
+
+        $attach = Attach::make('file')->storage('local');
+        $this->assertSame('local', $attach->getAttributes()['storage']);
+        $this->assertNull($attach->getAttributes()['visibility']);
+    }
+
     public function testExceedMaxServerSize(): void
     {
         $uploadSize = Init::maxFileUpload(Init::MB) + 1;
