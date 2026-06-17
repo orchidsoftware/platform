@@ -6,6 +6,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
+use Orchid\Screen\RowDetail;
 use Orchid\Screen\Sight;
 
 abstract class Sortable extends Layout
@@ -59,9 +60,12 @@ abstract class Sortable extends Layout
 
         $rows = collect()->merge($repository->getContent($this->target));
 
+        $detail = $this->detail();
+
         return view($this->template, [
             'rows'               => $rows,
             'columns'            => $columns,
+            'detail'             => $detail,
             'slug'               => $this->getSlug(),
             'title'              => $this->title,
             'showBlockHeaders'   => $this->showBlockHeaders,
@@ -71,6 +75,11 @@ abstract class Sortable extends Layout
             'successSortMessage' => $this->successSortMessage(),
             'failureSortMessage' => $this->failureSortMessage(),
         ]);
+    }
+
+    public function buildDetailContent(Repository $repository): string
+    {
+        return $this->detail()?->buildFromRepository($repository) ?? '';
     }
 
     /**
@@ -135,5 +144,10 @@ abstract class Sortable extends Layout
     public function failureSortMessage(): string
     {
         return __('Sorting failed. Please try again.');
+    }
+
+    protected function detail(): ?RowDetail
+    {
+        return null;
     }
 }

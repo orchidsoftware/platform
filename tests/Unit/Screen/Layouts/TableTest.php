@@ -7,6 +7,8 @@ namespace Orchid\Tests\Unit\Screen\Layouts;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Repository;
 use Orchid\Screen\TD;
+use Orchid\Tests\App\Layouts\EagerRowDetailLayoutsTable;
+use Orchid\Tests\App\Layouts\EagerRowDetailTable;
 use Orchid\Tests\App\Layouts\TotalTable;
 use Orchid\Tests\TestUnitCase;
 
@@ -172,5 +174,37 @@ class TableTest extends TestUnitCase
         $values->each(function ($item, $key) use ($html) {
             $this->assertStringContainsString('index:'.$key, $html);
         });
+    }
+
+    public function testEagerRowDetail(): void
+    {
+        $layout = new EagerRowDetailTable;
+
+        $html = $layout
+            ->build(new Repository([
+                'target' => [
+                    new Repository(['name' => 'first']),
+                ],
+            ]))
+            ->render();
+
+        $this->assertStringContainsString('data-action="table#toggleDetail"', $html);
+        $this->assertStringContainsString('data-row-detail-row', $html);
+        $this->assertStringContainsString('detail:first:0', $html);
+    }
+
+    public function testEagerRowDetailWithLayouts(): void
+    {
+        $layout = new EagerRowDetailLayoutsTable;
+
+        $html = $layout
+            ->build(new Repository([
+                'target' => [
+                    new Repository(['name' => 'first']),
+                ],
+            ]))
+            ->render();
+
+        $this->assertStringContainsString('detail first', $html);
     }
 }

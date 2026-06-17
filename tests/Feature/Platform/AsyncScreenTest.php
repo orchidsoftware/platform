@@ -8,7 +8,10 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
 use Orchid\Tests\App\Layouts\DependentSumListener;
+use Orchid\Tests\App\Layouts\RowDetailSortable;
+use Orchid\Tests\App\Layouts\RowDetailTable;
 use Orchid\Tests\App\Screens\DependentListenerScreen;
+use Orchid\Tests\App\Screens\RowDetailScreen;
 use Orchid\Tests\TestFeatureCase;
 
 class AsyncScreenTest extends TestFeatureCase
@@ -77,5 +80,47 @@ class AsyncScreenTest extends TestFeatureCase
 
         $response
             ->assertStatus(Response::HTTP_BAD_REQUEST);
+    }
+
+    public function testAsyncTableRowDetail(): void
+    {
+        $layout = new RowDetailTable;
+
+        $response = $this
+            ->actingAs($this->createAdminUser())
+            ->post(route('orchid.async.row-detail', [
+                'item' => 100,
+            ]), [
+                '_screen' => Crypt::encryptString(RowDetailScreen::class),
+                '_call'   => 'asyncItemDetail',
+                '_layout' => $layout->getSlug(),
+                '_target' => 'row-detail-test',
+            ]);
+
+        $response->assertOk();
+
+        $this->assertStringContainsString('target="row-detail-test"', $response->getContent());
+        $this->assertStringContainsString('Async detail Item 100', $response->getContent());
+    }
+
+    public function testAsyncSortableRowDetail(): void
+    {
+        $layout = new RowDetailSortable;
+
+        $response = $this
+            ->actingAs($this->createAdminUser())
+            ->post(route('orchid.async.row-detail', [
+                'item' => 200,
+            ]), [
+                '_screen' => Crypt::encryptString(RowDetailScreen::class),
+                '_call'   => 'asyncItemDetail',
+                '_layout' => $layout->getSlug(),
+                '_target' => 'row-detail-test',
+            ]);
+
+        $response->assertOk();
+
+        $this->assertStringContainsString('target="row-detail-test"', $response->getContent());
+        $this->assertStringContainsString('Async detail Item 200', $response->getContent());
     }
 }

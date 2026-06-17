@@ -11,6 +11,7 @@ use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
+use Orchid\Screen\RowDetail;
 use Orchid\Screen\TD;
 
 /**
@@ -68,11 +69,14 @@ abstract class Table extends Layout
 
         $rows = is_a($content, Paginator::class) || is_a($content, CursorPaginator::class) ? $content : collect()->merge($content);
 
+        $detail = $this->detail();
+
         return view($this->template, [
             'repository'   => $repository,
             'rows'         => $rows,
             'columns'      => $columns,
             'total'        => $total,
+            'detail'       => $detail,
             'iconNotFound' => $this->iconNotFound(),
             'textNotFound' => $this->textNotFound(),
             'subNotFound'  => $this->subNotFound(),
@@ -85,6 +89,11 @@ abstract class Table extends Layout
             'showHeader'   => $this->hasHeader($columns, $rows),
             'title'        => $this->title,
         ]);
+    }
+
+    public function buildDetailContent(Repository $repository): string
+    {
+        return $this->detail()?->buildFromRepository($repository) ?? '';
     }
 
     /**
@@ -203,5 +212,10 @@ abstract class Table extends Layout
     protected function total(): array
     {
         return [];
+    }
+
+    protected function detail(): ?RowDetail
+    {
+        return null;
     }
 }

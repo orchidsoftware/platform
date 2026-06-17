@@ -20,24 +20,67 @@
             class="list-group">
 
             @foreach($rows as $model)
+                @php
+                    $rowLoop = $loop;
+                    $detailTarget = "row-detail-{$slug}-{$loop->index}";
+                    $detailPayload = $detail?->deferredPayload($slug, $detailTarget, $model, $rowLoop) ?? [];
+                    $detailOpen = $detail?->isOpenByDefault() ?? false;
+                    $detailDeferred = $detail?->isDeferred() ?? false;
+                @endphp
                 <li
                     data-model-id="{{ $model->getKey() }}"
-                    class="reorder-handle list-group-item d-flex justify-content-between align-items-center px-4 py-3 list-group-item-action">
-                    <div class="me-4">
-                        <x-orchid-icon path="bs.arrow-down-up" class="cursor-move"/>
+                    class="list-group-item px-4 py-3 list-group-item-action">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="me-4 reorder-handle" data-model-id="{{ $model->getKey() }}">
+                            <x-orchid-icon path="bs.arrow-down-up" class="cursor-move"/>
+                        </div>
+
+                        @if($detail !== null)
+                            <div class="me-4">
+                                <button type="button"
+                                        class="btn btn-link icon-link p-0"
+                                        title="{{ $detail->buttonLabelValue() }}"
+                                        aria-label="{{ $detail->buttonLabelValue() }}"
+                                        aria-controls="{{ $detailTarget }}"
+                                        aria-expanded="{{ var_export($detailOpen) }}"
+                                        data-action="sortable#toggleDetail"
+                                        data-detail-target-id="{{ $detailTarget }}"
+                                        data-detail-url="{{ route('orchid.async.row-detail') }}"
+                                        data-detail-body='@json($detailPayload['body'] ?? [])'
+                                        data-detail-query='@json($detailPayload['query'] ?? [])'
+                                        data-detail-loaded="{{ var_export(!$detailDeferred) }}"
+                                >
+                                    <x-orchid-icon :path="$detail->iconValue()" class="overflow-visible"/>
+                                </button>
+                            </div>
+                        @endif
+
+                        @foreach($columns as $column)
+                            <div class="{{ $loop->first ? 'me-auto' : 'ms-3' }}">
+                                @if($showBlockHeaders)
+                                    <div class="text-muted fw-normal">
+                                        {!! $column->buildDt($model) !!}
+                                    </div>
+                                @endif
+
+                                {!! $column->buildDd($model) !!}
+                            </div>
+                        @endforeach
                     </div>
 
-                    @foreach($columns as $column)
-                        <div class="{{ $loop->first ? 'me-auto' : 'ms-3' }}">
-                            @if($showBlockHeaders)
-                                <div class="text-muted fw-normal">
-                                    {!! $column->buildDt($model) !!}
-                                </div>
-                            @endif
-
-                            {!! $column->buildDd($model) !!}
+                    @if($detail !== null)
+                        <div data-row-detail-row
+                             @class(['d-none' => !$detailOpen])
+                        >
+                            <div id="{{ $detailTarget }}" class="mt-3 pt-3 border-top">
+                                @if($detailDeferred)
+                                    <div class="text-muted small">{{ __('Loading...') }}</div>
+                                @else
+                                    {!! $detail->build($model, $rowLoop) !!}
+                                @endif
+                            </div>
                         </div>
-                    @endforeach
+                    @endif
                 </li>
             @endforeach
         </ol>

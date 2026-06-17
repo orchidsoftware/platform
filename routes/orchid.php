@@ -41,6 +41,9 @@ Route::post('async', [AsyncController::class, 'load'])
 Route::post('listener/{screen}/{layout}', [AsyncController::class, 'listener'])
     ->name('async.listener');
 
+Route::post('row-detail', [AsyncController::class, 'rowDetail'])
+    ->name('async.row-detail');
+
 /*
 |--------------------------------------------------------------------------
 | File & Media Management
