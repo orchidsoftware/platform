@@ -68,3 +68,12 @@
 .fht-table {
     margin-bottom: 0 !important;
 }
+
+.table tbody tr:hover td .stretched-link::after {
+    background-color: $table-hover-bg;
+}
+
+.table tbody tr:hover td .stretched-link:hover {
+    background-color: transparent!important;
+}
+
