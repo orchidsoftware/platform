@@ -39,7 +39,7 @@ a:focus {
 }
 
 label {
-    color: lighten($black, 20%);
+    color: color.adjust($black, $lightness: 20%);
     font-weight: normal;
     font-size: $font-size-sm;
     word-break: normal;
@@ -51,21 +51,16 @@ small,
     font-size: $font-size-sm;
 }
 
-.badge,
-.label {
+.badge {
     font-weight: bold;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-}
-
-.badge.bg-light,
-.label.bg-light {
-    text-shadow: none;
-}
-
-.badge {
     display: inline-flex;
     align-items: center;
     align-content: center;
+
+    &.bg-light {
+        text-shadow: none;
+    }
 
     &.up {
         position: relative;
@@ -76,18 +71,6 @@ small,
 }
 
 blockquote {
-    border-color: $border-color;
-}
-
-.caret-white {
-    border-top-color: #fff;
-    border-top-color: rgba(255, 255, 255, 0.65);
-    a:hover & {
-        border-top-color: #fff;
-    }
-}
-
-.thumbnail {
     border-color: $border-color;
 }
 
@@ -113,41 +96,7 @@ blockquote {
 
 .progress,
 .progress-bar {
-    @include box-shadow(none);
-}
-
-.progress-bar-primary {
-    background-color: $primary;
-}
-
-.progress-bar-info {
-    background-color: $info;
-}
-
-.progress-bar-success {
-    background-color: $success;
-}
-
-.progress-bar-warning {
-    background-color: $warning;
-}
-
-.progress-bar-danger {
-    background-color: $danger;
-}
-
-.progress-bar-black {
-    background-color: $black;
-}
-
-.progress-bar-white {
-    background-color: #fff;
-}
-
-.accordion-group,
-.accordion-inner {
-    border-color: $border-color;
-    border-radius: $border-radius-base;
+    box-shadow: none;
 }
 
 .alert {
@@ -159,70 +108,10 @@ blockquote {
     ul {
         margin-bottom: 0;
     }
-    .close i {
-        font-size: 12px;
-        font-weight: normal;
-        display: block;
-    }
-}
-
-.form-control {
-    border-color: $input-border;
-    border-radius: $input-border-radius;
-    &,
-    &:focus {
-        @include box-shadow(none);
-    }
-    &:focus {
-        border-color: $input-border-focus;
-    }
-}
-
-.form-horizontal {
-    .control-label.text-left {
-        text-align: left;
-    }
-}
-
-.form-control-spin {
-    position: absolute;
-    z-index: 2;
-    right: 10px;
-    top: 50%;
-    margin-top: -7px;
-}
-
-.input-lg {
-    height: 45px;
-}
-
-.input-group-addon {
-    border-color: $input-border;
-    background-color: $light;
 }
 
 .list-group {
     border-radius: $border-radius-base;
-    &.no-radius {
-        .list-group-item {
-            border-radius: 0 !important;
-        }
-    }
-    &.no-borders {
-        .list-group-item {
-            border: none;
-        }
-    }
-    &.no-border {
-        .list-group-item {
-            border-width: 1px 0;
-        }
-    }
-    &.no-bg {
-        .list-group-item {
-            background-color: transparent;
-        }
-    }
 }
 
 .list-group-item {
@@ -243,7 +132,7 @@ blockquote {
         border-color: $list-group-active-color !important;
         background-color: $list-group-active-color !important;
         .text-muted {
-            color: lighten($list-group-active-color, 30%) !important;
+            color: color.adjust($list-group-active-color, $lightness: 30%) !important;
         }
         a {
             color: #fff;
@@ -256,7 +145,7 @@ blockquote {
         position: relative;
         z-index: 1;
         background-color: $list-group-select-color !important;
-        border-color: darken($list-group-select-color, 5%);
+        border-color: color.adjust($list-group-select-color, $lightness: -5%);
     }
 
     .list-group-alt & {
@@ -295,15 +184,6 @@ blockquote {
             }
         }
     }
-    .open {
-        .nav-link {
-            &,
-            &:hover,
-            &:focus {
-                background-color: $nav-bg;
-            }
-        }
-    }
 }
 
 @include media-breakpoint-down(md) {
@@ -329,56 +209,29 @@ blockquote {
     }
 }
 
-.tab-container {
-    margin-bottom: 15px;
-    .tab-content {
-        padding: 15px;
-        background-color: #fff;
-        border: 1px solid $border-color;
-        border-top-width: 0;
-        border-radius: 0 0 $border-radius-base $border-radius-base;
-    }
-}
-
 .pagination {
     margin: 0;
-    > li,
-    .page-item {
-        > a,
-        .page-link {
-            border: none;
-            &:hover,
-            &:focus {
-                border-color: initial;
-                background-color: initial;
-                text-decoration: underline;
-                box-shadow: none;
-            }
-        }
-        &.active {
-            .page-link,
-            span {
-                &,
-                &:hover,
-                &:focus {
-                    z-index: 3;
-                    background-color: inherit;
-                    border-color: inherit;
-                    cursor: default;
-                    @extend .text-muted;
-                }
-            }
+
+    .page-link {
+        border: none;
+        &:hover,
+        &:focus {
+            border-color: initial;
+            background-color: initial;
+            text-decoration: underline;
+            box-shadow: none;
         }
     }
 
-    @at-root .text-right & {
-        -webkit-box-pack: end !important;
-        -ms-flex-pack: end !important;
-        justify-content: flex-end !important;
+    .active .page-link {
+        z-index: 3;
+        background-color: inherit;
+        border-color: inherit;
+        cursor: default;
+        color: $pagination-disabled-color;
     }
 }
 
-.panel,
 .card {
     border-radius: $border-radius-base;
     border-color: $border-color;
@@ -390,48 +243,6 @@ blockquote {
     .list-group-item {
         border-color: $panel-list-group-border;
     }
-    &.no-borders {
-        border-width: 0;
-        .card-heading,
-        .card-footer {
-            border-width: 0;
-        }
-    }
-}
-
-.card-heading {
-    .card-default & {
-        background-color: $panel-heading-bg;
-    }
-    border-radius: $border-radius-base $border-radius-base 0 0;
-    &.no-border {
-        margin: -1px -1px 0 -1px;
-        border: none;
-    }
-    .nav {
-        margin: -10px -15px;
-    }
-    .list-group {
-        background: transparent;
-    }
-}
-
-.card-footer {
-    border-color: $panel-heading-border;
-    border-radius: 0 0 $border-radius-base $border-radius-base;
-    background-color: $panel-footer-bg;
-}
-
-.card-default {
-    border-color: $panel-border;
-    > .card-heading,
-    > .card-footer {
-        border-color: $panel-heading-border;
-    }
-}
-
-.card-group .card-heading + .card-collapse .card-body {
-    border-top: 1px solid #eaedef;
 }
 
 .table {
@@ -457,7 +268,6 @@ blockquote {
     }
 }
 
-.well,
 pre {
     background-color: $light;
     border-color: $border-color;
@@ -466,29 +276,21 @@ pre {
 .dropdown-menu {
     display: none;
     min-width: 12rem;
-    @include box-shadow(0 2px 6px rgba(0, 0, 0, 0.1));
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     border: 1px solid $border-color;
-    &.pull-left {
-        left: 100%;
-    }
-    > .panel,
+
     .card {
         border: none;
         margin: -5px 0;
     }
-    > li > a {
-        padding: 5px 15px;
-    }
 
-    > li > a:hover,
-    > li > a:focus,
-    > .active > a,
-    > .active > a:hover,
-    > .active > a:focus {
-        background-image: none;
-        filter: none;
-        background-color: $light !important;
-        color: $link-hover-color;
+    .dropdown-item {
+        padding: 5px 15px;
+        &:hover,
+        &:focus {
+            background-color: $light !important;
+            color: $link-hover-color;
+        }
     }
 }
 
@@ -529,94 +331,15 @@ pre {
     padding: 5px 15px;
 }
 
-.dropdown-submenu {
-    position: relative;
-    &:hover,
-    &:focus {
-        > a {
-            background-color: $light !important;
-            color: $text-color;
-        }
-        > .dropdown-menu {
-            display: block;
-        }
-    }
-    &.pull-left {
-        float: none !important;
-        > .dropdown-menu {
-            left: -100%;
-            margin-left: 10px;
-        }
-    }
-    .dropdown-menu {
-        left: 100%;
-        top: 0;
-        margin-top: -6px;
-        margin-left: -1px;
-    }
-
-    .dropup & {
-        > .dropdown-menu {
-            top: auto;
-            bottom: 0;
-        }
-    }
-}
-
 .btn-group > .btn {
     margin-left: -1px;
 }
 
-/*cols*/
-.col-lg-2-4 {
-    position: relative;
-    min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-.col-0 {
-    clear: left;
-}
-
-.row.no-gutter {
-    margin-left: 0;
-    margin-right: 0;
-}
-
-.no-gutter [class*="col"] {
-    padding: 0;
-}
-
-.row-sm {
-    margin-left: -10px;
-    margin-right: -10px;
-    > div {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-}
-
 .modal-backdrop {
     background-color: $dark;
-    &.in {
+    &.show {
         opacity: 0.8;
-        filter: alpha(opacity=80);
     }
-}
-
-.modal-over {
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    position: fixed;
-}
-
-.modal-center {
-    position: absolute;
-    left: 50%;
-    top: 50%;
 }
 
 .dropdown-item {
@@ -625,18 +348,10 @@ pre {
     flex-direction: row;
     text-overflow: ellipsis;
 
-    /*
-    @include hover-focus {
-        color: $dropdown-link-hover-color;
-        @include gradient-bg($dropdown-link-hover-bg);
-    }
-
-     */
-
     &.active,
     &:active {
         color: $dropdown-link-hover-color;
-        @include gradient-bg($dropdown-link-hover-bg);
+        background-color: $dropdown-link-hover-bg;
     }
 
     &.disabled,
@@ -692,8 +407,8 @@ legend {
 .bg-dark {
     .nav {
         .dropdown-item.active {
-            color: desaturate(lighten($dark, 60%), 5%);
-            @include color-schema($dark, 5%, 2.5%);
+            color: color.adjust(color.adjust($dark, $lightness: 60%), $saturation: -5%);
+            background-color: color.adjust(color.adjust($dark, $lightness: -5%), $saturation: 2.5%);
             @extend .rounded;
             @extend .shadow-sm;
         }
@@ -702,8 +417,8 @@ legend {
 
 @include color-mode(dark) {
     .nav-pills {
-        --#{$prefix}nav-link-bg: #{rgba(lighten($grey, 10), 0.25)};
-        --#{$prefix}nav-pills-link-active-bg: #{rgba(lighten($grey, 10), 0.25)};
+        --#{$prefix}nav-link-bg: #{rgba(color.adjust($grey, $lightness: 10%), 0.25)};
+        --#{$prefix}nav-pills-link-active-bg: #{rgba(color.adjust($grey, $lightness: 10%), 0.25)};
     }
 }
 

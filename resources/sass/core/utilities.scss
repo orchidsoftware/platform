@@ -23,10 +23,6 @@
     border-width: 0;
 }
 
-.b {
-    border: 1px solid rgba(0, 0, 0, 0.125);
-}
-
 .avatar {
     position: relative;
     display: block;
@@ -93,10 +89,6 @@
 
 .w-md {
     min-width: 240px;
-}
-
-.h-auto {
-    height: auto;
 }
 
 .thumb-sm {
@@ -166,7 +158,7 @@
 }
 
 .opacity {
-    @include opacity(0.5);
+    opacity: 0.5;
 }
 
 .divider {

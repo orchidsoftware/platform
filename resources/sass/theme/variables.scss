@@ -1,5 +1,6 @@
 // Colors
-$orchid-color: #007bff; //#ac5ca0;
+$orchid-color: #007bff;
+
 $min-contrast-ratio: 4.5;
 
 $white: #ffffff;
@@ -22,72 +23,64 @@ $light: #f8f9fa !default;
 $dark: #1c1b22;
 $grey: #495057;
 
-$grey-light: mix($grey, #ffffff, 10%);
+$grey-light: color.mix($grey, #ffffff, 10%);
 
-$body-bg: #edeef0; //lighten($light, 1%);
+$body-bg: #edeef0;
 $text-color: #394247;
-$text-muted: lighten($text-color, 20%);
+$text-muted: color.adjust($text-color, $lightness: 20%);
 
 $font-size-root: 0.95rem;
 $font-size-base: 1rem;
 $font-size-sm: $font-size-base * 0.875;
 $font-size-lg: $font-size-base * 1.25;
 
-$link-color: darken($text-color, 15%);
-$link-hover-color: darken($text-color, 30%);
+$link-color: color.adjust($text-color, $lightness: -15%);
+$link-hover-color: color.adjust($text-color, $lightness: -30%);
 
 $dropdown-bg: $white;
 $dropdown-border-radius: 0.35rem;
 $border-radius-base: 0.2rem;
-$border-color: darken($light, 5%);
+$border-color: color.adjust($light, $lightness: -5%);
 
 // Buttons
-// -------------------------
-
 $btn-default-color: $text-color;
-$btn-default-bg: lighten($light, 5%);
+$btn-default-bg: color.adjust($light, $lightness: 5%);
 $btn-default-border: $border-color;
 $btn-border-radius: $border-radius-base;
 $btn-close-focus-shadow: none;
 $btn-close-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath d='M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z'/%3E%3C/svg%3E");
 
 $input-height: 2.45rem;
-$input-border: darken($border-color, 5%);
+$input-border: color.adjust($border-color, $lightness: -5%);
 $input-border-focus: $cyan;
 $input-border-radius: $border-radius-base;
 $input-group-addon-border-color: $border-color;
 
-$panel-bg: #ffffff;
-$panel-border: $border-color;
-$panel-heading-border: lighten($border-color, 5%);
-$panel-list-group-border: lighten($border-color, 5%);
-$panel-border-radius: $border-radius-base;
-$panel-heading-bg: lighten($light, 3%);
-$panel-footer-bg: #ffffff;
+$panel-list-group-border: color.adjust($border-color, $lightness: 5%);
 
-$nav-bg: lighten($light, 3%);
+$nav-bg: color.adjust($light, $lightness: 3%);
 $nav-bg-black: #313d4f;
-$badge-bg: darken($light, 10%);
+$badge-bg: color.adjust($light, $lightness: -10%);
 
 $list-group-bg: $white;
-$list-group-item-border: lighten($border-color, 3%);
-$list-group-item-hover: lighten($light, 3%);
-$list-group-item-focus: darken($light, 3%);
+$list-group-item-border: color.adjust($border-color, $lightness: 3%);
+$list-group-item-hover: color.adjust($light, $lightness: 3%);
+$list-group-item-focus: color.adjust($light, $lightness: -3%);
 $list-group-select-color: #dbeef9;
 $list-group-active-color: $cyan;
 
 $table-bg: $white;
-$table-border-color: lighten($border-color, 2%);
-$table-group-separator-color: lighten($border-color, 2%);
-$table-striped-color: lighten($dark, 4.5%);
+$table-border-color: color.adjust($border-color, $lightness: 2%);
+$table-group-separator-color: color.adjust($border-color, $lightness: 2%);
+$table-striped-color: color.adjust($dark, $lightness: 4.5%);
 $table-hover-bg: rgba($dark, 0.045) !default;
 
 $app-aside-width: 20em;
 $app-aside-max-width: 280px;
 $aside-wrap-main-width: 0px;
-$app-aside-nav-height: 40px; //2,857rem;
+$app-aside-nav-height: 40px;
 $app-aside-folded-width: 60px;
-$app-aside-folded-nav-height: 50px; //3.57rem;
+$app-aside-folded-nav-height: 50px;
 $app-aside-dock-media: 992px;
 
 $scroll-bar-width: 17px;
@@ -99,10 +92,10 @@ $off-screen-width: 75%;
 $menu-bezier: 0.05, 0.74, 0.27, 0.99;
 $menu-light: #fafafa;
 
-//Forms
+// Forms
 $form-height: 35px;
 $form-group-height: 54px;
-$form-control-border-color: fade-out($black, 0.9);
+$form-control-border-color: rgba($black, 0.1);
 $input-padding-y: 0.5rem;
 $input-padding-x: 0.75rem;
 $form-check-input-width: 1.2em;
@@ -111,21 +104,11 @@ $tablet: 768px;
 $desktop: 1280px;
 $widescreen: 1600px;
 
-//DateTimePicker
-$btn-primary-color: #ffffff;
-$btn-primary-bg: $primary;
-$gray-lighter: #eeeeee;
-$gray-light: #777777;
-
-$screen-sm-min: 480px;
-$screen-md-min: 768px;
-$screen-lg-min: 1024px;
-
-//Bootstrap
+// Bootstrap
 $enable-caret: false;
 $enable-cssgrid: true;
 
-//Border
+// Border
 $border-radius: 0.5rem;
 $border-radius-lg: 0.685rem;
 $border-radius-sm: 0.35rem;
@@ -144,8 +127,7 @@ $nav-link-padding-y: 0.625rem;
 // Breadcrumbs
 $breadcrumb-active-color: #495057;
 
-// modals
-
+// Modals
 $modal-content-bg: $white;
 $modal-backdrop-opacity: 0.75;
 $modal-content-border-width: 0;
