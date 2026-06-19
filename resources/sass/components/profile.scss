@@ -1,0 +1,12 @@
+.profile-container {
+    background: rgb(19, 20, 21);
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+
+    a,
+    svg,
+    span {
+        line-height: normal;
+    }
+}

@@ -1,0 +1,131 @@
+.markdown-editor-wrapper {
+    max-width: 600px;
+
+    .markdown-editor-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-self: flex-start;
+        gap: 0.5rem;
+        max-width: 100%;
+
+        .btn {
+            min-width: 2.25rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .markdown-editor {
+        @extend .form-control;
+        min-height: 16rem;
+    }
+
+    .cm-editor {
+        min-height: 16rem;
+        outline: none;
+    }
+
+    .cm-content {
+        padding: .5rem .35rem;
+    }
+
+    .cm-line{
+        padding: 0 0.4rem;
+    }
+
+    .cm-focused {
+        outline: none;
+    }
+
+    .cm-scroller {
+        min-height: 16rem;
+        font-family: $font-family-monospace;
+        font-size: 0.875rem;
+        line-height: 1.6;
+    }
+
+    .cm-placeholder {
+        color: $text-muted;
+    }
+
+    .cm-md-heading-1 {
+        font-size: 1.7rem;
+        font-weight: 600;
+    }
+
+    .cm-md-heading-2 {
+        font-size: 1.45rem;
+        font-weight: 600;
+    }
+
+    .cm-md-heading-3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    .cm-md-heading-4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .cm-md-heading-5 {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .cm-md-marker {
+        color: $text-muted;
+    }
+
+    .cm-md-code-fence {
+        color: $purple;
+        font-weight: 500;
+    }
+
+    .cm-md-token-heading-1,
+    .cm-md-token-heading-2,
+    .cm-md-token-heading-3,
+    .cm-md-token-heading-4,
+    .cm-md-token-heading-5 {
+        color: $dark;
+        font-weight: 700;
+    }
+
+    .cm-md-token-strong {
+        color: $dark;
+        font-weight: 700;
+    }
+
+    .cm-md-token-emphasis {
+        color: $dark;
+        font-style: italic;
+    }
+
+    .cm-md-token-link {
+        color: $primary;
+        text-decoration: underline;
+        text-underline-offset: 0.16em;
+    }
+
+    .cm-md-token-url {
+        color: $info;
+    }
+
+    .cm-md-token-quote {
+        color: $grey;
+        font-style: italic;
+    }
+
+    .cm-md-token-code {
+        color: $pink;
+        background: rgba($pink, 0.08);
+        border-radius: 0.125rem;
+        padding: 0 0.125rem;
+    }
+
+    .cm-md-token-separator,
+    .cm-md-token-markup {
+        color: $text-muted;
+    }
+}

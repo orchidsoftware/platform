@@ -1,0 +1,28 @@
+.markup-editor-wrapper {
+    max-width: 600px;
+
+    .markup-editor {
+        background: $white;
+        border-radius: 0.125rem;
+    }
+
+    .cm-editor {
+        min-height: inherit;
+        outline: none;
+    }
+
+    .cm-focused {
+        outline: none;
+    }
+
+    .cm-scroller {
+        min-height: inherit;
+        font-family: $font-family-monospace;
+        font-size: 0.875rem;
+        line-height: 1.6;
+    }
+
+    .cm-placeholder {
+        color: $text-muted;
+    }
+}
