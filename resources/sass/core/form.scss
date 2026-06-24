@@ -9,7 +9,9 @@
     font-weight: normal;
     vertical-align: middle;
     min-height: $input-height;
-    transition: all 0.12s ease, background 0.2s linear;
+    transition:
+        all 0.12s ease,
+        background 0.2s linear;
     box-shadow: none;
     border-radius: 0.125rem;
 

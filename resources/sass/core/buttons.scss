@@ -21,11 +21,7 @@
 }
 
 .btn-default {
-    @include button-variant(
-        #fff,
-        $btn-default-border,
-        $btn-default-color
-    );
+    @include button-variant(#fff, $btn-default-border, $btn-default-color);
     border-bottom-color: color.adjust($btn-default-border, $lightness: -2%);
     box-shadow: 0 1px 1px rgba(90, 90, 90, 0.1);
     &.btn-bg {

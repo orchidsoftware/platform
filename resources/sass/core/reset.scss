@@ -132,7 +132,10 @@ blockquote {
         border-color: $list-group-active-color !important;
         background-color: $list-group-active-color !important;
         .text-muted {
-            color: color.adjust($list-group-active-color, $lightness: 30%) !important;
+            color: color.adjust(
+                $list-group-active-color,
+                $lightness: 30%
+            ) !important;
         }
         a {
             color: #fff;
@@ -407,8 +410,14 @@ legend {
 .bg-dark {
     .nav {
         .dropdown-item.active {
-            color: color.adjust(color.adjust($dark, $lightness: 60%), $saturation: -5%);
-            background-color: color.adjust(color.adjust($dark, $lightness: -5%), $saturation: 2.5%);
+            color: color.adjust(
+                color.adjust($dark, $lightness: 60%),
+                $saturation: -5%
+            );
+            background-color: color.adjust(
+                color.adjust($dark, $lightness: -5%),
+                $saturation: 2.5%
+            );
             @extend .rounded;
             @extend .shadow-sm;
         }
@@ -417,8 +426,14 @@ legend {
 
 @include color-mode(dark) {
     .nav-pills {
-        --#{$prefix}nav-link-bg: #{rgba(color.adjust($grey, $lightness: 10%), 0.25)};
-        --#{$prefix}nav-pills-link-active-bg: #{rgba(color.adjust($grey, $lightness: 10%), 0.25)};
+        --#{$prefix}nav-link-bg: #{rgba(
+                color.adjust($grey, $lightness: 10%),
+                0.25
+            )};
+        --#{$prefix}nav-pills-link-active-bg: #{rgba(
+                color.adjust($grey, $lightness: 10%),
+                0.25
+            )};
     }
 }
 
