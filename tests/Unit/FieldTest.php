@@ -21,7 +21,7 @@ use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\SimpleMDE;
 use Orchid\Screen\Fields\Switcher;
 use Orchid\Screen\Fields\TextArea;
-use Orchid\Screen\Fields\Upload;
+use Orchid\Screen\Fields\Attach;
 use Orchid\Screen\Fields\UTM;
 use Orchid\Tests\TestUnitCase;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -76,7 +76,7 @@ class FieldTest extends TestUnitCase
             'name' => 'example',
         ]];
 
-        yield [Upload::class, [
+        yield [Attach::class, [
             'name' => 'example',
         ]];
 
