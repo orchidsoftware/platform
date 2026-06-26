@@ -43,6 +43,8 @@ abstract class TestBrowserCase extends TestCase
 
         if (isset($_SERVER['CI'])) {
             Options::withoutUI();
+            Options::noSandbox();
+            Options::addArgument('--disable-dev-shm-usage');
         }
     }
 

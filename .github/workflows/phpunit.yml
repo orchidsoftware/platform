@@ -89,13 +89,20 @@ jobs:
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
+      - name: Build Frontend Assets
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build
+        env:
+          NODE_ENV: production
+
       - name: Make SQLite database
         run: vendor/bin/testbench-dusk workbench:create-sqlite-db
 
       - name: Update Dusk Chromedriver
         run: vendor/bin/dusk-updater detect --auto-update
 
-      - name: Execute Unit Tests
+      - name: Execute Browser Tests
         run: vendor/bin/phpunit --testsuite=Browser --no-coverage --order-by=random
         env:
           CI: true
@@ -106,3 +113,10 @@ jobs:
         with:
           name: screenshots
           path: tests/Browser/screenshots/*
+
+      - name: Upload Console Logs
+        uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: console-logs
+          path: tests/Browser/console/*
