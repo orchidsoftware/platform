@@ -95,7 +95,7 @@ class Group implements Fieldable, Groupable
     /**
      * Set the columns to occupy the entire width of the screen.
      *
-     * This method configures the columns to utilize the full available width,
+     * This method configures the columns to use the full available width,
      * effectively making them span across the entire width of the container.
      * By setting the width columns to null, it allows for a responsive layout
      * that adjusts based on screen size.
@@ -110,7 +110,7 @@ class Group implements Fieldable, Groupable
     /**
      * Set the width of the columns using a CSS grid template.
      *
-     * This method allows you to define the column widths in a flexible way
+     * This method lets you define the column widths in a flexible way
      * by specifying a CSS grid template string. The template can include
      * various units such as percentages, pixels, or fractional units (fr).
      *

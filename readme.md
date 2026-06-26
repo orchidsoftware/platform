@@ -4,7 +4,7 @@
 
 <h4 align="center">For the full documentation, visit <a href="http://orchid.software">orchid.software</a>.</h4>
 
-Orchid is a free [Laravel](https://laravel.com) package that abstracts standard business logic and allows code-driven rapid application development of back-office applications, admin/user panels, and dashboards.
+Orchid is a free [Laravel](https://laravel.com) package that abstracts standard business logic and allows code-driven rapid application development of back-office applications, admin panels, user panels, and dashboards.
 
 <p align="center">
 <a href="https://github.com/orchidsoftware/platform/actions"><img src="https://github.com/orchidsoftware/platform/actions/workflows/phpunit.yml/badge.svg"></a>
@@ -82,4 +82,4 @@ Voluntary donations enable the team to allocate more time towards improving Orch
 
 ## License
 
-Orchid is covered by the MIT license. Check [the license](LICENSE) for further information.
+The MIT license covers Orchid. Check [the license](LICENSE) for further information.
