@@ -3,8 +3,8 @@
         <img src="{{ $lockUser->presenter()->image() }}" class="b bg-light" alt="{{ $lockUser->presenter()->title() }}">
     </div>
     <div class="d-flex flex-column overflow-hidden small">
-        <span class="text-ellipsis">{{ $lockUser->presenter()->title() }}</span>
-        <span class="text-muted d-block text-ellipsis lh-sm">{{ $lockUser->presenter()->subTitle() }}</span>
+        <span class="text-truncate">{{ $lockUser->presenter()->title() }}</span>
+        <span class="text-muted d-block text-truncate lh-sm">{{ $lockUser->presenter()->subTitle() }}</span>
     </div>
     <input type="hidden" name="email" required value="{{ $lockUser->email }}">
 </div>
