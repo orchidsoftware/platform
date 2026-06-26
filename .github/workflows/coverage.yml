@@ -27,8 +27,100 @@ jobs:
       - name: Install Dependencies 🔧
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-      - name: Execute tests (Unit and Feature tests) via PHPUnit 🧪
-        run: vendor/bin/phpunit --coverage-clover=coverage.xml
+      - name: Execute tests with coverage 🧪
+        run: vendor/bin/phpunit \
+          --coverage-clover=coverage.xml \
+          --coverage-html=coverage-html \
+          --colors=never
 
-      - name: Submit code coverage report 🔭
-        run: bash <(curl -s https://codecov.io/bash)
+      - name: Extract coverage %
+        id: coverage
+        run: |
+          COVERAGE=$(php -r '
+            $xml = simplexml_load_file("coverage.xml");
+            $metrics = $xml->project->metrics;
+            $s = (int) $metrics["statements"];
+            $c = (int) $metrics["coveredstatements"];
+            echo $s > 0 ? (int) floor($c * 100 / $s) : "N/A";
+          ')
+          echo "coverage=$COVERAGE" >> $GITHUB_OUTPUT
+          echo "Coverage: ${COVERAGE}%"
+
+      - name: Create coverage-summary.json
+        run: |
+          php -r '
+            $xml = simplexml_load_file("coverage.xml");
+            $m = $xml->project->metrics;
+            $s = (int) $m["statements"];
+            $c = (int) $m["coveredstatements"];
+            file_put_contents("coverage-summary.json", json_encode([
+              "coverage" => $s > 0 ? (int) floor($c * 100 / $s) : "N/A",
+              "statements" => $s,
+              "covered" => $c,
+              "timestamp" => time(),
+            ], JSON_PRETTY_PRINT));
+          '
+
+      - name: Upload coverage report 📦
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: |
+            coverage.xml
+            coverage-summary.json
+            coverage-html
+
+      - name: Add summary 📊
+        run: |
+          echo "## Code Coverage" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Coverage | **${{ steps.coverage.outputs.coverage }}%** |" >> $GITHUB_STEP_SUMMARY
+          echo "| Threshold | **80%** |" >> $GITHUB_STEP_SUMMARY
+          echo "| Status | ${{ steps.coverage.outputs.coverage >= 80 && 'Pass' || 'Fail' }} |" >> $GITHUB_STEP_SUMMARY
+
+      - name: Check coverage threshold 🚦
+        run: |
+          if [ ${{ steps.coverage.outputs.coverage }} -lt 80 ]; then
+            echo "Coverage is too low: ${{ steps.coverage.outputs.coverage }}% (minimum: 80%)"
+            exit 1
+          fi
+
+      - name: Generate and commit badge 🏷️
+        if: github.ref == 'refs/heads/master' && steps.coverage.outcome == 'success'
+        run: |
+          COVERAGE=${{ steps.coverage.outputs.coverage }}
+
+          if [ "$COVERAGE" -ge 80 ]; then COLOR="#4c1"
+          elif [ "$COVERAGE" -ge 50 ]; then COLOR="#dfb317"
+          else COLOR="#e05d44"; fi
+
+          mkdir -p .github/badges
+
+          cat > .github/badges/coverage.svg << EOF
+          <svg xmlns="http://www.w3.org/2000/svg" width="110" height="20" role="img" aria-label="coverage: ${COVERAGE}%">
+            <linearGradient id="s" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient>
+            <clipPath id="r"><rect width="110" height="20" rx="3" fill="#fff"/></clipPath>
+            <g clip-path="url(#r)">
+              <rect width="61" height="20" fill="#555"/>
+              <rect x="61" width="49" height="20" fill="${COLOR}"/>
+              <rect width="110" height="20" fill="url(#s)"/>
+            </g>
+            <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
+              <text x="31" y="15" fill="#010101" fill-opacity=".3">coverage</text>
+              <text x="31" y="14">coverage</text>
+              <text x="85" y="15" fill="#010101" fill-opacity=".3">${COVERAGE}%</text>
+              <text x="85" y="14">${COVERAGE}%</text>
+            </g>
+          </svg>
+          EOF
+
+      - name: Commit badge to repo 📝
+        if: github.ref == 'refs/heads/master' && steps.coverage.outcome == 'success'
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: Update coverage badge
+          commit_author: Coverage Bot <actions@github.com>
+          file_pattern: .github/badges/coverage.svg
+          skip_dirty_check: true

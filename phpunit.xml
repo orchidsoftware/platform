@@ -7,6 +7,7 @@
          stopOnFailure="false"
          stopOnError="false"
          defaultTestSuite="Main"
+         executionOrder="defects,random"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/12.5/phpunit.xsd">
   <coverage>
     <report>
@@ -26,7 +27,7 @@
   <php>
     <env name="APP_NAME" value="ORCHID"/>
     <env name="APP_ENV" value="testing"/>
-    <env name="APP_KEY" value="AckfSECXIvnK5r28GVIWUAxmbBSjTsmF"/>
+    <env name="APP_KEY" value="base64:ZEE4R0VGd25LRm9IVGhkS0RXMXhMUzhXRnFpU3l5Y2M="/>
     <env name="APP_DEBUG" value="true"/>
     <env name="APP_URL" value="http://127.0.0.1:8001"/>
     <env name="DB_CONNECTION" value="sqlite"/>

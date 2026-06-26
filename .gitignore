@@ -4,6 +4,8 @@
 .phpunit.cache
 clover.xml
 coverage.xml
+coverage-summary.json
+coverage-html
 _ide_helper.php
 composer.lock
 build
