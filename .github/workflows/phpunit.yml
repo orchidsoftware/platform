@@ -84,10 +84,11 @@ jobs:
           coverage: none
           tools: composer:v2
 
-      - uses: actions/checkout@v6
-
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Publish Assets for Testbench
+        run: vendor/bin/testbench-dusk orchid:publish
 
       - name: Make SQLite database
         run: vendor/bin/testbench-dusk workbench:create-sqlite-db
