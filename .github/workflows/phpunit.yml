@@ -84,6 +84,8 @@ jobs:
           coverage: none
           tools: composer:v2
 
+      - uses: actions/checkout@v6
+
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
