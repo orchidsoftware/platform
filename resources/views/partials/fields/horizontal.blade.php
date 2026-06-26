@@ -18,13 +18,8 @@
             // Backport for consistent error handling behavior between Laravel 10 and 11.
             // This implementation will be modified in a future major version.
 
-            // Retrieve all errors from the $errors object and convert them into a collection
-            $allErrors = collect($errors->all());
-
-            // Check if there is a 'default' error key in the collection of errors
-            if ($allErrors->has('default')) {
-                // If a 'default' error exists, assign it to the $errors variable
-                $errors = $allErrors->get('default');
+            if ($errors instanceof \Illuminate\Support\ViewErrorBag) {
+                $errors = $errors->getBag('default');
             }
         @endphp
 
