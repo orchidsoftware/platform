@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Filters;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\WhereDate;
@@ -11,7 +12,7 @@ use Orchid\Tests\TestUnitCase;
 
 class WhereDateTest extends TestUnitCase
 {
-    private function getModelBuilder(): \Illuminate\Database\Eloquent\Builder
+    private function getModelBuilder(): Builder
     {
         $model = new class extends Model
         {
