@@ -21,7 +21,7 @@ class ItemAddChildScreenFlowTest extends TestBrowserCase
                 ->waitForText('Items List')
                 ->press('Add Item');
 
-            $browser->whenAvailable('.modal', function (Browser $modal) {
+            $browser->whenAvailable('.modal.show', function (Browser $modal) {
                 $modal->assertSee('Create Item')
                     ->type('item[name]', 'name 7')
                     ->press('Add Item');
@@ -43,7 +43,7 @@ class ItemAddChildScreenFlowTest extends TestBrowserCase
                 // check that the first screen is still working
                 ->press('Add Item');
 
-            $browser->whenAvailable('.modal', function (Browser $modal) {
+            $browser->whenAvailable('.modal.show', function (Browser $modal) {
                 $modal->assertSee('Create Item')
                     ->type('item[name]', 'name 7')
                     ->press('Add Item');

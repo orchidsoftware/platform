@@ -123,4 +123,3 @@ jobs:
           commit_message: Update coverage badge
           commit_author: Coverage Bot <actions@github.com>
           file_pattern: .github/badges/coverage.svg
-          skip_dirty_check: true
