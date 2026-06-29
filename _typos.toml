@@ -1,0 +1,12 @@
+[files]
+extend-exclude = [
+    "composer.json",
+    "composer.lock",
+    "node_modules/**",
+    "package.json",
+    "package-lock.json",
+    "public/**",
+    "resources/lang/**",
+    "vendor/**",
+    "CHANGELOG.md"
+]
