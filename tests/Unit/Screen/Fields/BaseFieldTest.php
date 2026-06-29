@@ -48,7 +48,7 @@ class BaseFieldTest extends TestFieldsUnitCase
         $this->field = $field;
     }
 
-    public function testRequredAttributeNameField(): void
+    public function testRequiredAttributeNameField(): void
     {
         $this->expectException(FieldRequiredAttributeException::class);
         $this->expectExceptionMessage('Field must have the following attribute: name');
@@ -56,7 +56,7 @@ class BaseFieldTest extends TestFieldsUnitCase
         $this->field->render();
     }
 
-    public function testRequredAttributeHeightField(): void
+    public function testRequiredAttributeHeightField(): void
     {
         $this->expectException(FieldRequiredAttributeException::class);
         $this->expectExceptionMessage('Field must have the following attribute: height');

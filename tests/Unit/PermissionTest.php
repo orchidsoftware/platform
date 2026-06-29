@@ -157,7 +157,7 @@ class PermissionTest extends TestUnitCase
         $this->assertEmpty($dashboard->getPermission()->get('Test'));
     }
 
-    public function testReplasePermission(): void
+    public function testReplacePermission(): void
     {
         $user = $this->createUser();
 

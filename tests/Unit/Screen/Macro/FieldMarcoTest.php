@@ -24,11 +24,11 @@ $this->get('name'));
 
     public function testMacroFieldSelfReturn(): void
     {
-        Field::macro('retrunSelf', fn () => /** @var Field $this */
+        Field::macro('returnSelf', fn () => /** @var Field $this */
 $this);
 
         $field = Field::make();
 
-        $this->assertEquals($field->retrunSelf(), $field);
+        $this->assertEquals($field->returnSelf(), $field);
     }
 }
