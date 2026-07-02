@@ -4,14 +4,15 @@ namespace Orchid\Platform\Configuration;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Orchid\Platform\ItemPermission;
+use Orchid\Access\Permissions;
+use Orchid\Access\PermissionGroup;
 
 trait ManagesPermissions
 {
     /**
      * A registry of all registered permissions, grouped by category.
      *
-     * @var array<string, array<string, mixed>>
+     * @var array<string, array<int, array{slug: string, description: string}>>
      */
     protected array $registeredPermissions = [];
 
@@ -25,23 +26,19 @@ trait ManagesPermissions
     /**
      * @deprecated Use registerPermission instead.
      */
-    public function registerPermissions(ItemPermission $permission): static
+    public function registerPermissions(PermissionGroup $group): static
     {
-        return $this->registerPermission($permission);
+        return $this->registerPermission($group);
     }
 
     /**
-     * Registers a ItemPermission that defines authentication permissions.
-     *
-     * @param ItemPermission $permission
-     *
-     * @return static
+     * Register a permission group with the dashboard catalog.
      */
-    public function registerPermission(ItemPermission $permission): static
+    public function registerPermission(PermissionGroup $group): static
     {
-        $old = Arr::get($this->registeredPermissions, $permission->group, []);
+        $old = Arr::get($this->registeredPermissions, $group->name, []);
 
-        $this->registeredPermissions[$permission->group] = array_merge($old, $permission->items);
+        $this->registeredPermissions[$group->name] = array_merge($old, $group->items());
 
         return $this;
     }
@@ -51,7 +48,7 @@ trait ManagesPermissions
      *
      * @param array|string $groups
      *
-     * @return Collection
+     * @return Collection<string, Collection<int, array{slug: string, description: string}>>
      */
     public function getPermission(string|array $groups = []): Collection
     {
@@ -65,13 +62,11 @@ trait ManagesPermissions
      *
      * @param array|string $groups
      *
-     * @return Collection
+     * @return Permissions Assigned permission states keyed by slug.
      */
-    public function getAllowAllPermission(string|array $groups = []): Collection
+    public function getAllowAllPermission(string|array $groups = []): Permissions
     {
-        return $this->getPermission($groups)
-            ->collapse()
-            ->reduce(static fn (Collection $permissions, array $item) => $permissions->put($item['slug'], true), collect());
+        return Permissions::fromItems($this->getPermission($groups)->collapse());
     }
 
     /**

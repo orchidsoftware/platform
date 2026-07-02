@@ -5,6 +5,7 @@ namespace App\Models;
 use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
 use Orchid\Filters\Types\WhereDateStartEnd;
+use Orchid\Access\Permissions;
 use Orchid\Platform\Models\User as Authenticatable;
 
 class User extends Authenticatable
@@ -37,7 +38,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'permissions'          => 'array',
+        'permissions'          => Permissions::class,
         'email_verified_at'    => 'datetime',
     ];
 

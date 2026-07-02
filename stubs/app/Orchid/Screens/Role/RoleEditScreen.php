@@ -8,6 +8,7 @@ use App\Orchid\Layouts\User\PermissionLayout;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Orchid\Access\Permissions;
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
@@ -125,10 +126,7 @@ class RoleEditScreen extends Screen
 
         $role->fill($request->input('role'));
 
-        $role->permissions = collect($request->input('permissions'))
-            ->map(fn ($value, $key) => [base64_decode($key) => $value])
-            ->collapse()
-            ->toArray();
+        $role->permissions = Permissions::fromForm($request->input('permissions'));
 
         $role->save();
 

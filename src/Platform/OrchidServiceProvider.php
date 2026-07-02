@@ -200,7 +200,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
      *
      * Returns an array of permissions.
      *
-     * @return ItemPermission[]
+     * @return \Orchid\Access\PermissionGroup[]
      */
     public function registerPermissions(): array
     {
@@ -210,7 +210,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
     /**
      * Returns an array of permissions.
      *
-     * @return ItemPermission[]
+     * @return \Orchid\Access\PermissionGroup[]
      */
     public function permissions(): array
     {

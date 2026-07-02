@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid;
 
-use Orchid\Platform\ItemPermission;
+use Orchid\Access\PermissionGroup;
 use Orchid\Platform\Orchid;
 use Orchid\Platform\OrchidServiceProvider;
 use Orchid\Screen\Actions\Menu;
@@ -95,14 +95,14 @@ class PlatformProvider extends OrchidServiceProvider
     /**
      * Register permissions for the application.
      *
-     * @return ItemPermission[]
+     * @return PermissionGroup[]
      */
     public function permissions(): array
     {
         return [
-            ItemPermission::group(__('System'))
-                ->addPermission('orchid.roles', __('Roles'))
-                ->addPermission('orchid.users', __('Users')),
+            PermissionGroup::group(__('System'))
+                ->permission('orchid.roles', __('Roles'))
+                ->permission('orchid.users', __('Users')),
         ];
     }
 }

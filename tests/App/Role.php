@@ -6,6 +6,7 @@ namespace Orchid\Tests\App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Access\Permissions;
 use Orchid\Access\RoleAccess;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Like;
@@ -46,7 +47,7 @@ class Role extends Model
      * @var array
      */
     protected $casts = [
-        'permissions' => 'array',
+        'permissions' => Permissions::class,
         'name'        => RoleNames::class,
     ];
 

@@ -6,6 +6,7 @@ namespace Orchid\Tests\Console;
 
 use Generator;
 use Illuminate\Support\Str;
+use Orchid\Access\Permissions;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Orchid;
 use Orchid\Tests\TestConsoleCase;
@@ -60,14 +61,15 @@ class ArtisanTest extends TestConsoleCase
             'permissions' => [],
         ]);
 
-        $this->assertEquals([], $user->permissions);
+        $this->assertInstanceOf(Permissions::class, $user->permissions);
+        $this->assertSame([], $user->permissions->toArray());
 
         $this->artisan('orchid:admin', ['--id' => $user->id])
             ->expectsOutputToContain('User permissions updated.');
 
         $user->refresh();
 
-        $this->assertEquals(Orchid::getAllowAllPermission()->toArray(), $user->permissions);
+        $this->assertSame(Orchid::getAllowAllPermission()->toArray(), $user->permissions->toArray());
     }
 
     public function testArtisanOrchidInstall(): void

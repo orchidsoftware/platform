@@ -21,17 +21,12 @@ trait RoleAccess
      */
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(Orchid::model(User::class), 'role_users', 'role_id', 'user_id');
-    }
-
-    /**
-     * Get the number of permissions assigned to the role
-     *
-     * @return int
-     */
-    public function getCountPermissions(): int
-    {
-        return collect($this->permissions)->filter(fn (int $value) => $value)->count();
+        return $this->belongsToMany(
+            Orchid::model(User::class),
+            'role_users',
+            'role_id',
+            'user_id'
+        );
     }
 
     /**

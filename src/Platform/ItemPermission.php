@@ -5,47 +5,19 @@ declare(strict_types=1);
 namespace Orchid\Platform;
 
 /**
- * This class represents a permission group that can be used to store collections of permissions.
+ * @deprecated Use \Orchid\Access\PermissionGroup instead.
  */
-class ItemPermission
+class ItemPermission extends \Orchid\Access\PermissionGroup
 {
-    /**
-     * Create a new permission group instance.
-     */
-    public function __construct(
-        public string $group,
-        public array $items = []
-    ) {}
-
-    /**
-     * Create a new permission group instance with the given group name.
-     *
-     * @param string $group The name of the permission group.
-     *
-     * @return self The new permission group instance.
-     */
-    public static function group(string $group): self
+    #[\Deprecated(message: 'Use Orchid\Access\PermissionGroup instead.')]
+    public function __construct(string $name, array $items = [])
     {
-        $item = new self($group);
-
-        return $item;
+        parent::__construct($name, $items);
     }
 
-    /**
-     * Add a permission to the permission group.
-     *
-     * @param string $slug The slug of the permission.
-     * @param string $name The description of the permission.
-     *
-     * @return $this The current permission group instance.
-     */
-    public function addPermission(string $slug, string $name): self
+    #[\Deprecated(message: 'Use Orchid\Access\PermissionGroup::group() instead.')]
+    public static function group(string $name): static
     {
-        $this->items[] = [
-            'slug'        => $slug,
-            'description' => $name,
-        ];
-
-        return $this;
+        return parent::group($name);
     }
 }
