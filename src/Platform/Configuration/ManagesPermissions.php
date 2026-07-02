@@ -4,8 +4,8 @@ namespace Orchid\Platform\Configuration;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Orchid\Access\Permissions;
 use Orchid\Access\PermissionGroup;
+use Orchid\Access\Permissions;
 
 trait ManagesPermissions
 {
