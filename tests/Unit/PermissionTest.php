@@ -6,8 +6,8 @@ namespace Orchid\Tests\Unit;
 
 use Exception;
 use Illuminate\Support\Collection;
-use Orchid\Access\Permissions;
 use Orchid\Access\PermissionGroup;
+use Orchid\Access\Permissions;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
 use Orchid\Platform\Orchid;

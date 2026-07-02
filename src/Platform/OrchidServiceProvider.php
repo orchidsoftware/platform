@@ -9,6 +9,7 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Orchid\Access\PermissionGroup;
 use Orchid\Icons\IconFinder;
 use Orchid\Screen\Actions\Menu;
 
@@ -200,7 +201,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
      *
      * Returns an array of permissions.
      *
-     * @return \Orchid\Access\PermissionGroup[]
+     * @return PermissionGroup[]
      */
     public function registerPermissions(): array
     {
@@ -210,7 +211,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
     /**
      * Returns an array of permissions.
      *
-     * @return \Orchid\Access\PermissionGroup[]
+     * @return PermissionGroup[]
      */
     public function permissions(): array
     {

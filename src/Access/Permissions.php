@@ -43,12 +43,12 @@ class Permissions implements Arrayable, CastsAttributes, Countable
     public static function make(mixed $permissions = []): static
     {
         return match (true) {
-            $permissions instanceof static => $permissions,
-            $permissions instanceof Arrayable => static::make($permissions->toArray()),
+            $permissions instanceof static      => $permissions,
+            $permissions instanceof Arrayable   => static::make($permissions->toArray()),
             $permissions instanceof Traversable => static::make(iterator_to_array($permissions)),
-            is_string($permissions) => static::make(Json::decode($permissions) ?? []),
-            is_array($permissions) => new static($permissions),
-            default => new static,
+            is_string($permissions)             => static::make(Json::decode($permissions) ?? []),
+            is_array($permissions)              => new static($permissions),
+            default                             => new static,
         };
     }
 
@@ -173,9 +173,9 @@ class Permissions implements Arrayable, CastsAttributes, Countable
     private static function normalizeValue(mixed $value): bool
     {
         return match (true) {
-            is_bool($value) => $value,
+            is_bool($value)   => $value,
             is_string($value) => filter_var($value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) ?? $value !== '',
-            default => (bool) $value,
+            default           => (bool) $value,
         };
     }
 }
