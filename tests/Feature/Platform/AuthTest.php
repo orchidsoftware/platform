@@ -76,7 +76,7 @@ class AuthTest extends TestFeatureCase
         $auth = $this->actingAs($this->createAdminUser());
 
         $auth->post(route('orchid.logout'))
-            ->assertRedirect('/');
+            ->assertRedirect(route('orchid.login'));
 
         $auth->get(route('orchid.index'))
             ->assertRedirect(route('orchid.login'));
