@@ -6,7 +6,8 @@ namespace Orchid\Tests\Unit;
 
 use Exception;
 use Illuminate\Support\Collection;
-use Orchid\Platform\ItemPermission;
+use Orchid\Access\PermissionGroup;
+use Orchid\Access\Permissions;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
 use Orchid\Platform\Orchid;
@@ -116,8 +117,8 @@ class PermissionTest extends TestUnitCase
     {
         $dashboard = new Orchid;
 
-        $permission = ItemPermission::group('Test')
-            ->addPermission('test', 'Test Description');
+        $permission = PermissionGroup::group('Test')
+            ->permission('test', 'Test Description');
 
         $dashboard->registerPermissions($permission);
 
@@ -131,11 +132,11 @@ class PermissionTest extends TestUnitCase
     {
         $dashboard = new Orchid;
 
-        $permissionA = ItemPermission::group('Test-A')
-            ->addPermission('test_a', 'Test Description A');
+        $permissionA = PermissionGroup::group('Test-A')
+            ->permission('test_a', 'Test Description A');
 
-        $permissionB = ItemPermission::group('Test-B')
-            ->addPermission('test_b', 'Test Description B');
+        $permissionB = PermissionGroup::group('Test-B')
+            ->permission('test_b', 'Test Description B');
 
         $dashboard->registerPermissions($permissionA);
         $dashboard->registerPermissions($permissionB);
@@ -144,14 +145,339 @@ class PermissionTest extends TestUnitCase
         $this->assertEquals(['Test-A'], $dashboard->getPermission(['Test-A'])->keys()->toArray());
     }
 
+    public function testRegisterPermissionMergesItemsIntoExistingGroup(): void
+    {
+        $dashboard = new Orchid;
+
+        $dashboard->registerPermission(
+            PermissionGroup::group('Reports')
+                ->permission('reports.view', 'View reports')
+        );
+
+        $dashboard->registerPermission(
+            PermissionGroup::group('Reports')
+                ->permission('reports.export', 'Export reports')
+        );
+
+        $this->assertSame([
+            [
+                'slug'        => 'reports.view',
+                'description' => 'View reports',
+            ],
+            [
+                'slug'        => 'reports.export',
+                'description' => 'Export reports',
+            ],
+        ], $dashboard->getPermission('Reports')->collapse()->values()->toArray());
+    }
+
+    public function testGetAllowAllPermissionReturnsPermissionsValueObject(): void
+    {
+        $dashboard = new Orchid;
+
+        $dashboard->registerPermissions(
+            PermissionGroup::group('Test')
+                ->permission('test.view', 'View')
+                ->permission('test.update', 'Update')
+        );
+
+        $permissions = $dashboard->getAllowAllPermission();
+
+        $this->assertInstanceOf(Permissions::class, $permissions);
+        $this->assertSame([
+            'test.view'   => true,
+            'test.update' => true,
+        ], $permissions->toArray());
+    }
+
+    public function testPermissionDescriptionIsNotStoredWithAssignedPermissions(): void
+    {
+        $permissions = Permissions::fromItems(
+            PermissionGroup::group('Reports')
+                ->permission('reports.view', 'View reports')
+                ->items()
+        );
+
+        $user = User::factory()->create([
+            'permissions' => $permissions,
+        ]);
+
+        $this->assertSame([
+            'reports.view' => true,
+        ], $permissions->toArray());
+
+        $this->assertSame([
+            'reports.view' => true,
+        ], json_decode((string) $user->getRawOriginal('permissions'), true));
+    }
+
+    public function testUserPermissionsAreCastedToValueObject(): void
+    {
+        $user = User::factory()->create([
+            'permissions' => [
+                'access.to.public.data' => '1',
+                'access.to.secret.data' => 'false',
+                'access.to.*'           => true,
+            ],
+        ]);
+
+        $this->assertInstanceOf(Permissions::class, $user->permissions);
+        $this->assertSame([
+            'access.to.public.data' => true,
+            'access.to.secret.data' => false,
+            'access.to.*'           => true,
+        ], $user->permissions->toArray());
+        $this->assertTrue($user->permissions->allows('access.to.public.data'));
+        $this->assertTrue($user->permissions->allows('access.to.anything'));
+        $this->assertTrue($user->permissions->isActive('access.to.public.data'));
+        $this->assertFalse($user->permissions->isActive('access.to.secret.data'));
+        $this->assertFalse($user->permissions->allows('other.permission'));
+    }
+
+    public function testPermissionsReturnSameInstanceWhenAlreadyNormalized(): void
+    {
+        $permissions = Permissions::make([
+            'reports.view' => true,
+        ]);
+
+        $this->assertSame($permissions, Permissions::make($permissions));
+    }
+
+    public function testPermissionsConstructorNormalizesItems(): void
+    {
+        $permissions = new Permissions([
+            'reports.view'   => 1,
+            'reports.delete' => 'false',
+            ''               => true,
+        ]);
+
+        $this->assertSame([
+            'reports.view'   => true,
+            'reports.delete' => false,
+        ], $permissions->toArray());
+    }
+
+    public function testPermissionsCanBeCreatedFromArrayableInput(): void
+    {
+        $permissions = Permissions::make(collect([
+            'reports.view'   => '1',
+            'reports.delete' => '0',
+        ]));
+
+        $this->assertSame([
+            'reports.view'   => true,
+            'reports.delete' => false,
+        ], $permissions->toArray());
+    }
+
+    public function testPermissionsCanBeCreatedFromTraversableInput(): void
+    {
+        $permissions = Permissions::make(new \ArrayIterator([
+            'reports.view'   => 1,
+            'reports.delete' => 0,
+        ]));
+
+        $this->assertSame([
+            'reports.view'   => true,
+            'reports.delete' => false,
+        ], $permissions->toArray());
+    }
+
+    public function testPermissionsCanBeCreatedFromJsonInput(): void
+    {
+        $permissions = Permissions::make('{"reports.view":true,"reports.delete":false}');
+
+        $this->assertSame([
+            'reports.view'   => true,
+            'reports.delete' => false,
+        ], $permissions->toArray());
+    }
+
+    public function testPermissionsIgnoreInvalidInput(): void
+    {
+        $this->assertSame([], Permissions::make(new \stdClass)->toArray());
+        $this->assertSame([], Permissions::make('not-json')->toArray());
+    }
+
+    public function testPermissionsNormalizeBooleanLikeValues(): void
+    {
+        $permissions = Permissions::make([
+            'bool.true'    => true,
+            'bool.false'   => false,
+            'string.true'  => 'true',
+            'string.false' => 'false',
+            'string.one'   => '1',
+            'string.zero'  => '0',
+            'string.on'    => 'on',
+            'string.off'   => 'off',
+            'string.empty' => '',
+            'string.name'  => 'allowed',
+            'int.one'      => 1,
+            'int.zero'     => 0,
+        ]);
+
+        $this->assertSame([
+            'bool.true'    => true,
+            'bool.false'   => false,
+            'string.true'  => true,
+            'string.false' => false,
+            'string.one'   => true,
+            'string.zero'  => false,
+            'string.on'    => true,
+            'string.off'   => false,
+            'string.empty' => false,
+            'string.name'  => true,
+            'int.one'      => true,
+            'int.zero'     => false,
+        ], $permissions->toArray());
+    }
+
+    public function testPermissionsCanCountActiveItems(): void
+    {
+        $permissions = Permissions::make([
+            'reports.view'   => true,
+            'reports.create' => 1,
+            'reports.delete' => false,
+        ]);
+
+        $this->assertSame(2, $permissions->count());
+        $this->assertCount(2, $permissions);
+    }
+
+    public function testPermissionsAreStoredAsJsonBooleans(): void
+    {
+        $user = User::factory()->create([
+            'permissions' => [
+                'reports.view'   => true,
+                'reports.create' => 1,
+                'reports.delete' => 0,
+            ],
+        ]);
+
+        $this->assertSame([
+            'reports.view'   => true,
+            'reports.create' => true,
+            'reports.delete' => false,
+        ], json_decode((string) $user->getRawOriginal('permissions'), true));
+
+        $this->assertSame('{"reports.view":true,"reports.create":true,"reports.delete":false}', $user->getRawOriginal('permissions'));
+    }
+
+    public function testPermissionsAreLoadedFromLegacyJsonNumbers(): void
+    {
+        $user = new User;
+
+        $user->setRawAttributes([
+            'permissions' => '{"reports.view":1,"reports.delete":0}',
+        ], true);
+
+        $this->assertInstanceOf(Permissions::class, $user->permissions);
+        $this->assertSame([
+            'reports.view'   => true,
+            'reports.delete' => false,
+        ], $user->permissions->toArray());
+    }
+
+    public function testPermissionsIgnoreInvalidPermissionKeys(): void
+    {
+        $permissions = Permissions::make([
+            'reports.view' => true,
+            ''             => true,
+            123            => true,
+        ]);
+
+        $this->assertSame([
+            'reports.view' => true,
+        ], $permissions->toArray());
+    }
+
+    public function testUserCanBeGivenPermissionsManually(): void
+    {
+        $user = User::factory()->create([
+            'permissions' => [],
+        ]);
+
+        $user
+            ->forceFill([
+                'permissions' => Permissions::make([
+                    'reports.view'   => true,
+                    'reports.delete' => false,
+                ]),
+            ])
+            ->save();
+
+        $user->refresh();
+
+        $this->assertTrue($user->hasAccess('reports.view'));
+        $this->assertFalse($user->hasAccess('reports.delete'));
+        $this->assertSame([
+            'reports.view'   => true,
+            'reports.delete' => false,
+        ], $user->permissions->toArray());
+        $this->assertSame([
+            'reports.view'   => true,
+            'reports.delete' => false,
+        ], json_decode((string) $user->getRawOriginal('permissions'), true));
+    }
+
+    public function testUserCanBeGivenPermissionsAsPlainArray(): void
+    {
+        $user = User::factory()->create([
+            'permissions' => [
+                'reports.view' => true,
+            ],
+        ]);
+
+        $user->refresh();
+
+        $this->assertInstanceOf(Permissions::class, $user->permissions);
+        $this->assertTrue($user->hasAccess('reports.view'));
+        $this->assertSame([
+            'reports.view' => true,
+        ], $user->permissions->toArray());
+    }
+
+    public function testRolePermissionsAreCastedToValueObject(): void
+    {
+        $role = Role::factory()->create([
+            'permissions' => Permissions::make([
+                'role.view'   => true,
+                'role.update' => false,
+            ]),
+        ]);
+
+        $role->refresh();
+
+        $this->assertInstanceOf(Permissions::class, $role->permissions);
+        $this->assertSame([
+            'role.view'   => true,
+            'role.update' => false,
+        ], $role->permissions->toArray());
+        $this->assertSame(1, $role->permissions->count());
+    }
+
+    public function testPermissionsCanBeCreatedFromFormInput(): void
+    {
+        $permissions = Permissions::fromForm([
+            base64_encode('users.edit')   => '1',
+            base64_encode('users.delete') => 'false',
+            'not-base64'                  => '1',
+        ]);
+
+        $this->assertSame([
+            'users.edit'   => true,
+            'users.delete' => false,
+        ], $permissions->toArray());
+    }
+
     /**
      * Dashboard remove permission.
      */
     public function testIsWasRemovedPermission(): void
     {
         $dashboard = new Orchid;
-        $permission = ItemPermission::group('Test')
-            ->addPermission('test', 'Test Description');
+        $permission = PermissionGroup::group('Test')
+            ->permission('test', 'Test Description');
         $dashboard->registerPermissions($permission);
         $dashboard->removePermission('test');
         $this->assertEmpty($dashboard->getPermission()->get('Test'));
@@ -388,11 +714,11 @@ class PermissionTest extends TestUnitCase
         $this->assertTrue($users->contains($userAlt));
     }
 
-    public function testCountRoleCorrectPermissionCount(): void
+    public function testRolePermissionsCountActiveItems(): void
     {
         $role = $this->createRole();
 
-        $this->assertEquals(2, $role->getCountPermissions());
+        $this->assertSame(2, $role->permissions->count());
     }
 
     public function testGetStatusPermissionReturnsAllPermissionsWithCorrectActiveFlags(): void
