@@ -1,4 +1,5 @@
 import ApplicationController from "./application_controller";
+import { uploadFile } from "../helpers/upload";
 
 export default class extends ApplicationController {
     /**
@@ -48,19 +49,17 @@ export default class extends ApplicationController {
         reader.readAsDataURL(event.target.files[0]);
 
         reader.onloadend = () => {
-            const formData = new FormData();
-
-            formData.append("file", event.target.files[0]);
-            formData.append("storage", this.data.get("storage"));
-            formData.append("group", this.data.get("groups"));
-            formData.append("path", this.data.get("path"));
-            formData.append("acceptedFiles", this.data.get("accepted-files"));
-
             let element = this.element;
-            window.axios
-                .post(this.prefix("/files"), formData)
-                .then(response => {
-                    let image = response.data.url;
+            uploadFile(this.prefix("/files"), event.target.files[0], {
+                data: {
+                    storage: this.data.get("storage"),
+                    group: this.data.get("groups"),
+                    path: this.data.get("path"),
+                    acceptedFiles: this.data.get("accepted-files"),
+                },
+            })
+                .then(data => {
+                    let image = data.url;
                     let targetValue = this.data.get("target");
 
                     element.querySelector(".picture-preview").src = image;
@@ -71,7 +70,7 @@ export default class extends ApplicationController {
                         .querySelector(".picture-remove")
                         .classList.remove("none");
                     element.querySelector(".picture-path").value =
-                        response.data[targetValue];
+                        data[targetValue];
 
                     // add event for listener
                     element
