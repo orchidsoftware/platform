@@ -15,14 +15,14 @@ export default class extends ApplicationController {
         let type = "password";
 
         if (currentType === "text") {
-            this.iconLockTarget.classList.add("none");
-            this.iconShowTarget.classList.remove("none");
+            this.iconLockTarget.classList.add("d-none");
+            this.iconShowTarget.classList.remove("d-none");
         }
 
         if (currentType === "password") {
             type = "text";
-            this.iconLockTarget.classList.remove("none");
-            this.iconShowTarget.classList.add("none");
+            this.iconLockTarget.classList.remove("d-none");
+            this.iconShowTarget.classList.add("d-none");
         }
 
         this.passwordTarget.setAttribute("type", type);
