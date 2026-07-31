@@ -1,0 +1,9 @@
+.d2-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-column: span 2 / span 2;
+}
+
+.d2-grid dd {
+    grid-column: span 2 / span 2;
+}

@@ -1,6 +1,7 @@
 import ApplicationController from "./application_controller";
 import Cropper from "cropperjs";
 import { Modal } from "bootstrap";
+import { uploadFile } from "../helpers/upload";
 
 export default class extends ApplicationController {
     static values = {
@@ -128,22 +129,17 @@ export default class extends ApplicationController {
                 fillColor: this.data.get("fill-color"),
             })
             .toBlob(blob => {
-                const formData = new FormData();
-
-                formData.append("file", blob);
-                formData.append("storage", this.data.get("storage"));
-                formData.append("group", this.data.get("groups"));
-                formData.append("path", this.data.get("path"));
-                formData.append(
-                    "acceptedFiles",
-                    this.data.get("accepted-files")
-                );
-
                 let element = this.element;
-                window.axios
-                    .post(this.prefix("/files"), formData)
-                    .then(response => {
-                        let image = response.data.url;
+                uploadFile(this.prefix("/files"), blob, {
+                    data: {
+                        storage: this.data.get("storage"),
+                        group: this.data.get("groups"),
+                        path: this.data.get("path"),
+                        acceptedFiles: this.data.get("accepted-files"),
+                    },
+                })
+                    .then(data => {
+                        let image = data.url;
                         let targetValue = this.data.get("target");
 
                         element.querySelector(".cropper-preview").src = image;
@@ -154,7 +150,7 @@ export default class extends ApplicationController {
                             .querySelector(".cropper-remove")
                             .classList.remove("none");
                         element.querySelector(".cropper-path").value =
-                            response.data[targetValue];
+                            data[targetValue];
 
                         // add event for listener
                         element

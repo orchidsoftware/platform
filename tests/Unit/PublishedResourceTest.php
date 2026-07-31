@@ -86,6 +86,20 @@ class PublishedResourceTest extends TestUnitCase
         foreach ($manifest as $source => $data) {
             $this->assertArrayHasKey('integrity', $data, "Missing 'integrity' for $source");
             $this->assertMatchesRegularExpression('/^sha(256|384|512)-/', $data['integrity'], "Invalid integrity format for $source");
+
+            $filePath = explode('?', $data['file'])[0];
+            $fullPath = Orchid::path("/public/{$filePath}");
+            $this->assertFileExists($fullPath, "Asset file does not exist: {$filePath}");
+
+            [$algorithm] = explode('-', $data['integrity'], 2);
+            $algorithm = substr($algorithm, 3);
+            $actualIntegrity = "sha{$algorithm}-".base64_encode(hash_file("sha{$algorithm}", $fullPath, true));
+
+            $this->assertSame(
+                $data['integrity'],
+                $actualIntegrity,
+                "Integrity mismatch for $source ({$filePath})"
+            );
         }
     }
 

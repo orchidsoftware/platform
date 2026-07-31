@@ -220,23 +220,25 @@ class Field implements Fieldable, Htmlable
             ->markFieldWithError()
             ->generateId();
 
+        $errors = $this->getErrorsMessage();
+
         $slot = view($this->view, array_merge($this->getAttributes(), [
             'attributes'     => $this->getAllowAttributes(),
             'dataAttributes' => $this->getAllowDataAttributes(),
             'old'            => $this->getOldValue(),
             'oldName'        => $this->getOldName(),
-        ]))
-            ->withErrors($this->getErrorsMessage());
+            'errors'         => $errors,
+        ]));
 
         if (! $this->typeForm) {
             return $slot;
         }
 
         return view($this->typeForm, [
-            'slot'  => $slot,
-            'field' => $this,
-        ])
-            ->withErrors($this->getErrorsMessage());
+            'slot'   => $slot,
+            'field'  => $this,
+            'errors' => $errors,
+        ]);
     }
 
     /**

@@ -3,7 +3,7 @@
 
     @empty(!$toolbarGroups)
         <div
-            class="markdown-editor-toolbar"
+            class="markdown-editor-toolbar gap-3"
             role="toolbar"
             aria-label="{{ __('Formatting toolbar') }}"
         >
@@ -14,7 +14,7 @@
                     @foreach ($buttons as [$title, $action, $icon])
                         <button
                             type="button"
-                            class="btn btn-light"
+                            class="btn btn-sm btn-light"
                             title="{{ $title }}"
                             data-action="markdown#{{ $action }}"
                         >

@@ -38,13 +38,12 @@
         opacity: 1 !important;
         &.stick-up {
             .modal-dialog {
-                @include translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
                 margin-top: -5px;
             }
-            &.in,
             &.show {
                 .modal-dialog {
-                    @include translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
                 }
             }
         }
@@ -53,10 +52,9 @@
             height: 100%;
             top: auto;
 
-            &.in,
             &.show {
                 .modal-dialog {
-                    @include translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
                 }
             }
             &.disable-scroll {
@@ -65,7 +63,7 @@
             .modal-dialog {
                 display: table;
                 height: 100%;
-                @include translate3d(0, 75%, 0);
+                transform: translate3d(0, 75%, 0);
                 width: calc(100% - 20px);
             }
             .modal-content-wrapper {
@@ -74,25 +72,22 @@
             }
         }
         &.center-scale {
-            @include transition(
-                all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important
-            );
+            transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
 
-            &.in,
             &.show {
                 .modal-dialog {
                     opacity: 1;
-                    @include scale(1);
+                    transform: scale(1);
                 }
             }
             .modal-dialog {
                 opacity: 0;
-                @include scale(0.8);
+                transform: scale(0.8);
             }
         }
         &.fill-in {
             background-color: rgba(255, 255, 255, 0);
-            @include transition(background-color 0.3s);
+            transition: background-color 0.3s;
             & > .close {
                 margin-top: 20px;
                 margin-right: 20px;
@@ -114,17 +109,16 @@
                     border-bottom: 0;
                 }
             }
-            &.in,
             &.show {
                 background-color: rgba(255, 255, 255, 0.85);
                 .modal-dialog {
                     opacity: 1;
-                    @include scale(1);
+                    transform: scale(1);
                 }
             }
             .modal-dialog {
                 opacity: 0;
-                @include scale(0.6);
+                transform: scale(0.6);
             }
         }
         &.slide-right {
@@ -135,17 +129,16 @@
                 margin-right: 10px;
                 z-index: 10;
             }
-            &.in,
             &.show {
                 .modal-dialog {
-                    @include translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
                 }
             }
             .modal-dialog {
                 position: absolute;
                 right: 0;
                 margin: 0;
-                @include translate3d(100%, 0, 0);
+                transform: translate3d(100%, 0, 0);
                 .modal-content-wrapper {
                     height: 100%;
                 }
@@ -188,7 +181,7 @@
     opacity: 0;
     transition: none;
     &.fade {
-        @include transition(opacity 200ms ease-in-out);
+        transition: opacity 200ms ease-in-out;
     }
 }
 

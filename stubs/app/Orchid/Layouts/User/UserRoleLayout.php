@@ -23,7 +23,7 @@ class UserRoleLayout extends Rows
                 ->fromModel(Role::class, 'name')
                 ->multiple()
                 ->title(__('Name role'))
-                ->help('Specify which groups this account should belong to'),
+                ->help('Specify which roles this account should belong to'),
         ];
     }
 }

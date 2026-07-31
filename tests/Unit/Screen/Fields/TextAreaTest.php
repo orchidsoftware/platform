@@ -67,7 +67,7 @@ class TextAreaTest extends TestFieldsUnitCase
         $this->assertStringContainsString('autofocus', $view);
     }
 
-    public function testAutoComplite(): void
+    public function testAutoComplete(): void
     {
         $textArea = TextArea::make('about')
             ->autocomplete();

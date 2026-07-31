@@ -22,6 +22,7 @@ import {
     placeholder,
 } from "@codemirror/view";
 import ApplicationController from "./application_controller";
+import { uploadFile } from "../helpers/upload";
 
 const markdownHighlightStyle = HighlightStyle.define([
     { tag: tags.heading1, class: "cm-md-token-heading-1" },
@@ -312,13 +313,9 @@ export default class extends ApplicationController {
             return;
         }
 
-        const formData = new FormData();
-        formData.append("file", file);
-
-        axios
-            .post(this.prefix("/files"), formData)
-            .then(response => {
-                this.#insertText(`![](${response.data.url})`);
+        uploadFile(this.prefix("/files"), file)
+            .then(data => {
+                this.#insertText(`![](${data.url})`);
                 event.target.value = null;
             })
             .catch(error => {

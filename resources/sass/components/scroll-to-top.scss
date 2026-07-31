@@ -1,0 +1,8 @@
+.scroll-to-top {
+    opacity: 0;
+    /*transition: all 340ms;*/
+
+    &.show {
+        opacity: 1;
+    }
+}

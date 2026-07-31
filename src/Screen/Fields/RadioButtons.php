@@ -61,10 +61,10 @@ class RadioButtons extends Field
      */
     public function __construct()
     {
-        $this->declarateActive();
+        $this->declareActive();
     }
 
-    public function declarateActive(): static
+    public function declareActive(): static
     {
         return $this->set('active', fn (string $key, ?string $value = null) => $key === $value);
     }

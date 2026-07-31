@@ -1,5 +1,6 @@
 import ApplicationController from "./application_controller";
 import Quill from "quill";
+import { uploadFile } from "../helpers/upload";
 
 export default class extends ApplicationController {
     /**
@@ -173,17 +174,14 @@ export default class extends ApplicationController {
      * @param {File} file
      */
     saveToServer(file) {
-        const formData = new FormData();
-        formData.append("image", file);
-
-        if (this.data.get("groups")) {
-            formData.append("group", this.data.get("groups"));
-        }
-
-        axios
-            .post(this.prefix("/files"), formData)
-            .then(response => {
-                this.insertToEditor(response.data.url);
+        uploadFile(this.prefix("/files"), file, {
+            field: "image",
+            data: {
+                group: this.data.get("groups"),
+            },
+        })
+            .then(data => {
+                this.insertToEditor(data.url);
             })
             .catch(error => {
                 this.alert("Validation error", "Quill image upload failed");

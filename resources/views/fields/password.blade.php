@@ -8,7 +8,7 @@
             <x-orchid-icon path="bs.eye" class="small me-2"/>
         </span>
 
-        <span data-password-target="iconLock" class="none">
+        <span data-password-target="iconLock" class="d-none">
             <x-orchid-icon path="bs.eye-slash" class="small me-2"/>
         </span>
     </div>

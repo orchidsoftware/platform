@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
+use Orchid\Access\Permissions;
 use Orchid\Access\UserAccess;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Like;
@@ -75,7 +76,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'permissions'          => 'array',
+        'permissions'          => Permissions::class,
         'email_verified_at'    => 'datetime',
     ];
 

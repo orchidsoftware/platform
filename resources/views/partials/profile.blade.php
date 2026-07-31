@@ -6,8 +6,8 @@
         @endif
 
         <small class="d-flex flex-column lh-1 col-9">
-            <span class="text-ellipsis text-white">{{Auth::user()->presenter()->title()}}</span>
-            <span class="text-ellipsis text-muted">{{Auth::user()->presenter()->subTitle()}}</span>
+            <span class="text-truncate text-white">{{Auth::user()->presenter()->title()}}</span>
+            <span class="text-truncate text-muted">{{Auth::user()->presenter()->subTitle()}}</span>
         </small>
     </a>
 

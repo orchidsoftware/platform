@@ -67,7 +67,7 @@
                 <span class="text-body-emphasis lh-1">Layouts</span>
             </h3>
             <p class="ms-md-5 ps-md-1">
-                It allows you to express many details so that the user interface can be interpreted and generated
+                It lets you express many details so that the user interface can be interpreted and generated
                 automatically. But unlike various other tools that do this, the developer can also customize it with
                 custom templates. Create visually stunning and unique layouts with our system.
             </p>
@@ -82,7 +82,7 @@
             <p class="ms-md-5 ps-md-1">
                 Laravel Orchid offers a wide range of features to enhance your user interface and improve data
                 management. Control entire screens or behaviors based on security permissions, easily filter data for
-                users, and utilize one-time and personal notifications to keep users informed. The possibilities are
+                users, and use one-time and personal notifications to keep users informed. The possibilities are
                 endless with our platform, discover all it has to offer and take your development to the next level.
             </p>
         </div>

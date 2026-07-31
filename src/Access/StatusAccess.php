@@ -16,7 +16,7 @@ trait StatusAccess
      */
     public function statusOfPermissions(): Collection
     {
-        $permissions = $this->permissions ?? [];
+        $permissions = Permissions::make($this->permissions ?? []);
 
         return Orchid::getPermission()->transform(
             fn ($group) => collect($group)
@@ -42,14 +42,9 @@ trait StatusAccess
 
     /**
      * Determine if a given permission slug is active.
-     *
-     * @param string                  $slug
-     * @param array<string, bool|int> $permissions
-     *
-     * @return bool
      */
-    private function isActive(string $slug, array $permissions): bool
+    private function isActive(string $slug, Permissions $permissions): bool
     {
-        return array_key_exists($slug, $permissions) && (bool) $permissions[$slug];
+        return $permissions->isActive($slug);
     }
 }

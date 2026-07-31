@@ -37,17 +37,11 @@ class LayoutTest extends TestUnitCase
     {
         $layout = new class extends Layout
         {
-            /***
-             * @return bool
-             */
             public function isSee(): bool
             {
                 return $this->query->get('show');
             }
 
-            /**
-             * @return mixed
-             */
             public function build(Repository $repository)
             {
                 $this->query = $repository;
@@ -71,5 +65,71 @@ class LayoutTest extends TestUnitCase
         ]));
 
         $this->assertEquals('display', $render);
+    }
+
+    public function testGetSlug(): void
+    {
+        $layout = new class extends Layout
+        {
+            public function build(Repository $repository)
+            {
+                return null;
+            }
+        };
+
+        $slug = $layout->getSlug();
+
+        $this->assertIsString($slug);
+        $this->assertNotEmpty($slug);
+    }
+
+    public function testFindByTypeWithSubclass(): void
+    {
+        $inner = new class extends Layout
+        {
+            public function build(Repository $repository)
+            {
+                return null;
+            }
+        };
+
+        $outer = new class($inner) extends Layout
+        {
+            public function __construct(Layout $inner)
+            {
+                $this->layouts = [$inner];
+            }
+
+            public function build(Repository $repository)
+            {
+                return null;
+            }
+        };
+
+        $found = $outer->findByType(Layout::class);
+        $this->assertNotNull($found);
+
+        $notFound = $outer->findByType('NonExistentClass');
+        $this->assertNull($notFound);
+    }
+
+    public function testJsonSerialize(): void
+    {
+        $layout = new class extends Layout
+        {
+            protected $template = 'test-template';
+
+            public function build(Repository $repository)
+            {
+                return null;
+            }
+        };
+
+        $serialized = $layout->jsonSerialize();
+
+        $this->assertIsArray($serialized);
+        $this->assertArrayHasKey('template', $serialized);
+        $this->assertEquals('test-template', $serialized['template']);
+        $this->assertArrayNotHasKey('query', $serialized);
     }
 }

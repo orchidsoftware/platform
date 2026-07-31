@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use Orchid\Platform\Events\AddRoleEvent;
 use Orchid\Platform\Events\RemoveRoleEvent;
 use Orchid\Platform\Models\Role;
@@ -21,7 +20,7 @@ trait UserAccess
     use StatusAccess;
 
     /**
-     * @var null|Collection
+     * @var null|Collection<int, Permissions>
      */
     private $cachePermissions;
 
@@ -60,22 +59,12 @@ trait UserAccess
             $this->cachePermissions = $this->roles()
                 ->pluck('permissions')
                 ->prepend($this->permissions)
-                ->filter(fn ($permission) => is_array($permission));
+                ->map(fn ($permission) => Permissions::make($permission))
+                ->filter(fn (Permissions $permission) => $permission->toArray() !== []);
         }
 
         return $this->cachePermissions
-            ->filter(fn (array $permissions) => $this->filterWildcardAccess($permissions, $permit))
-            ->isNotEmpty();
-    }
-
-    /**
-     * Permissions can be checked based on wildcards
-     * using the * character to match any of a set of permissions.
-     */
-    protected function filterWildcardAccess(array $permissions, string $permit): bool
-    {
-        return collect($permissions)
-            ->filter(fn (bool $value, $permission) => Str::is($permit, $permission) && $value)
+            ->filter(fn (Permissions $permissions) => $permissions->allows($permit))
             ->isNotEmpty();
     }
 

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
+use Illuminate\Support\ViewErrorBag;
 use Orchid\Screen\Fields\Input;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 use Throwable;
@@ -179,6 +180,22 @@ class InputTest extends TestFieldsUnitCase
             'Name is required',
             (string) $input,
             'Expected validation error message was not found in the rendered input.'
+        );
+    }
+
+    public function testValidationMessageFromViewErrorBag(): void
+    {
+        $errors = (new ViewErrorBag)
+            ->put('default', new MessageBag(['name' => ['Name is required']]));
+
+        Session::put('errors', $errors);
+
+        $input = Input::make('name');
+
+        $this->assertStringContainsString(
+            'Name is required',
+            (string) $input,
+            'Expected validation error message from ViewErrorBag was not found in the rendered input.'
         );
     }
 

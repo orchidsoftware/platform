@@ -13,3 +13,6 @@
 /public/css/*.css linguist-generated
 /public/js/*.js linguist-generated
 /public/mix-manifest.json linguist-generated
+/public/assets/*.css text eol=lf linguist-generated
+/public/assets/*.js text eol=lf linguist-generated
+/public/manifest.json text eol=lf linguist-generated

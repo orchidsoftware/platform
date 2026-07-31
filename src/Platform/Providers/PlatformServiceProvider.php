@@ -6,8 +6,8 @@ namespace Orchid\Platform\Providers;
 
 use App\Orchid\PlatformProvider;
 use Illuminate\Support\ServiceProvider;
+use Orchid\Access\PermissionGroup;
 use Orchid\Icons\IconFinder;
-use Orchid\Platform\ItemPermission;
 use Orchid\Platform\Orchid;
 
 class PlatformServiceProvider extends ServiceProvider
@@ -38,16 +38,16 @@ class PlatformServiceProvider extends ServiceProvider
         });
     }
 
-    protected function registerPermissionsMain(): ItemPermission
+    protected function registerPermissionsMain(): PermissionGroup
     {
-        return ItemPermission::group(__('Main'))
-            ->addPermission('orchid.index', __('Main'));
+        return PermissionGroup::group(__('Main'))
+            ->permission('orchid.index', __('Main'));
     }
 
-    protected function registerPermissionsSystems(): ItemPermission
+    protected function registerPermissionsSystems(): PermissionGroup
     {
-        return ItemPermission::group(__('System'))
-            ->addPermission('orchid.attachment', __('Attachment'));
+        return PermissionGroup::group(__('System'))
+            ->permission('orchid.attachment', __('Attachment'));
     }
 
     /**

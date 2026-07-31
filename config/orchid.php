@@ -173,7 +173,7 @@ return [
      | Default Attachment Configuration
      |--------------------------------------------------------------------------
      |
-     | This option allows you to specify the default settings for file attachments
+     | This option lets you specify the default settings for file attachments
      | in your application. You can customize the disk and file generator used
      | for attachments.
      |
