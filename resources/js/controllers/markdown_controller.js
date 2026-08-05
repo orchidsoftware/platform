@@ -522,7 +522,7 @@ export default class extends ApplicationController {
         const changes = [];
         let offset = 0;
 
-        for (let position = selection.from; position <= selection.to; ) {
+        for (let position = selection.from; position <= selection.to;) {
             const line = this.view.state.doc.lineAt(position);
             const text = line.text;
 
