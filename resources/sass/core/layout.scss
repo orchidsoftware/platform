@@ -11,17 +11,117 @@ body {
 
 @include media-breakpoint-up(lg) {
     .aside {
+        position: relative;
         width: min($app-aside-width, 25%);
         max-width: $app-aside-max-width;
         min-height: 100vh;
+        transition:
+            width 0.2s ease,
+            min-width 0.2s ease,
+            max-width 0.2s ease,
+            flex-basis 0.2s ease;
 
         nav {
             height: 100%;
         }
     }
+
+    .aside-collapse-tab {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        z-index: 1030;
+        width: 1.25rem;
+        height: 3rem;
+        padding: 0;
+        border: 0;
+        border-radius: 0 0.35rem 0.35rem 0;
+        transform: translate(50%, -50%);
+        background: rgba(33, 37, 41, 0.92);
+        color: #fff;
+        cursor: pointer;
+
+        &:hover {
+            background: rgba(33, 37, 41, 1);
+        }
+
+        &__icon {
+            transition: transform 0.2s ease;
+        }
+    }
+
+    body.aside-collapsed {
+        .aside-collapse-tab__icon {
+            transform: rotate(180deg);
+        }
+
+        .aside {
+            width: $app-aside-folded-width !important;
+            min-width: $app-aside-folded-width !important;
+            max-width: $app-aside-folded-width !important;
+            flex: 0 0 $app-aside-folded-width !important;
+
+            > header {
+                justify-content: center;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            .header-toggler {
+                margin-right: 0 !important;
+            }
+
+            .header-brand,
+            .aside-collapse > .p-3,
+            .aside-collapse > .divider,
+            .nav-item > small,
+            .nav-link > span,
+            .nav-link > .badge,
+            .to-top,
+            .profile-container small,
+            .profile-container [class*="notification"],
+            .profile-container > :not(a),
+            .hidden-folded {
+                display: none !important;
+            }
+
+            .nav-link {
+                justify-content: center;
+                gap: 0 !important;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            .profile-container {
+                justify-content: center;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+
+                > a {
+                    width: auto !important;
+                    justify-content: center;
+                }
+            }
+        }
+
+        .col-lg-9,
+        .col-xl-9,
+        .col-xxl {
+            flex: 1 1 auto;
+            max-width: calc(100% - #{$app-aside-folded-width});
+            width: auto;
+        }
+    }
 }
 
 @include media-breakpoint-down(lg) {
+    .aside-collapse-tab {
+        display: none;
+    }
+
     .aside-collapse {
         visibility: hidden;
         opacity: 0;

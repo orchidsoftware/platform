@@ -3,11 +3,13 @@
 @section('aside')
     <div class="aside col-xs-12 col-lg-3 col-xl-2 bg-dark d-flex flex-column" data-controller="menu" data-bs-theme="dark">
         <header class="p-3 mt-lg-4 w-100 d-flex align-items-center">
-            <a href="#" class="header-toggler d-lg-none me-auto order-first d-flex align-items-center lh-1 link-body-emphasis"
-               data-action="click->menu#toggle">
-                <x-orchid-icon path="bs.three-dots-vertical" class="icon-menu"/>
+            <a href="#" class="header-toggler me-auto order-first d-flex align-items-center lh-1 link-body-emphasis"
+               data-action="click->menu#toggle"
+               title="{{ __('Toggle menu') }}"
+               aria-label="{{ __('Toggle menu') }}">
+                <x-orchid-icon path="bs.list" class="icon-menu"/>
 
-                <span class="ms-2">@yield('title')</span>
+                <span class="ms-2 d-lg-none">@yield('title')</span>
             </a>
 
             <a class="header-brand order-last link-body-emphasis" href="{{ route(config('orchid.index')) }}">
@@ -42,6 +44,14 @@
                 </div>
             </footer>
         </nav>
+
+        <button type="button"
+                class="aside-collapse-tab"
+                data-action="click->menu#toggleCollapse"
+                title="{{ __('Collapse menu') }}"
+                aria-label="{{ __('Collapse menu') }}">
+            <x-orchid-icon path="bs.chevron-left" class="aside-collapse-tab__icon"/>
+        </button>
     </div>
 @endsection
 
