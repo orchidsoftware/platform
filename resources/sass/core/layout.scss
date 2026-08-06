@@ -9,6 +9,24 @@ body {
     overflow-x: hidden;
 }
 
+.aside-header {
+    min-height: 2.5rem;
+}
+
+.aside-header__toggler {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 !important;
+    z-index: 1;
+}
+
+.aside-header__brand {
+    margin: 0 auto;
+    text-align: center;
+}
+
 @include media-breakpoint-up(lg) {
     .aside {
         position: relative;
@@ -26,38 +44,7 @@ body {
         }
     }
 
-    .aside-collapse-tab {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        top: 50%;
-        right: 0;
-        z-index: 1030;
-        width: 1.25rem;
-        height: 3rem;
-        padding: 0;
-        border: 0;
-        border-radius: 0 0.35rem 0.35rem 0;
-        transform: translate(50%, -50%);
-        background: rgba(33, 37, 41, 0.92);
-        color: #fff;
-        cursor: pointer;
-
-        &:hover {
-            background: rgba(33, 37, 41, 1);
-        }
-
-        &__icon {
-            transition: transform 0.2s ease;
-        }
-    }
-
     body.aside-collapsed {
-        .aside-collapse-tab__icon {
-            transform: rotate(180deg);
-        }
-
         .aside {
             width: $app-aside-folded-width !important;
             min-width: $app-aside-folded-width !important;
@@ -70,8 +57,10 @@ body {
                 padding-right: 0.5rem;
             }
 
-            .header-toggler {
-                margin-right: 0 !important;
+            .aside-header__toggler {
+                position: static;
+                transform: none;
+                left: auto;
             }
 
             .header-brand,
@@ -118,10 +107,6 @@ body {
 }
 
 @include media-breakpoint-down(lg) {
-    .aside-collapse-tab {
-        display: none;
-    }
-
     .aside-collapse {
         visibility: hidden;
         opacity: 0;
