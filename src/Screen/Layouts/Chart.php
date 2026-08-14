@@ -244,6 +244,7 @@ abstract class Chart extends Layout
             ->map(fn ($item) => $item['labels'] ?? [])
             ->flatten()
             ->unique()
+            ->values()
             ->toJson(JSON_NUMERIC_CHECK);
 
         return view($this->template, [

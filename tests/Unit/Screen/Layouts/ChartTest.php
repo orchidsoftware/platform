@@ -48,6 +48,25 @@ class ChartTest extends TestUnitCase
         $this->assertStringContainsString('Export', $html);
     }
 
+    public function testDuplicateLabelsAreEncodedAsJsonArray(): void
+    {
+        $layout = new class extends Chart
+        {
+            protected $target = 'charts';
+        };
+
+        $view = $layout->build(new Repository([
+            'charts' => [
+                [
+                    'labels' => ['Jan', 'Jan', 'Feb'],
+                    'values' => [1, 2, 3],
+                ],
+            ],
+        ]));
+
+        $this->assertSame('["Jan","Feb"]', $view->getData()['labels']);
+    }
+
     protected function getRepository(): Repository
     {
         return new Repository([
