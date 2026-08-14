@@ -46,16 +46,7 @@
 @endsection
 
 @section('workspace')
-    @if(Breadcrumbs::has())
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb px-4 mb-2">
-                <x-tabuna-breadcrumbs
-                    class="breadcrumb-item"
-                    active="active"
-                />
-            </ol>
-        </nav>
-    @endif
+    <x-orchid-breadcrumbs/>
 
     <div class="order-last order-md-0 command-bar-wrapper">
         <div class="@hasSection('navbar') @else d-none d-md-block @endif layout d-md-flex align-items-center">
