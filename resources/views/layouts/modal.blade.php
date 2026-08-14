@@ -12,7 +12,12 @@
          data-modal-open-value="{{ var_export($open) }}"
         {{$staticBackdrop ? "data-bs-backdrop=static" : ''}}
     >
-        <div class="modal-dialog modal-fullscreen-md-down {{$size}}"
+        <div @class([
+                 'modal-dialog',
+                 'modal-fullscreen-md-down',
+                 'modal-dialog-scrollable' => $scrollable,
+                 $size,
+             ])
              role="document"
              id="screen-modal-type-{{$key}}"
         >

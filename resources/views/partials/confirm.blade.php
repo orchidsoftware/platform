@@ -1,14 +1,15 @@
-<div class="modal modal-confirm fade"
+<div class="modal fade center-scale"
      id="confirm-dialog"
      data-controller="confirm"
      role="dialog"
      aria-labelledby="confirm-dialog-title"
      tabindex="-1"
      aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-fullscreen-md-down">
+    <div class="modal-dialog modal-compact">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title text-body-emphasis fw-light" id="confirm-dialog-title">
+            <div class="modal-header align-items-baseline gap-3">
+                <h4 class="modal-title text-body-emphasis fw-light text-balance text-break"
+                    id="confirm-dialog-title">
                     {{ __('Are you sure?') }}
                 </h4>
                 <button type="button"
@@ -23,8 +24,8 @@
 
                 </div>
             </div>
-            <div class="modal-footer modal-actions-stacked">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link" data-bs-dismiss="modal">
                     {{ __('Cancel') }}
                 </button>
 
