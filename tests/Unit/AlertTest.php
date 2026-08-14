@@ -121,6 +121,26 @@ class AlertTest extends TestUnitCase
         self::assertTrue(Alert::check());
     }
 
+    public function testToastUsesPoliteStatusForInformationalFeedback(): void
+    {
+        Toast::info('Saved');
+
+        $html = view('orchid::partials.toast')->render();
+
+        self::assertStringContainsString('role="status"', $html);
+        self::assertStringContainsString('aria-live="polite"', $html);
+    }
+
+    public function testWarningToastRemainsPoliteFeedback(): void
+    {
+        Toast::warning('Review required');
+
+        $html = view('orchid::partials.toast')->render();
+
+        self::assertStringContainsString('role="status"', $html);
+        self::assertStringContainsString('aria-live="polite"', $html);
+    }
+
     /**
      * Array of keys and css classes.
      */

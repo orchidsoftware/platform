@@ -93,6 +93,7 @@ export default class extends ApplicationController {
         }
 
         button.disabled = true;
+        button.setAttribute("aria-busy", "true");
         button.classList.add("cursor-wait");
         button.classList.add("btn-loading");
 

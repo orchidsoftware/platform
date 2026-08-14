@@ -1,8 +1,8 @@
 <div class="toast-wrapper" data-controller="toast">
     <template id="toast">
         <div class="toast rounded shadow-sm bg-white mb-3"
-             role="alert"
-             aria-live="assertive"
+             role="status"
+             aria-live="polite"
              aria-atomic="true"
              data-bs-delay="5000"
              data-bs-autohide="true">
@@ -13,7 +13,8 @@
                     </span>
                     {message}
                 </p>
-                <button type="button" class="btn-close ms-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                <button type="button" class="btn-close ms-auto" data-bs-dismiss="toast"
+                        aria-label="{{ __('Close') }}"></button>
             </div>
         </div>
     </template>
@@ -21,8 +22,8 @@
 
     @if (session()->has(\Orchid\Alert\Toast::SESSION_MESSAGE))
         <div class="toast rounded shadow-sm bg-white mb-3"
-             role="alert"
-             aria-live="assertive"
+             role="status"
+             aria-live="polite"
              aria-atomic="true"
              data-bs-delay="{{ session(\Orchid\Alert\Toast::SESSION_DELAY) }}"
              data-bs-autohide="{{ session(\Orchid\Alert\Toast::SESSION_AUTO_HIDE) }}"
@@ -36,7 +37,8 @@
 
                     {!! session(\Orchid\Alert\Toast::SESSION_MESSAGE) !!}
                 </p>
-                <button type="button" class="btn-close ms-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                <button type="button" class="btn-close ms-auto" data-bs-dismiss="toast"
+                        aria-label="{{ __('Close') }}"></button>
             </div>
         </div>
     @endif
