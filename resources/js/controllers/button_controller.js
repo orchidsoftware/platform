@@ -8,7 +8,7 @@ export default class extends ApplicationController {
      */
     confirm(event) {
         let button = this.element.outerHTML
-            .replace("btn-link", "btn-default")
+            .replace("btn-link", "btn-dark")
             .replace(/data-action="(.*?)"/g, "");
 
         this.application

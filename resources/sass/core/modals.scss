@@ -33,6 +33,23 @@
         box-shadow: none;
         margin-top: 0;
         padding: 15px 25px;
+
+        &.modal-actions-stacked {
+            flex-direction: column-reverse;
+            align-items: stretch;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+
+            > * {
+                width: 100%;
+                margin: 0;
+            }
+
+            .btn {
+                justify-content: center;
+                width: 100%;
+            }
+        }
     }
     &.fade {
         opacity: 1 !important;

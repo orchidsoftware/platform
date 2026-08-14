@@ -34,6 +34,8 @@ class ModalTest extends TestUnitCase
         $this->assertStringContainsString('id="screen-modal-title-exampleOneModal"', $html);
         $this->assertStringContainsString('aria-labelledby="confirm-dialog-title"', $html);
         $this->assertStringContainsString('id="confirm-dialog-title"', $html);
+        $this->assertStringContainsString('modal modal-confirm fade', $html);
+        $this->assertStringContainsString('modal-footer modal-actions-stacked', $html);
         $this->assertStringContainsString('aria-labelledby="notification-modal-title"', $html);
         $this->assertStringContainsString('id="notification-modal-title"', $html);
         $this->assertStringContainsString('id="search-modal"', $html);
