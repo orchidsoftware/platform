@@ -1,5 +1,5 @@
 @if(Orchid::getSearch()->isNotEmpty())
-    <div class="p-3">
+    <div class="p-3" data-controller="search">
         <div class="position-relative">
             <div class="input-icon">
                 <button type="button"
