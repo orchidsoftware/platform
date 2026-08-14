@@ -30,5 +30,13 @@ class ModalTest extends TestUnitCase
         $this->assertStringContainsString(ModalScreen::CLOSE_BUTTON, $html);
 
         $this->assertStringContainsString(Modal::SIZE_LG, $html);
+        $this->assertStringContainsString('aria-labelledby="screen-modal-title-exampleOneModal"', $html);
+        $this->assertStringContainsString('id="screen-modal-title-exampleOneModal"', $html);
+        $this->assertStringContainsString('aria-labelledby="confirm-dialog-title"', $html);
+        $this->assertStringContainsString('id="confirm-dialog-title"', $html);
+        $this->assertStringContainsString('aria-labelledby="notification-modal-title"', $html);
+        $this->assertStringContainsString('id="notification-modal-title"', $html);
+        $this->assertStringContainsString('id="search-modal"', $html);
+        $this->assertStringContainsString('aria-label="Search"', $html);
     }
 }

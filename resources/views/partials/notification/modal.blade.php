@@ -3,15 +3,21 @@
      data-controller="modal"
      role="dialog"
      id="notification-modal"
+     aria-labelledby="notification-modal-title"
 >
     <div class="modal-dialog modal-fullscreen-md-down modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header align-items-baseline gap-3 p-4">
-                <h4 class="modal-title text-body-emphasis fw-light text-balance text-break" data-modal-target="title">
+                <h4 class="modal-title text-body-emphasis fw-light text-balance text-break"
+                    id="notification-modal-title"
+                    data-modal-target="title">
                     {{ __('Notification') }}
                 </h4>
-                <button type="button" class="btn-close" title="Close" data-bs-dismiss="modal"
-                        aria-label="Close">
+                <button type="button"
+                        class="btn-close"
+                        title="{{ __('Close') }}"
+                        data-bs-dismiss="modal"
+                        aria-label="{{ __('Close') }}">
                 </button>
             </div>
             <div class="modal-body p-4 py-4">

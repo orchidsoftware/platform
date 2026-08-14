@@ -34,6 +34,16 @@ export default class extends ApplicationController {
     open(options) {
         this.setButton(options.button).setMessage(options.message);
 
+        this.element.addEventListener(
+            "hidden.bs.modal",
+            () => {
+                if (options.trigger?.isConnected) {
+                    options.trigger.focus();
+                }
+            },
+            { once: true },
+        );
+
         /**
          * Added focus button for Mac OS firefox/safari
          */
@@ -43,6 +53,6 @@ export default class extends ApplicationController {
             });
         });
 
-        new Modal(this.element).show();
+        new Modal(this.element).show(options.trigger);
     }
 }

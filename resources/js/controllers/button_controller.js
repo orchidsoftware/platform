@@ -16,6 +16,7 @@ export default class extends ApplicationController {
             .open({
                 message: this.data.get("confirm"),
                 button: button,
+                trigger: this.element,
             });
 
         event.preventDefault();
