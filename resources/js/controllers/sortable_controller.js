@@ -27,6 +27,10 @@ export default class extends ApplicationController {
         });
     }
 
+    disconnect() {
+        this.sortable?.destroy();
+    }
+
     /**
      * Reorder the elements based on the new order
      */
