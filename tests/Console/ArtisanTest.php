@@ -69,7 +69,7 @@ class ArtisanTest extends TestConsoleCase
 
         $user->refresh();
 
-        $this->assertSame(Orchid::getAllowAllPermission()->toArray(), $user->permissions->toArray());
+        $this->assertSame(Orchid::allowedPermissions()->toArray(), $user->permissions->toArray());
     }
 
     public function testArtisanOrchidInstall(): void

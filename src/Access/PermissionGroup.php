@@ -13,27 +13,27 @@ namespace Orchid\Access;
 class PermissionGroup
 {
     /**
-     * @param array<int, array{slug: string, description: string}> $items
+     * @param array<int, array{slug: string, description: string}> $definitions
      */
     public function __construct(
         public string $name,
-        public array $items = []
+        protected array $definitions = []
     ) {}
 
     /**
      * Create a new permission group.
      */
-    public static function group(string $name): static
+    public static function make(string $name): static
     {
         return new static($name);
     }
 
     /**
-     * Register a permission in the group.
+     * Add a permission definition to the group.
      */
-    public function permission(string $slug, string $description): static
+    public function add(string $slug, string $description): static
     {
-        $this->items[] = [
+        $this->definitions[] = [
             'slug'        => $slug,
             'description' => $description,
         ];
@@ -42,18 +42,10 @@ class PermissionGroup
     }
 
     /**
-     * Add a permission definition to the group.
-     */
-    public function addPermission(string $slug, string $description): static
-    {
-        return $this->permission($slug, $description);
-    }
-
-    /**
      * @return array<int, array{slug: string, description: string}>
      */
-    public function items(): array
+    public function definitions(): array
     {
-        return $this->items;
+        return $this->definitions;
     }
 }

@@ -10,6 +10,7 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use JsonSerializable;
 use Traversable;
 
 /**
@@ -22,19 +23,19 @@ use Traversable;
  * @implements CastsAttributes<static, mixed>
  * @implements Arrayable<string, bool>
  */
-class Permissions implements Arrayable, CastsAttributes, Countable
+class Permissions implements Arrayable, CastsAttributes, Countable, JsonSerializable
 {
     /**
-     * @param array<string, bool> $items
+     * @param array<string, bool> $states
      */
-    private array $items;
+    private array $states;
 
     /**
-     * @param array<string, mixed> $items
+     * @param array<string, mixed> $states
      */
-    public function __construct(array $items = [])
+    public function __construct(array $states = [])
     {
-        $this->items = static::normalize($items);
+        $this->states = static::normalize($states);
     }
 
     /**
@@ -53,17 +54,17 @@ class Permissions implements Arrayable, CastsAttributes, Countable
     }
 
     /**
-     * Create an allowed permission set from registered permission items.
+     * Create an allowed permission set from registered permission definitions.
      *
-     * @param iterable<array{slug: string}> $items
+     * @param iterable<array{slug: string}> $definitions
      */
-    public static function fromItems(iterable $items): static
+    public static function fromDefinitions(iterable $definitions): static
     {
         $permissions = [];
 
-        foreach ($items as $item) {
-            if (is_array($item) && isset($item['slug'])) {
-                $permissions[$item['slug']] = true;
+        foreach ($definitions as $definition) {
+            if (is_array($definition) && isset($definition['slug'])) {
+                $permissions[$definition['slug']] = true;
             }
         }
 
@@ -75,19 +76,19 @@ class Permissions implements Arrayable, CastsAttributes, Countable
      *
      * @param iterable<string, mixed>|null $permissions
      */
-    public static function fromForm(?iterable $permissions): static
+    public static function fromEncodedForm(?iterable $permissions): static
     {
-        $items = [];
+        $states = [];
 
         foreach ($permissions ?? [] as $permission => $allowed) {
             $permission = base64_decode((string) $permission, true);
 
             if ($permission !== false) {
-                $items[$permission] = $allowed;
+                $states[$permission] = $allowed;
             }
         }
 
-        return static::make($items);
+        return static::make($states);
     }
 
     /**
@@ -117,8 +118,8 @@ class Permissions implements Arrayable, CastsAttributes, Countable
      */
     public function allows(string $permit): bool
     {
-        foreach ($this->items as $permission => $allowed) {
-            if ($allowed && (Str::is($permission, $permit) || Str::is($permit, $permission))) {
+        foreach ($this->states as $permission => $allowed) {
+            if ($allowed && Str::is($permit, $permission)) {
                 return true;
             }
         }
@@ -131,7 +132,7 @@ class Permissions implements Arrayable, CastsAttributes, Countable
      */
     public function isActive(string $permission): bool
     {
-        return array_key_exists($permission, $this->items) && $this->items[$permission];
+        return array_key_exists($permission, $this->states) && $this->states[$permission];
     }
 
     /**
@@ -139,7 +140,15 @@ class Permissions implements Arrayable, CastsAttributes, Countable
      */
     public function count(): int
     {
-        return count(array_filter($this->items));
+        return count(array_filter($this->states));
+    }
+
+    /**
+     * Determine whether no permission states are assigned.
+     */
+    public function isEmpty(): bool
+    {
+        return $this->states === [];
     }
 
     /**
@@ -147,7 +156,15 @@ class Permissions implements Arrayable, CastsAttributes, Countable
      */
     public function toArray(): array
     {
-        return $this->items;
+        return $this->states;
+    }
+
+    /**
+     * @return array<string, bool>
+     */
+    public function jsonSerialize(): array
+    {
+        return $this->toArray();
     }
 
     /**

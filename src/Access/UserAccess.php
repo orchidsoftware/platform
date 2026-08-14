@@ -60,7 +60,7 @@ trait UserAccess
                 ->pluck('permissions')
                 ->prepend($this->permissions)
                 ->map(fn ($permission) => Permissions::make($permission))
-                ->filter(fn (Permissions $permission) => $permission->toArray() !== []);
+                ->filter(fn (Permissions $permission) => ! $permission->isEmpty());
         }
 
         return $this->cachePermissions

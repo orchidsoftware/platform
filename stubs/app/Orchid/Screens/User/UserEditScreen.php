@@ -166,7 +166,7 @@ class UserEditScreen extends Screen
 
         $user
             ->fill($request->collect('user')->except(['password', 'permissions', 'roles'])->toArray())
-            ->forceFill(['permissions' => Permissions::fromForm($request->input('permissions'))])
+            ->forceFill(['permissions' => Permissions::fromEncodedForm($request->input('permissions'))])
             ->save();
 
         $user->replaceRoles($request->input('user.roles'));
