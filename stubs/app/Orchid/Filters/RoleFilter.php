@@ -40,9 +40,10 @@ class RoleFilter extends Filter
      */
     public function run(Builder $builder): Builder
     {
-        return $builder->whereHas('roles', function (Builder $query) {
-            $query->where('name', $this->request->get('role'));
-        });
+        return $builder->whereHas(
+            'roles',
+            fn (Builder $query) => $query->where('id', $this->request->get('role'))
+        );
     }
 
     /**
@@ -64,6 +65,8 @@ class RoleFilter extends Filter
      */
     public function value(): string
     {
-        return $this->name().': '.Role::where('name', $this->request->get('role'))->first()->name;
+        $role = Role::find($this->request->get('role'));
+
+        return $this->name().': '.($role?->name ?? '');
     }
 }
