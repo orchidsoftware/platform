@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <div id="orchid-notifications-footer">
+                <div id="orchid-notifications-footer" hidden>
                 </div>
             </div>
         </div>

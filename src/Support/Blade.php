@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\AnonymousComponent;
 use Illuminate\View\Compilers\ComponentTagCompiler;
 use Illuminate\View\Component as ViewComponent;
+use Illuminate\View\ComponentSlot;
 
 class Blade
 {
@@ -29,22 +30,24 @@ class Blade
         }
 
         $view = $component->resolveView();
+        $data = $component->data();
+        $data['slot'] ??= new ComponentSlot;
 
         if ($view instanceof \Closure) {
-            $view = $component->resolveView()($component->data());
+            $view = $view($data);
 
             return view($view)->render();
         }
 
         if ($view instanceof View) {
-            return $view->with($component->data())->render();
+            return $view->with($data)->render();
         }
 
         if ($view instanceof Htmlable) {
             return $view->toHtml();
         }
 
-        return view($view)->with($component->data())->render();
+        return view($view)->with($data)->render();
     }
 
     /**

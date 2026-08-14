@@ -42,20 +42,13 @@
             @endforeach
         </ol>
     @else
-        <div class="d-md-flex align-items-center px-md-0 px-2 pt-4 pb-5 w-100 text-md-start text-center">
-            @isset($iconNotFound)
-                <div class="col-auto mx-md-4 mb-3 mb-md-0">
-                    <x-orchid-icon :path="$iconNotFound" class="block h1"/>
-                </div>
-            @endisset
-
-            <div>
-                <h3 class="fw-light">
-                    {!!  $textNotFound !!}
-                </h3>
-
-                {!! $subNotFound !!}
-            </div>
-        </div>
+        <x-orchid-empty-state
+            class="w-100 py-md-5"
+            :icon="$emptyStateIcon"
+            :title="$emptyStateTitle"
+            :description="$emptyStateDescription"
+        >
+            {{ $emptyStateAction }}
+        </x-orchid-empty-state>
     @endif
 </div>
