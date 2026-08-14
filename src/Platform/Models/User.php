@@ -119,7 +119,7 @@ class User extends Authenticatable
             'name'        => $name,
             'email'       => $email,
             'password'    => Hash::make($password),
-            'permissions' => Orchid::getAllowAllPermission(),
+            'permissions' => Orchid::allowedPermissions(),
         ]);
     }
 }

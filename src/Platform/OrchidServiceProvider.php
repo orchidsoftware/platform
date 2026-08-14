@@ -99,7 +99,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
 
         // Register the permissions
         foreach ($permissions as $permission) {
-            $this->orchidSingleton()->registerPermissions($permission);
+            $this->orchidSingleton()->registerPermissionGroup($permission);
         }
 
         return $this;

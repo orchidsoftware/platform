@@ -30,6 +30,16 @@ trait RoleAccess
     }
 
     /**
+     * Get the number of active permissions assigned to the role.
+     *
+     * @deprecated Use $role->permissions->count() instead.
+     */
+    public function getCountPermissions(): int
+    {
+        return Permissions::make($this->permissions ?? [])->count();
+    }
+
+    /**
      * Override the deleted method to detach the users assigned to the role
      * before deleting the role
      *

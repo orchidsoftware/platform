@@ -18,7 +18,7 @@ trait StatusAccess
     {
         $permissions = Permissions::make($this->permissions ?? []);
 
-        return Orchid::getPermission()->transform(
+        return Orchid::permissionGroups()->transform(
             fn ($group) => collect($group)
                 ->sortBy('description')
                 ->map(

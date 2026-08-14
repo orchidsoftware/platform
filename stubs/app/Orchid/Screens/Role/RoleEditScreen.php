@@ -126,7 +126,7 @@ class RoleEditScreen extends Screen
 
         $role->fill($request->input('role'));
 
-        $role->permissions = Permissions::fromForm($request->input('permissions'));
+        $role->permissions = Permissions::fromEncodedForm($request->input('permissions'));
 
         $role->save();
 

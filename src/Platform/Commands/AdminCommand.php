@@ -78,7 +78,7 @@ class AdminCommand extends Command
         Orchid::modelClass(User::class)
             ->findOrFail($id)
             ->forceFill([
-                'permissions' => Orchid::getAllowAllPermission(),
+                'permissions' => Orchid::allowedPermissions(),
             ])
             ->save();
 

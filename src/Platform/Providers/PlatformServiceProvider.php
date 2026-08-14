@@ -33,21 +33,21 @@ class PlatformServiceProvider extends ServiceProvider
                 ->registerResource('stylesheets', config('orchid.resource.stylesheets'))
                 ->registerResource('scripts', config('orchid.resource.scripts'))
                 ->registerSearch(config('orchid.search', []))
-                ->registerPermissions($this->registerPermissionsMain())
-                ->registerPermissions($this->registerPermissionsSystems());
+                ->registerPermissionGroup($this->registerPermissionsMain())
+                ->registerPermissionGroup($this->registerPermissionsSystems());
         });
     }
 
     protected function registerPermissionsMain(): PermissionGroup
     {
-        return PermissionGroup::group(__('Main'))
-            ->permission('orchid.index', __('Main'));
+        return PermissionGroup::make(__('Main'))
+            ->add('orchid.index', __('Main'));
     }
 
     protected function registerPermissionsSystems(): PermissionGroup
     {
-        return PermissionGroup::group(__('System'))
-            ->permission('orchid.attachment', __('Attachment'));
+        return PermissionGroup::make(__('System'))
+            ->add('orchid.attachment', __('Attachment'));
     }
 
     /**

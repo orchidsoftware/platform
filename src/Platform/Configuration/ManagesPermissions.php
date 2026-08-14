@@ -24,21 +24,13 @@ trait ManagesPermissions
     protected array $removedPermissions = [];
 
     /**
-     * @deprecated Use registerPermission instead.
-     */
-    public function registerPermissions(PermissionGroup $group): static
-    {
-        return $this->registerPermission($group);
-    }
-
-    /**
      * Register a permission group with the dashboard catalog.
      */
-    public function registerPermission(PermissionGroup $group): static
+    public function registerPermissionGroup(PermissionGroup $group): static
     {
         $old = Arr::get($this->registeredPermissions, $group->name, []);
 
-        $this->registeredPermissions[$group->name] = array_merge($old, $group->items());
+        $this->registeredPermissions[$group->name] = array_merge($old, $group->definitions());
 
         return $this;
     }
@@ -50,7 +42,7 @@ trait ManagesPermissions
      *
      * @return Collection<string, Collection<int, array{slug: string, description: string}>>
      */
-    public function getPermission(string|array $groups = []): Collection
+    public function permissionGroups(string|array $groups = []): Collection
     {
         return collect($this->registeredPermissions)
             ->when(! empty($groups), fn (Collection $collection) => $collection->only($groups))
@@ -64,9 +56,9 @@ trait ManagesPermissions
      *
      * @return Permissions Assigned permission states keyed by slug.
      */
-    public function getAllowAllPermission(string|array $groups = []): Permissions
+    public function allowedPermissions(string|array $groups = []): Permissions
     {
-        return Permissions::fromItems($this->getPermission($groups)->collapse());
+        return Permissions::fromDefinitions($this->permissionGroups($groups)->collapse());
     }
 
     /**
