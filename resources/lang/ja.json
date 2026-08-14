@@ -180,5 +180,13 @@
     "Welcome back": "おかえりなさい",
     "Stay signed in on this device": "このデバイスでログイン状態を保持する",
     "This user does not have access to this page. Switch back to your account to continue.": "このユーザーはこのページにアクセスできません。続行するには自分のアカウントに戻ってください。",
-    "Use another account": "別のアカウントを使用する"
+    "Use another account": "別のアカウントを使用する",
+    "No items yet": "項目はまだありません",
+    "New items will appear here.": "新しい項目はここに表示されます。",
+    "No matches": "一致する項目はありません",
+    "Try changing or clearing the filters.": "フィルタを変更またはクリアしてください。",
+    "Clear filters": "フィルタをクリア",
+    "No results": "結果はありません",
+    "Try a different search.": "別のキーワードで検索してください。",
+    "No new notifications.": "新しい通知はありません。"
 }

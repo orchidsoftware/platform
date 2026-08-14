@@ -180,5 +180,13 @@
     "Welcome back": "歡迎回來",
     "Stay signed in on this device": "在此裝置上保持登入狀態",
     "This user does not have access to this page. Switch back to your account to continue.": "此使用者無權存取此頁面。請切換回您的帳戶以繼續。",
-    "Use another account": "使用其他帳戶"
+    "Use another account": "使用其他帳戶",
+    "No items yet": "尚無項目",
+    "New items will appear here.": "新項目會顯示在這裡。",
+    "No matches": "沒有相符項目",
+    "Try changing or clearing the filters.": "請嘗試變更或清除篩選條件。",
+    "Clear filters": "清除篩選條件",
+    "No results": "沒有結果",
+    "Try a different search.": "請嘗試其他搜尋內容。",
+    "No new notifications.": "沒有新通知。"
 }

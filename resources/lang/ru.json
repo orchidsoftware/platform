@@ -180,5 +180,13 @@
     "Welcome back": "С возвращением",
     "Stay signed in on this device": "Оставаться в системе на этом устройстве",
     "This user does not have access to this page. Switch back to your account to continue.": "У этого пользователя нет доступа к странице. Вернитесь в свою учетную запись, чтобы продолжить.",
-    "Use another account": "Использовать другую учетную запись"
+    "Use another account": "Использовать другую учетную запись",
+    "No items yet": "Пока ничего нет",
+    "New items will appear here.": "Новые элементы появятся здесь.",
+    "No matches": "Совпадений нет",
+    "Try changing or clearing the filters.": "Измените или сбросьте фильтры.",
+    "Clear filters": "Сбросить фильтры",
+    "No results": "Результатов нет",
+    "Try a different search.": "Попробуйте изменить запрос.",
+    "No new notifications.": "Новых уведомлений нет."
 }

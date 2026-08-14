@@ -180,5 +180,13 @@
     "Welcome back": "بەخێربێیتەوە",
     "Stay signed in on this device": "لەم ئامێرەدا بە چوونەژوورەوە بمێنەوە",
     "This user does not have access to this page. Switch back to your account to continue.": "ئەم بەکارهێنەرە دەستی بە ئەم پەڕەیە ناگات. بۆ بەردەوامبوون بگەڕێوە بۆ هەژمارەکەت.",
-    "Use another account": "هەژمارێکی تر بەکاربهێنە"
+    "Use another account": "هەژمارێکی تر بەکاربهێنە",
+    "No items yet": "هێشتا هیچ بڕگەیەک نییە",
+    "New items will appear here.": "بڕگە نوێکان لێرە دەردەکەون.",
+    "No matches": "هیچ هاوتایەک نییە",
+    "Try changing or clearing the filters.": "هەوڵ بدە پاڵێوەرەکان بگۆڕیت یان پاکیان بکەیتەوە.",
+    "Clear filters": "پاککردنەوەی پاڵێوەرەکان",
+    "No results": "هیچ ئەنجامێک نییە",
+    "Try a different search.": "گەڕانێکی جیاواز تاقی بکەرەوە.",
+    "No new notifications.": "هیچ ئاگادارکردنەوەیەکی نوێ نییە."
 }

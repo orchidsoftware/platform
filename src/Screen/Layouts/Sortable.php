@@ -109,12 +109,12 @@ abstract class Sortable extends Layout
 
     protected function textNotFound(): string
     {
-        return __('There are no objects currently displayed');
+        return __('No items yet');
     }
 
     protected function subNotFound(): string
     {
-        return __('Import or create objects, or check back later for updates');
+        return __('New items will appear here.');
     }
 
     /**

@@ -180,5 +180,13 @@
     "Welcome back": "З поверненням",
     "Stay signed in on this device": "Залишатися в системі на цьому пристрої",
     "This user does not have access to this page. Switch back to your account to continue.": "Цей користувач не має доступу до цієї сторінки. Поверніться до свого облікового запису, щоб продовжити.",
-    "Use another account": "Використати інший обліковий запис"
+    "Use another account": "Використати інший обліковий запис",
+    "No items yet": "Поки що елементів немає",
+    "New items will appear here.": "Нові елементи з’являться тут.",
+    "No matches": "Збігів немає",
+    "Try changing or clearing the filters.": "Змініть або очистьте фільтри.",
+    "Clear filters": "Очистити фільтри",
+    "No results": "Результатів немає",
+    "Try a different search.": "Спробуйте інший пошуковий запит.",
+    "No new notifications.": "Нових сповіщень немає."
 }

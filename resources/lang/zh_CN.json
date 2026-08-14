@@ -180,5 +180,13 @@
     "Welcome back": "欢迎回来",
     "Stay signed in on this device": "在此设备上保持登录状态",
     "This user does not have access to this page. Switch back to your account to continue.": "此用户无权访问此页面。请切换回您的账户以继续。",
-    "Use another account": "使用其他账户"
+    "Use another account": "使用其他账户",
+    "No items yet": "暂无项目",
+    "New items will appear here.": "新项目将显示在这里。",
+    "No matches": "没有匹配项",
+    "Try changing or clearing the filters.": "请尝试更改或清除筛选条件。",
+    "Clear filters": "清除筛选条件",
+    "No results": "没有结果",
+    "Try a different search.": "请尝试其他搜索内容。",
+    "No new notifications.": "没有新通知。"
 }

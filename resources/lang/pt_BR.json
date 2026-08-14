@@ -180,5 +180,13 @@
     "Welcome back": "Bem-vindo de volta",
     "Stay signed in on this device": "Continuar conectado neste dispositivo",
     "This user does not have access to this page. Switch back to your account to continue.": "Este usuário não tem acesso a esta página. Volte para sua conta para continuar.",
-    "Use another account": "Usar outra conta"
+    "Use another account": "Usar outra conta",
+    "No items yet": "Ainda não há itens",
+    "New items will appear here.": "Novos itens aparecerão aqui.",
+    "No matches": "Nenhuma correspondência",
+    "Try changing or clearing the filters.": "Tente alterar ou limpar os filtros.",
+    "Clear filters": "Limpar filtros",
+    "No results": "Nenhum resultado",
+    "Try a different search.": "Tente outra busca.",
+    "No new notifications.": "Nenhuma notificação nova."
 }

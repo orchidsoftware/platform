@@ -9,6 +9,8 @@ use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
+use Orchid\Screen\Action;
+use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\TD;
@@ -69,21 +71,22 @@ abstract class Table extends Layout
         $rows = is_a($content, Paginator::class) || is_a($content, CursorPaginator::class) ? $content : collect()->merge($content);
 
         return view($this->template, [
-            'repository'   => $repository,
-            'rows'         => $rows,
-            'columns'      => $columns,
-            'total'        => $total,
-            'iconNotFound' => $this->iconNotFound(),
-            'textNotFound' => $this->textNotFound(),
-            'subNotFound'  => $this->subNotFound(),
-            'striped'      => $this->striped(),
-            'compact'      => $this->compact(),
-            'bordered'     => $this->bordered(),
-            'hoverable'    => $this->hoverable(),
-            'slug'         => $this->getSlug(),
-            'onEachSide'   => $this->onEachSide(),
-            'showHeader'   => $this->hasHeader($columns, $rows),
-            'title'        => $this->title,
+            'repository'     => $repository,
+            'rows'           => $rows,
+            'columns'        => $columns,
+            'total'          => $total,
+            'iconNotFound'   => $this->iconNotFound(),
+            'textNotFound'   => $this->textNotFound(),
+            'subNotFound'    => $this->subNotFound(),
+            'actionNotFound' => $this->actionNotFound(),
+            'striped'        => $this->striped(),
+            'compact'        => $this->compact(),
+            'bordered'       => $this->bordered(),
+            'hoverable'      => $this->hoverable(),
+            'slug'           => $this->getSlug(),
+            'onEachSide'     => $this->onEachSide(),
+            'showHeader'     => $this->hasHeader($columns, $rows),
+            'title'          => $this->title,
         ]);
     }
 
@@ -114,11 +117,9 @@ abstract class Table extends Layout
      */
     protected function textNotFound(): string
     {
-        if (count(request()->query()) !== 0) {
-            return __('No results found for your current filters');
-        }
-
-        return __('There are no objects currently displayed');
+        return $this->hasActiveFilters()
+            ? __('No matches')
+            : __('No items yet');
     }
 
     /**
@@ -126,11 +127,35 @@ abstract class Table extends Layout
      */
     protected function subNotFound(): string
     {
-        if (count(request()->query()) !== 0) {
-            return __('Try adjusting your filter settings or removing it altogether to see more data');
+        return $this->hasActiveFilters()
+            ? __('Try changing or clearing the filters.')
+            : __('New items will appear here.');
+    }
+
+    /**
+     * Action displayed when no data is found.
+     */
+    protected function actionNotFound(): ?Action
+    {
+        if (! $this->hasActiveFilters()) {
+            return null;
         }
 
-        return __('Import or create objects, or check back later for updates');
+        return Link::make('Clear filters')
+            ->icon('bs.arrow-counterclockwise')
+            ->href(request()->fullUrlWithoutQuery(['filter', 'page', 'cursor']))
+            ->class('btn btn-link d-inline-flex gap-2 text-decoration-none');
+    }
+
+    /**
+     * Determine whether the current request contains active filters.
+     */
+    protected function hasActiveFilters(): bool
+    {
+        return request()
+            ->collect('filter')
+            ->flatten()
+            ->contains(static fn ($value) => filled($value));
     }
 
     /**

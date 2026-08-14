@@ -180,5 +180,13 @@
     "Welcome back": "Üdv újra",
     "Stay signed in on this device": "Maradjon bejelentkezve ezen az eszközön",
     "This user does not have access to this page. Switch back to your account to continue.": "Ez a felhasználó nem fér hozzá ehhez az oldalhoz. A folytatáshoz váltson vissza a saját fiókjára.",
-    "Use another account": "Másik fiók használata"
+    "Use another account": "Másik fiók használata",
+    "No items yet": "Még nincsenek elemek",
+    "New items will appear here.": "Az új elemek itt jelennek meg.",
+    "No matches": "Nincs találat",
+    "Try changing or clearing the filters.": "Módosítsd vagy töröld a szűrőket.",
+    "Clear filters": "Szűrők törlése",
+    "No results": "Nincs eredmény",
+    "Try a different search.": "Próbálj másképp keresni.",
+    "No new notifications.": "Nincsenek új értesítések."
 }

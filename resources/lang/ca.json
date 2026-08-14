@@ -180,5 +180,13 @@
     "Welcome back": "Benvingut de nou",
     "Stay signed in on this device": "Mantén la sessió iniciada en aquest dispositiu",
     "This user does not have access to this page. Switch back to your account to continue.": "Aquest usuari no té accés a aquesta pàgina. Torna al teu compte per continuar.",
-    "Use another account": "Utilitza un altre compte"
+    "Use another account": "Utilitza un altre compte",
+    "No items yet": "Encara no hi ha elements",
+    "New items will appear here.": "Els elements nous apareixeran aquí.",
+    "No matches": "Cap coincidència",
+    "Try changing or clearing the filters.": "Prova de canviar o esborrar els filtres.",
+    "Clear filters": "Esborra els filtres",
+    "No results": "Cap resultat",
+    "Try a different search.": "Prova una altra cerca.",
+    "No new notifications.": "No hi ha notificacions noves."
 }

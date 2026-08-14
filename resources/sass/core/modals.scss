@@ -34,6 +34,10 @@
         margin-top: 0;
         padding: 15px 25px;
 
+        &:has(> [hidden]:only-child) {
+            display: none;
+        }
+
         &.modal-actions-stacked {
             flex-direction: column-reverse;
             align-items: stretch;

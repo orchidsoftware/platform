@@ -180,5 +180,13 @@
     "Welcome back": "مرحبًا بعودتك",
     "Stay signed in on this device": "ابقَ مسجلاً الدخول على هذا الجهاز",
     "This user does not have access to this page. Switch back to your account to continue.": "لا يملك هذا المستخدم صلاحية الوصول إلى هذه الصفحة. عُد إلى حسابك للمتابعة.",
-    "Use another account": "استخدام حساب آخر"
+    "Use another account": "استخدام حساب آخر",
+    "No items yet": "لا توجد عناصر بعد",
+    "New items will appear here.": "ستظهر العناصر الجديدة هنا.",
+    "No matches": "لا توجد نتائج مطابقة",
+    "Try changing or clearing the filters.": "جرّب تغيير عوامل التصفية أو مسحها.",
+    "Clear filters": "مسح عوامل التصفية",
+    "No results": "لا توجد نتائج",
+    "Try a different search.": "جرّب بحثًا مختلفًا.",
+    "No new notifications.": "لا توجد إشعارات جديدة."
 }

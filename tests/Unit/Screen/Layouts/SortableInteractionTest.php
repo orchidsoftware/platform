@@ -4,12 +4,34 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
+use Orchid\Screen\Layouts\Sortable;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Sight;
 use Orchid\Tests\TestUnitCase;
 
 class SortableInteractionTest extends TestUnitCase
 {
+    public function testEmptySortableUsesSharedEmptyState(): void
+    {
+        $layout = new class extends Sortable
+        {
+            protected $target = 'target';
+
+            protected function columns(): iterable
+            {
+                return [];
+            }
+        };
+
+        $html = $layout->build(new Repository([
+            'target' => collect([]),
+        ]))->render();
+
+        self::assertStringContainsString('class="empty-state ', $html);
+        self::assertStringContainsString('No items yet', $html);
+        self::assertStringContainsString('New items will appear here.', $html);
+    }
+
     public function testSortableUsesAnExplicitReorderHandle(): void
     {
         $model = new class(['id' => 1, 'name' => 'First item']) extends Repository

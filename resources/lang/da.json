@@ -180,5 +180,13 @@
     "Welcome back": "Velkommen tilbage",
     "Stay signed in on this device": "Forbliv logget ind på denne enhed",
     "This user does not have access to this page. Switch back to your account to continue.": "Denne bruger har ikke adgang til denne side. Skift tilbage til din konto for at fortsætte.",
-    "Use another account": "Brug en anden konto"
+    "Use another account": "Brug en anden konto",
+    "No items yet": "Ingen elementer endnu",
+    "New items will appear here.": "Nye elementer vises her.",
+    "No matches": "Ingen match",
+    "Try changing or clearing the filters.": "Prøv at ændre eller rydde filtrene.",
+    "Clear filters": "Ryd filtre",
+    "No results": "Ingen resultater",
+    "Try a different search.": "Prøv en anden søgning.",
+    "No new notifications.": "Ingen nye notifikationer."
 }

@@ -180,5 +180,13 @@
     "Welcome back": "Tekrar hoş geldin",
     "Stay signed in on this device": "Bu cihazda oturum açık kalsın",
     "This user does not have access to this page. Switch back to your account to continue.": "Bu kullanıcının bu sayfaya erişimi yok. Devam etmek için kendi hesabınıza dönün.",
-    "Use another account": "Başka bir hesap kullan"
+    "Use another account": "Başka bir hesap kullan",
+    "No items yet": "Henüz öğe yok",
+    "New items will appear here.": "Yeni öğeler burada görünecek.",
+    "No matches": "Eşleşme yok",
+    "Try changing or clearing the filters.": "Filtreleri değiştirmeyi veya temizlemeyi deneyin.",
+    "Clear filters": "Filtreleri temizle",
+    "No results": "Sonuç yok",
+    "Try a different search.": "Farklı bir arama deneyin.",
+    "No new notifications.": "Yeni bildirim yok."
 }

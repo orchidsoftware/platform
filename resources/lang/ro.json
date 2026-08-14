@@ -180,5 +180,13 @@
     "Welcome back": "Bine ați revenit",
     "Stay signed in on this device": "Rămâneți autentificat pe acest dispozitiv",
     "This user does not have access to this page. Switch back to your account to continue.": "Acest utilizator nu are acces la această pagină. Reveniți la contul dvs. pentru a continua.",
-    "Use another account": "Utilizați alt cont"
+    "Use another account": "Utilizați alt cont",
+    "No items yet": "Încă nu există elemente",
+    "New items will appear here.": "Elementele noi vor apărea aici.",
+    "No matches": "Nicio potrivire",
+    "Try changing or clearing the filters.": "Încearcă să modifici sau să ștergi filtrele.",
+    "Clear filters": "Șterge filtrele",
+    "No results": "Niciun rezultat",
+    "Try a different search.": "Încearcă o altă căutare.",
+    "No new notifications.": "Nicio notificare nouă."
 }
