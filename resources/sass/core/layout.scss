@@ -9,14 +9,99 @@ body {
     overflow-x: hidden;
 }
 
+.aside-header {
+    min-height: 2.5rem;
+}
+
+.aside-header__toggler {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 !important;
+    z-index: 1;
+}
+
+.aside-header__brand {
+    margin: 0 auto;
+    text-align: center;
+}
+
 @include media-breakpoint-up(lg) {
     .aside {
+        position: relative;
         width: min($app-aside-width, 25%);
         max-width: $app-aside-max-width;
         min-height: 100vh;
+        transition:
+            width 0.2s ease,
+            min-width 0.2s ease,
+            max-width 0.2s ease,
+            flex-basis 0.2s ease;
 
         nav {
             height: 100%;
+        }
+    }
+
+    body.aside-collapsed {
+        .aside {
+            width: $app-aside-folded-width !important;
+            min-width: $app-aside-folded-width !important;
+            max-width: $app-aside-folded-width !important;
+            flex: 0 0 $app-aside-folded-width !important;
+
+            > header {
+                justify-content: center;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            .aside-header__toggler {
+                position: static;
+                transform: none;
+                left: auto;
+            }
+
+            .header-brand,
+            .aside-collapse > .p-3,
+            .aside-collapse > .divider,
+            .nav-item > small,
+            .nav-link > span,
+            .nav-link > .badge,
+            .to-top,
+            .profile-container small,
+            .profile-container [class*="notification"],
+            .profile-container > :not(a),
+            .hidden-folded {
+                display: none !important;
+            }
+
+            .nav-link {
+                justify-content: center;
+                gap: 0 !important;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            .profile-container {
+                justify-content: center;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+
+                > a {
+                    width: auto !important;
+                    justify-content: center;
+                }
+            }
+        }
+
+        .col-lg-9,
+        .col-xl-9,
+        .col-xxl {
+            flex: 1 1 auto;
+            max-width: calc(100% - #{$app-aside-folded-width});
+            width: auto;
         }
     }
 }
