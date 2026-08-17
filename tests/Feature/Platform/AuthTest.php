@@ -14,7 +14,9 @@ class AuthTest extends TestFeatureCase
         $this->get(route('orchid.login'))
             ->assertOk()
             ->assertSee('type="email"', false)
-            ->assertSee('type="password"', false);
+            ->assertSee('type="password"', false)
+            ->assertSee('data-password-target="toggle"', false)
+            ->assertSee('aria-label="Show password"', false);
     }
 
     public function testRouteDashboardLoginAuth(): void
