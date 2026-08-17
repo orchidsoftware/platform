@@ -8,6 +8,16 @@ use Orchid\Tests\TestUnitCase;
 
 class TDForTableTest extends TestUnitCase
 {
+    public function testSortIndicatorSpaceIsReserved(): void
+    {
+        $view = (string) TD::make('name')->sort()->buildTh();
+
+        $this->assertStringContainsString(
+            'table-sort-indicator d-inline-flex align-items-center justify-content-center',
+            $view,
+        );
+    }
+
     public function testShowPopover(): void
     {
         $popover = 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus.';

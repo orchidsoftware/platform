@@ -5,7 +5,7 @@
             th {
                 font-weight: 600;
                 font-size: 0.9em;
-                vertical-align: baseline;
+                vertical-align: top;
                 border-top: 0;
                 color: rgba($dark, 0.55);
                 &:first-child {
@@ -27,6 +27,10 @@
                     &:focus {
                         text-decoration: initial !important;
                     }
+                }
+                .table-sort-indicator {
+                    flex: 0 0 1em;
+                    width: 1em;
                 }
                 .dropdown {
                     position: inherit;
