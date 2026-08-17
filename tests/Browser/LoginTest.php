@@ -18,6 +18,13 @@ class LoginTest extends TestBrowserCase
             $browser
                 ->visitRoute('orchid.login')
                 ->waitForText('Sign in to your account')
+                ->assertSee('Stay signed in on this device')
+                ->assertAttribute('[data-password-target="toggle"]', 'aria-label', 'Show password')
+                ->click('[data-password-target="toggle"]')
+                ->assertAttribute('input[name="password"]', 'type', 'text')
+                ->assertAttribute('[data-password-target="toggle"]', 'aria-label', 'Hide password')
+                ->click('[data-password-target="toggle"]')
+                ->assertAttribute('input[name="password"]', 'type', 'password')
 
                 // invalid login
                 ->type('email', 'admin@admin.com')
@@ -50,7 +57,8 @@ class LoginTest extends TestBrowserCase
             $browser
                 ->visitRoute('orchid.main')
                 ->waitForLocation('/dashboard/login')
-                ->assertSee('Sign in to your account');
+                ->assertSee('Welcome back')
+                ->assertSee('Use another account');
         });
     }
 }
