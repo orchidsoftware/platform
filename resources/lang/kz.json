@@ -113,7 +113,6 @@
     "Profile updated.": "Профиль жаңартылды.",
     "Regular User": "Қарапайым пайдаланушы",
     "Relations": "Байланыстар",
-    "Remember Me": "Мені ұмытпаңыз",
     "Remove": "Жою",
     "Remove row": "Жолды жою",
     "Reset": "Қалпына келтіру",
@@ -130,7 +129,6 @@
     "Send": "Жіберу",
     "Show password": "Құпиясөзді көрсету",
     "Sign in to your account": "Тіркелгіңізге кіріңіз",
-    "Sign in with another user.": "Пайдаланушыны өзгерту.",
     "Sign out": "Шығу",
     "Size": "Өлшем",
     "Slug": "Бірегей пайдаланушы URL мекенжайы",
@@ -169,7 +167,6 @@
     "Version": "Нұсқа",
     "Welcome": "Қош келдіңіз",
     "What to search...": "Не іздеу керек...",
-    "You are currently viewing this page on behalf of a user who does not have access to it. To return to viewing as yourself, please click the 'Switch to My Account' button. It's possible that the page may be displayed correctly when viewed from your own account.": "Сіз қазір бұл бетті оған кіре алмайтын пайдаланушы ретінде қарап жатырсыз. Өзіңіз ретінде шолуға оралу үшін «Тіркелгіңізге ауысу» түймесін басыңыз. Жеке тіркелгіңізден қараған кезде бет дұрыс көрсетілуі мүмкін.",
     "You are now impersonating this user": "Сіз қазір осы пайдаланушыны еліктеп жатырсыз.",
     "You can revert to your original state by logging out.": "Жүйеден шығу арқылы бастапқы күйіңізге оралуға болады.",
     "You clicked a broken link": "Сіз сынған сілтемені бастыңыз",
@@ -179,5 +176,9 @@
     "elements": "элементтері",
     "of": "ның",
     "show": "көрсету",
-    "Specify which roles this account should belong to": "Бұл тіркелгі тиесілі рөлдерді көрсетіңіз."
+    "Specify which roles this account should belong to": "Бұл тіркелгі тиесілі рөлдерді көрсетіңіз.",
+    "Welcome back": "Қайта қош келдіңіз",
+    "Stay signed in on this device": "Осы құрылғыда жүйеде қалу",
+    "This user does not have access to this page. Switch back to your account to continue.": "Бұл пайдаланушының осы бетке кіруге рұқсаты жоқ. Жалғастыру үшін өз тіркелгіңізге оралыңыз.",
+    "Use another account": "Басқа тіркелгіні пайдалану"
 }

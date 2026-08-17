@@ -113,7 +113,6 @@
     "Profile updated.": "個人資料已更新。",
     "Regular User": "一般使用者",
     "Relations": "關連",
-    "Remember Me": "記住我",
     "Remove": "刪除",
     "Remove row": "刪除列",
     "Reset": "重置",
@@ -130,7 +129,6 @@
     "Send": "送出",
     "Show password": "顯示密碼",
     "Sign in to your account": "登入您的帳號",
-    "Sign in with another user.": "使用其他帳號登入",
     "Sign out": "登出",
     "Size": "大小",
     "Slug": "別名",
@@ -169,7 +167,6 @@
     "Version": "版本",
     "Welcome": "歡迎",
     "What to search...": "想要搜尋...",
-    "You are currently viewing this page on behalf of a user who does not have access to it. To return to viewing as yourself, please click the 'Switch to My Account' button. It's possible that the page may be displayed correctly when viewed from your own account.": "您當前正在代表無權訪問該頁面的用戶查看該頁面。要返回以您自己的身份查看，請點擊“切換到我的帳戶”按鈕。從您自己的帳戶查看時，該頁面可能會正確顯示。",
     "You are now impersonating this user": "您現在正在冒充該用戶",
     "You can revert to your original state by logging out.": "您可以通過登出來恢復到原始狀態。",
     "You clicked a broken link": "您點擊了損壞的鏈接",
@@ -179,5 +176,9 @@
     "elements": "元素",
     "of": "的",
     "show": "顯示",
-    "Specify which roles this account should belong to": "選擇此帳號歸屬的群組"
+    "Specify which roles this account should belong to": "選擇此帳號歸屬的群組",
+    "Welcome back": "歡迎回來",
+    "Stay signed in on this device": "在此裝置上保持登入狀態",
+    "This user does not have access to this page. Switch back to your account to continue.": "此使用者無權存取此頁面。請切換回您的帳戶以繼續。",
+    "Use another account": "使用其他帳戶"
 }

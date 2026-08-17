@@ -3,11 +3,10 @@
         ->title(__('Email address'))
         ->type('email')
         ->required()
-        ->tabindex(1)
         ->autofocus()
         ->autocomplete('email')
         ->inputmode('email')
-        ->placeholder(__('Enter your email'))
+        ->placeholder('name@example.com')
         ->requiredWithoutAsterisk()
 !!}
 
@@ -16,28 +15,26 @@
         ->title(__('Password'))
         ->required()
         ->autocomplete('current-password')
-        ->tabindex(2)
         ->placeholder(__('Enter your password'))
         ->requiredWithoutAsterisk()
 !!}
 
-<div class="row align-items-center">
-    <div class="col-md-6 col-xs-12">
+<div class="row g-3">
+    <div class="col-12">
         {!!
              \Orchid\Screen\Fields\CheckBox::make('remember')
-                ->placeholder(__('Remember Me'))
+                ->placeholder(__('Stay signed in on this device'))
                 ->sendTrueOrFalse()
                 ->value(old('remember', true))
-                ->title(__('Remember Me'))
         !!}
     </div>
-    <div class="col-md-6 col-xs-12">
-        <button id="button-login" type="submit" class="btn btn-default btn-block" tabindex="3">
+    <div class="col-12">
+        <button id="button-login" type="submit" class="btn btn-dark btn-block">
             <x-orchid-icon path="bs.box-arrow-in-right"
                            width="1.25em"
                            height="1.25em"
                            class="small me-2"/>
-            {{__('Login')}}
+            {{ __('Login') }}
         </button>
     </div>
 </div>

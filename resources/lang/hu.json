@@ -113,7 +113,6 @@
     "Profile updated.": "Profil módosítva.",
     "Regular User": "Általános adminisztrátor",
     "Relations": "Kapcsolatok",
-    "Remember Me": "Emlékezz rám",
     "Remove": "Törlés",
     "Remove row": "Sor eltávolítása",
     "Reset": "Visszaállítás",
@@ -130,7 +129,6 @@
     "Send": "Küldés",
     "Show password": "Jelszó megjelenítése",
     "Sign in to your account": "Bejelentkezés",
-    "Sign in with another user.": "Belépés más nevében.",
     "Sign out": "Kijelentkezés",
     "Size": "Méret",
     "Slug": "Keresőbarát név",
@@ -169,7 +167,6 @@
     "Version": "Verzió",
     "Welcome": "Üdv",
     "What to search...": "Keresés tárgya...",
-    "You are currently viewing this page on behalf of a user who does not have access to it. To return to viewing as yourself, please click the 'Switch to My Account' button. It's possible that the page may be displayed correctly when viewed from your own account.": "Jelenleg egy olyan felhasználó nevében nézi ezt az oldalt, aki nem fér hozzá. ",
     "You are now impersonating this user": "Beléptél más nevében",
     "You can revert to your original state by logging out.": "Kijelentkezve visszaállíthatja eredeti állapotát.",
     "You clicked a broken link": "Hibás linkre kattintott",
@@ -179,5 +176,9 @@
     "elements": "elemeket",
     "of": "a",
     "show": "megmutat",
-    "Specify which roles this account should belong to": "Meghatározza mely csoportokba tartozik a felhasználó"
+    "Specify which roles this account should belong to": "Meghatározza mely csoportokba tartozik a felhasználó",
+    "Welcome back": "Üdv újra",
+    "Stay signed in on this device": "Maradjon bejelentkezve ezen az eszközön",
+    "This user does not have access to this page. Switch back to your account to continue.": "Ez a felhasználó nem fér hozzá ehhez az oldalhoz. A folytatáshoz váltson vissza a saját fiókjára.",
+    "Use another account": "Másik fiók használata"
 }

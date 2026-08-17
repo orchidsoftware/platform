@@ -113,7 +113,6 @@
     "Profile updated.": "Profil mis à jour.",
     "Regular User": "Utilisateur régulier",
     "Relations": "Relations",
-    "Remember Me": "Se souvenir de moi",
     "Remove": "Supprimer",
     "Remove row": "Supprimer la ligne",
     "Reset": "Réinitialiser",
@@ -130,7 +129,6 @@
     "Send": "Envoyer",
     "Show password": "Afficher le mot de passe",
     "Sign in to your account": "Connectez-vous à votre compte",
-    "Sign in with another user.": "Connectez-vous avec un autre utilisateur",
     "Sign out": "Déconnexion",
     "Size": "Taille",
     "Slug": "Slug",
@@ -169,7 +167,6 @@
     "Version": "Version",
     "Welcome": "Bienvenue",
     "What to search...": "Que rechercher...",
-    "You are currently viewing this page on behalf of a user who does not have access to it. To return to viewing as yourself, please click the 'Switch to My Account' button. It's possible that the page may be displayed correctly when viewed from your own account.": "Vous consultez actuellement cette page au nom d'un utilisateur qui n'y a pas accès. Pour revenir à votre propre vue, veuillez cliquer sur le bouton 'Revenir à mon compte'. Il est possible que la page s'affiche correctement lorsque vous la consultez depuis votre propre compte.",
     "You are now impersonating this user": "Vous usurpez maintenant l'identité de cet utilisateur",
     "You can revert to your original state by logging out.": "Vous pouvez revenir à votre état d'origine en vous déconnectant.",
     "You clicked a broken link": "Vous avez cliqué sur un lien brisé",
@@ -179,5 +176,9 @@
     "elements": "éléments",
     "of": "de",
     "show": "voir",
-    "Specify which roles this account should belong to": "Spécifiez à quels rôles ce compte doit appartenir"
+    "Specify which roles this account should belong to": "Spécifiez à quels rôles ce compte doit appartenir",
+    "Welcome back": "Bon retour",
+    "Stay signed in on this device": "Rester connecté sur cet appareil",
+    "This user does not have access to this page. Switch back to your account to continue.": "Cet utilisateur n’a pas accès à cette page. Revenez à votre compte pour continuer.",
+    "Use another account": "Utiliser un autre compte"
 }
