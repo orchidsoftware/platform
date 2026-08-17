@@ -113,7 +113,6 @@
     "Profile updated.": "Profil opdateret.",
     "Regular User": "Almindelig bruger",
     "Relations": "Relationer",
-    "Remember Me": "Husk mig",
     "Remove": "Fjern",
     "Remove row": "Fjern række",
     "Reset": "Nulstil",
@@ -130,7 +129,6 @@
     "Send": "Sende",
     "Show password": "Vis adgangskode",
     "Sign in to your account": "Log ind på din konto",
-    "Sign in with another user.": "Log ind med en anden bruger.",
     "Sign out": "Log ud",
     "Size": "Størrelse",
     "Slug": "Slug",
@@ -169,7 +167,6 @@
     "Version": "Version",
     "Welcome": "Velkomst",
     "What to search...": "Hvad skal man søge efter?",
-    "You are currently viewing this page on behalf of a user who does not have access to it. To return to viewing as yourself, please click the 'Switch to My Account' button. It's possible that the page may be displayed correctly when viewed from your own account.": "Du ser i øjeblikket denne side på vegne af en bruger, der ikke har adgang til den. Klik på knappen 'Skift til Min konto' for at vende tilbage til at se som dig selv. Det er muligt, at siden vises korrekt, når den ses fra din egen konto.",
     "You are now impersonating this user": "Du efterligner nu denne bruger",
     "You can revert to your original state by logging out.": "Du kan vende tilbage til din oprindelige tilstand ved at logge ud.",
     "You clicked a broken link": "Du klikkede på et ødelagt link",
@@ -179,5 +176,9 @@
     "elements": "elementer",
     "of": "af",
     "show": "vis",
-    "Specify which roles this account should belong to": "Angiv, hvilke roller denne konto skal tilhøre"
+    "Specify which roles this account should belong to": "Angiv, hvilke roller denne konto skal tilhøre",
+    "Welcome back": "Velkommen tilbage",
+    "Stay signed in on this device": "Forbliv logget ind på denne enhed",
+    "This user does not have access to this page. Switch back to your account to continue.": "Denne bruger har ikke adgang til denne side. Skift tilbage til din konto for at fortsætte.",
+    "Use another account": "Brug en anden konto"
 }

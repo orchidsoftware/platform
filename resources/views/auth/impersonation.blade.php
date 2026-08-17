@@ -1,8 +1,8 @@
 @extends('orchid::auth')
-@section('title', __('Access Denied: Viewing as Another User'))
+@section('title', __('Limited Access') . ' — ' . __('You are now impersonating this user'))
 
 @section('content')
-    <h1 class="h4 text-body-emphasis mb-4">{{ __('Limited Access' )}}</h1>
+    <h1 class="h4 text-body-emphasis text-balance mb-4">{{ __('Limited Access') }}</h1>
 
     <form role="form"
           method="POST"
@@ -12,11 +12,11 @@
           action="{{ route('orchid.switch.logout') }}">
         @csrf
 
-        <p>
-            {{ __("You are currently viewing this page on behalf of a user who does not have access to it. To return to viewing as yourself, please click the 'Switch to My Account' button. It's possible that the page may be displayed correctly when viewed from your own account.") }}
+        <p class="text-body-secondary text-balance">
+            {{ __('This user does not have access to this page. Switch back to your account to continue.') }}
         </p>
 
-        <button id="button-login" type="submit" class="btn btn-default btn-block" tabindex="2">
+        <button type="submit" class="btn btn-dark btn-block">
             <x-orchid-icon path="bs.box-arrow-in-right"
                            width="1.25em"
                            height="1.25em"

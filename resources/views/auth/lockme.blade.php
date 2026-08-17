@@ -1,10 +1,17 @@
-<div class="d-flex align-items-center">
-    <div class="thumb-sm avatar me-3">
-        <img src="{{ $lockUser->presenter()->image() }}" class="b bg-light" alt="{{ $lockUser->presenter()->title() }}">
+<div class="d-flex align-items-center gap-3 rounded border bg-body-tertiary p-3">
+    <div class="thumb-md avatar">
+        <img src="{{ $lockUser->presenter()->image() }}"
+             class="b bg-light"
+             alt="{{ $lockUser->presenter()->title() }}"
+        >
     </div>
-    <div class="d-flex flex-column overflow-hidden small">
-        <span class="text-truncate">{{ $lockUser->presenter()->title() }}</span>
-        <span class="text-muted d-block text-truncate lh-sm">{{ $lockUser->presenter()->subTitle() }}</span>
+    <div class="d-flex flex-column overflow-hidden">
+        <span class="fw-semibold text-truncate">
+            {{ $lockUser->presenter()->title() }}
+        </span>
+        <span class="small text-muted d-block text-truncate">
+            {{ $lockUser->presenter()->subTitle() }}
+        </span>
     </div>
     <input type="hidden" name="email" required value="{{ $lockUser->email }}">
 </div>
@@ -16,7 +23,6 @@
         \Orchid\Screen\Fields\Password::make('password')
             ->required()
             ->autocomplete('current-password')
-            ->tabindex(1)
             ->autofocus()
             ->placeholder(__('Enter your password'))
     !!}
@@ -28,23 +34,19 @@
     @enderror
 </div>
 
-<div class="row align-items-center">
-    <div class="col-md-6 col-xs-12">
-        <a href="{{ route('orchid.login.lock') }}" class="small">
-            {{__('Sign in with another user.')}}
-        </a>
-    </div>
-    <div class="col-md-6 col-xs-12">
-        <button id="button-login"
-                type="submit"
-                class="btn btn-default btn-block"
-                tabindex="2"
-        >
-            <x-orchid-icon path="bs.box-arrow-in-right"
-                           width="1.25em"
-                           height="1.25em"
-                           class="small me-2"/>
-            {{__('Login')}}
-        </button>
-    </div>
+<div class="d-grid gap-3">
+    <button id="button-login" type="submit" class="btn btn-dark btn-block">
+        <x-orchid-icon path="bs.box-arrow-in-right"
+                       width="1.25em"
+                       height="1.25em"
+                       class="small me-2"/>
+        {{ __('Login') }}
+    </button>
+
+    <a href="{{ route('orchid.login.lock') }}"
+       class="btn btn-link text-decoration-none"
+       data-turbo-prefetch="false"
+    >
+        {{ __('Use another account') }}
+    </a>
 </div>

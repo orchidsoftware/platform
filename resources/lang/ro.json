@@ -113,7 +113,6 @@
     "Profile updated.": "Profil actualizat.",
     "Regular User": "Utilizator obișnuit",
     "Relations": "Relații",
-    "Remember Me": "Țineți-mă minte",
     "Remove": "Excludeți",
     "Remove row": "Eliminați rândul",
     "Reset": "Resetați",
@@ -130,7 +129,6 @@
     "Send": "Trimiteți",
     "Show password": "Afișează parola",
     "Sign in to your account": "Autentificați-vă în contul dvs.",
-    "Sign in with another user.": "Autentificați-vă cu alt utilizator.",
     "Sign out": "Ieșiți",
     "Size": "Mărime",
     "Slug": "Slug",
@@ -169,7 +167,6 @@
     "Version": "Versiune",
     "Welcome": "Bine ați venit",
     "What to search...": "Ce să caut...",
-    "You are currently viewing this page on behalf of a user who does not have access to it. To return to viewing as yourself, please click the 'Switch to My Account' button. It's possible that the page may be displayed correctly when viewed from your own account.": "În prezent, vizualizați această pagină în numele unui utilizator care nu are acces la ea. ",
     "You are now impersonating this user": "Acum impersonați acest utilizator",
     "You can revert to your original state by logging out.": "Puteți reveni la starea inițială prin deconectare.",
     "You clicked a broken link": "Ai dat clic pe un link rupt",
@@ -179,5 +176,9 @@
     "elements": "elemente",
     "of": "de",
     "show": "afișează",
-    "Specify which roles this account should belong to": "Specificați rolurile din care ar trebui să facă parte acest cont:"
+    "Specify which roles this account should belong to": "Specificați rolurile din care ar trebui să facă parte acest cont:",
+    "Welcome back": "Bine ați revenit",
+    "Stay signed in on this device": "Rămâneți autentificat pe acest dispozitiv",
+    "This user does not have access to this page. Switch back to your account to continue.": "Acest utilizator nu are acces la această pagină. Reveniți la contul dvs. pentru a continua.",
+    "Use another account": "Utilizați alt cont"
 }

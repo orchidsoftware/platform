@@ -113,7 +113,6 @@
     "Profile updated.": "Профіль оновлено.",
     "Regular User": "Звичайний користувач",
     "Relations": "Відносини",
-    "Remember Me": "Пам'ятай мене",
     "Remove": "Видалити",
     "Remove row": "Видалити рядок",
     "Reset": "Скинути",
@@ -130,7 +129,6 @@
     "Send": "Відправити",
     "Show password": "Показати пароль",
     "Sign in to your account": "Увійти у свій обліковий запис",
-    "Sign in with another user.": "Увійдіть під іншим користувачем.",
     "Sign out": "Вихід",
     "Size": "Розмір",
     "Slug": "URL-ідентифікатор",
@@ -169,7 +167,6 @@
     "Version": "Версія",
     "Welcome": "Ласкаво просимо",
     "What to search...": "Що шукати...",
-    "You are currently viewing this page on behalf of a user who does not have access to it. To return to viewing as yourself, please click the 'Switch to My Account' button. It's possible that the page may be displayed correctly when viewed from your own account.": "Зараз ви переглядаєте цю сторінку від імені користувача, який не має до неї доступу. Щоб повернутися до перегляду від свого імені, натисніть кнопку «Переключитися на мій обліковий запис». Можливо, сторінка відображатиметься правильно під час перегляду з вашого власного облікового запису.",
     "You are now impersonating this user": "Тепер ви видаєте себе за цього користувача",
     "You can revert to your original state by logging out.": "Ви можете повернутися до початкового стану, вийшовши з системи.",
     "You clicked a broken link": "Ви натиснули непрацююче посилання",
@@ -179,5 +176,9 @@
     "elements": "елементи",
     "of": "з",
     "show": "показати",
-    "Specify which roles this account should belong to": "Вкажіть, до яких груп має належати цей обліковий запис"
+    "Specify which roles this account should belong to": "Вкажіть, до яких груп має належати цей обліковий запис",
+    "Welcome back": "З поверненням",
+    "Stay signed in on this device": "Залишатися в системі на цьому пристрої",
+    "This user does not have access to this page. Switch back to your account to continue.": "Цей користувач не має доступу до цієї сторінки. Поверніться до свого облікового запису, щоб продовжити.",
+    "Use another account": "Використати інший обліковий запис"
 }

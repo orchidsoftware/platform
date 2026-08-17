@@ -113,7 +113,6 @@
     "Profile updated.": "Profiel bijgewerkt.",
     "Regular User": "Regelmatige gebruiker",
     "Relations": "Relaties",
-    "Remember Me": "Onthoud mij",
     "Remove": "Verwijderen",
     "Remove row": "Rij verwijderen",
     "Reset": "Opnieuw instellen",
@@ -130,7 +129,6 @@
     "Send": "Versturen",
     "Show password": "Wachtwoord tonen",
     "Sign in to your account": "Aanmelden bij uw account",
-    "Sign in with another user.": "Log in met een andere gebruiker.",
     "Sign out": "Afmelden",
     "Size": "Grootte",
     "Slug": "Slug",
@@ -169,7 +167,6 @@
     "Version": "Versie",
     "Welcome": "Welkom",
     "What to search...": "Zoekterm..",
-    "You are currently viewing this page on behalf of a user who does not have access to it. To return to viewing as yourself, please click the 'Switch to My Account' button. It's possible that the page may be displayed correctly when viewed from your own account.": "U bekijkt deze pagina momenteel namens een gebruiker die er geen toegang toe heeft. Klik op de knop 'Ga naar Mijn account' om terug te keren naar uw eigen weergave. Het is mogelijk dat de pagina correct wordt weergegeven wanneer deze vanuit uw eigen account wordt bekeken.",
     "You are now impersonating this user": "U doet zich nu voor als deze gebruiker",
     "You can revert to your original state by logging out.": "U kunt terugkeren naar uw oorspronkelijke staat door uit te loggen.",
     "You clicked a broken link": "Je hebt op een verbroken link geklikt",
@@ -179,5 +176,9 @@
     "elements": "elementen",
     "of": "van",
     "show": "tonen",
-    "Specify which roles this account should belong to": "Geef op tot welke rollen dit account moet behoren"
+    "Specify which roles this account should belong to": "Geef op tot welke rollen dit account moet behoren",
+    "Welcome back": "Welkom terug",
+    "Stay signed in on this device": "Aangemeld blijven op dit apparaat",
+    "This user does not have access to this page. Switch back to your account to continue.": "Deze gebruiker heeft geen toegang tot deze pagina. Ga terug naar uw account om door te gaan.",
+    "Use another account": "Een ander account gebruiken"
 }

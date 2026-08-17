@@ -134,6 +134,12 @@ $modal-content-border-width: 0;
 
 $popover-bg: $white;
 
+$thumb-sizes: (
+    xs: 34px,
+    sm: 40px,
+    md: 3.5rem,
+);
+
 $utilities: (
     "line-clamp": (
         property: -webkit-line-clamp,
@@ -146,6 +152,11 @@ $utilities: (
             4: 4,
             5: 5,
         ),
+    ),
+    "thumb-size": (
+        property: width min-width,
+        class: thumb,
+        values: $thumb-sizes,
     ),
 );
 
