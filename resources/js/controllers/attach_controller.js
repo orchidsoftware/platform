@@ -134,8 +134,9 @@ export default class extends ApplicationController {
                 this.togglePlaceholderShow();
                 console.error("Error:", error);
 
-                this.toast(this.errorTypeValue);
-                //alert(this.errorTypeValue);
+                this.toast(
+                    error.response?.data?.message ?? this.errorTypeValue
+                );
             });
     }
 

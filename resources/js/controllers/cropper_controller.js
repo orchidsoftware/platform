@@ -162,7 +162,10 @@ export default class extends ApplicationController {
                         this.getModal().hide();
                     })
                     .catch(error => {
-                        this.alert("Validation error", "File upload error");
+                        this.alert(
+                            "Validation error",
+                            error.response?.data?.message ?? "File upload error"
+                        );
                         console.warn(error);
                     });
             }, this.typeValue);
