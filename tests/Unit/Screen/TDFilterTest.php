@@ -8,6 +8,24 @@ use Orchid\Tests\TestUnitCase;
 
 class TDFilterTest extends TestUnitCase
 {
+    public function testFilterIsRenderedBeforeTheColumnTitle(): void
+    {
+        $view = (string) TD::make('name', 'Column title')
+            ->filter()
+            ->buildTh();
+
+        $titlePosition = strpos($view, 'Column title');
+        $filterPosition = strpos($view, 'data-controller="filter"');
+
+        $this->assertIsInt($titlePosition);
+        $this->assertIsInt($filterPosition);
+        $this->assertLessThan($titlePosition, $filterPosition);
+        $this->assertStringContainsString(
+            'd-inline-flex align-items-center align-middle flex-nowrap gap-1 text-nowrap',
+            $view,
+        );
+    }
+
     public function testTdSimpleFilter(): void
     {
         request()->replace([
