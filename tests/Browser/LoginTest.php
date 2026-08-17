@@ -18,6 +18,12 @@ class LoginTest extends TestBrowserCase
             $browser
                 ->visitRoute('orchid.login')
                 ->waitForText('Sign in to your account')
+                ->assertAttribute('[data-password-target="toggle"]', 'aria-label', 'Show password')
+                ->click('[data-password-target="toggle"]')
+                ->assertAttribute('input[name="password"]', 'type', 'text')
+                ->assertAttribute('[data-password-target="toggle"]', 'aria-label', 'Hide password')
+                ->click('[data-password-target="toggle"]')
+                ->assertAttribute('input[name="password"]', 'type', 'password')
 
                 // invalid login
                 ->type('email', 'admin@admin.com')

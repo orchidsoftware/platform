@@ -48,8 +48,9 @@ class Password extends Field
      * @var array
      */
     protected $attributes = [
-        'type'  => 'password',
-        'class' => 'form-control',
+        'type'       => 'password',
+        'class'      => 'form-control',
+        'revealable' => true,
     ];
 
     /**
@@ -85,4 +86,16 @@ class Password extends Field
         'tabindex',
         'type',
     ];
+
+    /**
+     * Configure whether the password can be revealed.
+     *
+     * The reveal button allows users to temporarily disable masking and see
+     * the value they entered. This is especially helpful on mobile devices,
+     * where typing is more error-prone. Disable it when this is not desired.
+     */
+    public function revealable(bool $value = true): static
+    {
+        return $this->set('revealable', $value);
+    }
 }
