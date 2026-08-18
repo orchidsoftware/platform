@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
+use Illuminate\Notifications\DatabaseNotification;
+use Orchid\Platform\Components\Notification;
 use Orchid\Platform\Models\User;
 use Orchid\Platform\Notifications\OrchidMessage;
 use Orchid\Support\Color;
 use Orchid\Tests\App\Notifications\TaskCompleted;
+use Orchid\Tests\Database\Factory\DatabaseNotificationFactory;
 use Orchid\Tests\TestFeatureCase;
 
 class NotificationTest extends TestFeatureCase
@@ -86,6 +89,31 @@ class NotificationTest extends TestFeatureCase
         $response
             ->assertOk()
             ->assertJson(['total' => 1]);
+
+        $this->assertFalse(
+            $user->relationLoaded('unreadNotifications'),
+            'Counting unread notifications must not hydrate the notification relation.',
+        );
+    }
+
+    public function testNotificationBadgeCapsDoubleDigitCountForFrontendIndicator(): void
+    {
+        $user = $this->createAdminUser();
+
+        DatabaseNotificationFactory::new()
+            ->count(11)
+            ->for($user, 'notifiable')
+            ->create();
+
+        $this->actingAs($user);
+
+        DatabaseNotification::retrieved(
+            fn () => $this->fail('Rendering the notification badge must not hydrate notification models.')
+        );
+
+        $view = $this->app->make(Notification::class)->render();
+
+        $this->assertSame(10, $view->getData()['unreadCount']);
     }
 
     private function createNotifyUser(): User

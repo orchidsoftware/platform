@@ -85,7 +85,7 @@ class NotificationController extends Controller
     public function unreadCount(Request $request): array
     {
         $total = $request->user()
-            ->unreadNotifications
+            ->unreadNotifications()
             ->whereIn('type', [OrchidMessage::class, DashboardMessage::class])
             ->count();
 
