@@ -19,6 +19,7 @@ use Orchid\Tests\App\Screens\ModalValidationScreen;
 use Orchid\Tests\App\Screens\ModelAutoOpenScreen;
 use Orchid\Tests\App\Screens\NestedTargetsDependentSumListenerScreen;
 use Orchid\Tests\App\Screens\PropertyAutoWriteScreen;
+use Orchid\Tests\App\Screens\SideMenuScreen;
 use Orchid\Tests\App\Screens\UnaccessedScreen;
 
 class ExemplarServiceProvider extends ServiceProvider
@@ -48,6 +49,12 @@ class ExemplarServiceProvider extends ServiceProvider
                 $route->screen('confirm', ConfirmScreen::class)->name('confirm');
                 $route->screen('async-header-button-action', AsyncHeaderButtonActionScreen::class)->name('async-header-button-action');
                 $route->screen('write-only-public-property', PropertyAutoWriteScreen::class)->name('write-only-public-property');
+                $route->screen('side-menu', SideMenuScreen::class)->name('side-menu');
+                $route->screen('side-menu/activity', SideMenuScreen::class)->name('side-menu.activity');
+                $route->screen('side-menu/settings/general', SideMenuScreen::class)->name('side-menu.settings.general');
+                $route->screen('side-menu/settings/members', SideMenuScreen::class)->name('side-menu.settings.members');
+                $route->screen('side-menu/long-label', SideMenuScreen::class)->name('side-menu.long-label');
+                $route->screen('side-menu/support', SideMenuScreen::class)->name('side-menu.support');
 
                 $route->screen('unaccessed', UnaccessedScreen::class)->name('unaccessed');
 

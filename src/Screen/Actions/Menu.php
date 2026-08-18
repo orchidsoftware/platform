@@ -48,7 +48,7 @@ class Menu extends Link
      * @var array
      */
     protected $attributes = [
-        'class'          => 'nav-link d-flex align-items-center collapsed icon-link gap-3',
+        'class'          => 'nav-link d-flex align-items-center icon-link gap-3',
         'title'          => null,
         'icon'           => null,
         'href'           => null,
@@ -118,6 +118,23 @@ class Menu extends Link
                     ->flatten();
 
                 $this->set('active', $active->toArray());
+            })
+            ->addBeforeRender(function () {
+                if (collect($this->get('list', []))->isEmpty()) {
+                    return;
+                }
+
+                $expanded = (string) active($this->get('active')) !== '';
+                $class = trim((string) $this->get('class'));
+
+                if (! $expanded) {
+                    $class .= ' collapsed';
+                }
+
+                $this
+                    ->set('class', trim($class))
+                    ->set('aria-controls', 'menu-'.$this->get('slug'))
+                    ->set('aria-expanded', $expanded ? 'true' : 'false');
             });
     }
 

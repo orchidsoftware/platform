@@ -22,7 +22,7 @@ class ArtisanTest extends TestConsoleCase
         yield ['Selection', 'orchid:selection', 'Orchid/Layouts/'];
         yield ['Listener', 'orchid:listener', 'Orchid/Layouts/'];
         yield ['TabMenu', 'orchid:tab-menu', 'Orchid/Layouts/'];
-
+        yield ['SideMenu', 'orchid:side-menu', 'Orchid/Layouts/'];
         yield ['Presenter', 'orchid:presenter', 'Orchid/Presenters/'];
         yield ['Screen', 'orchid:screen', 'Orchid/Screens/'];
         yield ['Filter', 'orchid:filter', 'Orchid/Filters/'];
