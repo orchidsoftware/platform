@@ -251,7 +251,7 @@ class Field implements Fieldable, Htmlable
         $lang = $this->get('lang');
 
         collect($this->attributes)
-            ->filter(fn ($value, $key) =>  is_string($value) && $this->shouldTranslate($key))
+            ->filter(fn ($value, $key) => is_string($value) && $this->shouldTranslate($key))
             ->each(function ($value, $key) use ($lang) {
                 $translation = __($value, [], $lang);
                 $this->set($key, is_string($translation) ? $translation : $value);
@@ -277,11 +277,23 @@ class Field implements Fieldable, Htmlable
      */
     protected function getAllowAttributes(): ComponentAttributeBag
     {
-        $allow = array_merge($this->universalAttributes, $this->inlineAttributes);
+        $allow = collect(array_merge($this->universalAttributes, $this->inlineAttributes));
+        [$wildcards, $exact] = $allow->partition(fn ($attribute) => str_contains($attribute, '*'));
+
+        $allowsDataAttributes = $wildcards->contains('data-*');
+        $allowsAriaAttributes = $wildcards->contains('aria-*');
+        $wildcards = $wildcards
+            ->reject(fn ($attribute) => in_array($attribute, ['data-*', 'aria-*'], true))
+            ->values()
+            ->all();
+        $exact = $exact->flip();
 
         $attributes = collect($this->getAttributes())
-            ->filter(fn ($value, $attribute) => Str::is($allow, $attribute))
-            ->toArray();
+            ->filter(fn ($value, $attribute) => $exact->has($attribute)
+                || ($allowsDataAttributes && str_starts_with($attribute, 'data-'))
+                || ($allowsAriaAttributes && str_starts_with($attribute, 'aria-'))
+                || ($wildcards !== [] && Str::is($wildcards, $attribute)))
+            ->all();
 
         return (new ComponentAttributeBag())
             ->merge($attributes);
@@ -294,7 +306,7 @@ class Field implements Fieldable, Htmlable
      */
     protected function getAllowDataAttributes(): ComponentAttributeBag
     {
-        return $this->getAllowAttributes()->filter(fn ($value, $key) => Str::startsWith($key, 'data-'));
+        return $this->getAllowAttributes()->whereStartsWith('data-');
     }
 
     /**
