@@ -2,6 +2,7 @@
 
 namespace Orchid\Tests\Unit\Screen\Concerns;
 
+use Illuminate\Support\Collection;
 use Orchid\Screen\Concerns\HasTranslations;
 use Orchid\Tests\TestUnitCase;
 
@@ -74,5 +75,21 @@ class HasTranslationsTest extends TestUnitCase
 
         $this->assertFalse($this->field->shouldTranslate('summary'));
         $this->assertCount(2, $this->field->getTranslations());
+    }
+
+    public function testTranslationAttributesCanBeOverridden(): void
+    {
+        $field = new class
+        {
+            use HasTranslations;
+
+            protected function translations(): Collection
+            {
+                return collect(['description']);
+            }
+        };
+
+        $this->assertTrue($field->shouldTranslate('description'));
+        $this->assertFalse($field->shouldTranslate('title'));
     }
 }
