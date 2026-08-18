@@ -139,6 +139,7 @@ class ExampleScreen extends Screen
                     ->render(fn (Repository $model) => // Please use view('path')
                     "<img src='https://loremflickr.com/500/300?random={$model->get('id')}'
                               alt='sample'
+                              loading='lazy'
                               class='mw-100 d-block img-fluid rounded-1 w-100'>
                             <span class='small text-muted mt-1 mb-0'># {$model->get('id')}</span>"),
 

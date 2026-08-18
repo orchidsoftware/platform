@@ -13,6 +13,8 @@ use Orchid\Platform\Notifications\OrchidMessage;
 
 class Notification extends Component
 {
+    private const COUNT_INDICATOR_THRESHOLD = 10;
+
     /**
      * @var Authenticatable|null
      */
@@ -33,14 +35,16 @@ class Notification extends Component
      */
     public function render()
     {
-        $notifications = $this->user
+        $unreadCount = $this->user
             ->unreadNotifications()
             ->whereIn('type', [OrchidMessage::class, DashboardMessage::class])
-            ->limit(15)
-            ->get();
+            ->reorder()
+            ->limit(self::COUNT_INDICATOR_THRESHOLD)
+            ->pluck('id')
+            ->count();
 
         return view('orchid::components.notification', [
-            'notifications' => $notifications,
+            'unreadCount' => $unreadCount,
         ]);
     }
 
