@@ -113,22 +113,24 @@ class LoginController extends Controller
     }
 
     /**
-     * @param Guard $guard
+     * Show the application's login form.
      *
      * @return Factory|View
      */
     public function showLoginForm(Request $request)
     {
-        $user = $request->cookie($this->nameForLock());
+        $lockUserId = $request->cookie($this->nameForLock());
 
         /** @var EloquentUserProvider $provider */
         $provider = $this->guard->getProvider();
 
-        $model = $provider->createModel()->find($user);
+        $lockUser = filled($lockUserId)
+            ? $provider->createModel()->find($lockUserId)
+            : null;
 
         return view('orchid::auth.login', [
-            'isLockUser' => optional($model)->exists ?? false,
-            'lockUser'   => $model,
+            'isLockUser' => optional($lockUser)->exists ?? false,
+            'lockUser'   => $lockUser,
         ]);
     }
 

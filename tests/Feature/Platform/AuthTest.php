@@ -5,18 +5,55 @@ declare(strict_types=1);
 namespace Orchid\Tests\Feature\Platform;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Orchid\Tests\TestFeatureCase;
 
 class AuthTest extends TestFeatureCase
 {
     public function testRouteDashboardLogin(): void
     {
+        DB::enableQueryLog();
+
         $this->get(route('orchid.login'))
             ->assertOk()
             ->assertSee('type="email"', false)
             ->assertSee('type="password"', false)
             ->assertSee('data-password-target="toggle"', false)
             ->assertSee('aria-label="Show password"', false);
+
+        $this->assertLoginDidNotQueryUsers();
+    }
+
+    public function testRouteDashboardLoginWithEmptyLockCookie(): void
+    {
+        DB::enableQueryLog();
+
+        $this->withCookie($this->lockCookieName(), '')
+            ->get(route('orchid.login'))
+            ->assertOk()
+            ->assertSee('type="email"', false);
+
+        $this->assertLoginDidNotQueryUsers();
+    }
+
+    public function testRouteDashboardLoginWithLockCookie(): void
+    {
+        $user = $this->createAdminUser();
+
+        $this->withCookie($this->lockCookieName(), (string) $user->getKey())
+            ->get(route('orchid.login'))
+            ->assertOk()
+            ->assertSee('value="'.$user->email.'"', false)
+            ->assertSee(__('Use another account'));
+    }
+
+    public function testRouteDashboardLoginWithUnknownLockCookie(): void
+    {
+        $this->withCookie($this->lockCookieName(), '999999')
+            ->get(route('orchid.login'))
+            ->assertOk()
+            ->assertSee('type="email"', false)
+            ->assertDontSee(__('Use another account'));
     }
 
     public function testRouteDashboardLoginAuth(): void
@@ -82,5 +119,18 @@ class AuthTest extends TestFeatureCase
 
         $auth->get(route('orchid.index'))
             ->assertRedirect(route('orchid.login'));
+    }
+
+    private function lockCookieName(): string
+    {
+        return sprintf('%s_%s', Auth::guard()->getName(), '_orchid_lock');
+    }
+
+    private function assertLoginDidNotQueryUsers(): void
+    {
+        $queriesUsers = collect(DB::getQueryLog())
+            ->contains(static fn (array $query) => preg_match('/\bfrom\s+["`]?users["`]?/i', $query['query']) === 1);
+
+        $this->assertFalse($queriesUsers, 'Guest login unexpectedly queried the users table.');
     }
 }

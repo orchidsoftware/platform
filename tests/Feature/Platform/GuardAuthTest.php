@@ -40,6 +40,18 @@ class GuardAuthTest extends TestFeatureCase
             ->assertRedirect(route(config('orchid.index')));
     }
 
+    public function testCustomGuardLoadsLockUser(): void
+    {
+        $user = $this->createAdminUser();
+        $cookie = sprintf('%s_%s', Auth::guard('admin')->getName(), '_orchid_lock');
+
+        $this->withCookie($cookie, (string) $user->getKey())
+            ->get(route('orchid.login'))
+            ->assertOk()
+            ->assertSee('value="'.$user->email.'"', false)
+            ->assertSee(__('Use another account'));
+    }
+
     public function testFailCustomGuard(): void
     {
         $this
