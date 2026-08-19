@@ -9,6 +9,7 @@ use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
+use Orchid\Screen\Concerns\HasEmptyState;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\TD;
@@ -18,6 +19,8 @@ use Orchid\Screen\TD;
  */
 abstract class Table extends Layout
 {
+    use HasEmptyState;
+
     /**
      * @var string
      */
@@ -69,21 +72,22 @@ abstract class Table extends Layout
         $rows = is_a($content, Paginator::class) || is_a($content, CursorPaginator::class) ? $content : collect()->merge($content);
 
         return view($this->template, [
-            'repository'   => $repository,
-            'rows'         => $rows,
-            'columns'      => $columns,
-            'total'        => $total,
-            'iconNotFound' => $this->iconNotFound(),
-            'textNotFound' => $this->textNotFound(),
-            'subNotFound'  => $this->subNotFound(),
-            'striped'      => $this->striped(),
-            'compact'      => $this->compact(),
-            'bordered'     => $this->bordered(),
-            'hoverable'    => $this->hoverable(),
-            'slug'         => $this->getSlug(),
-            'onEachSide'   => $this->onEachSide(),
-            'showHeader'   => $this->hasHeader($columns, $rows),
-            'title'        => $this->title,
+            'repository'            => $repository,
+            'rows'                  => $rows,
+            'columns'               => $columns,
+            'total'                 => $total,
+            'emptyStateIcon'        => $this->emptyStateIcon(),
+            'emptyStateTitle'       => $this->emptyStateTitle(),
+            'emptyStateDescription' => $this->emptyStateDescription(),
+            'emptyStateAction'      => $this->emptyStateAction(),
+            'striped'               => $this->striped(),
+            'compact'               => $this->compact(),
+            'bordered'              => $this->bordered(),
+            'hoverable'             => $this->hoverable(),
+            'slug'                  => $this->getSlug(),
+            'onEachSide'            => $this->onEachSide(),
+            'showHeader'            => $this->hasHeader($columns, $rows),
+            'title'                 => $this->title,
         ]);
     }
 
@@ -99,38 +103,6 @@ abstract class Table extends Layout
         $this->title = $title;
 
         return $this;
-    }
-
-    /**
-     * Icon displayed when no data is found.
-     */
-    protected function iconNotFound(): string
-    {
-        return 'bs.journal-x';
-    }
-
-    /**
-     * Text displayed when no data is found.
-     */
-    protected function textNotFound(): string
-    {
-        if (count(request()->query()) !== 0) {
-            return __('No results found for your current filters');
-        }
-
-        return __('There are no objects currently displayed');
-    }
-
-    /**
-     * Subtext displayed when no data is found.
-     */
-    protected function subNotFound(): string
-    {
-        if (count(request()->query()) !== 0) {
-            return __('Try adjusting your filter settings or removing it altogether to see more data');
-        }
-
-        return __('Import or create objects, or check back later for updates');
     }
 
     /**
