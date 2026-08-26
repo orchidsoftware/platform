@@ -2,3 +2,15 @@
 .leaflet-touch .leaflet-control-zoom-out {
     font-size: $font-size-base;
 }
+
+// Leaflet sets .leaflet-top/.leaflet-bottom to z-index: 1000, the same value
+// Bootstrap uses for .dropdown-menu. This makes the map's zoom controls render
+// on top of an open select/dropdown list. Keep the map controls just below
+// the dropdown layer so they stay above regular content without covering
+// overlays such as dropdowns or modals.
+.osmap-map {
+    .leaflet-top,
+    .leaflet-bottom {
+        z-index: $zindex-dropdown - 1;
+    }
+}
