@@ -64,11 +64,16 @@ export default class extends ApplicationController {
         /**
          * @see https://stackoverflow.com/questions/36246815/data-toggle-tab-does-not-download-leaflet-map/36257493#36257493
          */
-        let tabEl = document.querySelector('a[data-bs-toggle="tab"]');
-        if (tabEl !== null) {
-            tabEl.addEventListener("shown.bs.tab", () =>
-                this.leafletMap.invalidateSize()
+        const tabPane = this.element.closest(".tab-pane");
+        if (tabPane !== null && tabPane.id) {
+            let tabEl = document.querySelector(
+                `a[data-bs-toggle="tab"][data-bs-target="#${tabPane.id}"], a[data-bs-toggle="tab"][href="#${tabPane.id}"]`
             );
+            if (tabEl !== null) {
+                tabEl.addEventListener("shown.bs.tab", () =>
+                    this.leafletMap.invalidateSize()
+                );
+            }
         }
     }
 
