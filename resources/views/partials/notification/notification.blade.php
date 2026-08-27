@@ -21,14 +21,14 @@
     <x-orchid-stream rule="true" target="orchid-notifications" action="replace">
         <form id="orchid-notifications" class="position-relative d-flex flex-column gap-4">
 
-            @if($notifications->isEmpty())
-                <div class="mb-0 text-center p-5 bg-body-tertiary rounded-3 text-balance">
-                    <x-orchid-icon path="bs.bell" width="2em" height="2em" class="text-muted my-3"/>
-                    <p>{{ __('You currently have no notifications, but maybe they will appear later.') }}</p>
-                </div>
-            @endif
-
-            @each('orchid::partials.notification.item', $notifications, 'notification')
+            @forelse($notifications as $notification)
+                @include('orchid::partials.notification.item', ['notification' => $notification])
+            @empty
+                <x-orchid-empty-state
+                    icon="bs.bell"
+                    :description="__('No new notifications.')"
+                />
+            @endforelse
 
             @include('orchid::partials.notification.sentinel')
 
@@ -36,17 +36,18 @@
     </x-orchid-stream>
 
     <x-orchid-stream rule="true" target="orchid-notifications-footer" action="replace">
-        <div id="orchid-notifications-footer">
-            <div class="d-flex align-items-center gap-2">
-                <form action="{{ route('orchid.notifications.markAllAsRead') }}" method="post">
-                    @csrf
-                    <button type="submit"
-                            class="btn btn-sm btn-link text-decoration-none"
-                            {{ $notifications->isEmpty() ? 'disabled' : '' }}>
-                        {{ __('Mark All As Read') }}
-                    </button>
-                </form>
-            </div>
+        <div id="orchid-notifications-footer" @if($notifications->isEmpty()) hidden @endif>
+            @if($notifications->isNotEmpty())
+                <div class="d-flex align-items-center gap-2">
+                    <form action="{{ route('orchid.notifications.markAllAsRead') }}" method="post">
+                        @csrf
+                        <button type="submit"
+                                class="btn btn-sm btn-link text-decoration-none">
+                            {{ __('Mark All As Read') }}
+                        </button>
+                    </form>
+                </div>
+            @endif
         </div>
     </x-orchid-stream>
 

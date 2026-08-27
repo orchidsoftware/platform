@@ -33,6 +33,9 @@
         box-shadow: none;
         margin-top: 0;
         padding: 15px 25px;
+        &:has(> [hidden]:only-child) {
+            display: none;
+        }
     }
     &.fade {
         opacity: 1 !important;
