@@ -75,7 +75,10 @@ export default class extends ApplicationController {
         }
 
         if (this.collapse !== null) {
-            this.collapse.removeEventListener("shown.bs.collapse", this.drawEvent);
+            this.collapse.removeEventListener(
+                "shown.bs.collapse",
+                this.drawEvent
+            );
         }
     }
 }
