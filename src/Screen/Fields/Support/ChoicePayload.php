@@ -266,6 +266,12 @@ final readonly class ChoicePayload implements Stringable
      */
     private function selectedItems(iterable $keys): iterable
     {
+        $keys = collect($keys)->filter(fn ($key): bool => $key !== null && $key !== '')->values();
+
+        if ($keys->isEmpty()) {
+            return [];
+        }
+
         $query = $this->query();
 
         return $query instanceof Builder
