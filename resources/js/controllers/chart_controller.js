@@ -36,6 +36,19 @@ export default class extends ApplicationController {
         document.querySelectorAll('a[data-bs-toggle="tab"]').forEach(tabElm => {
             tabElm.addEventListener("shown.bs.tab", this.drawEvent);
         });
+
+        // A chart built while its modal or accordion pane is still hidden gets
+        // drawn at zero size, so only its point markers ever show up. Redraw it
+        // once the container is actually shown.
+        this.modal = this.element.closest(".modal");
+        if (this.modal !== null) {
+            this.modal.addEventListener("shown.bs.modal", this.drawEvent);
+        }
+
+        this.collapse = this.element.closest(".collapse");
+        if (this.collapse !== null) {
+            this.collapse.addEventListener("shown.bs.collapse", this.drawEvent);
+        }
     }
 
     /**
@@ -56,5 +69,16 @@ export default class extends ApplicationController {
         document.querySelectorAll('a[data-bs-toggle="tab"]').forEach(tabElm => {
             tabElm.removeEventListener("shown.bs.tab", this.drawEvent);
         });
+
+        if (this.modal !== null) {
+            this.modal.removeEventListener("shown.bs.modal", this.drawEvent);
+        }
+
+        if (this.collapse !== null) {
+            this.collapse.removeEventListener(
+                "shown.bs.collapse",
+                this.drawEvent
+            );
+        }
     }
 }
