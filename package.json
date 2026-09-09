@@ -24,7 +24,7 @@
         "bootstrap": "^5.3.8",
         "cropperjs": "^1.5.11",
         "cross-env": "^10.1.0",
-        "dropzone": "^5.9.2",
+        "dropzone": "^6.1.0",
         "flatpickr": "^4.6.3",
         "frappe-charts": "^1.6.1",
         "inputmask": "^5.0.6",
