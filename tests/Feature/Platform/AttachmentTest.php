@@ -6,10 +6,34 @@ namespace Orchid\Tests\Feature\Platform;
 
 use Illuminate\Http\UploadedFile;
 use Orchid\Attachment\Models\Attachment;
+use Orchid\Platform\Http\Middleware\Access;
 use Orchid\Tests\TestFeatureCase;
 
 class AttachmentTest extends TestFeatureCase
 {
+    public function testGuestCannotUploadAttachment(): void
+    {
+        $this->assertGuest();
+
+        $this
+            ->withoutMiddleware(Access::class)
+            ->post(route('orchid.files.upload'))
+            ->assertForbidden();
+    }
+
+    public function testUserWithoutPermissionCannotUploadAttachment(): void
+    {
+        $user = $this->createAdminUser();
+        $user->permissions = [];
+        $user->save();
+
+        $this
+            ->actingAs($user)
+            ->withoutMiddleware(Access::class)
+            ->post(route('orchid.files.upload'))
+            ->assertForbidden();
+    }
+
     public function testAttachmentHttpUpload(): void
     {
         $response = $this
