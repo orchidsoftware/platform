@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
@@ -105,15 +104,12 @@ abstract class Chart extends Layout
     protected $valuesOverPoints = 0;
 
     /**
-     * Configuring percentage bars.
+     * Configuring bar stacking.
      *
      * @var array
      */
     protected $barOptions = [
-        'spaceRatio' => 0.5,
-        'stacked'    => 0,
-        'height'     => 20,
-        'depth'      => 2,
+        'stacked' => 0,
     ];
 
     /**
@@ -125,19 +121,8 @@ abstract class Chart extends Layout
         'regionFill' => 0,
         'hideDots'   => 0,
         'hideLine'   => 0,
-        'heatline'   => 0,
         'dotSize'    => 4,
         'spline'     => 0,
-    ];
-
-    /**
-     * Configuring axios.
-     *
-     * @var array
-     */
-    protected $axisOptions = [
-        'xIsSeries'  => true,
-        'xAxisMode'  => 'span', // 'tick'
     ];
 
     /**
@@ -244,24 +229,43 @@ abstract class Chart extends Layout
             ->map(fn ($item) => $item['labels'] ?? [])
             ->flatten()
             ->unique()
+            ->values()
             ->toJson(JSON_NUMERIC_CHECK);
 
         return view($this->template, [
             'title'            => __($this->title),
             'description'      => __($this->description),
-            'slug'             => Str::slug($this->target.$this->title),
-            'type'             => $this->type,
-            'height'           => $this->height,
-            'labels'           => $labels,
             'export'           => $this->export,
-            'data'             => json_encode($repository->getContent($this->target), JSON_NUMERIC_CHECK),
-            'colors'           => json_encode($this->colors),
-            'maxSlices'        => json_encode($this->maxSlices),
-            'valuesOverPoints' => json_encode($this->valuesOverPoints),
-            'axisOptions'      => json_encode($this->axisOptions),
-            'barOptions'       => json_encode($this->barOptions),
-            'lineOptions'      => json_encode($this->lineOptions),
-            'markers'          => json_encode($this->markers()),
+            'chart'            => [
+                'type'     => $this->type === self::TYPE_AXIS_MIXED ? 'mixed' : $this->type,
+                'labels'   => json_decode($labels, true),
+                'datasets' => collect($repository->getContent($this->target))->values()->map(function ($dataset, $index) {
+                    return array_filter([
+                        'name'      => $dataset['name'] ?? $dataset['title'] ?? 'Series '.($index + 1),
+                        'values'    => array_map(fn ($value) => is_numeric($value) ? $value + 0 : $value, $dataset['values']),
+                        'color'     => $dataset['color'] ?? null,
+                        'chartType' => $this->type === self::TYPE_AXIS_MIXED ? ($dataset['chartType'] ?? 'line') : null,
+                    ], fn ($value) => $value !== null);
+                })->all(),
+                'height'      => $this->height,
+                'colors'      => $this->colors,
+                'maxSlices'   => $this->maxSlices,
+                'valueLabels' => (bool) $this->valuesOverPoints,
+                'stacked'     => (bool) ($this->barOptions['stacked'] ?? false),
+                'line'        => [
+                    'area'    => (bool) ($this->lineOptions['regionFill'] ?? false),
+                    'dots'    => ! ($this->lineOptions['hideDots'] ?? false),
+                    'line'    => ! ($this->lineOptions['hideLine'] ?? false),
+                    'dotSize' => $this->lineOptions['dotSize'] ?? 4,
+                    'smooth'  => (bool) ($this->lineOptions['spline'] ?? false),
+                ],
+                'markers' => collect($this->markers())->map(fn ($marker) => [
+                    'label'         => $marker['label'] ?? '',
+                    'value'         => $marker['value'],
+                    'lineStyle'     => 'dashed',
+                    'labelPosition' => ($marker['options']['labelPos'] ?? 'right') === 'left' ? 'start' : 'end',
+                ])->all(),
+            ],
         ]);
     }
 }

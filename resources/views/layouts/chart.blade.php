@@ -1,18 +1,4 @@
-<div
-     data-controller="chart"
-     data-chart-parent="#{{$slug}}"
-     data-chart-labels="{{$labels}}"
-     data-chart-datasets="{{$data}}"
-     data-chart-type="{{$type}}"
-     data-chart-height="{{$height}}"
-     data-chart-colors="{{$colors}}"
-     data-chart-max-slices="{{$maxSlices}}"
-     data-chart-values-over-points="{{$valuesOverPoints}}"
-     data-chart-axis-options="{{$axisOptions}}"
-     data-chart-bar-options="{{$barOptions}}"
-     data-chart-line-options="{{$lineOptions}}"
-     data-chart-markers="{{$markers}}"
->
+<div data-controller="chart" data-chart-config-value="{{ json_encode($chart) }}">
     <div class="bg-white rounded shadow-sm mb-3 pt-3">
 
         <div class="d-flex px-3 align-items-center">
@@ -37,7 +23,7 @@
         </div>
 
         <div class="position-relative w-100">
-            <figure id="{{$slug}}" class="w-100 h-full m-0 p-0 d-flex"></figure>
+            <figure data-chart-target="canvas" class="w-100 m-0 p-0"></figure>
         </div>
     </div>
 </div>

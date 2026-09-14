@@ -48,6 +48,44 @@ class ChartTest extends TestUnitCase
         $this->assertStringContainsString('Export', $html);
     }
 
+    public function testDuplicateLabelsAreEncodedAsJsonArray(): void
+    {
+        $layout = new class extends Chart
+        {
+            protected $target = 'charts';
+        };
+
+        $view = $layout->build(new Repository([
+            'charts' => [
+                [
+                    'labels' => ['Jan', 'Jan', 'Feb'],
+                    'values' => [1, 2, 3],
+                ],
+            ],
+        ]));
+
+        $this->assertSame(['Jan', 'Feb'], $view->getData()['chart']['labels']);
+    }
+
+    public function testChartConfigurationUsesOrchidChartsData(): void
+    {
+        $layout = new class extends Chart
+        {
+            protected $target = 'charts';
+        };
+
+        $view = $layout->type(Chart::TYPE_AXIS_MIXED)->height(320)->build($this->getRepository());
+        $config = $view->getData()['chart'];
+
+        $this->assertSame('mixed', $config['type']);
+        $this->assertSame(320, $config['height']);
+        $this->assertSame('Some Data', $config['datasets'][0]['name']);
+        $this->assertSame('line', $config['datasets'][0]['chartType']);
+        $this->assertTrue($config['line']['dots']);
+        $this->assertFalse($config['line']['area']);
+        $this->assertArrayNotHasKey('axisOptions', $config);
+    }
+
     protected function getRepository(): Repository
     {
         return new Repository([
