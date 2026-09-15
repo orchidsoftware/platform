@@ -28,27 +28,15 @@ class MetricsTest extends TestUnitCase
         $this->assertContains(5, $group->pluck('value')->toArray());
 
         $this->assertSame([
-            [
-                'labels' => ['0', '1'],
-                'values' => [8, 0],
-            ],
-            [
-                'labels' => ['0', '1'],
-                'values' => [0, 5],
-            ],
+            'labels'   => ['0', '1'],
+            'datasets' => [['values' => [8, 5]]],
         ], $group->toChart());
 
         $namedLabel = $group->toChart(static fn (bool $title) => $title ? 'Enabled' : 'Disabled');
 
         $this->assertSame([
-            [
-                'labels' => ['Disabled', 'Enabled'],
-                'values' => [8, 0],
-            ],
-            [
-                'labels' => ['Disabled', 'Enabled'],
-                'values' => [0, 5],
-            ],
+            'labels'   => ['Disabled', 'Enabled'],
+            'datasets' => [['values' => [8, 5]]],
         ], $namedLabel);
     }
 
@@ -75,9 +63,11 @@ class MetricsTest extends TestUnitCase
         $this->assertEquals($end->toDateString(), $period->pluck('label')->last());
 
         $this->assertSame([
-            'name'    => 'Users',
-            'labels'  => $period->pluck('label')->toArray(),
-            'values'  => $period->pluck('value')->toArray(),
+            'labels'   => $period->pluck('label')->toArray(),
+            'datasets' => [[
+                'name'   => 'Users',
+                'values' => $period->pluck('value')->toArray(),
+            ]],
         ], $period->toChart('Users'));
     }
 
@@ -105,9 +95,11 @@ class MetricsTest extends TestUnitCase
         $this->assertEquals($end->toDateString(), $period->pluck('label')->last());
 
         $this->assertSame([
-            'name'    => 'Users',
-            'labels'  => $period->pluck('label')->toArray(),
-            'values'  => $period->pluck('value')->toArray(),
+            'labels'   => $period->pluck('label')->toArray(),
+            'datasets' => [[
+                'name'   => 'Users',
+                'values' => $period->pluck('value')->toArray(),
+            ]],
         ], $period->toChart('Users'));
     }
 
@@ -135,9 +127,11 @@ class MetricsTest extends TestUnitCase
         $this->assertEquals($end->toDateString(), $period->pluck('label')->last());
 
         $this->assertSame([
-            'name'    => 'Users',
-            'labels'  => $period->pluck('label')->toArray(),
-            'values'  => $period->pluck('value')->toArray(),
+            'labels'   => $period->pluck('label')->toArray(),
+            'datasets' => [[
+                'name'   => 'Users',
+                'values' => $period->pluck('value')->toArray(),
+            ]],
         ], $period->toChart('Users'));
     }
 
@@ -164,9 +158,11 @@ class MetricsTest extends TestUnitCase
         $this->assertEquals($end->toDateString(), $period->pluck('label')->last());
 
         $this->assertSame([
-            'name'    => 'Users',
-            'labels'  => $period->pluck('label')->toArray(),
-            'values'  => $period->pluck('value')->toArray(),
+            'labels'   => $period->pluck('label')->toArray(),
+            'datasets' => [[
+                'name'   => 'Users',
+                'values' => $period->pluck('value')->toArray(),
+            ]],
         ], $period->toChart('Users'));
     }
 
@@ -193,9 +189,11 @@ class MetricsTest extends TestUnitCase
         $this->assertEquals($end->toDateString(), $period->pluck('label')->last());
 
         $this->assertSame([
-            'name'    => 'Users',
-            'labels'  => $period->pluck('label')->toArray(),
-            'values'  => $period->pluck('value')->toArray(),
+            'labels'   => $period->pluck('label')->toArray(),
+            'datasets' => [[
+                'name'   => 'Users',
+                'values' => $period->pluck('value')->toArray(),
+            ]],
         ], $period->toChart('Users'));
     }
 
@@ -257,9 +255,11 @@ class MetricsTest extends TestUnitCase
         $this->assertCount(2, $period);
 
         $this->assertSame([
-            'name'    => 'Users',
-            'labels'  => $period->pluck('label')->toArray(),
-            'values'  => $period->pluck('value')->toArray(),
+            'labels'   => $period->pluck('label')->toArray(),
+            'datasets' => [[
+                'name'   => 'Users',
+                'values' => $period->pluck('value')->toArray(),
+            ]],
         ], $period->toChart('Users'));
     }
 

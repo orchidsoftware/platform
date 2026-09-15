@@ -1,4 +1,4 @@
-<div data-controller="chart" data-chart-type="{{ $chart['type'] }}" data-chart-config-value="{{ json_encode($chart) }}">
+<div data-controller="chart" data-chart-config-value="{{ json_encode($chart) }}">
     <div class="chart-card bg-white rounded shadow-sm mb-3">
 
         <div class="d-flex mb-3 align-items-center">
@@ -23,7 +23,8 @@
         </div>
 
         <div class="position-relative w-100">
-            <figure data-chart-target="canvas" class="chart-card__canvas w-100 my-0 p-0"></figure>
+            <figure data-chart-target="canvas" class="chart-card__canvas w-100 my-0 p-0"
+                    style="min-height: {{ $height }}px"></figure>
         </div>
     </div>
 </div>

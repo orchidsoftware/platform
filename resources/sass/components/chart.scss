@@ -2,10 +2,12 @@
     --orchid-charts-label-color: #{$body-color};
     --orchid-charts-secondary-label-color: #{$text-muted};
     --orchid-charts-axis-line-color: #{$border-color};
-    --orchid-charts-tooltip-bg: #{$body-bg};
+    --orchid-charts-tooltip-bg: #{$white};
     --orchid-charts-tooltip-value: #{$body-color};
     --orchid-charts-mark-separator: #{$body-bg};
     --orchid-charts-point-fill: #{$body-bg};
+    --orchid-charts-hover-fill: #{rgba($body-bg, 0.5)};
+    --orchid-charts-hover-blend-mode: multiply;
 }
 
 .chart-card {

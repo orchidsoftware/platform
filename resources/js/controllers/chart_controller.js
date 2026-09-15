@@ -28,37 +28,27 @@ export default class extends ApplicationController {
         }
     }
 
+    configValueChanged() {
+        if (this.chart) this.render();
+    }
+
+    canvasTargetConnected() {
+        if (this.chart) this.render();
+    }
+
     render() {
-        const config = this.configValue;
-        const builder = charts[config.type]
-            .make(this.canvasTarget)
-            .labels(config.labels)
-            .height(config.height)
-            .colors(config.colors);
-        const configureLine = line =>
-            line
-                .area(config.line.area)
-                .dots(config.line.dots)
-                .line(config.line.line)
-                .dotSize(config.line.dotSize)
-                .smooth(config.line.smooth);
+        this.chart?.destroy();
+        this.chart = null;
 
-        config.datasets.forEach(dataset => {
-            if (config.type === "mixed" && dataset.chartType === "line") {
-                builder.dataset(dataset, configureLine);
-            } else {
-                builder.dataset(dataset);
-            }
-        });
+        const { type, options, data } = this.configValue;
+        this.element.dataset.chartType = type;
+        const builder = charts[type].make(this.canvasTarget).labels(data.labels);
 
-        if (config.type === "line") configureLine(builder);
-        if (config.type === "bar") builder.stacked(config.stacked);
-        if (["pie", "percentage"].includes(config.type)) {
-            builder.maxSlices(config.maxSlices);
-        } else {
-            builder.valueLabels(true);
-            config.markers.forEach(marker => builder.marker(marker));
-        }
+        Object.entries(options).forEach(([option, value]) => builder[option](value));
+        data.datasets.forEach(dataset => builder.dataset(dataset));
+        data.markers?.forEach(marker => builder.marker(marker));
+        data.regions?.forEach(region => builder.region(region));
+
         this.chart = builder.render();
     }
 
