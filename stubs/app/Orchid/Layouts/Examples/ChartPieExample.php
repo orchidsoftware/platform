@@ -20,5 +20,5 @@ class ChartPieExample extends Chart
     /**
      * @var int
      */
-    protected $height = 350;
+    protected $height = 280;
 }

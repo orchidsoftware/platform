@@ -1,29 +1,39 @@
-<div data-controller="chart" data-chart-config-value="{{ json_encode($chart) }}">
-    <div class="bg-white rounded shadow-sm mb-3 pt-3">
+@php
+    $chartId = 'chart-'.\Illuminate\Support\Str::uuid();
+@endphp
 
-        <div class="d-flex px-3 align-items-center">
-            <legend class="text-body-emphasis px-2 mt-2 mb-0">
-                <div class="d-flex align-items-center">
-                    <small class="d-block">{{ __($title ?? '') }}</small>
+<figure class="chart-card"
+        style="--chart-height: {{ (int) $chart['height'] }}px"
+        data-controller="chart"
+        data-chart-type="{{ $chart['type'] }}"
+        data-chart-config-value="{{ json_encode($chart) }}"
+        @if(!empty($title)) aria-labelledby="{{ $chartId }}-title" @endif
+        @if(!empty($description)) aria-describedby="{{ $chartId }}-description" @endif>
+    @if(!empty($title) || !empty($description) || $export)
+        <figcaption class="chart-card__header">
+            <div class="chart-card__heading">
+                @if(!empty($title))
+                    <h2 class="chart-card__title" id="{{ $chartId }}-title">{{ __($title) }}</h2>
+                @endif
 
-                    @if($export)
-                        <a href="#" class="ms-auto px-2 text-muted" data-action="chart#export" title="{{ __('Export') }}">
-                            <x-orchid-icon path="bs.cloud-arrow-down"/>
-                        </a>
-                    @endif
-                </div>
+                @if(!empty($description))
+                    <div class="chart-card__description" id="{{ $chartId }}-description">
+                        {!! __($description) !!}
+                    </div>
+                @endif
+            </div>
 
-                @empty(!$description)
-                    <p class="small text-muted mb-0 content-read text-balance">
-                        {!! __($description  ?? '') !!}
-                    </p>
-                @endempty
-            </legend>
+            @if($export)
+                <button type="button" class="chart-card__export"
+                        data-action="chart#export"
+                        aria-label="{{ __('Export') }}" title="{{ __('Export') }}">
+                    <x-orchid-icon path="bs.cloud-arrow-down" aria-hidden="true"/>
+                </button>
+            @endif
+        </figcaption>
+    @endif
 
-        </div>
-
-        <div class="position-relative w-100">
-            <figure data-chart-target="canvas" class="w-100 m-0 p-0"></figure>
-        </div>
+    <div class="chart-card__body">
+        <div class="chart-card__canvas" data-chart-target="canvas"></div>
     </div>
-</div>
+</figure>

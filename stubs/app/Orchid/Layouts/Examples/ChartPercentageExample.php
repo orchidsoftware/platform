@@ -20,5 +20,5 @@ class ChartPercentageExample extends Chart
     /**
      * @var int
      */
-    protected $height = 160;
+    protected $height = 88;
 }

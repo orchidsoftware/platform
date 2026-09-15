@@ -22,10 +22,9 @@ class ChartLineExample extends Chart
      */
     protected $lineOptions = [
         'spline'     => 1,
-        'regionFill' => 1,
+        'regionFill' => 0,
         'hideDots'   => 0,
         'hideLine'   => 0,
-        'heatline'   => 0,
         'dotSize'    => 3,
     ];
 
