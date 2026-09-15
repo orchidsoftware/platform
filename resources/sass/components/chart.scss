@@ -1,158 +1,26 @@
+[data-controller~="chart"] {
+    --orchid-charts-label-color: #{$body-color};
+    --orchid-charts-secondary-label-color: #{$text-muted};
+    --orchid-charts-axis-line-color: #{$border-color};
+    --orchid-charts-tooltip-bg: #{$body-bg};
+    --orchid-charts-tooltip-value: #{$body-color};
+    --orchid-charts-mark-separator: #{$body-bg};
+    --orchid-charts-point-fill: #{$body-bg};
+}
+
 .chart-card {
-    --chart-series-1: #2563eb;
-    --chart-series-2: #0f766e;
-    --chart-series-3: #9333ea;
-    --chart-series-4: #c2410c;
-    --chart-series-5: #be123c;
-    --chart-series-6: #475569;
-    --chart-series-7: #0369a1;
-    --chart-series-8: #4d7c0f;
-    --chart-surface: #{$white};
-    --chart-text: #{$text-color};
-    --chart-secondary-text: #{$text-muted};
-    --chart-border: #{$border-color};
     --chart-padding: 1.5rem;
-    --chart-content-gap: 1.5rem;
-    --orchid-charts-label-color: var(--chart-text);
-    --orchid-charts-secondary-label-color: var(--chart-secondary-text);
-    --orchid-charts-axis-line-color: var(--chart-border);
-    --orchid-charts-tooltip-bg: var(--chart-surface);
-    --orchid-charts-tooltip-value: var(--chart-text);
-    --orchid-charts-mark-separator: var(--chart-surface);
-    --orchid-charts-point-fill: var(--chart-surface);
-    --orchid-charts-focus-ring: #{$primary};
-
-    container-type: inline-size;
-    min-inline-size: 0;
-    margin: 0 0 1rem;
-    color: var(--chart-text);
-    background: var(--chart-surface);
-    border: 1px solid var(--chart-border);
-    border-radius: $border-radius;
-}
-
-.chart-card__header {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-block-end: var(--chart-content-gap);
-    padding-block-start: var(--chart-padding);
-    padding-inline: var(--chart-padding);
-}
-
-.chart-card__heading {
-    flex: 1;
-    min-inline-size: 0;
-}
-
-.chart-card__title {
-    margin: 0;
-    color: var(--chart-text);
-    font-size: 1.125rem;
-    font-weight: 600;
-    line-height: 1.35;
-    overflow-wrap: anywhere;
-}
-
-.chart-card__description {
-    max-inline-size: 65ch;
-    margin-block-start: 0.375rem;
-    color: var(--chart-secondary-text);
-    font-size: 0.9375rem;
-    line-height: 1.5;
-    overflow-wrap: anywhere;
-
-    > :first-child {
-        margin-block-start: 0;
-    }
-    > :last-child {
-        margin-block-end: 0;
-    }
-    &:first-child {
-        margin-block-start: 0;
-    }
-}
-
-.chart-card__body,
-.chart-card__canvas {
-    min-inline-size: 0;
-    inline-size: 100%;
-}
-
-.chart-card__body {
     padding: var(--chart-padding);
+    min-width: 0;
 }
 
-.chart-card__header + .chart-card__body {
-    padding-block-start: 0;
-}
-
-.chart-card__canvas {
-    min-block-size: var(--chart-height);
-}
-
-.chart-card[data-chart-type="pie"] .chart-card__canvas {
-    max-inline-size: 22rem;
+[data-chart-type="pie"] .chart-card__canvas {
+    max-width: 22rem;
     margin-inline: auto;
 }
 
-.chart-card__export {
-    display: inline-flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-    inline-size: 2.5rem;
-    block-size: 2.5rem;
-    padding: 0.5rem;
-    color: var(--chart-secondary-text);
-    background: transparent;
-    border: 1px solid transparent;
-    border-radius: $border-radius;
-
-    &:hover {
-        color: var(--chart-text);
-        background: var(--bs-tertiary-bg);
-    }
-
-    &:focus-visible {
-        outline: 2px solid var(--orchid-charts-focus-ring);
-        outline-offset: 2px;
-    }
-}
-
-@container (max-width: 400px) {
-    .chart-card__header,
-    .chart-card__body {
-        --chart-padding: 1rem;
-        --chart-content-gap: 1rem;
-    }
-}
-
-@media (pointer: coarse) {
-    .chart-card__export {
-        min-inline-size: 44px;
-        min-block-size: 44px;
-    }
-}
-
-[data-bs-theme="dark"] .chart-card {
-    --chart-series-1: #60a5fa;
-    --chart-series-2: #2dd4bf;
-    --chart-series-3: #c084fc;
-    --chart-series-4: #fb923c;
-    --chart-series-5: #fb7185;
-    --chart-series-6: #cbd5e1;
-    --chart-series-7: #38bdf8;
-    --chart-series-8: #a3e635;
-    --chart-surface: var(--bs-tertiary-bg);
-    --chart-text: var(--bs-body-color);
-    --chart-secondary-text: var(--bs-secondary-color);
-    --chart-border: var(--bs-border-color);
-}
-
-@media (prefers-contrast: more) {
+@include media-breakpoint-down(sm) {
     .chart-card {
-        --chart-secondary-text: var(--chart-text);
-        --orchid-charts-axis-line-color: var(--chart-text);
+        --chart-padding: 1rem;
     }
 }

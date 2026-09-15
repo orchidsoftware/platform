@@ -35,8 +35,6 @@ export default class extends ApplicationController {
             .labels(config.labels)
             .height(config.height)
             .colors(config.colors);
-        if (config.title?.trim()) builder.ariaLabel(config.title);
-        if (config.description?.trim()) builder.description(config.description);
         const configureLine = line =>
             line
                 .area(config.line.area)
@@ -58,7 +56,6 @@ export default class extends ApplicationController {
         if (["pie", "percentage"].includes(config.type)) {
             builder.maxSlices(config.maxSlices);
         } else {
-            // Axis labels are essential context, independent of point annotations.
             builder.valueLabels(true);
             config.markers.forEach(marker => builder.marker(marker));
         }

@@ -106,28 +106,6 @@ class ChartTest extends TestUnitCase
         }
     }
 
-    public function testChartHasAnAccessibleCaptionAndExportButton(): void
-    {
-        $layout = new class extends Chart
-        {
-            protected $target = 'charts';
-        };
-
-        $view = $layout->title('Monthly activity')->description('Activity by <strong>month</strong>.')
-            ->export()->build($this->getRepository());
-
-        $this->assertSame('Monthly activity', $view->getData()['chart']['title']);
-        $this->assertSame('Activity by month.', $view->getData()['chart']['description']);
-
-        $html = $view->withErrors([])->render();
-        $this->assertStringContainsString('<figcaption', $html);
-        $this->assertStringContainsString('<h2', $html);
-        $this->assertStringContainsString('aria-labelledby=', $html);
-        $this->assertStringContainsString('aria-describedby=', $html);
-        $this->assertStringContainsString('<button type="button"', $html);
-        $this->assertStringNotContainsString('<legend', $html);
-    }
-
     protected function getRepository(): Repository
     {
         return new Repository([
