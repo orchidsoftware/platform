@@ -42,9 +42,13 @@ export default class extends ApplicationController {
 
         const { type, options, data } = this.configValue;
         this.element.dataset.chartType = type;
-        const builder = charts[type].make(this.canvasTarget).labels(data.labels);
+        const builder = charts[type]
+            .make(this.canvasTarget)
+            .labels(data.labels);
 
-        Object.entries(options).forEach(([option, value]) => builder[option](value));
+        Object.entries(options).forEach(([option, value]) =>
+            builder[option](value)
+        );
         data.datasets.forEach(dataset => builder.dataset(dataset));
         data.markers?.forEach(marker => builder.marker(marker));
         data.regions?.forEach(region => builder.region(region));
