@@ -86,6 +86,26 @@ class ChartTest extends TestUnitCase
         $this->assertArrayNotHasKey('axisOptions', $config);
     }
 
+    public function testCompositionChartsAggregateSeriesByCategory(): void
+    {
+        foreach ([Chart::TYPE_PIE, Chart::TYPE_PERCENTAGE] as $type) {
+            $layout = new class extends Chart
+            {
+                protected $target = 'charts';
+            };
+
+            $config = $layout->type($type)->build(new Repository([
+                'charts' => [
+                    ['name' => 'First', 'labels' => ['A', 'B', 'C', 'D'], 'values' => ['10', -2, -5, 0]],
+                    ['name' => 'Second', 'labels' => ['A', 'B', 'C', 'D'], 'values' => [5, 8, 1, 0]],
+                ],
+            ]))->getData()['chart'];
+
+            $this->assertSame(['A', 'B', 'D'], $config['labels']);
+            $this->assertSame([['values' => [15, 6, 0]]], $config['datasets']);
+        }
+    }
+
     protected function getRepository(): Repository
     {
         return new Repository([

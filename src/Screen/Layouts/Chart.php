@@ -232,21 +232,35 @@ abstract class Chart extends Layout
             ->values()
             ->toJson(JSON_NUMERIC_CHECK);
 
+        $labels = json_decode($labels, true);
+        $datasets = collect($repository->getContent($this->target))->values()->map(function ($dataset, $index) {
+            return array_filter([
+                'name'      => $dataset['name'] ?? $dataset['title'] ?? 'Series '.($index + 1),
+                'values'    => array_map(fn ($value) => is_numeric($value) ? $value + 0 : $value, $dataset['values']),
+                'color'     => $dataset['color'] ?? null,
+                'chartType' => $this->type === self::TYPE_AXIS_MIXED ? ($dataset['chartType'] ?? 'line') : null,
+            ], fn ($value) => $value !== null);
+        })->all();
+
+        if (in_array($this->type, [self::TYPE_PIE, self::TYPE_PERCENTAGE], true)) {
+            // Composition charts represent category totals across all series.
+            $totals = collect($labels)->map(fn ($label, $index) => [
+                'label' => $label,
+                'value' => array_sum(array_column(array_column($datasets, 'values'), $index)),
+            ])->filter(fn ($slice) => $slice['value'] >= 0)->values();
+
+            $labels = $totals->pluck('label')->all();
+            $datasets = [['values' => $totals->pluck('value')->all()]];
+        }
+
         return view($this->template, [
-            'title'            => __($this->title),
-            'description'      => __($this->description),
-            'export'           => $this->export,
-            'chart'            => [
-                'type'     => $this->type === self::TYPE_AXIS_MIXED ? 'mixed' : $this->type,
-                'labels'   => json_decode($labels, true),
-                'datasets' => collect($repository->getContent($this->target))->values()->map(function ($dataset, $index) {
-                    return array_filter([
-                        'name'      => $dataset['name'] ?? $dataset['title'] ?? 'Series '.($index + 1),
-                        'values'    => array_map(fn ($value) => is_numeric($value) ? $value + 0 : $value, $dataset['values']),
-                        'color'     => $dataset['color'] ?? null,
-                        'chartType' => $this->type === self::TYPE_AXIS_MIXED ? ($dataset['chartType'] ?? 'line') : null,
-                    ], fn ($value) => $value !== null);
-                })->all(),
+            'title'       => __($this->title),
+            'description' => __($this->description),
+            'export'      => $this->export,
+            'chart'       => [
+                'type'        => $this->type === self::TYPE_AXIS_MIXED ? 'mixed' : $this->type,
+                'labels'      => $labels,
+                'datasets'    => $datasets,
                 'height'      => $this->height,
                 'colors'      => $this->colors,
                 'maxSlices'   => $this->maxSlices,
