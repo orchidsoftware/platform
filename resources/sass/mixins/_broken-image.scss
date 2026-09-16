@@ -1,0 +1,26 @@
+// Browsers render these pseudo-elements only when an image cannot be displayed.
+// Keep both layers out of flow so the fallback never changes the image's size.
+@mixin broken-image($content: "") {
+    position: relative;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+    }
+
+    &::before {
+        background-color: var(--bs-tertiary-bg);
+    }
+
+    &::after {
+        content: $content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+}

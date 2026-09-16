@@ -103,6 +103,27 @@
     }
 }
 
+@each $name, $size in $thumb-sizes {
+    img.thumb-#{$name},
+    .thumb-#{$name} img {
+        @include broken-image;
+        display: inline-block;
+        width: $size;
+        height: auto;
+        aspect-ratio: 1;
+        object-fit: cover;
+        font-size: 0;
+
+        &::after {
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23868e96' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18' rx='3'/%3E%3Ccircle cx='8.5' cy='8.5' r='1.5'/%3E%3Cpath d='m21 15-5-5L5 21'/%3E%3C/svg%3E")
+                center /
+                50%
+                50%
+                no-repeat;
+        }
+    }
+}
+
 .img-full {
     width: 100%;
     img {
