@@ -78,6 +78,10 @@ export default class extends ApplicationController {
 
         // Clear the stored last open modal from session storage
         this.clearLastOpenModal();
+
+        this.element
+            .querySelectorAll(".invalid-feedback")
+            .forEach(element => element.remove());
     }
 
     /**
