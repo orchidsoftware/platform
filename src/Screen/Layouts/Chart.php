@@ -5,163 +5,49 @@ declare(strict_types=1);
 namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Support\Str;
 use Illuminate\View\View;
+use InvalidArgumentException;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
-/**
- * Class Chart.
- */
-abstract class Chart extends Layout
+class Chart extends Layout
 {
     public const TYPE_BAR = 'bar';
     public const TYPE_LINE = 'line';
     public const TYPE_PIE = 'pie';
     public const TYPE_PERCENTAGE = 'percentage';
-    public const TYPE_AXIS_MIXED = 'axis-mixed';
+    public const TYPE_MIXED = 'mixed';
 
-    /**
-     * The Main template to display the layer
-     * Represents the view() argument.
-     *
-     * @var string
-     */
     protected $template = 'orchid::layouts.chart';
 
-    /**
-     * @var string|null
-     */
-    protected $description;
+    protected string $target = '';
 
-    /**
-     * Add a title to the Chart.
-     *
-     * @var string
-     */
-    protected $title = 'My Chart';
+    protected ?string $title = null;
 
-    /**
-     * Available options:
-     * 'bar', 'line', 'pie',
-     * 'percentage', 'axis-mixed'.
-     *
-     * @var string
-     */
-    protected $type = self::TYPE_LINE;
+    protected ?string $description = null;
 
-    /**
-     * Height of the chart.
-     *
-     * @var int
-     */
-    protected $height = 250;
+    protected string $type = self::TYPE_LINE;
 
-    /**
-     * Data source.
-     *
-     * The name of the key to fetch it from the query.
-     * The results of which will be elements of the chart.
-     *
-     * @var string
-     */
-    protected $target = '';
+    protected bool $export = false;
 
-    /**
-     * Colors used.
-     *
-     * @var array
-     */
-    protected $colors = [
-        '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80',
-        '#8d98b3', '#e5cf0d', '#97b552', '#95706d', '#dc69aa',
-        '#07a2a4', '#9a7fd1', '#588dd5', '#f5994e', '#c05050',
-        '#59678c', '#c9ab00', '#7eb00a', '#6f5553', '#c14089',
+    /** Options use the same names as Orchid Charts. */
+    protected array $options = [
+        'height' => 250,
+        'colors' => [
+            '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80',
+            '#8d98b3', '#e5cf0d', '#97b552', '#95706d', '#dc69aa',
+            '#07a2a4', '#9a7fd1', '#588dd5', '#f5994e', '#c05050',
+            '#59678c', '#c9ab00', '#7eb00a', '#6f5553', '#c14089',
+        ],
     ];
 
-    /**
-     * Determines whether to display the export button.
-     *
-     * @var bool
-     */
-    protected $export = false;
+    protected array $markers = [];
 
-    /**
-     * Limiting the slices.
-     *
-     * When there are too many data values to show visually,
-     * it makes sense to bundle up the least of the values as a cumulated data point,
-     * rather than showing tiny slices.
-     *
-     * @var int
-     */
-    protected $maxSlices = 6;
-
-    /**
-     * To display data values over bars or dots in an axis graph.
-     *
-     * @var int
-     */
-    protected $valuesOverPoints = 0;
-
-    /**
-     * Configuring percentage bars.
-     *
-     * @var array
-     */
-    protected $barOptions = [
-        'spaceRatio' => 0.5,
-        'stacked'    => 0,
-        'height'     => 20,
-        'depth'      => 2,
-    ];
-
-    /**
-     * Configuring line.
-     *
-     * @var array
-     */
-    protected $lineOptions = [
-        'regionFill' => 0,
-        'hideDots'   => 0,
-        'hideLine'   => 0,
-        'heatline'   => 0,
-        'dotSize'    => 4,
-        'spline'     => 0,
-    ];
-
-    /**
-     * Configuring axios.
-     *
-     * @var array
-     */
-    protected $axisOptions = [
-        'xIsSeries'  => true,
-        'xAxisMode'  => 'span', // 'tick'
-    ];
-
-    /**
-     * To highlight certain values on the Y axis, markers can be set.
-     * They will show as dashed lines on the graph.
-     */
-    protected function markers(): ?array
-    {
-        return null;
-    }
-
-    /**
-     * Create a new Charts element.
-     *
-     * @return static
-     */
-    public static function make(string $target, ?string $title = null): self
+    public static function make(string $target, ?string $title = null): static
     {
         return (new static)->target($target)->title($title);
     }
 
-    /**
-     * @return $this
-     */
     public function target(string $target): static
     {
         $this->target = $target;
@@ -169,59 +55,86 @@ abstract class Chart extends Layout
         return $this;
     }
 
-    /**
-     * Set title of the chart.
-     *
-     * @return $this
-     */
-    public function title(?string $title = null): static
+    public function title(?string $title): static
     {
         $this->title = $title;
 
         return $this;
     }
 
-    /**
-     * Set description of the chart.
-     *
-     * @return $this
-     */
-    public function description(string $description): static
+    public function description(?string $description): static
     {
         $this->description = $description;
 
         return $this;
     }
 
-    /**
-     * Set the height of the chart.
-     *
-     * @return $this
-     */
-    public function height(int $height): static
-    {
-        $this->height = $height;
-
-        return $this;
-    }
-
-    /**
-     * @param string $type
-     *
-     * @return $this
-     */
     public function type(string $type): static
     {
+        if (! in_array($type, [self::TYPE_LINE, self::TYPE_BAR, self::TYPE_MIXED, self::TYPE_PIE, self::TYPE_PERCENTAGE], true)) {
+            throw new InvalidArgumentException("Unsupported chart type: {$type}");
+        }
+
         $this->type = $type;
 
         return $this;
     }
 
-    /**
-     * @param bool $export
-     *
-     * @return $this
-     */
+    /** Merge presentation options without replacing earlier settings. */
+    public function options(array $options): static
+    {
+        $this->options = array_replace($this->options, $options);
+
+        return $this;
+    }
+
+    public function height(int $height): static
+    {
+        return $this->options(['height' => $height]);
+    }
+
+    public function colors(array $colors): static
+    {
+        return $this->options(['colors' => array_values($colors)]);
+    }
+
+    public function gradient(bool|array $gradient = true): static
+    {
+        return $this->options(['gradient' => $gradient]);
+    }
+
+    public function smooth(bool $smooth = true): static
+    {
+        return $this->options(['smooth' => $smooth]);
+    }
+
+    public function dots(bool $dots = true): static
+    {
+        return $this->options(['dots' => $dots]);
+    }
+
+    public function stacked(bool $stacked = true): static
+    {
+        return $this->options(['stacked' => $stacked]);
+    }
+
+    public function legend(bool $legend = true): static
+    {
+        return $this->options(['legend' => $legend]);
+    }
+
+    public function maxSlices(int $maxSlices): static
+    {
+        return $this->options(['maxSlices' => $maxSlices]);
+    }
+
+    public function marker(string $label, int|float $value, array $options = []): static
+    {
+        $this->markers[] = ['label' => $label, 'value' => $value] + $options;
+
+        return $this;
+    }
+
     public function export(bool $export = true): static
     {
         $this->export = $export;
@@ -229,9 +142,7 @@ abstract class Chart extends Layout
         return $this;
     }
 
-    /**
-     * @return Factory|View
-     */
+    /** @return Factory|View|null */
     public function build(Repository $repository)
     {
         $this->query = $repository;
@@ -240,28 +151,65 @@ abstract class Chart extends Layout
             return;
         }
 
-        $labels = collect($repository->getContent($this->target))
-            ->map(fn ($item) => $item['labels'] ?? [])
-            ->flatten()
-            ->unique()
-            ->toJson(JSON_NUMERIC_CHECK);
+        $data = $repository->getContent($this->target);
+
+        if (! is_array($data) || ! is_array($data['labels'] ?? null) || ! is_array($data['datasets'] ?? null)) {
+            throw new InvalidArgumentException("Chart [{$this->target}] expects labels and datasets.");
+        }
+
+        $common = ['height', 'width', 'colors', 'legend', 'tooltip'];
+        $axes = ['axes', 'grid', 'valueLabels', 'frameless'];
+        $supported = match ($this->type) {
+            self::TYPE_LINE       => [...$axes, 'smooth', 'dots', 'dotSize', 'line', 'area', 'gradient', 'strokeWidth'],
+            self::TYPE_BAR        => [...$axes, 'stacked', 'horizontal', 'radius'],
+            self::TYPE_MIXED      => [...$axes, 'gradient'],
+            self::TYPE_PIE        => ['maxSlices', 'startAngle', 'padAngle'],
+            self::TYPE_PERCENTAGE => ['maxSlices'],
+        };
+
+        foreach (array_keys($this->options) as $option) {
+            if (! in_array($option, [...$common, ...$supported], true)) {
+                throw new InvalidArgumentException("Unsupported {$this->type} chart option: {$option}");
+            }
+        }
+
+        if (in_array($this->type, [self::TYPE_PIE, self::TYPE_PERCENTAGE], true) && count($data['datasets']) !== 1) {
+            throw new InvalidArgumentException("A {$this->type} chart requires exactly one dataset.");
+        }
+
+        // Reindex PHP collections so the transport always contains JSON arrays.
+        $data['labels'] = array_values($data['labels']);
+        $data['datasets'] = array_values(array_map(function (array $dataset) use ($data) {
+            if (! is_array($dataset['values'] ?? null)) {
+                throw new InvalidArgumentException("Chart [{$this->target}] expects an array of dataset values.");
+            }
+
+            $dataset['values'] = array_values(array_map(
+                fn ($value) => is_numeric($value) ? $value + 0 : $value,
+                $dataset['values'],
+            ));
+
+            if (count($dataset['values']) !== count($data['labels'])) {
+                throw new InvalidArgumentException("Chart [{$this->target}] requires a value for every label in each dataset.");
+            }
+
+            return $dataset;
+        }, $data['datasets']));
+
+        if ($this->markers !== []) {
+            $data['markers'] = array_merge($data['markers'] ?? [], $this->markers);
+        }
 
         return view($this->template, [
-            'title'            => __($this->title),
-            'description'      => __($this->description),
-            'slug'             => Str::slug($this->target.$this->title),
-            'type'             => $this->type,
-            'height'           => $this->height,
-            'labels'           => $labels,
-            'export'           => $this->export,
-            'data'             => json_encode($repository->getContent($this->target), JSON_NUMERIC_CHECK),
-            'colors'           => json_encode($this->colors),
-            'maxSlices'        => json_encode($this->maxSlices),
-            'valuesOverPoints' => json_encode($this->valuesOverPoints),
-            'axisOptions'      => json_encode($this->axisOptions),
-            'barOptions'       => json_encode($this->barOptions),
-            'lineOptions'      => json_encode($this->lineOptions),
-            'markers'          => json_encode($this->markers()),
+            'title'       => __($this->title ?? ''),
+            'description' => __($this->description ?? ''),
+            'export'      => $this->export,
+            'height'      => (int) $this->options['height'],
+            'chart'       => [
+                'type'    => $this->type,
+                'options' => $this->options,
+                'data'    => $data,
+            ],
         ]);
     }
 }
