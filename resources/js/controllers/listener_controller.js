@@ -19,13 +19,11 @@ export default class extends ApplicationController {
         this.boundFieldHandlers = [];
 
         this.watchedValue.forEach(name => {
-            document
-                .querySelectorAll(`[name="${name}"]`)
-                .forEach(field => {
-                    const handler = () => this.debouncedHandleFieldChange();
-                    field.addEventListener("change", handler);
-                    this.boundFieldHandlers.push({ field, handler });
-                });
+            document.querySelectorAll(`[name="${name}"]`).forEach(field => {
+                const handler = () => this.debouncedHandleFieldChange();
+                field.addEventListener("change", handler);
+                this.boundFieldHandlers.push({ field, handler });
+            });
         });
     }
 
