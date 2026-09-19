@@ -89,6 +89,11 @@ class Button extends Action
                 ? url()->previous()
                 : url()->current();
 
+            // url()->previous() can carry the query string of the page it
+            // was requested from (e.g. a paginated ?page=2 listing), which
+            // would otherwise end up spliced in front of the method name.
+            $url = strtok($url, '?');
+
             $query = http_build_query($this->get('parameters'));
 
             $action = rtrim("{$url}/{$this->get('method')}?{$query}", '/?');
