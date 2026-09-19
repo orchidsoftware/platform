@@ -16,15 +16,29 @@ export default class extends ApplicationController {
      *
      */
     connect() {
+        this.boundFieldHandlers = [];
+
         this.watchedValue.forEach(name => {
             document
                 .querySelectorAll(`[name="${name}"]`)
-                .forEach(field =>
-                    field.addEventListener("change", () =>
-                        this.debouncedHandleFieldChange()
-                    )
-                );
+                .forEach(field => {
+                    const handler = () => this.debouncedHandleFieldChange();
+                    field.addEventListener("change", handler);
+                    this.boundFieldHandlers.push({ field, handler });
+                });
         });
+    }
+
+    /**
+     * Removes the listeners registered in `connect` so that fields
+     * left in the DOM after a stream update do not keep triggering
+     * requests through a controller instance that is no longer connected.
+     */
+    disconnect() {
+        this.boundFieldHandlers.forEach(({ field, handler }) => {
+            field.removeEventListener("change", handler);
+        });
+        this.boundFieldHandlers = [];
     }
 
     /**
