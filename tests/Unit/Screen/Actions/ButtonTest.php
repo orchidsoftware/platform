@@ -6,6 +6,8 @@ namespace Orchid\Tests\Unit\Screen\Fields;
 
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Orchid;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 /**
@@ -190,6 +192,33 @@ class ButtonTest extends TestFieldsUnitCase
             'formaction="http://127.0.0.1:8001/test?id=1',
             $view
         );
+    }
+
+    public function testButtonActionStripsQueryStringFromPreviousUrlOnPartialRequest(): void
+    {
+        // A partial request (e.g. a table rendered inside an async modal on
+        // a paginated screen) has its "previous URL" carry the page's own
+        // query string, which must not leak into the generated action.
+        request()->headers->set('referer', 'http://127.0.0.1:8001/test?page=2');
+
+        Orchid::setCurrentScreen(new class extends Screen
+        {
+            public function layout(): iterable
+            {
+                return [];
+            }
+        }, true);
+
+        $button = Button::make('About')
+            ->method('test');
+
+        $view = self::renderField($button);
+
+        $this->assertStringContainsString(
+            'formaction="http://127.0.0.1:8001/test/test"',
+            $view
+        );
+        $this->assertStringNotContainsString('page=2', $view);
     }
 
     public function testButtonMethodParametersAcceptsEloquentModel(): void
