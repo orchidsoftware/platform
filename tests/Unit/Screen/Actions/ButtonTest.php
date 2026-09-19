@@ -201,7 +201,8 @@ class ButtonTest extends TestFieldsUnitCase
         // query string, which must not leak into the generated action.
         request()->headers->set('referer', 'http://127.0.0.1:8001/test?page=2');
 
-        Orchid::setCurrentScreen(new class extends Screen {
+        Orchid::setCurrentScreen(new class extends Screen
+        {
             public function layout(): iterable
             {
                 return [];
