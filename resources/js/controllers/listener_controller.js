@@ -36,7 +36,7 @@ export default class extends ApplicationController {
 
         const data = new FormData(formElement);
 
-        let state = document.getElementById("screen-state").value;
+        let state = document.getElementById("screen-state")?.value || "";
 
         // Added state to send
         if (state.length > 0) {
