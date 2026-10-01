@@ -89,14 +89,23 @@ class Button extends Action
                 ? url()->previous()
                 : url()->current();
 
-            // url()->previous() can carry the query string of the page it
-            // was requested from (e.g. a paginated ?page=2 listing), which
-            // would otherwise end up spliced in front of the method name.
-            $url = strtok($url, '?');
+            // url()->previous() can carry the query string of the page it was
+            // requested from (e.g. active filters/sorts, or a paginated
+            // ?page=2 listing). Appending the method name straight after that
+            // query string splices it into the middle of the URL and breaks
+            // routing (`.../all?page=2/setImage`, see #2845), so the path and
+            // query need to be separated before the method is appended.
+            // The previous query string itself is kept and merged behind the
+            // method, rather than discarded, so things like table filters
+            // still apply to the action (e.g. an Export button still
+            // respects the filters selected on the listing, see #3150).
+            $path = strtok($url, '?');
+            parse_str((string) parse_url($url, PHP_URL_QUERY), $previousQuery);
 
-            $query = http_build_query($this->get('parameters'));
+            $parameters = $this->get('parameters');
+            $query = http_build_query(array_merge($previousQuery, is_array($parameters) ? $parameters : (array) $parameters));
 
-            $action = rtrim("{$url}/{$this->get('method')}?{$query}", '/?');
+            $action = rtrim("{$path}/{$this->get('method')}?{$query}", '/?');
             $this->set('action', $action);
         })->addBeforeRender(function () {
             $action = $this->get('action');
