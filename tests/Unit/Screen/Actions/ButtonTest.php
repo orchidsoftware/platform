@@ -6,6 +6,8 @@ namespace Orchid\Tests\Unit\Screen\Fields;
 
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Orchid;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 /**
@@ -188,6 +190,84 @@ class ButtonTest extends TestFieldsUnitCase
 
         $this->assertStringContainsString(
             'formaction="http://127.0.0.1:8001/test?id=1',
+            $view
+        );
+    }
+
+    public function testButtonActionMovesQueryStringFromPreviousUrlBehindTheMethod(): void
+    {
+        // A partial request (e.g. a table rendered inside an async modal on
+        // a paginated screen) has its "previous URL" carry the page's own
+        // query string. That must not be spliced in front of the method
+        // name (it would break routing), but it must still reach the final
+        // action so things like active filters keep applying.
+        request()->headers->set('referer', 'http://127.0.0.1:8001/test?page=2');
+
+        Orchid::setCurrentScreen(new class extends Screen
+        {
+            public function layout(): iterable
+            {
+                return [];
+            }
+        }, true);
+
+        $button = Button::make('About')
+            ->method('test');
+
+        $view = self::renderField($button);
+
+        $this->assertStringContainsString(
+            'formaction="http://127.0.0.1:8001/test/test?page=2"',
+            $view
+        );
+    }
+
+    public function testButtonActionKeepsFiltersFromPreviousUrlForExport(): void
+    {
+        // Mirrors selecting table filters, then clicking an async Export
+        // button: the filters from the listing's URL must still be present
+        // on the export action so the export respects them.
+        request()->headers->set('referer', 'http://127.0.0.1:8001/test?filter%5Bstatus%5D=active&page=2');
+
+        Orchid::setCurrentScreen(new class extends Screen
+        {
+            public function layout(): iterable
+            {
+                return [];
+            }
+        }, true);
+
+        $button = Button::make('Export')
+            ->method('export');
+
+        $view = self::renderField($button);
+
+        $this->assertStringContainsString('filter%5Bstatus%5D=active', $view);
+        $this->assertStringContainsString('page=2', $view);
+        $this->assertStringNotContainsString('formaction="http://127.0.0.1:8001/test?', $view);
+    }
+
+    public function testButtonMethodParametersOverwritePreviousQueryString(): void
+    {
+        // The button's own parameters take precedence over a same-named
+        // query parameter carried over from the previous URL.
+        request()->headers->set('referer', 'http://127.0.0.1:8001/test?id=1');
+
+        Orchid::setCurrentScreen(new class extends Screen
+        {
+            public function layout(): iterable
+            {
+                return [];
+            }
+        }, true);
+
+        $button = Button::make('About')
+            ->method('test', ['id' => 2]);
+
+        $view = self::renderField($button);
+
+        $this->assertStringContainsString(
+            'formaction="http://127.0.0.1:8001/test/test?id=2"',
             $view
         );
     }
