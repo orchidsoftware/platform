@@ -89,16 +89,7 @@ class Button extends Action
                 ? url()->previous()
                 : url()->current();
 
-            // url()->previous() can carry the query string of the page it was
-            // requested from (e.g. active filters/sorts, or a paginated
-            // ?page=2 listing). Appending the method name straight after that
-            // query string splices it into the middle of the URL and breaks
-            // routing (`.../all?page=2/setImage`, see #2845), so the path and
-            // query need to be separated before the method is appended.
-            // The previous query string itself is kept and merged behind the
-            // method, rather than discarded, so things like table filters
-            // still apply to the action (e.g. an Export button still
-            // respects the filters selected on the listing, see #3150).
+            // Split off the previous query string so the method isn't appended after it (#2845), but keep it for filters.
             $path = strtok($url, '?');
             parse_str((string) parse_url($url, PHP_URL_QUERY), $previousQuery);
 
