@@ -28,6 +28,7 @@ abstract class Block extends Layout
      */
     protected $variables = [
         'vertical' => false,
+        'topCommandBar' => false,
     ];
 
     /**
@@ -99,11 +100,14 @@ abstract class Block extends Layout
         return $this;
     }
 
+
     /**
      * @param Action|Action[] description
      */
-    public function commands($commands): self
+    public function commands($commands, $top = false): self
     {
+        $this->variables['topCommandBar'] = $top;
+
         $this->commandBar = Arr::wrap($commands);
 
         return $this;
