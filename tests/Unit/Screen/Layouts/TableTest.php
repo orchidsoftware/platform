@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
+use Orchid\Screen\Action;
+use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Repository;
 use Orchid\Screen\TD;
@@ -145,8 +147,161 @@ class TableTest extends TestUnitCase
             'target'  => collect([]),
         ]))->render();
 
-        $this->assertStringContainsString('There are no objects currently displayed', $html);
+        $this->assertStringContainsString('No items yet', $html);
+        $this->assertStringContainsString('New items will appear here.', $html);
+        $this->assertStringContainsString('class="empty-state ', $html);
+        $this->assertMatchesRegularExpression('/<table class="[^"]*\bmb-0\b[^"]*">/', $html);
+        $this->assertStringNotContainsString('bs.arrow-counterclockwise', $html);
         $this->assertNotEmpty($html);
+    }
+
+    public function testShowResetActionWhenFiltersHaveNoResults(): void
+    {
+        $query = request()->query->all();
+
+        request()->query->replace([
+            'filter' => ['name' => 'missing'],
+            'page'   => 2,
+            'sort'   => 'name',
+            'tab'    => 'active',
+        ]);
+
+        try {
+            $layout = new class extends Table
+            {
+                protected $target = 'target';
+
+                protected function columns(): array
+                {
+                    return [];
+                }
+            };
+
+            $html = $layout->build(new Repository([
+                'target' => collect([]),
+            ]))->render();
+
+            $this->assertStringContainsString('No matches', $html);
+            $this->assertStringContainsString('Try changing or clearing the filters.', $html);
+            $this->assertStringContainsString('class="empty-state ', $html);
+            $this->assertStringContainsString('bs.arrow-counterclockwise', $html);
+            $this->assertStringContainsString('Clear filters', $html);
+            $this->assertStringContainsString('sort=name', $html);
+            $this->assertStringContainsString('tab=active', $html);
+            $this->assertStringNotContainsString('filter%5Bname%5D', $html);
+            $this->assertStringNotContainsString('page=2', $html);
+        } finally {
+            request()->query->replace($query);
+        }
+    }
+
+    public function testPaginationAndSortingDoNotCountAsFilters(): void
+    {
+        $query = request()->query->all();
+
+        request()->query->replace([
+            'page' => 2,
+            'sort' => 'name',
+            'tab'  => 'active',
+        ]);
+
+        try {
+            $layout = new class extends Table
+            {
+                protected $target = 'target';
+
+                protected function columns(): array
+                {
+                    return [];
+                }
+            };
+
+            $html = $layout->build(new Repository([
+                'target' => collect([]),
+            ]))->render();
+
+            $this->assertStringContainsString('No items yet', $html);
+            $this->assertStringNotContainsString('Clear filters', $html);
+        } finally {
+            request()->query->replace($query);
+        }
+    }
+
+    public function testEmptyFilterValuesDoNotCountAsActiveFilters(): void
+    {
+        $query = request()->query->all();
+
+        request()->query->replace([
+            'filter' => [
+                'name'  => '',
+                'range' => ['start' => null, 'end' => ''],
+            ],
+        ]);
+
+        try {
+            $layout = new class extends Table
+            {
+                protected $target = 'target';
+
+                protected function columns(): array
+                {
+                    return [];
+                }
+            };
+
+            $html = $layout->build(new Repository([
+                'target' => collect([]),
+            ]))->render();
+
+            $this->assertStringContainsString('No items yet', $html);
+            $this->assertStringNotContainsString('Clear filters', $html);
+        } finally {
+            request()->query->replace($query);
+        }
+    }
+
+    public function testEmptyStateCanBeOverridden(): void
+    {
+        $layout = new class extends Table
+        {
+            protected $target = 'target';
+
+            protected function columns(): array
+            {
+                return [];
+            }
+
+            protected function emptyStateIcon(): string
+            {
+                return 'bs.archive';
+            }
+
+            protected function emptyStateTitle(): string
+            {
+                return 'No appointments';
+            }
+
+            protected function emptyStateDescription(): string
+            {
+                return 'Create the first appointment.';
+            }
+
+            protected function emptyStateAction(): ?Action
+            {
+                return Link::make('Create appointment')->href('/appointments/create');
+            }
+        };
+
+        $html = $layout->build(new Repository([
+            'target' => collect([]),
+        ]))->render();
+
+        $this->assertStringContainsString('bs.archive', $html);
+        $this->assertStringContainsString('No appointments', $html);
+        $this->assertStringContainsString('Create the first appointment.', $html);
+        $this->assertStringContainsString('Create appointment', $html);
+        $this->assertStringContainsString('href="/appointments/create"', $html);
+        $this->assertStringNotContainsString('Clear filters', $html);
     }
 
     public function testLoopTable(): void
@@ -172,5 +327,7 @@ class TableTest extends TestUnitCase
         $values->each(function ($item, $key) use ($html) {
             $this->assertStringContainsString('index:'.$key, $html);
         });
+
+        $this->assertDoesNotMatchRegularExpression('/<table class="[^"]*\bmb-0\b[^"]*">/', $html);
     }
 }

@@ -13,6 +13,7 @@ use Laravel\Octane\Events\RequestReceived;
 use Laravel\Scout\ScoutServiceProvider;
 use Orchid\Icons\IconServiceProvider;
 use Orchid\Platform\Components\Breadcrumbs;
+use Orchid\Platform\Components\EmptyState;
 use Orchid\Platform\Components\Notification;
 use Orchid\Platform\Components\Stream;
 use Orchid\Platform\Orchid;
@@ -131,6 +132,7 @@ class FoundationServiceProvider extends ServiceProvider
 
         Blade::component('orchid-popover', Popover::class);
         Blade::component('orchid-breadcrumbs', Breadcrumbs::class);
+        Blade::component('orchid-empty-state', EmptyState::class);
         Blade::component('orchid-notification', Notification::class);
         Blade::component('orchid-stream', Stream::class);
     }

@@ -38,7 +38,9 @@
     @endforeach
 
 @empty
-    <p class="mb-0 text-center p-5 text-center bg-body-tertiary rounded-3 text-balance">
-        {{ __('There are no records in this view.') }}
-    </p>
+    <x-orchid-empty-state
+        icon="bs.search"
+        :title="__('No results')"
+        :description="__('Try a different search.')"
+    />
 @endforelse
