@@ -1,0 +1,23 @@
+name: Semgrep
+
+on:
+  pull_request:
+  push:
+    paths:
+      - '.github/workflows/**'
+      - '**.php'
+      - '**.js'
+      - '**.json'
+
+jobs:
+  semgrep:
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Run Semgrep 🔍
+        run: semgrep scan --config auto --error
