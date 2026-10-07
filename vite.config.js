@@ -25,6 +25,7 @@ function addQueryHashToManifest() {
                 return;
             }
 
+            const realPublicDir = fs.realpathSync(publicDir);
             const manifestData = fs.readFileSync(manifestFile, "utf-8");
             const manifest = JSON.parse(manifestData);
 
@@ -36,10 +37,39 @@ function addQueryHashToManifest() {
              */
             const appendHash = filePath => {
                 const [baseFilePath] = filePath.split("?");
-                const absolutePath = path.resolve(publicDir, baseFilePath);
+                const normalizedPath = baseFilePath.replace(/\\/g, "/");
 
-                // Return the original filePath if the file does not exist.
+                if (
+                    normalizedPath.startsWith("/") ||
+                    normalizedPath.split("/").includes("..")
+                ) {
+                    return filePath;
+                }
+
+                const absolutePath = path.resolve(publicDir, normalizedPath);
+                const relativePath = path.relative(publicDir, absolutePath);
+
+                if (
+                    !relativePath ||
+                    relativePath === ".." ||
+                    relativePath.startsWith(`..${path.sep}`) ||
+                    path.isAbsolute(relativePath)
+                ) {
+                    return filePath;
+                }
+
                 if (!fs.existsSync(absolutePath)) {
+                    return filePath;
+                }
+
+                const realPath = fs.realpathSync(absolutePath);
+                const realRelativePath = path.relative(realPublicDir, realPath);
+
+                if (
+                    realRelativePath === ".." ||
+                    realRelativePath.startsWith(`..${path.sep}`) ||
+                    path.isAbsolute(realRelativePath)
+                ) {
                     return filePath;
                 }
 

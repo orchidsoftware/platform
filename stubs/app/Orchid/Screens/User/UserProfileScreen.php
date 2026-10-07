@@ -7,6 +7,7 @@ namespace App\Orchid\Screens\User;
 use App\Orchid\Layouts\User\ProfilePasswordLayout;
 use App\Orchid\Layouts\User\UserEditLayout;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Orchid\Access\Impersonation;
@@ -100,11 +101,13 @@ class UserProfileScreen extends Screen
 
     public function save(Request $request): void
     {
+        $currentUserId = Auth::guard(config('orchid.guard', 'web'))->id();
+
         $request->validate([
             'user.name'  => 'required|string',
             'user.email' => [
                 'required',
-                Rule::unique(User::class, 'email')->ignore($request->user()),
+                Rule::unique(User::class, 'email')->ignore($currentUserId),
             ],
         ]);
 
