@@ -56,28 +56,6 @@ export default class extends ApplicationController {
 
     /**
      *
-     * @param replace
-     * @param name
-     * @param value
-     */
-    add(replace, name, value) {
-        this.urlTarget.value += `${replace + name}=${encodeURIComponent(value)}`;
-    }
-
-    /**
-     *
-     * @param replace
-     * @param value
-     */
-    change(replace, value) {
-        this.urlTarget.value = this.urlTarget.value.replace(
-            replace,
-            `$1${encodeURIComponent(value)}`
-        );
-    }
-
-    /**
-     *
      * @param name
      * @param value
      */
@@ -89,19 +67,9 @@ export default class extends ApplicationController {
             return;
         }
 
-        let replace = new RegExp("([?&]" + name + "=)[^&]+", "");
-
-        if (this.urlTarget.value.indexOf("?") === -1) {
-            this.add("?", name, value);
-            return;
-        }
-
-        if (replace.test(this.link)) {
-            this.change(replace, value);
-            return;
-        }
-
-        this.add("&", name, value);
+        const url = new URL(this.urlTarget.value);
+        url.searchParams.set(name, value);
+        this.urlTarget.value = url.toString();
     }
 
     /**
