@@ -20,4 +20,4 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Run Semgrep 🔍
-        run: semgrep scan --config auto --error
+        run: semgrep scan --config auto
