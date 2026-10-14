@@ -4,12 +4,15 @@ namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
+use Orchid\Screen\Concerns\HasEmptyState;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Sight;
 
 abstract class Sortable extends Layout
 {
+    use HasEmptyState;
+
     /**
      * @var string
      */
@@ -60,16 +63,17 @@ abstract class Sortable extends Layout
         $rows = collect()->merge($repository->getContent($this->target));
 
         return view($this->template, [
-            'rows'               => $rows,
-            'columns'            => $columns,
-            'slug'               => $this->getSlug(),
-            'title'              => $this->title,
-            'showBlockHeaders'   => $this->showBlockHeaders,
-            'iconNotFound'       => $this->iconNotFound(),
-            'textNotFound'       => $this->textNotFound(),
-            'subNotFound'        => $this->subNotFound(),
-            'successSortMessage' => $this->successSortMessage(),
-            'failureSortMessage' => $this->failureSortMessage(),
+            'rows'                  => $rows,
+            'columns'               => $columns,
+            'slug'                  => $this->getSlug(),
+            'title'                 => $this->title,
+            'showBlockHeaders'      => $this->showBlockHeaders,
+            'emptyStateIcon'        => $this->emptyStateIcon(),
+            'emptyStateTitle'       => $this->emptyStateTitle(),
+            'emptyStateDescription' => $this->emptyStateDescription(),
+            'emptyStateAction'      => $this->emptyStateAction(),
+            'successSortMessage'    => $this->successSortMessage(),
+            'failureSortMessage'    => $this->failureSortMessage(),
         ]);
     }
 
@@ -100,21 +104,6 @@ abstract class Sortable extends Layout
         $this->showBlockHeaders = $showHeaders;
 
         return $this;
-    }
-
-    protected function iconNotFound(): string
-    {
-        return 'bs.journal-x';
-    }
-
-    protected function textNotFound(): string
-    {
-        return __('There are no objects currently displayed');
-    }
-
-    protected function subNotFound(): string
-    {
-        return __('Import or create objects, or check back later for updates');
     }
 
     /**

@@ -16,7 +16,10 @@ class SearchTest extends TestFeatureCase
             ->actingAs($this->createAdminUser())
             ->post(route('orchid.search', Str::uuid()->toString()))
             ->assertOk()
-            ->assertSee('There are no records in this view');
+            ->assertSee('No results')
+            ->assertSee('Try a different search.')
+            ->assertDontSee('data-action="search#clear"', false)
+            ->assertSee('empty-state');
     }
 
     public function testSearch(): void
