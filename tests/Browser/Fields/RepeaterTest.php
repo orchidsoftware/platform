@@ -119,7 +119,8 @@ JS);
             $browser->click('[data-repeater-name="choices"] [data-repeater-row]:nth-child(1) [data-repeater-clone]')
                 ->waitUntil('document.querySelectorAll(\'[data-repeater-name="choices"] [data-repeater-row]\').length === 3');
             $this->assertSame('published', $this->formValue($browser, 'choices[1][status]'));
-            $browser->click('[data-repeater-name="choices"] [data-repeater-row]:nth-child(2) input[value="archived"] + label');
+            $radioId = $browser->attribute('input[name="choices[1][status]"][value="archived"]', 'id');
+            $browser->click('label[for="'.$radioId.'"], label:has(input[id="'.$radioId.'"])');
             $this->assertSame('published', $this->formValue($browser, 'choices[0][status]'));
             $this->assertSame('archived', $this->formValue($browser, 'choices[1][status]'));
             $this->assertSame('draft', $this->formValue($browser, 'choices[2][status]'));
@@ -265,6 +266,48 @@ JS)[0]);
             $browser->press('Submit')->waitForText('Third');
             $payload = json_decode($browser->script('return document.querySelector("pre")?.textContent ?? document.body.textContent')[0], true, 512, JSON_THROW_ON_ERROR);
             $this->assertSame([['name' => 'First'], ['name' => 'Second'], ['name' => 'Third']], $payload['sparse']);
+        });
+    }
+
+    public function testDateRangePairsStayIndependentAfterAddCloneAndReorder(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $this->visitFixture($browser);
+            $this->assertSame('2026-10-10', $this->formValue($browser, 'periods[0][window][start]'));
+            $this->assertSame('2026-10-12', $this->formValue($browser, 'periods[0][window][end]'));
+            $browser->click('[data-repeater-name="periods"] [data-action="repeater#addRow"]');
+            $browser->waitUntil(<<<'JS'
+document.querySelectorAll('[data-repeater-name="periods"] [data-controller="datetime"]').length === 2 && [...document.querySelectorAll('[data-repeater-name="periods"] [data-controller="datetime"]')].every(element => window.application.getControllerForElementAndIdentifier(element, 'datetime'))
+JS);
+            $this->assertTrue($browser->script(<<<'JS'
+return [...document.querySelectorAll('[data-repeater-name="periods"] [data-controller="datetime"]')].every(element => element.querySelector('input[name$="[end]"]') === document.querySelector(element.dataset.datetimeRange));
+JS)[0]);
+            $browser->click('[name="periods[1][window][start]"]');
+            $browser->script(<<<'JS'
+const element = document.querySelectorAll('[data-repeater-name="periods"] [data-controller="datetime"]')[1];
+const controller = window.application.getControllerForElementAndIdentifier(element, 'datetime');
+controller.fp.jumpToDate('2026-10-01');
+JS);
+            $browser->click('.flatpickr-calendar.open .flatpickr-day[aria-label="October 20, 2026"]')
+                ->click('.flatpickr-calendar.open .flatpickr-day[aria-label="October 22, 2026"]');
+            $this->assertSame('2026-10-20', $this->formValue($browser, 'periods[1][window][start]'));
+            $this->assertSame('2026-10-22', $this->formValue($browser, 'periods[1][window][end]'));
+            $browser->click('[data-repeater-name="periods"] [data-repeater-row]:nth-child(2) [data-repeater-clone]')
+                ->waitUntil("document.querySelectorAll('[data-repeater-name=\"periods\"] [data-fp-omit]').length === 3");
+            $browser->click('[data-repeater-name="periods"] [data-repeater-row]:nth-child(3) [data-action="repeater#moveUp"]');
+            $browser->script(<<<'JS'
+const element = document.querySelectorAll('[data-repeater-name="periods"] [data-controller="datetime"]')[1];
+window.application.getControllerForElementAndIdentifier(element, 'datetime').fp.setDate(['2026-10-25', '2026-10-27'], true);
+JS);
+            $this->assertSame('2026-10-10', $this->formValue($browser, 'periods[0][window][start]'));
+            $this->assertSame('2026-10-22', $this->formValue($browser, 'periods[2][window][end]'));
+            $browser->press('Submit')->waitForText('periods');
+            $payload = json_decode($browser->script('return document.querySelector("pre")?.textContent ?? document.body.textContent')[0], true, 512, JSON_THROW_ON_ERROR);
+            $this->assertSame([
+                ['window' => ['start' => '2026-10-10', 'end' => '2026-10-12']],
+                ['window' => ['start' => '2026-10-25', 'end' => '2026-10-27']],
+                ['window' => ['start' => '2026-10-20', 'end' => '2026-10-22']],
+            ], $payload['periods']);
         });
     }
 

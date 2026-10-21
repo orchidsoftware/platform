@@ -6,6 +6,7 @@ namespace Orchid\Tests\App\Fields;
 
 use Orchid\Screen\Builder;
 use Orchid\Screen\Fields\Attach;
+use Orchid\Screen\Fields\DateRange;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\RadioButtons;
@@ -16,6 +17,9 @@ class RepeaterBrowserFixture
     public static function render(): string
     {
         $fields = [
+            Repeater::make('periods')->cloneableRows()->reorderableRows()->fields([
+                DateRange::make('window')->format('Y-m-d')->disableMobile(),
+            ])->value([['window' => ['start' => '2026-10-10', 'end' => '2026-10-12']]]),
             Repeater::make('sparse')->fields([Input::make('name')]),
             Repeater::make('choices')->cloneableRows()->reorderableRows()->fields([
                 RadioButtons::make('status')->options([
@@ -59,7 +63,7 @@ class RepeaterBrowserFixture
 
         return <<<HTML
 <!doctype html>
-<html><head><meta charset="utf-8"><meta name="csrf_token" content="{$token}">
+<html lang="en"><head><meta charset="utf-8"><meta name="csrf_token" content="{$token}">
 <link rel="stylesheet" href="/repeater/assets/app.css">
 <script type="module" src="/repeater/assets/app.js"></script>
 </head><body><form id="fixture" method="post" action="/repeater/submit" data-turbo="false">

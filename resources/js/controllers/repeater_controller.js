@@ -129,7 +129,7 @@ export default class extends ApplicationController {
         const index = Number(this.data.get("index")) || 0;
         this.data.set("index", index + 1);
         const placeholder = this.data.get("placeholder");
-        this.mapAttributes(row, ["name", "id", "for", "aria-describedby", "aria-labelledby"],
+        this.mapAttributes(row, ["name", "id", "for", "aria-describedby", "aria-labelledby", "data-datetime-range"],
             value => value.replaceAll(placeholder, index));
         return row;
     }
