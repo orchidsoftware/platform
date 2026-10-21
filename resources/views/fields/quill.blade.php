@@ -4,9 +4,8 @@
      data-quill-groups="{{$attributes['groups'] ?? ''}}"
      data-theme="{{$theme ?? 'inlite'}}"
 >
-    <div id="toolbar"></div>
     <div class="quill p-3 position-relative" id="quill-wrapper-{{$id}}"
          style="min-height: {{ $attributes['height'] }}">
     </div>
-    <textarea class="d-none" {{ $attributes }}>{{ $value ?? '' }}</textarea>
+    <textarea {{ $attributes->merge(['class' => 'd-none']) }}>{{ $value ?? '' }}</textarea>
 </div>
