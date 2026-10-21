@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Fields;
 
+use Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Testing\TestResponse;
 use Orchid\Screen\Builder;
 use Orchid\Screen\Fields\KeyValue;
 use Orchid\Screen\Repository;
@@ -181,5 +185,162 @@ class KeyValueTest extends TestFieldsUnitCase
         foreach ($inputs as $input) {
             $this->assertSame('external', $input->getAttribute('form'));
         }
+    }
+
+    public function testRejectedInputRendersThroughMiddlewareAndSession(): void
+    {
+        $this->registerValidationRoutes();
+
+        $this->from('/key-value')->post('/key-value', ['meta' => 'invalid'])
+            ->assertRedirect('/key-value')
+            ->assertSessionHasErrors('meta');
+
+        $this->get('/key-value')
+            ->assertOk()
+            ->assertSee('The meta field must be an array.')
+            ->assertDontSee('Persisted value');
+    }
+
+    public function testRejectedCellsRetainValidRowsAndCells(): void
+    {
+        $this->registerValidationRoutes();
+
+        $this->from('/key-value')->post('/key-value', ['meta' => [
+            3  => ['key' => 'kept', 'value' => 'Draft value'],
+            7  => ['key' => ['invalid'], 'value' => 'Retained value'],
+            8  => ['key' => 'Retained key', 'value' => ['invalid']],
+            9  => ['key' => '', 'value' => ''],
+            12 => ['unexpected' => ['invalid']],
+            15 => ['value' => 'Value without key'],
+        ]])->assertRedirect('/key-value')->assertSessionHasErrors(['meta.7.key', 'meta.8.value']);
+
+        $this->assertSame([
+            3  => ['key' => 'kept', 'value' => 'Draft value'],
+            7  => ['key' => ['invalid'], 'value' => 'Retained value'],
+            8  => ['key' => 'Retained key', 'value' => ['invalid']],
+            9  => ['key' => null, 'value' => null],
+            12 => ['unexpected' => ['invalid']],
+            15 => ['value' => 'Value without key'],
+        ], session()->getOldInput('meta'));
+
+        $response = $this->get('/key-value')->assertOk()->assertDontSee('Persisted value');
+        $this->assertDisplayedRows($response, [
+            ['kept', 'Draft value'],
+            ['', 'Retained value'],
+            ['Retained key', ''],
+            ['', ''],
+            ['', ''],
+            ['', 'Value without key'],
+        ]);
+
+    }
+
+    public function testNullOldInputClearsPrefixedNestedCollection(): void
+    {
+        $this->registerValidationRoutes('settings.meta', 'record');
+
+        $this->from('/key-value')->post('/key-value', ['record' => ['settings' => ['meta' => '']]])
+            ->assertRedirect('/key-value');
+
+        $response = $this->get('/key-value')
+            ->assertOk()
+            ->assertSee('data-key-value-name-value="record[settings][meta]"', false)
+            ->assertSee('data-key-value-target="empty"', false)
+            ->assertDontSee('Persisted value');
+        $this->assertDisplayedRows($response, []);
+
+    }
+
+    public function testNumericMapOldInputRemainsEditable(): void
+    {
+        $this->registerValidationRoutes();
+
+        $this->from('/key-value')->post('/key-value', ['meta' => [0 => 'Zero', 7 => 'Seven']])
+            ->assertRedirect('/key-value');
+
+        $this->get('/key-value')
+            ->assertOk()
+            ->assertSee('value="0"', false)
+            ->assertSee('value="Zero"', false)
+            ->assertSee('value="7"', false)
+            ->assertSee('value="Seven"', false)
+            ->assertDontSee('Persisted value');
+    }
+
+    public function testRejectedStringRowKeysKeepBothCells(): void
+    {
+        $this->registerValidationRoutes();
+        $this->from('/key-value')->post('/key-value', [
+            'meta' => ['row-a' => ['key' => 'Color', 'value' => 'Blue']],
+        ])->assertRedirect('/key-value');
+
+        $this->assertDisplayedRows($this->get('/key-value')->assertOk(), [['Color', 'Blue']]);
+    }
+
+    public function testInvalidDeveloperCollectionStillFails(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        KeyValue::make('meta')->value('invalid')->render();
+    }
+
+    public function testInvalidRepositoryCellStillFails(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        (new Builder([KeyValue::make('meta')], new Repository([
+            'meta' => ['key' => ['invalid']],
+        ])))->generateForm();
+    }
+
+    private function assertDisplayedRows(TestResponse $response, array $expected): void
+    {
+        $document = new \DOMDocument;
+        @$document->loadHTML($response->getContent());
+        $xpath = new \DOMXPath($document);
+        $rows = [];
+
+        foreach ($xpath->query('//tbody[@data-key-value-target="rows"]/tr') as $row) {
+            $cells = [];
+            foreach ($xpath->query('.//input[@data-key-value-cell]', $row) as $input) {
+                $cells[] = $input->getAttribute('value');
+            }
+            $rows[] = $cells;
+        }
+
+        $this->assertSame($expected, $rows);
+    }
+
+    private function registerValidationRoutes(string $name = 'meta', ?string $prefix = null): void
+    {
+        $path = $prefix === null ? $name : $prefix.'.'.$name;
+
+        Route::middleware(['web', ConvertEmptyStringsToNull::class])->group(function () use ($name, $prefix, $path) {
+            Route::post('/key-value', function (Request $request) use ($path) {
+                $request->validate([
+                    $path            => ['nullable', 'array'],
+                    $path.'.*.key'   => ['nullable', 'string'],
+                    $path.'.*.value' => ['nullable', 'string'],
+                    'required'       => ['required'],
+                ]);
+            });
+
+            Route::get('/key-value', function () use ($name, $prefix, $path) {
+                $data = [];
+                data_set($data, $path, ['saved' => 'Persisted value']);
+
+                $oldInput = session()->getOldInput();
+                $errors = session('errors');
+                $repository = new Repository($data);
+                $view = (new Builder([KeyValue::make($name)], $repository))
+                    ->setPrefix($prefix)
+                    ->generateForm();
+                $this->assertSame($oldInput, session()->getOldInput());
+                $this->assertSame($errors, session('errors'));
+                $this->assertSame($data, $repository->toArray());
+
+                return $view;
+            });
+        });
     }
 }

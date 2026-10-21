@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Illuminate\Support\Arr;
 use Orchid\Screen\Field;
 
 /**
@@ -70,39 +71,50 @@ class KeyValue extends Field
     }
 
     /**
-     * Normalize after repository binding and old input have been applied.
+     * Normalize bound values strictly and flashed request input for display.
      */
-    public function __construct()
+    protected function updateFieldValue(): static
     {
-        $this->addBeforeRender(function () {
-            $value = $this->get('value');
+        $oldInput = request()->hasSession() ? request()->session()->getOldInput() : [];
+        $hasOldInput = Arr::has($oldInput, $this->getOldName());
 
-            if ($value === null || $value === '') {
-                $value = [];
-            }
+        if ($hasOldInput) {
+            $this->set('value', Arr::get($oldInput, $this->getOldName()));
+        } else {
+            parent::updateFieldValue();
+        }
 
-            if (! is_array($value)) {
-                throw new \InvalidArgumentException('KeyValue expects an array of rows or an associative array.');
-            }
+        $value = $this->get('value');
 
-            $rows = [];
+        if ($value === null || $value === '' || ($hasOldInput && ! is_array($value))) {
+            $value = [];
+        }
 
-            foreach ($value as $key => $item) {
-                $row = is_int($key) && is_array($item) && array_key_exists('key', $item)
-                    ? ['key' => $item['key'], 'value' => array_key_exists('value', $item) ? $item['value'] : '']
-                    : ['key' => $key, 'value' => $item];
+        if (! is_array($value)) {
+            throw new \InvalidArgumentException('KeyValue expects an array of rows or an associative array.');
+        }
 
-                foreach ($row as $cell) {
-                    if ($cell !== null && ! is_scalar($cell)) {
+        $rows = [];
+
+        foreach ($value as $key => $item) {
+            $row = is_array($item) && ($hasOldInput || (is_int($key) && array_key_exists('key', $item)))
+                ? ['key' => $item['key'] ?? null, 'value' => array_key_exists('value', $item) ? $item['value'] : '']
+                : ['key' => $key, 'value' => $item];
+
+            foreach ($row as $column => $cell) {
+                if ($cell !== null && ! is_scalar($cell)) {
+                    if (! $hasOldInput) {
                         throw new \InvalidArgumentException('KeyValue keys and values must be scalar or null.');
                     }
-                }
 
-                $rows[] = $row;
+                    $row[$column] = '';
+                }
             }
 
-            $this->set('value', $rows);
-        });
+            $rows[] = $row;
+        }
+
+        return $this->set('value', $rows);
     }
 
     /**
