@@ -211,18 +211,25 @@ export default class extends ApplicationController {
             .querySelector("*")
             .cloneNode(true);
 
-        preview.querySelectorAll("*").forEach(element => {
-            preview.innerHTML = preview.innerHTML
-                .replace(/{id}/gi, attachment.id)
-                .replace(/{url}/gi, attachment.url)
-                .replace(/{original_name}/gi, attachment.original_name)
-                .replace(/{mime}/gi, attachment.mime)
-                .replace(/{name}/gi, this.nameValue);
+        const values = {
+            id: attachment.id,
+            url: attachment.url,
+            original_name: attachment.original_name,
+            mime: attachment.mime,
+            name: this.nameValue,
+        };
+
+        [preview, ...preview.querySelectorAll("*")].forEach(element => {
+            [...element.attributes].forEach(attribute => {
+                element.setAttribute(attribute.name, attribute.value.replace(
+                    /{(id|url|original_name|mime|name)}/gi,
+                    (placeholder, key) => values[key.toLowerCase()]
+                ));
+            });
         });
 
         if (replace !== null) {
-            this.element.querySelector(`#attachment-${replace}`).outerHTML =
-                pip.outerHTML;
+            this.element.querySelector(`#attachment-${replace}`).replaceWith(preview);
             return;
         }
 
