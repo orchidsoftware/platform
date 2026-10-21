@@ -19,6 +19,9 @@ abstract class Component extends Layout
      */
     private $component;
 
+    /**
+     * Additional data passed to the Blade component.
+     */
     private array $data = [];
 
     /**
@@ -57,6 +60,9 @@ abstract class Component extends Layout
         return $view->with($component->data());
     }
 
+    /**
+     * Merge additional data into the component rendering context.
+     */
     public function with(array $data): self
     {
         $this->data = array_merge($this->data, $data);

@@ -29,6 +29,9 @@ class Metric extends Layout
      */
     protected $labels = [];
 
+    /**
+     * Initialize the labels displayed by the metric layout.
+     */
     public function __construct(array $labels)
     {
         $this->labels = $labels;

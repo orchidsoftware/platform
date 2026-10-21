@@ -141,6 +141,9 @@ abstract class Layout implements JsonSerializable
             ->first();
     }
 
+    /**
+     * Return layout properties without the bound query repository.
+     */
     public function jsonSerialize(): array
     {
         $props = collect(get_object_vars($this));

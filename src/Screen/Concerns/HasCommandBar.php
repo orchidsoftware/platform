@@ -18,6 +18,9 @@ trait HasCommandBar
         return [];
     }
 
+    /**
+     * Render visible commands against the supplied repository.
+     */
     protected function buildCommandBar(Repository $repository): array
     {
         return collect($this->commandBar())

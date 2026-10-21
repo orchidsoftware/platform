@@ -119,6 +119,9 @@ class Input extends Field
         });
     }
 
+    /**
+     * Attach suggested input values and configure the associated datalist ID.
+     */
     public function datalist(array $datalist = []): static
     {
         if (empty($datalist)) {

@@ -7,6 +7,11 @@ use Orchid\Icons\IconFinder;
 
 class BladeIcons
 {
+    /**
+     * Use the supplied icon finder when processing rendered content.
+     *
+     * @param IconFinder $iconFinder
+     */
     public function __construct(
         private IconFinder $iconFinder
     ) {}

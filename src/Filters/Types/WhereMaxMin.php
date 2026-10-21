@@ -9,6 +9,9 @@ use Orchid\Filters\BaseHttpEloquentFilter;
 
 class WhereMaxMin extends BaseHttpEloquentFilter
 {
+    /**
+     * Apply the submitted minimum and maximum bounds when present.
+     */
     public function run(Builder $builder): Builder
     {
         $value = $this->getHttpValue();

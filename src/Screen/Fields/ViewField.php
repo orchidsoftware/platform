@@ -14,6 +14,9 @@ use Orchid\Screen\Field;
  */
 class ViewField extends Field
 {
+    /**
+     * Set the Blade view used to render the field.
+     */
     public function view(string $view): self
     {
         $this->view = $view;

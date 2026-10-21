@@ -187,6 +187,9 @@ class Permissions implements Arrayable, CastsAttributes, Countable, JsonSerializ
         return $normalized;
     }
 
+    /**
+     * Normalize a permission value to a boolean, including string representations.
+     */
     private static function normalizeValue(mixed $value): bool
     {
         return match (true) {

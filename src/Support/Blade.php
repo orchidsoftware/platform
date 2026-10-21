@@ -14,6 +14,9 @@ use Illuminate\View\ComponentSlot;
 
 class Blade
 {
+    /**
+     * Cached component class and view metadata indexed by component name.
+     */
     private static array $components = [];
 
     /**
@@ -80,6 +83,9 @@ class Blade
         return static::$components[$component] ??= static::detectComponentInfo($component);
     }
 
+    /**
+     * Resolve the class and optional view used to render a Blade component.
+     */
     private static function detectComponentInfo(string $component): array
     {
         if (is_subclass_of($component, ViewComponent::class)) {

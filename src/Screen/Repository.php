@@ -38,11 +38,17 @@ class Repository extends \Illuminate\Config\Repository implements Countable
         return Arr::get($this->items, $key, $default);
     }
 
+    /**
+     * Return all items stored in the repository.
+     */
     public function toArray(): array
     {
         return $this->items;
     }
 
+    /**
+     * Return the number of stored repository items.
+     */
     public function count(): int
     {
         return count($this->items);
@@ -69,6 +75,9 @@ class Repository extends \Illuminate\Config\Repository implements Countable
         return $this->count() === 0;
     }
 
+    /**
+     * Wrap each item in a repository instance.
+     */
     public static function elements(array $items): array
     {
         return collect($items)

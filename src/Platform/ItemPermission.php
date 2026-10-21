@@ -36,12 +36,18 @@ class ItemPermission extends PermissionGroup
         $this->items = &$this->definitions;
     }
 
+    /**
+     * Create a permission group using the legacy factory name.
+     */
     #[\Deprecated(message: 'Use Orchid\Access\PermissionGroup::make() instead.')]
     public static function group(string $name): static
     {
         return new static($name);
     }
 
+    /**
+     * Add a permission using the legacy method name.
+     */
     #[\Deprecated(message: 'Use Orchid\Access\PermissionGroup::add() instead.')]
     public function addPermission(string $slug, string $description): static
     {

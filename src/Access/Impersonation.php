@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 class Impersonation
 {
     // The name of the session variable where the original authenticated user ID is stored
+    /**
+     * Session key storing the original user during impersonation.
+     */
     public const SESSION_NAME = 'orchid:impersonation_original_user';
 
     /**

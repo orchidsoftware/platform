@@ -64,6 +64,9 @@ trait ManagesResources
         return File::get($publishedPath) === File::get(__DIR__.'/../../../public/manifest.json');
     }
 
+    /**
+     * Configure Orchid asset paths, entry points and Turbo reload attributes.
+     */
     public static function vite(): \Illuminate\Foundation\Vite
     {
         return Vite::useBuildDirectory('vendor/orchid')

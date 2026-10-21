@@ -31,6 +31,9 @@ abstract class Content extends Layout
         $this->target = $target;
     }
 
+    /**
+     * Resolve content from the repository and render it as a string.
+     */
     public function build(Repository $repository): string
     {
         $this->query = $repository;
@@ -42,6 +45,9 @@ abstract class Content extends Layout
         return (string) $this;
     }
 
+    /**
+     * Render the resolved content or fail when no renderer is available.
+     */
     public function __toString(): string
     {
         if (method_exists($this, 'render')) {

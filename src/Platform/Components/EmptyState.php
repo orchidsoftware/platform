@@ -15,6 +15,13 @@ use Illuminate\View\Component;
  */
 class EmptyState extends Component
 {
+    /**
+     * Initialize the icon, title and description for the empty state.
+     *
+     * @param string|null $icon
+     * @param string|null $title
+     * @param string|null $description
+     */
     public function __construct(
         public ?string $icon = null,
         public ?string $title = null,

@@ -48,6 +48,9 @@ class ConsoleServiceProvider extends ServiceProvider
         FieldCommand::class,
     ];
 
+    /**
+     * Register Orchid console commands, publishers and application information.
+     */
     public function boot(): void
     {
         AboutCommand::add('Orchid', fn () => [

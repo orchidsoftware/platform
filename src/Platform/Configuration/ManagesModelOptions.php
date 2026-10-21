@@ -6,6 +6,9 @@ use Illuminate\Support\Arr;
 
 trait ManagesModelOptions
 {
+    /**
+     * Registered replacements for Orchid model classes.
+     */
     protected array $registeredReplaceModels = [];
 
     /**

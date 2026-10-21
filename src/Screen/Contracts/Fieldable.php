@@ -27,5 +27,8 @@ interface Fieldable
      */
     public function set(string $key, $value);
 
+    /**
+     * Return the attributes configured for rendering.
+     */
     public function getAttributes(): array;
 }

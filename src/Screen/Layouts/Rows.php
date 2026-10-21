@@ -55,6 +55,9 @@ abstract class Rows extends Layout
         ]);
     }
 
+    /**
+     * Set the heading displayed above the form rows.
+     */
     public function title(?string $title = null): self
     {
         $this->title = $title;

@@ -63,6 +63,9 @@ abstract class Cell
         return $td;
     }
 
+    /**
+     * Set the callback used to render the cell value.
+     */
     public function render(Closure $closure): static
     {
         $this->render = $closure;
@@ -70,6 +73,9 @@ abstract class Cell
         return $this;
     }
 
+    /**
+     * Set the explanatory text displayed in the cell popover.
+     */
     public function popover(string $text): static
     {
         $this->popover = $text;
