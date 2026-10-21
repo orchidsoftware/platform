@@ -4,12 +4,15 @@ namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
+use Orchid\Screen\Concerns\HasEmptyState;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Sight;
 
 abstract class Sortable extends Layout
 {
+    use HasEmptyState;
+
     /**
      * @var string
      */
@@ -100,21 +103,6 @@ abstract class Sortable extends Layout
         $this->showBlockHeaders = $showHeaders;
 
         return $this;
-    }
-
-    protected function iconNotFound(): string
-    {
-        return 'bs.journal-x';
-    }
-
-    protected function textNotFound(): string
-    {
-        return __('No items yet');
-    }
-
-    protected function subNotFound(): string
-    {
-        return __('New items will appear here.');
     }
 
     /**

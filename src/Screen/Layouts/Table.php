@@ -9,8 +9,7 @@ use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
-use Orchid\Screen\Action;
-use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Concerns\HasEmptyState;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\TD;
@@ -20,6 +19,8 @@ use Orchid\Screen\TD;
  */
 abstract class Table extends Layout
 {
+    use HasEmptyState;
+
     /**
      * @var string
      */
@@ -102,49 +103,6 @@ abstract class Table extends Layout
         $this->title = $title;
 
         return $this;
-    }
-
-    /**
-     * Icon displayed when no data is found.
-     */
-    protected function iconNotFound(): string
-    {
-        return 'bs.journal-x';
-    }
-
-    /**
-     * Text displayed when no data is found.
-     */
-    protected function textNotFound(): string
-    {
-        return $this->hasActiveFilters()
-            ? __('No matches')
-            : __('No items yet');
-    }
-
-    /**
-     * Subtext displayed when no data is found.
-     */
-    protected function subNotFound(): string
-    {
-        return $this->hasActiveFilters()
-            ? __('Try changing or clearing the filters.')
-            : __('New items will appear here.');
-    }
-
-    /**
-     * Action displayed when no data is found.
-     */
-    protected function actionNotFound(): ?Action
-    {
-        if (! $this->hasActiveFilters()) {
-            return null;
-        }
-
-        return Link::make('Clear filters')
-            ->icon('bs.arrow-counterclockwise')
-            ->href(request()->fullUrlWithoutQuery(['filter', 'page', 'cursor']))
-            ->class('btn btn-link d-inline-flex gap-2 text-decoration-none');
     }
 
     /**

@@ -32,6 +32,73 @@ class SortableInteractionTest extends TestUnitCase
         self::assertStringContainsString('New items will appear here.', $html);
     }
 
+    public function testEmptySortableIgnoresFiltersElsewhereOnTheScreen(): void
+    {
+        $query = request()->query->all();
+
+        request()->query->replace(['filter' => ['name' => 'missing']]);
+
+        try {
+            $layout = new class extends Sortable
+            {
+                protected $target = 'target';
+
+                protected function columns(): iterable
+                {
+                    return [];
+                }
+            };
+
+            $html = $layout->build(new Repository([
+                'target' => collect([]),
+            ]))->render();
+
+            self::assertStringContainsString('No items yet', $html);
+            self::assertStringContainsString('New items will appear here.', $html);
+            self::assertStringNotContainsString('No matches', $html);
+            self::assertStringNotContainsString('Clear filters', $html);
+        } finally {
+            request()->query->replace($query);
+        }
+    }
+
+    public function testEmptySortableCanBeOverridden(): void
+    {
+        $layout = new class extends Sortable
+        {
+            protected $target = 'target';
+
+            protected function columns(): iterable
+            {
+                return [];
+            }
+
+            protected function iconNotFound(): string
+            {
+                return 'bs.archive';
+            }
+
+            protected function textNotFound(): string
+            {
+                return 'No appointments';
+            }
+
+            protected function subNotFound(): string
+            {
+                return 'Create the first appointment.';
+            }
+        };
+
+        $html = $layout->build(new Repository([
+            'target' => collect([]),
+        ]))->render();
+
+        self::assertStringContainsString('bs.archive', $html);
+        self::assertStringContainsString('No appointments', $html);
+        self::assertStringContainsString('Create the first appointment.', $html);
+        self::assertStringNotContainsString('No items yet', $html);
+    }
+
     public function testSortableUsesAnExplicitReorderHandle(): void
     {
         $model = new class(['id' => 1, 'name' => 'First item']) extends Repository
