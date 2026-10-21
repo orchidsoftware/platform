@@ -8,21 +8,9 @@
     --orchid-charts-point-fill: #{$body-bg};
     --orchid-charts-hover-fill: #{rgba($body-bg, 0.5)};
     --orchid-charts-hover-blend-mode: multiply;
-}
 
-.chart-card {
-    --chart-padding: 1.5rem;
-    padding: var(--chart-padding);
-    min-width: 0;
-}
-
-[data-chart-type="pie"] .chart-card__canvas {
-    max-width: 22rem;
-    margin-inline: auto;
-}
-
-@include media-breakpoint-down(sm) {
-    .chart-card {
-        --chart-padding: 1rem;
+    .orchid-charts-label,
+    .orchid-charts-legend {
+        font-size: $font-size-sm;
     }
 }

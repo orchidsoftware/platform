@@ -220,3 +220,25 @@ test("exports the current instance and prevents link navigation", async () => {
     assert.equal(prevented, true);
     assert.equal(builds[0].downloads, 1);
 });
+
+test("uses the standard library legend for composition and mixed charts", async () => {
+    for (const type of ["pie", "percentage", "mixed"]) {
+        const { controller, builds } = await harness();
+        controller.configValue = {
+            type,
+            options: { legend: true },
+            data: { labels: ["A", "B"], datasets: [{ values: [3, 1] }] },
+        };
+        controller.connect();
+        assert.equal(builds.length, 1);
+        assert.equal(
+            builds[0].calls.some(([method]) => method === "formatLabel"),
+            false
+        );
+        assert.deepEqual(
+            builds[0].calls.find(([method]) => method === "legend"),
+            ["legend", true]
+        );
+        controller.disconnect();
+    }
+});
