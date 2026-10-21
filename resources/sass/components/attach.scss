@@ -13,30 +13,9 @@
         aspect-ratio: 1/1;
         width: 100%;
         border: 1px solid #000;
-        position: relative;
+        @include broken-image(attr(title));
 
-        &:before {
-            content: " ";
-            display: block;
-            position: absolute;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            @extend .bg-light;
-        }
-
-        &:after {
-            content: attr(title);
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            text-align: center;
+        &::after {
             text-wrap: pretty;
             word-break: break-word;
             @extend .p-3;

@@ -89,9 +89,14 @@ class Button extends Action
                 ? url()->previous()
                 : url()->current();
 
-            $query = http_build_query($this->get('parameters'));
+            // Split off the previous query string so the method isn't appended after it (#2845), but keep it for filters.
+            $path = strtok($url, '?');
+            parse_str((string) parse_url($url, PHP_URL_QUERY), $previousQuery);
 
-            $action = rtrim("{$url}/{$this->get('method')}?{$query}", '/?');
+            $parameters = $this->get('parameters');
+            $query = http_build_query(array_merge($previousQuery, is_array($parameters) ? $parameters : (array) $parameters));
+
+            $action = rtrim("{$path}/{$this->get('method')}?{$query}", '/?');
             $this->set('action', $action);
         })->addBeforeRender(function () {
             $action = $this->get('action');
