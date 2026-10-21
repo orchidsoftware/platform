@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Fields;
 
+use Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Orchid\Screen\Builder;
 use Orchid\Screen\Fields\BlockEditor;
+use Orchid\Screen\Repository;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 class BlockEditorTest extends TestFieldsUnitCase
@@ -105,5 +110,96 @@ class BlockEditorTest extends TestFieldsUnitCase
         $this->assertStringContainsString('name="article[body]"', $view);
         $this->assertStringContainsString('readonly', $view);
         $this->assertStringContainsString('disabled', $view);
+    }
+
+    public function testClearedOldInputOverridesPersistedContent(): void
+    {
+        $this->registerValidationRoutes();
+
+        foreach (['', null] as $value) {
+            $this->from('/block-editor')->post('/block-editor', ['body' => $value])
+                ->assertRedirect('/block-editor')
+                ->assertSessionHasErrors('required');
+
+            $this->assertNull(session()->getOldInput('body'));
+            $this->assertTrue(array_key_exists('body', session()->getOldInput()));
+            $this->assertDocument('{"blocks":[]}');
+        }
+    }
+
+    public function testAbsentOldInputKeepsPersistedContent(): void
+    {
+        $this->registerValidationRoutes();
+
+        $this->from('/block-editor')->post('/block-editor', [])
+            ->assertRedirect('/block-editor');
+
+        $this->assertDocument('{"blocks":[{"type":"paragraph","text":"Persisted content"}]}');
+    }
+
+    public function testNestedPrefixedOldInputCanClearPersistedContent(): void
+    {
+        $this->registerValidationRoutes('article.body', 'settings');
+
+        $this->from('/block-editor')->post('/block-editor', [
+            'settings' => ['article' => ['body' => '']],
+        ])->assertRedirect('/block-editor');
+
+        $this->assertDocument('{"blocks":[]}');
+    }
+
+    public function testInvalidAndUnknownOldDocumentsArePreserved(): void
+    {
+        $this->registerValidationRoutes();
+
+        foreach (['{malformed', '{"version":9,"blocks":[{"type":"future","custom":"Keep me"}]}'] as $document) {
+            $this->from('/block-editor')->post('/block-editor', ['body' => $document])
+                ->assertRedirect('/block-editor');
+
+            $this->assertDocument($document);
+        }
+    }
+
+    private function assertDocument(string $expected): void
+    {
+        $response = $this->get('/block-editor')->assertOk();
+        $document = new \DOMDocument;
+        @$document->loadHTML($response->getContent());
+        $xpath = new \DOMXPath($document);
+        $textarea = $xpath->query('//textarea[@data-block-editor-target="textarea"]')->item(0);
+
+        $this->assertNotNull($textarea);
+        $this->assertSame($expected, trim($textarea->textContent));
+    }
+
+    private function registerValidationRoutes(string $name = 'body', ?string $prefix = null): void
+    {
+        $path = $prefix === null ? $name : $prefix.'.'.$name;
+
+        Route::middleware(['web', ConvertEmptyStringsToNull::class])->group(function () use ($name, $prefix, $path) {
+            Route::post('/block-editor', function (Request $request) use ($path) {
+                $request->validate([
+                    $path      => ['nullable', 'json'],
+                    'required' => ['required'],
+                ]);
+            });
+
+            Route::get('/block-editor', function () use ($name, $prefix, $path) {
+                $data = [];
+                data_set($data, $path, '{"blocks":[{"type":"paragraph","text":"Persisted content"}]}');
+                $repository = new Repository($data);
+                $oldInput = session()->getOldInput();
+                $errors = session('errors');
+                $view = (new Builder([BlockEditor::make($name)], $repository))
+                    ->setPrefix($prefix)
+                    ->generateForm();
+
+                $this->assertSame($data, $repository->toArray());
+                $this->assertSame($oldInput, session()->getOldInput());
+                $this->assertSame($errors, session('errors'));
+
+                return $view;
+            });
+        });
     }
 }

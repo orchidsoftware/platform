@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Illuminate\Support\Arr;
 use Orchid\Screen\Field;
 
 /**
@@ -131,6 +132,20 @@ class BlockEditor extends Field
     public function toolbar(array $buttons): self
     {
         return $this->set('toolbar', $buttons);
+    }
+
+    /**
+     * Restore submitted values, including an explicitly cleared document.
+     */
+    protected function updateFieldValue(): static
+    {
+        $oldInput = request()->hasSession() ? request()->session()->getOldInput() : [];
+
+        if (Arr::has($oldInput, $this->getOldName())) {
+            return $this->set('value', Arr::get($oldInput, $this->getOldName()));
+        }
+
+        return parent::updateFieldValue();
     }
 
     /**
