@@ -6,19 +6,8 @@ use Orchid\Screen\Layouts\Chart;
 
 class DummyClass extends Chart
 {
-    /**
-     * Available options:
-     * 'bar', 'line',
-     * 'pie', 'percentage'.
-     *
-     * @var string
-     */
-    protected $type = 'bar';
-
-    /**
-     * Determines whether to display the export button.
-     *
-     * @var bool
-     */
-    protected $export = true;
+    public function __construct()
+    {
+        $this->type(self::TYPE_BAR)->export();
+    }
 }

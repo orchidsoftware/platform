@@ -18,27 +18,13 @@ class GroupCollection extends Collection
         // If the closure is not set, we define a default one that returns the original label.
         $closure ??= static fn ($label) => $label;
 
-        return $this
-            ->sortByDesc('value')
-            ->pluck('label')
-            ->map(fn (string $name) => [
-                'labels'  => $this->pluck('label')->map($closure)->toArray(),
-                'values'  => $this->getChartsValues($name),
-            ])
-            ->toArray();
-    }
+        $groups = $this->sortByDesc('value')->values();
 
-    /**
-     * Helper function for the toChart() method. It gets the chart values for a given label.
-     *
-     * @param string $name The label that we want to get the chart values for.
-     *
-     * @return array An array of values that will be used in the chart.
-     */
-    private function getChartsValues(string $name): array
-    {
-        return $this
-            ->map(static fn ($item) => $item->label === $name ? (int) $item->value : 0)
-            ->toArray();
+        return [
+            'labels'   => $groups->pluck('label')->map($closure)->all(),
+            'datasets' => [[
+                'values' => $groups->pluck('value')->map(fn ($value) => (int) $value)->all(),
+            ]],
+        ];
     }
 }
