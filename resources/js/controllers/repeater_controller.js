@@ -4,31 +4,32 @@ export default class extends ApplicationController {
     static targets = ["addRow", "rows", "row", "template", "empty"];
 
     connect() {
-        if (this.data.get("readonly") === "true" && this.data.get("disabled") !== "true") {
-            this.preserveReadonlyValues();
-        }
+        this.reindexRows();
+        this.onFormData = event => this.appendReadonlyValues(event);
+        document.addEventListener("formdata", this.onFormData);
         this.detectMaxRows();
     }
 
-    preserveReadonlyValues() {
-        this.element.querySelectorAll("[data-repeater-mirror]").forEach(input => {
-            if (input.closest('[data-controller~="repeater"]') === this.element) input.remove();
-        });
+    disconnect() {
+        document.removeEventListener("formdata", this.onFormData);
+    }
+
+    appendReadonlyValues(event) {
+        if (this.data.get("readonly") !== "true" || this.data.get("disabled") === "true") return;
+        if (this.element.parentElement?.closest('[data-controller~="repeater"][data-repeater-readonly="true"]:not([data-repeater-disabled="true"])')) return;
+
         this.rowsTarget.querySelectorAll("input[name], select[name], textarea[name]").forEach(control => {
-            if (control.hasAttribute("data-repeater-mirror") || control.disabled || ["file", "submit", "button", "reset"].includes(control.type)) return;
+            if (!control.name || control.form !== event.target || control.disabled || ["file", "submit", "image", "button", "reset"].includes(control.type)) return;
             if (["checkbox", "radio"].includes(control.type) && !control.checked) return;
+            for (let parent = control.parentElement; parent; parent = parent.parentElement) {
+                if (parent.tagName !== "FIELDSET" || !parent.disabled || parent.hasAttribute("data-repeater-readonly-fieldset")) continue;
+                const legend = Array.from(parent.children).find(child => child.tagName === "LEGEND");
+                if (!legend?.contains(control)) return;
+            }
             const values = control.tagName === "SELECT"
-                ? Array.from(control.selectedOptions, option => option.value)
+                ? Array.from(control.selectedOptions).filter(option => !option.disabled && !option.parentElement?.disabled).map(option => option.value)
                 : [control.value];
-            values.forEach(value => {
-                const mirror = document.createElement("input");
-                mirror.type = "hidden";
-                mirror.name = control.name;
-                mirror.value = value;
-                mirror.setAttribute("data-repeater-mirror", "");
-                if (control.hasAttribute("form")) mirror.setAttribute("form", control.getAttribute("form"));
-                this.element.appendChild(mirror);
-            });
+            values.forEach(value => event.formData.append(control.name, value));
         });
     }
 
@@ -79,8 +80,28 @@ export default class extends ApplicationController {
             }
         });
 
+        this.prepareWidgetClones(row, clone);
         row.after(clone);
         this.changed();
+    }
+
+    prepareWidgetClones(source, target) {
+        const sources = new Map();
+        source.querySelectorAll("[data-controller]").forEach(element => {
+            element.getAttribute("data-controller").split(/\s+/).filter(Boolean).forEach(identifier => {
+                if (!sources.has(identifier)) sources.set(identifier, []);
+                sources.get(identifier).push(element);
+            });
+        });
+
+        target.querySelectorAll("[data-controller]").forEach(element => {
+            element.getAttribute("data-controller").split(/\s+/).filter(Boolean).forEach(identifier => {
+                const original = sources.get(identifier)?.shift();
+                if (!original) return;
+                // Widgets own any state that fresh native controls cannot represent.
+                this.application.getControllerForElementAndIdentifier(original, identifier)?.prepareClone?.(element);
+            });
+        });
     }
 
     moveUp(event) {
@@ -108,20 +129,28 @@ export default class extends ApplicationController {
         const index = Number(this.data.get("index")) || 0;
         this.data.set("index", index + 1);
         const placeholder = this.data.get("placeholder");
-        this.mapAttributes(row, ["name", "id", "for", "aria-describedby", "aria-labelledby", "data-repeater-name", "data-key-value-name-value"],
+        this.mapAttributes(row, ["name", "id", "for", "aria-describedby", "aria-labelledby"],
             value => value.replaceAll(placeholder, index));
         return row;
     }
 
     changed() {
-        this.rowTargets.forEach((row, index) => this.renameRow(row, index));
+        this.reindexRows();
         this.detectMaxRows();
         this.emptyTarget.dispatchEvent(new Event("change", { bubbles: true }));
     }
 
+    reindexRows() {
+        const radios = this.rowTargets.flatMap(row => Array.from(row.querySelectorAll('input[type="radio"]')))
+            .filter(control => control.type === "radio")
+            .map(control => [control, control.checked]);
+        this.rowTargets.forEach((row, index) => this.renameRow(row, index));
+        radios.forEach(([control, checked]) => { control.checked = checked; });
+    }
+
     renameRow(row, index) {
         const prefix = `${this.data.get("name")}[`;
-        this.mapAttributes(row, ["name", "data-repeater-name", "data-key-value-name-value"], value => {
+        this.mapAttributes(row, ["name"], value => {
             if (!value.startsWith(prefix)) return value;
             const end = value.indexOf("]", prefix.length);
             return `${prefix}${index}${value.slice(end)}`;
@@ -130,9 +159,11 @@ export default class extends ApplicationController {
 
     mapAttributes(root, attributes, transform) {
         root.querySelectorAll("*").forEach(element => {
-            attributes.forEach(attribute => {
-                if (element.hasAttribute(attribute)) {
-                    element.setAttribute(attribute, transform(element.getAttribute(attribute)));
+            Array.from(element.attributes).forEach(attribute => {
+                const fieldName = /^data-.+-name(?:-value)?$/.test(attribute.name)
+                    && attribute.value.startsWith(`${this.data.get("name")}[`);
+                if (attributes.includes(attribute.name) || fieldName) {
+                    element.setAttribute(attribute.name, transform(attribute.value));
                 }
             });
             if (element.tagName === "TEMPLATE") this.mapAttributes(element.content, attributes, transform);

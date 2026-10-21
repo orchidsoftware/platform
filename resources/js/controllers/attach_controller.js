@@ -55,13 +55,16 @@ export default class extends ApplicationController {
     static targets = ["files", "preview", "container", "template", "nullable"];
 
     connect() {
-        this.attachmentValue.forEach(id => this.renderPreview(id));
+        const dropzone = this.element.querySelector(".sortable-dropzone");
+        if (this.previewElement !== dropzone) {
+            this.attachmentValue.forEach(attachment => this.renderPreview(attachment));
+            this.previewElement = dropzone;
+        }
         this.togglePlaceholderShow();
 
-        new Sortable(this.element.querySelector(".sortable-dropzone"), {
-            disabled:
-                this.filesTarget.disabled === true ||
-                this.filesTarget.readonly === true,
+        if (this.sortable) return;
+        this.sortable = new Sortable(dropzone, {
+            disabled: this.locked,
             filter: ".attach-file-uploader",
             draggable: ".pip",
             animation: 150,
@@ -71,18 +74,41 @@ export default class extends ApplicationController {
         });
     }
 
+    disconnect() {
+        this.sortable?.destroy();
+        this.sortable = null;
+    }
+
+    prepareClone(element) {
+        element.setAttribute("data-attach-attachment-value", JSON.stringify(this.orderedAttachments()));
+        element.querySelector('[data-attach-target="nullable"]').value = "0";
+    }
+
+    get locked() {
+        return this.filesTarget.closest("fieldset:disabled") !== null ||
+            this.filesTarget.hasAttribute("readonly");
+    }
+
+    orderedAttachments() {
+        const attachments = new Map(this.attachmentValue.map(attachment => [String(attachment.id), attachment]));
+        return Array.from(this.element.querySelectorAll(".pip input"), input => attachments.get(String(input.value)))
+            .filter(Boolean);
+    }
+
     preventDefaults(event) {
         event.preventDefault();
         event.stopPropagation();
     }
 
     dropFiles(event) {
+        if (this.locked) return;
         this.filesTarget.files = event.dataTransfer.files;
 
         this.filesTarget.dispatchEvent(new Event("change", { bubbles: true }));
     }
 
     selectFiles(event) {
+        if (this.locked) return;
         [...event.target.files].forEach(file => {
             let sizeMB = file.size / 1000 / 1000; //MB (Not MiB)
 
@@ -101,6 +127,7 @@ export default class extends ApplicationController {
     }
 
     upload(file) {
+        if (this.locked) return;
         this.loadingValue = this.loadingValue + 1;
         this.element.ariaBusy = "true";
 
@@ -141,6 +168,7 @@ export default class extends ApplicationController {
     }
 
     remove(event) {
+        if (this.locked) return;
         const i = event.currentTarget.getAttribute("data-index");
 
         event.currentTarget.closest(".pip").remove();
@@ -202,6 +230,8 @@ export default class extends ApplicationController {
     }
 
     reorderElements() {
+        if (this.locked) return;
+        this.attachmentValue = this.orderedAttachments();
         const items = {};
         let elements = this.element.querySelectorAll(`:scope .pip`);
 

@@ -9,6 +9,9 @@
                 if ($disabled) $field->set('disabled', true);
                 if ($readonly) $field->set('readonly', true);
                 $fieldName = $field->get('name');
+                if (\Illuminate\Support\Arr::has($row, rtrim($fieldName, '.')) && \Illuminate\Support\Arr::get($row, rtrim($fieldName, '.')) === null) {
+                    $field->set('value', null);
+                }
                 $field->id(($idPrefix ?? $id)."-$key-$loop->index-".str_replace(['.', '[', ']'], '-', $fieldName));
                 $field->set('prefix', $name."[$key]");
                 if ($form ?? null) {

@@ -1,7 +1,11 @@
-@php($repeaterPlaceholder = '__repeater_'.hash('sha256', $name).'__')
+@php
+    $repeaterPlaceholder = '__repeater_'.hash('sha256', $name).'__';
+    $repeaterNumericKeys = array_filter(array_keys($value), 'is_numeric');
+    $repeaterIndex = $repeaterNumericKeys === [] ? 0 : max($repeaterNumericKeys) + 1;
+@endphp
 <div class="repeater"
      data-controller="repeater"
-     data-repeater-index="{{ count($value) }}"
+     data-repeater-index="{{ $repeaterIndex }}"
      data-repeater-rows="{{ $maxRows }}"
      data-repeater-placeholder="{{ $repeaterPlaceholder }}"
      data-repeater-name="{{ $name }}"
@@ -11,7 +15,7 @@
     @unless($disabled)
     <input type="hidden" name="{{ $name }}" value="" data-repeater-target="empty" @if($form ?? null) form="{{ $form }}" @endif>
     @endunless
-    <fieldset class="border-0 p-0 m-0" @disabled($disabled || $readonly)>
+    <fieldset class="border-0 p-0 m-0" @disabled($disabled || $readonly) @if($readonly && !$disabled) data-repeater-readonly-fieldset @endif>
     <div class="vstack gap-3" data-repeater-target="rows">
         @foreach($value as $key => $row)
             @include('orchid::partials.fields.repeaterRow', ['row' => $row, 'key' => $key])

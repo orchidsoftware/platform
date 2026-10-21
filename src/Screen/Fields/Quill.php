@@ -76,4 +76,11 @@ class Quill extends Field
         'height',
         'groups',
     ];
+
+    protected function updateFieldValue(): static
+    {
+        parent::updateFieldValue();
+
+        return is_array($this->getOldValue()) ? $this->set('value', null) : $this;
+    }
 }

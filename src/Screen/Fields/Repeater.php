@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Illuminate\Support\Arr;
 use InvalidArgumentException;
 use Orchid\Screen\Field;
 
@@ -101,6 +102,13 @@ class Repeater extends Field
                     throw new InvalidArgumentException('Repeater rows containing Repeater or KeyValue fields cannot be duplicated.');
                 }
             }
+        }
+
+        if (request()->hasSession() && Arr::has(request()->session()->getOldInput(), $this->getOldName())) {
+            $value = $this->getOldValue();
+
+            // Child values and validation errors still use the submitted row keys.
+            return $this->set('value', is_array($value) ? array_filter($value, 'is_array') : []);
         }
 
         parent::updateFieldValue();
