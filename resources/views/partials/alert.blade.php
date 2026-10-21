@@ -17,9 +17,8 @@
 
 @empty(!$errors->count())
     <div class="alert alert-danger rounded shadow-sm mb-3 p-4" role="alert">
-        <strong>{{  __('Oh snap!') }}</strong>
-        {{ __('Change a few things up and try submitting again.') }}
-        <ul>
+        <strong>{{ __('Check your entries') }}</strong>
+        <ul class="mb-0 mt-2">
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
