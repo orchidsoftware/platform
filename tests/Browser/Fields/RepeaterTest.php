@@ -301,12 +301,69 @@ window.application.getControllerForElementAndIdentifier(element, 'datetime').fp.
 JS);
             $this->assertSame('2026-10-10', $this->formValue($browser, 'periods[0][window][start]'));
             $this->assertSame('2026-10-22', $this->formValue($browser, 'periods[2][window][end]'));
+            $this->assertSame(3, $browser->script('return document.querySelectorAll(".flatpickr-calendar").length')[0]);
             $browser->press('Submit')->waitForText('periods');
             $payload = json_decode($browser->script('return document.querySelector("pre")?.textContent ?? document.body.textContent')[0], true, 512, JSON_THROW_ON_ERROR);
             $this->assertSame([
                 ['window' => ['start' => '2026-10-10', 'end' => '2026-10-12']],
                 ['window' => ['start' => '2026-10-25', 'end' => '2026-10-27']],
                 ['window' => ['start' => '2026-10-20', 'end' => '2026-10-22']],
+            ], $payload['periods']);
+        });
+    }
+
+    public function testDeletingDateRowsReleasesCalendarsAndGlobalListeners(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $this->visitFixture($browser);
+            $browser->waitUntil('document.querySelectorAll(".flatpickr-calendar").length === 1');
+            $browser->script(<<<'JS'
+window.fixtureDateListeners = [];
+for (const target of [window, document]) {
+    const add = target.addEventListener;
+    const remove = target.removeEventListener;
+    const capture = options => typeof options === 'boolean' ? options : !!options?.capture;
+    target.addEventListener = function (type, listener, options) {
+        if (['resize', 'mousedown', 'touchstart', 'focus'].includes(type)) {
+            window.fixtureDateListeners.push({target, type, listener, capture: capture(options)});
+        }
+        return add.call(this, type, listener, options);
+    };
+    target.removeEventListener = function (type, listener, options) {
+        window.fixtureDateListeners = window.fixtureDateListeners.filter(entry =>
+            !(entry.target === this && entry.type === type && entry.listener === listener && entry.capture === capture(options))
+        );
+        return remove.call(this, type, listener, options);
+    };
+}
+JS);
+            for ($cycle = 0; $cycle < 3; $cycle++) {
+                $browser->click('[data-repeater-name="periods"] [data-action="repeater#addRow"]')
+                    ->waitUntil('document.querySelectorAll(".flatpickr-calendar").length === 2');
+                $this->assertGreaterThan(0, $browser->script('return window.fixtureDateListeners.length')[0]);
+                $browser->click('[name="periods[1][window][start]"]')
+                    ->waitFor('.flatpickr-calendar.open')
+                    ->click('[data-repeater-name="periods"] [data-repeater-row]:nth-child(2) [data-action="repeater#deleteRow"]');
+                $this->assertSame(1, $browser->script('return document.querySelectorAll(".flatpickr-calendar").length')[0]);
+                $this->assertSame(0, $browser->script('return window.fixtureDateListeners.length')[0]);
+            }
+            $this->assertSame('2026-10-10', $this->formValue($browser, 'periods[0][window][start]'));
+            $this->assertSame('2026-10-12', $this->formValue($browser, 'periods[0][window][end]'));
+            $browser->click('[name="periods[0][window][start]"]')->waitFor('.flatpickr-calendar.open');
+            $browser->script(<<<'JS'
+const element = document.querySelector('[data-repeater-name="periods"] [data-controller="datetime"]');
+window.application.getControllerForElementAndIdentifier(element, 'datetime').fp.jumpToDate('2026-10-01');
+JS);
+            $browser->click('.flatpickr-calendar.open .flatpickr-day[aria-label="October 25, 2026"]')
+                ->click('[name="periods[0][window][end]"]')
+                ->waitFor('.flatpickr-calendar.open')
+                ->click('.flatpickr-calendar.open .flatpickr-day[aria-label="October 27, 2026"]');
+            $this->assertSame('2026-10-25', $this->formValue($browser, 'periods[0][window][start]'));
+            $this->assertSame('2026-10-27', $this->formValue($browser, 'periods[0][window][end]'));
+            $browser->press('Submit')->waitForText('periods');
+            $payload = json_decode($browser->script('return document.querySelector("pre")?.textContent ?? document.body.textContent')[0], true, 512, JSON_THROW_ON_ERROR);
+            $this->assertSame([
+                ['window' => ['start' => '2026-10-25', 'end' => '2026-10-27']],
             ], $payload['periods']);
         });
     }
