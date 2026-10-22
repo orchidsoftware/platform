@@ -155,7 +155,7 @@ class ChartTest extends TestUnitCase
         $this->assertNull(Chart::make('missing')->canSee(false)->build(new Repository));
     }
 
-    public function testBladeEscapesTheSingleConfigurationAndTogglesExport(): void
+    public function testBladeEscapesTypedValuesAndTogglesExport(): void
     {
         $repository = $this->repository();
         $repository->set('visits.labels', ['" onmouseover="alert(1)', '<script>']);
@@ -163,12 +163,51 @@ class ChartTest extends TestUnitCase
         $html = $chart->build($repository)->withErrors([])->render();
         $this->assertStringContainsString('data-action="chart#export:prevent"', $html);
         $this->assertStringNotContainsString('<script>', $html);
-        preg_match('/data-chart-config-value="([^"]*)"/', $html, $matches);
-        $config = json_decode(html_entity_decode($matches[1], ENT_QUOTES), true, flags: JSON_THROW_ON_ERROR);
-        $this->assertSame($repository->get('visits'), $config['data']);
+        $this->assertStringNotContainsString('data-chart-config-value', $html);
+        $this->assertStringContainsString('data-chart-type-value="line"', $html);
+        $this->assertStringContainsString('data-chart-height-value="250"', $html);
+        foreach (['labels', 'datasets'] as $value) {
+            preg_match('/data-chart-'.$value.'-value="([^"]*)"/', $html, $matches);
+            $decoded = json_decode(html_entity_decode($matches[1], ENT_QUOTES), true, flags: JSON_THROW_ON_ERROR);
+            $this->assertSame($repository->get('visits')[$value], $decoded);
+        }
 
         $html = $chart->export(false)->build($repository)->withErrors([])->render();
         $this->assertStringNotContainsString('data-action="chart#export:prevent"', $html);
+    }
+
+    public function testGradientUsesBooleanAndNumericHtmlValues(): void
+    {
+        $html = Chart::make('visits')->gradient(['fromOpacity' => 0.25, 'toOpacity' => 0])
+            ->build($this->repository())->withErrors([])->render();
+
+        $this->assertStringContainsString('data-chart-gradient-value="true"', $html);
+        $this->assertStringContainsString('data-chart-gradient-from-opacity-value="0.25"', $html);
+        $this->assertStringContainsString('data-chart-gradient-to-opacity-value="0"', $html);
+    }
+
+    public function testInvalidOptionTypesCannotBeCoercedByStimulus(): void
+    {
+        foreach ([['legend' => 'false'], ['height' => '300'], ['colors' => '#123456'], ['gradient' => 'true']] as $options) {
+            try {
+                Chart::make('visits')->options($options)->build($this->repository());
+                $this->fail('Invalid option type should be rejected.');
+            } catch (InvalidArgumentException $exception) {
+                $this->assertStringContainsString('Invalid type for chart option:', $exception->getMessage());
+            }
+        }
+    }
+
+    public function testInvalidGradientEndpointsAreNotSilentlyDropped(): void
+    {
+        foreach ([['unknown' => 0.5], ['fromOpacity' => '0.5'], ['toOpacity' => 2]] as $gradient) {
+            try {
+                Chart::make('visits')->gradient($gradient)->build($this->repository());
+                $this->fail('Invalid gradient should be rejected.');
+            } catch (InvalidArgumentException $exception) {
+                $this->assertStringContainsString('Chart gradient expects', $exception->getMessage());
+            }
+        }
     }
 
     private function repository(): Repository

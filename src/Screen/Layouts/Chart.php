@@ -167,9 +167,30 @@ class Chart extends Layout
             self::TYPE_PERCENTAGE => ['maxSlices'],
         };
 
-        foreach (array_keys($this->options) as $option) {
+        foreach ($this->options as $option => $value) {
             if (! in_array($option, [...$common, ...$supported], true)) {
                 throw new InvalidArgumentException("Unsupported {$this->type} chart option: {$option}");
+            }
+
+            $valid = match ($option) {
+                'height', 'width', 'dotSize', 'strokeWidth', 'radius', 'maxSlices', 'startAngle', 'padAngle' => (is_int($value) || is_float($value)) && is_finite((float) $value),
+                'colors'                                                                                     => is_array($value) && array_is_list($value),
+                'gradient'                                                                                   => is_bool($value) || is_array($value),
+                default                                                                                      => is_bool($value),
+            };
+
+            if (! $valid) {
+                throw new InvalidArgumentException("Invalid type for chart option: {$option}");
+            }
+        }
+
+        if (is_array($this->options['gradient'] ?? null)) {
+            foreach ($this->options['gradient'] as $endpoint => $opacity) {
+                if (! in_array($endpoint, ['fromOpacity', 'toOpacity'], true)
+                    || (! is_int($opacity) && ! is_float($opacity)) || ! is_finite((float) $opacity)
+                    || $opacity < 0 || $opacity > 1) {
+                    throw new InvalidArgumentException('Chart gradient expects fromOpacity and toOpacity between 0 and 1.');
+                }
             }
         }
 
