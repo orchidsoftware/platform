@@ -195,6 +195,15 @@ async function harness(t, value = config(), readyState = "complete") {
     return { window, element, controller, builds, state, errors };
 }
 
+async function renderAction(element) {
+    const button = element.ownerDocument.createElement("button");
+    button.dataset.action = "chart#render";
+    element.append(button);
+    await settle();
+    button.click();
+    button.remove();
+}
+
 function calls(build) {
     return JSON.parse(JSON.stringify(build.calls));
 }
@@ -261,12 +270,16 @@ test("disconnect before load releases the action and reconnect renders once", as
     assert.equal(builds.length, 1);
 });
 
-test("changing a typed height value replaces the chart", async t => {
+test("presentation values apply together through an explicit render action", async t => {
     const { element, builds } = await harness(t);
     setValue(element, "height", 420);
+    setValue(element, "legend", false);
     await settle();
+    assert.equal(builds.length, 1);
+    await renderAction(element);
     assert.equal(builds.length, 2);
     assert.equal(builds[0].destroyed, true);
+    assert.equal(Object.fromEntries(calls(builds[1])).legend, false);
     assert.deepEqual(
         calls(builds[1]).find(([name]) => name === "height"),
         ["height", 420]
@@ -397,16 +410,15 @@ test("Stimulus decodes number and boolean values before forwarding native option
     await settle();
     assert.equal(controller.legendValue, false);
     assert.equal(controller.widthValue, 720);
+    await renderAction(element);
     assert.equal(Object.fromEntries(calls(builds.at(-1))).width, 720);
 });
 
-test("independent labels, datasets and option mutations update the rendered chart", async t => {
+test("independent data mutations rebuild the rendered chart", async t => {
     const { element, builds } = await harness(t);
     for (const [name, value, method] of [
         ["labels", ["Wed", "Thu"], "labels"],
         ["datasets", [{ name: "Updated", values: [3, 7] }], "dataset"],
-        ["legend", false, "legend"],
-        ["colors", ["#123456"], "colors"],
         ["markers", [{ label: "Target", value: 4 }], "marker"],
         ["regions", [{ label: "Range", range: [3, 5] }], "region"],
     ]) {
@@ -434,7 +446,7 @@ test("optional flag removal restores the native builder default", async t => {
     );
     assert.equal(Object.fromEntries(calls(builds[0])).frameless, true);
     setValue(element, "frameless", undefined);
-    await settle();
+    await renderAction(element);
     assert.ok(!calls(builds.at(-1)).some(([name]) => name === "frameless"));
 });
 
@@ -456,7 +468,7 @@ test("gradient uses typed endpoints only when enabled", async t => {
         config("line", { gradient: true })
     );
     setValue(element, "gradientToOpacity", 0.15);
-    await settle();
+    await renderAction(element);
     assert.deepEqual(
         calls(builds.at(-1)).find(([name]) => name === "gradient"),
         ["gradient", { toOpacity: 0.15 }]
