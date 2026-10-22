@@ -7,13 +7,13 @@
     "integrity": "sha384-YnoghyplinGoUSlezCAJWX8KsdTslaohYCC43fhAhA+/s/yf4QeXr4Ovch7RfDlx"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app.css?v=d969b075",
+    "file": "assets/app.css?v=85e7b56b",
     "name": "app",
     "names": [
       "app.css"
     ],
     "src": "resources/sass/app.scss",
     "isEntry": true,
-    "integrity": "sha384-4SYiEeTYuhcSQatAHwZIQnkYJcCN/OCOYywt5al7FtoGvxvAJoBqAJdvqniu6v0U"
+    "integrity": "sha384-Tp8Rv8lgzkV5qT+ATPc/W09J5ne4S2AbQZpXLGHiWI1LhfAAu0DujQicpdrf9Vz8"
   }
 }
