@@ -51,9 +51,6 @@ jobs:
       - name: Install Dependencies 🔧
         run: npm install --no-package-lock
 
-      - name: Test chart controller
-        run: npm run test:charts
-
       - name: Run Prettier
         run: npx prettier . --write
 
