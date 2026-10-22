@@ -19,32 +19,32 @@ export default class extends ApplicationController {
     static targets = ["canvas"];
     static values = { config: Object };
 
-    connect() {
-        this.renderChart = () => this.render();
-        if (document.readyState === "complete") {
-            this.render();
-        } else {
-            window.addEventListener("load", this.renderChart, { once: true });
-        }
+    canvasTargetConnected(canvas) {
+        this.canvas = canvas;
+        this.render();
+    }
+
+    canvasTargetDisconnected(canvas) {
+        if (this.canvas !== canvas) return;
+
+        this.chart?.destroy();
+        this.chart = null;
+        this.canvas = null;
     }
 
     configValueChanged() {
-        if (this.chart) this.render();
-    }
-
-    canvasTargetConnected() {
-        if (this.chart) this.render();
+        this.render();
     }
 
     render() {
+        if (!this.canvas || document.readyState !== "complete") return;
+
         this.chart?.destroy();
         this.chart = null;
 
         const { type, options, data } = this.configValue;
         this.element.dataset.chartType = type;
-        const builder = charts[type]
-            .make(this.canvasTarget)
-            .labels(data.labels);
+        const builder = charts[type].make(this.canvas).labels(data.labels);
 
         Object.entries(options).forEach(([option, value]) =>
             builder[option](value)
@@ -56,14 +56,7 @@ export default class extends ApplicationController {
         this.chart = builder.render();
     }
 
-    export(event) {
-        event.preventDefault();
+    export() {
         this.chart?.download();
-    }
-
-    disconnect() {
-        window.removeEventListener("load", this.renderChart);
-        this.chart?.destroy();
-        this.chart = null;
     }
 }

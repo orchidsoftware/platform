@@ -1,4 +1,4 @@
-<div data-controller="chart" data-chart-config-value="{{ json_encode($chart) }}">
+<div data-controller="chart" data-action="load@window->chart#render" data-chart-config-value="{{ json_encode($chart) }}">
     <div class="bg-white rounded shadow-sm mb-3 pt-3">
 
         <div class="d-flex px-3 align-items-center">
@@ -7,7 +7,7 @@
                     <small class="d-block">{{ __($title ?? '') }}</small>
 
                     @if($export)
-                        <a href="#" class="ms-auto px-2 text-muted" data-action="chart#export" title="{{ __('Export') }}">
+                        <a href="#" class="ms-auto px-2 text-muted" data-action="chart#export:prevent" title="{{ __('Export') }}">
                             <x-orchid-icon path="bs.cloud-arrow-down"/>
                         </a>
                     @endif

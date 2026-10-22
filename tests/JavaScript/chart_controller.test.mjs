@@ -1,8 +1,8 @@
-// Run with: node --experimental-vm-modules --test tests/JavaScript/chart_controller.test.mjs
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 import vm from "node:vm";
+import { JSDOM } from "jsdom";
 
 const source = await readFile(
     new URL(
@@ -11,21 +11,46 @@ const source = await readFile(
     ),
     "utf8"
 );
+const stimulus = await readFile(
+    new URL(
+        "../../node_modules/@hotwired/stimulus/dist/stimulus.umd.js",
+        import.meta.url
+    ),
+    "utf8"
+);
+const template = await readFile(
+    new URL("../../resources/views/layouts/chart.blade.php", import.meta.url),
+    "utf8"
+);
 
-async function harness(readyState = "complete") {
-    const listeners = new Map();
-    const builds = [];
-    const document = { readyState };
-    const window = {
-        addEventListener(name, handler) {
-            listeners.set(name, handler);
-        },
-        removeEventListener(name, handler) {
-            if (listeners.get(name) === handler) listeners.delete(name);
+function config(type = "line", options = { height: 300, legend: true }) {
+    return {
+        type,
+        options,
+        data: {
+            labels: ["Mon", "Tue"],
+            datasets: [{ name: "Visits", values: [12, 18] }],
         },
     };
-    const context = vm.createContext({ document, window });
+}
+
+async function settle() {
+    await new Promise(resolve => setTimeout(resolve, 0));
+}
+
+async function harness(t, value = config(), readyState = "complete") {
+    const dom = new JSDOM("<!doctype html><html><body></body></html>", {
+        runScripts: "outside-only",
+    });
+    const { window } = dom;
+    await new Promise(resolve =>
+        window.addEventListener("load", resolve, { once: true })
+    );
+    const state = { readyState };
+    const context = dom.getInternalVMContext();
+    vm.runInContext(stimulus, context);
     const module = new vm.SourceTextModule(source, { context });
+    const builds = [];
     const definitions = [
         "BarChart",
         "LineChart",
@@ -78,7 +103,7 @@ async function harness(readyState = "complete") {
             return new vm.SyntheticModule(
                 ["default"],
                 function () {
-                    this.setExport("default", class {});
+                    this.setExport("default", window.Stimulus.Controller);
                 },
                 { context }
             );
@@ -95,150 +120,165 @@ async function harness(readyState = "complete") {
         );
     });
     await module.evaluate();
-    const controller = new module.namespace.default();
-    controller.element = { dataset: {} };
-    controller.canvasTarget = { id: "canvas" };
-    controller.configValue = {
-        type: "line",
-        options: {
-            height: 300,
-            gradient: { fromOpacity: 0.25, toOpacity: 0.02 },
-            legend: false,
-        },
-        data: {
-            labels: ["Mon", "Tue"],
-            datasets: [{ name: "Visits", values: [12, 18] }],
-        },
-    };
-    return { controller, document, listeners, builds };
+    const application = new window.Stimulus.Application();
+    await application.start();
+    Object.defineProperty(window.document, "readyState", {
+        get: () => state.readyState,
+    });
+    const errors = [];
+    application.handleError = error => errors.push(error);
+    application.register("chart", module.namespace.default);
+    const element = window.document.createElement("div");
+    element.dataset.controller = "chart";
+    element.dataset.chartConfigValue = JSON.stringify(value);
+    element.dataset.action = template.match(
+        /data-action="(load@window[^"]*)"/
+    )[1];
+    element.innerHTML =
+        '<figure data-chart-target="canvas"></figure><a href="#" data-action="chart#export:prevent">Export</a>';
+    window.document.body.append(element);
+    await settle();
+    const controller = application.getControllerForElementAndIdentifier(
+        element,
+        "chart"
+    );
+    t.after(async () => {
+        element.remove();
+        await settle();
+        application.stop();
+        window.close();
+        assert.deepEqual(errors, []);
+    });
+    return { window, element, controller, builds, state, errors };
 }
 
-test("passes the PHP options and native data through for all five chart types", async () => {
+function calls(build) {
+    return JSON.parse(JSON.stringify(build.calls));
+}
+
+test("Stimulus creates and releases all five chart types", async t => {
     for (const type of ["line", "bar", "mixed", "pie", "percentage"]) {
-        const { controller, builds } = await harness();
-        const datasets =
-            type === "mixed"
-                ? [
-                      { name: "Actual", chartType: "bar", values: [12, 18] },
-                      {
-                          name: "Plan",
-                          chartType: "line",
-                          values: [15, 16],
-                          smooth: true,
-                          gradient: false,
-                      },
-                  ]
-                : [{ name: "Visits", values: [12, 18] }];
-        controller.configValue = {
-            type,
-            options: { height: 300, legend: false },
-            data: { labels: ["Mon", "Tue"], datasets },
-        };
-        controller.connect();
+        const value = config(type);
+        const { element, builds } = await harness(t, value);
         assert.equal(builds.length, 1);
-        assert.equal(controller.element.dataset.chartType, type);
-        assert.deepEqual(builds[0].calls, [
-            ["labels", ["Mon", "Tue"]],
+        assert.equal(element.dataset.chartType, type);
+        assert.deepEqual(calls(builds[0]), [
+            ["labels", value.data.labels],
             ["height", 300],
-            ["legend", false],
-            ...datasets.map(dataset => ["dataset", dataset]),
+            ["legend", true],
+            ["dataset", value.data.datasets[0]],
         ]);
-        controller.disconnect();
+        element.remove();
+        await settle();
         assert.equal(builds[0].destroyed, true);
     }
 });
 
-test("forwards gradient objects, markers and regions without translation", async () => {
-    const { controller, builds } = await harness();
-    controller.configValue.data.markers = [
-        { label: "Target", value: 20, lineStyle: "dashed" },
+test("forwards native mixed datasets, gradients, markers and regions", async t => {
+    const value = config("mixed", {
+        gradient: { fromOpacity: 0.25, toOpacity: 0.02 },
+    });
+    value.data.datasets = [
+        { name: "Actual", chartType: "bar", values: [12, 18] },
+        { name: "Plan", chartType: "line", values: [15, 16], smooth: true },
     ];
-    controller.configValue.data.regions = [{ label: "Range", range: [5, 15] }];
-    controller.connect();
-    assert.deepEqual(
-        builds[0].calls.find(([method]) => method === "gradient")[1],
-        { fromOpacity: 0.25, toOpacity: 0.02 }
-    );
-    assert.deepEqual(builds[0].calls.slice(-2), [
-        ["marker", controller.configValue.data.markers[0]],
-        ["region", controller.configValue.data.regions[0]],
+    value.data.markers = [{ label: "Target", value: 20 }];
+    value.data.regions = [{ label: "Range", range: [5, 15] }];
+    const { builds } = await harness(t, value);
+    assert.deepEqual(calls(builds[0]), [
+        ["labels", value.data.labels],
+        ["gradient", value.options.gradient],
+        ...value.data.datasets.map(dataset => ["dataset", dataset]),
+        ["marker", value.data.markers[0]],
+        ["region", value.data.regions[0]],
     ]);
 });
 
-test("waits for stylesheets and cancels pending rendering on disconnect", async () => {
-    const { controller, document, listeners, builds } =
-        await harness("loading");
-    controller.connect();
+test("waits for window load using a Stimulus action", async t => {
+    const { window, builds, state } = await harness(t, config(), "loading");
     assert.equal(builds.length, 0);
-    assert.equal(listeners.has("load"), true);
-    controller.disconnect();
-    assert.equal(listeners.has("load"), false);
-    document.readyState = "complete";
-    controller.connect();
+    state.readyState = "complete";
+    window.dispatchEvent(new window.Event("load"));
     assert.equal(builds.length, 1);
 });
 
-test("renders on window load", async () => {
-    const { controller, listeners, builds } = await harness("loading");
-    controller.connect();
-    listeners.get("load")();
+test("disconnect before load releases the action and reconnect renders once", async t => {
+    const { window, element, builds, state } = await harness(
+        t,
+        config(),
+        "loading"
+    );
+    element.remove();
+    await settle();
+    state.readyState = "complete";
+    window.dispatchEvent(new window.Event("load"));
+    assert.equal(builds.length, 0);
+    window.document.body.append(element);
+    await settle();
     assert.equal(builds.length, 1);
 });
 
-test("replaces the chart when options or the canvas target change", async () => {
-    const { controller, builds } = await harness();
-    controller.configValueChanged();
-    controller.canvasTargetConnected();
-    assert.equal(builds.length, 0);
-    controller.connect();
-    controller.configValue.options.height = 420;
-    controller.configValueChanged();
+test("changing the config attribute replaces the chart", async t => {
+    const { element, builds } = await harness(t);
+    element.dataset.chartConfigValue = JSON.stringify(
+        config("bar", { height: 420 })
+    );
+    await settle();
+    assert.equal(builds.length, 2);
     assert.equal(builds[0].destroyed, true);
     assert.deepEqual(
-        builds[1].calls.find(([method]) => method === "height"),
+        calls(builds[1]).find(([name]) => name === "height"),
         ["height", 420]
     );
-    controller.canvasTarget = { id: "replacement" };
-    controller.canvasTargetConnected();
-    assert.equal(builds[1].destroyed, true);
-    assert.equal(builds[2].canvas.id, "replacement");
-    controller.disconnect();
-    controller.configValueChanged();
-    assert.equal(builds.length, 3);
-    assert.equal(builds[2].destroyed, true);
 });
 
-test("exports the current instance and prevents link navigation", async () => {
-    const { controller, builds } = await harness();
-    controller.connect();
-    let prevented = false;
-    controller.export({
-        preventDefault() {
-            prevented = true;
-        },
+test("removing the target releases the chart and config changes remain safe", async t => {
+    const { element, window, builds, errors } = await harness(t);
+    element.querySelector("figure").remove();
+    await settle();
+    assert.equal(builds[0].destroyed, true);
+    element.dataset.chartConfigValue = JSON.stringify(config("bar"));
+    await settle();
+    assert.deepEqual(errors, []);
+    const replacement = window.document.createElement("figure");
+    replacement.dataset.chartTarget = "canvas";
+    element.append(replacement);
+    await settle();
+    assert.equal(builds.length, 2);
+    assert.equal(builds[1].canvas, replacement);
+    assert.equal(builds[1].type, "BarChart");
+});
+
+test("replacing the target in one mutation preserves the new chart", async t => {
+    const { element, window, builds } = await harness(t);
+    const replacement = window.document.createElement("figure");
+    replacement.dataset.chartTarget = "canvas";
+    element.querySelector("figure").replaceWith(replacement);
+    await settle();
+    assert.equal(builds.length, 2);
+    assert.equal(builds[0].destroyed, true);
+    assert.equal(builds[1].destroyed, false);
+    assert.equal(builds[1].canvas, replacement);
+});
+
+test("removing and restoring data-controller releases and recreates the chart", async t => {
+    const { element, builds } = await harness(t);
+    element.removeAttribute("data-controller");
+    await settle();
+    assert.equal(builds[0].destroyed, true);
+    element.dataset.controller = "chart";
+    await settle();
+    assert.equal(builds.length, 2);
+});
+
+test("export action prevents navigation and downloads the active chart", async t => {
+    assert.match(template, /data-action="chart#export:prevent"/);
+    const { element, window, builds } = await harness(t);
+    const event = new window.MouseEvent("click", {
+        bubbles: true,
+        cancelable: true,
     });
-    assert.equal(prevented, true);
+    element.querySelector("a").dispatchEvent(event);
+    assert.equal(event.defaultPrevented, true);
     assert.equal(builds[0].downloads, 1);
-});
-
-test("uses the standard library legend for composition and mixed charts", async () => {
-    for (const type of ["pie", "percentage", "mixed"]) {
-        const { controller, builds } = await harness();
-        controller.configValue = {
-            type,
-            options: { legend: true },
-            data: { labels: ["A", "B"], datasets: [{ values: [3, 1] }] },
-        };
-        controller.connect();
-        assert.equal(builds.length, 1);
-        assert.equal(
-            builds[0].calls.some(([method]) => method === "formatLabel"),
-            false
-        );
-        assert.deepEqual(
-            builds[0].calls.find(([method]) => method === "legend"),
-            ["legend", true]
-        );
-        controller.disconnect();
-    }
 });
