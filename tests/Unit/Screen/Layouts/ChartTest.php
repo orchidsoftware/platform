@@ -161,14 +161,14 @@ class ChartTest extends TestUnitCase
         $repository->set('visits.labels', ['" onmouseover="alert(1)', '<script>']);
         $chart = Chart::make('visits', 'Visits')->export();
         $html = $chart->build($repository)->withErrors([])->render();
-        $this->assertStringContainsString('data-action="chart#export"', $html);
+        $this->assertStringContainsString('data-action="chart#export:prevent"', $html);
         $this->assertStringNotContainsString('<script>', $html);
         preg_match('/data-chart-config-value="([^"]*)"/', $html, $matches);
         $config = json_decode(html_entity_decode($matches[1], ENT_QUOTES), true, flags: JSON_THROW_ON_ERROR);
         $this->assertSame($repository->get('visits'), $config['data']);
 
         $html = $chart->export(false)->build($repository)->withErrors([])->render();
-        $this->assertStringNotContainsString('data-action="chart#export"', $html);
+        $this->assertStringNotContainsString('data-action="chart#export:prevent"', $html);
     }
 
     private function repository(): Repository
