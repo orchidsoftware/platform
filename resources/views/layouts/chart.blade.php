@@ -1,4 +1,21 @@
-<div data-controller="chart" data-action="load@window->chart#render" data-chart-config-value="{{ json_encode($chart) }}">
+<div data-controller="chart"
+     data-action="load@window->chart#render"
+     data-chart-type-value="{{ $chart['type'] }}"
+     data-chart-labels-value="{{ json_encode($chart['data']['labels']) }}"
+     data-chart-datasets-value="{{ json_encode($chart['data']['datasets']) }}"
+     data-chart-markers-value="{{ json_encode($chart['data']['markers'] ?? []) }}"
+     data-chart-regions-value="{{ json_encode($chart['data']['regions'] ?? []) }}"
+     @foreach($chart['options'] as $option => $value)
+         @if($option === 'gradient' && is_array($value))
+             data-chart-gradient-value="true"
+             @foreach($value as $endpoint => $opacity)
+                 data-chart-gradient-{{ \Illuminate\Support\Str::kebab($endpoint) }}-value="{{ $opacity }}"
+             @endforeach
+         @else
+             data-chart-{{ \Illuminate\Support\Str::kebab($option) }}-value="{{ json_encode($value) }}"
+         @endif
+     @endforeach
+>
     <div class="bg-white rounded shadow-sm mb-3 pt-3">
 
         <div class="d-flex px-3 align-items-center">
