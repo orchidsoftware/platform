@@ -57,7 +57,9 @@ export default class extends ApplicationController {
     connect() {
         const dropzone = this.element.querySelector(".sortable-dropzone");
         if (this.previewElement !== dropzone) {
-            this.attachmentValue.forEach(attachment => this.renderPreview(attachment));
+            this.attachmentValue.forEach(attachment =>
+                this.renderPreview(attachment)
+            );
             this.previewElement = dropzone;
         }
         this.togglePlaceholderShow();
@@ -80,19 +82,30 @@ export default class extends ApplicationController {
     }
 
     prepareClone(element) {
-        element.setAttribute("data-attach-attachment-value", JSON.stringify(this.orderedAttachments()));
+        element.setAttribute(
+            "data-attach-attachment-value",
+            JSON.stringify(this.orderedAttachments())
+        );
         element.querySelector('[data-attach-target="nullable"]').value = "0";
     }
 
     get locked() {
-        return this.filesTarget.closest("fieldset:disabled") !== null ||
-            this.filesTarget.hasAttribute("readonly");
+        return (
+            this.filesTarget.closest("fieldset:disabled") !== null ||
+            this.filesTarget.hasAttribute("readonly")
+        );
     }
 
     orderedAttachments() {
-        const attachments = new Map(this.attachmentValue.map(attachment => [String(attachment.id), attachment]));
-        return Array.from(this.element.querySelectorAll(".pip input"), input => attachments.get(String(input.value)))
-            .filter(Boolean);
+        const attachments = new Map(
+            this.attachmentValue.map(attachment => [
+                String(attachment.id),
+                attachment,
+            ])
+        );
+        return Array.from(this.element.querySelectorAll(".pip input"), input =>
+            attachments.get(String(input.value))
+        ).filter(Boolean);
     }
 
     preventDefaults(event) {
@@ -221,15 +234,20 @@ export default class extends ApplicationController {
 
         [preview, ...preview.querySelectorAll("*")].forEach(element => {
             [...element.attributes].forEach(attribute => {
-                element.setAttribute(attribute.name, attribute.value.replace(
-                    /{(id|url|original_name|mime|name)}/gi,
-                    (placeholder, key) => values[key.toLowerCase()]
-                ));
+                element.setAttribute(
+                    attribute.name,
+                    attribute.value.replace(
+                        /{(id|url|original_name|mime|name)}/gi,
+                        (placeholder, key) => values[key.toLowerCase()]
+                    )
+                );
             });
         });
 
         if (replace !== null) {
-            this.element.querySelector(`#attachment-${replace}`).replaceWith(preview);
+            this.element
+                .querySelector(`#attachment-${replace}`)
+                .replaceWith(preview);
             return;
         }
 

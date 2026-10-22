@@ -53,7 +53,8 @@
     }
 }
 
-[data-controller~="datetime"]:not([data-field-readonly]) .flatpickr-input[readonly]:not(:disabled) {
+[data-controller~="datetime"]:not([data-field-readonly])
+    .flatpickr-input[readonly]:not(:disabled) {
     background-color: $white;
     color: $black;
 }

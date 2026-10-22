@@ -54,7 +54,7 @@ export default class extends ApplicationController {
                 event => {
                     event.target.remove();
                 },
-                { once: true },
+                { once: true }
             );
 
             new Toast(el).show();

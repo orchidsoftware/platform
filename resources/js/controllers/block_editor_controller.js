@@ -76,7 +76,11 @@ export default class extends ApplicationController {
 
         this.#insertAt(
             this.#insertIndexFromEvent(event),
-            this.#newBlock(this.#availableTypes().includes("paragraph") ? "paragraph" : this.#availableTypes()[0])
+            this.#newBlock(
+                this.#availableTypes().includes("paragraph")
+                    ? "paragraph"
+                    : this.#availableTypes()[0]
+            )
         );
     }
 
@@ -85,7 +89,10 @@ export default class extends ApplicationController {
             return;
         }
 
-        if (this.#availableTypes().includes(event.target.value) && this.blocks[this.#blockIndex(event)]?.type !== event.target.value) {
+        if (
+            this.#availableTypes().includes(event.target.value) &&
+            this.blocks[this.#blockIndex(event)]?.type !== event.target.value
+        ) {
             this.#replaceBlock(event, block =>
                 this.#convertBlock(block, event.target.value)
             );
@@ -165,7 +172,9 @@ export default class extends ApplicationController {
 
         if (this.pendingLinkAnchor) {
             this.pendingLinkAnchor.replaceWith(
-                document.createTextNode(this.pendingLinkAnchor.textContent ?? "")
+                document.createTextNode(
+                    this.pendingLinkAnchor.textContent ?? ""
+                )
             );
         } else {
             document.execCommand("unlink", false);
@@ -223,9 +232,7 @@ export default class extends ApplicationController {
         if (!this.#canEdit()) {
             return;
         }
-        this.#blockElement(event)
-            ?.querySelector("input[type='file']")
-            ?.click();
+        this.#blockElement(event)?.querySelector("input[type='file']")?.click();
     }
 
     uploadImage(event) {
@@ -246,19 +253,32 @@ export default class extends ApplicationController {
                 const currentIndex = this.blocks.indexOf(block);
                 const src = this.#imageSrc(data.url);
 
-                if (!this.connected || currentIndex === -1 || this.uploads.get(block) !== request) {
+                if (
+                    !this.connected ||
+                    currentIndex === -1 ||
+                    this.uploads.get(block) !== request
+                ) {
                     return;
                 }
 
                 if (!src) {
-                    throw new Error("The upload response did not include a valid image URL.");
+                    throw new Error(
+                        "The upload response did not include a valid image URL."
+                    );
                 }
 
-                this.#patchBlock(currentIndex, { src, name: file.name }, { render: true });
+                this.#patchBlock(
+                    currentIndex,
+                    { src, name: file.name },
+                    { render: true }
+                );
             })
             .catch(() => {
                 if (this.connected && this.uploads.get(block) === request) {
-                    this.#uploadStatus(block, "Image upload failed. Please try again.");
+                    this.#uploadStatus(
+                        block,
+                        "Image upload failed. Please try again."
+                    );
                 }
             })
             .finally(() => {
@@ -268,7 +288,9 @@ export default class extends ApplicationController {
 
     #uploadStatus(block, message) {
         const index = this.blocks.indexOf(block);
-        const status = this.canvasTarget.querySelector?.(`[data-block-index="${index}"] [data-upload-status]`);
+        const status = this.canvasTarget.querySelector?.(
+            `[data-block-index="${index}"] [data-upload-status]`
+        );
 
         if (status) {
             status.textContent = message;
@@ -312,9 +334,17 @@ export default class extends ApplicationController {
         const list = event.target.closest("[data-block-type='list']");
 
         if (html && !list) {
-            document.execCommand("insertHTML", false, this.#sanitizeInlineHtml(html));
+            document.execCommand(
+                "insertHTML",
+                false,
+                this.#sanitizeInlineHtml(html)
+            );
         } else {
-            document.execCommand("insertText", false, event.clipboardData.getData("text/plain"));
+            document.execCommand(
+                "insertText",
+                false,
+                event.clipboardData.getData("text/plain")
+            );
         }
     }
 
@@ -342,13 +372,15 @@ export default class extends ApplicationController {
 
     #render() {
         if (this.documentData === null) {
-            this.canvasTarget.innerHTML = '<p class="text-muted" role="status">This content cannot be edited. The original value has been preserved.</p>';
+            this.canvasTarget.innerHTML =
+                '<p class="text-muted" role="status">This content cannot be edited. The original value has been preserved.</p>';
             return;
         }
 
-        this.canvasTarget.innerHTML = this.blocks
-            .map((block, index) => this.#blockTemplate(block, index))
-            .join("") || this.#addTemplate(0, "below");
+        this.canvasTarget.innerHTML =
+            this.blocks
+                .map((block, index) => this.#blockTemplate(block, index))
+                .join("") || this.#addTemplate(0, "below");
     }
 
     #blockTemplate(block, index) {
@@ -399,7 +431,9 @@ export default class extends ApplicationController {
             return "";
         }
 
-        const type = this.#availableTypes().includes("paragraph") ? "paragraph" : this.#availableTypes()[0];
+        const type = this.#availableTypes().includes("paragraph")
+            ? "paragraph"
+            : this.#availableTypes()[0];
         const label = `Add ${BLOCKS[type].title.toLowerCase()} ${position === "above" ? "above" : "below"}`;
 
         return `
@@ -418,7 +452,8 @@ export default class extends ApplicationController {
     #inlineToolbarTemplate() {
         return `
             <div class="block-editor-inline-toolbar" aria-label="Inline formatting">
-                ${INLINE_BUTTONS.map(([command, label]) => `
+                ${INLINE_BUTTONS.map(
+                    ([command, label]) => `
                     <button type="button"
                             class="block-editor-inline-button"
                             data-action="mousedown->block-editor#formatInline"
@@ -426,7 +461,8 @@ export default class extends ApplicationController {
                             ${this.#disabledAttr()}>
                         ${label}
                     </button>
-                `).join("")}
+                `
+                ).join("")}
             </div>
         `;
     }
@@ -463,7 +499,8 @@ export default class extends ApplicationController {
     }
 
     #textTemplate(block) {
-        const tag = block.type === "heading" ? this.#headingTag(block.level) : "p";
+        const tag =
+            block.type === "heading" ? this.#headingTag(block.level) : "p";
         const html = this.#sanitizeInlineHtml(
             block.html ?? this.#textToHtml(block.text ?? "")
         );
@@ -485,7 +522,8 @@ export default class extends ApplicationController {
         const placeholder = this.#escapeAttr(this.#placeholder("list"));
         const items = this.#compactListItems(block.items)
             .map((item, index) => {
-                const attribute = index === 0 ? ` data-placeholder="${placeholder}"` : "";
+                const attribute =
+                    index === 0 ? ` data-placeholder="${placeholder}"` : "";
 
                 return `<li${attribute}>${this.#escape(item)}</li>`;
             })
@@ -553,11 +591,15 @@ export default class extends ApplicationController {
             <select class="form-select form-select-sm block-editor-type"
                     data-action="change->block-editor#changeType"
                     ${this.#disabledAttr()}>
-                ${types.map(type => `
+                ${types
+                    .map(
+                        type => `
                     <option value="${type}" ${type === block.type ? "selected" : ""}>
                         ${this.#escape(BLOCKS[type]?.title ?? type)}
                     </option>
-                `).join("")}
+                `
+                    )
+                    .join("")}
             </select>
         `;
     }
@@ -567,11 +609,13 @@ export default class extends ApplicationController {
             <select class="form-select form-select-sm block-editor-heading-level"
                     data-action="change->block-editor#changeHeadingLevel"
                     ${this.#disabledAttr()}>
-                ${HEADING_LEVELS.map(level => `
+                ${HEADING_LEVELS.map(
+                    level => `
                     <option value="${level}" ${level === this.#headingLevel(block.level) ? "selected" : ""}>
                         H${level}
                     </option>
-                `).join("")}
+                `
+                ).join("")}
             </select>
         `;
     }
@@ -661,17 +705,29 @@ export default class extends ApplicationController {
     }
 
     #sync() {
-        this.textareaTarget.value = JSON.stringify({ ...this.documentData, blocks: this.blocks });
-        this.textareaTarget.dispatchEvent(new Event("change", { bubbles: true }));
+        this.textareaTarget.value = JSON.stringify({
+            ...this.documentData,
+            blocks: this.blocks,
+        });
+        this.textareaTarget.dispatchEvent(
+            new Event("change", { bubbles: true })
+        );
     }
 
     #parseBlocks(value) {
         try {
             const parsed = JSON.parse(value || '{"blocks":[]}');
 
-            if (parsed && typeof parsed === "object" && !Array.isArray(parsed) && Array.isArray(parsed.blocks)) {
+            if (
+                parsed &&
+                typeof parsed === "object" &&
+                !Array.isArray(parsed) &&
+                Array.isArray(parsed.blocks)
+            ) {
                 this.documentData = parsed;
-                return parsed.blocks.length ? parsed.blocks : [{ ...DEFAULT_BLOCK }];
+                return parsed.blocks.length
+                    ? parsed.blocks
+                    : [{ ...DEFAULT_BLOCK }];
             }
         } catch {
             // Keep malformed source intact rather than replacing it with an empty document.
@@ -681,19 +737,39 @@ export default class extends ApplicationController {
     }
 
     #supportedBlock(block) {
-        if (!block || typeof block !== "object" || Array.isArray(block) || typeof block.type !== "string" || !Object.hasOwn(BLOCKS, block.type)) {
+        if (
+            !block ||
+            typeof block !== "object" ||
+            Array.isArray(block) ||
+            typeof block.type !== "string" ||
+            !Object.hasOwn(BLOCKS, block.type)
+        ) {
             return false;
         }
 
         const strings = {
-            paragraph: ["text", "html"], heading: ["text", "html", "tag"], quote: ["text", "html"],
-            image: ["src", "alt", "name"], code: ["code", "language"], embed: ["url", "html"], list: [],
+            paragraph: ["text", "html"],
+            heading: ["text", "html", "tag"],
+            quote: ["text", "html"],
+            image: ["src", "alt", "name"],
+            code: ["code", "language"],
+            embed: ["url", "html"],
+            list: [],
         }[block.type];
 
-        return strings.every(key => block[key] === undefined || typeof block[key] === "string") &&
-            (block.type !== "heading" || block.level === undefined || ["number", "string"].includes(typeof block.level)) &&
-            (block.type !== "list" || block.items === undefined ||
-                (Array.isArray(block.items) && block.items.every(item => typeof item === "string")));
+        return (
+            strings.every(
+                key =>
+                    block[key] === undefined || typeof block[key] === "string"
+            ) &&
+            (block.type !== "heading" ||
+                block.level === undefined ||
+                ["number", "string"].includes(typeof block.level)) &&
+            (block.type !== "list" ||
+                block.items === undefined ||
+                (Array.isArray(block.items) &&
+                    block.items.every(item => typeof item === "string")))
+        );
     }
 
     #normalize(block) {
@@ -731,7 +807,9 @@ export default class extends ApplicationController {
         }
 
         const text = String(block.text ?? "");
-        const html = this.#sanitizeInlineHtml(block.html ?? this.#textToHtml(text));
+        const html = this.#sanitizeInlineHtml(
+            block.html ?? this.#textToHtml(text)
+        );
 
         if (block.type === "heading") {
             return {
@@ -766,7 +844,7 @@ export default class extends ApplicationController {
     #convertBlock(block, type) {
         const text = this.#blockText(block);
         const html = ["paragraph", "heading", "quote"].includes(block.type)
-            ? block.html ?? this.#textToHtml(text)
+            ? (block.html ?? this.#textToHtml(text))
             : this.#textToHtml(text);
 
         if (type === "list") {
@@ -817,10 +895,7 @@ export default class extends ApplicationController {
     #deleteEmptyBlock(event, index) {
         const content = this.#contentFromEvent(event);
 
-        if (
-            this.#isEmpty(content) &&
-            this.#isSelectionAtStart(content)
-        ) {
+        if (this.#isEmpty(content) && this.#isSelectionAtStart(content)) {
             event.preventDefault();
             this.#deleteAt(index);
         }
@@ -846,7 +921,11 @@ export default class extends ApplicationController {
     #indexFromEvent(event) {
         const index = Number(this.#blockElement(event)?.dataset.blockIndex);
 
-        return Number.isInteger(index) && index >= 0 && index < this.blocks.length ? index : null;
+        return Number.isInteger(index) &&
+            index >= 0 &&
+            index < this.blocks.length
+            ? index
+            : null;
     }
 
     #blockElement(event) {
@@ -1052,21 +1131,34 @@ export default class extends ApplicationController {
             const parsed = new URL(this.#linkUrl(url));
             const host = parsed.hostname.replace(/^www\./, "");
 
-            if (!["https:", "http:"].includes(parsed.protocol) || parsed.username || parsed.password) {
+            if (
+                !["https:", "http:"].includes(parsed.protocol) ||
+                parsed.username ||
+                parsed.password
+            ) {
                 return null;
             }
 
             if (["youtu.be", "youtube.com", "m.youtube.com"].includes(host)) {
-                const id = host === "youtu.be" ? parsed.pathname.slice(1)
-                    : parsed.pathname === "/watch" ? parsed.searchParams.get("v")
-                    : /^\/(embed|shorts)\//.test(parsed.pathname) ? parsed.pathname.split("/")[2] : null;
+                const id =
+                    host === "youtu.be"
+                        ? parsed.pathname.slice(1)
+                        : parsed.pathname === "/watch"
+                          ? parsed.searchParams.get("v")
+                          : /^\/(embed|shorts)\//.test(parsed.pathname)
+                            ? parsed.pathname.split("/")[2]
+                            : null;
 
-                return /^[a-zA-Z0-9_-]{11}$/.test(id ?? "") ? `https://www.youtube.com/embed/${id}` : null;
+                return /^[a-zA-Z0-9_-]{11}$/.test(id ?? "")
+                    ? `https://www.youtube.com/embed/${id}`
+                    : null;
             }
 
             if (host === "vimeo.com") {
                 const id = parsed.pathname.split("/").filter(Boolean)[0];
-                return /^\d+$/.test(id ?? "") ? `https://player.vimeo.com/video/${id}` : null;
+                return /^\d+$/.test(id ?? "")
+                    ? `https://player.vimeo.com/video/${id}`
+                    : null;
             }
         } catch {
             return null;
@@ -1096,7 +1188,10 @@ export default class extends ApplicationController {
             return null;
         }
 
-        return href === "" || /^(https?:\/\/|mailto:|tel:|\/(?!\/)|#)/i.test(href) ? href : null;
+        return href === "" ||
+            /^(https?:\/\/|mailto:|tel:|\/(?!\/)|#)/i.test(href)
+            ? href
+            : null;
     }
 
     #imageSrc(value) {
@@ -1109,7 +1204,9 @@ export default class extends ApplicationController {
             .map(tool => tool?.type)
             .filter(type => Object.hasOwn(BLOCKS, type));
 
-        return types.length > 0 || this.hasToolsValue ? types : Object.keys(BLOCKS);
+        return types.length > 0 || this.hasToolsValue
+            ? types
+            : Object.keys(BLOCKS);
     }
 
     #hasTools() {
@@ -1119,7 +1216,7 @@ export default class extends ApplicationController {
     #label(block) {
         return block.type === "heading"
             ? `H${this.#headingLevel(block.level)}`
-            : BLOCKS[block.type]?.shortcut ?? block.type;
+            : (BLOCKS[block.type]?.shortcut ?? block.type);
     }
 
     #placeholder(type) {
@@ -1139,7 +1236,9 @@ export default class extends ApplicationController {
     #headingLevel(level, tag) {
         const parsed = Number(level ?? String(tag ?? "").replace("h", ""));
 
-        return Number.isInteger(parsed) && parsed >= 1 && parsed <= 6 ? parsed : 2;
+        return Number.isInteger(parsed) && parsed >= 1 && parsed <= 6
+            ? parsed
+            : 2;
     }
 
     #headingTag(level) {

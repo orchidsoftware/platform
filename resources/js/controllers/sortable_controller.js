@@ -75,7 +75,9 @@ export default class extends ApplicationController {
 
         elements.forEach((element, index) => {
             params.items.push({
-                id: element.closest("[data-model-id]").getAttribute("data-model-id"),
+                id: element
+                    .closest("[data-model-id]")
+                    .getAttribute("data-model-id"),
                 sortOrder: index,
             });
         });

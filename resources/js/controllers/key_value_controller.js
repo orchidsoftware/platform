@@ -12,10 +12,11 @@ export default class extends ApplicationController {
         event.preventDefault();
         if (this.lockedValue) return;
 
-        const row = this.templateTarget.content.firstElementChild.cloneNode(true);
+        const row =
+            this.templateTarget.content.firstElementChild.cloneNode(true);
         this.rowsTarget.appendChild(row);
         this.changed();
-        row.querySelector('input:not([readonly]):not([disabled])')?.focus();
+        row.querySelector("input:not([readonly]):not([disabled])")?.focus();
     }
 
     deleteRow(event) {
@@ -28,7 +29,10 @@ export default class extends ApplicationController {
         const next = row.nextElementSibling || row.previousElementSibling;
         row.remove();
         this.changed();
-        (next?.querySelector("input") || this.element.querySelector('[data-action="key-value#addRow"]'))?.focus();
+        (
+            next?.querySelector("input") ||
+            this.element.querySelector('[data-action="key-value#addRow"]')
+        )?.focus();
     }
 
     moveUp(event) {
@@ -64,13 +68,16 @@ export default class extends ApplicationController {
             });
         });
         this.emptyTargets.forEach(input => {
-            input.disabled = this.rowsTarget.children.length > 0 || this.disabledValue;
+            input.disabled =
+                this.rowsTarget.children.length > 0 || this.disabledValue;
         });
     }
 
     changed() {
         this.reindex();
-        this.emptyTargets[0].dispatchEvent(new Event("change", { bubbles: true }));
+        this.emptyTargets[0].dispatchEvent(
+            new Event("change", { bubbles: true })
+        );
     }
 
     findRow(element) {

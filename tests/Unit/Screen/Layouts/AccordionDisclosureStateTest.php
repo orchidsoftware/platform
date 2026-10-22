@@ -13,7 +13,7 @@ class AccordionDisclosureStateTest extends TestUnitCase
         $html = view('orchid::layouts.accordion', [
             'templateSlug' => 'preferences',
             'manyForms'    => [
-                'General' => ['General content'],
+                'General'  => ['General content'],
                 'Advanced' => ['Advanced content'],
             ],
             'open'     => ['General'],

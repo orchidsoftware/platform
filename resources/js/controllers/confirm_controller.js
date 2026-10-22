@@ -41,7 +41,7 @@ export default class extends ApplicationController {
                     options.trigger.focus();
                 }
             },
-            { once: true },
+            { once: true }
         );
 
         /**
