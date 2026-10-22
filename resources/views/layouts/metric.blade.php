@@ -14,7 +14,7 @@
 
                         @if(isset($metric['diff']) && (float)$metric['diff'] !== 0.0)
                             <small class="small {{ (float)$metric['diff'] < 0 ? 'text-danger': 'text-success' }}">
-                                {{ round($metric['diff'], 2) }} %
+                                {{ $metric['formattedDiff'] }}&nbsp;%
                             </small>
                         @endif
                     </p>

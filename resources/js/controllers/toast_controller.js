@@ -44,16 +44,20 @@ export default class extends ApplicationController {
     }
 
     showAllToasts() {
-        const el = this.element.querySelector(".toast");
+        this.element.querySelectorAll(".toast").forEach(el => {
+            if (Toast.getInstance(el) !== null) {
+                return;
+            }
 
-        if (el === null) {
-            return;
-        }
+            el.addEventListener(
+                "hidden.bs.toast",
+                event => {
+                    event.target.remove();
+                },
+                { once: true }
+            );
 
-        el.addEventListener("hidden.bs.toast", event => {
-            event.target.remove();
+            new Toast(el).show();
         });
-
-        new Toast(el).show();
     }
 }

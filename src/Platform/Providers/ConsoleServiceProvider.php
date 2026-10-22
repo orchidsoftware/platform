@@ -17,6 +17,7 @@ use Orchid\Platform\Commands\PublishCommand;
 use Orchid\Platform\Commands\RowsCommand;
 use Orchid\Platform\Commands\ScreenCommand;
 use Orchid\Platform\Commands\SelectionCommand;
+use Orchid\Platform\Commands\SideMenuCommand;
 use Orchid\Platform\Commands\StubPublishCommand;
 use Orchid\Platform\Commands\TableCommand;
 use Orchid\Platform\Commands\TabMenuCommand;
@@ -42,10 +43,14 @@ class ConsoleServiceProvider extends ServiceProvider
         ListenerCommand::class,
         PresenterCommand::class,
         TabMenuCommand::class,
+        SideMenuCommand::class,
         StubPublishCommand::class,
         FieldCommand::class,
     ];
 
+    /**
+     * Register Orchid console commands, publishers and application information.
+     */
     public function boot(): void
     {
         AboutCommand::add('Orchid', fn () => [

@@ -64,6 +64,9 @@ trait Filterable
         return $builder;
     }
 
+    /**
+     * Return the model's allowed filters and sort columns.
+     */
     public function getOptionsFilter(): Collection
     {
         return collect([

@@ -8,7 +8,7 @@
             aria-label="{{ __('Formatting toolbar') }}"
         >
             @foreach ($toolbarGroups as $index => $buttons)
-                <div class="btn-group btn-group"
+                <div class="btn-group"
                      role="group"
                      aria-label="{{ __('Tool group :number', ['number' => $index + 1]) }}">
                     @foreach ($buttons as [$title, $action, $icon])
@@ -17,6 +17,7 @@
                             class="btn btn-sm btn-light"
                             title="{{ $title }}"
                             data-action="markdown#{{ $action }}"
+                            @disabled(($attributes['disabled'] ?? false) || ($attributes['readonly'] ?? false))
                         >
                             <x-orchid-icon :path="$icon" class="markdown-editor-icon" />
                         </button>
@@ -29,9 +30,8 @@
     <div class="markdown-editor border" data-markdown-target="editor"></div>
 
     <textarea
-        class="d-none"
         data-markdown-target="textarea"
-        {{ $attributes }}
+        {{ $attributes->merge(['class' => 'd-none']) }}
     >{{ $value ?? '' }}</textarea>
 
     <input class="d-none upload" type="file" data-action="markdown#upload" />

@@ -45,14 +45,14 @@
                 </span>
             </span>
             </label>
-            <input type="hidden" name="{{ $name }}" data-attach-target="nullable" value="0">
+            <input type="hidden" name="{{ $name }}" data-attach-target="nullable" value="0" @if($form ?? null) form="{{ $form }}" @endif>
         </div>
     </div>
 
 
     <template data-attach-target="template">
         <div class="pip col position-relative">
-            <input type="hidden" name="{name}" value="{id}">
+            <input type="hidden" name="{name}" value="{id}" @if($form ?? null) form="{{ $form }}" @endif>
 
 
             <img class="attach-image rounded border user-select-none overflow-hidden" src="{url}" title="{original_name}"/>

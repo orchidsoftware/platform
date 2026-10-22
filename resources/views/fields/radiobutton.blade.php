@@ -1,14 +1,8 @@
-<div data-controller="radiobutton">
-    <div class="btn-group btn-group-toggle p-0" data-toggle="buttons">
-
-        @foreach($options as $key => $option)
-            <label class="btn btn-default @if($active($key, $value)) active @endif"
-                   data-action="click->radiobutton#checked"
-            >
-               <input {{ $attributes->except('id') }}
-                       @if($active($key, $value)) checked @endif
-                        value="{{ $key }}" id="{{ $key }}-{{$id}}"
-                >{{ $option }}</label>
-        @endforeach
-    </div>
+<div class="btn-group p-0">
+    @foreach($options as $key => $option)
+        <input {{ $attributes->except('id') }}
+               @checked($active($key, $value))
+               value="{{ $key }}" id="{{ $key }}-{{$id}}">
+        <label class="btn btn-default" for="{{ $key }}-{{$id}}">{{ $option }}</label>
+    @endforeach
 </div>

@@ -11,7 +11,15 @@ class Boolean extends Component
      * @var float
      */
     public ?bool $value;
+
+    /**
+     * Optional label displayed for a false value.
+     */
     public ?string $false;
+
+    /**
+     * Optional label displayed for a true value.
+     */
     public ?string $true;
 
     /**

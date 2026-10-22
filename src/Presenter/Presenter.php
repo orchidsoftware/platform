@@ -16,6 +16,9 @@ abstract class Presenter
      */
     protected object $entity;
 
+    /**
+     * Wrap the entity whose values the presenter exposes.
+     */
     public function __construct(object $entity)
     {
         $this->entity = $entity;

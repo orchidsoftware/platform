@@ -1,7 +1,7 @@
 <tr>
     @foreach($columns as $column)
 
-        <th class="p-0 align-middle">
+        <td class="p-0 align-middle">
             {!!
                $fields[$column]
                     ->value($row[$column] ?? null)
@@ -9,17 +9,17 @@
                     ->id("$idPrefix-$key-$column")
                     ->name($keyValue ? $column : "[$key][$column]")
             !!}
-        </th>
+        </td>
 
         @if ($loop->last && $removableRows)
-            <th class="no-border text-center align-middle">
-                <a href="#"
+            <td class="text-center align-middle">
+                <button type="button"
                    data-action="matrix#deleteRow"
-                   class="small text-muted"
+                   class="btn btn-link btn-sm text-muted"
                    title="{{ __('Remove row') }}">
                     <x-orchid-icon path="bs.trash3"/>
-                </a>
-            </th>
+                </button>
+            </td>
         @endif
     @endforeach
 </tr>

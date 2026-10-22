@@ -9,6 +9,9 @@ use Orchid\Filters\BaseHttpEloquentFilter;
 
 class Where extends BaseHttpEloquentFilter
 {
+    /**
+     * Apply an equality condition using the submitted filter value.
+     */
     public function run(Builder $builder): Builder
     {
         return $builder->where($this->column, $this->getHttpValue());

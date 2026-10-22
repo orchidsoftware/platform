@@ -38,12 +38,18 @@ class PlatformServiceProvider extends ServiceProvider
         });
     }
 
+    /**
+     * Define permissions for access to the main dashboard.
+     */
     protected function registerPermissionsMain(): PermissionGroup
     {
         return PermissionGroup::make(__('Main'))
             ->add('orchid.index', __('Main'));
     }
 
+    /**
+     * Define permissions for system resources.
+     */
     protected function registerPermissionsSystems(): PermissionGroup
     {
         return PermissionGroup::make(__('System'))

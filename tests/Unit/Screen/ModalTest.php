@@ -29,6 +29,26 @@ class ModalTest extends TestUnitCase
         $this->assertStringContainsString(ModalScreen::APPLY_BUTTON, $html);
         $this->assertStringContainsString(ModalScreen::CLOSE_BUTTON, $html);
 
-        $this->assertStringContainsString(Modal::SIZE_LG, $html);
+        $this->assertStringContainsString(
+            'modal-dialog modal-fullscreen-md-down modal-dialog-scrollable '.Modal::SIZE_LG,
+            $html,
+        );
+        $this->assertStringContainsString('aria-labelledby="screen-modal-title-exampleOneModal"', $html);
+        $this->assertStringContainsString('id="screen-modal-title-exampleOneModal"', $html);
+        $this->assertStringContainsString('aria-labelledby="confirm-dialog-title"', $html);
+        $this->assertStringContainsString('id="confirm-dialog-title"', $html);
+        $this->assertStringContainsString('modal fade center-scale', $html);
+        $this->assertStringContainsString(
+            'modal-dialog '.Modal::SIZE_COMPACT,
+            $html,
+        );
+        $this->assertStringNotContainsString('modal-dialog-centered', $html);
+        $this->assertStringNotContainsString('modal-confirm', $html);
+        $this->assertStringContainsString('<div class="modal-footer">', $html);
+        $this->assertStringNotContainsString('modal-actions-stacked', $html);
+        $this->assertStringContainsString('aria-labelledby="notification-modal-title"', $html);
+        $this->assertStringContainsString('id="notification-modal-title"', $html);
+        $this->assertStringContainsString('id="search-modal"', $html);
+        $this->assertStringContainsString('aria-label="Search"', $html);
     }
 }

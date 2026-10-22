@@ -93,6 +93,9 @@ class Attachment extends Model
         return 'sort';
     }
 
+    /**
+     * Return the user associated with the attachment.
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(Orchid::model(User::class));
@@ -112,11 +115,17 @@ class Attachment extends Model
             : $default;
     }
 
+    /**
+     * Expose the attachment URL as an Eloquent attribute.
+     */
     public function getUrlAttribute(): ?string
     {
         return $this->url();
     }
 
+    /**
+     * Return the path portion of a valid attachment URL.
+     */
     public function getRelativeUrlAttribute(): ?string
     {
         $url = $this->url();
@@ -128,6 +137,9 @@ class Attachment extends Model
         return parse_url($url, PHP_URL_PATH) ?: null;
     }
 
+    /**
+     * Return the original filename or a generated name for blob uploads.
+     */
     public function getTitleAttribute(): ?string
     {
         if ($this->original_name !== 'blob') {
@@ -137,6 +149,9 @@ class Attachment extends Model
         return $this->name.'.'.$this->extension;
     }
 
+    /**
+     * Return the storage path when the attachment path and name are available.
+     */
     public function physicalPath(): ?string
     {
         if ($this->path === null || $this->name === null) {

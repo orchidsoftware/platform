@@ -4,6 +4,7 @@
      data-bs-container="body"
      data-bs-toggle="popover"
      tabindex="0"
+     aria-label="{{ $content }}"
      data-bs-trigger="hover focus"
      data-bs-placement="{{ $placement }}"
      data-bs-delay-show="300"

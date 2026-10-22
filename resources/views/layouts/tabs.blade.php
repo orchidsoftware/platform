@@ -18,7 +18,8 @@
                             href="#tab-{{sha1($templateSlug.$name)}}"
                             data-bs-target="#tab-{{sha1($templateSlug.$name)}}"
                             id="button-tab-{{sha1($templateSlug.$name)}}"
-                            aria-selected="false"
+                            aria-selected="{{ $activeTab === $name || ($loop->first && is_null($activeTab)) ? 'true' : 'false' }}"
+                            aria-controls="tab-{{sha1($templateSlug.$name)}}"
                             role="tab"
                             data-bs-toggle="tab">
                             {!! $name !!}
@@ -34,6 +35,7 @@
         @foreach($manyForms as $name => $forms)
             <div role="tabpanel"
                  id="tab-{{sha1($templateSlug.$name)}}"
+                 aria-labelledby="button-tab-{{sha1($templateSlug.$name)}}"
                  @class([
                     'tab-pane',
                     'active' => $activeTab === $name || ($loop->first && is_null($activeTab))

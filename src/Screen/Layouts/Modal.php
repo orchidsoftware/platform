@@ -20,6 +20,12 @@ class Modal extends Layout
 
     public const SIZE_XL = 'modal-xl';
     public const SIZE_LG = 'modal-lg';
+
+    /**
+     * Compact modal for short focused tasks that need more room than SIZE_SM.
+     */
+    public const SIZE_COMPACT = 'modal-compact';
+
     public const SIZE_SM = 'modal-sm';
 
     public const TYPE_CENTER = '';
@@ -70,6 +76,7 @@ class Modal extends Layout
             'commandBar'         => [],
             'withoutApplyButton' => false,
             'withoutCloseButton' => false,
+            'scrollable'         => false,
             'open'               => false,
             'method'             => null,
             'staticBackdrop'     => false,
@@ -142,6 +149,16 @@ class Modal extends Layout
     public function size(string $class): self
     {
         $this->variables['size'] = $class;
+
+        return $this;
+    }
+
+    /**
+     * Keep the modal header and footer visible while its body scrolls.
+     */
+    public function scrollable(bool $scrollable = true): self
+    {
+        $this->variables['scrollable'] = $scrollable;
 
         return $this;
     }

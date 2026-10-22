@@ -7,6 +7,8 @@ export default class extends ApplicationController {
      *
      */
     connect() {
+        if (this.editor && this.element.contains(this.editor.root)) return;
+
         const quill = Quill;
         const selector = this.element.querySelector(".quill").id;
         const textarea = this.element.querySelector("textarea");
@@ -42,7 +44,7 @@ export default class extends ApplicationController {
             });
         }
 
-        let value = JSON.parse(this.data.get("value"));
+        let value = textarea.value;
 
         // set value
         this.editor.root.innerHTML = textarea.value = value;

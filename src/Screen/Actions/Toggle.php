@@ -41,6 +41,9 @@ class Toggle extends Button
         'status'     => false,
     ];
 
+    /**
+     * Prepare the toggle title as a placeholder before rendering.
+     */
     public function __construct()
     {
         parent::__construct();

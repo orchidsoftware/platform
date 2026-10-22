@@ -10,6 +10,9 @@ use Orchid\Filters\BaseHttpEloquentFilter;
 
 class WhereIn extends BaseHttpEloquentFilter
 {
+    /**
+     * Constrain the column to an array or comma-separated list of values.
+     */
     public function run(Builder $builder): Builder
     {
         $query = $this->getHttpValue();

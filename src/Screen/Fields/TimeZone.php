@@ -80,6 +80,9 @@ class TimeZone extends Field
         });
     }
 
+    /**
+     * Populate options with timezone identifiers from the selected group.
+     */
     public function listIdentifiers(int $time = DateTimeZone::ALL): static
     {
         return $this->set('options', collect(DateTimeZone::listIdentifiers($time))

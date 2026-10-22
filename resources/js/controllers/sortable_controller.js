@@ -27,6 +27,41 @@ export default class extends ApplicationController {
         });
     }
 
+    disconnect() {
+        this.sortable?.destroy();
+    }
+
+    moveUp(event) {
+        this.moveItem(event, -1);
+    }
+
+    moveDown(event) {
+        this.moveItem(event, 1);
+    }
+
+    moveItem(event, direction) {
+        event.preventDefault();
+
+        const item = event.currentTarget.closest("[data-model-id]");
+        const sibling =
+            direction < 0
+                ? item?.previousElementSibling
+                : item?.nextElementSibling;
+
+        if (!item || !sibling) {
+            return;
+        }
+
+        if (direction < 0) {
+            this.element.insertBefore(item, sibling);
+        } else {
+            this.element.insertBefore(sibling, item);
+        }
+
+        this.reorderElements();
+        event.currentTarget.focus();
+    }
+
     /**
      * Reorder the elements based on the new order
      */
@@ -36,11 +71,13 @@ export default class extends ApplicationController {
             items: [],
         };
 
-        let elements = this.element.querySelectorAll(this.selectorValue);
+        const elements = this.element.querySelectorAll(this.selectorValue);
 
         elements.forEach((element, index) => {
             params.items.push({
-                id: element.getAttribute("data-model-id"),
+                id: element
+                    .closest("[data-model-id]")
+                    .getAttribute("data-model-id"),
                 sortOrder: index,
             });
         });

@@ -133,11 +133,17 @@ class Builder
         return $field->render();
     }
 
+    /**
+     * Return the field prefix, falling back to the builder prefix.
+     */
     private function buildPrefix(Fieldable $field): ?string
     {
         return $field->get('prefix', $this->prefix);
     }
 
+    /**
+     * Bind a field value and convert its name to bracket notation.
+     */
     private function fill(array $attributes): array
     {
         $name = $attributes['name'];
@@ -190,6 +196,9 @@ class Builder
         return $data;
     }
 
+    /**
+     * Convert a dot notation field name to HTML bracket notation.
+     */
     public static function convertDotToArray(string $string): string
     {
         $name = '';

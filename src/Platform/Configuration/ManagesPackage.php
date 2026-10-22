@@ -6,6 +6,9 @@ use Composer\InstalledVersions;
 
 trait ManagesPackage
 {
+    /**
+     * Composer package name used to retrieve package metadata.
+     */
     protected static string $composerPackage = 'orchid/platform';
 
     /**

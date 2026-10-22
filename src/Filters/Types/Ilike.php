@@ -9,6 +9,9 @@ use Orchid\Filters\BaseHttpEloquentFilter;
 
 class Ilike extends BaseHttpEloquentFilter
 {
+    /**
+     * Apply a case-insensitive substring condition to the query.
+     */
     public function run(Builder $builder): Builder
     {
         return $builder->where(

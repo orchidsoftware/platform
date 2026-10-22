@@ -13,6 +13,9 @@ use Orchid\Platform\Notifications\OrchidMessage;
 
 class Notification extends Component
 {
+    /**
+     * Maximum notification count shown before using an overflow indicator.
+     */
     private const COUNT_INDICATOR_THRESHOLD = 10;
 
     /**

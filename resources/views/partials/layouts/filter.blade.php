@@ -2,6 +2,7 @@
     <button class="btn btn-sm btn-link dropdown-toggle p-0"
             type="button"
             data-bs-toggle="dropdown"
+            data-bs-auto-close="outside"
             aria-haspopup="true"
             data-bs-boundary="viewport"
             aria-expanded="false">

@@ -122,6 +122,9 @@ class Matrix extends Field
         return $this->set('addRowLabel', $label);
     }
 
+    /**
+     * Return the configured row ID prefix or derive one from the field name.
+     */
     protected function getIdPrefix(): string
     {
         $idPrefix = $this->get('idPrefix');

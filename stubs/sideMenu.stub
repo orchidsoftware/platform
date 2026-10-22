@@ -1,0 +1,24 @@
+<?php
+
+namespace DummyNamespace;
+
+use Orchid\Screen\Actions\Menu;
+use Orchid\Screen\Layouts\SideMenu;
+
+class DummyClass extends SideMenu
+{
+    /**
+     * Get the menu elements to be displayed.
+     *
+     * @return Menu[]
+     */
+    protected function navigations(): iterable
+    {
+        return [
+            Menu::make('Home')
+                ->icon('bs.house')
+                ->title('Side Navigation')
+                ->route(config('orchid.index')),
+        ];
+    }
+}

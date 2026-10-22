@@ -14,7 +14,8 @@
                 <div class="modal-header">
                     <h4 class="modal-title text-body-emphasis fw-light"
                         id="exampleModalLabel">{{__('UTM Generator')}}</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="{{ __('Close') }}"></button>
                 </div>
                 <div class="modal-body p-3">
                     <div class="row px-2">

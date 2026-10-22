@@ -1,1 +1,1 @@
-<input type="range" class="form-range" {{ $attributes }}>
+<input type="range" {{ $attributes->merge(['class' => 'form-range']) }}>

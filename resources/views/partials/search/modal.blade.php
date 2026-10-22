@@ -3,6 +3,7 @@
      data-controller="modal"
      role="dialog"
      id="search-modal"
+     aria-label="{{ __('Search') }}"
 >
     <div class="modal-dialog modal-fullscreen-md-down" role="document">
         <div class="modal-content">
@@ -25,11 +26,15 @@
                             type="text"
                             value="@yield('search')"
                             class="form-control"
+                            aria-label="{{ __('Search') }}"
                             placeholder="{{ __('What to search...') }}"
                         >
                         <div class="input-icon-addon">
-                            <button type="button" class="btn-close" title="Close" data-bs-dismiss="modal"
-                                    aria-label="Close">
+                            <button type="button"
+                                    class="btn-close"
+                                    title="{{ __('Close') }}"
+                                    data-bs-dismiss="modal"
+                                    aria-label="{{ __('Close') }}">
                             </button>
                         </div>
                     </div>

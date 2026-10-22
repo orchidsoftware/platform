@@ -10,9 +10,13 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\AnonymousComponent;
 use Illuminate\View\Compilers\ComponentTagCompiler;
 use Illuminate\View\Component as ViewComponent;
+use Illuminate\View\ComponentSlot;
 
 class Blade
 {
+    /**
+     * Cached component class and view metadata indexed by component name.
+     */
     private static array $components = [];
 
     /**
@@ -29,22 +33,24 @@ class Blade
         }
 
         $view = $component->resolveView();
+        $data = $component->data();
+        $data['slot'] ??= new ComponentSlot;
 
         if ($view instanceof \Closure) {
-            $view = $component->resolveView()($component->data());
+            $view = $view($data);
 
             return view($view)->render();
         }
 
         if ($view instanceof View) {
-            return $view->with($component->data())->render();
+            return $view->with($data)->render();
         }
 
         if ($view instanceof Htmlable) {
             return $view->toHtml();
         }
 
-        return view($view)->with($component->data())->render();
+        return view($view)->with($data)->render();
     }
 
     /**
@@ -77,6 +83,9 @@ class Blade
         return static::$components[$component] ??= static::detectComponentInfo($component);
     }
 
+    /**
+     * Resolve the class and optional view used to render a Blade component.
+     */
     private static function detectComponentInfo(string $component): array
     {
         if (is_subclass_of($component, ViewComponent::class)) {

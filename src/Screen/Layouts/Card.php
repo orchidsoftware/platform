@@ -34,6 +34,9 @@ class Card extends Content
         $this->commandBar = $commandBar;
     }
 
+    /**
+     * Render the supplied card data through the card layout template.
+     */
     public function render(Cardable $card): View
     {
         return view($this->template, [
@@ -45,6 +48,9 @@ class Card extends Content
         ]);
     }
 
+    /**
+     * Render the card's commands against its query repository.
+     */
     private function buildCommandBar(): array
     {
         return collect($this->commandBar)

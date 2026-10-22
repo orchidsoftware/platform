@@ -34,8 +34,12 @@ export default class extends ApplicationController {
     fetchResults(query) {
         const requestId = ++this.requestId;
 
-        this.showPlaceholder();
-        this.resultTarget.classList.add(this.hiddenClass);
+        if (this.resultTarget.childElementCount === 0) {
+            this.showPlaceholder();
+            this.resultTarget.classList.add(this.hiddenClass);
+        } else {
+            this.hidePlaceholder();
+        }
 
         fetch(this.prefix(`/search/${encodeURIComponent(query)}`), {
             method: "POST",
@@ -66,6 +70,7 @@ export default class extends ApplicationController {
                 this.hidePlaceholder();
                 this.resultTarget.innerHTML = html;
                 this.resultTarget.classList.remove(this.hiddenClass);
+                this.revealResults();
             })
             .catch(() => {
                 if (requestId !== this.requestId) {
@@ -76,6 +81,17 @@ export default class extends ApplicationController {
                 this.resultTarget.classList.remove(this.hiddenClass);
                 alert(this.failedMessageValue);
             });
+    }
+
+    revealResults() {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            return;
+        }
+
+        this.resultTarget.animate([{ opacity: 0.92 }, { opacity: 1 }], {
+            duration: 120,
+            easing: "ease-out",
+        });
     }
 
     showPlaceholder() {

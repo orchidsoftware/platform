@@ -119,6 +119,16 @@ class Input extends Field
         });
     }
 
+    protected function updateFieldValue(): static
+    {
+        parent::updateFieldValue();
+
+        return is_array($this->getOldValue()) ? $this->set('value', null) : $this;
+    }
+
+    /**
+     * Attach suggested input values and configure the associated datalist ID.
+     */
     public function datalist(array $datalist = []): static
     {
         if (empty($datalist)) {

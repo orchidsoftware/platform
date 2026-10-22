@@ -9,6 +9,9 @@ use Orchid\Filters\BaseHttpEloquentFilter;
 
 class WhereDate extends BaseHttpEloquentFilter
 {
+    /**
+     * Filter the column by the submitted date.
+     */
     public function run(Builder $builder): Builder
     {
         return $builder->whereDate($this->column, $this->getHttpValue());

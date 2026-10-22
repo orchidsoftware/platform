@@ -1,31 +1,27 @@
 <div
     data-controller="datetime"
-     class="input-group"
+    class="input-group"
+    @if($attributes['readonly'] ?? false) data-field-readonly @endif
     {{ $dataAttributes }}>
     <input type="text"
-           placeholder="{{$placeholder ?? ''}}"
-           {{ $attributes }}
+           placeholder="{{ __($placeholder ?? '') }}"
+           {{ $attributes->except('placeholder') }}
            autocomplete="off"
            data-datetime-target="instance"
     >
 
     @if(true === $allowEmpty)
-        <div class="input-group-append bg-white">
-            <a class="input-group-text h-100 text-muted"
-               title="clear"
-               data-action="click->datetime#clear">
-                    <x-orchid-icon path="bs.x-lg" class="m-0 p-0"/>
-                </a>
-            </div>
-        @endif
+        <button type="button" class="btn btn-default"
+                title="{{ __('Clear') }}" aria-label="{{ __('Clear') }}"
+                data-action="datetime#clear"
+                @disabled(($attributes['disabled'] ?? false) || ($attributes['readonly'] ?? false))>
+            <x-orchid-icon path="bs.x-lg" class="m-0 p-0"/>
+        </button>
+    @endif
 
     @foreach($quickDates as $name => $value)
         <label class="btn btn-default" data-action="click->datetime#setValue" data-value="{{ $value }}">
             {{ $name }}
         </label>
     @endforeach
-    </div>
-
-
-
-
+</div>

@@ -1,10 +1,11 @@
-<footer class="pb-3 w-100 v-md-center px-4 d-flex flex-wrap">
+<footer class="pb-3 w-100 align-items-center px-4 d-flex flex-wrap">
         <div class="col-auto me-auto">
             @if(isset($columns) && \Orchid\Screen\TD::isShowVisibleColumns($columns))
                 <div class="btn-group dropup d-inline-block">
                     <button type="button"
                             class="btn btn-sm btn-link dropdown-toggle p-0 m-0"
                             data-bs-toggle="dropdown"
+                            data-bs-auto-close="outside"
                             aria-haspopup="true"
                             data-bs-boundary="viewport"
                             data-bs-popper-config='{"strategy": "fixed"}'

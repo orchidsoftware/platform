@@ -7,7 +7,7 @@
         @endforeach
         <div class="col-sm-auto ms-auto text-end">
             <div class="btn-group" role="group">
-                <button data-action="filter#clear" class="btn btn-default">
+                <button type="button" data-action="filter#clear" class="btn btn-default">
                     <x-orchid-icon class="me-1" path="bs.arrow-repeat"/> {{ __('Reset') }}
                 </button>
                 <button type="submit" form="filters" class="btn btn-default">

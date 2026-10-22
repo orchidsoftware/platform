@@ -12,6 +12,9 @@ use RuntimeException;
 
 class Generator implements Engine
 {
+    /**
+     * Fallback extension for files with an unrecognized MIME type.
+     */
     protected const UNKNOWN = 'unknown';
 
     /**
