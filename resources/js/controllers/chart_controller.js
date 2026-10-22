@@ -54,14 +54,6 @@ export default class extends ApplicationController {
         this.canvas = null;
     }
 
-    typeValueChanged() {
-        this.render();
-    }
-
-    heightValueChanged() {
-        this.render();
-    }
-
     labelsValueChanged() {
         this.render();
     }
@@ -75,98 +67,6 @@ export default class extends ApplicationController {
     }
 
     regionsValueChanged() {
-        this.render();
-    }
-
-    widthValueChanged() {
-        this.render();
-    }
-
-    colorsValueChanged() {
-        this.render();
-    }
-
-    legendValueChanged() {
-        this.render();
-    }
-
-    tooltipValueChanged() {
-        this.render();
-    }
-
-    axesValueChanged() {
-        this.render();
-    }
-
-    gridValueChanged() {
-        this.render();
-    }
-
-    valueLabelsValueChanged() {
-        this.render();
-    }
-
-    framelessValueChanged() {
-        this.render();
-    }
-
-    smoothValueChanged() {
-        this.render();
-    }
-
-    dotsValueChanged() {
-        this.render();
-    }
-
-    dotSizeValueChanged() {
-        this.render();
-    }
-
-    lineValueChanged() {
-        this.render();
-    }
-
-    areaValueChanged() {
-        this.render();
-    }
-
-    gradientValueChanged() {
-        this.render();
-    }
-
-    gradientFromOpacityValueChanged() {
-        this.render();
-    }
-
-    gradientToOpacityValueChanged() {
-        this.render();
-    }
-
-    strokeWidthValueChanged() {
-        this.render();
-    }
-
-    stackedValueChanged() {
-        this.render();
-    }
-
-    horizontalValueChanged() {
-        this.render();
-    }
-
-    radiusValueChanged() {
-        this.render();
-    }
-
-    maxSlicesValueChanged() {
-        this.render();
-    }
-
-    startAngleValueChanged() {
-        this.render();
-    }
-
-    padAngleValueChanged() {
         this.render();
     }
 
@@ -208,18 +108,7 @@ export default class extends ApplicationController {
             this.hasGradientFromOpacityValue ||
             this.hasGradientToOpacityValue
         ) {
-            const gradient = {};
-            if (this.hasGradientFromOpacityValue)
-                gradient.fromOpacity = this.gradientFromOpacityValue;
-            if (this.hasGradientToOpacityValue)
-                gradient.toOpacity = this.gradientToOpacityValue;
-            builder.gradient(
-                this.hasGradientValue && !this.gradientValue
-                    ? false
-                    : Object.keys(gradient).length
-                      ? gradient
-                      : true
-            );
+            builder.gradient(this.gradient);
         }
 
         this.datasetsValue.forEach(dataset => builder.dataset(dataset));
@@ -229,6 +118,22 @@ export default class extends ApplicationController {
         this.chart?.destroy();
         this.chart = null;
         this.chart = builder.render();
+    }
+
+    get gradient() {
+        if (this.hasGradientValue && !this.gradientValue) return false;
+        if (
+            !this.hasGradientFromOpacityValue &&
+            !this.hasGradientToOpacityValue
+        )
+            return true;
+
+        const gradient = {};
+        if (this.hasGradientFromOpacityValue)
+            gradient.fromOpacity = this.gradientFromOpacityValue;
+        if (this.hasGradientToOpacityValue)
+            gradient.toOpacity = this.gradientToOpacityValue;
+        return gradient;
     }
 
     createBuilder() {
