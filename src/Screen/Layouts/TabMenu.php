@@ -13,7 +13,7 @@ use Orchid\Screen\Repository;
 use Throwable;
 
 /**
- * Class TabMenu.
+ * Horizontal navigation for a short group of peer screens.
  */
 abstract class TabMenu extends Layout
 {

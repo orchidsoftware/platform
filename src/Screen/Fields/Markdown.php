@@ -27,32 +27,74 @@ use Orchid\Screen\Field;
  */
 class Markdown extends Field
 {
+    /**
+     * Toolbar identifier for the level one heading control.
+     */
     public const H1 = 'h1';
 
+    /**
+     * Toolbar identifier for the level two heading control.
+     */
     public const H2 = 'h2';
 
+    /**
+     * Toolbar identifier for the level three heading control.
+     */
     public const H3 = 'h3';
 
+    /**
+     * Toolbar identifier for the level four heading control.
+     */
     public const H4 = 'h4';
 
+    /**
+     * Toolbar identifier for the level five heading control.
+     */
     public const H5 = 'h5';
 
+    /**
+     * Toolbar identifier for the bold control.
+     */
     public const BOLD = 'bold';
 
+    /**
+     * Toolbar identifier for the italic control.
+     */
     public const ITALIC = 'italic';
 
+    /**
+     * Toolbar identifier for the link control.
+     */
     public const LINK = 'link';
 
+    /**
+     * Toolbar identifier for the quote control.
+     */
     public const QUOTE = 'quote';
 
+    /**
+     * Toolbar identifier for the code block control.
+     */
     public const CODE = 'code';
 
+    /**
+     * Toolbar identifier for the list control.
+     */
     public const LIST = 'list';
 
+    /**
+     * Toolbar identifier for the ordered list control.
+     */
     public const ORDERED_LIST = 'orderedList';
 
+    /**
+     * Toolbar identifier for the upload control.
+     */
     public const UPLOAD = 'upload';
 
+    /**
+     * Default set of controls available in the editor toolbar.
+     */
     public const DEFAULT_TOOLBAR = [
         [self::H2, self::H3, self::H4],
         [self::BOLD, self::ITALIC],

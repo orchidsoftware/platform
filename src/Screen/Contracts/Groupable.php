@@ -13,5 +13,8 @@ interface Groupable extends Fieldable
      */
     public function getGroup(): array;
 
+    /**
+     * Replace the fields contained in the group.
+     */
     public function setGroup(array $group = []): self;
 }

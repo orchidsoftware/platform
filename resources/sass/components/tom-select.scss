@@ -7,6 +7,11 @@
     @extend .gap-1;
 }
 
+.ts-wrapper.focus {
+    border-color: $input-focus-border-color;
+    box-shadow: $input-focus-box-shadow;
+}
+
 .ts-control > input {
     min-width: auto;
 }

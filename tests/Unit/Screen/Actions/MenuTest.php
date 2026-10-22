@@ -107,6 +107,8 @@ class MenuTest extends TestFieldsUnitCase
         $this->assertStringContainsString('https://github.com/orchidsoftware/platform', $view);
 
         $this->assertStringNotContainsString('https:://orchid.software/admin', $view);
+        $this->assertSame('menu-about', $link->get('aria-controls'));
+        $this->assertSame('false', $link->get('aria-expanded'));
     }
 
     public function testMenuSlug(): void
@@ -115,5 +117,13 @@ class MenuTest extends TestFieldsUnitCase
         $view = self::renderField($link);
 
         $this->assertStringContainsString('#menu-navigation', $view);
+    }
+
+    public function testMenuDividerUsesTheSharedDivider(): void
+    {
+        $view = self::renderField(Menu::make()->divider());
+
+        $this->assertStringContainsString('<li class="divider my-2"></li>', $view);
+        $this->assertStringNotContainsString('<hr', $view);
     }
 }

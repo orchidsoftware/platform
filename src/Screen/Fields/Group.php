@@ -169,6 +169,9 @@ class Group implements Fieldable, Groupable
         return $this->attributes[$key] ?? $value;
     }
 
+    /**
+     * Return the attributes configured for rendering.
+     */
     public function getAttributes(): array
     {
         return $this->attributes;
@@ -238,6 +241,9 @@ class Group implements Fieldable, Groupable
         return $this->set('align', 'align-items-start');
     }
 
+    /**
+     * Render the component as a string.
+     */
     public function __toString(): string
     {
         return (string) $this->render();

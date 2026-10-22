@@ -29,6 +29,9 @@ class Metric extends Layout
      */
     protected $labels = [];
 
+    /**
+     * Initialize the labels displayed by the metric layout.
+     */
     public function __construct(array $labels)
     {
         $this->labels = $labels;
@@ -45,7 +48,15 @@ class Metric extends Layout
             return;
         }
 
-        $metrics = collect($this->labels)->map(fn (string $value) => $repository->getContent($value, ''));
+        $metrics = collect($this->labels)->map(function (string $value) use ($repository) {
+            $metric = $repository->getContent($value, '');
+
+            if (is_array($metric) && isset($metric['diff']) && (float) $metric['diff'] !== 0.0) {
+                $metric['formattedDiff'] = round($metric['diff'], 2);
+            }
+
+            return $metric;
+        });
 
         return view($this->template, [
             'title'   => $this->title,

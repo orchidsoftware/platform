@@ -66,6 +66,7 @@ class ModalScreen extends Screen
             ])
                 ->title(self::TITLE_MODAL)
                 ->size(Modal::SIZE_LG)
+                ->scrollable()
                 ->applyButton(self::APPLY_BUTTON)
                 ->closeButton(self::CLOSE_BUTTON),
         ];

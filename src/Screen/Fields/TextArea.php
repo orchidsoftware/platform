@@ -64,4 +64,11 @@ class TextArea extends Field
         'tabindex',
         'wrap',
     ];
+
+    protected function updateFieldValue(): static
+    {
+        parent::updateFieldValue();
+
+        return is_array($this->getOldValue()) ? $this->set('value', null) : $this;
+    }
 }

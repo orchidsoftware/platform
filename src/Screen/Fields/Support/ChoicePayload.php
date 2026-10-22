@@ -19,8 +19,13 @@ final readonly class ChoicePayload implements Stringable
      * Create a new choices payload instance.
      *
      * @param class-string<Model>                                       $model
+     * @param string                                                    $name
+     * @param string                                                    $key
+     * @param int                                                       $chunk
      * @param array{name?: string, parameters?: array<int, mixed>}|null $scope
+     * @param string|null                                               $append
      * @param array<int, string>                                        $searchColumns
+     * @param string                                                    $search
      */
     public function __construct(
         public string $model,

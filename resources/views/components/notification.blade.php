@@ -2,6 +2,7 @@
    href="#"
    data-bs-toggle="modal"
    data-bs-target="#notification-modal"
+   aria-label="{{ __('Notifications') }}"
    class="m-auto d-flex align-items-center btn btn-link position-relative px-1 py-0 h-100 link-body-emphasis"
    data-controller="notification"
    data-action="click->notification#fetch"
@@ -19,4 +20,3 @@
     <span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-danger lh-1 aspect-ratio-1x1 d-none"
           data-notification-target="badge"></span>
 </a>
-

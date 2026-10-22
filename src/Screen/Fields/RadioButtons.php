@@ -64,6 +64,9 @@ class RadioButtons extends Field
         $this->declareActive();
     }
 
+    /**
+     * Mark the radio option active when its key matches the selected value.
+     */
     public function declareActive(): static
     {
         return $this->set('active', fn (string $key, ?string $value = null) => $key === $value);

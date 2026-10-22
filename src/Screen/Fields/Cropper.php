@@ -198,6 +198,9 @@ class Cropper extends Picture
         return $this;
     }
 
+    /**
+     * Set the background color used when filling the cropped image.
+     */
     public function fillColor(string $color = '#fff'): static
     {
         $this->set('fillColor', $color);

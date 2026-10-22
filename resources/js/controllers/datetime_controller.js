@@ -66,6 +66,11 @@ export default class extends ApplicationController {
         this.fp = flatpickr(this.element.querySelector("input"), config);
     }
 
+    disconnect() {
+        this.fp?.destroy();
+        this.fp = null;
+    }
+
     /**
      *
      * @param event

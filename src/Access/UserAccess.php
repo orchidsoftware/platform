@@ -24,6 +24,9 @@ trait UserAccess
      */
     private $cachePermissions;
 
+    /**
+     * Return the user's role assignments.
+     */
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Orchid::model(Role::class), 'role_users', 'user_id', 'role_id');
@@ -53,6 +56,9 @@ trait UserAccess
             ->exists();
     }
 
+    /**
+     * Check whether user or role permissions grant the requested permission.
+     */
     public function hasAccess(string $permit, bool $cache = true): bool
     {
         if (! $cache || $this->cachePermissions === null) {
@@ -129,6 +135,9 @@ trait UserAccess
             });
     }
 
+    /**
+     * Assign a role, dispatch its event and invalidate cached permissions.
+     */
     public function addRole(Model $role): Model
     {
         $result = $this->roles()->save($role);
@@ -215,6 +224,9 @@ trait UserAccess
         return parent::delete();
     }
 
+    /**
+     * Clear the cached user and role permissions.
+     */
     public function clearCachePermission(): self
     {
         $this->cachePermissions = null;

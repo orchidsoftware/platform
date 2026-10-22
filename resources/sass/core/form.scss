@@ -20,22 +20,26 @@
     }
 
     &:focus {
-        border-color: rgba($black, 0.1);
+        border-color: $input-focus-border-color;
         background-color: $grey-light;
         outline: 0 !important;
         color: $black;
-        box-shadow: none;
+        box-shadow: $input-focus-box-shadow;
 
         &::placeholder {
             color: $dark;
         }
     }
 
-    &[disabled],
-    &[readonly],
+    &:disabled,
     fieldset[disabled] & {
-        background: color.mix($grey-light, #fff, 50%);
-        color: rgba($grey, 0.23);
+        background: $input-disabled-bg;
+        color: var(--#{$prefix}secondary-color);
+    }
+
+    &[readonly]:not(:disabled) {
+        background: $input-bg;
+        color: $input-color;
     }
 
     select {
@@ -47,6 +51,11 @@
     &::file-selector-button {
         min-height: $input-height;
     }
+}
+
+[data-controller~="datetime"]:not([data-field-readonly]) .flatpickr-input[readonly]:not(:disabled) {
+    background-color: $white;
+    color: $black;
 }
 
 .input-group {

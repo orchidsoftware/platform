@@ -16,13 +16,22 @@ use Laravel\SerializableClosure\SerializableClosure;
  */
 final class SignedValue
 {
+    /**
+     * Serializable closure that preserves the original value.
+     */
     public SerializableClosure $payload;
 
+    /**
+     * Wrap the value in a serializable closure for signed state storage.
+     */
     public function __construct(mixed $value)
     {
         $this->payload = new SerializableClosure(static fn () => $value);
     }
 
+    /**
+     * Recover the original value from its serialized closure.
+     */
     public function restore(): mixed
     {
         return ($this->payload->getClosure())();

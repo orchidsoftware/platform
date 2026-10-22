@@ -15,6 +15,26 @@ use Orchid\Tests\TestFeatureCase;
 
 class NotificationTest extends TestFeatureCase
 {
+    public function testNotificationModalStartsWithHiddenFooter(): void
+    {
+        $html = view('orchid::partials.notification.modal')->render();
+
+        $this->assertStringContainsString('id="orchid-notifications-footer" hidden', $html);
+    }
+
+    public function testEmptyNotificationsUseEmptyState(): void
+    {
+        $this
+            ->actingAs($this->createAdminUser())
+            ->post(route('orchid.notifications.index'))
+            ->assertOk()
+            ->assertSee('empty-state')
+            ->assertSee('No new notifications.')
+            ->assertSee('id="orchid-notifications-footer"', false)
+            ->assertSee('hidden', false)
+            ->assertDontSee('Mark All As Read');
+    }
+
     public function testNotificationForInnerClass(): void
     {
         $user = $this->createAdminUser();

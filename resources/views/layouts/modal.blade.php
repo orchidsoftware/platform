@@ -2,7 +2,7 @@
     <div class="modal fade center-scale {{$type}}"
          id="screen-modal-{{$key}}"
          role="dialog"
-         aria-labelledby="screen-modal-{{$key}}"
+         aria-labelledby="screen-modal-title-{{$key}}"
          data-controller="modal"
          data-modal-slug-value="{{ $templateSlug }}"
          data-modal-url-value="{{ $deferredRoute }}"
@@ -12,7 +12,12 @@
          data-modal-open-value="{{ var_export($open) }}"
         {{$staticBackdrop ? "data-bs-backdrop=static" : ''}}
     >
-        <div class="modal-dialog modal-fullscreen-md-down {{$size}}"
+        <div @class([
+                 'modal-dialog',
+                 'modal-fullscreen-md-down',
+                 'modal-dialog-scrollable' => $scrollable,
+                 $size,
+             ])
              role="document"
              id="screen-modal-type-{{$key}}"
         >
@@ -27,7 +32,11 @@
                 <div class="p-4 modal-placeholder">
                     <div class="placeholder-glow mb-3 mt-1 d-flex align-items-center">
                         <span class="placeholder col-6 h5 me-auto rounded-1"></span>
-                        <button type="button" class="btn-close" title="Close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button"
+                                class="btn-close"
+                                title="{{ __('Close') }}"
+                                data-bs-dismiss="modal"
+                                aria-label="{{ __('Close') }}"></button>
                     </div>
 
                     <p class="placeholder-glow">
@@ -57,9 +66,14 @@
                     </p>
                 </div>
                 <div class="modal-header align-items-baseline gap-3">
-                    <h4 class="modal-title text-body-emphasis fw-light text-balance text-break" data-modal-target="title">{{$title}}</h4>
-                    <button type="button" class="btn-close" title="Close" data-bs-dismiss="modal"
-                            aria-label="Close">
+                    <h4 class="modal-title text-body-emphasis fw-light text-balance text-break"
+                        id="screen-modal-title-{{$key}}"
+                        data-modal-target="title">{{$title}}</h4>
+                    <button type="button"
+                            class="btn-close"
+                            title="{{ __('Close') }}"
+                            data-bs-dismiss="modal"
+                            aria-label="{{ __('Close') }}">
                     </button>
                 </div>
                 <div class="modal-body layout-wrapper">
