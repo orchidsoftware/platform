@@ -23,22 +23,22 @@ export default class extends ApplicationController {
         axes: Boolean,
         grid: Boolean,
         valueLabels: Boolean,
-        frameless: Boolean,
-        smooth: Boolean,
+        frameless: { type: Boolean, default: false },
+        smooth: { type: Boolean, default: true },
         dots: Boolean,
-        dotSize: Number,
-        line: Boolean,
-        area: Boolean,
-        gradient: Boolean,
-        gradientFromOpacity: Number,
-        gradientToOpacity: Number,
-        strokeWidth: Number,
-        stacked: Boolean,
-        horizontal: Boolean,
-        radius: Number,
-        maxSlices: Number,
-        startAngle: Number,
-        padAngle: Number,
+        dotSize: { type: Number, default: 3 },
+        line: { type: Boolean, default: true },
+        area: { type: Boolean, default: false },
+        gradient: { type: Boolean, default: false },
+        gradientFromOpacity: { type: Number, default: 0.42 },
+        gradientToOpacity: { type: Number, default: 0 },
+        strokeWidth: { type: Number, default: 2 },
+        stacked: { type: Boolean, default: false },
+        horizontal: { type: Boolean, default: false },
+        radius: { type: Number, default: 3 },
+        maxSlices: { type: Number, default: 20 },
+        startAngle: { type: Number, default: 0 },
+        padAngle: { type: Number, default: 1.5 },
     };
 
     canvasTargetConnected(canvas) {
@@ -88,28 +88,7 @@ export default class extends ApplicationController {
         if (this.hasGridValue) builder.grid(this.gridValue);
         if (this.hasValueLabelsValue)
             builder.valueLabels(this.valueLabelsValue);
-        if (this.hasFramelessValue) builder.frameless(this.framelessValue);
-        if (this.hasSmoothValue) builder.smooth(this.smoothValue);
         if (this.hasDotsValue) builder.dots(this.dotsValue);
-        if (this.hasDotSizeValue) builder.dotSize(this.dotSizeValue);
-        if (this.hasLineValue) builder.line(this.lineValue);
-        if (this.hasAreaValue) builder.area(this.areaValue);
-        if (this.hasStrokeWidthValue)
-            builder.strokeWidth(this.strokeWidthValue);
-        if (this.hasStackedValue) builder.stacked(this.stackedValue);
-        if (this.hasHorizontalValue) builder.horizontal(this.horizontalValue);
-        if (this.hasRadiusValue) builder.radius(this.radiusValue);
-        if (this.hasMaxSlicesValue) builder.maxSlices(this.maxSlicesValue);
-        if (this.hasStartAngleValue) builder.startAngle(this.startAngleValue);
-        if (this.hasPadAngleValue) builder.padAngle(this.padAngleValue);
-
-        if (
-            this.hasGradientValue ||
-            this.hasGradientFromOpacityValue ||
-            this.hasGradientToOpacityValue
-        ) {
-            builder.gradient(this.gradient);
-        }
 
         this.datasetsValue.forEach(dataset => builder.dataset(dataset));
         this.markersValue.forEach(marker => builder.marker(marker));
@@ -121,33 +100,44 @@ export default class extends ApplicationController {
     }
 
     get gradient() {
-        if (this.hasGradientValue && !this.gradientValue) return false;
-        if (
-            !this.hasGradientFromOpacityValue &&
-            !this.hasGradientToOpacityValue
-        )
-            return true;
-
-        const gradient = {};
-        if (this.hasGradientFromOpacityValue)
-            gradient.fromOpacity = this.gradientFromOpacityValue;
-        if (this.hasGradientToOpacityValue)
-            gradient.toOpacity = this.gradientToOpacityValue;
-        return gradient;
+        return this.gradientValue
+            ? {
+                  fromOpacity: this.gradientFromOpacityValue,
+                  toOpacity: this.gradientToOpacityValue,
+              }
+            : false;
     }
 
     createBuilder() {
         switch (this.typeValue) {
             case "bar":
-                return BarChart.make(this.canvas);
+                return BarChart.make(this.canvas)
+                    .frameless(this.framelessValue)
+                    .stacked(this.stackedValue)
+                    .horizontal(this.horizontalValue)
+                    .radius(this.radiusValue);
             case "line":
-                return LineChart.make(this.canvas);
+                return LineChart.make(this.canvas)
+                    .frameless(this.framelessValue)
+                    .smooth(this.smoothValue)
+                    .line(this.lineValue)
+                    .area(this.areaValue)
+                    .dotSize(this.dotSizeValue)
+                    .strokeWidth(this.strokeWidthValue)
+                    .gradient(this.gradient);
             case "mixed":
-                return MixedChart.make(this.canvas);
+                return MixedChart.make(this.canvas)
+                    .frameless(this.framelessValue)
+                    .gradient(this.gradient);
             case "percentage":
-                return PercentageChart.make(this.canvas);
+                return PercentageChart.make(this.canvas).maxSlices(
+                    this.maxSlicesValue
+                );
             case "pie":
-                return PieChart.make(this.canvas);
+                return PieChart.make(this.canvas)
+                    .maxSlices(this.maxSlicesValue)
+                    .startAngle(this.startAngleValue)
+                    .padAngle(this.padAngleValue);
             default:
                 throw new Error(`Unsupported chart type: ${this.typeValue}`);
         }

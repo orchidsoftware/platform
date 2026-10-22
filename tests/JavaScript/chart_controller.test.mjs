@@ -213,12 +213,17 @@ test("Stimulus creates and releases all five chart types", async t => {
         const value = config(type);
         const { element, builds } = await harness(t, value);
         assert.equal(builds.length, 1);
-        assert.deepEqual(calls(builds[0]), [
-            ["height", 300],
-            ["labels", value.data.labels],
-            ["legend", true],
-            ["dataset", value.data.datasets[0]],
-        ]);
+        assert.deepEqual(
+            calls(builds[0]).filter(([name]) =>
+                ["height", "labels", "legend", "dataset"].includes(name)
+            ),
+            [
+                ["height", 300],
+                ["labels", value.data.labels],
+                ["legend", true],
+                ["dataset", value.data.datasets[0]],
+            ]
+        );
         element.remove();
         await settle();
         assert.equal(builds[0].destroyed, true);
@@ -237,9 +242,10 @@ test("forwards native mixed datasets, gradients, markers and regions", async t =
     value.data.regions = [{ label: "Range", range: [5, 15] }];
     const { builds } = await harness(t, value);
     assert.deepEqual(calls(builds[0]), [
+        ["frameless", false],
+        ["gradient", value.options.gradient],
         ["height", 250],
         ["labels", value.data.labels],
-        ["gradient", value.options.gradient],
         ...value.data.datasets.map(dataset => ["dataset", dataset]),
         ["marker", value.data.markers[0]],
         ["region", value.data.regions[0]],
@@ -337,7 +343,7 @@ test("export action prevents navigation and downloads the active chart", async t
     assert.equal(builds[0].downloads, 1);
 });
 
-test("omitted values use line and height defaults without forcing optional flags", async t => {
+test("omitted values apply explicit line defaults and preserve automatic visibility", async t => {
     const value = config(undefined, {});
     delete value.type;
     const { builds, controller } = await harness(t, value);
@@ -345,6 +351,13 @@ test("omitted values use line and height defaults without forcing optional flags
     assert.equal(controller.typeValue, "line");
     assert.equal(controller.heightValue, 250);
     assert.deepEqual(calls(builds[0]), [
+        ["frameless", false],
+        ["smooth", true],
+        ["line", true],
+        ["area", false],
+        ["dotSize", 3],
+        ["strokeWidth", 2],
+        ["gradient", false],
         ["height", 250],
         ["labels", value.data.labels],
         ["dataset", value.data.datasets[0]],
@@ -392,7 +405,7 @@ test("Stimulus decodes number and boolean values before forwarding native option
             tooltip: false,
             horizontal: true,
             frameless: true,
-            dotSize: 4.5,
+            radius: 4.5,
         })
     );
     assert.equal(controller.widthValue, 640);
@@ -404,7 +417,7 @@ test("Stimulus decodes number and boolean values before forwarding native option
     assert.equal(forwarded.tooltip, false);
     assert.equal(forwarded.horizontal, true);
     assert.equal(forwarded.frameless, true);
-    assert.equal(forwarded.dotSize, 4.5);
+    assert.equal(forwarded.radius, 4.5);
     element.setAttribute("data-chart-legend-value", "0");
     element.setAttribute("data-chart-width-value", "7_20");
     await settle();
@@ -439,7 +452,7 @@ test("independent data mutations rebuild the rendered chart", async t => {
     }
 });
 
-test("optional flag removal restores the native builder default", async t => {
+test("removing a fixed option restores its declared default", async t => {
     const { element, builds } = await harness(
         t,
         config("line", { frameless: true })
@@ -447,14 +460,17 @@ test("optional flag removal restores the native builder default", async t => {
     assert.equal(Object.fromEntries(calls(builds[0])).frameless, true);
     setValue(element, "frameless", undefined);
     await renderAction(element);
-    assert.ok(!calls(builds.at(-1)).some(([name]) => name === "frameless"));
+    assert.equal(Object.fromEntries(calls(builds.at(-1))).frameless, false);
 });
 
 test("gradient uses typed endpoints only when enabled", async t => {
     for (const [options, expected] of [
-        [{ gradient: true }, true],
-        [{ gradient: { fromOpacity: 0.4 } }, { fromOpacity: 0.4 }],
-        [{ gradient: { toOpacity: 0 } }, { toOpacity: 0 }],
+        [{ gradient: true }, { fromOpacity: 0.42, toOpacity: 0 }],
+        [
+            { gradient: { fromOpacity: 0.4 } },
+            { fromOpacity: 0.4, toOpacity: 0 },
+        ],
+        [{ gradient: { toOpacity: 0 } }, { fromOpacity: 0.42, toOpacity: 0 }],
         [{ gradient: false, gradientFromOpacity: 0.8 }, false],
     ]) {
         const { builds } = await harness(t, config("line", options));
@@ -471,6 +487,45 @@ test("gradient uses typed endpoints only when enabled", async t => {
     await renderAction(element);
     assert.deepEqual(
         calls(builds.at(-1)).find(([name]) => name === "gradient"),
-        ["gradient", { toOpacity: 0.15 }]
+        ["gradient", { fromOpacity: 0.42, toOpacity: 0.15 }]
     );
+});
+
+test("each chart type receives only its own fixed defaults", async t => {
+    for (const [type, expected] of [
+        [
+            "bar",
+            { frameless: false, stacked: false, horizontal: false, radius: 3 },
+        ],
+        ["mixed", { frameless: false, gradient: false }],
+        ["pie", { maxSlices: 20, startAngle: 0, padAngle: 1.5 }],
+        ["percentage", { maxSlices: 20 }],
+    ]) {
+        const { builds } = await harness(t, config(type, {}));
+        const options = Object.fromEntries(
+            calls(builds[0]).filter(
+                ([name]) => !["height", "labels", "dataset"].includes(name)
+            )
+        );
+        assert.deepEqual(options, expected);
+    }
+});
+
+test("explicit false and zero override fixed defaults", async t => {
+    const { builds } = await harness(
+        t,
+        config("line", {
+            smooth: false,
+            line: false,
+            area: true,
+            dotSize: 0,
+            strokeWidth: 0,
+        })
+    );
+    const options = Object.fromEntries(calls(builds[0]));
+    assert.equal(options.smooth, false);
+    assert.equal(options.line, false);
+    assert.equal(options.area, true);
+    assert.equal(options.dotSize, 0);
+    assert.equal(options.strokeWidth, 0);
 });
