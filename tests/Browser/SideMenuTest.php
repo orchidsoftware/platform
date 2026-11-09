@@ -76,7 +76,7 @@ class SideMenuTest extends TestBrowserCase
             $browser->resize(390, 844);
 
             $browser->script(<<<'JS'
-                console.log(JSON.stringify({
+                console.warn(JSON.stringify({
                     viewport: innerWidth,
                     client: document.documentElement.clientWidth,
                     scroll: document.documentElement.scrollWidth,

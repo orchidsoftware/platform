@@ -27,6 +27,11 @@ class EnvironmentTest extends TestFeatureCase
         $this->assertDatabaseCount('users', 1);
     }
 
+    public function testHomeRedirectsToDashboard(): void
+    {
+        $this->get('/')->assertRedirect(route('orchid.index'));
+    }
+
     public function testDatabaseEnforcesForeignKeys(): void
     {
         $this->expectException(QueryException::class);
