@@ -63,7 +63,8 @@ class SideMenuTest extends TestBrowserCase
                 'return document.querySelectorAll("[data-side-menu] [aria-current=page]").length;'
             )[0]);
 
-            $browser->resize(820, 900);
+            $browser->resize(820, 900)
+                ->waitUntil('document.documentElement.scrollWidth <= document.documentElement.clientWidth');
 
             $this->assertFalse($browser->script(
                 'return document.documentElement.scrollWidth > document.documentElement.clientWidth;'
@@ -74,6 +75,7 @@ class SideMenuTest extends TestBrowserCase
 
             $browser
                 ->resize(390, 844)
+                ->waitUntil('document.documentElement.scrollWidth <= document.documentElement.clientWidth')
                 ->assertVisible('[data-side-menu-toggle]')
                 ->assertMissing('[data-side-menu-collapse].show');
 
