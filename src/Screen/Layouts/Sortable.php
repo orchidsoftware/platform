@@ -9,8 +9,16 @@ use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Sight;
 
-abstract class Sortable extends Layout
+/** @phpstan-consistent-constructor */
+class Sortable extends Layout
 {
+    public function __construct(protected array $columns = []) {}
+
+    public static function make(array $columns = []): static
+    {
+        return new static($columns);
+    }
+
     use HasEmptyState;
 
     /**
@@ -45,11 +53,22 @@ abstract class Sortable extends Layout
      */
     protected $target;
 
+    public function target(string $target): self
+    {
+        $this->target = $target;
+
+        return $this;
+    }
+
     /**
      * @return Factory|View|null
      */
     public function build(Repository $repository)
     {
+        if (! isset($this->target) || $this->target === '') {
+            throw new \LogicException('Set the layout data source using target().');
+        }
+
         $this->query = $repository;
 
         if (! $this->isSee()) {
@@ -77,7 +96,10 @@ abstract class Sortable extends Layout
     /**
      * @return array
      */
-    abstract protected function columns(): iterable;
+    protected function columns(): iterable
+    {
+        return $this->columns;
+    }
 
     public function title(?string $title = null): self
     {
@@ -100,12 +122,30 @@ abstract class Sortable extends Layout
         return $this;
     }
 
+    protected ?string $successMessage = null;
+
+    protected ?string $failureMessage = null;
+
+    public function successMessage(string $message): self
+    {
+        $this->successMessage = $message;
+
+        return $this;
+    }
+
+    public function failureMessage(string $message): self
+    {
+        $this->failureMessage = $message;
+
+        return $this;
+    }
+
     /**
      * Return a success message for sorting operation.
      */
     public function successSortMessage(): string
     {
-        return __('Sorting was successful.');
+        return $this->successMessage ?? __('Sorting was successful.');
     }
 
     /**
@@ -113,6 +153,6 @@ abstract class Sortable extends Layout
      */
     public function failureSortMessage(): string
     {
-        return __('Sorting failed. Please try again.');
+        return $this->failureMessage ?? __('Sorting failed. Please try again.');
     }
 }

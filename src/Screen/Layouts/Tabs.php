@@ -9,9 +9,16 @@ use Orchid\Screen\Repository;
 
 /**
  * Class Tabs.
+ *
+ * @phpstan-consistent-constructor
  */
-abstract class Tabs extends Layout
+class Tabs extends Layout
 {
+    public static function make(array $layouts = []): static
+    {
+        return new static($layouts);
+    }
+
     /**
      * @var string
      */

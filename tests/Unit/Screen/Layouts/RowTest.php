@@ -40,15 +40,7 @@ class RowTest extends TestUnitCase
 
     public function testTitleForRow(): void
     {
-        $rows = new class extends Rows
-        {
-            protected $title = 'Profile';
-
-            protected function fields(): array
-            {
-                return [];
-            }
-        };
+        $rows = Rows::make([])->title('Profile');
 
         $html = $rows->build(new Repository)
             ->withErrors([])

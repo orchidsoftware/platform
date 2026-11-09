@@ -46,9 +46,9 @@ class LegendTest extends TestUnitCase
 
     public function testBaseUsage(): void
     {
-        $layout = Layout::legend('user', [
+        $layout = Layout::legend([
             Sight::make('name'),
-        ]);
+        ])->target('user');
 
         $html = $layout->build(new Repository([
             'user' => new Repository([

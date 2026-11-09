@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Traits\Macroable;
 use Orchid\Screen\Layouts\Accordion;
 use Orchid\Screen\Layouts\Blank;
@@ -19,9 +18,11 @@ use Orchid\Screen\Layouts\Metric;
 use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Layouts\Selection;
+use Orchid\Screen\Layouts\SideMenu;
 use Orchid\Screen\Layouts\Sortable;
 use Orchid\Screen\Layouts\Split;
 use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\Layouts\TabMenu;
 use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Layouts\View;
 use Orchid\Screen\Layouts\Wrapper;
@@ -33,175 +34,84 @@ class LayoutFactory
 {
     use Macroable;
 
-    /**
-     * @param Arrayable|array $data
-     */
-    public static function view(string $view, $data = []): View
+    public static function view(string $view, array|Arrayable $data = []): View
     {
-        return new class($view, $data) extends View {};
+        return View::make($view, $data);
     }
 
     public static function component(string $component): Component
     {
-        return new class($component) extends Component {};
+        return Component::make($component);
     }
 
     public static function rows(array $fields): Rows
     {
-        return new class($fields) extends Rows
-        {
-            /**
-             * @var Field[]
-             */
-            protected $fields;
-
-            /**
-             *  constructor.
-             */
-            public function __construct(array $fields = [])
-            {
-                $this->fields = $fields;
-            }
-
-            public function fields(): array
-            {
-                return $this->fields;
-            }
-        };
+        return Rows::make($fields);
     }
 
-    public static function table(string $target, array $columns): Table
+    public static function table(array $columns): Table
     {
-        return new class($target, $columns) extends Table
-        {
-            /**
-             * @var array
-             */
-            protected $columns;
-
-            public function __construct(string $target, array $columns)
-            {
-                $this->target = $target;
-                $this->columns = $columns;
-            }
-
-            public function columns(): array
-            {
-                return $this->columns;
-            }
-        };
+        return Table::make($columns);
     }
 
     public static function columns(array $layouts): Columns
     {
-        return new class($layouts) extends Columns {};
+        return Columns::make($layouts);
     }
 
     public static function split(array $layouts): Split
     {
-        return new class($layouts) extends Split {};
+        return Split::make($layouts);
     }
 
     public static function tabs(array $layouts): Tabs
     {
-        return new class($layouts) extends Tabs {};
+        return Tabs::make($layouts);
     }
 
-    /**
-     * @param string|string[] $layouts
-     */
-    public static function modal(string $key, $layouts): Modal
+    public static function modal(string $key, array|string|Layout $layouts): Modal
     {
-        $layouts = Arr::wrap($layouts);
-
-        return new class($key, $layouts) extends Modal {};
+        return Modal::make($key, $layouts);
     }
 
     public static function blank(array $layouts): Blank
     {
-        return new class($layouts) extends Blank {};
+        return Blank::make($layouts);
     }
 
     public static function wrapper(string $template, array $layouts): Wrapper
     {
-        return new class($template, $layouts) extends Wrapper {};
+        return Wrapper::make($template, $layouts);
     }
 
     public static function accordion(array $layouts): Accordion
     {
-        return new class($layouts) extends Accordion {};
+        return Accordion::make($layouts);
     }
 
-    /**
-     * @param string[] $filters
-     */
     public static function selection(array $filters): Selection
     {
-        return new class($filters) extends Selection
-        {
-            /**
-             * @var string[]
-             */
-            protected $filters;
-
-            /**
-             * Constructor.
-             *
-             * @param string[] $filters
-             */
-            public function __construct(array $filters = [])
-            {
-                $this->filters = $filters;
-            }
-
-            /**
-             * @return string[]
-             */
-            public function filters(): array
-            {
-                return $this->filters;
-            }
-        };
+        return Selection::make($filters);
     }
 
-    /**
-     * @param Layout|string|string[] $layouts
-     */
-    public static function block($layouts): Block
+    public static function block(array|string|Layout $layouts): Block
     {
-        return new class(Arr::wrap($layouts)) extends Block {};
+        return Block::make($layouts);
     }
 
-    public static function legend(string $target, array $columns): Legend
+    public static function legend(array $columns): Legend
     {
-        return new class($target, $columns) extends Legend
-        {
-            /**
-             * @var array
-             */
-            protected $columns;
-
-            public function __construct(string $target, array $columns)
-            {
-                $this->target = $target;
-                $this->columns = $columns;
-            }
-
-            public function columns(): array
-            {
-                return $this->columns;
-            }
-        };
+        return Legend::make($columns);
     }
 
     public static function browsing(string $src): Browsing
     {
-        return new Browsing($src);
+        return Browsing::make($src);
     }
 
     public static function metrics(array $labels): Metric
     {
-        return new Metric($labels);
+        return Metric::make($labels);
     }
 
     public static function chart(string $target, ?string $title = null): Chart
@@ -209,25 +119,18 @@ class LayoutFactory
         return Chart::make($target, $title);
     }
 
-    public static function sortable(string $target, array $columns): Sortable
+    public static function sortable(array $columns): Sortable
     {
-        return new class($target, $columns) extends Sortable
-        {
-            /**
-             * @var array
-             */
-            protected $columns;
+        return Sortable::make($columns);
+    }
 
-            public function __construct(string $target, array $columns)
-            {
-                $this->target = $target;
-                $this->columns = $columns;
-            }
+    public static function tabMenu(array $navigations): TabMenu
+    {
+        return TabMenu::make($navigations);
+    }
 
-            public function columns(): iterable
-            {
-                return $this->columns;
-            }
-        };
+    public static function sideMenu(array $navigations): SideMenu
+    {
+        return SideMenu::make($navigations);
     }
 }

@@ -62,7 +62,7 @@ class ExampleCardsScreen extends Screen
     public function layout(): iterable
     {
         return [
-            Layout::legend('user', [
+            Layout::legend([
                 Sight::make('id')->popover('Identifier, a symbol which uniquely identifies an object or record'),
                 Sight::make('name'),
                 Sight::make('email'),
@@ -75,7 +75,7 @@ class ExampleCardsScreen extends Screen
                 Sight::make('Action')->render(fn () => Button::make('Show toast')
                     ->type(Color::BASIC)
                     ->method('showToast')),
-            ])->title('User'),
+            ])->target('user')->title('User'),
         ];
     }
 

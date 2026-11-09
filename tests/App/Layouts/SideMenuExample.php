@@ -10,10 +10,7 @@ use Orchid\Support\Color;
 
 class SideMenuExample extends SideMenu
 {
-    protected function label(): string
-    {
-        return 'Workspace navigation';
-    }
+    protected string $label = 'Workspace navigation';
 
     protected function navigations(): iterable
     {

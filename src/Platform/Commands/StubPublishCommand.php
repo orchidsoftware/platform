@@ -45,10 +45,8 @@ class StubPublishCommand extends Command
             'filters.stub',
             'listener.stub',
             'presenter.stub',
-            'rows.stub',
             'screen.stub',
             'selection.stub',
-            'table.stub',
             'tabMenu.stub',
         ])
             ->mapWithKeys(fn (string $file) => [

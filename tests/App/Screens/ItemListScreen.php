@@ -75,7 +75,7 @@ class ItemListScreen extends Screen
     public function layout(): iterable
     {
         return [
-            Layout::table('items', [
+            Layout::table([
                 TD::make('id'),
                 TD::make('name'),
                 TD::make('parent_id'),
@@ -92,7 +92,7 @@ class ItemListScreen extends Screen
                             Link::make(__('Add child'))
                                 ->route('test.item.addchild', $model->get('id')),
                         ])),
-            ]),
+            ])->target('items'),
             Layout::modal('itemModal', Layout::rows([
                 Input::make('item.name')
                     ->title('Name')

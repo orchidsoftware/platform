@@ -9,9 +9,16 @@ use Orchid\Screen\Repository;
 
 /**
  * Class Columns.
+ *
+ * @phpstan-consistent-constructor
  */
-abstract class Columns extends Layout
+class Columns extends Layout
 {
+    public static function make(array $layouts = []): static
+    {
+        return new static($layouts);
+    }
+
     /**
      * @var string
      */

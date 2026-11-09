@@ -10,9 +10,16 @@ use Orchid\Screen\Repository;
 
 /**
  * Class View.
+ *
+ * @phpstan-consistent-constructor
  */
-abstract class View extends Layout
+class View extends Layout
 {
+    public static function make(string $template, array|Arrayable $data = []): static
+    {
+        return new static($template, $data);
+    }
+
     /**
      * View constructor.
      *
@@ -34,7 +41,7 @@ abstract class View extends Layout
             return;
         }
 
-        $data = array_merge($this->data, $repository->toArray());
+        $data = array_merge($this->data instanceof Arrayable ? $this->data->toArray() : $this->data, $repository->toArray());
 
         return view($this->template, $data);
     }

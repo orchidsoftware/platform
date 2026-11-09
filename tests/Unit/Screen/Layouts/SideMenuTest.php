@@ -15,10 +15,7 @@ class SideMenuTest extends TestUnitCase
     {
         $layout = new class extends SideMenu
         {
-            protected function label(): string
-            {
-                return 'Project navigation';
-            }
+            protected string $label = 'Project navigation';
 
             protected function navigations(): iterable
             {
@@ -74,15 +71,7 @@ class SideMenuTest extends TestUnitCase
         $hidden = Menu::make('Hidden')->href('/hidden')->canSee(false);
         $parent = Menu::make('Settings')->list([$visible, $hidden]);
 
-        $layout = new class([$parent]) extends SideMenu
-        {
-            public function __construct(private readonly array $items) {}
-
-            protected function navigations(): iterable
-            {
-                return $this->items;
-            }
-        };
+        $layout = SideMenu::make([$parent]);
 
         $view = $layout->build(new Repository());
         $domId = $view->getData()['domId'];

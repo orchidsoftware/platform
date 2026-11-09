@@ -9,12 +9,42 @@ use Orchid\Screen\Actions\Link;
 
 trait HasEmptyState
 {
+    protected array $emptyState = [];
+
+    public function emptyTitle(string $title): self
+    {
+        $this->emptyState['title'] = $title;
+
+        return $this;
+    }
+
+    public function emptyDescription(string $description): self
+    {
+        $this->emptyState['description'] = $description;
+
+        return $this;
+    }
+
+    public function emptyIcon(string $icon): self
+    {
+        $this->emptyState['icon'] = $icon;
+
+        return $this;
+    }
+
+    public function emptyAction(?Action $action): self
+    {
+        $this->emptyState['action'] = $action;
+
+        return $this;
+    }
+
     /**
      * Icon displayed when no data is found.
      */
     protected function iconNotFound(): string
     {
-        return 'bs.journal-x';
+        return $this->emptyState['icon'] ?? 'bs.journal-x';
     }
 
     /**
@@ -22,9 +52,9 @@ trait HasEmptyState
      */
     protected function textNotFound(): string
     {
-        return $this->hasActiveFilters()
+        return $this->emptyState['title'] ?? ($this->hasActiveFilters()
             ? __('No matches')
-            : __('No items yet');
+            : __('No items yet'));
     }
 
     /**
@@ -32,9 +62,9 @@ trait HasEmptyState
      */
     protected function subNotFound(): string
     {
-        return $this->hasActiveFilters()
+        return $this->emptyState['description'] ?? ($this->hasActiveFilters()
             ? __('Try changing or clearing the filters.')
-            : __('New items will appear here.');
+            : __('New items will appear here.'));
     }
 
     /**
@@ -42,6 +72,10 @@ trait HasEmptyState
      */
     protected function actionNotFound(): ?Action
     {
+        if (array_key_exists('action', $this->emptyState)) {
+            return $this->emptyState['action'];
+        }
+
         if (! $this->hasActiveFilters()) {
             return null;
         }

@@ -73,7 +73,7 @@ class RoleListScreen extends Screen
     public function layout(): iterable
     {
         return [
-            Layout::table('roles', [
+            Layout::table([
                 TD::make('name', __('Name'))
                     ->sort()
                     ->cantHide()
@@ -92,7 +92,7 @@ class RoleListScreen extends Screen
                     ->usingComponent(DateTimeSplit::class)
                     ->align(TD::ALIGN_RIGHT)
                     ->sort(),
-            ]),
+            ])->target('roles'),
         ];
     }
 }

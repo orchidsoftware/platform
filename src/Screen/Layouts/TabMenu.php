@@ -14,9 +14,18 @@ use Throwable;
 
 /**
  * Horizontal navigation for a short group of peer screens.
+ *
+ * @phpstan-consistent-constructor
  */
-abstract class TabMenu extends Layout
+class TabMenu extends Layout
 {
+    public function __construct(protected array $navigations = []) {}
+
+    public static function make(array $navigations = []): static
+    {
+        return new static($navigations);
+    }
+
     /**
      * @var string
      */
@@ -49,5 +58,8 @@ abstract class TabMenu extends Layout
      *
      * @return Menu[]
      */
-    abstract protected function navigations(): iterable;
+    protected function navigations(): iterable
+    {
+        return $this->navigations;
+    }
 }

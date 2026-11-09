@@ -17,8 +17,6 @@ class ArtisanTest extends TestConsoleCase
     public static function artisanOrchidMake(): Generator
     {
         yield ['Chart', 'orchid:chart', 'Orchid/Layouts/'];
-        yield ['Table', 'orchid:table', 'Orchid/Layouts/'];
-        yield ['Rows', 'orchid:rows', 'Orchid/Layouts/'];
         yield ['Selection', 'orchid:selection', 'Orchid/Layouts/'];
         yield ['Listener', 'orchid:listener', 'Orchid/Layouts/'];
         yield ['TabMenu', 'orchid:tab-menu', 'Orchid/Layouts/'];

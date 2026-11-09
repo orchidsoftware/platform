@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
-use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Repository;
@@ -61,20 +60,7 @@ class TableTest extends TestUnitCase
 
     public function testStriped(): void
     {
-        $layout = new class extends Table
-        {
-            protected $target = 'target';
-
-            protected function columns(): array
-            {
-                return [];
-            }
-
-            protected function striped(): bool
-            {
-                return true;
-            }
-        };
+        $layout = Table::make([])->target('target')->striped();
 
         $html = $layout
             ->build(new Repository(['target' => []]))
@@ -85,20 +71,7 @@ class TableTest extends TestUnitCase
 
     public function testBordered(): void
     {
-        $layout = new class extends Table
-        {
-            protected $target = 'target';
-
-            protected function columns(): array
-            {
-                return [];
-            }
-
-            protected function bordered(): bool
-            {
-                return true;
-            }
-        };
+        $layout = Table::make([])->target('target')->bordered();
 
         $html = $layout
             ->build(new Repository(['target' => []]))
@@ -109,20 +82,7 @@ class TableTest extends TestUnitCase
 
     public function testHoverable(): void
     {
-        $layout = new class extends Table
-        {
-            protected $target = 'target';
-
-            protected function columns(): array
-            {
-                return [];
-            }
-
-            protected function hoverable(): bool
-            {
-                return true;
-            }
-        };
+        $layout = Table::make([])->target('target')->hoverable();
 
         $html = $layout
             ->build(new Repository(['target' => []]))
@@ -133,15 +93,7 @@ class TableTest extends TestUnitCase
 
     public function testShowTextNotFoundWhenTargetIsEmptyCollection()
     {
-        $layout = new class extends Table
-        {
-            protected $target = 'target';
-
-            protected function columns(): array
-            {
-                return [];
-            }
-        };
+        $layout = Table::make([])->target('target');
 
         $html = $layout->build(new Repository([
             'target'  => collect([]),
@@ -167,15 +119,7 @@ class TableTest extends TestUnitCase
         ]);
 
         try {
-            $layout = new class extends Table
-            {
-                protected $target = 'target';
-
-                protected function columns(): array
-                {
-                    return [];
-                }
-            };
+            $layout = Table::make([])->target('target');
 
             $html = $layout->build(new Repository([
                 'target' => collect([]),
@@ -206,15 +150,7 @@ class TableTest extends TestUnitCase
         ]);
 
         try {
-            $layout = new class extends Table
-            {
-                protected $target = 'target';
-
-                protected function columns(): array
-                {
-                    return [];
-                }
-            };
+            $layout = Table::make([])->target('target');
 
             $html = $layout->build(new Repository([
                 'target' => collect([]),
@@ -239,15 +175,7 @@ class TableTest extends TestUnitCase
         ]);
 
         try {
-            $layout = new class extends Table
-            {
-                protected $target = 'target';
-
-                protected function columns(): array
-                {
-                    return [];
-                }
-            };
+            $layout = Table::make([])->target('target');
 
             $html = $layout->build(new Repository([
                 'target' => collect([]),
@@ -262,35 +190,7 @@ class TableTest extends TestUnitCase
 
     public function testEmptyStateCanBeOverridden(): void
     {
-        $layout = new class extends Table
-        {
-            protected $target = 'target';
-
-            protected function columns(): array
-            {
-                return [];
-            }
-
-            protected function iconNotFound(): string
-            {
-                return 'bs.archive';
-            }
-
-            protected function textNotFound(): string
-            {
-                return 'No appointments';
-            }
-
-            protected function subNotFound(): string
-            {
-                return 'Create the first appointment.';
-            }
-
-            protected function actionNotFound(): Action
-            {
-                return Link::make('Create appointment')->href('/appointments/create');
-            }
-        };
+        $layout = Table::make([])->target('target')->emptyIcon('bs.archive')->emptyTitle('No appointments')->emptyDescription('Create the first appointment.')->emptyAction(Link::make('Create appointment')->href('/appointments/create'));
 
         $html = $layout->build(new Repository([
             'target' => collect([]),
@@ -306,17 +206,9 @@ class TableTest extends TestUnitCase
 
     public function testLoopTable(): void
     {
-        $layout = new class extends Table
-        {
-            protected $target = 'target';
-
-            protected function columns(): array
-            {
-                return [
-                    TD::make('serial number')->render(fn ($item, $loop) => 'index:'.$loop->index),
-                ];
-            }
-        };
+        $layout = Table::make([
+            TD::make('serial number')->render(fn ($item, $loop) => 'index:'.$loop->index),
+        ])->target('target');
 
         $values = collect(['a', 'b', 'c']);
 

@@ -16,9 +16,18 @@ use Orchid\Screen\TD;
 
 /**
  * Class Table.
+ *
+ * @phpstan-consistent-constructor
  */
-abstract class Table extends Layout
+class Table extends Layout
 {
+    public function __construct(protected array $columns = []) {}
+
+    public static function make(array $columns = []): static
+    {
+        return new static($columns);
+    }
+
     use HasEmptyState;
 
     /**
@@ -50,6 +59,13 @@ abstract class Table extends Layout
      */
     protected $title;
 
+    public function target(string $target): self
+    {
+        $this->target = $target;
+
+        return $this;
+    }
+
     /**
      * Build the table view with columns, rows, and other settings.
      *
@@ -57,6 +73,10 @@ abstract class Table extends Layout
      */
     public function build(Repository $repository)
     {
+        if (! isset($this->target) || $this->target === '') {
+            throw new \LogicException('Set the layout data source using target().');
+        }
+
         $this->query = $repository;
 
         if (! $this->isSee()) {
@@ -80,12 +100,12 @@ abstract class Table extends Layout
             'textNotFound'   => $this->textNotFound(),
             'subNotFound'    => $this->subNotFound(),
             'actionNotFound' => $this->actionNotFound(),
-            'striped'        => $this->striped(),
-            'compact'        => $this->compact(),
-            'bordered'       => $this->bordered(),
-            'hoverable'      => $this->hoverable(),
+            'striped'        => $this->striped,
+            'compact'        => $this->compact,
+            'bordered'       => $this->bordered,
+            'hoverable'      => $this->hoverable,
             'slug'           => $this->getSlug(),
-            'onEachSide'     => $this->onEachSide(),
+            'onEachSide'     => $this->onEachSide,
             'showHeader'     => $this->hasHeader($columns, $rows),
             'title'          => $this->title,
         ]);
@@ -115,41 +135,61 @@ abstract class Table extends Layout
     /**
      * Usage for zebra-striping to any table row.
      */
-    protected function striped(): bool
+    protected bool $striped = false;
+
+    public function striped(): self
     {
-        return false;
+        $this->striped = true;
+
+        return $this;
     }
 
     /**
      * Usage for compact display of table rows.
      */
-    protected function compact(): bool
+    protected bool $compact = false;
+
+    public function compact(): self
     {
-        return false;
+        $this->compact = true;
+
+        return $this;
     }
 
     /**
      * Usage for borders on all sides of the table and cells.
      */
-    protected function bordered(): bool
+    protected bool $bordered = false;
+
+    public function bordered(): self
     {
-        return false;
+        $this->bordered = true;
+
+        return $this;
     }
 
     /**
      * Enable a hover state on table rows.
      */
-    protected function hoverable(): bool
+    protected bool $hoverable = false;
+
+    public function hoverable(): self
     {
-        return false;
+        $this->hoverable = true;
+
+        return $this;
     }
 
     /**
      * The number of links to display on each side of the current page link.
      */
-    protected function onEachSide(): int
+    protected int $onEachSide = 3;
+
+    public function onEachSide(int $count): self
     {
-        return 3;
+        $this->onEachSide = $count;
+
+        return $this;
     }
 
     /**
@@ -169,13 +209,25 @@ abstract class Table extends Layout
      *
      * @return iterable|TD[]
      */
-    abstract protected function columns(): iterable;
+    protected function columns(): iterable
+    {
+        return $this->columns;
+    }
 
     /**
      * Define total row configuration.
      */
+    protected array $totals = [];
+
+    public function totals(array $columns): self
+    {
+        $this->totals = $columns;
+
+        return $this;
+    }
+
     protected function total(): array
     {
-        return [];
+        return $this->totals;
     }
 }
