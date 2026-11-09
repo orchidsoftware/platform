@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Access\Permissions;
 use Orchid\Access\RoleAccess;
+use Orchid\Filters\AllowedFilters;
+use Orchid\Filters\AllowedSorts;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
@@ -15,6 +17,17 @@ use Orchid\Metrics\Chartable;
 use Orchid\Screen\AsSource;
 use Orchid\Tests\App\Enums\RoleNames;
 
+#[AllowedFilters([
+    'id'          => Where::class,
+    'name'        => Like::class,
+    'permissions' => Like::class,
+])]
+#[AllowedSorts([
+    'id',
+    'name',
+    'updated_at',
+    'created_at',
+])]
 class Role extends Model
 {
     use AsSource, Chartable, Filterable, HasFactory, RoleAccess;
@@ -47,23 +60,4 @@ class Role extends Model
             'name'        => RoleNames::class,
         ];
     }
-
-    /**
-     * @var array
-     */
-    protected $allowedFilters = [
-        'id'          => Where::class,
-        'name'        => Like::class,
-        'permissions' => Like::class,
-    ];
-
-    /**
-     * @var array
-     */
-    protected $allowedSorts = [
-        'id',
-        'name',
-        'updated_at',
-        'created_at',
-    ];
 }

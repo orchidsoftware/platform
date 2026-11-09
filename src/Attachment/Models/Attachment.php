@@ -14,6 +14,8 @@ use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Orchid\Attachment\MimeTypes;
+use Orchid\Filters\AllowedFilters;
+use Orchid\Filters\AllowedSorts;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Like;
 use Orchid\Platform\Concerns\Sortable;
@@ -26,6 +28,22 @@ use Orchid\Support\Facades\Orchid;
  *
  * @property-read string|null $url
  */
+#[AllowedFilters([
+    'name'          => Like::class,
+    'original_name' => Like::class,
+    'mime'          => Like::class,
+    'extension'     => Like::class,
+    'disk'          => Like::class,
+    'group'         => Like::class,
+])]
+#[AllowedSorts([
+    'name',
+    'original_name',
+    'mime',
+    'extension',
+    'disk',
+    'group',
+])]
 class Attachment extends Model
 {
     use AsSource, Filterable, HasFactory, HasUuids, Sortable;
@@ -54,30 +72,6 @@ class Attachment extends Model
             'sort' => 'integer',
         ];
     }
-
-    /**
-     * @var array
-     */
-    protected $allowedFilters = [
-        'name'          => Like::class,
-        'original_name' => Like::class,
-        'mime'          => Like::class,
-        'extension'     => Like::class,
-        'disk'          => Like::class,
-        'group'         => Like::class,
-    ];
-
-    /**
-     * @var array
-     */
-    protected $allowedSorts = [
-        'name',
-        'original_name',
-        'mime',
-        'extension',
-        'disk',
-        'group',
-    ];
 
     /**
      * Get the column name for sorting.
