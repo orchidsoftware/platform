@@ -23,7 +23,7 @@ class NameFilter extends Filter
 
     public function run(Builder $builder): Builder
     {
-        return $builder->where('name', $this->request->get('name'));
+        return $builder->where('name', $this->request->input('name'));
     }
 
     /**
@@ -33,7 +33,7 @@ class NameFilter extends Filter
     {
         return [
             Input::make('name')
-                ->value($this->request->get('name')),
+                ->value($this->request->input('name')),
         ];
     }
 }

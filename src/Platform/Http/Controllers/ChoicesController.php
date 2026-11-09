@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers;
 
-use Composer\InstalledVersions;
-use Composer\Semver\VersionParser;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection as BaseCollection;
@@ -67,28 +65,13 @@ class ChoicesController extends Controller
         }
 
         $value = '%'.$payload->search.'%';
-        $useWhereLike = InstalledVersions::satisfies(
-            new VersionParser(),
-            'laravel/framework',
-            '>11.17.0'
-        );
-
-        $query->where(function (Builder $q) use ($payload, $value, $useWhereLike): void {
+        $query->where(function (Builder $q) use ($payload, $value): void {
             $columns = $payload->searchableColumns();
             $name = array_shift($columns);
 
-            if ($useWhereLike) {
-                $q->whereLike($name, $value);
-                foreach ($columns as $column) {
-                    $q->orWhereLike($column, $value);
-                }
-
-                return;
-            }
-
-            $q->where($name, 'like', $value);
+            $q->whereLike($name, $value);
             foreach ($columns as $column) {
-                $q->orWhere($column, 'like', $value);
+                $q->orWhereLike($column, $value);
             }
         });
     }

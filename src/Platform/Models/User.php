@@ -69,10 +69,13 @@ class User extends Authenticatable
     /**
      * The attributes that should be cast to native types.
      */
-    protected $casts = [
-        'permissions'          => Permissions::class,
-        'email_verified_at'    => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'permissions'          => Permissions::class,
+            'email_verified_at'    => 'datetime',
+        ];
+    }
 
     /**
      * The attributes for which you can use filters in url.

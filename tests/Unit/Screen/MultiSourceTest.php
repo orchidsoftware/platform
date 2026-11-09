@@ -72,7 +72,10 @@ class MultiSourceModel extends Model
         'content',
     ];
 
-    protected $casts = [
-        'options' => 'array',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'options' => 'array',
+        ];
+    }
 }

@@ -114,7 +114,7 @@ class UserListScreen extends Screen
 
     public function remove(Request $request): void
     {
-        User::findOrFail($request->get('id'))->delete();
+        User::findOrFail($request->input('id'))->delete();
 
         Toast::info(__('User was removed'));
     }

@@ -81,6 +81,6 @@ class ExampleCardsScreen extends Screen
 
     public function showToast(Request $request): void
     {
-        Toast::warning($request->get('toast', 'Hello, world! This is a toast message.'));
+        Toast::warning($request->input('toast', 'Hello, world! This is a toast message.'));
     }
 }

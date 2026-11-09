@@ -4,10 +4,27 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Example;
 
+use App\Orchid\Screens\User\UserProfileScreen;
+use Illuminate\Http\Request;
 use Orchid\Tests\TestFeatureCase;
 
 class UserTest extends TestFeatureCase
 {
+    public function testProfileSavesSubmittedInputInsteadOfRequestAttributes(): void
+    {
+        $user = $this->createAdminUser();
+        $request = Request::create('/dashboard/profile?user[name]=Query', 'POST', [
+            'user' => ['name' => 'Submitted', 'email' => $user->email],
+        ]);
+        $request->attributes->set('user', ['name' => 'Attribute', 'email' => 'other@example.com']);
+        $request->setUserResolver(static fn () => $user);
+
+        (new UserProfileScreen)->save($request);
+
+        $this->assertSame('Submitted', $user->fresh()->name);
+        $this->assertSame($user->email, $user->fresh()->email);
+    }
+
     public function testRouteSystemsUsers(): void
     {
         $response = $this

@@ -144,10 +144,13 @@ class SourceModel extends Model
         'preferences',
     ];
 
-    protected $casts = [
-        'options'     => 'array',
-        'preferences' => 'json',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'options'     => 'array',
+            'preferences' => 'json',
+        ];
+    }
 
     protected function greeting(): Attribute
     {
