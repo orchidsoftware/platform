@@ -60,6 +60,8 @@ jobs:
 
   dusk:
     runs-on: ubuntu-latest
+    env:
+      COMPOSER_ROOT_VERSION: dev-master
 
     steps:
       - uses: actions/checkout@v7

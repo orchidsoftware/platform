@@ -73,20 +73,8 @@ class SideMenuTest extends TestBrowserCase
                 'return document.querySelector("[data-side-menu]").getBoundingClientRect().width;'
             )[0]);
 
-            $browser->resize(390, 844);
-
-            $browser->script(<<<'JS'
-                console.warn(JSON.stringify({
-                    viewport: innerWidth,
-                    client: document.documentElement.clientWidth,
-                    scroll: document.documentElement.scrollWidth,
-                    elements: [...document.querySelectorAll('body *')]
-                        .filter(el => el.getBoundingClientRect().right > document.documentElement.clientWidth + 1)
-                        .map(el => ({tag: el.tagName, class: el.className, right: el.getBoundingClientRect().right, text: el.innerText?.slice(0, 100)}))
-                }));
-                JS);
-
             $browser
+                ->resize(390, 844)
                 ->waitUntil('document.documentElement.scrollWidth <= document.documentElement.clientWidth')
                 ->assertVisible('[data-side-menu-toggle]')
                 ->assertMissing('[data-side-menu-collapse].show');
