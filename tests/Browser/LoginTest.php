@@ -48,7 +48,6 @@ class LoginTest extends TestBrowserCase
             // Logout
             $browser
                 ->visitRoute('orchid.profile')
-                ->clickLink($user->name)
                 ->waitForText('Sign out')
                 ->press('Sign out')
                 ->waitForRoute('orchid.login');
