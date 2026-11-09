@@ -1,4 +1,4 @@
-name: Spelling
+name: Typos
 
 on:
   push:
@@ -15,8 +15,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  spelling:
-    name: Spelling
+  typos:
+    name: Typos
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
