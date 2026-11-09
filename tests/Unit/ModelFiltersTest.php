@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Orchid\Platform\Models\User;
 use Orchid\Tests\App\Filters\EmailFilter;
 use Orchid\Tests\App\Filters\NameFilter;
@@ -12,6 +14,23 @@ use Orchid\Tests\TestUnitCase;
 
 class ModelFiltersTest extends TestUnitCase
 {
+    public function testOverriddenScopePreservesParentAndQueryChaining(): void
+    {
+        $user = new class extends User
+        {
+            #[Scope]
+            protected function defaultSort(Builder $query, string $column, string $direction = 'asc'): Builder
+            {
+                return parent::defaultSort($query, $column, $direction)->orderBy('name');
+            }
+        };
+
+        $this->assertSame(
+            'select * from "users" order by "id" desc, "name" asc',
+            $user->newQuery()->defaultSort('id', 'desc')->toSql(),
+        );
+    }
+
     public function testNotParamsFiltersApply(): void
     {
         $sql = User::filtersApply([

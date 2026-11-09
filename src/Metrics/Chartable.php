@@ -4,6 +4,7 @@ namespace Orchid\Metrics;
 
 use Carbon\Carbon;
 use DateTimeInterface;
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +14,8 @@ trait Chartable
     /**
      * Counts the values for model at the range and previous range.
      */
-    public function scopeCountForGroup(Builder $builder, string $groupColumn): GroupCollection
+    #[Scope]
+    protected function countForGroup(Builder $builder, string $groupColumn): GroupCollection
     {
         $group = $builder->select("$groupColumn as label", DB::raw('count(*) as value'))
             ->groupBy($groupColumn)
@@ -77,7 +79,8 @@ trait Chartable
      * @param string|DateTimeInterface|null $stopDate
      * @param string                        $dateColumn
      */
-    public function scopeCountByDays(Builder $builder, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
+    #[Scope]
+    protected function countByDays(Builder $builder, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
     {
         return $this->groupByDays($builder, 'count(*)', $startDate, $stopDate, $dateColumn);
     }
@@ -88,7 +91,8 @@ trait Chartable
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
      */
-    public function scopeAverageByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
+    #[Scope]
+    protected function averageByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
     {
         return $this->groupByDays($builder, "avg($value)", $startDate, $stopDate, $dateColumn);
     }
@@ -99,7 +103,8 @@ trait Chartable
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
      */
-    public function scopeSumByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
+    #[Scope]
+    protected function sumByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
     {
         return $this->groupByDays($builder, "sum($value)", $startDate, $stopDate, $dateColumn);
     }
@@ -110,7 +115,8 @@ trait Chartable
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
      */
-    public function scopeMaxByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
+    #[Scope]
+    protected function maxByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
     {
         return $this->groupByDays($builder, "max($value)", $startDate, $stopDate, $dateColumn);
     }
@@ -121,7 +127,8 @@ trait Chartable
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
      */
-    public function scopeMinByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
+    #[Scope]
+    protected function minByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
     {
         return $this->groupByDays($builder, "min($value)", $startDate, $stopDate, $dateColumn);
     }
@@ -134,7 +141,8 @@ trait Chartable
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
      */
-    public function scopeValuesByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = 'created_at'): TimeCollection
+    #[Scope]
+    protected function valuesByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = 'created_at'): TimeCollection
     {
         return $this->groupByDays($builder, $value, $startDate, $stopDate, $dateColumn);
     }

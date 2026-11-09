@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Access;
 
 use Exception;
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -95,13 +96,14 @@ trait UserAccess
      * Query Scope for retrieving users by a certain permission
      * The * character usage is not implemented.
      */
-    public function scopeByAccess(Builder $builder, string $permitWithoutWildcard): Builder
+    #[Scope]
+    protected function byAccess(Builder $builder, string $permitWithoutWildcard): Builder
     {
         if (empty($permitWithoutWildcard)) {
             return $builder->whereRaw('1=0');
         }
 
-        return $this->scopeByAnyAccess($builder, $permitWithoutWildcard);
+        return $this->byAnyAccess($builder, $permitWithoutWildcard);
     }
 
     /**
@@ -110,7 +112,8 @@ trait UserAccess
      *
      * @param string|iterable $permitsWithoutWildcard
      */
-    public function scopeByAnyAccess(Builder $builder, $permitsWithoutWildcard): Builder
+    #[Scope]
+    protected function byAnyAccess(Builder $builder, $permitsWithoutWildcard): Builder
     {
         $permits = collect($permitsWithoutWildcard);
 

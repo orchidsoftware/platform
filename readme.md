@@ -55,46 +55,6 @@ Curious but not (yet) in the mood to read the documentation? Click [here](https:
 Orchid's [blog](https://blog.orchid.software/) informs about news and announcements around Laravel Orchid, including related projects.
 -->
 
-## Development checks
-
-Run these commands from the package root:
-
-```sh
-composer install
-vendor/bin/phpstan analyse --memory-limit=3G
-vendor/bin/rector process --dry-run
-vendor/bin/phpunit --no-coverage
-```
-
-PHPStan uses level 3 with Larastan, Carbon, and PHPUnit extensions. It checks source code, tests, configuration, database files, routes, and application stubs. Testbench loads Orchid's provider and authentication model from `testbench.yaml` so the analyser can resolve routing macros and model capabilities. Targeted exceptions and their reasons are documented in `phpstan.neon`.
-
-### Workbench application
-
-Workbench loads the shipped screens and routes directly from `stubs/app`, with test screens from `tests/App`. Providers and migrations are registered in `testbench.yaml`; running `orchid:install` is only necessary when testing the installer itself.
-
-To run the development application:
-
-```sh
-vendor/bin/testbench workbench:build
-vendor/bin/testbench migrate
-vendor/bin/testbench orchid:admin
-vendor/bin/testbench serve --host=127.0.0.1 --port=8001
-```
-
-Open `http://127.0.0.1:8001/dashboard`. This uses Testbench's disposable SQLite database inside `vendor`. Main tests use a separate in-memory database, transactions, and enabled foreign keys. Database setup is deferred until the first query or transaction in each test. Vite is disabled for Main tests, so they do not need published assets.
-
-### Browser tests
-
-Dusk uses its own file-backed SQLite database, shared with the browser server. It runs and rolls back migrations for each test. Install Google Chrome, then run:
-
-```sh
-vendor/bin/testbench-dusk workbench:build
-vendor/bin/dusk-updater detect --auto-update
-CI=true vendor/bin/phpunit --testsuite Browser --no-coverage
-```
-
-`CI=true` runs Chrome headlessly. Dusk serves the published assets from `public`; after changing JavaScript or Sass, run `npm install && npm run build` and rebuild Workbench. Failure screenshots, browser logs, and page sources are saved under `tests/Browser` and ignored by Git.
-
 ## Community
 
 Continually striving to actively include feedback from the community in the development of Orchid greatly benefits its progress.

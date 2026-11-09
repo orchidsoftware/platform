@@ -38,7 +38,7 @@
     "require": {
         "composer-runtime-api": "^2.2",
         "composer/semver": "^3.0",
-        "laravel/framework": "^10.0 || ^11.0 || ^12.0 || ^13.0",
+        "laravel/framework": "^12.4 || ^13.0",
         "laravel/scout": "^9.0 || ^10.0 || ^11.0",
         "orchid/blade-icons": "^4.0",
         "tabuna/breadcrumbs": "^4.0 || ^5.0 || ^6.0",
@@ -59,7 +59,6 @@
         "rector/rector": "^2.8"
     },
     "conflict": {
-        "laravel/framework": "<=10.48.25, <=11.34.0",
         "orchestra/testbench-core": "<8.23.9",
         "nesbot/carbon": "<2.66.0"
     },
