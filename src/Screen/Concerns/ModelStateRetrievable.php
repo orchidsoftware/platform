@@ -97,7 +97,6 @@ trait ModelStateRetrievable
     /**
      * Restore the model after serialization.
      *
-     * @param array $values
      *
      * @throws BindingResolutionException
      * @throws \ReflectionException
@@ -140,7 +139,6 @@ trait ModelStateRetrievable
     /**
      * Get the property value for the given property.
      *
-     * @param \ReflectionProperty $property
      *
      * @return mixed
      */
@@ -152,8 +150,6 @@ trait ModelStateRetrievable
     /**
      * @throws BindingResolutionException
      * @throws \ReflectionException
-     *
-     * @return array
      */
     protected function getDefaultPropertyWithConstructor(): array
     {

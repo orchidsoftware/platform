@@ -87,7 +87,7 @@ trait UserAccess
 
         return collect($permissions)
             ->map(fn (string $permit) => $this->hasAccess($permit, $cache))
-            ->filter(fn (bool $result) => $result === true)
+            ->filter(fn (bool $result) => $result)
             ->isNotEmpty();
     }
 

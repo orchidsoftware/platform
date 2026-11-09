@@ -11,7 +11,7 @@ use Orchid\Tests\TestUnitCase;
 /**
  * Class TestFieldsUnitCase.
  */
-class TestFieldsUnitCase extends TestUnitCase
+abstract class TestFieldsUnitCase extends TestUnitCase
 {
     public static function renderField(Field $field, array $data = [], array $rules = [], array $messages = [], array $customAttributes = []): string
     {

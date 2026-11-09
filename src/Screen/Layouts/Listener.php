@@ -28,12 +28,6 @@ abstract class Listener extends Layout
      */
     abstract protected function layouts(): iterable;
 
-    /**
-     * @param Repository $repository
-     * @param Request    $request
-     *
-     * @return Repository
-     */
     abstract public function handle(Repository $repository, Request $request): Repository;
 
     /**
@@ -77,7 +71,7 @@ abstract class Listener extends Layout
         }
 
         return route('orchid.async.listener', [
-            'screen' => Crypt::encryptString(get_class($screen)),
+            'screen' => Crypt::encryptString($screen::class),
             'layout' => Crypt::encryptString(static::class),
         ]);
     }

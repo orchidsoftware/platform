@@ -19,29 +19,21 @@ class DynamicTestScreen
 
     /**
      * Name of the route
-     *
-     * @var string
      */
     protected string $name;
 
     /**
      * Route parameters
-     *
-     * @var array
      */
     protected array $parameters = [];
 
     /**
      * Session data
-     *
-     * @var array
      */
     protected array $session = [];
 
     /**
      * Indicates whether redirects should be followed.
-     *
-     * @var bool
      */
     protected bool $followRedirects = true;
 
@@ -93,8 +85,6 @@ class DynamicTestScreen
      * Set session data
      *
      * @param array $data Session data
-     *
-     * @return $this
      */
     public function session(array $data): DynamicTestScreen
     {
@@ -107,8 +97,6 @@ class DynamicTestScreen
      * Get the test response for the screen.
      *
      * @param array $headers Headers to be used
-     *
-     * @return TestResponse
      */
     public function display(array $headers = []): TestResponse
     {
@@ -124,8 +112,6 @@ class DynamicTestScreen
      * @param string $method     Method to call
      * @param array  $parameters Parameters to be used
      * @param array  $headers    Headers to be used
-     *
-     * @return TestResponse
      */
     public function method(string $method, array $parameters = [], array $headers = []): TestResponse
     {

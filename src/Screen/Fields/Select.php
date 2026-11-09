@@ -362,8 +362,6 @@ class Select extends Field implements ComplexFieldConcern
 
     /**
      * Populate options from resolved Eloquent models.
-     *
-     * @param Model|Collection $source
      */
     private function setFromEloquent(Model|Collection $source, string $name, string $key): static
     {

@@ -16,8 +16,6 @@ trait RoleAccess
 
     /**
      * Define the relationship with the users assigned to the role
-     *
-     * @return BelongsToMany
      */
     public function users(): BelongsToMany
     {

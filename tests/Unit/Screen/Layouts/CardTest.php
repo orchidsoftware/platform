@@ -46,18 +46,12 @@ class CardTest extends TestUnitCase
                   content. This content is a little bit longer.';
             }
 
-            /**
-             * @return string
-             */
-            public function image(): ?string
+            public function image(): string
             {
                 return 'https://picsum.photos/600/300';
             }
 
-            /**
-             * @return mixed
-             */
-            public function color(): ?Color
+            public function color(): Color
             {
                 return Color::INFO;
             }

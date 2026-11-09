@@ -46,12 +46,14 @@
         "watson/active": "^7.0"
     },
     "require-dev": {
+        "driftingly/rector-laravel": "^2.7",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.14",
         "orchestra/testbench": "^8.0 || ^9.5 || ^10.0 || ^11.0",
         "orchestra/testbench-core": "^8.0 || ^9.5 || ^10.0 || ^11.0",
         "orchestra/testbench-dusk": "^8.0 || ^9.5 || ^10.0 || ^11.0",
-        "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0"
+        "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0",
+        "rector/rector": "^2.8"
     },
     "conflict": {
         "laravel/framework": "<=10.48.25, <=11.34.0",

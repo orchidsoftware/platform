@@ -13,8 +13,6 @@ class OrchidMessage extends Notification implements Arrayable
 {
     /**
      * The data that should be stored with the notification.
-     *
-     * @var array
      */
     public array $data = [];
 
@@ -40,8 +38,6 @@ class OrchidMessage extends Notification implements Arrayable
      * Create a new element.
      *
      * @param mixed ...$arguments
-     *
-     * @return static
      */
     public static function make(...$arguments): static
     {
@@ -108,7 +104,6 @@ class OrchidMessage extends Notification implements Arrayable
     /**
      * Get the notification channels.
      *
-     * @param mixed $notifiable
      *
      * @return array
      */
@@ -119,8 +114,6 @@ class OrchidMessage extends Notification implements Arrayable
 
     /**
      * Get the instance as an array for orchid.
-     *
-     * @return array
      */
     public function toOrchid(): array
     {
@@ -129,8 +122,6 @@ class OrchidMessage extends Notification implements Arrayable
 
     /**
      * Get the instance as an array for orchid (alias for toOrchid).
-     *
-     * @return array
      */
     public function toDashboard(): array
     {
@@ -139,8 +130,6 @@ class OrchidMessage extends Notification implements Arrayable
 
     /**
      * Convert the notification instance to an array.
-     *
-     * @return array
      */
     public function toArray(): array
     {

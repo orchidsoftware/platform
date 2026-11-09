@@ -10,8 +10,6 @@ interface Engine
 {
     /**
      * Create a new instance of the engine.
-     *
-     * @param UploadedFile $file
      */
     public function __construct(UploadedFile $file);
 
@@ -20,8 +18,6 @@ interface Engine
      * Some characters are prohibited on different operating systems.
      *
      * For example, "calc"
-     *
-     * @return string
      */
     public function name(): string;
 

@@ -36,10 +36,6 @@ class AttachmentController extends Controller
 
     /**
      * Upload files and return their details.
-     *
-     * @param Request $request
-     *
-     * @return JsonResponse
      */
     public function upload(Request $request): JsonResponse
     {
@@ -122,8 +118,6 @@ class AttachmentController extends Controller
 
     /**
      * Retrieve paginated media attachments.
-     *
-     * @return JsonResponse
      */
     public function media(): JsonResponse
     {

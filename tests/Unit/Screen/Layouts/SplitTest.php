@@ -63,8 +63,6 @@ class SplitTest extends TestUnitCase
 
     /**
      * @param $layouts
-     *
-     * @return Split
      */
     private function getSplitClass($layouts): Split
     {

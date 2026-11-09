@@ -11,7 +11,7 @@ class Locale
      *
      * Source: https://meta.wikimedia.org/wiki/Template:List_of_language_names_ordered_by_code
      */
-    private const RTL = [
+    private const array RTL = [
         'ar', // Arabic
         'arc', // Aramaic
         'ckb', // Central Kurdish
@@ -30,10 +30,6 @@ class Locale
 
     /**
      * Get the directionality of the current language, based on its writing direction.
-     *
-     * @param string|null $locale
-     *
-     * @return string
      */
     public static function currentDir(?string $locale = null): string
     {
@@ -44,10 +40,6 @@ class Locale
 
     /**
      * Check if the current or given locale has RTL direction.
-     *
-     * @param string|null $locale
-     *
-     * @return bool
      */
     public static function isRtl(?string $locale = null): bool
     {

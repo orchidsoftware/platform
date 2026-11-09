@@ -16,7 +16,7 @@ class Attachmentable extends Model
      *
      * @var bool|null
      */
-    protected $primaryKey = null;
+    protected $primaryKey;
 
     /**
      * Indicates whether the model should be timestamped.

@@ -28,9 +28,6 @@ class ArtisanTest extends TestConsoleCase
         yield ['Filter', 'orchid:filter', 'Orchid/Filters/'];
     }
 
-    /**
-     * @dataProvider artisanOrchidMake
-     */
     #[DataProvider('artisanOrchidMake')]
     public function testArtisanOrchidMake(string $name, string $command, string $path): void
     {

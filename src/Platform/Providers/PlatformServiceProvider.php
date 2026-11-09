@@ -12,9 +12,6 @@ use Orchid\Platform\Orchid;
 
 class PlatformServiceProvider extends ServiceProvider
 {
-    /**
-     * @var Orchid
-     */
     protected Orchid $orchid;
 
     /**

@@ -64,13 +64,9 @@ class Matrix extends Field
                 $fields = $this->get('fields');
 
                 foreach ($this->get('columns') as $key => $column) {
-                    if (! isset($fields[$key])) {
-                        $fields[$key] = TextArea::make();
-                    }
+                    $fields[$key] ??= TextArea::make();
 
-                    if (! isset($fields[$column])) {
-                        $fields[$column] = TextArea::make();
-                    }
+                    $fields[$column] ??= TextArea::make();
                 }
 
                 $this->set('fields', $fields);
@@ -82,21 +78,11 @@ class Matrix extends Field
             });
     }
 
-    /**
-     * @param int $count
-     *
-     * @return static
-     */
     public function maxRows(int $count): static
     {
         return $this->set('maxRows', $count);
     }
 
-    /**
-     * @param bool $value
-     *
-     * @return static
-     */
     public function removableRows(bool $value = true): static
     {
         return $this->set('removableRows', $value);
@@ -104,19 +90,12 @@ class Matrix extends Field
 
     /**
      * @param Field[] $fields
-     *
-     * @return static
      */
     public function fields(array $fields = []): static
     {
         return $this->set('fields', $fields);
     }
 
-    /**
-     * @param string $label
-     *
-     * @return static
-     */
     public function addRowLabel(string $label): static
     {
         return $this->set('addRowLabel', $label);

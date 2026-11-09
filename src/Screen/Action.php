@@ -40,11 +40,6 @@ class Action extends Field implements Actionable
         'name',
     ];
 
-    /**
-     * @param string|null $name
-     *
-     * @return self
-     */
     public function name(?string $name = null): self
     {
         return $this->set('name', $name ?? '');
@@ -105,8 +100,6 @@ class Action extends Field implements Actionable
      * allowing the entire parent block of the element to become clickable.
      *
      * Notes: The parent block must have `position: relative`.
-     *
-     * @return self
      */
     public function stretched(): self
     {

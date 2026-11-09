@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\App;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
@@ -33,9 +34,11 @@ class EmptyUserModel extends Model
         return $query->where('name', 'RelationTest')->get()->all();
     }
 
-    public function getFullAttribute(): string
+    protected function full(): Attribute
     {
-        return $this->attributes['name'].' ('.$this->attributes['email'].')';
+        return Attribute::make(get: function () {
+            return $this->attributes['name'].' ('.$this->attributes['email'].')';
+        });
     }
 
     /**

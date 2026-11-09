@@ -18,11 +18,6 @@ class Names
 {
     /**
      * Get the current page name class
-     *
-     * @param string $prefix
-     * @param string $separator
-     *
-     * @return string
      */
     public static function getPageNameClass(string $prefix = 'page', string $separator = '-'): string
     {

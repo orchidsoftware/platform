@@ -286,7 +286,7 @@ class TableTest extends TestUnitCase
                 return 'Create the first appointment.';
             }
 
-            protected function actionNotFound(): ?Action
+            protected function actionNotFound(): Action
             {
                 return Link::make('Create appointment')->href('/appointments/create');
             }

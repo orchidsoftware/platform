@@ -53,8 +53,6 @@ class Alert
      *
      * @param string $message The message to flash.
      * @param Color  $color   The color of the message (default: Color::INFO).
-     *
-     * @return static
      */
     public function message(string $message, Color $color = Color::INFO): static
     {
@@ -68,8 +66,6 @@ class Alert
      * Flash a success message.
      *
      * @param string $message The message to flash.
-     *
-     * @return static
      */
     public function success(string $message): static
     {
@@ -82,8 +78,6 @@ class Alert
      * Flash an error message.
      *
      * @param string $message The message to flash.
-     *
-     * @return static
      */
     public function error(string $message): static
     {
@@ -96,8 +90,6 @@ class Alert
      * Flash a warning message.
      *
      * @param string $message The message to flash.
-     *
-     * @return static
      */
     public function warning(string $message): static
     {
@@ -114,8 +106,6 @@ class Alert
      * @param array  $data     The data to pass to the view.
      *
      * @throws \Throwable
-     *
-     * @return static
      */
     public function view(string $template, Color $color = Color::INFO, array $data = []): static
     {
@@ -129,8 +119,6 @@ class Alert
 
     /**
      * Set the $sanitize property too false to prevent escaping data.
-     *
-     * @return static
      */
     public function withoutEscaping(): static
     {
@@ -141,8 +129,6 @@ class Alert
 
     /**
      * Check if a message has been set before.
-     *
-     * @return bool
      */
     public function check(): bool
     {

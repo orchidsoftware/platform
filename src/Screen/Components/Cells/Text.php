@@ -11,12 +11,6 @@ class Text extends Component
 {
     /**
      * Create a new component instance.
-     *
-     * @param mixed       $value
-     * @param string|null $title
-     * @param string|null $text
-     * @param int|null    $words
-     * @param int|null    $clamp
      */
     public function __construct(
         protected mixed $value,

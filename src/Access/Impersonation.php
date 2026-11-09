@@ -20,8 +20,6 @@ class Impersonation
      * Changes the current authenticated user to the given user.
      *
      * @param Authenticatable $user The user to switch to
-     *
-     * @return void
      */
     public static function loginAs(Authenticatable $user): void
     {
@@ -48,8 +46,6 @@ class Impersonation
 
     /**
      * Checks if there has been a user switch.
-     *
-     * @return bool
      */
     public static function isSwitch(): bool
     {
@@ -66,8 +62,6 @@ class Impersonation
      * Check if the current user is impersonated.
      *
      * @alias static bool isSwitch()
-     *
-     * @return bool
      */
     public static function isImpersonating(): bool
     {
@@ -76,8 +70,6 @@ class Impersonation
 
     /**
      * Returns the authentication guard.
-     *
-     * @return SessionGuard
      */
     protected static function getAuth(): SessionGuard
     {

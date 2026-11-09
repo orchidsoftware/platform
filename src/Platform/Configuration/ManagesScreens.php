@@ -10,8 +10,6 @@ trait ManagesScreens
 {
     /**
      * The current screen instance.
-     *
-     * @var Screen|null
      */
     #[FlushOctaneState]
     private ?Screen $currentScreen = null;

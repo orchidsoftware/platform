@@ -21,7 +21,7 @@ class HttpFilter
      * Regular expression to validate column names. Column names can contain
      * alphanumeric characters and underscores (`_`), but can't start with a number.
      */
-    private const VALID_COLUMN_NAME_REGEX = '/^(?![\d])[A-Za-z0-9_>-]*$/';
+    private const string VALID_COLUMN_NAME_REGEX = '/^(?![\d])[A-Za-z0-9_>-]*$/';
     /**
      * @var Request
      */

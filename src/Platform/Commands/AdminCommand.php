@@ -51,8 +51,6 @@ class AdminCommand extends Command
 
     /**
      * Create a new user administrator.
-     *
-     * @return void
      */
     protected function createNewUser(): void
     {
@@ -68,10 +66,6 @@ class AdminCommand extends Command
 
     /**
      * Update the permissions of an existing user.
-     *
-     * @param string $id
-     *
-     * @return void
      */
     protected function updateUserPermissions(string $id): void
     {

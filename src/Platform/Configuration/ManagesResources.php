@@ -16,8 +16,6 @@ trait ManagesResources
 
     /**
      * Collection of JS and CSS resources for the panel.
-     *
-     * @var array
      */
     protected array $registeredResources = [];
 
@@ -38,7 +36,6 @@ trait ManagesResources
     /**
      * Return CSS\JS.
      *
-     * @param null $key
      *
      * @return array|Collection|mixed
      */
@@ -52,8 +49,6 @@ trait ManagesResources
      * Determine published assets are up-to-date.
      *
      * @throws RuntimeException
-     *
-     * @return bool
      */
     public function assetsAreCurrent(): bool
     {

@@ -14,8 +14,6 @@ class SortableController extends Controller
      * Authorization is performed via the model's Policy method `isSortable`.
      *
      * @param Request $request Must contain 'model' (class name) and 'items' (array of {id, sortOrder})
-     *
-     * @return void
      */
     public function saveSortOrder(Request $request): void
     {

@@ -63,11 +63,6 @@ class FindBySlugLayoutScreen extends Screen
         ];
     }
 
-    /**
-     * @param Repository $state
-     *
-     * @return Repository
-     */
     public function asyncStub(Repository $state): Repository
     {
         return $state;

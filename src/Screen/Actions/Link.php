@@ -28,7 +28,7 @@ class Link extends Action
      *
      * @var string|null
      */
-    protected $typeForm = null;
+    protected $typeForm;
 
     /**
      * Default attributes value.

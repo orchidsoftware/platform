@@ -7,9 +7,6 @@ use Orchid\Filters\Filter;
 
 class PatternFilter extends Filter
 {
-    /**
-     * @param array $parameters
-     */
     public function __construct(array $parameters = ['*'])
     {
         parent::__construct();

@@ -51,9 +51,6 @@ abstract class Cell
         $this->column = $name;
     }
 
-    /**
-     * @return static
-     */
     public static function make(string $name = '', ?string $title = null): static
     {
         $td = new static($name);
@@ -164,8 +161,7 @@ abstract class Cell
     /**
      * Pass only the cell value to the component
      *
-     * @param string $component
-     * @param mixed  ...$params
+     * @param mixed ...$params
      *
      * @throws \ReflectionException
      *

@@ -85,8 +85,6 @@ class Attachment extends Model
 
     /**
      * Get the column name for sorting.
-     *
-     * @return string
      */
     public function getSortColumnName(): string
     {
@@ -189,8 +187,6 @@ class Attachment extends Model
 
     /**
      * Get MIME type for file.
-     *
-     * @return string
      */
     public function getMimeType(): string
     {
@@ -201,19 +197,11 @@ class Attachment extends Model
         return $type ?? 'unknown';
     }
 
-    /**
-     * @param string $type
-     *
-     * @return bool
-     */
     public function isMime(string $type): bool
     {
         return Str::of($this->mime)->is($type);
     }
 
-    /**
-     * @return bool
-     */
     public function isPhysicalExists(): bool
     {
         return Storage::disk($this->disk)->exists($this->physicalPath());

@@ -14,8 +14,6 @@ class OrchidChannel extends DatabaseChannel
      *
      * @param mixed        $notifiable   The notifiable entity instance
      * @param Notification $notification The notification object instance
-     *
-     * @return array
      */
     protected function buildPayload($notifiable, Notification $notification): array
     {
@@ -34,8 +32,6 @@ class OrchidChannel extends DatabaseChannel
      * @param Notification $notification The notification object instance
      *
      * @throws \RuntimeException
-     *
-     * @return array
      */
     protected function getData($notifiable, Notification $notification): array
     {

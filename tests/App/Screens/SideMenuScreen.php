@@ -10,7 +10,7 @@ use Orchid\Tests\App\Layouts\SideMenuExample;
 
 class SideMenuScreen extends Screen
 {
-    private const PAGES = [
+    private const array PAGES = [
         'test.side-menu' => [
             'title'       => 'Overview',
             'description' => 'A summary of the workspace and its recent changes.',

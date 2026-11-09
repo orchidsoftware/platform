@@ -51,9 +51,6 @@ class ModalToggle extends Button
     }
 
     /**
-     * @param string $name
-     * @param array  $options
-     *
      * @return $this|Button
      */
     public function modal(string $name, array $options = [])

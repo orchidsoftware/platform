@@ -39,7 +39,7 @@ class SortableTest extends TestFeatureCase
                 ],
             ]);
 
-        $attachments = $response->decodeResponseJson()->json();
+        $attachments = $response->json();
 
         $ids = array_column($attachments, 'id');
         $sortBefore = Attachment::whereIn('id', $ids)->pluck('sort', 'id')->toArray();
@@ -75,7 +75,7 @@ class SortableTest extends TestFeatureCase
                 ],
             ]);
 
-        $attachments = $response->decodeResponseJson()->json();
+        $attachments = $response->json();
 
         $ids = array_column($attachments, 'id');
         $sortItems = collect($ids)->reverse()->values()->map(fn ($id, $index) => [
@@ -113,7 +113,7 @@ class SortableTest extends TestFeatureCase
                 ],
             ]);
 
-        $attachments = $response->decodeResponseJson()->json();
+        $attachments = $response->json();
 
         $originalFiles = [];
         $files = [];
@@ -157,7 +157,7 @@ class SortableTest extends TestFeatureCase
                 ],
             ]);
 
-        $attachments = $response->decodeResponseJson()->json();
+        $attachments = $response->json();
 
         $ids = array_column($attachments, 'id');
         $sortItems = collect($ids)->reverse()->values()->map(fn ($id, $index) => [

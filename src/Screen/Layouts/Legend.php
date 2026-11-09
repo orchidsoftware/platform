@@ -72,9 +72,6 @@ abstract class Legend extends Layout
      */
     abstract protected function columns(): iterable;
 
-    /**
-     * @return Rows
-     */
     public function title(?string $title = null): self
     {
         $this->title = $title;

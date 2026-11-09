@@ -31,8 +31,6 @@ class MakesHttpRequestsWrapper
 
     /**
      * Get the instance of the application
-     *
-     * @return Application
      */
     public function getApplication(): Application
     {

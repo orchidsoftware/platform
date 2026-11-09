@@ -108,7 +108,7 @@ class Repeater extends Field
             $value = $this->getOldValue();
 
             // Child values and validation errors still use the submitted row keys.
-            return $this->set('value', is_array($value) ? array_filter($value, 'is_array') : []);
+            return $this->set('value', is_array($value) ? array_filter($value, is_array(...)) : []);
         }
 
         parent::updateFieldValue();
@@ -122,7 +122,7 @@ class Repeater extends Field
             return [];
         }
 
-        if (! is_array($value) || count(array_filter($value, 'is_array')) !== count($value)) {
+        if (! is_array($value) || count(array_filter($value, is_array(...))) !== count($value)) {
             throw new InvalidArgumentException('Repeater values must be an array of row arrays.');
         }
 

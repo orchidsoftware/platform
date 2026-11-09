@@ -36,7 +36,7 @@ use Throwable;
  * @method static tabindex($value = true)
  * @method static autocomplete($value = true)
  */
-class Field implements Fieldable, Htmlable
+class Field implements \Stringable, Fieldable, Htmlable
 {
     use CanSee, Conditionable, HasTranslations, Macroable, Makeable {
         Macroable::__call as macroCall;
@@ -135,9 +135,6 @@ class Field implements Fieldable, Htmlable
     protected $inlineAttributes = [];
 
     /**
-     * @param string $method
-     * @param array  $parameters
-     *
      * @return $this|mixed|static|Field
      */
     public function __call(string $method, array $parameters)
@@ -243,8 +240,6 @@ class Field implements Fieldable, Htmlable
 
     /**
      * Translates the field's attributes if necessary.
-     *
-     * @return static
      */
     private function translateAttributes(): static
     {
@@ -262,8 +257,6 @@ class Field implements Fieldable, Htmlable
 
     /**
      * Gets the field's attributes.
-     *
-     * @return array
      */
     public function getAttributes(): array
     {
@@ -272,8 +265,6 @@ class Field implements Fieldable, Htmlable
 
     /**
      * Gets the allowed attributes for the field.
-     *
-     * @return ComponentAttributeBag
      */
     protected function getAllowAttributes(): ComponentAttributeBag
     {
@@ -301,8 +292,6 @@ class Field implements Fieldable, Htmlable
 
     /**
      * Gets the allowed data attributes for the field.
-     *
-     * @return ComponentAttributeBag
      */
     protected function getAllowDataAttributes(): ComponentAttributeBag
     {
@@ -381,8 +370,6 @@ class Field implements Fieldable, Htmlable
 
     /**
      * Gets the old value of the field.
-     *
-     * @return mixed
      */
     public function getOldName(): string
     {
@@ -414,8 +401,6 @@ class Field implements Fieldable, Htmlable
 
     /**
      * Checks if the field has an error.
-     *
-     * @return bool
      */
     private function hasError(): bool
     {
@@ -473,8 +458,6 @@ class Field implements Fieldable, Htmlable
 
     /**
      * Use vertical layout for the field.
-     *
-     * @return static
      */
     public function vertical(): static
     {
@@ -485,8 +468,6 @@ class Field implements Fieldable, Htmlable
 
     /**
      * Use clear layout for the field.
-     *
-     * @return static
      */
     public function clear(): static
     {
@@ -497,8 +478,6 @@ class Field implements Fieldable, Htmlable
 
     /**
      * Use horizontal layout for the field.
-     *
-     * @return static
      */
     public function horizontal(): static
     {
@@ -533,8 +512,6 @@ class Field implements Fieldable, Htmlable
 
     /**
      * Create separate line after the field.
-     *
-     * @return static
      */
     public function hr(): static
     {
@@ -547,8 +524,6 @@ class Field implements Fieldable, Htmlable
      * Adds a closure to be executed before rendering the field.
      *
      * @param Closure $closure The closure to be executed before rendering.
-     *
-     * @return static
      */
     public function addBeforeRender(Closure $closure): static
     {
@@ -587,8 +562,6 @@ class Field implements Fieldable, Htmlable
      * Converts the field to a string by rendering it.
      *
      * @throws Throwable
-     *
-     * @return string
      */
     public function __toString(): string
     {
@@ -619,10 +592,6 @@ class Field implements Fieldable, Htmlable
 
     /**
      * Add a class to the field including the existing classes.
-     *
-     * @param string|array $classes
-     *
-     * @return static
      */
     public function addClass(string|array $classes): static
     {
@@ -636,10 +605,6 @@ class Field implements Fieldable, Htmlable
 
     /**
      * Set the field as required without displaying an asterisk.
-     *
-     * @param bool $value
-     *
-     * @return static
      */
     public function requiredWithoutAsterisk(bool $value = false): static
     {

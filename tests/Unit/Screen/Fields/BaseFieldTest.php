@@ -144,7 +144,7 @@ class BaseFieldTest extends TestFieldsUnitCase
         {
             protected $view = 'orchid::actions.link';
 
-            protected $typeForm = null;
+            protected $typeForm;
 
             protected $attributes = [
                 'name'            => 'Dashboard',

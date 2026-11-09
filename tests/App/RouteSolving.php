@@ -27,9 +27,6 @@ class RouteSolving implements Stringable, UrlRoutable
         // TODO: Implement resolveChildRouteBinding() method.
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return 'Hello Word';

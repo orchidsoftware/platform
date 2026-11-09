@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\AsSource;
 use Orchid\Tests\TestUnitCase;
@@ -39,9 +40,11 @@ class SourceTest extends TestUnitCase
                 'preferences' => 'json',
             ];
 
-            public function getGreetingAttribute()
+            protected function greeting(): Attribute
             {
-                return 'Hello '.$this->name;
+                return Attribute::make(get: function () {
+                    return 'Hello '.$this->name;
+                });
             }
         };
 

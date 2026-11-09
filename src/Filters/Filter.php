@@ -110,17 +110,13 @@ abstract class Filter
     {
         $parameters = $this->parameters();
 
-        $when = empty($parameters)
+        return empty($parameters)
             || $this->request->hasAny($parameters)
             || $this->request->collect()->dot()->keys()->filter(fn (string $name) => Str::of($name)->is($parameters))->isNotEmpty();
-
-        return $when;
     }
 
     /**
      * Hide/show the filter in the selection
-     *
-     * @return bool
      */
     public function isDisplay(): bool
     {

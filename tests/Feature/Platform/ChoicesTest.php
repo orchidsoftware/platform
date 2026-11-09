@@ -37,8 +37,6 @@ class ChoicesTest extends TestFeatureCase
     }
 
     /**
-     * @dataProvider scopeList
-     *
      * @throws \Throwable
      */
     #[DataProvider('scopeList')]
@@ -60,8 +58,6 @@ class ChoicesTest extends TestFeatureCase
     }
 
     /**
-     * @dataProvider scopeList
-     *
      * @throws \Throwable
      */
     #[DataProvider('scopeList')]
@@ -213,9 +209,6 @@ class ChoicesTest extends TestFeatureCase
         ]);
     }
 
-    /**
-     * @dataProvider scopeList
-     */
     #[DataProvider('scopeList')]
     public function testChoicePayloadAppliesScopes(array $scope): void
     {
