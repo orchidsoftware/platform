@@ -14,7 +14,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
-use Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Screen\Concerns\HasCommandBar;
 use Orchid\Screen\Concerns\HasFillablePublicProperties;
@@ -347,8 +346,6 @@ abstract class Screen extends Controller
 
     /**
      * Return to the previous state with the current object properties.
-     *
-     * @throws PhpVersionNotSupportedException
      */
     private function backWithCurrentState(): RedirectResponse
     {
@@ -369,8 +366,6 @@ abstract class Screen extends Controller
 
     /**
      * @deprecated
-     *
-     * @throws PhpVersionNotSupportedException
      */
     public function backWith(array $data): RedirectResponse
     {

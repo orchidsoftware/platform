@@ -53,7 +53,7 @@ abstract class Sortable extends Layout
         $this->query = $repository;
 
         if (! $this->isSee()) {
-            return;
+            return null;
         }
 
         $columns = collect($this->columns())->filter(static fn (Sight $sight) => $sight->isSee());

@@ -223,13 +223,14 @@ class RepeaterTest extends TestFieldsUnitCase
         @$document->loadHTML($html);
         $xpath = new \DOMXPath($document);
         $firstRow = $xpath->query('//*[@name="team[members][1][profile][name]"]')->item(0);
-        $this->assertNotNull($firstRow);
+        $this->assertInstanceOf(\DOMElement::class, $firstRow);
+
         $this->assertSame('', $firstRow->getAttribute('value'));
         $this->assertStringContainsString('name="team[members][2][profile][name]" value="Default name"', $html);
         $this->assertStringNotContainsString('name="team[members][1][children][0][name]"', $html);
-        $this->assertSame('Default child', $xpath->query('//*[@name="team[members][2][children][0][name]"]')->item(0)?->getAttribute('value'));
+        $this->assertSame('Default child', $this->firstElement($xpath, '//*[@name="team[members][2][children][0][name]"]')->getAttribute('value'));
         $this->assertStringNotContainsString('name="team[members][1][metadata][0][key]" value="default key"', $html);
-        $this->assertSame('Default metadata', $xpath->query('//*[@data-key-value-cell="value" and @name="team[members][2][metadata][0][value]"]')->item(0)?->getAttribute('value'));
+        $this->assertSame('Default metadata', $this->firstElement($xpath, '//*[@data-key-value-cell="value" and @name="team[members][2][metadata][0][value]"]')->getAttribute('value'));
         $this->assertSame('{"blocks":[]}', $xpath->query('//*[@name="team[members][1][body]"]')->item(0)?->textContent);
         $this->assertStringContainsString('Default body', $xpath->query('//*[@name="team[members][2][body]"]')->item(0)?->textContent ?? '');
     }
@@ -262,10 +263,10 @@ class RepeaterTest extends TestFieldsUnitCase
         $document = new \DOMDocument;
         @$document->loadHTML($response->getContent());
         $xpath = new \DOMXPath($document);
-        $this->assertSame('', $xpath->query('//input[@name="members[0][name]"]')->item(0)->getAttribute('value'));
+        $this->assertSame('', $this->firstElement($xpath, '//input[@name="members[0][name]"]')->getAttribute('value'));
         $this->assertSame('', $xpath->query('//textarea[@name="members[0][bio]"]')->item(0)->textContent);
         $this->assertSame('', $xpath->query('//textarea[@name="members[0][body]"]')->item(0)->textContent);
-        $this->assertSame('Valid sibling', $xpath->query('//input[@name="members[0][kept]"]')->item(0)->getAttribute('value'));
+        $this->assertSame('Valid sibling', $this->firstElement($xpath, '//input[@name="members[0][kept]"]')->getAttribute('value'));
     }
 
     private function registerValidationRoutes(): void

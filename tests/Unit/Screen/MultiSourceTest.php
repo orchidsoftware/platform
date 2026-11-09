@@ -14,7 +14,7 @@ use Orchid\Tests\TestUnitCase;
 class MultiSourceTest extends TestUnitCase
 {
     /**
-     * @var Model
+     * @var MultiSourceModel
      */
     protected $model;
 
@@ -22,18 +22,7 @@ class MultiSourceTest extends TestUnitCase
     {
         parent::setUp();
 
-        $model = new class extends Model
-        {
-            use AsMultiSource;
-
-            protected $fillable = [
-                'content',
-            ];
-
-            protected $casts = [
-                'options' => 'array',
-            ];
-        };
+        $model = new MultiSourceModel;
 
         $this->model = $model->fill([
             'content' => [
@@ -73,4 +62,17 @@ class MultiSourceTest extends TestUnitCase
     {
         $this->assertContains('Spain', $this->model->getContent('country', 'es'));
     }
+}
+
+class MultiSourceModel extends Model
+{
+    use AsMultiSource;
+
+    protected $fillable = [
+        'content',
+    ];
+
+    protected $casts = [
+        'options' => 'array',
+    ];
 }

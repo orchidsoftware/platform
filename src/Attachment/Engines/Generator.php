@@ -119,9 +119,6 @@ class Generator implements Engine
 
     /**
      * Get the file extension.
-     *
-     * @psalm-suppress InvalidNullableReturnType
-     * @psalm-suppress NullableReturnStatement
      */
     public function extension(): string
     {

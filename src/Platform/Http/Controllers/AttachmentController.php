@@ -66,8 +66,7 @@ class AttachmentController extends Controller
      */
     public function destroy(string $id, Request $request): void
     {
-        $storage = $request->input('storage', 'public');
-        $this->attachment->findOrFail($id)->delete($storage);
+        $this->attachment->findOrFail($id)->delete();
     }
 
     /**
@@ -108,8 +107,6 @@ class AttachmentController extends Controller
         }
 
         $model = $file->load();
-
-        $model->url = $model->url();
 
         event(new UploadedFileEvent($model));
 

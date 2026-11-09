@@ -23,17 +23,11 @@ class Role extends Model
      */
     protected $table = 'roles';
 
-    /**
-     * @var array
-     */
     protected $fillable = [
         'name',
         'permissions',
     ];
 
-    /**
-     * @var array
-     */
     protected $casts = [
         'permissions' => Permissions::class,
     ];

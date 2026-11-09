@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Orchid\Attachment\Models\Attachment;
 
+/**
+ * @extends Factory<Attachment>
+ */
 class AttachmentFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
-     *
-     * @var string
      */
     protected $model = Attachment::class;
 

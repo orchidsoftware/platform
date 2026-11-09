@@ -78,7 +78,7 @@ class Blade
      */
     public static function componentInfo(string $component): array
     {
-        return static::$components[$component] ??= static::detectComponentInfo($component);
+        return self::$components[$component] ??= self::detectComponentInfo($component);
     }
 
     /**
@@ -90,7 +90,7 @@ class Blade
             return [$component, null];
         }
 
-        $view = static::compiler()->componentClass($component);
+        $view = self::compiler()->componentClass($component);
 
         return is_subclass_of($view, ViewComponent::class) ? [$view, null] : [AnonymousComponent::class, $view];
     }

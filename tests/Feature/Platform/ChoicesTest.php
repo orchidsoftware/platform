@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Testing\TestResponse;
 use Orchid\Platform\Models\User;
@@ -15,7 +16,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 class ChoicesTest extends TestFeatureCase
 {
     /**
-     * @var User[]
+     * @var Collection<int, User>
      */
     protected $users;
 

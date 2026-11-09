@@ -14,39 +14,13 @@ use Orchid\Tests\TestUnitCase;
  */
 class SourceTest extends TestUnitCase
 {
-    private Model $model;
+    private SourceModel $model;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $model = new class extends Model
-        {
-            use AsSource;
-
-            protected $attributes = [
-                'preferences' => '{"theme":"dark","notifications":{"email":true,"sms":false}}',
-            ];
-
-            protected $fillable = [
-                'id',
-                'name',
-                'options',
-                'preferences',
-            ];
-
-            protected $casts = [
-                'options'     => 'array',
-                'preferences' => 'json',
-            ];
-
-            protected function greeting(): Attribute
-            {
-                return Attribute::make(get: function () {
-                    return 'Hello '.$this->name;
-                });
-            }
-        };
+        $model = new SourceModel;
 
         $model->fill([
             'id'      => 8,
@@ -67,7 +41,7 @@ class SourceTest extends TestUnitCase
             ],
         ]);
 
-        $model->color = 'red';
+        $model->setAttribute('color', 'red');
 
         $relationModel = fn (string $name) => new class(['name' => $name]) extends Model
         {
@@ -122,7 +96,7 @@ class SourceTest extends TestUnitCase
     {
         $related = $this->model->getContent('many.three');
         $this->assertInstanceOf(Model::class, $related);
-        $this->assertSame('three', $related->name);
+        $this->assertSame('three', $related->getAttribute('name'));
     }
 
     public function testGetRelationList(): void
@@ -152,5 +126,33 @@ class SourceTest extends TestUnitCase
     {
         $this->assertNull($this->model->getContent('options.invalid'));
         $this->assertNull($this->model->getContent('many.four'));
+    }
+}
+
+class SourceModel extends Model
+{
+    use AsSource;
+
+    protected $attributes = [
+        'preferences' => '{"theme":"dark","notifications":{"email":true,"sms":false}}',
+    ];
+
+    protected $fillable = [
+        'id',
+        'name',
+        'options',
+        'preferences',
+    ];
+
+    protected $casts = [
+        'options'     => 'array',
+        'preferences' => 'json',
+    ];
+
+    protected function greeting(): Attribute
+    {
+        return Attribute::make(get: function () {
+            return 'Hello '.$this->getAttribute('name');
+        });
     }
 }

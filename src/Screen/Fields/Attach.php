@@ -24,6 +24,7 @@ use Orchid\Support\Init;
  * @method $this errorTypeMessage(string $value)
  * @method $this help(string $value = null)
  * @method $this title(string $value = null)
+ * @method $this maxFileSize(int $value)
  * @method $this uploadUrl(string $value = null)
  * @method $this sortUrl(string $value = null)
  * @method $this path(string $value = null)

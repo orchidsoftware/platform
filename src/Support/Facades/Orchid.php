@@ -14,7 +14,6 @@ use Orchid\Screen\Screen;
  * Class Orchid.
  *
  * @method static Collection  getSearch()
- * @method static Collection  permissionGroups()
  * @method static Permissions allowedPermissions()
  * @method static string      version()
  * @method static string      prefix(string $path = '')

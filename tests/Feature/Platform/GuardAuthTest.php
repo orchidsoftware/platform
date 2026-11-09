@@ -43,7 +43,9 @@ class GuardAuthTest extends TestFeatureCase
     public function testCustomGuardLoadsLockUser(): void
     {
         $user = $this->createAdminUser();
-        $cookie = sprintf('%s_%s', Auth::guard('admin')->getName(), '_orchid_lock');
+        $guard = Auth::guard('admin');
+        $this->assertInstanceOf(SessionGuard::class, $guard);
+        $cookie = sprintf('%s_%s', $guard->getName(), '_orchid_lock');
 
         $this->withCookie($cookie, (string) $user->getKey())
             ->get(route('orchid.login'))

@@ -25,7 +25,7 @@ class ClosureComponent extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return View|string
+     * @return \Closure
      */
     public function render()
     {

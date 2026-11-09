@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Attachment\Attachable;
+use Orchid\Attachment\Contracts\Engine;
 use Orchid\Attachment\File;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Models\User;
@@ -20,6 +21,22 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
  */
 class AttachmentTest extends TestUnitCase
 {
+    public function testCustomPathsRequireEngineSupport(): void
+    {
+        $file = new class($this->createStub(Engine::class)) extends File
+        {
+            public function __construct(Engine $engine)
+            {
+                $this->engine = $engine;
+            }
+        };
+
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('The attachment engine does not support custom paths.');
+
+        $file->path('custom');
+    }
+
     /**
      * @var string
      */
@@ -238,7 +255,7 @@ class AttachmentTest extends TestUnitCase
             use Attachable;
         };
 
-        $model->id = 1;
+        $model->setAttribute('id', 1);
         $model->attachment()->save($upload);
 
         $attachment = $model->attachment()

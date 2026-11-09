@@ -25,3 +25,7 @@ logs
 .vscode
 .php_cs.cache
 .php-cs-fixer.cache
+
+tests/Browser/screenshots/
+tests/Browser/console/
+tests/Browser/source/

@@ -22,7 +22,7 @@ abstract class Split extends Layout
     /**
      * An array of default variables that will be passed to the template.
      *
-     * @var string[]
+     * @var array<string, mixed>
      */
     protected $variables = [
         'columnClass'    => ['col-md-6', 'col-md-6'],

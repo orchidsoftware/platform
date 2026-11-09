@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Components;
 
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Orchid\Platform\Models\User;
 use Orchid\Platform\Notifications\DashboardMessage;
 use Orchid\Platform\Notifications\OrchidMessage;
 
@@ -19,7 +19,7 @@ class Notification extends Component
     private const int COUNT_INDICATOR_THRESHOLD = 10;
 
     /**
-     * @var Authenticatable|null
+     * @var User|null
      */
     public $user;
 

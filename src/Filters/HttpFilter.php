@@ -75,7 +75,7 @@ class HttpFilter
      */
     public function build(Builder $builder): Builder
     {
-        $this->options = $builder->getModel()->getOptionsFilter();
+        $this->options = $builder->getModel()->getOptionsFilter(); // @phpstan-ignore method.notFound (The model uses Filterable.)
 
         $this
             ->addFiltersToQuery($builder)
@@ -114,7 +114,7 @@ class HttpFilter
         $filters = $this->options->get('allowedFilters')
             ->map(fn ($filter, string $column) => app()->make($filter, ['column' => $column]));
 
-        $builder->filtersApply($filters);
+        $builder->filtersApply($filters); // @phpstan-ignore method.notFound (The scope is supplied by Filterable.)
 
         return $this;
     }

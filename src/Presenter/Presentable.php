@@ -42,9 +42,6 @@ trait Presentable
         ));
     }
 
-    /**
-     * @param ReflectionClass $ref
-     */
     private function findPresenterAttribute(?ReflectionClass $reflectionClass = null): ?\ReflectionAttribute
     {
         $reflectionClass ??= new ReflectionClass($this);

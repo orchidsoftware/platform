@@ -34,18 +34,12 @@ class Role extends Model
      */
     protected $table = 'roles';
 
-    /**
-     * @var array
-     */
     protected $fillable = [
         'id',
         'name',
         'permissions',
     ];
 
-    /**
-     * @var array
-     */
     protected $casts = [
         'permissions' => Permissions::class,
         'name'        => RoleNames::class,

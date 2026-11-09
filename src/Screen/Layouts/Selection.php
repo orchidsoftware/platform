@@ -56,7 +56,7 @@ abstract class Selection extends Layout
     }
 
     /**
-     * @return Filter[]
+     * @return iterable<Filter|class-string<Filter>>
      */
     abstract public function filters(): iterable;
 }

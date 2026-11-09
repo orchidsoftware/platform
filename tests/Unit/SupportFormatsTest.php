@@ -6,9 +6,9 @@ namespace Orchid\Tests\Unit;
 
 use Orchid\Support\Formats;
 use Orchid\Support\Init;
-use Orchid\Tests\TestUnitCase;
+use PHPUnit\Framework\TestCase;
 
-class SupportFormatsTest extends TestUnitCase
+class SupportFormatsTest extends TestCase
 {
     public function testUnixDateToTimeString(): void
     {

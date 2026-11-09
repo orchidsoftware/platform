@@ -7,6 +7,7 @@ namespace Orchid\Access;
 use Illuminate\Auth\SessionGuard;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Auth;
+use InvalidArgumentException;
 
 class Impersonation
 {
@@ -37,11 +38,13 @@ class Impersonation
      */
     public static function logout(): void
     {
+        $guard = self::getAuth();
+
         // Retrieve the original authenticated user ID from the session
         $id = session()->pull(self::SESSION_NAME);
 
         // Log in the original authenticated user
-        self::getAuth()->loginUsingId($id);
+        $guard->loginUsingId($id);
     }
 
     /**
@@ -73,8 +76,13 @@ class Impersonation
      */
     protected static function getAuth(): SessionGuard
     {
-        // Get the authentication guard specified in the config file
-        return Auth::guard(config('orchid.guard'));
+        $guard = Auth::guard(config('orchid.guard'));
+
+        if (! $guard instanceof SessionGuard) {
+            throw new InvalidArgumentException('Impersonation requires a session guard.');
+        }
+
+        return $guard;
     }
 
     /**

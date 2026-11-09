@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
+use App\Orchid\Presenters\UserPresenter;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Access\Impersonation;
 use Orchid\Platform\Models\User;
@@ -11,6 +12,23 @@ use Orchid\Tests\TestUnitCase;
 
 class UserTest extends TestUnitCase
 {
+    public function testInvalidImpersonationGuardPreservesTheOriginalUser(): void
+    {
+        Auth::viaRequest('stateless', fn () => null);
+        config()->set('auth.guards.stateless', ['driver' => 'stateless']);
+        config()->set('orchid.guard', 'stateless');
+        session()->put(Impersonation::SESSION_NAME, 123);
+
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Impersonation requires a session guard.');
+
+        try {
+            Impersonation::logout();
+        } finally {
+            $this->assertSame(123, session()->get(Impersonation::SESSION_NAME));
+        }
+    }
+
     public function testHasCorrectInstance(): void
     {
         $user = User::factory()->create();
@@ -22,13 +40,12 @@ class UserTest extends TestUnitCase
     public function testCanGetNameTitle(): void
     {
         $user = $this->createUser();
+        $presenter = $user->presenter();
+        $this->assertInstanceOf(UserPresenter::class, $presenter);
 
-        $this->assertEquals($user->name, $user->presenter()->title());
+        $this->assertEquals($user->name, $presenter->title());
     }
 
-    /**
-     * @param array|null $attributes
-     */
     private function createUser(array $attributes = []): User
     {
         return User::factory()->create($attributes);
@@ -37,8 +54,10 @@ class UserTest extends TestUnitCase
     public function testCanGetSubTitle(): void
     {
         $user = $this->createUser();
+        $presenter = $user->presenter();
+        $this->assertInstanceOf(UserPresenter::class, $presenter);
 
-        $this->assertEquals('Regular User', $user->presenter()->subTitle());
+        $this->assertEquals('Regular User', $presenter->subTitle());
     }
 
     public function testLoginAs(): void
@@ -73,7 +92,7 @@ class UserTest extends TestUnitCase
 
         Impersonation::loginAs($userSwitch);
 
-        $this->assertEquals($user->id, Impersonation::impersonator()->id);
+        $this->assertEquals($user->getAuthIdentifier(), Impersonation::impersonator()->getAuthIdentifier());
 
         Impersonation::logout();
 

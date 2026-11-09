@@ -11,6 +11,6 @@ class ParentScreen extends Screen
 
     public function layout(): iterable
     {
-        // TODO: Implement layout() method.
+        return [];
     }
 }

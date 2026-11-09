@@ -22,7 +22,8 @@ class ItemAddChildScreenFlowTest extends TestBrowserCase
                 ->press('Add Item');
 
             $browser->whenAvailable('.modal.show', function (Browser $modal) {
-                $modal->assertSee('Create Item')
+                $modal->waitForText('Create Item')
+                    ->assertSee('Create Item')
                     ->type('item[name]', 'name 7')
                     ->press('Add Item');
             });
@@ -44,7 +45,8 @@ class ItemAddChildScreenFlowTest extends TestBrowserCase
                 ->press('Add Item');
 
             $browser->whenAvailable('.modal.show', function (Browser $modal) {
-                $modal->assertSee('Create Item')
+                $modal->waitForText('Create Item')
+                    ->assertSee('Create Item')
                     ->type('item[name]', 'name 7')
                     ->press('Add Item');
             });

@@ -1,0 +1,61 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+    - vendor/nesbot/carbon/extension.neon
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+
+parameters:
+    level: 3
+    phpVersion: 80300
+    configDirectories:
+        - config
+    databaseMigrationsPath:
+        - vendor/orchestra/testbench-core/laravel/migrations
+        - database/migrations
+    paths:
+        - src
+        - tests
+        - config
+        - database
+        - routes
+        - stubs/app
+        - workbench
+    ignoreErrors:
+        # Count only the bounded notification sample; SQL count() would ignore the limit.
+        -
+            identifier: larastan.noUnnecessaryCollectionCall
+            path: src/Platform/Components/Notification.php
+        # These field/cell macros are registered inside the tests.
+        -
+            identifier: method.notFound
+            message: '#::(?:returnNameMacroFunction|returnSelf)\(\)#'
+            paths:
+                - tests/Unit/Screen/Macro/FieldMarcoTest.php
+                - tests/Unit/Screen/Macro/TDMarcoTest.php
+        # These macros are registered inside the tests, not while Larastan boots.
+        -
+            identifier: staticMethod.notFound
+            message: '#::returnNameMacroFunction(?:Facade)?\(\)#'
+            paths:
+                - tests/Unit/DashboardTest.php
+                - tests/Unit/Screen/Macro/LayoutsMarcoTest.php
+        # Assertions inspect materialized collections; changing them to SQL changes the test.
+        -
+            identifier: larastan.noUnnecessaryCollectionCall
+            paths:
+                - tests/Unit/AttachmentTest.php
+                - tests/Unit/PermissionTest.php
+                - tests/Unit/SortableTest.php
+        # make() deliberately forwards arbitrary arguments to subclass constructors.
+        -
+            identifier: new.static
+            path: src/Platform/Notifications/OrchidMessage.php
+        # Octane is an optional integration, not a required dependency.
+        -
+            identifier: class.notFound
+            message: '#Laravel\\Octane\\Events\\RequestReceived#'
+            path: src/Platform/Providers/FoundationServiceProvider.php
+        # Larastan overlooks getUrlAttribute() when a public url() method also exists.
+        -
+            identifier: rules.modelAppends
+            message: "#Property 'url' does not exist in model\\.#"
+            path: src/Attachment/Models/Attachment.php

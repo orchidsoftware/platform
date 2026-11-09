@@ -10,7 +10,7 @@ use Orchid\Tests\App\Filters\NameFilter;
 class GroupNameAndEmail extends Selection
 {
     /**
-     * @return Filter[]
+     * @return class-string<Filter>[]
      */
     public function filters(): array
     {

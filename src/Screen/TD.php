@@ -121,9 +121,6 @@ class TD extends Cell
         return $this;
     }
 
-    /**
-     * @param string|Field $filter
-     */
     public function filterOptions(iterable $filterOptions): self
     {
         $this->filterOptions = $filterOptions;
@@ -302,7 +299,7 @@ class TD extends Cell
     public function buildItemMenu()
     {
         if (! $this->isAllowUserHidden()) {
-            return;
+            return null;
         }
 
         return view('orchid::partials.layouts.selectedTd', [

@@ -36,18 +36,16 @@ class FieldCommand extends GeneratorCommand
      * Execute the console command.
      *
      * @throws FileNotFoundException
-     *
-     * @return bool Whether the command execution was successful.
      */
-    public function handle(): bool
+    public function handle(): ?bool
     {
-        if (! parent::handle()) {
-            $this->writeView();
-
-            return true;
+        if (parent::handle() === false) {
+            return false;
         }
 
-        return false;
+        $this->writeView();
+
+        return null;
     }
 
     /**
@@ -99,7 +97,7 @@ class FieldCommand extends GeneratorCommand
 
         $this->makeDirectory($path);
 
-        if ($this->files->exists($path) && ! $this->option('force')) {
+        if ($this->files->exists($path)) {
             $this->components->error('View already exists.');
 
             return;

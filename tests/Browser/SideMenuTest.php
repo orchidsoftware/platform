@@ -27,9 +27,9 @@ class SideMenuTest extends TestBrowserCase
                 "return getComputedStyle(document.querySelector('$activity')).backgroundColor;"
             )[0];
 
-            $this->assertGreaterThanOrEqual(43, $browser->script(
-                "return document.querySelector('$activity').getBoundingClientRect().height;"
-            )[0]);
+            $this->assertEqualsWithDelta(2.75, $browser->script(
+                "return document.querySelector('$activity').getBoundingClientRect().height / parseFloat(getComputedStyle(document.documentElement).fontSize);"
+            )[0], 0.01);
 
             $browser->mouseover($activity)->pause(400);
 
@@ -63,7 +63,8 @@ class SideMenuTest extends TestBrowserCase
                 'return document.querySelectorAll("[data-side-menu] [aria-current=page]").length;'
             )[0]);
 
-            $browser->resize(820, 900);
+            $browser->resize(820, 900)
+                ->waitUntil('document.documentElement.scrollWidth <= document.documentElement.clientWidth');
 
             $this->assertFalse($browser->script(
                 'return document.documentElement.scrollWidth > document.documentElement.clientWidth;'
@@ -74,6 +75,7 @@ class SideMenuTest extends TestBrowserCase
 
             $browser
                 ->resize(390, 844)
+                ->waitUntil('document.documentElement.scrollWidth <= document.documentElement.clientWidth')
                 ->assertVisible('[data-side-menu-toggle]')
                 ->assertMissing('[data-side-menu-collapse].show');
 

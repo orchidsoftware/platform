@@ -7,6 +7,8 @@ on:
       - '.github/workflows/**'
       - '**.php'
       - 'phpunit.xml'
+      - 'phpstan.neon'
+      - 'testbench.yaml'
       - 'composer.json'
       - 'composer.lock'
 
@@ -63,9 +65,10 @@ jobs:
           fi
         shell: bash
 
-  psalm:
-    name: psalm
+  phpstan:
+    name: PHPStan
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
 
@@ -80,15 +83,8 @@ jobs:
       - name: Install Dependencies 🔧
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-      # Installing psalm separately due to conflict with phpunit
-      - name: Install psalm
-        run: |
-          wget https://github.com/vimeo/psalm/releases/latest/download/psalm.phar
-          chmod +x psalm.phar
-          mv psalm.phar /usr/local/bin/psalm
-
-      - name: Run psalm
-        run: psalm --output-format=github
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --no-progress --error-format=github --memory-limit=3G
 
   phploc:
     name: phploc

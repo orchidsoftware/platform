@@ -183,6 +183,7 @@ class KeyValueTest extends TestFieldsUnitCase
         $inputs = $xpath->query('//input[@name]');
         $this->assertSame(6, $inputs->length);
         foreach ($inputs as $input) {
+            $this->assertInstanceOf(\DOMElement::class, $input);
             $this->assertSame('external', $input->getAttribute('form'));
         }
     }
@@ -303,6 +304,7 @@ class KeyValueTest extends TestFieldsUnitCase
         foreach ($xpath->query('//tbody[@data-key-value-target="rows"]/tr') as $row) {
             $cells = [];
             foreach ($xpath->query('.//input[@data-key-value-cell]', $row) as $input) {
+                $this->assertInstanceOf(\DOMElement::class, $input);
                 $cells[] = $input->getAttribute('value');
             }
             $rows[] = $cells;
