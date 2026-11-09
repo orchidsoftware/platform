@@ -23,7 +23,7 @@ class EmailFilter extends Filter
 
     public function run(Builder $builder): Builder
     {
-        return $builder->where('email', $this->request->get('email'));
+        return $builder->where('email', $this->request->input('email'));
     }
 
     /**
@@ -33,7 +33,7 @@ class EmailFilter extends Filter
     {
         return [
             Input::make('email')
-                ->value($this->request->get('name')),
+                ->value($this->request->input('name')),
         ];
     }
 }

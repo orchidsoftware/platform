@@ -78,7 +78,7 @@ class ModalValidationScreen extends Screen
             'message' => 'required|string|min:10',
         ]);
 
-        Toast::warning($request->get('message'));
+        Toast::warning($request->input('message'));
 
         return back();
     }

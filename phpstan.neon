@@ -6,6 +6,7 @@ includes:
 parameters:
     level: 3
     phpVersion: 80300
+    parseModelCastsMethod: true
     configDirectories:
         - config
     databaseMigrationsPath:

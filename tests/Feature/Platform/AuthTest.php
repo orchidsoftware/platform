@@ -16,10 +16,10 @@ class AuthTest extends TestFeatureCase
 
         $this->get(route('orchid.login'))
             ->assertOk()
-            ->assertSee('type="email"', false)
-            ->assertSee('type="password"', false)
-            ->assertSee('data-password-target="toggle"', false)
-            ->assertSee('aria-label="Show password"', false);
+            ->assertSeeHtml('type="email"')
+            ->assertSeeHtml('type="password"')
+            ->assertSeeHtml('data-password-target="toggle"')
+            ->assertSeeHtml('aria-label="Show password"');
 
         $this->assertLoginDidNotQueryUsers();
     }
@@ -31,7 +31,7 @@ class AuthTest extends TestFeatureCase
         $this->withCookie($this->lockCookieName(), '')
             ->get(route('orchid.login'))
             ->assertOk()
-            ->assertSee('type="email"', false);
+            ->assertSeeHtml('type="email"');
 
         $this->assertLoginDidNotQueryUsers();
     }
@@ -43,7 +43,7 @@ class AuthTest extends TestFeatureCase
         $this->withCookie($this->lockCookieName(), (string) $user->getKey())
             ->get(route('orchid.login'))
             ->assertOk()
-            ->assertSee('value="'.$user->email.'"', false)
+            ->assertSeeHtml('value="'.$user->email.'"')
             ->assertSee(__('Use another account'));
     }
 
@@ -52,7 +52,7 @@ class AuthTest extends TestFeatureCase
         $this->withCookie($this->lockCookieName(), '999999')
             ->get(route('orchid.login'))
             ->assertOk()
-            ->assertSee('type="email"', false)
+            ->assertSeeHtml('type="email"')
             ->assertDontSee(__('Use another account'));
     }
 

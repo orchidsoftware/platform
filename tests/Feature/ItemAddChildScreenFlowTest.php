@@ -14,7 +14,7 @@ class ItemAddChildScreenFlowTest extends TestFeatureCase
             ->actingAs($this->createAdminUser())
             ->get(route('test.items'))
             ->assertSuccessful()
-            ->assertSee('/dashboard/items/create"', false);
+            ->assertSeeHtml('/dashboard/items/create"');
 
         $this->get(route('test.item.addchild', 1))
             ->assertSuccessful();
@@ -23,8 +23,8 @@ class ItemAddChildScreenFlowTest extends TestFeatureCase
             ->assertSuccessful() // странно, в живую там 302
 
             ->assertSee('Item with paretn_id=1 saved')
-            ->assertSee('/dashboard/items/create"', false)
-            ->assertDontSee('/dashboard/item/1/addChild/create"', false)
+            ->assertSeeHtml('/dashboard/items/create"')
+            ->assertDontSeeHtml('/dashboard/item/1/addChild/create"')
             ->assertDontSeeText('/dashboard/item/1/addChild/create"', false);
     }
 }

@@ -24,7 +24,7 @@ class TDComponentTest extends TestUnitCase
     {
         parent::setUp();
 
-        $this->user = User::factory()->make();
+        $this->user = User::factory()->make(['name' => "D'Angelo & Sons"]);
     }
 
     public function testTdSimpleComponent(): void
@@ -67,7 +67,7 @@ class TDComponentTest extends TestUnitCase
             ])
             ->buildTd($this->user);
 
-        $this->assertStringContainsString($this->user->name, $view);
+        $this->assertStringContainsString(e($this->user->name), $view);
         $this->assertStringContainsString($this->app->version(), $view);
     }
 
@@ -80,7 +80,7 @@ class TDComponentTest extends TestUnitCase
             ])
             ->buildTd($this->user);
 
-        $this->assertStringContainsString($this->user->name, $view);
+        $this->assertStringContainsString(e($this->user->name), $view);
         $this->assertStringContainsString($this->user->email, $view);
     }
 

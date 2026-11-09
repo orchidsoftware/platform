@@ -40,10 +40,13 @@ class Role extends Model
         'permissions',
     ];
 
-    protected $casts = [
-        'permissions' => Permissions::class,
-        'name'        => RoleNames::class,
-    ];
+    protected function casts(): array
+    {
+        return [
+            'permissions' => Permissions::class,
+            'name'        => RoleNames::class,
+        ];
+    }
 
     /**
      * @var array

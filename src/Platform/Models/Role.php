@@ -28,9 +28,12 @@ class Role extends Model
         'permissions',
     ];
 
-    protected $casts = [
-        'permissions' => Permissions::class,
-    ];
+    protected function casts(): array
+    {
+        return [
+            'permissions' => Permissions::class,
+        ];
+    }
 
     /**
      * @var array

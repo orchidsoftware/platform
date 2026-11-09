@@ -245,8 +245,8 @@ class KeyValueTest extends TestFieldsUnitCase
 
         $response = $this->get('/key-value')
             ->assertOk()
-            ->assertSee('data-key-value-name-value="record[settings][meta]"', false)
-            ->assertSee('data-key-value-target="empty"', false)
+            ->assertSeeHtml('data-key-value-name-value="record[settings][meta]"')
+            ->assertSeeHtml('data-key-value-target="empty"')
             ->assertDontSee('Persisted value');
         $this->assertDisplayedRows($response, []);
 
@@ -261,10 +261,10 @@ class KeyValueTest extends TestFieldsUnitCase
 
         $this->get('/key-value')
             ->assertOk()
-            ->assertSee('value="0"', false)
-            ->assertSee('value="Zero"', false)
-            ->assertSee('value="7"', false)
-            ->assertSee('value="Seven"', false)
+            ->assertSeeHtml('value="0"')
+            ->assertSeeHtml('value="Zero"')
+            ->assertSeeHtml('value="7"')
+            ->assertSeeHtml('value="Seven"')
             ->assertDontSee('Persisted value');
     }
 

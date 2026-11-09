@@ -48,9 +48,12 @@ class Attachment extends Model
         'relativeUrl',
     ];
 
-    protected $casts = [
-        'sort' => 'integer',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'sort' => 'integer',
+        ];
+    }
 
     /**
      * @var array
