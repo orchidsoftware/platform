@@ -50,7 +50,7 @@ class GuardAuthTest extends TestFeatureCase
         $this->withCookie($cookie, (string) $user->getKey())
             ->get(route('orchid.login'))
             ->assertOk()
-            ->assertSee('value="'.$user->email.'"', false)
+            ->assertSeeHtml('value="'.$user->email.'"')
             ->assertSee(__('Use another account'));
     }
 

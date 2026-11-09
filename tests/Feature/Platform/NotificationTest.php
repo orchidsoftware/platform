@@ -30,8 +30,8 @@ class NotificationTest extends TestFeatureCase
             ->assertOk()
             ->assertSee('empty-state')
             ->assertSee('No new notifications.')
-            ->assertSee('id="orchid-notifications-footer"', false)
-            ->assertSee('hidden', false)
+            ->assertSeeHtml('id="orchid-notifications-footer"')
+            ->assertSeeHtml('hidden')
             ->assertDontSee('Mark All As Read');
     }
 

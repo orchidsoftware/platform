@@ -34,7 +34,7 @@ return RectorConfig::configure()
         jobSize: 20,
     )
     ->withSkip([
-        // Keep the suite compatible with PHPUnit 10 and 11.
+        // Keep the suite compatible with PHPUnit 11.
         AllowMockObjectsForDataProviderRector::class,
         ClosureToArrowFunctionRector::class,
         // These accessors are part of the public Attachment API.

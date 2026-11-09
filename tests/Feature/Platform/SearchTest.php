@@ -18,7 +18,7 @@ class SearchTest extends TestFeatureCase
             ->assertOk()
             ->assertSee('No results')
             ->assertSee('Try a different search.')
-            ->assertDontSee('data-action="search#clear"', false)
+            ->assertDontSeeHtml('data-action="search#clear"')
             ->assertSee('empty-state');
     }
 

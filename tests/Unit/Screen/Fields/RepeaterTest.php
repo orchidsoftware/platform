@@ -164,8 +164,8 @@ class RepeaterTest extends TestFieldsUnitCase
             ->assertSessionHasErrors('required');
 
         $this->get('/repeater')->assertOk()
-            ->assertSee('data-repeater-index="0"', false)
-            ->assertDontSee('value="Stored"', false);
+            ->assertSeeHtml('data-repeater-index="0"')
+            ->assertDontSeeHtml('value="Stored"');
     }
 
     public function testRejectedOldRowsRenderWithoutThrowingOrResurrectingStoredRows(): void
@@ -175,12 +175,12 @@ class RepeaterTest extends TestFieldsUnitCase
             $this->from('/repeater')->post('/repeater', ['team' => ['members' => $rows]])
                 ->assertRedirect('/repeater');
 
-            $response = $this->get('/repeater')->assertOk()->assertDontSee('value="Stored"', false);
+            $response = $this->get('/repeater')->assertOk()->assertDontSeeHtml('value="Stored"');
             if (is_array($rows)) {
-                $response->assertSee('name="team[members][7][profile][name]"', false)
-                    ->assertSee('value="Good"', false);
+                $response->assertSeeHtml('name="team[members][7][profile][name]"')
+                    ->assertSeeHtml('value="Good"');
             } else {
-                $response->assertSee('data-repeater-index="0"', false);
+                $response->assertSeeHtml('data-repeater-index="0"');
             }
         }
     }
