@@ -52,7 +52,8 @@ class ArtisanTest extends TestConsoleCase
             ->expectsQuestion('What is your name?', 'testConsoleCreateUser')
             ->expectsQuestion('What is your email?', 'testConsoleCreateUser@console.loc')
             ->expectsQuestion('What is the password?', 'testConsoleCreateUser')
-            ->expectsOutputToContain('User exist');
+            ->expectsOutputToContain('User exist')
+            ->assertExitCode(1);
 
         $user = User::factory()->create([
             'permissions' => [],

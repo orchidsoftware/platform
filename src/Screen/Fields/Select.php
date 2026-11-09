@@ -208,9 +208,11 @@ class Select extends Field implements ComplexFieldConcern
 
         return $this->addBeforeRender(function () use ($reflection, $enum): void {
             $value = collect($this->get('value'))->map(function ($item) use ($reflection, $enum) {
-                return $item instanceof $enum
-                    ? ($reflection->isBacked() ? $item->value : $item->name)
-                    : $item;
+                if (! $item instanceof $enum) {
+                    return $item;
+                }
+
+                return $reflection->isBacked() ? $item->value : $item->name;
             })->all();
 
             $this
@@ -436,8 +438,10 @@ class Select extends Field implements ComplexFieldConcern
      */
     private function enumValue(mixed $value): mixed
     {
-        return $value instanceof \BackedEnum
-            ? $value->value
-            : ($value instanceof \UnitEnum ? $value->name : $value);
+        return match (true) {
+            $value instanceof \BackedEnum => $value->value,
+            $value instanceof \UnitEnum   => $value->name,
+            default                       => $value,
+        };
     }
 }

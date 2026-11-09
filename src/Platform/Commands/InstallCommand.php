@@ -7,6 +7,8 @@ namespace Orchid\Platform\Commands;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Process;
 use Illuminate\Support\Traits\Conditionable;
 use Orchid\Platform\Events\InstallEvent;
 use Orchid\Platform\Providers\ConsoleServiceProvider;
@@ -75,15 +77,28 @@ class InstallCommand extends Command
         try {
             $result = $this->callSilent($command, $parameters);
         } catch (\Exception $exception) {
-            $result = 1;
             $this->alert($exception->getMessage());
+
+            return $this->commandFailed($command, $parameters);
         }
 
         if ($result) {
-            $parameters = http_build_query($parameters, '', ' ');
-            $parameters = str_replace('%5C', '/', $parameters);
-            $this->alert("An error has occurred. The '{$command} {$parameters}' command was not executed");
+            return $this->commandFailed($command, $parameters);
         }
+
+        return $this;
+    }
+
+    /**
+     * Report a failed install step while allowing remaining steps to run.
+     *
+     * @return $this
+     */
+    private function commandFailed(string $command, array $parameters): self
+    {
+        $parameters = http_build_query($parameters, '', ' ');
+        $parameters = str_replace('%5C', '/', $parameters);
+        $this->alert("An error has occurred. The '{$command} {$parameters}' command was not executed");
 
         return $this;
     }
@@ -105,7 +120,7 @@ class InstallCommand extends Command
         }
 
         $user = file_get_contents(Orchid::path('stubs/app/User.stub'));
-        file_put_contents(app_path($path), $user);
+        File::put(app_path($path), $user);
 
         return $this;
     }
@@ -134,9 +149,9 @@ class InstallCommand extends Command
         $repo = 'https://github.com/orchidsoftware/platform';
 
         match (PHP_OS_FAMILY) {
-            'Darwin'  => exec('open '.$repo),
-            'Windows' => exec('start '.$repo),
-            'Linux'   => exec('xdg-open '.$repo),
+            'Darwin'  => Process::run(['open', $repo]),
+            'Windows' => Process::run(['cmd', '/c', 'start', '', $repo]),
+            'Linux'   => Process::run(['xdg-open', $repo]),
             default   => $this->line('You can find us at '.$repo),
         };
 
@@ -174,7 +189,7 @@ class InstallCommand extends Command
             $updatedContents = str_replace($search, $replace, $fileContents);
 
             // Save the changes
-            file_put_contents($filePath, $updatedContents);
+            File::put($filePath, $updatedContents);
         }
 
         return $this;

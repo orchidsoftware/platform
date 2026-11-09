@@ -33,10 +33,7 @@ trait ModelStateRetrievable
 
         $reflectionClass = new \ReflectionClass($this);
 
-        [$properties, $classLevelWithoutRelations] = [
-            $reflectionClass->getProperties(),
-            ! empty($reflectionClass->getAttributes(WithoutRelations::class)),
-        ];
+        $properties = $reflectionClass->getProperties();
 
         foreach ($properties as $property) {
             if ($property->isStatic()) {
@@ -59,39 +56,34 @@ trait ModelStateRetrievable
                 continue;
             }
 
-            // Store unsaved models as-is, since they cannot be rehydrated via DB
-            if ($value instanceof Model && ! $value->exists) {
-                $values[$name] = $value;
-
-                continue;
-            }
-
-            // Wrap closures for safe serialization
-            if ($value instanceof \Closure) {
-                $values[$name] = new SerializableClosure($value);
-
-                continue;
-            }
-
-            // Saved Eloquent models and model collections are stored as lightweight
-            // model identifiers and rehydrated from the database on deserialization
-            if ($value instanceof QueueableEntity || $value instanceof QueueableCollection) {
-                $values[$name] = $this->getSerializedPropertyValue(
-                    $value,
-                    ! $classLevelWithoutRelations &&
-                    empty($property->getAttributes(WithoutRelations::class))
-                );
-
-                continue;
-            }
-
-            // All other values (primitives, arrays, plain objects) are wrapped in a
-            // signed SerializableClosure (HMAC-protected when APP_KEY is set) to
-            // prevent tampering when the state is round-tripped through the client
-            $values[$name] = new SignedValue($value);
+            $values[$name] = $this->serializeScreenValue($value, $property);
         }
 
         return $values;
+    }
+
+    /**
+     * Preserve model identity and sign values serialized into screen state.
+     */
+    private function serializeScreenValue(mixed $value, \ReflectionProperty $property): mixed
+    {
+        if ($value instanceof Model && ! $value->exists) {
+            return $value;
+        }
+
+        if ($value instanceof \Closure) {
+            return new SerializableClosure($value);
+        }
+
+        if ($value instanceof QueueableEntity || $value instanceof QueueableCollection) {
+            return $this->getSerializedPropertyValue(
+                $value,
+                empty((new \ReflectionClass($this))->getAttributes(WithoutRelations::class))
+                    && empty($property->getAttributes(WithoutRelations::class))
+            );
+        }
+
+        return new SignedValue($value);
     }
 
     /**

@@ -76,18 +76,23 @@ class KeyValue extends Field
     protected function updateFieldValue(): static
     {
         $oldInput = request()->hasSession() ? request()->session()->getOldInput() : [];
-        $hasOldInput = Arr::has($oldInput, $this->getOldName());
 
-        if ($hasOldInput) {
-            $this->set('value', Arr::get($oldInput, $this->getOldName()));
-        } else {
-            parent::updateFieldValue();
+        if (Arr::has($oldInput, $this->getOldName())) {
+            return $this->set('value', $this->oldInputRows(Arr::get($oldInput, $this->getOldName())));
         }
 
-        $value = $this->get('value');
+        parent::updateFieldValue();
 
-        if ($value === null || $value === '' || ($hasOldInput && ! is_array($value))) {
-            $value = [];
+        return $this->set('value', $this->valueRows($this->get('value')));
+    }
+
+    /**
+     * Normalize trusted model values and reject unsupported cells.
+     */
+    private function valueRows(mixed $value): array
+    {
+        if ($value === null || $value === '') {
+            return [];
         }
 
         if (! is_array($value)) {
@@ -97,24 +102,52 @@ class KeyValue extends Field
         $rows = [];
 
         foreach ($value as $key => $item) {
-            $row = is_array($item) && ($hasOldInput || (is_int($key) && array_key_exists('key', $item)))
-                ? ['key' => $item['key'] ?? null, 'value' => array_key_exists('value', $item) ? $item['value'] : '']
+            $row = is_int($key) && is_array($item) && array_key_exists('key', $item)
+                ? $this->keyValueRow($item)
                 : ['key' => $key, 'value' => $item];
 
-            foreach ($row as $column => $cell) {
-                if ($cell !== null && ! is_scalar($cell)) {
-                    if (! $hasOldInput) {
-                        throw new \InvalidArgumentException('KeyValue keys and values must be scalar or null.');
-                    }
-
-                    $row[$column] = '';
-                }
-            }
-
-            $rows[] = $row;
+            $rows[] = $this->validateRow($row);
         }
 
-        return $this->set('value', $rows);
+        return $rows;
+    }
+
+    /**
+     * Preserve rejected form rows while making malformed cells safe to display.
+     */
+    private function oldInputRows(mixed $value): array
+    {
+        if (! is_array($value)) {
+            return [];
+        }
+
+        return array_map(function ($item, $key): array {
+            $row = is_array($item) ? $this->keyValueRow($item) : ['key' => $key, 'value' => $item];
+
+            return array_map(static fn ($cell) => $cell === null || is_scalar($cell) ? $cell : '', $row);
+        }, $value, array_keys($value));
+    }
+
+    /**
+     * Supply missing cells without replacing an explicitly null value.
+     */
+    private function keyValueRow(array $item): array
+    {
+        return ['key' => $item['key'] ?? null, 'value' => array_key_exists('value', $item) ? $item['value'] : ''];
+    }
+
+    /**
+     * Reject nested data supplied through the model or field configuration.
+     */
+    private function validateRow(array $row): array
+    {
+        foreach ($row as $cell) {
+            if ($cell !== null && ! is_scalar($cell)) {
+                throw new \InvalidArgumentException('KeyValue keys and values must be scalar or null.');
+            }
+        }
+
+        return $row;
     }
 
     /**

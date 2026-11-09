@@ -6,6 +6,7 @@ namespace Orchid\Platform\Commands;
 
 use Exception;
 use Illuminate\Console\Command;
+use Illuminate\Console\ManuallyFailedException;
 use Illuminate\Database\QueryException;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Orchid;
@@ -45,7 +46,7 @@ class AdminCommand extends Command
                 ? $this->createNewUser()
                 : $this->updateUserPermissions((string) $userId);
         } catch (Exception|QueryException $e) {
-            $this->error($e->getMessage());
+            throw new ManuallyFailedException($e->getMessage(), previous: $e);
         }
     }
 

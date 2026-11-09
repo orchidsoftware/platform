@@ -368,7 +368,7 @@ class TD extends Cell
         }
 
         if ($this->callbackFilterValue !== null) {
-            return call_user_func($this->callbackFilterValue, $filter);
+            return ($this->callbackFilterValue)($filter);
         }
 
         if (is_array($filter)) {

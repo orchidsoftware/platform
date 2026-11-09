@@ -45,6 +45,7 @@
         "watson/active": "^7.0"
     },
     "require-dev": {
+        "cosmira/soda": "^1.0",
         "driftingly/rector-laravel": "^2.7",
         "fakerphp/faker": "^1.9.1",
         "larastan/larastan": "^3.14",
