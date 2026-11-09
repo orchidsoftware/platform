@@ -24,7 +24,7 @@ abstract class Block extends Layout
     protected $template = 'orchid::layouts.block';
 
     /**
-     * @var false[]
+     * @var array<string, mixed>
      */
     protected $variables = [
         'vertical' => false,
@@ -78,7 +78,7 @@ abstract class Block extends Layout
     /**
      * Used to create the description of a group of form elements.
      *
-     * @param string|View description
+     * @param string|View $description
      */
     public function description($description): self
     {
@@ -100,7 +100,7 @@ abstract class Block extends Layout
     }
 
     /**
-     * @param Action|Action[] description
+     * @param Action|Action[] $commands
      */
     public function commands($commands): self
     {

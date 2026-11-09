@@ -117,8 +117,6 @@ class ItemListScreen extends Screen
     }
 
     /**
-     * @param Request $request
-     *
      * @return void
      */
     public function delete(Repository $item)

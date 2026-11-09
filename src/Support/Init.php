@@ -61,7 +61,7 @@ class Init
      *
      * @param string|null $format The unit format
      *
-     * @return int|float The maximum file upload size
+     * @return int The maximum file upload size
      */
     public static function maxFileUpload(?string $format = null): int
     {

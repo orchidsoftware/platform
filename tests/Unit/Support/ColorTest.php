@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Support;
 
 use Orchid\Support\Color;
-use Orchid\Tests\TestUnitCase;
+use PHPUnit\Framework\TestCase;
 
-class ColorTest extends TestUnitCase
+class ColorTest extends TestCase
 {
     /**
      * Test that the `name` method returns the correct string for each color case.

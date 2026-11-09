@@ -35,6 +35,15 @@ use Throwable;
  * @method static style($value = true)
  * @method static tabindex($value = true)
  * @method static autocomplete($value = true)
+ * @method $this  autofocus($value = true)
+ * @method $this  name(?string $value = null)
+ * @method $this  form(?string $value = null)
+ * @method $this  title(?string $value = null)
+ * @method $this  prefix(?string $value = null)
+ * @method $this  idPrefix(?string $value = null)
+ * @method $this  placeholder(?string $value = null)
+ *
+ * @phpstan-consistent-constructor
  */
 class Field implements \Stringable, Fieldable, Htmlable
 {
@@ -168,7 +177,7 @@ class Field implements \Stringable, Fieldable, Htmlable
      * @param string $key   The name of the attribute to set.
      * @param mixed  $value The value of the attribute. Defaults to true.
      *
-     * @return static Returns the current instance for method chaining.
+     * @return $this Returns the current instance for method chaining.
      */
     public function set(string $key, $value = true): static
     {
@@ -301,7 +310,6 @@ class Field implements \Stringable, Fieldable, Htmlable
     /**
      * Generates a field ID if not already set.
      *
-     * @param string $defaultId The default ID to set if none is provided.
      *
      * @return static Returns the current instance for method chaining.
      */
@@ -337,9 +345,7 @@ class Field implements \Stringable, Fieldable, Htmlable
     }
 
     /**
-     * @param mixed|null $value
-     *
-     * @return static|mixed|null
+     * @return bool
      */
     public function has(string $key)
     {
@@ -524,6 +530,8 @@ class Field implements \Stringable, Fieldable, Htmlable
      * Adds a closure to be executed before rendering the field.
      *
      * @param Closure $closure The closure to be executed before rendering.
+     *
+     * @return $this
      */
     public function addBeforeRender(Closure $closure): static
     {

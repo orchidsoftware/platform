@@ -6,6 +6,7 @@ namespace Orchid\Tests\Unit;
 
 use Illuminate\Support\Carbon;
 use Orchid\Metrics\GroupCollection;
+use Orchid\Metrics\TimeCollection;
 use Orchid\Platform\Models\User;
 use Orchid\Tests\TestUnitCase;
 
@@ -21,8 +22,8 @@ class MetricsTest extends TestUnitCase
             'name' => false,
         ]);
 
-        /** @var GroupCollection $group */
         $group = User::countForGroup('name');
+        $this->assertInstanceOf(GroupCollection::class, $group);
 
         $this->assertContains(8, $group->pluck('value')->toArray());
         $this->assertContains(5, $group->pluck('value')->toArray());
@@ -55,6 +56,7 @@ class MetricsTest extends TestUnitCase
         ]);
 
         $period = User::countByDays($start, $end);
+        $this->assertInstanceOf(TimeCollection::class, $period);
 
         $this->assertEquals(5, $period->pluck('value')->first());
         $this->assertEquals(8, $period->pluck('value')->last());
@@ -86,6 +88,7 @@ class MetricsTest extends TestUnitCase
         ]);
 
         $period = User::maxByDays('id', $start, $end);
+        $this->assertInstanceOf(TimeCollection::class, $period);
 
         // Stitch selection depends on database and driver
         $this->assertContains($period->pluck('value')->first(), [5, '5']);
@@ -118,6 +121,7 @@ class MetricsTest extends TestUnitCase
         ]);
 
         $period = User::minByDays('id', $start, $end);
+        $this->assertInstanceOf(TimeCollection::class, $period);
 
         // Stitch selection depends on database and driver
         $this->assertContains($period->pluck('value')->first(), [1, '1']);
@@ -150,6 +154,7 @@ class MetricsTest extends TestUnitCase
         ]);
 
         $period = User::sumByDays('id', $start, $end);
+        $this->assertInstanceOf(TimeCollection::class, $period);
 
         $this->assertEquals(15, $period->pluck('value')->first());
         $this->assertEquals(76, $period->pluck('value')->last());
@@ -181,6 +186,7 @@ class MetricsTest extends TestUnitCase
         ]);
 
         $period = User::averageByDays('id', $start, $end);
+        $this->assertInstanceOf(TimeCollection::class, $period);
 
         $this->assertEquals(3.0, $period->pluck('value')->first());
         $this->assertEquals(9.5, $period->pluck('value')->last());
@@ -204,7 +210,9 @@ class MetricsTest extends TestUnitCase
 
         User::factory()->count(5)->create();
 
-        $period = User::sumByDays('id', $start)->showDaysOfWeek()->toChart('Users');
+        $period = User::sumByDays('id', $start);
+        $this->assertInstanceOf(TimeCollection::class, $period);
+        $chart = $period->showDaysOfWeek()->toChart('Users');
 
         collect([
             'Monday',
@@ -214,14 +222,16 @@ class MetricsTest extends TestUnitCase
             'Friday',
             'Saturday',
             'Sunday',
-        ])->each(function (string $value) use ($period) {
-            $this->assertContains($value, $period['labels']);
+        ])->each(function (string $value) use ($chart) {
+            $this->assertContains($value, $chart['labels']);
         });
 
         /* Carbon Language */
         Carbon::setLocale('ru');
 
-        $period = User::sumByDays('id', $start)->showDaysOfWeek()->toChart('Users');
+        $period = User::sumByDays('id', $start);
+        $this->assertInstanceOf(TimeCollection::class, $period);
+        $chart = $period->showDaysOfWeek()->toChart('Users');
 
         collect([
             'Понедельник',
@@ -231,8 +241,8 @@ class MetricsTest extends TestUnitCase
             'Пятница',
             'Суббота',
             'Воскресенье',
-        ])->each(function (string $value) use ($period) {
-            $this->assertContains($value, $period['labels']);
+        ])->each(function (string $value) use ($chart) {
+            $this->assertContains($value, $chart['labels']);
         });
     }
 
@@ -250,7 +260,10 @@ class MetricsTest extends TestUnitCase
             'created_at' => $end,
         ]);
 
-        $period = User::countByDays()->withoutZeroValues();
+        $period = User::countByDays();
+        $this->assertInstanceOf(TimeCollection::class, $period);
+        $period = $period->withoutZeroValues();
+        $this->assertInstanceOf(TimeCollection::class, $period);
 
         $this->assertCount(2, $period);
 

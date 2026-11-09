@@ -78,6 +78,8 @@ class ScreenFillPublicPropertyTest extends TestUnitCase
     {
         $screen = new ScreenWithInheritedProperties();
 
+        $this->assertSame([], $screen->layout());
+
         // Use reflection to access the protected method getPublicPropertyNames
         $reflection = new \ReflectionClass($screen);
         $method = $reflection->getMethod('getPublicPropertyNames');

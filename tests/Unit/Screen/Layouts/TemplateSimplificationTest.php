@@ -54,8 +54,8 @@ class TemplateSimplificationTest extends TestUnitCase
             $repository = new Repository(['orders' => $metric]);
             $html = LayoutFactory::metrics(['Orders' => 'orders'])->build($repository)->render();
             $change = $this->xpath($html)->query('//p/small')->item(0);
+            $this->assertInstanceOf(\DOMElement::class, $change);
 
-            $this->assertNotNull($change);
             $this->assertSame($expected, trim(str_replace(["\u{00A0}", '%'], '', $change->textContent)));
             $this->assertStringContainsString($diff < 0 ? 'text-danger' : 'text-success', $change->getAttribute('class'));
             $this->assertStringContainsString('Existing value', $html);
@@ -65,7 +65,7 @@ class TemplateSimplificationTest extends TestUnitCase
         $html = LayoutFactory::metrics(['Orders' => 'orders'])->build(new Repository([
             'orders' => ['value' => 0, 'diff' => -0.001],
         ]))->render();
-        $this->assertStringContainsString('text-danger', $this->xpath($html)->query('//p/small')->item(0)->getAttribute('class'));
+        $this->assertStringContainsString('text-danger', $this->firstElement($this->xpath($html), '//p/small')->getAttribute('class'));
     }
 
     public function testMetricsWithoutAChangeKeepScalarAndArrayValues(): void
@@ -97,10 +97,10 @@ class TemplateSimplificationTest extends TestUnitCase
         $layout->template = Selection::TEMPLATE_LINE;
         $xpath = $this->xpath('<form method="post">'.$layout->build(new Repository)->render().'</form>');
         $reset = $xpath->query('//button[@data-action="filter#clear"]')->item(0);
+        $this->assertInstanceOf(\DOMElement::class, $reset);
 
-        $this->assertNotNull($reset);
         $this->assertSame('button', $reset->getAttribute('type'));
-        $this->assertSame('filters', $xpath->query('//button[@type="submit"]')->item(0)->getAttribute('form'));
+        $this->assertSame('filters', $this->firstElement($xpath, '//button[@type="submit"]')->getAttribute('form'));
     }
 
     private function xpath(string $html): DOMXPath

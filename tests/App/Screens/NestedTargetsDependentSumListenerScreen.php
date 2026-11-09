@@ -47,7 +47,7 @@ class NestedTargetsDependentSumListenerScreen extends Screen
      *
      * @throws \Throwable
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return (\Orchid\Screen\Layout|class-string<\Orchid\Screen\Layout>)[]
      */
     public function layout(): array
     {

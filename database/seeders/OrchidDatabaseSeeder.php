@@ -9,10 +9,10 @@ class OrchidDatabaseSeeder extends Seeder
     /**
      * Run the database seeds.
      *
-     * php artisan db:seed --class="Orchid\Database\Seeds\OrchidDatabaseSeeder"
+     * php artisan db:seed --class="Orchid\Platform\Database\Seeders\OrchidDatabaseSeeder"
      *
      * run another class
-     * php artisan db:seed --class="Orchid\Database\Seeds\UsersTableSeeder"
+     * php artisan db:seed --class="Orchid\Platform\Database\Seeders\UsersTableSeeder"
      *
      * @return void
      */

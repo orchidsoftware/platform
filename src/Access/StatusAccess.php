@@ -12,13 +12,13 @@ trait StatusAccess
     /**
      * Get a collection of grouped permissions with their active status.
      *
-     * @return Collection<int, Collection<int, array{slug: string, description: string, active: bool}>>
+     * @return Collection<string, Collection<int, array{slug: string, description: string, active: bool}>>
      */
     public function statusOfPermissions(): Collection
     {
         $permissions = Permissions::make($this->permissions ?? []);
 
-        return Orchid::permissionGroups()->transform(
+        return Orchid::permissionGroups()->map(
             fn ($group) => collect($group)
                 ->sortBy('description')
                 ->map(
@@ -33,7 +33,7 @@ trait StatusAccess
     /**
      * @deprecated Use getStatusPermissions() instead.
      *
-     * @return Collection<int, Collection<int, array{slug: string, description: string, active: bool}>>
+     * @return Collection<string, Collection<int, array{slug: string, description: string, active: bool}>>
      */
     public function getStatusPermission(): Collection
     {

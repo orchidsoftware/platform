@@ -13,6 +13,9 @@ use Illuminate\Support\Traits\Macroable;
 use Orchid\Screen\Concerns\CanSee;
 use Orchid\Support\Blade;
 
+/**
+ * @phpstan-consistent-constructor
+ */
 abstract class Cell
 {
     use CanSee, Macroable;
@@ -62,6 +65,8 @@ abstract class Cell
 
     /**
      * Set the callback used to render the cell value.
+     *
+     * @return $this
      */
     public function render(Closure $closure): static
     {

@@ -38,14 +38,14 @@ class Metric extends Layout
     }
 
     /**
-     * @return Factory|View
+     * @return Factory|View|null
      */
     public function build(Repository $repository)
     {
         $this->query = $repository;
 
         if (! $this->isSee() || empty($this->labels)) {
-            return;
+            return null;
         }
 
         $metrics = collect($this->labels)->map(function (string $value) use ($repository) {

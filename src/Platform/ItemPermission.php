@@ -25,8 +25,6 @@ class ItemPermission extends PermissionGroup
 
     /**
      * @param array<int, array{slug: string, description: string}> $items
-     *
-     * @psalm-suppress UnsupportedPropertyReferenceUsage Psalm cannot analyze property aliases.
      */
     public function __construct(string $name, array $items = [])
     {

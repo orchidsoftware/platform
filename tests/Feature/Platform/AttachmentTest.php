@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\Feature\Platform;
 
 use Illuminate\Http\UploadedFile;
+use Illuminate\Testing\TestResponse;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Http\Middleware\Access;
 use Orchid\Tests\TestFeatureCase;
@@ -76,14 +77,14 @@ class AttachmentTest extends TestFeatureCase
 
     public function testAttachmentHttpDestroy(): void
     {
-        /** @var $response \Illuminate\Testing\TestResponse */
+        /** @var TestResponse $response */
         $response = $this
             ->actingAs($this->createAdminUser())
             ->post(route('orchid.files.upload'), [
                 'files' => UploadedFile::fake()->image('avatar.jpg'),
             ]);
 
-        /** @var $upload \Orchid\Attachment\Models\Attachment */
+        /** @var Attachment $upload */
         $upload = $response->original;
 
         $response = $this
@@ -95,14 +96,14 @@ class AttachmentTest extends TestFeatureCase
 
     public function testAttachmentHttpUpdate(): void
     {
-        /** @var $response \Illuminate\Testing\TestResponse */
+        /** @var TestResponse $response */
         $response = $this
             ->actingAs($this->createAdminUser())
             ->post(route('orchid.files.upload'), [
                 'files' => UploadedFile::fake()->image('avatar.jpg'),
             ]);
 
-        /** @var $upload \Orchid\Attachment\Models\Attachment */
+        /** @var Attachment $upload */
         $upload = $response->original;
 
         $response = $this

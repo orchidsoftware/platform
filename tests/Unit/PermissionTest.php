@@ -19,6 +19,25 @@ use Orchid\Tests\TestUnitCase;
  */
 class PermissionTest extends TestUnitCase
 {
+    public function testSubclassPrivateHelpersDoNotChangePermissionNormalization(): void
+    {
+        $permissions = new class(['orchid.index' => true]) extends Permissions
+        {
+            public function normalizeForExport(): array
+            {
+                return self::normalize();
+            }
+
+            private static function normalize(): array
+            {
+                return [];
+            }
+        };
+
+        $this->assertSame([], $permissions->normalizeForExport());
+        $this->assertTrue($permissions->allows('orchid.index'));
+    }
+
     /**
      * Verify permissions.
      */

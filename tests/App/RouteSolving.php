@@ -9,7 +9,7 @@ class RouteSolving implements Stringable, UrlRoutable
 {
     public function resolveRouteBinding($value, $field = null)
     {
-        return $this;
+        return $this; // @phpstan-ignore return.type (Laravel accepts custom UrlRoutable objects, not only Eloquent models.)
     }
 
     public function getRouteKey()
@@ -19,12 +19,12 @@ class RouteSolving implements Stringable, UrlRoutable
 
     public function getRouteKeyName()
     {
-        // TODO: Implement getRouteKeyName() method.
+        return 'id';
     }
 
     public function resolveChildRouteBinding($childType, $value, $field)
     {
-        // TODO: Implement resolveChildRouteBinding() method.
+        return null;
     }
 
     public function __toString(): string

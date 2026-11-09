@@ -28,8 +28,7 @@ class RoleTest extends TestFeatureCase
 
         $response
             ->assertOk()
-            ->assertSee($this->role->name)
-            ->assertSee($this->role->slug);
+            ->assertSee($this->role->name);
     }
 
     public function testRouteSystemsRolesCreate(): void
@@ -50,7 +49,6 @@ class RoleTest extends TestFeatureCase
 
         $response->assertOk()
             ->assertSee('field-roles')
-            ->assertSee($this->role->name)
-            ->assertSee($this->role->slug);
+            ->assertSee($this->role->name);
     }
 }

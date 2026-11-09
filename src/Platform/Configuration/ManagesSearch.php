@@ -76,8 +76,8 @@ trait ManagesSearch
             return null;
         }
 
-        $result->getCollection()
-            ->transform(static fn (Model $model) => $model->presenter());
+        // @phpstan-ignore method.notFound (Larastan's paginator stub omits through()), method.notFound (Search models provide Presentable.)
+        $result->through(static fn (Model $model) => $model->presenter());
 
         return [
             'label'  => $presenter->label(),

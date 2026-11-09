@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\App;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Orchid;
+use Orchid\Support\Facades\Alert;
 use Orchid\Tests\App\Fields\BaseSelectScreen;
 use Orchid\Tests\App\Screens\AsyncHeaderButtonActionScreen;
 use Orchid\Tests\App\Screens\ConfirmScreen;
@@ -24,6 +27,14 @@ use Orchid\Tests\App\Screens\UnaccessedScreen;
 
 class ExemplarServiceProvider extends ServiceProvider
 {
+    public function register(): void
+    {
+        AliasLoader::getInstance()->alias('Orchid', \Orchid\Support\Facades\Orchid::class);
+        AliasLoader::getInstance()->alias('Alert', Alert::class);
+
+        Factory::guessFactoryNamesUsing(fn (string $model) => 'Orchid\\Platform\\Database\\Factories\\'.class_basename($model).'Factory');
+    }
+
     /**
      * Boot the application events.
      */

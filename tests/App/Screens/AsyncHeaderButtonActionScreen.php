@@ -43,7 +43,7 @@ class AsyncHeaderButtonActionScreen extends Screen
      *
      * @throws Throwable
      *
-     * @return Layout[]
+     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): array
     {

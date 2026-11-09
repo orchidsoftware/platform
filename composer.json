@@ -48,10 +48,13 @@
     "require-dev": {
         "driftingly/rector-laravel": "^2.7",
         "fakerphp/faker": "^1.9.1",
+        "larastan/larastan": "^3.14",
         "laravel/pint": "^1.14",
         "orchestra/testbench": "^8.0 || ^9.5 || ^10.0 || ^11.0",
         "orchestra/testbench-core": "^8.0 || ^9.5 || ^10.0 || ^11.0",
         "orchestra/testbench-dusk": "^8.0 || ^9.5 || ^10.0 || ^11.0",
+        "phpstan/phpstan": "^2.3",
+        "phpstan/phpstan-phpunit": "^2.1",
         "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0",
         "rector/rector": "^2.8"
     },

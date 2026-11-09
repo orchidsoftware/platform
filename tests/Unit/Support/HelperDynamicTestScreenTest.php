@@ -128,7 +128,9 @@ class HelperDynamicTestScreenTest extends TestUnitCase
                 ->followingRedirects()
                 ->method('increment');
 
-            $this->assertEquals($i, Orchid::getCurrentScreen()->increment);
+            $currentScreen = Orchid::getCurrentScreen();
+            $this->assertInstanceOf(BaseScreenTesting::class, $currentScreen);
+            $this->assertEquals($i, $currentScreen->increment);
         }
     }
 }

@@ -9,6 +9,9 @@ use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Contracts\Groupable;
 use Orchid\Screen\Field;
 
+/**
+ * @phpstan-consistent-constructor
+ */
 class Group implements \Stringable, Fieldable, Groupable
 {
     /**

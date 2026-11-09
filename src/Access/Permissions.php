@@ -22,6 +22,8 @@ use Traversable;
  *
  * @implements CastsAttributes<static, mixed>
  * @implements Arrayable<string, bool>
+ *
+ * @phpstan-consistent-constructor
  */
 class Permissions implements Arrayable, CastsAttributes, Countable, JsonSerializable
 {
@@ -35,7 +37,7 @@ class Permissions implements Arrayable, CastsAttributes, Countable, JsonSerializ
      */
     public function __construct(array $states = [])
     {
-        $this->states = static::normalize($states);
+        $this->states = self::normalize($states);
     }
 
     /**
@@ -181,7 +183,7 @@ class Permissions implements Arrayable, CastsAttributes, Countable, JsonSerializ
                 continue;
             }
 
-            $normalized[$permission] = static::normalizeValue($allowed);
+            $normalized[$permission] = self::normalizeValue($allowed);
         }
 
         return $normalized;

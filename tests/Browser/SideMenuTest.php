@@ -27,9 +27,9 @@ class SideMenuTest extends TestBrowserCase
                 "return getComputedStyle(document.querySelector('$activity')).backgroundColor;"
             )[0];
 
-            $this->assertGreaterThanOrEqual(43, $browser->script(
-                "return document.querySelector('$activity').getBoundingClientRect().height;"
-            )[0]);
+            $this->assertEqualsWithDelta(2.75, $browser->script(
+                "return document.querySelector('$activity').getBoundingClientRect().height / parseFloat(getComputedStyle(document.documentElement).fontSize);"
+            )[0], 0.01);
 
             $browser->mouseover($activity)->pause(400);
 

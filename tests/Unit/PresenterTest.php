@@ -32,7 +32,7 @@ class PresenterTest extends TestUnitCase
         $this->assertFalse($presenter->status);
     }
 
-    protected function getPresenterClass(): Presenter
+    protected function getPresenterClass(): StatusPresenter
     {
         $class = new class
         {
@@ -42,13 +42,7 @@ class PresenterTest extends TestUnitCase
             public $status = false;
         };
 
-        return new class($class) extends Presenter
-        {
-            public function getStatus(): bool
-            {
-                return $this->entity->status;
-            }
-        };
+        return new StatusPresenter($class);
     }
 
     // -------------------------------------------------------------------------
@@ -127,4 +121,15 @@ class ModelWithPresenterAttribute
 class ModelWithoutPresenterAttribute
 {
     use Presentable;
+}
+
+/**
+ * @property-read bool $getStatus
+ */
+class StatusPresenter extends Presenter
+{
+    public function getStatus(): bool
+    {
+        return $this->entity->status;
+    }
 }

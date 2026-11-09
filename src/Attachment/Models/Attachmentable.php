@@ -13,8 +13,6 @@ class Attachmentable extends Model
 {
     /**
      * The primary key for the model.
-     *
-     * @var bool|null
      */
     protected $primaryKey;
 

@@ -37,7 +37,7 @@ abstract class Layout implements JsonSerializable
     protected $variables = [];
 
     /**
-     * @var Repository
+     * @var Repository|null
      */
     protected $query;
 

@@ -23,14 +23,13 @@ use Orchid\Support\Facades\Orchid;
 
 /**
  * Class Attachment.
+ *
+ * @property-read string|null $url
  */
 class Attachment extends Model
 {
     use AsSource, Filterable, HasFactory, HasUuids, Sortable;
 
-    /**
-     * @var array
-     */
     protected $fillable = [
         'name',
         'original_name',
@@ -44,17 +43,11 @@ class Attachment extends Model
         'group',
     ];
 
-    /**
-     * @var array
-     */
     protected $appends = [
         'url',
         'relativeUrl',
     ];
 
-    /**
-     * @var array
-     */
     protected $casts = [
         'sort' => 'integer',
     ];
@@ -93,10 +86,12 @@ class Attachment extends Model
 
     /**
      * Return the user associated with the attachment.
+     *
+     * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(Orchid::model(User::class));
+        return $this->belongsTo(Orchid::model(User::class)); // @phpstan-ignore return.type (The configured class replaces User with a subclass.)
     }
 
     /**

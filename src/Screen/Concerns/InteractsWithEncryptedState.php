@@ -3,7 +3,6 @@
 namespace Orchid\Screen\Concerns;
 
 use Illuminate\Support\Facades\Crypt;
-use Laravel\SerializableClosure\Exceptions\PhpVersionNotSupportedException;
 use Orchid\Screen\Repository;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
@@ -39,7 +38,6 @@ trait InteractsWithEncryptedState
     /**
      * Serializes the current state of the screen into a string.
      *
-     * @throws PhpVersionNotSupportedException If the PHP version is not supported for serialization.
      *
      * @return string The serialized state.
      */

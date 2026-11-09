@@ -6,6 +6,19 @@ namespace Orchid\Support;
 
 /**
  * This class represents a list of colors.
+ *
+ * @method static self INFO()
+ * @method static self SUCCESS()
+ * @method static self WARNING()
+ * @method static self BASIC()
+ * @method static self DEFAULT()
+ * @method static self DANGER()
+ * @method static self PRIMARY()
+ * @method static self SECONDARY()
+ * @method static self LIGHT()
+ * @method static self DARK()
+ * @method static self LINK()
+ * @method static self ERROR()
  */
 enum Color
 {

@@ -10,6 +10,9 @@ use InvalidArgumentException;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
+/**
+ * @phpstan-consistent-constructor
+ */
 class Chart extends Layout
 {
     public const TYPE_BAR = 'bar';
@@ -148,7 +151,7 @@ class Chart extends Layout
         $this->query = $repository;
 
         if (! $this->isSee()) {
-            return;
+            return null;
         }
 
         $data = $repository->getContent($this->target);

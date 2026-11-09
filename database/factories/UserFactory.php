@@ -7,12 +7,13 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Orchid\Platform\Models\User;
 
+/**
+ * @extends Factory<User>
+ */
 class UserFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
-     *
-     * @var string
      */
     protected $model = User::class;
 

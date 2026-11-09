@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use League\Flysystem\FilesystemException;
+use LogicException;
 use Orchid\Attachment\Contracts\Engine;
 use Orchid\Attachment\Engines\Generator;
 use Orchid\Attachment\Models\Attachment;
@@ -84,6 +85,8 @@ class File
      * an already stored entry matching the hash of the file
      *
      * @throws FilesystemException
+     *
+     * @return Attachment
      */
     public function load(): Model
     {
@@ -142,6 +145,8 @@ class File
 
     /**
      * Save the file to disk and create an attachment entry in the db
+     *
+     * @return Attachment
      */
     private function save(): Model
     {
@@ -180,7 +185,13 @@ class File
      */
     public function path(?string $path = null)
     {
-        $this->engine->setPath($path);
+        $setPath = [$this->engine, 'setPath'];
+
+        if (! is_callable($setPath)) {
+            throw new LogicException('The attachment engine does not support custom paths.');
+        }
+
+        $setPath($path);
 
         return $this;
     }

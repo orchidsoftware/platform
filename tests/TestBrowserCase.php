@@ -7,18 +7,14 @@ namespace Orchid\Tests;
 use Faker\Factory as Faker;
 use Faker\Generator;
 use Illuminate\Foundation\Application;
+use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\Options;
 use Orchestra\Testbench\Dusk\TestCase;
 use Orchid\Platform\Models\User;
 
-/**
- * Class TestConsoleCase.
- */
 abstract class TestBrowserCase extends TestCase
 {
-    use Environment {
-        Environment::getEnvironmentSetUp as getEnvSetUp;
-    }
+    use WithWorkbench;
 
     /**
      * @var User
@@ -35,17 +31,25 @@ abstract class TestBrowserCase extends TestCase
      *
      * @param Application $app
      */
-    protected function getEnvironmentSetUp($app)
+    protected function defineEnvironment($app): void
     {
-        $this->getEnvSetUp($app);
+        $app['config']->set('orchid.prevents_abandonment', false);
+    }
 
-        config()->set('orchid.prevents_abandonment', false);
+    public static function defineWebDriverOptions(): void
+    {
+        Options::windowSize(1440, 900);
 
         if (isset($_SERVER['CI'])) {
             Options::withoutUI();
             Options::noSandbox();
             Options::addArgument('--disable-dev-shm-usage');
         }
+    }
+
+    protected function defineDatabaseMigrations(): void
+    {
+        $this->runLaravelMigrations();
     }
 
     protected function createAdminUser(array $attributes = []): User

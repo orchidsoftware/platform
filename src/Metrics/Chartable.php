@@ -20,8 +20,8 @@ trait Chartable
             ->orderBy('value', 'desc')
             ->get()
             ->map(fn (Model $model) => $model->forceFill([
-                'label' => (string) $model->label,
-                'value' => (int) $model->value,
+                'label' => (string) $model->getAttribute('label'),
+                'value' => (int) $model->getAttribute('value'),
             ]));
 
         return new GroupCollection($group);
@@ -60,7 +60,7 @@ trait Chartable
             );
 
             $result = [
-                'value'   => ($found ? $found->value : 0),
+                'value'   => ($found ? $found->getAttribute('value') : 0),
                 'label'   => $startDate->toDateString(),
             ];
 

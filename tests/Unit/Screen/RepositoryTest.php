@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Screen;
 
 use Orchid\Screen\Repository;
-use Orchid\Tests\TestUnitCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class RepositoryTest.
  */
-class RepositoryTest extends TestUnitCase
+class RepositoryTest extends TestCase
 {
     /**
      * @var Repository

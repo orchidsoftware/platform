@@ -44,7 +44,7 @@ class DependentListenerScreen extends Screen
      *
      * @throws \Throwable
      *
-     * @return Layout[]
+     * @return (Layout|class-string<Layout>)[]
      */
     public function layout(): array
     {

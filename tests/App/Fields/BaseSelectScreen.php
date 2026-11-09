@@ -12,7 +12,7 @@ use Orchid\Tests\App\Screens\BaseFieldScreen;
 class BaseSelectScreen extends BaseFieldScreen
 {
     /**
-     * @return string[]
+     * @return array<string, int>
      */
     public function query(): array
     {

@@ -16,24 +16,18 @@ class SortableTest extends TestUnitCase
         $model = new class extends Model
         {
             use Sortable;
-            /**
-             * @var array
-             */
             protected $fillable = [
                 'name',
                 'order',
 
             ];
 
-            /**
-             * @var string[][][]
-             */
             protected $attributes = [
                 'order' => 0,
             ];
         };
 
-        $model->id = 1;
+        $model->setAttribute('id', 1);
 
         $this->assertEquals('order', $model->getSortColumnName());
         $this->assertEquals(0, $model->getSortColumnValue());

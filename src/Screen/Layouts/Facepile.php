@@ -16,7 +16,7 @@ class Facepile extends Content
     protected $template = 'orchid::layouts.facepile';
 
     /**
-     * @param Personable[] $users
+     * @param ArrayAccess<int, Personable> $users
      */
     public function render(ArrayAccess $users): View
     {

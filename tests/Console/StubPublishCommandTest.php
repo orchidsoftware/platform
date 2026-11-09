@@ -9,6 +9,10 @@ use Orchid\Tests\TestConsoleCase;
 
 class StubPublishCommandTest extends TestConsoleCase
 {
+    private Filesystem $filesystem;
+
+    private string $stubsPath;
+
     protected function setUp(): void
     {
         parent::setUp();

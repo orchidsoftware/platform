@@ -8,6 +8,8 @@ use Orchid\Tests\TestUnitCase;
 
 class HasTranslationsTest extends TestUnitCase
 {
+    private object $field;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -15,6 +17,8 @@ class HasTranslationsTest extends TestUnitCase
         $this->field = new class
         {
             use HasTranslations;
+
+            protected array $translations = [];
 
             public function getTranslations()
             {
@@ -82,6 +86,8 @@ class HasTranslationsTest extends TestUnitCase
         $field = new class
         {
             use HasTranslations;
+
+            protected array $translations = [];
 
             protected function translations(): Collection
             {

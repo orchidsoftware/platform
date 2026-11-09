@@ -1,0 +1,26 @@
+providers:
+    - Orchid\Platform\Providers\FoundationServiceProvider
+    - Orchid\Tests\App\ExemplarServiceProvider
+
+migrations:
+    - database/migrations
+
+env:
+    DB_FOREIGN_KEYS: true
+    AUTH_MODEL: Orchid\Platform\Models\User
+    APP_KEY: base64:ZEE4R0VGd25LRm9IVGhkS0RXMXhMUzhXRnFpU3l5Y2M=
+    APP_URL: http://127.0.0.1:8001
+    PLATFORM_DOMAIN: 127.0.0.1
+    PLATFORM_PREFIX: /dashboard
+    CACHE_STORE: array
+    SESSION_DRIVER: file
+    QUEUE_CONNECTION: sync
+
+workbench:
+    start: /dashboard
+    install: true
+    discovers:
+        web: true
+    build:
+        - asset-publish
+        - create-sqlite-db

@@ -9,6 +9,8 @@ namespace Orchid\Access;
  *
  * Groups describe the available permission catalog. Assigned permission
  * states are stored separately by the Permissions cast.
+ *
+ * @phpstan-consistent-constructor
  */
 class PermissionGroup
 {

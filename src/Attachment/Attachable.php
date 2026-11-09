@@ -18,6 +18,8 @@ trait Attachable
      * This method will be removed in the next major release.
      *
      * Get all the attachments associated with the given model.
+     *
+     * @return MorphToMany<Attachment, $this>
      */
     public function attachment(?string $group = null): MorphToMany
     {
@@ -26,9 +28,12 @@ trait Attachable
 
     /**
      * Get all the attachments associated with the given model.
+     *
+     * @return MorphToMany<Attachment, $this>
      */
     public function attachments(?string $group = null): MorphToMany
     {
+        // @phpstan-ignore return.type (The configured class replaces Attachment with a subclass.)
         return $this->morphToMany(
             Orchid::model(Attachment::class),
             'attachmentable',

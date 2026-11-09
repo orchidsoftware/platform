@@ -34,6 +34,9 @@ class EmptyUserModel extends Model
         return $query->where('name', 'RelationTest')->get()->all();
     }
 
+    /**
+     * @return Attribute<string, never>
+     */
     protected function full(): Attribute
     {
         return Attribute::make(get: function () {
@@ -41,9 +44,6 @@ class EmptyUserModel extends Model
         });
     }
 
-    /**
-     * @return Builder
-     */
     public function scopeAsFilerId(Builder $query, int $id): Collection
     {
         return $query->where('id', $id)->get();

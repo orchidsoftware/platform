@@ -136,12 +136,12 @@ class FieldTest extends TestUnitCase
     {
         $collect = collect(range(0, 10000));
 
-        $fields = $collect->map(fn ($value) => (new Field)->set('value', $value)->getId())->unique();
+        $fields = $collect->map(fn ($value) => (new Field)->set('value', $value)->generateId()->get('id'))->unique();
 
         $this->assertEquals($fields->count(), $collect->count());
 
-        $expected = (new Field)->set('value', 'test')->getId();
-        $actual = (new Field)->set('value', 'test')->getId();
+        $expected = (new Field)->set('value', 'test')->generateId()->get('id');
+        $actual = (new Field)->set('value', 'test')->generateId()->get('id');
 
         $this->assertEquals($expected, $actual);
     }

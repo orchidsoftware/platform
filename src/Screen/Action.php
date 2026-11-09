@@ -14,7 +14,7 @@ class Action extends Field implements Actionable
     /**
      * Override the form view.
      *
-     * @var string
+     * @var string|null
      */
     protected $typeForm = 'orchid::partials.fields.clear';
 
@@ -100,6 +100,8 @@ class Action extends Field implements Actionable
      * allowing the entire parent block of the element to become clickable.
      *
      * Notes: The parent block must have `position: relative`.
+     *
+     * @return $this
      */
     public function stretched(): self
     {

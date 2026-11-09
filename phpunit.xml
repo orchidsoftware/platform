@@ -25,21 +25,23 @@
     </testsuite>
   </testsuites>
   <php>
+    <env name="AUTH_MODEL" value="Orchid\Platform\Models\User"/>
     <env name="APP_NAME" value="ORCHID"/>
     <env name="APP_ENV" value="testing"/>
     <env name="APP_KEY" value="base64:ZEE4R0VGd25LRm9IVGhkS0RXMXhMUzhXRnFpU3l5Y2M="/>
     <env name="APP_DEBUG" value="true"/>
     <env name="APP_URL" value="http://127.0.0.1:8001"/>
+    <env name="DB_FOREIGN_KEYS" value="true"/>
     <env name="DB_CONNECTION" value="sqlite"/>
     <env name="BCRYPT_ROUNDS" value="4"/>
     <env name="PLATFORM_DOMAIN" value="127.0.0.1"/>
     <env name="PLATFORM_PREFIX" value="/dashboard"/>
-    <env name="CACHE_DRIVER" value="file"/>
+    <env name="CACHE_STORE" value="array"/>
     <env name="SESSION_DRIVER" value="file"/>
     <env name="SESSION_LIFETIME" value="120"/>
     <env name="SCOUT_DRIVER" value="collection"/>
     <env name="SCOUT_QUEUE" value="true"/>
-    <env name="QUEUE_DRIVER" value="sync"/>
+    <env name="QUEUE_CONNECTION" value="sync"/>
   </php>
   <logging/>
   <source>

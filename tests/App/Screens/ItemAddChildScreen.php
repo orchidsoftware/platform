@@ -20,7 +20,6 @@ class ItemAddChildScreen extends Screen
     /**
      * Fetch data to be displayed on the screen.
      *
-     * @param int $parent_id
      *
      * @return array
      */

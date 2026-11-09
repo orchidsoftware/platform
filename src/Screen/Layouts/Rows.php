@@ -37,14 +37,14 @@ abstract class Rows extends Layout
     /**
      * @throws Throwable
      *
-     * @return Factory|View
+     * @return Factory|View|null
      */
     public function build(Repository $repository)
     {
         $this->query = $repository;
 
         if (! $this->isSee()) {
-            return;
+            return null;
         }
 
         $form = new Builder($this->fields(), $repository);
