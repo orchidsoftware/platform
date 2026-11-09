@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Orchid\Screen\Layouts\Selection;
+use ReflectionClass;
 
 trait Filterable
 {
@@ -75,8 +76,30 @@ trait Filterable
     public function getOptionsFilter(): Collection
     {
         return collect([
-            'allowedFilters' => collect($this->allowedFilters ?? []),
-            'allowedSorts'   => collect($this->allowedSorts ?? []),
+            'allowedFilters' => collect($this->allowedFilterColumns(AllowedFilters::class)),
+            'allowedSorts'   => collect($this->allowedFilterColumns(AllowedSorts::class)),
         ]);
+    }
+
+    /**
+     * Use the nearest declaration, including an explicitly empty list.
+     *
+     * @param class-string<AllowedFilters|AllowedSorts> $attribute
+     */
+    private function allowedFilterColumns(string $attribute): array
+    {
+        $class = new ReflectionClass($this);
+
+        while ($class !== false) {
+            $attributes = $class->getAttributes($attribute);
+
+            if ($attributes !== []) {
+                return $attributes[0]->newInstance()->columns;
+            }
+
+            $class = $class->getParentClass();
+        }
+
+        return [];
     }
 }

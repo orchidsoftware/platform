@@ -6,6 +6,7 @@ namespace Orchid\Tests\Unit\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Filters\AllowedFilters;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\WhereDate;
 use Orchid\Tests\TestUnitCase;
@@ -14,14 +15,7 @@ class WhereDateTest extends TestUnitCase
 {
     private function getModelBuilder(): Builder
     {
-        $model = new class extends Model
-        {
-            use Filterable;
-
-            protected $allowedFilters = [
-                'WhereDate' => WhereDate::class,
-            ];
-        };
+        $model = new DateFilteredTestModel;
 
         return $model->filters();
     }
@@ -57,4 +51,10 @@ class WhereDateTest extends TestUnitCase
         $sql = $this->getModelBuilder()->toSql();
         $this->assertStringContainsString('select *', $sql);
     }
+}
+
+#[AllowedFilters(['WhereDate' => WhereDate::class])]
+class DateFilteredTestModel extends Model
+{
+    use Filterable;
 }

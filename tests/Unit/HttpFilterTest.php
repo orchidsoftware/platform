@@ -7,6 +7,8 @@ namespace Orchid\Tests\Unit;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Orchid\Filters\AllowedFilters;
+use Orchid\Filters\AllowedSorts;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\HttpFilter;
 use Orchid\Filters\Types\Ilike;
@@ -260,26 +262,24 @@ class HttpFilterTest extends TestUnitCase
 
     private function getModelBuilder(?HttpFilter $filter = null): Builder
     {
-        $model = new class extends Model
-        {
-            use Filterable;
-
-            protected $allowedFilters = [
-                'WhereIn'           => WhereIn::class,
-                'Like'              => Like::class,
-                'Ilike'             => Ilike::class,
-                'Where'             => Where::class,
-                'WhereBetween'      => WhereBetween::class,
-                'WhereMaxMin'       => WhereMaxMin::class,
-                'WhereDate'         => WhereDate::class,
-                'WhereDateStartEnd' => WhereDateStartEnd::class,
-            ];
-
-            protected $allowedSorts = [
-                'foobar',
-            ];
-        };
+        $model = new HttpFilterTestModel;
 
         return $model->filters(null, $filter);
     }
+}
+
+#[AllowedFilters([
+    'WhereIn'           => WhereIn::class,
+    'Like'              => Like::class,
+    'Ilike'             => Ilike::class,
+    'Where'             => Where::class,
+    'WhereBetween'      => WhereBetween::class,
+    'WhereMaxMin'       => WhereMaxMin::class,
+    'WhereDate'         => WhereDate::class,
+    'WhereDateStartEnd' => WhereDateStartEnd::class,
+])]
+#[AllowedSorts(['foobar'])]
+class HttpFilterTestModel extends Model
+{
+    use Filterable;
 }
