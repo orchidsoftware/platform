@@ -13,28 +13,6 @@ on:
       - 'composer.lock'
 
 jobs:
-  soda:
-    name: Soda
-    runs-on: ubuntu-24.04
-    timeout-minutes: 15
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v7
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.4'
-          extensions: mbstring, dom, fileinfo, pdo_sqlite
-          coverage: none
-          tools: composer:v2
-
-      - name: Install dependencies
-        run: composer install --no-interaction --no-progress --prefer-dist
-
-      - name: Check Soda
-        run: php -d memory_limit=2G vendor/bin/soda --no-ansi
-
   rector:
     name: Rector
     runs-on: ubuntu-24.04

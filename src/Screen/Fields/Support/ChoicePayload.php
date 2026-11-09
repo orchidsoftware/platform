@@ -284,11 +284,9 @@ final readonly class ChoicePayload implements Stringable
      */
     private function enumValue(mixed $value): mixed
     {
-        return match (true) {
-            $value instanceof \BackedEnum => $value->value,
-            $value instanceof \UnitEnum   => $value->name,
-            default                       => $value,
-        };
+        return $value instanceof \BackedEnum
+            ? $value->value
+            : ($value instanceof \UnitEnum ? $value->name : $value);
     }
 
     /**

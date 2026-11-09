@@ -154,31 +154,48 @@ class Chart extends Layout
             return null;
         }
 
-        $data = $this->normalizeData($repository->getContent($this->target));
+        $data = $repository->getContent($this->target);
 
-        return view($this->template, [
-            'title'       => __($this->title ?? ''),
-            'description' => __($this->description ?? ''),
-            'export'      => $this->export,
-            'height'      => (int) $this->options['height'],
-            'chart'       => [
-                'type'    => $this->type,
-                'options' => $this->options,
-                'data'    => $data,
-            ],
-        ]);
-    }
-
-    /**
-     * Validate and normalize chart data without losing dataset options.
-     */
-    private function normalizeData(mixed $data): array
-    {
         if (! is_array($data) || ! is_array($data['labels'] ?? null) || ! is_array($data['datasets'] ?? null)) {
             throw new InvalidArgumentException("Chart [{$this->target}] expects labels and datasets.");
         }
 
-        $this->validateOptions();
+        $common = ['height', 'width', 'colors', 'legend', 'tooltip'];
+        $axes = ['axes', 'grid', 'valueLabels', 'frameless'];
+        $supported = match ($this->type) {
+            self::TYPE_LINE       => [...$axes, 'smooth', 'dots', 'dotSize', 'line', 'area', 'gradient', 'strokeWidth'],
+            self::TYPE_BAR        => [...$axes, 'stacked', 'horizontal', 'radius'],
+            self::TYPE_MIXED      => [...$axes, 'gradient'],
+            self::TYPE_PIE        => ['maxSlices', 'startAngle', 'padAngle'],
+            self::TYPE_PERCENTAGE => ['maxSlices'],
+        };
+
+        foreach ($this->options as $option => $value) {
+            if (! in_array($option, [...$common, ...$supported], true)) {
+                throw new InvalidArgumentException("Unsupported {$this->type} chart option: {$option}");
+            }
+
+            $valid = match ($option) {
+                'height', 'width', 'dotSize', 'strokeWidth', 'radius', 'maxSlices', 'startAngle', 'padAngle' => (is_int($value) || is_float($value)) && is_finite((float) $value),
+                'colors'                                                                                     => is_array($value) && array_is_list($value),
+                'gradient'                                                                                   => is_bool($value) || is_array($value),
+                default                                                                                      => is_bool($value),
+            };
+
+            if (! $valid) {
+                throw new InvalidArgumentException("Invalid type for chart option: {$option}");
+            }
+        }
+
+        if (is_array($this->options['gradient'] ?? null)) {
+            foreach ($this->options['gradient'] as $endpoint => $opacity) {
+                if (! in_array($endpoint, ['fromOpacity', 'toOpacity'], true)
+                    || (! is_int($opacity) && ! is_float($opacity)) || ! is_finite((float) $opacity)
+                    || $opacity < 0 || $opacity > 1) {
+                    throw new InvalidArgumentException('Chart gradient expects fromOpacity and toOpacity between 0 and 1.');
+                }
+            }
+        }
 
         if (in_array($this->type, [self::TYPE_PIE, self::TYPE_PERCENTAGE], true) && count($data['datasets']) !== 1) {
             throw new InvalidArgumentException("A {$this->type} chart requires exactly one dataset.");
@@ -207,94 +224,16 @@ class Chart extends Layout
             $data['markers'] = array_merge($data['markers'] ?? [], $this->markers);
         }
 
-        return $data;
-    }
-
-    /**
-     * Return the option names supported by the selected chart type.
-     */
-    private function supportedOptions(): array
-    {
-        $common = ['height', 'width', 'colors', 'legend', 'tooltip'];
-        $axes = ['axes', 'grid', 'valueLabels', 'frameless'];
-        $supported = match ($this->type) {
-            self::TYPE_LINE       => [...$axes, 'smooth', 'dots', 'dotSize', 'line', 'area', 'gradient', 'strokeWidth'],
-            self::TYPE_BAR        => [...$axes, 'stacked', 'horizontal', 'radius'],
-            self::TYPE_MIXED      => [...$axes, 'gradient'],
-            self::TYPE_PIE        => ['maxSlices', 'startAngle', 'padAngle'],
-            self::TYPE_PERCENTAGE => ['maxSlices'],
-        };
-
-        return [...$common, ...$supported];
-    }
-
-    /**
-     * Reject unsupported options and invalid presentation values.
-     */
-    private function validateOptions(): void
-    {
-        $supported = $this->supportedOptions();
-
-        foreach ($this->options as $option => $value) {
-            if (! in_array($option, $supported, true)) {
-                throw new InvalidArgumentException("Unsupported {$this->type} chart option: {$option}");
-            }
-
-            if (! $this->validOptionValue($option, $value)) {
-                throw new InvalidArgumentException("Invalid type for chart option: {$option}");
-            }
-        }
-
-        $this->validateGradient();
-    }
-
-    /**
-     * Check the value type required by each presentation option.
-     */
-    private function validOptionValue(string $option, mixed $value): bool
-    {
-        if (in_array($option, ['height', 'width', 'dotSize', 'strokeWidth', 'radius', 'maxSlices', 'startAngle', 'padAngle'], true)) {
-            return $this->finiteNumber($value);
-        }
-
-        return match ($option) {
-            'colors'   => is_array($value) && array_is_list($value),
-            'gradient' => is_bool($value) || is_array($value),
-            default    => is_bool($value),
-        };
-    }
-
-    /**
-     * Ensure gradient opacity endpoints remain within the supported range.
-     */
-    private function validateGradient(): void
-    {
-        $gradient = $this->options['gradient'] ?? null;
-
-        if (! is_array($gradient)) {
-            return;
-        }
-
-        foreach ($gradient as $endpoint => $opacity) {
-            if (! in_array($endpoint, ['fromOpacity', 'toOpacity'], true) || ! $this->validOpacity($opacity)) {
-                throw new InvalidArgumentException('Chart gradient expects fromOpacity and toOpacity between 0 and 1.');
-            }
-        }
-    }
-
-    /**
-     * Accept finite numeric opacity values between zero and one.
-     */
-    private function validOpacity(mixed $value): bool
-    {
-        return $this->finiteNumber($value) && $value >= 0 && $value <= 1;
-    }
-
-    /**
-     * Accept numeric values representable by the chart transport.
-     */
-    private function finiteNumber(mixed $value): bool
-    {
-        return (is_int($value) || is_float($value)) && is_finite((float) $value);
+        return view($this->template, [
+            'title'       => __($this->title ?? ''),
+            'description' => __($this->description ?? ''),
+            'export'      => $this->export,
+            'height'      => (int) $this->options['height'],
+            'chart'       => [
+                'type'    => $this->type,
+                'options' => $this->options,
+                'data'    => $data,
+            ],
+        ]);
     }
 }

@@ -36,14 +36,12 @@ class OrchidChannel extends DatabaseChannel
     protected function getData($notifiable, Notification $notification): array
     {
         if (method_exists($notification, 'toOrchid')) {
-            $data = $notification->toOrchid($notifiable);
-
-            return is_array($data) ? $data : $data->data;
+            return is_array($data = $notification->toOrchid($notifiable))
+                ? $data : $data->data;
         }
         if (method_exists($notification, 'toDashboard')) {
-            $data = $notification->toDashboard($notifiable);
-
-            return is_array($data) ? $data : $data->data;
+            return is_array($data = $notification->toDashboard($notifiable))
+                ? $data : $data->data;
         }
 
         throw new \RuntimeException('Notification is missing toOrchid or toDashboard method.');
