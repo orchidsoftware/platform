@@ -81,7 +81,7 @@ vendor/bin/testbench orchid:admin
 vendor/bin/testbench serve --host=127.0.0.1 --port=8001
 ```
 
-Open `http://127.0.0.1:8001/dashboard`. This uses Testbench's disposable SQLite database inside `vendor`. Main tests use a separate in-memory database, transactions, and enabled foreign keys. Vite is disabled for Main tests, so they do not need published assets.
+Open `http://127.0.0.1:8001/dashboard`. This uses Testbench's disposable SQLite database inside `vendor`. Main tests use a separate in-memory database, transactions, and enabled foreign keys. Database setup is deferred until the first query or transaction in each test. Vite is disabled for Main tests, so they do not need published assets.
 
 ### Browser tests
 
