@@ -55,6 +55,25 @@ Curious but not (yet) in the mood to read the documentation? Click [here](https:
 Orchid's [blog](https://blog.orchid.software/) informs about news and announcements around Laravel Orchid, including related projects.
 -->
 
+## Upgrading model scopes
+
+This version requires Laravel 12.4 or later. Orchid's model scopes now use Laravel's `#[Scope]` attribute. Query calls such as `User::filters()->defaultSort('id')` keep the same names.
+
+If your model overrides a scope from `Filterable`, `UserAccess`, `Chartable`, or `Sortable`, rename the method, remove the `scope` prefix, and add the attribute. For example:
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
+
+#[Scope]
+protected function defaultSort(Builder $query, string $column, string $direction = 'asc'): Builder
+{
+    return $query->orderBy($column, $direction);
+}
+```
+
+Update direct calls such as `parent::scopeDefaultSort(...)` to `parent::defaultSort(...)` as well. Unrelated custom scopes can continue using Laravel's `scope` naming convention.
+
 ## Development checks
 
 Run these commands from the package root:

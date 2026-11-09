@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Concerns;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 
 trait Sortable
@@ -46,7 +47,8 @@ trait Sortable
      *
      * @return Builder
      */
-    public function scopeSorted($query, $direction = 'ASC')
+    #[Scope]
+    protected function sorted($query, $direction = 'ASC')
     {
         $column = $this->getSortColumnName();
 

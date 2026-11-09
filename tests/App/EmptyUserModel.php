@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\App;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
@@ -19,17 +20,20 @@ class EmptyUserModel extends Model
      */
     protected $table = 'users';
 
-    public function scopeAsBuilder(Builder $query): Builder
+    #[Scope]
+    protected function asBuilder(Builder $query): Builder
     {
         return $query->where('name', 'RelationTest');
     }
 
-    public function scopeAsCollection(Builder $query): Collection
+    #[Scope]
+    protected function asCollection(Builder $query): Collection
     {
         return $query->where('name', 'RelationTest')->get();
     }
 
-    public function scopeAsArray(Builder $query): array
+    #[Scope]
+    protected function asArray(Builder $query): array
     {
         return $query->where('name', 'RelationTest')->get()->all();
     }
@@ -44,7 +48,8 @@ class EmptyUserModel extends Model
         });
     }
 
-    public function scopeAsFilerId(Builder $query, int $id): Collection
+    #[Scope]
+    protected function asFilerId(Builder $query, int $id): Collection
     {
         return $query->where('id', $id)->get();
     }

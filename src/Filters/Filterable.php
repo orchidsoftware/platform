@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Filters;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Orchid\Screen\Layouts\Selection;
@@ -13,7 +14,8 @@ trait Filterable
     /**
      * Apply the filter to the given query.
      */
-    public function scopeFiltersApply(Builder $query, iterable $filters = []): Builder
+    #[Scope]
+    protected function filtersApply(Builder $query, iterable $filters = []): Builder
     {
         return collect($filters)
             ->map(fn ($filter) => is_object($filter) ? $filter : resolve($filter))
@@ -25,20 +27,22 @@ trait Filterable
      *
      * @param string|Selection $class
      */
-    public function scopeFiltersApplySelection(Builder $query, $class): Builder
+    #[Scope]
+    protected function filtersApplySelection(Builder $query, $class): Builder
     {
         /** @var Selection $selection */
         $selection = is_object($class) ? $class : resolve($class);
 
         $filters = $selection->filters();
 
-        return $this->scopeFiltersApply($query, $filters);
+        return $this->filtersApply($query, $filters);
     }
 
     /**
      * @param iterable|string|Selection $kit
      */
-    public function scopeFilters(Builder $builder, mixed $kit = null, ?HttpFilter $httpFilter = null): Builder
+    #[Scope]
+    protected function filters(Builder $builder, mixed $kit = null, ?HttpFilter $httpFilter = null): Builder
     {
         $filter = $httpFilter ?? new HttpFilter;
         $filter->build($builder);
@@ -48,14 +52,15 @@ trait Filterable
         }
 
         return is_iterable($kit)
-            ? $this->scopeFiltersApply($builder, $kit)
-            : $this->scopeFiltersApplySelection($builder, $kit);
+            ? $this->filtersApply($builder, $kit)
+            : $this->filtersApplySelection($builder, $kit);
     }
 
     /**
      * @return Builder
      */
-    public function scopeDefaultSort(Builder $builder, string $column, string $direction = 'asc')
+    #[Scope]
+    protected function defaultSort(Builder $builder, string $column, string $direction = 'asc')
     {
         if (empty($builder->getQuery()->orders)) {
             $builder->orderBy($column, $direction);
