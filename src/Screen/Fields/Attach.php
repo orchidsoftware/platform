@@ -98,11 +98,8 @@ class Attach extends Field
     /**
      * Set the storage disk and visibility for attachments.
      *
-     * @param string $storage
      *
      * @throws \Throwable if the specified storage disk is not found in configuration.
-     *
-     * @return static
      */
     public function storage(string $storage): static
     {
@@ -123,8 +120,6 @@ class Attach extends Field
      * the server's maximum.
      *
      * @throws \Throwable if the desired maximum file size exceeds server settings.
-     *
-     * @return static
      */
     protected function ensureMaxSizeWithinServerLimits(): static
     {
@@ -151,8 +146,6 @@ class Attach extends Field
      *
      * This method filters the existing attachments by the specified group and
      * updates the field's value to include only attachments that belong to the group.
-     *
-     * @return static
      */
     protected function filterAttachmentsByGroup(): static
     {
@@ -174,8 +167,6 @@ class Attach extends Field
      *
      * This method fetches related attachments from the database based on their IDs,
      * sorts them by the `sort` field, and updates the field's value with the sorted attachments.
-     *
-     * @return static
      */
     protected function loadRelatedAttachments(): static
     {

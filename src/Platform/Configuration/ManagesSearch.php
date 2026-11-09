@@ -18,10 +18,6 @@ trait ManagesSearch
 
     /**
      * Registers a set of models for which full-text search is required.
-     *
-     * @param array $models
-     *
-     * @return static
      */
     public function registerSearch(array $models): static
     {
@@ -55,8 +51,6 @@ trait ManagesSearch
     /**
      * Build a single search result group for the given model.
      *
-     * @param Model       $model
-     * @param string|null $query
      *
      * @throws \Throwable
      *
@@ -71,7 +65,7 @@ trait ManagesSearch
             sprintf(
                 "The presenter must implement '%s' for model %s.",
                 Searchable::class,
-                get_class($model)
+                $model::class
             )
         );
 

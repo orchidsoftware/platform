@@ -175,8 +175,6 @@ class LoginController extends Controller
 
     /**
      * Get a unique identifier for the auth session value.
-     *
-     * @return string
      */
     private function nameForLock(): string
     {

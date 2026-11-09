@@ -53,9 +53,6 @@ class File
      */
     protected $duplicate = false;
 
-    /**
-     * @var int
-     */
     protected int $sort = 0;
 
     /**
@@ -87,8 +84,6 @@ class File
      * an already stored entry matching the hash of the file
      *
      * @throws FilesystemException
-     *
-     * @return Model|Attachment
      */
     public function load(): Model
     {
@@ -147,8 +142,6 @@ class File
 
     /**
      * Save the file to disk and create an attachment entry in the db
-     *
-     * @return Model|Attachment
      */
     private function save(): Model
     {
@@ -193,8 +186,6 @@ class File
     }
 
     /**
-     * @param int $sort
-     *
      * @return $this
      */
     public function sort(int $sort = 0)

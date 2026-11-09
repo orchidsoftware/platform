@@ -13,11 +13,6 @@ trait ManagesModelOptions
 
     /**
      * Get the model instance for a given key or class name.
-     *
-     * @param string      $key
-     * @param string|null $default
-     *
-     * @return mixed
      */
     public function modelClass(string $key, ?string $default = null): mixed
     {

@@ -7,10 +7,7 @@ trait ScreenTesting
     /**
      * Get a DynamicTestScreen object.
      *
-     * @param string|null $name       Name of the screen
-     * @param array       $parameters
-     *
-     * @return DynamicTestScreen
+     * @param string|null $name Name of the screen
      */
     public function screen(?string $name = null, array $parameters = []): DynamicTestScreen
     {

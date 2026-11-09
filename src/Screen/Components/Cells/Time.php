@@ -12,9 +12,7 @@ class Time extends Component
     /**
      * Create a new component instance.
      *
-     * @param float                    $value
-     * @param DateTimeZone|string|null $tz
-     * @param string                   $unitPrecision
+     * @param float $value
      */
     public function __construct(
         protected mixed $value,

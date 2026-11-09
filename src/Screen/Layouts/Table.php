@@ -93,10 +93,6 @@ abstract class Table extends Layout
 
     /**
      * Set the table title.
-     *
-     * @param string|null $title
-     *
-     * @return self
      */
     public function title(?string $title = null): self
     {
@@ -158,11 +154,6 @@ abstract class Table extends Layout
 
     /**
      * Determine if table header should be displayed.
-     *
-     * @param Collection                           $columns
-     * @param Collection|Paginator|CursorPaginator $row
-     *
-     * @return bool
      */
     protected function hasHeader(Collection $columns, Collection|Paginator|CursorPaginator $row): bool
     {

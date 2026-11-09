@@ -6,7 +6,6 @@ namespace Orchid\Screen\Actions;
 
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Orchid\Screen\Action;
-use Orchid\Screen\Field;
 use Orchid\Support\Facades\Orchid;
 
 /**
@@ -107,9 +106,6 @@ class Button extends Action
         });
     }
 
-    /**
-     * @return Button|Field
-     */
     public function novalidate(bool $novalidate = true): static
     {
         return $this->set('formnovalidate', var_export($novalidate, true));
@@ -128,7 +124,6 @@ class Button extends Action
     /**
      * Sets the parameters for the action.
      *
-     * @param array|object $parameters
      *
      * @return $this
      */
@@ -139,10 +134,6 @@ class Button extends Action
 
     /**
      * Normalizes parameters before setting them.
-     *
-     * @param array|object $parameters
-     *
-     * @return array|object
      */
     protected function prepareActionParameters(array|object $parameters): array|object
     {
@@ -158,10 +149,6 @@ class Button extends Action
 
     /**
      * Extracts key from Eloquent model if applicable.
-     *
-     * @param mixed $value
-     *
-     * @return mixed
      */
     protected function extractRouteKey(mixed $value): mixed
     {
@@ -180,8 +167,6 @@ class Button extends Action
      * @param array|string $name
      * @param mixed        $parameters
      * @param bool         $absolute
-     *
-     * @return static
      */
     public function route($name, $parameters = [], $absolute = true): static
     {

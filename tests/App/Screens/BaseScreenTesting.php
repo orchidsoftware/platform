@@ -73,11 +73,6 @@ class BaseScreenTesting extends Screen
         return $request->user()->toJson();
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return void
-     */
     public function methodWithValidation(Request $request): void
     {
         $request->validate([

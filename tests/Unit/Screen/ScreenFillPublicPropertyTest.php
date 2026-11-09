@@ -16,8 +16,6 @@ class ScreenFillPublicPropertyTest extends TestUnitCase
      * with various data types: array, object, boolean, string, and float.
      *
      * @throws \ReflectionException
-     *
-     * @return void
      */
     public function testFillPublicPropertyWithVariousValueTypes(): void
     {
@@ -83,7 +81,6 @@ class ScreenFillPublicPropertyTest extends TestUnitCase
         // Use reflection to access the protected method getPublicPropertyNames
         $reflection = new \ReflectionClass($screen);
         $method = $reflection->getMethod('getPublicPropertyNames');
-        $method->setAccessible(true);
 
         // Invoke the protected method and get the result
         $result = $method->invoke($screen);

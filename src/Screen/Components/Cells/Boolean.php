@@ -8,33 +8,19 @@ use Illuminate\View\Component;
 class Boolean extends Component
 {
     /**
-     * @var float
-     */
-    public ?bool $value;
-
-    /**
-     * Optional label displayed for a false value.
-     */
-    public ?string $false;
-
-    /**
-     * Optional label displayed for a true value.
-     */
-    public ?string $true;
-
-    /**
      * Create a new component instance.
      *
      * @param bool        $value
-     * @param string|null $true
      * @param string|null $falseLabel
      */
-    public function __construct(?bool $value, ?string $true = null, ?string $false = null)
-    {
-        $this->value = $value;
-        $this->true = $true;
-        $this->false = $false;
-    }
+    public function __construct(
+        public ?bool $value,
+        public ?string $true = null,
+        /**
+         * Optional label displayed for a false value.
+         */
+        public ?string $false = null
+    ) {}
 
     /**
      * Get the view/contents that represent the component.

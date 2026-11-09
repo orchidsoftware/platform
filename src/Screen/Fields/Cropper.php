@@ -188,8 +188,6 @@ class Cropper extends Picture
      * Defaults to 'medium'.
      *
      * @param string $quality The quality of image smoothing.
-     *
-     * @return static
      */
     public function imageSmoothingQuality(string $quality = 'medium'): static
     {

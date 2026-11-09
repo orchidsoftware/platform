@@ -21,10 +21,8 @@ abstract class OrchidServiceProvider extends ServiceProvider
 {
     /**
      * The Orchid Dashboard instance.
-     *
-     * @var Orchid|null
      */
-    protected ?Orchid $orchid;
+    protected ?Orchid $orchid = null;
 
     /**
      * Boot the application events.
@@ -45,14 +43,10 @@ abstract class OrchidServiceProvider extends ServiceProvider
 
     /**
      * Get the Orchid Dashboard instance.
-     *
-     * @return Orchid
      */
     private function orchidSingleton(): Orchid
     {
-        if ($this->orchid === null) {
-            $this->orchid = $this->app->make(Orchid::class);
-        }
+        $this->orchid ??= $this->app->make(Orchid::class);
 
         return $this->orchid;
     }
@@ -142,8 +136,6 @@ abstract class OrchidServiceProvider extends ServiceProvider
 
     /**
      * Get the icon paths and prefixes.
-     *
-     * @return array
      */
     public function icons(): array
     {
@@ -232,10 +224,6 @@ abstract class OrchidServiceProvider extends ServiceProvider
 
     /**
      * Define routes setup.
-     *
-     * @param Router $router
-     *
-     * @return void
      */
     public function routes(Router $router): void
     {
@@ -264,8 +252,6 @@ abstract class OrchidServiceProvider extends ServiceProvider
 
     /**
      * Define the resources to be registered.
-     *
-     * @return void
      */
     protected function defineResources(): void
     {

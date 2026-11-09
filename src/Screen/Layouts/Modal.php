@@ -273,7 +273,7 @@ class Modal extends Layout
         }
 
         return [
-            '_screen'   => Crypt::encryptString(get_class($screen)),
+            '_screen'   => Crypt::encryptString($screen::class),
             '_call'     => $this->dataLoadingMethod,
             '_template' => $this->getSlug(),
         ];

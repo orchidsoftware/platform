@@ -25,8 +25,6 @@ enum Color
 
     /**
      * This method returns the name of the given color.
-     *
-     * @return string
      */
     public function name(): string
     {

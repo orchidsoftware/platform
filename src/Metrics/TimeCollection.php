@@ -9,10 +9,7 @@ use Illuminate\Support\Str;
 class TimeCollection extends Collection
 {
     /**
-     * @param        $values
-     * @param string $format
-     *
-     * @return TimeCollection
+     * @param $values
      */
     public function makeFromKeyValue($values, string $format = 'Y-m-d'): TimeCollection
     {
@@ -27,10 +24,7 @@ class TimeCollection extends Collection
     /**
      * Convert to a format suitable for a chart
      *
-     * @param string   $name
      * @param \Closure $closure
-     *
-     * @return array
      */
     public function toChart(string $name, ?\Closure $closure = null): array
     {
@@ -47,8 +41,6 @@ class TimeCollection extends Collection
 
     /**
      * Convert collection data to day names
-     *
-     * @return TimeCollection
      */
     public function showDaysOfWeek(): TimeCollection
     {
@@ -61,8 +53,6 @@ class TimeCollection extends Collection
 
     /**
      * Convert collection data to abbreviated day names
-     *
-     * @return TimeCollection
      */
     public function showMinDaysOfWeek(): TimeCollection
     {
@@ -75,10 +65,6 @@ class TimeCollection extends Collection
 
     /**
      * Transform the labels using the provided callback
-     *
-     * @param callable $callback
-     *
-     * @return TimeCollection
      */
     public function transformLabel(callable $callback): TimeCollection
     {
@@ -91,8 +77,6 @@ class TimeCollection extends Collection
 
     /**
      * Delete segment if at least one of the values is missing.
-     *
-     * @return TimeCollection
      */
     public function withoutZeroValues(): TimeCollection
     {

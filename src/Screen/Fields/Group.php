@@ -9,7 +9,7 @@ use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Contracts\Groupable;
 use Orchid\Screen\Field;
 
-class Group implements Fieldable, Groupable
+class Group implements \Stringable, Fieldable, Groupable
 {
     /**
      * Default attributes value.
@@ -147,10 +147,7 @@ class Group implements Fieldable, Groupable
     }
 
     /**
-     * @param string $key
-     * @param mixed  $value
-     *
-     * @return static
+     * @param mixed $value
      */
     public function set(string $key, $value = true): static
     {
@@ -177,11 +174,6 @@ class Group implements Fieldable, Groupable
         return $this->attributes;
     }
 
-    /**
-     * @param string $name
-     *
-     * @return static
-     */
     public function form(string $name): static
     {
         $group = array_map(fn ($field) => $field->form($name), $this->getGroup());
@@ -249,9 +241,6 @@ class Group implements Fieldable, Groupable
         return (string) $this->render();
     }
 
-    /**
-     * @return static
-     */
     public function toEnd(): static
     {
         return $this->set('itemToEnd', true);

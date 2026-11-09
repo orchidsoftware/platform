@@ -12,9 +12,7 @@ class DateTime extends Component
     /**
      * Create a new component instance.
      *
-     * @param float                    $value
-     * @param string                   $format
-     * @param DateTimeZone|string|null $tz
+     * @param float $value
      */
     public function __construct(
         protected mixed $value,

@@ -44,14 +44,10 @@ trait Presentable
 
     /**
      * @param ReflectionClass $ref
-     *
-     * @return \ReflectionAttribute|null
      */
     private function findPresenterAttribute(?ReflectionClass $reflectionClass = null): ?\ReflectionAttribute
     {
-        if ($reflectionClass === null) {
-            $reflectionClass = new ReflectionClass($this);
-        }
+        $reflectionClass ??= new ReflectionClass($this);
 
         $attributes = $reflectionClass
             ->getAttributes(UsePresenter::class, \ReflectionAttribute::IS_INSTANCEOF);

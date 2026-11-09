@@ -48,7 +48,6 @@ abstract class Accordion extends Layout
     /**
      * Make accordion items stay open when another item is opened.
      *
-     * @param bool $stayOpen
      *
      * @return $this
      */
@@ -62,7 +61,6 @@ abstract class Accordion extends Layout
     /**
      * Set active accordion(s).
      *
-     * @param string|array $activeAccordion
      *
      * @return $this
      */

@@ -25,7 +25,7 @@ class SerializeRetrievableScreen extends Screen
 {
     public $public = 'Public';
 
-    public $callback = null;
+    public $callback;
 
     public array $data = [];
 

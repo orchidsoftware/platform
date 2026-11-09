@@ -32,8 +32,6 @@ abstract class Sortable extends Layout
 
     /**
      * Flag indicating whether block headers are hidden or shown.
-     *
-     * @var bool
      */
     protected bool $showBlockHeaders = false;
 
@@ -81,9 +79,6 @@ abstract class Sortable extends Layout
      */
     abstract protected function columns(): iterable;
 
-    /**
-     * @return Rows
-     */
     public function title(?string $title = null): self
     {
         $this->title = $title;
@@ -107,8 +102,6 @@ abstract class Sortable extends Layout
 
     /**
      * Return a success message for sorting operation.
-     *
-     * @return string
      */
     public function successSortMessage(): string
     {
@@ -117,8 +110,6 @@ abstract class Sortable extends Layout
 
     /**
      * Return a failure message for sorting operation.
-     *
-     * @return string
      */
     public function failureSortMessage(): string
     {

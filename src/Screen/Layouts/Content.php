@@ -7,7 +7,7 @@ namespace Orchid\Screen\Layouts;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
-abstract class Content extends Layout
+abstract class Content extends Layout implements \Stringable
 {
     /**
      * @var Repository|null
@@ -15,21 +15,16 @@ abstract class Content extends Layout
     protected $query;
 
     /**
-     * Key property for a query.
-     *
-     * @var mixed
-     */
-    protected $target;
-
-    /**
      * Card constructor.
      *
      * @param mixed $target
      */
-    public function __construct($target)
-    {
-        $this->target = $target;
-    }
+    public function __construct(
+        /**
+         * Key property for a query.
+         */
+        protected $target
+    ) {}
 
     /**
      * Resolve content from the repository and render it as a string.

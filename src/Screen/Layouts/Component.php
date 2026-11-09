@@ -15,11 +15,6 @@ use Orchid\Support\Blade;
 abstract class Component extends Layout
 {
     /**
-     * @var string
-     */
-    private $component;
-
-    /**
      * Additional data passed to the Blade component.
      */
     private array $data = [];
@@ -27,10 +22,7 @@ abstract class Component extends Layout
     /**
      * Component constructor.
      */
-    public function __construct(string $component)
-    {
-        $this->component = $component;
-    }
+    public function __construct(private readonly string $component) {}
 
     /**
      * @throws BindingResolutionException

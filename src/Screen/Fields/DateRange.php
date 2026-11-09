@@ -47,10 +47,6 @@ class DateRange extends Field implements ComplexFieldConcern
 
     /**
      * Disable native mobile pickers in favor of calendar
-     *
-     * @param bool $disable
-     *
-     * @return static
      */
     public function disableMobile(bool $disable = true): static
     {
@@ -87,9 +83,7 @@ class DateRange extends Field implements ComplexFieldConcern
                 return;
             }
 
-            if ($format === null) {
-                $format = $this->get('data-datetime-date-format');
-            }
+            $format ??= $this->get('data-datetime-date-format');
 
             foreach ($values as $key => $value) {
 

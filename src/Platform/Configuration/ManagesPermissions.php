@@ -38,7 +38,6 @@ trait ManagesPermissions
     /**
      * Retrieve permissions based on specified groups.
      *
-     * @param array|string $groups
      *
      * @return Collection<string, Collection<int, array{slug: string, description: string}>>
      */
@@ -52,7 +51,6 @@ trait ManagesPermissions
     /**
      * Get all registered permissions with the enabled state.
      *
-     * @param array|string $groups
      *
      * @return Permissions Assigned permission states keyed by slug.
      */
@@ -63,10 +61,6 @@ trait ManagesPermissions
 
     /**
      * Remove a specific permission by key.
-     *
-     * @param string $key
-     *
-     * @return static
      */
     public function removePermission(string $key): static
     {

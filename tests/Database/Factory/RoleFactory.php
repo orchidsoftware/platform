@@ -5,6 +5,9 @@ namespace Orchid\Platform\Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchid\Tests\App\Role;
 
+/**
+ * @extends Factory<Role>
+ */
 class RoleFactory extends Factory
 {
     /**
@@ -21,10 +24,10 @@ class RoleFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->randomElement(['Admin', 'User']);
+        $name = fake()->randomElement(['Admin', 'User']);
 
         return [
-            'name'        => $this->faker->unique()->lexify($name.'_??????'),
+            'name'        => fake()->unique()->lexify($name.'_??????'),
             'permissions' => [
                 'orchid.index'       => 1,
                 'orchid'             => 1,

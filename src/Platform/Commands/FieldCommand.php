@@ -90,8 +90,6 @@ class FieldCommand extends GeneratorCommand
 
     /**
      * Generate the Blade view file for the field.
-     *
-     * @return void
      */
     protected function writeView(): void
     {

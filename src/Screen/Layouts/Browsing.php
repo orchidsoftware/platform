@@ -67,9 +67,6 @@ class Browsing extends Layout
 
     /**
      * Indicates how the browser should load the iframe
-     *
-     *
-     * @return $this
      */
     public function loading(?string $loading = null): Browsing
     {
@@ -80,9 +77,6 @@ class Browsing extends Layout
 
     /**
      * A Content Security Policy enforced for the embedded resource.
-     *
-     *
-     * @return $this
      */
     public function csp(?string $csp = null): Browsing
     {
@@ -93,9 +87,6 @@ class Browsing extends Layout
 
     /**
      * A targetable name for the embedded browsing context.
-     *
-     *
-     * @return $this
      */
     public function name(?string $name = null): Browsing
     {
@@ -106,9 +97,6 @@ class Browsing extends Layout
 
     /**
      * Indicates which referrer to send when fetching the frame's resource.
-     *
-     *
-     * @return $this
      */
     public function referrerpolicy(?string $referrerpolicy = null): Browsing
     {
@@ -120,9 +108,6 @@ class Browsing extends Layout
     /**
      * Applies extra restrictions to the content in the frame.
      * The value of the attribute can either be empty to apply all restrictions.
-     *
-     *
-     * @return $this
      */
     public function sandbox(?string $sandbox = null): Browsing
     {
@@ -134,9 +119,6 @@ class Browsing extends Layout
     /**
      * Applies extra restrictions to the content in the frame.
      * The value of the attribute can either be empty to apply all restrictions.
-     *
-     *
-     * @return $this
      */
     public function src(string $src): Browsing
     {
@@ -147,9 +129,6 @@ class Browsing extends Layout
 
     /**
      * Inline HTML to embed, overriding the src attribute.
-     *
-     *
-     * @return $this
      */
     public function srcdoc(string $srcdoc): Browsing
     {

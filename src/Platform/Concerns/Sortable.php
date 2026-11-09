@@ -10,8 +10,6 @@ trait Sortable
 {
     /**
      * Get the column name for sorting.
-     *
-     * @return string
      */
     public function getSortColumnName(): string
     {
@@ -20,8 +18,6 @@ trait Sortable
 
     /**
      * Get the value of the sorting column.
-     *
-     * @return int|null
      */
     public function getSortColumnValue(): ?int
     {

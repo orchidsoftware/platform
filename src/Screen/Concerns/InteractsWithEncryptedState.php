@@ -22,9 +22,7 @@ trait InteractsWithEncryptedState
      */
     protected function extractState(?string $state = null): Repository
     {
-        if ($state === null) {
-            $state = request()->input('_state', session()->get('_state'));
-        }
+        $state ??= request()->input('_state', session()->get('_state'));
 
         // Check if the '_state' parameter is present
         if ($state === null) {

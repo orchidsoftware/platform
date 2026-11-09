@@ -14,7 +14,6 @@ class PermissionGroup
 {
     /**
      * @param array<int, array{slug: string, description: string}> $definitions
-     * @param string                                               $name
      */
     public function __construct(
         public string $name,

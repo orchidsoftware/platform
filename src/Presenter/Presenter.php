@@ -12,17 +12,14 @@ namespace Orchid\Presenter;
 abstract class Presenter
 {
     /**
-     * The entity instance being presented.
-     */
-    protected object $entity;
-
-    /**
      * Wrap the entity whose values the presenter exposes.
      */
-    public function __construct(object $entity)
-    {
-        $this->entity = $entity;
-    }
+    public function __construct(
+        /**
+         * The entity instance being presented.
+         */
+        protected object $entity
+    ) {}
 
     /**
      * Allow property-style access: falls back to a same-named method, then to the entity.

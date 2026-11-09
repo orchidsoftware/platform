@@ -235,9 +235,6 @@ class TD extends Cell
         ]);
     }
 
-    /**
-     * @return Field|null
-     */
     protected function buildFilter(): ?Field
     {
         /** @var Field $filter|string */
@@ -258,20 +255,15 @@ class TD extends Cell
             ->autofocus();
     }
 
-    /**
-     * @return Field
-     */
     protected function detectConstantFilter(string $filter): Field
     {
-        $input = match ($filter) {
+        return match ($filter) {
             self::FILTER_DATE_RANGE   => DateRange::make()->disableMobile(),
             self::FILTER_NUMBER_RANGE => NumberRange::make(),
             self::FILTER_SELECT       => Select::make()->options($this->filterOptions)->multiple(),
             self::FILTER_DATE         => DateTimer::make()->inline()->format('Y-m-d'),
             default                   => Input::make()->type($filter),
         };
-
-        return $input;
     }
 
     /**
@@ -364,8 +356,6 @@ class TD extends Cell
      * @deprecated is not usage
      *
      * Decides whether a filter can be provided with a complex (array-like) value, or it needs a scalar one.
-     *
-     * @param Field $field
      */
     protected function isComplexFieldType(Field $field): bool
     {

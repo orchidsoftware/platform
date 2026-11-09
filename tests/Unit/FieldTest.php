@@ -114,8 +114,6 @@ class FieldTest extends TestUnitCase
     }
 
     /**
-     * @dataProvider exampleFields
-     *
      * @throws \Throwable
      */
     #[DataProvider('exampleFields')]

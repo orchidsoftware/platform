@@ -23,11 +23,6 @@ class DependentSumListener extends Listener
         'second',
     ];
 
-    /**
-     * @param string|null $slug
-     *
-     * @return void
-     */
     public function __construct(?string $slug = null)
     {
         $this->slug = $slug ?? static::class;
@@ -68,12 +63,6 @@ class DependentSumListener extends Listener
         return sha1((string) $this->slug);
     }
 
-    /**
-     * @param Repository $repository
-     * @param Request    $request
-     *
-     * @return Repository
-     */
     public function handle(Repository $repository, Request $request): Repository
     {
         return $repository

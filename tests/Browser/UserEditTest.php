@@ -14,7 +14,7 @@ class UserEditTest extends TestBrowserCase
     {
         $this->browse(function (Browser $browser) {
             $user = $this->createAdminUser();
-            $email = $this->faker()->safeEmail;
+            $email = $this->faker()->safeEmail();
             $browser
                 ->loginAs($user)
                 ->visitRoute('orchid.users')

@@ -22,10 +22,6 @@ class Controller extends BaseController
      *
      * This method uses middleware to enforce permission checks.
      * The check is done for each request to this controller or its routes.
-     *
-     * @param string $permission
-     *
-     * @return void
      */
     protected function checkPermission(string $permission): void
     {

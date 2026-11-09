@@ -64,9 +64,6 @@ class Metric extends Layout
         ]);
     }
 
-    /**
-     * @return $this
-     */
     public function title(string $title): Metric
     {
         $this->title = $title;

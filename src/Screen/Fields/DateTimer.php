@@ -151,10 +151,6 @@ class DateTimer extends Field
      * Sets format for transmission to the front values
      * If the argument is not passed, then the value specified
      * in the 'format' method will be taken
-     *
-     * @param string|null $format
-     *
-     * @return static
      */
     public function serverFormat(?string $format = null): static
     {
@@ -165,9 +161,7 @@ class DateTimer extends Field
                 return;
             }
 
-            if ($format === null) {
-                $format = $this->get('data-datetime-date-format');
-            }
+            $format ??= $this->get('data-datetime-date-format');
 
             $this->set('value', Carbon::parse($value)->format($format));
         });
@@ -175,10 +169,6 @@ class DateTimer extends Field
 
     /**
      * Disable the calendar for the field and show only time.
-     *
-     * @param bool $noCalendar
-     *
-     * @return static
      */
     public function noCalendar(bool $noCalendar = true): static
     {
@@ -190,10 +180,6 @@ class DateTimer extends Field
 
     /**
      * Adjusts the step for the minute input (incl. scrolling).
-     *
-     * @param int $increment
-     *
-     * @return static
      */
     public function minuteIncrement(int $increment): static
     {
@@ -204,10 +190,6 @@ class DateTimer extends Field
 
     /**
      * Adjusts the step for the hour input (incl. scrolling).
-     *
-     * @param int $increment
-     *
-     * @return static
      */
     public function hourIncrement(int $increment): static
     {
@@ -228,11 +210,6 @@ class DateTimer extends Field
      *     ['from' => '2021-04-25', 'to' => '2021-05-01'],
      *
      * ]
-     *
-     *
-     * @param array $dates
-     *
-     * @return static
      */
     public function available(array $dates = []): static
     {
@@ -253,11 +230,6 @@ class DateTimer extends Field
      *     ['from' => '2021-04-25', 'to' => '2021-05-01'],
      *
      * ]
-     *
-     *
-     * @param array $dates
-     *
-     * @return static
      */
     public function unavailable(array $dates = []): static
     {
@@ -268,10 +240,6 @@ class DateTimer extends Field
 
     /**
      * Allow selection of dates on or before the specified date
-     *
-     * @param Carbon $date
-     *
-     * @return static
      */
     public function max(Carbon $date): static
     {
@@ -283,10 +251,6 @@ class DateTimer extends Field
 
     /**
      * Allow selection of dates on or after the specified date
-     *
-     * @param Carbon $date
-     *
-     * @return static
      */
     public function min(Carbon $date): static
     {
@@ -298,10 +262,6 @@ class DateTimer extends Field
 
     /**
      * Show calendar week numbers
-     *
-     * @param bool $show
-     *
-     * @return static
      */
     public function weekNumbers(bool $show = true): static
     {
@@ -312,10 +272,6 @@ class DateTimer extends Field
 
     /**
      * Disable native mobile pickers in favor of calendar
-     *
-     * @param bool $disable
-     *
-     * @return static
      */
     public function disableMobile(bool $disable = true): static
     {
@@ -326,10 +282,6 @@ class DateTimer extends Field
 
     /**
      * Disable native mobile pickers in favor of calendar
-     *
-     * @param bool $inline
-     *
-     * @return static
      */
     public function inline(bool $inline = true): static
     {
@@ -339,11 +291,6 @@ class DateTimer extends Field
         return $this;
     }
 
-    /**
-     * @param bool $static
-     *
-     * @return static
-     */
     public function static(bool $static = true): static
     {
         $this->set('data-datetime-static', var_export($static, true));
@@ -353,10 +300,6 @@ class DateTimer extends Field
 
     /**
      * Show the month using the shorthand version (ie, Sep instead of September).
-     *
-     * @param bool $short
-     *
-     * @return static
      */
     public function shorthandCurrentMonth(bool $short = true): static
     {
@@ -367,10 +310,6 @@ class DateTimer extends Field
 
     /**
      * The number of months to be shown at the same time when displaying the calendar.
-     *
-     * @param int $count
-     *
-     * @return static
      */
     public function showMonths(int $count = 1): static
     {
@@ -387,11 +326,6 @@ class DateTimer extends Field
      *  E.g. "above" or "auto center"
      *
      * Not used with inline()
-     *
-     * @param string $vertical
-     * @param string $horizontal
-     *
-     * @return static
      */
     public function position(string $vertical = 'auto', string $horizontal = 'auto'): static
     {
@@ -400,9 +334,6 @@ class DateTimer extends Field
         return $this;
     }
 
-    /**
-     * @return static
-     */
     public function range(): static
     {
         $this->set('data-datetime-mode', 'range');
@@ -425,8 +356,6 @@ class DateTimer extends Field
      * Set quick date options for selection near an input field.
      *
      * @param array $presets An array of preset date values
-     *
-     * @return static
      */
     public function withQuickDates(array $presets): static
     {
@@ -443,10 +372,6 @@ class DateTimer extends Field
 
     /**
      * Set the date format for the alt input field.
-     *
-     * @param string $format
-     *
-     * @return static
      */
     public function altFormat(string $format): static
     {

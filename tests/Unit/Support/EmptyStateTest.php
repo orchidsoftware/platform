@@ -9,7 +9,7 @@ use Orchid\Tests\TestUnitCase;
 
 class EmptyStateTest extends TestUnitCase
 {
-    private const EMPTY_STATE_COPY = [
+    private const array EMPTY_STATE_COPY = [
         'No items yet',
         'New items will appear here.',
         'No matches',

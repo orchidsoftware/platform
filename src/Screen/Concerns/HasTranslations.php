@@ -10,7 +10,6 @@ trait HasTranslations
     /**
      * Mark the given attribute(s) as translatable.
      *
-     * @param string|array $value
      *
      * @return $this
      */
@@ -27,7 +26,6 @@ trait HasTranslations
     /**
      * Exclude the given attribute(s) from being translated.
      *
-     * @param string|array|null $value
      *
      * @return $this
      */
@@ -48,10 +46,6 @@ trait HasTranslations
 
     /**
      * Determine whether the given attribute should be translated.
-     *
-     * @param string $attribute
-     *
-     * @return bool
      */
     public function shouldTranslate(string $attribute): bool
     {
@@ -60,8 +54,6 @@ trait HasTranslations
 
     /**
      * Get the list of translatable attributes.
-     *
-     * @return Collection
      */
     protected function translations(): Collection
     {

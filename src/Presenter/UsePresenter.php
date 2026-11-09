@@ -14,12 +14,12 @@ use Attribute;
  *   class User extends Model { use Presentable; }
  */
 #[Attribute(Attribute::TARGET_CLASS)]
-final class UsePresenter
+final readonly class UsePresenter
 {
     /**
      * @param class-string<Presenter> $presenter
      */
     public function __construct(
-        public readonly string $presenter,
+        public string $presenter,
     ) {}
 }

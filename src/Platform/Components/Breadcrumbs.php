@@ -15,17 +15,17 @@ class Breadcrumbs extends Component
     /**
      * The maximum number of breadcrumbs shown before collapsing into a dropdown.
      */
-    private const MAX_VISIBLE_WITHOUT_COLLAPSE = 3;
+    private const int MAX_VISIBLE_WITHOUT_COLLAPSE = 3;
 
     /**
      * The number of breadcrumbs kept before the dropdown.
      */
-    private const ITEMS_BEFORE_DROPDOWN = 1;
+    private const int ITEMS_BEFORE_DROPDOWN = 1;
 
     /**
      * The number of breadcrumbs kept after the dropdown.
      */
-    private const ITEMS_AFTER_DROPDOWN = 2;
+    private const int ITEMS_AFTER_DROPDOWN = 2;
 
     /**
      * The prepared breadcrumb items for the view.

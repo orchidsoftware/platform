@@ -18,50 +18,34 @@ class Generator implements Engine
     protected const UNKNOWN = 'unknown';
 
     /**
-     * The uploaded file instance.
-     *
-     * @var UploadedFile
-     */
-    protected UploadedFile $file;
-
-    /**
      * The Unix timestamp indicating the time when the file was created
-     *
-     * @var int
      */
     protected int $time;
 
     /**
      * The generated unique identifier
-     *
-     * @var string
      */
     protected string $uniqueId;
 
     /**
      * The mime types instance.
-     *
-     * @var MimeTypes
      */
     protected MimeTypes $mimes;
 
     /**
      * The file path.
-     *
-     * @var ?string
      */
-    protected ?string $path;
+    protected ?string $path = null;
 
     /**
      * Create a new Generator instance.
-     *
-     * @param UploadedFile $file
-     *
-     * @return void
      */
-    public function __construct(UploadedFile $file)
-    {
-        $this->file = $file;
+    public function __construct(
+        /**
+         * The uploaded file instance.
+         */
+        protected UploadedFile $file
+    ) {
         $this->time = time();
         $this->mimes = new MimeTypes;
         $this->uniqueId = uniqid('', true);
@@ -97,10 +81,6 @@ class Generator implements Engine
 
     /**
      * Set the custom file path.
-     *
-     * @param string|null $path
-     *
-     * @return static
      */
     public function setPath(?string $path = null): static
     {

@@ -9,6 +9,9 @@ use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Str;
 use Orchid\Platform\Notifications\OrchidMessage;
 
+/**
+ * @extends Factory<DatabaseNotification>
+ */
 class DatabaseNotificationFactory extends Factory
 {
     protected $model = DatabaseNotification::class;

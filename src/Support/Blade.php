@@ -57,8 +57,6 @@ class Blade
      * Get instance of the ViewComponent based on the provided class and data
      *
      * @throws BindingResolutionException
-     *
-     * @return ViewComponent
      */
     public static function resolveComponent(string $component, mixed $data): ViewComponent
     {

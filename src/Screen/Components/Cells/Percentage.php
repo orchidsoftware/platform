@@ -9,11 +9,6 @@ class Percentage extends Component
 {
     /**
      * Create a new component instance.
-     *
-     * @param float       $value
-     * @param int         $decimals
-     * @param string|null $decimal_separator
-     * @param string|null $thousands_separator
      */
     public function __construct(
         protected float $value,

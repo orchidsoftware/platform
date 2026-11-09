@@ -39,9 +39,6 @@ class AlertTest extends TestUnitCase
         self::assertInstanceOf(\Orchid\Alert\Alert::class, alert());
     }
 
-    /**
-     * @dataProvider getLevels
-     */
     #[DataProvider('getLevels')]
     public function testShouldFlashLevelsAlert(string $level, string $css): void
     {
@@ -51,9 +48,6 @@ class AlertTest extends TestUnitCase
         self::assertEquals($css, session('flash_notification.level'));
     }
 
-    /**
-     * @dataProvider getLevels
-     */
     #[DataProvider('getLevels')]
     public function testShouldFlashLevelsToast(string $level, string $css): void
     {

@@ -39,8 +39,7 @@ abstract class Screen extends Controller
         ModelStateRetrievable;
 
     /**
-     * @param Request $request
-     * @param mixed   ...$arguments
+     * @param mixed ...$arguments
      *
      * @throws BindingResolutionException
      * @throws \ReflectionException
@@ -98,7 +97,6 @@ abstract class Screen extends Controller
     /**
      * Builds the screen using the given data repository.
      *
-     * @param Repository $repository
      *
      * @return View
      */
@@ -154,8 +152,6 @@ abstract class Screen extends Controller
      *
      * @throws BindingResolutionException
      * @throws \ReflectionException
-     *
-     * @return Response
      */
     public function asyncPartialLayout(Listener $layout, Request $request): Response
     {
@@ -200,12 +196,8 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param array $httpQueryArguments
-     *
      * @throws BindingResolutionException
      * @throws \ReflectionException
-     *
-     * @return Repository
      */
     protected function buildQueryRepository(array $httpQueryArguments = []): Repository
     {
@@ -306,10 +298,6 @@ abstract class Screen extends Controller
 
     /**
      * Prepare the method execution by binding route parameters and substituting implicit bindings.
-     *
-     * @param string $uses
-     *
-     * @return array|null
      */
     public static function prepareForExecuteMethod(string $uses): ?array
     {
@@ -361,8 +349,6 @@ abstract class Screen extends Controller
      * Return to the previous state with the current object properties.
      *
      * @throws PhpVersionNotSupportedException
-     *
-     * @return RedirectResponse
      */
     private function backWithCurrentState(): RedirectResponse
     {
@@ -384,11 +370,7 @@ abstract class Screen extends Controller
     /**
      * @deprecated
      *
-     * @param array $data
-     *
      * @throws PhpVersionNotSupportedException
-     *
-     * @return RedirectResponse
      */
     public function backWith(array $data): RedirectResponse
     {

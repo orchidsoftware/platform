@@ -39,10 +39,6 @@ class AsyncController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param string  $screen
-     * @param string  $layout
-     *
      * @throws BindingResolutionException
      * @throws \ReflectionException
      *

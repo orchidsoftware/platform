@@ -12,10 +12,7 @@ class DateTimeSplit extends Component
     /**
      * Create a new component instance.
      *
-     * @param float                    $value
-     * @param string                   $upperFormat
-     * @param string                   $lowerFormat
-     * @param DateTimeZone|string|null $tz
+     * @param float $value
      */
     public function __construct(
         protected mixed $value,

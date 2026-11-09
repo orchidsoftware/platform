@@ -18,10 +18,6 @@ trait Attachable
      * This method will be removed in the next major release.
      *
      * Get all the attachments associated with the given model.
-     *
-     * @param string|null $group
-     *
-     * @return MorphToMany
      */
     public function attachment(?string $group = null): MorphToMany
     {
@@ -30,10 +26,6 @@ trait Attachable
 
     /**
      * Get all the attachments associated with the given model.
-     *
-     * @param string|null $group
-     *
-     * @return MorphToMany
      */
     public function attachments(?string $group = null): MorphToMany
     {

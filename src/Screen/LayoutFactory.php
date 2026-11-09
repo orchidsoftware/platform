@@ -204,23 +204,11 @@ class LayoutFactory
         return new Metric($labels);
     }
 
-    /**
-     * @param string      $target
-     * @param string|null $title
-     *
-     * @return Chart
-     */
     public static function chart(string $target, ?string $title = null): Chart
     {
         return Chart::make($target, $title);
     }
 
-    /**
-     * @param string $target
-     * @param array  $columns
-     *
-     * @return Sortable
-     */
     public static function sortable(string $target, array $columns): Sortable
     {
         return new class($target, $columns) extends Sortable

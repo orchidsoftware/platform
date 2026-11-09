@@ -14,19 +14,13 @@ use Orchid\Screen\Repository;
 abstract class View extends Layout
 {
     /**
-     * @var array
-     */
-    private $data;
-
-    /**
      * View constructor.
      *
      * @param Arrayable|array $data
      */
-    public function __construct(string $template, $data = [])
+    public function __construct(string $template, private $data = [])
     {
         $this->template = $template;
-        $this->data = $data;
     }
 
     /**
