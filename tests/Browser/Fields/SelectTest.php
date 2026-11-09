@@ -31,6 +31,7 @@ class SelectTest extends TestBrowserCase
                 ->loginAs($this->createAdminUser())
                 ->visitRoute('test.base-select-screen')
                 ->press('Submit')
+                ->waitForText('choiceFromModel')
                 ->assertSourceHas($assert);
         });
     }
