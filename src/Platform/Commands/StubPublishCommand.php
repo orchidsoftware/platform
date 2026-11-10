@@ -41,14 +41,11 @@ class StubPublishCommand extends Command
         $filesystem->ensureDirectoryExists($stubsPath);
 
         $stubs = collect([
-            'chart.stub',
             'filters.stub',
             'listener.stub',
             'presenter.stub',
-            'rows.stub',
             'screen.stub',
             'selection.stub',
-            'table.stub',
             'tabMenu.stub',
         ])
             ->mapWithKeys(fn (string $file) => [

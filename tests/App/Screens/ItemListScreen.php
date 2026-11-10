@@ -9,10 +9,13 @@ use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Modal;
+use Orchid\Screen\Layouts\Rows;
+use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Screen;
 use Orchid\Screen\TD;
-use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
 class ItemListScreen extends Screen
@@ -70,12 +73,12 @@ class ItemListScreen extends Screen
     /**
      * The screen's layout elements.
      *
-     * @return \Orchid\Screen\Layout[]|string[]
+     * @return Layout[]|string[]
      */
     public function layout(): iterable
     {
         return [
-            Layout::table('items', [
+            Table::make('items', [
                 TD::make('id'),
                 TD::make('name'),
                 TD::make('parent_id'),
@@ -93,7 +96,7 @@ class ItemListScreen extends Screen
                                 ->route('test.item.addchild', $model->get('id')),
                         ])),
             ]),
-            Layout::modal('itemModal', Layout::rows([
+            Modal::make('itemModal', Rows::make([
                 Input::make('item.name')
                     ->title('Name')
                     ->placeholder('Enter item name')

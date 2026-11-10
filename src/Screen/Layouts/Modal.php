@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
 use Orchid\Screen\Concerns\HasCommandBar;
@@ -13,9 +14,16 @@ use Orchid\Support\Facades\Orchid;
 
 /**
  * Class Modal.
+ *
+ * @phpstan-consistent-constructor
  */
 class Modal extends Layout
 {
+    public static function make(string $key, array|string|Layout $layouts = []): static
+    {
+        return new static($key, Arr::wrap($layouts));
+    }
+
     use HasCommandBar;
 
     public const SIZE_XL = 'modal-xl';

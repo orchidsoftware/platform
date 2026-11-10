@@ -12,9 +12,18 @@ use Orchid\Screen\Repository;
 
 /**
  * Class Selection.
+ *
+ * @phpstan-consistent-constructor
  */
-abstract class Selection extends Layout
+class Selection extends Layout
 {
+    public function __construct(protected array $filters = []) {}
+
+    public static function make(array $filters = []): static
+    {
+        return new static($filters);
+    }
+
     /**
      * Drop-down filters.
      */
@@ -29,6 +38,13 @@ abstract class Selection extends Layout
      * @var string
      */
     public $template = self::TEMPLATE_DROP_DOWN;
+
+    public function inline(): self
+    {
+        $this->template = self::TEMPLATE_LINE;
+
+        return $this;
+    }
 
     /**
      * @return Factory|View|mixed
@@ -58,5 +74,8 @@ abstract class Selection extends Layout
     /**
      * @return iterable<Filter|class-string<Filter>>
      */
-    abstract public function filters(): iterable;
+    public function filters(): iterable
+    {
+        return $this->filters;
+    }
 }

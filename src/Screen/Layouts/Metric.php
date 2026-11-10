@@ -11,9 +11,16 @@ use Orchid\Screen\Repository;
 
 /**
  * Class Metric.
+ *
+ * @phpstan-consistent-constructor
  */
 class Metric extends Layout
 {
+    public static function make(array $labels): static
+    {
+        return new static($labels);
+    }
+
     /**
      * @var string
      */

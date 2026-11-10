@@ -11,9 +11,16 @@ use Orchid\Screen\Repository;
 
 /**
  * Class Wrapper.
+ *
+ * @phpstan-consistent-constructor
  */
-abstract class Wrapper extends Layout
+class Wrapper extends Layout
 {
+    public static function make(string $template, array $layouts = []): static
+    {
+        return new static($template, $layouts);
+    }
+
     /**
      * Wrapper constructor.
      *

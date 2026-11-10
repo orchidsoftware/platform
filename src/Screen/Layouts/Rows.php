@@ -14,9 +14,18 @@ use Throwable;
 
 /**
  * Class Rows.
+ *
+ * @phpstan-consistent-constructor
  */
-abstract class Rows extends Layout
+class Rows extends Layout
 {
+    public function __construct(protected array $fields = []) {}
+
+    public static function make(array $fields = []): static
+    {
+        return new static($fields);
+    }
+
     /**
      * @var string
      */
@@ -68,5 +77,8 @@ abstract class Rows extends Layout
     /**
      * @return iterable<Field>|iterable<string>
      */
-    abstract protected function fields(): iterable;
+    protected function fields(): iterable
+    {
+        return $this->fields;
+    }
 }

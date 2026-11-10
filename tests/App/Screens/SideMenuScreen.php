@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\App\Screens;
 
+use Orchid\Screen\Layouts\Split;
+use Orchid\Screen\Layouts\View;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 use Orchid\Tests\App\Layouts\SideMenuExample;
 
 class SideMenuScreen extends Screen
@@ -57,9 +58,9 @@ class SideMenuScreen extends Screen
     public function layout(): iterable
     {
         return [
-            Layout::split([
+            Split::make([
                 SideMenuExample::class,
-                Layout::view('exemplar::side-menu-content'),
+                View::make('exemplar::side-menu-content'),
             ])->ratio('40/60'),
         ];
     }

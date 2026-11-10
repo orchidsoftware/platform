@@ -9,8 +9,14 @@ use Orchid\Screen\Action;
 use Orchid\Screen\Contracts\Actionable;
 use Orchid\Screen\Contracts\Cardable;
 
+/** @phpstan-consistent-constructor */
 class Card extends Content
 {
+    public static function make(mixed $target, array $commandBar = []): static
+    {
+        return new static($target, $commandBar);
+    }
+
     /**
      * @var string
      */

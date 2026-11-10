@@ -12,9 +12,18 @@ use Orchid\Screen\Sight;
 
 /**
  * Class Legend.
+ *
+ * @phpstan-consistent-constructor
  */
-abstract class Legend extends Layout
+class Legend extends Layout
 {
+    public function __construct(protected array $columns = []) {}
+
+    public static function make(array $columns = []): static
+    {
+        return new static($columns);
+    }
+
     /**
      * @var string
      */
@@ -41,6 +50,13 @@ abstract class Legend extends Layout
      * @var string
      */
     protected $target;
+
+    public function target(string $target): self
+    {
+        $this->target = $target;
+
+        return $this;
+    }
 
     /**
      * @return Factory|View|null
@@ -70,7 +86,10 @@ abstract class Legend extends Layout
     /**
      * @return array
      */
-    abstract protected function columns(): iterable;
+    protected function columns(): iterable
+    {
+        return $this->columns;
+    }
 
     public function title(?string $title = null): self
     {

@@ -9,8 +9,21 @@ use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Sight;
 
-abstract class Sortable extends Layout
+/** @phpstan-consistent-constructor */
+class Sortable extends Layout
 {
+    public function __construct(protected string $target, protected array $columns)
+    {
+        if ($target === '') {
+            throw new \InvalidArgumentException('The layout data source must not be empty.');
+        }
+    }
+
+    public static function make(string $target, array $columns): static
+    {
+        return new static($target, $columns);
+    }
+
     use HasEmptyState;
 
     /**
@@ -36,16 +49,6 @@ abstract class Sortable extends Layout
     protected bool $showBlockHeaders = false;
 
     /**
-     * Data source.
-     *
-     * The name of the key to fetch it from the query.
-     * The results of which will be elements of the table.
-     *
-     * @var string
-     */
-    protected $target;
-
-    /**
      * @return Factory|View|null
      */
     public function build(Repository $repository)
@@ -69,6 +72,7 @@ abstract class Sortable extends Layout
             'iconNotFound'       => $this->iconNotFound(),
             'textNotFound'       => $this->textNotFound(),
             'subNotFound'        => $this->subNotFound(),
+            'actionNotFound'     => $this->actionNotFound(),
             'successSortMessage' => $this->successSortMessage(),
             'failureSortMessage' => $this->failureSortMessage(),
         ]);
@@ -77,7 +81,10 @@ abstract class Sortable extends Layout
     /**
      * @return array
      */
-    abstract protected function columns(): iterable;
+    protected function columns(): iterable
+    {
+        return $this->columns;
+    }
 
     public function title(?string $title = null): self
     {
@@ -100,12 +107,30 @@ abstract class Sortable extends Layout
         return $this;
     }
 
+    protected ?string $successMessage = null;
+
+    protected ?string $failureMessage = null;
+
+    public function successMessage(string $message): self
+    {
+        $this->successMessage = $message;
+
+        return $this;
+    }
+
+    public function failureMessage(string $message): self
+    {
+        $this->failureMessage = $message;
+
+        return $this;
+    }
+
     /**
      * Return a success message for sorting operation.
      */
     public function successSortMessage(): string
     {
-        return __('Sorting was successful.');
+        return $this->successMessage ?? __('Sorting was successful.');
     }
 
     /**
@@ -113,6 +138,6 @@ abstract class Sortable extends Layout
      */
     public function failureSortMessage(): string
     {
-        return __('Sorting failed. Please try again.');
+        return $this->failureMessage ?? __('Sorting failed. Please try again.');
     }
 }

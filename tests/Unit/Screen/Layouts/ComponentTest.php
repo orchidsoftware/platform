@@ -2,7 +2,7 @@
 
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
-use Orchid\Screen\LayoutFactory;
+use Orchid\Screen\Layouts\Component;
 use Orchid\Screen\Repository;
 use Orchid\Tests\App\Components\Hello;
 use Orchid\Tests\TestUnitCase;
@@ -15,7 +15,7 @@ class ComponentTest extends TestUnitCase
             'name' => 'Alexandr Chernyaev',
         ]);
 
-        $layout = LayoutFactory::component(Hello::class);
+        $layout = Component::make(Hello::class);
 
         $html = $layout->build($repository)->withErrors([])->render();
 
@@ -31,7 +31,7 @@ class ComponentTest extends TestUnitCase
 
         $this->app->make('blade.compiler')->component(Hello::class, 'hello-test-component');
 
-        $layout = LayoutFactory::component('hello-test-component');
+        $layout = Component::make('hello-test-component');
 
         $html = $layout->build($repository)->withErrors([])->render();
 
@@ -45,7 +45,7 @@ class ComponentTest extends TestUnitCase
             'property1' => 'First property value',
         ]);
 
-        $layout = LayoutFactory::component('exemplar::simple-anonymous-component');
+        $layout = Component::make('exemplar::simple-anonymous-component');
 
         $html = $layout->build($repository)->withErrors([])->render();
 
@@ -59,7 +59,7 @@ class ComponentTest extends TestUnitCase
             'property1' => 'First property value',
         ]);
 
-        $layout = LayoutFactory::component('exemplar::simple-anonymous-component')->with([
+        $layout = Component::make('exemplar::simple-anonymous-component')->with([
             'property2' => 'It is second property value',
         ]);
 
@@ -75,7 +75,7 @@ class ComponentTest extends TestUnitCase
             'property1' => 'First property value',
         ]);
 
-        $layout = LayoutFactory::component('exemplar::simple-anonymous-component')->with([
+        $layout = Component::make('exemplar::simple-anonymous-component')->with([
             'property1' => 'This value is final',
         ]);
 

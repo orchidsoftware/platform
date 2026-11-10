@@ -128,7 +128,7 @@ abstract class Layout implements JsonSerializable
      */
     public function findByType(string $type)
     {
-        if (is_subclass_of($this, $type)) {
+        if (is_a($this, $type)) {
             return $this;
         }
 

@@ -3,8 +3,9 @@
 namespace App\Orchid\Screens\Examples;
 
 use Orchid\Screen\Action;
+use Orchid\Screen\Layouts\Split;
+use Orchid\Screen\Layouts\View;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 
 class ExampleGridScreen extends Screen
 {
@@ -57,30 +58,30 @@ class ExampleGridScreen extends Screen
      */
     public function layout(): iterable
     {
-        $template = Layout::view('orchid::dummy.block');
+        $template = View::make('orchid::dummy.block');
 
         return [
-            Layout::split([
+            Split::make([
                 $template,
                 $template,
             ])->ratio('30/70')->reverseOnPhone(),
 
-            Layout::split([
+            Split::make([
                 $template,
                 $template,
             ])->ratio('40/60'),
 
-            Layout::split([
+            Split::make([
                 $template,
                 $template,
             ])->ratio('50/50'),
 
-            Layout::split([
+            Split::make([
                 $template,
                 $template,
             ])->ratio('60/40'),
 
-            Layout::split([
+            Split::make([
                 $template,
                 $template,
             ])->ratio('70/30'),

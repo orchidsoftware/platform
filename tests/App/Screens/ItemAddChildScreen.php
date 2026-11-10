@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
 class ItemAddChildScreen extends Screen
@@ -61,13 +62,13 @@ class ItemAddChildScreen extends Screen
     }
 
     /**
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): iterable
     {
         return [
 
-            Layout::rows([
+            Rows::make([
                 Input::make('item.name')
                     ->title('Name')
                     ->required()

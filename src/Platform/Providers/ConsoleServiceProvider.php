@@ -7,19 +7,16 @@ namespace Orchid\Platform\Providers;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Commands\AdminCommand;
-use Orchid\Platform\Commands\ChartCommand;
 use Orchid\Platform\Commands\FieldCommand;
 use Orchid\Platform\Commands\FilterCommand;
 use Orchid\Platform\Commands\InstallCommand;
 use Orchid\Platform\Commands\ListenerCommand;
 use Orchid\Platform\Commands\PresenterCommand;
 use Orchid\Platform\Commands\PublishCommand;
-use Orchid\Platform\Commands\RowsCommand;
 use Orchid\Platform\Commands\ScreenCommand;
 use Orchid\Platform\Commands\SelectionCommand;
 use Orchid\Platform\Commands\SideMenuCommand;
 use Orchid\Platform\Commands\StubPublishCommand;
-use Orchid\Platform\Commands\TableCommand;
 use Orchid\Platform\Commands\TabMenuCommand;
 use Orchid\Support\Facades\Orchid;
 
@@ -35,10 +32,7 @@ class ConsoleServiceProvider extends ServiceProvider
         PublishCommand::class,
         AdminCommand::class,
         FilterCommand::class,
-        RowsCommand::class,
         ScreenCommand::class,
-        TableCommand::class,
-        ChartCommand::class,
         SelectionCommand::class,
         ListenerCommand::class,
         PresenterCommand::class,

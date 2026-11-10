@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
+use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layouts\Sortable;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Sight;
@@ -13,10 +14,8 @@ class SortableInteractionTest extends TestUnitCase
 {
     public function testEmptySortableUsesSharedEmptyState(): void
     {
-        $layout = new class extends Sortable
+        $layout = new class('target', []) extends Sortable
         {
-            protected $target = 'target';
-
             protected function columns(): iterable
             {
                 return [];
@@ -32,6 +31,23 @@ class SortableInteractionTest extends TestUnitCase
         self::assertStringContainsString('New items will appear here.', $html);
     }
 
+    public function testEmptySortableRendersAndRemovesItsConfiguredAction(): void
+    {
+        $layout = Sortable::make('items', [])
+            ->emptyAction(Link::make('Create item')->href('/items/create'));
+        $repository = new Repository(['items' => []]);
+
+        $html = $layout->build($repository)->render();
+
+        self::assertStringContainsString('Create item', $html);
+        self::assertStringContainsString('href="/items/create"', $html);
+
+        $html = $layout->emptyAction(null)->build($repository)->render();
+
+        self::assertStringNotContainsString('Create item', $html);
+        self::assertStringNotContainsString('/items/create', $html);
+    }
+
     public function testEmptySortableIgnoresFiltersElsewhereOnTheScreen(): void
     {
         $query = request()->query->all();
@@ -39,10 +55,8 @@ class SortableInteractionTest extends TestUnitCase
         request()->query->replace(['filter' => ['name' => 'missing']]);
 
         try {
-            $layout = new class extends Sortable
+            $layout = new class('target', []) extends Sortable
             {
-                protected $target = 'target';
-
                 protected function columns(): iterable
                 {
                     return [];
@@ -64,10 +78,8 @@ class SortableInteractionTest extends TestUnitCase
 
     public function testEmptySortableCanBeOverridden(): void
     {
-        $layout = new class extends Sortable
+        $layout = new class('target', []) extends Sortable
         {
-            protected $target = 'target';
-
             protected function columns(): iterable
             {
                 return [];

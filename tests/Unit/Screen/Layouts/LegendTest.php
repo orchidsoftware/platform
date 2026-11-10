@@ -7,7 +7,6 @@ namespace Orchid\Tests\Unit\Screen\Layouts;
 use Orchid\Screen\Layouts\Legend;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Sight;
-use Orchid\Support\Facades\Layout;
 use Orchid\Tests\TestUnitCase;
 
 class LegendTest extends TestUnitCase
@@ -46,9 +45,9 @@ class LegendTest extends TestUnitCase
 
     public function testBaseUsage(): void
     {
-        $layout = Layout::legend('user', [
+        $layout = Legend::make([
             Sight::make('name'),
-        ]);
+        ])->target('user');
 
         $html = $layout->build(new Repository([
             'user' => new Repository([
