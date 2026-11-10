@@ -6,12 +6,15 @@ namespace Orchid\Tests\App\Screens;
 
 use Orchid\Screen\Action;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Screen;
+use Orchid\Screen\TD;
 use Orchid\Support\Facades\Layout;
 
 class PropertyAutoWriteScreen extends Screen
 {
     public $publicProperty = false;
+    public int $tax = 0;
     protected $protectedProperty = false;
     private $privateProperty = false;
 
@@ -22,6 +25,8 @@ class PropertyAutoWriteScreen extends Screen
     {
         return [
             'publicProperty'    => true,
+            'products'          => [(object) ['price' => 100]],
+            'tax'               => 20,
             'protectedProperty' => true,
             'privateProperty'   => true,
         ];
@@ -57,6 +62,9 @@ class PropertyAutoWriteScreen extends Screen
                 Input::make('publicProperty')->title('publicProperty')->canSee($this->publicProperty),
                 Input::make('protectedProperty')->title('protectedProperty')->canSee($this->protectedProperty),
                 Input::make('privateProperty')->title('privateProperty')->canSee($this->privateProperty),
+            ]),
+            Table::make('products', [
+                TD::make('price')->render(fn (object $product) => $product->price + $this->tax),
             ]),
         ];
     }
