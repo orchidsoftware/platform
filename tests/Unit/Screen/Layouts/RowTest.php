@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
 use Orchid\Screen\Fields\Input;
-use Orchid\Screen\LayoutFactory;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Repository;
 use Orchid\Tests\TestUnitCase;
@@ -18,7 +17,7 @@ class RowTest extends TestUnitCase
             'name' => 'Alexandr Chernyaev',
         ]);
 
-        $layout = LayoutFactory::rows([
+        $layout = Rows::make([
             Input::make('name'),
         ]);
 
@@ -29,7 +28,7 @@ class RowTest extends TestUnitCase
 
     public function testTitleForShortRow(): void
     {
-        $layout = LayoutFactory::rows([])->title('Profile');
+        $layout = Rows::make([])->title('Profile');
 
         $html = $layout->build(new Repository)
             ->withErrors([])

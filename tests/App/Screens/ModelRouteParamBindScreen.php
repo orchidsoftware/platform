@@ -5,8 +5,9 @@ namespace Orchid\Tests\App\Screens;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Action;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 
 class ModelRouteParamBindScreen extends Screen
 {
@@ -43,12 +44,12 @@ class ModelRouteParamBindScreen extends Screen
     /**
      * Views.
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): array
     {
         return [
-            Layout::rows([
+            Rows::make([
                 Input::make('user.id')->title('User ID'),
                 Input::make('user.email')->title('User Name'),
             ]),

@@ -16,11 +16,12 @@ use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Components\Cells\DateTimeSplit;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Layouts\Persona;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Screen;
 use Orchid\Screen\TD;
-use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
 class UserListScreen extends Screen
@@ -80,7 +81,7 @@ class UserListScreen extends Screen
     /**
      * The screen's layout elements.
      *
-     * @return string[]|\Orchid\Screen\Layout[]
+     * @return string[]|Layout[]
      */
     public function layout(): iterable
     {
@@ -136,7 +137,7 @@ class UserListScreen extends Screen
                         ])),
             ]),
 
-            Layout::modal('editUserModal', UserEditLayout::class)
+            Modal::make('editUserModal', UserEditLayout::class)
                 ->deferred('loadUserOnOpenModal'),
         ];
     }

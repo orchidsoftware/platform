@@ -4,8 +4,13 @@ namespace App\Orchid\Screens\Examples;
 
 use App\Orchid\Layouts\Examples\TabMenuExample;
 use Orchid\Screen\Action;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Accordion;
+use Orchid\Screen\Layouts\Block;
+use Orchid\Screen\Layouts\Columns;
+use Orchid\Screen\Layouts\Tabs;
+use Orchid\Screen\Layouts\View;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 
 class ExampleLayoutsScreen extends Screen
 {
@@ -50,35 +55,35 @@ class ExampleLayoutsScreen extends Screen
      *
      * @throws \Throwable
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): iterable
     {
         return [
 
-            Layout::block(Layout::view('orchid::dummy.block'))
+            Block::make(View::make('orchid::dummy.block'))
                 ->title('Block Header')
                 ->description('Excellent description that editing or views in block'),
 
-            Layout::tabs([
-                'Example Tab 1' => Layout::view('orchid::dummy.block'),
-                'Example Tab 2' => Layout::view('orchid::dummy.block'),
-                'Example Tab 3' => Layout::view('orchid::dummy.block'),
+            Tabs::make([
+                'Example Tab 1' => View::make('orchid::dummy.block'),
+                'Example Tab 2' => View::make('orchid::dummy.block'),
+                'Example Tab 3' => View::make('orchid::dummy.block'),
             ]),
 
             TabMenuExample::class,
-            Layout::view('orchid::dummy.block'),
+            View::make('orchid::dummy.block'),
 
-            Layout::columns([
-                Layout::view('orchid::dummy.block'),
-                Layout::view('orchid::dummy.block'),
-                Layout::view('orchid::dummy.block'),
+            Columns::make([
+                View::make('orchid::dummy.block'),
+                View::make('orchid::dummy.block'),
+                View::make('orchid::dummy.block'),
             ]),
 
-            Layout::accordion([
-                'Collapsible Group Item #1' => Layout::view('orchid::dummy.block'),
-                'Collapsible Group Item #2' => Layout::view('orchid::dummy.block'),
-                'Collapsible Group Item #3' => Layout::view('orchid::dummy.block'),
+            Accordion::make([
+                'Collapsible Group Item #1' => View::make('orchid::dummy.block'),
+                'Collapsible Group Item #2' => View::make('orchid::dummy.block'),
+                'Collapsible Group Item #3' => View::make('orchid::dummy.block'),
             ]),
 
         ];

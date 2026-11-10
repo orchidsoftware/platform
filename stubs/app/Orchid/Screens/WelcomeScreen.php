@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace App\Orchid\Screens;
 
 use Orchid\Screen\Action;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\View;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 
 class WelcomeScreen extends Screen
 {
@@ -49,13 +50,13 @@ class WelcomeScreen extends Screen
     /**
      * The screen's layout elements.
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): iterable
     {
         return [
-            Layout::view('orchid::partials.update-assets'),
-            Layout::view('orchid::partials.welcome'),
+            View::make('orchid::partials.update-assets'),
+            View::make('orchid::partials.welcome'),
         ];
     }
 }

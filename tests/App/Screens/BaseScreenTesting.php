@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Action;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
 class BaseScreenTesting extends Screen
@@ -48,12 +49,12 @@ class BaseScreenTesting extends Screen
     /**
      * Views.
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): array
     {
         return [
-            Layout::rows([
+            Rows::make([
                 Input::make('user.name')->title('Name'),
                 Input::make('user.email')->title('Email'),
             ]),

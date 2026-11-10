@@ -5,7 +5,8 @@ namespace Orchid\Tests\Unit\Screen\Layouts;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Input;
-use Orchid\Screen\LayoutFactory;
+use Orchid\Screen\Layouts\Block;
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Repository;
 use Orchid\Tests\TestUnitCase;
 
@@ -13,7 +14,7 @@ class BlockTest extends TestUnitCase
 {
     public function testRenderBlockTitle(): void
     {
-        $layout = LayoutFactory::block([])
+        $layout = Block::make([])
             ->title('Profile Information');
 
         $html = $layout->build(new Repository)
@@ -25,7 +26,7 @@ class BlockTest extends TestUnitCase
 
     public function testRenderBlockDescription(): void
     {
-        $layout = LayoutFactory::block([])
+        $layout = Block::make([])
             ->title('Profile Information')
             ->description("Update your account's profile information and email address.");
 
@@ -42,11 +43,11 @@ class BlockTest extends TestUnitCase
             'name' => 'Alexandr Chernyaev',
         ]);
 
-        $row = LayoutFactory::rows([
+        $row = Rows::make([
             Input::make('name'),
         ]);
 
-        $layout = LayoutFactory::block($row)
+        $layout = Block::make($row)
             ->title('Profile Information')
             ->description("Update your account's profile information and email address.");
 
@@ -57,7 +58,7 @@ class BlockTest extends TestUnitCase
 
     public function testRenderBlockCommand(): void
     {
-        $layout = LayoutFactory::block([])
+        $layout = Block::make([])
             ->title('Profile Information')
             ->description("Update your account's profile information and email address.")
             ->commands(Button::make('Submit'));
@@ -71,7 +72,7 @@ class BlockTest extends TestUnitCase
 
     public function testRenderBlockManyCommand(): void
     {
-        $layout = LayoutFactory::block([])
+        $layout = Block::make([])
             ->title('Profile Information')
             ->description("Update your account's profile information and email address.")
             ->commands([
@@ -91,7 +92,7 @@ class BlockTest extends TestUnitCase
     {
         $view = view('exemplar::dummy.text');
 
-        $layout = LayoutFactory::block([])
+        $layout = Block::make([])
             ->title('Profile Information')
             ->description($view);
 

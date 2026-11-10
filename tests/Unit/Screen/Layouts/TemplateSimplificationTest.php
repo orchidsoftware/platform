@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\MessageBag;
 use Orchid\Filters\Filter;
 use Orchid\Screen\Fields\Input;
-use Orchid\Screen\LayoutFactory;
+use Orchid\Screen\Layouts\Metric;
 use Orchid\Screen\Layouts\Selection;
 use Orchid\Screen\Repository;
 use Orchid\Tests\TestUnitCase;
@@ -52,7 +52,7 @@ class TemplateSimplificationTest extends TestUnitCase
         foreach ([[12.345, '12.35'], [12.3, '12.3'], [12, '12'], [-2.5, '-2.5'], [0.001, '0']] as [$diff, $expected]) {
             $metric = ['value' => 'Existing value', 'diff' => $diff];
             $repository = new Repository(['orders' => $metric]);
-            $html = LayoutFactory::metrics(['Orders' => 'orders'])->build($repository)->render();
+            $html = Metric::make(['Orders' => 'orders'])->build($repository)->render();
             $change = $this->xpath($html)->query('//p/small')->item(0);
             $this->assertInstanceOf(\DOMElement::class, $change);
 
@@ -62,7 +62,7 @@ class TemplateSimplificationTest extends TestUnitCase
             $this->assertSame($metric, $repository->getContent('orders'));
         }
 
-        $html = LayoutFactory::metrics(['Orders' => 'orders'])->build(new Repository([
+        $html = Metric::make(['Orders' => 'orders'])->build(new Repository([
             'orders' => ['value' => 0, 'diff' => -0.001],
         ]))->render();
         $this->assertStringContainsString('text-danger', $this->firstElement($this->xpath($html), '//p/small')->getAttribute('class'));
@@ -71,7 +71,7 @@ class TemplateSimplificationTest extends TestUnitCase
     public function testMetricsWithoutAChangeKeepScalarAndArrayValues(): void
     {
         foreach ([42, 'Existing value', ['value' => 42], ['value' => 42, 'diff' => null], ['value' => 42, 'diff' => 0]] as $metric) {
-            $html = LayoutFactory::metrics(['Orders' => 'orders'])->build(new Repository(['orders' => $metric]))->render();
+            $html = Metric::make(['Orders' => 'orders'])->build(new Repository(['orders' => $metric]))->render();
             $this->assertCount(0, $this->xpath($html)->query('//p/small'));
             $this->assertStringContainsString(is_array($metric) ? '42' : (string) $metric, $html);
         }
@@ -93,7 +93,7 @@ class TemplateSimplificationTest extends TestUnitCase
                 return [Input::make('name')];
             }
         };
-        $layout = LayoutFactory::selection([$filter]);
+        $layout = Selection::make([$filter]);
         $layout->template = Selection::TEMPLATE_LINE;
         $xpath = $this->xpath('<form method="post">'.$layout->build(new Repository)->render().'</form>');
         $reset = $xpath->query('//button[@data-action="filter#clear"]')->item(0);

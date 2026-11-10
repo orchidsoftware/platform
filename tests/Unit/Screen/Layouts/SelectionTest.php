@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
 use Orchid\Filters\Filter;
-use Orchid\Screen\LayoutFactory;
+use Orchid\Screen\Layouts\Selection;
 use Orchid\Screen\Repository;
 use Orchid\Tests\App\Filters\HiddenFilter;
 use Orchid\Tests\App\Layouts\GroupNameAndEmail;
@@ -15,7 +15,7 @@ class SelectionTest extends TestUnitCase
 {
     public function testNoDisplayOnlyHiddenFilter(): void
     {
-        $layout = LayoutFactory::selection([
+        $layout = Selection::make([
             HiddenFilter::class,
         ]);
 

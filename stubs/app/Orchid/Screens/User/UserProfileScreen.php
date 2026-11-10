@@ -13,9 +13,10 @@ use Orchid\Access\Impersonation;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Block;
 use Orchid\Screen\Screen;
 use Orchid\Support\Color;
-use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
 class UserProfileScreen extends Screen
@@ -71,12 +72,12 @@ class UserProfileScreen extends Screen
     }
 
     /**
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): iterable
     {
         return [
-            Layout::block(UserEditLayout::class)
+            Block::make(UserEditLayout::class)
                 ->title(__('Profile Information'))
                 ->description(__("Update your account's profile information and email address."))
                 ->commands(
@@ -86,7 +87,7 @@ class UserProfileScreen extends Screen
                         ->method('save')
                 ),
 
-            Layout::block(ProfilePasswordLayout::class)
+            Block::make(ProfilePasswordLayout::class)
                 ->title(__('Update Password'))
                 ->description(__('Ensure your account is using a long, random password to stay secure.'))
                 ->commands(

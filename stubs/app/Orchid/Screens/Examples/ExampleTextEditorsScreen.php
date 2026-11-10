@@ -8,8 +8,9 @@ use Orchid\Screen\Action;
 use Orchid\Screen\Fields\Code;
 use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\SimpleMDE;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 
 class ExampleTextEditorsScreen extends Screen
 {
@@ -58,7 +59,7 @@ class ExampleTextEditorsScreen extends Screen
      *
      * @throws \Throwable
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): iterable
     {
@@ -66,7 +67,7 @@ class ExampleTextEditorsScreen extends Screen
 
             ExampleElements::class,
 
-            Layout::rows([
+            Rows::make([
                 SimpleMDE::make('simplemde')
                     ->title('SimpleMDE')
                     ->popover('SimpleMDE is a simple, embeddable, and beautiful JS markdown editor'),

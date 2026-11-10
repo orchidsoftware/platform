@@ -3,15 +3,15 @@
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
 use Illuminate\Support\Str;
+use Orchid\Screen\Layouts\Browsing;
 use Orchid\Screen\Repository;
-use Orchid\Support\Facades\Layout;
 use Orchid\Tests\TestUnitCase;
 
 class BrowsingTest extends TestUnitCase
 {
     public function testInstance(): void
     {
-        $iframe = Layout::browsing('https://orchid.software');
+        $iframe = Browsing::make('https://orchid.software');
 
         $html = $iframe->build(new Repository)->withErrors([])->render();
 
@@ -22,7 +22,7 @@ class BrowsingTest extends TestUnitCase
 
     public function testCanSeeInstance(): void
     {
-        $iframe = Layout::browsing('https://orchid.software')->canSee(false);
+        $iframe = Browsing::make('https://orchid.software')->canSee(false);
 
         $html = $iframe->build(new Repository);
 
@@ -42,7 +42,7 @@ class BrowsingTest extends TestUnitCase
             'srcdoc'         => Str::random(),
         ];
 
-        $iframe = Layout::browsing('https://orchid.software');
+        $iframe = Browsing::make('https://orchid.software');
 
         foreach ($attributes as $key => $value) {
             $iframe->$key($value);

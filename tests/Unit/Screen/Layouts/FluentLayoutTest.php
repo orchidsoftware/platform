@@ -17,7 +17,6 @@ use Orchid\Screen\Layouts\TabMenu;
 use Orchid\Screen\Layouts\View;
 use Orchid\Screen\Repository;
 use Orchid\Screen\TD;
-use Orchid\Support\Facades\Layout;
 use Orchid\Tests\TestUnitCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 
@@ -26,7 +25,7 @@ class FluentLayoutTest extends TestUnitCase
     public function testNestedConcreteLayoutsRenderFieldsAndRemainDiscoverable(): void
     {
         $rows = Rows::make([Input::make('name')])->title('Profile');
-        $layout = Columns::make([$rows, Layout::rows([Input::make('email')])]);
+        $layout = Columns::make([$rows, Rows::make([Input::make('email')])]);
 
         $html = $layout->build(new Repository([
             'name'  => 'Taylor',
@@ -52,22 +51,29 @@ class FluentLayoutTest extends TestUnitCase
         $this->assertStringNotContainsString('Taylor', $second);
     }
 
-    public function testDirectAndFacadeTablesRenderTheSameDataAndTotals(): void
+    public function testTableRendersRecordsAndRootTotals(): void
     {
-        foreach ([Table::make('users', [TD::make('name'), TD::make('email'), TD::make('phone')]), Layout::table('users', [TD::make('name'), TD::make('email'), TD::make('phone')])] as $table) {
-            $html = $table->title('Team')
-                ->totals([TD::make('summary')->colspan(2)->render(fn () => 'Team total:'), TD::make('count')])
-                ->build(new Repository([
-                    'users' => [new Repository(['name' => 'Taylor'])],
-                    'count' => 42,
-                ]))->render();
+        $table = Table::make('users', [
+            TD::make('name'),
+            TD::make('email'),
+            TD::make('phone'),
+        ]);
 
-            $this->assertStringContainsString('Team', $html);
-            $this->assertStringContainsString('Taylor', $html);
-            $this->assertStringContainsString('42', $html);
-            $this->assertStringContainsString('Team total:', $html);
-            $this->assertStringContainsString('colspan="2"', $html);
-        }
+        $html = $table->title('Team')
+            ->totals([
+                TD::make('summary')->colspan(2)->render(fn () => 'Team total:'),
+                TD::make('count'),
+            ])
+            ->build(new Repository([
+                'users' => [new Repository(['name' => 'Taylor'])],
+                'count' => 42,
+            ]))->render();
+
+        $this->assertStringContainsString('Team', $html);
+        $this->assertStringContainsString('Taylor', $html);
+        $this->assertStringContainsString('42', $html);
+        $this->assertStringContainsString('Team total:', $html);
+        $this->assertStringContainsString('colspan="2"', $html);
     }
 
     public static function targetedLayouts(): array

@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Layouts\Legend;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Sight;
 use Orchid\Support\Color;
-use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
 class ExampleCardsScreen extends Screen
@@ -62,7 +62,7 @@ class ExampleCardsScreen extends Screen
     public function layout(): iterable
     {
         return [
-            Layout::legend([
+            Legend::make([
                 Sight::make('id')->popover('Identifier, a symbol which uniquely identifies an object or record'),
                 Sight::make('name'),
                 Sight::make('email'),

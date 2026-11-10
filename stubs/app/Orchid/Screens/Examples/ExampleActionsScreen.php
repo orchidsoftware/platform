@@ -8,9 +8,11 @@ use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Group;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Block;
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Screen;
 use Orchid\Support\Color;
-use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -57,13 +59,13 @@ class ExampleActionsScreen extends Screen
     /**
      * The screen's layout elements.
      *
-     * @return \Orchid\Screen\Layout[]|string[]
+     * @return Layout[]|string[]
      */
     public function layout(): iterable
     {
         return [
             ExampleElements::class,
-            Layout::rows([
+            Rows::make([
                 Group::make([
                     Button::make('Primary')->method('buttonClickProcessing')->type(Color::PRIMARY),
                     Button::make('Secondary')->method('buttonClickProcessing')->type(Color::SECONDARY),
@@ -84,7 +86,7 @@ class ExampleActionsScreen extends Screen
                 ])->autoWidth(),
             ]),
 
-            Layout::block(Layout::rows([
+            Block::make(Rows::make([
                 Group::make([
                     DropDown::make('Dropdown for Buttons')
                         ->icon('bs.three-dots-vertical')
@@ -106,7 +108,7 @@ class ExampleActionsScreen extends Screen
                 ->title('Dropdowns')
                 ->description('Contextual overlays for displaying lists of links and buttons'),
 
-            Layout::block(Layout::rows([
+            Block::make(Rows::make([
                 Group::make([
                     Button::make('Submit')->type(Color::PRIMARY)->disabled(),
                     Button::make('Submit')->disabled(),
@@ -115,7 +117,7 @@ class ExampleActionsScreen extends Screen
                 ->title('Disabled state')
                 ->description('A disabled button is unusable and un-clickable.'),
 
-            Layout::block(Layout::rows([
+            Block::make(Rows::make([
                 Button::make('Submit')
                     ->method('buttonClickProcessing')
                     ->confirm('Communicating the consequences of the decision.'),
@@ -123,7 +125,7 @@ class ExampleActionsScreen extends Screen
                 ->title('Confirm Dialog')
                 ->description('Confirm Dialog is a modal Dialog used to confirm user actions.'),
 
-            Layout::block(Layout::rows([
+            Block::make(Rows::make([
                 Button::make('Button')
                     ->icon('bs.box-arrow-up-right')
                     ->method('buttonClickProcessing'),
@@ -131,7 +133,7 @@ class ExampleActionsScreen extends Screen
                 ->title('Icons Button')
                 ->description('This type of button is often used to save space on a user interface and make the action more visually appealing.'),
 
-            Layout::block(Layout::rows([
+            Block::make(Rows::make([
                 Button::make('Download')
                     ->icon('bs.download')
                     ->method('export')
@@ -140,7 +142,7 @@ class ExampleActionsScreen extends Screen
                 ->title('Download Button')
                 ->description('This button is typically used when a user wants to download a file, such as a document or an image, to their local device.'),
 
-            Layout::block(Layout::rows([
+            Block::make(Rows::make([
                 Button::make('Google')
                     ->action('https://google.com'),
             ]))

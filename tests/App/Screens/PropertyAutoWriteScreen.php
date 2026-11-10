@@ -6,10 +6,11 @@ namespace Orchid\Tests\App\Screens;
 
 use Orchid\Screen\Action;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Screen;
 use Orchid\Screen\TD;
-use Orchid\Support\Facades\Layout;
 
 class PropertyAutoWriteScreen extends Screen
 {
@@ -53,12 +54,12 @@ class PropertyAutoWriteScreen extends Screen
     /**
      * Views.
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): array
     {
         return [
-            Layout::rows([
+            Rows::make([
                 Input::make('publicProperty')->title('publicProperty')->canSee($this->publicProperty),
                 Input::make('protectedProperty')->title('protectedProperty')->canSee($this->protectedProperty),
                 Input::make('privateProperty')->title('privateProperty')->canSee($this->privateProperty),

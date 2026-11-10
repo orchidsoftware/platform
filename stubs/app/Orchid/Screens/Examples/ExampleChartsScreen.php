@@ -3,8 +3,10 @@
 namespace App\Orchid\Screens\Examples;
 
 use Orchid\Screen\Action;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Chart;
+use Orchid\Screen\Layouts\Columns;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 
 class ExampleChartsScreen extends Screen
 {
@@ -69,30 +71,30 @@ class ExampleChartsScreen extends Screen
      *
      * @throws \Throwable
      *
-     * @return string[]|\Orchid\Screen\Layout[]
+     * @return string[]|Layout[]
      */
     public function layout(): iterable
     {
         return [
-            Layout::chart('trend', 'Actions with a Tweet')
+            Chart::make('trend', 'Actions with a Tweet')
                 ->height(300)->smooth()->gradient()
                 ->marker('Medium', 40, ['lineStyle' => 'dashed'])
                 ->description('The total number of interactions a user has with a tweet. This includes all clicks on any links in the tweet (including hashtags, links, avatar, username, and expand button), retweets, replies, likes, and additions to the read list.'),
 
-            Layout::columns([
-                Layout::chart('charts', 'Line Chart')
+            Columns::make([
+                Chart::make('charts', 'Line Chart')
                     ->height(300)->smooth()->gradient()
                     ->marker('Medium', 40, ['lineStyle' => 'dashed'])
                     ->description('Visualize data trends with multi-colored line graphs.'),
-                Layout::chart('charts', 'Bar Chart')->type('bar')->height(300)
+                Chart::make('charts', 'Bar Chart')->type('bar')->height(300)
                     ->description('Compare data sets with colorful bar graphs.'),
             ]),
 
-            Layout::columns([
-                Layout::chart('distribution', 'Percentage Chart')->type('percentage')->height(88)
+            Columns::make([
+                Chart::make('distribution', 'Percentage Chart')->type('percentage')->height(88)
                     ->description('Display data as visually appealing and modern percentage graphs.'),
 
-                Layout::chart('distribution', 'Pie Chart')->type('pie')->height(280)
+                Chart::make('distribution', 'Pie Chart')->type('pie')->height(280)
                     ->description('Break down data into easy-to-understand pie graphs with modern design.'),
             ]),
         ];

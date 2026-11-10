@@ -10,10 +10,16 @@ use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Components\Cells\Currency;
 use Orchid\Screen\Components\Cells\DateTimeSplit;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Chart;
+use Orchid\Screen\Layouts\Columns;
+use Orchid\Screen\Layouts\Metric;
+use Orchid\Screen\Layouts\Modal;
+use Orchid\Screen\Layouts\Rows;
+use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Screen;
 use Orchid\Screen\TD;
-use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
 class ExampleScreen extends Screen
@@ -96,29 +102,29 @@ class ExampleScreen extends Screen
     /**
      * The screen's layout elements.
      *
-     * @return string[]|\Orchid\Screen\Layout[]
+     * @return string[]|Layout[]
      */
     public function layout(): iterable
     {
         return [
-            Layout::metrics([
+            Metric::make([
                 'Sales Today'    => 'metrics.sales',
                 'Visitors Today' => 'metrics.visitors',
                 'Pending Orders' => 'metrics.orders',
                 'Total Earnings' => 'metrics.total',
             ]),
 
-            Layout::columns([
-                Layout::chart('charts', 'Line Chart')
+            Columns::make([
+                Chart::make('charts', 'Line Chart')
                     ->height(300)->smooth()->gradient()
                     ->marker('Medium', 40, ['lineStyle' => 'dashed'])
                     ->description('Visualize data trends with multi-colored line graphs.'),
 
-                Layout::chart('charts', 'Bar Chart')->type('bar')->height(300)
+                Chart::make('charts', 'Bar Chart')->type('bar')->height(300)
                     ->description('Compare data sets with colorful bar graphs.'),
             ]),
 
-            Layout::table('table', [
+            Table::make('table', [
                 TD::make('id', 'ID')
                     ->width('100')
                     ->render(fn (Repository $model) => // Please use view('path')
@@ -143,7 +149,7 @@ class ExampleScreen extends Screen
                     ->align(TD::ALIGN_RIGHT),
             ]),
 
-            Layout::modal('exampleModal', Layout::rows([
+            Modal::make('exampleModal', Rows::make([
                 Input::make('toast')
                     ->title('Messages to display')
                     ->placeholder('Hello world!')
