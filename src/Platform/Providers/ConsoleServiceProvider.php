@@ -7,7 +7,6 @@ namespace Orchid\Platform\Providers;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Commands\AdminCommand;
-use Orchid\Platform\Commands\ChartCommand;
 use Orchid\Platform\Commands\FieldCommand;
 use Orchid\Platform\Commands\FilterCommand;
 use Orchid\Platform\Commands\InstallCommand;
@@ -34,7 +33,6 @@ class ConsoleServiceProvider extends ServiceProvider
         AdminCommand::class,
         FilterCommand::class,
         ScreenCommand::class,
-        ChartCommand::class,
         SelectionCommand::class,
         ListenerCommand::class,
         PresenterCommand::class,
