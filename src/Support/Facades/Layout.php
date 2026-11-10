@@ -38,7 +38,7 @@ use Orchid\Screen\Layouts\Wrapper;
  * @method static View      view(string $view, array|Arrayable $data = [])          Creates a new view layout with the given data.
  * @method static Component component(string $component)                            Creates a new component layout with the given component.
  * @method static Rows      rows(array $fields)                                     Creates a new rows layout with the given fields.
- * @method static Table     table(array $columns)                                   Creates a new table layout with the given columns.
+ * @method static Table     table(string $target, array $columns)                   Creates a new table layout with the given columns.
  * @method static Columns   columns(BaseLayout[]|string[] $layouts)                 Creates a new columns layout with the given layout data.
  * @method static Tabs      tabs(BaseLayout[] $layouts)                             Creates a new tabs layout with the given layout data.
  * @method static Modal     modal(string $key, string[]|string|BaseLayout $layouts) Creates a new modal layout with the given key and layout data.
@@ -52,7 +52,7 @@ use Orchid\Screen\Layouts\Wrapper;
  * @method static Metric    metrics(array $labels)                                  Creates a new metrics layout with the given labels.
  * @method static Split     split(array $layouts)                                   Creates a new split layout with the given layout data.
  * @method static Chart     chart(string $target, string $title = null)             Creates a new chart layout with the given title.
- * @method static Sortable  sortable(array $columns)                                Creates a new sortable layout with the given columns.
+ * @method static Sortable  sortable(string $target, array $columns)                Creates a new sortable layout with the given columns.
  * @method static TabMenu   tabMenu(array $navigations)
  * @method static SideMenu  sideMenu(array $navigations)
  */

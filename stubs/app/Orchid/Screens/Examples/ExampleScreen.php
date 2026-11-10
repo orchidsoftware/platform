@@ -118,7 +118,7 @@ class ExampleScreen extends Screen
                     ->description('Compare data sets with colorful bar graphs.'),
             ]),
 
-            Layout::table([
+            Layout::table('table', [
                 TD::make('id', 'ID')
                     ->width('100')
                     ->render(fn (Repository $model) => // Please use view('path')
@@ -141,7 +141,7 @@ class ExampleScreen extends Screen
                     ->width('100')
                     ->usingComponent(DateTimeSplit::class)
                     ->align(TD::ALIGN_RIGHT),
-            ])->target('table'),
+            ]),
 
             Layout::modal('exampleModal', Layout::rows([
                 Input::make('toast')

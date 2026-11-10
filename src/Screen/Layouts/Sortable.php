@@ -12,11 +12,16 @@ use Orchid\Screen\Sight;
 /** @phpstan-consistent-constructor */
 class Sortable extends Layout
 {
-    public function __construct(protected array $columns = []) {}
-
-    public static function make(array $columns = []): static
+    public function __construct(protected string $target, protected array $columns)
     {
-        return new static($columns);
+        if ($target === '') {
+            throw new \InvalidArgumentException('The layout data source must not be empty.');
+        }
+    }
+
+    public static function make(string $target, array $columns): static
+    {
+        return new static($target, $columns);
     }
 
     use HasEmptyState;
@@ -44,31 +49,10 @@ class Sortable extends Layout
     protected bool $showBlockHeaders = false;
 
     /**
-     * Data source.
-     *
-     * The name of the key to fetch it from the query.
-     * The results of which will be elements of the table.
-     *
-     * @var string
-     */
-    protected $target;
-
-    public function target(string $target): self
-    {
-        $this->target = $target;
-
-        return $this;
-    }
-
-    /**
      * @return Factory|View|null
      */
     public function build(Repository $repository)
     {
-        if (! isset($this->target) || $this->target === '') {
-            throw new \LogicException('Set the layout data source using target().');
-        }
-
         $this->query = $repository;
 
         if (! $this->isSee()) {
@@ -88,6 +72,7 @@ class Sortable extends Layout
             'iconNotFound'       => $this->iconNotFound(),
             'textNotFound'       => $this->textNotFound(),
             'subNotFound'        => $this->subNotFound(),
+            'actionNotFound'     => $this->actionNotFound(),
             'successSortMessage' => $this->successSortMessage(),
             'failureSortMessage' => $this->failureSortMessage(),
         ]);

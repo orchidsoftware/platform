@@ -49,9 +49,9 @@ class LayoutFactory
         return Rows::make($fields);
     }
 
-    public static function table(array $columns): Table
+    public static function table(string $target, array $columns): Table
     {
-        return Table::make($columns);
+        return Table::make($target, $columns);
     }
 
     public static function columns(array $layouts): Columns
@@ -119,9 +119,9 @@ class LayoutFactory
         return Chart::make($target, $title);
     }
 
-    public static function sortable(array $columns): Sortable
+    public static function sortable(string $target, array $columns): Sortable
     {
-        return Sortable::make($columns);
+        return Sortable::make($target, $columns);
     }
 
     public static function tabMenu(array $navigations): TabMenu

@@ -8,30 +8,14 @@ use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Repository;
 use Orchid\Screen\TD;
-use Orchid\Tests\App\Layouts\TotalTable;
 use Orchid\Tests\TestUnitCase;
 
 class TableTest extends TestUnitCase
 {
-    public function testTotalRow(): void
-    {
-        $layout = new TotalTable;
-
-        $html = $layout
-            ->build(TotalTable::getData())
-            ->render();
-
-        $this->assertStringContainsString('colspan="2"', $html);
-        $this->assertStringContainsString('Total:', $html);
-        $this->assertStringContainsString('600', $html);
-    }
-
     public function testCanSee(): void
     {
-        $layout = new class extends Table
+        $layout = new class('target', []) extends Table
         {
-            protected $target = 'target';
-
             protected function columns(): array
             {
                 return [];
@@ -60,7 +44,7 @@ class TableTest extends TestUnitCase
 
     public function testStriped(): void
     {
-        $layout = Table::make([])->target('target')->striped();
+        $layout = Table::make('target', [])->striped();
 
         $html = $layout
             ->build(new Repository(['target' => []]))
@@ -71,7 +55,7 @@ class TableTest extends TestUnitCase
 
     public function testBordered(): void
     {
-        $layout = Table::make([])->target('target')->bordered();
+        $layout = Table::make('target', [])->bordered();
 
         $html = $layout
             ->build(new Repository(['target' => []]))
@@ -82,7 +66,7 @@ class TableTest extends TestUnitCase
 
     public function testHoverable(): void
     {
-        $layout = Table::make([])->target('target')->hoverable();
+        $layout = Table::make('target', [])->hoverable();
 
         $html = $layout
             ->build(new Repository(['target' => []]))
@@ -93,7 +77,7 @@ class TableTest extends TestUnitCase
 
     public function testShowTextNotFoundWhenTargetIsEmptyCollection()
     {
-        $layout = Table::make([])->target('target');
+        $layout = Table::make('target', []);
 
         $html = $layout->build(new Repository([
             'target'  => collect([]),
@@ -119,7 +103,7 @@ class TableTest extends TestUnitCase
         ]);
 
         try {
-            $layout = Table::make([])->target('target');
+            $layout = Table::make('target', []);
 
             $html = $layout->build(new Repository([
                 'target' => collect([]),
@@ -150,7 +134,7 @@ class TableTest extends TestUnitCase
         ]);
 
         try {
-            $layout = Table::make([])->target('target');
+            $layout = Table::make('target', []);
 
             $html = $layout->build(new Repository([
                 'target' => collect([]),
@@ -175,7 +159,7 @@ class TableTest extends TestUnitCase
         ]);
 
         try {
-            $layout = Table::make([])->target('target');
+            $layout = Table::make('target', []);
 
             $html = $layout->build(new Repository([
                 'target' => collect([]),
@@ -190,7 +174,7 @@ class TableTest extends TestUnitCase
 
     public function testEmptyStateCanBeOverridden(): void
     {
-        $layout = Table::make([])->target('target')->emptyIcon('bs.archive')->emptyTitle('No appointments')->emptyDescription('Create the first appointment.')->emptyAction(Link::make('Create appointment')->href('/appointments/create'));
+        $layout = Table::make('target', [])->emptyIcon('bs.archive')->emptyTitle('No appointments')->emptyDescription('Create the first appointment.')->emptyAction(Link::make('Create appointment')->href('/appointments/create'));
 
         $html = $layout->build(new Repository([
             'target' => collect([]),
@@ -206,9 +190,9 @@ class TableTest extends TestUnitCase
 
     public function testLoopTable(): void
     {
-        $layout = Table::make([
+        $layout = Table::make('target', [
             TD::make('serial number')->render(fn ($item, $loop) => 'index:'.$loop->index),
-        ])->target('target');
+        ]);
 
         $values = collect(['a', 'b', 'c']);
 

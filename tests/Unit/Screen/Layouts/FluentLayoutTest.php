@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
 use Illuminate\Support\Collection;
-use LogicException;
+use InvalidArgumentException;
 use Orchid\Screen\Actions\Menu;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Columns;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Layouts\SideMenu;
+use Orchid\Screen\Layouts\Sortable;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Layouts\TabMenu;
 use Orchid\Screen\Layouts\View;
@@ -18,6 +19,7 @@ use Orchid\Screen\Repository;
 use Orchid\Screen\TD;
 use Orchid\Support\Facades\Layout;
 use Orchid\Tests\TestUnitCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class FluentLayoutTest extends TestUnitCase
 {
@@ -52,9 +54,9 @@ class FluentLayoutTest extends TestUnitCase
 
     public function testDirectAndFacadeTablesRenderTheSameDataAndTotals(): void
     {
-        foreach ([Table::make([TD::make('name')]), Layout::table([TD::make('name')])] as $table) {
-            $html = $table->target('users')->title('Team')
-                ->totals([TD::make('count')])
+        foreach ([Table::make('users', [TD::make('name'), TD::make('email'), TD::make('phone')]), Layout::table('users', [TD::make('name'), TD::make('email'), TD::make('phone')])] as $table) {
+            $html = $table->title('Team')
+                ->totals([TD::make('summary')->colspan(2)->render(fn () => 'Team total:'), TD::make('count')])
                 ->build(new Repository([
                     'users' => [new Repository(['name' => 'Taylor'])],
                     'count' => 42,
@@ -63,15 +65,24 @@ class FluentLayoutTest extends TestUnitCase
             $this->assertStringContainsString('Team', $html);
             $this->assertStringContainsString('Taylor', $html);
             $this->assertStringContainsString('42', $html);
+            $this->assertStringContainsString('Team total:', $html);
+            $this->assertStringContainsString('colspan="2"', $html);
         }
     }
 
-    public function testTableRequiresAnExplicitDataSource(): void
+    public static function targetedLayouts(): array
     {
-        $this->expectException(LogicException::class);
-        $this->expectExceptionMessage('target()');
+        return [[Table::class], [Sortable::class]];
+    }
 
-        Table::make([TD::make('name')])->build(new Repository);
+    /** @param class-string<Table|Sortable> $layout */
+    #[DataProvider('targetedLayouts')]
+    public function testEmptyDataSourceIsRejectedOnConstruction(string $layout): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('data source must not be empty');
+
+        $layout::make('', []);
     }
 
     public function testNamedMenusCanStillSupplyTheirNavigation(): void
@@ -107,7 +118,7 @@ class FluentLayoutTest extends TestUnitCase
         request()->query->set('filter', ['name' => 'missing']);
 
         try {
-            $html = Table::make([])->target('users')->emptyAction(null)
+            $html = Table::make('users', [])->emptyAction(null)
                 ->build(new Repository(['users' => []]))->render();
 
             $this->assertStringContainsString('No matches', $html);
