@@ -26,7 +26,7 @@
         "cropperjs": "^1.5.11",
         "cross-env": "^10.1.0",
         "dropzone": "^5.9.2",
-        "flatpickr": "^4.6.3",
+        "flatpickr": "npm:flatpickr-ce@^4.7.0",
         "inputmask": "^5.0.6",
         "laravel-vite-plugin": "^3.0.0",
         "leaflet": "^1.7.1",
