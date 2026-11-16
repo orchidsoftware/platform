@@ -7,6 +7,7 @@ namespace Orchid\Screen;
 use Closure;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Support\Arr;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Conditionable;
@@ -446,14 +447,16 @@ class Field implements \Stringable, Fieldable, Htmlable
     /**
      * Modifies the 'value' attribute of the field.
      *
-     * Retrieves the old value using the getOldValue() method, falling back to the current 'value' attribute if no old value is found.
+     * Uses the bound value only when the field is absent from the old input.
      * If the value is a Closure, it will be executed with the current attributes and its result will be used as the value.
      *
      * @return static Returns the current instance for method chaining.
      */
     protected function updateFieldValue(): static
     {
-        $value = $this->getOldValue() ?? $this->get('value');
+        $value = Arr::has(old(), $this->getOldName())
+            ? $this->getOldValue()
+            : $this->get('value');
 
         if ($value instanceof Closure) {
             $value = $value($this->attributes);

@@ -13,11 +13,36 @@ use Illuminate\Support\Str;
 use Illuminate\Support\ViewErrorBag;
 use Orchid\Screen\Fields\Input;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Throwable;
 
 class InputTest extends TestFieldsUnitCase
 {
     use InteractsWithSession;
+
+    #[DataProvider('oldInputValues')]
+    public function testOldInputTakesPrecedenceOverBoundValue(array $oldInput, string $expected): void
+    {
+        $session = app(Store::class);
+        $session->flashInput($oldInput);
+        request()->setLaravelSession($session);
+
+        $input = Input::make('post.title')->value(fn (array $attributes) => 'Original title');
+        $document = new \DOMDocument;
+        $document->loadHTML($input->render()->render());
+
+        $this->assertSame($expected, $document->getElementsByTagName('input')->item(0)->getAttribute('value'));
+    }
+
+    public static function oldInputValues(): iterable
+    {
+        yield 'missing input' => [[], 'Original title'];
+        yield 'missing field' => [['post' => ['body' => 'Updated body']], 'Original title'];
+        yield 'cleared field' => [['post' => ['title' => null]], ''];
+        yield 'empty string' => [['post' => ['title' => '']], ''];
+        yield 'zero' => [['post' => ['title' => 0]], '0'];
+        yield 'updated field' => [['post' => ['title' => 'Updated title']], 'Updated title'];
+    }
 
     /**
      * @throws Throwable
