@@ -185,14 +185,17 @@ trait UserAccess
      */
     public function replaceRoles(?array $roles = [])
     {
-        $this->roles()->detach();
+        $changes = $this->roles()->sync($roles ?? []);
 
-        $this->eventRemoveRole($roles);
-
-        $this->roles()->attach($roles);
-
-        $this->eventAddRole($roles);
         $this->clearCachePermission();
+
+        if ($changes['detached'] !== []) {
+            $this->eventRemoveRole($changes['detached']);
+        }
+
+        if ($changes['attached'] !== []) {
+            $this->eventAddRole($changes['attached']);
+        }
 
         return $this;
     }
