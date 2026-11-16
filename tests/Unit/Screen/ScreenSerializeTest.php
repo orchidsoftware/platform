@@ -35,7 +35,7 @@ class ScreenSerializeTest extends TestUnitCase
         $restored = unserialize(serialize(new TypedPropertiesScreen));
 
         $this->assertFalse((new ReflectionProperty($restored, 'clicks'))->isInitialized($restored));
-        $this->assertFalse((new ReflectionProperty($restored, 'message'))->isInitialized($restored));
+        $this->assertSame('Default message', $restored->message);
     }
 
     /**

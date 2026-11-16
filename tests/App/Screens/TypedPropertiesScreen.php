@@ -10,7 +10,7 @@ class TypedPropertiesScreen extends Screen
 {
     public int $clicks;
 
-    public ?string $message;
+    public ?string $message = 'Default message';
 
     public function layout(): iterable
     {
