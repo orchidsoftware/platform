@@ -6,10 +6,64 @@ namespace Orchid\Tests\Browser;
 
 use Illuminate\Support\Str;
 use Laravel\Dusk\Browser;
+use Orchid\Platform\Models\User;
 use Orchid\Tests\TestBrowserCase;
 
 class UserEditTest extends TestBrowserCase
 {
+    public function testModalKeepsSelectedUserAcrossValidationFailure(): void
+    {
+        $admin = $this->createAdminUser();
+        $selected = User::factory()->create();
+
+        $this->browse(function (Browser $browser) use ($admin, $selected) {
+            $browser->loginAs($admin)
+                ->visitRoute('orchid.users')
+                ->pressAndWaitFor($selected->email)
+                ->waitFor('input[name="user[email]"]')
+                ->assertInputValue('user[email]', $selected->email)
+                ->type('user[name]', 'Updated target')
+                ->type('user[email]', $admin->email)
+                ->press('Apply')
+                ->waitFor('.modal.show .invalid-feedback')
+                ->assertInputValue('user[name]', 'Updated target')
+                ->type('user[email]', $selected->email)
+                ->press('Apply')
+                ->waitForText('User was saved.')
+                ->waitForText('Updated target')
+                ->pressAndWaitFor($admin->email)
+                ->waitFor('input[name="user[email]"]')
+                ->assertInputValue('user[email]', $admin->email)
+                ->assertInputValue('user[name]', $admin->name)
+                ->press('Close');
+        });
+
+        $this->assertSame('Updated target', $selected->fresh()->name);
+        $this->assertSame($admin->name, $admin->fresh()->name);
+    }
+
+    public function testDeleteFromListSendsSelectedUserThroughConfirmation(): void
+    {
+        $admin = $this->createAdminUser();
+        $selected = User::factory()->create();
+
+        $this->browse(function (Browser $browser) use ($admin, $selected) {
+            $browser->loginAs($admin)
+                ->visitRoute('orchid.users')
+                ->with('tbody tr:first-child', function (Browser $row) use ($selected) {
+                    $row->assertSee($selected->email)
+                        ->click('button[data-bs-toggle="dropdown"]')
+                        ->press('Delete');
+                })
+                ->waitFor('#confirm-dialog.show')
+                ->click('#confirm-dialog button[type="submit"]')
+                ->waitForText('User was removed');
+        });
+
+        $this->assertNull($selected->fresh());
+        $this->assertNotNull($admin->fresh());
+    }
+
     public function testEditPage(): void
     {
         $this->browse(function (Browser $browser) {

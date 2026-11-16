@@ -39,7 +39,7 @@ class ButtonTest extends TestFieldsUnitCase
         $view = self::renderField($button);
 
         $this->assertStringContainsString(
-            'formaction="http://127.0.0.1:8001/test?name=Alexandr',
+            'name="_parameters" value="{&quot;name&quot;:&quot;Alexandr&quot;}',
             $view
         );
     }
@@ -55,7 +55,7 @@ class ButtonTest extends TestFieldsUnitCase
         $view = self::renderField($button);
 
         $this->assertStringContainsString(
-            'formaction="http://127.0.0.1:8001/test?name=Alexandr',
+            'name="_parameters" value="{&quot;name&quot;:&quot;Alexandr&quot;}',
             $view
         );
     }
@@ -70,7 +70,7 @@ class ButtonTest extends TestFieldsUnitCase
         $view = self::renderField($button);
 
         $this->assertStringContainsString(
-            'formaction="http://127.0.0.1:8001/test?value=0',
+            'name="_parameters" value="{&quot;value&quot;:0}',
             $view
         );
     }
@@ -173,7 +173,7 @@ class ButtonTest extends TestFieldsUnitCase
         $view = self::renderField($button);
 
         $this->assertStringContainsString(
-            'formaction="http://127.0.0.1:8001/test?id=1',
+            'name="_parameters" value="{&quot;id&quot;:1}',
             $view
         );
     }
@@ -189,7 +189,7 @@ class ButtonTest extends TestFieldsUnitCase
         $view = self::renderField($button);
 
         $this->assertStringContainsString(
-            'formaction="http://127.0.0.1:8001/test?id=1',
+            'name="_parameters" value="{&quot;id&quot;:1}',
             $view
         );
     }
@@ -247,10 +247,8 @@ class ButtonTest extends TestFieldsUnitCase
         $this->assertStringNotContainsString('formaction="http://127.0.0.1:8001/test?', $view);
     }
 
-    public function testButtonMethodParametersOverwritePreviousQueryString(): void
+    public function testButtonMethodParametersStaySeparateFromPreviousQueryString(): void
     {
-        // The button's own parameters take precedence over a same-named
-        // query parameter carried over from the previous URL.
         request()->headers->set('referer', 'http://127.0.0.1:8001/test?id=1');
 
         Orchid::setCurrentScreen(new class extends Screen
@@ -267,9 +265,10 @@ class ButtonTest extends TestFieldsUnitCase
         $view = self::renderField($button);
 
         $this->assertStringContainsString(
-            'formaction="http://127.0.0.1:8001/test/test?id=2"',
+            'formaction="http://127.0.0.1:8001/test/test?id=1"',
             $view
         );
+        $this->assertStringContainsString('name="_parameters" value="{&quot;id&quot;:2}"', $view);
     }
 
     public function testButtonMethodParametersAcceptsEloquentModel(): void
@@ -285,7 +284,7 @@ class ButtonTest extends TestFieldsUnitCase
         $view = self::renderField($button);
 
         $this->assertStringContainsString(
-            'formaction="http://127.0.0.1:8001/test?user='.$user->getKey(),
+            'value="'.e(json_encode(['user' => $user->getKey()])).'"',
             $view
         );
     }

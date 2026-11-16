@@ -112,9 +112,9 @@ class UserListScreen extends Screen
         Toast::info(__('User was saved.'));
     }
 
-    public function remove(Request $request): void
+    public function remove(User $user): void
     {
-        User::findOrFail($request->input('id'))->delete();
+        $user->delete();
 
         Toast::info(__('User was removed'));
     }

@@ -92,8 +92,7 @@ class Button extends Action
             $path = strtok($url, '?');
             parse_str((string) parse_url($url, PHP_URL_QUERY), $previousQuery);
 
-            $parameters = $this->get('parameters');
-            $query = http_build_query(array_merge($previousQuery, is_array($parameters) ? $parameters : (array) $parameters));
+            $query = http_build_query($previousQuery);
 
             $action = rtrim("{$path}/{$this->get('method')}?{$query}", '/?');
             $this->set('action', $action);

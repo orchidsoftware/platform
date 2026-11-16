@@ -43,6 +43,14 @@ class ToggleTest extends TestFieldsUnitCase
         $this->assertStringContainsString('formaction="http://127.0.0.1:8001/updateStatus', $view);
     }
 
+    public function testToggleSubmitsExplicitParameters(): void
+    {
+        $view = self::renderField(Toggle::make('Update')->method('updateStatus', ['id' => 42]));
+
+        $this->assertStringContainsString('name="_parameters" value="{&quot;id&quot;:42}"', $view);
+        $this->assertStringNotContainsString('updateStatus?id=', $view);
+    }
+
     public function testToggleRawClick(): void
     {
         $toggle = Toggle::make('Raw')

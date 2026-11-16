@@ -129,11 +129,7 @@ abstract class Screen extends Controller
         $state = $this->extractState();
         $this->fillPublicProperty($state);
 
-        $parameters = request()->collect()->merge([
-            'state'   => $state,
-        ])->all();
-
-        $repository = $this->callMethod($method, $parameters);
+        $repository = $this->callMethod($method, ['state' => $state]);
 
         if (is_array($repository)) {
             $repository = new Repository(array_merge($state->all(), $repository));
@@ -288,9 +284,19 @@ abstract class Screen extends Controller
      */
     private function callMethod(string $method, array $parameters = [])
     {
+        $input = request()->isJson()
+            ? request()->json('_parameters', '{}')
+            : request()->post('_parameters', '{}');
+
+        validator(['_parameters' => $input], ['_parameters' => 'json'])->validate();
+
+        $arguments = json_decode($input, true);
+        abort_unless(is_array($arguments), Response::HTTP_UNPROCESSABLE_ENTITY);
+
+        $parameters += $arguments;
         $uses = static::class.'@'.$method;
 
-        $preparedParameters = self::prepareForExecuteMethod($uses);
+        $preparedParameters = self::prepareForExecuteMethod($uses, $parameters);
 
         return App::call($uses, $preparedParameters ?? $parameters);
     }
@@ -298,29 +304,30 @@ abstract class Screen extends Controller
     /**
      * Prepare the method execution by binding route parameters and substituting implicit bindings.
      */
-    public static function prepareForExecuteMethod(string $uses): ?array
+    public static function prepareForExecuteMethod(string $uses, array $parameters = []): ?array
     {
-        $route = request()->route();
+        $original = request()->route();
 
-        if ($route === null) {
+        if ($original === null) {
             return null;
         }
 
-        collect(request()->query())->each(function ($value, string $key) use ($route) {
-            $route->setParameter($key, $value);
-        });
+        $route = clone $original;
+        $route->uses($uses);
 
-        $original = $route->action['uses'];
-
-        $route = $route->uses($uses);
+        foreach ($parameters as $key => $value) {
+            if (! $route->hasParameter($key)) {
+                $route->setParameter($key, $value);
+            }
+        }
 
         Route::substituteImplicitBindings($route);
 
-        $parameters = $route->parameters();
+        foreach (array_keys($original->parameters()) as $key) {
+            $original->setParameter($key, $route->parameter($key));
+        }
 
-        $route->uses($original);
-
-        return $parameters;
+        return $route->parameters();
     }
 
     /**
