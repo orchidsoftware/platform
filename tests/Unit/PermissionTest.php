@@ -6,8 +6,11 @@ namespace Orchid\Tests\Unit;
 
 use Exception;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Event;
 use Orchid\Access\PermissionGroup;
 use Orchid\Access\Permissions;
+use Orchid\Platform\Events\AddRoleEvent;
+use Orchid\Platform\Events\RemoveRoleEvent;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
@@ -554,10 +557,78 @@ class PermissionTest extends TestUnitCase
     public function testReplacePermission(): void
     {
         $user = $this->createUser();
+        $user->addRole($this->createRole());
 
         $user->replaceRoles([]);
 
         $this->assertTrue($user->roles()->get()->isEmpty());
+    }
+
+    public function testReplaceRolesUpdatesPermissionsAndCanBeRepeated(): void
+    {
+        Event::fake([AddRoleEvent::class, RemoveRoleEvent::class]);
+
+        $user = $this->createNoPermissionsUser();
+        $previous = Role::factory()->create(['permissions' => ['previous.access' => true]]);
+        $retained = Role::factory()->create(['permissions' => []]);
+        $added = Role::factory()->create(['permissions' => ['new.access' => true]]);
+        $user->roles()->attach([$previous->id, $retained->id]);
+
+        $this->assertTrue($user->hasAccess('previous.access'));
+        $this->assertFalse($user->hasAccess('new.access'));
+
+        $roles = [$retained->id, $added->id];
+        $this->assertSame($user, $user->replaceRoles($roles));
+        $this->assertFalse($user->hasAccess('previous.access'));
+        $this->assertTrue($user->hasAccess('new.access'));
+
+        Event::assertDispatched(RemoveRoleEvent::class, fn ($event) => $event->user === $user
+            && $event->roles->all() === [$previous->id]);
+        Event::assertDispatched(AddRoleEvent::class, fn ($event) => $event->user === $user
+            && $event->roles->all() === [$added->id]);
+
+        $user->replaceRoles($roles);
+
+        $this->assertEqualsCanonicalizing($roles, $user->roles()->pluck('roles.id')->all());
+        Event::assertDispatchedTimes(RemoveRoleEvent::class, 1);
+        Event::assertDispatchedTimes(AddRoleEvent::class, 1);
+    }
+
+    public function testReplaceRolesWithNullClearsRoles(): void
+    {
+        $user = $this->createUser();
+        $user->addRole($this->createRole());
+
+        Event::fake([AddRoleEvent::class, RemoveRoleEvent::class]);
+
+        $user->replaceRoles(null);
+
+        $this->assertFalse($user->roles()->exists());
+        Event::assertDispatchedTimes(RemoveRoleEvent::class, 1);
+        Event::assertNotDispatched(AddRoleEvent::class);
+    }
+
+    public function testRoleReplacementListenersSeeUpdatedPermissions(): void
+    {
+        $user = $this->createNoPermissionsUser();
+        $previous = Role::factory()->create(['permissions' => ['previous.access' => true]]);
+        $added = Role::factory()->create(['permissions' => ['new.access' => true]]);
+        $user->addRole($previous);
+
+        $this->assertTrue($user->hasAccess('previous.access'));
+        $this->assertFalse($user->hasAccess('new.access'));
+
+        $events = [];
+        Event::listen([RemoveRoleEvent::class, AddRoleEvent::class], function ($event) use ($user, &$events) {
+            $this->assertSame($user, $event->user);
+            $this->assertFalse($event->user->hasAccess('previous.access'));
+            $this->assertTrue($event->user->hasAccess('new.access'));
+            $events[] = $event;
+        });
+
+        $user->replaceRoles([$added->id]);
+
+        $this->assertCount(2, $events);
     }
 
     /**
