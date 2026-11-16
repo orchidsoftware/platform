@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Tests\Feature\Platform;
 
 use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Support\Facades\DB;
 use Orchid\Platform\Components\Notification;
 use Orchid\Platform\Models\User;
+use Orchid\Platform\Notifications\DashboardMessage;
 use Orchid\Platform\Notifications\OrchidMessage;
 use Orchid\Support\Color;
 use Orchid\Tests\App\Notifications\TaskCompleted;
@@ -77,6 +79,53 @@ class NotificationTest extends TestFeatureCase
 
         $user->refresh();
         $this->assertTrue($user->unreadNotifications->isEmpty());
+    }
+
+    public function testMarkAllAsReadOnlyUpdatesSupportedUnreadNotificationsForCurrentUser(): void
+    {
+        $this->freezeSecond();
+        $user = $this->createAdminUser();
+        $factory = DatabaseNotificationFactory::new()->for($user, 'notifiable');
+        $orchid = $factory->create();
+        $dashboard = $factory->create(['type' => DashboardMessage::class]);
+        $alreadyRead = $factory->create(['read_at' => now()->subDay()]);
+        $unrelated = $factory->create(['type' => 'OtherNotification']);
+        $otherUser = DatabaseNotificationFactory::new()
+            ->for(User::factory()->create(), 'notifiable')
+            ->create();
+
+        $this->actingAs($user)
+            ->post(route('orchid.notifications.markAllAsRead'))
+            ->assertRedirect();
+
+        $this->assertTrue($orchid->fresh()->read_at->equalTo(now()));
+        $this->assertTrue($dashboard->fresh()->read_at->equalTo(now()));
+        $this->assertTrue($alreadyRead->fresh()->read_at->equalTo(now()->subDay()));
+        $this->assertNull($unrelated->fresh()->read_at);
+        $this->assertNull($otherUser->fresh()->read_at);
+    }
+
+    public function testMarkAllAsReadUsesOneUpdateWithoutHydratingNotifications(): void
+    {
+        $user = $this->createAdminUser();
+        DatabaseNotificationFactory::new()->count(3)->for($user, 'notifiable')->create();
+
+        DatabaseNotification::retrieved(
+            fn () => $this->fail('Marking all notifications as read must not hydrate notification models.')
+        );
+
+        DB::enableQueryLog();
+        DB::flushQueryLog();
+
+        $this->actingAs($user)
+            ->post(route('orchid.notifications.markAllAsRead'))
+            ->assertRedirect();
+
+        $updates = collect(DB::getQueryLog())->filter(fn ($query) => str_starts_with($query['query'], 'update')
+            && str_contains($query['query'], 'notifications'));
+
+        $this->assertCount(1, $updates);
+        $this->assertSame(0, $user->unreadNotifications()->count());
     }
 
     public function testMarkSingleNotificationAsRead(): void

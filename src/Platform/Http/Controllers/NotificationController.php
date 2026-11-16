@@ -63,9 +63,9 @@ class NotificationController extends Controller
     public function markAllAsRead(Request $request): RedirectResponse
     {
         $request->user()
-            ->unreadNotifications
+            ->unreadNotifications()
             ->whereIn('type', [OrchidMessage::class, DashboardMessage::class])
-            ->markAsRead();
+            ->update(['read_at' => now()]);
 
         Toast::info(__('All messages have been read.'));
 
