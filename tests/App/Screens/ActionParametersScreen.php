@@ -14,12 +14,20 @@ use Orchid\Support\Facades\Layout;
 
 class ActionParametersScreen extends Screen
 {
+    public function query(): array
+    {
+        return [];
+    }
+
     public function layout(): array
     {
         return [
             Layout::modal('edit', Layout::rows([
-                Input::make('user.name'),
+                Input::make('user.name')->title('Selected modal content'),
                 Input::make('marker'),
+            ]))->deferred('loadUser'),
+            Layout::modal('other', Layout::rows([
+                Input::make('other.name')->title('Other modal content'),
             ]))->deferred('loadUser'),
         ];
     }

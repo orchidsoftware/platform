@@ -284,16 +284,13 @@ abstract class Screen extends Controller
      */
     private function callMethod(string $method, array $parameters = [])
     {
-        $input = request()->isJson()
-            ? request()->json('_parameters', '{}')
-            : request()->post('_parameters', '{}');
+        $input = Arr::get(request()->getPayload()->all(), '_parameters', '{}');
+        $arguments = validator(
+            ['_parameters' => is_string($input) ? json_decode($input, true) : null],
+            ['_parameters' => 'array'],
+        )->validate();
 
-        validator(['_parameters' => $input], ['_parameters' => 'json'])->validate();
-
-        $arguments = json_decode($input, true);
-        abort_unless(is_array($arguments), Response::HTTP_UNPROCESSABLE_ENTITY);
-
-        $parameters += $arguments;
+        $parameters += $arguments['_parameters'];
         $uses = static::class.'@'.$method;
 
         $preparedParameters = self::prepareForExecuteMethod($uses, $parameters);

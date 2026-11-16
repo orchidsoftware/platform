@@ -106,7 +106,7 @@ export default class extends ApplicationController {
             Object.keys(this.parametersValue).length !== 0 &&
             !options.validateError
         ) {
-            this.asyncLoadData(options.params);
+            this.asyncLoadData();
         }
 
         // Store the last open modal options
@@ -135,15 +135,14 @@ export default class extends ApplicationController {
     }
 
     /**
-     * Load data asynchronously and update the modal.
-     * @param params - Query parameters for the data request.
+     * Load deferred data using the form's action parameters.
      */
-    asyncLoadData(params) {
+    asyncLoadData() {
         this.element.classList.add("modal-loading");
 
         // Load data via stream and update modal state
         this.loadStream(this.urlValue, {
-            _parameters: JSON.stringify(params ?? {}),
+            _parameters: this.parametersTarget.value,
             _state: document.getElementById("screen-state")?.value || null,
             ...this.parametersValue,
         }).then(() => this.element.classList.remove("modal-loading"));

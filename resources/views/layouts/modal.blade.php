@@ -30,6 +30,7 @@
                   data-action="form#submit"
             >
                 <input type="hidden" name="_parameters" value="{}" data-modal-target="parameters">
+                <input type="hidden" name="_modal" value="{{ $templateSlug }}">
                 <div class="p-4 modal-placeholder">
                     <div class="placeholder-glow mb-3 mt-1 d-flex align-items-center">
                         <span class="placeholder col-6 h5 me-auto rounded-1"></span>
@@ -80,7 +81,7 @@
                 <div class="modal-body layout-wrapper">
                     <x-orchid-stream target="{{$templateSlug}}">
                         <div id="{{ $templateSlug }}">
-                            @if((isset($errors) && $errors->any()) || !empty($deferrerParams) == \Orchid\Support\Facades\Orchid::isPartialRequest())
+                            @if($showContent)
                                 @foreach($manyForms as $formKey => $modal)
                                     @foreach($modal as $item)
                                         {!! $item ?? '' !!}

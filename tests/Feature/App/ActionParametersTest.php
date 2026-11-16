@@ -6,6 +6,8 @@ namespace Orchid\Tests\Feature\App;
 
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\MessageBag;
+use Illuminate\Support\ViewErrorBag;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Layout;
@@ -79,11 +81,40 @@ class ActionParametersTest extends TestFeatureCase
     {
         Route::screen('actions', ActionParametersScreen::class)->name('actions');
 
-        foreach (['invalid', 'null', 'true', '"scalar"'] as $parameters) {
+        foreach (['invalid', 'null', 'true', '"scalar"', null, [], 42] as $parameters) {
             $this->postJson(route('actions', ['method' => 'select']), [
                 '_parameters' => $parameters,
-            ])->assertUnprocessable();
+            ])->assertUnprocessable()->assertJsonValidationErrors('_parameters');
         }
+    }
+
+    public function testValidationErrorsOnlyRenderTheSubmittedDeferredModal(): void
+    {
+        Route::screen('action-modals', ActionParametersScreen::class)
+            ->middleware(config('orchid.middleware.private'))->name('action-modals');
+        $errors = (new ViewErrorBag)->put('default', new MessageBag(['user.name' => 'Name is required.']));
+
+        $this->actingAs($this->createAdminUser())
+            ->withSession(['errors' => $errors, '_old_input' => ['_modal' => 'edit', 'user' => ['name' => 'Draft']]])
+            ->get(route('action-modals'))
+            ->assertOk()
+            ->assertSee('Selected modal content')
+            ->assertSee('Draft')
+            ->assertDontSee('Other modal content');
+    }
+
+    public function testUnrelatedValidationErrorsKeepDeferredModalsUnloaded(): void
+    {
+        Route::screen('action-modals', ActionParametersScreen::class)
+            ->middleware(config('orchid.middleware.private'))->name('action-modals');
+        $errors = (new ViewErrorBag)->put('default', new MessageBag(['title' => 'Title is required.']));
+
+        $this->actingAs($this->createAdminUser())
+            ->withSession(['errors' => $errors])
+            ->get(route('action-modals'))
+            ->assertOk()
+            ->assertDontSee('Selected modal content')
+            ->assertDontSee('Other modal content');
     }
 
     public function testDeferredModalReceivesModelAndScreenState(): void
