@@ -158,6 +158,7 @@ trait ModelStateRetrievable
         $defaultReflection = (new \ReflectionClass($default))->getProperties();
 
         return collect($defaultReflection)
+            ->filter(fn (\ReflectionProperty $property) => $property->isInitialized($default))
             ->mapWithKeys(fn (\ReflectionProperty $property) => [$property->getName() => $property->getValue($default)])
             ->all();
     }
