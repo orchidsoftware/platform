@@ -9,6 +9,7 @@ use Laravel\SerializableClosure\Serializers\Signed;
 use Orchid\Platform\Models\User;
 use Orchid\Tests\App\Screens\SerializeRetrievableScreen;
 use Orchid\Tests\App\Screens\SerializeScreen;
+use Orchid\Tests\App\Screens\TypedPropertiesScreen;
 use Orchid\Tests\App\Screens\ValueObject;
 use Orchid\Tests\TestUnitCase;
 use ReflectionClass;
@@ -17,6 +18,26 @@ use ReflectionProperty;
 
 class ScreenSerializeTest extends TestUnitCase
 {
+    public function testRestoresTypedPropertiesWithoutDefaults(): void
+    {
+        $screen = new TypedPropertiesScreen;
+        $screen->clicks = 42;
+        $screen->message = null;
+
+        $restored = unserialize(serialize($screen));
+
+        $this->assertSame(42, $restored->clicks);
+        $this->assertNull($restored->message);
+    }
+
+    public function testLeavesUninitializedTypedPropertiesUninitialized(): void
+    {
+        $restored = unserialize(serialize(new TypedPropertiesScreen));
+
+        $this->assertFalse((new ReflectionProperty($restored, 'clicks'))->isInitialized($restored));
+        $this->assertSame('Default message', $restored->message);
+    }
+
     /**
      * Ensures that an empty screen (all properties at their default values) is serialized
      * as a compact empty object, because ModelStateRetrievable skips default-valued properties.
