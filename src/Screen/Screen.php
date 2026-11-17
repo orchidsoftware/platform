@@ -38,8 +38,6 @@ abstract class Screen extends Controller
         ModelStateRetrievable;
 
     /**
-     * @param mixed ...$arguments
-     *
      * @throws BindingResolutionException
      * @throws \ReflectionException
      *
@@ -47,9 +45,9 @@ abstract class Screen extends Controller
      *
      * @see static::handle()
      */
-    public function __invoke(Request $request, ...$arguments)
+    public function __invoke(Request $request)
     {
-        return $this->handle($request, ...$arguments);
+        return $this->handle($request);
     }
 
     /**
@@ -219,15 +217,11 @@ abstract class Screen extends Controller
      *
      * @return RedirectResponse|mixed
      */
-    public function handle(Request $request, ...$arguments)
+    public function handle(Request $request)
     {
         Orchid::setCurrentScreen($this);
 
         $method = $request->route()->parameter('method', 'view');
-
-        if (! $request->isMethodSafe()) {
-            $method = Arr::last($request->route()->parameters(), null, 'view');
-        }
 
         $state = $this->extractState();
         $this->fillPublicProperty($state);
@@ -240,7 +234,7 @@ abstract class Screen extends Controller
             return redirect()->action([static::class], $request->all());
         }
 
-        return $this->callMethod($method, $arguments) ?? $this->backWithCurrentState();
+        return $this->callMethod($method) ?? $this->backWithCurrentState();
     }
 
     /**
@@ -324,7 +318,7 @@ abstract class Screen extends Controller
             $original->setParameter($key, $route->parameter($key));
         }
 
-        return $route->parameters();
+        return Arr::except($route->parameters(), ['method']);
     }
 
     /**

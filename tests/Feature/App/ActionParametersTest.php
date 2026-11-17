@@ -53,6 +53,27 @@ class ActionParametersTest extends TestFeatureCase
         ])->assertOk()->assertJson(['selected' => $user->id]);
     }
 
+    public function testHandlersReceiveOnlyTheirArgumentsWithoutDispatchMetadata(): void
+    {
+        Route::screen('actions/{user}', ActionParametersScreen::class)->name('actions');
+        $user = User::factory()->create();
+
+        $this->post(route('actions', ['user' => $user, 'method' => 'collect']), [
+            '_parameters' => json_encode(['label' => 'Selected label']),
+        ])->assertOk()->assertExactJson(['selected' => $user->id, 'labels' => ['Selected label']]);
+    }
+
+    public function testDispatchUsesTheNamedMethodParameter(): void
+    {
+        Route::screen('actions', ActionParametersScreen::class)->name('actions');
+        Route::matched(fn ($event) => $event->route->setParameter('context', 'Additional route context'));
+        $user = User::factory()->create();
+
+        $this->post(route('actions', ['method' => 'select']), [
+            '_parameters' => json_encode(['user' => $user->id]),
+        ])->assertOk()->assertJson(['selected' => $user->id]);
+    }
+
     public function testUnknownModelReturnsNotFound(): void
     {
         Route::screen('actions', ActionParametersScreen::class)->name('actions');

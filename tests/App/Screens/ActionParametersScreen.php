@@ -50,4 +50,9 @@ class ActionParametersScreen extends Screen
     {
         return ['user' => $user->id, 'role' => $role->id];
     }
+
+    public function collect(User $user, string ...$labels): array
+    {
+        return ['selected' => $user->id, 'labels' => $labels];
+    }
 }
