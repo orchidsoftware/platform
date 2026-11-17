@@ -88,6 +88,18 @@ class ActionParametersTest extends TestFeatureCase
         ])->assertOk()->assertJson(['selected' => $user->id]);
     }
 
+    public function testActionModelsUseTheExactHandlerParameterName(): void
+    {
+        Route::screen('profiles', ActionParametersScreen::class)->name('profiles');
+        $url = route('profiles', ['method' => 'selectProfile']);
+        $user = User::factory()->create();
+
+        $this->postJson($url, ['_parameters' => json_encode(['userProfile' => $user->id])])
+            ->assertOk()->assertExactJson(['selected' => $user->id]);
+        $this->postJson($url, ['_parameters' => json_encode(['user_profile' => 999])])
+            ->assertOk()->assertExactJson(['selected' => null]);
+    }
+
     public function testUnknownModelReturnsNotFound(): void
     {
         Route::screen('actions', ActionParametersScreen::class)->name('actions');

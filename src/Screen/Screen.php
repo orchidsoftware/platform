@@ -283,12 +283,13 @@ abstract class Screen extends Controller
         $arguments = validator(
             ['_parameters' => is_string($input) ? json_decode($input, true) : null],
             ['_parameters' => 'array'],
-        )->validate()['_parameters'];
+        )->validate();
 
-        $parameters = collect($arguments)->merge($parameters)->all();
+        $parameters = array_replace($arguments['_parameters'], $parameters);
         $uses = static::class.'@'.$method;
+        $preparedParameters = self::prepareForExecuteMethod($uses, $parameters);
 
-        return App::call($uses, self::prepareForExecuteMethod($uses, $parameters) ?? $parameters);
+        return App::call($uses, $preparedParameters ?? $parameters);
     }
 
     /**
@@ -308,27 +309,30 @@ abstract class Screen extends Controller
 
         Route::substituteImplicitBindings($route);
 
-        $pathParameters = collect($route->parameters());
-        $pathParameters->each(fn ($value, $name) => $original->setParameter($name, $value));
+        foreach ($route->parameters() as $key => $value) {
+            $original->setParameter($key, $value);
+            unset($parameters[$key]);
+        }
 
-        $parameterNames = collect($route->signatureParameters())
-            ->mapWithKeys(fn ($parameter) => [Str::snake($parameter->getName()) => $parameter->getName()]);
-
-        $pathParameters = $pathParameters->mapWithKeys(function ($value, $key) use ($pathParameters, $parameterNames) {
-            $name = $parameterNames->get($key, $key);
-
-            return [$name => $pathParameters->get($name, $value)];
-        });
-
-        $route->parameters = collect($parameters)
-            ->merge($pathParameters)
-            ->except('method')
-            ->all();
         $route->withoutScopedBindings();
+
+        foreach ($route->signatureParameters() as $parameter) {
+            $name = $parameter->getName();
+            $pathKey = Str::snake($name);
+
+            if ($name !== $pathKey && $original->hasParameter($pathKey)) {
+                $route->setParameter($name, $route->parameter($name, $original->parameter($pathKey)));
+                $route->forgetParameter($pathKey);
+            }
+
+            if (! $route->hasParameter($name) && array_key_exists($name, $parameters)) {
+                $route->setParameter($name, $parameters[$name]);
+            }
+        }
 
         Route::substituteImplicitBindings($route);
 
-        return $route->parameters();
+        return Arr::except(array_replace($parameters, $route->parameters()), ['method']);
     }
 
     /**

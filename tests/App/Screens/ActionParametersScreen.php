@@ -42,9 +42,9 @@ class ActionParametersScreen extends Screen
         ];
     }
 
-    public function selectProfile(User $userProfile): array
+    public function selectProfile(?User $userProfile = null): array
     {
-        return ['selected' => $userProfile->id];
+        return ['selected' => $userProfile?->id];
     }
 
     public function selectRoleName(RoleNames $roleName): array
