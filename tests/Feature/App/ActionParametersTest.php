@@ -102,9 +102,9 @@ class ActionParametersTest extends TestFeatureCase
         Route::screen('enum-actions', ActionParametersScreen::class)->name('enum-actions');
         $url = route('enum-actions', ['method' => 'selectRoleName']);
 
-        $this->postJson($url, ['_parameters' => json_encode(['role_name' => 'admin'])])
+        $this->postJson($url, ['_parameters' => json_encode(['roleName' => 'admin'])])
             ->assertOk()->assertExactJson(['role' => 'admin']);
-        $this->postJson($url, ['_parameters' => json_encode(['role_name' => 'unknown'])])
+        $this->postJson($url, ['_parameters' => json_encode(['roleName' => 'unknown'])])
             ->assertNotFound();
     }
 

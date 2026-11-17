@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Screen action parameters are submitted in a separate POST field instead of the query string.
   `Button::method()`, `parameters()`, and `ModalToggle::asyncParameters()` keep their existing API.
   Handlers that read button arguments through `$request->input('id')` must accept an `$id` method argument instead.
+  Action argument names must match handler parameter names exactly.
   Form fields and query filters remain available through `Request`. Query parameters cannot replace route models.
   Custom HTTP clients must send a JSON-encoded `_parameters` field in the POST body.
   Custom modal forms must also submit their `_modal` key to restore validation errors in the correct dialog.

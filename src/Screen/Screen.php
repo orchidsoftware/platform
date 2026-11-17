@@ -280,11 +280,12 @@ abstract class Screen extends Controller
     private function callMethod(string $method, array $parameters = [])
     {
         $input = Arr::get(request()->getPayload()->all(), '_parameters', '{}');
-        $parameters += validator(
+        $arguments = validator(
             ['_parameters' => is_string($input) ? json_decode($input, true) : null],
             ['_parameters' => 'array'],
         )->validate()['_parameters'];
 
+        $parameters = collect($arguments)->merge($parameters)->all();
         $uses = static::class.'@'.$method;
 
         return App::call($uses, self::prepareForExecuteMethod($uses, $parameters) ?? $parameters);
@@ -307,32 +308,23 @@ abstract class Screen extends Controller
 
         Route::substituteImplicitBindings($route);
 
-        foreach ($route->parameters() as $name => $value) {
-            $original->setParameter($name, $value);
-        }
+        $pathParameters = collect($route->parameters());
+        $pathParameters->each(fn ($value, $name) => $original->setParameter($name, $value));
 
-        $arguments = $route->parameters() + $parameters;
+        $parameterNames = collect($route->signatureParameters())
+            ->mapWithKeys(fn ($parameter) => [Str::snake($parameter->getName()) => $parameter->getName()]);
 
-        foreach ($route->signatureParameters() as $parameter) {
-            $name = $parameter->getName();
-            $alias = Str::snake($name);
+        $pathParameters = $pathParameters->mapWithKeys(function ($value, $key) use ($pathParameters, $parameterNames) {
+            $name = $parameterNames->get($key, $key);
 
-            if ($route->hasParameter($name)) {
-                $arguments[$name] = $route->parameter($name);
-            } elseif ($route->hasParameter($alias)) {
-                $arguments[$name] = $route->parameter($alias);
-            } elseif (! array_key_exists($name, $arguments) && array_key_exists($alias, $arguments)) {
-                $arguments[$name] = $arguments[$alias];
-            }
+            return [$name => $pathParameters->get($name, $value)];
+        });
 
-            if ($alias !== $name) {
-                unset($arguments[$alias]);
-            }
-        }
-
-        $route->parameters = $arguments;
+        $route->parameters = collect($parameters)
+            ->merge($pathParameters)
+            ->except('method')
+            ->all();
         $route->withoutScopedBindings();
-        $route->forgetParameter('method');
 
         Route::substituteImplicitBindings($route);
 
