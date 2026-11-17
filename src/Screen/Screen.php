@@ -280,17 +280,14 @@ abstract class Screen extends Controller
     private function callMethod(string $method, array $parameters = [])
     {
         $input = Arr::get(request()->getPayload()->all(), '_parameters', '{}');
-        $arguments = validator(
+        $parameters += validator(
             ['_parameters' => is_string($input) ? json_decode($input, true) : null],
             ['_parameters' => 'array'],
-        )->validate();
+        )->validate()['_parameters'];
 
-        $parameters += $arguments['_parameters'];
         $uses = static::class.'@'.$method;
 
-        $preparedParameters = self::prepareForExecuteMethod($uses, $parameters);
-
-        return App::call($uses, $preparedParameters ?? $parameters);
+        return App::call($uses, self::prepareForExecuteMethod($uses, $parameters) ?? $parameters);
     }
 
     /**
@@ -310,41 +307,36 @@ abstract class Screen extends Controller
 
         Route::substituteImplicitBindings($route);
 
-        foreach (array_keys(Arr::except($original->parameters(), ['method'])) as $key) {
-            $original->setParameter($key, $route->parameter($key));
+        foreach ($route->parameters() as $name => $value) {
+            $original->setParameter($name, $value);
         }
 
-        $route->withoutScopedBindings();
-        $bindings = [];
+        $arguments = $route->parameters() + $parameters;
 
         foreach ($route->signatureParameters() as $parameter) {
             $name = $parameter->getName();
-            $key = $route->hasParameter($name) ? $name : Str::snake($name);
+            $alias = Str::snake($name);
 
-            if (! $route->hasParameter($key)) {
-                $key = array_key_exists($name, $parameters) ? $name : Str::snake($name);
-
-                if (! array_key_exists($key, $parameters)) {
-                    continue;
-                }
-
-                $route->setParameter($key, $parameters[$key]);
+            if ($route->hasParameter($name)) {
+                $arguments[$name] = $route->parameter($name);
+            } elseif ($route->hasParameter($alias)) {
+                $arguments[$name] = $route->parameter($alias);
+            } elseif (! array_key_exists($name, $arguments) && array_key_exists($alias, $arguments)) {
+                $arguments[$name] = $arguments[$alias];
             }
 
-            $bindings[$name] = $key;
+            if ($alias !== $name) {
+                unset($arguments[$alias]);
+            }
         }
+
+        $route->parameters = $arguments;
+        $route->withoutScopedBindings();
+        $route->forgetParameter('method');
 
         Route::substituteImplicitBindings($route);
 
-        $parameters = Arr::except($route->parameters() + $parameters, ['method']);
-
-        foreach ($bindings as $name => $key) {
-            $value = $route->parameter($key);
-            unset($parameters[$key], $parameters[Str::snake($name)]);
-            $parameters[$name] = $value;
-        }
-
-        return $parameters;
+        return $route->parameters();
     }
 
     /**

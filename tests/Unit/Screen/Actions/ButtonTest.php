@@ -222,13 +222,8 @@ class ButtonTest extends TestFieldsUnitCase
         );
     }
 
-    public function testButtonActionKeepsFiltersFromPreviousUrlForExport(): void
+    public function testButtonActionPreservesThePreviousQueryString(): void
     {
-        // Mirrors selecting table filters, then clicking an async Export
-        // button: the filters from the listing's URL must still be present
-        // on the export action so the export respects them.
-        request()->headers->set('referer', 'http://127.0.0.1:8001/test?filter%5Bstatus%5D=active&page=2');
-
         Orchid::setCurrentScreen(new class extends Screen
         {
             public function layout(): iterable
@@ -237,14 +232,16 @@ class ButtonTest extends TestFieldsUnitCase
             }
         }, true);
 
-        $button = Button::make('Export')
-            ->method('export');
+        foreach (['filter%5Bstatus%5D=active&search=Alex%20Smith&page=2', 'next=/users/', 'search=what?', '0'] as $query) {
+            request()->headers->set('referer', 'http://127.0.0.1:8001/test?'.$query);
 
-        $view = self::renderField($button);
+            $view = self::renderField(Button::make('Export')->method('export'));
 
-        $this->assertStringContainsString('filter%5Bstatus%5D=active', $view);
-        $this->assertStringContainsString('page=2', $view);
-        $this->assertStringNotContainsString('formaction="http://127.0.0.1:8001/test?', $view);
+            $this->assertStringContainsString(
+                'formaction="'.e('http://127.0.0.1:8001/test/export?'.$query).'"',
+                $view
+            );
+        }
     }
 
     public function testButtonMethodParametersStaySeparateFromPreviousQueryString(): void
