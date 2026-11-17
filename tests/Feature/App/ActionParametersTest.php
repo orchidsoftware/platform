@@ -63,6 +63,20 @@ class ActionParametersTest extends TestFeatureCase
         ])->assertOk()->assertExactJson(['selected' => $user->id, 'labels' => ['Selected label']]);
     }
 
+    public function testPathModelsTakePrecedenceOverArgumentAliases(): void
+    {
+        Route::screen('profiles-snake/{user_profile}', ActionParametersScreen::class)->name('user_profile');
+        Route::screen('profiles-camel/{userProfile}', ActionParametersScreen::class)->name('userProfile');
+        $user = User::factory()->create();
+        $other = User::factory()->create();
+
+        foreach (['user_profile', 'userProfile'] as $key) {
+            $this->postJson(route($key, [$key => $user, 'method' => 'selectProfile']), [
+                '_parameters' => json_encode(['userProfile' => $other->id, 'user_profile' => $other->id]),
+            ])->assertOk()->assertExactJson(['selected' => $user->id]);
+        }
+    }
+
     public function testDispatchUsesTheNamedMethodParameter(): void
     {
         Route::screen('actions', ActionParametersScreen::class)->name('actions');
@@ -81,6 +95,17 @@ class ActionParametersTest extends TestFeatureCase
         $this->postJson(route('actions', ['method' => 'select']), [
             '_parameters' => json_encode(['user' => 999]),
         ])->assertNotFound();
+    }
+
+    public function testActionArgumentsResolveBackedEnums(): void
+    {
+        Route::screen('enum-actions', ActionParametersScreen::class)->name('enum-actions');
+        $url = route('enum-actions', ['method' => 'selectRoleName']);
+
+        $this->postJson($url, ['_parameters' => json_encode(['role_name' => 'admin'])])
+            ->assertOk()->assertExactJson(['role' => 'admin']);
+        $this->postJson($url, ['_parameters' => json_encode(['role_name' => 'unknown'])])
+            ->assertNotFound();
     }
 
     public function testScopedBindingsRejectModelsOutsideTheParent(): void
@@ -107,6 +132,40 @@ class ActionParametersTest extends TestFeatureCase
                 '_parameters' => $parameters,
             ])->assertUnprocessable()->assertJsonValidationErrors('_parameters');
         }
+    }
+
+    public function testScopedActionArgumentsCannotEscapeTheirPathParent(): void
+    {
+        Route::screen('scoped-action/{user}', ActionParametersScreen::class)
+            ->scopeBindings()->name('scoped-action');
+        $user = User::factory()->create();
+        $role = Role::factory()->create();
+        $other = Role::factory()->create();
+        $user->roles()->attach($role);
+
+        $url = route('scoped-action', ['user' => $user, 'method' => 'selectRole']);
+
+        $this->postJson($url, ['_parameters' => json_encode(['role' => $role->id])])
+            ->assertOk()->assertJson(['user' => $user->id, 'role' => $role->id]);
+        $this->postJson($url, ['_parameters' => json_encode(['role' => $other->id])])
+            ->assertNotFound();
+    }
+
+    public function testScopedActionArgumentsFollowTheHandlerOrder(): void
+    {
+        Route::screen('scoped-actions', ActionParametersScreen::class)
+            ->scopeBindings()->name('scoped-actions');
+        $user = User::factory()->create();
+        $role = Role::factory()->create();
+        $other = Role::factory()->create();
+        $user->roles()->attach($role);
+
+        $url = route('scoped-actions', ['method' => 'selectRole']);
+
+        $this->postJson($url, ['_parameters' => json_encode(['role' => $role->id, 'context' => 'extra', 'user' => $user->id])])
+            ->assertOk()->assertJson(['user' => $user->id, 'role' => $role->id]);
+        $this->postJson($url, ['_parameters' => json_encode(['role' => $other->id, 'context' => 'extra', 'user' => $user->id])])
+            ->assertNotFound();
     }
 
     public function testValidationErrorsOnlyRenderTheSubmittedDeferredModal(): void

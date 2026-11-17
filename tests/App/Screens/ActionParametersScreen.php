@@ -11,6 +11,7 @@ use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
+use Orchid\Tests\App\Enums\RoleNames;
 
 class ActionParametersScreen extends Screen
 {
@@ -39,6 +40,16 @@ class ActionParametersScreen extends Screen
             'route_user' => $request->route('user'),
             'action'     => $request->route()->getActionName(),
         ];
+    }
+
+    public function selectProfile(User $userProfile): array
+    {
+        return ['selected' => $userProfile->id];
+    }
+
+    public function selectRoleName(RoleNames $roleName): array
+    {
+        return ['role' => $roleName->value];
     }
 
     public function loadUser(User $user, Repository $state): array

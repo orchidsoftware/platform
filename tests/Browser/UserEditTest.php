@@ -11,6 +11,35 @@ use Orchid\Tests\TestBrowserCase;
 
 class UserEditTest extends TestBrowserCase
 {
+    public function testOpeningAnotherUserAfterValidationFailureLoadsTheirValues(): void
+    {
+        $admin = $this->createAdminUser();
+        $selected = User::factory()->create();
+
+        $this->browse(function (Browser $browser) use ($admin, $selected) {
+            $browser->loginAs($admin)
+                ->visitRoute('orchid.users')
+                ->pressAndWaitFor($selected->email)
+                ->waitFor('input[name="user[email]"]')
+                ->type('user[name]', 'Unsaved draft')
+                ->type('user[email]', $admin->email)
+                ->press('Apply')
+                ->waitFor('.modal.show .invalid-feedback')
+                ->press('Close')
+                ->waitUntilMissing('.modal.show')
+                ->pressAndWaitFor($admin->email)
+                ->waitUntilMissing('.modal-loading')
+                ->assertInputValue('user[email]', $admin->email)
+                ->assertInputValue('user[name]', $admin->name)
+                ->type('user[name]', 'Updated administrator')
+                ->press('Apply')
+                ->waitForText('User was saved.');
+        });
+
+        $this->assertSame($selected->name, $selected->fresh()->name);
+        $this->assertSame('Updated administrator', $admin->fresh()->name);
+    }
+
     public function testModalKeepsSelectedUserAcrossValidationFailure(): void
     {
         $admin = $this->createAdminUser();

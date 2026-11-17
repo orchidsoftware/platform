@@ -85,11 +85,17 @@ export default class extends ApplicationController {
      * @param options - Configuration options for opening the modal.
      */
     open(options) {
+        this.showModal(options);
+
+        if (Object.keys(this.parametersValue).length !== 0) {
+            this.asyncLoadData();
+        }
+    }
+
+    showModal(options) {
         options = {
             ...options,
             slug: this.slugValue,
-            validateError:
-                this.element.querySelectorAll(".invalid-feedback").length > 0,
         };
 
         // Set the form action URL
@@ -99,14 +105,6 @@ export default class extends ApplicationController {
         // Update the modal title if provided
         if (options.title !== undefined) {
             this.titleTarget.textContent = options.title;
-        }
-
-        // Load deferred data if URL is specified and no validation errors are present
-        if (
-            Object.keys(this.parametersValue).length !== 0 &&
-            !options.validateError
-        ) {
-            this.asyncLoadData();
         }
 
         // Store the last open modal options
@@ -130,7 +128,7 @@ export default class extends ApplicationController {
         // Reopen the last modal if it matches the current slug
         if (lastOpenModal && lastOpenModal.slug === this.slugValue) {
             this.element.classList.remove("fade", "in");
-            this.open(lastOpenModal);
+            this.showModal(lastOpenModal);
         }
     }
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -14,6 +15,8 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Reflector;
+use Illuminate\Support\Str;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Screen\Concerns\HasCommandBar;
 use Orchid\Screen\Concerns\HasFillablePublicProperties;
@@ -305,20 +308,46 @@ abstract class Screen extends Controller
 
         $route = clone $original;
         $route->uses($uses);
+        $route->forgetParameter('method');
+        $bindings = [];
 
-        foreach ($parameters as $key => $value) {
-            if (! $route->hasParameter($key)) {
-                $route->setParameter($key, $value);
+        foreach ($route->signatureParameters() as $parameter) {
+            if (! Reflector::isParameterSubclassOf($parameter, UrlRoutable::class) &&
+                ! Reflector::isParameterBackedEnumWithStringBackingType($parameter)) {
+                continue;
             }
+
+            $name = $parameter->getName();
+            $key = $route->hasParameter($name) ? $name : Str::snake($name);
+
+            if (! $route->hasParameter($key)) {
+                $key = array_key_exists($name, $parameters) ? $name : Str::snake($name);
+
+                if (! array_key_exists($key, $parameters)) {
+                    continue;
+                }
+
+                $route->setParameter($key, $parameters[$key]);
+            }
+
+            $bindings[$name] = $key;
         }
 
         Route::substituteImplicitBindings($route);
 
-        foreach (array_keys($original->parameters()) as $key) {
+        foreach (array_keys(Arr::except($original->parameters(), ['method'])) as $key) {
             $original->setParameter($key, $route->parameter($key));
         }
 
-        return Arr::except($route->parameters(), ['method']);
+        $parameters = Arr::except($route->parameters() + $parameters, ['method']);
+
+        foreach ($bindings as $name => $key) {
+            $value = $route->parameter($key);
+            unset($parameters[$key], $parameters[Str::snake($name)]);
+            $parameters[$name] = $value;
+        }
+
+        return $parameters;
     }
 
     /**
