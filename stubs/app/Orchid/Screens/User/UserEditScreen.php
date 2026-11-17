@@ -18,9 +18,10 @@ use Orchid\Access\Permissions;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Block;
 use Orchid\Screen\Screen;
 use Orchid\Support\Color;
-use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
 class UserEditScreen extends Screen
@@ -95,13 +96,13 @@ class UserEditScreen extends Screen
     }
 
     /**
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): iterable
     {
         return [
 
-            Layout::block(UserEditLayout::class)
+            Block::make(UserEditLayout::class)
                 ->title(__('Profile Information'))
                 ->description(__('Update your account\'s profile information and email address.'))
                 ->commands(
@@ -112,7 +113,7 @@ class UserEditScreen extends Screen
                         ->method('save')
                 ),
 
-            Layout::block(UserPasswordLayout::class)
+            Block::make(UserPasswordLayout::class)
                 ->title(__('Password'))
                 ->description(__('Ensure your account is using a long, random password to stay secure.'))
                 ->commands(
@@ -123,7 +124,7 @@ class UserEditScreen extends Screen
                         ->method('save')
                 ),
 
-            Layout::block(UserRoleLayout::class)
+            Block::make(UserRoleLayout::class)
                 ->title(__('Roles'))
                 ->description(__('A Role defines a set of tasks a user assigned the role is allowed to perform.'))
                 ->commands(
@@ -134,7 +135,7 @@ class UserEditScreen extends Screen
                         ->method('save')
                 ),
 
-            Layout::block(PermissionLayout::class)
+            Block::make(PermissionLayout::class)
                 ->title(__('Permissions'))
                 ->description(__('Allow the user to perform some actions that are not provided for by his roles'))
                 ->commands(

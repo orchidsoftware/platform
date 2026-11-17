@@ -5,8 +5,8 @@ namespace Orchid\Tests\Unit\Screen;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ViewErrorBag;
 use Orchid\Screen\Layouts\Listener;
+use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 use Orchid\Tests\App\Layouts\DependentSumListener;
 use Orchid\Tests\App\Screens\FindBySlugLayoutScreen;
 use Orchid\Tests\TestUnitCase;
@@ -48,14 +48,14 @@ class AsyncTest extends TestUnitCase
         $first = new DependentSumListener('modal-1');
         $second = new DependentSumListener('modal-2');
 
-        $modalFirst = Layout::modal('modal-1', $first);
-        $modalSecond = Layout::modal('modal-2', $second);
+        $modalFirst = Modal::make('modal-1', $first);
+        $modalSecond = Modal::make('modal-2', $second);
 
         // Each modal should have a unique slug
         $this->assertNotNull($modalFirst->findBySlug($first->getSlug()));
         $this->assertNotNull($modalSecond->findBySlug($second->getSlug()));
 
         // Modal should not have a slug of another modal
-        $this->assertNull(Layout::modal('modal-1', $first)->findBySlug($second->getSlug()));
+        $this->assertNull(Modal::make('modal-1', $first)->findBySlug($second->getSlug()));
     }
 }

@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
 use Illuminate\Contracts\View\View;
-use Orchid\Screen\LayoutFactory;
+use Orchid\Screen\Layouts\Rows;
+use Orchid\Screen\Layouts\Wrapper;
 use Orchid\Screen\Repository;
 use Orchid\Tests\TestUnitCase;
 
@@ -18,7 +19,7 @@ class WrapperTest extends TestUnitCase
             'name'     => 'Alexandr Chernyaev',
         ]);
 
-        $layout = LayoutFactory::wrapper('exemplar::layouts.wrapper', []);
+        $layout = Wrapper::make('exemplar::layouts.wrapper', []);
 
         $view = $layout->build($repository);
 
@@ -33,13 +34,13 @@ class WrapperTest extends TestUnitCase
     {
         $repository = new Repository;
 
-        $layout = LayoutFactory::wrapper('exemplar::layouts.wrapper', [
+        $layout = Wrapper::make('exemplar::layouts.wrapper', [
             'variable1' => [
-                LayoutFactory::rows([]),
-                LayoutFactory::rows([]),
-                LayoutFactory::rows([]),
+                Rows::make([]),
+                Rows::make([]),
+                Rows::make([]),
             ],
-            'variable2' => LayoutFactory::rows([]),
+            'variable2' => Rows::make([]),
         ]);
 
         $view = $layout->build($repository);

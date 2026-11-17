@@ -9,8 +9,10 @@ use Illuminate\Http\Request;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Modal;
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
 class ModalValidationScreen extends Screen
@@ -56,13 +58,13 @@ class ModalValidationScreen extends Screen
     /**
      * Views.
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): array
     {
         return [
-            Layout::modal('validationModal', [
-                Layout::rows([
+            Modal::make('validationModal', [
+                Rows::make([
                     Input::make('message')
                         ->title('Messages to display')
                         ->placeholder('Hello world!')

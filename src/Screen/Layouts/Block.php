@@ -13,9 +13,16 @@ use Orchid\Screen\Repository;
 
 /**
  * Class Block.
+ *
+ * @phpstan-consistent-constructor
  */
-abstract class Block extends Layout
+class Block extends Layout
 {
+    public static function make(array|string|Layout $layouts = []): static
+    {
+        return new static(Arr::wrap($layouts));
+    }
+
     use HasCommandBar;
 
     /**

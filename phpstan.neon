@@ -38,7 +38,6 @@ parameters:
             message: '#::returnNameMacroFunction(?:Facade)?\(\)#'
             paths:
                 - tests/Unit/DashboardTest.php
-                - tests/Unit/Screen/Macro/LayoutsMarcoTest.php
         # Assertions inspect materialized collections; changing them to SQL changes the test.
         -
             identifier: larastan.noUnnecessaryCollectionCall

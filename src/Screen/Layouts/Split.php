@@ -9,9 +9,16 @@ use Orchid\Screen\Repository;
  * Class Split.
  *
  * Represents a layout that divides the available space into two sections with a fixed width ratio.
+ *
+ * @phpstan-consistent-constructor
  */
-abstract class Split extends Layout
+class Split extends Layout
 {
+    public static function make(array $layouts = []): static
+    {
+        return new static($layouts);
+    }
+
     /**
      * The name of the template file that will be used to render this layout.
      *

@@ -4,9 +4,10 @@ namespace Orchid\Tests\App\Layouts;
 
 use Illuminate\Http\Request;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Layouts\Listener;
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Repository;
-use Orchid\Support\Facades\Layout;
 
 class NestedTargetsDependentSumListener extends Listener
 {
@@ -22,12 +23,12 @@ class NestedTargetsDependentSumListener extends Listener
     ];
 
     /**
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     protected function layouts(): array
     {
         return [
-            Layout::rows([
+            Rows::make([
                 Input::make('sum')
                     ->title('SUM')
                     ->help('The result of adding the first argument and the second')

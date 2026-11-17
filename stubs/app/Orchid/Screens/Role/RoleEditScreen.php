@@ -13,8 +13,10 @@ use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Block;
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
 class RoleEditScreen extends Screen
@@ -85,13 +87,13 @@ class RoleEditScreen extends Screen
     /**
      * The screen's layout elements.
      *
-     * @return string[]|\Orchid\Screen\Layout[]
+     * @return string[]|Layout[]
      */
     public function layout(): iterable
     {
         return [
-            Layout::block([
-                Layout::rows([
+            Block::make([
+                Rows::make([
                     Input::make('role.name')
                         ->type('text')
                         ->max(255)
@@ -104,7 +106,7 @@ class RoleEditScreen extends Screen
                 ->title('Role')
                 ->description('Defines a set of privileges that grant users access to various services and allow them to perform specific tasks or operations.'),
 
-            Layout::block([
+            Block::make([
                 PermissionLayout::class,
             ])
                 ->title('Permission/Privilege')

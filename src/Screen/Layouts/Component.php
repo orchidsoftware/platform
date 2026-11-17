@@ -11,9 +11,16 @@ use Orchid\Support\Blade;
 
 /**
  * Class Component.
+ *
+ * @phpstan-consistent-constructor
  */
-abstract class Component extends Layout
+class Component extends Layout
 {
+    public static function make(string $component): static
+    {
+        return new static($component);
+    }
+
     /**
      * Additional data passed to the Blade component.
      */

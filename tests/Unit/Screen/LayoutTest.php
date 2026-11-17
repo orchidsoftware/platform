@@ -7,7 +7,10 @@ namespace Orchid\Tests\Unit\Screen;
 use Illuminate\Support\Str;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layout;
-use Orchid\Screen\LayoutFactory;
+use Orchid\Screen\Layouts\Accordion;
+use Orchid\Screen\Layouts\Columns;
+use Orchid\Screen\Layouts\Rows;
+use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Repository;
 use Orchid\Tests\TestUnitCase;
 
@@ -15,13 +18,13 @@ class LayoutTest extends TestUnitCase
 {
     public function testFindLayoutBySlugs(): void
     {
-        $row = LayoutFactory::rows([
+        $row = Rows::make([
             Input::make('input'),
         ]);
 
-        $layout = LayoutFactory::columns([
-            LayoutFactory::tabs([
-                'action 1' => LayoutFactory::accordion([$row]),
+        $layout = Columns::make([
+            Tabs::make([
+                'action 1' => Accordion::make([$row]),
                 'action 2' => $row,
             ]),
         ]);

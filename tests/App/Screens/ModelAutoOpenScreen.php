@@ -6,8 +6,10 @@ namespace Orchid\Tests\App\Screens;
 
 use Orchid\Screen\Action;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Modal;
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 
 class ModelAutoOpenScreen extends Screen
 {
@@ -48,12 +50,12 @@ class ModelAutoOpenScreen extends Screen
     /**
      * Views.
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): array
     {
         return [
-            Layout::modal('openModel', Layout::rows([
+            Modal::make('openModel', Rows::make([
                 Input::make('message')
                     ->title('Messages to display')
                     ->placeholder('Hello world!')

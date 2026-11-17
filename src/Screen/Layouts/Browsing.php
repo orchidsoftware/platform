@@ -7,8 +7,14 @@ namespace Orchid\Screen\Layouts;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 
+/** @phpstan-consistent-constructor */
 class Browsing extends Layout
 {
+    public static function make(string $src): static
+    {
+        return new static($src);
+    }
+
     /**
      * @var string
      */

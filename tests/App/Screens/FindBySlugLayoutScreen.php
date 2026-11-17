@@ -3,9 +3,11 @@
 namespace Orchid\Tests\App\Screens;
 
 use Orchid\Screen\Action;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Columns;
+use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 use Orchid\Tests\App\Layouts\DependentSumListener;
 
 class FindBySlugLayoutScreen extends Screen
@@ -39,24 +41,24 @@ class FindBySlugLayoutScreen extends Screen
     /**
      * Views.
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): array
     {
         return [
             new DependentSumListener('simple'),
 
-            Layout::columns([
+            Columns::make([
                 new DependentSumListener('columns-1'),
 
-                Layout::columns([
+                Columns::make([
                     new DependentSumListener('columns-2'),
                 ]),
             ]),
 
-            Layout::tabs([
+            Tabs::make([
                 'Tab 1' => new DependentSumListener('tab-1'),
-                'Tab 2' => Layout::columns([
+                'Tab 2' => Columns::make([
                     new DependentSumListener('tab-2'),
                 ]),
             ]),

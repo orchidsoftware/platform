@@ -19,6 +19,7 @@ use Orchid\Screen\Concerns\HasCommandBar;
 use Orchid\Screen\Concerns\HasFillablePublicProperties;
 use Orchid\Screen\Concerns\InteractsWithEncryptedState;
 use Orchid\Screen\Concerns\ModelStateRetrievable;
+use Orchid\Screen\Layouts\Blank;
 use Orchid\Screen\Layouts\Listener;
 use Orchid\Support\Facades\Orchid;
 use Psr\Container\ContainerExceptionInterface;
@@ -101,7 +102,7 @@ abstract class Screen extends Controller
      */
     public function build(Repository $repository)
     {
-        return LayoutFactory::blank([
+        return Blank::make([
             $this->layout(),
         ])->build($repository);
     }

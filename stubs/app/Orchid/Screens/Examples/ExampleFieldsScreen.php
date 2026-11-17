@@ -13,10 +13,12 @@ use Orchid\Screen\Fields\Password;
 use Orchid\Screen\Fields\Radio;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\TextArea;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Columns;
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Screen;
 use Orchid\Support\Color;
 use Orchid\Support\Facades\Alert;
-use Orchid\Support\Facades\Layout;
 
 class ExampleFieldsScreen extends Screen
 {
@@ -59,14 +61,14 @@ class ExampleFieldsScreen extends Screen
     /**
      * The screen's layout elements.
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): iterable
     {
         return [
 
             ExampleElements::class,
-            Layout::rows([
+            Rows::make([
                 Group::make([
                     Input::make('name')
                         ->title('Name')
@@ -194,8 +196,8 @@ class ExampleFieldsScreen extends Screen
                     ->type(Color::BASIC),
             ]),
 
-            Layout::columns([
-                Layout::rows([
+            Columns::make([
+                Rows::make([
 
                     Input::make('name')
                         ->title('Full Name:')
@@ -243,7 +245,7 @@ class ExampleFieldsScreen extends Screen
                         ->rows(6),
 
                 ])->title('Base Controls'),
-                Layout::rows([
+                Rows::make([
                     Input::make('disabled_input')
                         ->title('Disabled Input')
                         ->placeholder('Disabled Input')

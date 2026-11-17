@@ -5,8 +5,9 @@ namespace Orchid\Tests\App\Screens;
 use Illuminate\Http\Request;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 
 abstract class BaseFieldScreen extends Screen
 {
@@ -42,12 +43,12 @@ abstract class BaseFieldScreen extends Screen
     /**
      * Views.
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): array
     {
         return [
-            Layout::rows($this->fields()),
+            Rows::make($this->fields()),
         ];
     }
 

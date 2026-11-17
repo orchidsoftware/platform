@@ -10,9 +10,16 @@ use Orchid\Screen\Repository;
 
 /**
  * Class Blank.
+ *
+ * @phpstan-consistent-constructor
  */
-abstract class Blank extends Layout
+class Blank extends Layout
 {
+    public static function make(array $layouts = []): static
+    {
+        return new static($layouts);
+    }
+
     /**
      * @var string
      */

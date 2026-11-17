@@ -6,9 +6,10 @@ namespace Orchid\Tests\App\Screens;
 
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\ModalToggle;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Layouts\Modal;
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 
 class ModalScreen extends Screen
 {
@@ -56,13 +57,13 @@ class ModalScreen extends Screen
     /**
      * Views.
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): array
     {
         return [
-            Layout::modal('exampleOneModal', [
-                Layout::rows([]),
+            Modal::make('exampleOneModal', [
+                Rows::make([]),
             ])
                 ->title(self::TITLE_MODAL)
                 ->size(Modal::SIZE_LG)

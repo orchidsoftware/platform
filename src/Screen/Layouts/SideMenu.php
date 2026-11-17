@@ -15,9 +15,18 @@ use Throwable;
 
 /**
  * Contextual vertical navigation for a related group of screens.
+ *
+ * @phpstan-consistent-constructor
  */
-abstract class SideMenu extends Layout
+class SideMenu extends Layout
 {
+    public function __construct(protected array $navigations = []) {}
+
+    public static function make(array $navigations = []): static
+    {
+        return new static($navigations);
+    }
+
     /**
      * @var string
      */
@@ -48,7 +57,7 @@ abstract class SideMenu extends Layout
 
         return view($this->template, [
             'domId'       => $domId,
-            'label'       => $this->label(),
+            'label'       => $this->label,
             'navigations' => $form->generateForm(),
         ]);
     }
@@ -56,9 +65,13 @@ abstract class SideMenu extends Layout
     /**
      * Get the accessible label used by the navigation landmark.
      */
-    protected function label(): string
+    protected string $label = 'Navigation';
+
+    public function label(string $label): self
     {
-        return 'Navigation';
+        $this->label = $label;
+
+        return $this;
     }
 
     /**
@@ -144,5 +157,8 @@ abstract class SideMenu extends Layout
      *
      * @return Menu[]
      */
-    abstract protected function navigations(): iterable;
+    protected function navigations(): iterable
+    {
+        return $this->navigations;
+    }
 }

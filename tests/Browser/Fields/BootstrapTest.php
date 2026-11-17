@@ -17,7 +17,8 @@ use Orchid\Screen\Fields\Markdown;
 use Orchid\Screen\Fields\Matrix;
 use Orchid\Screen\Fields\NumberRange;
 use Orchid\Screen\Fields\RadioButtons;
-use Orchid\Screen\LayoutFactory;
+use Orchid\Screen\Layouts\Rows;
+use Orchid\Screen\Layouts\Tabs;
 use Orchid\Screen\Repository;
 
 class BootstrapTest extends TestCase
@@ -46,8 +47,8 @@ class BootstrapTest extends TestCase
     {
         Route::middleware('web')->group(function () {
             Route::get('/bootstrap-fields', function () {
-                $layout = LayoutFactory::tabs([
-                    'Fields' => LayoutFactory::rows([
+                $layout = Tabs::make([
+                    'Fields' => Rows::make([
                         DateRange::make('period')->format('Y-m-d')->disableMobile()
                             ->value(['start' => '2026-10-10', 'end' => '2026-10-12']),
                         NumberRange::make('price')->value(['min' => 10, 'max' => 20]),
@@ -57,7 +58,7 @@ class BootstrapTest extends TestCase
                         Matrix::make('items')->columns(['Name' => 'name'])->maxRows(2)->value([['name' => 'Existing']]),
                         Markdown::make('notes')->readonly()->value('Existing notes'),
                     ]),
-                    'Details' => LayoutFactory::rows([Input::make('details')->value('Saved details')]),
+                    'Details' => Rows::make([Input::make('details')->value('Saved details')]),
                 ])->build(new Repository())->render();
                 $token = csrf_token();
 

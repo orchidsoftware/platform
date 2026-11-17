@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
+use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Repository;
-use Orchid\Support\Facades\Layout;
 use Orchid\Tests\TestUnitCase;
 
 class ModalTest extends TestUnitCase
 {
     public function testAsyncAutomaticCorrectionMethod(): void
     {
-        $layout = Layout::modal('automatic_correction', [])
+        $layout = Modal::make('automatic_correction', [])
             ->async('asyncTestMethod');
 
         $html = $layout
@@ -22,7 +22,7 @@ class ModalTest extends TestUnitCase
 
         $this->assertStringNotContainsString('asyncTestMethod', $html);
 
-        $layout = Layout::modal('automatic_correction', [])
+        $layout = Modal::make('automatic_correction', [])
             ->async('testMethod');
 
         $html = $layout

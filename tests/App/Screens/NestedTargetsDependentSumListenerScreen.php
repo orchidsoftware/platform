@@ -6,8 +6,9 @@ namespace Orchid\Tests\App\Screens;
 
 use Orchid\Screen\Action;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 use Orchid\Tests\App\Layouts\NestedTargetsDependentSumListener;
 
 class NestedTargetsDependentSumListenerScreen extends Screen
@@ -47,12 +48,12 @@ class NestedTargetsDependentSumListenerScreen extends Screen
      *
      * @throws \Throwable
      *
-     * @return (\Orchid\Screen\Layout|class-string<\Orchid\Screen\Layout>)[]
+     * @return (Layout|class-string<Layout>)[]
      */
     public function layout(): array
     {
         return [
-            Layout::rows([
+            Rows::make([
                 Input::make('father.first')
                     ->title('First argument')
                     ->type('number'),

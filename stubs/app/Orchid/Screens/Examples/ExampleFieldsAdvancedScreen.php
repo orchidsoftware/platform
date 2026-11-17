@@ -20,8 +20,10 @@ use Orchid\Screen\Fields\Range;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\Switcher;
 use Orchid\Screen\Fields\UTM;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Columns;
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 
 class ExampleFieldsAdvancedScreen extends Screen
 {
@@ -72,14 +74,14 @@ class ExampleFieldsAdvancedScreen extends Screen
      *
      * @throws \Throwable
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): iterable
     {
         return [
 
             ExampleElements::class,
-            Layout::rows([
+            Rows::make([
 
                 UTM::make('link')
                     ->title('UTM link')
@@ -98,7 +100,7 @@ class ExampleFieldsAdvancedScreen extends Screen
 
             ]),
 
-            Layout::rows([
+            Rows::make([
 
                 Group::make([
                     Input::make('phone')
@@ -146,7 +148,7 @@ class ExampleFieldsAdvancedScreen extends Screen
 
             ])->title('Input mask'),
 
-            Layout::rows([
+            Rows::make([
 
                 Group::make([
                     DateTimer::make('open')
@@ -200,8 +202,8 @@ class ExampleFieldsAdvancedScreen extends Screen
 
             ])->title('DateTime'),
 
-            Layout::columns([
-                Layout::rows([
+            Columns::make([
+                Rows::make([
                     Select::make('robot.')
                         ->options([
                             'index'   => 'Index',
@@ -216,7 +218,7 @@ class ExampleFieldsAdvancedScreen extends Screen
                         ->lazy()
                         ->title('Select for Eloquent model'),
                 ])->title('Select'),
-                Layout::rows([
+                Rows::make([
 
                     Group::make([
                         CheckBox::make('free-checkbox')
@@ -244,7 +246,7 @@ class ExampleFieldsAdvancedScreen extends Screen
                 ])->title('Status'),
             ]),
 
-            Layout::rows([
+            Rows::make([
                 Group::make([
                     Range::make('range')
                         ->title('Example range')
@@ -259,7 +261,7 @@ class ExampleFieldsAdvancedScreen extends Screen
                 ]),
             ])->title('Range'),
 
-            Layout::rows([
+            Rows::make([
 
                 Input::make('raw_file')
                     ->type('file')

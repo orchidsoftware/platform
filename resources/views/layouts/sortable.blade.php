@@ -53,6 +53,8 @@
             :icon="$iconNotFound"
             :title="$textNotFound"
             :description="$subNotFound"
-        />
+        >
+            {{ $actionNotFound }}
+        </x-orchid-empty-state>
     @endif
 </div>

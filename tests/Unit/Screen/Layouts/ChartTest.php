@@ -7,14 +7,13 @@ namespace Orchid\Tests\Unit\Screen\Layouts;
 use InvalidArgumentException;
 use Orchid\Screen\Layouts\Chart;
 use Orchid\Screen\Repository;
-use Orchid\Support\Facades\Layout;
 use Orchid\Tests\TestUnitCase;
 
 class ChartTest extends TestUnitCase
 {
     public function testChartCanBeConfiguredWithoutASubclass(): void
     {
-        $chart = Layout::chart('visits', 'Visits')->height(300)->smooth()->gradient()
+        $chart = Chart::make('visits', 'Visits')->height(300)->smooth()->gradient()
             ->dots(false)->legend(false)->colors(['#123456'])
             ->options(['strokeWidth' => 3]);
 

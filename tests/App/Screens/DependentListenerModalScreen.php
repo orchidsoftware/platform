@@ -6,8 +6,9 @@ namespace Orchid\Tests\App\Screens;
 
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\ModalToggle;
+use Orchid\Screen\Layout;
+use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 use Orchid\Tests\App\Layouts\DependentSumListener;
 
 class DependentListenerModalScreen extends Screen
@@ -54,12 +55,12 @@ class DependentListenerModalScreen extends Screen
      *
      * @throws \Throwable
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return Layout[]
      */
     public function layout(): array
     {
         return [
-            Layout::modal('modal-listener', [
+            Modal::make('modal-listener', [
                 DependentSumListener::class,
             ])->title('Listener in modal'),
         ];

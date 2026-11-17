@@ -10,9 +10,16 @@ use Orchid\Screen\Repository;
 
 /**
  * Class Accordion.
+ *
+ * @phpstan-consistent-constructor
  */
-abstract class Accordion extends Layout
+class Accordion extends Layout
 {
+    public static function make(array $layouts = []): static
+    {
+        return new static($layouts);
+    }
+
     /**
      * @var string
      */
