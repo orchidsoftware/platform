@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
-use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -15,7 +14,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Reflector;
 use Illuminate\Support\Str;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Screen\Concerns\HasCommandBar;
@@ -309,14 +307,17 @@ abstract class Screen extends Controller
         $route = clone $original;
         $route->uses($uses);
         $route->forgetParameter('method');
+
+        Route::substituteImplicitBindings($route);
+
+        foreach (array_keys(Arr::except($original->parameters(), ['method'])) as $key) {
+            $original->setParameter($key, $route->parameter($key));
+        }
+
+        $route->withoutScopedBindings();
         $bindings = [];
 
         foreach ($route->signatureParameters() as $parameter) {
-            if (! Reflector::isParameterSubclassOf($parameter, UrlRoutable::class) &&
-                ! Reflector::isParameterBackedEnumWithStringBackingType($parameter)) {
-                continue;
-            }
-
             $name = $parameter->getName();
             $key = $route->hasParameter($name) ? $name : Str::snake($name);
 
@@ -334,10 +335,6 @@ abstract class Screen extends Controller
         }
 
         Route::substituteImplicitBindings($route);
-
-        foreach (array_keys(Arr::except($original->parameters(), ['method'])) as $key) {
-            $original->setParameter($key, $route->parameter($key));
-        }
 
         $parameters = Arr::except($route->parameters() + $parameters, ['method']);
 

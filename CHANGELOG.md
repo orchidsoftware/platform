@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   Form fields and query filters remain available through `Request`. Query parameters cannot replace route models.
   Custom HTTP clients must send a JSON-encoded `_parameters` field in the POST body.
   Custom modal forms must also submit their `_modal` key to restore validation errors in the correct dialog.
+  Action models are bound independently. Parent-child relationships must be checked in the handler;
+  scoped binding continues to apply to parameters in the route path.
 - Deferred modals retain submitted values and reopen after a validation error without loading other deferred modals.
   Opening another record loads its own values.
 

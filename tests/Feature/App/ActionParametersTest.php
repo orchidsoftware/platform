@@ -134,38 +134,32 @@ class ActionParametersTest extends TestFeatureCase
         }
     }
 
-    public function testScopedActionArgumentsCannotEscapeTheirPathParent(): void
+    public function testActionModelsAreBoundIndependentlyOfThePathParent(): void
     {
         Route::screen('scoped-action/{user}', ActionParametersScreen::class)
             ->scopeBindings()->name('scoped-action');
         $user = User::factory()->create();
         $role = Role::factory()->create();
-        $other = Role::factory()->create();
-        $user->roles()->attach($role);
 
         $url = route('scoped-action', ['user' => $user, 'method' => 'selectRole']);
 
         $this->postJson($url, ['_parameters' => json_encode(['role' => $role->id])])
             ->assertOk()->assertJson(['user' => $user->id, 'role' => $role->id]);
-        $this->postJson($url, ['_parameters' => json_encode(['role' => $other->id])])
+        $this->postJson($url, ['_parameters' => json_encode(['role' => 999])])
             ->assertNotFound();
     }
 
-    public function testScopedActionArgumentsFollowTheHandlerOrder(): void
+    public function testActionModelsDoNotRequireAParentChildRelationship(): void
     {
         Route::screen('scoped-actions', ActionParametersScreen::class)
             ->scopeBindings()->name('scoped-actions');
         $user = User::factory()->create();
         $role = Role::factory()->create();
-        $other = Role::factory()->create();
-        $user->roles()->attach($role);
 
         $url = route('scoped-actions', ['method' => 'selectRole']);
 
         $this->postJson($url, ['_parameters' => json_encode(['role' => $role->id, 'context' => 'extra', 'user' => $user->id])])
             ->assertOk()->assertJson(['user' => $user->id, 'role' => $role->id]);
-        $this->postJson($url, ['_parameters' => json_encode(['role' => $other->id, 'context' => 'extra', 'user' => $user->id])])
-            ->assertNotFound();
     }
 
     public function testValidationErrorsOnlyRenderTheSubmittedDeferredModal(): void
