@@ -138,7 +138,7 @@ class LayoutFactory
     }
 
     /**
-     * @param array<Layout|string|array<Layout|string>> $layouts
+     * @param array<Layout|string|iterable<Layout|string>> $layouts
      */
     public static function blank(array $layouts): Blank
     {

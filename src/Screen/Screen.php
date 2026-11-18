@@ -91,7 +91,7 @@ abstract class Screen extends Controller
     /**
      * The layout for this screen, consisting of a collection of views.
      *
-     * @return iterable<Layout>|iterable<string>
+     * @return iterable<Layout|string>
      */
     abstract public function layout(): iterable;
 
@@ -103,9 +103,7 @@ abstract class Screen extends Controller
      */
     public function build(Repository $repository)
     {
-        return LayoutFactory::blank([
-            iterator_to_array($this->layout(), false),
-        ])->build($repository);
+        return LayoutFactory::blank([$this->layout()])->build($repository);
     }
 
     /**

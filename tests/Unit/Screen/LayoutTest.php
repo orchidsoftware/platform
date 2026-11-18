@@ -50,6 +50,18 @@ class LayoutTest extends TestUnitCase
         $this->assertMatchesRegularExpression('/Hello Taylor.*Hello Alex/s', $html);
     }
 
+    public function testBlankCanFindAndRenderLayoutsFromTheSameGenerator(): void
+    {
+        $child = LayoutFactory::view('exemplar::layouts.wrapper', ['name' => 'Taylor']);
+        $layouts = fn () => yield $child;
+
+        $blank = LayoutFactory::blank(['content' => $layouts()]);
+
+        $this->assertSame($child, $blank->findBySlug($child->getSlug()));
+        $this->assertSame(LayoutFactory::blank(['content' => [$child]])->getSlug(), $blank->getSlug());
+        $this->assertStringContainsString('Hello Taylor', $blank->build(new Repository)->render());
+    }
+
     public function testCanSeeLayout(): void
     {
         $layout = new class extends Layout
