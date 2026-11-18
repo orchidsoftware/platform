@@ -202,6 +202,45 @@ class AttachmentTest extends TestUnitCase
         Storage::disk($this->disk)->assertMissing($clone->physicalPath());
     }
 
+    public function testDeletingAttachmentsWithDifferentHashesAtTheSamePath(): void
+    {
+        config()->set('orchid.attachment.generator', CustomAttachmentGenerator::class);
+        $disk = Storage::fake($this->disk);
+
+        $upload = function (string $name, string $contents) {
+            $file = UploadedFile::fake()->createWithContent($name, $contents);
+
+            return (new File($file, $this->disk))->load();
+        };
+
+        $first = $upload('report.txt', 'first');
+        $second = $upload('report.txt', 'second');
+        $third = $upload('report.txt', 'third');
+        $csv = $upload('report.csv', 'csv');
+
+        $path = $first->physicalPath();
+        $this->assertSame($path, $second->physicalPath());
+        $this->assertSame($path, $third->physicalPath());
+        $this->assertCount(3, array_unique([$first->hash, $second->hash, $third->hash]));
+
+        $first->delete();
+        $this->assertModelMissing($first);
+        $this->assertModelExists($second);
+        $this->assertModelExists($third);
+        $disk->assertExists($path);
+
+        $second->delete();
+        $this->assertModelMissing($second);
+        $this->assertModelExists($third);
+        $disk->assertExists($path);
+
+        $third->delete();
+        $this->assertModelMissing($third);
+        $disk->assertMissing($path);
+        $this->assertModelExists($csv);
+        $disk->assertExists($csv->physicalPath());
+    }
+
     public function testAttachmentUploadAllowingDuplicate(): void
     {
         $file = UploadedFile::fake()->create('duplicate.jpg');
