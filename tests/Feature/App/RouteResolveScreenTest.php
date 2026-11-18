@@ -33,14 +33,16 @@ class RouteResolveScreenTest extends TestFeatureCase
             ->middleware(config('orchid.middleware.private'))
             ->name('bind.implicit-binding');
 
-        $user = $this->createAdminUser();
+        $user = User::factory()->create();
 
         $this
-            ->actingAs($user)
+            ->actingAs($this->createAdminUser())
             ->get(route('bind.implicit-binding', $user->id))
             ->assertOk()
-            ->assertSee($user->id)
-            ->assertSee($user->email);
+            ->assertSeeHtml([
+                'value="'.$user->id.'"',
+                'value="'.e($user->email).'"',
+            ]);
     }
 
     public function testImplicitBindingWhenAllowNull(): void
@@ -65,14 +67,16 @@ class RouteResolveScreenTest extends TestFeatureCase
             ->middleware(config('orchid.middleware.private'))
             ->name('bind.customizing-key');
 
-        $user = $this->createAdminUser();
+        $user = User::factory()->create();
 
         $this
-            ->actingAs($user)
+            ->actingAs($this->createAdminUser())
             ->get(route('bind.customizing-key', $user->email))
             ->assertOk()
-            ->assertSee($user->id)
-            ->assertSee($user->email);
+            ->assertSeeHtml([
+                'value="'.$user->id.'"',
+                'value="'.e($user->email).'"',
+            ]);
     }
 
     public function testExplicitBinding(): void
@@ -83,14 +87,16 @@ class RouteResolveScreenTest extends TestFeatureCase
             ->middleware(config('orchid.middleware.private'))
             ->name('bind.explicit-binding');
 
-        $user = $this->createAdminUser();
+        $user = User::factory()->create();
 
         $this
-            ->actingAs($user)
+            ->actingAs($this->createAdminUser())
             ->get(route('bind.explicit-binding', $user->id))
             ->assertOk()
-            ->assertSee($user->id)
-            ->assertSee($user->email);
+            ->assertSeeHtml([
+                'value="'.$user->id.'"',
+                'value="'.e($user->email).'"',
+            ]);
     }
 
     public function testResolutionLogic(): void
@@ -101,13 +107,15 @@ class RouteResolveScreenTest extends TestFeatureCase
             ->middleware(config('orchid.middleware.private'))
             ->name('bind.resolution-logic');
 
-        $user = $this->createAdminUser();
+        $user = User::factory()->create();
 
         $this
-            ->actingAs($user)
+            ->actingAs($this->createAdminUser())
             ->get(route('bind.resolution-logic', $user->email))
             ->assertOk()
-            ->assertSee($user->id)
-            ->assertSee($user->email);
+            ->assertSeeHtml([
+                'value="'.$user->id.'"',
+                'value="'.e($user->email).'"',
+            ]);
     }
 }

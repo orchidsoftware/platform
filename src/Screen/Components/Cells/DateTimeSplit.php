@@ -2,6 +2,9 @@
 
 namespace Orchid\Screen\Components\Cells;
 
+use Carbon\Month;
+use Carbon\WeekDay;
+use DateTimeInterface;
 use DateTimeZone;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
@@ -10,9 +13,7 @@ use Illuminate\View\Component;
 class DateTimeSplit extends Component
 {
     /**
-     * Create a new component instance.
-     *
-     * @param float $value
+     * @param DateTimeInterface|WeekDay|Month|string|int|float|null $value
      */
     public function __construct(
         protected mixed $value,

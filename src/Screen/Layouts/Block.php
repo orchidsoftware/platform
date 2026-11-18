@@ -40,7 +40,7 @@ abstract class Block extends Layout
     /**
      * Layout constructor.
      *
-     * @param Layout[] $layouts
+     * @param array<Layout|string> $layouts
      */
     public function __construct(array $layouts = [])
     {

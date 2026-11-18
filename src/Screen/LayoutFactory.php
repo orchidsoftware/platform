@@ -7,6 +7,7 @@ namespace Orchid\Screen;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Traits\Macroable;
+use Orchid\Filters\Filter;
 use Orchid\Screen\Layouts\Accordion;
 use Orchid\Screen\Layouts\Blank;
 use Orchid\Screen\Layouts\Block;
@@ -108,7 +109,7 @@ class LayoutFactory
     }
 
     /**
-     * @param string|string[] $layouts
+     * @param Layout|string|array<Layout|string> $layouts
      */
     public static function modal(string $key, $layouts): Modal
     {
@@ -133,30 +134,17 @@ class LayoutFactory
     }
 
     /**
-     * @param string[] $filters
+     * @param array<Filter|class-string<Filter>> $filters
      */
     public static function selection(array $filters): Selection
     {
         return new class($filters) extends Selection
         {
             /**
-             * @var string[]
+             * @param array<Filter|class-string<Filter>> $filters
              */
-            protected $filters;
+            public function __construct(protected array $filters = []) {}
 
-            /**
-             * Constructor.
-             *
-             * @param string[] $filters
-             */
-            public function __construct(array $filters = [])
-            {
-                $this->filters = $filters;
-            }
-
-            /**
-             * @return string[]
-             */
             public function filters(): array
             {
                 return $this->filters;
@@ -165,7 +153,7 @@ class LayoutFactory
     }
 
     /**
-     * @param Layout|string|string[] $layouts
+     * @param Layout|string|array<Layout|string> $layouts
      */
     public static function block($layouts): Block
     {

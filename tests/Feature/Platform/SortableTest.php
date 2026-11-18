@@ -14,18 +14,6 @@ use Orchid\Tests\TestFeatureCase;
 
 class SortableTest extends TestFeatureCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-        Gate::policy(Attachment::class, PolicySortAllow::class);
-    }
-
-    protected function tearDown(): void
-    {
-        Gate::policy(Attachment::class, null);
-        parent::tearDown();
-    }
-
     public function testSortingIsForbiddenWhenPolicyDenies(): void
     {
         Gate::policy(Attachment::class, PolicySortDeny::class);
@@ -64,8 +52,6 @@ class SortableTest extends TestFeatureCase
 
     public function testSortingIsAllowedWhenPolicyIsMissing(): void
     {
-        Gate::policy(Attachment::class, null);
-
         $response = $this
             ->actingAs($this->createAdminUser())
             ->post(route('orchid.files.upload'), [
@@ -104,6 +90,8 @@ class SortableTest extends TestFeatureCase
 
     public function testAttachmentHttpSort(): void
     {
+        Gate::policy(Attachment::class, PolicySortAllow::class);
+
         $response = $this
             ->actingAs($this->createAdminUser())
             ->post(route('orchid.files.upload'), [

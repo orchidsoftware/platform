@@ -95,7 +95,7 @@ abstract class Cell
         $class = new \ReflectionClass($component);
         $parameters = optional($class->getConstructor())->getParameters() ?? [];
 
-        $paramsKeys = Arr::isAssoc($params) ? array_keys($params) : array_values($params);
+        $paramsKeys = Arr::isAssoc($params) ? array_keys($params) : $params;
 
         return collect($parameters)
             ->filter(fn (\ReflectionParameter $parameter) => ! $parameter->isOptional())

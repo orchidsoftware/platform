@@ -491,10 +491,7 @@ class SelectTest extends TestFieldsUnitCase
         $this->assertStringNotContainsString('value="'.Color::DANGER->name.'" selected', $view);
     }
 
-    /**
-     * @param string $value
-     */
-    private function stringOption($name, $value = ''): string
+    private function stringOption(string $name, string|int $value = ''): string
     {
         $option = '<option value="%s">%s</option>';
 
