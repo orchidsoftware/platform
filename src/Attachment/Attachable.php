@@ -35,7 +35,7 @@ trait Attachable
     public function attachments(?string $group = null): MorphToMany
     {
         return $this->morphToMany(
-            Orchid::relatedModel(Attachment::class),
+            Orchid::model(Attachment::class),
             'attachmentable',
             'attachmentable',
             'attachmentable_id',

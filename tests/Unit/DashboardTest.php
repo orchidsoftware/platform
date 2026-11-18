@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Illuminate\Support\Str;
-use InvalidArgumentException;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
 use Orchid\Platform\Orchid;
@@ -13,6 +12,7 @@ use Orchid\Screen\Actions\Menu;
 use Orchid\Support\Facades\Orchid as OrchidFacade;
 use Orchid\Tests\App\EmptyUserModel;
 use Orchid\Tests\TestUnitCase;
+use PHPUnit\Framework\Attributes\TestWith;
 
 /**
  * Class DashboardTest.
@@ -34,15 +34,15 @@ class DashboardTest extends TestUnitCase
         $this->assertEquals($class, $default);
     }
 
-    public function testIsModelCustomNotFound(): void
+    #[TestWith([User::class, 'MyCustomClass'])]
+    #[TestWith(['auth.user', 'App\\Models\\MissingUser'])]
+    public function testMissingConfiguredModelIsReturnedByName(string $key, string $missing): void
     {
         $dashboard = new Orchid;
 
-        $dashboard->useModel(User::class, 'MyCustomClass');
+        $dashboard->useModel($key, $missing);
 
-        $user = $dashboard->modelClass(User::class);
-
-        $this->assertEquals('MyCustomClass', $user);
+        $this->assertSame($missing, $dashboard->modelClass($key));
     }
 
     public function testRoleUsersUseTheConfiguredEloquentModel(): void
@@ -50,16 +50,6 @@ class DashboardTest extends TestUnitCase
         OrchidFacade::useModel(User::class, EmptyUserModel::class);
 
         $this->assertInstanceOf(EmptyUserModel::class, (new Role)->users()->getRelated());
-    }
-
-    public function testRoleUsersRejectAnInvalidModelReplacement(): void
-    {
-        OrchidFacade::useModel(User::class, 'MissingUserModel');
-
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('MissingUserModel');
-
-        (new Role)->users();
     }
 
     public function testIsRegisterResource(): void

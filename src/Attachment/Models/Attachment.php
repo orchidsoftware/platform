@@ -92,7 +92,7 @@ class Attachment extends Model
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(Orchid::relatedModel(User::class));
+        return $this->belongsTo(Orchid::model(User::class));
     }
 
     /**
@@ -178,7 +178,7 @@ class Attachment extends Model
      */
     public function relationships()
     {
-        return $this->hasMany(Orchid::relatedModel(Attachmentable::class), 'attachment_id');
+        return $this->hasMany(Orchid::model(Attachmentable::class), 'attachment_id');
     }
 
     /**

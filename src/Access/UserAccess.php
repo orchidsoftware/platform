@@ -32,7 +32,7 @@ trait UserAccess
      */
     public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(Orchid::relatedModel(Role::class), 'role_users', 'user_id', 'role_id');
+        return $this->belongsToMany(Orchid::model(Role::class), 'role_users', 'user_id', 'role_id');
     }
 
     /**

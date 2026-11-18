@@ -2,16 +2,14 @@
 
 namespace Orchid\Platform\Configuration;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
-use InvalidArgumentException;
 
 trait ManagesModelOptions
 {
     /**
      * Registered replacements for Orchid model classes.
      *
-     * @var array<string, string>
+     * @var array<string, class-string>
      */
     protected array $registeredReplaceModels = [];
 
@@ -27,6 +25,13 @@ trait ManagesModelOptions
 
     /**
      * Get the class name for a given Dashboard model.
+     *
+     * @template TFallback of string
+     *
+     * @param TFallback      $key
+     * @param TFallback|null $default
+     *
+     * @return class-string|TFallback
      */
     public function model(string $key, ?string $default = null): string
     {
@@ -34,25 +39,9 @@ trait ManagesModelOptions
     }
 
     /**
-     * Resolve the Eloquent model class for a relationship.
+     * Register a replacement model.
      *
-     * @param class-string<Model> $model
-     *
-     * @return class-string<Model>
-     */
-    public function relatedModel(string $model): string
-    {
-        $related = $this->model($model);
-
-        if (! is_a($related, Model::class, true)) {
-            throw new InvalidArgumentException("The configured model [{$related}] must extend Eloquent Model.");
-        }
-
-        return $related;
-    }
-
-    /**
-     * Get the user model class name.
+     * @param class-string $custom
      */
     public function useModel(string $key, string $custom): static
     {
