@@ -159,10 +159,15 @@ class Attachment extends Model
     public function delete()
     {
         if ($this->exists) {
-            if (static::where('hash', $this->hash)->where('disk', $this->disk)->limit(2)->count() <= 1) {
-                // Physical removal a file.
+            $shared = $this->newQuery()
+                ->where($this->only(['disk', 'path', 'name', 'extension']))
+                ->whereKeyNot($this->getKey())
+                ->exists();
+
+            if (! $shared) {
                 Storage::disk($this->disk)->delete($this->physicalPath());
             }
+
             $this->relationships()->delete();
         }
 

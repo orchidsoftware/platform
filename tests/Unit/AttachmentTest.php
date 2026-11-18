@@ -196,7 +196,10 @@ class AttachmentTest extends TestUnitCase
         $this->assertNotEquals($upload->id, $clone->id);
 
         $upload->delete();
-        $this->assertNotNull($clone->url());
+        Storage::disk($this->disk)->assertExists($clone->physicalPath());
+
+        $clone->delete();
+        Storage::disk($this->disk)->assertMissing($clone->physicalPath());
     }
 
     public function testAttachmentUploadAllowingDuplicate(): void
@@ -211,7 +214,11 @@ class AttachmentTest extends TestUnitCase
         $this->assertNotEquals($upload->id, $clone->id);
 
         $upload->delete();
-        $this->assertNotNull($clone->url());
+        Storage::disk($this->disk)->assertMissing($upload->physicalPath());
+        Storage::disk($this->disk)->assertExists($clone->physicalPath());
+
+        $clone->delete();
+        Storage::disk($this->disk)->assertMissing($clone->physicalPath());
     }
 
     public function testUnknownMimeTypeAttachmentUpload(): void
