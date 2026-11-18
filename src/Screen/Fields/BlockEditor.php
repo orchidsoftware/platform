@@ -170,7 +170,10 @@ class BlockEditor extends Field
     {
         $buttons = $this->toolbarButtons();
 
-        return collect($this->get('toolbar'))
+        /** @var iterable<array-key, mixed> $toolbar */
+        $toolbar = $this->get('toolbar');
+
+        return collect($toolbar)
             ->unique()
             ->filter(fn ($type) => is_string($type) && array_key_exists($type, $buttons))
             ->map(fn (string $type) => [

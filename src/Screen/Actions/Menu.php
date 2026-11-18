@@ -116,7 +116,10 @@ class Menu extends Link
                 $this->set('active', $active->toArray());
             })
             ->addBeforeRender(function () {
-                if (collect($this->get('list', []))->isEmpty()) {
+                /** @var iterable<array-key, Menu> $children */
+                $children = $this->get('list', []);
+
+                if (collect($children)->isEmpty()) {
                     return;
                 }
 

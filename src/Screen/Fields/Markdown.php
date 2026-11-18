@@ -170,7 +170,10 @@ class Markdown extends Field
      */
     protected function prepareToolbarGroups(): array
     {
-        $toolbar = collect($this->get('toolbar'));
+        /** @var iterable<array-key, string|array<string>> $buttons */
+        $buttons = $this->get('toolbar');
+
+        $toolbar = collect($buttons);
         $groups = $toolbar->contains(fn ($buttons) => is_array($buttons))
             ? $toolbar
             : collect([$toolbar->all()]);

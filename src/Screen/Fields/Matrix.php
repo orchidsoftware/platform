@@ -45,11 +45,10 @@ class Matrix extends Field
     {
         $this
             ->addBeforeRender(function () {
-                if ($this->get('value') === null) {
-                    $this->set('value', []);
-                }
+                /** @var iterable<array-key, mixed> $rows */
+                $rows = $this->get('value', []);
 
-                $value = collect($this->get('value'))
+                $value = collect($rows)
                     ->sortKeys()
                     ->toArray();
 

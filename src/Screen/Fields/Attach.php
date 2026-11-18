@@ -152,7 +152,10 @@ class Attach extends Field
             return $this;
         }
 
-        $value = collect($this->get('value', []))
+        /** @var iterable<array-key, mixed> $attachments */
+        $attachments = $this->get('value', []);
+
+        $value = collect($attachments)
             ->where('group', $group)
             ->values();
 

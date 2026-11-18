@@ -209,7 +209,10 @@ class Select extends Field implements ComplexFieldConcern
         $this->set('options', $options);
 
         return $this->addBeforeRender(function () use ($reflection, $enum): void {
-            $value = collect($this->get('value'))->map(function ($item) use ($reflection, $enum): mixed {
+            /** @var \UnitEnum|scalar|array<\UnitEnum|scalar>|null $selected */
+            $selected = $this->get('value');
+
+            $value = collect($selected)->map(function ($item) use ($reflection, $enum): mixed {
                 return $item instanceof $enum
                     ? ($reflection->isBacked() ? $item->value : $item->name)
                     : $item;
