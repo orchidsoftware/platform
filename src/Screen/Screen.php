@@ -140,7 +140,7 @@ abstract class Screen extends Controller
         }
 
         $view = $this->view($repository)
-            ->fragments(collect($slug)->push('screen-state')->all());
+            ->fragments([$slug, 'screen-state']);
 
         return response($view)
             ->header('Content-Type', 'text/vnd.turbo-stream.html');
@@ -340,7 +340,7 @@ abstract class Screen extends Controller
              * Route filtering requires at least one element to be present.
              * We set __invoke by default, since it must be public.
              */
-            ->whenEmpty(fn () => collect('__invoke'))
+            ->whenEmpty(fn () => collect(['__invoke']))
             ->keys();
     }
 

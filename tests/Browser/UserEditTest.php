@@ -19,7 +19,7 @@ class UserEditTest extends TestBrowserCase
                 ->loginAs($user)
                 ->visitRoute('orchid.users')
                 ->clickLink($user->name, 'table a')
-                ->waitForRoute('orchid.users.edit', $user)
+                ->waitForRoute('orchid.users.edit', ['user' => $user])
                 ->waitFor('input[name="user[email]"]')
                 ->assertInputValue('user[email]', $user->email)
                 ->type('user[email]', $email)
@@ -27,7 +27,7 @@ class UserEditTest extends TestBrowserCase
                 ->waitForRoute('orchid.users')
                 ->waitForText('User was saved.')
                 ->clickLink($user->name, 'table a')
-                ->waitForRoute('orchid.users.edit', $user)
+                ->waitForRoute('orchid.users.edit', ['user' => $user])
                 ->waitFor('input[name="user[email]"]')
                 ->assertInputValue('user[email]', $email);
         });

@@ -32,7 +32,7 @@ class SortableTest extends TestUnitCase
         $this->assertEquals('order', $model->getSortColumnName());
         $this->assertEquals(0, $model->getSortColumnValue());
 
-        $model->setSortColumn('3');
+        $model->setSortColumn(3);
         $this->assertEquals(3, $model->getSortColumnValue());
 
     }
@@ -49,13 +49,13 @@ class SortableTest extends TestUnitCase
         $this->assertEquals(0, $first_upload->getSortColumnValue());
         $this->assertEquals(0, $first_upload->sort);
 
-        $first_upload->setSortColumn('3')->save();
+        $first_upload->setSortColumn(3)->save();
         $this->assertEquals(3, $first_upload->getSortColumnValue());
         $this->assertEquals(3, $first_upload->sort);
 
         $this->assertEquals($two_upload->id, Attachment::sorted()->get()->first()->id);
 
-        $two_upload->setSortColumn('9')->save();
+        $two_upload->setSortColumn(9)->save();
         $this->assertEquals($first_upload->id, Attachment::sorted()->get()->first()->id);
     }
 }

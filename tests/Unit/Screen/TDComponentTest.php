@@ -96,7 +96,9 @@ class TDComponentTest extends TestUnitCase
 
     protected function checkedArgument(View $view)
     {
-        $this->assertStringContainsString("Hello {$this->user->email} from Sasha", $view);
-        $this->assertStringContainsString(app()->version(), $view);
+        $html = $view->render();
+
+        $this->assertStringContainsString("Hello {$this->user->email} from Sasha", $html);
+        $this->assertStringContainsString(app()->version(), $html);
     }
 }

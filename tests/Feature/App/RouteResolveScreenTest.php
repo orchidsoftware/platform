@@ -39,7 +39,7 @@ class RouteResolveScreenTest extends TestFeatureCase
             ->actingAs($user)
             ->get(route('bind.implicit-binding', $user->id))
             ->assertOk()
-            ->assertSee($user->id)
+            ->assertSee((string) $user->id)
             ->assertSee($user->email);
     }
 
@@ -71,7 +71,7 @@ class RouteResolveScreenTest extends TestFeatureCase
             ->actingAs($user)
             ->get(route('bind.customizing-key', $user->email))
             ->assertOk()
-            ->assertSee($user->id)
+            ->assertSee((string) $user->id)
             ->assertSee($user->email);
     }
 
@@ -89,7 +89,7 @@ class RouteResolveScreenTest extends TestFeatureCase
             ->actingAs($user)
             ->get(route('bind.explicit-binding', $user->id))
             ->assertOk()
-            ->assertSee($user->id)
+            ->assertSee((string) $user->id)
             ->assertSee($user->email);
     }
 
@@ -107,7 +107,7 @@ class RouteResolveScreenTest extends TestFeatureCase
             ->actingAs($user)
             ->get(route('bind.resolution-logic', $user->email))
             ->assertOk()
-            ->assertSee($user->id)
+            ->assertSee((string) $user->id)
             ->assertSee($user->email);
     }
 }

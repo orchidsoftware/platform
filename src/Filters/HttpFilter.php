@@ -136,7 +136,7 @@ class HttpFilter
             ->each(function (Stringable $sort) use ($builder, $allowedSorts) {
                 $descending = $sort->startsWith('-') ? 'desc' : 'asc';
 
-                $column = Str::of($sort)->ltrim('-')->replace('.', '->');
+                $column = $sort->ltrim('-')->replace('.', '->');
                 $key = $column->before('->');
 
                 if ($allowedSorts->containsStrict($key->toString())) {

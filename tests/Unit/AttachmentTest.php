@@ -139,7 +139,7 @@ class AttachmentTest extends TestUnitCase
 
         $this->actingAs($user);
 
-        $file = UploadedFile::fake()->create('user.jpg', 1920, 1080);
+        $file = UploadedFile::fake()->image('user.jpg');
         $attachment = new File($file, $this->disk);
         $upload = $attachment->load();
 
@@ -148,7 +148,7 @@ class AttachmentTest extends TestUnitCase
 
     public function testAttachmentUrlLink(): void
     {
-        $file = UploadedFile::fake()->create('example.jpg', 1920, 1080);
+        $file = UploadedFile::fake()->image('example.jpg');
         $attachment = new File($file, $this->disk);
         $upload = $attachment->load();
 
@@ -166,7 +166,7 @@ class AttachmentTest extends TestUnitCase
 
     public function testAttachmentMimeType(): void
     {
-        $file = UploadedFile::fake()->create('user.jpg', 1920, 1080);
+        $file = UploadedFile::fake()->image('user.jpg');
         $attachment = new File($file, $this->disk);
         $upload = $attachment->load();
 

@@ -36,7 +36,7 @@ class TD extends Cell
     public const FILTER_NUMBER_RANGE = 'numberRange';
     public const FILTER_SELECT = 'select';
     /**
-     * @var string|null|int
+     * @var string|int|float|null
      */
     protected $width;
     /**
@@ -92,7 +92,7 @@ class TD extends Cell
     protected $callbackFilterValue;
 
     /**
-     * @param string|int $width
+     * @param string|int|float $width
      */
     public function width($width): self
     {

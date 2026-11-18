@@ -30,7 +30,7 @@ class ItemAddChildScreenFlowTest extends TestBrowserCase
             $browser->waitForText('Added Item');
 
             // perform actions in the second
-            $browser->visitRoute('test.item.addchild', 1)
+            $browser->visitRoute('test.item.addchild', ['parentId' => 1])
                 ->waitForText('Add child')
                 ->type('item[name]', 'name 7')
                 ->press('Save')

@@ -20,13 +20,13 @@ class DependentListenerTest extends TestBrowserCase
                 ->loginAs($this->createAdminUser())
                 ->visitRoute('test.dependent-listener')
                 ->waitForText('Test Dependent')
-                ->assertInputValue('first', 100)
+                ->assertInputValue('first', '100')
                 ->assertDontSee('The result of adding the first argument and the second')
-                ->type('second', 200)
+                ->type('second', '200')
                 ->keys('input[name="second"]', '{tab}')
                 ->waitForText('The result of adding the first argument and the second')
                 ->assertSee('SUM')
-                ->assertInputValue('sum', 300);
+                ->assertInputValue('sum', '300');
         });
     }
 
@@ -39,13 +39,13 @@ class DependentListenerTest extends TestBrowserCase
                 ->waitForText('Test Dependent in Modal')
                 ->press('Open Listener Modal')
                 ->waitForText('Listener in modal')
-                ->assertInputValue('first', 100)
+                ->assertInputValue('first', '100')
                 ->assertDontSee('The result of adding the first argument and the second')
-                ->type('second', 200)
+                ->type('second', '200')
                 ->keys('input[name="second"]', '{tab}')
                 ->waitForText('The result of adding the first argument and the second')
                 ->assertSee('SUM')
-                ->assertInputValue('sum', 300);
+                ->assertInputValue('sum', '300');
         });
     }
 
@@ -56,13 +56,13 @@ class DependentListenerTest extends TestBrowserCase
                 ->loginAs($this->createAdminUser())
                 ->visitRoute('test.dependent-listener-nested-targets')
                 ->waitForText('Test child Dependent')
-                ->assertInputValue('father[first]', 100)
+                ->assertInputValue('father[first]', '100')
                 ->assertDontSee('The result of adding the first argument and the second')
-                ->type('father[second]', 200)
+                ->type('father[second]', '200')
                 ->keys('input[name="father[second]"]', '{tab}')
                 ->waitForText('The result of adding the first argument and the second')
                 ->assertSee('SUM')
-                ->assertInputValue('sum', 300);
+                ->assertInputValue('sum', '300');
         });
     }
 }
