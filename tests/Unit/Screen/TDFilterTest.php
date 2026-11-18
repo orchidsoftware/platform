@@ -66,17 +66,17 @@ class TDFilterTest extends TestUnitCase
         $this->assertStringContainsString('4044', $view);
     }
 
-    public function testTDEmptyFilterWithCallableValue(): void
+    public function testEmptyFilterRendersWithoutCallingTheFormatter(): void
     {
         request()->replace([
             'filter' => null,
         ]);
 
-        $view = TD::make()
+        $view = TD::make('number', 'Order number')
             ->filter()
-            ->filterValue(fn (int $value): string => (string) ($value * 2))
+            ->filterValue(fn () => $this->fail('The formatter was called for an empty filter.'))
             ->buildTh();
 
-        $this->assertNull($view->getData()['filterString']);
+        $this->assertStringContainsString('Order number', $view);
     }
 }
