@@ -27,6 +27,6 @@ class RemoveRoleEvent
      */
     public function __construct(public mixed $user, mixed $role)
     {
-        $this->roles = collect(is_scalar($role) ? [$role] : $role);
+        $this->roles = collect($role);
     }
 }

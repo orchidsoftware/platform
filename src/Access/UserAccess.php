@@ -82,7 +82,7 @@ trait UserAccess
     /**
      * This method will grant access if any permission passes the check.
      *
-     * @param string|iterable<string>|null $permissions
+     * @param string|iterable<array-key, string>|null $permissions
      */
     public function hasAnyAccess($permissions, bool $cache = true): bool
     {
@@ -90,7 +90,7 @@ trait UserAccess
             return true;
         }
 
-        return collect(is_string($permissions) ? [$permissions] : $permissions)
+        return collect($permissions)
             ->map(fn (string $permit) => $this->hasAccess($permit, $cache))
             ->filter(fn (bool $result) => $result)
             ->isNotEmpty();
@@ -118,15 +118,15 @@ trait UserAccess
      * Query Scope for retrieving users by any permissions
      * The * character usage is not implemented.
      *
-     * @param Builder<static>         $builder
-     * @param string|iterable<string> $permitsWithoutWildcard
+     * @param Builder<static>                    $builder
+     * @param string|iterable<array-key, string> $permitsWithoutWildcard
      *
      * @return Builder<static>
      */
     #[Scope]
     protected function byAnyAccess(Builder $builder, $permitsWithoutWildcard): Builder
     {
-        $permits = collect(is_string($permitsWithoutWildcard) ? [$permitsWithoutWildcard] : $permitsWithoutWildcard);
+        $permits = collect($permitsWithoutWildcard);
 
         if ($permits->isEmpty()) {
             return $builder->whereRaw('1=0');
