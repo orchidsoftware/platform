@@ -46,29 +46,21 @@ trait Chartable
             ? Carbon::now()
             : Carbon::parse($stopDate);
 
-        $query = $builder
+        $values = $builder
             ->select(DB::raw("$value as value, DATE($dateColumn) as label"))
             ->whereBetween($dateColumn, [$startDate, $stopDate])
             ->groupBy('label')
-            ->orderBy('label')
-            ->get();
+            ->pluck('value', 'label');
 
-        $days = $startDate->diffInDays($stopDate) + 1;
+        $days = $startDate->startOfDay()->daysUntil($stopDate->startOfDay());
 
-        return TimeCollection::times($days, function () use ($startDate, $query) {
-            $found = $query->firstWhere(
-                'label',
-                $startDate->startOfDay()->toDateString()
-            );
+        return TimeCollection::make($days)->map(function (Carbon $day) use ($values) {
+            $label = $day->toDateString();
 
-            $result = [
-                'value'   => ($found ? $found->getAttribute('value') : 0),
-                'label'   => $startDate->toDateString(),
+            return [
+                'value' => $values->get($label, 0),
+                'label' => $label,
             ];
-
-            $startDate->addDay();
-
-            return $result;
         });
     }
 
