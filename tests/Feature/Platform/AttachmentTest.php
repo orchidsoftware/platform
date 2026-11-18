@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\TestResponse;
 use Orchid\Attachment\Models\Attachment;
+use Orchid\Platform\Events\UploadFileEvent;
 use Orchid\Platform\Http\Middleware\Access;
 use Orchid\Tests\TestFeatureCase;
 
@@ -50,6 +54,23 @@ class AttachmentTest extends TestFeatureCase
                 'disk'          => 'public',
                 'group'         => null,
             ]);
+    }
+
+    public function testFailedWriteDoesNotRecordAnUpload(): void
+    {
+        Event::fake([UploadFileEvent::class]);
+        $disk = $this->createStub(FilesystemAdapter::class);
+        $disk->method('putFileAs')->willReturn(false);
+        Storage::set('public', $disk);
+
+        $this->actingAs($this->createAdminUser())
+            ->post(route('orchid.files.upload'), [
+                'files' => UploadedFile::fake()->create('document.txt'),
+            ])
+            ->assertInternalServerError();
+
+        $this->assertDatabaseEmpty('attachments');
+        Event::assertNotDispatched(UploadFileEvent::class);
     }
 
     public function testAttachmentHttpMultiUpload(): void
