@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use League\Flysystem\FilesystemException;
+use League\Flysystem\UnableToWriteFile;
 use LogicException;
 use Orchid\Attachment\Contracts\Engine;
 use Orchid\Attachment\Engines\Generator;
@@ -150,9 +151,11 @@ class File
      */
     private function save(): Model
     {
-        $this->storage->putFileAs($this->engine->path(), $this->file, $this->engine->fullName(), [
+        $storedPath = $this->storage->putFileAs($this->engine->path(), $this->file, $this->engine->fullName(), [
             'mime_type' => $this->engine->mime(),
         ]);
+
+        throw_if($storedPath === false, UnableToWriteFile::class, "Unable to write attachment to disk [{$this->disk}].");
 
         $attachment = Orchid::modelClass(Attachment::class)
             ->forceFill([
