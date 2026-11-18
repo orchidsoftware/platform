@@ -39,12 +39,9 @@ class UserListLayout extends Table
                 ->cantHide()
                 ->filter(Input::make())
                 ->render(fn (User $user) => ModalToggle::make($user->email)
-                    ->modal('editUserModal')
+                    ->modal('editUserModal', ['user' => $user])
                     ->modalTitle($user->name)
-                    ->method('saveUser')
-                    ->asyncParameters([
-                        'user' => $user->id,
-                    ])),
+                    ->method('saveUser')),
 
             TD::make('created_at', __('Created'))
                 ->usingComponent(DateTimeSplit::class)

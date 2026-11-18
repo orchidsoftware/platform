@@ -144,16 +144,20 @@ class Button extends Action
         }
 
         return collect($parameters)
-            ->filter(fn ($value) => filled($value))
+            ->filter(fn ($value) => $value !== null)
             ->map(fn ($value) => $this->extractRouteKey($value))
             ->all();
     }
 
     /**
-     * Extracts key from Eloquent model if applicable.
+     * Replace models with their route keys, including models inside arrays.
      */
     protected function extractRouteKey(mixed $value): mixed
     {
+        if (is_array($value)) {
+            return array_map($this->extractRouteKey(...), $value);
+        }
+
         return $value instanceof UrlRoutable ? $value->getRouteKey() : $value;
     }
 

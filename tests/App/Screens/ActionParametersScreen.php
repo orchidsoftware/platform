@@ -7,10 +7,12 @@ namespace Orchid\Tests\App\Screens;
 use Illuminate\Http\Request;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
+use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Repository;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
+use Orchid\Support\Facades\Toast;
 use Orchid\Tests\App\Enums\RoleNames;
 
 class ActionParametersScreen extends Screen
@@ -18,6 +20,15 @@ class ActionParametersScreen extends Screen
     public function query(): array
     {
         return [];
+    }
+
+    public function commandBar(): array
+    {
+        return [
+            ModalToggle::make('Preview filters')
+                ->modal('other', ['label' => 'Review & edit', 'filters' => ['statuses' => ['active', 'invited']]])
+                ->method('applyFilters'),
+        ];
     }
 
     public function layout(): array
@@ -29,7 +40,8 @@ class ActionParametersScreen extends Screen
             ]))->deferred('loadUser'),
             Layout::modal('other', Layout::rows([
                 Input::make('other.name')->title('Other modal content'),
-            ]))->deferred('loadUser'),
+                Input::make('filters.statuses.1'),
+            ]))->deferred('previewFilters'),
         ];
     }
 
@@ -55,6 +67,16 @@ class ActionParametersScreen extends Screen
     public function loadUser(User $user, Repository $state): array
     {
         return ['user' => $user, 'marker' => $state->get('marker')];
+    }
+
+    public function previewFilters(string $label, array $filters): array
+    {
+        return ['other' => ['name' => $label], 'filters' => $filters];
+    }
+
+    public function applyFilters(string $label, array $filters): void
+    {
+        Toast::info($label.': '.implode(', ', $filters['statuses']));
     }
 
     public function selectRole(User $user, Role $role): array

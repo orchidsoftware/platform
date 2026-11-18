@@ -9,6 +9,20 @@ use Orchid\Tests\TestBrowserCase;
 
 class ModalTest extends TestBrowserCase
 {
+    public function testDeferredModalReceivesStringAndArrayArgumentsOnOpenAndSubmit(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs($this->createAdminUser())
+                ->visitRoute('test.modal-parameters')
+                ->press('Preview filters')
+                ->waitFor('input[name="other[name]"]')
+                ->assertInputValue('other[name]', 'Review & edit')
+                ->assertInputValue('filters[statuses][1]', 'invited')
+                ->press('Apply')
+                ->waitForText('Review & edit: active, invited');
+        });
+    }
+
     public function testReopenModalForValidationFailed(): void
     {
         $this->browse(function (Browser $browser) {
