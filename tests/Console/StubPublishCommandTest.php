@@ -47,6 +47,7 @@ class StubPublishCommandTest extends TestConsoleCase
 
         // Check that the file was overwritten.
         $this->assertNotEquals('Existing content', file_get_contents($this->stubsPath.'/'.$file));
+        $this->assertFileExists($this->stubsPath.'/table.stub');
     }
 
     /**
@@ -65,6 +66,7 @@ class StubPublishCommandTest extends TestConsoleCase
 
         // Check that the file was overwritten.
         $this->assertNotEquals('Existing content', file_get_contents($this->stubsPath.'/'.$file));
+        $this->assertFileDoesNotExist($this->stubsPath.'/table.stub');
     }
 
     /**
@@ -72,8 +74,13 @@ class StubPublishCommandTest extends TestConsoleCase
      */
     public function testPublishWithoutOptions(): void
     {
+        file_put_contents($this->stubsPath.'/screen.stub', 'Existing content');
+
         $this->artisan('orchid:stubs')
             ->expectsOutputToContain('Stubs published successfully.')
             ->assertOk();
+
+        $this->assertSame('Existing content', file_get_contents($this->stubsPath.'/screen.stub'));
+        $this->assertFileExists($this->stubsPath.'/table.stub');
     }
 }

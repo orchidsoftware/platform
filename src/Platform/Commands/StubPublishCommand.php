@@ -73,9 +73,10 @@ class StubPublishCommand extends Command
      */
     protected function shouldPublish(string $path): bool
     {
-        return ! file_exists($path)
-            || $this->option('force')
-            || ($this->option('existing')
-                && file_exists($path));
+        if ($this->option('existing')) {
+            return file_exists($path);
+        }
+
+        return $this->option('force') || ! file_exists($path);
     }
 }
