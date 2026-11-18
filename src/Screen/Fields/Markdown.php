@@ -24,6 +24,8 @@ use Orchid\Screen\Field;
  * @method $this help(string $value = null)
  * @method $this popover(string $value = null)
  * @method $this title(string $value = null)
+ *
+ * @extends Field<array{toolbar?: iterable<array-key, string|array<string>>|string|null, ...<string, mixed>}>
  */
 class Markdown extends Field
 {
@@ -170,10 +172,7 @@ class Markdown extends Field
      */
     protected function prepareToolbarGroups(): array
     {
-        /** @var iterable<array-key, string|array<string>> $buttons */
-        $buttons = $this->get('toolbar');
-
-        $toolbar = collect($buttons);
+        $toolbar = collect($this->get('toolbar'));
         $groups = $toolbar->contains(fn ($buttons) => is_array($buttons))
             ? $toolbar
             : collect([$toolbar->all()]);

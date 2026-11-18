@@ -29,6 +29,8 @@ use Orchid\Support\Init;
  * @method $this sortUrl(string $value = null)
  * @method $this path(string $value = null)
  * @method $this group(string $value = null)
+ *
+ * @extends Field<array{value?: array<mixed>|scalar|object|null, ...<string, mixed>}>
  */
 class Attach extends Field
 {
@@ -152,10 +154,7 @@ class Attach extends Field
             return $this;
         }
 
-        /** @var iterable<array-key, mixed> $attachments */
-        $attachments = $this->get('value', []);
-
-        $value = collect($attachments)
+        $value = collect($this->get('value', []))
             ->where('group', $group)
             ->values();
 

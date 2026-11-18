@@ -72,10 +72,7 @@ abstract class SideMenu extends Layout
             ->values()
             ->each(function (Menu $navigation, int $index) use ($prefix, $parent) {
                 $slug = $prefix.'-'.$index;
-                /** @var iterable<array-key, Menu> $items */
-                $items = $navigation->get('list', []);
-
-                $children = collect($items)
+                $children = collect($navigation->get('list', []))
                     ->filter(fn (Menu $child) => $child->isSee())
                     ->values();
 

@@ -33,6 +33,8 @@ use Orchid\Screen\Fields\Support\ChoicePayload;
  * @method $this options($value = null)
  * @method $this title(string $value = null)
  * @method $this maximumSelectionLength(int $value = 0)
+ *
+ * @extends Field<array{value?: array<mixed>|scalar|object|null, ...<string, mixed>}>
  */
 class Select extends Field implements ComplexFieldConcern
 {
@@ -52,8 +54,6 @@ class Select extends Field implements ComplexFieldConcern
 
     /**
      * Default attributes value.
-     *
-     * @var array<string, mixed>
      */
     protected $attributes = [
         'class'                 => 'form-control',
@@ -209,10 +209,7 @@ class Select extends Field implements ComplexFieldConcern
         $this->set('options', $options);
 
         return $this->addBeforeRender(function () use ($reflection, $enum): void {
-            /** @var \UnitEnum|scalar|array<\UnitEnum|scalar>|null $selected */
-            $selected = $this->get('value');
-
-            $value = collect($selected)->map(function ($item) use ($reflection, $enum): mixed {
+            $value = collect($this->get('value'))->map(function ($item) use ($reflection, $enum): mixed {
                 return $item instanceof $enum
                     ? ($reflection->isBacked() ? $item->value : $item->name)
                     : $item;

@@ -23,6 +23,8 @@ use Orchid\Screen\Field;
  * @method $this help(string $value = null)
  * @method $this popover(string $value = null)
  * @method $this title(string $value = null)
+ *
+ * @extends Field<array{toolbar?: iterable<array-key, mixed>|string|null, ...<string, mixed>}>
  */
 class BlockEditor extends Field
 {
@@ -170,10 +172,7 @@ class BlockEditor extends Field
     {
         $buttons = $this->toolbarButtons();
 
-        /** @var iterable<array-key, mixed> $toolbar */
-        $toolbar = $this->get('toolbar');
-
-        return collect($toolbar)
+        return collect($this->get('toolbar'))
             ->unique()
             ->filter(fn ($type) => is_string($type) && array_key_exists($type, $buttons))
             ->map(fn (string $type) => [

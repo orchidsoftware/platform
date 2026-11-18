@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Closure;
 use Orchid\Screen\Field;
 
 /**
@@ -13,6 +14,8 @@ use Orchid\Screen\Field;
  * @method $this keyValue(bool $keyValue)
  * @method $this title(string $value = null)
  * @method $this help(string $value = null)
+ *
+ * @extends Field<array{value?: iterable<array-key, mixed>|Closure|null, ...<string, mixed>}>
  */
 class Matrix extends Field
 {
@@ -45,10 +48,7 @@ class Matrix extends Field
     {
         $this
             ->addBeforeRender(function () {
-                /** @var iterable<array-key, mixed> $rows */
-                $rows = $this->get('value', []);
-
-                $value = collect($rows)
+                $value = collect($this->get('value', []))
                     ->sortKeys()
                     ->toArray();
 

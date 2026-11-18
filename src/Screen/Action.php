@@ -9,6 +9,11 @@ use Illuminate\View\View;
 use Orchid\Screen\Contracts\Actionable;
 use Orchid\Support\Color;
 
+/**
+ * @template TAttributes of array<string, mixed> = array<string, mixed>
+ *
+ * @extends Field<TAttributes>
+ */
 class Action extends Field implements Actionable
 {
     /**

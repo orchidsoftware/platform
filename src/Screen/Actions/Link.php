@@ -15,6 +15,10 @@ use Orchid\Screen\Action;
  * @method Link target(string $target = null)
  * @method Link title(string $title = null)
  * @method Link download($download = true)
+ *
+ * @template TAttributes of array<string, mixed> = array<string, mixed>
+ *
+ * @extends Action<TAttributes>
  */
 class Link extends Action
 {

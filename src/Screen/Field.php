@@ -44,6 +44,8 @@ use Throwable;
  * @method $this  idPrefix(?string $value = null)
  * @method $this  placeholder(?string $value = null)
  *
+ * @template TAttributes of array<string, mixed> = array<string, mixed>
+ *
  * @phpstan-consistent-constructor
  */
 class Field implements \Stringable, Fieldable, Htmlable
@@ -71,7 +73,7 @@ class Field implements \Stringable, Fieldable, Htmlable
      * An array containing all attributes available to the field.
      * Attributes are used to configure the HTML form element.
      *
-     * @var array<string, mixed>
+     * @var TAttributes
      */
     protected $attributes = [
         'value' => null,
@@ -167,7 +169,7 @@ class Field implements \Stringable, Fieldable, Htmlable
     /**
      * Sets the 'value' attribute of the field.
      *
-     * @param mixed $value The value to be set for the 'value' attribute.
+     * @param TAttributes['value'] $value
      */
     public function value(mixed $value): static
     {
@@ -177,8 +179,10 @@ class Field implements \Stringable, Fieldable, Htmlable
     /**
      * Sets the value for the specified attribute of the field.
      *
-     * @param string $key   The name of the attribute to set.
-     * @param mixed  $value The value of the attribute. Defaults to true.
+     * @template TKey of key-of<TAttributes>
+     *
+     * @param TKey $key
+     * @param TAttributes[TKey] $value
      *
      * @return $this Returns the current instance for method chaining.
      */
@@ -269,6 +273,8 @@ class Field implements \Stringable, Fieldable, Htmlable
 
     /**
      * Gets the field's attributes.
+     *
+     * @return TAttributes
      */
     public function getAttributes(): array
     {
@@ -338,9 +344,13 @@ class Field implements \Stringable, Fieldable, Htmlable
     }
 
     /**
-     * @param mixed|null $value
+     * @template TKey of key-of<TAttributes>
+     * @template TDefault
      *
-     * @return static|mixed|null
+     * @param TKey     $key
+     * @param TDefault $value
+     *
+     * @return TAttributes[TKey]|TDefault
      */
     public function get(string $key, $value = null)
     {

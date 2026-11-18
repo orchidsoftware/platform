@@ -24,6 +24,8 @@ use Orchid\Support\Color;
  * @method Menu href(string $url = true)
  * @method Menu sort(int $weight = 1)
  * @method Menu active(string|array<string>|null $active = null)
+ *
+ * @extends Link<array{list?: iterable<array-key, Menu>|null, ...<string, mixed>}>
  */
 class Menu extends Link
 {
@@ -116,10 +118,7 @@ class Menu extends Link
                 $this->set('active', $active->toArray());
             })
             ->addBeforeRender(function () {
-                /** @var iterable<array-key, Menu> $children */
-                $children = $this->get('list', []);
-
-                if (collect($children)->isEmpty()) {
+                if (collect($this->get('list', []))->isEmpty()) {
                     return;
                 }
 
