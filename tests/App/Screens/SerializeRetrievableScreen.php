@@ -35,7 +35,7 @@ class SerializeRetrievableScreen extends Screen
 
     public function __construct(
         protected Application $application,
-        private readonly string $private = 'Private',
+        private readonly string $screenName = 'Route Resolve Screen',
         public $user = null
     ) {
         $this->middleware(fn ($request, $next) => $next($request));
@@ -54,7 +54,7 @@ class SerializeRetrievableScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Route Resolve Screen';
+        return $this->screenName;
     }
 
     /**

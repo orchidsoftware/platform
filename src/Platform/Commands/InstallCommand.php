@@ -111,18 +111,6 @@ class InstallCommand extends Command
     }
 
     /**
-     * @return false|string
-     */
-    private function fileGetContent(string $file)
-    {
-        if (! is_file($file)) {
-            return '';
-        }
-
-        return file_get_contents($file);
-    }
-
-    /**
      * @return $this
      */
     private function showMeLove(): self

@@ -65,15 +65,13 @@ class StubPublishCommandTest extends TestConsoleCase
 
         // Check that the file was overwritten.
         $this->assertNotEquals('Existing content', file_get_contents($this->stubsPath.'/'.$file));
+        $this->assertFileDoesNotExist($this->stubsPath.'/table.stub');
     }
 
-    /**
-     * Test without any options to check normal file publishing behavior.
-     */
-    public function testPublishWithoutOptions(): void
+    public function testPublishesMissingStubsByDefault(): void
     {
-        $this->artisan('orchid:stubs')
-            ->expectsOutputToContain('Stubs published successfully.')
-            ->assertOk();
+        $this->artisan('orchid:stubs')->assertOk();
+
+        $this->assertFileExists($this->stubsPath.'/table.stub');
     }
 }

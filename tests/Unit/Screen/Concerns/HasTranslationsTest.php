@@ -18,7 +18,7 @@ class HasTranslationsTest extends TestUnitCase
         {
             use HasTranslations;
 
-            protected array $translations = [];
+            protected ?array $translations = null;
 
             public function getTranslations()
             {

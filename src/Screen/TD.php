@@ -48,7 +48,7 @@ class TD extends Cell
      */
     protected $class;
     /**
-     * @var string
+     * @var Field|string|null
      */
     protected $filter;
     /**
@@ -136,7 +136,7 @@ class TD extends Cell
     }
 
     /**
-     * @param string                 $filter
+     * @param Field|string|null      $filter
      * @param iterable|callable|null $options
      */
     public function filter($filter = self::FILTER_TEXT, $options = null): self
@@ -234,7 +234,6 @@ class TD extends Cell
 
     protected function buildFilter(): ?Field
     {
-        /** @var Field $filter|string */
         $filter = $this->filter;
 
         if ($filter === null) {

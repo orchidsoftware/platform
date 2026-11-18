@@ -15,7 +15,6 @@ class GroupTest extends TestFieldsUnitCase
     {
         $group = Group::make();
 
-        $this->assertInstanceOf(Group::class, $group);
         $this->assertSame([], $group->getGroup());
     }
 
@@ -115,7 +114,6 @@ class GroupTest extends TestFieldsUnitCase
     {
         $group = Group::make([Input::make('x')]);
 
-        $this->assertIsString((string) $group);
         $this->assertStringContainsString('input', (string) $group);
     }
 
@@ -139,7 +137,6 @@ class GroupTest extends TestFieldsUnitCase
 
         $attributes = $group->getAttributes();
 
-        $this->assertIsArray($attributes);
         $this->assertArrayHasKey('group', $attributes);
         $this->assertArrayHasKey('align', $attributes);
         $this->assertArrayHasKey('widthColumns', $attributes);

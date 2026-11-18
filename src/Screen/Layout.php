@@ -27,7 +27,7 @@ abstract class Layout implements JsonSerializable
      * Nested layers that should be
      * displayed along with it.
      *
-     * @var Layout[]
+     * @var array<Layout|class-string<Layout>|array>
      */
     protected $layouts = [];
 

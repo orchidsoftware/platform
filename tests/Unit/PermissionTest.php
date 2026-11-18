@@ -238,7 +238,6 @@ class PermissionTest extends TestUnitCase
 
         $permissions = $dashboard->allowedPermissions();
 
-        $this->assertInstanceOf(Permissions::class, $permissions);
         $this->assertSame([
             'test.view'   => true,
             'test.update' => true,

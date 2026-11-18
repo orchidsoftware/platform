@@ -4,7 +4,7 @@ includes:
     - vendor/phpstan/phpstan-phpunit/extension.neon
 
 parameters:
-    level: 3
+    level: 4
     phpVersion: 80300
     parseModelCastsMethod: true
     configDirectories:

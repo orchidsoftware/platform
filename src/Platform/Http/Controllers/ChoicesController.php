@@ -6,7 +6,6 @@ namespace Orchid\Platform\Http\Controllers;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Collection as BaseCollection;
 use Orchid\Platform\Http\Requests\ChoicesRequest;
 use Orchid\Screen\Fields\Support\ChoicePayload;
 
@@ -29,25 +28,19 @@ class ChoicesController extends Controller
      */
     private function resolveChoices(ChoicePayload $payload): array
     {
-        $queryOrCollection = $payload->query();
+        $query = $payload->query();
 
-        if ($queryOrCollection instanceof BaseCollection || is_array($queryOrCollection)) {
-            $collection = collect($queryOrCollection);
-
-            return $collection
+        if (! $query instanceof Builder) {
+            return collect($query)
                 ->take($payload->chunk)
                 ->map(fn ($item) => $payload->optionFrom($item))
                 ->values()
                 ->all();
         }
 
-        $builder = $queryOrCollection instanceof Builder
-            ? $queryOrCollection
-            : $payload->modelInstance()->newQuery();
+        $this->applySearch($query, $payload);
 
-        $this->applySearch($builder, $payload);
-
-        return $builder
+        return $query
             ->limit($payload->chunk)
             ->get()
             ->map(fn ($item) => $payload->optionFrom($item))

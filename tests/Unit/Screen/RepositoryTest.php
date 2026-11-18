@@ -52,8 +52,7 @@ class RepositoryTest extends TestCase
 
     public function testRepositoryToArray(): void
     {
-        $this->assertInstanceOf(Repository::class, $this->repository);
-        $this->assertIsArray($this->repository->toArray());
+        $this->assertSame($this->config, $this->repository->toArray());
     }
 
     public function testRepositoryContent(): void

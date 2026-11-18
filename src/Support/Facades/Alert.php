@@ -16,7 +16,7 @@ use Orchid\Support\Color;
  * @method static AlertClass error(string $message)
  * @method static AlertClass warning(string $message)
  * @method static AlertClass view(string $template, Color $level, array $data)
- * @method static AlertClass check()
+ * @method static bool       check()
  * @method static AlertClass message(string $message, string $level = null)
  * @method static AlertClass withoutEscaping()
  */

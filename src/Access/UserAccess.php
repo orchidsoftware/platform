@@ -34,7 +34,7 @@ trait UserAccess
     }
 
     /**
-     * @param Role|int|string $role
+     * Check membership by role model, name, or key.
      */
     public function inRole($role): bool
     {
