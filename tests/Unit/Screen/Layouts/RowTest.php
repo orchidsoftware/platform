@@ -44,7 +44,7 @@ class RowTest extends TestUnitCase
         {
             protected $title = 'Profile';
 
-            protected function fields(): iterable
+            protected function fields(): array
             {
                 return [];
             }

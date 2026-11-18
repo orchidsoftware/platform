@@ -30,8 +30,14 @@ class Range extends Field
      */
     protected $view = 'orchid::fields.range';
 
+    /**
+     * Default attributes value.
+     */
     protected $attributes = [];
 
+    /**
+     * Attributes available for a particular tag.
+     */
     protected $inlineAttributes = [
         'accesskey',
         'autofocus',

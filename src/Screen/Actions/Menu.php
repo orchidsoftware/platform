@@ -41,6 +41,10 @@ class Menu extends Link
      */
     protected $permit = true;
 
+    /**
+     * Default attributes for the menu item.
+     * This includes CSS classes, title, icon, URL, and other options.
+     */
     protected $attributes = [
         'class'          => 'nav-link d-flex align-items-center icon-link gap-3',
         'title'          => null,
@@ -57,6 +61,9 @@ class Menu extends Link
         'slug'           => null,
     ];
 
+    /**
+     * Attributes available for a particular tag.
+     */
     public $inlineAttributes = [
         'autofocus',
         'disabled',
@@ -109,7 +116,7 @@ class Menu extends Link
                 $this->set('active', $active->toArray());
             })
             ->addBeforeRender(function () {
-                if (blank($this->get('list'))) {
+                if (collect($this->get('list', []))->isEmpty()) {
                     return;
                 }
 

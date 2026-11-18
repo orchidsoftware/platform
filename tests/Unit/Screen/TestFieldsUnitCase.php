@@ -13,10 +13,16 @@ use Orchid\Tests\TestUnitCase;
  */
 abstract class TestFieldsUnitCase extends TestUnitCase
 {
-    public static function renderField(Field $field): string
+    /**
+     * @param array<string, mixed>  $data
+     * @param array<string, mixed>  $rules
+     * @param array<string, string> $messages
+     * @param array<string, string> $customAttributes
+     */
+    public static function renderField(Field $field, array $data = [], array $rules = [], array $messages = [], array $customAttributes = []): string
     {
         try {
-            $validator = Validator::make([], []);
+            $validator = Validator::make($data, $rules, $messages, $customAttributes);
 
             return $field->render()->withErrors($validator)->render();
         } catch (\Throwable $throwable) {
@@ -50,9 +56,15 @@ abstract class TestFieldsUnitCase extends TestUnitCase
         return preg_replace($search, $replace, $view);
     }
 
-    public static function minifyRenderField(Field $field): string
+    /**
+     * @param array<string, mixed>  $data
+     * @param array<string, mixed>  $rules
+     * @param array<string, string> $messages
+     * @param array<string, string> $customAttributes
+     */
+    public static function minifyRenderField(Field $field, array $data = [], array $rules = [], array $messages = [], array $customAttributes = []): string
     {
-        $view = self::renderField($field);
+        $view = self::renderField($field, $data, $rules, $messages, $customAttributes);
 
         return self::minifyOutput($view);
     }

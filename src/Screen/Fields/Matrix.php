@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Illuminate\Support\Collection;
 use Orchid\Screen\Field;
 
 /**
@@ -22,6 +21,9 @@ class Matrix extends Field
      */
     protected $view = 'orchid::fields.matrix';
 
+    /**
+     * Default attributes value.
+     */
     protected $attributes = [
         'index'             => 0,
         'removableRows'     => true,
@@ -47,7 +49,7 @@ class Matrix extends Field
                     $this->set('value', []);
                 }
 
-                $value = (new Collection($this->get('value')))
+                $value = collect($this->get('value'))
                     ->sortKeys()
                     ->toArray();
 

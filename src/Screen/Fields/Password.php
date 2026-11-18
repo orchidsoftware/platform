@@ -42,12 +42,18 @@ class Password extends Field
      */
     protected $view = 'orchid::fields.password';
 
+    /**
+     * Default attributes value.
+     */
     protected $attributes = [
         'type'       => 'password',
         'class'      => 'form-control',
         'revealable' => true,
     ];
 
+    /**
+     * Attributes available for a particular tag.
+     */
     protected $inlineAttributes = [
         'accept',
         'accesskey',

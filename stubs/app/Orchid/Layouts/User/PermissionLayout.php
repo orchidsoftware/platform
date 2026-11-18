@@ -65,7 +65,7 @@ class PermissionLayout extends Rows
     private function makeCheckBoxGroup(Collection $permissions, string $title): Collection
     {
         return $permissions
-            ->map(fn (array $permission) => $this->makeCheckBox($permission))
+            ->map(fn (array $chunks) => $this->makeCheckBox(collect($chunks)))
             ->flatten()
             ->map(fn (CheckBox $checkbox, $key) => $key === 0
                 ? $checkbox->title($title)
@@ -79,19 +79,19 @@ class PermissionLayout extends Rows
     /**
      * Create a single checkbox for a permission.
      *
-     * @param Permission $permission
+     * @param Collection<string, bool|string> $chunks
      *
      * @return CheckBox
      */
-    private function makeCheckBox(array $permission): CheckBox
+    private function makeCheckBox(Collection $chunks): CheckBox
     {
-        return CheckBox::make('permissions.'.base64_encode($permission['slug']))
-            ->placeholder($permission['description'])
-            ->value($permission['active'])
+        return CheckBox::make('permissions.'.base64_encode($chunks->get('slug')))
+            ->placeholder($chunks->get('description'))
+            ->value($chunks->get('active'))
             ->sendTrueOrFalse()
             ->indeterminate($this->getIndeterminateStatus(
-                $permission['slug'],
-                $permission['active']
+                $chunks->get('slug'),
+                $chunks->get('active')
             ));
     }
 

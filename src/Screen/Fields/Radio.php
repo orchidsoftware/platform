@@ -35,12 +35,18 @@ class Radio extends Field
      */
     protected $view = 'orchid::fields.radio';
 
+    /**
+     * Default attributes value.
+     */
     protected $attributes = [
         'type'   => 'radio',
         'class'  => 'form-check-input',
         'value'  => null,
     ];
 
+    /**
+     * Attributes available for a particular tag.
+     */
     protected $inlineAttributes = [
         'accesskey',
         'autofocus',

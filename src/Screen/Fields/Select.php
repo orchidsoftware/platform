@@ -50,6 +50,11 @@ class Select extends Field implements ComplexFieldConcern
      */
     protected $view = 'orchid::fields.select';
 
+    /**
+     * Default attributes value.
+     *
+     * @var array<string, mixed>
+     */
     protected $attributes = [
         'class'                 => 'form-control',
         'options'               => [],
@@ -71,6 +76,11 @@ class Select extends Field implements ComplexFieldConcern
         'allowCreateValue'      => 'false',
     ];
 
+    /**
+     * Attributes available for a particular tag.
+     *
+     * @var array<int, string>
+     */
     protected $inlineAttributes = [
         'accesskey',
         'autofocus',
@@ -187,22 +197,23 @@ class Select extends Field implements ComplexFieldConcern
 
     /**
      * Populate options from a PHP enum.
-     *
-     * @param class-string<\UnitEnum> $enum
      */
     public function fromEnum(string $enum, ?string $displayName = null): static
     {
+        $reflection = new \ReflectionEnum($enum);
         $options = [];
         foreach ($enum::cases() as $case) {
-            $optionKey = $this->enumValue($case);
+            $optionKey = $reflection->isBacked() ? $case->value : $case->name;
             $options[$optionKey] = $displayName === null ? __($case->name) : $case->$displayName();
         }
         $this->set('options', $options);
 
-        return $this->addBeforeRender(function () use ($enum): void {
-            $value = (new Collection($this->get('value')))
-                ->map(fn ($item): mixed => $item instanceof $enum ? $this->enumValue($item) : $item)
-                ->all();
+        return $this->addBeforeRender(function () use ($reflection, $enum): void {
+            $value = collect($this->get('value'))->map(function ($item) use ($reflection, $enum): mixed {
+                return $item instanceof $enum
+                    ? ($reflection->isBacked() ? $item->value : $item->name)
+                    : $item;
+            })->all();
 
             $this
                 ->set('value', $value)

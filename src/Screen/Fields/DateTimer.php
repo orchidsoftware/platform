@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Screen\Fields;
 
 use Carbon\Carbon;
-use Illuminate\Support\Collection;
 use Orchid\Screen\Field;
 
 /**
@@ -38,6 +37,9 @@ class DateTimer extends Field
      */
     protected $view = 'orchid::fields.datetime';
 
+    /**
+     * Default attributes value.
+     */
     protected $attributes = [
         'class'                                 => 'form-control',
         'data-datetime-enable-time'             => 'false',
@@ -59,6 +61,9 @@ class DateTimer extends Field
         'quickDates'                            => [],
     ];
 
+    /**
+     * Attributes available for a particular tag.
+     */
     protected $inlineAttributes = [
         'accept',
         'accesskey',
@@ -355,7 +360,7 @@ class DateTimer extends Field
     public function withQuickDates(array $presets): static
     {
         $formattedPresets = collect($presets)
-            ->mapInto(Collection::class)
+            ->map(fn ($value) => collect($value))
             ->map
             ->map(fn ($value) => Carbon::parse($value)->format($this->attributes['data-datetime-date-format']))
             ->all();

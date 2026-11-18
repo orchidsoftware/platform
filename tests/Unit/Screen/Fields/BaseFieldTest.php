@@ -31,6 +31,9 @@ class BaseFieldTest extends TestFieldsUnitCase
              */
             public $view = '';
 
+            /**
+             * Default attributes value.
+             */
             public $attributes = [
                 'class' => 'form-control',
             ];

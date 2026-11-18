@@ -94,7 +94,7 @@ abstract class Cell
     protected function getNameParameterExpected(string $component, array $params = []): ?string
     {
         $class = new \ReflectionClass($component);
-        $parameters = $class->getConstructor()?->getParameters() ?? [];
+        $parameters = optional($class->getConstructor())->getParameters() ?? [];
 
         $paramsKeys = Arr::isAssoc($params) ? array_keys($params) : $params;
 

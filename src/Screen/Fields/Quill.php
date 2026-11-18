@@ -38,6 +38,9 @@ class Quill extends Field
      */
     protected $view = 'orchid::fields.quill';
 
+    /**
+     * All attributes that are available to the field.
+     */
     protected $attributes = [
         'value'   => null,
         'toolbar' => ['text', 'color', 'quote', 'header', 'list', 'format', 'media'],
@@ -45,6 +48,9 @@ class Quill extends Field
         'base64'  => false,
     ];
 
+    /**
+     * Attributes available for a particular tag.
+     */
     protected $inlineAttributes = [
         'accesskey',
         'autocomplete',

@@ -51,6 +51,9 @@ class Code extends Field
      */
     protected $view = 'orchid::fields.code';
 
+    /**
+     * Default attributes value.
+     */
     protected $attributes = [
         'class'       => 'form-control',
         'language'    => self::JS,
@@ -59,6 +62,9 @@ class Code extends Field
         'value'       => null,
     ];
 
+    /**
+     * Attributes available for a particular tag.
+     */
     protected $inlineAttributes = [
         'accesskey',
         'autofocus',

@@ -56,7 +56,7 @@ abstract class Selection extends Layout
     }
 
     /**
-     * @return iterable<Filter|class-string<Filter>>
+     * @return array<Filter|class-string<Filter>>|\Traversable<array-key, Filter|class-string<Filter>>
      */
     abstract public function filters(): iterable;
 }

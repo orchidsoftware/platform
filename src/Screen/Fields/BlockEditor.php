@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Screen\Fields;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use Orchid\Screen\Field;
 
 /**
@@ -80,11 +79,17 @@ class BlockEditor extends Field
      */
     protected $view = 'orchid::fields.blockEditor';
 
+    /**
+     * Default attributes value.
+     */
     protected $attributes = [
         'value'   => null,
         'toolbar' => self::DEFAULT_TOOLBAR,
     ];
 
+    /**
+     * Attributes available for a particular tag.
+     */
     protected $inlineAttributes = [
         'accesskey',
         'autofocus',
@@ -165,7 +170,7 @@ class BlockEditor extends Field
     {
         $buttons = $this->toolbarButtons();
 
-        return (new Collection($this->get('toolbar')))
+        return collect($this->get('toolbar'))
             ->unique()
             ->filter(fn ($type) => is_string($type) && array_key_exists($type, $buttons))
             ->map(fn (string $type) => [

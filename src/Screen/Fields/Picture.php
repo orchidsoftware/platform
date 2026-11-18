@@ -32,6 +32,9 @@ class Picture extends Field
      */
     protected $view = 'orchid::fields.picture';
 
+    /**
+     * Default attributes value.
+     */
     protected $attributes = [
         'value'          => null,
         'target'         => 'url',
@@ -40,6 +43,9 @@ class Picture extends Field
         'acceptedFiles'  => 'image/*',
     ];
 
+    /**
+     * Attributes available for a particular tag.
+     */
     protected $inlineAttributes = [
         'form',
         'formaction',

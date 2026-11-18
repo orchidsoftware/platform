@@ -1,0 +1,13 @@
+<?php
+
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Collection;
+
+/**
+ * @template TKey of array-key = array-key
+ * @template TValue = mixed
+ *
+ * @param Arrayable<TKey, TValue>|iterable<TKey, TValue>|scalar|null $value
+ * @return Collection<TKey, TValue>
+ */
+function collect($value = []): Collection {}

@@ -32,7 +32,9 @@ abstract class SideMenu extends Layout
     {
         $this->query = $repository;
 
-        $navigations = $this->visibleNavigations($this->navigations());
+        $navigations = collect($this->navigations())
+            ->filter(fn (Menu $navigation) => $navigation->isSee())
+            ->values();
 
         if (! $this->isSee() || $navigations->isEmpty()) {
             return;
@@ -60,16 +62,6 @@ abstract class SideMenu extends Layout
     }
 
     /**
-     * @param iterable<Menu> $navigations
-     *
-     * @return Collection<int, Menu>
-     */
-    private function visibleNavigations(iterable $navigations): Collection
-    {
-        return collect($navigations)->filter(fn (Menu $navigation) => $navigation->isSee())->values();
-    }
-
-    /**
      * Keep collapse targets local to this layout instance.
      *
      * @param iterable<int, Menu> $navigations
@@ -80,7 +72,9 @@ abstract class SideMenu extends Layout
             ->values()
             ->each(function (Menu $navigation, int $index) use ($prefix, $parent) {
                 $slug = $prefix.'-'.$index;
-                $children = $this->visibleNavigations($navigation->get('list', []));
+                $children = collect($navigation->get('list', []))
+                    ->filter(fn (Menu $child) => $child->isSee())
+                    ->values();
 
                 if ($navigation->get('active') === null) {
                     $navigation->active($this->activePatterns($navigation, $children));

@@ -26,6 +26,9 @@ class Button extends Action
      */
     protected $view = 'orchid::actions.button';
 
+    /**
+     * Default attributes value.
+     */
     protected $attributes = [
         'class'      => 'btn btn-link icon-link gap-2',
         'type'       => 'submit',
@@ -39,6 +42,9 @@ class Button extends Action
         'form'       => 'post-form',
     ];
 
+    /**
+     * Attributes available for a particular tag.
+     */
     protected $inlineAttributes = [
         'form',
         'formaction',
@@ -52,6 +58,10 @@ class Button extends Action
         'tabindex',
     ];
 
+    /**
+     * A set of attributes for the assignment
+     * of which will automatically translate them.
+     */
     protected $translations = [
         'name',
         'confirm',

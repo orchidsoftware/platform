@@ -22,6 +22,9 @@ class Repeater extends Field
      */
     protected $view = 'orchid::fields.repeater';
 
+    /**
+     * Default attributes used to configure the field.
+     */
     protected $attributes = [
         'value'           => [],
         'fields'          => [],

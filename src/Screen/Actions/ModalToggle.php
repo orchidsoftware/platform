@@ -23,6 +23,9 @@ class ModalToggle extends Button
      */
     protected $view = 'orchid::actions.modal';
 
+    /**
+     * Default attributes value.
+     */
     protected $attributes = [
         'class'      => 'btn btn-link icon-link gap-2',
         'modal'      => null,

@@ -13,7 +13,7 @@ class TotalTable extends Table
      */
     protected $target = 'table';
 
-    protected function columns(): iterable
+    protected function columns(): array
     {
         return [
             TD::make('id'),

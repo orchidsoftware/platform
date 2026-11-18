@@ -29,11 +29,17 @@ class RadioButtons extends Field
      */
     protected $view = 'orchid::fields.radiobutton';
 
+    /**
+     * Default attributes value.
+     */
     protected $attributes = [
         'type'  => 'radio',
         'class' => 'btn-check',
     ];
 
+    /**
+     * Attributes available for a particular tag.
+     */
     protected $inlineAttributes = [
         'accesskey',
         'autofocus',

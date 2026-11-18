@@ -66,7 +66,7 @@ abstract class Rows extends Layout
     }
 
     /**
-     * @return iterable<Fieldable>
+     * @return Fieldable[]|\Traversable<array-key, Fieldable>
      */
     abstract protected function fields(): iterable;
 }

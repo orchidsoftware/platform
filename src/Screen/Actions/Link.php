@@ -30,6 +30,9 @@ class Link extends Action
      */
     protected $typeForm;
 
+    /**
+     * Default attributes value.
+     */
     protected $attributes = [
         'class' => 'btn btn-link icon-link gap-2',
         'icon'  => null,
@@ -37,6 +40,9 @@ class Link extends Action
         'turbo' => true,
     ];
 
+    /**
+     * Attributes available for a particular tag.
+     */
     public $inlineAttributes = [
         'autofocus',
         'disabled',

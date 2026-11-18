@@ -53,11 +53,17 @@ class Input extends Field
      */
     protected $view = 'orchid::fields.input';
 
+    /**
+     * Default attributes value.
+     */
     protected $attributes = [
         'class'    => 'form-control',
         'datalist' => [],
     ];
 
+    /**
+     * Attributes available for a particular tag.
+     */
     protected $inlineAttributes = [
         'accept',
         'accesskey',

@@ -27,6 +27,9 @@ class KeyValue extends Field
      */
     protected $view = 'orchid::fields.keyValue';
 
+    /**
+     * Default attributes used to configure the field.
+     */
     protected $attributes = [
         'value'            => [],
         'keyLabel'         => 'Key',

@@ -339,15 +339,23 @@ abstract class Screen extends Controller
      * Get can transfer to the screen only
      * user-created methods available in it.
      *
-     * @return Collection<int, covariant array-key>
+     * @return Collection<int, array-key>
      */
     public static function getAvailableMethods(): Collection
     {
-        $methods = (new \ReflectionClass(static::class))->getMethods(\ReflectionMethod::IS_PUBLIC);
-        $actions = array_diff(array_column($methods, 'name'), get_class_methods(self::class), ['query']);
+        $class = (new \ReflectionClass(static::class))
+            ->getMethods(\ReflectionMethod::IS_PUBLIC);
 
-        // Keep the route constraint nonempty when the screen defines no actions.
-        return collect(array_values($actions) ?: [0]);
+        return collect($class)
+            ->mapWithKeys(fn (\ReflectionMethod $method) => [$method->name => $method])
+            ->except(get_class_methods(Screen::class))
+            ->except(['query'])
+            /*
+             * Route filtering requires at least one element to be present.
+             * We set __invoke by default, since it must be public.
+             */
+            ->whenEmpty(fn () => collect(['__invoke']))
+            ->keys();
     }
 
     /**

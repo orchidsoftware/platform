@@ -56,11 +56,18 @@ class LayoutFactory
         return new class($fields) extends Rows
         {
             /**
+             * @var Fieldable[]
+             */
+            protected $fields;
+
+            /**
              * @param array<Fieldable> $fields
              */
-            public function __construct(protected array $fields = []) {}
+            public function __construct(array $fields = [])
+            {
+                $this->fields = $fields;
+            }
 
-            /** @return array<Fieldable> */
             public function fields(): array
             {
                 return $this->fields;
@@ -76,14 +83,19 @@ class LayoutFactory
         return new class($target, $columns) extends Table
         {
             /**
+             * @var TD[]
+             */
+            protected $columns;
+
+            /**
              * @param array<TD> $columns
              */
-            public function __construct(string $target, protected array $columns)
+            public function __construct(string $target, array $columns)
             {
                 $this->target = $target;
+                $this->columns = $columns;
             }
 
-            /** @return array<TD> */
             public function columns(): array
             {
                 return $this->columns;
@@ -161,7 +173,6 @@ class LayoutFactory
              */
             public function __construct(protected array $filters = []) {}
 
-            /** @return array<Filter|class-string<Filter>> */
             public function filters(): array
             {
                 return $this->filters;
@@ -185,14 +196,19 @@ class LayoutFactory
         return new class($target, $columns) extends Legend
         {
             /**
+             * @var Sight[]
+             */
+            protected $columns;
+
+            /**
              * @param array<Sight> $columns
              */
-            public function __construct(string $target, protected array $columns)
+            public function __construct(string $target, array $columns)
             {
                 $this->target = $target;
+                $this->columns = $columns;
             }
 
-            /** @return array<Sight> */
             public function columns(): array
             {
                 return $this->columns;
@@ -226,11 +242,17 @@ class LayoutFactory
         return new class($target, $columns) extends Sortable
         {
             /**
+             * @var Sight[]
+             */
+            protected $columns;
+
+            /**
              * @param array<Sight> $columns
              */
-            public function __construct(string $target, protected array $columns)
+            public function __construct(string $target, array $columns)
             {
                 $this->target = $target;
+                $this->columns = $columns;
             }
 
             public function columns(): iterable

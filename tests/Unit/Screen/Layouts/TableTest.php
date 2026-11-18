@@ -33,7 +33,7 @@ class TableTest extends TestUnitCase
         {
             protected $target = 'target';
 
-            protected function columns(): iterable
+            protected function columns(): array
             {
                 return [];
             }
@@ -65,7 +65,7 @@ class TableTest extends TestUnitCase
         {
             protected $target = 'target';
 
-            protected function columns(): iterable
+            protected function columns(): array
             {
                 return [];
             }
@@ -89,7 +89,7 @@ class TableTest extends TestUnitCase
         {
             protected $target = 'target';
 
-            protected function columns(): iterable
+            protected function columns(): array
             {
                 return [];
             }
@@ -113,7 +113,7 @@ class TableTest extends TestUnitCase
         {
             protected $target = 'target';
 
-            protected function columns(): iterable
+            protected function columns(): array
             {
                 return [];
             }
@@ -137,7 +137,7 @@ class TableTest extends TestUnitCase
         {
             protected $target = 'target';
 
-            protected function columns(): iterable
+            protected function columns(): array
             {
                 return [];
             }
@@ -171,7 +171,7 @@ class TableTest extends TestUnitCase
             {
                 protected $target = 'target';
 
-                protected function columns(): iterable
+                protected function columns(): array
                 {
                     return [];
                 }
@@ -210,7 +210,7 @@ class TableTest extends TestUnitCase
             {
                 protected $target = 'target';
 
-                protected function columns(): iterable
+                protected function columns(): array
                 {
                     return [];
                 }
@@ -243,7 +243,7 @@ class TableTest extends TestUnitCase
             {
                 protected $target = 'target';
 
-                protected function columns(): iterable
+                protected function columns(): array
                 {
                     return [];
                 }
@@ -266,7 +266,7 @@ class TableTest extends TestUnitCase
         {
             protected $target = 'target';
 
-            protected function columns(): iterable
+            protected function columns(): array
             {
                 return [];
             }
@@ -310,7 +310,7 @@ class TableTest extends TestUnitCase
         {
             protected $target = 'target';
 
-            protected function columns(): iterable
+            protected function columns(): array
             {
                 return [
                     TD::make('serial number')->render(fn ($item, $loop) => 'index:'.$loop->index),

@@ -68,7 +68,7 @@ abstract class Legend extends Layout
     }
 
     /**
-     * @return iterable<Sight>
+     * @return Sight[]|\Traversable<array-key, Sight>
      */
     abstract protected function columns(): iterable;
 

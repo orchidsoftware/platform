@@ -31,6 +31,9 @@ class TimeZone extends Field
      */
     protected $view = 'orchid::fields.select';
 
+    /**
+     * Default attributes value.
+     */
     protected $attributes = [
         'class'            => 'form-control',
         'options'          => [],
@@ -43,6 +46,9 @@ class TimeZone extends Field
         'allowCreateValue' => 'false',
     ];
 
+    /**
+     * Attributes available for a particular tag.
+     */
     protected $inlineAttributes = [
         'accesskey',
         'autofocus',

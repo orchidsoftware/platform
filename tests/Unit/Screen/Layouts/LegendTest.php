@@ -18,7 +18,7 @@ class LegendTest extends TestUnitCase
         {
             protected $target = 'target';
 
-            protected function columns(): iterable
+            protected function columns(): array
             {
                 return [];
             }
@@ -65,7 +65,7 @@ class LegendTest extends TestUnitCase
         {
             protected $target = 'target';
 
-            protected function columns(): iterable
+            protected function columns(): array
             {
                 return [
                     Sight::make('name'),
@@ -90,7 +90,7 @@ class LegendTest extends TestUnitCase
         {
             protected $target = 'target';
 
-            protected function columns(): iterable
+            protected function columns(): array
             {
                 return [
                     Sight::make('visible'),
@@ -113,7 +113,7 @@ class LegendTest extends TestUnitCase
     {
         $layout = new class extends Legend
         {
-            protected function columns(): iterable
+            protected function columns(): array
             {
                 return [
                     Sight::make('name'),

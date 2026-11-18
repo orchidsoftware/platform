@@ -34,11 +34,17 @@ class TextArea extends Field
      */
     protected $view = 'orchid::fields.textarea';
 
+    /**
+     * Default attributes value.
+     */
     protected $attributes = [
         'class' => 'form-control no-resize',
         'value' => null,
     ];
 
+    /**
+     * Attributes available for a particular tag.
+     */
     protected $inlineAttributes = [
         'accesskey',
         'autofocus',

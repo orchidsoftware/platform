@@ -170,7 +170,7 @@ abstract class Table extends Layout
     /**
      * Define table columns.
      *
-     * @return iterable<TD>
+     * @return TD[]|\Traversable<array-key, TD>
      */
     abstract protected function columns(): iterable;
 

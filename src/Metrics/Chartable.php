@@ -65,7 +65,7 @@ trait Chartable
 
         $days = $startDate->startOfDay()->daysUntil($stopDate->startOfDay());
 
-        return new TimeCollection($days->map(function (Carbon $day) use ($values) {
+        return TimeCollection::make($days->map(function (Carbon $day) use ($values) {
             $label = $day->toDateString();
 
             return [
