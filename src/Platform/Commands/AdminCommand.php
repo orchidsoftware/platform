@@ -6,7 +6,6 @@ namespace Orchid\Platform\Commands;
 
 use Exception;
 use Illuminate\Console\Command;
-use Illuminate\Database\QueryException;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Orchid;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -36,7 +35,7 @@ class AdminCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle(): void
+    public function handle(): int
     {
         try {
             $userId = $this->option('id');
@@ -44,9 +43,13 @@ class AdminCommand extends Command
             empty($userId)
                 ? $this->createNewUser()
                 : $this->updateUserPermissions((string) $userId);
-        } catch (Exception|QueryException $e) {
+        } catch (Exception $e) {
             $this->error($e->getMessage());
+
+            return self::FAILURE;
         }
+
+        return self::SUCCESS;
     }
 
     /**
