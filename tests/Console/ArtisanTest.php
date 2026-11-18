@@ -46,13 +46,15 @@ class ArtisanTest extends TestConsoleCase
             ->expectsQuestion('What is your name?', 'testConsoleCreateUser')
             ->expectsQuestion('What is your email?', 'testConsoleCreateUser@console.loc')
             ->expectsQuestion('What is the password?', 'testConsoleCreateUser')
-            ->expectsOutputToContain('User created successfully.');
+            ->expectsOutputToContain('User created successfully.')
+            ->assertSuccessful();
 
         $this->artisan('orchid:admin')
             ->expectsQuestion('What is your name?', 'testConsoleCreateUser')
             ->expectsQuestion('What is your email?', 'testConsoleCreateUser@console.loc')
             ->expectsQuestion('What is the password?', 'testConsoleCreateUser')
-            ->expectsOutputToContain('User exist');
+            ->expectsOutputToContain('User exist')
+            ->assertFailed();
 
         $user = User::factory()->create([
             'permissions' => [],
@@ -62,11 +64,17 @@ class ArtisanTest extends TestConsoleCase
         $this->assertSame([], $user->permissions->toArray());
 
         $this->artisan('orchid:admin', ['--id' => $user->id])
-            ->expectsOutputToContain('User permissions updated.');
+            ->expectsOutputToContain('User permissions updated.')
+            ->assertSuccessful();
 
         $user->refresh();
 
         $this->assertSame(Orchid::allowedPermissions()->toArray(), $user->permissions->toArray());
+    }
+
+    public function testAdminCommandFailsForMissingUser(): void
+    {
+        $this->artisan('orchid:admin', ['--id' => 1])->assertFailed();
     }
 
     public function testArtisanOrchidInstall(): void
