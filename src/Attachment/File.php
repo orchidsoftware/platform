@@ -151,14 +151,11 @@ class File
      */
     private function save(): Model
     {
-        $directory = $this->engine->path();
-        $name = $this->engine->fullName();
-
-        $storedPath = $this->storage->putFileAs($directory, $this->file, $name, [
+        $storedPath = $this->storage->putFileAs($this->engine->path(), $this->file, $this->engine->fullName(), [
             'mime_type' => $this->engine->mime(),
         ]);
 
-        throw_if($storedPath === false, UnableToWriteFile::atLocation($directory.'/'.$name));
+        throw_if($storedPath === false, UnableToWriteFile::class, "Unable to write attachment to disk [{$this->disk}].");
 
         $attachment = Orchid::modelClass(Attachment::class)
             ->forceFill([
@@ -168,7 +165,7 @@ class File
                 'extension'     => $this->engine->extension(),
                 'original_name' => $this->file->getClientOriginalName(),
                 'size'          => $this->file->getSize(),
-                'path'          => Str::finish($directory, '/'),
+                'path'          => Str::finish($this->engine->path(), '/'),
                 'disk'          => $this->disk,
                 'group'         => $this->group,
                 'user_id'       => Auth::id(),
