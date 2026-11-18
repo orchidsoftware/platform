@@ -73,6 +73,22 @@ class MetricsTest extends TestUnitCase
         ], $period->toChart('Users'));
     }
 
+    public function testCountByDaysAcrossMidnight(): void
+    {
+        User::factory()->createMany([
+            ['created_at' => '2026-11-17 23:49:00'],
+            ['created_at' => '2026-11-18 00:05:00'],
+            ['created_at' => '2026-11-18 00:11:00'],
+        ]);
+
+        $days = User::countByDays('2026-11-17 23:50:00', '2026-11-18 00:10:00');
+
+        $this->assertSame([
+            '2026-11-17' => 0,
+            '2026-11-18' => 1,
+        ], $days->pluck('value', 'label')->all());
+    }
+
     public function testMaxValuesPeriod(): void
     {
         $current = Carbon::now();
