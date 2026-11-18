@@ -154,13 +154,11 @@ class File
         $directory = $this->engine->path();
         $name = $this->engine->fullName();
 
-        $path = $this->storage->putFileAs($directory, $this->file, $name, [
+        $storedPath = $this->storage->putFileAs($directory, $this->file, $name, [
             'mime_type' => $this->engine->mime(),
         ]);
 
-        if ($path === false) {
-            throw UnableToWriteFile::atLocation($directory.'/'.$name);
-        }
+        throw_if($storedPath === false, UnableToWriteFile::atLocation($directory.'/'.$name));
 
         $attachment = Orchid::modelClass(Attachment::class)
             ->forceFill([
