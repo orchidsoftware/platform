@@ -13,10 +13,10 @@ use Orchid\Tests\TestUnitCase;
  */
 abstract class TestFieldsUnitCase extends TestUnitCase
 {
-    public static function renderField(Field $field, array $data = [], array $rules = [], array $messages = [], array $customAttributes = []): string
+    public static function renderField(Field $field): string
     {
         try {
-            $validator = Validator::make($data, $rules, $messages, $customAttributes);
+            $validator = Validator::make([], []);
 
             return $field->render()->withErrors($validator)->render();
         } catch (\Throwable $throwable) {
@@ -50,9 +50,9 @@ abstract class TestFieldsUnitCase extends TestUnitCase
         return preg_replace($search, $replace, $view);
     }
 
-    public static function minifyRenderField(Field $field, array $data = [], array $rules = [], array $messages = [], array $customAttributes = []): string
+    public static function minifyRenderField(Field $field): string
     {
-        $view = self::renderField($field, $data, $rules, $messages, $customAttributes);
+        $view = self::renderField($field);
 
         return self::minifyOutput($view);
     }

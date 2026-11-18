@@ -20,7 +20,7 @@ class ItemListScreen extends Screen
     /**
      * Fetch data to be displayed on the screen.
      *
-     * @return array
+     * @return array{items: list<Repository>}
      */
     public function query(): iterable
     {
@@ -105,7 +105,7 @@ class ItemListScreen extends Screen
         ];
     }
 
-    public function create(Request $request)
+    public function create(Request $request): void
     {
         // Validate form data, save task to database, etc.
 

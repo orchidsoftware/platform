@@ -25,20 +25,10 @@ class DateRange extends Field implements ComplexFieldConcern
      */
     protected $view = 'orchid::fields.dataRange';
 
-    /**
-     * Default attributes value.
-     *
-     * @var array
-     */
     protected $attributes = [
         'data-datetime-date-format' => 'Y-m-d H:i:S',
     ];
 
-    /**
-     * Attributes available for a particular tag.
-     *
-     * @var array
-     */
     protected $inlineAttributes = [
         'form',
         'name',

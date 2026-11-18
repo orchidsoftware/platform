@@ -27,12 +27,12 @@ abstract class Layout implements JsonSerializable
      * Nested layers that should be
      * displayed along with it.
      *
-     * @var array<Layout|class-string<Layout>|array>
+     * @var iterable<Layout|string|array<Layout|string>>
      */
     protected $layouts = [];
 
     /**
-     * @var array
+     * @var array<string, mixed>
      */
     protected $variables = [];
 
@@ -59,7 +59,7 @@ abstract class Layout implements JsonSerializable
 
         $build = collect($this->layouts)
             ->map(fn ($layouts) => Arr::wrap($layouts))
-            ->map(fn (iterable $layouts, string $key) => $this->buildChild($layouts, $key, $repository))
+            ->map(fn (iterable $layouts, int|string $key) => $this->buildChild($layouts, $key, $repository))
             ->collapse()
             ->all();
 
@@ -72,10 +72,10 @@ abstract class Layout implements JsonSerializable
     }
 
     /**
-     * @param array      $layouts
-     * @param int|string $key
+     * @param iterable<Layout|string|array<Layout|string>> $layouts
+     * @param int|string                                   $key
      *
-     * @return array
+     * @return array<array-key, list<mixed>>
      */
     protected function buildChild(iterable $layouts, $key, Repository $repository)
     {
@@ -143,6 +143,8 @@ abstract class Layout implements JsonSerializable
 
     /**
      * Return layout properties without the bound query repository.
+     *
+     * @return array<string, mixed>
      */
     public function jsonSerialize(): array
     {

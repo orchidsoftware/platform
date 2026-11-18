@@ -68,6 +68,8 @@ class InstallCommand extends Command
     }
 
     /**
+     * @param array<string, mixed> $parameters
+     *
      * @return $this
      */
     private function executeCommand(string $command, array $parameters = []): self

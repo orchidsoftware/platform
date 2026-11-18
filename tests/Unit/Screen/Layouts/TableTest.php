@@ -33,7 +33,7 @@ class TableTest extends TestUnitCase
         {
             protected $target = 'target';
 
-            protected function columns(): array
+            protected function columns(): iterable
             {
                 return [];
             }
@@ -65,7 +65,7 @@ class TableTest extends TestUnitCase
         {
             protected $target = 'target';
 
-            protected function columns(): array
+            protected function columns(): iterable
             {
                 return [];
             }
@@ -89,7 +89,7 @@ class TableTest extends TestUnitCase
         {
             protected $target = 'target';
 
-            protected function columns(): array
+            protected function columns(): iterable
             {
                 return [];
             }
@@ -113,7 +113,7 @@ class TableTest extends TestUnitCase
         {
             protected $target = 'target';
 
-            protected function columns(): array
+            protected function columns(): iterable
             {
                 return [];
             }
@@ -131,13 +131,13 @@ class TableTest extends TestUnitCase
         $this->assertStringContainsString('table-hover', $html);
     }
 
-    public function testShowTextNotFoundWhenTargetIsEmptyCollection()
+    public function testShowTextNotFoundWhenTargetIsEmptyCollection(): void
     {
         $layout = new class extends Table
         {
             protected $target = 'target';
 
-            protected function columns(): array
+            protected function columns(): iterable
             {
                 return [];
             }
@@ -171,7 +171,7 @@ class TableTest extends TestUnitCase
             {
                 protected $target = 'target';
 
-                protected function columns(): array
+                protected function columns(): iterable
                 {
                     return [];
                 }
@@ -210,7 +210,7 @@ class TableTest extends TestUnitCase
             {
                 protected $target = 'target';
 
-                protected function columns(): array
+                protected function columns(): iterable
                 {
                     return [];
                 }
@@ -243,7 +243,7 @@ class TableTest extends TestUnitCase
             {
                 protected $target = 'target';
 
-                protected function columns(): array
+                protected function columns(): iterable
                 {
                     return [];
                 }
@@ -266,7 +266,7 @@ class TableTest extends TestUnitCase
         {
             protected $target = 'target';
 
-            protected function columns(): array
+            protected function columns(): iterable
             {
                 return [];
             }
@@ -310,7 +310,7 @@ class TableTest extends TestUnitCase
         {
             protected $target = 'target';
 
-            protected function columns(): array
+            protected function columns(): iterable
             {
                 return [
                     TD::make('serial number')->render(fn ($item, $loop) => 'index:'.$loop->index),

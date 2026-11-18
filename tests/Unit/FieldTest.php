@@ -146,7 +146,7 @@ class FieldTest extends TestUnitCase
         $this->assertEquals($expected, $actual);
     }
 
-    public function testOldNameMatchesLaravelRequestOldPrefix()
+    public function testOldNameMatchesLaravelRequestOldPrefix(): void
     {
         $field = new Field;
 
@@ -161,7 +161,7 @@ class FieldTest extends TestUnitCase
         $this->assertEquals('parent.child.grandchild', $field->getOldName());
     }
 
-    public function testOldNameMatchesLaravelRequestOldPrefixWithErrors()
+    public function testOldNameMatchesLaravelRequestOldPrefixWithErrors(): void
     {
         $field = new Input;
         $field->set('name', 'parent[child][grandchild]');

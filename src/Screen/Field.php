@@ -71,7 +71,7 @@ class Field implements \Stringable, Fieldable, Htmlable
      * An array containing all attributes available to the field.
      * Attributes are used to configure the HTML form element.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected $attributes = [
         'value' => null,
@@ -80,7 +80,7 @@ class Field implements \Stringable, Fieldable, Htmlable
     /**
      * Required Attributes.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $required = [
         'name',
@@ -106,7 +106,7 @@ class Field implements \Stringable, Fieldable, Htmlable
      * A set of attributes for the assignment
      * of which will automatically translate them.
      *
-     * @var array|null
+     * @var array<int, string>|null
      */
     protected $translations = [
         'title',
@@ -118,7 +118,7 @@ class Field implements \Stringable, Fieldable, Htmlable
      * Universal attributes are applied to almost all tags,
      * so they are allocated to a separate group so that they do not repeat for all tags.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $universalAttributes = [
         'accesskey',
@@ -140,11 +140,13 @@ class Field implements \Stringable, Fieldable, Htmlable
     /**
      * Attributes available for a particular tag.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $inlineAttributes = [];
 
     /**
+     * @param array<array-key, mixed> $parameters
+     *
      * @return $this|mixed|static|Field
      */
     public function __call(string $method, array $parameters)
@@ -603,6 +605,8 @@ class Field implements \Stringable, Fieldable, Htmlable
 
     /**
      * Add a class to the field including the existing classes.
+     *
+     * @param string|array<string> $classes
      */
     public function addClass(string|array $classes): static
     {

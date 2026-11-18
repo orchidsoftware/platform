@@ -17,7 +17,7 @@ abstract class Wrapper extends Layout
     /**
      * Wrapper constructor.
      *
-     * @param array<Layout|class-string<Layout>|array> $layouts
+     * @param array<Layout|string|array<Layout|string>> $layouts
      */
     public function __construct(string $template, array $layouts = [])
     {

@@ -3,7 +3,6 @@
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
 use Orchid\Screen\Fields\Input;
-use Orchid\Screen\Layouts\Split;
 use Orchid\Screen\Repository;
 use Orchid\Support\Facades\Layout;
 use Orchid\Tests\TestUnitCase;
@@ -12,7 +11,7 @@ class SplitTest extends TestUnitCase
 {
     public function testBase(): void
     {
-        $layout = $this->getSplitClass([
+        $layout = Layout::split([
             Layout::rows([Input::make('first')]),
             Layout::rows([Input::make('last')]),
         ]);
@@ -25,7 +24,7 @@ class SplitTest extends TestUnitCase
 
     public function testRatio(): void
     {
-        $layout = $this->getSplitClass([
+        $layout = Layout::split([
             Layout::rows([Input::make('first')]),
             Layout::rows([Input::make('last')]),
         ])->ratio('20/80');
@@ -40,7 +39,7 @@ class SplitTest extends TestUnitCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $layout = $this->getSplitClass([
+        $layout = Layout::split([
             Layout::rows([Input::make('first')]),
             Layout::rows([Input::make('last')]),
         ])->ratio('5/96');
@@ -50,7 +49,7 @@ class SplitTest extends TestUnitCase
 
     public function testReverseOnPhone(): void
     {
-        $layout = $this->getSplitClass([
+        $layout = Layout::split([
             Layout::rows([Input::make('first')]),
             Layout::rows([Input::make('last')]),
         ])->ratio('20/80')->reverseOnPhone();
@@ -59,13 +58,5 @@ class SplitTest extends TestUnitCase
 
         $this->assertStringContainsString('col-md-2 order-md-first', $html);
         $this->assertStringContainsString('col-md col-md-10 order-md-last order-first', $html);
-    }
-
-    /**
-     * @param $layouts
-     */
-    private function getSplitClass($layouts): Split
-    {
-        return new class($layouts) extends Split {};
     }
 }

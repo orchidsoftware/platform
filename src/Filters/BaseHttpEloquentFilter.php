@@ -21,7 +21,7 @@ abstract class BaseHttpEloquentFilter extends Filter
      *
      * This is used to map the column to its corresponding filter in the request.
      *
-     * @return array|null The array containing the filter parameter name.
+     * @return list<string> The array containing the filter parameter name.
      */
     public function parameters(): ?array
     {

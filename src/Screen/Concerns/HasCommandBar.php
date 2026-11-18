@@ -20,6 +20,8 @@ trait HasCommandBar
 
     /**
      * Render visible commands against the supplied repository.
+     *
+     * @return array<array-key, mixed>
      */
     protected function buildCommandBar(Repository $repository): array
     {

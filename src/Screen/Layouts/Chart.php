@@ -34,7 +34,11 @@ class Chart extends Layout
 
     protected bool $export = false;
 
-    /** Options use the same names as Orchid Charts. */
+    /**
+     * Options use the same names as Orchid Charts.
+     *
+     * @var array<string, mixed>
+     */
     protected array $options = [
         'height' => 250,
         'colors' => [
@@ -45,6 +49,7 @@ class Chart extends Layout
         ],
     ];
 
+    /** @var list<array<string, mixed>> */
     protected array $markers = [];
 
     public static function make(string $target, ?string $title = null): static
@@ -84,7 +89,11 @@ class Chart extends Layout
         return $this;
     }
 
-    /** Merge presentation options without replacing earlier settings. */
+    /**
+     * Merge presentation options without replacing earlier settings.
+     *
+     * @param array<string, mixed> $options
+     */
     public function options(array $options): static
     {
         $this->options = array_replace($this->options, $options);
@@ -97,11 +106,17 @@ class Chart extends Layout
         return $this->options(['height' => $height]);
     }
 
+    /**
+     * @param array<string> $colors
+     */
     public function colors(array $colors): static
     {
         return $this->options(['colors' => array_values($colors)]);
     }
 
+    /**
+     * @param bool|array<string, scalar> $gradient
+     */
     public function gradient(bool|array $gradient = true): static
     {
         return $this->options(['gradient' => $gradient]);
@@ -132,6 +147,9 @@ class Chart extends Layout
         return $this->options(['maxSlices' => $maxSlices]);
     }
 
+    /**
+     * @param array<string, mixed> $options
+     */
     public function marker(string $label, int|float $value, array $options = []): static
     {
         $this->markers[] = ['label' => $label, 'value' => $value] + $options;

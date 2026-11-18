@@ -25,12 +25,14 @@ class Metric extends Layout
     protected $title;
 
     /**
-     * @var array
+     * @var array<string>
      */
     protected $labels = [];
 
     /**
      * Initialize the labels displayed by the metric layout.
+     *
+     * @param array<string> $labels
      */
     public function __construct(array $labels)
     {

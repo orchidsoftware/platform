@@ -143,7 +143,7 @@ class AttachmentTest extends TestUnitCase
         $attachment = new File($file, $this->disk);
         $upload = $attachment->load();
 
-        $this->assertEquals($upload->user()->first()->email, $user->email);
+        $this->assertTrue($user->is($upload->user));
     }
 
     public function testAttachmentUrlLink(): void
@@ -262,7 +262,7 @@ class AttachmentTest extends TestUnitCase
             ->get()
             ->first();
 
-        $this->assertEquals($attachment->id, $upload->id);
+        $this->assertTrue($upload->is($attachment));
 
         $sql = $model->attachment()->toSql();
         $this->assertStringContainsString('order by "sort" asc', $sql);
@@ -271,7 +271,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertStringContainsString(' "group" = ?', $sql);
     }
 
-    public function testIsMimeAttachment()
+    public function testIsMimeAttachment(): void
     {
         $file = UploadedFile::fake()->create('is-mime.jpg');
         $attachment = new File($file, $this->disk);
@@ -281,7 +281,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertFalse($upload->isMime('image/png'));
     }
 
-    public function testIsPhysicalExistAttachment()
+    public function testIsPhysicalExistAttachment(): void
     {
         $file = UploadedFile::fake()->create('isPhysical.jpg');
         $attachment = new File($file, $this->disk);
@@ -300,7 +300,7 @@ class AttachmentTest extends TestUnitCase
         $this->assertFalse($attachment->isPhysicalExists());
     }
 
-    public function testDownloadAttachment()
+    public function testDownloadAttachment(): void
     {
         $file = UploadedFile::fake()->create('download.jpg');
         $attachment = new File($file, $this->disk);

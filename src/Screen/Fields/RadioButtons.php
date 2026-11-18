@@ -20,7 +20,7 @@ use Orchid\Screen\Field;
  * @method $this help(string $value = null)
  * @method $this popover(string $value = null)
  * @method $this title(string $value = null)
- * @method $this options(array $value = [])
+ * @method $this options(array<array-key, string|int> $value = [])
  */
 class RadioButtons extends Field
 {
@@ -29,21 +29,11 @@ class RadioButtons extends Field
      */
     protected $view = 'orchid::fields.radiobutton';
 
-    /**
-     * Default attributes value.
-     *
-     * @var array
-     */
     protected $attributes = [
         'type'  => 'radio',
         'class' => 'btn-check',
     ];
 
-    /**
-     * Attributes available for a particular tag.
-     *
-     * @var array
-     */
     protected $inlineAttributes = [
         'accesskey',
         'autofocus',

@@ -53,7 +53,7 @@ class AttachmentController extends Controller
      */
     public function sort(Request $request): void
     {
-        collect($request->input('files', []))
+        $request->collect('files')
             ->each(function ($sort, $id) {
                 $attachment = $this->attachment->find($id);
                 $attachment->sort = $sort;

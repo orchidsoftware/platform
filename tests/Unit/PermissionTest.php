@@ -26,11 +26,17 @@ class PermissionTest extends TestUnitCase
     {
         $permissions = new class(['orchid.index' => true]) extends Permissions
         {
+            /**
+             * @return array<string, bool>
+             */
             public function normalizeForExport(): array
             {
                 return self::normalize();
             }
 
+            /**
+             * @return array<string, bool>
+             */
             private static function normalize(): array
             {
                 return [];

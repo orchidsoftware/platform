@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Access;
 
 use Exception;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Orchid\Platform\Models\User;
@@ -16,11 +17,13 @@ trait RoleAccess
 
     /**
      * Define the relationship with the users assigned to the role
+     *
+     * @return BelongsToMany<Model, $this>
      */
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(
-            Orchid::model(User::class),
+            Orchid::relatedModel(User::class),
             'role_users',
             'role_id',
             'user_id'

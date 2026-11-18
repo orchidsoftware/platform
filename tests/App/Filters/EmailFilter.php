@@ -9,9 +9,6 @@ use Orchid\Screen\Fields\Input;
 
 class EmailFilter extends Filter
 {
-    /**
-     * @var array
-     */
     public $parameters = [
         'email',
     ];

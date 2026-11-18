@@ -28,7 +28,7 @@ use Traversable;
 class Permissions implements Arrayable, CastsAttributes, Countable, JsonSerializable
 {
     /**
-     * @param array<string, bool> $states
+     * @var array<string, bool>
      */
     private array $states;
 
@@ -59,6 +59,8 @@ class Permissions implements Arrayable, CastsAttributes, Countable, JsonSerializ
      * Create an allowed permission set from registered permission definitions.
      *
      * Entries without a slug are ignored.
+     *
+     * @param iterable<mixed> $definitions
      */
     public static function fromDefinitions(iterable $definitions): static
     {

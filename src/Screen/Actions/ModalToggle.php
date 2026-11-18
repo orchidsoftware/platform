@@ -23,11 +23,6 @@ class ModalToggle extends Button
      */
     protected $view = 'orchid::actions.modal';
 
-    /**
-     * Default attributes value.
-     *
-     * @var array
-     */
     protected $attributes = [
         'class'      => 'btn btn-link icon-link gap-2',
         'modal'      => null,
@@ -41,7 +36,7 @@ class ModalToggle extends Button
     ];
 
     /**
-     * @param int|string|array $options
+     * @param int|string|array<array-key, mixed> $options
      */
     public function asyncParameters($options = []): self
     {
@@ -51,6 +46,8 @@ class ModalToggle extends Button
     }
 
     /**
+     * @param array<array-key, mixed> $options
+     *
      * @return $this
      */
     public function modal(string $name, array $options = [])

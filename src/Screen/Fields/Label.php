@@ -20,21 +20,11 @@ class Label extends Field
      */
     protected $view = 'orchid::fields.label';
 
-    /**
-     * Default attributes value.
-     *
-     * @var array
-     */
     protected $attributes = [
         'id'    => null,
         'value' => null,
     ];
 
-    /**
-     * Attributes available for a particular tag.
-     *
-     * @var array
-     */
     protected $inlineAttributes = [
         'class',
     ];

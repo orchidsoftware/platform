@@ -153,7 +153,7 @@ class BuilderTest extends TestUnitCase
     }
 
     /**
-     * @param array $value
+     * @param array<string, mixed> $value
      */
     private function getBuilder($value = []): Builder
     {

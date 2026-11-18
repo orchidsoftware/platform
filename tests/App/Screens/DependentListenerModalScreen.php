@@ -19,6 +19,8 @@ class DependentListenerModalScreen extends Screen
 
     /**
      * Query data.
+     *
+     * @return array{name: string, first: int}
      */
     public function query(): array
     {

@@ -12,6 +12,9 @@ use PHPUnit\Framework\Attributes\DataProvider;
 
 class EnvironmentTest extends TestFeatureCase
 {
+    /**
+     * @return list<array{string}>
+     */
     public static function isolatedRuns(): array
     {
         return [['first'], ['second']];

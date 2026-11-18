@@ -68,7 +68,7 @@ abstract class Legend extends Layout
     }
 
     /**
-     * @return array
+     * @return iterable<Sight>
      */
     abstract protected function columns(): iterable;
 

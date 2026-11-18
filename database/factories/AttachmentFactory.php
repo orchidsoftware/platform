@@ -20,8 +20,6 @@ class AttachmentFactory extends Factory
      * Define the model's default state.
      *
      * @throws \Exception
-     *
-     * @return array
      */
     public function definition()
     {

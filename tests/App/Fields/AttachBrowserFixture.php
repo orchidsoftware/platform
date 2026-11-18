@@ -14,6 +14,9 @@ class AttachBrowserFixture
 
     public const FILENAME = 'photo" onload="window.attachExecuted = true" data-injected="yes';
 
+    /**
+     * @return array{id: int, url: string, original_name: string, mime: string}
+     */
     public static function attachment(int $id = 11): array
     {
         return ['id' => $id, 'url' => self::IMAGE, 'original_name' => self::FILENAME, 'mime' => 'image/gif'];

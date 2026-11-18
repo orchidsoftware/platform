@@ -37,11 +37,6 @@ class CheckBox extends Field
      */
     protected $view = 'orchid::fields.checkbox';
 
-    /**
-     * Default attributes value.
-     *
-     * @var array
-     */
     protected $attributes = [
         'type'          => 'checkbox',
         'class'         => 'form-check-input',
@@ -51,11 +46,6 @@ class CheckBox extends Field
         'indeterminate' => false,
     ];
 
-    /**
-     * Attributes available for a particular tag.
-     *
-     * @var array
-     */
     protected $inlineAttributes = [
         'accesskey',
         'autofocus',

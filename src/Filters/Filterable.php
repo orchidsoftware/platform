@@ -14,6 +14,11 @@ trait Filterable
 {
     /**
      * Apply the filter to the given query.
+     *
+     * @param Builder<static>                       $query
+     * @param iterable<Filter|class-string<Filter>> $filters
+     *
+     * @return Builder<static>
      */
     #[Scope]
     protected function filtersApply(Builder $query, iterable $filters = []): Builder
@@ -26,7 +31,10 @@ trait Filterable
     /**
      * Apply the filter to the given selection.
      *
+     * @param Builder<static>  $query
      * @param string|Selection $class
+     *
+     * @return Builder<static>
      */
     #[Scope]
     protected function filtersApplySelection(Builder $query, $class): Builder
@@ -40,7 +48,10 @@ trait Filterable
     }
 
     /**
-     * @param iterable|string|Selection $kit
+     * @param Builder<static>                                             $builder
+     * @param iterable<Filter|class-string<Filter>>|string|Selection|null $kit
+     *
+     * @return Builder<static>
      */
     #[Scope]
     protected function filters(Builder $builder, mixed $kit = null, ?HttpFilter $httpFilter = null): Builder
@@ -58,7 +69,9 @@ trait Filterable
     }
 
     /**
-     * @return Builder
+     * @param Builder<static> $builder
+     *
+     * @return Builder<static>
      */
     #[Scope]
     protected function defaultSort(Builder $builder, string $column, string $direction = 'asc')
@@ -72,6 +85,8 @@ trait Filterable
 
     /**
      * Return the model's allowed filters and sort columns.
+     *
+     * @return Collection<string, Collection<array-key, string>>
      */
     public function getOptionsFilter(): Collection
     {
@@ -85,6 +100,8 @@ trait Filterable
      * Use the nearest declaration, including an explicitly empty list.
      *
      * @param class-string<AllowedFilters|AllowedSorts> $attribute
+     *
+     * @return array<array-key, string>
      */
     private function allowedFilterColumns(string $attribute): array
     {

@@ -30,21 +30,21 @@ class HttpFilter
     /**
      * Collection of filters extracted from the request.
      *
-     * @var Collection
+     * @var Collection<string, mixed>
      */
     protected $filters;
 
     /**
      * Collection of sorts extracted from the request.
      *
-     * @var Collection
+     * @var Collection<array-key, string>
      */
     protected $sorts;
 
     /**
      * Model options and allowed params.
      *
-     * @var Collection
+     * @var Collection<string, Collection<array-key, string>>
      */
     protected $options;
 
@@ -67,11 +67,13 @@ class HttpFilter
     /**
      * Builds the query based on the filters and sorts extracted from the request.
      *
-     * @param Builder $builder The builder to add the filters and sorts to.
+     * @template TModel of Model
+     *
+     * @param Builder<TModel> $builder The builder to add the filters and sorts to.
      *
      * @throws BindingResolutionException
      *
-     * @return Builder The builder with the filters and sorts added.
+     * @return Builder<TModel> The builder with the filters and sorts added.
      */
     public function build(Builder $builder): Builder
     {
@@ -103,7 +105,7 @@ class HttpFilter
     /**
      * Adds filters to the query.
      *
-     * @param Builder $builder The builder to add the filters to.
+     * @param Builder<covariant Model> $builder The builder to add the filters to.
      *
      * @throws BindingResolutionException
      *
@@ -122,13 +124,12 @@ class HttpFilter
     /**
      * Applies the sorts to the Eloquent query builder.
      *
-     * @param Builder $builder The Eloquent query builder to apply sorts to.
+     * @param Builder<covariant Model> $builder The Eloquent query builder to apply sorts to.
      *
      * @return HttpFilter This HttpFilter instance.
      */
     protected function addSortsToQuery(Builder $builder)
     {
-        /** @var Collection $allowedSorts */
         $allowedSorts = $this->options->get('allowedSorts');
 
         $this->sorts

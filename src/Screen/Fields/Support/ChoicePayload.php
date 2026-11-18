@@ -153,7 +153,7 @@ final readonly class ChoicePayload implements Stringable
     /**
      * Build the query or scoped source used to resolve choices.
      *
-     * @return Builder|Collection|array<int, mixed>
+     * @return Builder<Model>|Collection<array-key, Model>|array<array-key, Model|array<string, mixed>>
      */
     public function query(): Builder|Collection|array
     {
@@ -263,6 +263,8 @@ final readonly class ChoicePayload implements Stringable
      * Resolve selected model records for scalar selected keys.
      *
      * @param iterable<int, mixed> $keys
+     *
+     * @return iterable<array-key, Model|array<string, mixed>>
      */
     private function selectedItems(iterable $keys): iterable
     {
@@ -291,6 +293,8 @@ final readonly class ChoicePayload implements Stringable
 
     /**
      * Determine whether the given iterable already contains resolved items.
+     *
+     * @param iterable<mixed> $items
      */
     private function isObjectArray(iterable $items): bool
     {

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\App;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Access\Permissions;
 use Orchid\Access\RoleAccess;
@@ -30,7 +29,7 @@ use Orchid\Tests\App\Enums\RoleNames;
 ])]
 class Role extends Model
 {
-    use AsSource, Chartable, Filterable, HasFactory, RoleAccess;
+    use AsSource, Chartable, Filterable, RoleAccess;
 
     /**
      * @var bool

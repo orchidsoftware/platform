@@ -137,6 +137,8 @@ class AlertTest extends TestUnitCase
 
     /**
      * Array of keys and css classes.
+     *
+     * @return list<array{string, string}>
      */
     public static function getLevels(): array
     {

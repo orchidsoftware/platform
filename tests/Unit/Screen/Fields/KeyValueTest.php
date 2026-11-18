@@ -12,6 +12,7 @@ use Orchid\Screen\Builder;
 use Orchid\Screen\Fields\KeyValue;
 use Orchid\Screen\Repository;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
+use Symfony\Component\HttpFoundation\Response;
 
 class KeyValueTest extends TestFieldsUnitCase
 {
@@ -294,6 +295,10 @@ class KeyValueTest extends TestFieldsUnitCase
         ])))->generateForm();
     }
 
+    /**
+     * @param list<list<string>>     $expected
+     * @param TestResponse<Response> $response
+     */
     private function assertDisplayedRows(TestResponse $response, array $expected): void
     {
         $document = new \DOMDocument;

@@ -22,6 +22,8 @@ trait Chartable
 {
     /**
      * Counts the values for model at the range and previous range.
+     *
+     * @param Builder<static> $builder
      */
     #[Scope]
     protected function countForGroup(Builder $builder, string $groupColumn): GroupCollection
@@ -39,9 +41,9 @@ trait Chartable
     }
 
     /**
-     * @param mixed|null $startDate
-     * @param mixed|null $stopDate
-     * @param string     $dateColumn
+     * @param Builder<static>               $builder
+     * @param string|DateTimeInterface|null $startDate
+     * @param string|DateTimeInterface|null $stopDate
      */
     private function groupByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
     {
@@ -63,22 +65,22 @@ trait Chartable
 
         $days = $startDate->startOfDay()->daysUntil($stopDate->startOfDay());
 
-        return TimeCollection::make($days)->map(function (Carbon $day) use ($values) {
+        return new TimeCollection($days->map(function (Carbon $day) use ($values) {
             $label = $day->toDateString();
 
             return [
                 'value' => $values->get($label, 0),
                 'label' => $label,
             ];
-        });
+        }));
     }
 
     /**
      * Get total models grouped by `created_at` day.
      *
+     * @param Builder<static>               $builder
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
-     * @param string                        $dateColumn
      */
     #[Scope]
     protected function countByDays(Builder $builder, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
@@ -89,6 +91,7 @@ trait Chartable
     /**
      * Get average models grouped by `created_at` day.
      *
+     * @param Builder<static>               $builder
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
      */
@@ -101,6 +104,7 @@ trait Chartable
     /**
      * Get sum models grouped by `created_at` day.
      *
+     * @param Builder<static>               $builder
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
      */
@@ -113,6 +117,7 @@ trait Chartable
     /**
      * Get sum models grouped by `created_at` day.
      *
+     * @param Builder<static>               $builder
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
      */
@@ -125,6 +130,7 @@ trait Chartable
     /**
      * Get min models grouped by `created_at` day.
      *
+     * @param Builder<static>               $builder
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
      */
@@ -139,6 +145,7 @@ trait Chartable
      *
      * Get values models grouped by `created_at` day.
      *
+     * @param Builder<static>               $builder
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
      */

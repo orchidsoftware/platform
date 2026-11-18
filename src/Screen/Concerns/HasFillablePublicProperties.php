@@ -28,7 +28,7 @@ trait HasFillablePublicProperties
     /**
      * Retrieves the names of all public properties of the object.
      *
-     * @return Collection The names of the public properties.
+     * @return Collection<int, string> The names of the public properties.
      */
     protected function getPublicPropertyNames(): Collection
     {

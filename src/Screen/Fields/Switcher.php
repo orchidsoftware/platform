@@ -37,11 +37,6 @@ class Switcher extends Field
      */
     protected $view = 'orchid::fields.switch';
 
-    /**
-     * Default attributes value.
-     *
-     * @var array
-     */
     protected $attributes = [
         'type'     => 'checkbox',
         'class'    => 'form-check-input',
@@ -50,11 +45,6 @@ class Switcher extends Field
         'yesvalue' => 1,
     ];
 
-    /**
-     * Attributes available for a particular tag.
-     *
-     * @var array
-     */
     protected $inlineAttributes = [
         'accesskey',
         'autocomplete',

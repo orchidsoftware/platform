@@ -7,15 +7,15 @@ use Orchid\Filters\Filter;
 
 class PatternFilter extends Filter
 {
+    /**
+     * @param list<string> $parameters
+     */
     public function __construct(array $parameters = ['*'])
     {
         parent::__construct();
         $this->parameters = $parameters;
     }
 
-    /**
-     * @var array
-     */
     public $parameters = [
         'pattern.*',
     ];

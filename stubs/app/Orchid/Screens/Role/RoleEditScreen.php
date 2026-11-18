@@ -7,6 +7,7 @@ namespace App\Orchid\Screens\Role;
 use App\Orchid\Layouts\User\PermissionLayout;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Validation\Rule;
 use Orchid\Access\Permissions;
 use Orchid\Platform\Models\Role;
@@ -27,7 +28,7 @@ class RoleEditScreen extends Screen
     /**
      * Fetch data to be displayed on the screen.
      *
-     * @return array
+     * @return array{role: Role, permission: Collection<string, Collection<int, array{slug: string, description: string, active: bool}>>}
      */
     public function query(Role $role): iterable
     {

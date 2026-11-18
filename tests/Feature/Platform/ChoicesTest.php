@@ -12,6 +12,7 @@ use Orchid\Screen\Fields\Support\ChoicePayload;
 use Orchid\Tests\App\EmptyUserModel;
 use Orchid\Tests\TestFeatureCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use Symfony\Component\HttpFoundation\Response;
 
 class ChoicesTest extends TestFeatureCase
 {
@@ -28,26 +29,29 @@ class ChoicesTest extends TestFeatureCase
         ]);
     }
 
-    public static function scopeList(): array
+    /**
+     * @return list<array{string}>
+     */
+    public static function scopeNames(): array
     {
         return [
-            [['name' => 'asBuilder', 'parameters' => []]],
-            [['name' => 'asCollection', 'parameters' => []]],
-            [['name' => 'asArray', 'parameters' => []]],
+            ['asBuilder'],
+            ['asCollection'],
+            ['asArray'],
         ];
     }
 
     /**
      * @throws \Throwable
      */
-    #[DataProvider('scopeList')]
-    public function testScopeModel(array $scope): void
+    #[DataProvider('scopeNames')]
+    public function testScopeModel(string $scope): void
     {
         $response = $this->postChoices(new ChoicePayload(
             model: EmptyUserModel::class,
             name: 'email',
             key: 'id',
-            scope: $scope,
+            scope: ['name' => $scope, 'parameters' => []],
         ));
 
         $json = $this->users->map(fn ($user) => [
@@ -61,14 +65,14 @@ class ChoicesTest extends TestFeatureCase
     /**
      * @throws \Throwable
      */
-    #[DataProvider('scopeList')]
-    public function testAppendModel(array $scope): void
+    #[DataProvider('scopeNames')]
+    public function testAppendModel(string $scope): void
     {
         $response = $this->postChoices(new ChoicePayload(
             model: EmptyUserModel::class,
             name: 'email',
             key: 'id',
-            scope: $scope,
+            scope: ['name' => $scope, 'parameters' => []],
             append: 'full',
         ));
 
@@ -102,7 +106,7 @@ class ChoicesTest extends TestFeatureCase
         ]);
     }
 
-    public function testSearchColumns()
+    public function testSearchColumns(): void
     {
         $user = $this->users->random();
         $response = $this->postChoices(new ChoicePayload(
@@ -120,7 +124,7 @@ class ChoicesTest extends TestFeatureCase
         ]);
     }
 
-    public function testEncryptedChoicePayload()
+    public function testEncryptedChoicePayload(): void
     {
         $user = $this->users->random();
         $payload = new ChoicePayload(
@@ -210,14 +214,14 @@ class ChoicesTest extends TestFeatureCase
         ]);
     }
 
-    #[DataProvider('scopeList')]
-    public function testChoicePayloadAppliesScopes(array $scope): void
+    #[DataProvider('scopeNames')]
+    public function testChoicePayloadAppliesScopes(string $scope): void
     {
         $response = $this->postChoices(new ChoicePayload(
             model: EmptyUserModel::class,
             name: 'email',
             key: 'id',
-            scope: $scope,
+            scope: ['name' => $scope, 'parameters' => []],
         ), [
             'chunk' => 3,
         ]);
@@ -228,7 +232,7 @@ class ChoicesTest extends TestFeatureCase
         ])->values()->all());
     }
 
-    public function testSearchColumnsWithScopes()
+    public function testSearchColumnsWithScopes(): void
     {
         $user = $this->users->random();
         $payload = new ChoicePayload(
@@ -261,6 +265,8 @@ class ChoicesTest extends TestFeatureCase
 
     /**
      * @param array<string, mixed> $parameters
+     *
+     * @return TestResponse<Response>
      */
     private function postChoices(ChoicePayload $payload, array $parameters = []): TestResponse
     {

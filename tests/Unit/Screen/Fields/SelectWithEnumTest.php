@@ -19,7 +19,7 @@ class SelectWithEnumTest extends TestFieldsUnitCase
 {
     use WithFaker;
     /**
-     * @var Collection
+     * @var Collection<int, RoleWithEnum>
      */
     protected $roles;
 
@@ -91,10 +91,7 @@ class SelectWithEnumTest extends TestFieldsUnitCase
         $this->assertStringContainsString('<option selected value="'.$role->name->value.'">'.$role->name->value.'</option>', $view);
     }
 
-    /**
-     * @param string $value
-     */
-    private function stringOption($name, $value = ''): string
+    private function stringOption(string $name, string $value = ''): string
     {
         $option = '<option value="%s">%s</option>';
 

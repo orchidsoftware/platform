@@ -19,7 +19,6 @@ class NotificationController extends Controller
     /**
      * Display latest user notifications.
      *
-     *
      * @return View
      */
     public function index(Request $request)
@@ -37,7 +36,6 @@ class NotificationController extends Controller
 
     /**
      * Mark a notification as read and redirect.
-     *
      *
      * @return RedirectResponse
      */
@@ -74,6 +72,8 @@ class NotificationController extends Controller
 
     /**
      * Get the count of unread user notifications for dashboard and Orchid messages.
+     *
+     * @return array{total: int}
      */
     public function unreadCount(Request $request): array
     {

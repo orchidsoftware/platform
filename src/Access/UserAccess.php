@@ -27,14 +27,18 @@ trait UserAccess
 
     /**
      * Return the user's role assignments.
+     *
+     * @return BelongsToMany<Model, $this>
      */
     public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(Orchid::model(Role::class), 'role_users', 'user_id', 'role_id');
+        return $this->belongsToMany(Orchid::relatedModel(Role::class), 'role_users', 'user_id', 'role_id');
     }
 
     /**
      * Check membership by role model, name, or key.
+     *
+     * @param mixed $role
      */
     public function inRole($role): bool
     {
@@ -78,7 +82,7 @@ trait UserAccess
     /**
      * This method will grant access if any permission passes the check.
      *
-     * @param string|iterable $permissions
+     * @param string|iterable<string>|null $permissions
      */
     public function hasAnyAccess($permissions, bool $cache = true): bool
     {
@@ -86,7 +90,7 @@ trait UserAccess
             return true;
         }
 
-        return collect($permissions)
+        return collect(is_string($permissions) ? [$permissions] : $permissions)
             ->map(fn (string $permit) => $this->hasAccess($permit, $cache))
             ->filter(fn (bool $result) => $result)
             ->isNotEmpty();
@@ -95,6 +99,10 @@ trait UserAccess
     /**
      * Query Scope for retrieving users by a certain permission
      * The * character usage is not implemented.
+     *
+     * @param Builder<static> $builder
+     *
+     * @return Builder<static>
      */
     #[Scope]
     protected function byAccess(Builder $builder, string $permitWithoutWildcard): Builder
@@ -110,12 +118,15 @@ trait UserAccess
      * Query Scope for retrieving users by any permissions
      * The * character usage is not implemented.
      *
-     * @param string|iterable $permitsWithoutWildcard
+     * @param Builder<static>         $builder
+     * @param string|iterable<string> $permitsWithoutWildcard
+     *
+     * @return Builder<static>
      */
     #[Scope]
     protected function byAnyAccess(Builder $builder, $permitsWithoutWildcard): Builder
     {
-        $permits = collect($permitsWithoutWildcard);
+        $permits = collect(is_string($permitsWithoutWildcard) ? [$permitsWithoutWildcard] : $permitsWithoutWildcard);
 
         if ($permits->isEmpty()) {
             return $builder->whereRaw('1=0');
@@ -181,6 +192,8 @@ trait UserAccess
     }
 
     /**
+     * @param array<array-key, int|string|Model|array<string, mixed>>|null $roles
+     *
      * @return $this
      */
     public function replaceRoles(?array $roles = [])
@@ -201,7 +214,9 @@ trait UserAccess
     }
 
     /**
-     * @param Model|array|string|int $roles
+     * @param Model|int|string|array<array-key, mixed> $roles
+     *
+     * @return void
      */
     public function eventAddRole($roles)
     {
@@ -209,7 +224,9 @@ trait UserAccess
     }
 
     /**
-     * @param Model|array|string|int $roles
+     * @param Model|int|string|array<array-key, mixed> $roles
+     *
+     * @return void
      */
     public function eventRemoveRole($roles)
     {

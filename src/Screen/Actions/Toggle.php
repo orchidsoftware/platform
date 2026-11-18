@@ -22,11 +22,6 @@ class Toggle extends Button
      */
     protected $view = 'orchid::actions.toggle';
 
-    /**
-     * Default attributes value.
-     *
-     * @var array
-     */
     protected $attributes = [
         'class'      => 'form-check-input',
         'type'       => 'checkbox',

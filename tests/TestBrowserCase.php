@@ -52,6 +52,9 @@ abstract class TestBrowserCase extends TestCase
         $this->runLaravelMigrations();
     }
 
+    /**
+     * @param array<string, mixed> $attributes
+     */
     protected function createAdminUser(array $attributes = []): User
     {
         if ($this->user === null) {

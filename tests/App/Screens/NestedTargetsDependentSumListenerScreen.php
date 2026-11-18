@@ -14,6 +14,8 @@ class NestedTargetsDependentSumListenerScreen extends Screen
 {
     /**
      * Query data.
+     *
+     * @return array{father: array{first: int}}
      */
     public function query(): array
     {

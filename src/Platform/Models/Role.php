@@ -14,6 +14,7 @@ use Orchid\Filters\AllowedSorts;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Like;
 use Orchid\Metrics\Chartable;
+use Orchid\Platform\Database\Factories\RoleFactory;
 use Orchid\Screen\AsSource;
 
 #[AllowedFilters([
@@ -27,6 +28,9 @@ use Orchid\Screen\AsSource;
 ])]
 class Role extends Model
 {
+    /**
+     * @use HasFactory<RoleFactory>
+     */
     use AsSource, Chartable, Filterable, HasFactory, HasUuids, RoleAccess;
 
     /**

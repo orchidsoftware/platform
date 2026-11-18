@@ -16,13 +16,15 @@ class TaskCompleted extends Notification
 
     /**
      * Get the notification's delivery channels.
+     *
+     * @return list<class-string<OrchidChannel>>
      */
     public function via(mixed $notifiable): array
     {
         return [OrchidChannel::class];
     }
 
-    public function toOrchid($notifiable): OrchidMessage
+    public function toOrchid(mixed $notifiable): OrchidMessage
     {
         return (new OrchidMessage)
             ->title('Task Completed')
@@ -33,6 +35,8 @@ class TaskCompleted extends Notification
 
     /**
      * Get the array representation of the notification.
+     *
+     * @return array{}
      */
     public function toArray(mixed $notifiable): array
     {

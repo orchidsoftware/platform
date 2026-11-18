@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\App\Screens;
 
 use Illuminate\Foundation\Application;
+use Orchid\Platform\Models\User;
 use Orchid\Screen\Action;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
@@ -23,16 +24,28 @@ class ValueObject
 
 class SerializeRetrievableScreen extends Screen
 {
+    /**
+     * @var int|string|\stdClass
+     */
     public $public = 'Public';
 
+    /**
+     * @var (\Closure(): string)|null
+     */
     public $callback;
 
+    /**
+     * @var array<string, int|string>
+     */
     public array $data = [];
 
     public float $amount = 0.0;
 
     public ?ValueObject $valueObject = null;
 
+    /**
+     * @param User|null $user
+     */
     public function __construct(
         protected Application $application,
         private readonly string $screenName = 'Route Resolve Screen',
@@ -43,6 +56,8 @@ class SerializeRetrievableScreen extends Screen
 
     /**
      * Query data.
+     *
+     * @return array{}
      */
     public function query(): array
     {

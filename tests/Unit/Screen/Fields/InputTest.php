@@ -20,6 +20,9 @@ class InputTest extends TestFieldsUnitCase
 {
     use InteractsWithSession;
 
+    /**
+     * @param array<string, array<string, int|string|null>> $oldInput
+     */
     #[DataProvider('oldInputValues')]
     public function testOldInputTakesPrecedenceOverBoundValue(array $oldInput, string $expected): void
     {
@@ -34,6 +37,9 @@ class InputTest extends TestFieldsUnitCase
         $this->assertSame($expected, $document->getElementsByTagName('input')->item(0)->getAttribute('value'));
     }
 
+    /**
+     * @return iterable<string, array{array<string, array<string, int|string|null>>, string}>
+     */
     public static function oldInputValues(): iterable
     {
         yield 'missing input' => [[], 'Original title'];
@@ -135,7 +141,7 @@ class InputTest extends TestFieldsUnitCase
         $this->assertStringNotContainsString('<datalist id="datalist-browser"', $input);
     }
 
-    public function testWithoutFormType()
+    public function testWithoutFormType(): void
     {
         $input = Input::make('inputFieldName')
             ->title('Lorem ipsum dolor sit amet')

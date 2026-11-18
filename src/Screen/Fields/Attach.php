@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Fields;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Screen\Concerns\Multipliable;
 use Orchid\Screen\Field;
@@ -41,11 +42,6 @@ class Attach extends Field
      */
     protected $view = 'orchid::fields.attach';
 
-    /**
-     * Default attributes value.
-     *
-     * @var array
-     */
     protected $attributes = [
         'maxCount'            => 0,
         'maxSize'             => 0, // MB
@@ -60,11 +56,6 @@ class Attach extends Field
         'group'               => null,
     ];
 
-    /**
-     * Attributes available for a particular tag.
-     *
-     * @var array
-     */
     protected $inlineAttributes = [
         'accept',
         'multiple',
@@ -156,7 +147,7 @@ class Attach extends Field
             return $this;
         }
 
-        $value = collect($this->get('value', []))
+        $value = (new Collection($this->get('value', [])))
             ->where('group', $group)
             ->values();
 
@@ -177,7 +168,6 @@ class Attach extends Field
             return $this;
         }
 
-        /** @var Attachment $attach */
         $attach = Orchid::model(Attachment::class);
 
         $value = $attach::whereIn('id', $value)

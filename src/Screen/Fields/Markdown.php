@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Illuminate\Support\Collection;
 use Orchid\Screen\Field;
 
 /**
@@ -108,11 +109,6 @@ class Markdown extends Field
      */
     protected $view = 'orchid::fields.markdown';
 
-    /**
-     * Default attributes value.
-     *
-     * @var array
-     */
     protected $attributes = [
         'class'   => 'form-control',
         'value'   => null,
@@ -120,11 +116,6 @@ class Markdown extends Field
         'toolbar' => self::DEFAULT_TOOLBAR,
     ];
 
-    /**
-     * Attributes available for a particular tag.
-     *
-     * @var array
-     */
     protected $inlineAttributes = [
         'accesskey',
         'autofocus',
@@ -159,6 +150,8 @@ class Markdown extends Field
 
     /**
      * Defines the buttons and visual groups displayed in the editor toolbar.
+     *
+     * @param array<string|array<string>> $groups
      */
     public function toolbar(array $groups): self
     {
@@ -167,10 +160,12 @@ class Markdown extends Field
 
     /**
      * Prepares toolbar groups for rendering.
+     *
+     * @return list<list<array{string, string, string}>>
      */
     protected function prepareToolbarGroups(): array
     {
-        $toolbar = collect($this->get('toolbar'));
+        $toolbar = new Collection($this->get('toolbar'));
         $groups = $toolbar->contains(fn ($buttons) => is_array($buttons))
             ? $toolbar
             : collect([$toolbar->all()]);
@@ -184,6 +179,8 @@ class Markdown extends Field
 
     /**
      * Returns supported toolbar buttons.
+     *
+     * @return array<string, array{string, string, string}>
      */
     protected function toolbarButtons(): array
     {

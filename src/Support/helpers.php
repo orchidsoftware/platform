@@ -38,7 +38,7 @@ if (! function_exists('get_sort')) {
 
 if (! function_exists('get_filter')) {
     /**
-     * @return string|array|null
+     * @return string|array<array-key, mixed>|null
      */
     function get_filter(string $property)
     {

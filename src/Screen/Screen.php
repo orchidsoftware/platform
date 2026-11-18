@@ -78,6 +78,8 @@ abstract class Screen extends Controller
 
     /**
      * The permissions required to access this screen.
+     *
+     * @return iterable<string>|null
      */
     public function permission(): ?iterable
     {
@@ -102,7 +104,7 @@ abstract class Screen extends Controller
     public function build(Repository $repository)
     {
         return LayoutFactory::blank([
-            $this->layout(),
+            iterator_to_array($this->layout(), false),
         ])->build($repository);
     }
 
@@ -172,6 +174,8 @@ abstract class Screen extends Controller
     }
 
     /**
+     * @param array<array-key, mixed>|Repository $httpQueryArguments
+     *
      * @throws \Throwable
      *
      * @return Factory|\Illuminate\View\View
@@ -195,6 +199,8 @@ abstract class Screen extends Controller
     }
 
     /**
+     * @param array<array-key, mixed> $httpQueryArguments
+     *
      * @throws BindingResolutionException
      * @throws \ReflectionException
      */
@@ -216,6 +222,8 @@ abstract class Screen extends Controller
     }
 
     /**
+     * @param mixed ...$arguments
+     *
      * @throws BindingResolutionException
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
@@ -281,6 +289,8 @@ abstract class Screen extends Controller
     /**
      * Calls the specified method with the given parameters.
      *
+     * @param array<array-key, mixed> $parameters
+     *
      * @throws \ReflectionException
      * @throws BindingResolutionException
      *
@@ -297,6 +307,8 @@ abstract class Screen extends Controller
 
     /**
      * Prepare the method execution by binding route parameters and substituting implicit bindings.
+     *
+     * @return array<string, mixed>|null
      */
     public static function prepareForExecuteMethod(string $uses): ?array
     {
@@ -326,22 +338,16 @@ abstract class Screen extends Controller
     /**
      * Get can transfer to the screen only
      * user-created methods available in it.
+     *
+     * @return Collection<int, covariant array-key>
      */
     public static function getAvailableMethods(): Collection
     {
-        $class = (new \ReflectionClass(static::class))
-            ->getMethods(\ReflectionMethod::IS_PUBLIC);
+        $methods = (new \ReflectionClass(static::class))->getMethods(\ReflectionMethod::IS_PUBLIC);
+        $actions = array_diff(array_column($methods, 'name'), get_class_methods(self::class), ['query']);
 
-        return collect($class)
-            ->mapWithKeys(fn (\ReflectionMethod $method) => [$method->name => $method])
-            ->except(get_class_methods(Screen::class))
-            ->except(['query'])
-            /*
-             * Route filtering requires at least one element to be present.
-             * We set __invoke by default, since it must be public.
-             */
-            ->whenEmpty(fn () => collect(['__invoke']))
-            ->keys();
+        // Keep the route constraint nonempty when the screen defines no actions.
+        return collect(array_values($actions) ?: [0]);
     }
 
     /**
@@ -366,6 +372,8 @@ abstract class Screen extends Controller
 
     /**
      * @deprecated
+     *
+     * @param array<string, mixed> $data
      */
     public function backWith(array $data): RedirectResponse
     {

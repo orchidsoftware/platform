@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\App\Screens;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
@@ -14,14 +15,17 @@ use Orchid\Support\Facades\Toast;
 
 class ItemAddChildScreen extends Screen
 {
-    public $parent_id;
+    public ?int $parent_id = null;
+    /**
+     * @var array{name: string}|null
+     */
     public $item;
 
     /**
      * Fetch data to be displayed on the screen.
      *
      *
-     * @return array
+     * @return array{parent_id: int}
      */
     public function query(int $parentId): iterable
     {
@@ -79,7 +83,7 @@ class ItemAddChildScreen extends Screen
         ];
     }
 
-    public function addChild(Request $request, int $parentId)
+    public function addChild(Request $request, int $parentId): RedirectResponse
     {
         // Validate form data, save task to database, etc.
 

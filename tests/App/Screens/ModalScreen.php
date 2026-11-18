@@ -18,6 +18,8 @@ class ModalScreen extends Screen
 
     /**
      * Query data.
+     *
+     * @return array{}
      */
     public function query(): array
     {

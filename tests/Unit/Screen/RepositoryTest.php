@@ -18,7 +18,7 @@ class RepositoryTest extends TestCase
     protected $repository;
 
     /**
-     * @var array
+     * @var array<string, array<array-key, string>|int|string|null>
      */
     protected $config;
 

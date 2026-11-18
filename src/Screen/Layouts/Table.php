@@ -154,6 +154,9 @@ abstract class Table extends Layout
 
     /**
      * Determine if table header should be displayed.
+     *
+     * @param Collection<array-key, TD>                                                                  $columns
+     * @param Collection<array-key, mixed>|Paginator<array-key, mixed>|CursorPaginator<array-key, mixed> $row
      */
     protected function hasHeader(Collection $columns, Collection|Paginator|CursorPaginator $row): bool
     {
@@ -167,12 +170,14 @@ abstract class Table extends Layout
     /**
      * Define table columns.
      *
-     * @return iterable|TD[]
+     * @return iterable<TD>
      */
     abstract protected function columns(): iterable;
 
     /**
      * Define total row configuration.
+     *
+     * @return array<TD>
      */
     protected function total(): array
     {

@@ -41,11 +41,6 @@ class Cropper extends Picture
      */
     protected $view = 'orchid::fields.cropper';
 
-    /**
-     * Default attributes value.
-     *
-     * @var array
-     */
     protected $attributes = [
         'value'                  => null,
         'target'                 => 'url',
@@ -66,11 +61,6 @@ class Cropper extends Picture
         'fillColor'              => '#fff',
     ];
 
-    /**
-     * Attributes available for a particular tag.
-     *
-     * @var array
-     */
     protected $inlineAttributes = [
         'accept',
         'accesskey',

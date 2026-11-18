@@ -19,6 +19,8 @@ trait AsMultiSource
     public $jsonColumnName = 'content';
 
     /**
+     * @param string|null $locale
+     *
      * @return mixed|null
      */
     public function getContent(string $field, $locale = null)
@@ -27,6 +29,8 @@ trait AsMultiSource
     }
 
     /**
+     * @param string|null $locale
+     *
      * @return mixed
      */
     private function getContentMultiLang(string $field, $locale = null)

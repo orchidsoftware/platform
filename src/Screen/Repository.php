@@ -19,6 +19,8 @@ class Repository extends \Illuminate\Config\Repository implements Countable
 
     /**
      * Create a new configuration repository.
+     *
+     * @param iterable<array-key, mixed> $items
      */
     public function __construct(iterable $items = [])
     {
@@ -37,6 +39,8 @@ class Repository extends \Illuminate\Config\Repository implements Countable
 
     /**
      * Return all items stored in the repository.
+     *
+     * @return array<array-key, mixed>
      */
     public function toArray(): array
     {
@@ -52,8 +56,8 @@ class Repository extends \Illuminate\Config\Repository implements Countable
     }
 
     /**
-     * @param $key
-     * @param $value
+     * @param array<string, mixed>|string $key
+     * @param mixed                       $value
      *
      * @return $this
      */
@@ -71,6 +75,10 @@ class Repository extends \Illuminate\Config\Repository implements Countable
 
     /**
      * Wrap each item in a repository instance.
+     *
+     * @param array<iterable<array-key, mixed>> $items
+     *
+     * @return array<self>
      */
     public static function elements(array $items): array
     {

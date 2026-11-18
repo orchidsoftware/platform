@@ -32,21 +32,11 @@ class UTM extends Field
      */
     protected $view = 'orchid::fields.utm';
 
-    /**
-     * Default attributes value.
-     *
-     * @var array
-     */
     protected $attributes = [
         'type'  => 'url',
         'class' => 'form-control',
     ];
 
-    /**
-     * Attributes available for a particular tag.
-     *
-     * @var array
-     */
     protected $inlineAttributes = [
         'accesskey',
         'autocomplete',

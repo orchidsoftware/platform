@@ -18,12 +18,12 @@ use Orchid\Support\Color;
  * @method Menu divider(bool $enabled = true)
  * @method Menu icon(string $icon = null)
  * @method Menu class(string $classes = null)
- * @method Menu parameters(array|object $name)
+ * @method Menu parameters(array<array-key, mixed>|object $name)
  * @method Menu target(string $target = null)
  * @method Menu download($download = true)
  * @method Menu href(string $url = true)
  * @method Menu sort(int $weight = 1)
- * @method Menu active(string|array $active = null)
+ * @method Menu active(string|array<string>|null $active = null)
  */
 class Menu extends Link
 {
@@ -41,12 +41,6 @@ class Menu extends Link
      */
     protected $permit = true;
 
-    /**
-     * Default attributes for the menu item.
-     * This includes CSS classes, title, icon, URL, and other options.
-     *
-     * @var array
-     */
     protected $attributes = [
         'class'          => 'nav-link d-flex align-items-center icon-link gap-3',
         'title'          => null,
@@ -63,11 +57,6 @@ class Menu extends Link
         'slug'           => null,
     ];
 
-    /**
-     * Attributes available for a particular tag.
-     *
-     * @var array
-     */
     public $inlineAttributes = [
         'autofocus',
         'disabled',
@@ -120,7 +109,7 @@ class Menu extends Link
                 $this->set('active', $active->toArray());
             })
             ->addBeforeRender(function () {
-                if (collect($this->get('list', []))->isEmpty()) {
+                if (blank($this->get('list'))) {
                     return;
                 }
 

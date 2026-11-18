@@ -24,7 +24,7 @@ abstract class Listener extends Layout
     protected $targets = [];
 
     /**
-     * @return array
+     * @return iterable<Layout|string>
      */
     abstract protected function layouts(): iterable;
 

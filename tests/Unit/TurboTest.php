@@ -26,7 +26,7 @@ class TurboTest extends TestUnitCase
         $this->assertEquals(302, $result->getStatusCode());
     }
 
-    public function testHandlesRedirectResponses()
+    public function testHandlesRedirectResponses(): void
     {
         $request = Request::create('/source');
         $request->headers->add([

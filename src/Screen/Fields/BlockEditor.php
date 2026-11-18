@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Fields;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Orchid\Screen\Field;
 
 /**
@@ -23,7 +24,6 @@ use Orchid\Screen\Field;
  * @method $this help(string $value = null)
  * @method $this popover(string $value = null)
  * @method $this title(string $value = null)
- * @method $this toolbar(array $options)
  */
 class BlockEditor extends Field
 {
@@ -80,21 +80,11 @@ class BlockEditor extends Field
      */
     protected $view = 'orchid::fields.blockEditor';
 
-    /**
-     * Default attributes value.
-     *
-     * @var array
-     */
     protected $attributes = [
         'value'   => null,
         'toolbar' => self::DEFAULT_TOOLBAR,
     ];
 
-    /**
-     * Attributes available for a particular tag.
-     *
-     * @var array
-     */
     protected $inlineAttributes = [
         'accesskey',
         'autofocus',
@@ -128,6 +118,8 @@ class BlockEditor extends Field
 
     /**
      * Defines the buttons displayed in the editor toolbar.
+     *
+     * @param array<string> $buttons
      */
     public function toolbar(array $buttons): self
     {
@@ -166,12 +158,14 @@ class BlockEditor extends Field
 
     /**
      * Prepares toolbar buttons for rendering.
+     *
+     * @return list<array{type: string, title: string}>
      */
     protected function prepareToolbarButtons(): array
     {
         $buttons = $this->toolbarButtons();
 
-        return collect($this->get('toolbar'))
+        return (new Collection($this->get('toolbar')))
             ->unique()
             ->filter(fn ($type) => is_string($type) && array_key_exists($type, $buttons))
             ->map(fn (string $type) => [
@@ -184,6 +178,8 @@ class BlockEditor extends Field
 
     /**
      * Returns supported toolbar buttons.
+     *
+     * @return array<string, string>
      */
     protected function toolbarButtons(): array
     {

@@ -19,7 +19,9 @@ class CommanderTest extends TestUnitCase
     {
         return new class
         {
-            use HasCommandBar;
+            use HasCommandBar {
+                buildCommandBar as public;
+            }
 
             /**
              * @return Action[]
@@ -31,11 +33,6 @@ class CommanderTest extends TestUnitCase
                     Link::make('hide')->canSee(false),
                 ];
             }
-
-            public function generate()
-            {
-                return $this->buildCommandBar(new Repository);
-            }
         };
     }
 
@@ -43,6 +40,6 @@ class CommanderTest extends TestUnitCase
     {
         $command = $this->getCommandClass();
 
-        $this->assertCount(1, $command->generate());
+        $this->assertCount(1, $command->buildCommandBar(new Repository));
     }
 }

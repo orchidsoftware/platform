@@ -16,6 +16,8 @@ class Blade
 {
     /**
      * Cached component class and view metadata indexed by component name.
+     *
+     * @var array<string, array{class-string<ViewComponent>, string|null}>
      */
     private static array $components = [];
 
@@ -75,6 +77,8 @@ class Blade
      * Response is array with two elements:
      *  0 - class name of component
      *  1 - view used only for anonymous components
+     *
+     * @return array{class-string<ViewComponent>, string|null}
      */
     public static function componentInfo(string $component): array
     {
@@ -83,6 +87,8 @@ class Blade
 
     /**
      * Resolve the class and optional view used to render a Blade component.
+     *
+     * @return array{class-string<ViewComponent>, string|null}
      */
     private static function detectComponentInfo(string $component): array
     {

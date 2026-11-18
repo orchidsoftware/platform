@@ -33,7 +33,7 @@ abstract class Block extends Layout
     /**
      * Button commands.
      *
-     * @var array
+     * @var array<Action>
      */
     protected $commandBar = [];
 

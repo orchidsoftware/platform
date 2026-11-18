@@ -13,9 +13,6 @@ class HiddenFilter extends Filter
      */
     public $display = false;
 
-    /**
-     * @var array
-     */
     public $parameters = [];
 
     public function name(): string

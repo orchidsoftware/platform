@@ -11,12 +11,14 @@ use Orchid\Support\Facades\Layout;
 
 class PropertyAutoWriteScreen extends Screen
 {
-    public $publicProperty = false;
-    protected $protectedProperty = false;
-    private $privateProperty = false;
+    public bool $publicProperty = false;
+    protected bool $protectedProperty = false;
+    private bool $privateProperty = false;
 
     /**
      * Query data.
+     *
+     * @return array<string, bool>
      */
     public function query(): array
     {

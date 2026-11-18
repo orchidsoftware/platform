@@ -25,11 +25,6 @@ class DropDown extends Action
      */
     protected $view = 'orchid::actions.dropdown';
 
-    /**
-     * Default attributes value.
-     *
-     * @var array
-     */
     protected $attributes = [
         'class'  => 'btn btn-link icon-link gap-2',
         'source' => null,

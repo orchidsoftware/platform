@@ -15,6 +15,8 @@ interface Groupable extends Fieldable
 
     /**
      * Replace the fields contained in the group.
+     *
+     * @param array<Fieldable|string|\Stringable> $group
      */
     public function setGroup(array $group = []): self;
 }

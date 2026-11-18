@@ -37,7 +37,7 @@ class SortableTest extends TestUnitCase
 
     }
 
-    public function testForAttachment()
+    public function testForAttachment(): void
     {
         $first_file = UploadedFile::fake()->create('first-file');
         $first_upload = (new File($first_file, 'public'))->load();

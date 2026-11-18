@@ -11,14 +11,14 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 
 class GroupTest extends TestFieldsUnitCase
 {
-    public function testItCanBeInstantiatedWithMake()
+    public function testItCanBeInstantiatedWithMake(): void
     {
         $group = Group::make();
 
         $this->assertSame([], $group->getGroup());
     }
 
-    public function testItCanSetAndGetGroupFields()
+    public function testItCanSetAndGetGroupFields(): void
     {
         $inputA = Input::make('name');
         $inputB = Input::make('email');
@@ -29,14 +29,14 @@ class GroupTest extends TestFieldsUnitCase
         $this->assertSame([$inputA, $inputB], $group->getGroup());
     }
 
-    public function testItCanSetCustomAttributes()
+    public function testItCanSetCustomAttributes(): void
     {
         $group = Group::make()->set('align', 'align-items-center');
 
         $this->assertSame('align-items-center', $group->get('align'));
     }
 
-    public function testItCanUseAutoWidth()
+    public function testItCanUseAutoWidth(): void
     {
         $group = Group::make([
             Input::make('a'),
@@ -47,7 +47,7 @@ class GroupTest extends TestFieldsUnitCase
         $this->assertSame('repeat(3, max-content)', $group->get('widthColumns'));
     }
 
-    public function testItCanUseFullWidth()
+    public function testItCanUseFullWidth(): void
     {
         $group = Group::make([
             Input::make('x'),
@@ -57,14 +57,14 @@ class GroupTest extends TestFieldsUnitCase
         $this->assertNull($group->get('widthColumns'));
     }
 
-    public function testItCanSetCustomWidthTemplate()
+    public function testItCanSetCustomWidthTemplate(): void
     {
         $group = Group::make()->widthColumns('1fr 2fr 1fr');
 
         $this->assertSame('1fr 2fr 1fr', $group->get('widthColumns'));
     }
 
-    public function testItCanChangeAlignment()
+    public function testItCanChangeAlignment(): void
     {
         $group = Group::make();
 
@@ -83,14 +83,14 @@ class GroupTest extends TestFieldsUnitCase
         $this->assertSame('align-items-baseline', $group->get('align'));
     }
 
-    public function testItCanSetItemToEnd()
+    public function testItCanSetItemToEnd(): void
     {
         $group = Group::make()->toEnd();
 
         $this->assertTrue($group->get('itemToEnd'));
     }
 
-    public function testItRendersViewWhenGroupIsNotEmpty()
+    public function testItRendersViewWhenGroupIsNotEmpty(): void
     {
         $group = Group::make([
             Input::make('visible'),
@@ -103,21 +103,21 @@ class GroupTest extends TestFieldsUnitCase
         $this->assertArrayHasKey('group', $view->getData());
     }
 
-    public function testItDoesNotRenderViewWhenGroupIsEmpty()
+    public function testItDoesNotRenderViewWhenGroupIsEmpty(): void
     {
         $group = Group::make([]);
 
         $this->assertNull($group->render());
     }
 
-    public function testItConvertsToStringCorrectly()
+    public function testItConvertsToStringCorrectly(): void
     {
         $group = Group::make([Input::make('x')]);
 
         $this->assertStringContainsString('input', (string) $group);
     }
 
-    public function testItAppliesFormNameToAllFields()
+    public function testItAppliesFormNameToAllFields(): void
     {
         $group = Group::make([
             Input::make('a'),
@@ -129,7 +129,7 @@ class GroupTest extends TestFieldsUnitCase
         }
     }
 
-    public function testItReturnsAllAttributes()
+    public function testItReturnsAllAttributes(): void
     {
         $group = Group::make([
             Input::make('test'),
@@ -143,7 +143,7 @@ class GroupTest extends TestFieldsUnitCase
         $this->assertArrayHasKey('itemToEnd', $attributes);
     }
 
-    public function testItCanBeNested()
+    public function testItCanBeNested(): void
     {
         $group = Group::make([
             Group::make([

@@ -6,10 +6,13 @@ use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
+/**
+ * @extends Collection<array-key, array{label: string, value: int|float|numeric-string|null}>
+ */
 class TimeCollection extends Collection
 {
     /**
-     * @param $values
+     * @param iterable<array-key, int|float|numeric-string> $values
      */
     public function makeFromKeyValue($values, string $format = 'Y-m-d'): TimeCollection
     {
@@ -24,7 +27,7 @@ class TimeCollection extends Collection
     /**
      * Convert to a format suitable for a chart
      *
-     * @param \Closure $closure
+     * @return array{labels: list<mixed>, datasets: list<array{name: string, values: list<int|float|numeric-string|null>}>}
      */
     public function toChart(string $name, ?\Closure $closure = null): array
     {

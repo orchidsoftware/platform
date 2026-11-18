@@ -20,18 +20,33 @@ class EmptyUserModel extends Model
      */
     protected $table = 'users';
 
+    /**
+     * @param Builder<static> $query
+     *
+     * @return Builder<static>
+     */
     #[Scope]
     protected function asBuilder(Builder $query): Builder
     {
         return $query->where('name', 'RelationTest');
     }
 
+    /**
+     * @param Builder<static> $query
+     *
+     * @return Collection<int, static>
+     */
     #[Scope]
     protected function asCollection(Builder $query): Collection
     {
         return $query->where('name', 'RelationTest')->get();
     }
 
+    /**
+     * @param Builder<static> $query
+     *
+     * @return array<int, static>
+     */
     #[Scope]
     protected function asArray(Builder $query): array
     {
@@ -48,6 +63,11 @@ class EmptyUserModel extends Model
         });
     }
 
+    /**
+     * @param Builder<static> $query
+     *
+     * @return Collection<int, static>
+     */
     #[Scope]
     protected function asFilerId(Builder $query, int $id): Collection
     {

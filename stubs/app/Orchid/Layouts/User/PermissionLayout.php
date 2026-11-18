@@ -6,12 +6,14 @@ namespace App\Orchid\Layouts\User;
 
 use Illuminate\Support\Collection;
 use Orchid\Platform\Models\User;
-use Orchid\Screen\Field;
 use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Layouts\Rows;
 use Throwable;
 
+/**
+ * @phpstan-type Permission array{slug: string, description: string, active: bool}
+ */
 class PermissionLayout extends Rows
 {
     /**
@@ -26,7 +28,7 @@ class PermissionLayout extends Rows
      *
      * @throws Throwable
      *
-     * @return Field[]
+     * @return Group[]
      */
     public function fields(): array
     {
@@ -40,9 +42,9 @@ class PermissionLayout extends Rows
     /**
      * Transform raw grouped permissions into Orchid fields.
      *
-     * @param Collection $permissionsRaw Map<title, Collection<array>>
+     * @param Collection<string, Collection<int, Permission>> $permissionsRaw
      *
-     * @return Field[]
+     * @return Group[]
      */
     private function generatedPermissionFields(Collection $permissionsRaw): array
     {
@@ -55,15 +57,15 @@ class PermissionLayout extends Rows
     /**
      * Build a grouped set of checkbox fields for a permission category.
      *
-     * @param Collection $permissions Collection<array{slug: string, description: string, active: bool}>
-     * @param string     $title
+     * @param Collection<int, Permission> $permissions
+     * @param string                      $title
      *
-     * @return Collection Collection<Group>
+     * @return Collection<int, Group>
      */
     private function makeCheckBoxGroup(Collection $permissions, string $title): Collection
     {
         return $permissions
-            ->map(fn (array $chunks) => $this->makeCheckBox(collect($chunks)))
+            ->map(fn (array $permission) => $this->makeCheckBox($permission))
             ->flatten()
             ->map(fn (CheckBox $checkbox, $key) => $key === 0
                 ? $checkbox->title($title)
@@ -77,19 +79,19 @@ class PermissionLayout extends Rows
     /**
      * Create a single checkbox for a permission.
      *
-     * @param Collection $chunks Collection{slug: string, description: string, active: bool}
+     * @param Permission $permission
      *
      * @return CheckBox
      */
-    private function makeCheckBox(Collection $chunks): CheckBox
+    private function makeCheckBox(array $permission): CheckBox
     {
-        return CheckBox::make('permissions.'.base64_encode($chunks->get('slug')))
-            ->placeholder($chunks->get('description'))
-            ->value($chunks->get('active'))
+        return CheckBox::make('permissions.'.base64_encode($permission['slug']))
+            ->placeholder($permission['description'])
+            ->value($permission['active'])
             ->sendTrueOrFalse()
             ->indeterminate($this->getIndeterminateStatus(
-                $chunks->get('slug'),
-                $chunks->get('active')
+                $permission['slug'],
+                $permission['active']
             ));
     }
 

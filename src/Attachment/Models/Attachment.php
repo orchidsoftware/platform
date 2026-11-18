@@ -19,6 +19,7 @@ use Orchid\Filters\AllowedSorts;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Like;
 use Orchid\Platform\Concerns\Sortable;
+use Orchid\Platform\Database\Factories\AttachmentFactory;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\AsSource;
 use Orchid\Support\Facades\Orchid;
@@ -46,6 +47,9 @@ use Orchid\Support\Facades\Orchid;
 ])]
 class Attachment extends Model
 {
+    /**
+     * @use HasFactory<AttachmentFactory>
+     */
     use AsSource, Filterable, HasFactory, HasUuids, Sortable;
 
     protected $fillable = [
@@ -84,11 +88,11 @@ class Attachment extends Model
     /**
      * Return the user associated with the attachment.
      *
-     * @return BelongsTo<User, $this>
+     * @return BelongsTo<Model, $this>
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(Orchid::model(User::class)); // @phpstan-ignore return.type (The configured class replaces User with a subclass.)
+        return $this->belongsTo(Orchid::relatedModel(User::class));
     }
 
     /**
@@ -170,11 +174,11 @@ class Attachment extends Model
     }
 
     /**
-     * @return HasMany
+     * @return HasMany<Model, $this>
      */
     public function relationships()
     {
-        return $this->hasMany(Orchid::model(Attachmentable::class), 'attachment_id');
+        return $this->hasMany(Orchid::relatedModel(Attachmentable::class), 'attachment_id');
     }
 
     /**
@@ -200,6 +204,8 @@ class Attachment extends Model
     }
 
     /**
+     * @param array<string, string|list<string>> $headers
+     *
      * @return mixed
      */
     public function download(array $headers = [])

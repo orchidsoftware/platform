@@ -59,8 +59,8 @@ enum Color
      * This method returns the color based on the given name.
      * It is used to maintain backwards compatibility to 13.0.
      *
-     * @param string $name
-     * @param array  $arguments
+     * @param string                  $name
+     * @param array<array-key, mixed> $arguments
      */
     public static function __callStatic($name, $arguments): self
     {

@@ -18,11 +18,6 @@ class Action extends Field implements Actionable
      */
     protected $typeForm = 'orchid::partials.fields.clear';
 
-    /**
-     * Attributes available for a particular tag.
-     *
-     * @var array
-     */
     protected $inlineAttributes = [
         'type',
         'autofocus',
@@ -30,12 +25,6 @@ class Action extends Field implements Actionable
         'tabindex',
     ];
 
-    /**
-     * A set of attributes for the assignment
-     * of which will automatically translate them.
-     *
-     * @var array
-     */
     protected $translations = [
         'name',
     ];

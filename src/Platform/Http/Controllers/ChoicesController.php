@@ -50,6 +50,8 @@ class ChoicesController extends Controller
 
     /**
      * Apply search filter to the query.
+     *
+     * @param Builder<covariant \Illuminate\Database\Eloquent\Model> $query
      */
     private function applySearch(Builder $query, ChoicePayload $payload): void
     {

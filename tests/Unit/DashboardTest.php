@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Illuminate\Support\Str;
+use InvalidArgumentException;
+use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
 use Orchid\Platform\Orchid;
 use Orchid\Screen\Actions\Menu;
 use Orchid\Support\Facades\Orchid as OrchidFacade;
+use Orchid\Tests\App\EmptyUserModel;
 use Orchid\Tests\TestUnitCase;
 
 /**
@@ -40,6 +43,23 @@ class DashboardTest extends TestUnitCase
         $user = $dashboard->modelClass(User::class);
 
         $this->assertEquals('MyCustomClass', $user);
+    }
+
+    public function testRoleUsersUseTheConfiguredEloquentModel(): void
+    {
+        OrchidFacade::useModel(User::class, EmptyUserModel::class);
+
+        $this->assertInstanceOf(EmptyUserModel::class, (new Role)->users()->getRelated());
+    }
+
+    public function testRoleUsersRejectAnInvalidModelReplacement(): void
+    {
+        OrchidFacade::useModel(User::class, 'MissingUserModel');
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('MissingUserModel');
+
+        (new Role)->users();
     }
 
     public function testIsRegisterResource(): void

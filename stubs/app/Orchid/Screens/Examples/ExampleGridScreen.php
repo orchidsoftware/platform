@@ -11,7 +11,7 @@ class ExampleGridScreen extends Screen
     /**
      * Fetch data to be displayed on the screen.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function query(): iterable
     {
@@ -52,8 +52,6 @@ class ExampleGridScreen extends Screen
      * The screen's layout elements.
      *
      * @throws \Throwable
-     *
-     * @return array
      */
     public function layout(): iterable
     {

@@ -32,11 +32,6 @@ class Picture extends Field
      */
     protected $view = 'orchid::fields.picture';
 
-    /**
-     * Default attributes value.
-     *
-     * @var array
-     */
     protected $attributes = [
         'value'          => null,
         'target'         => 'url',
@@ -45,11 +40,6 @@ class Picture extends Field
         'acceptedFiles'  => 'image/*',
     ];
 
-    /**
-     * Attributes available for a particular tag.
-     *
-     * @var array
-     */
     protected $inlineAttributes = [
         'form',
         'formaction',
@@ -107,7 +97,6 @@ class Picture extends Field
                 return;
             }
 
-            /** @var Attachment $attach */
             $attach = Orchid::model(Attachment::class);
 
             $url = optional($attach::find($value))->url();

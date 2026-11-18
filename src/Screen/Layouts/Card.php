@@ -50,6 +50,8 @@ class Card extends Content
 
     /**
      * Render the card's commands against its query repository.
+     *
+     * @return array<array-key, mixed>
      */
     private function buildCommandBar(): array
     {

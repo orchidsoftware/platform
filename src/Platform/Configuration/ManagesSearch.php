@@ -5,6 +5,7 @@ namespace Orchid\Platform\Configuration;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Orchid\Presenter\Presenter;
 use Orchid\Screen\Contracts\Searchable;
 
 trait ManagesSearch
@@ -29,7 +30,7 @@ trait ManagesSearch
     /**
      * Get the list of searchable models, ensuring uniqueness and resolving model instances.
      *
-     * @return Collection The collection of searchable models.
+     * @return Collection<array-key, Model> The collection of searchable models.
      */
     public function getSearch(): Collection
     {
@@ -40,6 +41,8 @@ trait ManagesSearch
 
     /**
      * Execute a search across all registered models and return grouped results.
+     *
+     * @return Collection<array-key, array{label: string, result: LengthAwarePaginator<int, Presenter>}>
      */
     public function search(?string $query = null): Collection
     {
@@ -51,10 +54,9 @@ trait ManagesSearch
     /**
      * Build a single search result group for the given model.
      *
-     *
      * @throws \Throwable
      *
-     * @return array{label: string,result: LengthAwarePaginator }|null
+     * @return array{label: string, result: LengthAwarePaginator<int, Presenter>}|null
      */
     protected function buildSearchResult(Model $model, ?string $query): ?array
     {

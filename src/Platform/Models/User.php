@@ -18,6 +18,7 @@ use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
 use Orchid\Filters\Types\WhereDateStartEnd;
 use Orchid\Metrics\Chartable;
+use Orchid\Platform\Database\Factories\UserFactory;
 use Orchid\Presenter\Presentable;
 use Orchid\Presenter\UsePresenter;
 use Orchid\Screen\AsSource;
@@ -54,6 +55,9 @@ use Orchid\Support\Facades\Orchid;
 ])]
 class User extends Authenticatable
 {
+    /**
+     * @use HasFactory<UserFactory>
+     */
     use AsSource, Chartable, Filterable, HasFactory, Notifiable, Presentable, UserAccess;
 
     /**

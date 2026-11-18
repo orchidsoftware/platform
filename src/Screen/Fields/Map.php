@@ -25,21 +25,11 @@ class Map extends Field
      */
     protected $view = 'orchid::fields.map';
 
-    /**
-     * Default attributes value.
-     *
-     * @var array
-     */
     protected $attributes = [
         'zoom'   => 14,
         'height' => '300px',
     ];
 
-    /**
-     * Attributes available for a particular tag.
-     *
-     * @var array
-     */
     protected $inlineAttributes = [
         'name',
         'required',
