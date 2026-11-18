@@ -20,7 +20,7 @@ use Traversable;
  * permission slugs to boolean values. Permission descriptions stay in
  * the Orchid permission registry and are not persisted here.
  *
- * @implements CastsAttributes<static, mixed>
+ * @implements CastsAttributes<self, mixed>
  * @implements Arrayable<string, bool>
  *
  * @phpstan-consistent-constructor
@@ -58,7 +58,7 @@ class Permissions implements Arrayable, CastsAttributes, Countable, JsonSerializ
     /**
      * Create an allowed permission set from registered permission definitions.
      *
-     * @param iterable<array{slug: string}> $definitions
+     * Entries without a slug are ignored.
      */
     public static function fromDefinitions(iterable $definitions): static
     {

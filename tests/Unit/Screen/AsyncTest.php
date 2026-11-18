@@ -31,8 +31,11 @@ class AsyncTest extends TestUnitCase
             new DependentSumListener('tab-2'),
         ])
             ->map(fn (Listener $listener) => $listener->getSlug())
-            ->map(fn (string $slug) => $screen->asyncBuild('asyncStub', $slug))
-            ->each(fn ($layout) => $this->assertNotNull($layout));
+            ->each(function (string $slug) use ($screen) {
+                $response = $screen->asyncBuild('asyncStub', $slug);
+
+                $this->assertStringContainsString($slug, $response->getContent());
+            });
     }
 
     public function testSlugLayout(): void

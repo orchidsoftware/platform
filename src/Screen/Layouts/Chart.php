@@ -29,6 +29,7 @@ class Chart extends Layout
 
     protected ?string $description = null;
 
+    /** @var self::TYPE_* */
     protected string $type = self::TYPE_LINE;
 
     protected bool $export = false;

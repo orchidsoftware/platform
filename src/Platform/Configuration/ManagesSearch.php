@@ -10,14 +10,14 @@ use Orchid\Screen\Contracts\Searchable;
 trait ManagesSearch
 {
     /**
-     * A registry of all registered permissions, grouped by category.
-     *
-     * @var array<string, array<string, mixed>>
+     * @var array<Model|class-string<Model>>
      */
     protected static array $registeredSearchModels = [];
 
     /**
      * Registers a set of models for which full-text search is required.
+     *
+     * @param array<Model|class-string<Model>> $models
      */
     public function registerSearch(array $models): static
     {

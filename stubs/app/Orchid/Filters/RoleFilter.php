@@ -67,6 +67,6 @@ class RoleFilter extends Filter
     {
         $role = Role::find($this->request->input('role'));
 
-        return $this->name().': '.($role?->name ?? '');
+        return $this->name().': '.($role->name ?? '');
     }
 }

@@ -29,14 +29,6 @@ class UserTest extends TestUnitCase
         }
     }
 
-    public function testHasCorrectInstance(): void
-    {
-        $user = User::factory()->create();
-
-        $this->assertNotNull($user);
-        $this->assertInstanceOf(User::class, $user);
-    }
-
     public function testCanGetNameTitle(): void
     {
         $user = $this->createUser();

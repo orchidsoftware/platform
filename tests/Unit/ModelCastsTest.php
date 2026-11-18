@@ -23,9 +23,11 @@ class ModelCastsTest extends TestUnitCase
             }
         };
 
-        $user->permissions = ['platform.index' => true];
-        $user->email_verified_at = '2026-01-01 12:00:00';
-        $user->setAttribute('settings', ['theme' => 'dark']);
+        $user->forceFill([
+            'permissions'       => ['platform.index' => true],
+            'email_verified_at' => '2026-01-01 12:00:00',
+            'settings'          => ['theme' => 'dark'],
+        ]);
 
         $this->assertInstanceOf(Permissions::class, $user->permissions);
         $this->assertTrue($user->permissions->allows('platform.index'));
@@ -43,8 +45,10 @@ class ModelCastsTest extends TestUnitCase
             }
         };
 
-        $user->permissions = ['platform.index' => true];
-        $user->email_verified_at = '2026-01-01 12:00:00';
+        $user->forceFill([
+            'permissions'       => ['platform.index' => true],
+            'email_verified_at' => '2026-01-01 12:00:00',
+        ]);
 
         $this->assertSame(['platform.index' => true], $user->permissions);
         $this->assertInstanceOf(Carbon::class, $user->email_verified_at);
@@ -53,7 +57,7 @@ class ModelCastsTest extends TestUnitCase
     public function testRoleSubclassInheritsPermissionCast(): void
     {
         $role = new class extends Role {};
-        $role->permissions = ['platform.index' => true];
+        $role->fill(['permissions' => ['platform.index' => true]]);
 
         $this->assertInstanceOf(Permissions::class, $role->permissions);
         $this->assertTrue($role->permissions->allows('platform.index'));

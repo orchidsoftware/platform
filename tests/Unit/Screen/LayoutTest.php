@@ -79,7 +79,6 @@ class LayoutTest extends TestUnitCase
 
         $slug = $layout->getSlug();
 
-        $this->assertIsString($slug);
         $this->assertNotEmpty($slug);
     }
 
@@ -127,7 +126,6 @@ class LayoutTest extends TestUnitCase
 
         $serialized = $layout->jsonSerialize();
 
-        $this->assertIsArray($serialized);
         $this->assertArrayHasKey('template', $serialized);
         $this->assertEquals('test-template', $serialized['template']);
         $this->assertArrayNotHasKey('query', $serialized);

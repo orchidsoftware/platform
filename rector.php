@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
-use Rector\DeadCode\Rector\ClassMethod\RemoveUnusedPromotedPropertyRector;
 use Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector;
 use Rector\PHPUnit\PHPUnit120\Rector\Class_\AllowMockObjectsForDataProviderRector;
 use Rector\Renaming\Rector\MethodCall\RenameMethodRector;
@@ -44,11 +43,6 @@ return RectorConfig::configure()
         // Blade::component registers class components; aliasComponent registers views.
         RenameMethodRector::class => [
             __DIR__.'/src/Platform/Providers/FoundationServiceProvider.php',
-        ],
-        // Serialization tests intentionally include private promoted properties.
-        RemoveUnusedPromotedPropertyRector::class => [
-            __DIR__.'/tests/App/Screens/SerializeScreen.php',
-            __DIR__.'/tests/App/Screens/SerializeRetrievableScreen.php',
         ],
     ])
     ->withMemoryLimit('3G')

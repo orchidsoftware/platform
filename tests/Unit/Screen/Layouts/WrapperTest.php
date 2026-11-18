@@ -45,19 +45,10 @@ class WrapperTest extends TestUnitCase
         $view = $layout->build($repository);
         $data = $view->getData();
 
-        $this->assertIsArray($data);
         $this->assertIsArray($data['variable1']);
         $this->assertCount(3, $data['variable1']);
 
-        /** @var View[] $variable1 */
-        $variable1 = $data['variable1'];
-
-        /** @var View $variable1 */
-        $variable2 = $data['variable2'];
-
-        $this->assertIsArray($variable1);
-
-        $this->assertInstanceOf(View::class, $variable2);
-        $this->assertInstanceOf(View::class, reset($variable1));
+        $this->assertContainsOnlyInstancesOf(View::class, $data['variable1']);
+        $this->assertInstanceOf(View::class, $data['variable2']);
     }
 }

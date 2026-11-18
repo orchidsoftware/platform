@@ -15,7 +15,7 @@ use Orchid\Alert\Toast as ToastClass;
  * @method static ToastClass error(string $message)                             Fires an error Toast notification with a message.
  * @method static ToastClass warning(string $message)                           Fires a warning Toast notification with a message.
  * @method static ToastClass view(string $template, string $level, array $data) Fires a Toast notification using a custom Blade view.
- * @method static ToastClass check()                                            Determines whether any Toast notifications were fired.
+ * @method static bool       check()                                            Determines whether any Toast notifications were fired.
  * @method static ToastClass autoHide(bool $autoHide = true)                    Sets a value indicating whether Toast notifications should automatically hide.
  * @method static ToastClass delay(int $delay = 5000)                           Sets the number of seconds that a Toast notification should stay visible.
  * @method static ToastClass withoutEscaping()                                  Sets a value indicating whether to escape HTML in Toast notifications.

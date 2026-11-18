@@ -9,6 +9,15 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * @method static GroupCollection countForGroup(string $groupColumn)
+ * @method static TimeCollection  countByDays(string|DateTimeInterface|null $startDate = null, string|DateTimeInterface|null $stopDate = null, ?string $dateColumn = null)
+ * @method static TimeCollection  averageByDays(string $value, string|DateTimeInterface|null $startDate = null, string|DateTimeInterface|null $stopDate = null, ?string $dateColumn = null)
+ * @method static TimeCollection  sumByDays(string $value, string|DateTimeInterface|null $startDate = null, string|DateTimeInterface|null $stopDate = null, ?string $dateColumn = null)
+ * @method static TimeCollection  maxByDays(string $value, string|DateTimeInterface|null $startDate = null, string|DateTimeInterface|null $stopDate = null, ?string $dateColumn = null)
+ * @method static TimeCollection  minByDays(string $value, string|DateTimeInterface|null $startDate = null, string|DateTimeInterface|null $stopDate = null, ?string $dateColumn = null)
+ * @method static TimeCollection  valuesByDays(string $value, string|DateTimeInterface|null $startDate = null, string|DateTimeInterface|null $stopDate = null, string $dateColumn = 'created_at')
+ */
 trait Chartable
 {
     /**

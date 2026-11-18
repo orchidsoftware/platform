@@ -106,7 +106,7 @@ class Field implements \Stringable, Fieldable, Htmlable
      * A set of attributes for the assignment
      * of which will automatically translate them.
      *
-     * @var array
+     * @var array|null
      */
     protected $translations = [
         'title',

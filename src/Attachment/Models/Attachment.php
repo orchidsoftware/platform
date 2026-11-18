@@ -144,7 +144,7 @@ class Attachment extends Model
      */
     public function physicalPath(): ?string
     {
-        if ($this->path === null || $this->name === null) {
+        if (! isset($this->path, $this->name)) {
             return null;
         }
 

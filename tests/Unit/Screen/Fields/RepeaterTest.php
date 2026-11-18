@@ -232,7 +232,7 @@ class RepeaterTest extends TestFieldsUnitCase
         $this->assertStringNotContainsString('name="team[members][1][metadata][0][key]" value="default key"', $html);
         $this->assertSame('Default metadata', $this->firstElement($xpath, '//*[@data-key-value-cell="value" and @name="team[members][2][metadata][0][value]"]')->getAttribute('value'));
         $this->assertSame('{"blocks":[]}', $xpath->query('//*[@name="team[members][1][body]"]')->item(0)?->textContent);
-        $this->assertStringContainsString('Default body', $xpath->query('//*[@name="team[members][2][body]"]')->item(0)?->textContent ?? '');
+        $this->assertStringContainsString('Default body', $this->firstElement($xpath, '//*[@name="team[members][2][body]"]')->textContent);
     }
 
     public function testInvalidTextChildValuesRedisplayAfterRealValidationFailure(): void

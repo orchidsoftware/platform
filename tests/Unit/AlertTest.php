@@ -36,7 +36,7 @@ class AlertTest extends TestUnitCase
         self::assertEquals('test', session('flash_notification.message'));
         self::assertEquals('info', session('flash_notification.level'));
 
-        self::assertInstanceOf(\Orchid\Alert\Alert::class, alert());
+        self::assertTrue(alert()->check());
     }
 
     #[DataProvider('getLevels')]

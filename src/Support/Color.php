@@ -61,10 +61,8 @@ enum Color
      *
      * @param string $name
      * @param array  $arguments
-     *
-     * @return \Closure|Color
      */
-    public static function __callStatic($name, $arguments)
+    public static function __callStatic($name, $arguments): self
     {
         return collect(Color::cases())
             ->filter(fn (Color $color) => $color->name === $name)

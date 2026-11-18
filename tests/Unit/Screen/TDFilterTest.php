@@ -77,6 +77,6 @@ class TDFilterTest extends TestUnitCase
             ->filterValue(fn (int $value): string => (string) ($value * 2))
             ->buildTh();
 
-        $this->assertNotNull($view);
+        $this->assertNull($view->getData()['filterString']);
     }
 }
