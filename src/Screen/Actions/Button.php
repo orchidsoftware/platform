@@ -82,14 +82,16 @@ class Button extends Action
                 ? url()->previous()
                 : url()->current();
 
-            // Split off the previous query string so the method isn't appended after it (#2845), but keep it for filters.
+            // Append the method before the query string to preserve filters.
             $path = strtok($url, '?');
-            parse_str((string) parse_url($url, PHP_URL_QUERY), $previousQuery);
+            $query = parse_url($url, PHP_URL_QUERY);
 
-            $parameters = $this->get('parameters');
-            $query = http_build_query(array_merge($previousQuery, is_array($parameters) ? $parameters : (array) $parameters));
+            $action = rtrim("{$path}/{$this->get('method')}", '/');
 
-            $action = rtrim("{$path}/{$this->get('method')}?{$query}", '/?');
+            if ($query !== null && $query !== '') {
+                $action .= "?{$query}";
+            }
+
             $this->set('action', $action);
         })->addBeforeRender(function () {
             $action = $this->get('action');
@@ -144,16 +146,20 @@ class Button extends Action
         }
 
         return collect($parameters)
-            ->filter(fn ($value) => filled($value))
+            ->filter(fn ($value) => $value !== null)
             ->map(fn ($value) => $this->extractRouteKey($value))
             ->all();
     }
 
     /**
-     * Extracts key from Eloquent model if applicable.
+     * Replace models with their route keys, including models inside arrays.
      */
     protected function extractRouteKey(mixed $value): mixed
     {
+        if (is_array($value)) {
+            return array_map($this->extractRouteKey(...), $value);
+        }
+
         return $value instanceof UrlRoutable ? $value->getRouteKey() : $value;
     }
 

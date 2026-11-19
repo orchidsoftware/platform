@@ -97,9 +97,16 @@ class Modal extends Layout
      */
     public function build(Repository $repository)
     {
+        $deferredParameters = $this->getDeferrerDataLoadingParameters();
+        $showContent = Orchid::isPartialRequest()
+            ? $deferredParameters !== []
+            : $deferredParameters === [];
+        $hasValidationErrors = old('_modal') === $this->getSlug() && session('errors')?->any();
+
         $this->variables = array_merge($this->variables, [
             'deferredRoute'  => route('orchid.async'),
-            'deferrerParams' => $this->getDeferrerDataLoadingParameters(),
+            'deferrerParams' => $deferredParameters,
+            'showContent'    => $showContent || $hasValidationErrors,
         ]);
 
         return $this->buildAsDeep($repository);

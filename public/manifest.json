@@ -1,10 +1,10 @@
 {
   "resources/js/app.js": {
-    "file": "assets/app.js?v=c75ba3cf",
+    "file": "assets/app.js?v=6544cb25",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
-    "integrity": "sha384-BuQQmGK4psUkdtuAsv91DPO49WOanpz3lHx9RTeHX+upG+tRdwb3SUxmZy+hM5CY"
+    "integrity": "sha384-0wEMXezeKIOzJv9vMFtwV3UHMyTHV5/6EH4w89LXGKoVu2JWcTL3Y6wC4pFnNuxp"
   },
   "resources/sass/app.scss": {
     "file": "assets/app.css?v=85e7b56b",

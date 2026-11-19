@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Changed
+
+- Screen action parameters are submitted in a separate POST field instead of the query string.
+  `Button::method()`, `parameters()`, and `ModalToggle::asyncParameters()` keep their existing API.
+  Handlers that read button arguments through `$request->input('id')` must accept an `$id` method argument instead.
+  Action argument names must match handler parameter names exactly.
+  Pass a model directly with `->modal('editUserModal', ['user' => $user])`.
+  The browser receives its route key. String and array arguments retain their values, including empty strings and arrays.
+  Form fields and query filters remain available through `Request`. Query parameters cannot replace route models.
+  Custom HTTP clients must send a JSON-encoded `_parameters` field in the POST body.
+  Custom modal forms must also submit their `_modal` key to restore validation errors in the correct dialog.
+  Action models are bound independently. Parent-child relationships must be checked in the handler;
+  scoped binding continues to apply to parameters in the route path.
+- Deferred modals retain submitted values and reopen after a validation error without loading other deferred modals.
+  Opening another record loads its own values.
+
 ## 14.52.4 - 2025-08-13
 
 ### Fixed

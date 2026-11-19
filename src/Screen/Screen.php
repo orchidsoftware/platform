@@ -14,6 +14,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Screen\Concerns\HasCommandBar;
 use Orchid\Screen\Concerns\HasFillablePublicProperties;
@@ -38,8 +39,6 @@ abstract class Screen extends Controller
         ModelStateRetrievable;
 
     /**
-     * @param mixed ...$arguments
-     *
      * @throws BindingResolutionException
      * @throws \ReflectionException
      *
@@ -47,9 +46,9 @@ abstract class Screen extends Controller
      *
      * @see static::handle()
      */
-    public function __invoke(Request $request, ...$arguments)
+    public function __invoke(Request $request)
     {
-        return $this->handle($request, ...$arguments);
+        return $this->handle($request);
     }
 
     /**
@@ -129,11 +128,7 @@ abstract class Screen extends Controller
         $state = $this->extractState();
         $this->fillPublicProperty($state);
 
-        $parameters = request()->collect()->merge([
-            'state'   => $state,
-        ])->all();
-
-        $repository = $this->callMethod($method, $parameters);
+        $repository = $this->callMethod($method, ['state' => $state]);
 
         if (is_array($repository)) {
             $repository = new Repository(array_merge($state->all(), $repository));
@@ -229,15 +224,11 @@ abstract class Screen extends Controller
      *
      * @return RedirectResponse|mixed
      */
-    public function handle(Request $request, ...$arguments)
+    public function handle(Request $request)
     {
         Orchid::setCurrentScreen($this);
 
         $method = $request->route()->parameter('method', 'view');
-
-        if (! $request->isMethodSafe()) {
-            $method = Arr::last($request->route()->parameters(), null, 'view');
-        }
 
         $state = $this->extractState();
         $this->fillPublicProperty($state);
@@ -250,7 +241,7 @@ abstract class Screen extends Controller
             return redirect()->action([static::class], $request->all());
         }
 
-        return $this->callMethod($method, $arguments) ?? $this->backWithCurrentState();
+        return $this->callMethod($method) ?? $this->backWithCurrentState();
     }
 
     /**
@@ -296,9 +287,15 @@ abstract class Screen extends Controller
      */
     private function callMethod(string $method, array $parameters = [])
     {
-        $uses = static::class.'@'.$method;
+        $input = Arr::get(request()->getPayload()->all(), '_parameters', '{}');
+        $arguments = validator(
+            ['_parameters' => is_string($input) ? json_decode($input, true) : null],
+            ['_parameters' => 'array'],
+        )->validate();
 
-        $preparedParameters = self::prepareForExecuteMethod($uses);
+        $parameters = array_replace($arguments['_parameters'], $parameters);
+        $uses = static::class.'@'.$method;
+        $preparedParameters = self::prepareForExecuteMethod($uses, $parameters);
 
         return App::call($uses, $preparedParameters ?? $parameters);
     }
@@ -308,29 +305,44 @@ abstract class Screen extends Controller
      *
      * @return array<string, mixed>|null
      */
-    public static function prepareForExecuteMethod(string $uses): ?array
+    public static function prepareForExecuteMethod(string $uses, array $parameters = []): ?array
     {
-        $route = request()->route();
+        $original = request()->route();
 
-        if ($route === null) {
+        if ($original === null) {
             return null;
         }
 
-        collect(request()->query())->each(function ($value, string $key) use ($route) {
-            $route->setParameter($key, $value);
-        });
-
-        $original = $route->action['uses'];
-
-        $route = $route->uses($uses);
+        $route = clone $original;
+        $route->uses($uses);
+        $route->forgetParameter('method');
 
         Route::substituteImplicitBindings($route);
 
-        $parameters = $route->parameters();
+        foreach ($route->parameters() as $key => $value) {
+            $original->setParameter($key, $value);
+            unset($parameters[$key]);
+        }
 
-        $route->uses($original);
+        $route->withoutScopedBindings();
 
-        return $parameters;
+        foreach ($route->signatureParameters() as $parameter) {
+            $name = $parameter->getName();
+            $pathKey = Str::snake($name);
+
+            if ($name !== $pathKey && $original->hasParameter($pathKey)) {
+                $route->setParameter($name, $route->parameter($name, $original->parameter($pathKey)));
+                $route->forgetParameter($pathKey);
+            }
+
+            if (! $route->hasParameter($name) && array_key_exists($name, $parameters)) {
+                $route->setParameter($name, $parameters[$name]);
+            }
+        }
+
+        Route::substituteImplicitBindings($route);
+
+        return Arr::except(array_replace($parameters, $route->parameters()), ['method']);
     }
 
     /**

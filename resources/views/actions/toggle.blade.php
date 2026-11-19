@@ -16,6 +16,9 @@
         @endempty
         type="submit"
         data-toggle-target="button"
+        @if(!empty($parameters))
+            name="_parameters" value="{{ json_encode($parameters) }}"
+        @endif
         {{ $attributes->merge(['class' => 'd-none'])->except(['type']) }}>
     </button>
 </div>

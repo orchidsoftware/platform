@@ -24,7 +24,7 @@ export default class extends ApplicationController {
      * Define targets for elements that this controller interacts with.
      * @type {string[]}
      */
-    static targets = ["title"];
+    static targets = ["title", "parameters"];
 
     // Define a constant for the session storage key
     static SESSION_KEY_FOR_LAST_OPEN_MODAL = "last-open-modal";
@@ -85,27 +85,26 @@ export default class extends ApplicationController {
      * @param options - Configuration options for opening the modal.
      */
     open(options) {
+        this.showModal(options);
+
+        if (Object.keys(this.parametersValue).length !== 0) {
+            this.asyncLoadData();
+        }
+    }
+
+    showModal(options) {
         options = {
             ...options,
             slug: this.slugValue,
-            validateError:
-                this.element.querySelectorAll(".invalid-feedback").length > 0,
         };
 
         // Set the form action URL
         this.element.querySelector("form").action = options.submit;
+        this.parametersTarget.value = JSON.stringify(options.params ?? {});
 
         // Update the modal title if provided
         if (options.title !== undefined) {
             this.titleTarget.textContent = options.title;
-        }
-
-        // Load deferred data if URL is specified and no validation errors are present
-        if (
-            Object.keys(this.parametersValue).length !== 0 &&
-            !options.validateError
-        ) {
-            this.asyncLoadData(options.params);
         }
 
         // Store the last open modal options
@@ -129,22 +128,19 @@ export default class extends ApplicationController {
         // Reopen the last modal if it matches the current slug
         if (lastOpenModal && lastOpenModal.slug === this.slugValue) {
             this.element.classList.remove("fade", "in");
-            this.open(lastOpenModal);
+            this.showModal(lastOpenModal);
         }
     }
 
     /**
-     * Load data asynchronously and update the modal.
-     * @param params - Query parameters for the data request.
+     * Load deferred data using the form's action parameters.
      */
-    asyncLoadData(params) {
+    asyncLoadData() {
         this.element.classList.add("modal-loading");
 
-        // Create query string from parameters
-        let query = new URLSearchParams(params).toString();
-
         // Load data via stream and update modal state
-        this.loadStream(`${this.urlValue}?${query}`, {
+        this.loadStream(this.urlValue, {
+            _parameters: this.parametersTarget.value,
             _state: document.getElementById("screen-state")?.value || null,
             ...this.parametersValue,
         }).then(() => this.element.classList.remove("modal-loading"));
