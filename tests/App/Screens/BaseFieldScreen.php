@@ -5,13 +5,20 @@ namespace Orchid\Tests\App\Screens;
 use Illuminate\Http\Request;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 
 abstract class BaseFieldScreen extends Screen
 {
+    /**
+     * @return list<Fieldable>
+     */
     abstract public function fields(): array;
 
+    /**
+     * @return array<string, mixed>
+     */
     public function query(): array
     {
         return [];

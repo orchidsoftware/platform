@@ -7,7 +7,7 @@ namespace Orchid\Screen\Layouts;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 use Orchid\Screen\Builder;
-use Orchid\Screen\Field;
+use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Repository;
 use Throwable;
@@ -66,7 +66,7 @@ abstract class Rows extends Layout
     }
 
     /**
-     * @return iterable<Field>|iterable<string>
+     * @return Fieldable[]|\Traversable<array-key, Fieldable>
      */
     abstract protected function fields(): iterable;
 }

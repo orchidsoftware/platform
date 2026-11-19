@@ -15,6 +15,8 @@ class ConfirmScreen extends Screen
 {
     /**
      * Query data.
+     *
+     * @return array{}
      */
     public function query(): array
     {
@@ -55,7 +57,7 @@ class ConfirmScreen extends Screen
         return [];
     }
 
-    public function message()
+    public function message(): void
     {
         Alert::info('Action completed');
     }

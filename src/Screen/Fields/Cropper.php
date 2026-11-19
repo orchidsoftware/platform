@@ -43,8 +43,6 @@ class Cropper extends Picture
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
     protected $attributes = [
         'value'                  => null,
@@ -68,8 +66,6 @@ class Cropper extends Picture
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
     protected $inlineAttributes = [
         'accept',

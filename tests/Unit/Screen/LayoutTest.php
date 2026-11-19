@@ -9,6 +9,7 @@ use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layout;
 use Orchid\Screen\LayoutFactory;
 use Orchid\Screen\Repository;
+use Orchid\Screen\Screen;
 use Orchid\Tests\TestUnitCase;
 
 class LayoutTest extends TestUnitCase
@@ -31,6 +32,34 @@ class LayoutTest extends TestUnitCase
 
         $find = $layout->findBySlug(Str::random());
         $this->assertNull($find);
+    }
+
+    public function testScreenRendersYieldedLayoutsInOrder(): void
+    {
+        $screen = new class extends Screen
+        {
+            public function layout(): iterable
+            {
+                yield 'section' => LayoutFactory::view('exemplar::layouts.wrapper', ['name' => 'Taylor']);
+                yield 'section' => LayoutFactory::view('exemplar::layouts.wrapper', ['name' => 'Alex']);
+            }
+        };
+
+        $html = $screen->build(new Repository)->render();
+
+        $this->assertMatchesRegularExpression('/Hello Taylor.*Hello Alex/s', $html);
+    }
+
+    public function testBlankCanFindAndRenderLayoutsFromTheSameGenerator(): void
+    {
+        $child = LayoutFactory::view('exemplar::layouts.wrapper', ['name' => 'Taylor']);
+        $layouts = fn () => yield $child;
+
+        $blank = LayoutFactory::blank(['content' => $layouts()]);
+
+        $this->assertSame($child, $blank->findBySlug($child->getSlug()));
+        $this->assertSame(LayoutFactory::blank(['content' => [$child]])->getSlug(), $blank->getSlug());
+        $this->assertStringContainsString('Hello Taylor', $blank->build(new Repository)->render());
     }
 
     public function testCanSeeLayout(): void

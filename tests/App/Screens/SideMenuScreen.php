@@ -37,6 +37,9 @@ class SideMenuScreen extends Screen
         ],
     ];
 
+    /**
+     * @return array{page: array{title: string, description: string}}
+     */
     public function query(): iterable
     {
         return [

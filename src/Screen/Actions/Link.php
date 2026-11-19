@@ -15,6 +15,10 @@ use Orchid\Screen\Action;
  * @method Link target(string $target = null)
  * @method Link title(string $title = null)
  * @method Link download($download = true)
+ *
+ * @template TAttributes of array<string, mixed> = array<string, mixed>
+ *
+ * @extends Action<TAttributes>
  */
 class Link extends Action
 {
@@ -32,8 +36,6 @@ class Link extends Action
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
     protected $attributes = [
         'class' => 'btn btn-link icon-link gap-2',
@@ -44,8 +46,6 @@ class Link extends Action
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
     public $inlineAttributes = [
         'autofocus',

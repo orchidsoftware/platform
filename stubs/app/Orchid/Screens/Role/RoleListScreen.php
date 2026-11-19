@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\Role;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Link;
@@ -18,7 +19,7 @@ class RoleListScreen extends Screen
     /**
      * Fetch data to be displayed on the screen.
      *
-     * @return array
+     * @return array{roles: LengthAwarePaginator<int, Role>}
      */
     public function query(): iterable
     {

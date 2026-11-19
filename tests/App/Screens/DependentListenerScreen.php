@@ -13,6 +13,8 @@ class DependentListenerScreen extends Screen
 {
     /**
      * Query data.
+     *
+     * @return array{first: int}
      */
     public function query(): array
     {

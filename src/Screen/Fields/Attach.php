@@ -29,6 +29,8 @@ use Orchid\Support\Init;
  * @method $this sortUrl(string $value = null)
  * @method $this path(string $value = null)
  * @method $this group(string $value = null)
+ *
+ * @extends Field<array{value?: array<mixed>|scalar|object|null, ...<string, mixed>}>
  */
 class Attach extends Field
 {
@@ -43,8 +45,6 @@ class Attach extends Field
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
     protected $attributes = [
         'maxCount'            => 0,
@@ -62,8 +62,6 @@ class Attach extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
     protected $inlineAttributes = [
         'accept',
@@ -177,7 +175,6 @@ class Attach extends Field
             return $this;
         }
 
-        /** @var Attachment $attach */
         $attach = Orchid::model(Attachment::class);
 
         $value = $attach::whereIn('id', $value)

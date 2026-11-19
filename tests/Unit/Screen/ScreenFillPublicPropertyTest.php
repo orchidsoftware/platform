@@ -21,15 +21,21 @@ class ScreenFillPublicPropertyTest extends TestUnitCase
     {
         $screen = new class extends Screen
         {
+            /**
+             * @var list<string>|null
+             */
             public $simpleArrayProperty;
-            public $objectProperty;
-            public $booleanFalseProperty;
-            public $booleanTrueProperty;
-            public $stringProperty;
-            public $floatProperty;
-            public $nullProperty;
+            public ?object $objectProperty = null;
+            public ?bool $booleanFalseProperty = null;
+            public ?bool $booleanTrueProperty = null;
+            public ?string $stringProperty = null;
+            public ?float $floatProperty = null;
+            public ?string $nullProperty = 'previous value';
+            /**
+             * @var array<string, string>|null
+             */
             public $assocArrayProperty;
-            public $customObjectProperty;
+            public ?\stdClass $customObjectProperty = null;
 
             public function layout(): iterable
             {
@@ -54,11 +60,6 @@ class ScreenFillPublicPropertyTest extends TestUnitCase
             'assocArrayProperty'   => ['key1' => 'value1', 'key2' => 'value2'], // Associative array
             'customObjectProperty' => new \stdClass(), // Custom object (stdClass)
         ];
-
-        // Initialize public properties for testing
-        foreach (array_keys($data) as $property) {
-            $screen->{$property} = null; // Set property to null initially
-        }
 
         $repository = new Repository($data);
 

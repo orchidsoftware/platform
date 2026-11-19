@@ -37,8 +37,6 @@ class Radio extends Field
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
     protected $attributes = [
         'type'   => 'radio',
@@ -48,8 +46,6 @@ class Radio extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
     protected $inlineAttributes = [
         'accesskey',

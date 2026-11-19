@@ -17,7 +17,7 @@ class Group implements \Stringable, Fieldable, Groupable
     /**
      * Default attributes value.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected $attributes = [
         'group'               => [],
@@ -30,7 +30,7 @@ class Group implements \Stringable, Fieldable, Groupable
     /**
      * Required Attributes.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $required = [];
 
@@ -40,6 +40,8 @@ class Group implements \Stringable, Fieldable, Groupable
     protected $view = 'orchid::fields.group';
 
     /**
+     * @param array<Fieldable> $group
+     *
      * @return static
      */
     public static function make(array $group = [])

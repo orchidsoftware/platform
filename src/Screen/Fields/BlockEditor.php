@@ -23,7 +23,8 @@ use Orchid\Screen\Field;
  * @method $this help(string $value = null)
  * @method $this popover(string $value = null)
  * @method $this title(string $value = null)
- * @method $this toolbar(array $options)
+ *
+ * @extends Field<array{toolbar?: iterable<array-key, mixed>|string|null, ...<string, mixed>}>
  */
 class BlockEditor extends Field
 {
@@ -82,8 +83,6 @@ class BlockEditor extends Field
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
     protected $attributes = [
         'value'   => null,
@@ -92,8 +91,6 @@ class BlockEditor extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
     protected $inlineAttributes = [
         'accesskey',
@@ -128,6 +125,8 @@ class BlockEditor extends Field
 
     /**
      * Defines the buttons displayed in the editor toolbar.
+     *
+     * @param array<string> $buttons
      */
     public function toolbar(array $buttons): self
     {
@@ -166,6 +165,8 @@ class BlockEditor extends Field
 
     /**
      * Prepares toolbar buttons for rendering.
+     *
+     * @return list<array{type: string, title: string}>
      */
     protected function prepareToolbarButtons(): array
     {
@@ -184,6 +185,8 @@ class BlockEditor extends Field
 
     /**
      * Returns supported toolbar buttons.
+     *
+     * @return array<string, string>
      */
     protected function toolbarButtons(): array
     {

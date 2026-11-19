@@ -18,9 +18,6 @@ abstract class Accordion extends Layout
      */
     protected $template = 'orchid::layouts.accordion';
 
-    /**
-     * @var array
-     */
     protected $variables = [
         'stayOpen' => false,
         'open'     => [],
@@ -29,7 +26,7 @@ abstract class Accordion extends Layout
     /**
      * Layout constructor.
      *
-     * @param Layout[] $layouts
+     * @param array<Layout|string|array<Layout|string>> $layouts
      */
     public function __construct(array $layouts = [])
     {
@@ -61,6 +58,8 @@ abstract class Accordion extends Layout
     /**
      * Set active accordion(s).
      *
+     *
+     * @param string|array<string> $activeAccordion
      *
      * @return $this
      */

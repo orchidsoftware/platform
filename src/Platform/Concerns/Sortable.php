@@ -42,10 +42,10 @@ trait Sortable
     /**
      * Scope a query to sort the results by the sort column.
      *
-     * @param Builder $query
-     * @param string  $direction The sorting direction (ASC or DESC). Default is ASC.
+     * @param Builder<static> $query
+     * @param string          $direction The sorting direction (ASC or DESC). Default is ASC.
      *
-     * @return Builder
+     * @return Builder<static>
      */
     #[Scope]
     protected function sorted($query, $direction = 'ASC')

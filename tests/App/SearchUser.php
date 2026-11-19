@@ -16,6 +16,8 @@ class SearchUser extends Authenticatable
 
     /**
      * Get the indexable data array for the model.
+     *
+     * @return array<string, int|string>
      */
     public function toSearchableArray(): array
     {

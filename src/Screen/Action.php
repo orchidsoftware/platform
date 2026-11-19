@@ -9,6 +9,11 @@ use Illuminate\View\View;
 use Orchid\Screen\Contracts\Actionable;
 use Orchid\Support\Color;
 
+/**
+ * @template TAttributes of array<string, mixed> = array<string, mixed>
+ *
+ * @extends Field<TAttributes>
+ */
 class Action extends Field implements Actionable
 {
     /**
@@ -18,11 +23,6 @@ class Action extends Field implements Actionable
      */
     protected $typeForm = 'orchid::partials.fields.clear';
 
-    /**
-     * Attributes available for a particular tag.
-     *
-     * @var array
-     */
     protected $inlineAttributes = [
         'type',
         'autofocus',
@@ -30,12 +30,6 @@ class Action extends Field implements Actionable
         'tabindex',
     ];
 
-    /**
-     * A set of attributes for the assignment
-     * of which will automatically translate them.
-     *
-     * @var array
-     */
     protected $translations = [
         'name',
     ];

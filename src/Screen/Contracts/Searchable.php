@@ -15,6 +15,8 @@ interface Searchable
 
     /**
      * Build the query used to retrieve matching search results.
+     *
+     * @return Builder<covariant \Illuminate\Database\Eloquent\Model>
      */
     public function searchQuery(?string $query = null): Builder;
 

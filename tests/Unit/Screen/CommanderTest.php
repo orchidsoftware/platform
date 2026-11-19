@@ -32,7 +32,8 @@ class CommanderTest extends TestUnitCase
                 ];
             }
 
-            public function generate()
+            /** @return array<mixed> */
+            public function generate(): array
             {
                 return $this->buildCommandBar(new Repository);
             }

@@ -28,8 +28,6 @@ class Button extends Action
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
     protected $attributes = [
         'class'      => 'btn btn-link icon-link gap-2',
@@ -46,8 +44,6 @@ class Button extends Action
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
     protected $inlineAttributes = [
         'form',
@@ -65,8 +61,6 @@ class Button extends Action
     /**
      * A set of attributes for the assignment
      * of which will automatically translate them.
-     *
-     * @var array
      */
     protected $translations = [
         'name',
@@ -112,6 +106,8 @@ class Button extends Action
     }
 
     /**
+     * @param array<array-key, mixed> $parameters
+     *
      * @return $this
      */
     public function method(string $name, array $parameters = []): static
@@ -125,6 +121,8 @@ class Button extends Action
      * Sets the parameters for the action.
      *
      *
+     * @param array<array-key, mixed>|object $parameters
+     *
      * @return $this
      */
     public function parameters(array|object $parameters): static
@@ -134,6 +132,10 @@ class Button extends Action
 
     /**
      * Normalizes parameters before setting them.
+     *
+     * @param array<array-key, mixed>|object $parameters
+     *
+     * @return array<array-key, mixed>|object
      */
     protected function prepareActionParameters(array|object $parameters): array|object
     {
@@ -164,9 +166,9 @@ class Button extends Action
     }
 
     /**
-     * @param array|string $name
-     * @param mixed        $parameters
-     * @param bool         $absolute
+     * @param string|\BackedEnum $name
+     * @param mixed              $parameters
+     * @param bool               $absolute
      */
     public function route($name, $parameters = [], $absolute = true): static
     {

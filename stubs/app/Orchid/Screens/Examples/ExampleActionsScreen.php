@@ -19,7 +19,7 @@ class ExampleActionsScreen extends Screen
     /**
      * Fetch data to be displayed on the screen.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function query(): iterable
     {

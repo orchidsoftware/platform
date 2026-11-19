@@ -53,8 +53,6 @@ class Code extends Field
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
     protected $attributes = [
         'class'       => 'form-control',
@@ -66,8 +64,6 @@ class Code extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
     protected $inlineAttributes = [
         'accesskey',

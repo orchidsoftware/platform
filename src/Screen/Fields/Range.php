@@ -32,15 +32,11 @@ class Range extends Field
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
     protected $attributes = [];
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
     protected $inlineAttributes = [
         'accesskey',

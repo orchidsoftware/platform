@@ -131,7 +131,7 @@ class TableTest extends TestUnitCase
         $this->assertStringContainsString('table-hover', $html);
     }
 
-    public function testShowTextNotFoundWhenTargetIsEmptyCollection()
+    public function testShowTextNotFoundWhenTargetIsEmptyCollection(): void
     {
         $layout = new class extends Table
         {

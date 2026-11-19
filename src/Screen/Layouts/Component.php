@@ -16,6 +16,8 @@ abstract class Component extends Layout
 {
     /**
      * Additional data passed to the Blade component.
+     *
+     * @var array<string, mixed>
      */
     private array $data = [];
 
@@ -54,6 +56,8 @@ abstract class Component extends Layout
 
     /**
      * Merge additional data into the component rendering context.
+     *
+     * @param array<string, mixed> $data
      */
     public function with(array $data): self
     {

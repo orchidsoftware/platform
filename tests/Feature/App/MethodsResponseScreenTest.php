@@ -6,6 +6,7 @@ namespace Orchid\Tests\Feature\App;
 
 use Illuminate\Testing\TestResponse;
 use Orchid\Tests\TestFeatureCase;
+use Symfony\Component\HttpFoundation\Response;
 
 class MethodsResponseScreenTest extends TestFeatureCase
 {
@@ -28,6 +29,9 @@ class MethodsResponseScreenTest extends TestFeatureCase
             ->assertRedirect(back()->getTargetUrl());
     }
 
+    /**
+     * @return TestResponse<Response>
+     */
     private function callMethod(string $method): TestResponse
     {
         return $this

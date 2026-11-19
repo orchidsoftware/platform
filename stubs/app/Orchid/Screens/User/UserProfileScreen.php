@@ -6,6 +6,7 @@ namespace App\Orchid\Screens\User;
 
 use App\Orchid\Layouts\User\ProfilePasswordLayout;
 use App\Orchid\Layouts\User\UserEditLayout;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
@@ -24,7 +25,7 @@ class UserProfileScreen extends Screen
      * Fetch data to be displayed on the screen.
      *
      *
-     * @return array
+     * @return array{user: Authenticatable|null}
      */
     public function query(Request $request): iterable
     {

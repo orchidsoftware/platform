@@ -15,7 +15,7 @@ class Builder
     /**
      * Fields to be reflected, in the form Field.
      *
-     * @var Fieldable[]|mixed
+     * @var array<Fieldable>
      */
     public $fields;
 
@@ -50,7 +50,7 @@ class Builder
     /**
      * Builder constructor.
      *
-     * @param Fieldable[] $fields
+     * @param iterable<Fieldable> $fields
      */
     public function __construct(iterable $fields, ?Repository $data = null)
     {
@@ -97,7 +97,7 @@ class Builder
     /**
      * @throws Throwable
      *
-     * @return array|string
+     * @return string|\Stringable|null
      */
     private function renderGroup(Groupable $group)
     {
@@ -143,6 +143,10 @@ class Builder
 
     /**
      * Bind a field value and convert its name to bracket notation.
+     *
+     * @param array<string, mixed> $attributes
+     *
+     * @return array<string, mixed>
      */
     private function fill(array $attributes): array
     {

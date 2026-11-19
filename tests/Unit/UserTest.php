@@ -38,6 +38,9 @@ class UserTest extends TestUnitCase
         $this->assertEquals($user->name, $presenter->title());
     }
 
+    /**
+     * @param array<string, mixed> $attributes
+     */
     private function createUser(array $attributes = []): User
     {
         return User::factory()->create($attributes);

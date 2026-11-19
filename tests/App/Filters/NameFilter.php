@@ -9,9 +9,6 @@ use Orchid\Screen\Fields\Input;
 
 class NameFilter extends Filter
 {
-    /**
-     * @var array
-     */
     public $parameters = [
         'name',
     ];

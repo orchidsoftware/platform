@@ -29,7 +29,7 @@ class ExampleScreen extends Screen
     /**
      * Fetch data to be displayed on the screen.
      *
-     * @return array
+     * @return array<string, array<array-key, mixed>>
      */
     public function query(): iterable
     {

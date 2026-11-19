@@ -27,8 +27,6 @@ class DateRange extends Field implements ComplexFieldConcern
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
     protected $attributes = [
         'data-datetime-date-format' => 'Y-m-d H:i:S',
@@ -36,8 +34,6 @@ class DateRange extends Field implements ComplexFieldConcern
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
     protected $inlineAttributes = [
         'form',

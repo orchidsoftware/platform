@@ -18,9 +18,15 @@ class HasTranslationsTest extends TestUnitCase
         {
             use HasTranslations;
 
+            /**
+             * @var array<int, string>|null
+             */
             protected ?array $translations = null;
 
-            public function getTranslations()
+            /**
+             * @return array<int, string>|null
+             */
+            public function getTranslations(): ?array
             {
                 return $this->translations;
             }
@@ -87,8 +93,14 @@ class HasTranslationsTest extends TestUnitCase
         {
             use HasTranslations;
 
+            /**
+             * @var array<int, string>
+             */
             protected array $translations = [];
 
+            /**
+             * @return Collection<int, string>
+             */
             protected function translations(): Collection
             {
                 return collect(['description']);

@@ -16,13 +16,15 @@ trait ManagesResources
 
     /**
      * Collection of JS and CSS resources for the panel.
+     *
+     * @var array<string, array<string>>
      */
     protected array $registeredResources = [];
 
     /**
      * Register a resource with the given key.
      *
-     * @param string|array $value
+     * @param string|array<string> $value
      */
     public function registerResource(string $key, $value): static
     {
@@ -36,8 +38,9 @@ trait ManagesResources
     /**
      * Return CSS\JS.
      *
+     * @param string|null $key
      *
-     * @return array|Collection|mixed
+     * @return Collection<string, array<string>>|array<string>|null
      */
     public function getResource($key = null)
     {

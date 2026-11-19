@@ -17,7 +17,7 @@ class ExampleCardsScreen extends Screen
     /**
      * Fetch data to be displayed on the screen.
      *
-     * @return array
+     * @return array{user: User}
      */
     public function query(): iterable
     {
@@ -56,8 +56,6 @@ class ExampleCardsScreen extends Screen
      * The screen's layout elements.
      *
      * @throws \Throwable
-     *
-     * @return array
      */
     public function layout(): iterable
     {

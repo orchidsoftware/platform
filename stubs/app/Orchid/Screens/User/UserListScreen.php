@@ -7,6 +7,7 @@ namespace App\Orchid\Screens\User;
 use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserFiltersLayout;
 use App\Orchid\Layouts\User\UserListLayout;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Orchid\Platform\Models\User;
@@ -21,7 +22,7 @@ class UserListScreen extends Screen
     /**
      * Fetch data to be displayed on the screen.
      *
-     * @return array
+     * @return array{users: LengthAwarePaginator<int, User>}
      */
     public function query(): iterable
     {
@@ -89,7 +90,7 @@ class UserListScreen extends Screen
     /**
      * Loads user data when opening the modal window.
      *
-     * @return array
+     * @return array{user: User}
      */
     public function loadUserOnOpenModal(User $user): iterable
     {

@@ -6,8 +6,8 @@ use Orchid\Screen\Screen;
 
 class ParentScreen extends Screen
 {
-    public $parentProperty1;
-    public $parentProperty2;
+    public ?string $parentProperty1 = null;
+    public ?string $parentProperty2 = null;
 
     public function layout(): iterable
     {

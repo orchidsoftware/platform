@@ -34,8 +34,6 @@ class UTM extends Field
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
     protected $attributes = [
         'type'  => 'url',
@@ -44,8 +42,6 @@ class UTM extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
     protected $inlineAttributes = [
         'accesskey',

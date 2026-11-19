@@ -136,6 +136,8 @@ abstract class OrchidServiceProvider extends ServiceProvider
 
     /**
      * Get the icon paths and prefixes.
+     *
+     * @return array<string, string>
      */
     public function icons(): array
     {

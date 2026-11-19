@@ -8,6 +8,8 @@ trait ManagesModelOptions
 {
     /**
      * Registered replacements for Orchid model classes.
+     *
+     * @var array<string, class-string>
      */
     protected array $registeredReplaceModels = [];
 
@@ -23,6 +25,13 @@ trait ManagesModelOptions
 
     /**
      * Get the class name for a given Dashboard model.
+     *
+     * @template TFallback of string
+     *
+     * @param TFallback      $key
+     * @param TFallback|null $default
+     *
+     * @return class-string|TFallback
      */
     public function model(string $key, ?string $default = null): string
     {
@@ -30,7 +39,9 @@ trait ManagesModelOptions
     }
 
     /**
-     * Get the user model class name.
+     * Register a replacement model.
+     *
+     * @param class-string $custom
      */
     public function useModel(string $key, string $custom): static
     {

@@ -62,7 +62,7 @@ class SplitTest extends TestUnitCase
     }
 
     /**
-     * @param $layouts
+     * @param array<\Orchid\Screen\Layout> $layouts
      */
     private function getSplitClass($layouts): Split
     {

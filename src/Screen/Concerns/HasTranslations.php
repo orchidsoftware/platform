@@ -11,6 +11,8 @@ trait HasTranslations
      * Mark the given attribute(s) as translatable.
      *
      *
+     * @param string|array<string> $value
+     *
      * @return $this
      */
     public function translatable(string|array $value): static
@@ -26,6 +28,8 @@ trait HasTranslations
     /**
      * Exclude the given attribute(s) from being translated.
      *
+     *
+     * @param string|array<string>|null $value
      *
      * @return $this
      */
@@ -54,6 +58,8 @@ trait HasTranslations
 
     /**
      * Get the list of translatable attributes.
+     *
+     * @return Collection<int, string>
      */
     protected function translations(): Collection
     {

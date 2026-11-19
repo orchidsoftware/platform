@@ -97,6 +97,8 @@ class FoundationServiceProvider extends ServiceProvider
 
     /**
      * Get the services provided by the provider.
+     *
+     * @return list<class-string>
      */
     public function provides(): array
     {

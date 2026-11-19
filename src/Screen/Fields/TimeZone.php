@@ -33,8 +33,6 @@ class TimeZone extends Field
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
     protected $attributes = [
         'class'            => 'form-control',
@@ -50,8 +48,6 @@ class TimeZone extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
     protected $inlineAttributes = [
         'accesskey',

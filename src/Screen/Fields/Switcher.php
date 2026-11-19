@@ -39,8 +39,6 @@ class Switcher extends Field
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
     protected $attributes = [
         'type'     => 'checkbox',
@@ -52,8 +50,6 @@ class Switcher extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
     protected $inlineAttributes = [
         'accesskey',

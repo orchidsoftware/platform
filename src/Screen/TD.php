@@ -80,7 +80,7 @@ class TD extends Cell
     /**
      * Possible options for filters if it's select
      *
-     * @var array
+     * @var iterable<array-key, string|int>
      */
     protected $filterOptions = [];
 
@@ -121,6 +121,9 @@ class TD extends Cell
         return $this;
     }
 
+    /**
+     * @param iterable<array-key, string|int> $filterOptions
+     */
     public function filterOptions(iterable $filterOptions): self
     {
         $this->filterOptions = $filterOptions;
@@ -136,8 +139,8 @@ class TD extends Cell
     }
 
     /**
-     * @param Field|string|null      $filter
-     * @param iterable|callable|null $options
+     * @param Field|string|null                             $filter
+     * @param iterable<array-key, string|int>|callable|null $options
      */
     public function filter($filter = self::FILTER_TEXT, $options = null): self
     {

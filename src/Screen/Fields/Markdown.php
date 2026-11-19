@@ -24,6 +24,8 @@ use Orchid\Screen\Field;
  * @method $this help(string $value = null)
  * @method $this popover(string $value = null)
  * @method $this title(string $value = null)
+ *
+ * @extends Field<array{toolbar?: iterable<array-key, string|array<string>>|string|null, ...<string, mixed>}>
  */
 class Markdown extends Field
 {
@@ -110,8 +112,6 @@ class Markdown extends Field
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
     protected $attributes = [
         'class'   => 'form-control',
@@ -122,8 +122,6 @@ class Markdown extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
     protected $inlineAttributes = [
         'accesskey',
@@ -159,6 +157,8 @@ class Markdown extends Field
 
     /**
      * Defines the buttons and visual groups displayed in the editor toolbar.
+     *
+     * @param array<string|array<string>> $groups
      */
     public function toolbar(array $groups): self
     {
@@ -167,6 +167,8 @@ class Markdown extends Field
 
     /**
      * Prepares toolbar groups for rendering.
+     *
+     * @return list<list<array{string, string, string}>>
      */
     protected function prepareToolbarGroups(): array
     {
@@ -184,6 +186,8 @@ class Markdown extends Field
 
     /**
      * Returns supported toolbar buttons.
+     *
+     * @return array<string, array{string, string, string}>
      */
     protected function toolbarButtons(): array
     {

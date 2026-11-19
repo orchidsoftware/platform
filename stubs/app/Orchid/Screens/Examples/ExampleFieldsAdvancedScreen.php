@@ -28,7 +28,7 @@ class ExampleFieldsAdvancedScreen extends Screen
     /**
      * Fetch data to be displayed on the screen.
      *
-     * @return array
+     * @return array{name: string, place: array{lat: float, lng: float}}
      */
     public function query(): iterable
     {

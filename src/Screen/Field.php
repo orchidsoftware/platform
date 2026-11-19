@@ -44,6 +44,8 @@ use Throwable;
  * @method $this  idPrefix(?string $value = null)
  * @method $this  placeholder(?string $value = null)
  *
+ * @template TAttributes of array<string, mixed> = array<string, mixed>
+ *
  * @phpstan-consistent-constructor
  */
 class Field implements \Stringable, Fieldable, Htmlable
@@ -71,7 +73,7 @@ class Field implements \Stringable, Fieldable, Htmlable
      * An array containing all attributes available to the field.
      * Attributes are used to configure the HTML form element.
      *
-     * @var array
+     * @var TAttributes
      */
     protected $attributes = [
         'value' => null,
@@ -80,7 +82,7 @@ class Field implements \Stringable, Fieldable, Htmlable
     /**
      * Required Attributes.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $required = [
         'name',
@@ -106,7 +108,7 @@ class Field implements \Stringable, Fieldable, Htmlable
      * A set of attributes for the assignment
      * of which will automatically translate them.
      *
-     * @var array|null
+     * @var array<int, string>|null
      */
     protected $translations = [
         'title',
@@ -118,7 +120,7 @@ class Field implements \Stringable, Fieldable, Htmlable
      * Universal attributes are applied to almost all tags,
      * so they are allocated to a separate group so that they do not repeat for all tags.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $universalAttributes = [
         'accesskey',
@@ -140,11 +142,13 @@ class Field implements \Stringable, Fieldable, Htmlable
     /**
      * Attributes available for a particular tag.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $inlineAttributes = [];
 
     /**
+     * @param array<array-key, mixed> $parameters
+     *
      * @return $this|mixed|static|Field
      */
     public function __call(string $method, array $parameters)
@@ -165,7 +169,7 @@ class Field implements \Stringable, Fieldable, Htmlable
     /**
      * Sets the 'value' attribute of the field.
      *
-     * @param mixed $value The value to be set for the 'value' attribute.
+     * @param TAttributes['value'] $value
      */
     public function value(mixed $value): static
     {
@@ -175,8 +179,10 @@ class Field implements \Stringable, Fieldable, Htmlable
     /**
      * Sets the value for the specified attribute of the field.
      *
-     * @param string $key   The name of the attribute to set.
-     * @param mixed  $value The value of the attribute. Defaults to true.
+     * @template TKey of key-of<TAttributes>
+     *
+     * @param TKey $key
+     * @param TAttributes[TKey] $value
      *
      * @return $this Returns the current instance for method chaining.
      */
@@ -267,6 +273,8 @@ class Field implements \Stringable, Fieldable, Htmlable
 
     /**
      * Gets the field's attributes.
+     *
+     * @return TAttributes
      */
     public function getAttributes(): array
     {
@@ -336,9 +344,13 @@ class Field implements \Stringable, Fieldable, Htmlable
     }
 
     /**
-     * @param mixed|null $value
+     * @template TKey of key-of<TAttributes>
+     * @template TDefault
      *
-     * @return static|mixed|null
+     * @param TKey     $key
+     * @param TDefault $value
+     *
+     * @return TAttributes[TKey]|TDefault
      */
     public function get(string $key, $value = null)
     {
@@ -603,6 +615,8 @@ class Field implements \Stringable, Fieldable, Htmlable
 
     /**
      * Add a class to the field including the existing classes.
+     *
+     * @param string|array<string> $classes
      */
     public function addClass(string|array $classes): static
     {

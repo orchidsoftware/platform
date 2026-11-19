@@ -33,6 +33,8 @@ use Orchid\Screen\Fields\Support\ChoicePayload;
  * @method $this options($value = null)
  * @method $this title(string $value = null)
  * @method $this maximumSelectionLength(int $value = 0)
+ *
+ * @extends Field<array{value?: array<mixed>|scalar|object|null, ...<string, mixed>}>
  */
 class Select extends Field implements ComplexFieldConcern
 {
@@ -52,8 +54,6 @@ class Select extends Field implements ComplexFieldConcern
 
     /**
      * Default attributes value.
-     *
-     * @var array<string, mixed>
      */
     protected $attributes = [
         'class'                 => 'form-control',
@@ -145,6 +145,8 @@ class Select extends Field implements ComplexFieldConcern
 
     /**
      * Columns to search when loading lazy options.
+     *
+     * @param string|array<string> $columns
      */
     public function searchColumns(string|array ...$columns): static
     {
@@ -207,7 +209,7 @@ class Select extends Field implements ComplexFieldConcern
         $this->set('options', $options);
 
         return $this->addBeforeRender(function () use ($reflection, $enum): void {
-            $value = collect($this->get('value'))->map(function ($item) use ($reflection, $enum) {
+            $value = collect($this->get('value'))->map(function ($item) use ($reflection, $enum): mixed {
                 return $item instanceof $enum
                     ? ($reflection->isBacked() ? $item->value : $item->name)
                     : $item;
@@ -221,6 +223,8 @@ class Select extends Field implements ComplexFieldConcern
 
     /**
      * Populate options from an Eloquent query.
+     *
+     * @param Builder<covariant Model> $builder
      */
     public function fromQuery(Builder $builder, string $name, ?string $key = null): static
     {
@@ -362,6 +366,8 @@ class Select extends Field implements ComplexFieldConcern
 
     /**
      * Populate options from resolved Eloquent models.
+     *
+     * @param Model|Collection<*, covariant Model> $source
      */
     private function setFromEloquent(Model|Collection $source, string $name, string $key): static
     {

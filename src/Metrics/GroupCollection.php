@@ -2,8 +2,12 @@
 
 namespace Orchid\Metrics;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
+/**
+ * @extends Collection<array-key, Model|array{label: mixed, value: int|float|numeric-string|null}>
+ */
 class GroupCollection extends Collection
 {
     /**
@@ -11,7 +15,7 @@ class GroupCollection extends Collection
      *
      * @param \Closure|null $closure The closure that formats the label. It receives a string and returns a string.
      *
-     * @return array A multidimensional array ready to be used in a chart.
+     * @return array{labels: list<mixed>, datasets: list<array{values: list<int>}>}
      */
     public function toChart(?\Closure $closure = null): array
     {

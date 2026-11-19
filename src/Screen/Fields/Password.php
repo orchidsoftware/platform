@@ -44,8 +44,6 @@ class Password extends Field
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
     protected $attributes = [
         'type'       => 'password',
@@ -55,8 +53,6 @@ class Password extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
     protected $inlineAttributes = [
         'accept',

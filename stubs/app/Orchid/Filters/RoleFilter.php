@@ -21,23 +21,11 @@ class RoleFilter extends Filter
         return __('Roles');
     }
 
-    /**
-     * The array of matched parameters.
-     *
-     * @return array
-     */
     public function parameters(): array
     {
         return ['role'];
     }
 
-    /**
-     * Apply to a given Eloquent query builder.
-     *
-     * @param Builder $builder
-     *
-     * @return Builder
-     */
     public function run(Builder $builder): Builder
     {
         return $builder->whereHas(
@@ -48,6 +36,8 @@ class RoleFilter extends Filter
 
     /**
      * Get the display fields.
+     *
+     * @return list<Select>
      */
     public function display(): array
     {

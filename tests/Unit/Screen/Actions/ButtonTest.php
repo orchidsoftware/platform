@@ -140,7 +140,7 @@ class ButtonTest extends TestFieldsUnitCase
         );
     }
 
-    public function testButtonWhenDisable()
+    public function testButtonWhenDisable(): void
     {
         $button = Button::make('About')
             ->method('test')

@@ -62,6 +62,8 @@ class Modal extends Layout
 
     /**
      * Modal constructor.
+     *
+     * @param array<Layout|string|array<Layout|string>> $layouts
      */
     public function __construct(string $key, array $layouts = [])
     {
@@ -259,6 +261,8 @@ class Modal extends Layout
 
     /**
      * Return the deferrer parameters for loading data from the browser.
+     *
+     * @return array<string, string>
      */
     protected function getDeferrerDataLoadingParameters(): array
     {

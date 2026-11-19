@@ -29,6 +29,8 @@ interface Fieldable
 
     /**
      * Return the attributes configured for rendering.
+     *
+     * @return array<string, mixed>
      */
     public function getAttributes(): array;
 }

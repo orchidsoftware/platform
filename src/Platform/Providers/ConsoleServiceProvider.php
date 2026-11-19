@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
+use Illuminate\Console\Command;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Commands\AdminCommand;
@@ -28,7 +29,7 @@ class ConsoleServiceProvider extends ServiceProvider
     /**
      * The available command shortname.
      *
-     * @var array
+     * @var list<class-string<Command>>
      */
     protected $commands = [
         InstallCommand::class,

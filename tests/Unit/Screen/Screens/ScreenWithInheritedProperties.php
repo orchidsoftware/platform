@@ -4,6 +4,6 @@ namespace Orchid\Tests\Unit\Screen\Screens;
 
 class ScreenWithInheritedProperties extends ParentScreen
 {
-    public $childProperty1;
-    public $childProperty2;
+    public ?string $childProperty1 = null;
+    public ?string $childProperty2 = null;
 }

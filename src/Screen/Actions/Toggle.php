@@ -24,8 +24,6 @@ class Toggle extends Button
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
     protected $attributes = [
         'class'      => 'form-check-input',

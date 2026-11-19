@@ -13,7 +13,7 @@ class ModelRouteBindScreen extends Screen
     /**
      * Query data.
      *
-     * @param User $user
+     * @return array{user: User|null}
      */
     public function query(?User $user = null): array
     {

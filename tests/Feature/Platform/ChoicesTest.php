@@ -12,7 +12,9 @@ use Orchid\Screen\Fields\Support\ChoicePayload;
 use Orchid\Tests\App\EmptyUserModel;
 use Orchid\Tests\TestFeatureCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use Symfony\Component\HttpFoundation\Response;
 
+/** @phpstan-type Scope array{name: string, parameters: list<mixed>} */
 class ChoicesTest extends TestFeatureCase
 {
     /**
@@ -28,6 +30,9 @@ class ChoicesTest extends TestFeatureCase
         ]);
     }
 
+    /**
+     * @return list<array{Scope}>
+     */
     public static function scopeList(): array
     {
         return [
@@ -38,6 +43,8 @@ class ChoicesTest extends TestFeatureCase
     }
 
     /**
+     * @param Scope $scope
+     *
      * @throws \Throwable
      */
     #[DataProvider('scopeList')]
@@ -59,6 +66,8 @@ class ChoicesTest extends TestFeatureCase
     }
 
     /**
+     * @param Scope $scope
+     *
      * @throws \Throwable
      */
     #[DataProvider('scopeList')]
@@ -102,7 +111,7 @@ class ChoicesTest extends TestFeatureCase
         ]);
     }
 
-    public function testSearchColumns()
+    public function testSearchColumns(): void
     {
         $user = $this->users->random();
         $response = $this->postChoices(new ChoicePayload(
@@ -120,7 +129,7 @@ class ChoicesTest extends TestFeatureCase
         ]);
     }
 
-    public function testEncryptedChoicePayload()
+    public function testEncryptedChoicePayload(): void
     {
         $user = $this->users->random();
         $payload = new ChoicePayload(
@@ -210,6 +219,9 @@ class ChoicesTest extends TestFeatureCase
         ]);
     }
 
+    /**
+     * @param Scope $scope
+     */
     #[DataProvider('scopeList')]
     public function testChoicePayloadAppliesScopes(array $scope): void
     {
@@ -228,7 +240,7 @@ class ChoicesTest extends TestFeatureCase
         ])->values()->all());
     }
 
-    public function testSearchColumnsWithScopes()
+    public function testSearchColumnsWithScopes(): void
     {
         $user = $this->users->random();
         $payload = new ChoicePayload(
@@ -261,6 +273,8 @@ class ChoicesTest extends TestFeatureCase
 
     /**
      * @param array<string, mixed> $parameters
+     *
+     * @return TestResponse<Response>
      */
     private function postChoices(ChoicePayload $payload, array $parameters = []): TestResponse
     {

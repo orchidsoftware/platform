@@ -76,6 +76,9 @@ class SideMenuTest extends TestUnitCase
 
         $layout = new class([$parent]) extends SideMenu
         {
+            /**
+             * @param list<Menu> $items
+             */
             public function __construct(private readonly array $items) {}
 
             protected function navigations(): iterable

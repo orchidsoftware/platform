@@ -152,6 +152,9 @@ class SourceModel extends Model
         ];
     }
 
+    /**
+     * @return Attribute<string, never>
+     */
     protected function greeting(): Attribute
     {
         return Attribute::make(get: function () {

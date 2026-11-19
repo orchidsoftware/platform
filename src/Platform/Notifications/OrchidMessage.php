@@ -9,17 +9,22 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Notifications\Notification;
 use Orchid\Support\Color;
 
+/**
+ * @implements Arrayable<string, mixed>
+ */
 class OrchidMessage extends Notification implements Arrayable
 {
     /**
      * The data that should be stored with the notification.
+     *
+     * @var array<string, mixed>
      */
     public array $data = [];
 
     /**
      * Create a new instance of OrchidMessage with the given data.
      *
-     * @param array $data An array of data to be merged with default message data.
+     * @param array<string, mixed> $data An array of data to be merged with default message data.
      */
     public function __construct(array $data = [])
     {
@@ -104,8 +109,7 @@ class OrchidMessage extends Notification implements Arrayable
     /**
      * Get the notification channels.
      *
-     *
-     * @return array
+     * @return list<class-string<OrchidChannel>>
      */
     public function via(mixed $notifiable)
     {
@@ -114,6 +118,8 @@ class OrchidMessage extends Notification implements Arrayable
 
     /**
      * Get the instance as an array for orchid.
+     *
+     * @return array<string, mixed>
      */
     public function toOrchid(): array
     {
@@ -122,6 +128,8 @@ class OrchidMessage extends Notification implements Arrayable
 
     /**
      * Get the instance as an array for orchid (alias for toOrchid).
+     *
+     * @return array<string, mixed>
      */
     public function toDashboard(): array
     {

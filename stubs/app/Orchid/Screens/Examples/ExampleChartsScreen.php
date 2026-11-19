@@ -11,7 +11,7 @@ class ExampleChartsScreen extends Screen
     /**
      * Fetch data to be displayed on the screen.
      *
-     * @return array
+     * @return array<string, array{labels: list<string>, datasets: list<array{name?: string, values: list<int>}>}>
      */
     public function query(): iterable
     {

@@ -119,6 +119,10 @@ class KeyValue extends Field
 
     /**
      * Convert rows with nonempty keys into an associative array.
+     *
+     * @param array<array{key?: array-key|null, value?: mixed}> $rows
+     *
+     * @return array<array-key, mixed>
      */
     public static function rowsToArray(array $rows): array
     {

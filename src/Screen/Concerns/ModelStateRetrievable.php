@@ -25,7 +25,7 @@ trait ModelStateRetrievable
     /**
      * Prepare the instance values for serialization.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function __serialize()
     {
@@ -98,6 +98,8 @@ trait ModelStateRetrievable
      * Restore the model after serialization.
      *
      *
+     * @param array<string, mixed> $values
+     *
      * @throws BindingResolutionException
      * @throws \ReflectionException
      *
@@ -150,6 +152,8 @@ trait ModelStateRetrievable
     /**
      * @throws BindingResolutionException
      * @throws \ReflectionException
+     *
+     * @return array<string, mixed>
      */
     protected function getDefaultPropertyWithConstructor(): array
     {

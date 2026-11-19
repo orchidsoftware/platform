@@ -27,11 +27,6 @@ class NumberRange extends Field implements ComplexFieldConcern
         'class'    => 'form-control',
         'type'     => 'number',
     ];
-    /**
-     * Attributes available for a particular tag.
-     *
-     * @var array
-     */
     protected $inlineAttributes = [
         'form',
         'name',

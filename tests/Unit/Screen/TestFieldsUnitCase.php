@@ -13,6 +13,12 @@ use Orchid\Tests\TestUnitCase;
  */
 abstract class TestFieldsUnitCase extends TestUnitCase
 {
+    /**
+     * @param array<string, mixed>  $data
+     * @param array<string, mixed>  $rules
+     * @param array<string, string> $messages
+     * @param array<string, string> $customAttributes
+     */
     public static function renderField(Field $field, array $data = [], array $rules = [], array $messages = [], array $customAttributes = []): string
     {
         try {
@@ -50,6 +56,12 @@ abstract class TestFieldsUnitCase extends TestUnitCase
         return preg_replace($search, $replace, $view);
     }
 
+    /**
+     * @param array<string, mixed>  $data
+     * @param array<string, mixed>  $rules
+     * @param array<string, string> $messages
+     * @param array<string, string> $customAttributes
+     */
     public static function minifyRenderField(Field $field, array $data = [], array $rules = [], array $messages = [], array $customAttributes = []): string
     {
         $view = self::renderField($field, $data, $rules, $messages, $customAttributes);

@@ -18,6 +18,8 @@ class BaseScreenTesting extends Screen
 
     /**
      * Query data.
+     *
+     * @return array{user: User|null, increment: int}
      */
     public function query(?User $user = null): array
     {

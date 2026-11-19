@@ -22,8 +22,6 @@ class Label extends Field
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
     protected $attributes = [
         'id'    => null,
@@ -32,8 +30,6 @@ class Label extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
     protected $inlineAttributes = [
         'class',

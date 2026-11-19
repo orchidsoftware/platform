@@ -55,8 +55,6 @@ class Input extends Field
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
     protected $attributes = [
         'class'    => 'form-control',
@@ -65,8 +63,6 @@ class Input extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
     protected $inlineAttributes = [
         'accept',
@@ -128,6 +124,8 @@ class Input extends Field
 
     /**
      * Attach suggested input values and configure the associated datalist ID.
+     *
+     * @param array<string|int|float> $datalist
      */
     public function datalist(array $datalist = []): static
     {

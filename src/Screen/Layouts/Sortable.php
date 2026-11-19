@@ -75,7 +75,7 @@ abstract class Sortable extends Layout
     }
 
     /**
-     * @return array
+     * @return array<Sight>|\Traversable<array-key, Sight>
      */
     abstract protected function columns(): iterable;
 

@@ -8,8 +8,14 @@ use Orchid\Attachment\File;
 
 class AttachmentsTableSeeder extends Seeder
 {
+    /**
+     * @var string
+     */
     public $storage = 'public';
 
+    /**
+     * @var int
+     */
     public $filecounts = 15;
 
     /**
@@ -24,6 +30,9 @@ class AttachmentsTableSeeder extends Seeder
         }
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function addfile()
     {
         $file = UploadedFile::fake()->image('attachment.jpg', 640, 480);

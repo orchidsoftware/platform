@@ -14,9 +14,6 @@ class Browsing extends Layout
      */
     protected $template = 'orchid::layouts.browsing';
 
-    /**
-     * @var array
-     */
     protected $variables = [
         'allow'          => null,
         'loading'        => 'lazy',

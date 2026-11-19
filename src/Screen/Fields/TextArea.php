@@ -36,8 +36,6 @@ class TextArea extends Field
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
     protected $attributes = [
         'class' => 'form-control no-resize',
@@ -46,8 +44,6 @@ class TextArea extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
     protected $inlineAttributes = [
         'accesskey',

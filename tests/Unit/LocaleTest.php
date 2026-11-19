@@ -46,11 +46,17 @@ class LocaleTest extends TestUnitCase
             });
     }
 
+    /**
+     * @return Collection<int, string>
+     */
     protected function getTranslationFiles(): Collection
     {
         $patternPath = Orchid::path('resources/lang').'/*.json';
 
-        return collect(glob($patternPath));
+        $files = glob($patternPath);
+        $this->assertNotFalse($files);
+
+        return collect($files);
     }
 
     /**

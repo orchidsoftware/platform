@@ -13,6 +13,9 @@ use Orchid\Tests\TestUnitCase;
 
 class WhereDateTest extends TestUnitCase
 {
+    /**
+     * @return Builder<DateFilteredTestModel>
+     */
     private function getModelBuilder(): Builder
     {
         $model = new DateFilteredTestModel;

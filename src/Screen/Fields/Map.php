@@ -27,8 +27,6 @@ class Map extends Field
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
     protected $attributes = [
         'zoom'   => 14,
@@ -37,8 +35,6 @@ class Map extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
     protected $inlineAttributes = [
         'name',

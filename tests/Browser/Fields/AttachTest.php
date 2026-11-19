@@ -116,6 +116,9 @@ window.application && [...document.querySelectorAll('[data-controller="attach"]'
 JS);
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     private function submitted(Browser $browser): array
     {
         return json_decode($browser->script('return document.querySelector("pre")?.textContent ?? document.body.textContent')[0], true, 512, JSON_THROW_ON_ERROR);

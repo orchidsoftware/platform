@@ -8,7 +8,6 @@ use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Testing\TestResponse;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Events\UploadFileEvent;
 use Orchid\Platform\Http\Middleware\Access;
@@ -98,7 +97,6 @@ class AttachmentTest extends TestFeatureCase
 
     public function testAttachmentHttpDestroy(): void
     {
-        /** @var TestResponse $response */
         $response = $this
             ->actingAs($this->createAdminUser())
             ->post(route('orchid.files.upload'), [
@@ -117,7 +115,6 @@ class AttachmentTest extends TestFeatureCase
 
     public function testAttachmentHttpUpdate(): void
     {
-        /** @var TestResponse $response */
         $response = $this
             ->actingAs($this->createAdminUser())
             ->post(route('orchid.files.upload'), [

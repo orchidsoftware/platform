@@ -20,7 +20,7 @@ use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
 class SelectTest extends TestFieldsUnitCase
 {
     /**
-     * @var Collection
+     * @var Collection<int, Role>
      */
     protected $roles;
 

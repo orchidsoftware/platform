@@ -9,6 +9,7 @@ use Illuminate\Session\SessionManager;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Illuminate\Testing\TestResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class DynamicTestScreen
 {
@@ -24,11 +25,15 @@ class DynamicTestScreen
 
     /**
      * Route parameters
+     *
+     * @var array<array-key, mixed>
      */
     protected array $parameters = [];
 
     /**
      * Session data
+     *
+     * @var array<string, mixed>
      */
     protected array $session = [];
 
@@ -51,9 +56,9 @@ class DynamicTestScreen
     /**
      * Register a dynamic screen
      *
-     * @param string       $screen     Screen name
-     * @param string|null  $route      Route name
-     * @param array|string $middleware Middleware to be used
+     * @param string               $screen     Screen name
+     * @param string|null          $route      Route name
+     * @param array<string>|string $middleware Middleware to be used
      */
     public function register(string $screen, ?string $route = null, array|string $middleware = 'web'): DynamicTestScreen
     {
@@ -70,7 +75,7 @@ class DynamicTestScreen
     /**
      * Set route parameters
      *
-     * @param array $parameters Route parameters
+     * @param array<array-key, mixed> $parameters Route parameters
      *
      * @return $this
      */
@@ -84,7 +89,7 @@ class DynamicTestScreen
     /**
      * Set session data
      *
-     * @param array $data Session data
+     * @param array<string, mixed> $data Session data
      */
     public function session(array $data): DynamicTestScreen
     {
@@ -96,7 +101,9 @@ class DynamicTestScreen
     /**
      * Get the test response for the screen.
      *
-     * @param array $headers Headers to be used
+     * @param array<string, string> $headers Headers to be used
+     *
+     * @return TestResponse<Response>
      */
     public function display(array $headers = []): TestResponse
     {
@@ -109,9 +116,11 @@ class DynamicTestScreen
     /**
      * Call the specified screen method
      *
-     * @param string $method     Method to call
-     * @param array  $parameters Parameters to be used
-     * @param array  $headers    Headers to be used
+     * @param string                  $method     Method to call
+     * @param array<array-key, mixed> $parameters Parameters to be used
+     * @param array<string, string>   $headers    Headers to be used
+     *
+     * @return TestResponse<Response>
      */
     public function method(string $method, array $parameters = [], array $headers = []): TestResponse
     {
@@ -130,6 +139,11 @@ class DynamicTestScreen
 
     /**
      * Call the specified screen method using alias
+     *
+     * @param array<array-key, mixed> $parameters
+     * @param array<string, string>   $headers
+     *
+     * @return TestResponse<Response>
      */
     public function call(string $method, array $parameters = [], array $headers = []): TestResponse
     {
@@ -138,6 +152,8 @@ class DynamicTestScreen
 
     /**
      * Get the route URL
+     *
+     * @param array<array-key, mixed>|null $parameters
      */
     protected function route(?array $parameters = null): string
     {

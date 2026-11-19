@@ -11,6 +11,7 @@ use App\Orchid\Layouts\User\UserRoleLayout;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Orchid\Access\Impersonation;
@@ -33,7 +34,7 @@ class UserEditScreen extends Screen
     /**
      * Fetch data to be displayed on the screen.
      *
-     * @return array
+     * @return array{user: User, permission: Collection<string, Collection<int, array{slug: string, description: string, active: bool}>>}
      */
     public function query(User $user): iterable
     {

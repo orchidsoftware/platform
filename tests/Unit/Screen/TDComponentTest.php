@@ -94,7 +94,7 @@ class TDComponentTest extends TestUnitCase
         $this->assertStringContainsString('property2: default value', $view);
     }
 
-    protected function checkedArgument(View $view)
+    protected function checkedArgument(View $view): void
     {
         $html = $view->render();
 

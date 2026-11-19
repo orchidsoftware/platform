@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Orchid\Screen\Contracts\Fieldable;
@@ -22,7 +23,7 @@ abstract class Filter
     /**
      * The array of matched parameters.
      *
-     * @var null|array
+     * @var array<string>|null
      */
     public $parameters;
 
@@ -41,6 +42,9 @@ abstract class Filter
         $this->request = request();
     }
 
+    /**
+     * @return iterable<string, mixed>
+     */
     public function query(): iterable
     {
         return $this->request->only($this->parameters(), []);
@@ -48,6 +52,12 @@ abstract class Filter
 
     /**
      * Apply filter if the request parameters were satisfied.
+     *
+     * @template TModel of Model
+     *
+     * @param Builder<TModel> $builder
+     *
+     * @return Builder<TModel>
      */
     public function filter(Builder $builder): Builder
     {
@@ -56,6 +66,8 @@ abstract class Filter
 
     /**
      * The array of matched parameters.
+     *
+     * @return array<string>|null
      */
     public function parameters(): ?array
     {
@@ -64,6 +76,12 @@ abstract class Filter
 
     /**
      * Apply to a given Eloquent query builder.
+     *
+     * @template TModel of Model
+     *
+     * @param Builder<TModel> $builder
+     *
+     * @return Builder<TModel>
      */
     abstract public function run(Builder $builder): Builder;
 

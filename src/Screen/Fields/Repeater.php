@@ -9,7 +9,7 @@ use InvalidArgumentException;
 use Orchid\Screen\Field;
 
 /**
- * @method $this fields(array $value = [])
+ * @method $this fields(array<Field> $value = [])
  * @method $this addRowLabel(string $value = null)
  * @method $this idPrefix(string $value = null)
  * @method $this readonly(bool $value = true)
@@ -116,6 +116,9 @@ class Repeater extends Field
         return $this->value($this->get('value'));
     }
 
+    /**
+     * @return list<array<array-key, mixed>>
+     */
     private function normalizeRows(mixed $value): array
     {
         if ($value === null || $value === '') {

@@ -27,7 +27,7 @@ use Orchid\Screen\Field;
  * @method $this height($value = '300px')
  * @method $this title(string $value = null)
  * @method $this popover(string $value = null)
- * @method $this toolbar(array $options)
+ * @method $this toolbar(array<string> $options)
  * @method $this base64(bool $value = true)
  * @method $this groups(string $value = null)
  */
@@ -40,8 +40,6 @@ class Quill extends Field
 
     /**
      * All attributes that are available to the field.
-     *
-     * @var array
      */
     protected $attributes = [
         'value'   => null,
@@ -52,8 +50,6 @@ class Quill extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
     protected $inlineAttributes = [
         'accesskey',

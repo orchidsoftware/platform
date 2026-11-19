@@ -86,14 +86,15 @@ abstract class Cell
     }
 
     /**
-     * @throws \ReflectionException
+     * @param class-string            $component
+     * @param array<array-key, mixed> $params
      *
-     * @return string
+     * @throws \ReflectionException
      */
     protected function getNameParameterExpected(string $component, array $params = []): ?string
     {
         $class = new \ReflectionClass($component);
-        $parameters = optional($class->getConstructor())->getParameters() ?? [];
+        $parameters = $class->getConstructor()?->getParameters() ?? [];
 
         $paramsKeys = Arr::isAssoc($params) ? array_keys($params) : $params;
 
@@ -106,6 +107,9 @@ abstract class Cell
     }
 
     /**
+     * @param array<array-key, mixed> $params
+     * @param mixed                   $value
+     *
      * @throws BindingResolutionException
      * @throws \ReflectionException
      */
@@ -153,6 +157,8 @@ abstract class Cell
 
     /**
      * Pass only the cell value to the component
+     *
+     * @param array<array-key, mixed> $params
      *
      * @throws \ReflectionException
      *

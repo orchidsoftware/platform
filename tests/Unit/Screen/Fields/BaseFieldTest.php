@@ -33,16 +33,11 @@ class BaseFieldTest extends TestFieldsUnitCase
 
             /**
              * Default attributes value.
-             *
-             * @var array
              */
             public $attributes = [
                 'class' => 'form-control',
             ];
 
-            /**
-             * @var array
-             */
             public $required = [
                 'name',
                 'height',

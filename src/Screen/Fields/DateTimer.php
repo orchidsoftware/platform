@@ -39,8 +39,6 @@ class DateTimer extends Field
 
     /**
      * Default attributes value.
-     *
-     * @var array
      */
     protected $attributes = [
         'class'                                 => 'form-control',
@@ -65,8 +63,6 @@ class DateTimer extends Field
 
     /**
      * Attributes available for a particular tag.
-     *
-     * @var array
      */
     protected $inlineAttributes = [
         'accept',
@@ -210,6 +206,8 @@ class DateTimer extends Field
      *     ['from' => '2021-04-25', 'to' => '2021-05-01'],
      *
      * ]
+     *
+     * @param array<string|array{from: string, to: string}> $dates
      */
     public function available(array $dates = []): static
     {
@@ -230,6 +228,8 @@ class DateTimer extends Field
      *     ['from' => '2021-04-25', 'to' => '2021-05-01'],
      *
      * ]
+     *
+     * @param array<string|array{from: string, to: string}> $dates
      */
     public function unavailable(array $dates = []): static
     {
@@ -355,7 +355,7 @@ class DateTimer extends Field
     /**
      * Set quick date options for selection near an input field.
      *
-     * @param array $presets An array of preset date values
+     * @param array<string, string|\DateTimeInterface|int|float|array<string|\DateTimeInterface|int|float>> $presets An array of preset date values
      */
     public function withQuickDates(array $presets): static
     {

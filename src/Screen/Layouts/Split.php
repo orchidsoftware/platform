@@ -32,7 +32,7 @@ abstract class Split extends Layout
     /**
      * Split constructor.
      *
-     * @param Layout[] $layouts The layouts that will be contained in this split layout.
+     * @param array<Layout|string|array<Layout|string>> $layouts The layouts that will be contained in this split layout.
      */
     public function __construct(array $layouts = [])
     {
