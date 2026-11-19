@@ -196,7 +196,32 @@ class AttachmentTest extends TestUnitCase
         $this->assertNotEquals($upload->id, $clone->id);
 
         $upload->delete();
-        $this->assertNotNull($clone->url());
+        Storage::disk($this->disk)->assertExists($clone->physicalPath());
+
+        $clone->delete();
+        Storage::disk($this->disk)->assertMissing($clone->physicalPath());
+    }
+
+    public function testDeletingAttachmentsWithTheSameHashInDifferentDirectories(): void
+    {
+        $disk = Storage::fake($this->disk);
+        $file = UploadedFile::fake()->createWithContent('report.txt', 'Same report');
+
+        $copies = collect(['drafts', 'published', 'archive'])->map(
+            fn (string $directory) => (new File($file, $this->disk))->allowDuplicates()->path($directory)->load()
+        );
+
+        $this->assertCount(1, $copies->pluck('hash')->unique());
+        $this->assertCount(3, $copies->pluck('path')->unique());
+        $this->assertCount(3, $copies->pluck('name')->unique());
+        $disk->assertExists($copies->map->physicalPath()->all(), 'Same report');
+
+        while ($copies->isNotEmpty()) {
+            $copies->shift()->delete();
+
+            $this->assertEqualsCanonicalizing($copies->pluck('id')->all(), Attachment::pluck('id')->all());
+            $this->assertEqualsCanonicalizing($copies->map->physicalPath()->all(), $disk->allFiles());
+        }
     }
 
     public function testAttachmentUploadAllowingDuplicate(): void
@@ -211,7 +236,11 @@ class AttachmentTest extends TestUnitCase
         $this->assertNotEquals($upload->id, $clone->id);
 
         $upload->delete();
-        $this->assertNotNull($clone->url());
+        Storage::disk($this->disk)->assertMissing($upload->physicalPath());
+        Storage::disk($this->disk)->assertExists($clone->physicalPath());
+
+        $clone->delete();
+        Storage::disk($this->disk)->assertMissing($clone->physicalPath());
     }
 
     public function testUnknownMimeTypeAttachmentUpload(): void
