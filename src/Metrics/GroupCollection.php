@@ -22,12 +22,12 @@ class GroupCollection extends Collection
         // If the closure is not set, we define a default one that returns the original label.
         $closure ??= static fn ($label) => $label;
 
-        $groups = $this->sortByDesc('value')->values();
+        $groups = $this->sortByDesc('value');
 
         return [
-            'labels'   => $groups->pluck('label')->map($closure)->all(),
+            'labels'   => array_values($groups->pluck('label')->map($closure)->all()),
             'datasets' => [[
-                'values' => $groups->pluck('value')->map(fn ($value) => (int) $value)->all(),
+                'values' => array_values($groups->pluck('value')->map(fn ($value) => (int) $value)->all()),
             ]],
         ];
     }

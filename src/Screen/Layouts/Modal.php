@@ -55,9 +55,6 @@ class Modal extends Layout
      */
     protected $dataLoadingMethod;
 
-    /**
-     * @var string
-     */
     protected $template = 'orchid::layouts.modal';
 
     /**

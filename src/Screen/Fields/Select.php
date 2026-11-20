@@ -47,8 +47,6 @@ class Select extends Field implements ComplexFieldConcern
 
     /**
      * View template show.
-     *
-     * @var string
      */
     protected $view = 'orchid::fields.select';
 
@@ -116,6 +114,8 @@ class Select extends Field implements ComplexFieldConcern
     /**
      * Populate options from an Eloquent model (or class name).
      * Use with lazy() to load options via HTTP in chunks.
+     *
+     * @param class-string<Model>|Model $model
      */
     public function fromModel(string|Model $model, string $name, ?string $key = null): static
     {
@@ -197,23 +197,22 @@ class Select extends Field implements ComplexFieldConcern
 
     /**
      * Populate options from a PHP enum.
+     *
+     * @param class-string<\UnitEnum> $enum
      */
     public function fromEnum(string $enum, ?string $displayName = null): static
     {
-        $reflection = new \ReflectionEnum($enum);
         $options = [];
         foreach ($enum::cases() as $case) {
-            $optionKey = $reflection->isBacked() ? $case->value : $case->name;
+            $optionKey = $this->enumValue($case);
             $options[$optionKey] = $displayName === null ? __($case->name) : $case->$displayName();
         }
         $this->set('options', $options);
 
-        return $this->addBeforeRender(function () use ($reflection, $enum): void {
-            $value = collect($this->get('value'))->map(function ($item) use ($reflection, $enum): mixed {
-                return $item instanceof $enum
-                    ? ($reflection->isBacked() ? $item->value : $item->name)
-                    : $item;
-            })->all();
+        return $this->addBeforeRender(function () use ($enum): void {
+            $value = collect($this->get('value'))
+                ->map(fn ($item) => $item instanceof $enum ? $this->enumValue($item) : $item)
+                ->all();
 
             $this
                 ->set('value', $value)

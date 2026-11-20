@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Closure;
-use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\Contracts\Fieldable;
 use Orchid\Screen\Contracts\Groupable;
 use Throwable;
@@ -22,7 +21,7 @@ class Builder
     /**
      * Transmitted values for display in a form.
      *
-     * @var Model|Repository
+     * @var Repository
      */
     public $data;
 

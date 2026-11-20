@@ -8,11 +8,15 @@ namespace Orchid\Presenter;
  * Base class for presenting data from an Eloquent model or any other object.
  *
  * Encapsulates display logic so models stay free of view-related concerns.
+ *
+ * @template TEntity of object = object
  */
 abstract class Presenter
 {
     /**
      * Wrap the entity whose values the presenter exposes.
+     *
+     * @param TEntity $entity
      */
     public function __construct(
         /**

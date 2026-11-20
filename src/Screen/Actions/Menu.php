@@ -31,8 +31,6 @@ class Menu extends Link
 {
     /**
      * The view associated with this menu item.
-     *
-     * @var string
      */
     protected $view = 'orchid::actions.menu';
 

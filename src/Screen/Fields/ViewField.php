@@ -16,6 +16,8 @@ class ViewField extends Field
 {
     /**
      * Set the Blade view used to render the field.
+     *
+     * @param view-string $view
      */
     public function view(string $view): self
     {

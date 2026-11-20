@@ -25,9 +25,6 @@ abstract class Selection extends Layout
      */
     public const TEMPLATE_LINE = 'orchid::layouts.filter';
 
-    /**
-     * @var string
-     */
     public $template = self::TEMPLATE_DROP_DOWN;
 
     /**

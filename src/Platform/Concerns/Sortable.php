@@ -6,6 +6,7 @@ namespace Orchid\Platform\Concerns;
 
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
+use SortDirection;
 
 trait Sortable
 {
@@ -42,8 +43,8 @@ trait Sortable
     /**
      * Scope a query to sort the results by the sort column.
      *
-     * @param Builder<static> $query
-     * @param string          $direction The sorting direction (ASC or DESC). Default is ASC.
+     * @param Builder<static>                         $query
+     * @param SortDirection|'asc'|'desc'|'ASC'|'DESC' $direction
      *
      * @return Builder<static>
      */
@@ -52,6 +53,6 @@ trait Sortable
     {
         $column = $this->getSortColumnName();
 
-        return $query->orderBy($column, $direction);
+        return $query->orderBy($column, is_string($direction) ? strtolower($direction) : $direction);
     }
 }

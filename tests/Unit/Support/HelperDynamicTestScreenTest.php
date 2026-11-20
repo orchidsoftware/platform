@@ -79,7 +79,7 @@ class HelperDynamicTestScreenTest extends TestUnitCase
             ->assertSee('Custom message');
     }
 
-    public function textExampleAuth(): void
+    public function testExampleAuth(): void
     {
         $user = User::factory()->make();
 
@@ -89,7 +89,7 @@ class HelperDynamicTestScreenTest extends TestUnitCase
 
         $screen
             ->call('getUser')
-            ->assertJson($user->toJson());
+            ->assertExactJson($user->toArray());
     }
 
     public function testFollowingAndWithoutFollowingRedirects(): void

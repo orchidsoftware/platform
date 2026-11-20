@@ -31,10 +31,8 @@ use PHPUnit\Framework\Attributes\DataProvider;
  */
 class FieldTest extends TestUnitCase
 {
-    /**
-     * @return \Generator
-     */
-    public static function exampleFields(): ?\Generator
+    /** @return iterable<array{class-string<Field>, array<string, mixed>}> */
+    public static function exampleFields(): iterable
     {
         yield [Input::class, [
             'name' => 'example',
@@ -114,12 +112,14 @@ class FieldTest extends TestUnitCase
     }
 
     /**
+     * @param class-string<Field>  $field
+     * @param array<string, mixed> $options
+     *
      * @throws \Throwable
      */
     #[DataProvider('exampleFields')]
-    public function testHasCorrectInstance(string $field, mixed $options): void
+    public function testHasCorrectInstance(string $field, array $options): void
     {
-        /** @var Field $field */
         $field = $field::make();
 
         foreach ($options as $key => $option) {

@@ -65,7 +65,7 @@ class Field implements \Stringable, Fieldable, Htmlable
     /**
      * View template show.
      *
-     * @var string
+     * @var view-string
      */
     protected $view;
 
@@ -91,7 +91,7 @@ class Field implements \Stringable, Fieldable, Htmlable
     /**
      * The default layout wrapper view for the field.
      *
-     * This property holds the Blade view path or Closure that defines
+     * This property holds the Blade view name that defines
      * the layout used to wrap the field when rendering.
      *
      * It provides the standard wrapper including label, help text, and validation feedback.
@@ -100,7 +100,7 @@ class Field implements \Stringable, Fieldable, Htmlable
      *
      * This value can be overridden in subclasses to customize the wrapper.
      *
-     * @var Closure|string|null
+     * @var view-string|null
      */
     protected $typeForm = 'orchid::partials.fields.vertical';
 
@@ -330,7 +330,7 @@ class Field implements \Stringable, Fieldable, Htmlable
 
         $hash = hash(
             'xxh3',
-            json_encode($this->getAttributes())
+            json_encode($this->getAttributes(), JSON_THROW_ON_ERROR)
         );
 
         $id = collect([
@@ -466,7 +466,7 @@ class Field implements \Stringable, Fieldable, Htmlable
      */
     protected function updateFieldValue(): static
     {
-        $value = Arr::has(old(), $this->getOldName())
+        $value = request()->hasSession() && Arr::has(request()->session()->getOldInput(), $this->getOldName())
             ? $this->getOldValue()
             : $this->get('value');
 

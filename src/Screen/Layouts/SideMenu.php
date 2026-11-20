@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Orchid\Screen\Actions\Menu;
@@ -18,15 +17,12 @@ use Throwable;
  */
 abstract class SideMenu extends Layout
 {
-    /**
-     * @var string
-     */
     protected $template = 'orchid::layouts.sideMenu';
 
     /**
      * @throws Throwable
      *
-     * @return Factory|View|void
+     * @return View|null
      */
     public function build(Repository $repository)
     {
@@ -37,7 +33,7 @@ abstract class SideMenu extends Layout
             ->values();
 
         if (! $this->isSee() || $navigations->isEmpty()) {
-            return;
+            return null;
         }
 
         $domId = 'side-menu-'.substr($this->getSlug(), 0, 10).'-'.spl_object_id($this);

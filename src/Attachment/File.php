@@ -73,7 +73,7 @@ class File
         $this->disk = $disk ?? config('orchid.attachment.disk', 'public'); // get the disk to use from the config or use the default 'public' disk
         $this->storage = Storage::disk($this->disk);
 
-        /** @var string $generator */
+        /** @var class-string<Engine> $generator */
         $generator = config('orchid.attachment.generator', Generator::class);
 
         // Create a new engine class instance to manage the file's associations

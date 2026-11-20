@@ -11,9 +11,6 @@ use Orchid\Support\Facades\Orchid;
 
 abstract class Listener extends Layout
 {
-    /**
-     * @var string
-     */
     protected $template = 'orchid::layouts.listener';
 
     /**

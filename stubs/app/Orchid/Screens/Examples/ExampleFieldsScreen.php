@@ -58,8 +58,6 @@ class ExampleFieldsScreen extends Screen
 
     /**
      * The screen's layout elements.
-     *
-     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): iterable
     {

@@ -34,7 +34,7 @@ class AsyncTest extends TestUnitCase
             ->each(function (string $slug) use ($screen) {
                 $response = $screen->asyncBuild('asyncStub', $slug);
 
-                $this->assertStringContainsString($slug, $response->getContent());
+                $this->assertStringContainsString($slug, $response->content());
             });
     }
 

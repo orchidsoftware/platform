@@ -15,9 +15,6 @@ use Traversable;
  */
 abstract class Blank extends Layout
 {
-    /**
-     * @var string
-     */
     protected $template = 'orchid::layouts.blank';
 
     /**
@@ -27,13 +24,13 @@ abstract class Blank extends Layout
      */
     public function __construct(array $layouts = [])
     {
-        foreach ($layouts as $key => $layout) {
-            if ($layout instanceof Traversable && ! $layout instanceof Layout) {
-                $layouts[$key] = Arr::flatten($layout);
-            }
-        }
+        $this->layouts = [];
 
-        $this->layouts = $layouts;
+        foreach ($layouts as $key => $layout) {
+            $this->layouts[$key] = $layout instanceof Traversable && ! $layout instanceof Layout
+                ? Arr::flatten($layout)
+                : $layout;
+        }
     }
 
     /**

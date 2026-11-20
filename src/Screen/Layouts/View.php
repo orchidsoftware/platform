@@ -16,6 +16,7 @@ abstract class View extends Layout
     /**
      * View constructor.
      *
+     * @param view-string                                   $template
      * @param Arrayable<string, mixed>|array<string, mixed> $data
      */
     public function __construct(string $template, private $data = [])

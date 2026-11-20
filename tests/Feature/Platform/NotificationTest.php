@@ -86,13 +86,13 @@ class NotificationTest extends TestFeatureCase
         $this->freezeSecond();
         $user = $this->createAdminUser();
         $factory = DatabaseNotificationFactory::new()->for($user, 'notifiable');
-        $orchid = $factory->create();
-        $dashboard = $factory->create(['type' => DashboardMessage::class]);
-        $alreadyRead = $factory->create(['read_at' => now()->subDay()]);
-        $unrelated = $factory->create(['type' => 'OtherNotification']);
+        $orchid = $factory->createOne();
+        $dashboard = $factory->createOne(['type' => DashboardMessage::class]);
+        $alreadyRead = $factory->createOne(['read_at' => now()->subDay()]);
+        $unrelated = $factory->createOne(['type' => 'OtherNotification']);
         $otherUser = DatabaseNotificationFactory::new()
             ->for(User::factory()->create(), 'notifiable')
-            ->create();
+            ->createOne();
 
         $this->actingAs($user)
             ->post(route('orchid.notifications.markAllAsRead'))

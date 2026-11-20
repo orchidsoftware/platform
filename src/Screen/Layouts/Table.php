@@ -6,7 +6,6 @@ namespace Orchid\Screen\Layouts;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Contracts\Pagination\Paginator;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Orchid\Screen\Concerns\HasEmptyState;
@@ -21,9 +20,6 @@ abstract class Table extends Layout
 {
     use HasEmptyState;
 
-    /**
-     * @var string
-     */
     protected $template = 'orchid::layouts.table';
 
     /**
@@ -53,14 +49,14 @@ abstract class Table extends Layout
     /**
      * Build the table view with columns, rows, and other settings.
      *
-     * @return Factory|View|void
+     * @return View|null
      */
     public function build(Repository $repository)
     {
         $this->query = $repository;
 
         if (! $this->isSee()) {
-            return;
+            return null;
         }
 
         $columns = collect($this->columns())->filter(static fn (TD $column) => $column->isSee());

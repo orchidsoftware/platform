@@ -4,7 +4,9 @@ namespace Orchid\Tests\Unit\Screen\Layouts;
 
 use Orchid\Screen\LayoutFactory;
 use Orchid\Screen\Repository;
+use Orchid\Tests\App\Components\ClosureComponent;
 use Orchid\Tests\App\Components\Hello;
+use Orchid\Tests\App\Components\HtmlableComponent;
 use Orchid\Tests\TestUnitCase;
 
 class ComponentTest extends TestUnitCase
@@ -21,6 +23,22 @@ class ComponentTest extends TestUnitCase
 
         $this->assertStringContainsString('Alexandr Chernyaev', $html);
         $this->assertStringContainsString($this->app->version(), $html);
+    }
+
+    public function testClosureComponentReceivesItsData(): void
+    {
+        $layout = LayoutFactory::component(ClosureComponent::class);
+
+        $html = $layout->build(new Repository(['name' => 'Alexandr']))->render();
+
+        $this->assertStringContainsString('Hello Alexandr', $html);
+    }
+
+    public function testHtmlableComponent(): void
+    {
+        $layout = LayoutFactory::component(HtmlableComponent::class);
+
+        $this->assertSame('Hello word', $layout->build(new Repository));
     }
 
     public function testAccessByAlias(): void

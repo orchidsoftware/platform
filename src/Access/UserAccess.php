@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Orchid\Platform\Events\AddRoleEvent;
 use Orchid\Platform\Events\RemoveRoleEvent;
@@ -90,10 +91,11 @@ trait UserAccess
             return true;
         }
 
-        return collect($permissions)
-            ->map(fn (string $permit) => $this->hasAccess($permit, $cache))
-            ->filter(fn (bool $result) => $result)
-            ->isNotEmpty();
+        if (is_string($permissions)) {
+            return $this->hasAccess($permissions, $cache);
+        }
+
+        return Arr::first($permissions, fn (string $permit) => $this->hasAccess($permit, $cache)) !== null;
     }
 
     /**
@@ -126,27 +128,19 @@ trait UserAccess
     #[Scope]
     protected function byAnyAccess(Builder $builder, $permitsWithoutWildcard): Builder
     {
-        $permits = collect($permitsWithoutWildcard);
+        $columns = [];
 
-        if ($permits->isEmpty()) {
+        foreach (is_string($permitsWithoutWildcard) ? [$permitsWithoutWildcard] : $permitsWithoutWildcard as $permit) {
+            $columns[] = 'permissions->'.$permit;
+        }
+
+        if ($columns === []) {
             return $builder->whereRaw('1=0');
         }
 
-        $rule = function (Builder $builder, Collection $permits) {
-            $permits->each(function ($permit) use ($builder) {
-                $builder->orWhere('permissions->'.$permit, true);
-            });
-        };
-
         return $builder
-            ->where(function (Builder $builder) use ($permits, $rule) {
-                $rule($builder, $permits);
-            })
-            ->orWhereHas('roles', function (Builder $builder) use ($permits, $rule) {
-                $builder->where(function (Builder $builder) use ($permits, $rule) {
-                    $rule($builder, $permits);
-                });
-            });
+            ->whereAny($columns, '=', true)
+            ->orWhereHas('roles', fn (Builder $query) => $query->whereAny($columns, '=', true));
     }
 
     /**

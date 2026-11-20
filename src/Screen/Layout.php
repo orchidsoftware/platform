@@ -19,7 +19,7 @@ abstract class Layout implements JsonSerializable
      * The Main template to display the layer
      * Represents the view() argument.
      *
-     * @var string
+     * @var view-string
      */
     protected $template;
 
@@ -83,7 +83,7 @@ abstract class Layout implements JsonSerializable
             ->flatten()
             ->map(fn ($layout) => is_object($layout) ? $layout : resolve($layout))
             ->filter(fn (self $layout) => $layout->isSee())
-            ->reduce(function ($build, self $layout) use ($key, $repository) {
+            ->reduce(function (array $build, self $layout) use ($key, $repository): array {
                 $build[$key][] = $layout->build($repository);
 
                 return $build;
@@ -96,7 +96,7 @@ abstract class Layout implements JsonSerializable
      */
     public function getSlug(): string
     {
-        return hash('xxh3', json_encode($this));
+        return hash('xxh3', json_encode($this, JSON_THROW_ON_ERROR));
     }
 
     /**

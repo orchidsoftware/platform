@@ -48,9 +48,6 @@ class Input extends Field
 {
     use Multipliable;
 
-    /**
-     * @var string
-     */
     protected $view = 'orchid::fields.input';
 
     /**

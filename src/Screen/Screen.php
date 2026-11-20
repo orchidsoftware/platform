@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -54,6 +53,8 @@ abstract class Screen extends Controller
 
     /**
      * The base view that will be rendered.
+     *
+     * @phpstan-return view-string
      */
     public function screenBaseView(): string
     {
@@ -176,11 +177,11 @@ abstract class Screen extends Controller
      *
      * @throws \Throwable
      *
-     * @return Factory|\Illuminate\View\View
+     * @return \Illuminate\View\View
      */
     public function view(array|Repository $httpQueryArguments = [])
     {
-        $repository = is_a($httpQueryArguments, Repository::class)
+        $repository = $httpQueryArguments instanceof Repository
             ? $httpQueryArguments
             : $this->buildQueryRepository($httpQueryArguments);
 

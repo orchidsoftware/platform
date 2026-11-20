@@ -18,9 +18,8 @@ final readonly class ChoicePayload implements Stringable
     /**
      * Create a new choices payload instance.
      *
-     * @param class-string<Model>                                       $model
-     * @param array{name?: string, parameters?: array<int, mixed>}|null $scope
-     * @param array<int, string>                                        $searchColumns
+     * @param array{name: string, parameters: array<int, mixed>}|null $scope
+     * @param array<int, string>                                      $searchColumns
      */
     public function __construct(
         public string $model,
@@ -126,10 +125,12 @@ final readonly class ChoicePayload implements Stringable
 
     /**
      * Ensure the payload can be safely used to resolve choices.
+     *
+     * @phpstan-assert class-string<Model> $this->model
      */
     public function assertValid(): self
     {
-        if (! class_exists($this->model) || ! is_subclass_of($this->model, Model::class)) {
+        if (! is_subclass_of($this->model, Model::class)) {
             throw new UnexpectedValueException('Choice payload model must be an Eloquent model.');
         }
 

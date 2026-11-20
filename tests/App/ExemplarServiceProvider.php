@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
+use LogicException;
 use Orchid\Platform\Orchid;
 use Orchid\Support\Facades\Alert;
 use Orchid\Tests\App\Fields\BaseSelectScreen;
@@ -32,7 +33,13 @@ class ExemplarServiceProvider extends ServiceProvider
         AliasLoader::getInstance()->alias('Orchid', \Orchid\Support\Facades\Orchid::class);
         AliasLoader::getInstance()->alias('Alert', Alert::class);
 
-        Factory::guessFactoryNamesUsing(fn (string $model) => 'Orchid\\Platform\\Database\\Factories\\'.class_basename($model).'Factory');
+        Factory::guessFactoryNamesUsing(static function (string $model) {
+            $factory = 'Orchid\\Platform\\Database\\Factories\\'.class_basename($model).'Factory';
+
+            return is_subclass_of($factory, Factory::class)
+                ? $factory
+                : throw new LogicException("Missing test factory [{$factory}] for [{$model}].");
+        });
     }
 
     /**

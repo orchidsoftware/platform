@@ -30,10 +30,7 @@ abstract class TestFieldsUnitCase extends TestUnitCase
         }
     }
 
-    /**
-     * @return string|string[]|null
-     */
-    public static function minifyOutput(string $view)
+    public static function minifyOutput(string $view): string
     {
         $search = [
             '/\>[^\S ]+/s',     // strip whitespaces after tags, except space
@@ -53,7 +50,7 @@ abstract class TestFieldsUnitCase extends TestUnitCase
             '>',
         ];
 
-        return preg_replace($search, $replace, $view);
+        return preg_replace($search, $replace, $view) ?? throw new \RuntimeException(preg_last_error_msg());
     }
 
     /**

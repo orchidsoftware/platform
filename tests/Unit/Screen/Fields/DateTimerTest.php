@@ -88,6 +88,7 @@ class DateTimerTest extends TestFieldsUnitCase
             ->format24hr()
             ->range()
             ->withQuickDates([
+                'Launch'    => new \DateTimeImmutable('2024-03-21 17:30:00'),
                 'Today'     => Carbon::parse('2024-03-19 12:11:11'),
                 'Yesterday' => Carbon::parse('2024-03-18 12:11:11')->subDay(),
                 'Week'      => [
@@ -98,6 +99,7 @@ class DateTimerTest extends TestFieldsUnitCase
 
         $view = self::renderField($field);
 
+        $this->assertStringContainsString('data-value="[&quot;2024-03-21 17:30&quot;]"', $view);
         $this->assertStringContainsString('data-value="[&quot;2024-03-17 12:11&quot;]"', $view);
         $this->assertStringContainsString('data-value="[&quot;2024-03-12 00:00&quot;,&quot;2024-03-19 23:59&quot;]"', $view);
     }

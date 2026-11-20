@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Attachment;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Support\Facades\Orchid;
@@ -20,7 +19,7 @@ trait Attachable
      *
      * Get all the attachments associated with the given model.
      *
-     * @return MorphToMany<Model, $this>
+     * @return MorphToMany<Attachment, $this>
      */
     public function attachment(?string $group = null): MorphToMany
     {
@@ -30,7 +29,7 @@ trait Attachable
     /**
      * Get all the attachments associated with the given model.
      *
-     * @return MorphToMany<Model, $this>
+     * @return MorphToMany<Attachment, $this>
      */
     public function attachments(?string $group = null): MorphToMany
     {

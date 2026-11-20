@@ -35,7 +35,7 @@ class Group implements \Stringable, Fieldable, Groupable
     protected $required = [];
 
     /**
-     * @var string
+     * @var view-string
      */
     protected $view = 'orchid::fields.group';
 

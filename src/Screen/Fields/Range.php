@@ -25,9 +25,6 @@ use Orchid\Screen\Field;
  */
 class Range extends Field
 {
-    /**
-     * @var string
-     */
     protected $view = 'orchid::fields.range';
 
     /**

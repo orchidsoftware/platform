@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
+use DOMDocument;
+use DOMElement;
+use DOMNode;
+use DOMXPath;
+use Illuminate\Support\Collection;
 use Orchestra\Testbench\TestCase;
 
 /**
@@ -13,13 +18,25 @@ abstract class TestUnitCase extends TestCase
 {
     use Environment;
 
-    protected function firstElement(\DOMXPath $xpath, string $expression): \DOMElement
+    protected function xpath(string $html): DOMXPath
     {
-        $nodes = $xpath->query($expression);
-        $this->assertNotFalse($nodes);
-        $element = $nodes->item(0);
-        $this->assertInstanceOf(\DOMElement::class, $element);
+        $document = new DOMDocument;
+        @$document->loadHTML($html);
 
-        return $element;
+        return new DOMXPath($document);
+    }
+
+    /** @return Collection<int, DOMElement> */
+    protected function elements(DOMXPath $xpath, string $expression, ?DOMNode $context = null): Collection
+    {
+        $nodes = $xpath->query($expression, $context);
+        $this->assertNotFalse($nodes, "Invalid XPath expression [{$expression}].");
+
+        return collect($nodes)->ensure(DOMElement::class);
+    }
+
+    protected function firstElement(DOMXPath $xpath, string $expression): DOMElement
+    {
+        return $this->elements($xpath, $expression)->firstOrFail();
     }
 }

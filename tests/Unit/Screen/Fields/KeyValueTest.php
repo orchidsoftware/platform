@@ -6,13 +6,13 @@ namespace Orchid\Tests\Unit\Screen\Fields;
 
 use Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Testing\TestResponse;
 use Orchid\Screen\Builder;
 use Orchid\Screen\Fields\KeyValue;
 use Orchid\Screen\Repository;
 use Orchid\Tests\Unit\Screen\TestFieldsUnitCase;
-use Symfony\Component\HttpFoundation\Response;
 
 class KeyValueTest extends TestFieldsUnitCase
 {
@@ -178,13 +178,10 @@ class KeyValueTest extends TestFieldsUnitCase
     public function testExternalFormAssociationIncludesRowsTemplateAndEmptySentinels(): void
     {
         $view = self::renderField(KeyValue::make('meta')->form('external')->value(['one' => '1']));
-        $document = new \DOMDocument;
-        @$document->loadHTML($view);
-        $xpath = new \DOMXPath($document);
-        $inputs = $xpath->query('//input[@name]');
-        $this->assertSame(6, $inputs->length);
+        $xpath = $this->xpath($view);
+        $inputs = $this->elements($xpath, '//input[@name]');
+        $this->assertCount(6, $inputs);
         foreach ($inputs as $input) {
-            $this->assertInstanceOf(\DOMElement::class, $input);
             $this->assertSame('external', $input->getAttribute('form'));
         }
     }
@@ -301,15 +298,12 @@ class KeyValueTest extends TestFieldsUnitCase
      */
     private function assertDisplayedRows(TestResponse $response, array $expected): void
     {
-        $document = new \DOMDocument;
-        @$document->loadHTML($response->getContent());
-        $xpath = new \DOMXPath($document);
+        $xpath = $this->xpath($response->content());
         $rows = [];
 
-        foreach ($xpath->query('//tbody[@data-key-value-target="rows"]/tr') as $row) {
+        foreach ($this->elements($xpath, '//tbody[@data-key-value-target="rows"]/tr') as $row) {
             $cells = [];
-            foreach ($xpath->query('.//input[@data-key-value-cell]', $row) as $input) {
-                $this->assertInstanceOf(\DOMElement::class, $input);
+            foreach ($this->elements($xpath, './/input[@data-key-value-cell]', $row) as $input) {
                 $cells[] = $input->getAttribute('value');
             }
             $rows[] = $cells;

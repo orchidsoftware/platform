@@ -20,9 +20,6 @@ use Orchid\Screen\Repository;
  */
 class DropDown extends Action
 {
-    /**
-     * @var string
-     */
     protected $view = 'orchid::actions.dropdown';
 
     /**

@@ -41,17 +41,7 @@ abstract class Component extends Layout
 
         $data = array_merge($repository->toArray(), $this->data);
 
-        $component = Blade::resolveComponent($this->component, $data);
-
-        if (! $component->shouldRender()) {
-            return;
-        }
-
-        $resolve = $component->resolveView();
-
-        $view = is_string($resolve) ? view($resolve) : $resolve;
-
-        return $view->with($component->data());
+        return Blade::componentView($this->component, $data);
     }
 
     /**

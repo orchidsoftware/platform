@@ -97,7 +97,7 @@ class HttpFilter
      */
     public static function sanitize(string $column): string
     {
-        abort_unless(preg_match(self::VALID_COLUMN_NAME_REGEX, $column), Response::HTTP_BAD_REQUEST);
+        abort_unless(preg_match(self::VALID_COLUMN_NAME_REGEX, $column) === 1, Response::HTTP_BAD_REQUEST);
 
         return $column;
     }

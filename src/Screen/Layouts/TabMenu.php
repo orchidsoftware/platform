@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
-use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 use Orchid\Screen\Actions\Menu;
 use Orchid\Screen\Builder;
@@ -17,15 +16,12 @@ use Throwable;
  */
 abstract class TabMenu extends Layout
 {
-    /**
-     * @var string
-     */
     protected $template = 'orchid::layouts.tabMenu';
 
     /**
      * @throws Throwable
      *
-     * @return Factory|View|void
+     * @return View|null
      */
     public function build(Repository $repository)
     {
@@ -34,7 +30,7 @@ abstract class TabMenu extends Layout
         $navigations = $this->navigations();
 
         if (! $this->isSee() || empty($navigations)) {
-            return;
+            return null;
         }
 
         $form = new Builder($navigations, $repository);

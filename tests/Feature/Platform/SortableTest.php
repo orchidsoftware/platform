@@ -7,6 +7,7 @@ namespace Orchid\Tests\Feature\Platform;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Gate;
 use Orchid\Attachment\Models\Attachment;
+use Orchid\Platform\Models\Role;
 use Orchid\Tests\App\Policies\PolicySortAllow;
 use Orchid\Tests\App\Policies\PolicySortDeny;
 use Orchid\Tests\App\Policies\PolicySortWithoutMethod;
@@ -14,6 +15,16 @@ use Orchid\Tests\TestFeatureCase;
 
 class SortableTest extends TestFeatureCase
 {
+    public function testModelWithoutASortColumnIsRejected(): void
+    {
+        $this->actingAs($this->createAdminUser())
+            ->post(route('orchid.sorting'), [
+                'model' => Role::class,
+                'items' => [['id' => 1, 'sortOrder' => 0]],
+            ])
+            ->assertBadRequest();
+    }
+
     public function testSortingIsForbiddenWhenPolicyDenies(): void
     {
         Gate::policy(Attachment::class, PolicySortDeny::class);

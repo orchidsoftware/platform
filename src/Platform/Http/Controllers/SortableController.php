@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -26,9 +27,11 @@ class SortableController extends Controller
 
         $classModel = $request->input('model');
 
-        abort_unless(class_exists($classModel), 400);
+        abort_unless(is_subclass_of($classModel, Model::class), 400);
 
         $model = new $classModel;
+        abort_unless(method_exists($model, 'getSortColumnName'), 400);
+
         $policy = Gate::getPolicyFor($model);
 
         if ($policy !== null && method_exists($policy, 'isSortable')) {

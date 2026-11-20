@@ -7,6 +7,7 @@ namespace Orchid\Platform\Commands;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Traits\Conditionable;
 use Orchid\Platform\Events\InstallEvent;
 use Orchid\Platform\Providers\ConsoleServiceProvider;
@@ -106,7 +107,7 @@ class InstallCommand extends Command
             return $this;
         }
 
-        $user = file_get_contents(Orchid::path('stubs/app/User.stub'));
+        $user = File::get(Orchid::path('stubs/app/User.stub'));
         file_put_contents(app_path($path), $user);
 
         return $this;
@@ -153,7 +154,7 @@ class InstallCommand extends Command
             }
 
             $filePath = $file->getRealPath();
-            $fileContents = file_get_contents($filePath);
+            $fileContents = File::get($filePath);
 
             // Skip if the file does not contain the old namespace
             if (! str_contains($fileContents, $search)) {

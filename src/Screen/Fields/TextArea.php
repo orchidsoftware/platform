@@ -29,9 +29,6 @@ use Orchid\Screen\Field;
  */
 class TextArea extends Field
 {
-    /**
-     * @var string
-     */
     protected $view = 'orchid::fields.textarea';
 
     /**

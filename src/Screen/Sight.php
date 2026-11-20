@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Illuminate\Contracts\Support\Htmlable;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\View;
 
@@ -14,7 +13,7 @@ class Sight extends Cell
     /**
      * Builds a column heading.
      *
-     * @return Factory|View
+     * @return View
      */
     public function buildDt()
     {
@@ -36,7 +35,7 @@ class Sight extends Cell
     {
         $value = $this->render
             ? $this->handler($repository)
-            : $repository->getContent($this->name);
+            : $this->getContent($repository);
 
         return $this->render === null
             ? e($value)

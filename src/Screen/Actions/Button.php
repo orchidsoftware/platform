@@ -21,9 +21,6 @@ use Orchid\Support\Facades\Orchid;
  */
 class Button extends Action
 {
-    /**
-     * @var string
-     */
     protected $view = 'orchid::actions.button';
 
     /**

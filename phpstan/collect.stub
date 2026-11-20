@@ -1,0 +1,16 @@
+<?php
+
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Collection;
+
+/**
+ * Laravel also accepts scalars and objects. Larastan infers the collection type.
+ *
+ * @template TKey of array-key = array-key
+ * @template TValue = mixed
+ * @template TObject of object = object
+ *
+ * @param Arrayable<TKey, TValue>|iterable<TKey, TValue>|TObject|scalar|null $value
+ * @return Collection<TKey, TValue>
+ */
+function collect($value = []): Collection {}

@@ -2,7 +2,6 @@
 
 namespace Orchid\Screen\Components\Cells;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
@@ -23,7 +22,7 @@ class Text extends Component
     /**
      * Get the view/contents that represent the component.
      *
-     * @return View|\Closure|string
+     * @return string
      */
     public function render()
     {

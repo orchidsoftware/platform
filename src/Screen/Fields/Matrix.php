@@ -15,13 +15,10 @@ use Orchid\Screen\Field;
  * @method $this title(string $value = null)
  * @method $this help(string $value = null)
  *
- * @extends Field<array{value?: iterable<array-key, mixed>|Closure|null, ...<string, mixed>}>
+ * @extends Field<array{value?: iterable<array-key, mixed>|(Closure(array<string, mixed>): (iterable<array-key, mixed>|null))|null, ...<string, mixed>}>
  */
 class Matrix extends Field
 {
-    /**
-     * @var string
-     */
     protected $view = 'orchid::fields.matrix';
 
     /**
@@ -48,7 +45,7 @@ class Matrix extends Field
     {
         $this
             ->addBeforeRender(function () {
-                $value = collect($this->get('value', []))
+                $value = collect(value($this->get('value'), $this->getAttributes()))
                     ->sortKeys()
                     ->toArray();
 

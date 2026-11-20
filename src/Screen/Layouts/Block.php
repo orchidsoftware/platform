@@ -18,9 +18,6 @@ abstract class Block extends Layout
 {
     use HasCommandBar;
 
-    /**
-     * @var string
-     */
     protected $template = 'orchid::layouts.block';
 
     /**

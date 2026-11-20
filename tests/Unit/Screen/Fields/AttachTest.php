@@ -16,11 +16,12 @@ class AttachTest extends TestFieldsUnitCase
     public function testStorage(): void
     {
         $attach = Attach::make('file');
-        $this->assertSame('public', $attach->getAttributes()['storage']);
+        $this->assertSame('public', $attach->get('storage'));
 
         $attach = Attach::make('file')->storage('local');
-        $this->assertSame('local', $attach->getAttributes()['storage']);
-        $this->assertNull($attach->getAttributes()['visibility']);
+        $this->assertSame('local', $attach->get('storage'));
+        $this->assertArrayHasKey('visibility', $attach->getAttributes());
+        $this->assertNull($attach->get('visibility'));
     }
 
     public function testExceedMaxServerSize(): void

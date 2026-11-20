@@ -12,9 +12,6 @@ use Orchid\Screen\Repository;
  */
 abstract class Columns extends Layout
 {
-    /**
-     * @var string
-     */
     protected $template = 'orchid::layouts.columns';
 
     /**

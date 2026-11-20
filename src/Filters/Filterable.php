@@ -23,9 +23,12 @@ trait Filterable
     #[Scope]
     protected function filtersApply(Builder $query, iterable $filters = []): Builder
     {
-        return collect($filters)
-            ->map(fn ($filter) => is_object($filter) ? $filter : resolve($filter))
-            ->reduce(fn (Builder $query, Filter $filter) => $filter->filter($query), $query);
+        foreach ($filters as $filter) {
+            $filter = is_string($filter) ? resolve($filter) : $filter;
+            $query = $filter->filter($query);
+        }
+
+        return $query;
     }
 
     /**
@@ -69,7 +72,8 @@ trait Filterable
     }
 
     /**
-     * @param Builder<static> $builder
+     * @param Builder<static>           $builder
+     * @param 'asc'|'desc'|'ASC'|'DESC' $direction
      *
      * @return Builder<static>
      */
@@ -77,7 +81,7 @@ trait Filterable
     protected function defaultSort(Builder $builder, string $column, string $direction = 'asc')
     {
         if (empty($builder->getQuery()->orders)) {
-            $builder->orderBy($column, $direction);
+            $builder->orderBy($column, strtolower($direction));
         }
 
         return $builder;

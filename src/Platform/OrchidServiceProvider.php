@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform;
 
 use Illuminate\Contracts\Foundation\CachesRoutes;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
@@ -217,7 +218,7 @@ abstract class OrchidServiceProvider extends ServiceProvider
      *
      * Returns an array of search models.
      *
-     * @return string[]
+     * @return array<Model|class-string<Model>>
      */
     public function registerSearchModels(): array
     {

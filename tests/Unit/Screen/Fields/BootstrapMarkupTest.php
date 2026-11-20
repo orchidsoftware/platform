@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Fields;
 
-use DOMDocument;
-use DOMXPath;
 use Orchid\Screen\Fields\DateRange;
 use Orchid\Screen\Fields\DateTimer;
 use Orchid\Screen\Fields\Matrix;
@@ -23,13 +21,12 @@ class BootstrapMarkupTest extends TestFieldsUnitCase
         ] as $field) {
             $html = self::renderField($field->form('order'));
             $xpath = $this->xpath($html);
-            $inputs = $xpath->query('//input');
+            $inputs = $this->elements($xpath, '//input');
             $this->assertCount(2, $inputs);
             foreach ($inputs as $input) {
-                $this->assertInstanceOf(\DOMElement::class, $input);
                 $this->assertNotEmpty($input->getAttribute('value'));
                 $this->assertSame('order', $input->getAttribute('form'));
-                $this->assertCount(1, $xpath->query('//label[@for="'.$input->getAttribute('id').'"]'));
+                $this->assertCount(1, $this->elements($xpath, '//label[@for="'.$input->getAttribute('id').'"]'));
             }
             preg_match_all('/<input\b[^>]*>/s', $html, $tags);
             foreach ($tags[0] as $tag) {
@@ -48,8 +45,7 @@ class BootstrapMarkupTest extends TestFieldsUnitCase
                 $field->set($key, $value);
             }
             $xpath = $this->xpath(self::renderField($field));
-            $button = $xpath->query('//button[@data-action="datetime#clear"]')->item(0);
-            $this->assertInstanceOf(\DOMElement::class, $button);
+            $button = $this->firstElement($xpath, '//button[@data-action="datetime#clear"]');
 
             $this->assertSame('button', $button->getAttribute('type'));
             $this->assertNotEmpty($button->getAttribute('aria-label'));
@@ -63,12 +59,12 @@ class BootstrapMarkupTest extends TestFieldsUnitCase
             $xpath = $this->xpath(self::renderField(Matrix::make('items')->columns(['Name' => 'name'])
                 ->removableRows($removable)->value([['name' => 'Existing']])));
             $columns = $removable ? 2 : 1;
-            $this->assertCount($columns, $xpath->query('//table/thead/tr/th'));
-            $this->assertCount($columns, $xpath->query('//table/tbody/tr[1]/td'));
+            $this->assertCount($columns, $this->elements($xpath, '//table/thead/tr/th'));
+            $this->assertCount($columns, $this->elements($xpath, '//table/tbody/tr[1]/td'));
             $this->assertSame((string) $columns, $this->firstElement($xpath, '//tr[@class="add-row"]/th')->getAttribute('colspan'));
-            $this->assertCount(0, $xpath->query('//table//template'));
-            $this->assertCount(1, $xpath->query('//template'));
-            $this->assertCount(1, $xpath->query('//button[@type="button" and @data-action="matrix#addRow"]'));
+            $this->assertCount(0, $this->elements($xpath, '//table//template'));
+            $this->assertCount(1, $this->elements($xpath, '//template'));
+            $this->assertCount(1, $this->elements($xpath, '//button[@type="button" and @data-action="matrix#addRow"]'));
         }
     }
 
@@ -76,20 +72,11 @@ class BootstrapMarkupTest extends TestFieldsUnitCase
     {
         $xpath = $this->xpath(self::renderField(RadioButtons::make('status')
             ->options(['draft' => 'Draft', 'published' => 'Published'])->value('published')->form('order')));
-        $this->assertCount(2, $xpath->query('//input[@type="radio"]'));
+        $this->assertCount(2, $this->elements($xpath, '//input[@type="radio"]'));
         $this->assertSame('published', $this->firstElement($xpath, '//input[@checked]')->getAttribute('value'));
-        foreach ($xpath->query('//input[@type="radio"]') as $input) {
-            $this->assertInstanceOf(\DOMElement::class, $input);
+        foreach ($this->elements($xpath, '//input[@type="radio"]') as $input) {
             $this->assertSame('order', $input->getAttribute('form'));
-            $this->assertCount(1, $xpath->query('//label[@for="'.$input->getAttribute('id').'"]'));
+            $this->assertCount(1, $this->elements($xpath, '//label[@for="'.$input->getAttribute('id').'"]'));
         }
-    }
-
-    private function xpath(string $html): DOMXPath
-    {
-        $document = new DOMDocument;
-        @$document->loadHTML($html);
-
-        return new DOMXPath($document);
     }
 }

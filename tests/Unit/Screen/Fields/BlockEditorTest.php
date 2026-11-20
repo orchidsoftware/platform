@@ -163,12 +163,8 @@ class BlockEditorTest extends TestFieldsUnitCase
     private function assertDocument(string $expected): void
     {
         $response = $this->get('/block-editor')->assertOk();
-        $document = new \DOMDocument;
-        @$document->loadHTML($response->getContent());
-        $xpath = new \DOMXPath($document);
-        $textarea = $xpath->query('//textarea[@data-block-editor-target="textarea"]')->item(0);
-
-        $this->assertNotNull($textarea);
+        $xpath = $this->xpath($response->content());
+        $textarea = $this->firstElement($xpath, '//textarea[@data-block-editor-target="textarea"]');
         $this->assertSame($expected, trim($textarea->textContent));
     }
 

@@ -18,9 +18,6 @@ use Illuminate\Support\Arr;
  */
 class ModalToggle extends Button
 {
-    /**
-     * @var string
-     */
     protected $view = 'orchid::actions.modal';
 
     /**

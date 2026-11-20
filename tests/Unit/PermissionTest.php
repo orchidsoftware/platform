@@ -726,6 +726,21 @@ class PermissionTest extends TestUnitCase
         ]));
     }
 
+    public function testPermissionChecksUseEveryYieldedPermission(): void
+    {
+        $user = $this->createUser();
+        $user->addRole($this->createRole());
+        $this->createNoPermissionsUser();
+
+        $permissions = static function () {
+            yield 0 => 'access.roles.to.public.data';
+            yield 0 => 'access.to.secret.data';
+        };
+
+        $this->assertTrue($user->hasAnyAccess($permissions()));
+        $this->assertSame([$user->id], User::byAnyAccess($permissions())->pluck('id')->all());
+    }
+
     public function testHasAnyEmptyAccess(): void
     {
         $user = $this->createUser();

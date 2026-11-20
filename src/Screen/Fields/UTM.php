@@ -27,9 +27,6 @@ use Orchid\Screen\Field;
  */
 class UTM extends Field
 {
-    /**
-     * @var string
-     */
     protected $view = 'orchid::fields.utm';
 
     /**

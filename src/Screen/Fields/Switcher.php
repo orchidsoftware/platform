@@ -32,9 +32,6 @@ use Orchid\Screen\Field;
  */
 class Switcher extends Field
 {
-    /**
-     * @var string
-     */
     protected $view = 'orchid::fields.switch';
 
     /**

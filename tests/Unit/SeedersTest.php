@@ -49,6 +49,7 @@ class SeedersTest extends TestUnitCase
             Storage::disk('seeded')->assertExists($attachment->physicalPath());
             $image = getimagesizefromstring(Storage::disk('seeded')->get($attachment->physicalPath()));
 
+            $this->assertNotFalse($image);
             $this->assertSame([640, 480], [$image[0], $image[1]]);
             $this->assertSame('attachment.jpg', $attachment->original_name);
         }
