@@ -11,10 +11,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Enumerable;
+use Illuminate\Support\LazyCollection;
 use Orchid\Platform\Events\AddRoleEvent;
 use Orchid\Platform\Events\RemoveRoleEvent;
 use Orchid\Platform\Models\Role;
 use Orchid\Support\Facades\Orchid;
+use Traversable;
 
 trait UserAccess
 {
@@ -90,13 +93,8 @@ trait UserAccess
             return true;
         }
 
-        foreach (is_string($permissions) ? [$permissions] : $permissions as $permit) {
-            if ($this->hasAccess($permit, $cache)) {
-                return true;
-            }
-        }
-
-        return false;
+        return $this->permissionNames($permissions)
+            ->contains(fn (string $permit) => $this->hasAccess($permit, $cache));
     }
 
     /**
@@ -129,11 +127,10 @@ trait UserAccess
     #[Scope]
     protected function byAnyAccess(Builder $builder, $permitsWithoutWildcard): Builder
     {
-        $columns = [];
-
-        foreach (is_string($permitsWithoutWildcard) ? [$permitsWithoutWildcard] : $permitsWithoutWildcard as $permit) {
-            $columns[] = 'permissions->'.$permit;
-        }
+        $columns = $this->permissionNames($permitsWithoutWildcard)
+            ->map(fn (string $permit) => 'permissions->'.$permit)
+            ->values()
+            ->all();
 
         if ($columns === []) {
             return $builder->whereRaw('1=0');
@@ -142,6 +139,18 @@ trait UserAccess
         return $builder
             ->whereAny($columns, '=', true)
             ->orWhereHas('roles', fn (Builder $query) => $query->whereAny($columns, '=', true));
+    }
+
+    /**
+     * @param string|iterable<array-key, string> $permissions
+     *
+     * @return Enumerable<array-key, string>
+     */
+    private function permissionNames(mixed $permissions): Enumerable
+    {
+        return $permissions instanceof Traversable
+            ? LazyCollection::make(fn () => yield from $permissions)
+            : collect($permissions);
     }
 
     /**

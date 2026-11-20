@@ -23,11 +23,11 @@ trait Filterable
     #[Scope]
     protected function filtersApply(Builder $query, iterable $filters = []): Builder
     {
-        $filters = collect($filters)->map(fn ($filter) => is_string($filter) ? resolve($filter) : $filter);
-
-        foreach ($filters as $filter) {
-            $query = $filter->filter($query);
-        }
+        collect($filters)
+            ->map(fn ($filter) => is_string($filter) ? resolve($filter) : $filter)
+            ->each(function (Filter $filter) use (&$query): void {
+                $query = $filter->filter($query);
+            });
 
         return $query;
     }

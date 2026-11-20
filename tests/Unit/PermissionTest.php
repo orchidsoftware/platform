@@ -737,6 +737,16 @@ class PermissionTest extends TestUnitCase
         ]));
     }
 
+    public function testHasAnyAccessStopsReadingAfterTheFirstMatch(): void
+    {
+        $permissions = static function () {
+            yield 'access.to.public.data';
+            self::fail('Read past the granted permission.');
+        };
+
+        $this->assertTrue($this->createUser()->hasAnyAccess($permissions()));
+    }
+
     public function testPermissionChecksUseEveryYieldedPermission(): void
     {
         $user = $this->createUser();
