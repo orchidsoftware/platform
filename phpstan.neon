@@ -21,18 +21,10 @@ parameters:
         - stubs/app
         - workbench
     ignoreErrors:
-        # Laravel's collect() also accepts scalar and object field values and role identifiers.
+        # Laravel's collect() accepts more input types than its PHPDoc declares.
         -
             identifier: argument.type
             message: '~^Parameter #1 \$value of function collect expects ~'
-            paths:
-                - src/Platform/Events/AddRoleEvent.php
-                - src/Platform/Events/RemoveRoleEvent.php
-                - src/Screen/Fields/Attach.php
-                - src/Screen/Fields/BlockEditor.php
-                - src/Screen/Fields/Markdown.php
-                - src/Screen/Fields/Matrix.php
-                - src/Screen/Fields/Select.php
         # Count only the bounded notification sample; SQL count() would ignore the limit.
         -
             identifier: larastan.noUnnecessaryCollectionCall
