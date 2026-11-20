@@ -22,7 +22,15 @@ export default class extends ApplicationController {
             });
 
         if (activeId !== null && !this.data.get("active-tab")) {
-            Tab.getOrCreateInstance(document.getElementById(activeId)).show();
+            const activeTabElement = document.getElementById(activeId);
+
+            // The id remembered in localStorage may belong to a tab that
+            // doesn't exist on this screen (e.g. a stale id from another
+            // page that shares the same pathname), so it has to be
+            // confirmed before handing it to Bootstrap's Tab component.
+            if (activeTabElement !== null) {
+                Tab.getOrCreateInstance(activeTabElement).show();
+            }
         }
     }
 
