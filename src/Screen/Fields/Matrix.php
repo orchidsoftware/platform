@@ -45,7 +45,7 @@ class Matrix extends Field
     {
         $this
             ->addBeforeRender(function () {
-                $value = collect(value($this->get('value'), $this->getAttributes()))
+                $value = collect($this->get('value', []))
                     ->sortKeys()
                     ->toArray();
 

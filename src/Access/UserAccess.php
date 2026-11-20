@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Orchid\Platform\Events\AddRoleEvent;
 use Orchid\Platform\Events\RemoveRoleEvent;
@@ -91,11 +90,13 @@ trait UserAccess
             return true;
         }
 
-        if (is_string($permissions)) {
-            return $this->hasAccess($permissions, $cache);
+        foreach (is_string($permissions) ? [$permissions] : $permissions as $permit) {
+            if ($this->hasAccess($permit, $cache)) {
+                return true;
+            }
         }
 
-        return Arr::first($permissions, fn (string $permit) => $this->hasAccess($permit, $cache)) !== null;
+        return false;
     }
 
     /**
