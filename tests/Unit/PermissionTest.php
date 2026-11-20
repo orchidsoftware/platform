@@ -569,6 +569,17 @@ class PermissionTest extends TestUnitCase
         $this->assertTrue($user->roles()->get()->isEmpty());
     }
 
+    public function testRoleEventsAcceptSingleIdsAndPreserveIterableKeys(): void
+    {
+        $user = new User;
+        $roles = new \ArrayIterator(['primary' => 17]);
+
+        foreach ([AddRoleEvent::class, RemoveRoleEvent::class] as $event) {
+            $this->assertSame(['editor'], (new $event($user, 'editor'))->roles->all());
+            $this->assertSame(['primary' => 17], (new $event($user, $roles))->roles->all());
+        }
+    }
+
     public function testReplaceRolesUpdatesPermissionsAndCanBeRepeated(): void
     {
         Event::fake([AddRoleEvent::class, RemoveRoleEvent::class]);

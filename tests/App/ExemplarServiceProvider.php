@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\App;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use LogicException;
+use Orchid\Platform\Database\Factories\AttachmentFactory;
+use Orchid\Platform\Database\Factories\RoleFactory;
+use Orchid\Platform\Database\Factories\UserFactory;
 use Orchid\Platform\Orchid;
 use Orchid\Support\Facades\Alert;
 use Orchid\Tests\App\Fields\BaseSelectScreen;
@@ -33,13 +36,11 @@ class ExemplarServiceProvider extends ServiceProvider
         AliasLoader::getInstance()->alias('Orchid', \Orchid\Support\Facades\Orchid::class);
         AliasLoader::getInstance()->alias('Alert', Alert::class);
 
-        Factory::guessFactoryNamesUsing(static function (string $model) {
-            $factory = 'Orchid\\Platform\\Database\\Factories\\'.class_basename($model).'Factory';
-
-            return is_subclass_of($factory, Factory::class)
-                ? $factory
-                : throw new LogicException("Missing test factory [{$factory}] for [{$model}].");
-        });
+        Factory::guessFactoryNamesUsing(static fn (string $model) => [
+            'Attachment' => AttachmentFactory::class,
+            'Role'       => RoleFactory::class,
+            'User'       => UserFactory::class,
+        ][class_basename($model)]);
     }
 
     /**
@@ -48,7 +49,7 @@ class ExemplarServiceProvider extends ServiceProvider
     public function boot(Orchid $orchid, Router $router): void
     {
         $orchid->registerSearch([
-            SearchUser::class,
+            User::class,
         ]);
 
         $this->loadViewsFrom($orchid->path('tests/App/Views'), 'exemplar');

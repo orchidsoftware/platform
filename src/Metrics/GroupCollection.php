@@ -25,9 +25,9 @@ class GroupCollection extends Collection
         $groups = $this->sortByDesc('value');
 
         return [
-            'labels'   => array_values($groups->pluck('label')->map($closure)->all()),
+            'labels'   => [...$groups->pluck('label')->map($closure)->values()],
             'datasets' => [[
-                'values' => array_values($groups->pluck('value')->map(fn ($value) => (int) $value)->all()),
+                'values' => [...$groups->pluck('value')->map(fn ($value) => (int) $value)->values()],
             ]],
         ];
     }

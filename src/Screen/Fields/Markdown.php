@@ -177,10 +177,12 @@ class Markdown extends Field
 
         $buttons = $this->toolbarButtons();
 
-        return array_values($groups
+        $groups = $groups
             ->map(fn ($group) => array_values(Arr::only($buttons, $group)))
             ->filter()
-            ->all());
+            ->values();
+
+        return [...$groups];
     }
 
     /**

@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Orchid\Presenters;
 
+use App\Models\User;
 use Illuminate\Support\Str;
 use Laravel\Scout\Builder;
-use LogicException;
-use Orchid\Platform\Models\User;
 use Orchid\Presenter\Presenter;
 use Orchid\Screen\Contracts\Personable;
 use Orchid\Screen\Contracts\Searchable;
@@ -78,10 +77,6 @@ class UserPresenter extends Presenter implements Personable, Searchable
      */
     public function searchQuery(?string $query = null): Builder
     {
-        if (! method_exists($this->entity, 'search')) {
-            throw new LogicException('Add the Laravel Scout Searchable trait to your user model to enable search.');
-        }
-
         return $this->entity->search($query);
     }
 }

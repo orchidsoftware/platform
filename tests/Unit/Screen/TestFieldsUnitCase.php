@@ -21,13 +21,9 @@ abstract class TestFieldsUnitCase extends TestUnitCase
      */
     public static function renderField(Field $field, array $data = [], array $rules = [], array $messages = [], array $customAttributes = []): string
     {
-        try {
-            $validator = Validator::make($data, $rules, $messages, $customAttributes);
+        $validator = Validator::make($data, $rules, $messages, $customAttributes);
 
-            return $field->render()->withErrors($validator)->render();
-        } catch (\Throwable $throwable) {
-            exit($throwable->getMessage());
-        }
+        return $field->render()->withErrors($validator)->render();
     }
 
     public static function minifyOutput(string $view): string
@@ -50,7 +46,7 @@ abstract class TestFieldsUnitCase extends TestUnitCase
             '>',
         ];
 
-        return preg_replace($search, $replace, $view) ?? throw new \RuntimeException(preg_last_error_msg());
+        return preg_replace($search, $replace, $view) ?? self::fail(preg_last_error_msg());
     }
 
     /**

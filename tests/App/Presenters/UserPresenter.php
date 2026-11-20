@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\App\Presenters;
 
+use App\Models\User;
 use Laravel\Scout\Builder;
 use Orchid\Presenter\Presenter;
 use Orchid\Screen\Contracts\Personable;
 use Orchid\Screen\Contracts\Searchable;
-use Orchid\Tests\App\SearchUser;
 
-/** @extends Presenter<SearchUser> */
+/** @extends Presenter<User> */
 class UserPresenter extends Presenter implements Personable, Searchable
 {
     public function label(): string

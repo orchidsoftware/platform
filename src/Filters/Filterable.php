@@ -23,8 +23,9 @@ trait Filterable
     #[Scope]
     protected function filtersApply(Builder $query, iterable $filters = []): Builder
     {
+        $filters = collect($filters)->map(fn ($filter) => is_string($filter) ? resolve($filter) : $filter);
+
         foreach ($filters as $filter) {
-            $filter = is_string($filter) ? resolve($filter) : $filter;
             $query = $filter->filter($query);
         }
 
