@@ -36,6 +36,7 @@ class LayoutFactory
     use Macroable;
 
     /**
+     * @param view-string                                   $view
      * @param Arrayable<string, mixed>|array<string, mixed> $data
      */
     public static function view(string $view, $data = []): View
@@ -146,6 +147,7 @@ class LayoutFactory
     }
 
     /**
+     * @param view-string                               $template
      * @param array<Layout|string|array<Layout|string>> $layouts
      */
     public static function wrapper(string $template, array $layouts): Wrapper

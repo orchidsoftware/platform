@@ -2,7 +2,6 @@
 
 namespace Orchid\Screen\Layouts;
 
-use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 use Orchid\Screen\Concerns\HasEmptyState;
 use Orchid\Screen\Layout;
@@ -13,9 +12,6 @@ abstract class Sortable extends Layout
 {
     use HasEmptyState;
 
-    /**
-     * @var string
-     */
     protected $template = 'orchid::layouts.sortable';
 
     /**
@@ -46,7 +42,7 @@ abstract class Sortable extends Layout
     protected $target;
 
     /**
-     * @return Factory|View|null
+     * @return View|null
      */
     public function build(Repository $repository)
     {

@@ -30,9 +30,6 @@ use Orchid\Screen\Field;
  */
 class Radio extends Field
 {
-    /**
-     * @var string
-     */
     protected $view = 'orchid::fields.radio';
 
     /**

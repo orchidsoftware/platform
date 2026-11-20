@@ -11,10 +11,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Enumerable;
+use Illuminate\Support\LazyCollection;
 use Orchid\Platform\Events\AddRoleEvent;
 use Orchid\Platform\Events\RemoveRoleEvent;
 use Orchid\Platform\Models\Role;
 use Orchid\Support\Facades\Orchid;
+use Traversable;
 
 trait UserAccess
 {
@@ -90,10 +93,8 @@ trait UserAccess
             return true;
         }
 
-        return collect($permissions)
-            ->map(fn (string $permit) => $this->hasAccess($permit, $cache))
-            ->filter(fn (bool $result) => $result)
-            ->isNotEmpty();
+        return $this->permissionNames($permissions)
+            ->contains(fn (string $permit) => $this->hasAccess($permit, $cache));
     }
 
     /**
@@ -126,27 +127,30 @@ trait UserAccess
     #[Scope]
     protected function byAnyAccess(Builder $builder, $permitsWithoutWildcard): Builder
     {
-        $permits = collect($permitsWithoutWildcard);
+        $columns = $this->permissionNames($permitsWithoutWildcard)
+            ->map(fn (string $permit) => 'permissions->'.$permit)
+            ->values()
+            ->all();
 
-        if ($permits->isEmpty()) {
+        if ($columns === []) {
             return $builder->whereRaw('1=0');
         }
 
-        $rule = function (Builder $builder, Collection $permits) {
-            $permits->each(function ($permit) use ($builder) {
-                $builder->orWhere('permissions->'.$permit, true);
-            });
-        };
-
         return $builder
-            ->where(function (Builder $builder) use ($permits, $rule) {
-                $rule($builder, $permits);
-            })
-            ->orWhereHas('roles', function (Builder $builder) use ($permits, $rule) {
-                $builder->where(function (Builder $builder) use ($permits, $rule) {
-                    $rule($builder, $permits);
-                });
-            });
+            ->whereAny($columns, '=', true)
+            ->orWhereHas('roles', fn (Builder $query) => $query->whereAny($columns, '=', true));
+    }
+
+    /**
+     * @param string|iterable<array-key, string> $permissions
+     *
+     * @return Enumerable<array-key, string>
+     */
+    private function permissionNames(mixed $permissions): Enumerable
+    {
+        return $permissions instanceof Traversable
+            ? LazyCollection::make(fn () => yield from $permissions)
+            : collect($permissions);
     }
 
     /**

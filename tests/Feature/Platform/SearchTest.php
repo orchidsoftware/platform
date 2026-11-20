@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
+use App\Models\User;
 use Illuminate\Support\Str;
-use Orchid\Tests\App\SearchUser;
 use Orchid\Tests\TestFeatureCase;
 
 class SearchTest extends TestFeatureCase
@@ -24,7 +24,7 @@ class SearchTest extends TestFeatureCase
 
     public function testSearch(): void
     {
-        $user = SearchUser::create([
+        $user = User::create([
             'id'       => 1,
             'name'     => 'Alexandr Chernyaev',
             'email'    => 'admin@localhost.com',

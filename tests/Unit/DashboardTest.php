@@ -40,7 +40,8 @@ class DashboardTest extends TestUnitCase
     {
         $dashboard = new Orchid;
 
-        $dashboard->useModel($key, $missing);
+        config(['auth.providers.users.model' => $missing]);
+        $dashboard->useModel($key, config('auth.providers.users.model'));
 
         $this->assertSame($missing, $dashboard->modelClass($key));
     }

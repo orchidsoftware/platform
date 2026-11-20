@@ -71,8 +71,6 @@ class ExampleFieldsAdvancedScreen extends Screen
      * The screen's layout elements.
      *
      * @throws \Throwable
-     *
-     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): iterable
     {

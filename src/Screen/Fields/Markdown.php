@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
+use Illuminate\Support\Arr;
 use Orchid\Screen\Field;
 
 /**
@@ -105,9 +106,6 @@ class Markdown extends Field
         [self::UPLOAD],
     ];
 
-    /**
-     * @var string
-     */
     protected $view = 'orchid::fields.markdown';
 
     /**
@@ -177,11 +175,14 @@ class Markdown extends Field
             ? $toolbar
             : collect([$toolbar->all()]);
 
-        return $groups
-            ->map(fn ($buttons) => collect($this->toolbarButtons())->only($buttons)->values()->all())
+        $buttons = $this->toolbarButtons();
+
+        $groups = $groups
+            ->map(fn ($group) => array_values(Arr::only($buttons, $group)))
             ->filter()
-            ->values()
-            ->all();
+            ->values();
+
+        return [...$groups];
     }
 
     /**

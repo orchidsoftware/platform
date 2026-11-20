@@ -29,6 +29,19 @@ class WrapperTest extends TestUnitCase
         $this->assertStringContainsString('<p>Hello Alexandr Chernyaev</p>', $html);
     }
 
+    public function testHiddenChildrenLeaveTheirSlotsEmpty(): void
+    {
+        $hidden = LayoutFactory::rows([])->canSee(false);
+
+        $view = LayoutFactory::wrapper('exemplar::layouts.wrapper', [
+            'single' => $hidden,
+            'group'  => [$hidden],
+        ])->build(new Repository);
+
+        $this->assertNull($view->getData()['single']);
+        $this->assertSame([], $view->getData()['group']);
+    }
+
     public function testDataVariables(): void
     {
         $repository = new Repository;

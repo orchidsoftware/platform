@@ -167,7 +167,7 @@ class ChartTest extends TestUnitCase
         $this->assertStringContainsString('data-chart-type-value="line"', $html);
         $this->assertStringContainsString('data-chart-height-value="250"', $html);
         foreach (['labels', 'datasets'] as $value) {
-            preg_match('/data-chart-'.$value.'-value="([^"]*)"/', $html, $matches);
+            $this->assertSame(1, preg_match('/data-chart-'.$value.'-value="([^"]*)"/', $html, $matches));
             $decoded = json_decode(html_entity_decode($matches[1], ENT_QUOTES), true, flags: JSON_THROW_ON_ERROR);
             $this->assertSame($repository->get('visits')[$value], $decoded);
         }

@@ -27,11 +27,6 @@ class BaseFieldTest extends TestFieldsUnitCase
         $field = new class extends Field
         {
             /**
-             * @var string
-             */
-            public $view = '';
-
-            /**
              * Default attributes value.
              */
             public $attributes = [

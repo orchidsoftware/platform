@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Illuminate\Support\Carbon;
+use Orchid\Metrics\TimeCollection;
 use Orchid\Platform\Models\User;
 use Orchid\Tests\TestUnitCase;
 
@@ -36,6 +37,20 @@ class MetricsTest extends TestUnitCase
             'labels'   => ['Disabled', 'Enabled'],
             'datasets' => [['values' => [8, 5]]],
         ], $namedLabel);
+    }
+
+    public function testChartLabelsAndValuesStayAlignedAfterFiltering(): void
+    {
+        $days = new TimeCollection([
+            ['label' => 'Monday', 'value' => 0],
+            ['label' => 'Tuesday', 'value' => 4],
+            ['label' => 'Wednesday', 'value' => 6],
+        ]);
+
+        $chart = $days->withoutZeroValues()->toChart('Visits', fn ($label, $index) => "{$index}. {$label}");
+
+        $this->assertSame(['0. Tuesday', '1. Wednesday'], $chart['labels']);
+        $this->assertSame([4, 6], $chart['datasets'][0]['values']);
     }
 
     public function testPeriod(): void

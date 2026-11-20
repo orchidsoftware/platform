@@ -38,8 +38,6 @@ class Attach extends Field
 
     /**
      * The view that will be used to render the attachment field.
-     *
-     * @var string
      */
     protected $view = 'orchid::fields.attach';
 

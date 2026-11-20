@@ -18,9 +18,6 @@ use Orchid\Screen\Field;
  */
 class NumberRange extends Field implements ComplexFieldConcern
 {
-    /**
-     * @var string
-     */
     protected $view = 'orchid::fields.numberRange';
 
     protected $attributes = [

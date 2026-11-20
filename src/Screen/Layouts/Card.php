@@ -11,9 +11,6 @@ use Orchid\Screen\Contracts\Cardable;
 
 class Card extends Content
 {
-    /**
-     * @var string
-     */
     protected $template = 'orchid::layouts.card';
 
     /**

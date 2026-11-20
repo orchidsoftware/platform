@@ -17,6 +17,7 @@ abstract class Wrapper extends Layout
     /**
      * Wrapper constructor.
      *
+     * @param view-string                               $template
      * @param array<Layout|string|array<Layout|string>> $layouts
      */
     public function __construct(string $template, array $layouts = [])
@@ -40,7 +41,7 @@ abstract class Wrapper extends Layout
             ->map(function ($layout, $key) use ($repository) {
                 $items = $this->buildChild(Arr::wrap($layout), $key, $repository);
 
-                return ! is_array($layout) ? reset($items)[0] : reset($items);
+                return is_array($layout) ? ($items[$key] ?? []) : ($items[$key][0] ?? null);
             })
             ->merge($repository->all())
             ->all();

@@ -70,6 +70,18 @@ class ModelFiltersTest extends TestUnitCase
         $this->assertEquals('select * from "users" where "name" = ? and "email" = ?', $sql);
     }
 
+    public function testNextFilterReceivesTheQueryReturnedByThePreviousFilter(): void
+    {
+        request()->merge(['name' => 'Alexandr']);
+
+        $query = User::query();
+        $filter = $this->createStub(NameFilter::class);
+        $filter->method('filter')->willReturn($query);
+
+        $this->assertSame($query, User::filtersApply([$filter, NameFilter::class]));
+        $this->assertSame(['Alexandr'], $query->getBindings());
+    }
+
     public function testManyParamsFiltersApplyWithHttpAndDefaultSort(): void
     {
         request()->merge([

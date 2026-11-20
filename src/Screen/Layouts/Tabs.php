@@ -12,9 +12,6 @@ use Orchid\Screen\Repository;
  */
 abstract class Tabs extends Layout
 {
-    /**
-     * @var string
-     */
     public $template = 'orchid::layouts.tabs';
 
     protected $variables = [

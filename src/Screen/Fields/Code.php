@@ -46,9 +46,6 @@ class Code extends Field
      */
     public const JS = 'js';
 
-    /**
-     * @var string
-     */
     protected $view = 'orchid::fields.code';
 
     /**

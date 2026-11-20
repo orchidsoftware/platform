@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
-use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 use Orchid\Screen\Builder;
 use Orchid\Screen\Contracts\Fieldable;
@@ -17,9 +16,6 @@ use Throwable;
  */
 abstract class Rows extends Layout
 {
-    /**
-     * @var string
-     */
     protected $template = 'orchid::layouts.row';
 
     /**
@@ -37,7 +33,7 @@ abstract class Rows extends Layout
     /**
      * @throws Throwable
      *
-     * @return Factory|View|null
+     * @return View|null
      */
     public function build(Repository $repository)
     {

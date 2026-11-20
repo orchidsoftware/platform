@@ -45,6 +45,18 @@ class BlockEditorTest extends TestFieldsUnitCase
         $this->assertStringNotContainsString('"type":"code"', $view);
     }
 
+    public function testToolbarAcceptsASingleButtonOrAnIterableAttribute(): void
+    {
+        foreach ([BlockEditor::QUOTE, new \ArrayIterator(['first' => BlockEditor::QUOTE])] as $toolbar) {
+            $view = self::minifyRenderField(BlockEditor::make('content')->set('toolbar', $toolbar));
+
+            $this->assertStringContainsString(
+                'data-block-editor-tools-value=\'[{"type":"quote","title":"Quote"}]\'',
+                $view
+            );
+        }
+    }
+
     public function testToolbarCanBeHidden(): void
     {
         $view = self::minifyRenderField(
@@ -163,12 +175,8 @@ class BlockEditorTest extends TestFieldsUnitCase
     private function assertDocument(string $expected): void
     {
         $response = $this->get('/block-editor')->assertOk();
-        $document = new \DOMDocument;
-        @$document->loadHTML($response->getContent());
-        $xpath = new \DOMXPath($document);
-        $textarea = $xpath->query('//textarea[@data-block-editor-target="textarea"]')->item(0);
-
-        $this->assertNotNull($textarea);
+        $xpath = $this->xpath($response->content());
+        $textarea = $this->firstElement($xpath, '//textarea[@data-block-editor-target="textarea"]');
         $this->assertSame($expected, trim($textarea->textContent));
     }
 

@@ -17,9 +17,6 @@ namespace Orchid\Screen\Actions;
  */
 class Toggle extends Button
 {
-    /**
-     * @var string
-     */
     protected $view = 'orchid::actions.toggle';
 
     /**

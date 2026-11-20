@@ -195,7 +195,7 @@ class RepeaterTest extends TestFieldsUnitCase
         ]]])->assertRedirect('/repeater')->assertSessionHasErrors('team.members.5.profile.name');
 
         $this->assertSame('Second', session()->getOldInput('team.members.2.profile.name'));
-        $html = $this->get('/repeater')->assertOk()->getContent();
+        $html = $this->get('/repeater')->assertOk()->content();
         $this->assertMatchesRegularExpression('/name="team\[members\]\[2\]\[profile\]\[name\]"[^>]*value="Second"/', $html);
         $this->assertMatchesRegularExpression('/name="team\[members\]\[1\]\[profile\]\[name\]"[^>]*value="First"/', $html);
         $this->assertStringContainsString('invalid-feedback', $html);
@@ -219,11 +219,8 @@ class RepeaterTest extends TestFieldsUnitCase
             BlockEditor::make('body')->value(['blocks' => [['type' => 'paragraph', 'data' => ['text' => 'Default body']]]]),
         ])]))->generateForm();
         $this->assertSame($oldInput, session()->getOldInput());
-        $document = new \DOMDocument;
-        @$document->loadHTML($html);
-        $xpath = new \DOMXPath($document);
-        $firstRow = $xpath->query('//*[@name="team[members][1][profile][name]"]')->item(0);
-        $this->assertInstanceOf(\DOMElement::class, $firstRow);
+        $xpath = $this->xpath($html);
+        $firstRow = $this->firstElement($xpath, '//*[@name="team[members][1][profile][name]"]');
 
         $this->assertSame('', $firstRow->getAttribute('value'));
         $this->assertStringContainsString('name="team[members][2][profile][name]" value="Default name"', $html);
@@ -231,7 +228,7 @@ class RepeaterTest extends TestFieldsUnitCase
         $this->assertSame('Default child', $this->firstElement($xpath, '//*[@name="team[members][2][children][0][name]"]')->getAttribute('value'));
         $this->assertStringNotContainsString('name="team[members][1][metadata][0][key]" value="default key"', $html);
         $this->assertSame('Default metadata', $this->firstElement($xpath, '//*[@data-key-value-cell="value" and @name="team[members][2][metadata][0][value]"]')->getAttribute('value'));
-        $this->assertSame('{"blocks":[]}', $xpath->query('//*[@name="team[members][1][body]"]')->item(0)?->textContent);
+        $this->assertSame('{"blocks":[]}', $this->firstElement($xpath, '//*[@name="team[members][1][body]"]')->textContent);
         $this->assertStringContainsString('Default body', $this->firstElement($xpath, '//*[@name="team[members][2][body]"]')->textContent);
     }
 
@@ -260,12 +257,10 @@ class RepeaterTest extends TestFieldsUnitCase
             'members.0.name', 'members.0.bio', 'members.0.body',
         ]);
         $response = $this->get('/repeater-text-fields')->assertOk();
-        $document = new \DOMDocument;
-        @$document->loadHTML($response->getContent());
-        $xpath = new \DOMXPath($document);
+        $xpath = $this->xpath($response->content());
         $this->assertSame('', $this->firstElement($xpath, '//input[@name="members[0][name]"]')->getAttribute('value'));
-        $this->assertSame('', $xpath->query('//textarea[@name="members[0][bio]"]')->item(0)->textContent);
-        $this->assertSame('', $xpath->query('//textarea[@name="members[0][body]"]')->item(0)->textContent);
+        $this->assertSame('', $this->firstElement($xpath, '//textarea[@name="members[0][bio]"]')->textContent);
+        $this->assertSame('', $this->firstElement($xpath, '//textarea[@name="members[0][body]"]')->textContent);
         $this->assertSame('Valid sibling', $this->firstElement($xpath, '//input[@name="members[0][kept]"]')->getAttribute('value'));
     }
 

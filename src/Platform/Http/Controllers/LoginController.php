@@ -80,7 +80,7 @@ class LoginController extends Controller
         }
 
         if ($request->boolean('remember')) {
-            $user = $cookieJar->forever($this->nameForLock(), $this->guard->id());
+            $user = $cookieJar->forever($this->nameForLock(), (string) $this->guard->id());
             $cookieJar->queue($user);
         }
 

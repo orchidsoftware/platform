@@ -15,9 +15,9 @@ use Orchid\Tests\TestUnitCase;
  */
 class CommanderTest extends TestUnitCase
 {
-    public function getCommandClass(): object
+    public function testCountCommandItems(): void
     {
-        return new class
+        $command = new class
         {
             use HasCommandBar;
 
@@ -38,11 +38,6 @@ class CommanderTest extends TestUnitCase
                 return $this->buildCommandBar(new Repository);
             }
         };
-    }
-
-    public function testCountCommandItems(): void
-    {
-        $command = $this->getCommandClass();
 
         $this->assertCount(1, $command->generate());
     }

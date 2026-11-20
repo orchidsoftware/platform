@@ -70,7 +70,7 @@ class Init
             'post_max_size',
         ];
 
-        $ini = array_map(fn ($item) => self::toBytes(ini_get($item)), $ini);
+        $ini = array_map(fn ($item) => self::toBytes(ini_get($item) ?: '0'), $ini);
 
         $value = min($ini);
 
@@ -88,7 +88,7 @@ class Init
      * @param int|float $bytes The size in bytes
      * @param int       $point The decimal point
      *
-     * @return int|float The value in the specified unit
+     * @return string|0 The formatted value, or zero for an unknown unit
      */
     public static function convertBytesTo(string $to, $bytes, $point = 0)
     {

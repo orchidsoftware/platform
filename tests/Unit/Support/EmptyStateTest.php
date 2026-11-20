@@ -60,6 +60,7 @@ class EmptyStateTest extends TestUnitCase
     {
         $languagePath = dirname(__DIR__, 3).'/resources/lang';
         $jsonLocales = glob($languagePath.'/*.json');
+        $this->assertNotEmpty($jsonLocales);
 
         foreach ($jsonLocales as $jsonLocale) {
             $locale = pathinfo($jsonLocale, PATHINFO_FILENAME);

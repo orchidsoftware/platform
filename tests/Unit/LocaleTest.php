@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\File;
 use Orchid\Support\Facades\Orchid;
 use Orchid\Tests\TestUnitCase;
 use Symfony\Component\Finder\Finder;
@@ -20,7 +21,7 @@ class LocaleTest extends TestUnitCase
     {
         $this->getTranslationFiles()
             ->each(function (string $file) {
-                $content = file_get_contents($file);
+                $content = File::get($file);
 
                 $this->assertJson($content);
             });
@@ -30,7 +31,7 @@ class LocaleTest extends TestUnitCase
     {
         $this->getTranslationFiles()
             ->map(function (string $file) {
-                $content = file_get_contents($file);
+                $content = File::get($file);
 
                 $this->assertJson($content, "$file is not valid JSON");
 

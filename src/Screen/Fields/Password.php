@@ -37,9 +37,6 @@ use Orchid\Screen\Field;
  */
 class Password extends Field
 {
-    /**
-     * @var string
-     */
     protected $view = 'orchid::fields.password';
 
     /**

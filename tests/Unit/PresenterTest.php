@@ -124,6 +124,8 @@ class ModelWithoutPresenterAttribute
 }
 
 /**
+ * @extends Presenter<object{status: bool}>
+ *
  * @property-read bool $getStatus
  */
 class StatusPresenter extends Presenter

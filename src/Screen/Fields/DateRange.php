@@ -20,9 +20,6 @@ use Orchid\Screen\Field;
  */
 class DateRange extends Field implements ComplexFieldConcern
 {
-    /**
-     * @var string
-     */
     protected $view = 'orchid::fields.dataRange';
 
     /**

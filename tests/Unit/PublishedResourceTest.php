@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
+use Illuminate\Support\Facades\File;
 use Orchid\Support\Facades\Orchid;
 use Orchid\Support\Formats;
 use Orchid\Tests\TestUnitCase;
@@ -68,7 +69,7 @@ class PublishedResourceTest extends TestUnitCase
     public function testManifestFilesExist(): void
     {
         $manifestPath = Orchid::path('/public/manifest.json');
-        $manifest = json_decode(file_get_contents($manifestPath), true);
+        $manifest = File::json($manifestPath);
 
         foreach ($manifest as $data) {
             $filePath = explode('?', $data['file'])[0]; // Remove query string
@@ -81,7 +82,7 @@ class PublishedResourceTest extends TestUnitCase
     public function testManifestEntriesHaveIntegrity(): void
     {
         $manifestPath = Orchid::path('/public/manifest.json');
-        $manifest = json_decode(file_get_contents($manifestPath), true);
+        $manifest = File::json($manifestPath);
 
         foreach ($manifest as $source => $data) {
             $this->assertArrayHasKey('integrity', $data, "Missing 'integrity' for $source");

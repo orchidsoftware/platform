@@ -21,19 +21,12 @@ abstract class TestFieldsUnitCase extends TestUnitCase
      */
     public static function renderField(Field $field, array $data = [], array $rules = [], array $messages = [], array $customAttributes = []): string
     {
-        try {
-            $validator = Validator::make($data, $rules, $messages, $customAttributes);
+        $validator = Validator::make($data, $rules, $messages, $customAttributes);
 
-            return $field->render()->withErrors($validator)->render();
-        } catch (\Throwable $throwable) {
-            exit($throwable->getMessage());
-        }
+        return $field->render()->withErrors($validator)->render();
     }
 
-    /**
-     * @return string|string[]|null
-     */
-    public static function minifyOutput(string $view)
+    public static function minifyOutput(string $view): string
     {
         $search = [
             '/\>[^\S ]+/s',     // strip whitespaces after tags, except space
@@ -53,7 +46,7 @@ abstract class TestFieldsUnitCase extends TestUnitCase
             '>',
         ];
 
-        return preg_replace($search, $replace, $view);
+        return preg_replace($search, $replace, $view) ?? self::fail(preg_last_error_msg());
     }
 
     /**

@@ -39,6 +39,21 @@ class TDFilterTest extends TestUnitCase
         $this->assertStringContainsString('username', $view);
     }
 
+    public function testSelectFilterDisplaysLabelsFromIterableOptions(): void
+    {
+        request()->replace(['filter' => ['status' => ['paid']]]);
+
+        $options = static function () {
+            yield 'paid' => 'Paid invoices';
+        };
+
+        $view = TD::make('status')
+            ->filter(TD::FILTER_SELECT, $options())
+            ->buildTh();
+
+        $this->assertStringContainsString('<span>Paid invoices</span>', $view->render());
+    }
+
     public function testTdSimpleFilterCallableValueArgument(): void
     {
         request()->replace([

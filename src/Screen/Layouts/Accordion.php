@@ -13,9 +13,6 @@ use Orchid\Screen\Repository;
  */
 abstract class Accordion extends Layout
 {
-    /**
-     * @var string
-     */
     protected $template = 'orchid::layouts.accordion';
 
     protected $variables = [

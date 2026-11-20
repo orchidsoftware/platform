@@ -30,7 +30,7 @@ class Breadcrumbs extends Component
     /**
      * The prepared breadcrumb items for the view.
      *
-     * @var Collection<int, array{breadcrumb: Crumb, current: bool}|array{breadcrumbs: Collection<int, Crumb>}>
+     * @var Collection<int, covariant array{breadcrumb: Crumb, current: bool}|array{breadcrumbs: Collection<int, Crumb>}>
      */
     public Collection $items;
 
@@ -76,7 +76,7 @@ class Breadcrumbs extends Component
      *
      * @param Collection<int, Crumb> $breadcrumbs
      *
-     * @return Collection<int, array{breadcrumb: Crumb, current: bool}|array{breadcrumbs: Collection<int, Crumb>}>
+     * @return Collection<int, covariant array{breadcrumb: Crumb, current: bool}|array{breadcrumbs: Collection<int, Crumb>}>
      */
     private function collapse(Collection $breadcrumbs): Collection
     {

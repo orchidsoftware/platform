@@ -166,7 +166,7 @@ abstract class Cell
      */
     public function asComponent(string $component, array $params = []): static
     {
-        return $this->render(fn ($value) => $this->renderComponent($component, $value->getContent($this->name), $params));
+        return $this->render(fn ($value) => $this->renderComponent($component, $this->getContent($value), $params));
     }
 
     /**
@@ -181,6 +181,16 @@ abstract class Cell
     public function usingComponent(string $component, ...$params): static
     {
         return $this->asComponent($component, $params);
+    }
+
+    /**
+     * Read a cell value from an Orchid data source or a plain Eloquent model.
+     */
+    protected function getContent(object $source): mixed
+    {
+        return method_exists($source, 'getContent')
+            ? $source->getContent($this->name)
+            : data_get($source, $this->name);
     }
 
     /**

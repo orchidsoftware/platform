@@ -14,8 +14,6 @@ abstract class Split extends Layout
 {
     /**
      * The name of the template file that will be used to render this layout.
-     *
-     * @var string
      */
     protected $template = 'orchid::layouts.split';
 

@@ -28,31 +28,33 @@ class Blade
      */
     public static function renderComponent(string $class, mixed $data): ?string
     {
-        $component = static::resolveComponent($class, (array) $data);
+        $view = static::componentView($class, (array) $data);
+
+        return $view instanceof View ? $view->render() : $view;
+    }
+
+    /**
+     * Resolve the component's view with its bound data.
+     *
+     * @param array<array-key, mixed> $data
+     */
+    public static function componentView(string $class, array $data): View|string|null
+    {
+        $component = static::resolveComponent($class, $data);
 
         if (! $component->shouldRender()) {
             return null;
         }
 
-        $view = $component->resolveView();
         $data = $component->data();
         $data['slot'] ??= new ComponentSlot;
-
-        if ($view instanceof \Closure) {
-            $view = $view($data);
-
-            return view($view)->render();
-        }
+        $view = value($component->resolveView(), $data);
 
         if ($view instanceof View) {
-            return $view->with($data)->render();
+            return $view->with($data);
         }
 
-        if ($view instanceof Htmlable) {
-            return $view->toHtml();
-        }
-
-        return view($view)->with($data)->render();
+        return $view instanceof Htmlable ? $view->toHtml() : view()->make($view, $data);
     }
 
     /**

@@ -10,9 +10,6 @@ use Orchid\Screen\Contracts\Personable;
 
 class Facepile extends Content
 {
-    /**
-     * @var string
-     */
     protected $template = 'orchid::layouts.facepile';
 
     /**

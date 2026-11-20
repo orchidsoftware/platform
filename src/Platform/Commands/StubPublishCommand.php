@@ -55,7 +55,7 @@ class StubPublishCommand extends Command
                 Orchid::path("stubs/{$file}") => $file,
             ]);
 
-        $this->laravel['events']->dispatch($event = new PublishingStubs($stubs->all()));
+        event($event = new PublishingStubs($stubs->all()));
 
         foreach ($event->stubs as $from => $to) {
             $to = $stubsPath.'/'.ltrim($to, '/');

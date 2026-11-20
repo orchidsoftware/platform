@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
-use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 use InvalidArgumentException;
 use Orchid\Screen\Layout;
@@ -164,7 +163,7 @@ class Chart extends Layout
         return $this;
     }
 
-    /** @return Factory|View|null */
+    /** @return View|null */
     public function build(Repository $repository)
     {
         $this->query = $repository;

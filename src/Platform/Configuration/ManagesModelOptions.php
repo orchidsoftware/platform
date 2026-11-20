@@ -2,14 +2,16 @@
 
 namespace Orchid\Platform\Configuration;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Orchid\Attachment\Models\Attachment;
 
 trait ManagesModelOptions
 {
     /**
      * Registered replacements for Orchid model classes.
      *
-     * @var array<string, class-string>
+     * @var array<string, class-string<Model>>
      */
     protected array $registeredReplaceModels = [];
 
@@ -31,7 +33,7 @@ trait ManagesModelOptions
      * @param TFallback      $key
      * @param TFallback|null $default
      *
-     * @return class-string|TFallback
+     * @return ($key is class-string<Attachment> ? class-string<Attachment>|TFallback : class-string<Model>|TFallback)
      */
     public function model(string $key, ?string $default = null): string
     {
@@ -41,7 +43,7 @@ trait ManagesModelOptions
     /**
      * Register a replacement model.
      *
-     * @param class-string $custom
+     * @param ($key is class-string<Attachment> ? class-string<Attachment> : class-string<Model>) $custom
      */
     public function useModel(string $key, string $custom): static
     {

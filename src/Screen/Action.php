@@ -18,8 +18,6 @@ class Action extends Field implements Actionable
 {
     /**
      * Override the form view.
-     *
-     * @var string|null
      */
     protected $typeForm = 'orchid::partials.fields.clear';
 

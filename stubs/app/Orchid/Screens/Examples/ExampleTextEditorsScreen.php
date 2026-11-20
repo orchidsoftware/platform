@@ -3,6 +3,7 @@
 namespace App\Orchid\Screens\Examples;
 
 use App\Orchid\Layouts\Examples\ExampleElements;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Orchid\Screen\Action;
 use Orchid\Screen\Fields\Code;
@@ -23,7 +24,7 @@ class ExampleTextEditorsScreen extends Screen
         return [
             'quill'     => 'Hello! We collected all the fields in one place',
             'simplemde' => '# Big header',
-            'code'      => Str::limit(file_get_contents(__FILE__), 500),
+            'code'      => Str::limit(File::get(__FILE__), 500),
         ];
     }
 
@@ -57,8 +58,6 @@ class ExampleTextEditorsScreen extends Screen
      * The screen's layout elements.
      *
      * @throws \Throwable
-     *
-     * @return \Orchid\Screen\Layout[]
      */
     public function layout(): iterable
     {

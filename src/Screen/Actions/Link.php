@@ -22,15 +22,10 @@ use Orchid\Screen\Action;
  */
 class Link extends Action
 {
-    /**
-     * @var string
-     */
     protected $view = 'orchid::actions.link';
 
     /**
      * The field wrapper view type (horizontal/vertical).
-     *
-     * @var string|null
      */
     protected $typeForm;
 

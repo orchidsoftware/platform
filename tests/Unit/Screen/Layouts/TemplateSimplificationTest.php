@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Screen\Layouts;
 
-use DOMDocument;
-use DOMXPath;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\MessageBag;
 use Orchid\Filters\Filter;
@@ -26,11 +24,8 @@ class TemplateSimplificationTest extends TestUnitCase
         $html = view('orchid::partials.alert')->withErrors($messages)->render();
         $xpath = $this->xpath($html);
 
-        $this->assertSame($messages->all(), array_map(
-            fn ($item) => $item->textContent,
-            iterator_to_array($xpath->query('//li')),
-        ));
-        $this->assertCount(0, $xpath->query('//script'));
+        $this->assertSame($messages->all(), $this->elements($xpath, '//li')->pluck('textContent')->all());
+        $this->assertCount(0, $this->elements($xpath, '//script'));
         $this->assertStringContainsString('role="alert"', $html);
         $this->assertStringNotContainsString('alert-danger', view('orchid::partials.alert')->withErrors([])->render());
     }
@@ -53,8 +48,7 @@ class TemplateSimplificationTest extends TestUnitCase
             $metric = ['value' => 'Existing value', 'diff' => $diff];
             $repository = new Repository(['orders' => $metric]);
             $html = LayoutFactory::metrics(['Orders' => 'orders'])->build($repository)->render();
-            $change = $this->xpath($html)->query('//p/small')->item(0);
-            $this->assertInstanceOf(\DOMElement::class, $change);
+            $change = $this->firstElement($this->xpath($html), '//p/small');
 
             $this->assertSame($expected, trim(str_replace(["\u{00A0}", '%'], '', $change->textContent)));
             $this->assertStringContainsString($diff < 0 ? 'text-danger' : 'text-success', $change->getAttribute('class'));
@@ -72,7 +66,7 @@ class TemplateSimplificationTest extends TestUnitCase
     {
         foreach ([42, 'Existing value', ['value' => 42], ['value' => 42, 'diff' => null], ['value' => 42, 'diff' => 0]] as $metric) {
             $html = LayoutFactory::metrics(['Orders' => 'orders'])->build(new Repository(['orders' => $metric]))->render();
-            $this->assertCount(0, $this->xpath($html)->query('//p/small'));
+            $this->assertCount(0, $this->elements($this->xpath($html), '//p/small'));
             $this->assertStringContainsString(is_array($metric) ? '42' : (string) $metric, $html);
         }
     }
@@ -96,18 +90,9 @@ class TemplateSimplificationTest extends TestUnitCase
         $layout = LayoutFactory::selection([$filter]);
         $layout->template = Selection::TEMPLATE_LINE;
         $xpath = $this->xpath('<form method="post">'.$layout->build(new Repository)->render().'</form>');
-        $reset = $xpath->query('//button[@data-action="filter#clear"]')->item(0);
-        $this->assertInstanceOf(\DOMElement::class, $reset);
+        $reset = $this->firstElement($xpath, '//button[@data-action="filter#clear"]');
 
         $this->assertSame('button', $reset->getAttribute('type'));
         $this->assertSame('filters', $this->firstElement($xpath, '//button[@type="submit"]')->getAttribute('form'));
-    }
-
-    private function xpath(string $html): DOMXPath
-    {
-        $document = new DOMDocument;
-        @$document->loadHTML($html);
-
-        return new DOMXPath($document);
     }
 }

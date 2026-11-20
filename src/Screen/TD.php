@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
@@ -80,7 +79,7 @@ class TD extends Cell
     /**
      * Possible options for filters if it's select
      *
-     * @var iterable<array-key, string|int>
+     * @var array<array-key, string|int>
      */
     protected $filterOptions = [];
 
@@ -126,7 +125,7 @@ class TD extends Cell
      */
     public function filterOptions(iterable $filterOptions): self
     {
-        $this->filterOptions = $filterOptions;
+        $this->filterOptions = collect($filterOptions)->all();
 
         return $this;
     }
@@ -217,7 +216,7 @@ class TD extends Cell
     /**
      * Builds a column heading.
      *
-     * @return Factory|View
+     * @return View
      */
     public function buildTh()
     {
@@ -270,11 +269,11 @@ class TD extends Cell
      *
      * @param Repository|Model $repository
      *
-     * @return Factory|View
+     * @return View
      */
     public function buildTd($repository, ?object $loop = null)
     {
-        $value = $this->render ? $this->handler($repository, $loop) : $repository->getContent($this->name);
+        $value = $this->render ? $this->handler($repository, $loop) : $this->getContent($repository);
 
         return view('orchid::partials.layouts.td', [
             'align'   => $this->align,
@@ -296,7 +295,7 @@ class TD extends Cell
     /**
      * Builds an item menu for show/hiden column.
      *
-     * @return Factory|View|null
+     * @return View|null
      */
     public function buildItemMenu()
     {

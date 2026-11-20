@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Orchid\Presenters;
 
+use App\Models\User;
 use Illuminate\Support\Str;
 use Laravel\Scout\Builder;
+use Orchid\Presenter\Presenter;
 use Orchid\Screen\Contracts\Personable;
 use Orchid\Screen\Contracts\Searchable;
-use Orchid\Support\Presenter;
 
+/** @extends Presenter<User> */
 class UserPresenter extends Presenter implements Personable, Searchable
 {
     /**

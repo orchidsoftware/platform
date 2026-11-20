@@ -101,7 +101,7 @@ class Alert
     /**
      * Flash a view message.
      *
-     * @param string               $template The name of the view to flash.
+     * @param view-string          $template The name of the view to flash.
      * @param Color                $color    The color of the message (default: Color::INFO).
      * @param array<string, mixed> $data     The data to pass to the view.
      *

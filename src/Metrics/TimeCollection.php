@@ -18,7 +18,7 @@ class TimeCollection extends Collection
     {
         $prepare = collect($values)->map(fn ($value, $key) => [
             'label' => Carbon::parse($key)->format($format),
-            'value' => round($value),
+            'value' => round((float) $value),
         ]);
 
         return static::make($prepare);
@@ -34,10 +34,10 @@ class TimeCollection extends Collection
         $closure ??= static fn ($label) => $label;
 
         return [
-            'labels'   => $this->pluck('label')->map($closure)->values()->all(),
+            'labels'   => [...$this->pluck('label')->map($closure)->values()],
             'datasets' => [[
                 'name'   => $name,
-                'values' => $this->pluck('value')->values()->all(),
+                'values' => [...$this->pluck('value')->values()],
             ]],
         ];
     }

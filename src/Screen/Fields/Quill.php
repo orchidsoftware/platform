@@ -33,9 +33,6 @@ use Orchid\Screen\Field;
  */
 class Quill extends Field
 {
-    /**
-     * @var string
-     */
     protected $view = 'orchid::fields.quill';
 
     /**

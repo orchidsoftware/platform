@@ -569,6 +569,17 @@ class PermissionTest extends TestUnitCase
         $this->assertTrue($user->roles()->get()->isEmpty());
     }
 
+    public function testRoleEventsAcceptSingleIdsAndPreserveIterableKeys(): void
+    {
+        $user = new User;
+        $roles = new \ArrayIterator(['primary' => 17]);
+
+        foreach ([AddRoleEvent::class, RemoveRoleEvent::class] as $event) {
+            $this->assertSame(['editor'], (new $event($user, 'editor'))->roles->all());
+            $this->assertSame(['primary' => 17], (new $event($user, $roles))->roles->all());
+        }
+    }
+
     public function testReplaceRolesUpdatesPermissionsAndCanBeRepeated(): void
     {
         Event::fake([AddRoleEvent::class, RemoveRoleEvent::class]);
@@ -724,6 +735,31 @@ class PermissionTest extends TestUnitCase
             'access.to.public.data',
             'access.to.secret.data',
         ]));
+    }
+
+    public function testHasAnyAccessStopsReadingAfterTheFirstMatch(): void
+    {
+        $permissions = static function () {
+            yield 'access.to.public.data';
+            self::fail('Read past the granted permission.');
+        };
+
+        $this->assertTrue($this->createUser()->hasAnyAccess($permissions()));
+    }
+
+    public function testPermissionChecksUseEveryYieldedPermission(): void
+    {
+        $user = $this->createUser();
+        $user->addRole($this->createRole());
+        $this->createNoPermissionsUser();
+
+        $permissions = static function () {
+            yield 0 => 'access.roles.to.public.data';
+            yield 0 => 'access.to.secret.data';
+        };
+
+        $this->assertTrue($user->hasAnyAccess($permissions()));
+        $this->assertSame([$user->id], User::byAnyAccess($permissions())->pluck('id')->all());
     }
 
     public function testHasAnyEmptyAccess(): void

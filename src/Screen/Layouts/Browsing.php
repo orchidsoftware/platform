@@ -9,9 +9,6 @@ use Orchid\Screen\Repository;
 
 class Browsing extends Layout
 {
-    /**
-     * @var string
-     */
     protected $template = 'orchid::layouts.browsing';
 
     protected $variables = [

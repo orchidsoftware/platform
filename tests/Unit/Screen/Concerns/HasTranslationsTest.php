@@ -8,29 +8,13 @@ use Orchid\Tests\TestUnitCase;
 
 class HasTranslationsTest extends TestUnitCase
 {
-    private object $field;
+    private TranslatableFieldStub $field;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->field = new class
-        {
-            use HasTranslations;
-
-            /**
-             * @var array<int, string>|null
-             */
-            protected ?array $translations = null;
-
-            /**
-             * @return array<int, string>|null
-             */
-            public function getTranslations(): ?array
-            {
-                return $this->translations;
-            }
-        };
+        $this->field = new TranslatableFieldStub;
     }
 
     public function testCanMarkAttributeAsTranslatable(): void
@@ -52,7 +36,7 @@ class HasTranslationsTest extends TestUnitCase
     {
         $this->field->translatable(['title', 'title']);
 
-        $this->assertCount(1, $this->field->getTranslations());
+        $this->assertCount(1, $this->field->translations());
         $this->assertTrue($this->field->shouldTranslate('title'));
     }
 
@@ -84,7 +68,7 @@ class HasTranslationsTest extends TestUnitCase
         $this->assertTrue($this->field->shouldTranslate('description'));
 
         $this->assertFalse($this->field->shouldTranslate('summary'));
-        $this->assertCount(2, $this->field->getTranslations());
+        $this->assertCount(2, $this->field->translations());
     }
 
     public function testTranslationAttributesCanBeOverridden(): void
@@ -110,4 +94,14 @@ class HasTranslationsTest extends TestUnitCase
         $this->assertTrue($field->shouldTranslate('description'));
         $this->assertFalse($field->shouldTranslate('title'));
     }
+}
+
+class TranslatableFieldStub
+{
+    use HasTranslations {
+        translations as public;
+    }
+
+    /** @var array<int, string>|null */
+    protected ?array $translations = null;
 }

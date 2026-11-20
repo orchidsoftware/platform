@@ -10,13 +10,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 /**
- * @method static GroupCollection countForGroup(string $groupColumn)
- * @method static TimeCollection  countByDays(string|DateTimeInterface|null $startDate = null, string|DateTimeInterface|null $stopDate = null, ?string $dateColumn = null)
- * @method static TimeCollection  averageByDays(string $value, string|DateTimeInterface|null $startDate = null, string|DateTimeInterface|null $stopDate = null, ?string $dateColumn = null)
- * @method static TimeCollection  sumByDays(string $value, string|DateTimeInterface|null $startDate = null, string|DateTimeInterface|null $stopDate = null, ?string $dateColumn = null)
- * @method static TimeCollection  maxByDays(string $value, string|DateTimeInterface|null $startDate = null, string|DateTimeInterface|null $stopDate = null, ?string $dateColumn = null)
- * @method static TimeCollection  minByDays(string $value, string|DateTimeInterface|null $startDate = null, string|DateTimeInterface|null $stopDate = null, ?string $dateColumn = null)
- * @method static TimeCollection  valuesByDays(string $value, string|DateTimeInterface|null $startDate = null, string|DateTimeInterface|null $stopDate = null, string $dateColumn = 'created_at')
+ * @method        literal-string|null getCreatedAtColumn()
+ * @method static GroupCollection     countForGroup(string $groupColumn)
+ * @method static TimeCollection      countByDays(string|DateTimeInterface|null $startDate = null, string|DateTimeInterface|null $stopDate = null, literal-string|null $dateColumn = null)
+ * @method static TimeCollection      averageByDays(literal-string $value, string|DateTimeInterface|null $startDate = null, string|DateTimeInterface|null $stopDate = null, literal-string|null $dateColumn = null)
+ * @method static TimeCollection      sumByDays(literal-string $value, string|DateTimeInterface|null $startDate = null, string|DateTimeInterface|null $stopDate = null, literal-string|null $dateColumn = null)
+ * @method static TimeCollection      maxByDays(literal-string $value, string|DateTimeInterface|null $startDate = null, string|DateTimeInterface|null $stopDate = null, literal-string|null $dateColumn = null)
+ * @method static TimeCollection      minByDays(literal-string $value, string|DateTimeInterface|null $startDate = null, string|DateTimeInterface|null $stopDate = null, literal-string|null $dateColumn = null)
+ * @method static TimeCollection      valuesByDays(literal-string $value, string|DateTimeInterface|null $startDate = null, string|DateTimeInterface|null $stopDate = null, literal-string $dateColumn = 'created_at')
  */
 trait Chartable
 {
@@ -42,8 +43,10 @@ trait Chartable
 
     /**
      * @param Builder<static>               $builder
+     * @param literal-string                $value
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
+     * @param literal-string|null           $dateColumn
      */
     private function groupByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
     {
@@ -81,6 +84,7 @@ trait Chartable
      * @param Builder<static>               $builder
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
+     * @param literal-string|null           $dateColumn
      */
     #[Scope]
     protected function countByDays(Builder $builder, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
@@ -92,8 +96,10 @@ trait Chartable
      * Get average models grouped by `created_at` day.
      *
      * @param Builder<static>               $builder
+     * @param literal-string                $value
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
+     * @param literal-string|null           $dateColumn
      */
     #[Scope]
     protected function averageByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
@@ -105,8 +111,10 @@ trait Chartable
      * Get sum models grouped by `created_at` day.
      *
      * @param Builder<static>               $builder
+     * @param literal-string                $value
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
+     * @param literal-string|null           $dateColumn
      */
     #[Scope]
     protected function sumByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
@@ -118,8 +126,10 @@ trait Chartable
      * Get sum models grouped by `created_at` day.
      *
      * @param Builder<static>               $builder
+     * @param literal-string                $value
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
+     * @param literal-string|null           $dateColumn
      */
     #[Scope]
     protected function maxByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
@@ -131,8 +141,10 @@ trait Chartable
      * Get min models grouped by `created_at` day.
      *
      * @param Builder<static>               $builder
+     * @param literal-string                $value
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
+     * @param literal-string|null           $dateColumn
      */
     #[Scope]
     protected function minByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, ?string $dateColumn = null): TimeCollection
@@ -146,8 +158,10 @@ trait Chartable
      * Get values models grouped by `created_at` day.
      *
      * @param Builder<static>               $builder
+     * @param literal-string                $value
      * @param string|DateTimeInterface|null $startDate
      * @param string|DateTimeInterface|null $stopDate
+     * @param literal-string                $dateColumn
      */
     #[Scope]
     protected function valuesByDays(Builder $builder, string $value, $startDate = null, $stopDate = null, string $dateColumn = 'created_at'): TimeCollection

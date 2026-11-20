@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Fields;
 
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 use Orchid\Screen\Field;
 
 /**
@@ -32,9 +33,6 @@ use Orchid\Screen\Field;
  */
 class DateTimer extends Field
 {
-    /**
-     * @var string
-     */
     protected $view = 'orchid::fields.datetime';
 
     /**
@@ -360,7 +358,7 @@ class DateTimer extends Field
     public function withQuickDates(array $presets): static
     {
         $formattedPresets = collect($presets)
-            ->map(fn ($value) => collect($value))
+            ->map(fn ($value) => Collection::wrap($value))
             ->map
             ->map(fn ($value) => Carbon::parse($value)->format($this->attributes['data-datetime-date-format']))
             ->all();

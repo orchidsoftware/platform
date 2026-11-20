@@ -76,9 +76,6 @@ class BlockEditor extends Field
         self::EMBED,
     ];
 
-    /**
-     * @var string
-     */
     protected $view = 'orchid::fields.blockEditor';
 
     /**
@@ -172,15 +169,16 @@ class BlockEditor extends Field
     {
         $buttons = $this->toolbarButtons();
 
-        return collect($this->get('toolbar'))
+        $toolbar = collect($this->get('toolbar'))
             ->unique()
             ->filter(fn ($type) => is_string($type) && array_key_exists($type, $buttons))
             ->map(fn (string $type) => [
                 'type'  => $type,
                 'title' => $buttons[$type],
             ])
-            ->values()
-            ->all();
+            ->values();
+
+        return [...$toolbar];
     }
 
     /**

@@ -145,7 +145,7 @@ class LayoutTest extends TestUnitCase
     {
         $layout = new class extends Layout
         {
-            protected $template = 'test-template';
+            protected $template = 'orchid::layouts.blank';
 
             public function build(Repository $repository)
             {
@@ -156,7 +156,7 @@ class LayoutTest extends TestUnitCase
         $serialized = $layout->jsonSerialize();
 
         $this->assertArrayHasKey('template', $serialized);
-        $this->assertEquals('test-template', $serialized['template']);
+        $this->assertEquals('orchid::layouts.blank', $serialized['template']);
         $this->assertArrayNotHasKey('query', $serialized);
     }
 }

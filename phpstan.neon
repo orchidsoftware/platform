@@ -4,7 +4,7 @@ includes:
     - vendor/phpstan/phpstan-phpunit/extension.neon
 
 parameters:
-    level: 6
+    level: 7
     phpVersion: 80300
     parseModelCastsMethod: true
     configDirectories:
@@ -21,6 +21,10 @@ parameters:
         - stubs/app
         - workbench
     ignoreErrors:
+        # Laravel's collect() accepts more input types than its PHPDoc declares.
+        -
+            identifier: argument.type
+            message: '~^Parameter #1 \$value of function collect expects ~'
         # Count only the bounded notification sample; SQL count() would ignore the limit.
         -
             identifier: larastan.noUnnecessaryCollectionCall

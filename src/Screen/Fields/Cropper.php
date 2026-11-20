@@ -36,9 +36,6 @@ namespace Orchid\Screen\Fields;
  */
 class Cropper extends Picture
 {
-    /**
-     * @var string
-     */
     protected $view = 'orchid::fields.cropper';
 
     /**

@@ -9,6 +9,7 @@ use Orchid\Platform\Models\User;
 use Orchid\Screen\TD;
 use Orchid\Tests\App\Components\SimpleShowValue;
 use Orchid\Tests\App\Components\SimpleShowValueWithArguments;
+use Orchid\Tests\App\EmptyUserModel;
 use Orchid\Tests\TestUnitCase;
 
 class TDComponentAsValueTest extends TestUnitCase
@@ -32,6 +33,17 @@ class TDComponentAsValueTest extends TestUnitCase
             ->buildTd($this->user);
 
         $this->assertStringContainsString($this->user->email, $view);
+    }
+
+    public function testComponentReadsAnAttributeFromAPlainEloquentModel(): void
+    {
+        $user = (new EmptyUserModel)->forceFill(['email' => 'reader@example.org']);
+
+        $view = TD::make('email')
+            ->asComponent(SimpleShowValue::class)
+            ->buildTd($user);
+
+        $this->assertStringContainsString('reader@example.org', $view->render());
     }
 
     public function testTdWithoutArgumentComponent(): void
